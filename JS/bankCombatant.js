@@ -6041,19 +6041,35 @@ combatant.prototype.display=function(){
                     this.layer.quad(-12,-69,12,-69,8,-75,-8,-75)
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Fat Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Fat Duck': case 'Void Duck':
+                if(this.name=='Void Duck'&&this.trigger.display.outline){
+                    this.layer.noStroke()
+                    this.layer.fill(this.flashColor(this.color.outline)[0],this.flashColor(this.color.outline)[1],this.flashColor(this.color.outline)[2],this.fade*this.fades.outline)
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms){
+                            this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,14)
+                        }
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.legs){
+                            this.layer.ellipse(this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,14)
+                        }
+                    }
+                    this.layer.ellipse(0,-19,16,26)
+                    this.layer.ellipse(0,-38,29)
+                }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)<=0){
                         this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1]))[2],this.fade*this.fades.skin.arms)
                         this.layer.noStroke()
-                        this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,12,12)
+                        this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,12)
                     }
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.legs&&lcos(this.anim.direction+this.spin.legs[g].top)<=0){
                         this.layer.fill(this.flashColor(upColor(this.color.skin.legs,lcos(this.spin.legs[g].top+this.anim.direction)*20,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.legs,lcos(this.spin.legs[g].top+this.anim.direction)*20,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.legs,lcos(this.spin.legs[g].top+this.anim.direction)*20,[1,1,1]))[2],this.fade*this.fades.skin.legs)
                         this.layer.noStroke()
-                        this.layer.ellipse(this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,12,12)
+                        this.layer.ellipse(this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,12)
                     }
                 }
                 if(this.trigger.display.skin.body){
@@ -6071,7 +6087,7 @@ combatant.prototype.display=function(){
                     if(this.trigger.display.skin.legs&&lcos(this.anim.direction+this.spin.legs[g].top)>0){
                         this.layer.fill(this.flashColor(upColor(this.color.skin.legs,lcos(this.spin.legs[g].top+this.anim.direction)*20,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.legs,lcos(this.spin.legs[g].top+this.anim.direction)*20,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.legs,lcos(this.spin.legs[g].top+this.anim.direction)*20,[1,1,1]))[2],this.fade*this.fades.skin.legs)
                         this.layer.noStroke()
-                        this.layer.ellipse(this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,12,12)
+                        this.layer.ellipse(this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,12)
                     }
                 }
                 if(this.trigger.display.beak.main){
@@ -6103,7 +6119,7 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.skin.head){
                     this.layer.fill(this.flashColor(this.color.skin.head)[0],this.flashColor(this.color.skin.head)[1],this.flashColor(this.color.skin.head)[2],this.fade*this.fades.skin.head)
                     this.layer.noStroke()
-                    this.layer.ellipse(0,-38,27,27)
+                    this.layer.ellipse(0,-38,27)
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)>0){

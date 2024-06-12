@@ -998,13 +998,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             regStar(layer,0,0,8,6,6,3.6,3.6,0)
         break
         case 116:
-            layer.fill(125,fade)
-            layer.stroke(100,fade)
-            layer.strokeWeight(1)
-            layer.rect(0,0,4.5,6,1)
-            layer.rect(-0.75,1.5,3,3)
-            layer.noStroke()
-            layer.triangle(-1.5,4.5,1.5,4.5,0,6.5)
+            layer.fill(80,fade)
+            layer.rect(-2.5,0,1,8)
+            layer.rect(-1,0,1,8)
+            layer.rect(0,-3.5,5.5,1)
+            layer.rect(0,3.5,5.5,1)
+            layer.triangle(3,-1,3,1,4.5,0)
         break
         case 117:
             layer.stroke(200,0,0,fade)
@@ -7176,7 +7175,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.line(-6*sqrt(2),6*sqrt(2),6*sqrt(2),-6*sqrt(2))
         break
         case 17:
-            layer.fill(80,fade)
+            layer.fill(60,fade)
             layer.rect(0,0,6,24)
             layer.rect(0,0,24,6)
         break
@@ -7498,11 +7497,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         break
         case 60:
             layer.fill(75,fade)
-            layer.beginShape()
-            for(let a=0,la=12;a<la;a++){
-                layer.vertex(lsin(a*30)*(2+a%2*4),lcos(a*30)*(2+a%2*4))
-            }
-            layer.endShape()
+            regStar(layer,0,0,6,2,2,6,6,0)
         break
         case 61:        
             layer.fill(255,50,50,fade)
@@ -7593,13 +7588,13 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         case 72:
             layer.fill(255,50,50,fade)
             layer.triangle(0,-12,-3,6,3,6)
-            layer.fill(80,fade)
+            layer.fill(60,fade)
             layer.triangle(-4,-3,-4,3,8,0)
         break
         case 73:
             layer.fill(150,175,200,fade)
             layer.triangle(0,-12,-3,6,3,6)
-            layer.fill(80,fade)
+            layer.fill(60,fade)
             layer.triangle(-4,-3,-4,3,8,0)
         break
         case 74:
@@ -7621,7 +7616,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(120,fade)
             layer.strokeWeight(1.5)
             layer.rect(0,0,18,16,2)
-            layer.stroke(80,fade)
+            layer.stroke(60,fade)
             layer.rect(0,0,12,16,2)
         break
         case 77:
@@ -7693,17 +7688,17 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             }
         break
         case 85:
-            layer.fill(120,fade)
+            layer.fill(60,fade)
             layer.quad(-7,7,-7,2,7,-7,-2,7)
         break
         case 86:
-            layer.stroke(80,fade)
+            layer.stroke(60,fade)
             layer.strokeWeight(2)
             layer.arc(0,0,10,10,-90,240)
             layer.line(0,-5,0,-3)
         break
         case 87:
-            layer.stroke(80,fade)
+            layer.stroke(60,fade)
             layer.strokeWeight(2)
             layer.arc(2,-3,10,6,90,270)
             layer.arc(2,3,10,6,90,270)
@@ -7770,11 +7765,9 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 			layer.arc(0,-3,10,16,0,180)
         break
         case 95:
-            layer.fill(120,fade)
-            layer.rect(-6,0,2,14)
-            layer.rect(-3,0,2,14)
-            layer.rect(6,0,2,14)
-            layer.rect(0,6,14,2)
+            layer.fill(60,fade)
+            layer.triangle(-6,-6,-6,6,6,6)
+            layer.rect(0,0,4)
         break
         case 96:
             layer.fill(150,175,200,fade)
@@ -7815,11 +7808,10 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,0,11)
         break
         case 100:
-            layer.fill(120,fade)
-            layer.rect(-5,0,2,16)
-            layer.rect(-2,0,2,16)
-            layer.rect(0,-7,11,2)
-            layer.rect(0,7,11,2)
+            layer.fill(60,fade)
+            layer.rect(-2,2,8)
+            layer.rect(-2,-2,3)
+            layer.rect(2,2,3)
         break
         case 101:
             layer.fill(0,fade)
@@ -7845,6 +7837,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(120,fade)
             layer.strokeWeight(1.5)
             layer.rect(0,0,12,16,2)
+            layer.stroke(60,fade)
             layer.strokeWeight(0.5)
             regStar(layer,0,0,12,2,2,5,5,0)
         break
@@ -7904,6 +7897,102 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.quad(0,1,-1,-3,0,-7,1,-3)
             layer.fill(255,255,100,fade)
             layer.quad(0,6,-2,4,0,2,2,4)
+        break
+        case 111:
+            layer.fill(120,fade)
+            layer.rect(-5,0,2,16)
+            layer.rect(-2,0,2,16)
+            layer.rect(0,-7,11,2)
+            layer.rect(0,7,11,2)
+        break
+        case 112:
+            layer.fill(120,fade)
+            layer.rect(-6,0,2,14)
+            layer.rect(-3,0,2,14)
+            layer.rect(6,0,2,14)
+            layer.rect(0,6,14,2)
+        break
+        case 113:
+            layer.fill(0,50,150,fade)
+            regTriangle(layer,0,-3,3,3,0)
+            regTriangle(layer,-1.5*sqrt(3),1.5,3,3,0)
+            regTriangle(layer,1.5*sqrt(3),1.5,3,3,0)
+            layer.fill(0,100,150,fade)
+            regTriangle(layer,0,3,3,3,60)
+            regTriangle(layer,-1.5*sqrt(3),-1.5,3,3,60)
+            regTriangle(layer,1.5*sqrt(3),-1.5,3,3,60)
+        break
+        case 114:
+            for(let a=0,la=5;a<la;a++){
+                layer.fill([255,0,255,0,50][a],[0,150,255,100,0][a],[0,0,100,200,100][a])
+                layer.triangle(0,0,6*lsin(a*72-36),6*lcos(a*72-36),6*lsin(a*72+36),6*lcos(a*72+36))
+            }
+        break
+        case 115:
+            layer.fill(225,fade)
+            layer.rect(0,0,10,10,2)
+            layer.fill(40,fade)
+            layer.ellipse(0,0,3,3)
+        break
+        case 116:
+            layer.stroke(80,fade)
+            layer.strokeWeight(3)
+            regPoly(layer,0,0,8,16,16,22.5)
+            layer.strokeWeight(1.5)
+            layer.line(-6,-6,6,6)
+            layer.line(-6,6,6,-6)
+        break
+        case 117:
+            layer.fill(100,0,100,fade)
+            regStar(layer,0,0,5,2,2,6,6,0)
+            layer.fill(50,0,50,fade)
+            regStar(layer,0,0,5,2,2,6,6,36)
+        break
+        case 118:
+            layer.stroke(0,fade)
+            layer.strokeWeight(2.5)
+            layer.noFill()
+            layer.ellipse(0,0,30,30)
+            layer.strokeWeight(1.5)
+            layer.ellipse(0,4,20,10)
+            layer.arc(0,4,20,2,0,180)
+            layer.line(-3,2,-3,1)
+            layer.line(3,2,3,1)
+            layer.strokeWeight(5)
+            layer.point(-6,-5)
+            layer.point(6,-5)
+        break
+        case 119:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(-2,-2,12,16,2)
+            layer.rect(0,0,12,16,2)
+            layer.rect(2,2,12,16,2)
+            layer.strokeWeight(1)
+            layer.ellipse(-2,-4,4)
+            layer.ellipse(1.5,3,5)
+        break
+        case 120:
+            layer.fill(120,fade)
+            layer.rect(0,0,6,1)
+            layer.ellipse(0,-2.5,2)
+            layer.ellipse(0,2.5,2)
+        break
+        case 121:
+            layer.fill(60,fade)
+            layer.ellipse(0,0,8)
+            layer.triangle(-2,0,2,0,0,10)
+            layer.triangle(0,-2,0,2,-10,0)
+        break
+        case 122:
+            layer.fill(120,fade)
+            layer.rect(-4,0,3,11)
+            layer.rect(4,0,3,11)
+            layer.rect(0,-4,11,3)
+            layer.fill(160,fade)
+            layer.rect(-4,0,1,9)
+            layer.rect(4,0,1,9)
+            layer.rect(0,-4,9,1)
         break
     }
     layer.pop()
@@ -8016,4 +8105,16 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 108-Basic Card
 109-Fragile Damage Up
 110-Madness
+111-Old Common
+112-Old Uncommon
+113-Spectral
+114-Prism
+115-Low Roll
+116-Nonvisible Node
+117-Trough
+118-Duck
+119-Triochrome
+120-Select
+121-Shop Rarity
+122-Staple
 */

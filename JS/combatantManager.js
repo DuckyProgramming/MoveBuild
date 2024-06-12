@@ -790,7 +790,7 @@ class combatantManager{
             this.combatants[this.combatants.length-1].autoAim()
         }
         if(!options.oldUnbuild&&this.combatants[this.combatants.length-1].move.speed==0&&this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players){
-            if(this.battle.cardManagers[this.battle.turn.main].hand.cardNumber('Unbuild')==0){
+            if(this.battle.cardManagers[this.battle.turn.main].hand.numberAbstract(0,[['Unbuild']])==0){
                 this.battle.cardManagers[this.battle.turn.main].hand.add(findName('Unbuild',types.card),0,0)
             }
         }

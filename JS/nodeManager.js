@@ -217,8 +217,7 @@ class nodeManager{
             break
             case 6:
                 if(this.world==1&&game.ascend>=23){
-                    transition.scene='battle'
-                    this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][1][floor(random(0,this.listing.encounter[this.world][1].length))]])
+                    this.enterNode(1,y,true)
                 }else{
                     transition.scene='stash'
                     this.battle.setupStash()
@@ -232,7 +231,7 @@ class nodeManager{
     }
     display(){
         this.nodes.forEach(node=>node.displayConnections())
-        this.nodes.forEach(node=>node.display())
+        this.nodes.forEach(node=>node.display(this.battle.relicManager.hasRelic(282,-1)&&node.tilePosition.y>=this.tilePosition.y+4?8:undefined))
     }
     update(){
         for(let a=0,la=this.nodes.length;a<la;a++){

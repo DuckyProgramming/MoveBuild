@@ -18,7 +18,7 @@ class relic{
         this.anim={active:1}
 
         switch(this.rarity){
-            case -1: this.value=20; break
+            case -1: this.value=60; break
             case 0: this.value=80; break
             case 1: this.value=120; break
             case 2: this.value=200; break
@@ -26,7 +26,7 @@ class relic{
             case 4: this.value=600; break
         }
     }
-    display(total,active=0,position=this.position,value=false){
+    display(total,active=0,position=this.position,value=false,detail=-1){
         if(this.fade>0){
             this.layer.push()
             this.layer.translate(position.x,position.y)
@@ -71,7 +71,7 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('1',8,-3)
                 break
-                case '3 Turn Energy':
+                case '5 Turn Energy':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
                     displaySymbol(this.layer,7,10,4,0,0.6,this.fade)
                     displaySymbol(this.layer,7,-10,5,0,0.6,this.fade)
@@ -79,7 +79,7 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('1',-8,0)
                     this.layer.textSize(15)
-                    this.layer.text('3',7,1)
+                    this.layer.text('5',7,1)
                 break
                 case '6 Max HP':
                     displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
@@ -171,13 +171,13 @@ class relic{
                     displaySymbol(this.layer,6,-8,8,0,0.7,this.fade)
                     displaySymbol(this.layer,6,8,9,0,0.7,this.fade)
                 break
-                case '10 Card Draw':
+                case '15 Card Draw':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
                     displaySymbol(this.layer,8,-4,8,0,0.8,this.fade)
                     displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('10',-8,0)
+                    this.layer.text('15',-8,0)
                 break
                 case 'Emergency Heal':
                     displaySymbol(this.layer,-10,-4,2,0,0.6,this.fade)
@@ -244,7 +244,7 @@ class relic{
                     displaySymbol(this.layer,8,0,2,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('2',8,0)
+                    this.layer.text('1',8,0)
                 break
                 case 'Retain Energy':
                     displaySymbol(this.layer,-10,-4,9,0,0.8,this.fade)
@@ -354,7 +354,8 @@ class relic{
                     this.layer.text('2',8,-3)
                 break
                 case '8 Attack Strength':
-                    displaySymbol(this.layer,-7,0,18,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,18,0,0.8,this.fade)
                     displaySymbol(this.layer,10,0,11,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
@@ -362,7 +363,8 @@ class relic{
                     this.layer.text('1',10,0)
                 break
                 case '8 Attack Dexterity':
-                    displaySymbol(this.layer,-7,0,18,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,18,0,0.8,this.fade)
                     displaySymbol(this.layer,10,0,12,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
@@ -370,7 +372,8 @@ class relic{
                     this.layer.text('1',10,0)
                 break
                 case '3 Attack Block':
-                    displaySymbol(this.layer,-7,0,18,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,18,0,0.8,this.fade)
                     displaySymbol(this.layer,10,0,27,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
@@ -500,26 +503,26 @@ class relic{
                 break
                 case 'Card Rest':
                     displaySymbol(this.layer,0,-6,8,0,1,this.fade)
-                    displaySymbol(this.layer,0,-6,17,0,0.5,this.fade)
+                    displaySymbol(this.layer,0,-6,17,0,0.4,this.fade)
                     displaySymbol(this.layer,0,10,32,0,1,this.fade)
                 break
-                case '10 Attack Damage':
-                    displaySymbol(this.layer,-9,0,8,0,1,this.fade)
-                    displaySymbol(this.layer,-9,0,18,0,0.8,this.fade)
-                    displaySymbol(this.layer,9,0,39,0,1,this.fade)
+                case '12 Attack Damage':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,18,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,0,39,0,0.8,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('10',-9,0)
-                    this.layer.text('1',9,0)
+                    this.layer.text('12',-7,0)
+                    this.layer.text('1',10,0)
                 break
-                case '10 Attack Energy':
-                    displaySymbol(this.layer,-9,0,8,0,1,this.fade)
-                    displaySymbol(this.layer,-9,0,18,0,0.8,this.fade)
-                    displaySymbol(this.layer,9,0,9,0,1,this.fade)
+                case '12 Attack Energy':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,18,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,0,9,0,0.8,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('10',-9,0)
-                    this.layer.text('1',9,0)
+                    this.layer.text('12',-7,0)
+                    this.layer.text('1',10,0)
                 break
                 case 'Better Rest Heal':
                     displaySymbol(this.layer,0,-6,2,0,0.75,this.fade)
@@ -581,13 +584,13 @@ class relic{
                     this.layer.text('2',8,-3)
                 break
                 case '3 Defense Metallicize':
-                    displaySymbol(this.layer,-9,0,8,0,1,this.fade)
-                    displaySymbol(this.layer,-9,0,19,0,0.8,this.fade)
-                    displaySymbol(this.layer,9,0,43,0,1.5,this.fade)
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,19,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,0,43,0,1.5,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('3',-9,0)
-                    this.layer.text('2',9,0)
+                    this.layer.text('3',-7,0)
+                    this.layer.text('2',10,0)
                 break
                 case 'Unblocked Weaken':
                     displaySymbol(this.layer,-8,0,27,0,0.6,this.fade)
@@ -619,14 +622,14 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('2x',0,10)
                 break
-                case '10 Defense Buffer':
-                    displaySymbol(this.layer,-9,0,8,0,1,this.fade)
-                    displaySymbol(this.layer,-9,0,19,0,0.8,this.fade)
-                    displaySymbol(this.layer,9,0,44,0,1.5,this.fade)
+                case '12 Defense Buffer':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,19,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,0,44,0,1.5,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('10',-9,0)
-                    this.layer.text('1',9,0)
+                    this.layer.text('12',-7,0)
+                    this.layer.text('1',10,0)
                 break
                 case 'Important Enemies':
                     displaySymbol(this.layer,-9,0,3,0,0.5,this.fade)
@@ -700,7 +703,7 @@ class relic{
                     this.layer.text('2',0,0)
                 break
                 case '5 Turn Intangible':
-                    displaySymbol(this.layer,-8,0,48,0,1.2,this.fade)
+                    displaySymbol(this.layer,-8,-2,48,0,1,this.fade)
                     displaySymbol(this.layer,7,10,4,0,0.6,this.fade)
                     displaySymbol(this.layer,7,-10,5,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
@@ -921,7 +924,7 @@ class relic{
                 break
                 case 'Premium':
                     displaySymbol(this.layer,-9,0,28,0,0.6,this.fade)
-                    displaySymbol(this.layer,-9,0,17,0,0.4,this.fade)
+                    displaySymbol(this.layer,-9,0,17,0,0.3,this.fade)
                     displaySymbol(this.layer,9,0,28,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
@@ -1005,6 +1008,7 @@ class relic{
                 case 'Energy/Card Choice':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
                     displaySymbol(this.layer,9,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,17,0,0.3,this.fade)
                 break
                 case 'Energy/Rest Heal':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
@@ -1038,6 +1042,9 @@ class relic{
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
                     displaySymbol(this.layer,8,-8,11,0,0.5,this.fade)
                     displaySymbol(this.layer,8,4,3,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',8,-8)
                 break
                 case 'Energy/Items':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
@@ -1073,6 +1080,9 @@ class relic{
                 case 'Energy/Max HP':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
                     displaySymbol(this.layer,9,0,10,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',9,0)
                 break
                 case 'Energy/Electrocuted':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
@@ -1597,7 +1607,7 @@ class relic{
                     displaySymbol(this.layer,0,0,8,0,1.2,this.fade)
                     displaySymbol(this.layer,0,0,99,0,1,this.fade)
                 break
-                case 'Free Commons':
+                case 'Free Common':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
                     displaySymbol(this.layer,-8,0,100,0,0.7,this.fade)
                     displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
@@ -1618,7 +1628,7 @@ class relic{
                     displaySymbol(this.layer,0,0,8,0,1.2,this.fade)
                     displaySymbol(this.layer,0,0,98,1.2,this.fade)
                 break
-                case 'Deluxe Upgraded Card Rewards':
+                case 'Double Upgraded Card Rewards':
                     displaySymbol(this.layer,-12,0,8,0,0.8,this.fade)
                     displaySymbol(this.layer,-14.5,0,7,0,0.4,this.fade)
                     displaySymbol(this.layer,-9.5,0,7,0,0.4,this.fade)
@@ -1942,6 +1952,342 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('-1',9,0)
                 break
+                case 'Currency Rest':
+                    displaySymbol(this.layer,0,-6,28,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,12,32,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('300',0,-6)
+                break
+                case 'Energy/Draw Toggle':
+                    displaySymbol(this.layer,-8,-6,9,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,-6,8,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,-6)
+                    this.layer.text('2',8,-6)
+                    displaySymbol(this.layer,-8,10,87,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,10,86,0,0.8,this.fade)
+                break
+                case 'Free Uncommon':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,95,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('0',8,1)
+                break
+                case 'Free Rare':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,85,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('0',8,1)
+                break
+                case 'Free Common Colorless':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,57,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,100,0,0.7,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('0',8,1)
+                break
+                case 'Standard Pack Discount':
+                    displaySymbol(this.layer,-8,0,103,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',8,1)
+                break
+                case 'Colorless Pack Discount':
+                    displaySymbol(this.layer,-8,10,57,0,0.9,this.fade)
+                    displaySymbol(this.layer,-8,-4,103,0,0.9,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',8,1)
+                break
+                case 'Spectral Pack Discount':
+                    displaySymbol(this.layer,-8,10,113,0,0.9,this.fade)
+                    displaySymbol(this.layer,-8,-4,103,0,0.9,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',8,1)
+                break
+                case 'Prism Pack Discount':
+                    displaySymbol(this.layer,-8,10,114,0,0.9,this.fade)
+                    displaySymbol(this.layer,-8,-4,103,0,0.9,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',8,1)
+                break
+                case 'Add Card Max HP':
+                    displaySymbol(this.layer,-9,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-9,0,17,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,0,10,0,0.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',8,0)
+                break
+                case 'Innate Attack':
+                    displaySymbol(this.layer,-6,0,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,-6,0,18,0,0.6,this.fade)
+                    displaySymbol(this.layer,10,0,58,1.2,this.fade)
+                break
+                case 'Innate Defense':
+                    displaySymbol(this.layer,-6,0,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,-6,0,19,0,0.6,this.fade)
+                    displaySymbol(this.layer,10,0,58,1.2,this.fade)
+                break
+                case 'Innate Movement':
+                    displaySymbol(this.layer,-6,0,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,-6,0,20,0,0.6,this.fade)
+                    displaySymbol(this.layer,10,0,58,1.2,this.fade)
+                break
+                case 'Innate Power':
+                    displaySymbol(this.layer,-6,0,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,-6,0,21,0,0.6,this.fade)
+                    displaySymbol(this.layer,10,0,58,1.2,this.fade)
+                break
+                case 'Fatigue Block':
+                    displaySymbol(this.layer,-8,0,60,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,27,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',8,0)
+                break
+                case 'Energy/Chance':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,9,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,115,0,1,this.fade)
+                break
+                case 'Energy/Hard Elites':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,-8,11,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,4,34,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',8,-8)
+                break
+                case 'Energy/Blind':
+                    displaySymbol(this.layer,-9,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,116,0,0.4,this.fade)
+                break
+                case 'Energy/Immediate Currency':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-600',9,0)
+                break
+                case 'Energy/Healing':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',9,0)
+                break
+                case 'Energy/Trough':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,8,0,0.9,this.fade)
+                    displaySymbol(this.layer,9,0,117,0,0.9,this.fade)
+                break
+                case 'Energy/Fatigue Draw':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,7,-8,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,8,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-8,60,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,0,7,0,0.3,this.fade)
+                break
+                case 'Energy/Ducks':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,118,0,0.4,this.fade)
+                break
+                case 'Energy/Crit Fail':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,18,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,115,0,1,this.fade)
+                break
+                case 'Energy/Elite Relics':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,-7,1,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,7,34,0,0.3,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('-1',8,-7)
+                break
+                case 'Always Deluxe Upgrade':
+                    displaySymbol(this.layer,0,-6,8,0,1,this.fade)
+                    displaySymbol(this.layer,-2,-6,7,0,0.4,this.fade)
+                    displaySymbol(this.layer,2,-6,7,0,0.4,this.fade)
+                    displaySymbol(this.layer,0,10,32,0,1,this.fade)
+                break
+                case 'Any 5 Rare Cards':
+                    displaySymbol(this.layer,-3,-6,8,0,1,this.fade)
+                    displaySymbol(this.layer,-5,-6,7,0,0.4,this.fade)
+                    displaySymbol(this.layer,-1,-6,7,0,0.4,this.fade)
+                    displaySymbol(this.layer,-3,10,114,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('5',10,2)
+                break
+                case 'First Free':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,9,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,-3,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,10,5,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('0',-8,0)
+                    this.layer.text('1',8,-3)
+                break
+                case '3 Card Draw':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,-4,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,0)
+                break
+                case 'Random Double Upgrade':
+                    displaySymbol(this.layer,0,-4,8,0,1.25,this.fade)
+                    displaySymbol(this.layer,-2.5,-4,7,0,0.5,this.fade)
+                    displaySymbol(this.layer,2.5,-4,7,0,0.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',0,13)
+                break
+                case '3 Attack Strength/3 Defense Dexterity':
+                    displaySymbol(this.layer,-7,-7,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,-7,-7,18,0,0.6,this.fade)
+                    displaySymbol(this.layer,-7,9,11,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-7,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,7,-7,19,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,9,12,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',7,-7)
+                    this.layer.text('1',7,9)
+                    this.layer.text('3',-7,-7)
+                    this.layer.text('1',-7,9)
+                break
+                case 'Energy Bump':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,-5,9,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,0)
+                    this.layer.text('1',8,-5)
+                break
+                case 'Triochrome':
+                    displaySymbol(this.layer,0,0,119,0,1.2,this.fade)
+                break
+                case '3 Turn Turn':
+                    displaySymbol(this.layer,-8,0,75,0,1,this.fade)
+                    displaySymbol(this.layer,7,7,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('3',7,-2)
+                break
+                case 'Duplicate Per Turn':
+                    displaySymbol(this.layer,0,-4,89,0,1,this.fade)
+                    displaySymbol(this.layer,0,-4,120,0,1,this.fade)
+                    displaySymbol(this.layer,0,12,4,0,0.8,this.fade)
+                break
+                case 'Free Uncommon Colorless':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,57,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,95,0,0.7,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('0',8,1)
+                break
+                case 'Free Rare Colorless':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,57,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,85,0,0.7,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('0',8,1)
+                break
+                case 'Common Relic Discount':
+                    displaySymbol(this.layer,-8,0,1,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,0,100,0,0.7,this.fade)
+                    displaySymbol(this.layer,9,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',9,1)
+                break
+                case 'Uncommon Relic Discount':
+                    displaySymbol(this.layer,-8,0,1,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,0,95,0,0.7,this.fade)
+                    displaySymbol(this.layer,9,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',9,1)
+                break
+                case 'Rare Relic Discount':
+                    displaySymbol(this.layer,-8,0,1,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,0,85,0,0.7,this.fade)
+                    displaySymbol(this.layer,9,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',9,1)
+                break
+                case 'Shop Relic Discount':
+                    displaySymbol(this.layer,-8,0,1,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,0,121,0,0.7,this.fade)
+                    displaySymbol(this.layer,9,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',9,1)
+                break
+                case 'Energy/Staple':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,122,0,0.8,this.fade)
+                break
+                case 'Sell Value':
+                    displaySymbol(this.layer,0,0,1,0,1.2,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('+50%',0,0)
+                break
+                case 'Rest 10 Turn Block':
+                    displaySymbol(this.layer,-10,0,27,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,3,-1,4,0,0.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',-10,0)
+                    this.layer.text('10',12,-1)
+                    displaySymbol(this.layer,0,14,32,0,0.6,this.fade)
+                break
+                case 'Turn 2 Temporary Strength/Turn 2 Temporary Dexterity':
+                    displaySymbol(this.layer,-8,-7,41,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,7,42,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',-8,-7)
+                    this.layer.text('5',-8,7)
+                    this.layer.textSize(15)
+                    this.layer.text('2',8,-3)
+                break
+                case 'Rest Free Card':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,17,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,-6,32,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,6,32,0,0.8,this.fade)
+                break
 
             }
             if(value){
@@ -1953,6 +2299,70 @@ class relic{
                 this.layer.fill(0,this.fade)
                 this.layer.textSize(6)
                 this.layer.text(`x${active}`,0,18)
+            }
+            if(detail!=-1){
+                switch(this.internal){
+                    case '5 Turn Energy': case '5 Turn Intangible':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail%5+1}/5`,0,-16)
+                    break
+                    case '15 Card Draw':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail%15}/15`,0,-16)
+                    break
+                    case '8 Attack Strength': case '8 Attack Dexterity':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail%8}/8`,0,-16)
+                    break
+                    case '3 Attack Block': case '3 Defense Metallicize': case '3 Card Draw':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail%3}/3`,0,-16)
+                    break
+                    case 'Strength Rest': case '3 Enemy 1 HP': case 'Spectral Rest': case 'Rest Cost Down':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail}/3`,0,-16)
+                    break
+                    case '12 Attack Damage': case '12 Attack Energy': case '12 Defense Buffer':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail%12}/12`,0,-16)
+                    break
+                    case '3 Turn Draw': case '3 Turn Turn':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail%3+1}/3`,0,-16)
+                    break
+                    case 'Energy/Draw':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail%2+1}/2`,0,-16)
+                    break
+                    case 'Deprecating Damage':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail}/16`,0,-16)
+                    break
+                    case '3 Attack Strength/3 Defense Dexterity':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail[0]%3}/3 ${detail[1]%3}/3`,0,-16)
+                    break
+                    case 'Ascending Cost Energy':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${min(detail[0],3)}/3 ${detail[1]}`,0,-16)
+                    break
+                    case 'Rest 10 Turn Block':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${10-detail}/10`,0,-16)
+                    break
+                }
             }
             this.layer.pop()
         }

@@ -18,7 +18,7 @@ function setup(){
             //transition.scene='menu'
 
         current.menu.combatant=[16]
-        current.menu.deck=[-1]
+        current.menu.deck=[0]
         current.startGame()
         game.animRate=4
 
@@ -28,7 +28,7 @@ function setup(){
         transition.trigger=false
         
             /*stage.scene='graphic'
-            graphics.test=0
+            graphics.test=5
             graphics.staticBackground.clear()
             setupBackground(graphics.test,graphics.staticBackground)*/
         
@@ -45,10 +45,10 @@ function setup(){
                 current.modManager.addMod(172+a)
             }*/
 
-            /*for(let a=0,la=50;a<la;a++){
-                current.relicManager.addRandomRelic(0)
-                //quickRelic(160+a)
-            }*/
+            for(let a=0,la=5;a<la;a++){
+                ///current.relicManager.addRandomRelic(0)
+                //quickRelic(306+a)
+            }
 
             //stage.scene='tier'
     }

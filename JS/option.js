@@ -176,6 +176,53 @@ class option{
                 this.layer.textSize(24)
                 this.layer.text('Cost Down',0,60-this.player*120)
             break
+            case 11:
+                this.layer.stroke(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.line(-30,-15,-30,35)
+                this.layer.line(-10,-40,-10,40)
+                this.layer.line(10,-40,10,40)
+                this.layer.line(30,-25,30,35)
+                this.layer.arc(0,-40,20,10,-180,0)
+                this.layer.arc(-20,-15,20,10,-180,0)
+                this.layer.arc(20,-25,20,10,-180,0)
+                for(let a=0,la=17;a<la;a++){
+                    this.layer.arc(0,-40+a*5,20,10,0,180)
+                }
+                for(let a=0,la=11;a<la;a++){
+                    this.layer.arc(-20,-15+a*5,20,10,0,180)
+                }
+                for(let a=0,la=13;a<la;a++){
+                    this.layer.arc(20,-25+a*5,20,10,0,180)
+                }
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(24)
+                this.layer.text('300 Currency',0,60-this.player*120)
+            break
+            case 12:
+                this.layer.stroke(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.rect(0,0,60,80,5)
+                this.layer.line(-10,-25,10,-25)
+                this.layer.line(-10,-25,-15,-22.5)
+                this.layer.line(-15,-22.5,-15,-12.5)
+                this.layer.line(-10,-10,-15,-12.5)
+                this.layer.line(-10,-10,10,-10)
+                this.layer.line(10,-10,15,-12.5)
+                this.layer.line(15,-12.5,15,-22.5)
+                this.layer.line(15,-22.5,10,-25)
+                this.layer.rect(0,7.5,10,35)
+                this.layer.strokeWeight(1.5)
+                this.layer.line(0,-22.5,0,-12.5)
+                this.layer.line(-5,-17.5,5,-17.5) 
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(24)
+                this.layer.text('Deluxe Upgrade',0,60-this.player*120)
+            break
         }
         this.layer.pop()
     }

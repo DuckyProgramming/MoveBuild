@@ -80,7 +80,7 @@ class battle{
         this.lastEncounter=types.encounter[0]
         
         this.turn={main:0,total:0,time:0,accelerate:0,endReady:false}
-        this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0,0,0,0,0,0,0,0]}
+        this.counter={enemy:0,killed:0}
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[]}
         this.first=true
@@ -102,7 +102,6 @@ class battle{
             this.eventManagers.push(new eventManager(this.layer,this,a))
             this.eventManagers[a].initial()
         }
-        this.packManagers.forEach(packManager=>packManager.assemble())
         this.optionManagers.forEach(optionManager=>optionManager.assemble())
         this.perkManagers.forEach(perkManager=>perkManager.assemble())
     }
@@ -150,9 +149,14 @@ class battle{
         if(variants.mtg){
             this.cardManagers.forEach(cardManager=>cardManager.mtgListing())
         }
+        this.packManagers.forEach(packManager=>packManager.assemble())
     }
     resetAnim(){
-        this.anim={reserve:1,discard:1,dictionary:1,endTurn:1,cancel:1,extra:[],turn:[],drop:[],defeat:0,deck:[],dictionaryMulti:[],sell:[],food:[],afford:1,upAfford:false,reroll:[],rerollActive:[]}
+        this.anim={
+            reserve:1,discard:1,dictionary:1,endTurn:1,cancel:1,extra:[],turn:[],drop:[],
+            deck:[],dictionaryMulti:[],sell:[],food:[],reroll:[],rerollActive:[],
+            defeat:0,afford:1,upAfford:false,energyUp:0,energyDown:0
+        }
         for(let a=0,la=this.players;a<la;a++){
             this.anim.extra.push(0)
             this.anim.turn.push(0)
@@ -206,8 +210,10 @@ class battle{
         if(this.initialized){
             this.cardManagers.forEach(cardManager=>cardManager.sceneChange())
         }
-        if(past=='rest'){
-            this.optionManagers.forEach(optionManager=>optionManager.removeAfter())
+        switch(past){
+            case 'rest':
+                this.optionManagers.forEach(optionManager=>optionManager.removeAfter())
+            break
         }
     }
     convert(scene){
@@ -241,7 +247,7 @@ class battle{
             this.energy.gen[a]=variants.mtg?copyArray(this.energy.base[a]):this.energy.base[a]
         }
         this.turn={main:0,total:0,time:0,accelerate:0}
-        this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0,0,0,0,0,0,0,0]}
+        this.counter={enemy:0,killed:0}
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[]}
         this.first=first
@@ -324,14 +330,18 @@ class battle{
         }
         if(this.modded(51)){
             let tile=this.tileManager.getRandomTilePosition()
-            this.addCombatant(tile,findName('Sentry',types.combatant),0,0,false)
-            this.counter.enemy++
-            this.combatantManager.recount()
+            if(tile!=-1){
+                this.addCombatant(tile,findName('Sentry',types.combatant),0,0,false)
+                this.counter.enemy++
+                this.combatantManager.recount()
+            }
         }
         if(this.modded(78)&&(this.encounter.class==1||this.encounter.class==2)){
             let tile=this.tileManager.getRandomTilePosition()
-            this.addCombatant(tile,findName('Bodyguard',types.combatant),0,0,false)
-            this.combatantManager.recount()
+            if(tile!=-1){
+                this.addCombatant(tile,findName('Bodyguard',types.combatant),0,0,false)
+                this.combatantManager.recount()
+            }
         }
         this.combatantManager.setTargets()
         this.combatantManager.reID()
@@ -583,17 +593,16 @@ class battle{
         if(variants.cyclicDraw||variants.blackjack){
             this.cardManagers[this.turn.main].regenDrops()
         }
-        this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
+        this.relicManager.activate(2,[this.turn.total,this.turn.main,this.cardManagers[this.turn.main].hand.turnPlayed])
         this.turn.time=game.turnTime
-        this.counter.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
     }
     endTurn(){
         this.turn.endReady=false
         this.replayManager.list.push(new attack(-1000,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
         this.combatantManager.tickEarly()
         this.relicManager.activate(14,[this.turn.main,this.getEnergy(this.turn.main)])
-        this.cardManagers[this.turn.main].reset()
         this.cardManagers[this.turn.main].allEffect(2,1)
+        this.cardManagers[this.turn.main].reset()
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
         let extra=false
         let noDraw=false
@@ -724,9 +733,8 @@ class battle{
         }
         this.cardManagers[this.turn.main].allEffect(3,39)
         this.cardManagers[0].regenDrops()
-        this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
+        this.relicManager.activate(2,[this.turn.total,this.turn.main,this.cardManagers[this.turn.main].hand.turnPlayed])
         this.relicManager.activate(0,[this.turn.total,this.encounter.class])
-        this.counter.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.loadReinforce()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.players){
             this.endTurn()
@@ -807,8 +815,8 @@ class battle{
         }
         this.stats.played[player][0]++
         this.stats.played[player][cardClass]++
-        this.counter.turnPlayed[0]++
-        this.counter.turnPlayed[cardClass]++
+        this.cardManagers[player].hand.turnPlayed[0]++
+        this.cardManagers[player].hand.turnPlayed[cardClass]++
         let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
         if(this.modded(155)){
             switch(card.edition){
@@ -938,7 +946,7 @@ class battle{
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Common Temporary Strength')>0)
         }
         this.combatantManager.playCardFront(cardClass,card)
-        this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition])
+        this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed])
     }
     displayCurrency(){
         this.layer.fill(240,240,220)
@@ -963,6 +971,9 @@ class battle{
         this.layer.textAlign(CENTER,CENTER)
     }
     addEnergy(amount,player){
+        if(amount!=0){
+            this.anim[amount>0?'energyUp':'energyDown']=1
+        }
         if(variants.mtg){
             this.energy.main[player][0]+=amount
         }else{
@@ -970,6 +981,9 @@ class battle{
         }
     }
     addSpecificEnergy(amount,player,type){
+        if(amount!=0){
+            this.anim[amount>0?'energyUp':'energyDown']=1
+        }
         if(variants.mtg){
             this.energy.main[player][type]+=amount
             let cap=484
@@ -984,6 +998,9 @@ class battle{
         }
     }
     addEnergyGen(amount,player){
+        if(amount!=0){
+            this.anim[amount>0?'energyUp':'energyDown']=1
+        }
         if(variants.mtg){
             for(let a=0,la=amount;a<la;a++){
                 this.energy.gen[player].push(0)
@@ -993,6 +1010,9 @@ class battle{
         }
     }
     loseEnergy(amount,player){
+        if(amount!=0){
+            this.anim[amount>0?'energyDown':'energyUp']=1
+        }
         if(variants.mtg){
             let available=[]
             for(let a=0,la=this.energy.main[player].length;a<la;a++){
@@ -1010,6 +1030,9 @@ class battle{
         }
     }
     loseEnergyGen(amount,player){
+        if(amount!=0){
+            this.anim[amount>0?'energyDown':'energyUp']=1
+        }
         if(variants.mtg){
             for(let a=0,la=amount;a<la;a++){
                 if(this.energy.gen[player].length>0){
@@ -1021,6 +1044,9 @@ class battle{
         }
     }
     loseSpecificEnergy(amount,player,type){
+        if(amount!=0){
+            this.anim[amount>0?'energyDown':'energyUp']=1
+        }
         if(type==0){
             for(let a=0,la=amount;a<la;a++){
                 for(let b=0,lb=this.energy.crystal[player].length;b<lb;b++){
@@ -1054,16 +1080,25 @@ class battle{
     }
     setEnergy(amount,player){
         if(variants.mtg){
+            if(amount!=total6(this.energy.main[player])){
+                this.anim[amount>total6(this.energy.main[player])?'energyUp':'energyDown']=1
+            }
             if(this.energy.main[player].length>amount){
                 this.loseEnergy(total6(this.energy.main[player])-amount,player)
             }else if(this.energy.main[player].length<amount){
                 this.addEnergy(amount-total6(this.energy.main[player]),player)
             }
         }else{
+            if(amount!=this.energy.main[player]){
+                this.anim[amount>this.energy.main[player]?'energyUp':'energyDown']=1
+            }
             this.energy.main[player]=amount
         }
     }
     multiplyEnergy(amount,player){
+        if(amount!=1){
+            this.anim[amount>1?'energyUp':'energyDown']=1
+        }
         if(variants.mtg){
             for(let a=0,la=this.energy.main[player].length;a<la;a++){
                 this.energy.main[player][a]*=amount
@@ -1316,6 +1351,44 @@ class battle{
             case 'battle':
                 this.layer.background(110,115,120)
                 for(let a=0,la=this.players;a<la;a++){
+                    this.layer.fill(this.colorDetail[a].fill)
+                    this.layer.stroke(this.colorDetail[a].stroke)
+                    if(!this.relicManager.hasRelic(243,a)){
+                        this.layer.strokeWeight(3*this.anim.reserve)
+                        this.layer.rect(-74+this.anim.turn[a]*100,494,32*this.anim.reserve,20*this.anim.reserve,5*this.anim.reserve)
+                        this.layer.strokeWeight(3*this.anim.discard)
+                        this.layer.rect(-74+this.anim.turn[a]*100,522,32*this.anim.discard,20*this.anim.discard,5*this.anim.discard)
+                    }
+                    this.layer.strokeWeight(3*this.anim.dictionary)
+                    this.layer.rect(-74+this.anim.turn[a]*100,550,32*this.anim.dictionary,20*this.anim.dictionary,5*this.anim.dictionary)
+                    this.layer.strokeWeight(3*this.anim.endTurn)
+                    this.layer.rect(-74+this.anim.turn[a]*100,578,32*this.anim.endTurn,20*this.anim.endTurn,5*this.anim.endTurn)
+                    this.layer.strokeWeight(3*this.anim.cancel)
+                    this.layer.rect(-74+this.anim.extra[a]*100,414,32*this.anim.cancel,20*this.anim.cancel,5*this.anim.endTurn)
+                    if(game.turnTime>0){
+                        if(variants.cyclicDraw||variants.blackjack){
+                            this.layer.strokeWeight(3*this.anim.drop[a])
+                            this.layer.rect(66,680-this.anim.turn[a]*100,32*this.anim.drop[a],20*this.anim.drop[a],5*this.anim.drop[a])
+                            this.layer.strokeWeight(3)
+                            this.layer.rect(96+game.turnTime/9,680-this.anim.turn[a]*100,game.turnTime/4.5+12,16,5)
+                            this.layer.fill(0)
+                            this.layer.noStroke()
+                            this.layer.rect(96+game.turnTime/9,680-this.anim.turn[a]*100,game.turnTime/4.5,4,2)
+                            this.layer.fill(this.colorDetail[a].active)
+                            this.layer.rect(96+this.turn.time/9,680-this.anim.turn[a]*100,this.turn.time/4.5,4,2)
+                        }else{
+                            this.layer.strokeWeight(3)
+                            this.layer.rect(58+game.turnTime/9,680-this.anim.turn[a]*100,game.turnTime/4.5+12,16,5)
+                            this.layer.fill(0)
+                            this.layer.noStroke()
+                            this.layer.rect(58+game.turnTime/9,680-this.anim.turn[a]*100,game.turnTime/4.5,4,2)
+                            this.layer.fill(this.colorDetail[a].active)
+                            this.layer.rect(58+this.turn.time/9,680-this.anim.turn[a]*100,this.turn.time/4.5,4,2)
+                        }
+                    }else if(variants.cyclicDraw||variants.blackjack){
+                        this.layer.strokeWeight(3*this.anim.drop[a])
+                        this.layer.rect(66,680-this.anim.turn[a]*100,32*this.anim.drop[a],20*this.anim.drop[a],5*this.anim.drop[a])
+                    }
                     if(variants.mtg){
                         this.layer.stroke(mergeColor([200,255,255],[255,0,0],this.anim.afford))
                         this.layer.strokeWeight(3)
@@ -1393,48 +1466,20 @@ class battle{
                         }
                         this.layer.strokeJoin(MITER)
                     }else{
-                        this.layer.fill(mergeColor([225,255,255],[255,0,0],this.anim.afford))
-                        this.layer.stroke(mergeColor([200,255,255],[255,0,0],this.anim.afford))
+                        this.layer.noStroke()
+                        let merge=mergeColor([225,255,255],[255,0,0],this.anim.afford)
+                        if(this.anim.energyUp){
+                            this.layer.fill(merge[0],merge[1],merge[2],this.anim.energyUp)
+                            this.layer.triangle(-90+this.anim.turn[a]*100,454,-74+this.anim.turn[a]*100,394+this.anim.energyUp*40,-58+this.anim.turn[a]*100,454)
+                        }
+                        if(this.anim.energyDown){
+                            this.layer.fill(merge[0],merge[1],merge[2],this.anim.energyDown)
+                            this.layer.triangle(-90+this.anim.turn[a]*100,454,-74+this.anim.turn[a]*100,514-this.anim.energyDown*40,-58+this.anim.turn[a]*100,454)
+                        }
+                        this.layer.fill(merge[0],merge[1],merge[2])
+                        this.layer.stroke(merge[0],merge[1],merge[2])
                         this.layer.strokeWeight(3)
                         this.layer.quad(-90+this.anim.turn[a]*100,454,-74+this.anim.turn[a]*100,434,-58+this.anim.turn[a]*100,454,-74+this.anim.turn[a]*100,474)
-                    }
-                    this.layer.fill(this.colorDetail[a].fill)
-                    this.layer.stroke(this.colorDetail[a].stroke)
-                    if(!this.relicManager.hasRelic(243,a)){
-                        this.layer.strokeWeight(3*this.anim.reserve)
-                        this.layer.rect(-74+this.anim.turn[a]*100,494,32*this.anim.reserve,20*this.anim.reserve,5*this.anim.reserve)
-                        this.layer.strokeWeight(3*this.anim.discard)
-                        this.layer.rect(-74+this.anim.turn[a]*100,522,32*this.anim.discard,20*this.anim.discard,5*this.anim.discard)
-                    }
-                    this.layer.strokeWeight(3*this.anim.dictionary)
-                    this.layer.rect(-74+this.anim.turn[a]*100,550,32*this.anim.dictionary,20*this.anim.dictionary,5*this.anim.dictionary)
-                    this.layer.strokeWeight(3*this.anim.endTurn)
-                    this.layer.rect(-74+this.anim.turn[a]*100,578,32*this.anim.endTurn,20*this.anim.endTurn,5*this.anim.endTurn)
-                    this.layer.strokeWeight(3*this.anim.cancel)
-                    this.layer.rect(-74+this.anim.extra[a]*100,414,32*this.anim.cancel,20*this.anim.cancel,5*this.anim.endTurn)
-                    if(game.turnTime>0){
-                        if(variants.cyclicDraw||variants.blackjack){
-                            this.layer.strokeWeight(3*this.anim.drop[a])
-                            this.layer.rect(66,680-this.anim.turn[a]*100,32*this.anim.drop[a],20*this.anim.drop[a],5*this.anim.drop[a])
-                            this.layer.strokeWeight(3)
-                            this.layer.rect(96+game.turnTime/9,680-this.anim.turn[a]*100,game.turnTime/4.5+12,16,5)
-                            this.layer.fill(0)
-                            this.layer.noStroke()
-                            this.layer.rect(96+game.turnTime/9,680-this.anim.turn[a]*100,game.turnTime/4.5,4,2)
-                            this.layer.fill(this.colorDetail[a].active)
-                            this.layer.rect(96+this.turn.time/9,680-this.anim.turn[a]*100,this.turn.time/4.5,4,2)
-                        }else{
-                            this.layer.strokeWeight(3)
-                            this.layer.rect(58+game.turnTime/9,680-this.anim.turn[a]*100,game.turnTime/4.5+12,16,5)
-                            this.layer.fill(0)
-                            this.layer.noStroke()
-                            this.layer.rect(58+game.turnTime/9,680-this.anim.turn[a]*100,game.turnTime/4.5,4,2)
-                            this.layer.fill(this.colorDetail[a].active)
-                            this.layer.rect(58+this.turn.time/9,680-this.anim.turn[a]*100,this.turn.time/4.5,4,2)
-                        }
-                    }else if(variants.cyclicDraw||variants.blackjack){
-                        this.layer.strokeWeight(3*this.anim.drop[a])
-                        this.layer.rect(66,680-this.anim.turn[a]*100,32*this.anim.drop[a],20*this.anim.drop[a],5*this.anim.drop[a])
                     }
                     this.layer.fill(0)
                     this.layer.noStroke()
@@ -1562,6 +1607,7 @@ class battle{
                 this.combatantManager.displayInfo(stage.scene)
                 this.optionManagers.forEach(optionManager=>optionManager.display())
                 this.overlayManager.display()
+                this.displayCurrency()
             break
             case 'shop':
                 this.layer.background(110,115,120)
@@ -1827,6 +1873,8 @@ class battle{
                 this.anim.cancel=smoothAnim(this.anim.cancel,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.extra[this.turn.main]*100,y:414},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                 this.anim.defeat=smoothAnim(this.anim.defeat,this.result.defeat,0,1,240)
                 this.anim.afford=smoothAnim(this.anim.afford,this.anim.upAfford,0,1,10)
+                this.anim.energyUp=smoothAnim(this.anim.energyUp,false,0,1,15)
+                this.anim.energyDown=smoothAnim(this.anim.energyDown,false,0,1,15)
                 if(this.result.defeat&&this.anim.defeat>=1){
                     transition.trigger=true
                     transition.scene='defeat'
@@ -1927,7 +1975,7 @@ class battle{
                                 }
                             break
                             case 1:
-                                if(!this.modded(48)){
+                                if(!this.modded(48)&&!this.relicManager.hasRelic(289,a)){
                                     this.relicManager.activate(15,[a,1,reward,this.turn.total])
                                     reward.push({type:2,value:[]})
                                 }

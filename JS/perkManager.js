@@ -60,7 +60,7 @@ class perkManager{
             case 8:
                 this.complete=true
                 this.battle.combatantManager.combatants[this.player].loseMaxHP(5)
-                this.battle.addCurrency(250,this.player)
+                this.battle.addCurrency(400,this.player)
             break
             case 9:
                 this.complete=true

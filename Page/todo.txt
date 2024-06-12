@@ -1,71 +1,252 @@
-give all card view overlays a title card
+[]
 
-replacements if necessary
+[]
 
-
-red paperclip returns relics you've lost
-
-
-
-vincent appears above the floor
-check all those pictures
+[]
 
 
 
+[]
 
-sanae meme card
+[]
 
-[common colorless]
+[]
 
-[common colorless]
+kanako, goddess of wind
++1-
+-3-
+-8-
+
+suwako, goddess of earth
++1-
+-3-
+-8-
+
+kurtosis - 1 cost, move and draw 2 cards (common colorless)
+
+
+
+devilry light ray - 16 damage, gain 1 energy, exhaust innate, draw 1 less card when drawn
+
+turning the tables - get the top card of draw and discard piles, they cost 0 temporarily
+
+trick of wicked hermit - 4 cost, 18 damage, if fatal deluxe upgrade
+
+don't get hit - deal 30 damage, if you get hit this turn you die
+
+heap overflow - take damage, get a buffer
+
+pledge - 0 cost, draw 3 cards, but they cost 1 more
+
+
+
+spite - 9 damage, target loses 3 strength if you are debuffed
+
+mystic light - damage, retain the rightmost card in hand
+
+flame wheel - deal 7 damage, gain 2 block for each burn on target
+
+perfect cherry blossom - 7 damage, if an attack was played last turn, draw a card, if a defense was played last turn, gain 1 energy
+
+parinir - gain 20 block, gain double if you played a defense last turn
+
+plus 4 - end your turn, draw 4 more next turn
+
+
+
+fatty acid - apply poison and shock, but wide
+
+fat move - move 3 tiles, but wide
+
+counter counter - dev card, remove all active counters
+
+sunlight prayer - add a miracle to hand, but only if you have no statuses or curses in hand (like flagrant edge)
+
+maiden's favor - gain 10 currency, target gains 1 buffer and 1 control
+
+bask in stardust - add block, gain charge if you have no charge
+
+
+
+fluorescence - add a prismatic potion to hand every turn
+
+dark satellite - 1 cost, gain 13 block, draw a card if the last card played this turn caused fatigue
+
+satellite illusion - 2 cost, 14 damage, add astrology to hand
+
+astrology - 0 cost, scry 2, draw 1, exhaust retain
+
+stardust defense - add block, spend 2 charge to retain block for a turn
+
+open universe - exhaust a card from draw pile, and add 2 copies to hand
+
+
+
+weeping higan - add 8 block, deal 1 damage to all enemies at the end of your turn, damage increases by 1 permanently, exhaust
+
+double disambiguation - 10 damage, deals quadruple if you are encircled
+
+sacred flower dance - gain 2 temporary strength per turn
+
+cheap out - gain 2 metal, 0 cost, next construct loses half its health
+
+misdirection - deal 10 damage, when exhausted draw a card
+
+foretold - add 15 block, when exhausted draw a card
+
+
+
+fall into poverty - 10 damage twice, 1 cost, lose 3 currency
+
+last stand - gain 3 strength, lose 3 health per turn, add 2 random attacks to hand, they cost 0 temporarily
+
+homeowner - junkyard homeless
+
+counter bomb - block, and counter with a 2 tile bomb throw
+
+illusionist - when you play a shiv, deal 1 damage to all enemies
+
+moving fortress - move, all constructs also move in the same direction
+
+
+
+cooling agent - prismatic bombs apply 3 freeze
+
+radioactive elements - prismatic bombs apply 3 poison
+
+double chemicals - prismatic potions hurt 2 enemies
+
+one-winged heron - 1 cost ethereal, shuffle a miracle and a discus into your draw pile
+
+thruster - move 1 tile, spend 2 metal: move 2 more
+
+lemon juice - heal 3 hp, draw 2 cards in 2 turns
+
+
+
+darkling jelly - heal 5 hp, you can't die this turn
+
+pickle - this combat, being weak will make you do 50% more damage insteadx
+
+thunderfish - apply 2 shock, draw a defense
+
+betwitched fog - 1 cost, when you draw a shiv, draw a card, and add 3 shivs to draw pile, exhaust
+
+recursive knife - create a sharp knife and increase its damage by 4 for every exhausted shiv, exhaust
+
+knife express - 1 cost 32 damage, exhaust (subcard)
+
+
+
+swimming oarfish - draw a card, draw another 2 cards of the same class
+
+private square - 5 cost take another turn, costs 1 less when drawn, exhaust
+
+time suppression - 1 cost, apply 1 weak, a random card costs 1 less
+
+orogeny - gain 5X block next turn and 1 energy next turn
+
+lyrica - remove the newest card from deck, choose a new card (counterpart to lunasa)
+
+[add block, exhaust from draw (spite the sky counterpart)]
+
+
+
+[shining needle but for defends]
+
+[add a shiny defend to deck, vanishing]
+
+[add a shiny strike to deck, vanishing]
+
+wall of steel - gain 10 block, all adjacent constructs gain 10 block
+
+auto parts - 1 cost, gain 1 metal, next construct built can move
+
+calcite spear - damage at 2 range only, 1 cost, doubles against targets who have vulnerable, doubles against targets with no block
+
+
+
+maintain combo - you no longer lose combo from moving
+
+white chocolate - heal, add a burn to hand
+
+chocolate chip - heal, if at full health gain temporary strength
+
+[square sculpture]
+[circle sculpture]
+[arc sculpture]
+rename old arc sculpture
+
+
+
+[counterpart to syzygy that adds block, and when discarded pulls a card from exhaust]
+
+eat grass - heal 1 health, when played 10 times get a nuclear bomb
+
+morphofly - target takes 1 damage per card played, add ANY random 0 cost card to hand
+
+[chrysoberyl]
+
+[celestite]
+
+[[gemstone card]]
+
+
+
+
+dine and dash - back up from and enemy, and heal somewhat
+
+insanity dream - x cost card, X decreases by 1 for each other card in hand
+
+water miracle - add block, draw cards equal to half the number played this turn, max 5
+
+celestial flight - 3 cost gain 5 energy, discard the card to the right of this one
+
+cloak of air - 5 cost gain 5 energy, countdown, costs 1 less when you gain energy
+
+beauty of nature - 4 cost, gain 1 base energy, create plant tiles around you
+
+
+
+freezeframe - damage, enemy does not change intent this turn
+
+spare hits - add 3 replenishing strikes to draw pile
+
+replenishing strike - it's a strike, but when drawn, draw a card
+
+reporter's instinct - if target intends to attack, add block, otherwise do damage
+
+palace message - 1 cost, choose between three cards in discard pile to put a copy into hand, and make cost 0
+
+blinding speed - damage, gain 2 energy if you have dodge
+
+
+
+world fragment - add block, transform a card from draw
 
 drunk - curse, when drawn, discard a card
 
-world fragment returns
-
-wind god girl - can't have less than 1 dodge at the start of your turn
+windy evasion - can't have less than 1 dodge at the start of your turn
 
 timeline image - 3 cost, 16 damage, 16 block, 4 damage to all next turn
 
-replacement sanae card
+multiplex - 3 cost, deal 8 splash damage twice, add 2 shivs to hand
+
+restraining order - force enemy to move away from you the next 3 times it moves
 
 
 
-replacement:
+excerpt - 0 cost, damage, exhaust the first card in hand
 
-shop:
+ripper - 2 cost, add 3 shivs to hand, add 3 more when an enemy dies
 
-boss:
+trick knife - 2 cost, 12 damage, draw 2 cards, get a shiv
 
-shiny die - gain 1 base energy, but lose 1 energy 1/6 of the time
-sparkler - gain 1 base energy, all elites gain 5 strength
-sunglasses - gain 1 base energy, can't see past 3 tiles ahead
-sticky hand - gain 1 base energy, cannot skip card rewards
-tabasco sauce - gain 1 base energy, all healing is 50% less
-setminus - gain 1 base energy, start combat with a trough in draw pile
-gas pipe - gain 1 base energy, fatigues are shuffled into draw instead of discard pile
-duck food - gain 1 base energy, all fights have an additional duck
-[]
-[]
+wound coil - take another turn, but next attack does no damage
 
-non-energy boss:
+illusionist - 11 splash damage, add 3 shivs to draw pile
 
-solitaire
-unmoving library - choose and add 5 rare cards from any character
-silicon wafer - the first card (non-innately) drawn each turn is free
-octahedron - draw a card when you play 3 cards
-lucky coin - double upgrade 10 random upgraded cards
-ring of sufferring - gain 1 strength per 3 attacks and 1 dexterity per 3 defenses played
-ghost lamp - gain 10 intangible at the start of combat, lose 20 max hp
-stone of aja - gain 1 strength per turn, add a burn to hand every turn
-[]
-[]
-
-
-
-event - the two doors
-[get a bozo and make a card erratic]
-[get a parasite and make a card negative]
+trace on - 2 cost, gain 2 energy, choose between a 1 cost, 2 cost, and 3 cost card
 
 
 
@@ -76,3 +257,16 @@ event - the two doors
 [remember the first event you saw test]
 
 [choose details about a card to get]
+
+event - the backdoors
+[get a bozo and make a card erratic]
+[get a parasite and make a card negative]
+
+
+
+
+goal 125,000
+
+if goal not reached, add a new boss
+
+go make glory v2

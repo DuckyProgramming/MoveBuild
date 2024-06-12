@@ -27,7 +27,7 @@ class cardManager{
         this.drops=0
         this.interval=0
         this.greenDiff=0
-        this.switch={miracle:false,teleport:false,redraw:false,smite:false,dualDiscus:false}
+        this.carry=[0,0,0,0,0]
         this.bufferedTurn=0
         this.pack=[]
 
@@ -189,272 +189,136 @@ class cardManager{
     randomEffect(group,effect,args){
         this.getList(group).randomEffect(effect,args)
     }
-    addRandom(group,level,rarity){
-        this.getList(group).add(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player])
-    }
-    addRandomFree(group,level,rarity,variant){
-        this.getList(group).addCost(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player],variant)
-    }
-    addRandomColor(group,level,color,rarity){
-        this.getList(group).add(this.listing.card[color][rarity][floor(random(0,this.listing.card[color][rarity].length))],level,color)
-    }
-    addRandomEdition(group,level,rarity,edition){
-        this.getList(group).add(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player],edition)
-    }
-    addRandomColorEdition(group,level,color,rarity,edition){
-        this.getList(group).add(this.listing.card[color][rarity][floor(random(0,this.listing.card[character].length))],level,color,edition)
-    }
-    addRandomClass(group,level,cardClass){
+    addRandomAbstract(group,level,edition,cardList,output,filter,args){
         let list=[]
-        for(let a=0,la=this.listing.card[this.battle.player[this.player]][3].length;a<la;a++){
-            if(types.card[this.listing.card[this.battle.player[this.player]][3][a]].levels[level].class==cardClass){
-                list.push(this.listing.card[this.battle.player[this.player]][3][a])
-            }
+        let ticker=0
+        switch(cardList){
+            case 0:
+                list=copyArray(this.listing.card[this.battle.player[this.player]][args[ticker++]])
+            break
+            case 1:
+                list=copyArray(this.listing.card[args[ticker++]][args[ticker++]])
+            break
+            case 2:
+                list=copyArray(this.listing.allPlayerCard[args[ticker++]])
+            break
+            case 3:
+                list=copyArray(this.listing.allPlayerCard[args[ticker]])
+                for(let a=0,la=3;a<la;a++){
+                    list.push(...this.listing.card[this.battle.player[this.player]][args[ticker]])
+                }
+                ticker++
+            break
+            case 4:
+                list=copyArray(this.listing.allListableCard[args[ticker++]])
+            break
+            case 5:
+                list=copyArray(this.listing.sub)
+            break
         }
-        if(list.length>0){
-            this.getList(group).add(list[floor(random(0,list.length))],level,this.battle.player[this.player])
-        }
-    }
-    addRandomColorFree(group,level,color,rarity,cost){
-        let list=[]
-        for(let a=0,la=this.listing.card[color][rarity].length;a<la;a++){
-            if(types.card[this.listing.card[color][rarity][a]].levels[level].cost==cost&&!types.card[this.listing.card[color][rarity][a]].levels[level].spec.includes(5)&&!types.card[this.listing.card[color][rarity][a]].levels[level].spec.includes(21)){
-                list.push(this.listing.card[color][rarity][a])
-            }
-        }
-        if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            this.getList(group).add(type,level,color)
-        }
-    }
-    addRandomClassFree(group,level,cardClass,variant){
-        let list=[]
-        for(let a=0,la=this.listing.card[this.battle.player[this.player]][3].length;a<la;a++){
-            if(types.card[this.listing.card[this.battle.player[this.player]][3][a]].levels[level].class==cardClass){
-                list.push(this.listing.card[this.battle.player[this.player]][3][a])
-            }
-        }
-        if(list.length>0){
-            this.getList(group).addCost(list[floor(random(0,list.length))],level,this.battle.player[this.player],variant)
-        }
-    }
-    addRandomClassFreeSpec(group,level,cardClass,variant,spec){
-        let list=[]
-        for(let a=0,la=this.listing.card[this.battle.player[this.player]][3].length;a<la;a++){
-            if(types.card[this.listing.card[this.battle.player[this.player]][3][a]].levels[level].class==cardClass){
-                list.push(this.listing.card[this.battle.player[this.player]][3][a])
-            }
-        }
-        if(list.length>0){
-            this.getList(group).addCostSpec(list[floor(random(0,list.length))],level,this.battle.player[this.player],variant,spec)
-        }
-    }
-    addRandomClassReturn(group,level,cardClass){
-        let list=[]
-        for(let a=0,la=this.listing.card[this.battle.player[this.player]][3].length;a<la;a++){
-            if(types.card[this.listing.card[this.battle.player[this.player]][3][a]].levels[level].class==cardClass){
-                list.push(this.listing.card[this.battle.player[this.player]][3][a])
-            }
-        }
-        if(list.length>0){
-            return this.getList(group).addReturn(list[floor(random(0,list.length))],level,this.battle.player[this.player])
-        }
-    }
-    addRandomAll(group,level,rarity,edition=0){
-        let type=this.listing.allPlayerCard[rarity][floor(random(0,this.listing.allPlayerCard[rarity].length))]
-        this.getList(group).add(type,level,types.card[type].list,edition)
-    }
-    addRandomAllFreeSpec(group,level,rarity,variant,spec){
-        let type=this.listing.allPlayerCard[rarity][floor(random(0,this.listing.allPlayerCard[rarity].length))]
-        this.getList(group).addCostSpec(type,level,types.card[type].list,variant,spec)
-    }
-    addRandomAllClass(group,level,cardClass){
-        let list=[]
-        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
-            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].class==cardClass){
-                list.push(this.listing.allPlayerCard[3][a])
-            }
-        }
-        if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            this.getList(group).add(type,level,types.card[type].list)
-        }
-    }
-    addRandomClassAllFreeShuffle(group,level,cardClass,variant){
-        let list=[]
-        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
-            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].class==cardClass){
-                list.push(this.listing.allPlayerCard[3][a])
-            }
-        }
-        if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            this.getList(group).addCostShuffle(type,level,types.card[type].list,variant)
-        }
-    }
-    addRandomAllPriority(group,level){
-        let list=[]
-        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
-            list.push(this.listing.allPlayerCard[3][a])
-            if(types.card[this.listing.allPlayerCard[3][a]].list==this.battle.player[this.player]){
-                for(let b=0,lb=4;b<lb;b++){
-                    list.push(this.listing.allPlayerCard[3][a])
+        for(let a=0,la=filter.length;a<la;a++){
+            for(let b=0,lb=list.length;b<lb;b++){
+                let valid=false
+                switch(filter[a]){
+                    case 0:
+                        if(types.card[list[b]].levels[level].class!=args[ticker]){
+                            list.splice(b,1)
+                            b--
+                            lb--
+                        }
+                    break
+                    case 1:
+                        if(types.card[list[b]].levels[level].cost!=args[ticker]||
+                            types.card[list[b]].levels[level].spec.includes(5)||
+                            types.card[list[b]].levels[level].spec.includes(11)||
+                            types.card[list[b]].levels[level].spec.includes(21)||
+                            types.card[list[b]].levels[level].spec.includes(35)||
+                            types.card[list[b]].levels[level].spec.includes(41)
+                        ){
+                            list.splice(b,1)
+                            b--
+                            lb--
+                        }
+                    break
+                    case 2:
+                        for(let c=0,lc=args[ticker].length;c<lc;c++){
+                            if(types.card[list[b]].name.includes(args[ticker][c])){
+                                valid=true
+                            }
+                        }
+                        if(!valid){
+                            list.splice(b,1)
+                            b--
+                            lb--
+                        }
+                    break
+                    case 3:
+                        for(let c=0,lc=args[ticker].length;c<lc;c++){
+                            if(types.card[list[b]].name.substr(types.card[list[b]].name.length-args[ticker][c].length,types.card[list[b]].name.length-1)==args[ticker][c]){
+                                valid=true
+                            }
+                        }
+                        if(!valid){
+                            list.splice(b,1)
+                            b--
+                            lb--
+                        }
+                    break
+                    case 4:
+                        if(!types.card[list[b]].levels[level].spec.includes(args[ticker])){
+                            list.splice(b,1)
+                            b--
+                            lb--
+                        }
+                    break
                 }
             }
-        }
-        if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            this.getList(group).add(type,level,types.card[type].list)
-        }
-    }
-    addRandomAllCostFree(group,level,cost){
-        let list=[]
-        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
-            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].cost==cost&&!types.card[this.listing.allPlayerCard[3][a]].levels[level].spec.includes(21)){
-                list.push(this.listing.allPlayerCard[3][a])
+            switch(filter[a]){
+                case 0: case 1: case 2: case 3: case 4:
+                    ticker++
+                break
             }
         }
         if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            this.getList(group).addCost(type,level,types.card[type].list)
-        }
-    }
-    addRandomClassAllPriority(group,level,cardClass){
-        let list=[]
-        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
-            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].class==cardClass){
-                list.push(this.listing.allPlayerCard[3][a])
-                if(types.card[this.listing.allPlayerCard[3][a]].list==this.battle.player[this.player]){
-                    for(let b=0,lb=4;b<lb;b++){
-                        list.push(this.listing.allPlayerCard[3][a])
-                    }
-                }
-            }
-        }
-        if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            this.getList(group).add(type,level,types.card[type].list)
-        }
-    }
-    addRandomCompleteAll(group,level,rarity){
-        let type=this.listing.allListableCard[rarity][floor(random(0,this.listing.allListableCard[rarity].length))]
-        this.getList(group).add(type,level,types.card[type].list)
-    }
-    addRandomCompleteAllContain(group,level,contain){
-        let list=[]
-        for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
-            for(let b=0,lb=contain.length;b<lb;b++){
-                if(types.card[this.listing.allListableCard[3][a]].name.includes(contain[b])){
-                    list.push(this.listing.allListableCard[3][a])
-                }
-            }
-        }
-        if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            this.getList(group).add(type,level,types.card[type].list)
-        }
-    }
-    addRandomCompleteAllContainFree(group,level,contain){
-        let list=[]
-        for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
-            for(let b=0,lb=contain.length;b<lb;b++){
-                if(types.card[this.listing.allListableCard[3][a]].name.includes(contain[b])){
-                    list.push(this.listing.allListableCard[3][a])
-                }
-            }
-        }
-        if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            this.getList(group).addCost(type,level,types.card[type].list)
-        }
-    }
-    addRandomCompleteAllEnd(group,level,contain){
-        let list=[]
-        for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
-            for(let b=0,lb=contain.length;b<lb;b++){
-                if(types.card[this.listing.allListableCard[3][a]].name.substr(types.card[this.listing.allListableCard[3][a]].name.length-contain[b].length,types.card[this.listing.allListableCard[3][a]].name.length-1)==contain[b]){
-                    list.push(this.listing.allListableCard[3][a])
-                }
-            }
-        }
-        if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            this.getList(group).add(type,level,types.card[type].list)
-        }
-    }
-    addRandomCompleteAllContainClass(group,level,contain,cardClass,spec){
-        let list=[]
-        for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
-            for(let b=0,lb=contain.length;b<lb;b++){
-                if(types.card[this.listing.allListableCard[3][a]].name.includes(contain[b])&&types.card[this.listing.allListableCard[3][a]].levels[level].class==cardClass){
-                    list.push(this.listing.allListableCard[3][a])
-                }
-            }
-        }
-        if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            if(spec==1){
-                this.getList(group).addCost(type,level,types.card[type].list)
-            }else{
-                this.getList(group).add(type,level,types.card[type].list)
+            let index=floor(random(0,list.length))
+            let type=list[index]
+            let color=types.card[type].list<0?0:types.card[type].list>=types.color.card.length?0:types.card[type].list
+            switch(output){
+                case 0:
+                    this.getList(group).add(type,level,color,edition)
+                break
+                case 1:
+                    this.getList(group).addCost(type,level,color,args[ticker++],edition)
+                break
+                case 2:
+                    this.getList(group).addCostSpec(type,level,color,args[ticker++],edition,args[ticker++])
+                break
+                case 3:
+                    return this.getList(group).addReturn(type,level,color,edition)
+                case 4:
+                    this.getList(group).addCostShuffle(type,level,color,args[ticker++],edition)
+                break
+                case 5:
+                    let card=this.getList(group).addReturn(type,level,color,edition)
+                    card.cost=max(min(card.cost,0),card.cost-args[ticker++])
+                break
+                case 6:
+                    this.getList(group).addShuffle(type,level,color,edition)
+                break
             }
         }
     }
-    addRandomCompleteAllClassFree(group,level,cardClass,variant){
-        let list=[]
-        for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
-            if(types.card[this.listing.allListableCard[3][a]].levels[level].class==cardClass){
-                list.push(this.listing.allListableCard[3][a])
-            }
-        }
-        if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            this.getList(group).addCost(type,level,types.card[type].list,variant)
-        }
-    }
-    addRandomCompleteAllCost(group,level,cost){
-        let list=[]
-        for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
-            if(types.card[this.listing.allListableCard[3][a]].levels[level].cost==cost&&!types.card[this.listing.allListableCard[3][a]].levels[level].spec.includes(21)){
-                list.push(this.listing.allListableCard[3][a])
-            }
-        }
-        if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            this.getList(group).add(type,level,types.card[type].list)
-        }
-    }
-    addRandomCompleteAllCostDown(group,level,down){
-        let type=this.listing.allListableCard[rarity][floor(random(0,this.listing.allListableCard[rarity].length))]
-        let card=this.getList(group).addReturn(type,level,types.card[type].list)
-        card.cost=max(min(card.cost,0),card.cost-down)
-    }
-    addRandomCompleteAllCostCostDown(group,level,cost,down){
-        let list=[]
-        for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
-            if(types.card[this.listing.allListableCard[3][a]].levels[level].cost==cost&&!types.card[this.listing.allListableCard[3][a]].levels[level].spec.includes(21)){
-                list.push(this.listing.allListableCard[3][a])
-            }
-        }
-        if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            let card=this.getList(group).addReturn(type,level,types.card[type].list)
-            card.cost=max(min(card.cost,0),card.cost-down)
-            card.base.cost=max(min(card.base.cost,0),card.base.cost-down)
-        }
-    }
-    addRandomSpec(group,level,spec){
-        let list=[]
-        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
-            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].spec.includes(spec)){
-                list.push(this.listing.allPlayerCard[3][a])
-            }
-        }
-        if(list.length>0){
-            let type=list[floor(random(0,list.length))]
-            this.getList(group).add(type,level,types.card[type].list)
-        }
-    }
+
+    /*
+    addRandomSpecCostDown(group,level,spec,down)
+    addRandomAbstract(group,level,0,2,5,[4],[3,specmdown])
+
+    addRandomSub(group,level)
+    addRandomAbstract(group,level,0,5,0,[],[])
+    */
+
+    /*
+    
     addRandomSpecCostDown(group,level,spec,down){
         let list=[]
         for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
@@ -470,7 +334,8 @@ class cardManager{
     }
     addRandomSub(group,level){
         this.getList(group).add(this.listing.sub[floor(random(0,this.listing.sub.length))],level,0)
-    }
+    }*/
+
     callAmalgums(attackManager){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(legalTargetCombatant(0,1,1,this.battle.combatantManager.combatants[attackManager.target[0]],userCombatant,this.battle.tileManager.tiles)){
@@ -610,7 +475,7 @@ class cardManager{
                         this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),variant==1?6:5)
                     }
                     if(amountLeft>0&&this.discard.cards.length>0){
-                        this.discard.send(this.reserve.cards,0,-1,4)
+                        this.discard.send(this.reserve.cards,0,-1,2)
                         this.reserve.shuffle()
                         if(this.reserve.cards.length>0){
                             this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),variant==1?6:5)
@@ -914,6 +779,10 @@ class cardManager{
             this.hand.add(findName('Onyx',types.card),0,0)
             tempDrawAmount--
         }
+        if(this.battle.relicManager.hasRelic(292,this.player)){
+            this.drawPrice(this.battle.relicManager.active[292][this.player+1],0)
+            tempDrawAmount-=this.battle.relicManager.active[292][this.player+1]
+        }
         if(turn==1&&this.battle.modded(95)){
             this.drawSetCost(tempDrawAmount,2)
         }else if(variants.balance){
@@ -965,15 +834,20 @@ class cardManager{
             this.hand.add(findName('Compression',types.card),0,0)
         }
         if(variants.unexpected){
-            this.addRandomCompleteAll(2,0,3)
+            this.addRandomAbstract(2,0,0,4,0,[],[3])
         }
     }
     subFatigue(name,bypass){
         this.interval++
-        if(this.hand.specNumber(43)+this.reserve.specNumber(43)+this.discard.specNumber(43)<10||this.interval%2==0||bypass){
-            this.discard.add(findName(name,types.card),0,game.playerNumber+1)
+        if(this.numberAbstract(3,[43])<10||this.interval%2==0||bypass){
+            if(this.battle.relicManager.hasRelic(286,this.player)){
+                this.reserve.add(findName(name,types.card),0,game.playerNumber+1)
+                this.reserve.cards[this.reserve.cards.length-1].spec.push(43)
+            }else{
+                this.discard.add(findName(name,types.card),0,game.playerNumber+1)
+                this.discard.cards[this.discard.cards.length-1].spec.push(43)
+            }
             this.drop.addDrop(findName(name,types.card),0,game.playerNumber+1)
-            this.discard.cards[this.discard.cards.length-1].spec.push(43)
             this.drop.cards[this.drop.cards.length-1].spec.push(43)
             if(this.battle.modded(61)&&!this.discard.cards[this.discard.cards.length-1].spec.includes(33)){
                 this.discard.cards[this.discard.cards.length-1].spec.push(33)
@@ -1053,11 +927,8 @@ class cardManager{
         this.discard.reCard(name,type)
         this.hand.reCard(name,type)
     }
-    fatigueNumber(){
-        return this.reserve.fatigueNumber()+this.hand.fatigueNumber()+this.discard.fatigueNumber()
-    }
-    cardNumber(name){
-        return this.reserve.cardNumber(name)+this.hand.cardNumber(name)+this.discard.cardNumber(name)
+    numberAbstract(type,args){
+        return this.reserve.numberAbstract(type,args)+this.hand.numberAbstract(type,args)+this.discard.numberAbstract(type,args)
     }
     transformCard(base){
         if(base.list>=0&&base.rarity>=0){
@@ -1108,25 +979,13 @@ class cardManager{
         }
     }
     switchCheck(){
-        if(this.switch.miracle){
-            this.switch.miracle=false
-            this.hand.add(findName('Miracle',types.card),0,0)
-        }
-        if(this.switch.teleport){
-            this.switch.teleport=false
-            this.hand.add(findName('Teleport',types.card),0,0)
-        }
-        if(this.switch.redraw){
-            this.switch.redraw=false
-            this.hand.add(findName('Redraw',types.card),0,0)
-        }
-        if(this.switch.smite){
-            this.switch.smite=false
-            this.hand.add(findName('Smite',types.card),0,0)
-        }
-        if(this.switch.dualDiscus){
-            this.switch.dualDiscus=false
-            this.hand.add(findName('Dual\nDiscus',types.card),0,0)
+        for(let a=0,la=this.carry.length;a<la;a++){
+            if(this.carry[a]>0){
+                for(let b=0,lb=this.carry[a];b<lb;b++){
+                    this.hand.add(findName(['Miracle','Teleport','Redraw','Smite','Dual\nDiscus'][a],types.card),0,0)
+                }
+                this.carry[a]=0
+            }
         }
     }
     checkCompact(){

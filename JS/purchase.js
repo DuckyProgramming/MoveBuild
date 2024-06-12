@@ -1,5 +1,5 @@
 class purchase{
-    constructor(layer,battle,player,x,y,type,cost,args){
+    constructor(layer,battle,player,x,y,type,cost,args,tag){
         this.layer=layer
         this.battle=battle
         this.player=player
@@ -7,6 +7,7 @@ class purchase{
         this.type=type
         this.cost=cost
         this.args=args
+        this.tag=tag
         this.size=0
         this.midSize=1
         this.usable=true
@@ -14,6 +15,7 @@ class purchase{
         this.upSize=false
         this.anim={usable:1,afford:0}
         let roll=0
+        this.formerCost=copyArray(this.cost)
         switch(this.type){
             case 1:
                 if(variants.cursed){
@@ -22,11 +24,6 @@ class purchase{
                 this.card=new card(this.layer,this.battle,this.player,0,0,this.args[0],this.args[1],this.args[2],0)
                 roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,60)):floor(random(0,360))
                 this.card.edition=this.battle.relicManager.hasRelic(213,player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
-                if(this.args[3]){
-                    for(let a=0,la=this.cost.length;a<la;a++){
-                        this.cost[a]=floor(this.cost[a]/2)
-                    }
-                }
             break
             case 3:
                 this.relic=new relic(this.layer,this.player,0,0,this.args[0],1.5)
@@ -53,29 +50,31 @@ class purchase{
         }
         if(game.ascend>=16){
             for(let a=0,la=this.cost.length;a<la;a++){
-                this.cost[a]=round(this.cost[a]*1.1)
+                this.cost[a]=this.cost[a]*1.1
             }
         }
         if(this.battle.modded(130)){
             for(let a=0,la=this.cost.length;a<la;a++){
-                this.cost[a]=round(this.cost[a]*2)
+                this.cost[a]=this.cost[a]*2
             }
         }
     }
-    costChange(value){
+    costChange(player,value){
         for(let a=0,la=this.cost.length;a<la;a++){
-            this.cost[a]+=round(value*(game.ascend>=16?1.1:1))
+            if(this.player>=0||this.player==-1&&a==this.player){
+                this.cost[a]=value==-1?this.formerCost[a]:this.cost[a]*value
+            }
         }
     }
     buy(){
-        if((this.player==-1&&(this.battle.currency.money[0]>=this.cost[0]-(this.battle.relicManager.hasRelic(187,0)?200:0)&&inputs.rel.x<this.position.x||this.battle.currency.money[1]>=this.cost[1]-(this.battle.relicManager.hasRelic(187,1)?200:0)&&inputs.rel.x>this.position.x)||this.player!=-1&&this.battle.currency.money[this.player]>=this.cost[this.player]-(this.battle.relicManager.hasRelic(187,this.player)?200:0))&&this.usable){
+        if((this.player==-1&&(this.battle.currency.money[0]>=round(this.cost[0])-(this.battle.relicManager.hasRelic(187,0)?200:0)&&inputs.rel.x<this.position.x||this.battle.currency.money[1]>=round(this.cost[1])-(this.battle.relicManager.hasRelic(187,1)?200:0)&&inputs.rel.x>this.position.x)||this.player!=-1&&this.battle.currency.money[this.player]>=round(this.cost[this.player])-(this.battle.relicManager.hasRelic(187,this.player)?200:0))&&this.usable){
             let purchaser=0
             if(this.player==-1){
                 purchaser=inputs.rel.x<this.position.x?0:1
             }else{
                 purchaser=this.player
             }
-            this.battle.currency.money[purchaser]-=this.cost[purchaser]
+            this.battle.loseCurrency(round(this.cost[purchaser]),purchaser)
             this.usable=false
             this.deSize=true
             this.battle.relicManager.activate(13,[purchaser])
@@ -111,7 +110,7 @@ class purchase{
                 break
                 case 5:
                     this.battle.overlayManager.overlays[3][purchaser].active=true
-                    this.battle.overlayManager.overlays[3][purchaser].activate([0,3,14+this.args[0]])
+                    this.battle.overlayManager.overlays[3][purchaser].activate([0,3,[14,15,16,25][this.args[0]]])
                 break
             }
         }
@@ -160,7 +159,65 @@ class purchase{
                     regPoly(this.layer,-5,0,3,20,20,-30)
                 break
                 case 5:
-                    if(this.args[0]==0&&this.player==-1){
+                    if(this.args[0]==3){
+                        this.layer.strokeWeight(4)
+                        this.layer.fill(types.color.card[12].fill)
+                        this.layer.stroke(types.color.card[12].stroke)
+                        this.layer.rect(-16,0,40,96,4)
+                        this.layer.fill(types.color.card[14].fill)
+                        this.layer.stroke(types.color.card[14].stroke)
+                        this.layer.rect(16,0,40,96,4)
+
+                        this.layer.noStroke()
+                        this.layer.fill(types.color.card[12].stroke)
+                        this.layer.rect(-8,0,16,100)
+                        this.layer.fill(types.color.card[14].stroke)
+                        this.layer.rect(8,0,16,100)
+                        this.layer.fill(types.color.card[12].fill)
+                        this.layer.rect(-8,0,16,92)
+                        this.layer.fill(types.color.card[14].fill)
+                        this.layer.rect(8,0,16,92)
+
+                        this.layer.translate(-50,0)
+                        this.layer.noStroke()
+                        this.gradient=[new p5.LinearGradient(15,90),new p5.LinearGradient(15,90),new p5.LinearGradient(15,90)]
+                        this.gradient[0].colors(
+                            0.0,color(types.color.card[12].stroke[0],types.color.card[12].stroke[1],types.color.card[12].stroke[2]),
+                            0.2,color(types.color.card[9].stroke[0],types.color.card[9].stroke[1],types.color.card[9].stroke[2]),
+                            0.4,color(types.color.card[13].stroke[0],types.color.card[13].stroke[1],types.color.card[13].stroke[2]),
+                            0.6,color(types.color.card[15].stroke[0],types.color.card[15].stroke[1],types.color.card[15].stroke[2]),
+                            0.8,color(types.color.card[game.playerNumber+5].stroke[0],types.color.card[game.playerNumber+5].stroke[1],types.color.card[16].stroke[2]),
+                            1.0,color(types.color.card[14].stroke[0],types.color.card[14].stroke[1],types.color.card[14].stroke[2])
+                        )
+                        this.gradient[1].colors(
+                            0.0,color(types.color.card[12].fill[0],types.color.card[12].fill[1],types.color.card[12].fill[2]),
+                            0.2,color(types.color.card[9].fill[0],types.color.card[9].fill[1],types.color.card[9].fill[2]),
+                            0.4,color(types.color.card[13].fill[0],types.color.card[13].fill[1],types.color.card[13].fill[2]),
+                            0.6,color(types.color.card[15].fill[0],types.color.card[15].fill[1],types.color.card[15].fill[2]),
+                            0.8,color(types.color.card[game.playerNumber+5].fill[0],types.color.card[game.playerNumber+5].fill[1],types.color.card[game.playerNumber+5].fill[2]),
+                            1.0,color(types.color.card[14].fill[0],types.color.card[14].fill[1],types.color.card[14].fill[2])
+                        )
+                        this.gradient[2].colors(
+                            0.0,color(types.color.card[12].active[0],types.color.card[12].active[1],types.color.card[12].active[2]),
+                            0.2,color(types.color.card[9].active[0],types.color.card[9].active[1],types.color.card[9].active[2]),
+                            0.4,color(types.color.card[13].active[0],types.color.card[13].active[1],types.color.card[13].active[2]),
+                            0.6,color(types.color.card[15].active[0],types.color.card[15].active[1],types.color.card[15].active[2]),
+                            0.8,color(types.color.card[game.playerNumber+5].active[0],types.color.card[game.playerNumber+5].active[1],types.color.card[game.playerNumber+5].active[2]),
+                            1.0,color(types.color.card[14].active[0],types.color.card[14].active[1],types.color.card[14].active[2])
+                        )
+
+                        this.layer.fillGradient(this.gradient[0])
+                        this.layer.rect(50,0,76,100,6)
+                        this.layer.fillGradient(this.gradient[1])
+                        this.layer.rect(50,0,68,92,2)
+                        this.layer.fillGradient(this.gradient[2])
+                        regStar(this.layer,50,0,12,12,12,30,30,0)
+                        this.layer.translate(50,0)
+                        if(this.player==-1){
+                            this.layer.fill(180)
+                            this.layer.rect(0,0,2.4,100)
+                        }
+                    }else if(this.args[0]==0&&this.player==-1){
                         this.layer.strokeWeight(4)
                         this.layer.fill(types.color.card[this.battle.player[0]].fill)
                         this.layer.stroke(types.color.card[this.battle.player[0]].stroke)
@@ -208,7 +265,7 @@ class purchase{
                                 this.layer.fill(types.color.card[this.battle.player[this.player]].fill)
                                 this.layer.stroke(types.color.card[this.battle.player[this.player]].stroke)
                             break
-                            case 1: case 3:
+                            case 1: case 4:
                                 this.layer.fill(types.color.card[0].fill)
                                 this.layer.stroke(types.color.card[0].stroke)
                             break
@@ -224,7 +281,7 @@ class purchase{
                             case 0:
                                 this.layer.fill(types.color.card[this.battle.player[this.player]].active)
                             break
-                            case 1: case 3:
+                            case 1: case 4:
                                 this.layer.fill(types.color.card[0].active)
                             break
                             case 2:
@@ -237,7 +294,7 @@ class purchase{
                                 case 0:
                                     this.layer.fill(upColor(types.color.card[this.battle.player[this.player]].stroke,-20,[1,1,1]))
                                 break
-                                case 1: case 3:
+                                case 1: case 4:
                                     this.layer.fill(upColor(types.color.card[0].stroke,-20,[1,1,1]))
                                 break
                                 case 2:
@@ -251,15 +308,18 @@ class purchase{
                     this.layer.textSize(8)
                     switch(this.args[0]){
                         case 0:
-                            this.layer.text('Standard Pack',0,0)
+                            this.layer.text('Standard\nPack',0,0)
                         break
                         case 1:
-                            this.layer.text('Colorless Pack',0,0)
+                            this.layer.text('Colorless\nPack',0,0)
                         break
                         case 2:
-                            this.layer.text('Spectral Pack',0,0)
+                            this.layer.text('Spectral\nPack',0,0)
                         break
                         case 3:
+                            this.layer.text('Prism\nPack',0,0)
+                        break
+                        case 4:
                             this.layer.text('Placeholder\nBooster Pack',0,0)
                         break
                     }
@@ -274,7 +334,7 @@ class purchase{
                     this.layer.textSize(16)
                     for(let a=0,la=this.battle.players;a<la;a++){
                         this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
-                        this.layer.text(this.cost[a],20-la*20+a*40,72.5)
+                        this.layer.text(round(this.cost[a]),20-la*20+a*40,72.5)
                     }
                     if(this.args[3]){
                         this.layer.fill(255,255,50,this.anim.usable)
@@ -287,7 +347,7 @@ class purchase{
                     this.layer.textSize(16)
                     for(let a=0,la=this.battle.players;a<la;a++){
                         this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
-                        this.layer.text(this.cost[a],20-la*20+a*40,40)
+                        this.layer.text(round(this.cost[a]),20-la*20+a*40,40)
                     }
                     this.layer.fill(255,0,0,1-this.anim.usable)
                     this.layer.text('Sold Out',0,40)
@@ -296,7 +356,7 @@ class purchase{
                     this.layer.textSize(12.8)
                     for(let a=0,la=this.battle.players;a<la;a++){
                         this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
-                        this.layer.text(this.cost[a],20-la*20+a*40,58)
+                        this.layer.text(round(this.cost[a]),20-la*20+a*40,58)
                     }
                     this.layer.fill(255,0,0,1-this.anim.usable)
                     this.layer.textSize(9.6)
@@ -308,7 +368,7 @@ class purchase{
                 case 1: case 2:
                     this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
                     this.layer.textSize(16)
-                    this.layer.text(this.cost[this.player],0,72.5)
+                    this.layer.text(round(this.cost[this.player]),0,72.5)
                     if(this.args[3]){
                         this.layer.fill(255,255,50,this.anim.usable)
                         this.layer.text('Sale',0,-72.5)
@@ -319,14 +379,14 @@ class purchase{
                 case 3:
                     this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
                     this.layer.textSize(16)
-                    this.layer.text(this.cost[this.player],0,40)
+                    this.layer.text(round(this.cost[this.player]),0,40)
                     this.layer.fill(255,0,0,1-this.anim.usable)
                     this.layer.text('Sold Out',0,40)
                 break
                 case 5:
                     this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
                     this.layer.textSize(12.8)
-                    this.layer.text(this.cost[this.player],0,58)
+                    this.layer.text(round(this.cost[this.player]),0,58)
                     this.layer.fill(255,0,0,1-this.anim.usable)
                     this.layer.text('Sold Out',0,58)
                 break
@@ -349,10 +409,10 @@ class purchase{
         this.anim.usable=smoothAnim(this.anim.usable,this.usable,0,1,5)
         if(this.player==-1){
             for(let a=0,la=this.battle.players;a<la;a++){
-                this.anim.afford[a]=smoothAnim(this.anim.afford[a],this.battle.currency.money[a]>=this.cost[a]-(this.battle.relicManager.hasRelic(187,a)?200:0),0,1,5)
+                this.anim.afford[a]=smoothAnim(this.anim.afford[a],this.battle.currency.money[a]>=round(this.cost[a])-(this.battle.relicManager.hasRelic(187,a)?200:0),0,1,5)
             }
         }else{
-            this.anim.afford=smoothAnim(this.anim.afford,this.battle.currency.money[this.player]>=this.cost[this.player]-(this.battle.relicManager.hasRelic(187,this.player)?200:0),0,1,5)
+            this.anim.afford=smoothAnim(this.anim.afford,this.battle.currency.money[this.player]>=round(this.cost[this.player])-(this.battle.relicManager.hasRelic(187,this.player)?200:0),0,1,5)
         }
         switch(this.type){
             case 1:

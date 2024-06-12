@@ -58,7 +58,14 @@ class optionManager{
     }
     removeAfter(){
         for(let a=0,la=this.removePost.length;a<la;a++){
-            this.removeOption(this.removePost[a])
+            switch(this.removePost[a]){
+                case 9:
+                    this.battle.relicManager.loseRelic(244,this.player)
+                break
+                case 10:
+                    this.battle.relicManager.loseRelic(254,this.player)
+                break
+            }
         }
         this.removePost=[]
     }
@@ -111,6 +118,14 @@ class optionManager{
                 this.battle.overlayManager.overlays[62][this.player].activate()
                 this.battle.relicManager.detail[254][this.player]++
             break
+            case 11:
+                this.finishSelection()
+                this.battle.addCurrency(300,this.player)
+            break
+            case 12:
+                this.battle.overlayManager.overlays[28][this.player].active=true
+                this.battle.overlayManager.overlays[28][this.player].activate()
+            break
         }
     }
     reset(){
@@ -134,7 +149,9 @@ class optionManager{
             this.selected==5&&!this.battle.overlayManager.overlays[6][this.player].active||
             (this.selected==7||this.selected==9)&&!this.battle.overlayManager.overlays[3][this.player].active||
             this.selected==8&&!this.battle.overlayManager.overlays[12][this.player].active||
-            this.selected==10&&!this.battle.overlayManager.overlays[62][this.player].active){
+            this.selected==10&&!this.battle.overlayManager.overlays[62][this.player].active||
+            this.selected==12&&!this.battle.overlayManager.overlays[28][this.player].active
+        ){
             this.finishSelection()
         }
         if(this.selections>=(this.battle.relicManager.hasRelic(117,this.player)?2:1)){

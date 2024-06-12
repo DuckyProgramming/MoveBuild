@@ -23,7 +23,7 @@ function displayTransition(layer,transition){
 		}
 		if(transition.anim>=1.1){
 			transition.trigger=false
-			current.sceneChange(transition.scene,stage.scene)
+			current.sceneChange(stage.scene,transition.scene)
 			stage.scene=transition.scene
 			if(transition.convert){
 				transition.convert=false
@@ -528,7 +528,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[273]>0){
 				block=0
 			}
-			block=tennify(block)
+			block=float(tennify(block))
 			switch(type){
 				case 1: return block==effect&&bonusB==0?tennify(effect):tennify(effect)+`(${tennify(block+bonusB)})`
 				case 3: return (block==effect?(effect==1?``:tennify(effect))+'X':(effect==1?``:tennify(effect))+`(${tennify(block)})X`)+(bonusB>0?`(+${tennify(bonusB)})`:``)
@@ -543,7 +543,10 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(relicManager.hasRelic(53,player)){
 				health*=1.5
 			}
-			health=tennify(health)
+			if(relicManager.hasRelic(284,player)){
+				health*=0.5
+			}
+			health=float(tennify(health))
 			switch(type){
 				case 4: return health==effect?tennify(effect):tennify(effect)+` (${tennify(health)})`
 				case 9: return health==effect?tennify(effect)+`X`:tennify(effect)+` (${tennify(health)})X`
@@ -607,7 +610,7 @@ function intentDescription(attack,user,info){
 			case 27: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Frail\nRange 1-2`
 			case 28: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nRange 1-2`
 			case 29: return `Add ${info?attack.effect[0]:`?`} Block\nRetain Block\nFor 1 Turn`
-			case 30: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`}\nRange 1-2`
+			case 30: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Block\nRange 1-2`
 			case 31: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nRange 1-1`
 			case 32: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-2`
 			case 33: return `Apply ${info?attack.effect[0]:`?`} Weak\nRange 1-2`
@@ -1474,7 +1477,16 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 function outDupes(){
 	for(let a=0,la=types.card.length;a<la;a++){
 		for(let b=0,lb=types.card.length;b<lb;b++){
-			if(types.card[a].name==types.card[b].name&&a!=b){
+			if(types.card[a].name==types.card[b].name&&types.card[a].name.length>0&&a!=b){
+				print(types.card[a].name)
+			}
+		}
+	}
+}
+function outRepeats(){
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card.length;b<lb;b++){
+			if(types.card[a].name==types.card[b].name.substr(0,types.card[a].name.length)&&types.card[a].name.length>0&&a!=b){
 				print(types.card[a].name)
 			}
 		}

@@ -49,7 +49,7 @@ class perk{
                 this.layer.noStroke()
                 this.layer.fill(mergeColor([25,25,25],[50,255,50],this.anim.complete)[0],mergeColor([25,25,25],[50,255,50],this.anim.complete)[1],mergeColor([25,25,25],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
                 this.layer.textSize(24)
-                this.layer.text('Currency',0,60-this.player*120)
+                this.layer.text('100 Currency',0,60-this.player*120)
             break
             case 2:
                 this.layer.stroke(mergeColor([25,25,25],[50,255,50],this.anim.complete)[0],mergeColor([25,25,25],[50,255,50],this.anim.complete)[1],mergeColor([25,25,25],[50,255,50],this.anim.complete)[2],this.fade)
@@ -179,7 +179,7 @@ class perk{
                 this.layer.noStroke()
                 this.layer.fill(mergeColor([25,25,25],[50,255,50],this.anim.complete)[0],mergeColor([25,25,25],[50,255,50],this.anim.complete)[1],mergeColor([25,25,25],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
                 this.layer.textSize(16)
-                this.layer.text('Lose Max HP\nMore Currency',0,60-this.player*120)
+                this.layer.text('Lose Max HP\n400 Currency',0,60-this.player*120)
             break
             case 9:
                 this.layer.stroke(mergeColor([25,25,25],[50,255,50],this.anim.complete)[0],mergeColor([25,25,25],[50,255,50],this.anim.complete)[1],mergeColor([25,25,25],[50,255,50],this.anim.complete)[2],this.fade)

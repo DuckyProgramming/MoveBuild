@@ -1435,7 +1435,7 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Void Duck':
                 this.anim={direction:direction,eye:[0,0],legs:[{top:24,length:{top:10}},{top:24,length:{top:10}}],arms:[{top:54,length:{top:10}},{top:54,length:{top:10}}]}
                 this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1}}
                 this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
@@ -1463,6 +1463,12 @@ class combatant{
                     break
                     case 'Blue Duck':
                         this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[90,0,255],body:[75,0,215],legs:[60,0,175],arms:[65,0,180]}}
+                    break
+                    case 'Void Duck':
+                        this.color={eye:{back:[240,120,240]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[50,0,50],body:[40,0,40],legs:[30,0,30],arms:[35,0,35]}}
+                        this.color.outline=[160,40,200]
+                        this.fades.outline=1
+                        this.trigger.display.outline=true
                     break
                 }
             break
@@ -3730,7 +3736,7 @@ class combatant{
             break
             case 'Precision':
                 this.statusEffect('Dodge',1)
-                this.statusEffect('Lasting Counter Once',5)
+                this.statusEffect('Lasting Counter Once',4)
             break
             case 'Legacy':
                 this.statusEffect('Decrementing Armor',10)
@@ -3788,13 +3794,15 @@ class combatant{
             }
             if(game.ascend>=27&&this.battle.encounter.class==0||game.ascend>=28&&this.battle.encounter.class==1){
                 let randombuffs=[
-                    ['Double Damage',1],['Dodge',1],['Strength',2],['Dexterity',2],['Single Damage Up',6],['Retain Block',10],['Block Next Turn',10],['Armor',4],['Control',1],['Temporary Strength',10],
-                    ['Temporary Dexterity',10],['Metallicize',2],['Buffer',1],['Take Half Damage',2],['Intangible',1],['Counter All',3],['Strength Per Turn',1],['Regeneration',5],['Dexterity Per Turn',1],['Counter Combat',2],
-                    ['Temporary Damage Up',4],['Strength on Hit',1],['Weak on Kill',2],['Vulnerable on Kill',2],['Counter Combat Turn',4],['Single Counter Block',8],['Invisible',4],['Take Third Damage',2],['Speed Up',1],['Strength Next Turn',3],
-                    ['Temporary Strength on Hit',2],['Take 3/4 Damage',4],['Temporary Strength Next Turn',20],['Temporary Speed Up',3],['Conditioning',2],['Counter All Combat',1],['Damage Damage Turn',1],['Damage Damage Turn Next Turn',1],['Intangible Next Turn',1],['Block in 2 Turns',20],
-                    ['Heal on Hit',3],['Take 3/5 Damage',2],['Attack Bleed Turn',2],['Single Attack Bleed',4],['Attack Bleed Combat',1],['Counter Block',3],['Dodge Next Turn',1],['Cannot Die',1],['Single Damage Block Convert',2],['Triple Block',1],
-                    ['Dexterity Next Turn',3],['Take Credit',1],['Triple Damage',1],['1.5x Damage',2],['1.5x Block',3],['Decrementing Strength',3],['Block Up',2],['Take Credit Turn',1],['Take Credit Block Turn',1],['Damage Up',2],
-                    ['Temporary Block Up',4],['Block in 3 Turns',40],['Dexterity on Hit',1],['Temporary Dexterity on Hit',2],['Heal Per Turn',2],['Temporary Dexterity Next Turn',20]
+                    ['Double Damage',1],['Dodge',1],['Strength',2],['Dexterity',2],['Single Damage Up',6],
+                    ['Retain Block',10],['Block Next Turn',10],['Armor',4],['Control',1],['Metallicize',2],
+                    ['Buffer',1],['Take Half Damage',2],['Counter All',3],['Strength Per Turn',1],['Regeneration',5],
+                    ['Dexterity Per Turn',1],,['Strength on Hit',1],['Weak on Kill',2],['Vulnerable on Kill',2],['Single Counter Block',10],
+                    ['Invisible',4],['Speed Up',1],['Strength Next Turn',3],['Conditioning',1],['Counter All Combat',1],
+                    ['Heal on Hit',3],['Attack Bleed Combat',1],['Counter Block',3],['Single Damage Block Convert',2],['Triple Block',1],
+                    ['Dexterity Next Turn',3],['1.5x Damage',2],['1.5x Block',2],['Block Up',2],['Damage Up',2],
+                    ['Dexterity on Hit',1],['Heal Per Turn',2],['Survive Fatal',1],['Decrementing Armor',6],['Single Attack Regeneration',4],
+                    ['Double Curse',1],['Block Heal',3],['Fragile Damage Up',4],['Strength in 2 Turns',4],['Dexterity in 2 Turns',4]
                 ]
                 for(let a=0,la=2;a<la;a++){
                     let index=floor(random(0,randombuffs.length))
@@ -3965,7 +3973,7 @@ class combatant{
                     this.graphics.arms[g].bottom.y=this.graphics.arms[g].middle.y
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -4055,8 +4063,8 @@ class combatant{
         switch(this.attack[this.intent].type){
             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
             case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
-            case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 201: case 270: case 271:
-            case 274: case 282: case 295: case 305: case 309: case 332: case 341: case 355:
+            case 212: case 229: case 242: case 246: case 247: case 251: case 252:  case 270: case 271: case 274:
+            case 282: case 295: case 305: case 309: case 332: case 341: case 355:
                 return this.battle.modded(57)?[
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2)
@@ -4557,7 +4565,7 @@ class combatant{
             if(this.sins.includes(4)){
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].takeDamage(1)
             }
-            if(this.sins.includes(8)&&this.battle.counter.turnPlayed[0]>=5){
+            if(this.sins.includes(8)&&this.battle.cardManagers[this.battle.turn.main].hand.turnPlayed[0]>=5){
                 this.battle.cardManagers[this.battle.turn.main].allEffect(2,2)
             }
         }
@@ -6537,6 +6545,10 @@ class combatant{
             if(this.battle.relicManager.hasRelic(53,this.id)){
                 gain*=1.5
             }
+            if(this.battle.relicManager.hasRelic(284,this.id)){
+                gain*=0.5
+            }
+            gain=float(tennify(gain))
             if(this.status.main[109]>0){
                 this.gainMaxHP(this.status.main[109])
             }
@@ -6559,6 +6571,10 @@ class combatant{
             if(this.battle.relicManager.hasRelic(53,this.id)){
                 gain*=1.5
             }
+            if(this.battle.relicManager.hasRelic(284,this.id)){
+                gain*=0.5
+            }
+            gain=float(tennify(gain))
             if(this.status.main[109]>0){
                 this.gainMaxHP(this.status.main[109])
             }
@@ -6617,23 +6633,23 @@ class combatant{
                     case 88: this.status.main[findList('Intangible',this.status.name)]+=this.status.main[a]; break
                     case 89: this.status.main[findList('Block Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 107: if(this.armed){this.addBlock(this.status.main[a])} break
-                    case 113: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomClass(2,0,4)}} break
-                    case 116: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandom(2,0,0)}} break
+                    case 113: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,0,0,[0],[3,4])}} break
+                    case 116: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,0,0,[],[0])}} break
                     case 118: this.status.main[findList('Focus',this.status.name)]+=this.status.main[a]; break
                     case 120: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Step',types.card),0,this.type)}} break
                     case 124: this.status.main[findList('Dodge',this.status.name)]+=this.status.main[a]; break
                     case 125: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Smite',types.card),0,0)}} break
                     case 129: case 229: this.faith+=this.status.main[a]; break
                     case 130: case 235: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0)}; break
-                    case 131: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0)}; break
+                    case 131: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0)}}; break
                     case 132: this.enterStance(1); break
                     case 133: if(this.id<this.battle.players){this.battle.cardManagers[this.id].reserve.addShuffle(findName('Insight',types.card),0,0)}; break
                     case 135: this.battle.addEnergy(this.status.main[a],this.id);this.battle.addEnergyGen(this.status.main[a],this.id); break
                     case 142: case 155: this.charge+=this.status.main[a]; break
                     case 143: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Burn',types.card),0,game.playerNumber+1)}} break
                     case 149: this.status.main[findList('No Amplify',this.status.name)]+=this.status.main[a]; break
-                    case 157: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,0,2)}} break
-                    case 158: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,1,2)}} break
+                    case 157: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,0,0,[0],[3,2])}} break
+                    case 158: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,1,0,0,0,[0],[3,2])}} break
                     case 164: this.status.main[findList('Energy in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 180: this.status.main[findList('Take Damage',this.status.name)]+=this.status.main[a]; break
                     case 181: this.status.main[findList('Take Damage Next Turn',this.status.name)]+=this.status.main[a]; break
@@ -6671,7 +6687,7 @@ class combatant{
                     case 316: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[a])}; break
                     case 328: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.id)}} break
                     case 331: if(this.id<this.battle.players){this.battle.overlayManager.overlays[58][this.id].active=true;this.battle.overlayManager.overlays[58][this.id].activate([this.status.main[a],0])} break
-                    case 332: for(let b=0,lb=this.status.main[a];b<lb;b++){if(this.battle.cardManagers[this.id].hand.cardNumber('Dual\nDiscus')<=0){this.battle.cardManagers[this.id].hand.add(findName('Dual\nDiscus',types.card),0,0)}} break
+                    case 332: for(let b=0,lb=this.status.main[a];b<lb;b++){if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Dual\nDiscus']])<=0){this.battle.cardManagers[this.id].hand.add(findName('Dual\nDiscus',types.card),0,0)}} break
                     case 333: this.status.main[findList('Temporary Draw',this.status.name)]+=this.status.main[a]; break
                     case 334: this.status.main[findList('Temporary Draw Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 343: if(this.id<this.battle.players){this.battle.addEnergyGen(this.status.main[a],this.id);this.battle.addEnergy(this.status.main[a],this.id)} break
@@ -6747,14 +6763,14 @@ class combatant{
             }
         }
         if(this.name=='Eternal Judge'){
-            if(this.sins.includes(0)){
+            if(this.sins.includes(0)&&this.turnsAlive%2==0){
                 for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
                     this.battle.cardManagers[a].hand.add(findName('Pride',types.card),0,game.playerNumber+2)
                 }
             }
             if(this.sins.includes(2)){
                 for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
-                    this.battle.cardManagers[a].addRandomColor(1,0,game.playerNumber+1,3)
+                    this.battle.cardManagers[a].addRandomAbstract(1,0,0,1,0,[],[game.playerNumber+1,3])
                 }
             }
             if(this.sins.includes(3)){
@@ -6770,7 +6786,7 @@ class combatant{
             if(this.sins.includes(6)){
                 let list=[]
                 for(let a=game.playerNumber,la=findName('Managerial',types.combatant);a<la;a++){
-                    if(types.combatant[a].life>10&&types.combatant[a].life<=50&&!types.combatant[a].spec.includes(2)&&!types.combatant[a].spec.includes(12)){
+                    if(types.combatant[a].life>5&&types.combatant[a].life<=30&&!types.combatant[a].spec.includes(2)&&!types.combatant[a].spec.includes(12)){
                         list.push(a)
                     }
                 }
@@ -6901,7 +6917,7 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck':
             case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Slimoid': case 'Big Slimoid':
             case 'Modicum': case 'Rock Golem': case 'Shield Particle':  case 'Bush Thing': case 'Fireball': case 'Fungling': case 'Bee': case 'Pixie': case 'Darkblot': case 'Lead Brick':
                 switch(type){
@@ -7431,7 +7447,7 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -9208,7 +9224,7 @@ class combatant{
                                 case 11: this.layer.text('Immune to Poison Tiles',40,305+a*10); break
                                 case 12: this.layer.text('Co-Boss',40,305+a*10); break
                                 case 13: this.layer.text('On Survival, Heal 20 HP',40,305+a*10); break
-                                case 14: this.layer.text('On Survival, Deluxe Upgrade Card',40,305+a*10); break
+                                case 14: this.layer.text('On Survival, Deluxe Upgrade a Card',40,305+a*10); break
                                 case 15: this.layer.text('On Survival, Move Freely',40,305+a*10); break
                                 case 16: this.layer.text('On Survival, Gain 25 Currency',40,305+a*10); break
                                 case 17: this.layer.text('Auto-Aims',40,305+a*10); break
@@ -9221,7 +9237,7 @@ class combatant{
                         this.layer.fill(0,this.fade*this.infoAnim.description)
                         for(let a=0,la=this.sins.length;a<la;a++){
                             switch(this.sins[a]){
-                                case 0: this.layer.text('Pride - Add a Pride to Hand Each Turn',210,225+a*15); break
+                                case 0: this.layer.text('Pride - Add a Pride to Hand Every 2 Turns',210,225+a*15); break
                                 case 1: this.layer.text('Wrath - All Attacks Are Doubled',210,225+a*15); break
                                 case 2: this.layer.text('Gluttony - Adds a Random Status\nCard to Draw Each Turn',210,225+a*15); break
                                 case 3: this.layer.text('Greed - Remove All Non-Boss Relics',210,225+a*15); break

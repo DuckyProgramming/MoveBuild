@@ -209,7 +209,7 @@ class eventManager{
                     break
                     case 13:
                         if(this.page==1&&a==0){
-                            this.battle.cardManagers[this.player].deck.removeAllCurse()
+                            this.battle.cardManagers[this.player].deck.removeAbstract(6,[[6]])
                         }
                     break
                     case 14:
@@ -269,7 +269,7 @@ class eventManager{
                     break
                     case 21:
                         if(this.page==0&&a==0){
-                            this.battle.addCurrency(175,this.player)
+                            this.battle.addCurrency(275,this.player)
                         }else if(this.page==1&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Doubt',types.card),0,game.playerNumber+2)
                         }
@@ -386,8 +386,7 @@ class eventManager{
                     case 32:
                         if(this.page==0&&a==0){
                             this.harmMax(userCombatant,userCombatant.base.life/4)
-                            this.battle.cardManagers[this.player].deck.removeAllName('Strike')
-                            this.battle.cardManagers[this.player].deck.removeAllName('Strike-')
+                            this.battle.cardManagers[this.player].deck.removeAbstract(7,[[1]])
                         }else if(this.page==1&&a==0){
                             for(let b=0,lb=5;b<lb;b++){
                                 this.battle.cardManagers[this.player].deck.add(findName('Bite',types.card),0,0)
@@ -599,7 +598,7 @@ class eventManager{
                             this.battle.overlayManager.overlays[3][this.player].active=true
                             this.battle.overlayManager.overlays[3][this.player].activate([0,1,0])
                         }else if(this.page==3&&a==0){
-                            this.battle.cardManagers[this.player].addRandom(0,0,3)
+                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,0,0,[],[3])
                         }
                     break
                     case 54:
@@ -611,7 +610,7 @@ class eventManager{
                     break
                     case 55:
                         if(this.page==1&&a==0){
-                            this.battle.cardManagers[this.player].addRandom(0,0,3)
+                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,0,0,[],[3])
                         }else if(this.page==2&&a==0){
                             this.harm(userCombatant,99)
                         }else if(this.page==3&&a==0){
@@ -646,8 +645,8 @@ class eventManager{
                     break
                     case 59:
                         if(this.page==1&&a==0){
-                            for(let a=0,la=5;a<la;a++){
-                                this.battle.cardManagers[this.player].addRandom(0,0,3)
+                            for(let a=0,la=2;a<la;a++){
+                                this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,0,0,[],[2])
                             }
                         }else if(this.page==2&&a==0){
                             this.battle.relicManager.addRandomRelic(this.player)

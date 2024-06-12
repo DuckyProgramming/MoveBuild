@@ -3221,10 +3221,10 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			}
 			return p1
 		case 2:
-			p1=new combatant(layer,graphics.proxyBattle,225+a*450,312.5,0,0,0,0,player[a],0,0,30-a*60)
+			p1=new combatant(layer,graphics.proxyBattle,225+a*450,314,0,0,0,0,player[a],0,0,30-a*60)
 			switch(p1.name){
 				case 'Donakho':
-					p1.position.y+=5
+					p1.position.y+=2
 				break
 			}
 			p1.size=1

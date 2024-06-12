@@ -27,7 +27,7 @@ class modManager{
             break
             case 77:
                 for(let a=0,la=game.playerNumber;a<la;a++){
-                    this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomColor(0,0,a+1,0))
+                    this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomAbstract(0,0,0,1,0,[],[a+1,0]))
                 }
             break
             case 85:
@@ -35,7 +35,7 @@ class modManager{
             break
             case 90:
                 for(let a=0,la=10;a<la;a++){
-                    this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomCompleteAll(0,0,3))
+                    this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomAbstract(0,0,0,4,0,[],[3]))
                 }
             break
             case 98:

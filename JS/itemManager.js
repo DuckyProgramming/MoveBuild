@@ -148,22 +148,22 @@ class itemManager{
             break
             case 3:
                 for(let a=0,la=3*effectiveness;a<la;a++){
-                    this.battle.cardManagers[player].addRandomClassFree(2,0,1,0)
+                    this.battle.cardManagers[player].addRandomAbstract(2,0,0,0,1,[0],[3,1,0])
                 }
             break
             case 4:
                 for(let a=0,la=3*effectiveness;a<la;a++){
-                    this.battle.cardManagers[player].addRandomClassFree(2,0,2,0)
+                    this.battle.cardManagers[player].addRandomAbstract(2,0,0,0,1,[0],[3,2,0])
                 }
             break
             case 5:
                 for(let a=0,la=3*effectiveness;a<la;a++){
-                    this.battle.cardManagers[player].addRandomClassFree(2,0,3,0)
+                    this.battle.cardManagers[player].addRandomAbstract(2,0,0,0,1,[0],[3,3,0])
                 }
             break
             case 6:
                 for(let a=0,la=3*effectiveness;a<la;a++){
-                    this.battle.cardManagers[player].addRandomClassFree(2,0,4,0)
+                    this.battle.cardManagers[player].addRandomAbstract(2,0,0,0,1,[0],[3,4,0])
                 }
             break
             case 7:
@@ -355,7 +355,7 @@ class itemManager{
             break
             case 110:
                 for(let a=0,la=effectiveness;a<la;a++){
-                    this.battle.cardManagers[player].addRandomFree(2,0,3,0)
+                    this.battle.cardManagers[player].addRandomAbstract(2,0,0,0,1,[],[3,1])
                 }
             break
             case 112:

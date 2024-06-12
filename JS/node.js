@@ -17,7 +17,7 @@ class node{
 
         this.anim={complete:0,active:0,description:0}
     }
-    display(){
+    display(type=this.type){
         let color=mergeColor(mergeColor([110,115,120],[50,255,50],this.anim.complete),[210,195,180],this.anim.active)
         let cap=max(max(this.anim.complete,this.anim.active),this.anim.description)
         this.layer.push()
@@ -38,7 +38,7 @@ class node{
             this.layer.textSize(12)
             this.layer.text('Unknown',0,25)
         }else{
-            switch(this.type){
+            switch(type){
                 case 0:
                     this.layer.stroke(color[0],color[1],color[2],this.fade)
                     this.layer.strokeWeight(3)
@@ -180,6 +180,21 @@ class node{
                     this.layer.fill(color[0],color[1],color[2],this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Fortune',0,25)
+                break
+                case 8:
+                    this.layer.stroke(color[0],color[1],color[2],this.fade)
+                    this.layer.strokeWeight(3)
+                    this.layer.noFill()
+                    regPoly(this.layer,0,0,8,16,16,22.5)
+                    this.layer.strokeWeight(1.5)
+                    this.layer.line(-6,-6,6,6)
+                    this.layer.line(-6,6,6,-6)
+                    this.layer.noStroke()
+                    this.layer.fill(70,75,80,this.fade*cap)
+                    this.layer.rect(0,24,36,14,3)
+                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
+                    this.layer.textSize(12)
+                    this.layer.text('Not Visible',0,25)
                 break
             }
         }

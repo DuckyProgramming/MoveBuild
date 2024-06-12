@@ -148,7 +148,7 @@ types={
         {name:'Intruder',life:21,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:270,effect:[7,1]},{type:271,effect:[5,1]}],description:`Didn't ask to be let in`},
         {name:'Lead Brick',life:35,behavior:1,spec:[],move:{type:0,speed:0},attack:[{type:272,effect:[8]},{type:273,effect:[4]}],description:`Somehow floats`},
         {name:'Regen Balloon',life:29,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:290,effect:[8,3]}],description:`Honestly I can't explain this one`},
-        {name:'Precision',life:12,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:274,effect:[4,1]},{type:38,effect:[6]}],description:`It works the first time at least`},
+        {name:'Precision',life:8,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:274,effect:[4,1]},{type:38,effect:[6]}],description:`It works the first time at least`},
         {name:'Relic',life:108,behavior:0,spec:[0,18],move:{type:0,speed:1},attack:[{type:275,effect:[18]},{type:276,effect:[16]},{type:277,effect:[20]}],description:`Why do enemies award you now?`},
         {name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:278,effect:[14,2]},{type:279,effect:[17,2]},{type:280,effect:[30,2]}],description:`Just you wait...`},
         {name:'Anomaly',life:124,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:281,effect:[7,1]},{type:2,effect:[8]},{type:282,effect:[6,8]}],description:`Actually kinda fragile`},
@@ -169,11 +169,12 @@ types={
         {name:'Glitch',life:15,behavior:5,spec:[],move:{type:6,speed:1},attack:[{type:6,effect:[4]},{type:9,effect:[6]}],description:`Intended`},
         {name:'Glitched Giant',life:125,behavior:5,spec:[],move:{type:4,speed:1},attack:[{type:79,effect:[6]},{type:28,effect:[9]}],description:`Not intended`},
         {name:'Nil',life:91,behavior:5,spec:[0],move:{type:1,speed:1},attack:[{type:196,effect:[8,1,'Empty']},{type:198,effect:[10,1]},{type:197,effect:[3]},{type:146,effect:[5]}],description:`My iq`},
-        {name:'Buried',life:34,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:225,effect:[]},{type:1,effect:[11]},{type:2,effect:[3]},{type:3,effect:[16]},{type:4,effect:[6]}],description:`Stuck in the ground`},
+        {name:'Buried',life:34,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[11]},{type:2,effect:[3]},{type:3,effect:[16]},{type:4,effect:[6]},{type:225,effect:[]}],description:`Stuck in the ground`},
         {name:'Keystone',life:82,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:350,effect:[12,1,'Dazed']},{type:351,effect:[12,1,'Dazed']}],description:`100% casualty rate`},
         
         {name:'Inconsistent',life:69,behavior:0,spec:[],move:{type:5,speed:1},attack:[{type:245,effect:[6]},{type:245,effect:[9]}],description:`Nice!`},
         {name:'Latency',life:13,behavior:0,spec:[],move:{type:1,speed:5},attack:[{type:1,effect:[5]}],description:`...`},
+        {name:'Void Duck',life:120,behavior:2,spec:[1],move:{type:0,speed:1},attack:[{type:2,effect:[8]},{type:5,effect:[3,'Dazed']}],description:`Got spam-clicked on`},
         
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
         {name:'Slime Boss',life:120,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[3]}],description:`Very fat slime`},
@@ -201,7 +202,7 @@ types={
         {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[17,2]},{type:354,effect:[9,2]},{type:355,effect:[7,2]}],description:`Doxxed literally everybody`},
 
         {name:'Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:190,effect:[36,2,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[32,1]},{type:194,effect:[15,1,'Decremented']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
-        {name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[6]},{type:358,effect:[13,2,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
+        {name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[11,2,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
         
         {name:'Managerial',life:0,behavior:9,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
@@ -614,36 +615,36 @@ types={
         {name:'Leftovers',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 3 HP at\nthe End of Combat'},
         {name:'Drumstick',internal:'Extra Draw',id:2,rarity:0,list:0,description:'Draw 2 More Cards\nat the Start of Combat'},
         {name:'Lantern',internal:'First Turn Energy',id:3,rarity:0,list:0,description:'Gain 1 Energy at\nthe Start of Combat'},
-        {name:'Silver Ring',internal:'3 Turn Energy',id:4,rarity:0,list:0,description:'Gain 1 Energy\nEvery 3rd Turn'},
+        {name:'Silver Ring',internal:'5 Turn Energy',id:4,rarity:0,list:0,description:'Gain 1 Energy\nEvery 5th Turn'},
         {name:'Tomato',internal:'6 Max HP',id:5,rarity:0,list:0,description:'When Taken,\nGain 6 Max HP'},
         {name:'Red Marble',internal:'Starting Strength',id:6,rarity:0,list:0,description:'Gain 1 Strength\nat the Start of Combat'},
         {name:'Blue Marble',internal:'Starting Dexterity',id:7,rarity:0,list:0,description:'Gain 1 Dexterity\nat the Start of Combat'},
         {name:'Alarm Clock',internal:'Emergency Move',id:8,rarity:0,list:0,description:'Add 1 Emergency Move at\nthe Start of Combat'},
         {name:'Double Blank Card',internal:'Redraw',id:9,rarity:0,list:0,description:'Add 1 Redraw at\nthe Start of Combat'},
+
         {name:'Clean Water',internal:'Miracle',id:10,rarity:0,list:0,description:'Add 1 Miracle at\nthe Start of Combat'},
-        
         {name:'Bypass Code',internal:'Play Unplayable',id:11,rarity:1,list:0,description:'You Can Play and\nExhaust Unplayable Cards'},
         {name:'Red Ribbon',internal:'Upgrade All Attacks',id:12,rarity:1,list:0,description:'Upgrade All Attacks Added'},
         {name:'Blue Ribbon',internal:'Upgrade All Defense',id:13,rarity:1,list:0,description:'Upgrade All Defenses Added'},
         {name:'Green Ribbon',internal:'Upgrade All Movement',id:14,rarity:1,list:0,description:'Upgrade All Movements Added'},
         {name:'Purple Ribbon',internal:'Upgrade All Powers',id:15,rarity:1,list:0,description:'Upgrade All Powers Added'},
         {name:'Orange',internal:'10 Max HP',id:16,rarity:1,list:0,description:'When Taken,\nGain 10 Max HP'},
-        {name:'Sickle',internal:'Death Boost',id:17,rarity:1,list:0,description:'When an Enemy Dies,\nGain 1 Energy and Draw 1 Card'},
-        {name:'Mobius Strip',internal:'10 Card Draw',id:18,rarity:1,list:0,description:'Every 10 Cards Played,\nDraw 1 Card'},
+        {name:'Sickle',internal:'Death Boost',id:17,rarity:2,list:0,description:'When an Enemy Dies,\nGain 1 Energy and Draw 1 Card'},
+        {name:'Mobius Strip',internal:'15 Card Draw',id:18,rarity:1,list:0,description:'Every 15 Cards Played,\nDraw 1 Card'},
         {name:'Dubious Steak',internal:'Emergency Heal',id:19,rarity:1,list:0,description:'At the End of Combat, If Your\nHP is Below 50%, Heal 12 HP'},
-        {name:'Magic Consuming Duck',internal:'Power Cost Reduce',id:20,rarity:2,list:0,description:'When You Play a Power That Costs 1 or\nMore, a Random Card Costs 1 Less'},
 
+        {name:'Magic Consuming Duck',internal:'Power Cost Reduce',id:20,rarity:2,list:0,description:'When You Play a Power That Costs 1 or\nMore, a Random Card Costs 1 Less'},
         {name:'Bauxite',internal:'Starting Buffer',id:21,rarity:2,list:0,description:'Gain 1 Buffer at\nthe Start of Combat'},
         {name:'Poker Chip',internal:'Selective Redraw',id:22,rarity:2,list:0,description:'Add 1 Selective Redraw at\nthe Start of Combat'},
         {name:'Red Pepper',internal:'No Weak',id:23,rarity:-1,list:0,description:'You Cannot\nBecome Weak'},
         {name:'Green Pepper',internal:'No Frail',id:24,rarity:-1,list:0,description:'You Cannot\nBecome Frail'},
         {name:'Blue Pepper',internal:'No Vulnerable',id:25,rarity:-1,list:0,description:'You Cannot\nBecome Vulnerable'},
         {name:'Malachite',internal:'Retain Block',id:26,rarity:2,list:0,description:'Lose Only 20 Block\nat End of Turn'},
-        {name:'Reforming Peas',internal:'Power Heal',id:27,rarity:2,list:0,description:'When You Play a\nPower, Heal 2 HP'},
+        {name:'Reforming Peas',internal:'Power Heal',id:27,rarity:2,list:0,description:'When You Play a\nPower, Heal 1 HP'},
         {name:'Glass Sphere',internal:'Retain Energy',id:28,rarity:2,list:0,description:'1 Energy Can be\nConserved Between Turns'},
         {name:'Pomegranite',internal:'14 Max HP',id:29,rarity:2,list:0,description:'When Taken,\nGain 14 Max HP'},
-        {name:'IOU',internal:'600 Currency',id:30,rarity:2,list:0,description:'When Taken,\nGain 600 Currency'},
 
+        {name:'IOU',internal:'600 Currency',id:30,rarity:2,list:0,description:'When Taken,\nGain 600 Currency'},
         {name:'Feldspar',internal:'First Attack',id:31,rarity:0,list:0,description:'First Attack Deals\n8 More Damage'},
         {name:'Attack Magazine',internal:'Upgrade Random Attacks',id:32,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Attacks'},
         {name:'Defense Magazine',internal:'Upgrade Random Defense',id:33,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Defenses'},
@@ -653,8 +654,8 @@ types={
         {name:'Soda Bottle',internal:'No Attack Energy',id:37,rarity:0,list:0,description:'When You Do Not Attack,\nGain 1 Energy Next Turn'},
         {name:'Regal Pillow',internal:'Rest Energy',id:38,rarity:0,list:0,description:'Gain 2 Energy\nAfter Resting'},
         {name:'Red Card',internal:'Damage Taken Draw',id:39,rarity:0,list:0,description:'Draw 3 Cards the First\nTime Damage is Taken'},
-        {name:'Yellow Card',internal:'Card Add Currency',id:40,rarity:0,list:0,description:'Gain 20 Currency\nWhen a Card is Added'},
 
+        {name:'Yellow Card',internal:'Card Add Currency',id:40,rarity:0,list:0,description:'Gain 20 Currency\nWhen a Card is Added'},
         {name:'Glitched Projector',internal:'Turn 2 Block',id:41,rarity:1,list:0,description:'Add 16 Block at\nthe Start of Turn 2'},
         {name:'Hot Hand',internal:'8 Attack Strength',id:42,rarity:1,list:0,description:'Every 8 Attacks Played,\nGain 1 Strength'},
         {name:'Fluid Pose',internal:'8 Attack Dexterity',id:43,rarity:1,list:0,description:'Every 8 Attacks Played,\nGain 1 Dexterity'},
@@ -664,8 +665,8 @@ types={
         {name:'Muffin Mix',internal:'Max HP Rest',id:47,rarity:1,list:0,description:'Can Gain 4 Max\nHP When Resting'},
         {name:'Ceramic Egg',internal:'Damage Block Next Turn',id:48,rarity:1,list:0,description:'When You Take Damage,\nGain 3 Block Next Turn'},
         {name:'Serrulata',internal:'Skip Card Max HP',id:49,rarity:1,list:0,description:'Gain 2 Max HP When\nYou Skip Adding a Card'},
+
         {name:'Matchbox',internal:'Strike Damage',id:50,rarity:1,list:0,description:`Cards Containing 'Strike'\nDeal 2 More Damage`},
-        
         {name:'Chaff Strip',internal:'Unplayed Card Block',id:51,rarity:2,list:0,description:'At the End of Your Turn,\nGain 1 Block Per Unplayed Card'},
         {name:'Pocket of Knives',internal:'Shivs',id:52,rarity:3,list:0,description:'Add 4 Shivs at the\nStart of Combat'},
         {name:'Salted Pepper',internal:'Healing Boost',id:53,rarity:2,list:0,description:'All Healing is\n50% More Effective'},
@@ -675,19 +676,19 @@ types={
         {name:'Leaf Ball',internal:'Starting Armor',id:57,rarity:2,list:0,description:'Gain 4 Armor at the\nStart of Combat'},
         {name:'Metal Detector',internal:'Relic Rest',id:58,rarity:2,list:0,description:'Can Gain a Relic\nWhen Resting'},
         {name:'Mortar and Pestle',internal:'Remove Rest',id:59,rarity:2,list:0,description:'Can Remove Cards\nWhen Resting'},
+
         {name:'Dumbbell',internal:'Strength Rest',id:60,rarity:2,list:0,description:'Can Gain Strength\nWhen Resting, Max 3'},
-        
         {name:'Tiny Cactus',internal:'Always Counter',id:61,rarity:0,list:0,description:'Counter 3 All\nAt All Times'},
         {name:'Dreamcatcher',internal:'Card Rest',id:62,rarity:1,list:0,description:'Can Add a Rare Card\nWhen Resting'},
-        {name:'Shuriken',internal:'10 Attack Damage',id:63,rarity:0,list:0,description:'Every 10 Attacks,\nNext Attack Deals Double Damage'},
-        {name:'Orchid',internal:'10 Attack Energy',id:64,rarity:0,list:0,description:'Every 10 Attacks,\nGain 1 Energy'},
+        {name:'Shuriken',internal:'12 Attack Damage',id:63,rarity:0,list:0,description:'Every 12th Attack Played\nDeals Double Damage'},
+        {name:'Orchid',internal:'12 Attack Energy',id:64,rarity:0,list:0,description:'Every 12 Attacks Played,\nGain 1 Energy'},
         {name:'Cheese Sauce',internal:'Better Rest Heal',id:65,rarity:0,list:0,description:'Heal 10 More\nHealth When Resting'},
         {name:'Poisoned Potato',internal:'Cancel Curse',id:66,rarity:0,list:0,description:'Remove the Next\nCurse Added'},
         {name:'Recursive Pouch',internal:'Large Bag',id:67,rarity:0,list:0,description:'When Taken,\nAdd 2 Item Slots'},
         {name:'Oricalchum',internal:'Base Block',id:68,rarity:0,list:0,description:'If You End Your Turn\nWithout Block, Add 6 Block'},
         {name:'Wire Cutter',internal:'Block Damage',id:69,rarity:0,list:0,description:'Deal 4 More Damage\nto Enemies With Block'},
+
         {name:'Tin Can',internal:'3 Turn Draw',id:70,rarity:0,list:0,description:'Draw 1 Card\nEvery 3 Turns'},
-        
         {name:'Duality Charm',internal:'Attacking Defense',id:71,rarity:1,list:0,description:'When You Play an Attack,\nGain 1 Temporary Dexterity'},
         {name:'Diode',internal:'Turn 2 Energy',id:72,rarity:1,list:0,description:'Gain 2 Energy at\nthe Start of Turn 2'},
         {name:'Ornamental Fan',internal:'3 Defense Metallicize',id:73,rarity:1,list:0,description:'Every 3 Defenses Played,\nGain 2 Metallicize'},
@@ -695,21 +696,21 @@ types={
         {name:'Rapier',internal:'Blocked Weaken',id:75,rarity:1,list:0,description:'When an Enemy Deals Blocked\nDamage to You, Apply 1 Weak'},
         {name:'Bookmark',internal:'Retain Card Block',id:76,rarity:1,list:0,description:'Add 4 Block When\nYou Retain a Card'},
         {name:'Seasoning',internal:'Better Items',id:77,rarity:1,list:0,description:'Items are 2x\nMore Effective'},
-        {name:'Pyrite',internal:'10 Defense Buffer',id:78,rarity:1,list:0,description:'Every 10 Defenses Played,\nGain 1 Buffer'},
+        {name:'Pyrite',internal:'12 Defense Buffer',id:78,rarity:1,list:0,description:'Every 12 Defenses Played,\nGain 1 Buffer'},
         {name:'Clip-On Tie',internal:'Important Enemies',id:79,rarity:1,list:0,description:'Enemies Can Give\nElite Rewards'},
+
         {name:'Rummaging Rum',internal:'Item Reuse',id:80,rarity:1,list:0,description:'When an Item is Used,\n50% Chance to Get Another'},
-        
         {name:'Helix Fossil',internal:'Revive',id:81,rarity:2,list:0,description:'Next Time You Die,\nHeal to 50% HP'},
         {name:'Waterwheel',internal:'Low Play Draw',id:82,rarity:2,list:0,description:'When You Play Less Than 3 Cards,\nDraw 3 Cards Next Turn'},
         {name:'Dolphin Figurine',internal:'Item Collector',id:83,rarity:2,list:0,description:'Fights Always\nDrop Items'},
         {name:'Entrenching Tool',internal:'Block Collection',id:84,rarity:2,list:0,description:'Gain 4 Block Per\nTurn After Turn 2'},
-        {name:'Coupon',internal:'Free Shop Relic',id:85,rarity:2,list:0,description:'A Random Relic in\nthe Shop is Free'},
+        {name:'Coupon',internal:'Free Shop Relic',id:85,rarity:3,list:0,description:'A Random Relic in\nthe Shop is Free'},
         {name:'Art of War',internal:'First Attack Free',id:86,rarity:2,list:0,description:'The First Attack\nPer Combat is Free'},
         {name:'DVD Player',internal:'First Card Double Play',id:87,rarity:-1,list:0,description:'The First Card Per Combat\nMay be Played Twice'},
         {name:'Hexachoron',internal:'Per Enemy Block',id:88,rarity:2,list:0,description:'Gain 1 Block Per Enemy\nat the Start of Your Turn'},
         {name:'Hummingbird Wing',internal:'2 Turn Half Damage',id:89,rarity:2,list:0,description:'Take Half Damage in\nthe First 2 Turns'},
+
         {name:'Cracked Urn',internal:'5 Turn Intangible',id:90,rarity:2,list:0,description:'Every 5 Turns,\nGain 1 Intangible'},
-        
         {name:'Swear Jar',internal:'No Shop Currency',id:91,rarity:0,list:0,description:'Gain 20 Currency Every Room\nUntil Your Enter a Shop'},
         {name:'Meatball Ticket',internal:'Shop Heal',id:92,rarity:0,list:0,description:'Heal 15 HP When\nYou Enter a Shop'},
         {name:'Top Hat',internal:'Shop Energy',id:93,rarity:0,list:0,description:'Gain 2 Energy After\nEntering a Shop'},
@@ -719,19 +720,19 @@ types={
         {name:'Remove Voucher',internal:'Remove Discount',id:97,rarity:3,list:0,description:'Removing Cards\nCosts 50% Less'},
         {name:'Four Leaf Clover',internal:'Better Unknown',id:98,rarity:0,list:0,description:'Unknowns are More Likely\nto be Beneficial'},
         {name:'Pink Dice',internal:'Unknown Heal',id:99,rarity:0,list:0,description:'Heal 5 HP When Entering an Unknown'},
-        {name:'Glitter',internal:'Running Block',id:100,rarity:0,list:0,description:'After You Move or Get Moved,\nAdd 2 Block Per Tile Moved'},
 
+        {name:'Glitter',internal:'Running Block',id:100,rarity:0,list:0,description:'After You Move or Get Moved,\nAdd 2 Block Per Tile Moved'},
         {name:'Gold Foil',internal:'Skip Card Currency',id:101,rarity:1,list:0,description:'Gain 10 Currency\nWhen You Skip a Card'},
         {name:'Sticky Hand',internal:'Take 2 Cards',id:102,rarity:1,list:0,description:'You Can Take 2\nCards From Rewards'},
         {name:'Exit Sign',internal:'Skip Events',id:103,rarity:2,list:0,description:'You Can Skip Events'},
-        {name:'Fake Meat',internal:'Remove Max HP',id:104,rarity:1,list:0,description:'When a Card is Removed,\nGain 7 Max HP'},
+        {name:'Fake Meat',internal:'Remove Max HP',id:104,rarity:-1,list:0,description:'When a Card is Removed,\nGain 7 Max HP'},
         {name:'Anger Insurance',internal:'Low Health Strength',id:105,rarity:1,list:0,description:'Gain 1 Strength Every Turn\nWhen Health Below 50%'},
         {name:'Clear Candle',internal:'Status Immunity',id:106,rarity:1,list:0,description:'Status Cards Other Than\nFatigue Exhaust When Drawn'},
         {name:'Oil Can',internal:'Early Initiative',id:107,rarity:1,list:0,description:'Start Each Combat With 2 Initiative'},
         {name:'Orange Peel',internal:'Less Fatigue',id:108,rarity:1,list:0,description:'Remove the First Fatigue\nAdded Each Combat'},
         {name:'Loot Glove',internal:'More Stashes',id:109,rarity:1,list:0,description:'Stashes Contain 2 More Relics'},
-        {name:'Green Stripe',internal:'Upgrade Purchases',id:110,rarity:1,list:0,description:'Upgrade All Cards\nBought at the Shop'},
 
+        {name:'Green Stripe',internal:'Upgrade Purchases',id:110,rarity:1,list:0,description:'Upgrade All Cards\nBought at the Shop'},
         {name:'Azure Blessing',internal:'3 Enemy 1 HP',id:111,rarity:-1,list:0,description:'Next 3 Non-Boss Combats,\nEnemies Have 1 HP'},
         {name:'Bucket Helmet',internal:'Turn 3 Block',id:112,rarity:2,list:0,description:'Add 24 Block at\nthe Start of Turn 3'},
         {name:'Unhelpful Duck',internal:'Exhaust Random',id:113,rarity:-1,list:0,description:'When a Card is Exhausted,\nAdd a Random Card to Your Hand'},
@@ -741,8 +742,8 @@ types={
         {name:'Sleep Powder',internal:'Double Rest',id:117,rarity:2,list:0,description:'Can Pick 2 Different\nEffects When Resting'},
         {name:'Happy Hour',internal:'Buy One Get One',id:118,rarity:2,list:0,description:'After Purchasing a Card or a\nRelic (Cap 1 Relic Per Shop),\nAnother Becomes Free'},
         {name:'Managerial Statue',internal:'Premium',id:119,rarity:2,list:0,description:'Whenever You Gain\nCurrency, Gain 20 More'},
+
         {name:'Surprise Gun',internal:'Planned Attack',id:120,rarity:-1,list:0,description:'Each Turn, If the First Card in Draw Pile\nis an Attack, Draw it, it Costs 1 Less'},
-        
         {name:'Power Shell',internal:'X 2 Increase',id:121,rarity:2,list:0,description:'X Cost Cards\nGet +2 to X'},
         {name:'Rusty Gear',internal:'Starting Control',id:122,rarity:0,list:0,description:'Gain 1 Control at\nthe Start of Combat'},
         {name:'Shattered Mirror',internal:'Duplicate Card',id:123,rarity:3,list:0,description:'When Taken,\nDuplicate a Card'},
@@ -752,19 +753,19 @@ types={
         {name:'Rock of Duckontonlek',internal:'Relic Pack',id:127,rarity:3,list:0,description:'When Taken, Gain 3 Relics\nand a Hoarding'},
         {name:'Card Rack',internal:'Card Hold',id:128,rarity:-1,list:0,description:'All Cards\nHave Retain'},
         {name:'Mechanical Eye',internal:'View Draw',id:129,rarity:0,list:0,description:'Draw Pile Cards Are\nViewed in Order'},
+
         {name:'Stapler',internal:'Innate Card',id:130,rarity:-1,list:0,description:'When Taken, Make a Card Innate'},
-        
         {name:'Concave Star',internal:'Energy/Card Choice',id:131,rarity:4,list:0,description:'Gain 1 Base Energy, Have 1\nLess Card to Choose From'},
         {name:'Coffee Filter',internal:'Energy/Rest Heal',id:132,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Heal at Rest'},
         {name:'Diffused Anvil',internal:'Energy/Rest Upgrade',id:133,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Upgrade at Rest'},
         {name:'Darkstone',internal:'Energy/Curses',id:134,rarity:4,list:0,description:'Gain 1 Base Energy,\nAdd 2 Curses to Deck'},
         {name:'Money Genie',internal:'Energy/Currency',id:135,rarity:4,list:0,description:'Gain 1 Base Energy,\nGain 50% Less Currency'},
         {name:'Red-Tinted Glasses',internal:'Energy/Intent',id:136,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot See Enemy Intent Values'},
-        {name:`Philosopher's Stone`,internal:'Energy/Strength',id:137,rarity:4,list:0,description:'Gain 1 Base Energy,\nEnemies Start Combat With 1 Strength'},
+        {name:`Philosopher's Stone`,internal:'Energy/Strength',id:137,rarity:4,list:0,description:'Gain 1 Base Energy,\nEnemies Start Combat With 2 Strength'},
         {name:'Sozu',internal:'Energy/Items',id:138,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Obtain Items'},
         {name:'Rainbow Flame',internal:'Energy/Draw',id:139,rarity:4,list:0,description:'Gain 1 Base Energy,\nDraw 1 Less Card Every 2 Turns'},
-        {name:'Barrous Armband',internal:'Energy/Card Limit',id:140,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Play More Than 7 Cards Every Turn'},
 
+        {name:'Barrous Armband',internal:'Energy/Card Limit',id:140,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Play More Than 7 Cards Every Turn'},
         {name:'Rhombic Rock',internal:'Energy/Initiative',id:141,rarity:4,list:0,description:'Gain 1 Base Energy,\nYou No Longer Start With Initiative'},
         {name:'Bipolar Dust',internal:'Energy/Fatigue',id:142,rarity:4,list:0,description:'Gain 1 Base Energy,\nFatigue Costs 2'},
         {name:'Durian',internal:'Energy/Max HP',id:143,rarity:4,list:0,description:'Gain 1 Base Energy,\nLose 10 Max HP'},
@@ -774,19 +775,19 @@ types={
         {name:'Magnifying Glass',internal:'Energy/Enemy Health',id:147,rarity:4,list:0,description:'Gain 1 Base Energy,\nEnemies Have 20% More Health'},
         {name:'Absinthe',internal:'Energy/Dexterity',id:148,rarity:4,list:0,description:'Gain 1 Base Energy,\nLose 1 Dexterity Every Turn'},
         {name:'Aquamarine',internal:'3 Free Cards',id:149,rarity:4,list:0,description:'The First 3 Cards Played\nEvery Combat are Free'},
-        {name:'Carnelian',internal:'Avoidance',id:150,rarity:-1,list:0,description:'You May Move\nThrough Obstructions\nReplace Step With Swap'},
 
+        {name:'Carnelian',internal:'Avoidance',id:150,rarity:-1,list:0,description:'You May Move\nThrough Obstructions\nReplace Step With Swap'},
         {name:'Rejector 300',internal:'Remove 6',id:151,rarity:4,list:0,description:'When Taken, Remove 6 Cards'},
         {name:'Shattered Chains',internal:'Difficulty Energy',id:152,rarity:4,list:0,description:'Gain 2 Energy Every Turn\non Elites and Bosses'},
         {name:'Meal Plan',internal:'Large Quick Heal',id:153,rarity:4,list:0,description:'Heal 10 HP at\nthe End of Combat'},
         {name:'?! Block',internal:'Transform Basic',id:154,rarity:-1,list:0,description:'When Taken, Transform All Strikes and\nDefends, and Upgrade All Steps'},
         {name:'Lightbulb',internal:'Basic Draw',id:155,rarity:4,list:0,description:'Draw 2 More\nCards Every Turn'},
-        {name:'Golden Eye',internal:'Confused Draw',id:156,rarity:4,list:0,description:'Draw 3 More Cards Every Turn,\nStart Combat Confused'},
+        {name:'Golden Eye',internal:'Confused Draw',id:156,rarity:-1,list:0,description:'Draw 3 More Cards Every Turn,\nStart Combat Confused'},
         {name:'Platinum Spoon',internal:'Much Better Items',id:157,rarity:4,list:0,description:'Items are 5x\nMore Effective'},
         {name:'Holy Water',internal:'3 Starting Miracles',id:158,rarity:4,list:0,description:'Add 3 Miracles\nat the Start of Combat'},
         {name:'Pentaxon',internal:'Random',id:159,rarity:4,list:0,description:'When Taken, Gain 1 Item,\n300 Currency, 10 Max HP, a Rare Card,\nand Upgrade a Random Card'},
+
         {name:'Watermelon',internal:'30 Max HP',id:160,rarity:4,list:0,description:'When Taken,\nGain 30 Max HP'},
-        
         {name:'Bent Pliers',internal:'Upgrade Random Turn',id:161,rarity:-1,list:0,description:'Every Turn, Upgrade a Random\nCard in Your Hand'},
         {name:'Audric Codex',internal:'Duplicate Random Turn',id:162,rarity:-1,list:0,description:'Every Turn, Duplicate a Random\nCard in Your Hand'},
         {name:'Mark of Infinition',internal:'No Heal',id:163,rarity:-1,list:0,description:'You Can No Longer Heal'},
@@ -847,10 +848,10 @@ types={
         {name:'Shiny Button',internal:'Energy/Shinies',id:213,rarity:4,list:0,description:'Gain 1 Base Energy,\nFind No Shinies and\nLose Existing Shinies'},
         {name:'Auto Arm',internal:'Energy/Unupgrade',id:214,rarity:4,list:0,description:'Gain 1 Base Energy,\nUnupgrade 5 Random Cards When Taken'},
         {name:'Cartomancer',internal:'Random Arcana',id:215,rarity:3,list:0,description:'When Taken, Add a Random\nArcana to Deck'},
-        {name:'Common Voucher',internal:'Free Commons',id:216,rarity:3,list:0,description:'Common Cards in the\nShop are Free'},
+        {name:'Common Voucher',internal:'Free Common',id:216,rarity:3,list:0,description:'Common Cards in the\nShop are Free'},
         {name:'Invisible Duck',internal:'Copy Random Relic',id:217,rarity:3,list:0,description:'When Sold, Copy a\nRandom Owned Relic'},
         {name:'Aerogel',internal:'Anti-Innate Card',id:218,rarity:3,list:0,description:'When Taken, Make\na Card Anti-Innate'},
-        {name:'Aluminum Foil',internal:'Deluxe Upgraded Card Rewards',id:219,rarity:1,list:0,description:'Card Rewards Have a Chance\nto be Deluxe Upgraded'},
+        {name:'Aluminum Foil',internal:'Double Upgraded Card Rewards',id:219,rarity:2,list:0,description:'Card Rewards Have a 10% Chance\nto be Double Upgraded'},
 
         {name:'Boiler Plate',internal:'Item Card Draw',id:220,rarity:-1,list:0,description:'Draw a Card at the Start of Combat\nFor Every Item You Have'},
         {name:'Treasure Map',internal:'World 3 Currency',id:221,rarity:2,list:0,description:'Gain 1000 Currency if or When\nit is World 3 or Later'},
@@ -881,7 +882,7 @@ types={
         {name:'Blue Raspberry',internal:'Spectral Rest',id:244,rarity:2,list:0,description:'You Can Open Spectral\nPacks When Resting, 3 Uses'},
         {name:'The Trail',internal:'3 Cost Energy Next Turn',id:245,rarity:2,list:0,description:'Cards Costing 3 or More\nGive 1 Energy Next Turn'},
         {name:'Spearmint',internal:'25 Damage Draw',id:246,rarity:0,list:0,description:'Draw a Card When You\nDeal 25 or More Damage'},
-        {name:'Chameleon',internal:'Random Polychrome Colorless',id:247,rarity:3,list:0,description:'When Taken, Gain a Random\nPolychrome Common Colorless Card'},
+        {name:'Chameleon',internal:'Random Polychrome Colorless',id:247,rarity:3,list:0,description:'When Taken, Add a Random Polychrome\nCommon Colorless Card to Deck'},
         {name:'Funny Numbers',internal:'69',id:248,rarity:2,list:0,description:'On Turns 6 and 9, Gain 4 Temporary\nStrength and Add 20 Block'},
         {name:'Legos',internal:'Polychrome Erratics',id:249,rarity:2,list:0,description:'Polychrome and Erratic Cards\nHave Both Edition Effects'},
 
@@ -892,7 +893,7 @@ types={
         {name:'Managerial Banner',internal:'Rest Cost Down',id:254,rarity:2,list:0,description:'You May Reduce the Cost of a\nCard By 1 When Resting, 3 Uses'},
         {name:'Quartz Cube',internal:'3 Enemy Stun',id:255,rarity:1,list:0,description:'At the Start of Combats With 3 or More\nEnemies, Apply 2 Stun to a Random Enemy'},
         {name:'House of Cards',internal:'Fragile Damage Up',id:256,rarity:1,list:0,description:'Gain 2 Fragile Damage Up\nat the Start of Combat'},
-        {name:'Insanity Torch',internal:'Starting Madness',id:257,rarity:3,list:0,description:'Add 1 Madness at\nthe Start of Combat'},
+        {name:'Insanity Torch',internal:'Starting Madness',id:257,rarity:-1,list:0,description:'Add 1 Madness at\nthe Start of Combat'},
         {name:'Wand of Exorcism',internal:'Elite Max HP',id:258,rarity:2,list:0,description:'Gain 5 Max HP After Elite Combats'},
         {name:'10 Foot Pole',internal:'Event Immunity',id:259,rarity:1,list:0,description:'Events Cannot Cause You to\nLose Health or Max HP'},
 
@@ -901,56 +902,65 @@ types={
         {name:'Tea Set',internal:'Poor Rest Heal',id:262,rarity:0,list:0,description:'Heal 20 HP When Entering a Rest Site\nWith 500 Currency or Less'},
         {name:'Roll of Pennies',internal:'Shop Currency',id:263,rarity:0,list:0,description:'Gain 50 Currency\nWhen You Enter a Shop'},
         {name:'Rice Bowl',internal:'Cheap Basics',id:264,rarity:1,list:0,description:'Strikes and Defends Have a\n25% Chance to Cost 1 Less\nTemporarily When Drawn'},
-
-        /*{name:'Donation Box',internal:'Currency Rest',id:265,rarity:1,list:0,description:'You Can Collect Currency\nat Rest Sites'},
-        {name:'Coconut',internal:'Item Slot / 5 Max HP',id:266,rarity:1,list:0,description:'When Taken, Add 1 Item Slot\nand Gain 5 Max HP'},
-        {name:'Uncommon Voucher',internal:'Free Uncommons',id:267,rarity:3,list:0,description:'Uncommon Cards in the\nShop are Free'},
+        {name:'Donation Box',internal:'Currency Rest',id:265,rarity:1,list:0,description:'You Can Collect 300 Currency\nat Rest Sites'},
+        {name:'NAND Gate',internal:'Energy/Draw Toggle',id:266,rarity:4,list:0,description:'Gain 1 Energy on Even Turns\nDraw 2 More Cards on Odd Turns'},
+        {name:'Uncommon Voucher',internal:'Free Uncommon',id:267,rarity:3,list:0,description:'Uncommon Cards in the\nShop are Free'},
         {name:'Rare Voucher',internal:'Free Rare',id:268,rarity:3,list:0,description:'Rare Cards in the\nShop are Free'},
         {name:'Common Colorless Voucher',internal:'Free Common Colorless',id:269,rarity:3,list:0,description:'Common Colorless Cards in the\nShop are Free'},
 
         {name:'Standard Pack Voucher',internal:'Standard Pack Discount',id:270,rarity:3,list:0,description:'Standard Packs in the\nShop Cost 50% Less'},
         {name:'Colorless Pack Voucher',internal:'Colorless Pack Discount',id:271,rarity:3,list:0,description:'Colorless Packs in the\nShop Cost 50% Less'},
         {name:'Spectral Pack Voucher',internal:'Spectral Pack Discount',id:272,rarity:3,list:0,description:'Spectral Packs in the\nShop Cost 50% Less'},
-        {name:'Bedroll',internal:'Rest Free Card',id:273,rarity:1,list:0,description:'Gain a Card Reward\nWhenever You Rest.'},
+        {name:'Prism Pack Voucher',internal:'Prism Pack Discount',id:273,rarity:3,list:0,description:'Prism Packs in the\nShop Cost 50% Less'},
         {name:'Harvest Basket',internal:'Add Card Max HP',id:274,rarity:1,list:0,description:'Gain 1 Max HP When You\nadd a Card to Deck'},
-
         {name:'Bottled Poppy',internal:'Innate Attack',id:275,rarity:3,list:0,description:'When Taken, Make a Attack Innate'},
         {name:'Bottled Cyprus',internal:'Innate Defense',id:276,rarity:3,list:0,description:'When Taken, Make a Defense Innate'},
         {name:'Bottled Shamrock',internal:'Innate Movement',id:277,rarity:3,list:0,description:'When Taken, Make a Movement Innate'},
         {name:'Bottled Jasmine',internal:'Innate Power',id:278,rarity:3,list:0,description:'When Taken, Make a Power Innate'},
         {name:'Black Armor',internal:'Fatigue Block',id:279,rarity:0,list:0,description:'Gain 3 Block When\nYou Play a Fatigue'},
 
-        {name:'',internal:'',id:280,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:281,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:282,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:283,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:284,rarity:-1,list:0,description:''},
+        {name:'Shiny Die',internal:'Energy/Chance',id:280,rarity:4,list:0,description:'Gain 1 Base Energy,\n1/6 Chance to Lose 1 Energy Each Turn'},
+        {name:'Sparkler',internal:'Energy/Hard Elites',id:281,rarity:4,list:0,description:'Gain 1 Base Energy, Enemies in Elite\nCombats Start Combat With 5 Strength'},
+        {name:'Sunglasses',internal:'Energy/Blind',id:282,rarity:4,list:0,description:'Gain 1 Base Energy, Cannot See\nMore Than 3 Map Nodes Ahead'},
+        {name:'Calcite Rod',internal:'Energy/Immediate Currency',id:283,rarity:4,list:0,description:'Gain 1 Base Energy,\nWhen Taken, Lose 600 Currency'},
+        {name:'Tobasco Sauce',internal:'Energy/Healing',id:284,rarity:4,list:0,description:'Gain 1 Base Energy,\nAll Healing is 50% Less Effective'},
+        {name:'Setminus',internal:'Energy/Trough',id:285,rarity:4,list:0,description:'Gain 1 Base Energy, Shuffle 1 Trough\nInto Draw at the Start of Combat'},
+        {name:'Gas Pipe',internal:'Energy/Fatigue Draw',id:286,rarity:4,list:0,description:'Gain 1 Base Energy, Fatigues Shuffle\nInto Draw Pile Instead of Discard Pile'},
+        {name:'Duck Food',internal:'Energy/Ducks',id:287,rarity:4,list:0,description:'Gain 1 Base Energy, Spawn a Duck at the\nStart of Combat (Type Varies by World)'},
+        {name:'Runic D20',internal:'Energy/Crit Fail',id:288,rarity:4,list:0,description:'Gain 1 Base Energy,\nAll Cards Have a 5% Chance to Fail'},
+        {name:'Grey Star',internal:'Energy/Elite Relics',id:289,rarity:4,list:0,description:'Gain 1 Base Energy,\nElites Drop 1 Less Relic'},
 
-        {name:'',internal:'',id:285,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:286,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:287,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:288,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:289,rarity:-1,list:0,description:''},
+        {name:'Solitaire',internal:'Always Deluxe Upgrade',id:290,rarity:4,list:0,description:'You May Deluxe\nUpgrade at Rest Sites'},
+        {name:'Unmoving Library',internal:'Any 5 Rare Cards',id:291,rarity:4,list:0,description:'When Taken, Choose and Add\n5 Double Upgraded Rare Cards\nFrom Any Character to Deck'},
+        {name:'Silicon Wafer',internal:'First Free',id:292,rarity:4,list:0,description:'The First Card (Non-Innately)\nDrawn Each Turn Costs 0'},
+        {name:'Octahedron',internal:'3 Card Draw',id:293,rarity:4,list:0,description:'Every 3 Cards Played,\nDraw a Card'},
+        {name:'Lucky Coin',internal:'Random Double Upgrade',id:294,rarity:4,list:0,description:'When Taken, Deluxe Upgrade\n10 Random Upgraded Cards'},
+        {name:'Ring of Suffering',internal:'3 Attack Strength/3 Defense Dexterity',id:295,rarity:4,list:0,description:'Every 3 Attacks Played, Gain 1 Strength\nEvery 3 Defenses Played, Gain 1 Dexterity'},
+        {name:'Truffle',internal:'Energy Bump',id:296,rarity:4,list:0,description:'Gain 1 Energy After Playing 3 Cards,\nTriggers Once Per Turn'},
+        {name:'Centrosome',internal:'Triochrome',id:297,rarity:4,list:0,description:'When Taken, Make a Card Polychrome\nand Duplicate it 2 Times'},
+        {name:'Stopwatch',internal:'3 Turn Turn',id:298,rarity:4,list:0,description:'Every 3 Turns,\nTake Another Turn'},
+        {name:'Assembly Line',internal:'Duplicate Per Turn',id:299,rarity:4,list:0,description:'The First Card Played\nEach Turn is Duplicated'},
 
-        {name:'',internal:'',id:290,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:291,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:292,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:293,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:294,rarity:-1,list:0,description:''},
+        {name:'Uncommon Colorless Voucher',internal:'Free Uncommon Colorless',id:300,rarity:3,list:0,description:'Uncommon Colorless Cards in the\nShop are Free'},
+        {name:'Rare Colorless Voucher',internal:'Free Rare Colorless',id:301,rarity:3,list:0,description:'Rare Colorless Cards in the\nShop are Free'},
+        {name:'Common Relic Voucher',internal:'Common Relic Discount',id:302,rarity:3,list:0,description:'Common Relics in the\nShop Cost 50% Less'},
+        {name:'Uncommon Relic Voucher',internal:'Uncommon Relic Discount',id:303,rarity:3,list:0,description:'Uncommon Relics in the\nShop Cost 50% Less'},
+        {name:'Rare Relic Voucher',internal:'Rare Relic Discount',id:304,rarity:3,list:0,description:'Rare Relics in the\nShop Cost 50% Less'},
+        {name:'Shop Relic Voucher',internal:'Shop Relic Discount',id:305,rarity:3,list:0,description:'Shop Relics in the\nShop Cost 50% Less'},
+        {name:'Broken Stapler',internal:'Energy/Staple',id:306,rarity:4,list:0,description:'Gain 1 Base Energy,\nStaple the Last Card in Hand Each Turn'},
+        {name:'Favored Trades',internal:'Sell Value',id:307,rarity:3,list:0,description:'Selling Relics Gives\n50% More Currency'},
+        {name:'Seltzer',internal:'Rest 10 Turn Block',id:308,rarity:3,list:0,description:'Gain 10 Block Each Turn For 10 Turns,\nOnly Resets After Each Rest Site'},
+        {name:'Vampiric Parasol',internal:'Turn 2 Temporary Strength/Turn 2 Temporary Dexterity',id:309,rarity:2,list:0,description:'On Turn 2, Gain 5 Temporary Strength\nand 5 Temporary Dexterity'},
 
-        {name:'',internal:'',id:295,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:296,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:297,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:298,rarity:-1,list:0,description:''},
-        {name:'',internal:'',id:299,rarity:-1,list:0,description:''},*/
+        {name:'Bedroll',internal:'Rest Free Card',id:310,rarity:1,list:0,description:'Gain a Card Reward\nWhenever You Rest'},
 
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,temp:false,description:''},
         {name:'Empty',id:1,rarity:-1,list:-1,menu:false,temp:false,description:'None'},
         {name:'Rock',id:2,rarity:0,list:0,menu:false,temp:false,description:'Deal 10 Damage\nRange 1-6'},
-        {name:'Attack Box',id:3,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Free Attacks\nto Your Hand'},
-        {name:'Defense Box',id:4,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Free Defenses\nto Your Hand'},
-        {name:'Movement Box',id:5,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Free Movements\nto Your Hand'},
+        {name:'Attack Box',id:3,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Attacks to Your Hand\nThey Cost 0 Temporarily'},
+        {name:'Defense Box',id:4,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Defenses to Your Hand\nThey Cost 0 Temporarily'},
+        {name:'Movement Box',id:5,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Movements to Your Hand\nThey Cost 0 Temporarily'},
         {name:'Power Box',id:6,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Free Powers\nto Your Hand'},
         {name:'Bread',id:7,rarity:0,list:0,menu:true,temp:false,description:'Heal 15 HP'},
         {name:'Arsenic',id:8,rarity:0,list:0,menu:false,temp:false,description:'Apply 10 Poison\nRange 1-2'},
@@ -1038,7 +1048,7 @@ to be some sort of energy radiating from it...`,
 to keep you interested. After several hours, you finally
 reach the end. You've learned some, but you feel weakened.`,
                     option:['Exit'],
-                    optionDesc:['Gain a Card'],
+                    optionDesc:['Add a Card'],
                     link:[-1],
                 },{
                     desc:`You leave, knowing it isn't worth the risk.`,
@@ -1603,7 +1613,7 @@ tells you to keep it safe, but to never give it to anybody.
 Seeing your confused expression,
 he tries to hand you some money as thanks.`,
                     option:['Take it','Decline'],
-                    optionDesc:['Gain 175 Currency',''],
+                    optionDesc:['Gain 275 Currency',''],
                     link:[1,2],
                 },{
                     desc:
@@ -2807,7 +2817,7 @@ the taxi down. Other cards turn around the taxi,
 While you can't drive, you are able to jump
 out and run the rest of the trip on foot.`,
                     option:['Escape'],
-                    optionDesc:['Gain 1 Random Card'],
+                    optionDesc:['Add 1 Random Card'],
                     link:[-1],
                 },{
                     desc:
@@ -2865,7 +2875,7 @@ Like, it's literally nothing.
 Not empty space, just nothing at all.
 Probably a glitch or something...`,
                     option:['Put something in','Jump in'],
-                    optionDesc:['Remove a Card','Remove All Cards'],
+                    optionDesc:['Remove a Card','Delete All Cards'],
                     link:[1,2],
                 },{
                     desc:
@@ -2928,7 +2938,7 @@ You might be able to grab something before you run.`,
                 },{
                     desc:`You grab the box, but you can't tell what's inside.`,
                     option:['Run'],
-                    optionDesc:['Gain 5 Random Cards'],
+                    optionDesc:['Gain 2 Random Rare Cards'],
                     link:[-1],
                 },{
                     desc:`You grab the box, but you can't tell what's inside.`,
@@ -2956,12 +2966,9 @@ Weird that they didn't just build it in space.`,
                     optionDesc:['',''],
                     link:[1,2],
                 },{
-                    desc:
-`You tour the shipyard, discovering its many facilities.
-You were never involved in naval operations,
-so it's quite a jarring transition.`,
+                    desc:`You tour the shipyard, discovering its many facilities.`,
                     option:['Interesting'],
-                    optionDesc:['Add 1 Card'],
+                    optionDesc:['Add Glock'],
                     link:[-1],
                 },{
                     desc:
@@ -2982,7 +2989,7 @@ you spot a strange little tent, nestled among similar other tents.
 It seems the other tents are just shops, but this one is a "Fortune Teller".
 Entering, you're offered a chance to glimpse your future...`,
                     option:['View'],
-                    optionDesc:['Add 1 Card'],
+                    optionDesc:['Add an Arcana'],
                     link:[-1],
                 },
             ],
@@ -6009,20 +6016,20 @@ This will deduct the number of normal cards drawn that turn.
 Appears naturally or applied by relics.`,
         },{name:'Stapled',desc:
 `When another card is played, this card will be discarded.
-Applied by enemies.`,
+Applied by enemies, relics, and cards.`,
         },{name:'Range',desc:
 `Range specifies the distance at which something can be used.
 Most attack cards have range, as do most enemy attacks.`,
         },{name:'Fatigue',desc:
-`When a card with fatigue is played, a fatigue will be added to you discard pile.
+`When a card with Fatigue is played, a Fatigue will be added to you discard pile.
 Fatigue is a status that costs 1 energy to play, and exhausts when played.
-Most attack and movement cards have fatigue.`,
+Most attack and movement cards have Fatigue.`,
         },{name:'# Fatigue',desc:
-`Specifies that a card will repeat the fatigue effect multiple times.`,
+`Specifies that a card will repeat the Fatigue effect multiple times.`,
         },{name:'Heavy Fatigue',desc:
-`A variant of fatigue, that costs 3 to play instead.`,
+`A variant of Fatigue, that costs 3 to play instead.`,
         },{name:'X Fatigue',desc:
-`The amount of fatigue effects from this effect is equalt to the energy spent.`,
+`The amount of Fatigue effects from this effect is equal to the energy spent.`,
         },{name:'X Cost',desc:
 `X cost cards spend all remaining energy when played.
 The card effects play out with X = the amount of energy.`,
@@ -6307,7 +6314,7 @@ Amplify 2 means that 2 Energy will be spent instead.`,
 `When you take damage, heals you instead. Typically lasts for one hit.`,
         },{name:'Ichor',desc:
 `Take 25% more damage per stack.
-Deprecates after each hit taken.`,
+Decrements after each hit taken.`,
         },{name:'Gun',desc:
 `Class of cards, typically ranged.
 Using most guns costs 1 Ammo.`,
@@ -6490,7 +6497,7 @@ Costs 2 to use and retains. Range 1-3.`,
         {name:'Reichswehr',desc:'Off-Color Cards Cost 1 More'},
         {name:'Louse',desc:'All Enemies Get 10 Block the First Time They Take Damage'},
         {name:'Fungling',desc:'Gain 1 Poison Whenever You Move'},
-        {name:'Hwurmp',desc:'Add 10 Random Cards to Deck'},//90
+        {name:'Hwurmp',desc:'Add 10 Completely Random Cards to Deck'},//90
         {name:'Bee',desc:'0 Cost Cards Fail 25% of the Time'},
         {name:'Beekeeper',desc:'All Enemies Spawn a Bee on Death'},
         {name:'Pixie',desc:'All Spaces Look Like Unknowns'},
@@ -6616,7 +6623,7 @@ constants={collisionDamage:4,
     HG2:[[-2,0],[-1,0],[0,2],[0,1],[-1,1],[2,0],[1,0],[0,-2],[0,-1],[1,-1]],
     HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]
 }
-options={damage:false,alt:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false}
+options={damage:false,alt:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false,devGen:false}
 graphics={main:0,backgroundGen:14,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}
