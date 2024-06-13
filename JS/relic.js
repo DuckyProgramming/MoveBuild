@@ -763,8 +763,8 @@ class relic{
                     displaySymbol(this.layer,0,-7,16,0,0.75,this.fade)
                     displaySymbol(this.layer,0,11,28,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
-                    this.layer.textSize(8)
-                    this.layer.text('120',0,11)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',0,11)
                 break
                 case 'Better Unknown':
                     displaySymbol(this.layer,8,0,50,0,1,this.fade)
@@ -798,9 +798,9 @@ class relic{
                 break
                 case 'Take 2 Cards':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
-                    displaySymbol(this.layer,-8,0,17,0,0.45,this.fade)
+                    displaySymbol(this.layer,-8,0,17,0,0.4,this.fade)
                     displaySymbol(this.layer,8,0,8,0,1,this.fade)
-                    displaySymbol(this.layer,8,0,17,0,0.45,this.fade)
+                    displaySymbol(this.layer,8,0,17,0,0.4,this.fade)
                 break
                 case 'Skip Events':
                     this.layer.fill(0,this.fade)

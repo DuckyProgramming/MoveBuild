@@ -4628,7 +4628,7 @@ attack.prototype.update=function(){
                 if(this.timer%30==15){
                     switch(this.type){
                         case 2316:
-                            this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.getStatus('Shock')>8?2:1),this.user)
+                            this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.getStatus('Shock')>=8?2:1),this.user)
                         break
                         default:
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -7243,7 +7243,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,88,[20]))
                 this.userCombatant.statusEffect('Intangible',this.effect[0])
                 for(let a=0,la=this.effect[1];a<la;a++){
-                    this.battle.dropDraw(this.user,findName('Raiment',types.card),0,0)
+                    this.battle.dropDrawShuffle(this.user,findName('Raiment',types.card),0,0)
                 }
             }else if(this.timer>=20){
                 this.remove=true

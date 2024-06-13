@@ -12329,7 +12329,7 @@ class attack{
                     break
                     case 2043:
                         for(let a=0,la=game.playerNumber;a<la;a++){
-                            this.userManager.addRandomAbstract(2,this.level,0,1,0,[],[a+3,3])
+                            this.userManager.addRandomAbstract(2,this.level,0,1,0,[],[a+1,3])
                         }
                     break
                     case 2057:

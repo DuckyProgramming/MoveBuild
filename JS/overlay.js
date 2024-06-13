@@ -1817,7 +1817,7 @@ class overlay{
                                                 if(this.args[2]==1){
                                                     this.battle.eventManagers[this.player].page=basic?3:rarity==2?6:rarity==1?5:4
                                                 }else if(this.args[2]==2){
-                                                    this.battle.cardManagers[this.player].deck.removeAbstraction(0,[type])
+                                                    this.battle.cardManagers[this.player].deck.removeAbstract(0,[type])
                                                 }
                                             }else{
                                                 complete=false

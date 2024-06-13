@@ -957,6 +957,9 @@ function tennify(value){
 		return float(mid[mid.length-1]=='0'&&mid.includes('.')?mid.substr(0,mid.indexOf('.')):mid)
 	}
 }
+function pl(value){
+	return value!=1?`s`:``
+}
 function vectorAtan(point1,point2){
 	return atan2(point2.x-point1.x,point2.y-point1.y)
 }

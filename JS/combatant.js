@@ -3797,12 +3797,12 @@ class combatant{
                     ['Double Damage',1],['Dodge',1],['Strength',2],['Dexterity',2],['Single Damage Up',6],
                     ['Retain Block',10],['Block Next Turn',10],['Armor',4],['Control',1],['Metallicize',2],
                     ['Buffer',1],['Take Half Damage',2],['Counter All',3],['Strength Per Turn',1],['Regeneration',5],
-                    ['Dexterity Per Turn',1],,['Strength on Hit',1],['Weak on Kill',2],['Vulnerable on Kill',2],['Single Counter Block',10],
+                    ['Dexterity Per Turn',1],['Strength on Hit',1],['Weak on Kill',2],['Vulnerable on Kill',2],['Single Counter Block',10],
                     ['Invisible',4],['Speed Up',1],['Strength Next Turn',3],['Conditioning',1],['Counter All Combat',1],
                     ['Heal on Hit',3],['Attack Bleed Combat',1],['Counter Block',3],['Single Damage Block Convert',2],['Triple Block',1],
                     ['Dexterity Next Turn',3],['1.5x Damage',2],['1.5x Block',2],['Block Up',2],['Damage Up',2],
-                    ['Dexterity on Hit',1],['Heal Per Turn',2],['Survive Fatal',1],['Decrementing Armor',6],['Single Attack Regeneration',4],
-                    ['Double Curse',1],['Block Heal',3],['Fragile Damage Up',4],['Strength in 2 Turns',4],['Dexterity in 2 Turns',4]
+                    ['Dexterity on Hit',1],['Heal Per Turn',2],['Survive Fatal',1],['Decrementing Armor',6],['Double Curse',1],
+                    ['Block Heal',3],['Fragile Damage Up',4],['Strength in 2 Turns',4],['Dexterity in 2 Turns',4]
                 ]
                 for(let a=0,la=2;a<la;a++){
                     let index=floor(random(0,randombuffs.length))
