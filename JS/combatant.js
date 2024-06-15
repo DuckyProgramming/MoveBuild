@@ -147,7 +147,8 @@ class combatant{
             'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy in 2 Turns','Scry Barrier','Miracle in 2 Turns','Tick Per Turn','Barrier Next Turn','Miracle in 3 Turns',
             'Extra Turn Next Turn','Extra Turn in 2 Turns','Damage Taken Down','Fragile Damage Up','Temporary Free Non-Rare Colorless','Extra Drawless Turn','Damage Highest','No Damage Turn','Heal on Hit Taken','Temporary Dexterity Per Turn',
             'Counter Once','Common Temporary Strength','Temporary Strength Convert','Double Damage Without Movement','No Energy','End of Combat Heal','Pristine Per Turn','Colorless Damage All','Stride Next Turn','Stride in 2 Turns',
-            'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Buffer','Enemy Death Shiv','Single Splash Damage','Retain Intent',
+            'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Buffer','Enemy Death Shiv','Single Splash Damage','Retain Intent','Move Retain Combo',
+            'Construct Speed Up','Weak Reverse','Drawn Shiv Draw','Prismatic Bomb Freeze','Prismatic Bomb Poison','Prismatic Bomb Targets',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -187,7 +188,8 @@ class combatant{
                 0,0,0,2,2,0,2,0,2,2,//35
                 2,2,0,0,2,0,2,1,0,0,//36
                 2,0,0,0,1,0,0,0,2,2,//37
-                2,2,2,2,1,1,0,2,0,
+                2,2,2,2,1,1,0,2,0,1,//38
+                0,1,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -222,12 +224,13 @@ class combatant{
                 2,2,2,1,0,2,3,2,2,2,//30
                 1,0,1,1,2,2,2,2,2,2,//31
                 2,2,3,2,2,2,2,2,0,0,//32
-                2,1,2,2,2,2,2,2,2,2,//33intent
+                2,1,2,2,2,2,2,2,2,2,//33
                 2,2,2,2,2,2,2,2,2,3,//34
                 2,2,2,2,2,2,2,2,0,2,//35
                 2,2,0,0,2,2,2,1,0,0,//36
                 2,2,2,0,3,2,2,2,2,2,//37
-                0,0,0,0,2,2,2,0,3,
+                0,0,0,0,2,2,2,0,3,2,//38
+                2,2,2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -5100,7 +5103,7 @@ class combatant{
                         damage*=2
                     }
                     if(userCombatant.status.main[8]>0){
-                        damage*=0.75
+                        damage*=userCombatant.status.main[381]>0?1.25:0.75
                     }
                     if(userCombatant.status.main[82]>0){
                         damage*=2
@@ -5968,7 +5971,9 @@ class combatant{
                 this.battle.cardManagers[this.id].draw(this.battle.relicManager.active[250][this.id+1])
             }
             this.battle.cardManagers[this.id].hand.allEffectArgs(20,[this.tilePosition,{x:x,y:y}])
-            this.combo=max(this.combo-distance,0)
+            if(this.status.main[379]<=0){
+                this.combo=max(this.combo-distance,0)
+            }
         }
         this.tilePosition.x=x
         this.tilePosition.y=y

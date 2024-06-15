@@ -932,7 +932,6 @@ class turn{
                                         this.userCombatant.goal.anim.direction=this.relativeDirection
                                     }
                                 }else{
-                                    this.userCombatant.goal.anim.direction=this.relativeDirection
                                     this.remove=true
                                 }
                             break

@@ -367,6 +367,27 @@ class combatantManager{
             }
         }
     }
+    randomNumberEffect(number,effect,args){
+        let list=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0&&this.combatants[a].life>0){
+                list.push(a)
+            }
+        }
+        for(let a=0,la=number;a<la;a++){
+            if(list.length>0){
+                let index=floor(random(0,list.length))
+                switch(effect){
+                    case 0:
+                        this.combatants[list[index]].takeDamage(args[0],args[1])
+                        this.combatants[list[index]].statusEffect('Freeze',args[2])
+                        this.combatants[list[index]].statusEffect('Poison',args[3])
+                    break
+                }
+                list.splice(index,1)
+            }
+        }
+    }
     randomPlayerEffect(effect,args){
         let list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -496,15 +517,6 @@ class combatantManager{
             this.battle.counter.enemy++
         }
     }
-    summonConstruct(tilePosition,type,team,direction,builder){
-        let index=this.battle.tileManager.getTileIndex(tilePosition.x,tilePosition.y)
-        if(index>=0){
-            let tile=this.battle.tileManager.tiles[index]
-            this.addCombatantConstruct(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,team,direction,false,builder)
-            this.battle.updateTargetting()
-            this.battle.tileManager.activate()
-        }
-    }
     summonCombatantDefinite(tilePosition,type,direction){
         let index=this.battle.tileManager.getTileIndex(tilePosition.x,tilePosition.y)
         if(index>=0){
@@ -513,6 +525,19 @@ class combatantManager{
             this.battle.updateTargetting()
             this.battle.tileManager.activate()
             this.battle.counter.enemy++
+        }
+    }
+    summonConstruct(tilePosition,type,team,direction,builder){
+        let index=this.battle.tileManager.getTileIndex(tilePosition.x,tilePosition.y)
+        if(index>=0){
+            let tile=this.battle.tileManager.tiles[index]
+            this.addCombatantConstruct(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,team,direction,false,builder)
+            this.battle.updateTargetting()
+            this.battle.tileManager.activate()
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Speed Up')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Speed Up'))
+                this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Construct Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]=0
+            }
         }
     }
     summonConstructRandom(tilePosition,type,team,direction,builder){
@@ -528,6 +553,10 @@ class combatantManager{
             this.addCombatantConstruct(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,team,direction,false,builder)
             this.battle.updateTargetting()
             this.battle.tileManager.activate()
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Speed Up')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Speed Up'))
+                this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Construct Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]=0
+            }
         }
     }
     allEffect(effect,args){

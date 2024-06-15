@@ -1920,6 +1920,11 @@ class group{
                     this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)
                 }
             break
+            case 327:
+                if(userCombatant.getStatus('Drawn Shiv Draw')>0){
+                    this.drawEffects.push([5,this.drawEffects.push([5,userCombatant.getStatus('Drawn Shiv Draw')])])
+                }
+            break
             case 933:
                 this.battle.addEnergy(card.effect[0],this.player)
             break
@@ -2031,8 +2036,18 @@ class group{
                 userCombatant.vision+=card.effect[0]
             break
             case 2873:
-                this.battle.combatantManager.randomEnemyEffect(0,[card.effect[0]])
+                this.battle.combatantManager.randomNumberEffect(
+                    1+userCombatant.getStatus('Prismatic Bomb Targets'),
+                    0,
+                    [
+                        card.effect[0],
+                        this.player,
+                        userCombatant.getStatus('Prismatic Bomb Freeze'),
+                        userCombatant.getStatus('Prismatic Bomb Poison')
+                    ]
+                )
                 this.battle.addEnergy(card.effect[1],this.player)
+                this.drawEffects.push([5,card.effect[2]])
             break
             case 2904:
                 userCombatant.statusEffect('Temporary Draw',card.effect[0])
