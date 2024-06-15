@@ -26,6 +26,7 @@ celestite
 
 
 
+
 UPDATE 2:
 
 slime boss got stacked on an enemy?
@@ -36,6 +37,8 @@ vengeful's double hit doesn't always work
 
 change all target random enemy cards to specify user in the random call
 and all effects
+
+fix common colorless voucher
 
 
 
@@ -55,6 +58,8 @@ forall - dev card, next attack deals damage to everyone
 new mythic card
 
 ally card?
+
+add block and choose a card from X character
 
 
 

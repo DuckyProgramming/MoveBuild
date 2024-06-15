@@ -13,6 +13,7 @@ class group{
         this.lastDuplicate=[]
         this.lastPlayed=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
         this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
+        this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.compact=1
         this.cardInUse=0
         this.cardShuffledIndex=0
@@ -20,6 +21,7 @@ class group{
         this.exhausts=0
         this.rewinds=0
         this.turnRewinds=0
+        this.lastSort=-1
         this.listInput=[
             [0,4],
             [1,8],
@@ -189,8 +191,12 @@ class group{
     reset(){
         this.cancel()
         this.anim=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        this.lastTurnPlayed=copyArray(this.turnPlayed)
         this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.turnRewinds=0
+    }
+    clear(){
+        this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
     }
     cancel(){
         this.status=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -226,6 +232,7 @@ class group{
     }
     add(type,level,color,edition=0){
         game.id++
+        this.lastSort=-1
         if(type>=0&&type<types.card.length){
             if(this.battle.initialized&&types.card[type].list==game.playerNumber+2&&this.battle.relicManager.hasRelic(66,this.player)){
                 this.battle.relicManager.active[66][this.player+1]--
@@ -2275,6 +2282,7 @@ class group{
         return total
     }
     send(list,firstIndex,lastIndex,spec){
+        this.lastSort=-1
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 if(spec==17){
@@ -2578,6 +2586,7 @@ class group{
         return false
     }
     sort(){
+        this.lastSort=0
         let names=[]
         for(let a=0,la=this.cards.length;a<la;a++){
             if(!names.includes(this.cards[a].name)){
@@ -2595,6 +2604,7 @@ class group{
         }
     }
     sortCost(){
+        this.lastSort=1
         let costs=[]
         for(let a=0,la=this.cards.length;a<la;a++){
             if(!costs.includes(this.cards[a].cost)){
@@ -2851,6 +2861,9 @@ class group{
                 let position=0
                 switch(args[0]){
                     case 0:
+                        if(this.lastSort!=0){
+                            this.sort()
+                        }
                         for(let a=0,la=this.sorted.length;a<la;a++){
                             let b=this.sorted[a]
                             this.cards[b].deSize=!(position>=args[1]*15&&position<args[1]*15+15)

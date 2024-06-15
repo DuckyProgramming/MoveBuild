@@ -538,6 +538,10 @@ class combatantManager{
                 this.combatants[this.combatants.length-1].statusEffect('Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Speed Up'))
                 this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Construct Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]=0
             }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Low Health Construct')>0){
+                this.combatants[this.combatants.length-1].life=round(this.combatants[this.combatants.length-1].life*5)/10
+                this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Low Health Construct',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]--
+            }
         }
     }
     summonConstructRandom(tilePosition,type,team,direction,builder){
@@ -556,6 +560,10 @@ class combatantManager{
             if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Speed Up')>0){
                 this.combatants[this.combatants.length-1].statusEffect('Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Speed Up'))
                 this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Construct Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]=0
+            }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Low Health Construct')>0){
+                this.combatants[this.combatants.length-1].life=round(this.combatants[this.combatants.length-1].life*5)/10
+                this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Low Health Construct',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]--
             }
         }
     }
@@ -717,6 +725,9 @@ class combatantManager{
                         this.combatants[a].heal(args[0])
                         this.combatants[a].statusEffect('Poison',args[1])
                     break
+                    case 43:
+                        this.combatants[a].takeDamage(args[0],args[1])
+                    break
                 }
             }
         }
@@ -755,6 +766,13 @@ class combatantManager{
                 break
                 case 10:
                     this.combatants[a].callEndEffect()
+                break
+                case 11:
+                    for(let b=0,lb=this.combatants[a].status.name.length;b<lb;b++){
+                        if(this.combatants[a].status.name[b].includes('Counter')&&this.combatants[a].status.main[b]!=0){
+                            this.combatants[a].status.main[b]=0
+                        }
+                    }
                 break
                 
             }

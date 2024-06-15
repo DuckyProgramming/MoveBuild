@@ -1501,12 +1501,12 @@ turn.prototype.update=function(){
                         this.remove=true
                     }
                 break
-                case 127: case 150: case 181: case 209: case 331:
+                case 127: case 150: case 181: case 209: case 331: case 363:
                     if(this.timer==1){
-                        this.userCombatant.startAnimation(this.userCombatant.name=='DD-610'?42:5)
+                        this.userCombatant.startAnimation(this.userCombatant.name=='DD-610'||this.type==363?42:5)
                     }
                     if(this.timer<=30){
-                        this.userCombatant.runAnimation(1/15,this.userCombatant.name=='DD-610'?42:5)
+                        this.userCombatant.runAnimation(1/15,this.userCombatant.name=='DD-610'||this.type==363?42:5)
                     }
                     if(this.timer==15){
                         this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,7,[atan2(this.targetTile.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetTile.position.y),5*this.targetDistance-2]))
@@ -3511,6 +3511,26 @@ turn.prototype.update=function(){
                         this.selfCall(3)
                     }else if(this.timer>=100){
                         this.remove=true
+                    }
+                break
+                case 362:
+                    if(variants.nobasicanim){
+                        this.selfCall(4)
+                        this.remove=true
+                    }else{
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(25)
+                        }
+                        if(this.timer<=10||this.timer>20&&this.timer<=30){
+                            this.userCombatant.runAnimation(1/10,25)
+                        }
+                        if(this.timer==15){
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
+                        }else if(this.timer==5*this.targetDistance+15){
+                            this.selfCall(4)
+                        }else if(this.timer>=max(30,5*this.targetDistance+25)){
+                            this.remove=true
+                        }
                     }
                 break
 

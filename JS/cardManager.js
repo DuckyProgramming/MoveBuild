@@ -837,7 +837,7 @@ class cardManager{
     }
     subFatigue(name,bypass){
         this.interval++
-        if(this.numberAbstract(3,[43])<10||this.interval%2==0||bypass){
+        if(this.numberAbstract(3,[43])<10||this.interval%2==0&&false||bypass){
             if(this.battle.relicManager.hasRelic(286,this.player)){
                 this.reserve.add(findName(name,types.card),0,game.playerNumber+1)
                 this.reserve.cards[this.reserve.cards.length-1].spec.push(43)
@@ -948,6 +948,7 @@ class cardManager{
         this.discard.cards=[]
         this.drop.cards=[]
         this.exhaust.cards=[]
+        this.hand.clear()
     }
     sceneChange(){
         this.greenDiff=0

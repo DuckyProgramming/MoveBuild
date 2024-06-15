@@ -143,7 +143,7 @@ class turn{
                                 case 191: case 193: case 194: case 196: case 199: case 200: case 201: case 202: case 206: case 208:
                                 case 235: case 236: case 245: case 262: case 263: case 266: case 268: case 279: case 283: case 284:
                                 case 285: case 287: case 290: case 303: case 306: case 313: case 316: case 320: case 321: case 327:
-                                case 328: case 335: case 336: case 337: case 338: case 340: case 353: case 358: case 361:
+                                case 328: case 335: case 336: case 337: case 338: case 340: case 353: case 358: case 361: case 362:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -225,7 +225,7 @@ class turn{
                                         [this.userCombatant.tilePosition.x+transformBase[0]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformBase[1]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]]
                                     ]
                                 break
-                                case 127: case 150: case 181: case 331:
+                                case 127: case 150: case 181: case 331: case 363:
                                     this.targetIndex=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2)]
                                 break
                                 case 131: case 195: case 205:
@@ -501,7 +501,7 @@ class turn{
                                 this.direction=this.userCombatant.goal.anim.direction
                             }else if(this.type==344){
                                 this.direction=this.userCombatant.goal.anim.direction+180
-                            }else if(this.type==127||this.type==150||this.type==181||this.type==209||this.type==331){
+                            }else if(this.type==127||this.type==150||this.type==181||this.type==209||this.type==331||this.type==363){
                                 if(this.targetIndex[0]==-1){
                                     if(this.mover){
                                         this.userCombatant.moved=true
@@ -658,7 +658,7 @@ class turn{
                                         case 202: case 206: case 208: case 235: case 236: case 245: case 262: case 263: case 266: case 268:
                                         case 279: case 283: case 284: case 285: case 287: case 290: case 303: case 306: case 313: case 316:
                                         case 320: case 321: case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353:
-                                        case 358: case 361:
+                                        case 358: case 361: case 362:
                                             if(
                                                 (a>=1&&this.targetTile[0]<0)||
                                                 (a>=2&&this.targetTile[1]<0)||

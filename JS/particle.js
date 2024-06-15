@@ -28,7 +28,7 @@ class particle{
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
             case 51: case 52: case 54: case 57: case 60: case 65: case 66: case 68: case 72: case 73:
-            case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 88:
+            case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 88: case 90:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -1131,6 +1131,19 @@ class particle{
                         }
                     }
                 break
+                case 90:
+                    this.layer.rotate(this.position.x+this.position.y)
+                    this.layer.fill(140,105,140,this.fade)
+                    for(let a=0,la=36;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.ellipse(0,8-a%6,2,2)
+                    }
+                    this.layer.fill(240,220,240,this.fade)
+                    for(let a=0,la=36;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.ellipse(0,8-a%6,1.2,1.2)
+                    }
+                break
 
             }
             this.layer.pop()
@@ -1167,7 +1180,7 @@ class particle{
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
             case 46: case 51: case 52: case 54: case 56: case 57: case 60: case 65: case 66: case 72:
-            case 73: case 74: case 75: case 76: case 80: case 84: case 85: case 86:
+            case 73: case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 90:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){

@@ -148,7 +148,8 @@ class combatant{
             'Extra Turn Next Turn','Extra Turn in 2 Turns','Damage Taken Down','Fragile Damage Up','Temporary Free Non-Rare Colorless','Extra Drawless Turn','Damage Highest','No Damage Turn','Heal on Hit Taken','Temporary Dexterity Per Turn',
             'Counter Once','Common Temporary Strength','Temporary Strength Convert','Double Damage Without Movement','No Energy','End of Combat Heal','Pristine Per Turn','Colorless Damage All','Stride Next Turn','Stride in 2 Turns',
             'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Buffer','Enemy Death Shiv','Single Splash Damage','Retain Intent','Move Retain Combo',
-            'Construct Speed Up','Weak Reverse','Drawn Shiv Draw','Prismatic Bomb Freeze','Prismatic Bomb Poison','Prismatic Bomb Targets',
+            'Construct Speed Up','Weak Reverse','Drawn Shiv Draw','Prismatic Bomb Freeze','Prismatic Bomb Poison','Prismatic Bomb Targets','Counter Gun','Counter Bomb','Low Health Construct','Temporary Strength Per Turn',
+            'Single Damage All','Prismatic Bomb Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -189,7 +190,8 @@ class combatant{
                 2,2,0,0,2,0,2,1,0,0,//36
                 2,0,0,0,1,0,0,0,2,2,//37
                 2,2,2,2,1,1,0,2,0,1,//38
-                0,1,0,0,0,0,
+                0,1,0,0,0,0,2,2,0,0,//39
+                2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -230,7 +232,8 @@ class combatant{
                 2,2,0,0,2,2,2,1,0,0,//36
                 2,2,2,0,3,2,2,2,2,2,//37
                 0,0,0,0,2,2,2,0,3,2,//38
-                2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,3,0,//39
+                2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -995,7 +998,7 @@ class combatant{
                 this.fades={eye:[1,1],skin:{legs:1,arms:1,body:1,head:1},antenna:1,seal:1,belt:1}
                 this.trigger={display:{eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},antenna:true,seal:true,belt:true,extra:{damage:false}}}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0,hand:0,foot:0}
+                this.animSet={loop:0,flip:0,hand:1,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
             break
             case 'Prehextorica':
@@ -1013,7 +1016,7 @@ class combatant{
                 this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
                 this.trigger.display.extra={damage:false}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0,hand:0,foot:0}
+                this.animSet={loop:0,flip:0,hand:1,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 this.color={skin:{head:[225,180,45],body:[215,170,35],legs:[205,160,25],arms:[195,150,15],node:[150,135,75],rock:[165,135,15],crack:[195,162,39]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
             break
@@ -1032,7 +1035,7 @@ class combatant{
                 this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},glasses:true,belt:true,pocket:1}}
                 this.trigger.display.extra={damage:false}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0,hand:0,foot:0}
+                this.animSet={loop:0,flip:0,hand:1,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 this.color={skin:{head:[240,230,160],body:[140,130,120],legs:[120,110,100],arms:[120,160,180],upperBody:[140,180,200]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0],teeth:[[65,65,65],[245,245,245]]},belt:[60,50,35],glasses:[[85,85,85],[230,235,240]],pocket:[[160,200,220],[170,210,230]]}
             break
@@ -1174,7 +1177,7 @@ class combatant{
 
                 this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-                this.animSet={loop:0,flip:0,hand:0,foot:0}
+                this.animSet={loop:0,flip:0,hand:1,foot:0}
 
                 this.goal={anim:{direction:this.anim.direction,sword:true}}
             break
@@ -4111,7 +4114,7 @@ class combatant{
             case 202: case 206: case 208: case 235: case 236: case 245: case 262: case 263: case 266: case 268:
             case 279: case 283: case 284: case 285: case 287: case 290: case 303: case 306: case 313: case 316:
             case 320: case 321: case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353:
-            case 358: case 361:
+            case 358: case 361: case 362:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -4184,7 +4187,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]+transformDirection(0,this.goal.anim.direction-60)[0],this.tilePosition.y+transformBase[1]+transformDirection(0,this.goal.anim.direction-60)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]+transformDirection(0,this.goal.anim.direction+60)[0],this.tilePosition.y+transformBase[1]+transformDirection(0,this.goal.anim.direction+60)[1])
                 ]
-            case 127: case 150: case 181: case 331:
+            case 127: case 150: case 181: case 331: case 363:
                 return [this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2)]
             case 131: case 195: case 205:
                 return [
@@ -4694,6 +4697,7 @@ class combatant{
                         case 208: case 235: case 236: case 245: case 262: case 263: case 266: case 268: case 279: case 283:
                         case 284: case 285: case 287: case 290: case 303: case 306: case 313: case 316: case 320: case 321:
                         case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353: case 358: case 361:
+                        case 362:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -4797,7 +4801,7 @@ class combatant{
                     case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 127:
                     case 150: case 181: case 209: case 212: case 229: case 242: case 246: case 247: case 251: case 252:
                     case 270: case 271: case 274: case 282: case 295: case 304: case 305: case 309: case 331: case 332:
-                    case 341: case 355:
+                    case 341: case 355: case 363:
                         if(this.battle.modded(57)){
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
@@ -4882,6 +4886,7 @@ class combatant{
                     case 235: case 236: case 245: case 262: case 263: case 266: case 268: case 279: case 283: case 284:
                     case 285: case 287: case 290: case 303: case 306: case 313: case 316: case 320: case 321: case 322:
                     case 327: case 328: case 336: case 337: case 338: case 340: case 346: case 353: case 358: case 361:
+                    case 362:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -5669,6 +5674,19 @@ class combatant{
                                 this.battle.turnManager.turns.push(new turn(0,this.battle,1,[this.status.main[360]],this.id,false))
                                 this.status.main[360]=0
                             }
+                            if(this.status.main[386]>0&&distance<=6&&this.ammo>0){
+                                this.ammo--
+                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                this.battle.turnManager.turns[0].target=[user]
+                                this.battle.turnManager.turns[0].auxiliary=true
+                                this.battle.turnManager.turns.push(new turn(0,this.battle,362,[this.status.main[386]],this.id,false))
+                            }
+                            if(this.status.main[387]>0){
+                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                this.battle.turnManager.turns[0].target=[user]
+                                this.battle.turnManager.turns[0].auxiliary=true
+                                this.battle.turnManager.turns.push(new turn(0,this.battle,363,[this.status.main[387]],this.id,false))
+                            }
                         }else{
                             if(this.status.main[1]>0&&distance<=1){
                                 this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
@@ -5751,6 +5769,17 @@ class combatant{
                                 this.battle.turnManager.turns[1].target=[user]
                                 this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[360]],this.id,false))
                                 this.status.main[360]=0
+                            }
+                            if(this.status.main[386]>0&&distance<=6&&this.ammo>0){
+                                this.ammo--
+                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                this.battle.turnManager.turns[1].target=[user]
+                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,362,[this.status.main[386]],this.id,false))
+                            }
+                            if(this.status.main[387]>0){
+                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                this.battle.turnManager.turns[1].target=[user]
+                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,363,[this.status.main[387]],this.id,false))
                             }
                         }
                         if(this.battle.relicManager.hasRelic(61,this.id)){
@@ -6720,6 +6749,9 @@ class combatant{
                     case 372: this.status.main[findList('Strength in 3 Turns',this.status.name)]+=this.status.main[a]; break
                     case 373: this.status.main[findList('Dexterity in 3 Turns',this.status.name)]+=this.status.main[a]; break
                     case 377: this.battle.combatantManager.damageAreaID(this.status.main[a],this.id,this.id,this.tilePosition); break
+                    case 389: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
+                    case 390: this.battle.combatantManager.allEffect(43,[this.status.main[a],this.id]); break
+                    case 391: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].discard.add(findName('Prismatic\nBomb',types.card),0,0)}} break
 
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){

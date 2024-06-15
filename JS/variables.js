@@ -609,6 +609,8 @@ types={
         {name:'4 Turn Block / Purify',class:2},
         {name:'2 Tile 3 Spread Pentuple Strike (Doubled)',class:1},//360
         {name:'6 Tile Double Statusing Strike (Doubled)',class:1},
+        {name:'Counter Gun',class:1},
+        {name:'2 Tile Counter Bomb Throw',class:5},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -1791,7 +1793,7 @@ A dark sound echoes around you, the magic seeping into you.`,
                 },
             ],
         },{
-            name:'Cursed Tome',id:27,list:0,
+            name:'Cursed Tome',id:27,list:-1,
             pages:[
                 {
                     desc:
