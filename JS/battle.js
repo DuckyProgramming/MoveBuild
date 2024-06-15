@@ -974,6 +974,7 @@ class battle{
         if(amount!=0){
             this.anim[amount>0?'energyUp':'energyDown']=1
         }
+        this.cardManagers[player].allEffectArgs(2,25,[amount])
         if(variants.mtg){
             this.energy.main[player][0]+=amount
         }else{
@@ -984,6 +985,7 @@ class battle{
         if(amount!=0){
             this.anim[amount>0?'energyUp':'energyDown']=1
         }
+        this.cardManagers[player].allEffectArgs(2,25,[amount])
         if(variants.mtg){
             this.energy.main[player][type]+=amount
             let cap=484
@@ -1013,6 +1015,7 @@ class battle{
         if(amount!=0){
             this.anim[amount>0?'energyDown':'energyUp']=1
         }
+        this.cardManagers[player].allEffectArgs(2,25,[-amount])
         if(variants.mtg){
             let available=[]
             for(let a=0,la=this.energy.main[player].length;a<la;a++){
@@ -1047,6 +1050,7 @@ class battle{
         if(amount!=0){
             this.anim[amount>0?'energyDown':'energyUp']=1
         }
+        this.cardManagers[player].allEffectArgs(2,25,[-amount])
         if(type==0){
             for(let a=0,la=amount;a<la;a++){
                 for(let b=0,lb=this.energy.crystal[player].length;b<lb;b++){
@@ -1083,6 +1087,7 @@ class battle{
             if(amount!=total6(this.energy.main[player])){
                 this.anim[amount>total6(this.energy.main[player])?'energyUp':'energyDown']=1
             }
+            this.cardManagers[player].allEffectArgs(2,25,[amount-total6(this.energy.main[player])])
             if(this.energy.main[player].length>amount){
                 this.loseEnergy(total6(this.energy.main[player])-amount,player)
             }else if(this.energy.main[player].length<amount){
@@ -1092,6 +1097,7 @@ class battle{
             if(amount!=this.energy.main[player]){
                 this.anim[amount>this.energy.main[player]?'energyUp':'energyDown']=1
             }
+            this.cardManagers[player].allEffectArgs(2,25,[amount-this.energy.main[player]])
             this.energy.main[player]=amount
         }
     }
@@ -1100,10 +1106,12 @@ class battle{
             this.anim[amount>1?'energyUp':'energyDown']=1
         }
         if(variants.mtg){
+            this.cardManagers[player].allEffectArgs(2,25,[(amount-1)*total6(this.energy.main[player])])
             for(let a=0,la=this.energy.main[player].length;a<la;a++){
                 this.energy.main[player][a]*=amount
             }
         }else{
+            this.cardManagers[player].allEffectArgs(2,25,[(amount-1)*this.energy.main[player]])
             this.energy.main[player]*=amount
         }
     }
@@ -2741,7 +2749,7 @@ class battle{
                                 save(graphics.main)
                             break
                             case 'E':
-                                this.cardManagers[0].allEffect(2,1)
+                                this.cardManagers[thsi.trun.main].allEffect(2,1)
                             break
                             case 'A':
                                 this.setEnergy(99,0)

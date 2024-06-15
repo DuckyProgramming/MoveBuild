@@ -1064,6 +1064,27 @@ class turn{
                                     this.set()
                                 }
                             break
+                            case 10:
+                                this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
+                                this.possible=[]
+                                for(let a=0,la=3;a<la;a++){
+                                    let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.procedure[0]-60+a*60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.procedure[0]-60+a*60)[1])
+                                    if(index>=0&&this.battle.tileManager.tiles[index].occupied==0){
+                                        this.possible.push(index)
+                                    }
+                                }
+                                if(this.possible.length>0){
+                                    this.targetTile=this.battle.tileManager.tiles[this.possible[floor(random(0,this.possible.length))]]
+
+                                    this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                                    this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+
+                                    this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                                    this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                                }else{
+                                    this.remove=true
+                                }
+                            break
                             
                         }
                         if(!this.remove&&this.targetTile!=-1){

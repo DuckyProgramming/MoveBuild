@@ -1516,6 +1516,14 @@ class group{
                         la--
                     }
                 break
+                case 25:
+                    if(args[0]>0){
+                        if(this.cards[a].attack==3253&&this.cards[a].cost>0){
+                            this.cards[a].cost=max(0,this.cards[a].cost-1)
+                            this.cards[a].base.cost=max(0,this.cards[a].base.cost-1)
+                        }
+                    }
+                break
             }
         }
         if(effect==9){
@@ -1904,6 +1912,9 @@ class group{
             case -67:
                 this.battle.loseCurrency(card.effect[0],this.player)
             break
+            case -68:
+                this.battle.cardManagers[this.player].hand.discard(card.effect[0])
+            break
             case 288: case 374: case 2217: case 2776:
                 for(let a=0,la=card.effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)
@@ -2046,6 +2057,9 @@ class group{
             case 3149:
                 card.effect[0]+=card.effect[1]
             break
+            case 3245:
+                userCombatant.block=0
+            break
         }
     }
     deathEffect(){
@@ -2054,6 +2068,9 @@ class group{
             switch(this.cards[a].attack){
                 case -8:
                     userCombatant.takeDamage(this.cards[a].effect[0],-1)
+                break
+                case -69:
+                    userCombatant.life=0
                 break
                 case 1275:
                     this.battle.addCurrency(this.cards[a].effect[0],this.player)
@@ -2552,7 +2569,15 @@ class group{
                 names.push(this.cards[a].name)
             }
         }
-        this.sorted=names.sort()
+        let midSorted=names.sort()
+        this.sorted=[]
+        for(let a=0,la=midSorted.length;a<la;a++){
+            for(let b=0,lb=this.cards.length;b<lb;b++){
+                if(this.cards[b].name==midSorted[a]){
+                    this.sorted.push(b)
+                }
+            }
+        }
     }
     sortCost(){
         let costs=[]
@@ -2811,20 +2836,16 @@ class group{
                 let position=0
                 switch(args[0]){
                     case 0:
-                        this.sort()
                         for(let a=0,la=this.sorted.length;a<la;a++){
-                            for(let b=0,lb=this.cards.length;b<lb;b++){
-                                if(this.cards[b].name==this.sorted[a]){
-                                    this.cards[b].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
-                                    this.cards[b].fade=1
-                                    this.cards[b].relIndex=position
-                                    this.cards[b].position.x=this.layer.width/2-200+position%5*100
-                                    this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
-                                    this.cards[b].anim.afford=1
-                                    this.cards[b].display(this.id==0)
-                                    position++
-                                }
-                            }
+                            let b=this.sorted[a]
+                            this.cards[b].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
+                            this.cards[b].fade=1
+                            this.cards[b].relIndex=position
+                            this.cards[b].position.x=this.layer.width/2-200+position%5*100
+                            this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
+                            this.cards[b].anim.afford=1
+                            this.cards[b].display(this.id==0)
+                            position++
                         }
                     break
                     case 2: case 3: case 4: case 5:
@@ -4189,6 +4210,42 @@ class group{
                 }
             }
         }
+        if(this.battle.attackManager.targetInfo[0]==54){
+            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team)&&
+                    (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==45)&&
+                    this.battle.tileManager.getTileIndex(
+                        this.battle.combatantManager.combatants[a].tilePosition.x+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)-60)[0],
+                        this.battle.combatantManager.combatants[a].tilePosition.y+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)-60)[1]
+                    )>=0&&
+                    this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(
+                        this.battle.combatantManager.combatants[a].tilePosition.x+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)-60)[0],
+                        this.battle.combatantManager.combatants[a].tilePosition.y+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)-60)[1]
+                    )].occupied==0&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<game.targetRadius
+                ){
+                    this.callInput(3,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==55){
+            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team)&&
+                    (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==45)&&
+                    this.battle.tileManager.getTileIndex(
+                        this.battle.combatantManager.combatants[a].tilePosition.x+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)+60)[0],
+                        this.battle.combatantManager.combatants[a].tilePosition.y+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)+60)[1]
+                    )>=0&&
+                    this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(
+                        this.battle.combatantManager.combatants[a].tilePosition.x+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)+60)[0],
+                        this.battle.combatantManager.combatants[a].tilePosition.y+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)+60)[1]
+                    )].occupied==0&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<game.targetRadius
+                ){
+                    this.callInput(3,a)
+                }
+            }
+        }
         if(this.battle.attackManager.targetInfo[0]==0){
             switch(scene){
                 case 'battle':
@@ -4547,6 +4604,46 @@ class group{
                 let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
                 if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(0,1,this.battle.turn.total+this.battle.attackManager.targetInfo[1]+(this.battle.relicManager.hasRelic(121,this.battle.attackManager.player)?2:0),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
                     this.callInput(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==54){
+            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
+                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                    if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team)&&
+                        (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==45)&&
+                        this.battle.tileManager.getTileIndex(
+                            this.battle.combatantManager.combatants[a].tilePosition.x+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)-60)[0],
+                            this.battle.combatantManager.combatants[a].tilePosition.y+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)-60)[1]
+                        )>=0&&
+                        this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(
+                            this.battle.combatantManager.combatants[a].tilePosition.x+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)-60)[0],
+                            this.battle.combatantManager.combatants[a].tilePosition.y+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)-60)[1]
+                        )].occupied==0&&
+                        this.battle.combatantManager.combatants[a].tilePosition.x==int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x&&this.battle.combatantManager.combatants[a].tilePosition.y==int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y
+                    ){
+                        this.callInput(3,a)
+                    }
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==55){
+            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
+                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                    if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team)&&
+                        (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==45)&&
+                        this.battle.tileManager.getTileIndex(
+                            this.battle.combatantManager.combatants[a].tilePosition.x+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)+60)[0],
+                            this.battle.combatantManager.combatants[a].tilePosition.y+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)+60)[1]
+                        )>=0&&
+                        this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(
+                            this.battle.combatantManager.combatants[a].tilePosition.x+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)+60)[0],
+                            this.battle.combatantManager.combatants[a].tilePosition.y+transformDirection(0,targetDirectionCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)+60)[1]
+                        )].occupied==0&&
+                        this.battle.combatantManager.combatants[a].tilePosition.x==int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x&&this.battle.combatantManager.combatants[a].tilePosition.y==int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y
+                    ){
+                        this.callInput(3,a)
+                    }
                 }
             }
         }

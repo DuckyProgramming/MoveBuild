@@ -53,9 +53,7 @@ class cardManager{
             }
             if(variants.prismrule.includes(types.card[a].list)&&types.card[a].rarity>-10||variants.prismrule.includes(-1)&&types.card[a].list<0||variants.prismrule.includes(-2)&&types.card[a].rarity==-10){
                 if(types.card[a].rarity<0){
-                    this.listing.all[0].push(a)
-                    this.listing.all[1].push(a)
-                    this.listing.all[2].push(a)
+                    this.listing.all[floor(random(0,3))].push(a)
                 }else{
                     this.listing.all[types.card[a].rarity].push(a)
                 }

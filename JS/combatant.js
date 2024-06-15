@@ -147,7 +147,7 @@ class combatant{
             'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy in 2 Turns','Scry Barrier','Miracle in 2 Turns','Tick Per Turn','Barrier Next Turn','Miracle in 3 Turns',
             'Extra Turn Next Turn','Extra Turn in 2 Turns','Damage Taken Down','Fragile Damage Up','Temporary Free Non-Rare Colorless','Extra Drawless Turn','Damage Highest','No Damage Turn','Heal on Hit Taken','Temporary Dexterity Per Turn',
             'Counter Once','Common Temporary Strength','Temporary Strength Convert','Double Damage Without Movement','No Energy','End of Combat Heal','Pristine Per Turn','Colorless Damage All','Stride Next Turn','Stride in 2 Turns',
-            'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Buffer',
+            'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Buffer','Enemy Death Shiv','Single Splash Damage','Retain Intent',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -187,7 +187,7 @@ class combatant{
                 0,0,0,2,2,0,2,0,2,2,//35
                 2,2,0,0,2,0,2,1,0,0,//36
                 2,0,0,0,1,0,0,0,2,2,//37
-                2,2,2,2,1,1,
+                2,2,2,2,1,1,0,2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -222,12 +222,12 @@ class combatant{
                 2,2,2,1,0,2,3,2,2,2,//30
                 1,0,1,1,2,2,2,2,2,2,//31
                 2,2,3,2,2,2,2,2,0,0,//32
-                2,1,2,2,2,2,2,2,2,2,//33
+                2,1,2,2,2,2,2,2,2,2,//33intent
                 2,2,2,2,2,2,2,2,2,3,//34
                 2,2,2,2,2,2,2,2,0,2,//35
                 2,2,0,0,2,2,2,1,0,0,//36
                 2,2,2,0,3,2,2,2,2,2,//37
-                0,0,0,0,2,2,
+                0,0,0,0,2,2,2,0,3,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4437,7 +4437,9 @@ class combatant{
         switch(type){
             case 0:
                 this.turnsAlive++
-                if(this.battle.modded(41)){
+                if(this.status.main[378]>0){
+                    this.status.main[378]--
+                }else if(this.battle.modded(41)){
                     this.intent=(this.turnsAlive-1)%this.attack.length
                 }else{
                     switch(this.behavior){
@@ -4544,6 +4546,11 @@ class combatant{
     anotherDead(){
         if(this.status.main[103]>0){
             this.heal(this.status.main[103])
+        }
+        if(this.status.main[376]>0&&this.id>=0&&this.id<this.battle.players){
+            for(let a=0,la=this.status.main[376];a<la;a++){
+                this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)
+            }
         }
     }
     playCard(){
@@ -6707,6 +6714,7 @@ class combatant{
                     case 371: this.status.main[findList('Dexterity in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 372: this.status.main[findList('Strength in 3 Turns',this.status.name)]+=this.status.main[a]; break
                     case 373: this.status.main[findList('Dexterity in 3 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 377: this.battle.combatantManager.damageAreaID(this.status.main[a],this.id,this.id,this.tilePosition); break
 
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
@@ -9380,7 +9388,7 @@ class combatant{
                 this.battle.tileManager.activate()
                 this.battle.updateTargetting()
                 if(this.status.main[80]>0){
-                    this.battle.combatantManager.damageAreaID(this.base.life,this.id,this.id,this.tilePosition)
+                    this.battle.combatantManager.damageAreaID(this.base.life*this.status.main[80],this.id,this.id,this.tilePosition)
                 }
                 if(this.status.main[199]>0){
                     this.battle.combatantManager.damageAreaID(this.status.main[199],this.id,this.id,this.tilePosition)
@@ -9457,7 +9465,7 @@ class combatant{
                             {type:0,value:[this.status.main[42]]}]])
                 }
                 if(this.status.main[80]>0){
-                    this.battle.combatantManager.damageAreaID(this.base.life,this.id,this.id,this.tilePosition)
+                    this.battle.combatantManager.damageAreaID(this.base.life*this.status.main[80],this.id,this.id,this.tilePosition)
                 }
                 if(this.status.main[199]>0){
                     this.battle.combatantManager.damageAreaID(this.status.main[199],this.id,this.id,this.tilePosition)

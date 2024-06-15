@@ -69,6 +69,12 @@ class turnManager{
         this.auxiliary=true
         this.turns.push(new turn(1,this.battle,2,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
     }
+    loadEnemyRandomMoveAway(enemy,user){
+        this.loads++
+        this.auxiliary=true
+        this.turns.push(new turn(1,this.battle,10,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
+        this.turns[this.turns.length-1].procedure[0]=directionCombatant(this.battle.combatantManager.combatants[enemy],this.battle.combatantManager.combatants[user])
+    }
     loadEnemyRotate(enemy){
         this.loads++
         this.auxiliary=true

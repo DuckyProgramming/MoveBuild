@@ -3560,7 +3560,7 @@ turn.prototype.update=function(){
         break
         case 1:
             switch(this.type){
-                case 0: case 1: case 2: case 4: case 9:
+                case 0: case 1: case 2: case 4: case 9: case 10:
                     if(this.battle.modded(115)){
                         if(this.timer==1){
                             this.userCombatant.startAnimation(0)

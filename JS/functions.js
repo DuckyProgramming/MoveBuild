@@ -1401,6 +1401,9 @@ function event(name){
 function status(name){
 	return findList(name,current.combatantManager.combatants[0].status.name)
 }
+function upgrade(){
+	current.cardManagers[current.turn.main].allEffect(2,4)
+}
 function quickRelic(type){
 	current.relicManager.addRelic(type,0)
 }

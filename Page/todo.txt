@@ -1,3 +1,5 @@
+UPDATE 3:
+
 3 new events
 
 [drinking contest]
@@ -12,6 +14,9 @@ event - the backdoors
 
 
 
+
+END:
+
 goal 125,000
 
 go make glory v2,
@@ -19,178 +24,37 @@ celestite
 
 
 
+
+
+UPDATE 2:
+
 slime boss got stacked on an enemy?
 
 does waterwheel even work?
+
+vengeful's double hit doesn't always work
 
 change all target random enemy cards to specify user in the random call
 and all effects
 
 
 
-[]
 
-[]
 
-[]
+change apocryphal knife to give normal shivs
+mention it shuffles into draw
 
-[]
+buff cheapen
 
-[]
+change shieldfly to give block (more) instead of barrier
 
-[]
 
 
+forall - dev card, next attack deals damage to everyone
 
-[]
+new mythic card
 
-[]
-
-[]
-
-[]
-
-[]
-
-[]
-
-
-
-forest adventure
-
-black key
-
-[]
-
-slip left - junkyard, move left around target
-
-slip right - junkyard, move right around target
-
-one-winged heron - 1 cost ethereal, shuffle a miracle and a discus into your draw pile
-
-
-
-[another sagume card]
-
-[beauty of nature]
-
-summons from origin - omniboost, but spawn a management robot
-
-[sanae meme card]
-
-[azis movement]
-
-[prehex movement]
-
-
-
-solar granule - polar star, but sends out burn on even turns
-
-wriggle, bug of light
-+1-
--2-
--5-
-
-creeping vines - damage, apply poison if target is on a plant tile
-
-heated geyser - apply 2 bruise and 2 burn, increases by 1 when a movement is played
-
-shimenawa - gain barrier, cards in hand do not fatigue
-
-[flames of servitude]
-
-
-
-sly programming - wily programming but you need 3
-
-higher noon - high noon but it only works on turn 420
-
-still rock - add 12 block, take d6 damage
-
-security alarm - add 12 block, when exhausted, lose 3 energy
-
-passive stance - add 11 block, lose 2 temporary strength
-
-lost shield - add 5 barrier, unupgrade a card
-
-
-
-quick speech - target anything, give 12 block to any ally or remove 12 block of any enemy
-
-[returning bridge]
-
-undine - slightly weaker recycle, costs 0 the first time drawn
-
-pillars of creation - add a random nothings to hand, to discard, and to draw
-
-plane ticket - 10 damage, 10%: add 20 block
-
-phoenix wing - 12 damage twice, 2 burn, lose 3 health
-
-
-
-rushed - draw 4 cards, can no longer draw this turn
-
-spring flash - 12 damage, 0 cost, requires 5 energy
-
-[frog - token]
-
-kanako, avatar of mountain
-+1-
--3-
--8-
-
-suwako, amphibian goddess
-+1-
--3-
--8-
-
-kurtosis - 1 cost, move and draw 2 cards (common colorless)
-
-
-
-devilry light ray - 16 damage, gain 1 energy, exhaust innate, draw 1 less card when drawn
-
-turning the tables - get the top card of draw and discard piles, they cost 0 temporarily
-
-trick of wicked hermit - 4 cost, 18 damage, if fatal deluxe upgrade
-
-don't get hit - deal 30 damage, if you get hit this turn you die
-
-heap overflow - take damage, get a buffer
-
-pledge - 0 cost, draw 3 cards, but they cost 1 more
-
-
-
-spite - 9 damage, target loses 3 strength if you are debuffed
-
-mystic light - damage, retain the rightmost card in hand
-
-flame wheel - deal 7 damage, gain 2 block for each burn on target
-
-perfect cherry blossom - 7 damage, if an attack was played last turn, draw a card, if a defense was played last turn, gain 1 energy
-
-parinir - gain 20 block, gain double if you played a defense last turn
-
-plus 4 - end your turn, draw 4 more next turn
-
-
-
-fatty acid - apply poison and shock, but wide
-
-fat move - move 3 tiles, but wide
-
-counter counter - dev card, remove all active counters
-
-sunlight prayer - add a miracle to hand, but only if you have no statuses or curses in hand (like flagrant edge)
-
-maiden's favor - gain 10 currency, target gains 1 buffer and 1 control
-
-bask in stardust - add block, gain charge if you have no charge
-
-
-
+ally card?
 
 
 
