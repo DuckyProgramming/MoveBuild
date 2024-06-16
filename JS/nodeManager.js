@@ -13,6 +13,7 @@ class nodeManager{
 
         this.freeMove=0
         this.saveBoss=-1
+        this.saveClass=-1
 
         this.initialListing()
     }
@@ -127,45 +128,57 @@ class nodeManager{
         }
         switch(type){
             case 0:
-                transition.scene='battle'
-                if(variants.selectCombat){
-                    transition.trigger=false
-                    this.battle.overlayManager.overlays[61][0].active=true
-                    this.battle.overlayManager.overlays[61][0].activate([0,y])
+                if((type==0||type==1)&&this.saveClass>=0){
+                    let tempClass=this.saveClass
+                    this.saveClass=-1
+                    this.enterNode(tempClass,y,true)
                 }else{
-                    let list=this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0]
-                    let index=floor(random(0,list.length))
-                    this.battle.setupBattle(types.encounter[list[index]])
-                    if(y>0){
-                        list.splice(index,1)
-                    }
-                }
-            break
-            case 1:
-                transition.scene='battle'
-                if(this.battle.modded(69)){
+                    transition.scene='battle'
                     if(variants.selectCombat){
                         transition.trigger=false
                         this.battle.overlayManager.overlays[61][0].active=true
-                        this.battle.overlayManager.overlays[61][0].activate([1,y])
+                        this.battle.overlayManager.overlays[61][0].activate([0,y])
                     }else{
                         let list=this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0]
                         let index=floor(random(0,list.length))
                         this.battle.setupBattle(types.encounter[list[index]])
-                        list.splice(index,1)
-                        this.battle.combatantManager.allEffect(24,[2])
-                        this.battle.combatantManager.allEffect(3,[5])
+                        if(y>0){
+                            list.splice(index,1)
+                        }
                     }
+                }
+            break
+            case 1:
+                if((type==0||type==1)&&this.saveClass>=0){
+                    let tempClass=this.saveClass
+                    this.saveClass=-1
+                    this.enterNode(tempClass,y,true)
                 }else{
-                    if(variants.selectCombat){
-                        transition.trigger=false
-                        this.battle.overlayManager.overlays[61][0].active=true
-                        this.battle.overlayManager.overlays[61][0].activate([2,y])
+                    transition.scene='battle'
+                    if(this.battle.modded(69)){
+                        if(variants.selectCombat){
+                            transition.trigger=false
+                            this.battle.overlayManager.overlays[61][0].active=true
+                            this.battle.overlayManager.overlays[61][0].activate([1,y])
+                        }else{
+                            let list=this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0]
+                            let index=floor(random(0,list.length))
+                            this.battle.setupBattle(types.encounter[list[index]])
+                            list.splice(index,1)
+                            this.battle.combatantManager.allEffect(24,[2])
+                            this.battle.combatantManager.allEffect(3,[5])
+                        }
                     }else{
-                        let list=this.listing.encounter[this.world][1]
-                        let index=floor(random(0,list.length))
-                        this.battle.setupBattle(types.encounter[list[index]])
-                        list.splice(index,1)
+                        if(variants.selectCombat){
+                            transition.trigger=false
+                            this.battle.overlayManager.overlays[61][0].active=true
+                            this.battle.overlayManager.overlays[61][0].activate([2,y])
+                        }else{
+                            let list=this.listing.encounter[this.world][1]
+                            let index=floor(random(0,list.length))
+                            this.battle.setupBattle(types.encounter[list[index]])
+                            list.splice(index,1)
+                        }
                     }
                 }
             break

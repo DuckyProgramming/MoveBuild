@@ -161,7 +161,7 @@ class attack{
             case 3210: case 3212: case 3214: case 3215: case 3216: case 3220: case 3222: case 3224: case 3225: case 3226: case 3227: case 3228: case 3231: case 3232: case 3233: case 3239: case 3241: case 3242: case 3244: case 3245:
             case 3247: case 3249: case 3251: case 3256: case 3257: case 3258: case 3260: case 3261: case 3262: case 3263: case 3264: case 3265: case 3266: case 3270: case 3275: case 3279: case 3284: case 3295: case 3298: case 3300:
             case 3304: case 3310: case 3316: case 3319: case 3321: case 3322: case 3323: case 3326: case 3327: case 3329: case 3331: case 3333: case 3336: case 3337: case 3340: case 3344: case 3345: case 3349: case 3350: case 3352:
-            case 3356: case 3360: case 3363: case 3364: case 3365: case 3368: case 3372: case 3373: case 3375: case 3376:
+            case 3356: case 3360: case 3363: case 3364: case 3365: case 3368: case 3372: case 3373: case 3375: case 3376: case 3384: case 3386:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -4844,6 +4844,10 @@ class attack{
                     case 3367:
                         this.userManager.hand.allEffectArgs(26,[this.effect[1]])
                     break
+                    case 3389:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([0,3,30,[1]])
+                    break
 
                 }
                 //mark 2s
@@ -6860,6 +6864,9 @@ class attack{
                     case 3362:
                         this.userCombatant.statusEffect('Energy Cycle 2 2',this.effect[0])
                     break
+                    case 3388:
+                        this.userCombatant.statusEffect('Damage All',this.effect[0])
+                    break
 
                 }
                 //mark 4
@@ -8432,6 +8439,15 @@ class attack{
                     break
                     case 3380:
                         this.userManager.hand.exhaustDrawSame(this.effect[0])
+                    break
+                    case 3385:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.randomEffect(1,5,[])
+                        }
+                    break
+                    case 3387:
+                        this.battle.overlayManager.overlays[82][this.player].active=true
+                        this.battle.overlayManager.overlays[82][this.player].activate()
                     break
 
                 }
@@ -11073,6 +11089,22 @@ class attack{
                             this.userCombatant.lowRoll()
                         }
                     break
+                    case 3384:
+                        this.userCombatant.addBlock(this.effect[0])
+                        this.targetCombatant.statusEffect('Take Per Card Played',this.effect[1])
+                    break
+                    case 3386:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Shiv',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.battle.drop(this.player,findName('Shiv',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[3];a<la;a++){
+                            this.battle.dropDrawShuffle(this.player,findName('Shiv',types.card),0,0)
+                        }
+                    break
 
                 }
                 //mark 8
@@ -12026,7 +12058,7 @@ class attack{
                         this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
                     break
                     case 3091:
-                        this.battle.dropDraw(this.player,findName('Vitality',types.card),0,0)
+                        this.battle.dropDrawShuffle(this.player,findName('Vitality',types.card),0,0)
                     break
                     case 3116:
                         if(this.energy%2==1){
@@ -12130,7 +12162,7 @@ class attack{
                     break
                     case 3369:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.dropDraw(this.player,findName('Vitality',types.card),0,0)
+                            this.battle.dropDrawShuffle(this.player,findName('Vitality',types.card),0,0)
                         }
                         this.userCombatant.statusEffect('Knowledge',this.effect[1])
                         this.userCombatant.statusEffect('Wisdom',this.effect[2])
@@ -13451,7 +13483,7 @@ class attack{
                     case 3381:
                         if(this.cost>=6){
                             this.selfCall(20)
-                        }else if(this.cost>=4){
+                        }else if(this.cost>=3){
                             this.userManager.drawPrice(this.effect[1],0)
                         }
                     break
@@ -13477,6 +13509,13 @@ class attack{
                             for(let a=0,la=this.effect[2];a<la;a++){
                                 this.userManager.hand.addCostSpec(findName('Defend',types.card),0,this.color,1,0,[1])
                             }
+                        }
+                    break
+                    case 3390:
+                        if(this.cost>=5){
+                            this.selfCall(20)
+                        }else if(this.cost>=2){
+                            this.battle.dropDrawShuffle(this.player,findName('Vitality',types.card),0,0)
                         }
                     break
 
@@ -13703,7 +13742,7 @@ class attack{
                         }
                     break
                     case 2535:
-                        this.userManager.deck.add(findName(['Yuyuko','Seiun','Elysia','Ennealis','Sukuna','Miratei','Syuua','Aria'][floor(random(0,8))],types.card),this.level,game.playerNumber+5)
+                        this.userManager.deck.add(findName(['Yuyuko','Seiun','Elysia','Ennealis','Miratei','Syuua','Aria','Haruka'][floor(random(0,8))],types.card),this.level,game.playerNumber+5)
                     break
                     case 2536:
                         this.userManager.allEffect(2,82)

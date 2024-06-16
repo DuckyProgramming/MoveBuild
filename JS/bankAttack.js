@@ -237,7 +237,7 @@ attack.prototype.update=function(){
         case 3109: case 3114: case 3121: case 3127: case 3131: case 3138: case 3184: case 3189: case 3190: case 3191:
         case 3204: case 3211: case 3213: case 3219: case 3221: case 3229: case 3246: case 3255: case 3272: case 3276:
         case 3278: case 3296: case 3297: case 3301: case 3305: case 3308: case 3309: case 3311: case 3312: case 3317:
-        case 3320: case 3339: case 3342: case 3343: case 3357: case 3367:
+        case 3320: case 3339: case 3342: case 3343: case 3357: case 3367: case 3389:
             //mark 2
             if(this.type==2616&&this.timer==1&&!this.userManager.hand.allClassLeeway(2)){
                 this.remove=true
@@ -586,7 +586,7 @@ attack.prototype.update=function(){
         case 3071: case 3083: case 3087: case 3092: case 3107: case 3122: case 3133: case 3161: case 3162: case 3167:
         case 3172: case 3199: case 3200: case 3203: case 3205: case 3206: case 3208: case 3209: case 3235: case 3236:
         case 3238: case 3253: case 3254: case 3269: case 3271: case 3299: case 3302: case 3325: case 3346: case 3348:
-        case 3362:
+        case 3362: case 3388:
             //mark 4
             if(
                 this.type==799&&this.battle.turn.total<4||
@@ -654,7 +654,7 @@ attack.prototype.update=function(){
         case 2950: case 2956: case 3020: case 3025: case 3040: case 3045: case 3047: case 3055: case 3059: case 3060:
         case 3085: case 3105: case 3113: case 3123: case 3126: case 3141: case 3153: case 3154: case 3168: case 3217:
         case 3230: case 3248: case 3277: case 3281: case 3307: case 3324: case 3328: case 3330: case 3338: case 3355:
-        case 3359: case 3371: case 3379: case 3380:
+        case 3359: case 3371: case 3379: case 3380: case 3385: case 3387:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -1531,7 +1531,8 @@ attack.prototype.update=function(){
         case 2794: case 2803: case 2816: case 2819: case 2872: case 2875: case 2880: case 2898: case 2924: case 2977:
         case 2978: case 2981: case 2995: case 3006: case 3026: case 3031: case 3034: case 3053: case 3124: case 3125:
         case 3155: case 3156: case 3158: case 3179: case 3183: case 3187: case 3242: case 3244: case 3256: case 3260:
-        case 3279: case 3295: case 3310: case 3316: case 3319: case 3321: case 3322: case 3331: case 3337:
+        case 3279: case 3295: case 3310: case 3316: case 3319: case 3321: case 3322: case 3331: case 3337: case 3384:
+        case 3386:
             //mark 8
             if(
                 this.type==1247&&this.userCombatant.energyParity(this.energy)!=0||
@@ -3806,7 +3807,7 @@ attack.prototype.update=function(){
         case 3044: case 3074: case 3075: case 3076: case 3077: case 3078: case 3082: case 3084: case 3093: case 3134:
         case 3135: case 3140: case 3144: case 3159: case 3160: case 3166: case 3170: case 3176: case 3181: case 3182:
         case 3193: case 3210: case 3252: case 3314: case 3315: case 3334: case 3335: case 3351: case 3366: case 3375:
-        case 3381: case 3382: case 3383:
+        case 3381: case 3382: case 3383: case 3390:
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
             }else{
@@ -7810,7 +7811,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,95,[20]))
                 this.battle.addEnergyGen(this.effect[0],this.player)
                 if(this.userCombatant.elemental){
-                    this.battle.dropDraw(this.player,findName('Vitality',types.card),0,0)
+                    this.battle.dropDrawShffuel(this.player,findName('Vitality',types.card),0,0)
                     this.userManager.draw(this.effect[1])
                 }
             }else if(this.timer>=20){

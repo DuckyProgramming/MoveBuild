@@ -3430,7 +3430,7 @@ class card{
             case 3088: string+=`When Drawn,\nAll Cards in Hand\nCost ${effect[0]} Less Temporarily`; break
             case 3089: string+=`When Drawn,\nAll Cards in Hand\nCost ${effect[0]} Less Temporarily\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 3090: string+=`Add a Pristine to Hand\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Void to Discard`; break
-            case 3091: string+=`Add a Vitality to Draw`; break
+            case 3091: string+=`Shuffle a Vitality\ninto Draw`; break
             case 3092: string+=`Take Another Turn\nDraw No Cards\nDuring it`; break
             case 3093: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nAdd a Pristine to Hand`; break
             case 3094: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Double\nDuring Elite Combats\nAdds Triple\nDuring Boss Combats`; break
@@ -3717,7 +3717,7 @@ class card{
             case 3366: string+=`Add Any ${effect[0]} Random\nCard${pl(effect[0])} to Hand\nEach Turn\nThey Become Negative`; break
             case 3367: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAlly Cards in Hand\nGain ${effect[1]} Unity`; break
             case 3368: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nin a Random Direction`; break
-            case 3369: string+=`Add ${effect[0]} Vitalit${effect[0]!=1?`ies`:``} to Draw\nGain ${effect[1]} Knowledge\nGain ${effect[2]} Wisdom`; break
+            case 3369: string+=`Shuffle ${effect[0]} Vitalit${effect[0]!=1?`ies`:``} into Draw\nGain ${effect[1]} Knowledge\nGain ${effect[2]} Wisdom`; break
             case 3370: string+=`Spawn ${effect[0]} Gangster\nEnem${effect[0]!=1?`ies`:``}\nThey Attack You`; break
             case 3371: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDiscards to Draw\nWhen Played`; break
             case 3372: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReturn ${effect[1]} Random\n0 Cost Cards From\nDiscard to Hand`; break
@@ -3725,18 +3725,27 @@ class card{
             case 3374: string+=`All Attacks in Hand\nGain ${effect[0]} Effect\nLose ${effect[1]} Currency`; break
             case 3375: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Number of\nDebuffs on Target\nIgnore Block`; break
             case 3376: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nEven X: Draw ${effect[1]} Attack${pl(effect[1])}\nOdd X: Draw ${effect[2]} Defense${pl(effect[2])}`; break
-            case 3377: string+=`Gain ${effect[0]} Base\nEnergy This Combat\nElemental Form:\nAdd a Vitality to Draw\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 3377: string+=`Gain ${effect[0]} Base\nEnergy This Combat\nElemental Form:\nShuffle a Vitality into Draw\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 3378: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nHold ${effect[1]} Random Orb${pl(effect[1])}`; break
             case 3379: string+=`Take Another Turn\nRewind ${effect[0]} Card${pl(effect[0])}\nAt the Start\nof That Turn`; break
             case 3380: string+=`Exhaust ${effect[0]} Card${pl(effect[0])}\nDraw an Equal\nNumber of Cards\nof the Same Class`; break
             case 3381: string+=`+1: Adjacent Combatants\nTake ${effect[0]} Damage Per\nCard Played This Turn\n-3: Draw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 0\n-6: Next Card Reward\nHas ${effect[2]} More Choice${pl(effect[2])}`; break
-                case -118: string+=`-4: Draw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 0`; break
+                case -118: string+=`-3: Draw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 0`; break
                 case -119: string+=`-6: Next Card Reward\nHas ${effect[2]} More Choice${pl(effect[2])}`; break
             case 3382: string+=`+1: Strikes and Defends\nDrawn Cost 0 Temporarily\n-3: Add ${effect[0]} Strike${pl(effect[0])} and\n${effect[1]} Defend${pl(effect[1])} to Hand\nThey Cost 0\n-12: Edition a\nBasic Card`; break
                 case -120: string+=`-3: Add ${effect[0]} Strike${pl(effect[0])} and\n${effect[1]} Defend${pl(effect[1])} to Hand\nThey Cost 0 and Exhaust`; break
                 case -121: string+=`-12: Edition a\nBasic Card`; break
             case 3383: string+=`+1: Strikes and Defends\nDrawn Cost 0 Temporarily\nand Gain ${effect[0]} Effect\n-3: Add ${effect[1]} Strike${pl(effect[1])} and\n${effect[2]} Defend${pl(effect[2])} to Hand\nThey Cost 0\n-12: Edition a\nBasic Card`; break
                 case -122: string+=`-3: Add ${effect[1]} Strike${pl(effect[1])} and\n${effect[2]} Defend${pl(effect[2])} to Hand\nThey Cost 0 and Exhaust`; break
+            case 3384: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nTarget Takes ${effect[1]}\nDamage Per Card\nPlayed This Turn`; break
+            case 3385: string+=`${effect[0]} Random Card${pl(effect[0])} in\nDraw Pile Cost${effect[0]!=1?``:`s`} 0`; break
+            case 3386: string+=`Apply ${effect[0]} Vulnerable\nAdd ${effect[1]} Shiv${pl(effect[1])} to Hand\nShuffle ${effect[2]} Shiv${pl(effect[2])} into Draw\nAdd ${effect[3]} Shiv${pl(effect[3])} to Discard`; break
+            case 3387: string+=`Select if the Next\nCombat Will be an\nEnemy or an Elite`; break
+            case 3388: string+=`Next ${effect[0]!=1?effect[0]+` `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Damage\nto All Enemies`; break
+            case 3389: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nChoose a George Card\nto Add to Hand`; break
+            case 3390: string+=`+1: Retain the Next\n${effect[0]!=1?`${effect[0]}`:``} Card${pl(effect[0])} Once\n-2: Shuffle a Vitality\nof Equivalent Level\ninto Draw\n-5: Heal ${this.calculateEffect(effect[1],4)} Health\nat the End of Combat`; break
+                case -123: string+=`-2: Shuffle a Vitality\nof Equivalent Level\ninto Draw`; break
+                case -124: string+=`-5: Heal ${this.calculateEffect(effect[1],4)} Health\nat the End of Combat`; break
 
             //mark p
 
@@ -4438,7 +4447,7 @@ class card{
                 }
             break
             case 3074: case 3075: case 3076: case 3078: case 3082: case 3134: case 3135: case 3334: case 3335: case 3381:
-            case 3382: case 3383:
+            case 3382: case 3383: case 3390:
                 if(!this.spec.includes(55)){
                     this.discardEffect.push(13)
                 }
@@ -4839,6 +4848,17 @@ class card{
                     this.cost++
                     this.battle.cardManagers[this.player].reserve.basicChange[0]++
                     this.battle.cardManagers[this.player].reserve.basicChange[1]+=this.effect[0]
+                }
+            break
+            case 3390:
+                if(this.spec.includes(55)){
+                    this.cost++
+                    let index=this.battle.cardManagers[this.player].hand.cards.indexOf(this)
+                    for(let a=0,la=this.effect[0];a<la;a++){
+                        if(index+1+a<this.battle.cardManagers[this.player].hand.cards.length){
+                            this.battle.cardManagers[this.player].hand.cards[index+1+a].retain=true
+                        }
+                    }
                 }
             break
         }

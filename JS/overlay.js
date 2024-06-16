@@ -477,7 +477,7 @@ class overlay{
                             }
                         }
                     break
-                    case 23:
+                    case 23: case 30:
                         list=[]
                         for(let a=0,la=args[3].length;a<la;a++){
                             list.push(copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[3][a]]))
@@ -751,6 +751,9 @@ class overlay{
                         case 3383:
                             this.cards[a].attack=[-122,-121][a]
                         break
+                        case 3390:
+                            this.cards[a].attack=[-123,-124][a]
+                        break
                     }
                 }
             break
@@ -886,7 +889,7 @@ class overlay{
                     break
                     case -120:
                         for(let a=0,la=args[0].effect[0];a<la;a++){
-                            this.battle.cardManagers[this.player].hand.addCostSpec(findName('Strike'),types.card,0,this.battle.attackManager.color,1,0,[1])
+                            this.battle.cardManagers[this.player].hand.addCostSpec(findName('Strike',types.card),0,this.battle.attackManager.color,1,0,[1])
                         }
                         for(let a=0,la=args[0].effect[1];a<la;a++){
                             this.battle.cardManagers[this.player].hand.addCostSpec(findName('Defend',types.card),0,this.battle.attackManager.color,1,0,[1])
@@ -903,6 +906,12 @@ class overlay{
                         for(let a=0,la=args[0].effect[2];a<la;a++){
                             this.battle.cardManagers[this.player].hand.addCostSpec(findName('Defend',types.card),0,this.battle.attackManager.color,1,0,[1])
                         }
+                    break
+                    case -123:
+                        this.battle.dropDrawShuffle(this.player,findName('Vitality',types.card),0,0)
+                    break
+                    case -124:
+                        userCombatant.statusEffect('End of Combat Heal',args[0].effect[1])
                     break
                 }
             break
@@ -1681,6 +1690,22 @@ class overlay{
                     this.cards[a].fade=1
                     this.cards[a].anim={select:0,afford:1}
                     this.cards[a].display()
+                }
+            break
+            case 18:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2,this.layer.height/2-25,360,160,10)
+                this.layer.fill(0,this.fade*0.8)
+                this.layer.textSize(30)
+                this.layer.text('Select Combat Class',this.layer.width/2,this.layer.height/2-75)
+                for(let a=0,la=2;a<la;a++){
+                    this.layer.noStroke()
+                    this.layer.fill(120,this.fade)
+                    this.layer.rect(this.layer.width/2,this.layer.height/2-25+a*50,340,40,10)
+                    this.layer.fill(0,this.fade)
+                    this.layer.noStroke()
+                    this.layer.textSize(18)
+                    this.layer.text(['Enemy','Elite'][a],this.layer.width/2,this.layer.height/2-25+a*50)
                 }
             break
             
@@ -2608,6 +2633,14 @@ class overlay{
                         }
                     }
                 break
+                case 18:
+                    for(let a=0,la=2;a<la;a++){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-25+a*50},width:340,height:40})){
+                            this.active=false
+                            this.battle.nodeManager.saveClass=a
+                        }
+                    }
+                break
             
             }
         }
@@ -3385,6 +3418,14 @@ class overlay{
                                 this.cards[b].upSize=false
                             }
                             this.active=false
+                        }
+                    }
+                break
+                case 18:
+                    for(let a=0,la=2;a<la;a++){
+                        if((int(key)+9)%10==a){
+                            this.active=false
+                            this.battle.nodeManager.saveClass=a
                         }
                     }
                 break

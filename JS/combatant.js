@@ -149,7 +149,7 @@ class combatant{
             'Counter Once','Common Temporary Strength','Temporary Strength Convert','Double Damage Without Movement','No Energy','End of Combat Heal','Pristine Per Turn','Colorless Damage All','Stride Next Turn','Stride in 2 Turns',
             'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Buffer','Enemy Death Shiv','Single Splash Damage','Retain Intent','Move Retain Combo',
             'Construct Speed Up','Weak Reverse','Drawn Shiv Draw','Prismatic Bomb Freeze','Prismatic Bomb Poison','Prismatic Bomb Targets','Counter Gun','Counter Bomb','Low Health Construct','Temporary Strength Per Turn',
-            'Single Damage All','Prismatic Bomb Per Turn','Fatigue Splash','Random Deck Card Per Turn','Energy Cycle 2 1','Energy Cycle 2 2','Random Negative Per Turn','Rewind Next Turn',
+            'Single Damage All','Prismatic Bomb Per Turn','Fatigue Splash','Random Deck Card Per Turn','Energy Cycle 2 1','Energy Cycle 2 2','Random Negative Per Turn','Rewind Next Turn','Damage All',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -191,7 +191,7 @@ class combatant{
                 2,0,0,0,1,0,0,0,2,2,//37
                 2,2,2,2,1,1,0,2,0,1,//38
                 0,1,0,0,0,0,2,2,0,0,//39
-                2,0,0,0,2,2,0,2,
+                2,0,0,0,2,2,0,2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -233,7 +233,7 @@ class combatant{
                 2,2,2,0,3,2,2,2,2,2,//37
                 0,0,0,0,2,2,2,0,3,2,//38
                 2,2,2,2,2,2,2,2,3,0,//39
-                2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -5017,6 +5017,10 @@ class combatant{
         let damage=value
         if(value>0&&user>=0&&user<this.battle.combatantManager.combatants.length){
             let userCombatant=this.battle.combatantManager.combatants[user]
+            if(userCombatant.status.main[398]>0){
+                userCombatant.status.main[398]--
+                this.battle.combatantManager.allEffect(44,[value,user,this.id])
+            }
             if(spec!=3){
                 let totalStr=0
                 if(userCombatant.status.main[194]>0&&floor(random(0,2))==0){
