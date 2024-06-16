@@ -593,7 +593,7 @@ class battle{
         if(variants.cyclicDraw||variants.blackjack){
             this.cardManagers[this.turn.main].regenDrops()
         }
-        this.relicManager.activate(2,[this.turn.total,this.turn.main,this.cardManagers[this.turn.main].hand.turnPlayed])
+        this.relicManager.activate(2,[this.turn.total,this.turn.main,this.cardManagers[this.turn.main].hand.lastTurnPlayed])
         this.turn.time=game.turnTime
     }
     endTurn(){
@@ -733,7 +733,7 @@ class battle{
         }
         this.cardManagers[this.turn.main].allEffect(3,39)
         this.cardManagers[0].regenDrops()
-        this.relicManager.activate(2,[this.turn.total,this.turn.main,this.cardManagers[this.turn.main].hand.turnPlayed])
+        this.relicManager.activate(2,[this.turn.total,this.turn.main,this.cardManagers[this.turn.main].hand.lastTurnPlayed])
         this.relicManager.activate(0,[this.turn.total,this.encounter.class])
         this.loadReinforce()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.players){

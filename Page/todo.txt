@@ -1,3 +1,51 @@
+MOMENTARY FIXES:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UPDATE 2:
+
+change all target random enemy cards to specify user in the random call
+and all effects
+
+
+
 UPDATE 3:
 
 3 new events
@@ -14,33 +62,7 @@ event - the backdoors
 
 
 
-
 END:
-
-goal 125,000
 
 go make glory v2,
 celestite
-
-
-
-
-
-
-UPDATE 2:
-
-slime boss got stacked on an enemy?
-
-does waterwheel even work?
-
-vengeful's double hit doesn't always work
-
-change all target random enemy cards to specify user in the random call
-and all effects
-
-fix common colorless voucher
-
-
-
-
-

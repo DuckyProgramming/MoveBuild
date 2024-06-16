@@ -72,6 +72,9 @@ class attackManager{
         }
     }
     after(){
+        if(this.battle.combatantManager.summons.length>0){
+            this.battle.combatantManager.outSummons()
+        }
         if(this.endAfter){
             this.endAfter=false
             this.battle.endTurn()

@@ -2647,7 +2647,7 @@ turn.prototype.update=function(){
                             this.userCombatant.startAnimation(0)
                         }else if(this.timer==15*this.targetDistance+21){
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[1]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(3)
                         }
                         if(this.timer>15*this.targetDistance+20&&this.timer<=15*this.targetDistance+40){
@@ -2666,7 +2666,7 @@ turn.prototype.update=function(){
                         }else if(this.timer>=15*this.targetDistance+50){
                             this.remove=true
                         }
-                        if(this.procedure[0]==2){
+                        if(this.procedure[1]==2){
                             if(this.timer>15*this.targetDistance+30&&this.timer<=15*this.targetDistance+38){
                                 this.targetCombatant.moveTile(this.direction,this.distance/40/this.targetDistance)
                                 this.targetCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/40/this.targetDistance)
@@ -2677,7 +2677,7 @@ turn.prototype.update=function(){
                             if(this.timer>=15*this.targetDistance+46){
                                 this.remove=true
                             }
-                        }else if(this.procedure[0]==1){
+                        }else if(this.procedure[1]==1){
                             if(this.timer>15*this.targetDistance+30&&this.timer<=15*this.targetDistance+38){
                                 this.targetCombatant.moveTile(this.direction,this.distance/10/this.targetDistance)
                                 this.targetCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/10/this.targetDistance)

@@ -87,7 +87,7 @@ class purchaseManager{
                         for(let a=0,la=group.length;a<la;a++){
                             let index=floor(random(0,list[group[a]].length))
                             this.purchases.push(new purchase(this.layer,this.battle,0,95+a*130,470,1,
-                                [this.battle.relicManager.hasRelic([269,300,301][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1]))],
+                                [round((this.battle.relicManager.hasRelic([269,300,301][group[a]],0)?0.5:1)*random(cost[group[a]][0],cost[group[a]][1]))],
                                 [list[group[a]][index],0,0],
                                 group[a]+4
                             ))

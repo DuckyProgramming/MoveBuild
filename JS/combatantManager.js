@@ -10,6 +10,7 @@ class combatantManager{
         this.bankHP=[]
         this.playerCombatantIndex=[]
         this.sorted=[]
+        this.summons=[]
 
         this.rewriterSwitch=0
     }
@@ -487,6 +488,13 @@ class combatantManager{
     }
     dead(){
         this.combatants.forEach(combatant=>combatant.anotherDead())
+    }
+    holdSummonCombatant(tilePosition,type,direction){
+        this.summons.push([tilePosition,type,direction])
+    }
+    outSummons(){
+        this.summons.forEach(summon=>this.summonCombatant(summon[0],summon[1],summon[2]))
+        this.summons=[]
     }
     summonCombatant(tilePosition,type,direction){
         let list=[]
@@ -1291,6 +1299,9 @@ class combatantManager{
                         this.combatants[a].update()
                     }
                     this.combatants[a].infoAnim.upSize=dist(inputs.rel.x,inputs.rel.y,this.combatants[a].position.x,this.combatants[a].position.y)<game.targetRadius&&!this.battle.overlayManager.anyActive
+                }
+                if(this.battle.attackManager.attacks.length==0&&this.battle.turnManager.length==0&&this.summons.length>0){
+                    this.outSummons()
                 }
             break
             case 'rest': case 'event':

@@ -653,7 +653,7 @@ class relic{
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('3',-9,0)
-                    this.layer.text('3',9,0)
+                    this.layer.text('2',9,0)
                 break
                 case 'Item Collector':
                     displaySymbol(this.layer,-9,0,3,0,0.5,this.fade)
@@ -1985,14 +1985,14 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('0',8,1)
                 break
-                case 'Free Common Colorless':
+                case 'Cheap Common Colorless':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
                     displaySymbol(this.layer,-8,0,57,0,1,this.fade)
                     displaySymbol(this.layer,-8,0,100,0,0.7,this.fade)
                     displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
-                    this.layer.textSize(10)
-                    this.layer.text('0',8,1)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',8,1)
                 break
                 case 'Standard Pack Discount':
                     displaySymbol(this.layer,-8,0,103,0,1,this.fade)
@@ -2200,23 +2200,23 @@ class relic{
                     displaySymbol(this.layer,0,-4,120,0,1,this.fade)
                     displaySymbol(this.layer,0,12,4,0,0.8,this.fade)
                 break
-                case 'Free Uncommon Colorless':
+                case 'Cheap Uncommon Colorless':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
                     displaySymbol(this.layer,-8,0,57,0,1,this.fade)
                     displaySymbol(this.layer,-8,0,95,0,0.7,this.fade)
                     displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
-                    this.layer.textSize(10)
-                    this.layer.text('0',8,1)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',8,1)
                 break
-                case 'Free Rare Colorless':
+                case 'Cheap Rare Colorless':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
                     displaySymbol(this.layer,-8,0,57,0,1,this.fade)
                     displaySymbol(this.layer,-8,0,85,0,0.7,this.fade)
                     displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
-                    this.layer.textSize(10)
-                    this.layer.text('0',8,1)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',8,1)
                 break
                 case 'Common Relic Discount':
                     displaySymbol(this.layer,-8,0,1,0,0.6,this.fade)

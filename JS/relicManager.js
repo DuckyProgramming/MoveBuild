@@ -487,10 +487,10 @@ class relicManager{
                 this.battle.overlayManager.overlays[78][player].activate()
             break
             case 300:
-                this.battle.purchaseManager.costChange(player,5,0)
+                this.battle.purchaseManager.costChange(player,5,0.5)
             break
             case 301:
-                this.battle.purchaseManager.costChange(player,6,0)
+                this.battle.purchaseManager.costChange(player,6,0.5)
             break
             case 302:
                 this.battle.purchaseManager.costChange(player,14,0.5)
@@ -778,10 +778,10 @@ class relicManager{
                 this.battle.cardManagers[player].deck.unTriochrome()
             break
             case 300:
-                this.battle.purchaseManager.costChange(player,5,-1)
+                this.battle.purchaseManager.costChange(player,5,2)
             break
             case 301:
-                this.battle.purchaseManager.costChange(player,6,-1)
+                this.battle.purchaseManager.costChange(player,6,2)
             break
             case 302:
                 this.battle.purchaseManager.costChange(player,14,2)
@@ -1288,7 +1288,7 @@ class relicManager{
                         }
                     }
                     if(this.active[82][args[1]+1]>0&&args[2][0]<3){
-                        this.battle.cardManagers[args[1]].draw(3*this.active[82][args[1]+1])
+                        this.battle.cardManagers[args[1]].draw(2*this.active[82][args[1]+1])
                     }
                 }
                 if(this.active[70][args[1]+1]>0){

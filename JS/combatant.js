@@ -4538,7 +4538,7 @@ class combatant{
     }
     pareidolia(){
         if(this.battle.initialized&&this.team==0&&!this.spec.includes(2)){
-            this.battle.combatantManager.summonCombatant(this.tilePosition,this.type,this.direction)
+            this.battle.combatantManager.holdSummonCombatant(this.tilePosition,this.type,this.direction)
             this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].life=1
             this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].base.life=1
             this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].collect.life=1
@@ -4546,7 +4546,7 @@ class combatant{
     }
     baseDuplicate(){
         if(this.battle.initialized&&this.team==0&&!this.spec.includes(2)){
-            this.battle.combatantManager.summonCombatant(this.tilePosition,this.type,this.direction)
+            this.battle.combatantManager.holdSummonCombatant(this.tilePosition,this.type,this.direction)
         }
     }
     anotherDead(){
@@ -5842,7 +5842,7 @@ class combatant{
         }
         if(this.spec.includes(6)&&this.life<=this.threshold){
             this.threshold-=20
-            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
+            this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
         }
         if(this.spec.includes(10)&&this.battle.turn.main<this.battle.players&&!this.aggressor){
             this.battle.turnManager.loadEnemyAttackRepeatBack(this.id)
@@ -6843,7 +6843,7 @@ class combatant{
                         list.push(a)
                     }
                 }
-                this.battle.combatantManager.summonCombatant(this.tilePosition,list[floor(random(0,list.length))],this.goal.anim.direction)
+                this.battle.combatantManager.holdSummonCombatant(this.tilePosition,list[floor(random(0,list.length))],this.goal.anim.direction)
             }
             if(this.sins.includes(7)){
                 this.statusEffect('Strength',2)
@@ -9476,7 +9476,7 @@ class combatant{
                 this.battle.tileManager.activate()
                 this.battle.updateTargetting()
                 if(this.battle.modded(114)){
-                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Soul',types.combatant),this.goal.anim.direction)
+                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Soul',types.combatant),this.goal.anim.direction)
                 }
                 switch(this.name){
                     case 'Medic':
@@ -9584,124 +9584,124 @@ class combatant{
                     let type=0
                     for(let a=0,la=1+(this.battle.modded(71)?1:0);a<la;a++){
                         if(this.battle.modded(72)&&floor(random(0,2))==0&&this.initialName!='Modicum'){
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Modicum',types.combatant),this.goal.anim.direction)
+                            this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Modicum',types.combatant),this.goal.anim.direction)
                         }
                         if(this.battle.modded(92)&&this.initialName!='Bee'){
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Bee',types.combatant),this.goal.anim.direction)
+                            this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Bee',types.combatant),this.goal.anim.direction)
                         }
                         if(this.battle.modded(141)&&floor(random(0,2))==0&&this.initialName!='Soul'&&(this.battle.encounter.class==1||this.battle.encounter.class==2)){
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Soul',types.combatant),this.goal.anim.direction)
+                            this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Soul',types.combatant),this.goal.anim.direction)
                         }
                         if(this.battle.modded(29)){
                             switch(this.initialName){
                                 case 'Big Duck':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Duck',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Duck',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Duck',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Duck',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Enforcer':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Ninja Master',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Ninja Master',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Ninja Master',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Ninja Master',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Agent Duck':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Big Duck',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Duck',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Big Duck',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Duck',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Chief Deployer':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Deployer',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Deployer',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Deployer',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Deployer',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Solar Shard':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Lunar Shard',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Lunar Shard',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Management Caller':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Soldier',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Soldier',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Management Soldier',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Management Soldier',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Prison Guard':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Prisoner',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Prisoner',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Swordmaster':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Human',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Human',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Human',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Human',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Gas Man':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Fireball',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Fireball',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Fireball',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Fireball',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Champion':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Vengeful',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Vengeful',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Vengeful',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Vengeful',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Deadshell':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Thornvine',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Thornvine',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Thornvine',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Thornvine',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Executive':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Intern',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Intern',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Intern',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Intern',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Mechanized':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Robot',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Robot',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Management Robot',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Management Robot',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Bomber Boy':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Thug',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Thug',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Thug',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Thug',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Assistant Hiring Officer':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Executive',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Executive',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Executive',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Executive',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Assistant Fitness Officer':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Billy Beatup',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Billy Beatup',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Billy Beatup',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Billy Beatup',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Armored Ninja':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Ninja',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Ninja',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Ninja',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Ninja',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Jet':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Sniper',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Sniper',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Management Sniper',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Management Sniper',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Gangster Machinegunner':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Gangster',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Gangster',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Gangster',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Gangster',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Elf Archer':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Bush Thing',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Bush Thing',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Bush Thing',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Bush Thing',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Beekeeper':
                                     type=findName('Bee',types.combatant)
                                     for(let b=0,lb=7;b<lb;b++){
-                                        this.battle.combatantManager.summonCombatant(this.tilePosition,type,this.goal.anim.direction)
+                                        this.battle.combatantManager.holdSummonCombatant(this.tilePosition,type,this.goal.anim.direction)
                                     }
                                 break
                                 case 'Coffee Commander':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Special Forces',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Special Forces',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Management Special Forces',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Management Special Forces',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Prestige':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Nerfer',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Buffer',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Nerfer',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Buffer',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Divine Guard':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Nil',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Nil',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Nil',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Nil',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Avant Guard':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Glitched Giant',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Glitched Giant',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Glitched Giant',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Glitched Giant',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Vengeful':
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Rusty',types.combatant),this.goal.anim.direction)
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Rusty',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Rusty',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Rusty',types.combatant),this.goal.anim.direction)
                                 break
                                 case 'Tech Support':
                                     type=findName('Bolt',types.combatant)
                                     for(let b=0,lb=7;b<lb;b++){
-                                        this.battle.combatantManager.summonCombatant(this.tilePosition,type,this.goal.anim.direction)
+                                        this.battle.combatantManager.holdSummonCombatant(this.tilePosition,type,this.goal.anim.direction)
                                     }
                                 break
 
@@ -9711,39 +9711,39 @@ class combatant{
                             case 'Slimoid':
                                 type=findName('Modicum',types.combatant)
                                 for(let b=0,lb=7;b<lb;b++){
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,type,this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,type,this.goal.anim.direction)
                                 }
                             break
                             case 'Big Slime':
-                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
-                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
                             break
                             case 'Big Spike Slime':
-                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Spike Slime',types.combatant),this.goal.anim.direction)
-                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Spike Slime',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Spike Slime',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Spike Slime',types.combatant),this.goal.anim.direction)
                             break
                             case 'Big Slimoid':
-                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slimoid',types.combatant),this.goal.anim.direction)
-                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slimoid',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Slimoid',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Slimoid',types.combatant),this.goal.anim.direction)
                             break
                             case 'Slime Boss':
-                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Big Slime',types.combatant),this.goal.anim.direction)
-                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Big Slime',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Big Slime',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Big Slime',types.combatant),this.goal.anim.direction)
                             break
                             case 'Solar Shard':
-                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Lunar Shard',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Lunar Shard',types.combatant),this.goal.anim.direction)
                             break
                             case 'Lunar Shard':
-                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Lunar Dust',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Lunar Dust',types.combatant),this.goal.anim.direction)
                             break
                             case 'Personnel Carrier':
                                 type=findName('Management Robot',types.combatant)
                                 for(let a=0,la=5;a<la;a++){
-                                    this.battle.combatantManager.summonCombatant(this.tilePosition,type,this.goal.anim.direction)
+                                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,type,this.goal.anim.direction)
                                 }
                             break
                             case 'Danger':
-                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName(['Management Robot','Management Soldier','Management Officer','Management Custodian','Management Autoduck','Management Sniper'][floor(random(0,6))],types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName(['Management Robot','Management Soldier','Management Officer','Management Custodian','Management Autoduck','Management Sniper'][floor(random(0,6))],types.combatant),this.goal.anim.direction)
                             break
                         }
                     }
