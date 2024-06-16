@@ -470,13 +470,13 @@ class cardManager{
                 }else{
                     let amountLeft=amount-this.reserve.cards.length
                     if(this.reserve.cards.length>0){
-                        this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),variant==1?6:5)
+                        this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),[5,6,19][variant])
                     }
                     if(amountLeft>0&&this.discard.cards.length>0){
                         this.discard.send(this.reserve.cards,0,-1,2)
                         this.reserve.shuffle()
                         if(this.reserve.cards.length>0){
-                            this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),variant==1?6:5)
+                            this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),[5,6,19][variant])
                         }
                     }
                     this.reserve.parseDrawEffects(this.hand)
@@ -720,6 +720,11 @@ class cardManager{
             if(this.reserve.cards[a].spec.includes(3)){
                 if(variants.witch){
                     this.reserve.cards[a].spec.push(31)
+                }
+                switch(this.reserve.cards[a].attack){
+                    case 3329:
+                        total++
+                    break
                 }
                 this.reserve.send(this.hand.cards,a,a+1,3)
                 a--
@@ -976,6 +981,7 @@ class cardManager{
             this.drops=0
             this.baseDrops=21
         }
+        this.reserve.reset()
     }
     switchCheck(){
         for(let a=0,la=this.carry.length;a<la;a++){

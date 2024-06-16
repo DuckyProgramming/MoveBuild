@@ -3612,6 +3612,52 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(200,fade)
             layer.triangle(0,-1.5,0,1.5,6,0)
         break
+        case 392:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
+            layer.fill(75,fade)
+            regStar(layer,0,0,6,2,2,6,6,0)
+        break
+        case 393:
+            layer.fill(80,0,120,fade)
+            layer.triangle(0,3,-6,3,-3,1)
+            layer.triangle(0,3,6,3,3,1)
+            layer.triangle(0,3,-1,-3,-2.5,0)
+            layer.triangle(0,3,1,-3,2.5,0)
+        break
+        case 394:
+            layer.fill(200,255,255,fade)
+            layer.triangle(-0.25,-4,-5.25,0,-0.25,4)
+            layer.triangle(0.25,-4,5.25,0,0.25,4)
+        break
+        case 395:
+            layer.fill(200,255,255,fade)
+            layer.rect(0,0,1,8)
+            layer.triangle(-1,-4,-6,0,-1,4)
+            layer.triangle(1,-4,6,0,1,4)
+        break
+        case 396:
+            layer.fill(50,40,50,fade)
+            layer.triangle(-1.5,6.5,1.5,6.5,0,8)
+            layer.noFill()
+            layer.stroke(50,40,50,fade)
+            layer.strokeWeight(1)
+            layer.beginShape()
+            for(let a=0,la=8;a<la;a++){
+                layer.vertex(lsin(360*a/la)*(5-a%2*3),lcos(360*a/la)*(5-a%2*3))
+            }
+            layer.endShape(CLOSE)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+        break
+        case 397:
+            layer.fill(200,255,100,fade)
+            layer.triangle(-0.5,4,-0.5,-4,-4,-4)
+            layer.triangle(0.5,-4,0.5,4,4,4)
+            layer.triangle(0,4.5,-1,6,1,6)
+        break
 
     }
     //mark s

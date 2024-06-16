@@ -22,6 +22,7 @@ class group{
         this.rewinds=0
         this.turnRewinds=0
         this.lastSort=-1
+        this.basicChange=[0,0]
         this.listInput=[
             [0,4],
             [1,8],
@@ -46,6 +47,7 @@ class group{
             [22,27],
             [23,28],
             [24,29],
+            [26,30],
         ]
 
         this.reset()
@@ -189,17 +191,24 @@ class group{
         }*/
     }
     reset(){
-        this.cancel()
-        this.anim=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        this.lastTurnPlayed=copyArray(this.turnPlayed)
-        this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
-        this.turnRewinds=0
+        switch(this.id){
+            case 1:
+                this.basicChange=[0,0]
+            break
+            case 2:
+                this.cancel()
+                this.anim=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                this.lastTurnPlayed=copyArray(this.turnPlayed)
+                this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
+                this.turnRewinds=0
+            break
+        }
     }
     clear(){
         this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
     }
     cancel(){
-        this.status=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        this.status=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     }
     added(){
         this.cards[this.cards.length-1].callAddEffect()
@@ -468,6 +477,9 @@ class group{
     duplicateNonRareColorless(amount){
         this.status[25]+=amount
     }
+    exhaustDrawSame(amount){
+        this.status[26]+=amount
+    }
     shuffle(){
         let cards=[]
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -556,7 +568,7 @@ class group{
             }
         }
     }
-    plusDupes(value){
+    plusDupes(value,limit){
         let names=[]
         let numbers=[]
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -571,7 +583,7 @@ class group{
         }
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].usable){
-                if(names.includes(this.cards[a].name)&&numbers[names.indexOf(this.cards[a].name)]>=2&&this.cards[a].effect.length>=1){
+                if(names.includes(this.cards[a].name)&&numbers[names.indexOf(this.cards[a].name)]>=limit&&this.cards[a].effect.length>=1){
                     this.cards[a].effect[0]+=value
                 }
             }
@@ -1353,6 +1365,15 @@ class group{
                 case 101:
                     this.cards[a].callScryEffect()
                 break
+                case 102:
+                    let list102=[0,16,14,18,46,45,44,51,50,49,19,17]
+                    for(let b=0,lb=list102.length;b<lb;b++){
+                        if(this.cards[a].spec.includes(list102[b])){
+                            this.cards[a].spec.splice(this.cards[a].spec.indexOf(list102[b]),1)
+                        }
+                    }
+                break
+
 
             }
         }
@@ -1465,7 +1486,13 @@ class group{
                     }
                 break
                 case 15:
-                    if(!this.cards[a].spec.includes(12)&&this.cards[a].class==1&&this.cards[a].rarity==0&&this.cards[a].effect.length>0){
+                    if(this.cards[a].spec.includes(12)){
+                        for(let b=0,lb=this.cards[a].class.length;b<lb;b++){
+                            if(this.cards[a].class[b]==1&&this.cards[a].rarity==0&&this.cards[a].effect[b].length>0){
+                                this.cards[a].effect[b][0]+=args[0]
+                            }
+                        }
+                    }else if(this.cards[a].class==1&&this.cards[a].rarity==0&&this.cards[a].effect.length>0){
                         this.cards[a].effect[0]+=args[0]
                     }
                 break
@@ -1524,11 +1551,22 @@ class group{
                     }
                 break
                 case 25:
-                    if(args[0]>0){
-                        if(this.cards[a].attack==3253&&this.cards[a].cost>0){
-                            this.cards[a].cost=max(0,this.cards[a].cost-1)
-                            this.cards[a].base.cost=max(0,this.cards[a].base.cost-1)
+                    this.cards[a].energyEffect(args[0])
+                break
+                case 26:
+                    if(this.cards[a].spec.includes(55)){
+                        this.cards[a].cost+=args[0]
+                    }
+                break
+                case 27:
+                    if(this.cards[a].spec.includes(12)){
+                        for(let b=0,lb=this.cards[a].class.length;b<lb;b++){
+                            if(this.cards[a].class[b]==1&&this.cards[a].effect[b].length>0){
+                                this.cards[a].effect[b][0]+=args[0]
+                            }
                         }
+                    }else if(this.cards[a].class==1&&this.cards[a].effect.length>0){
+                        this.cards[a].effect[0]+=args[0]
                     }
                 break
             }
@@ -1545,7 +1583,7 @@ class group{
             for(let a=0,la=this.cards.length;a<la;a++){
                 if(this.cards[a].usable&&!this.cards[a].deSize
                 &&!((effect==0||effect==25||effect==28)&&this.cards[a].deSize)
-                &&!((effect==1||effect==5||effect==33||effect==40)&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)))
+                &&!((effect==1||effect==5||effect==33||effect==40||effect==48)&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)))
                 &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)))
                 &&!((effect==2||effect==45)&&(this.cards[a].level>=1||this.cards[a].class!=args[0]&&args[0]!=0||this.cards[a].spec.includes(37)))
                 &&!(effect==3&&(this.cards[a].level==0||this.cards[a].class!=args[0]&&args[0]!=0||this.cards[a].spec.includes(37)))
@@ -1574,6 +1612,7 @@ class group{
                 &&!(effect==43&&(this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(41)))
                 &&!(effect==46&&this.cards[a].list!=game.playerNumber+2)
                 &&!(effect==47&&(this.cards[a].level<=1||this.cards[a].class!=args[0]&&args[0]!=0||this.cards[a].spec.includes(37)))
+                &&!(effect==49&&this.cards[a].cost!=0)
                 ){
                     list.push(a)
                 }
@@ -1618,8 +1657,8 @@ class group{
                     case 11:
                         this.cards[index].spec.push(10)
                     break
-                    case 12:
-                        this.send(args[0],index,index+1,0)
+                    case 12: case 49:
+                        this.send(args[0],index,index+1,1)
                     break
                     case 13:
                         this.cards[index].deSize=true
@@ -1804,6 +1843,12 @@ class group{
                     case 46:
                         this.cards[index]=this.battle.cardManagers[this.player].transformCard(this.cards[index])
                     break
+                    case 48:
+                        this.cards[index].cost=max(this.cards[index].cost-args[0],0)
+                        if(!this.cards[index].spec.includes(1)){
+                            this.cards[index].spec.push(1)
+                        }
+                    break
 
                 }
             }
@@ -1813,8 +1858,17 @@ class group{
         card.drawn++
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         userCombatant.activateDraw()
-        if((card.class==1||card.class==2)&&card.basic&&this.battle.relicManager.hasRelic(264,this.player)&&floor(random(0,4))==0&&card.cost>0){
-            card.cost--
+        if((card.class==1||card.class==2)&&card.basic){
+            if(this.battle.relicManager.hasRelic(264,this.player)&&floor(random(0,4))==0&&card.cost>0){
+                card.cost--
+            }
+            if(this.basicChange[0]>0){
+                card.cost=0
+                card.cost=0
+            }
+            if(this.basicChange[1]>0){
+                card.effect[0]+=this.basicChange[1]
+            }
         }
         switch(card.attack){
             case -3:
@@ -1885,9 +1939,7 @@ class group{
                 this.drawEffects.push([0,10,[]])
             break
             case -46:
-                for(let a=0,la=card.effect[0];a<la;a++){
-                    this.drawEffects.push([5,1])
-                }
+                this.drawEffects.push([5,this.effect[0]])
                 return 'break'
             case -51: case 2720: case 2804:
                 card.cost=max(0,card.cost-1)
@@ -1921,6 +1973,13 @@ class group{
             break
             case -68:
                 this.battle.cardManagers[this.player].hand.discard(card.effect[0])
+            break
+            case -70:
+                this.battle.addEnergy(card.effect[0],this.player)
+                this.drawEffects.push([5,card.effect[1]])
+                for(let a=0,la=card.effect[2];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)
+                }
             break
             case 288: case 374: case 2217: case 2776:
                 for(let a=0,la=card.effect[1];a<la;a++){
@@ -2082,6 +2141,11 @@ class group{
             case 3245:
                 userCombatant.block=0
             break
+            case 3358:
+                this.battle.cardManagers[this.player].drawClass(card.effect[0],2)
+                this.battle.cardManagers[this.player].drawClass(card.effect[1],3)
+                this.battle.cardManagers[this.player].drawClass(card.effect[2],4)
+            break
         }
     }
     deathEffect(){
@@ -2117,6 +2181,21 @@ class group{
             }
         }
     }
+    sendNameShuffle(list,name){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].name==name){
+                let index=floor(random(0,list.length))
+                list.splice(index,0,copyCard(this.cards[a]))
+                list[index].size=0
+                list[index].position.x=1200
+                list[index].position.y=500
+                delete this.cards[a]
+                this.cards.splice(a,1)
+                a--
+                la--
+            }
+        }
+    }
     sendAttack(list,attack){
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].attack==attack){
@@ -2132,6 +2211,7 @@ class group{
         }
     }
     parseDrawEffects(parent){
+        this.basicChange=[0,0]
         if(this.drawEffects.length>0){
             let drawCount=0
             for(let a=0,la=this.drawEffects.length;a<la;a++){
@@ -2262,7 +2342,7 @@ class group{
         }
         if(this.sorted.length>0||type!=0&&type!=1){
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(this.cards[a].cost==this.sorted[0]&&type==0||this.cards[a].cost==this.sorted[this.sorted.length-1]&&type==1||this.cards[a].cost==1&&type==2||this.cards[a].cost==0&&type==3||this.cards[a].spec.length==this.sorted[this.sorted.length-1]&&type==4||this.cards[a].cost%2==0&&type==5||this.cards[a].cost%2==1&&type==6||this.cards[a].spec.includes(5)&&type==7||this.cards[a].cost==2&&type==8){
+                if(this.cards[a].cost==this.sorted[0]&&type==0||this.cards[a].cost==this.sorted[this.sorted.length-1]&&type==1||this.cards[a].cost==1&&type==2||this.cards[a].cost==0&&type==3||this.cards[a].spec.length==this.sorted[this.sorted.length-1]&&type==4||this.cards[a].cost%2==0&&type==5||this.cards[a].cost%2==1&&type==6||this.cards[a].spec.includes(5)&&type==7||this.cards[a].cost==2&&type==8||this.cards[a].color==0&&type==9){
                     list.push(copyCard(this.cards[a]))
                     list[list.length-1].size=0
                     list[list.length-1].position.x=1200
@@ -2300,7 +2380,7 @@ class group{
                 list[list.length-1].size=0
                 if(
                     spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
-                    spec==13||spec==14||spec==16||spec==18
+                    spec==13||spec==14||spec==16||spec==18||spec==19
                 ){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
@@ -2322,7 +2402,7 @@ class group{
                         break
                         case 6:
                             if(list[list.length-1].cost>0){
-                                list[list.length-1].cost-=1
+                                list[list.length-1].cost--
                             }
                         break
                         case 8:
@@ -2364,6 +2444,12 @@ class group{
                                 list[list.length-1].spec.push(9)
                             }
                             if(this.drawEffect(list[list.length-1])){la=0}
+                        break
+                        case 19:
+                            if(this.drawEffect(list[list.length-1])){la=0}
+                            if(list[list.length-1].cost>=0){
+                                list[list.length-1].cost++
+                            }
                         break
                     }
                 }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
@@ -2389,7 +2475,7 @@ class group{
                 list[list.length-1].size=0
                 if(
                     spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
-                    spec==13||spec==14||spec==16||spec==18
+                    spec==13||spec==14||spec==16||spec==18||spec==19
                 ){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
@@ -2410,8 +2496,9 @@ class group{
                             list[list.length-1].cost=0
                         break
                         case 6:
+                            if(this.drawEffect(list[list.length-1])){la=0}
                             if(list[list.length-1].cost>0){
-                                list[list.length-1].cost-=1
+                                list[list.length-1].cost--
                             }
                         break
                         case 8:
@@ -2453,6 +2540,12 @@ class group{
                                 list[list.length-1].spec.push(9)
                             }
                             if(this.drawEffect(list[list.length-1])){la=0}
+                        break
+                        case 19:
+                            if(this.drawEffect(list[list.length-1])){la=0}
+                            if(list[list.length-1].cost>=0){
+                                list[list.length-1].cost++
+                            }
                         break
                     }
                 }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
@@ -2840,7 +2933,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[this.anim[0],max(this.anim[1],this.anim[13]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25]]
+                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[26]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -3633,6 +3726,16 @@ class group{
                     this.status[24]--
                 }
             break
+            case 30:
+                if(this.cards[a].attack!=-3){
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    if(this.status[26]>0){
+                        this.status[26]--
+                    }
+                    this.battle.cardManagers[this.player].drawClass(1,this.cards[a].class)
+                }
+            break
         }
     }
     generalExhaust(a){
@@ -3846,6 +3949,7 @@ class group{
                         }else if((
                             this.cards[a].attack==1031||this.cards[a].attack.length==2&&this.cards[a].attack[0]==1189||this.cards[a].attack==1739||this.cards[a].attack==1770||
                             this.cards[a].attack==1778||this.cards[a].attack==1893||this.cards[a].attack==2053||
+                            this.cards[a].attack==3371&&!this.cards[a].usable||
                             this.cards[a].spec.includes(12)&&this.cards[a].attack[this.cards[a].characteristic]==1366
                         )&&!this.cards[a].exhaust){
                             this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)

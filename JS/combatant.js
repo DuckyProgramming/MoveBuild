@@ -149,7 +149,7 @@ class combatant{
             'Counter Once','Common Temporary Strength','Temporary Strength Convert','Double Damage Without Movement','No Energy','End of Combat Heal','Pristine Per Turn','Colorless Damage All','Stride Next Turn','Stride in 2 Turns',
             'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Buffer','Enemy Death Shiv','Single Splash Damage','Retain Intent','Move Retain Combo',
             'Construct Speed Up','Weak Reverse','Drawn Shiv Draw','Prismatic Bomb Freeze','Prismatic Bomb Poison','Prismatic Bomb Targets','Counter Gun','Counter Bomb','Low Health Construct','Temporary Strength Per Turn',
-            'Single Damage All','Prismatic Bomb Per Turn',
+            'Single Damage All','Prismatic Bomb Per Turn','Fatigue Splash','Random Deck Card Per Turn','Energy Cycle 2 1','Energy Cycle 2 2','Random Negative Per Turn','Rewind Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -191,7 +191,7 @@ class combatant{
                 2,0,0,0,1,0,0,0,2,2,//37
                 2,2,2,2,1,1,0,2,0,1,//38
                 0,1,0,0,0,0,2,2,0,0,//39
-                2,0,
+                2,0,0,0,2,2,0,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -233,7 +233,7 @@ class combatant{
                 2,2,2,0,3,2,2,2,2,2,//37
                 0,0,0,0,2,2,2,0,3,2,//38
                 2,2,2,2,2,2,2,2,3,0,//39
-                2,2,
+                2,2,2,2,2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -1177,7 +1177,7 @@ class combatant{
 
                 this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-                this.animSet={loop:0,flip:0,hand:1,foot:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
 
                 this.goal={anim:{direction:this.anim.direction,sword:true}}
             break
@@ -6685,7 +6685,7 @@ class combatant{
                     case 131: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0)}}; break
                     case 132: this.enterStance(1); break
                     case 133: if(this.id<this.battle.players){this.battle.cardManagers[this.id].reserve.addShuffle(findName('Insight',types.card),0,0)}; break
-                    case 135: this.battle.addEnergy(this.status.main[a],this.id);this.battle.addEnergyGen(this.status.main[a],this.id); break
+                    case 135: case 343: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addEnergy(this.status.main[a],this.id)};if(this.status.main[a]<0){this.battle.loseEnergyGen(-this.status.main[a],this.id)}else{this.battle.addEnergyGen(this.status.main[a],this.id)} break
                     case 142: case 155: this.charge+=this.status.main[a]; break
                     case 143: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Burn',types.card),0,game.playerNumber+1)}} break
                     case 149: this.status.main[findList('No Amplify',this.status.name)]+=this.status.main[a]; break
@@ -6696,7 +6696,7 @@ class combatant{
                     case 181: this.status.main[findList('Take Damage Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 182: this.status.main[findList('Block in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 189: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Conviction',types.card),0,types.card[findName('Conviction',types.card)].list)}} break
-                    case 197: if(floor(random(0,3))==0){this.takeDamage(this.status.main[a],-1); this.status.main[a]=0} break
+                    case 197: if(floor(random(0,3))==0){this.takeDamage(this.status.main[a],-1);this.status.main[a]=0} break
                     case 203: this.heal(this.status.main[a]); break
                     case 207: this.status.main[findList('Temporary Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 212: this.status.main[findList('Half Damage Turn',this.status.name)]+=this.status.main[a]; break
@@ -6704,7 +6704,7 @@ class combatant{
                     case 222: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDrawBurn+=this.status.main[a]}; break
                     case 232: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Peak',types.card),0,0)}}; break
                     case 237: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Hyperquill',types.card),0,0)}}; break
-                    case 244: this.takeDamage(this.status.main[a],-1); this.status.main[findList('Damage Cycle 3 3',this.status.name)]+=this.status.main[a]; break
+                    case 244: this.takeDamage(this.status.main[a],-1);this.status.next[findList('Damage Cycle 3 3',this.status.name)]+=this.status.main[a]; break
                     case 245: this.status.main[findList('Damage Cycle 3 1',this.status.name)]+=this.status.main[a]; break
                     case 246: this.status.main[findList('Damage Cycle 3 2',this.status.name)]+=this.status.main[a]; break
                     case 248: this.status.main[findList('No Damage',this.status.name)]+=this.status.main[a]; break
@@ -6719,7 +6719,7 @@ class combatant{
                     case 282: this.status.main[findList('Strength Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 283: this.status.main[findList('Dexterity Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 287: this.status.main[findList('Strength in 2 Turns',this.status.name)]+=this.status.main[a]; break
-                    case 294: if(floor(random(0,3))==0){this.heal(this.status.main[a]); this.status.main[a]=0} break
+                    case 294: if(floor(random(0,3))==0){this.heal(this.status.main[a]);this.status.main[a]=0} break
                     case 302: if(this.block<=0){this.status.main[findList('Bleed',this.status.name)]+=this.status.main[a]} break
                     case 303: this.status.main[findList('Bleed Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 304: if(this.status.main[findList('Cannot Move',this.status.name)]>0){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)}} break
@@ -6731,7 +6731,6 @@ class combatant{
                     case 332: for(let b=0,lb=this.status.main[a];b<lb;b++){if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Dual\nDiscus']])<=0){this.battle.cardManagers[this.id].hand.add(findName('Dual\nDiscus',types.card),0,0)}} break
                     case 333: this.status.main[findList('Temporary Draw',this.status.name)]+=this.status.main[a]; break
                     case 334: this.status.main[findList('Temporary Draw Next Turn',this.status.name)]+=this.status.main[a]; break
-                    case 343: if(this.id<this.battle.players){this.battle.addEnergyGen(this.status.main[a],this.id);this.battle.addEnergy(this.status.main[a],this.id)} break
                     case 344: this.status.main[findList('Base Energy Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 346: this.status.main[findList('Miracle Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 347: if(!sub){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.combatantManager.tickSub()}} break
@@ -6752,7 +6751,12 @@ class combatant{
                     case 389: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 390: this.battle.combatantManager.allEffect(43,[this.status.main[a],this.id]); break
                     case 391: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].discard.add(findName('Prismatic\nBomb',types.card),0,0)}} break
-
+                    case 393: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){let index=floor(random(0,this.battle.cardManagers[this.id].deck.cards.length));this.battle.cardManagers[this.id].deck.send(this.battle.cardManagers[this.id].hand.cards,index,index+1,1)}} break
+                    case 394: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addEnergy(this.status.main[a],this.id)};this.status.next[findList('Energy Cycle 2 2',this.status.name)]+=this.status.main[a]; break
+                    case 395: this.status.main[findList('Energy Cycle 2 1',this.status.name)]+=this.status.main[a]; break
+                    case 396: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,5,2,0,[],[3])}} break
+                    case 397: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[a])} break
+                    
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
                     if(this.status.main[a]>0){
@@ -6929,7 +6933,7 @@ class combatant{
                         this.goal.anim.sword=false
                         this.anim.eyeStyle=[0,0]
                     break
-                    case 21:
+                    case 21: case 43:
                         this.animSet.loop=0
                         this.goal.anim.sword=true
                         this.anim.eyeStyle=[1,1]
@@ -7397,6 +7401,20 @@ class combatant{
                         this.anim.arms[0].bottom=9+lsin(this.animSet.loop*90)*84
                         this.spin.arms[0].top=-93+lsin(this.animSet.loop*90)*48
                         this.spin.arms[0].bottom=-75+lsin(this.animSet.loop*90)*60
+                    break
+                    case 43:
+                        this.animSet.loop+=rate
+                        this.anim.arms[this.animSet.hand].top=24+lsin(this.animSet.loop*90)*18
+                        this.anim.arms[this.animSet.hand].bottom=9+lsin(this.animSet.loop*90)*75
+                        this.spin.arms[this.animSet.hand].bottom=(75+lsin(this.animSet.loop*90)*30)*(this.animSet.hand*2-1)
+                        if(this.name!='Sakura'){
+                            for(let g=0;g<2;g++){
+                                this.anim.eye[g]=lsin(this.animSet.loop*90)
+                            }
+                        }else{
+                            this.anim.mouth.y=5+lsin(this.animSet.loop*90)
+                            this.anim.eye[0]=lsin(this.animSet.loop*90)
+                        }
                     break
                 }
             break

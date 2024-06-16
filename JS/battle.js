@@ -945,6 +945,10 @@ class battle{
         if(card.rarity==0&&userCombatant.getStatus('Common Temporary Strength')>0){
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Common Temporary Strength')>0)
         }
+        if(card.name=='Fatigue'&&userCombatant.getStatus('Fatigue Splash')>0){
+            this.combatantManager.damageAreaID(userCombatant.getStatus('Fatigue Splash'),userCombatant.id,userCombatant.id,userCombatant.tilePosition)
+            this.particleManager.particlesBack.push(new particle(this.layer,userCombatant.position.x,userCombatant.position.y,93,[8]))
+        }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed])
     }

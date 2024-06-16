@@ -28,7 +28,8 @@ class particle{
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
             case 51: case 52: case 54: case 57: case 60: case 65: case 66: case 68: case 72: case 73:
-            case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 88: case 90:
+            case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 88: case 90: case 93:
+            case 95:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -62,7 +63,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 12: case 13:
+            case 12: case 13: case 91: case 92:
                 this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
                 this.fade=1
                 this.size=1
@@ -199,7 +200,17 @@ class particle{
                 this.direction=args[0]
                 this.timer=args[1]
                 this.color=random(0,1)
-                this.speed=15*random(0.8,1.2)
+                this.speed=15*random(0.6,1.5)
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=1
+            break
+            case 94:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.color=floor(random(0,6))
+                this.speed=15*random(0.6,1.5)
                 this.fade=0
                 this.trigger=false
                 this.size=1
@@ -1144,6 +1155,52 @@ class particle{
                         this.layer.ellipse(0,8-a%6,1.2,1.2)
                     }
                 break
+                case 91:
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.stroke([255,255,255][a%3],[0,150,255,2][a%3],[0,0,0,50][a%3],this.fade)
+                        this.layer.strokeWeight(6)
+                        this.layer.line(this.position2.x*a/12,this.position2.y*a/12,this.position2.x*(1-a/12),this.position2.y*(1-a/12))
+                    }
+                break
+                case 92:
+                    this.layer.stroke(50,200,150,this.fade*0.1)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.strokeWeight(15-a*3)
+                        this.layer.line(0,0,this.position2.x,this.position2.y)
+                    }
+                break
+                case 93:
+                    this.layer.rotate(this.position.x+this.position.y-this.time*10)
+                    this.layer.fill(200,40,20,this.fade)
+                    for(let a=0,la=36;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.quad(0,abs(a%9-4)*4+6,-1,abs(a%9-4)*4+4,0,abs(a%9-4)*4+2,1,abs(a%9-4)*4+4)
+                    }
+                    this.layer.fill(150,30,15,this.fade)
+                    for(let a=0,la=36;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.quad(0,abs(a%9-4)*4+5,-0.5,abs(a%9-4)*4+4,0,abs(a%9-4)*4+3,0.5,abs(a%9-4)*4+4)
+                    }
+                break
+                case 94:
+                    this.layer.fill([255,255,255,100,100,200][this.color],[150,200,255,255,200,100][this.color],[100,100,100,150,255,225][this.color],this.fade*0.5)
+                    this.layer.stroke([255,255,255,100,100,200][this.color],[150,200,255,255,200,100][this.color],[100,100,100,150,255,225][this.color],this.fade)
+                    this.layer.strokeWeight(2)
+                    regStar(this.layer,0,0,5,12,12,5,5,this.position.y*3)
+                break
+                case 95:
+                    this.layer.rotate(this.position.x+this.position.y)
+                    this.layer.fill(40,120,40,this.fade)
+                    for(let a=0,la=30;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.ellipse(0,5+3*lcos(a/la*5*360),0.8,2.4)
+                    }
+                    this.layer.fill(80,240,80,this.fade)
+                    for(let a=0,la=30;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.ellipse(0,5+3*lcos(a/la*5*360),0.5,1.5)
+                    }
+                break
 
             }
             this.layer.pop()
@@ -1170,7 +1227,7 @@ class particle{
             break
             case 1: case 4: case 5: case 6: case 7: case 8: case 11: case 14: case 16: case 18:
             case 19: case 20: case 21: case 32: case 35: case 39: case 42: case 43: case 44: case 47:
-            case 48: case 49: case 50: case 78: case 79: case 81: case 82: case 83: case 89:
+            case 48: case 49: case 50: case 78: case 79: case 82: case 83: case 89:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,5)
@@ -1180,7 +1237,8 @@ class particle{
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
             case 46: case 51: case 52: case 54: case 56: case 57: case 60: case 65: case 66: case 72:
-            case 73: case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 90:
+            case 73: case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 90: case 93:
+            case 95:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){
@@ -1209,7 +1267,7 @@ class particle{
                     }
                 }
             break
-            case 12: case 13: case 87:
+            case 12: case 13: case 87: case 91: case 92:
                 this.fade-=1/15
                 if(this.fade<=0){
                     this.remove=true
@@ -1299,6 +1357,15 @@ class particle{
             case 68:
                 this.fade-=0.1
                 this.scale+=0.3-this.fade*0.3
+                if(this.fade<=0){
+                    this.remove=true
+                }
+            break
+            case 81: case 94:
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed-10/this.timer
+                this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,5)
+                this.speed*=0.98
                 if(this.fade<=0){
                     this.remove=true
                 }

@@ -44,6 +44,13 @@ fix common colorless voucher
 
 
 
+
+
+
+
+
+
+
 change apocryphal knife to give normal shivs
 mention it shuffles into draw
 
@@ -53,11 +60,17 @@ change shieldfly to give block (more) instead of barrier
 
 
 
+
+
 forall - dev card, next attack deals damage to everyone
 
 new mythic card
 
-ally card?
+ally card - minoriko, []
++1-
+-2-add vitality to draw pile
+-5-heal 6 hp at the end of combat
+
 
 add block and choose a card from X character
 
