@@ -2188,12 +2188,12 @@ class relic{
                 case 'Triochrome':
                     displaySymbol(this.layer,0,0,119,0,1.2,this.fade)
                 break
-                case '3 Turn Turn':
+                case '6 Turn Turn':
                     displaySymbol(this.layer,-8,0,75,0,1,this.fade)
                     displaySymbol(this.layer,7,7,4,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(15)
-                    this.layer.text('3',7,-2)
+                    this.layer.text('6',7,-2)
                 break
                 case 'Duplicate Per Turn':
                     displaySymbol(this.layer,0,-4,89,0,1,this.fade)
@@ -2332,7 +2332,7 @@ class relic{
                         this.layer.textSize(6)
                         this.layer.text(`${detail%12}/12`,0,-16)
                     break
-                    case '3 Turn Draw': case '3 Turn Turn':
+                    case '3 Turn Draw':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%3+1}/3`,0,-16)
@@ -2361,6 +2361,11 @@ class relic{
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${10-detail}/10`,0,-16)
+                    break
+                    case '6 Turn Turn':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail%6+1}/6`,0,-16)
                     break
                 }
             }

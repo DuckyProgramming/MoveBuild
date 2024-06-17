@@ -1373,6 +1373,9 @@ class group{
                         }
                     }
                 break
+                case 103:
+                    this.cards[a].turnStart()
+                break
 
 
             }
@@ -1809,7 +1812,7 @@ class group{
                         this.cards[index].cost=max(this.cards[index].cost-args[0],0)
                         this.cards[index].base.cost=max(this.cards[index].base.cost-args[0],0)
                         this.cards[index].edited.cost-=args[0]
-                        this.battle.cardManagers[this.player].deck.cards[a].edited.costComplete=true
+                        this.cards[index].edited.costComplete=true
                     break
                     case 41:
                         this.cards[index].deSize=true

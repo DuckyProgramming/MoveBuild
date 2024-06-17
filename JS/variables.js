@@ -940,7 +940,7 @@ types={
         {name:'Ring of Suffering',internal:'3 Attack Strength/3 Defense Dexterity',id:295,rarity:4,list:0,description:'Every 3 Attacks Played, Gain 1 Strength\nEvery 3 Defenses Played, Gain 1 Dexterity'},
         {name:'Truffle',internal:'Energy Bump',id:296,rarity:4,list:0,description:'Gain 1 Energy After Playing 3 Cards,\nTriggers Once Per Turn'},
         {name:'Centrosome',internal:'Triochrome',id:297,rarity:4,list:0,description:'When Taken, Make a Card Polychrome\nand Duplicate it 2 Times'},
-        {name:'Stopwatch',internal:'3 Turn Turn',id:298,rarity:4,list:0,description:'Every 3 Turns,\nTake Another Turn'},
+        {name:'Stopwatch',internal:'6 Turn Turn',id:298,rarity:4,list:0,description:'Every 6 Turns,\nTake Another Turn'},
         {name:'Assembly Line',internal:'Duplicate Per Turn',id:299,rarity:4,list:0,description:'The First Card Played\nEach Turn is Duplicated'},
 
         {name:'Uncommon Colorless Voucher',internal:'Cheap Uncommon Colorless',id:300,rarity:3,list:0,description:'Uncommon Colorless Cards in the\nShop Cost 50% Less'},

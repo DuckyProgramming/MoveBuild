@@ -150,7 +150,7 @@ class purchaseManager{
                             for(let b=0,lb=group.length;b<lb;b++){
                                 if(list[group[b]].length>0){
                                     let index=floor(random(0,list[group[b]].length))
-                                    let price=round(random(cost[group[b]][0],cost[group[b]][1])*(sale==a?0.5:1))
+                                    let price=round(random(cost[group[b]][0],cost[group[b]][1])*(sale==b?0.5:1))
                                     this.purchases.push(new purchase(this.layer,this.battle,a,450+(905-b%4*130)*(a*2-1),130+floor(b/4)*170,1,
                                         [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:price,group[a]==0&&this.battle.relicManager.hasRelic(216,1)?0:price],
                                         [list[group[b]][index],0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[group[b]][index]].list<0?0:types.card[list[group[b]][index]].list>=types.color.card.length?0:types.card[list[group[b]][index]].list):variants.prism?types.card[list[group[b]][index]].list:this.battle.player[a],sale==b],
@@ -198,7 +198,7 @@ class purchaseManager{
                         for(let a=0,la=6;a<la;a++){
                             let type=[0,0,1,2,3][floor(random(0,5))]
                             this.purchases.push(new purchase(this.layer,this.battle,-1,400+a%2*100,160+floor(a/2)*140,5,
-                                [(this.battle.relicManager.hasRelic([270,271,272,273][type],0)?0.5:1)*[100,160,200,120][type],(this.battle.relicManager.hasRelic([270,271,272][type],1)?0.5:1)*[100,150,200][type]],
+                                [(this.battle.relicManager.hasRelic([270,271,272,273][type],0)?0.5:1)*[100,160,200,120][type],(this.battle.relicManager.hasRelic([270,271,272,273][type],1)?0.5:1)*[100,160,200,120][type]],
                                 [type],
                                 type+9
                             ))
@@ -222,7 +222,7 @@ class purchaseManager{
                             let list=variants.mtg?copyArrayStack(this.battle.cardManagers[a].listing.mtg):variants.junk?quadroArray(copyArray(this.battle.cardManagers[a].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[a].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[a].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
                             let valid=[]
                             for(let b=0,lb=this.battle.cardManagers[0].deck.cards.length;b<lb;b++){
-                                if(!this.battle.cardManagers[0].deck.cards[a].basic){
+                                if(!this.battle.cardManagers[0].deck.cards[b].basic){
                                     valid.push(b)
                                 }
                             }

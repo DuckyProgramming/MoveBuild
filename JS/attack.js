@@ -2224,7 +2224,7 @@ class attack{
                         this.userManager.hand.add(findName('Spark',types.card),1,0)
                     break
                     case 863:
-                        this.battle.addEnergu(floor(this.userManager.deck.cards.length/max(1,this.effect[1])),this.player)
+                        this.battle.addEnergy(floor(this.userManager.deck.cards.length/max(1,this.effect[1])),this.player)
                     break
                     case 884:
                         this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
@@ -8475,6 +8475,9 @@ class attack{
                     break
                     case 10: case 1803: case 2598:
                         this.userCombatant.heal(this.effect[0])
+                    break
+                    case 64:
+                        this.userCombatant.statusEffect('Control',this.effect[0])
                     break
                     case 72:
                         this.userCombatant.statusEffect('Strength',this.effect[0])

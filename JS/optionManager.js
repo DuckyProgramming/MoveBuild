@@ -139,7 +139,7 @@ class optionManager{
     }
     display(){
         if(this.battle.players>1){
-            displayPlayerSymbol(this.layer,40,40+this.player*60,this.battle.player[this.player],0,1,1)
+            displayPlayerSymbol(this.layer,40,60+this.player*60,this.battle.player[this.player],0,1,1)
         }
         this.options.forEach(option=>option.display())
     }

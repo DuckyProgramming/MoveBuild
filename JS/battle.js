@@ -953,18 +953,31 @@ class battle{
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed])
     }
     displayCurrency(){
+        this.layer.stroke(0)
+        this.layer.strokeWeight(0.4)
         this.layer.fill(240,240,220)
-        this.layer.noStroke()
-        this.layer.ellipse(20,16,16,16)
+        this.layer.ellipse(20,16,16)
         if(this.currency.money.length>1){
-            this.layer.ellipse(this.layer.width-20,16,16,16)
+            this.layer.ellipse(this.layer.width-20,16,16)
         }
+        this.layer.noStroke()
         this.layer.fill(220,220,200)
-        this.layer.ellipse(20,16,10,10)
+        this.layer.ellipse(20,16,10)
         if(this.currency.money.length>1){
-            this.layer.ellipse(this.layer.width-20,16,10,10)
+            this.layer.ellipse(this.layer.width-20,16,10)
+        }
+        this.layer.fill(255,255,100)
+        this.layer.ellipse(20,16,4)
+        this.layer.triangle(19,13,21,13,20,9)
+        this.layer.triangle(19,19,21,19,20,23)
+        if(this.currency.money.length>1){
+            this.layer.ellipse(this.layer.width-20,16,4)
+            this.layer.triangle(this.layer.width-19,13,this.layer.width-21,13,this.layer.width-20,9)
+            this.layer.triangle(this.layer.width-19,19,this.layer.width-21,19,this.layer.width-20,23)
         }
         this.layer.fill(230,230,210)
+        this.layer.stroke(0)
+        this.layer.strokeWeight(1)
         this.layer.textSize(16)
         this.layer.textAlign(LEFT,CENTER)
         this.layer.text(this.currency.money[0],30,18)
@@ -1717,6 +1730,7 @@ class battle{
                 }
                 this.relicManager.display(stage.scene)
                 this.overlayManager.display()
+                this.displayCurrency()
             break
             case 'bossstash':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
@@ -1726,6 +1740,7 @@ class battle{
                 }
                 this.relicManager.display(stage.scene)
                 this.overlayManager.display()
+                this.displayCurrency()
             break
             case 'pack':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
@@ -2753,7 +2768,7 @@ class battle{
                                 save(graphics.main)
                             break
                             case 'E':
-                                this.cardManagers[thsi.trun.main].allEffect(2,1)
+                                this.cardManagers[this.turn.main].allEffect(2,1)
                             break
                             case 'A':
                                 this.setEnergy(99,0)

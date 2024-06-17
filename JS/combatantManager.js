@@ -491,9 +491,11 @@ class combatantManager{
     }
     holdSummonCombatant(tilePosition,type,direction){
         this.summons.push([tilePosition,type,direction])
+        this.battle.counter.enemy++
     }
     outSummons(){
         this.summons.forEach(summon=>this.summonCombatant(summon[0],summon[1],summon[2]))
+        this.battle.counter.enemy-=this.summons.length
         this.summons=[]
     }
     summonCombatant(tilePosition,type,direction){
@@ -1300,7 +1302,7 @@ class combatantManager{
                     }
                     this.combatants[a].infoAnim.upSize=dist(inputs.rel.x,inputs.rel.y,this.combatants[a].position.x,this.combatants[a].position.y)<game.targetRadius&&!this.battle.overlayManager.anyActive
                 }
-                if(this.battle.attackManager.attacks.length==0&&this.battle.turnManager.length==0&&this.summons.length>0){
+                if(this.battle.attackManager.attacks.length==0&&this.battle.turnManager.turns.length==0&&this.summons.length>0){
                     this.outSummons()
                 }
             break

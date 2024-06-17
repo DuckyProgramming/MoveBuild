@@ -3776,10 +3776,10 @@ attack.prototype.update=function(){
             if(this.timer==1){
                 this.userCombatant.startAnimation(32)
             }
-            this.userCombatant.runAnimation(1/20,32)
-            if(this.timer==10){
-                this.battle.combatantManager.damageAreaID2(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
-            }else if(this.timer>=20){
+            this.userCombatant.runAnimation(1/10,32)
+            if(this.timer==5){
+                this.battle.combatantManager.damageAreaID2(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
+            }else if(this.timer>=10){
                 this.remove=true
             }
         break
@@ -7638,21 +7638,36 @@ attack.prototype.update=function(){
                 this.procedure[1][a]++
             }
         break
-        case 3313:
+        case 3313: case 3391:
             if(this.timer==1){
                 this.userCombatant.startAnimation(32)
             }
             this.userCombatant.runAnimation(1/20,32)
             if(this.timer==5||this.timer==15){
                 this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,90,[20]))
-                if(this.timer==5){
-                    for (let a=0,la=this.effect[0];a<la;a++){
-                        this.battle.dropDrawShuffle(this.player,findName('Miracle',types.card),0,0)
-                    }
-                }else if(this.timer==15){
-                    for (let a=0,la=this.effect[0];a<la;a++){
-                        this.battle.dropDrawShuffle(this.player,findName('Dual\nDiscus',types.card),0,0)
-                    }
+                switch(this.type){
+                    case 3313:
+                        if(this.timer==5){
+                            for (let a=0,la=this.effect[0];a<la;a++){
+                                this.battle.dropDrawShuffle(this.player,findName('Miracle',types.card),0,0)
+                            }
+                        }else if(this.timer==15){
+                            for (let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.dropDrawShuffle(this.player,findName('Dual\nDiscus',types.card),0,0)
+                            }
+                        }
+                    break
+                    case 3391:
+                        if(this.timer==5){
+                            for (let a=0,la=this.effect[0];a<la;a++){
+                                this.battle.dropDrawShuffle(this.player,findName('Dual\nDiscus',types.card),this.level,0)
+                            }
+                        }else if(this.timer==15){
+                            for (let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.dropDrawShuffle(this.player,findName('Miracle',types.card),0,0)
+                            }
+                        }
+                    break
                 }
             }else if(this.timer>=20){
                 this.remove=true
