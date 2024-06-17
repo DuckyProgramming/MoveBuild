@@ -100,7 +100,7 @@ attack.prototype.update=function(){
         case 3212: case 3215: case 3216: case 3224: case 3225: case 3226: case 3227: case 3228: case 3233: case 3239:
         case 3241: case 3245: case 3247: case 3249: case 3251: case 3261: case 3262: case 3263: case 3264: case 3266:
         case 3275: case 3300: case 3304: case 3323: case 3326: case 3327: case 3345: case 3350: case 3352: case 3360:
-        case 3363: case 3364: case 3372: case 3376:
+        case 3363: case 3364: case 3372: case 3376: case 3392:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false
@@ -1532,7 +1532,7 @@ attack.prototype.update=function(){
         case 2978: case 2981: case 2995: case 3006: case 3026: case 3031: case 3034: case 3053: case 3124: case 3125:
         case 3155: case 3156: case 3158: case 3179: case 3183: case 3187: case 3242: case 3244: case 3256: case 3260:
         case 3279: case 3295: case 3310: case 3316: case 3319: case 3321: case 3322: case 3331: case 3337: case 3384:
-        case 3386:
+        case 3386: case 3393:
             //mark 8
             if(
                 this.type==1247&&this.userCombatant.energyParity(this.energy)!=0||
@@ -1924,6 +1924,7 @@ attack.prototype.update=function(){
         case 66: case 68: case 421: case 465: case 466: case 467: case 468: case 1281: case 1288:
         case 1320: case 1339: case 1432: case 1548: case 1567: case 1568: case 1618: case 1744: case 1869:
         case 1906: case 1932: case 2595: case 2596: case 2597: case 2662: case 2785: case 2786: case 3284:
+        case 3394:
             if(variants.nobasicanim){
                 this.selfCall(8)
                 this.remove=true
@@ -3807,7 +3808,7 @@ attack.prototype.update=function(){
         case 3044: case 3074: case 3075: case 3076: case 3077: case 3078: case 3082: case 3084: case 3093: case 3134:
         case 3135: case 3140: case 3144: case 3159: case 3160: case 3166: case 3170: case 3176: case 3181: case 3182:
         case 3193: case 3210: case 3252: case 3314: case 3315: case 3334: case 3335: case 3351: case 3366: case 3375:
-        case 3381: case 3382: case 3383: case 3390:
+        case 3381: case 3382: case 3383: case 3390: case 3395: case 3396: case 3397:
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
             }else{
@@ -7830,6 +7831,40 @@ attack.prototype.update=function(){
                     this.userManager.draw(this.effect[1])
                 }
             }else if(this.timer>=20){
+                this.remove=true
+            }
+        break
+        case 3398:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(17)
+            }
+            if(this.timer<=10||this.timer>20&&this.timer<=30){
+                this.userCombatant.runAnimation(1/20,17)
+            }
+            if(this.timer==15){
+                this.battle.particleManager.particles.push(new particle(this.battle.layer,
+                    this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                    this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                96,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
+            }else if(this.timer==21+this.targetDistance*3||this.timer==69-this.targetDistance*3){
+                switch(this.type){
+                    case 3398:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.timer==69-this.targetDistance*3){
+                            if(this.userManager.reserve.cards.length>0){
+                                this.userManager.reserve.send(this.userManager.hand.cards,0,1,1)
+                            }
+                            if(this.userManager.discard.cards.length>0){
+                                if(this.userManager.discard.cards[this.userManager.discard.cards.length-1].name=='Fatigue'&&this.userManager.discard.cards.length>1){
+                                    this.userManager.discard.send(this.userManager.hand.cards,this.userManager.discard.cards.length-2,this.userManager.discard.cards.length-1,1)
+                                }else{
+                                    this.userManager.discard.send(this.userManager.hand.cards,this.userManager.discard.cards.length-1,this.userManager.discard.cards.length,1)
+                                }
+                            }
+                        }
+                    break
+                }
+            }else if(this.timer>=75){
                 this.remove=true
             }
         break

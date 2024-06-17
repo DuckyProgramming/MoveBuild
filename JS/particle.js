@@ -175,7 +175,7 @@ class particle{
                     this.sets.push([0,0])
                 }
             break
-            case 61: case 62: case 63: case 64:
+            case 61: case 62: case 63: case 64: case 96:
                 this.direction=args[0]
                 this.speed=args[1]
                 this.baseSpeed=args[1]
@@ -824,7 +824,7 @@ class particle{
                     this.layer.fill(255,this.fade)
                     this.layer.arc(-5,0,10,10,0,180)
                     this.layer.ellipse(5,0,3)
-                    this.layer.fill(60,95,140,this.fade)
+                    this.layer.fill(65,95,140,this.fade)
                     this.layer.ellipse(-5,0,3)
                 break
                 case 65:
@@ -1201,6 +1201,28 @@ class particle{
                         this.layer.ellipse(0,5+3*lcos(a/la*5*360),0.5,1.5)
                     }
                 break
+                case 96:
+                    this.layer.rotate(this.time*-5)
+                    this.layer.fill(255,this.fade)
+                    this.layer.arc(0,0,20,20,-180,0)
+                    this.gradient=new p5.LinearGradient(0,20)
+                    this.gradient.colors(0.0,color(89,84,89),1.0,color(85,34,63))
+                    this.layer.fillGradient(this.gradient)
+                    this.layer.translate(-5,-5)
+                    this.layer.arc(5,5,20,20,0,180)
+                    this.layer.ellipse(10,5,10)
+                    this.layer.pop()
+                    this.layer.push()
+                    this.layer.translate(this.position.x,this.position.y)
+                    this.layer.scale(this.size*this.scale)
+                    this.layer.rotate(this.time*-5)
+                    this.layer.noStroke()
+                    this.layer.fill(255,this.fade)
+                    this.layer.arc(-5,0,10,10,0,180)
+                    this.layer.ellipse(5,0,3)
+                    this.layer.fill(89,84,89,this.fade)
+                    this.layer.ellipse(-5,0,3)
+                break
 
             }
             this.layer.pop()
@@ -1338,7 +1360,7 @@ class particle{
                     this.sets[a][1]+=floor(random(0,2))*4-2
                 }
             break
-            case 61: case 62: case 63: case 64:
+            case 61: case 62: case 63: case 64: case 96:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=(lcos(this.direction)-0.2)*this.speed
                 this.speed-=this.baseSpeed/30

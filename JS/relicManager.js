@@ -987,6 +987,7 @@ class relicManager{
                                     this.battle.counter.enemy++
                                     this.battle.combatantManager.recount()
                                     this.battle.tileManager.activate()
+                                    this.battle.updateTargetting()
                                 }
                             }
                         }

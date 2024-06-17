@@ -2382,7 +2382,9 @@ class battle{
                     }
                     if(this.overlayManager.anyActive){
                         this.overlayManager.onClick(stage.scene)
-                        this.itemManager.onClick('rewards')
+                        if(this.overlayManager.anySpecificActive(0)){
+                            this.itemManager.onClick('rewards')
+                        }
                     }else if(this.turn.main<this.players){
                         this.cardManagers[this.turn.main].onClick(stage.scene)
                         this.relicManager.onClick(stage.scene)

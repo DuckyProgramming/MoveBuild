@@ -272,8 +272,8 @@ class itemManager{
                 this.battle.cardManagers[player].hand.callInput(6,[489,[3*effectiveness],1,[0]])
             break
             case 40:
-                this.battle.cardManagers[player].reserve.removeAllName('Fatigue')
-                this.battle.cardManagers[player].discard.removeAllName('Fatigue')
+                this.battle.cardManagers[player].reserve.removeAbstract(0,[findName('Fatigue',types.card)])
+                this.battle.cardManagers[player].discard.removeAbstract(0,[findName('Fatigue',types.card)])
                 this.battle.cardManagers[player].allEffect(2,8)
             break
             case 41:

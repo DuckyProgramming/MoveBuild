@@ -1376,6 +1376,12 @@ class group{
                 case 103:
                     this.cards[a].turnStart()
                 break
+                case 104:
+                    if(this.cards[a].class==3){
+                        this.cards[a].deSize=true
+                        this.cards[a].exhaust=true
+                    }
+                break
 
 
             }

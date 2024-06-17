@@ -2445,7 +2445,7 @@ types.card=[
             {effect:[],attack:102,cost:0,target:[0],spec:[1],class:4},
         ],
     },{
-        name:'Consuming\nSlice',rarity:1,list:3,
+        name:'Consuming\nSlice',rarity:0,list:3,
         levels:[
             {effect:[21,1],attack:103,cost:1,target:[2,1,1],spec:[0,6],class:1},
             {effect:[31,1],attack:103,cost:1,target:[2,1,1],spec:[0,6],class:1},
@@ -3325,6 +3325,20 @@ types.card=[
             {effect:[2],attack:3303,cost:1,target:[0],spec:[1],class:4},
             {effect:[3],attack:3303,cost:1,target:[0],spec:[1],class:4},
             {effect:[4],attack:3303,cost:1,target:[0],spec:[1],class:4},
+        ],
+    },{
+        name:'Lemnis',rarity:1,list:3,
+        levels:[
+            {effect:[10],attack:3392,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            {effect:[15],attack:3392,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            {effect:[18],attack:3392,cost:1,target:[2,1,1],spec:[0,6],class:1},
+        ],
+    },{
+        name:'Confetti',rarity:1,list:3,
+        levels:[
+            {effect:[8,1,1],attack:3393,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[12,1,1],attack:3393,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[15,1,1],attack:3393,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },
 
@@ -9092,13 +9106,6 @@ types.card=[
             {effect:[3,1,1],attack:1434,cost:0,target:[2,1,6],spec:[],class:4},
         ],
     },{
-        name:'Burning\nLight',rarity:1,list:9,
-        levels:[
-            {effect:[9,2],attack:1316,cost:1,target:[2,1,2],spec:[0],class:1},
-            {effect:[13,2],attack:1316,cost:1,target:[2,1,2],spec:[0],class:1},
-            {effect:[16,2],attack:1316,cost:1,target:[2,1,2],spec:[0],class:1},
-        ],
-    },{
         name:'Flame\nWar',rarity:2,list:9,
         levels:[
             {effect:[15,2],attack:1267,cost:0,target:[2,1,2],spec:[0],class:1},
@@ -9454,6 +9461,13 @@ types.card=[
             {effect:[9,5],attack:3373,cost:2,target:[2,1,3],spec:[0,1,25],class:1},
             {effect:[13,10],attack:3373,cost:2,target:[2,1,3],spec:[0,1,25],class:1},
             {effect:[15,15],attack:3373,cost:2,target:[2,1,3],spec:[0,1,25],class:1},
+        ],
+    },{
+        name:'Phlogistinator',rarity:1,list:9,
+        levels:[
+            {effect:[3],attack:3394,cost:0,target:[2,1,2],spec:[],class:4},
+            {effect:[4],attack:3394,cost:0,target:[2,1,2],spec:[],class:4},
+            {effect:[5],attack:3394,cost:0,target:[2,1,2],spec:[],class:4},
         ],
     },
 
@@ -15444,7 +15458,7 @@ types.card=[
             {effect:[1],attack:2768,cost:0,target:[0],spec:[2,22],class:4},
         ],
     },{
-        name:'Transmigration\nof Hieda',rarity:1,list:15,
+        name:'Transmigration',rarity:1,list:15,
         levels:[
             {effect:[14],attack:2769,cost:2,target:[0],spec:[],class:2},
             {effect:[21],attack:2769,cost:2,target:[0],spec:[],class:2},
@@ -20801,6 +20815,13 @@ types.card=[
             {effect:[15,5],attack:2888,cost:2,target:[2,1,3],spec:[0,1,2,54],class:1},
         ],
     },{
+        name:'Discus of Light\nand Dark',rarity:-6,list:0,
+        levels:[
+            {effect:[9,2],attack:3398,cost:2,target:[2,1,3],spec:[0,1,2,54],class:1},
+            {effect:[12,2],attack:3398,cost:2,target:[2,1,3],spec:[0,1,2,54],class:1},
+            {effect:[15,2],attack:3398,cost:2,target:[2,1,3],spec:[0,1,2,54],class:1},
+        ],
+    },{
         name:'Pure\nEnergy',rarity:-6,list:0,
         levels:[
             {effect:[1,1],attack:3029,cost:0,target:[0],spec:[1,2],class:4},
@@ -22167,6 +22188,27 @@ types.card=[
             {effect:[5],attack:1130,cost:0,target:[0],spec:[1,2],class:2},
             {effect:[4],attack:1130,cost:0,target:[0],spec:[1,2],class:2},
             {effect:[3],attack:1130,cost:0,target:[0],spec:[1,2],class:2},
+        ],
+    },{
+        name:'Sagume,\nReverser of Fate',rarity:-5,list:-1,
+        levels:[
+            {effect:[1,1,1,3],attack:3395,cost:3,target:[0],spec:[],class:9},
+            {effect:[2,1,1,3],attack:3395,cost:3,target:[0],spec:[],class:9},
+            {effect:[2,2,1,3],attack:3395,cost:3,target:[0],spec:[],class:9},
+        ],
+    },{
+        name:'Junko, Nameless\nSpace Terror',rarity:-5,list:-1,
+        levels:[
+            {effect:[1,3],attack:3396,cost:3,target:[0],spec:[],class:9},
+            {effect:[1,4],attack:3396,cost:3,target:[0],spec:[],class:9},
+            {effect:[1,5],attack:3396,cost:3,target:[0],spec:[],class:9},
+        ],
+    },{
+        name:'Keiki, Sculptor\nof Isolation',rarity:-5,list:-1,
+        levels:[
+            {effect:[1,3,2],attack:3397,cost:4,target:[0],spec:[],class:9},
+            {effect:[2,4,2],attack:3397,cost:4,target:[0],spec:[],class:9},
+            {effect:[3,5,2],attack:3397,cost:4,target:[0],spec:[],class:9},
         ],
     },
 
@@ -23620,6 +23662,13 @@ types.card=[
             {effect:[5],attack:1315,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[8],attack:1315,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[10],attack:1315,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Burning\nLight',rarity:-1,list:-8,
+        levels:[
+            {effect:[9,2],attack:1316,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[13,2],attack:1316,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[16,2],attack:1316,cost:1,target:[2,1,2],spec:[0],class:1},
         ],
     },
 ]

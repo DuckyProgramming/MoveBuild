@@ -754,6 +754,15 @@ class overlay{
                         case 3390:
                             this.cards[a].attack=[-123,-124][a]
                         break
+                        case 3395:
+                            this.cards[a].attack=[-125,-126][a]
+                        break
+                        case 3396:
+                            this.cards[a].attack=[-127,-128][a]
+                        break
+                        case 3397:
+                            this.cards[a].attack=[-129,-130][a]
+                        break
                     }
                 }
             break
@@ -912,6 +921,31 @@ class overlay{
                     break
                     case -124:
                         userCombatant.statusEffect('End of Combat Heal',args[0].effect[1])
+                    break
+                    case -125:
+                        userCombatant.statusEffect('Reflect',1)
+                    break
+                    case -126:
+                        for(let a=0,la=args[0].effect[2];a<la;a++){
+                            this.battle.cardManagers[this.player].hand.add(findName('Discus of Light\nand Dark',types.card),0,0)
+                        }
+                    break
+                    case -127:
+                        for(let a=0,la=args[0].effect[1];a<la;a++){
+                            this.battle.cardManagers[this.player].hand.add(findName('Pristine',types.card),0,0)
+                        }
+                    break
+                    case -128:
+                        this.battle.overlayManager.overlays[83][this.player].active=true
+                        this.battle.overlayManager.overlays[83][this.player].activate([0,0,1])
+                    break
+                    case -129:
+                        userCombatant.addBlock(userCombatant.lastBlock*args[0].effect[1])
+                    break
+                    case -130:
+                        for(let a=0,la=args[0].effect[2];a<la;a++){
+                            this.battle.cardManagers[this.player].addRandomAbstract(2,this.battle.attackManager.level,0,4,1,[2],[3,['Sculpture'],1])
+                        }
                     break
                 }
             break
@@ -1281,19 +1315,21 @@ class overlay{
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
                 switch(this.args[0]){
-                    case 0: case 1: this.layer.text('Add a Card',this.layer.width/2,this.layer.height/2-70); break
+                    case 0: case 1: case 2: this.layer.text('Add a Card',this.layer.width/2,this.layer.height/2-70); break
                 }
                 if(!this.battle.modded(83)){
                     this.layer.textSize(20)
                     switch(this.args[0]){
-                        case 0: case 1: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+125); break
+                        case 0: case 1: case 2: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+125); break
                     }
                     let bonuses=[]
-                    if(this.args[0]==0&&this.battle.relicManager.hasRelic(49,this.player)){
-                        bonuses.push('2 Max HP')
-                    }
-                    if(this.args[0]==0&&this.battle.relicManager.hasRelic(101,this.player)){
-                        bonuses.push('10 Currency')
+                    if(this.args[0]==0){
+                        if(this.battle.relicManager.hasRelic(49,this.player)){
+                            bonuses.push('2 Max HP')
+                        }
+                        if(this.battle.relicManager.hasRelic(101,this.player)){
+                            bonuses.push('10 Currency')
+                        }
                     }
                     this.layer.textSize(8)
                     if(bonuses.length>=2){
@@ -2393,31 +2429,29 @@ class overlay{
                 case 3:
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if((pointInsideBox({position:inputs.rel},this.cards[a])||this.battle.relicManager.hasRelic(173,this.player)&&pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+170},width:120,height:40}))&&!this.cards[a].deSize){
+                            if(this.setupArgs[2]==22){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][a%2],this.setupArgs[4+a%2])
+                            }
+                            let lists=[]
                             switch(this.args[0]){
                                 case 0:
-                                    if(this.setupArgs[2]==22){
-                                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][a%2],this.setupArgs[4+a%2])
-                                    }
-                                    if(this.setupArgs[2]==27){
-                                        this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].deck.cards,this.setupArgs[4][a],this.setupArgs[4][a]+1,4)
-                                    }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==23||this.setupArgs[2]==24||this.setupArgs[2]==29){
-                                        this.battle.cardManagers[this.player].deck.addCost(this.cards[a].type,this.cards[a].level,this.cards[a].color,1,this.cards[a].edition)
-                                    }else{
-                                        this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
-                                    }
+                                    lists=['deck']
                                 break
                                 case 1:
-                                    if(this.setupArgs[2]==22){
-                                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][a%2],this.setupArgs[4+a%2])
-                                    }
-                                    if(this.setupArgs[2]==27){
-                                        this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].hand.cards,this.setupArgs[4][a],this.setupArgs[4][a]+1,4)
-                                    }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==23||this.setupArgs[2]==24||this.setupArgs[2]==29){
-                                        this.battle.cardManagers[this.player].hand.addCost(this.cards[a].type,this.cards[a].level,this.cards[a].color,1,this.cards[a].edition)
-                                    }else{
-                                        this.battle.cardManagers[this.player].hand.add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
-                                    }
+                                    lists=['hand']
                                 break
+                                case 2:
+                                    lists=['deck','hand']
+                                break
+                            }
+                            for(let b=0,lb=lists.length;b<lb;b++){
+                                if(this.setupArgs[2]==27){
+                                    this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player][lists[b]].cards,this.setupArgs[4][a],this.setupArgs[4][a]+1,4)
+                                }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29){
+                                    this.battle.cardManagers[this.player][lists[b]].addCost(this.cards[a].type,this.cards[a].level,this.cards[a].color,1,this.cards[a].edition)
+                                }else if(this.setupArgs[2]!=22){
+                                    this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }
                             }
                             this.cards[a].deSize=true
                             this.cards[a].upSize=false
@@ -3166,31 +3200,29 @@ class overlay{
                 case 3:
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if(((int(key)+9)%10==a||this.battle.relicManager.hasRelic(173,this.player)&&(key=='t'||key=='T'))&&!this.cards[a].deSize){
+                            if(this.setupArgs[2]==22){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][a%2],this.setupArgs[4+a%2])
+                            }
+                            let lists=[]
                             switch(this.args[0]){
                                 case 0:
-                                    if(this.setupArgs[2]==22){
-                                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][a%2],this.setupArgs[4+a%2])
-                                    }
-                                    if(this.setupArgs[2]==27){
-                                        this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].deck.cards,this.setupArgs[4][a],this.setupArgs[4][a]+1,4)
-                                    }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29){
-                                        this.battle.cardManagers[this.player].deck.addCost(this.cards[a].type,this.cards[a].level,this.cards[a].color,1,this.cards[a].edition)
-                                    }else{
-                                        this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
-                                    }
+                                    lists=['deck']
                                 break
                                 case 1:
-                                    if(this.setupArgs[2]==22){
-                                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][a%2],this.setupArgs[4+a%2])
-                                    }
-                                    if(this.setupArgs[2]==27){
-                                        this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].hand.cards,this.setupArgs[4][a],this.setupArgs[4][a]+1,4)
-                                    }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29){
-                                        this.battle.cardManagers[this.player].hand.addCost(this.cards[a].type,this.cards[a].level,this.cards[a].color,1,this.cards[a].edition)
-                                    }else{
-                                        this.battle.cardManagers[this.player].hand.add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
-                                    }
+                                    lists=['hand']
                                 break
+                                case 2:
+                                    lists=['deck','hand']
+                                break
+                            }
+                            for(let b=0,lb=lists.length;b<lb;b++){
+                                if(this.setupArgs[2]==27){
+                                    this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player][lists[b]].cards,this.setupArgs[4][a],this.setupArgs[4][a]+1,4)
+                                }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29){
+                                    this.battle.cardManagers[this.player][lists[b]].addCost(this.cards[a].type,this.cards[a].level,this.cards[a].color,1,this.cards[a].edition)
+                                }else if(this.setupArgs[2]!=22){
+                                    this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }
                             }
                             this.cards[a].deSize=true
                             this.cards[a].upSize=false
