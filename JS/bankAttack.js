@@ -6498,7 +6498,7 @@ attack.prototype.update=function(){
         case 2731:
             if(variants.nobasicanim){
                 for(let a=0,la=this.elemental?4:1;a<la;a++){
-                    this.battle.combatantManager.randomEnemyEffect(0,[this.effect[0]])
+                    this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.user])
                     this.userCombatant.statusEffect('Vision',this.effect[1])
                 }
                 this.remove=true

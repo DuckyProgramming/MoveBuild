@@ -365,6 +365,14 @@ class combatantManager{
                     this.combatants[index].takeDamage(args[0],-1)
                     this.combatants[index].statusEffect('Vulnerable',args[1])
                 break
+                case 9:
+                    this.combatants[index].takeDamage(args[0],args[1])
+                    return this.combatants[index].life<=0
+                case 10:
+                    for(let a=0,la=args[2];a<la;a++){
+                        this.combatants[index].takeDamage(args[0],args[1])
+                    }
+                break
             }
         }
     }
@@ -420,6 +428,12 @@ class combatantManager{
                 break
                 case 1:
                     this.combatants[index].takeDamage(args[0],-1)
+                    return this.combatants[index].life<=0
+                case 2:
+                    this.combatants[index].takeDamage(args[0],args[1])
+                break
+                case 3:
+                    this.combatants[index].takeDamage(args[0],args[1])
                     return this.combatants[index].life<=0
             }
         }
@@ -742,6 +756,14 @@ class combatantManager{
                         if(this.combatants[a].id!=args[2]){
                             this.combatants[a].takeDamage(args[0],args[1])
                         }
+                    break
+                    case 45:
+                        this.combatants[a].takeDamage(args[0],args[1])
+                        this.combatants[a].statusEffect('Burn',args[2])
+                    break
+                    case 46:
+                        this.combatants[a].takeDamage(args[0],args[1])
+                        this.combatants[a].statusEffect('Freeze',args[2])
                     break
                 }
             }

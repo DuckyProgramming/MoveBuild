@@ -940,7 +940,7 @@ class battle{
             }
         }
         if(card.color==0&&userCombatant.getStatus('Colorless Damage All')>0){
-            this.combatantManager.allEffect(19,[userCombatant.getStatus('Colorless Damage All')])
+            this.combatantManager.allEffect(43,[userCombatant.getStatus('Colorless Damage All'),userCombatant.id])
         }
         if(card.rarity==0&&userCombatant.getStatus('Common Temporary Strength')>0){
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Common Temporary Strength')>0)

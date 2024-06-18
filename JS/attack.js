@@ -5589,7 +5589,7 @@ class attack{
                     break
                     case 3115:
                         if(this.targetTile.tilePosition.y<this.userCombatant.tilePosition.y){
-                            this.battle.combatantManager.randomEnemyEffect(0,[this.effect[1]])
+                            this.battle.combatantManager.randomEnemyEffect(3,[this.effect[1],this.user])
                         }else if(this.targetTile.tilePosition.y>this.userCombatant.tilePosition.y){
                             this.userCombatant.addBlock(this.effect[2])
                         }
@@ -11511,7 +11511,7 @@ class attack{
                         this.targetCombatant.statusEffect('Burn',this.effect[1])
                     break
                     case 889:
-                        this.battle.combatantManager.allEffect(15,[this.effect[0],this.effect[1]])
+                        this.battle.combatantManager.allEffect(45,[this.effect[0],this.user,this.effect[1]])
                     break
                     case 927:
                         for(let a=0,la=this.effect[0];a<la;a++){
@@ -11696,7 +11696,7 @@ class attack{
                         this.targetCombatant.statusEffect('Freeze',this.effect[1])
                     break
                     case 1450:
-                        this.battle.combatantManager.allEffect(23,[this.effect[0],this.effect[1]])
+                        this.battle.combatantManager.allEffect(46,[this.effect[0],this.user,this.effect[1]])
                     break
                     case 1499:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.getStatus('Miss')>0?3:1),this.user)
@@ -12117,7 +12117,7 @@ class attack{
                         this.battle.drop(this.player,findName('Starlight',types.card),0,game.playerNumber+1)
                     break
                     case 3186:
-                        this.battle.combatantManager.randomEnemyEffect(0,[this.effect[0]])
+                        this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],thsi.user])
                     break
                     case 3192:
                         this.userManager.hand.add(findName('Stride',types.card),0,0)
@@ -12610,9 +12610,9 @@ class attack{
                         this.battle.combatantManager.allEffect(17)
                     break
                     case 1056:
-                        if(this.battle.combatantManager.randomEnemyEffect(2,[this.effect[0]])){
-                            if(this.battle.combatantManager.randomEnemyEffect(2,[this.effect[0]])){
-                                this.battle.combatantManager.randomEnemyEffect(0,[this.effect[0]])
+                        if(this.battle.combatantManager.randomEnemyEffect(9,[this.effect[0],this.user])){
+                            if(this.battle.combatantManager.randomEnemyEffect(9,[this.effect[0],this.user])){
+                                this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.user])
                             }
                         }
                     break
@@ -12713,9 +12713,9 @@ class attack{
                         }
                     break
                     case 1520:
-                        if(this.battle.combatantManager.randomAnyEffect(1,[this.effect[0]])){
-                            if(this.battle.combatantManager.randomAnyEffect(1,[this.effect[0]])){
-                                this.battle.combatantManager.randomAnyEffect(0,[this.effect[0]])
+                        if(this.battle.combatantManager.randomAnyEffect(3,[this.effect[0],this.user])){
+                            if(this.battle.combatantManager.randomAnyEffect(3,[this.effect[0],this.user])){
+                                this.battle.combatantManager.randomAnyEffect(2,[this.effect[0],this.user])
                             }
                         }
                     break
@@ -12853,7 +12853,7 @@ class attack{
                         this.battle.attackManager.nodeAfter=true
                     break
                     case 1859:
-                        this.battle.combatantManager.allEffect(19,[this.effect[0]])
+                        this.battle.combatantManager.allEffect(43,[this.effect[0],this.user])
                         this.battle.combatantManager.fullAllEffect(8,[this.effect[1]])
                     break
                     case 1860:

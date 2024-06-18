@@ -131,7 +131,7 @@ types={
         {name:'Avant Guard',life:390,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:223,effect:[16]},{type:224,effect:[16]},{type:72,effect:[8,2]}],description:`Behind you!`},
         {name:'Rusty',life:23,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:203,effect:[5]},{type:204,effect:[4]},{type:21,effect:[]}],description:`Pretty bad`},
         {name:'Thornvine',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:228,effect:[2]},{type:229,effect:[2]}],description:`Back and worse`},
-        {name:'Vengeful',life:70,behavior:0,spec:[0],move:{type:0,speed:1},attack:[/*{type:211,effect:[8]},*/{type:212,effect:[7]}/*,{type:213,effect:[6]},{type:214,effect:[9]},{type:210,effect:[1]}*/],description:`Remember last time?`},
+        {name:'Vengeful',life:70,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:212,effect:[7]},{type:213,effect:[6]},{type:214,effect:[9]},{type:210,effect:[1]}],description:`Remember last time?`},
         {name:'Coffee Commander',life:335,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:163,effect:[5,1]},{type:164,effect:[14,1,'Paralyzed']},{type:129,effect:[4]},{type:188,effect:[5]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
         {name:'Tech Support',life:166,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:208,effect:[14]},{type:209,effect:[10]},{type:29,effect:[9]}],description:`Won't fix problems`},
         {name:'Jester',life:28,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:247,effect:[3]},{type:248,effect:[1,7]}],description:`Real funny guy, you are`},
@@ -3768,11 +3768,11 @@ Entering, you're offered a chance to glimpse your future...`,
             name:'Slime 7',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
-                [{type:[]},{type:[6]},{type:[6]},{type:[6]},{type:[]},{type:-1},{type:-1}],
-                [{type:[]},{type:[6]},{type:[]},{type:[]},{type:[6]},{type:[]},{type:-1}],
+                [{type:[]},{type:[6]},{type:[]},{type:[6]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:[]},{type:[6]},{type:[]},{type:[]},{type:[]},{type:[6]},{type:[]}],
-                [{type:-1},{type:[]},{type:[6]},{type:[]},{type:[]},{type:[6]},{type:[]}],
-                [{type:-1},{type:-1},{type:[]},{type:[6]},{type:[6]},{type:[6]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[6]},{type:[]},{type:[6]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
@@ -5822,7 +5822,7 @@ Entering, you're offered a chance to glimpse your future...`,
                 {position:{x:3,y:1},name:'Monkey',turn:3},
             ],
         },{
-            level:['2-Crushed 7'],class:1,world:-1,
+            level:['2-Crushed 7'],class:0,world:-1,
             name:'Bus Surprise',
             player:{position:[[{x:3,y:1}],[{x:3,y:1},{x:4,y:1}]]},
             enemy:[
@@ -5862,7 +5862,7 @@ Entering, you're offered a chance to glimpse your future...`,
             ],reinforce:[
             ],
         },{
-            level:['Crushed 4'],class:1,world:-1,
+            level:['Crushed 4'],class:0,world:-1,
             name:'Automata',
             player:{position:[[{x:3,y:1}],[{x:2,y:0},{x:3,y:2}]]},
             enemy:[

@@ -13037,9 +13037,9 @@ types.card=[
     },{
         name:'Torrent',rarity:1,list:13,
         levels:[
-            {effect:[2,14],attack:292,cost:1,target:[2,1,3],spec:[],class:2},
-            {effect:[3,19],attack:292,cost:1,target:[2,1,3],spec:[],class:2},
-            {effect:[4,22],attack:292,cost:1,target:[2,1,3],spec:[],class:2},
+            {effect:[2,19],attack:292,cost:2,target:[2,1,3],spec:[],class:2},
+            {effect:[3,27],attack:292,cost:2,target:[2,1,3],spec:[],class:2},
+            {effect:[4,33],attack:292,cost:2,target:[2,1,3],spec:[],class:2},
         ],
     },{
         name:'Gingerbread',rarity:1,list:13,
@@ -13212,9 +13212,9 @@ types.card=[
     },{
         name:'Fatebound',rarity:0,list:13,
         levels:[
-            {effect:[16],attack:2265,cost:1,target:[2,1,3],spec:[0],class:1},
-            {effect:[22],attack:2265,cost:1,target:[2,1,3],spec:[0],class:1},
-            {effect:[27],attack:2265,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[16],attack:2265,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[22],attack:2265,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[27],attack:2265,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Prophecy of\nFormation',rarity:2,list:13,
@@ -13254,9 +13254,9 @@ types.card=[
     },{
         name:'High\nNoon',rarity:2,list:13,
         levels:[
-            {effect:[44],attack:2291,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[62],attack:2291,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[76],attack:2291,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[66],attack:2291,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[94],attack:2291,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[116],attack:2291,cost:1,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:'Patient\nMove',rarity:0,list:13,
@@ -13548,9 +13548,9 @@ types.card=[
     },{
         name:'Lure',rarity:1,list:13,
         levels:[
-            {effect:[5,1],attack:2425,cost:0,target:[0],spec:[],class:4},
-            {effect:[8,1],attack:2425,cost:0,target:[0],spec:[],class:4},
-            {effect:[10,1],attack:2425,cost:0,target:[0],spec:[],class:4},
+            {effect:[5,1],attack:2425,cost:0,target:[0],spec:[],class:2},
+            {effect:[8,1],attack:2425,cost:0,target:[0],spec:[],class:2},
+            {effect:[10,1],attack:2425,cost:0,target:[0],spec:[],class:2},
         ],
     },{
         name:'The Bigger\nThe Better',rarity:0,list:13,

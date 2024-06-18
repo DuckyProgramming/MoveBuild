@@ -5920,7 +5920,7 @@ class combatant{
                     this.heal(block)
                 }else if(this.status.main[329]>0){
                     if(this.status.main[330]>0){
-                        this.battle.combatantManager.randomEnemyEffect(0,[this.status.main[330]])
+                        this.battle.combatantManager.randomEnemyEffect(3,[this.status.main[330],this.id])
                     }
                     this.barrier+=block
                 }else{
@@ -6598,7 +6598,7 @@ class combatant{
                 this.gainMaxHP(this.status.main[109])
             }
             if(this.status.main[280]>0){
-                this.battle.combatantManager.randomEnemyEffect(0,[this.status.main[280]])
+                this.battle.combatantManager.randomEnemyEffect(3,[this.status.main[280],this.id])
             }
             if(stage.scene=='battle'&&this.position.x>0&&this.position.y>0&&this.position.x<this.layer.width&&this.position.y<this.layer.height){
                 this.battle.particleManager.createNumber(77,this.position.x,this.position.y,gain)

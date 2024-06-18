@@ -1,10 +1,3 @@
-UPDATE 2:
-
-change all target random enemy cards to specify user in the random call
-and all effects
-
-
-
 UPDATE 3:
 
 3 new events
@@ -20,7 +13,41 @@ event - the backdoors
 [get a parasite and make a card negative]
 
 
-2 cards
+
+
+
+UPDATE 4:
+
+
+6 final cards
+
+[epicycle but an attack]
+
+[extending move (based off extending arm)]
+
+[call airstrike]
+
+[red planet]
+
+[wave-particle duality]
+
+[take no damage this turn, deal no damage next turn]
+
+
+
+[]
+
+[]
+
+[]
+
+[]
+
+[shikigami protection - get an uncommon card and it costs 0]
+
+[ran, summoned kitsune]
+
+
 
 
 

@@ -2037,7 +2037,7 @@ class group{
                 this.battle.cardManagers[this.player].hand.upgrade(card.effect[0])
             break
             case 1271:
-                this.battle.combatantManager.randomEnemyEffect(0,[card.effect[1]])
+                this.battle.combatantManager.randomEnemyEffect(3,[card.effect[1],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
             break
             case 1307:
                 userCombatant.statusEffect('Bleed',card.effect[0])
