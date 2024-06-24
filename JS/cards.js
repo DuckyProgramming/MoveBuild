@@ -21589,7 +21589,7 @@ types.card=[
         name:'Duck\nFluff',rarity:0,list:18,
         levels:[
             {effect:[],attack:0,cost:2,target:[0],spec:[1,15],limit:6,class:6},
-            {effect:[],attack:0,cost:2,target:[0],spec:[1,15],limit:3f,class:6},
+            {effect:[],attack:0,cost:2,target:[0],spec:[1,15],limit:3,class:6},
             {effect:[],attack:0,cost:2,target:[0],spec:[1,13],limit:1,class:6},
         ],
     },{
