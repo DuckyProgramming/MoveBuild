@@ -566,6 +566,22 @@ class combatantManager{
                 this.combatants[this.combatants.length-1].life=round(this.combatants[this.combatants.length-1].life*5)/10
                 this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Low Health Construct',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]--
             }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Turn')>0){
+                this.battle.turnManager.loadEnemyAttackRepeatBack(this.combatants.length-1)
+            }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block')>0){
+                this.combatants[this.getPlayerCombatantIndex(builder)].addBlock(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block'))
+                this.combatants[this.combatants.length-1].addBlock(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block'))
+            }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('All Construct Speed Up')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('All Construct Speed Up'))
+            }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Strength')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Strength',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Strength'))
+            }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dexterity')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Dexterity',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dexterity'))
+            }
         }
     }
     summonConstructRandom(tilePosition,type,team,direction,builder){
@@ -588,6 +604,22 @@ class combatantManager{
             if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Low Health Construct')>0){
                 this.combatants[this.combatants.length-1].life=round(this.combatants[this.combatants.length-1].life*5)/10
                 this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Low Health Construct',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]--
+            }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Turn')>0){
+                this.battle.turnManager.loadEnemyAttackRepeatBack(this.combatants.length-1)
+            }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block')>0){
+                this.combatants[this.getPlayerCombatantIndex(builder)].addBlock(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block'))
+                this.combatants[this.combatants.length-1].addBlock(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block'))
+            }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('All Construct Speed Up')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('All Construct Speed Up'))
+            }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Strength')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Strength',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Strength'))
+            }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dexterity')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Dexterity',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dexterity'))
             }
         }
     }

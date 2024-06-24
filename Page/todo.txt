@@ -1,16 +1,125 @@
 UPDATE 3:
 
-3 new events
+42 new events
 
 [drinking contest]
 
 [remember the first event you saw test]
 
 [choose details about a card to get]
+first, choose if you want a 0 cost, 1 cost, or 2 cost card
+then, choose if you want attack, defense, or skill
+gives you a card reward of 3 choices (may not be enough choices, too bad)
 
-event - the backdoors
-[get a bozo and make a card erratic]
-[get a parasite and make a card negative]
+[event - the backdoors]
+get a bozo and make a card erratic
+get a parasite and make a card negative
+
+[the hitman - you can pay to reduce the boss hp by 25%]
+
+[navigator's shed - get 3 free move for a price]
+
+[rebellion against rare cards - choice]
+transform a random basic card
+remove a non-basic card
+
+[duck tech copyright disputes - choice]
+side with the ducks - get a emp gun that helps destroy management robots
+beat him up - gain 3 random common colorless cards, lose health
+do nothing
+
+[purify the energy - lose an energy, but every turn 2 random cards cost 1 less (as a relic)]
+
+[fractured moment - choose to encounter a fight, encounter an elite, or encounter an event]
+
+[too lucky - find money, but you have to pay some back or you get cursed with unlucky (a new curse)]
+
+[the collector - counterpart to antiquarian, sends you into a special shop where you can do special trade offers]
+
+[mystery machine - choose between upgrade a card, remove a card but lose 4 life, and transform a card but lose 8 life]
+
+[late night barbecue - get heal or get a uncommon card, you can choose to not pay, and there's no consequences]
+
+[visit from the moon - choice]
+heal max hp and get a moon curse (new card)
+get 2 copies of lunar soil
+decline
+
+[make the management great again, you can donate currency to get a relic that you can click on to activate an effect]
+
+[something like vampires, replace all defends with shade, that gives block and creates a shadow that retains]
+
+[simulated violence - lose health, add a starry sky (a new card that lets you choose a card from draw to add a copy to hand)]
+
+[ghostly dream - make a card ethereal, or make a card exhaust]
+
+[choice]
+remove 2 random attacks
+remove 2 random defenses
+
+[make a card cost hp instead of energy]
+
+[the aluminum mine - make any card foil]
+
+[miracle blessing - lose max hp, get a relic that gives you a miracle whenever you shuffle your draw pile]
+
+[the archivist - pay 25 to get a card reward from another character, you're offered 3 different characters]
+
+[dev intervention - you can choose to spend money for 11 of nothings, spend less for 6 of nothings, or get 1 of nothings forced onto you]
+
+[the murderer - choice]
+help the guy getting murdered - lose health, gain a specific relic that you can click on to draw and discard a card
+help the murderer - get cash
+
+[the engineer - choice]
+lose a relic (chosen), gain 325 money
+lose a relic (chosen), remove 2 cards
+decline
+
+[trash compactor - choice]
+gain a common relic
+lose 15 hp, get an uncommon relic
+lose 30 hp, get a rare relic
+
+[the bookstore - lose money to get a book]
+a brief history of time - take an extra turn on turn 10
+onto excelsior - gain 2 energy and draw 4 cards on turn 5
+[]
+
+[the physicist - choice]
+open a spectral pack
+get 2 random spectral cards
+
+[mr. unlucky - choice]
+add a relic that gives you 1 strength for every curse you have, but get cursed with a random curse
+decline
+
+[crypto bro - kinda like the stocks event, but the relic might randomly start losing you money]
+
+[suspicious shack - randomly get a heal or a special fight]
+
+[hunterbob event - choose to fight some ducks and a special duck variant]
+hunting rifle - you only get it for this event, if fatal on a duck get cash
+
+[fluffy duck - get a relic from the duck, but get a duck fur card that does nothing and vanishes eventually]
+
+[financial products - pay 50 currency, get money shower]
+
+[double or nothing event]
+
+[the miner ducks - pay for the chance to get the card titanite]
+
+[fake adventure - reimu stops you on the road, demanding money]
+fight - get hakurei talisman, lose health
+donate - get orb of duality, lose money
+run - get cursed lol
+
+[can get the card - inchling bowl - damage, all skills cost 1 less] [red and white]
+
+[can get the card - final rest - add 20 block and remove 2 statuses from hand] [blue and purple]
+
+[can get the card - mountain echo - give 2 random cards in hand "duplicate once" (spec)] [yellow and green]
+
 
 
 
@@ -19,7 +128,53 @@ event - the backdoors
 UPDATE 4:
 
 
-6 final cards
+
+
+100 final cards
+
+
+
+[devil's rain - 16 damage, heal 2, 2 range, but if not played you lose 1 health]
+
+[azimuth - advance and nerf target]
+
+[refine chemicals - gain prismatic bomb damage up, add 1 prismatic bomb]
+
+[oracle lite]
+
+[starstream - damage and get starlight]
+
+[worldline]
+
+
+
+[gain 1 metal per turn]
+
+[donakho power]
+
+[gives you a random skill (counterpart to improvise, deft, agile, etc)]
+
+[english weather - dev card, your balls but it adds a card including "storm"]
+
+[feast of dew - draw 2 cards, discards to draw, when drawn 3 times, gain a buff]
+
+[pauli exclusion principle - make a card negative, if it's a duplicate]
+
+
+
+[ally card]
+
+[ally card]
+
+[new spectral (add an ally card)]
+
+[new spectral]
+
+[new spectral]
+
+[new tarot]
+
+
 
 [epicycle but an attack]
 
@@ -35,17 +190,181 @@ UPDATE 4:
 
 
 
-[]
+[scaled waves - add block, draw to 7 cards]
 
-[]
+[close-eye shot - 2 cost, 8 damage to a random enemy 4 times]
 
-[]
+[necromancy - gain 5 temporary strength, gain 5 hp, lose 5 hp next turn]
 
-[]
+[instantaneous - take another turn, but you can only play 2 cards during it]
+
+[skyshot - 8 damage, spend 5 charge: gain 1 dodge]
+
+[fire of complexity - deal 6 damage to a random enemy whenever you play a 2+ cost card]
+
+
+
+[opposite of honey]
+
+[chocolate bar (rename) - sour candy but it gives armor]
+
+[corrugated iron - get something when vanished]
+
+[cosmic latte - based on icterine]
+
+[cashflow - like wired funds]
+
+[cauchy-riemann equations]
+
+
+
+[exploit miracle]
+
+[infinite plain]
+
+[mesh]
+
+[oil money]
+
+[tiny lodger]
+
+[creation of idols]
+
+
+
+[imaginary friend]
+
+[luck of the celestial]
+
+[starry sky]
+
+[shizuha ally card]
+
+[technical ally card]
+
+[swallow shell - curse, exhaust itself if you gain 20 or more block]
+
+
+
+[sapper rocket]
+
+[dark residue - burn, but there's a way to make it exhaust itself]
+
+[approach of spring - 1 cost, add 3 random 1 cost cards to hand]
+
+[mountain avens]
 
 [shikigami protection - get an uncommon card and it costs 0]
 
 [ran, summoned kitsune]
+
+
+
+[floret fractal - damage multiple times, get dark residue]
+
+[psychosis - gain 1 base energy, all enemies gain 1 strength and 1 dexterity]
+
+[twin barrage - 10 damage 2 times, countdown 2, decreases by 2 when incremented]
+
+[focus light - add block, X cost, gain X-1 energy next turn]
+
+[ship's phantom - 0 cost damage, when exhausted, draw 2 cards, 1 costs 1 less, the other is free]
+
+[propellant - next x cost card played gets +2 to x]
+
+
+
+[yes men]
+
+[flames of servitude]
+
+[bisected spiral]
+
+[immortal flame - gain 1 strength per turn, heal 4 hp at the end of combat]
+
+[clay spinner - 6 damage and 6 block, damage increases by 2 when attack played, blcok increases by 2 when defense played]
+
+[golden sunrise - 0 cost gain 4 temporary strength, heal 4 health, lose 4 health next turn]
+
+
+
+[fire of ena or something]
+
+[aggressor - agent power, draw an attack every turn]
+
+[dualic phosphor - dev card, add a random free skill to hand every turn, it costs 1 and exhausts]
+
+[bricklaying]
+
+[knife hellscape - get a shiv whenever you exhaust a non-shiv card]
+
+[spread amulet - 2 range splash damage, get barrier for unblocked damage dealt]
+
+
+
+[orb of hatred - 10 damage 3 times, increases by 1 when a card is drawn outside of the draw step, retain]
+
+[across the sea - whenever you gain 20 or more block, draw a card]
+
+[]
+
+[]
+
+[]
+
+[]
+
+
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+
+
+[]
+
+[]
+
+[]
+
+[]
 
 
 
@@ -55,3 +374,6 @@ END:
 
 go make glory v2,
 celestite
+
+sanae gaming
+

@@ -144,7 +144,7 @@ class relicManager{
         this.active[types.relic[type].id][player+1]-=1
         this.lose(types.relic[type].id,player)
         if(type>0){
-            this.battle.stats.relic[player]--
+            this.total[player]--
         }
     }
     loseRandomRelic(player){
@@ -504,6 +504,14 @@ class relicManager{
             case 305:
                 this.battle.purchaseManager.costChange(player,17,0.5)
             break
+            case 312:
+                this.battle.cardManagers[player].randomEffect(0,2,[11])
+                this.battle.cardManagers[player].randomEffect(0,2,[11])
+            break
+            case 313:
+                this.battle.overlayManager.overlays[84][player].active=true
+                this.battle.overlayManager.overlays[84][player].activate([])
+            break
 
         }
         this.reactivate(type,player)
@@ -578,7 +586,7 @@ class relicManager{
                 this.battle.cardManagers[player].deck.removeAbstract(1,[findName('Hoarding',types.card)])
             break
             case 130:
-                this.battle.cardManagers[player].deck.unInnate()
+                this.battle.cardManagers[player].deck.unInnate(-1)
             break
             case 132:
                 this.battle.energyBaseDown(player)
@@ -756,6 +764,18 @@ class relicManager{
             case 273:
                 this.battle.purchaseManager.costChange(player,12,2)
             break
+            case 275:
+                this.battle.cardManagers[player].deck.unInnate(1)
+            break
+            case 276:
+                this.battle.cardManagers[player].deck.unInnate(2)
+            break
+            case 277:
+                this.battle.cardManagers[player].deck.unInnate(3)
+            break
+            case 278:
+                this.battle.cardManagers[player].deck.unInnate(4)
+            break
             case 283:
                 this.battle.energyBaseDown(player)
                 this.battle.addCurrency(600,player)
@@ -794,6 +814,13 @@ class relicManager{
             break
             case 305:
                 this.battle.purchaseManager.costChange(player,17,2)
+            break
+            case 312:
+                this.battle.cardManagers[player].randomEffect(0,3,[11])
+                this.battle.cardManagers[player].randomEffect(0,3,[11])
+            break
+            case 313:
+                this.battle.cardManagers[player].deck.unInnate(11)
             break
 
         }
@@ -938,7 +965,7 @@ class relicManager{
                                 this.getPlayer(a).statusEffect('Conditioning',this.active[224][a+1])
                             }
                             if(this.active[237][a+1]>0){
-                                this.battle.cardManagers[a].drawRetain(this.active[237][a+1],1)
+                                this.battle.cardManagers[a].draw(this.active[237][a+1],9)
                             }
                             if(this.active[239][a+1]>0){
                                 for(let b=0,lb=this.active[239][a+1];b<lb;b++){
@@ -1234,7 +1261,7 @@ class relicManager{
                     }
                     if(this.active[144][args[1]+1]>0){
                         for(let a=0,la=this.active[144][args[1]+1];a<la;a++){
-                            this.battle.cardManagers[args[1]].reserve.addShuffle(findName('Electrocuted',types.card),0,game.playerNumber+1)
+                            this.battle.cardManagers[args[1]].reserve.addAbstract(findName('Electrocuted',types.card),0,game.playerNumber+1,0,[5],[])
                         }
                     }
                     if(this.active[158][args[1]+1]>0){
@@ -1261,7 +1288,7 @@ class relicManager{
                     }
                     if(this.active[285][args[1]+1]>0){
                         for(let a=0,la=this.active[285][args[1]+1];a<la;a++){
-                            this.battle.cardManagers[args[1]].reserve.addShuffle(findName('Trough',types.card),0,game.playerNumber+1)
+                            this.battle.cardManagers[args[1]].reserve.addAbstract(findName('Trough',types.card),0,game.playerNumber+1,0,[5],[])
                         }
                     }
                     if(this.battle.modded(62)){
@@ -1503,7 +1530,7 @@ class relicManager{
                             this.battle.cardManagers[args[1]].randomEffect(2,1,[this.active[20][args[1]+1]])
                         }
                         if(this.active[27][args[1]+1]>0){
-                            this.getPlayer(args[1]).heal(this.active[27][args[1]+1])
+                            this.getPlayer(args[1]).heal(2*this.active[27][args[1]+1])
                         }
                         if(this.battle.modded(84)){
                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].life-=3

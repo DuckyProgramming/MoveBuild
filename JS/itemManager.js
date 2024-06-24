@@ -162,7 +162,7 @@ class itemManager{
                 }
             break
             case 6:
-                for(let a=0,la=3*effectiveness;a<la;a++){
+                for(let a=0,la=2*effectiveness;a<la;a++){
                     this.battle.cardManagers[player].addRandomAbstract(2,0,0,0,1,[0],[3,4,0])
                 }
             break
@@ -260,7 +260,7 @@ class itemManager{
                 this.battle.cardManagers[player].hand.duplicate(2)
             break
             case 36:
-                this.battle.cardManagers[player].drawPrice(3*effectiveness,0)
+                this.battle.cardManagers[player].draw(3*effectiveness,5)
             break
             case 37:
                 userCombatant.statusEffect('Retain Block',99)
@@ -318,6 +318,11 @@ class itemManager{
             case 51:
                 for(let a=0,la=this.items[player].length;a<la;a++){
                     this.addRandomItem(player)
+                }
+            break
+            case 52:
+                for(let a=0,la=3*effectiveness;a<la;a++){
+                    this.battle.cardManagers[player].addRandomAbstract(2,0,0,0,1,[0],[3,11,0])
                 }
             break
             case 101:

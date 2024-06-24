@@ -355,6 +355,18 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[3]&&user.status.main[340]>0){
 				bonus+=user.status.main[340]
 			}
+			if(variant&&args[4]&&user.status.main[402]>0){
+				bonus+=user.status.main[402]
+			}
+			if(variant&&args[5]&&user.status.main[403]>0){
+				bonus+=user.status.main[403]
+			}
+			if(variant&&args[6]&&user.status.main[404]>0){
+				bonus+=user.status.main[404]
+			}
+			if(variant&&args[7]&&user.status.main[413]>0){
+				bonus+=user.status.main[413]
+			}
 			if(user.status.main[12]>0){
 				bonus+=user.status.main[12]
 			}
@@ -572,6 +584,18 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 18: return (barrier==effect?(effect==1?``:tennify(effect))+'X':(effect==1?``:tennify(effect))+`(${tennify(barrier)})X`)+(bonusBA>0?`(+${tennify(bonusBA)})`:``)
 
 			}
+		case 19:
+			let range=effect
+			if(variant&&args[0]&&user.status.main[407]>0){
+				range+=user.status.main[407]
+			}
+			if(variant&&args[5]&&user.status.main[412]>0){
+				range+=user.status.main[412]
+			}
+			if(variant&&args[6]&&user.status.main[411]>0){
+				range+=user.status.main[411]
+			}
+			return range==effect?`${effect}`:`${effect}(${range})`
 	}
 }
 function calculateIntent(effect,user,type){
@@ -1405,8 +1429,8 @@ function status(name){
 function upgrade(){
 	current.cardManagers[current.turn.main].allEffect(2,4)
 }
-function quickRelic(type){
-	current.relicManager.addRelic(type,0)
+function quickRelic(type,player){
+	current.relicManager.addRelic(type,player)
 }
 function outEncounter(){
 	print(`
@@ -1531,15 +1555,15 @@ function outClass(){
 	let totals=[]
 	let build=``
 	for(let a=0,la=game.playerNumber+1;a<la;a++){
-		totals.push([0,0,0,0])
+		totals.push([0,0,0,0,0,0,0,0,0,0,0,0])
 	}
 	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].list>=0&&types.card[a].list<=game.playerNumber&&types.card[a].rarity>=0&&types.card[a].levels[0].class>=1&&types.card[a].levels[0].class<=4){
+		if(types.card[a].list>=0&&types.card[a].list<=game.playerNumber&&types.card[a].rarity>=0&&types.card[a].levels[0].class>=1&&types.card[a].levels[0].class<=11){
 			totals[types.card[a].list][types.card[a].levels[0].class-1]++
 		}
 	}
 	for(let a=0,la=game.playerNumber+1;a<la;a++){
-		build+=(a==0?`Colorless:`:`${types.combatant[a].name}:`)+`\nAttacks: ${totals[a][0]}\nDefenses: ${totals[a][1]}\nMovements: ${totals[a][2]}\nPowers: ${totals[a][3]}\n\n`
+		build+=(a==0?`Colorless:`:`${types.combatant[a].name}:`)+`\nAttacks: ${totals[a][0]}\nDefenses: ${totals[a][1]}\nSkills: ${totals[a][10]}\nMovements: ${totals[a][2]}\nPowers: ${totals[a][3]}\n\n`
 	}
 	print(build)
 }

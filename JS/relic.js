@@ -244,7 +244,7 @@ class relic{
                     displaySymbol(this.layer,8,0,2,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('1',8,0)
+                    this.layer.text('2',8,0)
                 break
                 case 'Retain Energy':
                     displaySymbol(this.layer,-10,-4,9,0,0.8,this.fade)
@@ -2287,6 +2287,25 @@ class relic{
                     displaySymbol(this.layer,-8,0,17,0,0.4,this.fade)
                     displaySymbol(this.layer,8,-6,32,0,0.8,this.fade)
                     displaySymbol(this.layer,8,6,32,0,0.8,this.fade)
+                break
+                case 'Upgrade All Skills':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,17,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,-7,7,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,7,123,0,0.6,this.fade)
+                break
+                case 'Upgrade Random Skills':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,-7,7,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,7,123,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',-7,0)
+                break
+                case 'Innate Skill':
+                    displaySymbol(this.layer,-6,0,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,-6,0,123,0,0.6,this.fade)
+                    displaySymbol(this.layer,10,0,58,1.2,this.fade)
                 break
 
             }

@@ -1870,7 +1870,7 @@ End your turn to allow him to hit you.`,
                         this.battle.cardManagers[0].hand.add(findName('Snowflake',types.card),0,16)
                         this.battle.cardManagers[0].hand.add(findName('Lament',types.card),0,16)
                         this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,16)
-                        this.battle.cardManagers[0].hand.addRetain(findName('Strike',types.card),0,16,0)
+                        this.battle.cardManagers[0].hand.addAbstract(findName('Strike',types.card),0,16,0,0,[9],[])
                     break
                 }
             break

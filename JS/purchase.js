@@ -61,7 +61,7 @@ class purchase{
     }
     costChange(player,value){
         for(let a=0,la=this.cost.length;a<la;a++){
-            if(this.player>=0||this.player==-1&&a==this.player){
+            if(this.player>=0||this.player==-1&&a==player){
                 this.cost[a]=value==-1?this.formerCost[a]:this.cost[a]*value
             }
         }

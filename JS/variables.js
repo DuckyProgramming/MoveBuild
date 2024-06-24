@@ -62,8 +62,8 @@ types={
         {name:'Mugger',life:42,behavior:7,spec:[0],move:{type:0,speed:1},attack:[{type:68,effect:[]},{type:4,effect:[6]},{type:67,effect:[9,60]},{type:69,effect:[5]}],description:`Got a little extra violent`},
         {name:'Little Guy',life:15,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:4,effect:[6]}],description:`Not really a threat`},
         {name:'Blue Duck',life:30,behavior:2,spec:[1],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:5,effect:[2,'Dazed']}],description:`Lost a flying race with you in 2016`},
-        {name:'Management Prototype',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:116,effect:[8]},{type:31,effect:[4]},{type:4,effect:[6]}],description:`Doesn't work as intended`},
-        {name:'Management Robot',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Mass produced soldier`},
+        {name:'Management Prototype',life:90,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:116,effect:[8]},{type:31,effect:[4]},{type:4,effect:[6]}],description:`Doesn't work as intended`},
+        {name:'Management Robot',life:90,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Mass produced soldier`},
         {name:'Management Soldier',life:135,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:14,effect:[8,1,'Electrocuted']},{type:60,effect:[12,2,'Dazed']},{type:10,effect:[6]}],description:`Wishes he was paid`},
         {name:'Management Officer',life:49,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[1]},{type:81,effect:[8,3,'Dazed']}],description:`Hates his suboordinates`},
         {name:'Management Special Forces',life:120,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:82,effect:[4,1,'Void']},{type:83,effect:[8,1,'Electrocuted']},{type:6,effect:[18]},{type:45,effect:[5]}],description:`Gets paid if he can win`},
@@ -72,7 +72,7 @@ types={
         {name:'Angry Gremlin',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[3]}],description:`Anger management issue`},
         {name:'Deployer',life:40,behavior:9,spec:[],move:{type:2,speed:1},attack:[{type:6,effect:[9]},{type:4,effect:[10]},{type:39,effect:[1,'Sentry']}],description:`Brings in backups`},
         {name:'Chief Deployer',life:80,behavior:3,spec:[],move:{type:2,speed:1},attack:[{type:39,effect:[1,'Sentry']},{type:6,effect:[6]},{type:4,effect:[7]},{type:39,effect:[1,'Deployer']}],description:`Builds the builders`},
-        {name:'Sentry',life:8,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:47,effect:[4]}],description:`Gonna get destroyed`},
+        {name:'Sentry',life:8,behavior:0,spec:[0,19],move:{type:0,speed:0},attack:[{type:47,effect:[4]}],description:`Gonna get destroyed`},
         {name:'Solar Shard',life:275,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[15]},{type:87,effect:[6]},{type:39,effect:[1,'Lunar Dust']},{type:88,effect:[1]}],description:`How do these things work anyway?`},
         {name:'Lunar Shard',life:120,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[10]},{type:86,effect:[3]}],description:`Extra enemy's kinda pointless`},
         {name:'Lunar Dust',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[6]}],description:`Weak, but exists to be annoying`},
@@ -89,16 +89,16 @@ types={
         {name:'Flying Rock',life:14,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:22,effect:[2,1,'Dazed']},{type:6,effect:[7]}],description:`Vaguely spherical`},
         {name:'Repulsor',life:22,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:106,effect:[4]},{type:87,effect:[8]},{type:6,effect:[6]}],description:`Sends you to the shadow realm`},
         {name:'Champion',life:180,behavior:1,spec:[0],move:{type:0,speed:2},attack:[{type:107,effect:[10,2]},{type:108,effect:[15,9]}],description:`Appointed up`},
-        {name:'Management Autoduck',life:60,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:2,effect:[4]},{type:5,effect:[2,'Dazed']}],description:`Supposed to be better than duck`},
+        {name:'Management Autoduck',life:60,behavior:2,spec:[19],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:2,effect:[4]},{type:5,effect:[2,'Dazed']}],description:`Supposed to be better than duck`},
         {name:'Modicum',life:10,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:1,effect:[4]},{type:16,effect:[3]},{type:109,effect:[5]}],description:`Spammy boy`},
         {name:'Slimoid',life:35,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[12]},{type:22,effect:[6,1,'Cemented']},{type:23,effect:[2]}],description:`You thought it wouldn't split`},
         {name:'Big Slimoid',life:70,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[18]},{type:32,effect:[9,1,'Cemented']},{type:33,effect:[2]}],description:`Recursion`},
         {name:'Bush Thing',life:18,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[4]},{type:110,effect:[3,3]},{type:111,effect:[2]}],description:`Somewhat armored`},
         {name:'Fireball',life:30,behavior:10,spec:[],move:{type:0,speed:2},attack:[{type:112,effect:[4,2]},{type:21,effect:[]}],description:`Hurts to touch`},
         {name:'Dead Shell',life:34,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:20,effect:[6]},{type:113,effect:[8]},{type:114,effect:[5,3]}],description:`More alive then intended`},
-        {name:'Management Drone',life:75,behavior:1,spec:[8],move:{type:0,speed:1},attack:[{type:10,effect:[6]},{type:115,effect:[10]}],description:`Automated pain`},
+        {name:'Management Drone',life:75,behavior:1,spec:[8,19],move:{type:0,speed:1},attack:[{type:10,effect:[6]},{type:115,effect:[10]}],description:`Automated pain`},
         {name:'Executive',life:95,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:12,effect:[10]},{type:120,effect:[1]},{type:6,effect:[8]}],description:`Thinks he outsmarted you`},
-        {name:'Mechanized',life:130,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:124,effect:[8,1]},{type:125,effect:[12]},{type:126,effect:[6]}],description:`More machine than man`},
+        {name:'Mechanized',life:130,behavior:0,spec:[0,19],move:{type:0,speed:2},attack:[{type:124,effect:[8,1]},{type:125,effect:[12]},{type:126,effect:[6]}],description:`More machine than man`},
         {name:'Ninja Master',life:56,behavior:1,spec:[],move:{type:3,speed:1},attack:[{type:121,effect:[12]},{type:122,effect:[12]},{type:123,effect:[5]}],description:`Mastered teleportation, but not much else`},
         {name:'Bomber Boy',life:105,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:127,effect:[18]},{type:128,effect:[10,3,'Shrapnel']}],description:`Loves his weaponry`},
         {name:'Intern',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[4]},{type:1,effect:[5]},{type:4,effect:[3]}],description:`Working for exposure`},
@@ -139,7 +139,7 @@ types={
         {name:'Normal1',life:12,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:31,effect:[3]}],description:`Precursor to Normal2`},
         {name:'Boss1',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[12]},{type:254,effect:[10,1]},{type:253,effect:[10,6]}],description:`These numbers are a little arbitrary`},
         {name:'Danger',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:255,effect:[10,1]},{type:256,effect:[12,1]}],description:`Contains... something?`},
-        {name:'Carbonado Robot',life:145,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:30,effect:[16,4]},{type:257,effect:[6,1]},{type:258,effect:[6,6]}],description:`Very shiny robot`},
+        {name:'Carbonado Robot',life:145,behavior:1,spec:[1,19],move:{type:0,speed:1},attack:[{type:30,effect:[16,4]},{type:257,effect:[6,1]},{type:258,effect:[6,6]}],description:`Very shiny robot`},
         {name:'Obstruction',life:87,behavior:5,spec:[0],move:{type:8,speed:1},attack:[{type:6,effect:[8]},{type:259,effect:[9]}],description:`Solving problems by not having problems`},
         {name:'Structural Energy',life:86,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:260,effect:[10,1]},{type:261,effect:[15,1]}],description:`Not quite plutonic`},
         {name:'Disorder Energy',life:165,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:268,effect:[12,1]},{type:269,effect:[20,1,1]}],description:`Coloration error moment`},
@@ -629,7 +629,7 @@ types={
         {name:'Red Ribbon',internal:'Upgrade All Attacks',id:12,rarity:1,list:0,description:'Upgrade All Attacks Added'},
         {name:'Blue Ribbon',internal:'Upgrade All Defense',id:13,rarity:1,list:0,description:'Upgrade All Defenses Added'},
         {name:'Green Ribbon',internal:'Upgrade All Movement',id:14,rarity:1,list:0,description:'Upgrade All Movements Added'},
-        {name:'Purple Ribbon',internal:'Upgrade All Powers',id:15,rarity:1,list:0,description:'Upgrade All Powers Added'},
+        {name:'Yellow Ribbon',internal:'Upgrade All Powers',id:15,rarity:1,list:0,description:'Upgrade All Powers Added'},
         {name:'Orange',internal:'10 Max HP',id:16,rarity:1,list:0,description:'When Taken,\nGain 10 Max HP'},
         {name:'Sickle',internal:'Death Boost',id:17,rarity:2,list:0,description:'When an Enemy Dies,\nGain 1 Energy and Draw 1 Card'},
         {name:'Mobius Strip',internal:'15 Card Draw',id:18,rarity:1,list:0,description:'Every 15 Cards Played,\nDraw 1 Card'},
@@ -642,7 +642,7 @@ types={
         {name:'Green Pepper',internal:'No Frail',id:24,rarity:-1,list:0,description:'You Cannot\nBecome Frail'},
         {name:'Blue Pepper',internal:'No Vulnerable',id:25,rarity:-1,list:0,description:'You Cannot\nBecome Vulnerable'},
         {name:'Malachite',internal:'Retain Block',id:26,rarity:2,list:0,description:'Lose Only 20 Block\nat End of Turn'},
-        {name:'Reforming Peas',internal:'Power Heal',id:27,rarity:2,list:0,description:'When You Play a\nPower, Heal 1 HP'},
+        {name:'Reforming Peas',internal:'Power Heal',id:27,rarity:2,list:0,description:'When You Play a\nPower, Heal 2 HP'},
         {name:'Glass Sphere',internal:'Retain Energy',id:28,rarity:2,list:0,description:'1 Energy Can be\nConserved Between Turns'},
         {name:'Pomegranite',internal:'14 Max HP',id:29,rarity:2,list:0,description:'When Taken,\nGain 14 Max HP'},
 
@@ -668,7 +668,7 @@ types={
         {name:'Ceramic Egg',internal:'Damage Block Next Turn',id:48,rarity:1,list:0,description:'When You Take Damage,\nGain 3 Block Next Turn'},
         {name:'Serrulata',internal:'Skip Card Max HP',id:49,rarity:1,list:0,description:'Gain 2 Max HP When\nYou Skip Adding a Card'},
 
-        {name:'Matchbox',internal:'Strike Damage',id:50,rarity:1,list:0,description:`Cards Containing 'Strike'\nDeal 2 More Damage`},
+        {name:'Matchbox',internal:'Strike Damage',id:50,rarity:-1,list:0,description:`Cards Containing 'Strike'\nDeal 2 More Damage`},
         {name:'Chaff Strip',internal:'Unplayed Card Block',id:51,rarity:2,list:0,description:'At the End of Your Turn,\nGain 1 Block Per Unplayed Card'},
         {name:'Pocket of Knives',internal:'Shivs',id:52,rarity:3,list:0,description:'Add 4 Shivs at the\nStart of Combat'},
         {name:'Salted Pepper',internal:'Healing Boost',id:53,rarity:2,list:0,description:'All Healing is\n50% More Effective'},
@@ -955,6 +955,9 @@ types={
         {name:'Vampiric Parasol',internal:'Turn 2 Temporary Strength/Turn 2 Temporary Dexterity',id:309,rarity:2,list:0,description:'On Turn 2, Gain 5 Temporary Strength\nand 5 Temporary Dexterity'},
 
         {name:'Bedroll',internal:'Rest Free Card',id:310,rarity:1,list:0,description:'Gain a Card Reward\nWhenever You Rest'},
+        {name:'Purple Ribbon',internal:'Upgrade All Skills',id:311,rarity:1,list:0,description:'Upgrade All Skills Added'},
+        {name:'Skill Magazine',internal:'Upgrade Random Skills',id:312,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Skills'},
+        {name:'Bottled Amaranth',internal:'Innate Skill',id:313,rarity:3,list:0,description:'When Taken, Make a Skill Innate'},
 
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,temp:false,description:''},
@@ -963,7 +966,7 @@ types={
         {name:'Attack Box',id:3,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Attacks to Your Hand\nThey Cost 0 Temporarily'},
         {name:'Defense Box',id:4,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Defenses to Your Hand\nThey Cost 0 Temporarily'},
         {name:'Movement Box',id:5,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Movements to Your Hand\nThey Cost 0 Temporarily'},
-        {name:'Power Box',id:6,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Free Powers\nto Your Hand'},
+        {name:'Power Box',id:6,rarity:0,list:0,menu:false,temp:false,description:'Add 2 Free Powers\nto Your Hand'},
         {name:'Bread',id:7,rarity:0,list:0,menu:true,temp:false,description:'Heal 15 HP'},
         {name:'Arsenic',id:8,rarity:0,list:0,menu:false,temp:false,description:'Apply 10 Poison\nRange 1-2'},
         {name:'Small Smoke Bomb',id:9,rarity:0,list:0,menu:false,temp:false,description:'Move to Any\nEmpty Tile'},
@@ -1009,6 +1012,7 @@ types={
         {name:'Bottled Fairy',id:49,rarity:2,list:0,menu:true,temp:false,description:'When You Die,\nHeal 10 HP'},
         {name:'Particle Storm',id:50,rarity:2,list:0,menu:false,temp:false,description:'Deal 6 Damage to a\nRandom Enemy 15 Times'},
         {name:'Pile of Junk',id:51,rarity:2,list:0,menu:true,temp:false,description:'Fill All Item Slots'},
+        {name:'Skill Box',id:52,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Free Skills\nto Your Hand'},
 
         {name:'Starflame Prototype',id:101,rarity:-1,list:-1,menu:false,temp:false,description:'Gain 5 Strength,\nShuffle 5 Burns into Draw'},
         {name:'Cola',id:102,rarity:-1,list:-1,menu:true,temp:false,description:'Heal 15 HP\nCan No Longer Gain Block'},
@@ -1104,7 +1108,7 @@ where you are, but it is a long drop.`,
 use friction with the edge to slow your fall. You seem to have
 dropped some items along the way, but they could be anywhere now.`,
                     option:['Get out of the hole'],
-                    optionDesc:['Lose 1 Relic'],
+                    optionDesc:['Lose a Random Relic'],
                     link:[-1],
                 },{
                     desc:
@@ -1239,7 +1243,7 @@ pain jets through your arm.
 You are able to lift them and take them with some difficulty,
 but your arm continues to hurt.`,
                     option:['Ouch'],
-                    optionDesc:['Gain a Relic, Become Cursed - Pain'],
+                    optionDesc:['Gain a Relic - Bent Pliers, Become Cursed - Pain'],
                     link:[-1],
                 },{
                     desc:`You avoid the forge and continue on your path.`,
@@ -1263,7 +1267,7 @@ from grabbing you as more and more appear.`,
                 },{
                     desc:`The monkeys run after the object you threw.`,
                     option:['Exit'],
-                    optionDesc:['Lose 1 Relic'],
+                    optionDesc:['Lose a Random Relic'],
                     link:[-1],
                 },
             ],
@@ -1683,7 +1687,7 @@ You almost lose consciousness,
 but the smoke dissipates before you can.
 The things are gone.`,
                     option:['Continue'],
-                    optionDesc:['Gain 5 Apparition'],
+                    optionDesc:['Add 5 Apparitions'],
                     link:[-1],
                 },{
                     desc:
@@ -1841,7 +1845,7 @@ who was spared after the Director requested her safety.`,
 `You pick up the book, feeling drained.
 You take it with you on your travels.`,
                     option:['Keep it'],
-                    optionDesc:['Gain 1 Relic'],
+                    optionDesc:['Gain a Relic - Audric Codex'],
                     link:[-1],
                 },
             ],
@@ -1879,7 +1883,7 @@ of the catacombs. There lies a large coffin covered in gems.
 The text on the side is unintelligible, but you can
 recognize strange smoke coming out of the sides.`,
                     option:['Open the Coffin','Don'+"'"+'t'],
-                    optionDesc:['Gain 1 Relic',''],
+                    optionDesc:['Gain a Relic',''],
                     link:[1,3],
                 },{
                     desc:
@@ -1937,7 +1941,7 @@ A card appears in your hand.`,
 `"This could be useful."
 An relic appears in your hand.`,
                     option:['Done'],
-                    optionDesc:['Gain 1 Relic'],
+                    optionDesc:['Gain a Relic'],
                     link:[0],
                 },{
                     desc:
@@ -2338,7 +2342,7 @@ only to realize that he probably died of natural causes.
 Finding not a single trap on his body,
 you take everything you can find of value.`,
                     option:['Take stuff'],
-                    optionDesc:['Gain 1 Relic, Gain 45 Currency'],
+                    optionDesc:['Gain a Relic, Gain 45 Currency'],
                     link:[-1],
                 },{
                     desc:
@@ -2483,7 +2487,7 @@ you notice a strange creature eating something inside.
 When it notices you, it drops its food and runs towards you,
 trying to take your possessions.`,
                     option:['Give it a relic','Run'],
-                    optionDesc:['Lose 1 Relic, Gain 1 Relic',''],
+                    optionDesc:['Lose a Random Relic, Gain a Relic - Mandelbox',''],
                     link:[1,2],
                 },{
                     desc:
@@ -2575,7 +2579,7 @@ you discover that the treasures within are undisturbed.
 At the end, you discover a gold bar.
 It might not have any direct value, but it may have other uses.`,
                     option:['Take it',`Don't`],
-                    optionDesc:['Gain 1 Relic',''],
+                    optionDesc:['Gain a Relic',''],
                     link:[2,1],
                 },{
                     desc:`You won't fall for such an obvious trap.`,
@@ -2666,7 +2670,7 @@ very profitable hedge fund owned by the Management.`,
 `You hand over your money and he adds your information to a list.
 He thanks you for your time as you leave.`,
                     option:['Worth it'],
-                    optionDesc:['Gain 1 Relic'],
+                    optionDesc:['Gain a Relic - Stocks'],
                     link:[-1],
                 },{
                     desc:`It's too risky to be putting your money into things right now.`,
@@ -2725,7 +2729,7 @@ takes a chunk out of you.`,
                 },{
                     desc:`You pick up the box and find useful equipment inside.`,
                     option:['Take it'],
-                    optionDesc:['Gain 1 Relic'],
+                    optionDesc:['Gain a Relic'],
                     link:[-1],
                 },
             ],
@@ -2784,8 +2788,8 @@ There's space for one large book in the center, but it's gone.`,
                     desc:
 `You grab every book you can and
 leave the house with the materials.`,
-                    option:['Gain 1 Relic'],
-                    optionDesc:['Gain 1 Relic'],
+                    option:['Keep them'],
+                    optionDesc:['Gain a Relic - Survival Notes'],
                     link:[-1],
                 },{
                     desc:
@@ -2945,7 +2949,7 @@ You might be able to grab something before you run.`,
                 },{
                     desc:`You grab the box, but you can't tell what's inside.`,
                     option:['Run'],
-                    optionDesc:['Gain 1 Relic'],
+                    optionDesc:['Gain a Relic'],
                     link:[-1],
                 },{
                     desc:`You get out of there.`,
@@ -2955,7 +2959,7 @@ You might be able to grab something before you run.`,
                 },
             ],
         },{
-            name:'The New Ship',id:60,list:0,
+            name:'The New Ship',id:60,list:-1,
             pages:[
                 {
                     desc:
@@ -2970,7 +2974,7 @@ Weird that they didn't just build it in space.`,
                 },{
                     desc:`You tour the shipyard, discovering its many facilities.`,
                     option:['Interesting'],
-                    optionDesc:['Add Glock'],
+                    optionDesc:['Add Glock to Deck'],
                     link:[-1],
                 },{
                     desc:
@@ -2991,16 +2995,56 @@ you spot a strange little tent, nestled among similar other tents.
 It seems the other tents are just shops, but this one is a "Fortune Teller".
 Entering, you're offered a chance to glimpse your future...`,
                     option:['View'],
-                    optionDesc:['Add an Arcana'],
+                    optionDesc:['Choose an Arcana to Add to Deck'],
                     link:[-1],
                 },
             ],
         },{
-            name:'Placeholder Event',id:62,list:-1,
+            name:'',id:62,list:0,
             pages:[
                 {
-                    desc:'${description()}',
-                    option:['Exit'],
+                    desc:'',
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'',id:63,list:0,
+            pages:[
+                {
+                    desc:'',
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'',id:64,list:0,
+            pages:[
+                {
+                    desc:'',
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'',id:65,list:0,
+            pages:[
+                {
+                    desc:'',
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'',id:66,list:0,
+            pages:[
+                {
+                    desc:'',
+                    option:[''],
                     optionDesc:[''],
                     link:[-1],
                 },

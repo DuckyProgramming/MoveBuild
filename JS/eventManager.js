@@ -24,9 +24,58 @@ class eventManager{
         }
     }
     pickEvent(){
-        let index=floor(random(0,this.listing.event.length))
-        this.event=this.listing.event[index]
-        this.listing.event.splice(index,1)
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        let sublist=[]
+        for(let a=0,la=this.listing.event.length;a<la;a++){
+            if(
+                !(this.listing.event[a]==1&&userCombatant.life<5)&&
+                !(this.listing.event[a]==2&&(userCombatant.life<21||userCombatant.life>=userCombatant.base.life))&&
+                !(this.listing.event[a]==3&&(userCombatant.life<14||this.battle.relicManager.total[this.player]<1))&&
+                !(this.listing.event[a]==5&&userCombatant.life<31)&&
+                !(this.listing.event[a]==6&&(userCombatant.life<7||this.battle.nodeManager.world!=1))&&
+                !(this.listing.event[a]==8&&(this.battle.relicManager.total[this.player]<1||this.battle.nodeManager.world!=0))&&
+                !(this.listing.event[a]==9&&(userCombatant.life<6||this.battle.nodeManager.world!=1))&&
+                !(this.listing.event[a]==10&&this.battle.nodeManager.world!=1)&&
+                !(this.listing.event[a]==12&&userCombatant.life<16)&&
+                !(this.listing.event[a]==13&&this.battle.cardManagers[this.player].deck.numberAbstract(10,[[6],[`Ascender's\nBane`]])<=0)&&
+                !(this.listing.event[a]==19&&userCombatant.life<13)&&
+                !(this.listing.event[a]==20&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==22&&this.battle.cardManagers[this.player].deck.numberAbstract(8,[])<=0)&&
+                !(this.listing.event[a]==24&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==25&&userCombatant.life>=userCombatant.base.life-25)&&
+                !(this.listing.event[a]==26&&userCombatant.life<19)&&
+                !(this.listing.event[a]==27&&userCombatant.life<51)&&
+                !(this.listing.event[a]==28&&this.battle.nodeManager.world!=0)&&
+                !(this.listing.event[a]==30&&userCombatant.life<25)&&
+                !(this.listing.event[a]==31&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==32&&this.battle.cardManagers[this.player].deck.numberAbstract(9,[[1]])<=4)&&
+                !(this.listing.event[a]==33&&this.battle.nodeManager.world!=2)&&
+                !(this.listing.event[a]==35&&userCombatant.base.life<11)&&
+                !(this.listing.event[a]==36&&userCombatant.life<7)&&
+                !(this.listing.event[a]==37&&(userCombatant.life<12||this.battle.currency.money[this.player]<25))&&
+                !(this.listing.event[a]==38&&this.battle.nodeManager.world!=0)&&
+                !(this.listing.event[a]==39&&this.battle.nodeManager.world!=0)&&
+                !(this.listing.event[a]==40&&(this.battle.nodeManager.world!=0||this.battle.currency.money[this.player]<100))&&
+                !(this.listing.event[a]==41&&userCombatant.life>=userCombatant.base.life-10)&&
+                !(this.listing.event[a]==42&&userCombatant.life<26)&&
+                !(this.listing.event[a]==43&&this.battle.currency.money[this.player]<250)&&
+                !(this.listing.event[a]==45&&this.battle.currency.money[this.player]<60)&&
+                !(this.listing.event[a]==46&&this.battle.relicManager.total[this.player]<1)&&
+                !(this.listing.event[a]==47&&userCombatant.life>=userCombatant.base.life-6)&&
+                !(this.listing.event[a]==48&&(this.battle.nodeManager.world!=1||this.battle.currency.money[this.player]<125))&&
+                !(this.listing.event[a]==49&&(userCombatant.life<17||userCombatant.base.life<5))&&
+                !(this.listing.event[a]==51&&this.battle.currency.money[this.player]<100)&&
+                !(this.listing.event[a]==52&&userCombatant.life<13)&&
+                !(this.listing.event[a]==55&&userCombatant.life<10)&&
+                !(this.listing.event[a]==56&&this.battle.currency.money[this.player]<40)&&
+                !(this.listing.event[a]==60&&userCombatant.life>=userCombatant.base.life-12)
+            ){
+                sublist.push(this.listing.event[a])
+            }
+        }
+        let index=floor(random(0,sublist.length))
+        this.event=sublist[index]
+        this.listing.event.splice(this.listing.event.indexOf(sublist[index]),1)
     }
     setup(){
         this.complete=false

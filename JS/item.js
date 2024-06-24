@@ -345,6 +345,14 @@ class item{
                     displaySymbol(this.layer,-8,0,30,0,0.6,this.fade)
                     displaySymbol(this.layer,8,0,30,0,0.6,this.fade)
                 break
+                case 'Skill Box':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,123,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,9,0,1,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('0',8,0)
+                break
                 case 'Starflame Prototype':
                     displaySymbol(this.layer,-8,0,11,0,1,this.fade)
                     displaySymbol(this.layer,8,0,8,0,1,this.fade)

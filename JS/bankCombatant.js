@@ -10281,11 +10281,6 @@ combatant.prototype.display=function(){
                             this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
                         }
-                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3&&this.name!='Shadow Trooper'&&this.name!='Soul'){
-                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
-                            this.layer.strokeWeight(4)
-                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
-                        }
                     }
                     if(lcos(this.anim.direction)>0){
                         this.layer.fill(this.flashColor(this.color.eye.back)[0],this.flashColor(this.color.eye.back)[1],this.flashColor(this.color.eye.back)[2],this.fade*this.fades.eye[0])

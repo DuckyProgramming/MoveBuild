@@ -149,11 +149,14 @@ class combatant{
             'Counter Once','Common Temporary Strength','Temporary Strength Convert','Double Damage Without Movement','No Energy','End of Combat Heal','Pristine Per Turn','Colorless Damage All','Stride Next Turn','Stride in 2 Turns',
             'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Buffer','Enemy Death Shiv','Single Splash Damage','Retain Intent','Move Retain Combo',
             'Construct Speed Up','Weak Reverse','Drawn Shiv Draw','Prismatic Bomb Freeze','Prismatic Bomb Poison','Prismatic Bomb Targets','Counter Gun','Counter Bomb','Low Health Construct','Temporary Strength Per Turn',
-            'Single Damage All','Prismatic Bomb Per Turn','Fatigue Splash','Random Deck Card Per Turn','Energy Cycle 2 1','Energy Cycle 2 2','Random Negative Per Turn','Rewind Next Turn','Damage All',
+            'Single Damage All','Prismatic Bomb Per Turn','Fatigue Splash','Random Deck Card Per Turn','Energy Cycle 2 1','Energy Cycle 2 2','Random Negative Per Turn','Rewind Next Turn','Damage All','Armament Bypass',
+            'Burn Strength','Burn Bypass','Basic Boost','Mineral Boost','Cable Boost','Free Defenses','Exhausting Defenses','Strike Range','Skill Cost Down','Exhausting Skills',
+            'Step Draw','Cable Range','Mineral Range','Common Attack Boost','Free Cables','Construct Turn','Construct Dual Block','Metal Per Turn','All Construct Speed Up','Construct Strength',
+            'Construct Dexterity','Gun Temporary Strength','Gun Block','Turn Speed','Extra Turn Block','Turn Reversal','Deluxe Weak',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
-                0,2,1,0,2,1,0,0,1,1,//1
-                1,0,0,2,0,0,1,2,2,0,//2
+                0,2,1,0,2,1,0,0,4,4,//1
+                4,0,0,2,0,0,1,2,2,0,//2
                 2,0,0,0,1,1,2,0,4,2,//3
                 0,1,4,1,0,0,0,2,1,2,//4
                 2,2,0,0,0,0,0,2,0,0,//5
@@ -191,12 +194,15 @@ class combatant{
                 2,0,0,0,1,0,0,0,2,2,//37
                 2,2,2,2,1,1,0,2,0,1,//38
                 0,1,0,0,0,0,2,2,0,0,//39
-                2,0,0,0,2,2,0,2,0,
+                2,0,0,0,2,2,0,2,0,1,//40
+                0,1,0,0,0,1,1,1,0,0,//41
+                1,1,1,1,1,0,0,0,0,0,//42
+                0,0,0,0,0,1,1,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
                 1,0,0,0,0,0,1,0,0,0,//2
-                1,0,2,2,0,0,0,2,3,1,//3
+                1,0,2,4,0,0,0,2,3,1,//3
                 0,1,1,0,0,2,0,1,2,2,//4
                 0,2,3,0,2,2,1,0,1,1,//5
                 0,0,3,0,2,0,0,0,0,0,//6
@@ -233,10 +239,13 @@ class combatant{
                 2,2,2,0,3,2,2,2,2,2,//37
                 0,0,0,0,2,2,2,0,3,2,//38
                 2,2,2,2,2,2,2,2,3,0,//39
-                2,2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//40
+                2,2,2,2,2,2,2,2,2,2,//41
+                2,2,2,2,2,2,2,2,2,2,//42
+                2,2,2,2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
-        //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
+        //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
         for(let a=0;a<this.status.name.length;a++){
             this.status.main.push(0)
             this.status.next.push(0)
@@ -3645,8 +3654,11 @@ class combatant{
                 this.statusEffect('Fragile Speed Up',2)
             }
             if(this.battle.modded(170)){
-                this.offset.position.x=random(-80,80)
-                this.offset.position.y=random(-80,80)
+                let offset=[random(-80,80),random(-80,80)]
+                this.offset.position.x+=offset[0]
+                this.offset.position.y+=offset[1]
+                this.offset.life.x+=offset[0]
+                this.offset.life.y+=offset[1]
             }
             if(this.battle.modded(173)){
                 this.statusEffect('Heal on Hit Taken',1)
@@ -5112,7 +5124,7 @@ class combatant{
                         damage*=2
                     }
                     if(userCombatant.status.main[8]>0){
-                        damage*=userCombatant.status.main[381]>0?1.25:0.75
+                        damage*=this.status.main[426]>0?0.5:userCombatant.status.main[381]>0?1.25:0.75
                     }
                     if(userCombatant.status.main[82]>0){
                         damage*=2
@@ -6688,7 +6700,7 @@ class combatant{
                     case 130: case 235: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0)}; break
                     case 131: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0)}}; break
                     case 132: this.enterStance(1); break
-                    case 133: if(this.id<this.battle.players){this.battle.cardManagers[this.id].reserve.addShuffle(findName('Insight',types.card),0,0)}; break
+                    case 133: if(this.id<this.battle.players){this.battle.cardManagers[this.id].reserve.addAbstract(findName('Insight',types.card),0,0,0,[5],[])}; break
                     case 135: case 343: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addEnergy(this.status.main[a],this.id)};if(this.status.main[a]<0){this.battle.loseEnergyGen(-this.status.main[a],this.id)}else{this.battle.addEnergyGen(this.status.main[a],this.id)} break
                     case 142: case 155: this.charge+=this.status.main[a]; break
                     case 143: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Burn',types.card),0,game.playerNumber+1)}} break
@@ -6760,6 +6772,8 @@ class combatant{
                     case 395: this.status.main[findList('Energy Cycle 2 1',this.status.name)]+=this.status.main[a]; break
                     case 396: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,5,2,0,[],[3])}} break
                     case 397: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[a])} break
+                    case 417: this.metal+=this.status.main[a]; break
+                    case 423: this.battle.setTurn(this.battle.turn.total+this.status.main[a]); break
                     
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
@@ -6873,18 +6887,6 @@ class combatant{
             }
         }
     }
-    flashColor(color){
-        if(this.infoAnim.flash[0]==0&&this.infoAnim.flash[1]==0&&this.infoAnim.flash[2]==0&&this.infoAnim.flash[3]==0){
-            return color
-        }else{
-            return mergeColor(mergeColor(mergeColor(mergeColor(
-                color,
-                [0,125,255],this.infoAnim.flash[3]),
-                [125,255,0],this.infoAnim.flash[2]),
-                [150,150,150],this.infoAnim.flash[1]),
-                [200,0,0],this.infoAnim.flash[0])
-        }
-    }
     tickLate(){
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0){
@@ -6896,6 +6898,23 @@ class combatant{
                     }
                 }
             }
+        }
+    }
+    extraTurn(){
+        if(this.status.main[424]>0){
+            this.addBlock(this.status.main[424])
+        }
+    }
+    flashColor(color){
+        if(this.infoAnim.flash[0]==0&&this.infoAnim.flash[1]==0&&this.infoAnim.flash[2]==0&&this.infoAnim.flash[3]==0){
+            return color
+        }else{
+            return mergeColor(mergeColor(mergeColor(mergeColor(
+                color,
+                [0,125,255],this.infoAnim.flash[3]),
+                [125,255,0],this.infoAnim.flash[2]),
+                [150,150,150],this.infoAnim.flash[1]),
+                [200,0,0],this.infoAnim.flash[0])
         }
     }
     startAnimation(type){
@@ -9296,6 +9315,7 @@ class combatant{
                                 case 16: this.layer.text('On Survival, Gain 25 Currency',40,305+a*10); break
                                 case 17: this.layer.text('Auto-Aims',40,305+a*10); break
                                 case 18: this.layer.text('On Defeat, Gain a Relic',40,305+a*10); break
+                                case 19: this.layer.text('Robot',40,305+a*10); break
 
                             }
                         }

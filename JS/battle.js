@@ -537,7 +537,7 @@ class battle{
     }
     dropDrawShuffle(player,type,level,color){
         if(player<this.cardManagers.length){
-            if(this.cardManagers[player].reserve.addShuffle(type,level,color)){
+            if(this.cardManagers[player].reserve.addAbstract(type,level,color,0,[5],[])){
                 if(this.modded(70)&&!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cardShuffledIndex].spec.includes(5)){
                     this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cardShuffledIndex].spec.push(5)
                 }
@@ -547,7 +547,7 @@ class battle{
     }
     dropDrawShuffleEffect(player,type,level,color,index,effect){
         if(player<this.cardManagers.length){
-            if(this.cardManagers[player].reserve.addShuffleEffect(type,level,color,index,effect)){
+            if(this.cardManagers[player].reserve.addAbstract(type,level,color,0,[6,5],[index,effect])){
                 if(this.modded(70)&&!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cardShuffledIndex].spec.includes(5)){
                     this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cardShuffledIndex].spec.push(5)
                 }
@@ -609,6 +609,7 @@ class battle{
         if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Drawless Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             combatant.status.main[findList('Extra Drawless Turn',combatant.status.name)]--
+            combatant.extraTurn()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
             this.addEnergy(max(0,(this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.getEnergy(this.turn.main)>=1?1:0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
@@ -617,6 +618,7 @@ class battle{
         }else if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
+            combatant.extraTurn()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
             this.addEnergy(max(0,(this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.getEnergy(this.turn.main)>=1?1:0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
@@ -667,7 +669,15 @@ class battle{
         }
     }
     setTurn(value){
-        this.turn.total=value
+        let reverses=0
+        for(let a=0,la=this.players;a<la;a++){
+            reverses+=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].getStatus('Turn Reversal')>0?1:0
+        }
+        if(reverses%2==1){
+            this.turn.total=max(0,this.turn.total*2-value)
+        }else{
+            this.turn.total=value
+        }
         for(let a=0,la=this.players;a<la;a++){
             this.cardManagers[a].allGroupEffect(63)
         }
@@ -723,7 +733,11 @@ class battle{
             }
             if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
                 this.cardManagers[this.turn.main].allEffect(3,47)
-                this.cardManagers[this.turn.main].turnDraw(this.turn.total)
+                if(this.cardManagers[this.turn.main].reserve.cards.length+this.cardManagers[this.turn.main].discard.cards.length<this.cardManagers[this.turn.main].drawAmount&&this.cardManagers[this.turn.main].hand.cards.length>0){
+                    this.cardManagers[this.turn.main].bufferedTurn=30
+                }else{
+                    this.cardManagers[this.turn.main].turnDraw(this.turn.total)
+                }
                 if(this.turn.total==1){
                     this.cardManagers[this.turn.main].allEffect(0,48)
                 }
@@ -896,6 +910,9 @@ class battle{
                 if(userCombatant.getStatus('Double Damage Without Movement')>0){
                     userCombatant.statusEffect('Double Damage Without Movement',-1)
                 }
+                if(card.basic&&userCombatant.getStatus('Step Draw')>0){
+                    this.cardManagers[player].draw(userCombatant.getStatus('Step Draw'))
+                }
             break
             case 4:
                 if(userCombatant.getStatus('Power Draw')>0){
@@ -931,23 +948,29 @@ class battle{
         }
         if(card.cost>=3&&userCombatant.getStatus('3+ Cost Free Discus')>0){
             for(let a=0,la=userCombatant.getStatus('3+ Cost Free Discus');a<la;a++){
-                this.cardManagers[player].hand.addCost(findName('Dual\nDiscus',types.card),0,0,0)
+                this.cardManagers[player].hand.addAbstract(findName('Dual\nDiscus',types.card),0,0,0,[0])
             }
         }
         if(card.cost>=3&&userCombatant.getStatus('3+ Cost Free Upgraded Discus')>0){
             for(let a=0,la=userCombatant.getStatus('3+ Cost Free Upgraded Discus');a<la;a++){
-                this.cardManagers[player].hand.addCost(findName('Dual\nDiscus',types.card),1,0,0)
+                this.cardManagers[player].hand.addAbstract(findName('Dual\nDiscus',types.card),1,0,0,[0])
             }
         }
-        if(card.color==0&&userCombatant.getStatus('Colorless Damage All')>0){
+        if(card.colorless()&&userCombatant.getStatus('Colorless Damage All')>0){
             this.combatantManager.allEffect(43,[userCombatant.getStatus('Colorless Damage All'),userCombatant.id])
         }
         if(card.rarity==0&&userCombatant.getStatus('Common Temporary Strength')>0){
-            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Common Temporary Strength')>0)
+            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Common Temporary Strength'))
         }
         if(card.name=='Fatigue'&&userCombatant.getStatus('Fatigue Splash')>0){
             this.combatantManager.damageAreaID(userCombatant.getStatus('Fatigue Splash'),userCombatant.id,userCombatant.id,userCombatant.tilePosition)
             this.particleManager.particlesBack.push(new particle(this.layer,userCombatant.position.x,userCombatant.position.y,93,[8]))
+        }
+        if(card.spec.includes(25)&&userCombatant.getStatus('Gun Temporary Strength')>0){
+            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Gun Temporary Strength'))
+        }
+        if(card.spec.includes(25)&&userCombatant.getStatus('Gun Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('Gun Block'))
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed])
@@ -1041,10 +1064,12 @@ class battle{
                 }
             }
             for(let a=0,la=amount;a<la;a++){
-                let index=floor(random(0,available.length))
-                this.energy.main[player][available[index]]--
-                available.splice(index,1)
-            }
+                if(available.length>0){
+                    let index=floor(random(0,available.length))
+                    this.energy.main[player][available[index]]--
+                    available.splice(index,1)
+                }
+                }
         }else{
             this.energy.main[player]-=amount
         }
@@ -1105,9 +1130,9 @@ class battle{
                 this.anim[amount>total6(this.energy.main[player])?'energyUp':'energyDown']=1
             }
             this.cardManagers[player].allEffectArgs(2,25,[amount-total6(this.energy.main[player])])
-            if(this.energy.main[player].length>amount){
+            if(total6(this.energy.main[player])>amount){
                 this.loseEnergy(total6(this.energy.main[player])-amount,player)
-            }else if(this.energy.main[player].length<amount){
+            }else if(total6(this.energy.main[player])<amount){
                 this.addEnergy(amount-total6(this.energy.main[player]),player)
             }
         }else{
@@ -2407,7 +2432,7 @@ class battle{
                             this.cardManagers[this.turn.main].draw(1)
                             this.cardManagers[this.turn.main].drops+=floor(random(1,7))
                             if(this.cardManagers[this.turn.main].drops==this.cardManagers[this.turn.main].baseDrops){
-                                this.cardManagers[this.turn.main].drawPrice(1,0)
+                                this.cardManagers[this.turn.main].draw(3,5)
                             }else if(this.cardManagers[this.turn.main].drops>this.cardManagers[this.turn.main].baseDrops){
                                 this.cardManagers[this.turn.main].allEffect(2,41)
                             }
@@ -2755,7 +2780,7 @@ class battle{
                             this.cardManagers[this.turn.main].draw(1)
                             this.cardManagers[this.turn.main].drops+=floor(random(1,7))
                             if(this.cardManagers[this.turn.main].drops==this.cardManagers[this.turn.main].baseDrops){
-                                this.cardManagers[this.turn.main].drawPrice(1,0)
+                                this.cardManagers[this.turn.main].draw(3,5)
                             }else if(this.cardManagers[this.turn.main].drops>this.cardManagers[this.turn.main].baseDrops){
                                 this.cardManagers[this.turn.main].allEffect(2,41)
                             }

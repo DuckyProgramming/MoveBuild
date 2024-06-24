@@ -45,7 +45,7 @@ class purchaseManager{
                         this.purchases.push(new purchase(this.layer,this.battle,0,1040,160+a*140,5,
                             [150],
                             [4],
-                            12
+                            13
                         ))
                     }
                     for(let a=0,la=3;a<la;a++){
@@ -165,9 +165,9 @@ class purchaseManager{
                         let cost=[[120,150],[180,225],[300,375]]
                         for(let a=0,la=group.length;a<la;a++){
                             let index=floor(random(0,list[group[a]].length))
-                            let price=round(random(cost[group[a]][0],cost[group[a]][1]))
+                            let price=random(cost[group[a]][0],cost[group[a]][1])
                             this.purchases.push(new purchase(this.layer,this.battle,-1,[65,195,705,835][a%4],130+floor(a/4)*170,1,
-                                [this.battle.relicManager.hasRelic([269,300,301][group[a]],0)?0:price,this.battle.relicManager.hasRelic([269,300,301][group[a]],1)?0:price],
+                                [round((this.battle.relicManager.hasRelic([269,300,301][group[a]],0)?0.5:1)*price),round((this.battle.relicManager.hasRelic([269,300,301][group[a]],1)?0.5:1)*price)],
                                 [list[group[a]][index],0,0],
                                 group[a]+4
                             ))
@@ -283,7 +283,7 @@ class purchaseManager{
             if(this.purchases[a].tag==tag&&(this.purchases[a].player==player||this.purchases[a].player==-1)){
                 if(value==-1&&this.purchases[a].formerCost[this.purchases[a].player==-1?player:0]==0){
                     this.purchases[a].formerCost[this.purchases[a].player==-1?player:0]=[
-                        this.battle.relicManager.hasRelic(97,0)?100:200,
+                        200,
 
                         floor(random(60,70)),
                         floor(random(100,125)),
@@ -296,7 +296,7 @@ class purchaseManager{
                         floor(random(100,125)),
                         floor(random(140,175)),
 
-                        100,150,200,150,
+                        100,160,200,120,150,
 
                         floor(random(160,200)),
                         floor(random(240,300)),
