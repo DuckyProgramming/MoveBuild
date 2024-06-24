@@ -19800,8 +19800,8 @@ types.card=[
         name:'Titanite',rarity:-1,list:0,
         levels:[
             {effect:[10,10,5],attack:3453,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[15,15,8],attack:3453,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[18,18,10],attack:3453,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[15,15,10],attack:3453,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[16,16,20],attack:3453,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:`Lucky\nCharm`,rarity:-1,list:0,
@@ -21586,11 +21586,11 @@ types.card=[
             {effect:[1],attack:-72,cost:0,target:[0],spec:[4,5,23],class:5},
         ],
     },{
-        name:'Duck\nFur',rarity:0,list:18,
+        name:'Duck\nFluff',rarity:0,list:18,
         levels:[
-            {effect:[],attack:0,cost:0,target:[0],spec:[1,15],limit:10,class:6},
-            {effect:[],attack:0,cost:0,target:[0],spec:[1,15],limit:6,class:6},
-            {effect:[],attack:0,cost:0,target:[0],spec:[1,13],limit:3,class:6},
+            {effect:[],attack:0,cost:2,target:[0],spec:[1,15],limit:6,class:6},
+            {effect:[],attack:0,cost:2,target:[0],spec:[1,15],limit:3f,class:6},
+            {effect:[],attack:0,cost:2,target:[0],spec:[1,13],limit:1,class:6},
         ],
     },{
         name:`Reimu's\nWrath`,rarity:0,list:18,

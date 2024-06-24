@@ -86,7 +86,12 @@ class eventManager{
                 !(this.listing.event[a]==87&&userCombatant.life<16)&&
                 !(this.listing.event[a]==88&&this.battle.relicManager.total[this.player]<1)&&
                 !(this.listing.event[a]==89&&userCombatant.life<31)&&
-                !(this.listing.event[a]==90&&this.battle.currency.money[this.player]<125)
+                !(this.listing.event[a]==90&&this.battle.currency.money[this.player]<125)&&
+                !(this.listing.event[a]==92&&this.battle.cardManagers[this.player].deck.numberAbstract(10,[[6],[`Ascender's\nBane`]])<=0)&&
+                !(this.listing.event[a]==93&&this.battle.currency.money[this.player]<60)&&
+                !(this.listing.event[a]==94&&(this.battle.currency.money[this.player]<200||this.battle.nodeManager.world!=2))&&
+                !(this.listing.event[a]==97&&this.battle.currency.money[this.player]<65)&&
+                !(this.listing.event[a]==99&&this.battle.currency.money[this.player]<40)
 
             ){
                 sublist.push(this.listing.event[a])
@@ -183,7 +188,7 @@ class eventManager{
                 ,this.posKey,200)
             this.layer.textSize(12)
             for(let b=0,lb=this.pages[a].option.length;b<lb;b++){
-                this.layer.text(this.pages[a].option[b],this.posKey,300+b*50)
+                this.layer.text(this.pages[a].option[b],this.posKey,300+b*50-(this.pages[a].optionDesc[b].length>0?2:0))
             }
             this.layer.textSize(8)
             for(let b=0,lb=this.pages[a].optionDesc.length;b<lb;b++){
@@ -193,7 +198,7 @@ class eventManager{
             this.layer.stroke(0,this.fade[a]*this.primaryFade)
             this.layer.strokeWeight(1)
             for(let b=0,lb=this.pages[a].option.length;b<lb;b++){
-                this.layer.rect(this.posKey,300+b*50,180,30,5)
+                this.layer.rect(this.posKey,300+b*50,220,30,5)
             }
             this.layer.noStroke()
         }
@@ -1055,22 +1060,70 @@ class eventManager{
                         }
                     break
                     case 91:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,3,16])
+                        }else if(this.page==0&&a==1){
+                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[game.playerNumber+5,3])
+                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[game.playerNumber+5,3])
+                        }
                     break
                     case 92:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].deck.removeAbstract(6,[[6]])
+                        }else if(this.page==0&&a==1){
+                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[game.playerNumber+2,3])
+                            this.battle.relicManager.addRelic(findInternal('Curse Strength',types.relic),this.player)
+                        }
                     break
                     case 93:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(60,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Random Value',types.relic),this.player)
+                        }
                     break
                     case 94:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(200,this.player)
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,3,6])
+                        }
                     break
                     case 95:
+                        if(this.page==0&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Duck Hunt',types.encounter)])
+                            this.battle.cardManagers[this.player].hand.add(findName('Hunting\nRifle',types.card),0,0)
+                            this.battle.cardManagers[this.player].hand.add(findName('Hunting\nRifle',types.card),0,0)
+                            this.battle.cardManagers[this.player].hand.add(findName('Hunting\nRifle',types.card),0,0)
+                        }
                     break
                     case 96:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Duck\nFluff',types.card),0,game.playerNumber+2)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                        }
                     break
                     case 97:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(65,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Money\nShower',types.card),0,0)
+                        }
                     break
                     case 98:
+                        if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[43][this.player].active=true
+                            this.battle.overlayManager.overlays[43][this.player].activate()
+                        }
                     break
                     case 99:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(40,this.player)
+                            this.battle.cardManagers[this.player].deck.add(findName('Titanite',types.card),0,0)
+                        }
                     break
                     case 100:
                     break

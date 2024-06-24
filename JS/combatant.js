@@ -1450,7 +1450,7 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Void Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Void Duck': case 'Golden Duck':
                 this.anim={direction:direction,eye:[0,0],legs:[{top:24,length:{top:10}},{top:24,length:{top:10}}],arms:[{top:54,length:{top:10}},{top:54,length:{top:10}}]}
                 this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1}}
                 this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
@@ -1484,6 +1484,12 @@ class combatant{
                         this.color.outline=[160,40,200]
                         this.fades.outline=1
                         this.trigger.display.outline=true
+                    break
+                    case 'Golden Duck':
+                        this.color={eye:{back:[0,0,0]},beak:{main:[255,235,160],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,215,85],body:[255,205,75],legs:[255,190,60],arms:[255,195,65]}}
+                        this.color.shine=[255,245,145]
+                        this.fades.shine=1
+                        this.trigger.display.shine=true
                     break
                 }
             break
@@ -3994,7 +4000,7 @@ class combatant{
                     this.graphics.arms[g].bottom.y=this.graphics.arms[g].middle.y
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -4526,6 +4532,9 @@ class combatant{
                         case 15:
                             this.intent=(this.turnsAlive-1)%this.attack.length
                             this.move.type=this.turnsAlive%6>=3?9:0
+                        break
+                        case 16:
+                            this.intent=this.turnsAlive>=4?1:0
                         break
                     }
                 }
@@ -6994,7 +7003,7 @@ class combatant{
             break
             case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck':
             case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Slimoid': case 'Big Slimoid':
-            case 'Modicum': case 'Rock Golem': case 'Shield Particle':  case 'Bush Thing': case 'Fireball': case 'Fungling': case 'Bee': case 'Pixie': case 'Darkblot': case 'Lead Brick':
+            case 'Modicum': case 'Rock Golem': case 'Shield Particle':  case 'Bush Thing': case 'Fireball': case 'Fungling': case 'Bee': case 'Pixie': case 'Darkblot': case 'Lead Brick':  case 'Golden Duck':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -7536,7 +7545,7 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck':  case 'Golden Duck':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -9319,6 +9328,7 @@ class combatant{
                                 case 17: this.layer.text('Auto-Aims',40,305+a*10); break
                                 case 18: this.layer.text('On Defeat, Gain a Relic',40,305+a*10); break
                                 case 19: this.layer.text('Robot',40,305+a*10); break
+                                case 20: this.layer.text('On Defeat, Gain 100 Currency',40,305+a*10); break
 
                             }
                         }
@@ -9588,6 +9598,10 @@ class combatant{
                 if(this.spec.includes(18)){
                     this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].active=true
                     this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].activate([0,[{type:2,value:[]}]])
+                }
+                if(this.spec.includes(20)){
+                    this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].active=true
+                    this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].activate([0,[{type:0,value:[100]}]])
                 }
                 if(this.name=='Prestige'&&this.base.life>10){
                     this.doubleHalf()

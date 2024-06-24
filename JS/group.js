@@ -2734,12 +2734,15 @@ class group{
                 type==8&&args[0]==this.cards[a].rarity&&args[1]==this.cards[a].level
             ){
                 if(this.id==0){
-                    this.remove(a)
+                    if(this.remove(a)){
+                        a--
+                        la--
+                    }
                 }else{
                     this.cards.splice(a,1)
+                    a--
+                    la--
                 }
-                a--
-                la--
                 if(type==1||type==2||type==3||type==4||type==5){
                     a=la
                 }

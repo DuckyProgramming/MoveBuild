@@ -156,6 +156,7 @@ types={
         {name:'Concentric',life:177,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunaria in never spawning`},
         {name:'Embodimental Destabilization',life:202,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[1,1,1,1]}],description:`This is getting out of hand!`},
         {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[18]},{type:300,effect:[3]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
+        {name:'Golden Duck',life:38,behavior:16,spec:[20],move:{type:0,speed:3},attack:[{type:21,effect:[]},{type:68,effect:[]}],description:`Why is this thing alive?`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -964,6 +965,9 @@ types={
         {name:'Call Button',internal:'Click to Swap',id:317,rarity:-1,list:0,description:'Click to Draw a Card and Discard a Card\n1 Use Per Encounter'},
         {name:'A Brief History of Time',internal:'Turn 10 Turn',id:318,rarity:-1,list:0,description:'On Turn 10, Take Another Turn'},
         {name:'The Road to Reality',internal:'Turn 5 Buffer',id:319,rarity:-1,list:0,description:'On Turn 5, Gain 2 Buffer'},
+
+        {name:'Hina Charm',internal:'Curse Strength',id:320,rarity:-1,list:0,description:'On Turn 5, Gain 2 Buffer'},
+        {name:'Barbcoin',internal:'Random Value',id:321,rarity:-1,list:0,description:'Sell Value is Dynamic'},
 
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,temp:false,description:''},
@@ -3870,8 +3874,23 @@ you if you'd like to buy something.`,
             name:'Double-Slit Experiment',id:91,list:0,
             pages:[
                 {
-                    desc:'',
-                    option:[''],
+                    desc:
+`Breaking into a physicists' laboratory, you find him working
+at his new experiment and not paying attention as he sneak in.
+Making your way to his storage vault, you find where he's been
+storing his spectral creations.
+Suddenly, you hear him approaching. There's little time.`,
+                    option:['Take a Spectral Cube','Take a Jar of Spectral Dust','Run'],
+                    optionDesc:['Open a Spectral Pack','Add 2 Random Spectral Cards to Deck',''],
+                    link:[1,1,2],
+                },{
+                    desc:'He sees you, but you get away in time.',
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:'You manage to escape.',
+                    option:['leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -3880,8 +3899,30 @@ you if you'd like to buy something.`,
             name:'Collection of Misfortune',id:92,list:0,
             pages:[
                 {
-                    desc:'',
-                    option:[''],
+                    desc:
+`An aquamarine-haired girl stands in the forest ahead of you.
+She notices you right away. "Looks like you're quite cursed.
+I could help you with that."`,
+                    option:['Accept Help','Embrace Her','Leave'],
+                    optionDesc:['Remove All Curses','Become Cursed, Gain a Relic - Hina Charm',''],
+                    link:[1,2,3],
+                },{
+                    desc:'She whispers something, and you feel your curses fading away.',
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`She tries to push you aside, but you can already feel the
+cursed energy entering you - you're helping her now.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`She giggles as you leave.
+"You're as wary as every, huh?`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -3890,28 +3931,55 @@ you if you'd like to buy something.`,
             name:'Crypto Bro',id:93,list:0,
             pages:[
                 {
-                    desc:'',
-                    option:[''],
+                    desc:
+`A man walks up to you, advertisement in hand.
+"Invest in Barbcoin!" he tells you. "Guaranteed returns!"
+He explains how much your investment could be worth one day.`,
+                    option:['Invest','Decline'],
+                    optionDesc:['Lose 60 Currency',''],
+                    link:[1,2],
+                },{
+                    desc:
+`You hand over your money and receive a marker on a ledger.
+It'll be worth money at some point, right?`,
+                    option:['Worth?'],
+                    optionDesc:['Gain a Relic - Barbcoin'],
+                    link:[-1],
+                },{
+                    desc:`You're not taking that risk.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
             ],
         },{
-            name:'Suspicious Shack',id:94,list:0,
+            name:'Destined Return',id:94,list:0,
             pages:[
                 {
-                    desc:'',
-                    option:[''],
-                    optionDesc:[''],
-                    link:[-1],
+                    desc:
+`You see a familiar tent.
+Yes, it's the fortune teller again.
+This time, though, the service will be paid...`,
+                    option:['View','Decline'],
+                    optionDesc:['Lose 200 Currency, Choose an Arcana to Add to Deck',''],
+                    link:[-1,-1],
                 },
             ],
         },{
             name:'Duck Hunt',id:95,list:0,
             pages:[
                 {
-                    desc:'',
-                    option:[''],
+                    desc:
+`A group of hunters carrying rifles emerge out of a forest.
+Noticing you, one introduces himself as Hunterbob and asks if
+you'd like to go with them on the hunting trip - they've
+spotted a bunch of ducks at the nearby lake.`,
+                    option:['Join Them','Decline'],
+                    optionDesc:['Start Fight',''],
+                    link:[-2,1],
+                },{
+                    desc:'You let them leave without you.',
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -3920,8 +3988,23 @@ you if you'd like to buy something.`,
             name:'Fluffy Duck',id:96,list:0,
             pages:[
                 {
-                    desc:'',
-                    option:[''],
+                    desc:
+`Suddenly, you see a fluffy duck rolling down the road.
+Moving at a constant fast speed, it looks like getting hit
+by him might hurt, but the fluff might cushion the impact.`,
+                    option:['Brace For Impact','Run'],
+                    optionDesc:['Become Cursed - Duck Fluff',''],
+                    link:[1,2],
+                },{
+                    desc:
+`While covered in duck fluff, you're unhurt.
+Seeing him knocked out, you take what you find on him.`,
+                    option:['Take His Stuff'],
+                    optionDesc:['Gain a Relic'],
+                    link:[-1],
+                },{
+                    desc:'You get out of the way, and he keeps rolling down the road.',
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -3930,8 +4013,21 @@ you if you'd like to buy something.`,
             name:'Financial Products',id:97,list:0,
             pages:[
                 {
-                    desc:'',
-                    option:[''],
+                    desc:
+`An eager duck appears before you, with a disk in his hand.
+"For just a small initial price you can win endless riches!" he exclaims.
+"Come on, take the deal!"`,
+                    option:['Buy','Decline'],
+                    optionDesc:['Lose 65 Currency',''],
+                    link:[1,2],
+                },{
+                    desc:'Taking your money, he gives you the disk.',
+                    option:['Take it'],
+                    optionDesc:['Add a Money Shower to Deck'],
+                    link:[-1],
+                },{
+                    desc:'Unable to get him to leave, you beat him up.',
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -3940,8 +4036,24 @@ you if you'd like to buy something.`,
             name:'Coin Flip',id:98,list:0,
             pages:[
                 {
-                    desc:'',
-                    option:[''],
+                    desc:
+`Suddenly, you find yourself face-to-face with a man,
+with his nametag reading "The Dealer". He asks you if
+you'd like a chance to duplicate your best cards -
+but with the caveat that you might lose it entirely.`,
+                    option:['Play','Decline'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:`He flips his coin...`,
+                    option:['Find Out'],
+                    optionDesc:['Randomly Double or Nothing a Card'],
+                    link:[-1],
+                },{
+                    desc:
+`You turn away, and he packs up and leaves
+to find the next victim to scam.`,
+                    option:['Exit'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -3950,14 +4062,45 @@ you if you'd like to buy something.`,
             name:'Duck Mines',id:99,list:0,
             pages:[
                 {
-                    desc:'',
+                    desc:
+`You encounter a group of work ducks near a mineshaft.
+One of them drags a cart of green minerals while another
+carries several pickaxes. They look ragged and dirty,
+not exactly the richest ducks around. One approaches you.
+"Would you be interestesd in buying some of the minerals
+from us? I'll give you a discount!"`,
+                    option:['Buy Titanite','Decline'],
+                    optionDesc:['Lose 40 Currency, Add a Titanite to Deck',''],
+                    link:[1,2],
+                },{
+                    desc:
+`He hands you the mineral and celebrates with the others,
+before they leave as a group down the road.`,
+                    option:['Take it'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:'They head back to the road, slowly moving.',
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },/*{
+            name:'Fake Adventure',id:100,list:0,
+            pages:[
+                {
+                    desc:
+`As you walk along the road, you are suddenly surprised by a
+girl running toward you, dressed in red shrine maiden's clothing.
+"You're the one I've been looking for!" she shouts as she approaches.`,
                     option:[''],
                     optionDesc:[''],
                     link:[-1],
                 },
             ],
         },{
-            name:'Shining Castle',id:100,list:0,
+            name:'Shining Castle',id:101,list:0,
             pages:[
                 {
                     desc:'',
@@ -3967,7 +4110,7 @@ you if you'd like to buy something.`,
                 },
             ],
         },{
-            name:'',id:101,list:0,
+            name:'Graveyard',id:102,list:0,
             pages:[
                 {
                     desc:'',
@@ -3977,7 +4120,7 @@ you if you'd like to buy something.`,
                 },
             ],
         },{
-            name:'',id:102,list:0,
+            name:'Cissni Peak',id:103,list:0,
             pages:[
                 {
                     desc:'',
@@ -3986,17 +4129,7 @@ you if you'd like to buy something.`,
                     link:[-1],
                 },
             ],
-        },{
-            name:'',id:103,list:0,
-            pages:[
-                {
-                    desc:'',
-                    option:[''],
-                    optionDesc:[''],
-                    link:[-1],
-                },
-            ],
-        },
+        },*/
     ],color:{
         card:[
             {
@@ -5502,6 +5635,15 @@ you if you'd like to buy something.`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Dihole 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
         },
 
         /*{
@@ -5530,6 +5672,19 @@ you if you'd like to buy something.`,
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Dihole 5'],class:0,world:-1,
+            name:'Duck Hunt',
+            player:{position:[[{x:4,y:4}],[{x:4,y:3},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:2,y:0},name:'Duck'},
+                {position:{x:0,y:2},name:'Duck'},
+                {position:{x:2,y:2},name:'Duck'},
+                {position:{x:2,y:4},name:'Duck'},
+                {position:{x:4,y:2},name:'Duck'},
+                {position:{x:0,y:0},name:'Golden Duck'},
             ],reinforce:[
             ],
         },{

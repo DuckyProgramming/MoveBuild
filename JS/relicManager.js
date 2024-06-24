@@ -37,6 +37,7 @@ class relicManager{
                 case 4: case 18: case 37: case 38: case 39: case 42: case 43: case 44: case 59: case 60:
                 case 63: case 64: case 70: case 73: case 78: case 90: case 93: case 108: case 111: case 118:
                 case 139: case 201: case 204: case 205: case 244: case 254: case 293: case 298: case 308: case 317:
+                case 321:
                     this.detail.push([])
                     for(let b=0,lb=this.battle.players;b<lb;b++){
                         this.detail[this.detail.length-1].push(0)
@@ -993,6 +994,9 @@ class relicManager{
                             if(this.active[256][a+1]>0){
                                 this.getPlayer(a).statusEffect('Fragile Damage Up',this.active[256][a+1]*2)
                             }
+                            if(this.active[320][a+1]>0){
+                                this.getPlayer(a).statusEffect('Strength',this.active[320][a+1]*this.battle.cardManagers[a].deck.numberAbstract(4,[[6]]))
+                            }
                             if(this.active[39][a+1]>0){this.detail[39][a]=0}
                             if(this.active[108][a+1]>0){this.detail[108][a]=0}
                             if(this.active[206][a+1]>0){this.detail[206][a][0]=0}
@@ -1579,6 +1583,15 @@ class relicManager{
                 }
             break
             case 7://entering node [node]
+                for(let a=0,la=this.relics.length;a<la;a++){
+                    if(this.relics[a].type==321){
+                        if(this.detail[321][this.relics[a].player]==0){
+                            this.relics[a].value+=20
+                        }else{
+                            this.relics[a].value=floor(this.relics[a].value*0.9)
+                        }
+                    }
+                }
                 for(let a=0,la=this.battle.players;a<la;a++){
                     if(this.active[91][a+1]>0&&args[0]!=4){
                         this.battle.addCurrency(20*this.active[91][a+1],a)
@@ -1632,6 +1645,7 @@ class relicManager{
                             }
                         break
                     }
+                    if(this.active[321][a+1]>0&&this.detail[321][a]==0&&floor(random(0,10))==0){this.detail[321][a]=1}
                 }
                 if(this.battle.modded(39)){
                     for(let a=0,la=this.battle.players;a<la;a++){

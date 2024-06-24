@@ -2354,6 +2354,20 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('5',8,-3)
                 break
+                case 'Curse Strength':
+                    displaySymbol(this.layer,-8,0,40,0,1.2,this.fade)
+                    displaySymbol(this.layer,-8,0,11,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Random Value':
+                    displaySymbol(this.layer,0,0,28,0,1,this.fade)
+                    displaySymbol(this.layer,0,0,64,0,1,this.fade)
+                break
 
             }
             if(value){

@@ -6041,7 +6041,7 @@ combatant.prototype.display=function(){
                     this.layer.quad(-12,-69,12,-69,8,-75,-8,-75)
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Fat Duck': case 'Void Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Fat Duck': case 'Void Duck':  case 'Golden Duck':
                 if(this.name=='Void Duck'&&this.trigger.display.outline){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.outline)[0],this.flashColor(this.color.outline)[1],this.flashColor(this.color.outline)[2],this.fade*this.fades.outline)
@@ -6120,6 +6120,12 @@ combatant.prototype.display=function(){
                     this.layer.fill(this.flashColor(this.color.skin.head)[0],this.flashColor(this.color.skin.head)[1],this.flashColor(this.color.skin.head)[2],this.fade*this.fades.skin.head)
                     this.layer.noStroke()
                     this.layer.ellipse(0,-38,27)
+                }
+                if(this.name=='Golden Duck'&&this.trigger.display.shine){
+                    this.layer.noFill()
+                    this.layer.stroke(this.flashColor(this.color.shine)[0],this.flashColor(this.color.shine)[1],this.flashColor(this.color.shine)[2],this.fade*this.fades.shine)
+                    this.layer.strokeWeight(3)
+                    this.layer.arc(0,-38,21,21,-165,-105)
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)>0){
