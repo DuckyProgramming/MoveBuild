@@ -295,7 +295,7 @@ class battle{
             this.cardManagers[a].clear()
             this.cardManagers[a].copyAntiInnate(0,1,0,0)
             this.cardManagers[a].standardBase()
-            this.cardManagers[a].shuffle(1)
+            this.cardManagers[a].shuffleStart(1)
             this.cardManagers[a].copyAntiInnate(0,1,1,0)
             if(variants.transcend){
                 this.cardManagers[a].allGroupEffect(88)
@@ -1813,6 +1813,8 @@ class battle{
                 this.combatantManager.displayInfo(stage.scene)
                 this.eventManagers.forEach(eventManager=>eventManager.display())
                 this.overlayManager.display()
+                this.relicManager.display(stage.scene)
+                this.itemManager.display(stage.scene)
             break
             case 'graphic':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
@@ -2180,6 +2182,8 @@ class battle{
                 this.eventManagers.forEach(eventManager=>eventManager.update())
                 this.combatantManager.update(scene)
                 this.overlayManager.update()
+                this.relicManager.update(stage.scene)
+                this.itemManager.update(stage.scene)
                 for(let a=0,la=this.anim.deck.length;a<la;a++){
                     this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20}),1,1.5,5)
                     this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20}),1,1.5,5)
@@ -2552,6 +2556,8 @@ class battle{
                     this.overlayManager.onClick()
                 }else{
                     this.eventManagers.forEach(eventManager=>eventManager.onClick())
+                    this.relicManager.onClick(stage.scene)
+                    this.itemManager.onClick(stage.scene)
                 }
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})&&
@@ -2948,6 +2954,8 @@ class battle{
                             break
                         }
                     }
+                    this.relicManager.onKey(stage.scene,key,code)
+                    this.itemManager.onKey(stage.scene,key,code)
                 }
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
                     if(((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2)&&

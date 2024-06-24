@@ -81,12 +81,12 @@ class eventManager{
                 !(this.listing.event[a]==79&&userCombatant.life<27)&&
                 !(this.listing.event[a]==81&&(this.battle.cardManagers[this.player].deck.numberAbstract(4,[[1]])<=4||this.battle.cardManagers[this.player].deck.numberAbstract(4,[[2]])<=4))&&
                 !(this.listing.event[a]==84&&(userCombatant.base.life<11||this.battle.currency.money[this.player]<25))&&
-                !(this.listing.event[a]==85&&this.battle.currency.money[this.player]<100)&&
+                !(this.listing.event[a]==85&&this.battle.currency.money[this.player]<75)&&
                 !(this.listing.event[a]==86&&this.battle.currency.money[this.player]<150)&&
                 !(this.listing.event[a]==87&&userCombatant.life<16)&&
                 !(this.listing.event[a]==88&&this.battle.relicManager.total[this.player]<1)&&
                 !(this.listing.event[a]==89&&userCombatant.life<31)&&
-                !(this.listing.event[a]==90&&this.battle.currency.money[this.player]<75)
+                !(this.listing.event[a]==90&&this.battle.currency.money[this.player]<125)
 
             ){
                 sublist.push(this.listing.event[a])
@@ -130,6 +130,30 @@ class eventManager{
                         }
                     }
                 }
+            break
+            case 85:
+                let possible=[]
+                for(let a=1,la=game.playerNumber+1;a<la;a++){
+                    if(!game.player.includes(a)){
+                        possible.push(a)
+                    }
+                }
+                this.selection=[]
+                this.selected=[]
+                for(let a=0,la=3;a<la;a++){
+                    let index=floor(random(0,possible.length))
+                    this.selection.push(possible[index])
+                    this.pages[0].option[a]=types.combatant[possible[index]].name
+                    this.pages[0].optionDesc[a]='Lose 25 Currency, Add a Card'
+                    this.pages[0].link[a]=1
+                    possible.splice(index,1)
+                    this.selected.push(0)
+                }
+            break
+            case 88:
+                this.selection=this.battle.relicManager.getRandomRelic(this.player)
+                this.pages[0].optionDesc[0]=`Lose Relic - ${types.relic[this.selection].name}`
+                this.pages[0].optionDesc[1]=`Lose Relic - ${types.relic[this.selection].name}`
             break
         }
     }
@@ -932,24 +956,103 @@ class eventManager{
                         }
                     break
                     case 81:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].randomEffect(0,52,[1])
+                            this.battle.cardManagers[this.player].randomEffect(0,52,[1])
+                        }else if(this.page==0&&a==1){
+                            this.battle.cardManagers[this.player].randomEffect(0,52,[2])
+                            this.battle.cardManagers[this.player].randomEffect(0,52,[2])
+                        }else if(this.page==1&&a==0){
+                            this.battle.addCurrency(5,this.player)
+                        }
                     break
                     case 82:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[93][this.player].active=true
+                            this.battle.overlayManager.overlays[93][this.player].activate()
+                        }
                     break
                     case 83:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[87][this.player].active=true
+                            this.battle.overlayManager.overlays[87][this.player].activate()
+                        }
                     break
                     case 84:
+                        if(this.page==0&&a==0){
+                            this.harmMax(userCombatant,10)
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(25,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Shuffle Miracle',types.relic),this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[5][this.player].active=true
+                            this.battle.overlayManager.overlays[5][this.player].activate()
+                        }
                     break
                     case 85:
+                        for(let b=0,lb=3;b<lb;b++){
+                            if(this.page==0&&a==b&&this.selected[b]==0){
+                                this.battle.loseCurrency(25,this.player)
+                                this.selected[b]=1
+                                this.pages[0].option[b]='Purchased'
+                                this.pages[0].optionDesc[b]=''
+                                this.pages[0].link[b]=0
+                                this.battle.overlayManager.overlays[3][this.player].active=true
+                                this.battle.overlayManager.overlays[3][this.player].activate([0,3,20,this.selection[b]])
+                            }
+                        }
                     break
                     case 86:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(150,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('11 of\nNothings',types.card),0,0)
+                        }else if(this.page==2&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('1 of\nNothings',types.card),0,0)
+                        }
                     break
                     case 87:
+                        if(this.page==0&&a==0){
+                            this.harm(userCombatant,15)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Click to Swap',types.relic),this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.addCurrency(120,this.player)
+                        }
                     break
                     case 88:
+                        if(this.page==0&&(a==0||a==1)){
+                            this.battle.relicManager.loseRelic(this.selection,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.addCurrency(325,this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[15][this.player].active=true
+                            this.battle.overlayManager.overlays[15][this.player].activate([])
+                            this.battle.overlayManager.overlays[15][this.player].args[1]=2
+                        }
                     break
                     case 89:
+                        if(this.page==0&&a==1){
+                            this.harm(userCombatant,10)
+                        }else if(this.page==0&&a==2){
+                            this.harm(userCombatant,30)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addSetRelic(0,this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.relicManager.addSetRelic(1,this.player)
+                        }else if(this.page==3&&a==0){
+                            this.battle.relicManager.addSetRelic(2,this.player)
+                        }
                     break
                     case 90:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(125,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Turn 10 Turn',types.relic),this.player)
+                        }else if(this.page==1&&a==1){
+                            this.battle.relicManager.addRelic(findInternal('Turn 5 Buffer',types.relic),this.player)
+                        }
                     break
                     case 91:
                     break

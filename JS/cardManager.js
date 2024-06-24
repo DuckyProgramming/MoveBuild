@@ -178,6 +178,9 @@ class cardManager{
     shuffle(group){
         this.getList(group).shuffle()
     }
+    shuffleStart(group){
+        this.getList(group).shuffleStart()
+    }
     allEffect(group,effect){
         this.getList(group).allEffect(effect)
     }

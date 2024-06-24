@@ -5745,7 +5745,20 @@ class card{
                     this.layer.strokeWeight(2)
                     this.layer.ellipse(-this.width/2+10,-this.height/2+(this.colorful?15:12),20)
                 }
-                if(spec.includes(11)){
+                if(spec.includes(58)){
+                    this.layer.fill(255,50,50,this.fade)
+                    this.layer.stroke(200,0,0,this.fade)
+                    this.layer.strokeWeight(2)
+                    this.layer.quad(
+                        -this.width/2+10,-this.height/2+12,
+                        -this.width/2+10-4*sqrt(2),-this.height/2+12-4*sqrt(2),
+                        -this.width/2+10,-this.height/2+12-8*sqrt(2),
+                        -this.width/2+10+4*sqrt(2),-this.height/2+12-4*sqrt(2)
+                    )
+                    this.layer.arc(-this.width/2+10,-this.height/2+12,16,16,-45,225)
+                    this.layer.noStroke()
+                    this.layer.ellipse(-this.width/2+10,-this.height/2+12,14)
+                }else if(spec.includes(11)){
                     this.layer.noFill()
                     this.layer.stroke(240,240,40,this.fade)
                     this.layer.strokeWeight(3)
@@ -5768,8 +5781,8 @@ class card{
                         regPoly(this.layer,-this.width/2+10,-this.height/2+12,8,7,7,0)
                     }
                 }else if(spec.includes(35)){
+                    this.layer.strokeJoin(ROUND)
                     if(variants.mtg){
-                        this.layer.strokeJoin(ROUND)
                         switch(this.mtgManaColor){
                             case 0:
                                 this.layer.fill(180,this.fade)
@@ -6299,7 +6312,8 @@ class card{
                 this.battle.combatantManager.combatants[this.player].combo>=cost&&this.spec.includes(11)||
                 this.battle.combatantManager.combatants[this.player].metal>=cost&&this.spec.includes(21)||
                 this.battle.combatantManager.combatants[this.player].getStatus('Twos')>=cost&&this.spec.includes(40)||
-                this.spec.includes(55)
+                this.spec.includes(55)||
+                this.spec.includes(58)
             )&&
             !(userCombatant.getStatus('Cannot Move')>0&&this.class==3)&&
             !(userCombatant.stance==3&&this.class==1&&this.attack!=824)&&
@@ -6318,7 +6332,8 @@ class card{
                 this.battle.combatantManager.combatants[this.player].combo>=cost&&this.spec.includes(11)||
                 this.battle.combatantManager.combatants[this.player].metal>=cost&&this.spec.includes(21)||
                 this.battle.combatantManager.combatants[this.player].getStatus('Twos')>=cost&&this.spec.includes(40)||
-                this.spec.includes(55)
+                this.spec.includes(55)||
+                this.spec.includes(58)
             )
         }else{
             this.afford=false

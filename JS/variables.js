@@ -960,6 +960,10 @@ types={
         {name:'Bottled Amaranth',internal:'Innate Skill',id:313,rarity:3,list:0,description:'When Taken, Make a Skill Innate'},
         {name:'Energized Jade',internal:'2 Cost Down Per Turn',id:314,rarity:-1,list:0,description:'Each Turn, 2 Random\nCards Cost 1 Less'},
         {name:'Proof of Donation',internal:'Normal Spectrals',id:315,rarity:-1,list:0,description:'Spectral Cards Have a Chance to\nAppear in Normal Card Rewards'},
+        {name:'Miracle Blessing',internal:'Shuffle Miracle',id:316,rarity:-1,list:0,description:'Add a Miracle to Hand When\nYou Shuffle Your Draw Pile'},
+        {name:'Call Button',internal:'Click to Swap',id:317,rarity:-1,list:0,description:'Click to Draw a Card and Discard a Card\n1 Use Per Encounter'},
+        {name:'A Brief History of Time',internal:'Turn 10 Turn',id:318,rarity:-1,list:0,description:'On Turn 10, Take Another Turn'},
+        {name:'The Road to Reality',internal:'Turn 5 Buffer',id:319,rarity:-1,list:0,description:'On Turn 5, Gain 2 Buffer'},
 
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,temp:false,description:''},
@@ -3706,7 +3710,7 @@ He seems to recognize you.
 We know a lot about you and those like you.
 I'm willing to tell you about the others for a price."
 Who would you like to hear about?`,
-                    option:['','','','Decline'],
+                    option:['','','','Leave'],
                     optionDesc:['Lose 25 Currency, Add a Card','Lose 25 Currency, Add a Card','Lose 25 Currency, Add a Card',''],
                     link:[1,1,1,2],
                 },{
@@ -3792,7 +3796,7 @@ shed, where an engineer is working on his projects.
 "Looks like he likes your stuff, huh?" he tells you.
 "If you let him keep it, I'll make it worth your while.`,
                     option:['Payment','Repairs','Take it Back'],
-                    optionDesc:['Lose Relic -','Lose Relic -',''],
+                    optionDesc:['','',''],
                     link:[1,2,3],
                 },{
                     desc:'Letting him keep your item, he pays you well.',
@@ -3848,13 +3852,13 @@ doesn't look useful, but maybe there's more valuable items within.`,
 except for a girl tending the shelves. As you enter, she asks
 you if you'd like to buy something.`,
                     option:['Buy a Book','Decline'],
-                    optionDesc:['Lose 75 Currency',''],
+                    optionDesc:['Lose 125 Currency',''],
                     link:[1,2],
                 },{
                     desc:'Paying her, you look to find a book you like.',
-                    option:['Take a Book','Take a Book','Take a Book'],
-                    optionDesc:['Add a Relic - A Brief History of Time','Add a Relic - The Road to Reality','Add a Relic - '],
-                    link:[-1],
+                    option:['Take a Book','Take a Book'],
+                    optionDesc:['Add a Relic - A Brief History of Time','Add a Relic - The Road to Reality'],
+                    link:[-1,-1],
                 },{
                     desc:'You look over the books and choose not to buy.',
                     option:['Leave'],

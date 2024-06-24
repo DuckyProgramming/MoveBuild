@@ -400,7 +400,7 @@ class itemManager{
     }
     display(scene){
         switch(scene){
-            case 'battle': case 'map':
+            case 'battle': case 'map': case 'event':
                 for(let a=0,la=this.items.length;a<la;a++){
                     this.items[a].forEach(item=>item.display(this.total[a],false))
                 }
@@ -426,7 +426,7 @@ class itemManager{
     }
     update(scene){
         switch(scene){
-            case 'battle': case 'map':
+            case 'battle': case 'map': case 'event':
                 for(let a=0,la=this.items.length;a<la;a++){
                     this.items[a].forEach(item=>item.update(this.up[a],la,inputs,false))
                 }
@@ -439,11 +439,15 @@ class itemManager{
         }
     }
     onClick(scene){
-        if(dist(inputs.rel.x,inputs.rel.y,25,50)<20&&this.items[0].length>0){
-            this.up[0]=toggle(this.up[0])
-        }
-        if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.items[1].length>0){
-            this.up[1]=toggle(this.up[1])
+        switch(scene){
+            case 'battle': case 'map': case 'shop': case 'event':
+                if(dist(inputs.rel.x,inputs.rel.y,25,50)<20&&this.items[0].length>0){
+                    this.up[0]=toggle(this.up[0])
+                }
+                if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.items[1].length>0){
+                    this.up[1]=toggle(this.up[1])
+                }
+            break
         }
         switch(scene){
             case 'battle':
@@ -507,7 +511,7 @@ class itemManager{
     }
     onKey(scene,key,code){
         switch(scene){
-            case 'battle': case 'map': case 'shop':
+            case 'battle': case 'map': case 'shop': case 'event':
                 if(key=='o'&&this.items[0].length>0){
                     this.up[0]=toggle(this.up[0])
                 }

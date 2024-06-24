@@ -453,7 +453,7 @@ class group{
     exhaustDrawSame(amount){
         this.status[26]+=amount
     }
-    shuffle(){
+    shuffle(after){
         let cards=[]
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards.length>0){
@@ -470,6 +470,22 @@ class group{
         }
         this.shuffled()
     }
+    shuffleStart(){
+        let cards=[]
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards.length>0){
+                cards.push(copyCard(this.cards[0]))
+                this.cards.splice(0,1)
+            }
+        }
+        for(let a=0,la=cards.length;a<la;a++){
+            if(cards.length>0){
+                let index=floor(random(0,cards.length))
+                this.cards.push(copyCard(cards[index]))
+                cards.splice(index,1)
+            }
+        }
+    }
     shuffled(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.status.main[151]>0){
@@ -478,6 +494,7 @@ class group{
         if(userCombatant.status.main[152]>0){
             this.battle.cardManagers[this.player].draw(userCombatant.status.main[152])
         }
+        this.battle.relicManager.activate(16,[this.id,this.player])
     }
     selfLevel(type,level){
         if(this.battle.initialized){
@@ -1612,6 +1629,7 @@ class group{
                 &&!(effect==49&&this.cards[a].cost!=0)
                 &&!(effect==50&&this.cards[a].class!=5)
                 &&!(effect==51&&this.cards[a].spec.includes(57))
+                &&!(effect==52&&(!this.removable(a)||this.cards[a].class!=args[0]&&args[0]!=0))
                 ){
                     list.push(a)
                 }
@@ -1733,7 +1751,7 @@ class group{
                             }
                         }
                     break
-                    case 21:
+                    case 21: case 52:
                         this.remove(index)
                     break
                     case 22:
@@ -2784,6 +2802,8 @@ class group{
                 userCombatant.status.main[findList('Free Attack',userCombatant.status.name)]--
             }else if(effectiveCost!=0&&userCombatant.getStatus('Free Card')>0){
                 userCombatant.status.main[findList('Free Card',userCombatant.status.name)]--
+            }else if(effectiveCost!=0&&spec.includes(58)){
+                userCombatant.life-=effectiveCost
             }else if(effectiveCost!=0&&spec.includes(11)){
                 userCombatant.combo-=effectiveCost
             }else if(effectiveCost!=0&&spec.includes(21)){

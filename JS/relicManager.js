@@ -36,7 +36,7 @@ class relicManager{
             switch(types.relic[a].id){
                 case 4: case 18: case 37: case 38: case 39: case 42: case 43: case 44: case 59: case 60:
                 case 63: case 64: case 70: case 73: case 78: case 90: case 93: case 108: case 111: case 118:
-                case 139: case 201: case 204: case 205: case 244: case 254: case 293: case 298: case 308:
+                case 139: case 201: case 204: case 205: case 244: case 254: case 293: case 298: case 308: case 317:
                     this.detail.push([])
                     for(let b=0,lb=this.battle.players;b<lb;b++){
                         this.detail[this.detail.length-1].push(0)
@@ -160,6 +160,18 @@ class relicManager{
             this.active[index][player+1]-=1
             this.lose(index,player)
         }
+    }
+    getRandomRelic(player){
+        let list=[]
+        for(let a=1,la=this.active.length;a<la;a++){
+            if(this.active[a][player+1]>0){
+                list.push(a)
+            }
+        }
+        if(list.length>0){
+            return list[floor(random(0,list.length))]
+        }
+        return 0
     }
     addRandomRelic(player){
         let possible=[0,0,0,1,1,2]
@@ -984,6 +996,7 @@ class relicManager{
                             if(this.active[39][a+1]>0){this.detail[39][a]=0}
                             if(this.active[108][a+1]>0){this.detail[108][a]=0}
                             if(this.active[206][a+1]>0){this.detail[206][a][0]=0}
+                            if(this.active[317][a+1]>0){this.detail[317][a]=0}
                         }
                         if(this.active[96][0]>0&&args[1]==1){
                             this.battle.combatantManager.allEffect(1,[1-this.active[96][0]*0.2])
@@ -1072,6 +1085,9 @@ class relicManager{
                         }
                     break
                     case 5:
+                        if(this.active[319][a+1]>0){
+                            this.getPlayer(a).statusEffect('Buffer',2*this.active[319][a+1])
+                        }
                         if(this.battle.modded(58)){
                             this.battle.quickReinforce('Management Soldier')
                         }
@@ -1088,6 +1104,11 @@ class relicManager{
                     case 7:
                         if(this.active[174][0]>0){
                             this.battle.combatantManager.allEffect(19,[52*this.active[174][0]])
+                        }
+                    break
+                    case 10:
+                        if(this.active[318][a+1]>0){
+                            this.getPlayer(a).statusEffect('Extra Turn',this.active[318][a+1])
                         }
                     break
                     case 20:
@@ -1731,12 +1752,19 @@ class relicManager{
                     break
                 }
             break
+            case 16://shuffle pile [pile,player]
+                if(this.active[316][args[1]+1]>0&&args[0]==1){
+                    for(let a=0,la=this.active[316][args[1]+1];a<la;a++){
+                        this.battle.cardManagers[args[1]].hand.add(findName('Miracle',types.card),0,0)
+                    }
+                }
+            break
         }
     }
     display(scene,args){
         let lea=this.displayRelics.length
         switch(scene){
-            case 'battle': case 'map':
+            case 'battle': case 'map': case 'event':
                 for(let a=0,la=this.relics.length;a<la;a++){
                     this.relics[a].display(this.total[this.relics[a].player],this.active[types.relic[this.relics[a].type].id][this.relics[a].player+1],undefined,undefined,this.detail[this.relics[a].type][this.relics[a].player])
                 }
@@ -1844,7 +1872,7 @@ class relicManager{
     }
     update(scene,args){
         switch(scene){
-            case 'battle': case 'map':
+            case 'battle': case 'map': case 'event':
                 this.relics.forEach(relic=>relic.update(this.up[relic.player],this.total[relic.player],inputs))
             break
             case 'stash': case 'bossstash':
@@ -1871,7 +1899,16 @@ class relicManager{
     }
     onClick(scene,args){
         switch(scene){
-            case 'battle': case 'map':
+            case 'battle':
+                this.relics.forEach(relic=>relic.onClick(inputs.rel,this.battle))
+                if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.total[0]>0){
+                    this.up[0]=toggle(this.up[0])
+                }
+                if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,100)<20&&this.total[1]>0){
+                    this.up[1]=toggle(this.up[1])
+                }
+            break
+            case 'map': case 'event':
                 if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.total[0]>0){
                     this.up[0]=toggle(this.up[0])
                 }
@@ -1922,7 +1959,7 @@ class relicManager{
     }
     onKey(scene,key,code){
         switch(scene){
-            case 'battle': case 'map':
+            case 'battle': case 'map': case 'event':
                 if(key=='i'&&this.total[0]>0){
                     this.up[0]=toggle(this.up[0])
                 }

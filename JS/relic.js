@@ -2190,10 +2190,11 @@ class relic{
                 break
                 case '6 Turn Turn':
                     displaySymbol(this.layer,-8,0,75,0,1,this.fade)
-                    displaySymbol(this.layer,7,7,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,10,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-10,5,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(15)
-                    this.layer.text('6',7,-2)
+                    this.layer.text('6',7,0)
                 break
                 case 'Duplicate Per Turn':
                     displaySymbol(this.layer,0,-4,89,0,1,this.fade)
@@ -2322,6 +2323,37 @@ class relic{
                     displaySymbol(this.layer,11,0,8,0,0.8,this.fade)
                     displaySymbol(this.layer,-11,0,113,0,0.6,this.fade)
                 break
+                case 'Shuffle Miracle':
+                    displaySymbol(this.layer,-8,0,15,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,14,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                break
+                case 'Click to Swap':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,9,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,3,5,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,-6,120,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                break
+                case 'Turn 10 Turn':
+                    displaySymbol(this.layer,-8,0,75,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('10',8,-3)
+                break
+                case 'Turn 5 Buffer':
+                    displaySymbol(this.layer,-8,0,44,0,1.5,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('5',8,-3)
+                break
 
             }
             if(value){
@@ -2401,6 +2433,11 @@ class relic{
                         this.layer.textSize(6)
                         this.layer.text(`${detail%6+1}/6`,0,-16)
                     break
+                    case 'Click to Swap':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${active-detail}/${active}`,0,-16)
+                    break
                 }
             }
             this.layer.pop()
@@ -2443,5 +2480,18 @@ class relic{
         this.fade=smoothAnim(this.fade,up&&!this.deFade||this.type==0&&total>0,0,1,5)
         this.infoFade=smoothAnim(this.infoFade,up&&dist(inputs.rel.x,inputs.rel.y,position.x,position.y)<20*this.size&&this.type!=0&&overlayed,0,1,5)
         this.anim.active=smoothAnim(this.anim.active,this.active,0,1,5)
+    }
+    onClick(mouse,battle){
+        if(dist(mouse.x,mouse.y,this.position.x,this.position.y)<20){
+            switch(this.internal){
+                case 'Click to Swap':
+                    if(battle.relicManager.detail[this.type][this.player]<battle.relicManager.active[this.type][this.player+1]){
+                        battle.relicManager.detail[this.type][this.player]++
+                        battle.cardManagers[this.player].draw(1)
+                        battle.cardManagers[this.player].hand.discard(1)
+                    }
+                break
+            }
+        }
     }
 }
