@@ -276,6 +276,53 @@ class purchaseManager{
                     }
                 }
             break
+            case 2:
+                if(this.battle.players==1){
+                    let list=variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[0]])
+                    let valid=[]
+                    for(let a=0,la=this.battle.cardManagers[0].deck.cards.length;a<la;a++){
+                        if(!this.battle.cardManagers[0].deck.cards[a].basic){
+                            valid.push(a)
+                        }
+                    }
+                    for(let a=0,la=2;a<la;a++){
+                        if(valid.length>0){
+                            let index=floor(random(0,list[3].length))
+                            let index2=floor(random(0,valid.length))
+                            this.purchases.push(new purchase(this.layer,this.battle,0,450,210+a*240,4,
+                                [0],
+                                [list[3][index],0,variants.junk?types.card[list[3][index]].list:variants.ultraprism||variants.mtg?(types.card[list[3][index]].list<0?0:types.card[list[3][index]].list>=types.color.card.length?0:types.card[list[3][index]].list):variants.prism?types.card[list[3][index]].list:this.battle.player[0],valid[index2]],
+                                19
+                            ))
+                            list[3].splice(index,1)
+                            valid.splice(index2,1)
+                        }
+                    }
+                }else{
+                    for(let a=0,la=this.battle.players;a<la;a++){
+                        let list=variants.mtg?copyArrayStack(this.battle.cardManagers[a].listing.mtg):variants.junk?quadroArray(copyArray(this.battle.cardManagers[a].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[a].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[a].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
+                        let valid=[]
+                        for(let b=0,lb=this.battle.cardManagers[0].deck.cards.length;b<lb;b++){
+                            if(!this.battle.cardManagers[0].deck.cards[b].basic){
+                                valid.push(b)
+                            }
+                        }
+                        for(let b=0,lb=2;b<lb;b++){
+                            if(valid.length>0){
+                                let index=floor(random(0,list[3].length))
+                                let index2=floor(random(0,valid.length))
+                                this.purchases.push(new purchase(this.layer,this.battle,a,270+a*360,210+b*240,4,
+                                    [0,0],
+                                    [list[3][index],0,variants.junk?types.card[list[3][index]].list:variants.ultraprism||variants.mtg?(types.card[list[3][index]].list<0?0:types.card[list[3][index]].list>=types.color.card.length?0:types.card[list[3][index]].list):variants.prism?types.card[list[3][index]].list:this.battle.player[a],valid[index2]],
+                                    19
+                                ))
+                                list[3].splice(index,1)
+                                valid.splice(index2,1)
+                            }
+                        }
+                    }
+                }
+            break
         }
     }
     costChange(player,tag,value){

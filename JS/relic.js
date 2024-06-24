@@ -2307,6 +2307,21 @@ class relic{
                     displaySymbol(this.layer,-6,0,123,0,0.6,this.fade)
                     displaySymbol(this.layer,10,0,58,1.2,this.fade)
                 break
+                case '2 Cost Down Per Turn':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,-4,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',8,-4)
+                    this.layer.text('-1',-8,0)
+                break
+                case 'Normal Spectrals':
+                    displaySymbol(this.layer,-11,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,11,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-11,0,113,0,0.6,this.fade)
+                break
 
             }
             if(value){

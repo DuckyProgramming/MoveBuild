@@ -1367,6 +1367,11 @@ class relicManager{
                         this.battle.cardManagers[args[1]].hand.duplicate(this.active[299][args[1]+1])
                     }
                 }
+                if(this.active[314][args[1]+1]>0){
+                    for(let a=0,la=2*this.active[314][args[1]+1];a<la;a++){
+                        this.battle.cardManagers[args[1]].randomEffect(2,1,[1])
+                    }
+                }
                 if(this.battle.modded(143)){
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].statusEffect(['Burn','Freeze','Shock'][floor(random(0,3))],1)
                 }

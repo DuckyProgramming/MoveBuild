@@ -14,6 +14,7 @@ class nodeManager{
         this.freeMove=0
         this.saveBoss=-1
         this.saveClass=-1
+        this.harmBoss=0
 
         this.initialListing()
     }

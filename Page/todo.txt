@@ -2,89 +2,13 @@ UPDATE 3:
 
 42 new events
 
-[drinking contest]
 
-[remember the first event you saw test]
 
-[choose details about a card to get]
-first, choose if you want a 0 cost, 1 cost, or 2 cost card
-then, choose if you want attack, defense, or skill
-gives you a card reward of 3 choices (may not be enough choices, too bad)
 
-[event - the backdoors]
-get a bozo and make a card erratic
-get a parasite and make a card negative
 
-[the hitman - you can pay to reduce the boss hp by 25%]
 
-[navigator's shed - get 3 free move for a price]
 
-[rebellion against rare cards - choice]
-transform a random basic card
-remove a non-basic card
 
-[duck tech copyright disputes - choice]
-side with the ducks - get a emp gun that helps destroy management robots
-beat him up - gain 3 random common colorless cards, lose health
-do nothing
-
-[purify the energy - lose an energy, but every turn 2 random cards cost 1 less (as a relic)]
-
-[fractured moment - choose to encounter a fight, encounter an elite, or encounter an event]
-
-[too lucky - find money, but you have to pay some back or you get cursed with unlucky (a new curse)]
-
-[the collector - counterpart to antiquarian, sends you into a special shop where you can do special trade offers]
-
-[mystery machine - choose between upgrade a card, remove a card but lose 4 life, and transform a card but lose 8 life]
-
-[late night barbecue - get heal or get a uncommon card, you can choose to not pay, and there's no consequences]
-
-[visit from the moon - choice]
-heal max hp and get a moon curse (new card)
-get 2 copies of lunar soil
-decline
-
-[make the management great again, you can donate currency to get a relic that you can click on to activate an effect]
-
-[something like vampires, replace all defends with shade, that gives block and creates a shadow that retains]
-
-[simulated violence - lose health, add a starry sky (a new card that lets you choose a card from draw to add a copy to hand)]
-
-[ghostly dream - make a card ethereal, or make a card exhaust]
-
-[choice]
-remove 2 random attacks
-remove 2 random defenses
-
-[make a card cost hp instead of energy]
-
-[the aluminum mine - make any card foil]
-
-[miracle blessing - lose max hp, get a relic that gives you a miracle whenever you shuffle your draw pile]
-
-[the archivist - pay 25 to get a card reward from another character, you're offered 3 different characters]
-
-[dev intervention - you can choose to spend money for 11 of nothings, spend less for 6 of nothings, or get 1 of nothings forced onto you]
-
-[the murderer - choice]
-help the guy getting murdered - lose health, gain a specific relic that you can click on to draw and discard a card
-help the murderer - get cash
-
-[the engineer - choice]
-lose a relic (chosen), gain 325 money
-lose a relic (chosen), remove 2 cards
-decline
-
-[trash compactor - choice]
-gain a common relic
-lose 15 hp, get an uncommon relic
-lose 30 hp, get a rare relic
-
-[the bookstore - lose money to get a book]
-a brief history of time - take an extra turn on turn 10
-onto excelsior - gain 2 energy and draw 4 cards on turn 5
-[]
 
 [the physicist - choice]
 open a spectral pack
@@ -110,8 +34,12 @@ hunting rifle - you only get it for this event, if fatal on a duck get cash
 [the miner ducks - pay for the chance to get the card titanite]
 
 [fake adventure - reimu stops you on the road, demanding money]
-fight - get hakurei talisman, lose health
-donate - get orb of duality, lose money
+
+third hakurei tool [true majesty?]
+custom hakurei tool sprites
+
+fight - get tool, lose health
+donate - get tool, lose money
 run - get cursed lol
 
 [can get the card - inchling bowl - damage, all skills cost 1 less] [red and white]

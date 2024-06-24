@@ -19778,9 +19778,9 @@ types.card=[
     },{
         name:'Shade',rarity:-1,list:0,
         levels:[
-            {effect:[16],attack:3450,cost:1,target:[0],spec:[],class:2},
-            {effect:[24],attack:3450,cost:1,target:[0],spec:[],class:2},
+            {effect:[20],attack:3450,cost:1,target:[0],spec:[],class:2},
             {effect:[30],attack:3450,cost:1,target:[0],spec:[],class:2},
+            {effect:[36],attack:3450,cost:1,target:[0],spec:[],class:2},
         ],
     },{
         name:'Starry\nSky',rarity:-1,list:0,
@@ -19804,11 +19804,11 @@ types.card=[
             {effect:[18,18,10],attack:3453,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
-        name:'Hakurei\nTalisman',rarity:-1,list:0,
+        name:`Lucky\nCharm`,rarity:-1,list:0,
         levels:[
-            {effect:[10,2,2,1],attack:3454,cost:1,target:[0],spec:[1,2],class:2},
-            {effect:[16,3,3,1],attack:3454,cost:1,target:[0],spec:[1,2],class:2},
-            {effect:[20,4,4,1],attack:3454,cost:1,target:[0],spec:[1,2],class:2},
+            {effect:[1],attack:-74,cost:0,target:[0],spec:[5],class:8},
+            {effect:[2],attack:-74,cost:0,target:[0],spec:[5],class:8},
+            {effect:[3],attack:-74,cost:0,target:[0],spec:[5],class:8},
         ],
     },{
         name:'Inchling\nBowl',rarity:-1,list:0,
@@ -19830,6 +19830,13 @@ types.card=[
             {effect:[2],attack:3458,cost:0,target:[0],spec:[1],class:11},
             {effect:[3],attack:3458,cost:0,target:[0],spec:[1],class:11},
             {effect:[4],attack:3458,cost:0,target:[0],spec:[1],class:11},
+        ],
+    },{
+        name:'Hakurei\nTalisman',rarity:-1,list:0,
+        levels:[
+            {effect:[10,2,2,1],attack:3454,cost:1,target:[0],spec:[1,2],class:2},
+            {effect:[16,3,3,1],attack:3454,cost:1,target:[0],spec:[1,2],class:2},
+            {effect:[20,4,4,1],attack:3454,cost:1,target:[0],spec:[1,2],class:2},
         ],
     },{
         name:'Hakurei\nOrb',rarity:-1,list:0,

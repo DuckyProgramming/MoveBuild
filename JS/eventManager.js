@@ -12,8 +12,9 @@ class eventManager{
         this.page=0
         this.primaryFade=0
         this.fade=[]
+        this.firstEvent=''
 
-        this.listing={event:[]}
+        this.listing={event:[],complete:[]}
         this.posKey=this.layer.width/2+225*(this.player*2-this.battle.players+1)
     }
     initial(){
@@ -68,13 +69,32 @@ class eventManager{
                 !(this.listing.event[a]==52&&userCombatant.life<13)&&
                 !(this.listing.event[a]==55&&userCombatant.life<10)&&
                 !(this.listing.event[a]==56&&this.battle.currency.money[this.player]<40)&&
-                !(this.listing.event[a]==60&&userCombatant.life>=userCombatant.base.life-12)
+                !(this.listing.event[a]==60&&userCombatant.life>=userCombatant.base.life-12)&&
+                !(this.listing.event[a]==63&&(this.firstEvent==''||this.battle.nodeManager.world==0))&&
+                !(this.listing.event[a]==66&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==68&&this.battle.cardManagers[this.player].deck.numberAbstract(8,[])<=0)&&
+                !(this.listing.event[a]==69&&userCombatant.life<7)&&
+                !(this.listing.event[a]==74&&userCombatant.life<9)&&
+                !(this.listing.event[a]==75&&(userCombatant.life>=userCombatant.base.life-20||this.battle.currency.money[this.player]<35))&&
+                !(this.listing.event[a]==77&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==78&&(userCombatant.life<21||this.battle.cardManagers[this.player].deck.numberAbstract(9,[[2]])<=4))&&
+                !(this.listing.event[a]==79&&userCombatant.life<27)&&
+                !(this.listing.event[a]==81&&(this.battle.cardManagers[this.player].deck.numberAbstract(4,[[1]])<=4||this.battle.cardManagers[this.player].deck.numberAbstract(4,[[2]])<=4))&&
+                !(this.listing.event[a]==84&&(userCombatant.base.life<11||this.battle.currency.money[this.player]<25))&&
+                !(this.listing.event[a]==85&&this.battle.currency.money[this.player]<100)&&
+                !(this.listing.event[a]==86&&this.battle.currency.money[this.player]<150)&&
+                !(this.listing.event[a]==87&&userCombatant.life<16)&&
+                !(this.listing.event[a]==88&&this.battle.relicManager.total[this.player]<1)&&
+                !(this.listing.event[a]==89&&userCombatant.life<31)&&
+                !(this.listing.event[a]==90&&this.battle.currency.money[this.player]<75)
+
             ){
                 sublist.push(this.listing.event[a])
             }
         }
         let index=floor(random(0,sublist.length))
         this.event=sublist[index]
+        this.listing.complete.push(sublist[index])
         this.listing.event.splice(this.listing.event.indexOf(sublist[index]),1)
     }
     setup(){
@@ -86,6 +106,31 @@ class eventManager{
         this.primaryFade=1
         for(let a=0,la=this.pages.length;a<la;a++){
             this.fade.push(0)
+        }
+        if(this.firstEvent==''){
+            this.firstEvent=this.name
+        }
+        switch(this.id){
+            case 63:
+                let correct=floor(random(0,5))
+                this.pages[0].option[correct]=this.firstEvent
+                this.pages[0].link[correct]=1
+                let sublist=copyArray(this.listing.complete)
+                let backlist=copyArray(this.listing.event)
+                for(let a=0,la=5;a<la;a++){
+                    if(a!=correct){
+                        if(sublist.length>0){
+                            let index=floor(random(0,sublist.length))
+                            this.pages[0].option[a]=types.event[sublist[index]].name
+                            sublist.splice(index,1)
+                        }else if(backlist.length>0){
+                            let index=floor(random(0,backlist.length))
+                            this.pages[0].option[a]=types.event[backlist[index]].name
+                            backlist.splice(index,1)
+                        }
+                    }
+                }
+            break
         }
     }
     display(){
@@ -144,6 +189,7 @@ class eventManager{
             case 0:
                 let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                 let tempPage=0
+                let cut=false
                 switch(this.id){
                     case 1:
                         if(this.page==0&&a==0){
@@ -333,7 +379,7 @@ class eventManager{
                     break
                     case 23:
                         if(this.page==0&&a==0){
-                            this.harmMax(userCombatant,userCombatant.base.life/2)
+                            this.harmMax(userCombatant,userCombatant.base.life/4)
                         }else if(this.page==1&&a==0){
                             for(let b=0,lb=5;b<lb;b++){
                                 this.battle.cardManagers[this.player].deck.add(findName('Apparition',types.card),0,0)
@@ -709,15 +755,237 @@ class eventManager{
                         }
                     break
                     case 61:
-                        this.battle.overlayManager.overlays[3][this.player].active=true
-                        this.battle.overlayManager.overlays[3][this.player].activate([0,3,6])
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,3,6])
+                        }
                     break
+                    case 62:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Drunk',types.card),0,game.playerNumber+2)
+                        }else if(this.page==1&&a==0){
+                            this.battle.addCurrency(400,this.player)
+                        }
+                    break
+                    case 63:
+                        if(this.page==1&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                            this.battle.relicManager.addRandomRelic(this.player)
+                        }
+                    break
+                    case 64:
+                        if(this.page>=1&&this.page<=3&&a>=0&&a<=2){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,3,31,[1,2,-99][this.page-1],[1,2,11][a]])
+                        }
+                    break
+                    case 65:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[88][this.player].active=true
+                            this.battle.overlayManager.overlays[88][this.player].activate()
+                            this.battle.cardManagers[this.player].deck.add(findName('Bozo',types.card),0,game.playerNumber+2)
+                        }else if(this.page==0&&a==1){
+                            this.battle.overlayManager.overlays[52][this.player].active=true
+                            this.battle.overlayManager.overlays[52][this.player].activate()
+                            this.battle.cardManagers[this.player].deck.add(findName('Backfire',types.card),0,game.playerNumber+2)
+                        }
+                    break
+                    case 66:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(50,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.nodeManager.harmBoss+=0.4
+                        }
+                    break
+                    case 67:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(40,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.nodeManager.freeMove+=2
+                        }
+                    break
+                    case 68:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[89][this.player].active=true
+                            this.battle.overlayManager.overlays[89][this.player].activate()
+                        }else if(this.page==0&&a==1){
+                            this.battle.overlayManager.overlays[90][this.player].active=true
+                            this.battle.overlayManager.overlays[90][this.player].activate()
+                        }
+                    break
+                    case 69:
+                        if(this.page==0&&a==1){
+                            this.harm(userCombatant,6)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('EMP\nGun',types.card),0,0)
+                        }else if(this.page==2&&a==0){
+                            for(let a=0,la=3;a<la;a++){
+                                this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[0,0])
+                            }
+                        }
+                    break
+                    case 70:
+                        if(this.page==0&&a==0){
+                            this.battle.energyBaseDown(this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('2 Cost Down Per Turn',types.relic),this.player)
+                        }
+                    break
+                    case 71:
+                        if(this.page==0&&a==0){
+                            this.battle.nodeManager.enterNode(0,10,true)
+                        }else if(this.page==0&&a==1){
+                            this.battle.nodeManager.enterNode(1,10,true)
+                        }else if(this.page==0&&a==2){
+                            this.pickEvent()
+                            this.setup()
+                            cut=true
+                        }
+                    break
+                    case 72:
+                        if(this.page==0&&a==0){
+                            this.battle.addCurrency(150,this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.loseCurrency(150,this.player)
+                        }else if(this.page==2&&a==1){
+                            this.battle.loseCurrency(75,this.player)
+                        }else if(this.page==2&&a==2){
+                            this.battle.cardManagers[this.player].deck.add(findName('Unfortunate',types.card),0,game.playerNumber+2)
+                        }else if(this.page==3&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Lucky\nCharm',types.card),0,0)
+                        }
+                    break
+                    case 73:
+                        if(this.page==0&&a==0){
+                            transition.scene='shop'
+                            this.battle.purchaseManager.setup(2)
+                        }
+                    break
+                    case 74:
+                        if(this.page==0&&a==1){
+                            this.harm(userCombatant,4)
+                        }else if(this.page==0&&a==2){
+                            this.harm(userCombatant,8)
+                        }else if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[5][this.player].active=true
+                            this.battle.overlayManager.overlays[5][this.player].activate()
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[6][this.player].active=true
+                            this.battle.overlayManager.overlays[6][this.player].activate()
+                        }else if(this.page==3&&a==0){
+                            this.battle.overlayManager.overlays[9][this.player].active=true
+                            this.battle.overlayManager.overlays[9][this.player].activate()
+                        }
+                    break
+                    case 75:
+                        if(this.page==0&&a==0){
+                            userCombatant.heal(20)
+                        }else if(this.page==0&&a==1){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,floor(random(1,3)),0])
+                        }else if(this.page==1&&a==0){
+                            this.battle.loseCurrency(35,this.player)
+                        }else if(this.page==4&&a==0){
+                            this.harm(userCombatant,1)
+                        }
+                    break
+                    case 76:
+                        if(this.page==0&&a==0){
+                            userCombatant.gainMaxHP(16)
+                            this.battle.cardManagers[this.player].deck.add(findName('Lunar\nNight',types.card),0,game.playerNumber+2)
+                        }else if(this.page==0&&a==1){
+                            this.battle.cardManagers[this.player].deck.add(findName('Lunar\nSoil',types.card),0,0)
+                            this.battle.cardManagers[this.player].deck.add(findName('Lunar\nSoil',types.card),0,0)
+                        }
+                    break
+                    case 77:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(50,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Normal Spectrals',types.relic),this.player)
+                        }
+                    break
+                    case 78:
+                        if(this.page==0&&a==0){
+                            this.harm(userCombatant,20)
+                            this.battle.cardManagers[this.player].deck.removeAbstract(7,[[2]])
+                        }else if(this.page==1&&a==0){
+                            for(let b=0,lb=3;b<lb;b++){
+                                this.battle.cardManagers[this.player].deck.add(findName('Shade',types.card),0,0)
+                            }
+                        }
+                    break
+                    case 79:
+                        if(this.page==0&&a==0){
+                            this.harm(userCombatant,26)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Starry\nSky',types.card),0,0)
+                        }
+                    break
+                    case 80:
+                        if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[91][this.player].active=true
+                            this.battle.overlayManager.overlays[91][this.player].activate()
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[92][this.player].active=true
+                            this.battle.overlayManager.overlays[92][this.player].activate()
+                        }
+                    break
+                    case 81:
+                    break
+                    case 82:
+                    break
+                    case 83:
+                    break
+                    case 84:
+                    break
+                    case 85:
+                    break
+                    case 86:
+                    break
+                    case 87:
+                    break
+                    case 88:
+                    break
+                    case 89:
+                    break
+                    case 90:
+                    break
+                    case 91:
+                    break
+                    case 92:
+                    break
+                    case 93:
+                    break
+                    case 94:
+                    break
+                    case 95:
+                    break
+                    case 96:
+                    break
+                    case 97:
+                    break
+                    case 98:
+                    break
+                    case 99:
+                    break
+                    case 100:
+                    break
+                    case 101:
+                    break
+                    case 102:
+                    break
+                    case 103:
+                    break
+
                 }
-                this.page=this.pages[this.page].link[a]+tempPage
-                if(this.page==-1){
-                    this.complete=true
-                }else if(this.page==-2){
-                    transition.trigger=true
+                if(!cut){
+                    this.page=this.pages[this.page].link[a]+tempPage
+                    if(this.page==-1){
+                        this.complete=true
+                    }else if(this.page==-2){
+                        transition.trigger=true
+                    }
                 }
             break
         }

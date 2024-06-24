@@ -3595,6 +3595,9 @@ class combatant{
     }
     initialBuff(){
         this.turnsAlive=0
+        if((this.spec.includes(2)||this.spec.includes(12))&&this.battle.nodeManager.harmBoss>0){
+            this.life*=1-this.battle.nodeManager.harmBoss
+        }
         if(this.spec.includes(5)){
             let tile=this.battle.tileManager.getTileIndex(this.tilePosition.x,this.tilePosition.y)
             if(tile>=0){

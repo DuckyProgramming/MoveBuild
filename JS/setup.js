@@ -36,9 +36,9 @@ function setup(){
         stage.scene='battle'
         current.setupBattle(types.encounter[1])
 
-            /*transition.trigger=true
+            transition.trigger=true
             transition.scene='event'
-            current.setupSpecificEvent(62)*/
+            current.setupSpecificEvent(81)
 
             /*player(0).size=3
             player(0).goal.anim.direction=-30

@@ -1051,6 +1051,23 @@ function unupgradeCard(base,nonlimiting=false){
 		return result
 	}
 }
+function getIndicesOf(searchString,string,caseSensitive){
+    if(string.length==0){
+        return []
+    }
+    let startIndex=0
+	let index=0
+	let indices=[]
+    if(!caseSensitive){
+        string=string.toLowerCase()
+        searchString=searchString.toLowerCase()
+    }
+    while((index=searchString.indexOf(string,startIndex))>-1){
+        indices.push(index)
+        startIndex=index+string.length
+    }
+    return indices.length
+}
 function quadroArray(base){
 	return [base,base,base,base]
 }

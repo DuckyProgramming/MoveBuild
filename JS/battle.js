@@ -356,6 +356,9 @@ class battle{
         }else{
             this.startTurn()
         }
+        if(this.encounter.class==2&&this.nodeManager.harmBoss>0){
+            this.nodeManager.harmBoss=0
+        }
     }
     setupRest(){
         this.optionManagers.forEach(optionManager=>optionManager.reset())

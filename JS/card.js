@@ -346,6 +346,10 @@ class card{
             case -68: string+=`When Drawn,\nDiscard ${effect[0]} Card${pl(effect[0])}`; break
             case -69: string+=`If Enemy Dies,\nYou Die`; break
             case -70: string+=`When Drawn,\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}\nMake ${effect[2]} Cop${effect[2]!=1?`ies`:`y`}`; break
+            case -71: string+=`When Drawn,\nNext Luck-Based Card\nis Guaranteed to Fail`; break
+            case -72: string+=`When Drawn,\nLose ${effect[0]} Energy\nAdd a Pristine to Hand`; break
+            case -73: string+=`When Drawn,\nLose ${effect[0]} Temporary\nStrength\nLose ${effect[1]} Temporary\nDexterity`; break
+            case -74: string+=`When Drawn,\nNext Luck-Based Card\nis Guaranteed\nDraw ${effect[0]} Card${pl(effect[0])}`; break
 
             //mark n
 
@@ -3806,8 +3810,6 @@ class card{
             case 3447: string+=`Reduce Cost of\nAll Cards in\nHand to ${effect[0]}`; break
             case 3448: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nAdd a Pristine to Hand\nLose ${effect[2]} Health`; break
             case 3449: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target is a Robot,\nApply ${effect[1]} Stun`; break
-            case -71: string+=`When Drawn,\nNext Luck-Based Card\nis Guaranteed to Fail`; break
-            case -72: string+=`When Drawn,\nLose ${effect[0]} Energy\nAdd a Pristine to Hand`; break
             case 3450: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd a Shadow\nto Hand`; break
             case 3451: string+=`Put a Copy of\na Card in Draw\nPile in Your Hand`; break
             case 3452: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal on a Duck,\nGain ${effect[1]} Currency`; break
@@ -3820,7 +3822,7 @@ class card{
             case 3459: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nChoose to Double\nDamage or Block`; break
                 case -131: string+=`Deal ${this.calculateEffect(effect[0]*2,0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
                 case -132: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1]*2,1)} Block`; break
-            case -73: string+=`When Drawn,\nLose ${effect[0]} Temporary\nStrength\nLose ${effect[1]} Temporary\nDexterity`; break
+                
 
 
 
@@ -6057,16 +6059,22 @@ class card{
                             }else{
                                 this.layer.fill(0,this.fade)
                             }
+                            let desc=''
+                            if(!spec.includes(12)){
+                                desc=this.description(attack,effect,spec,target)
+                            }
                             if(this.attack==1691||this.attack==1692||this.attack==1693||this.attack==1694){
                                 this.layer.textSize(7)
                             }else{
-                                this.layer.textSize(name=='Charred\nLizard'||this.name=='Flame of\nNirvana'||this.name=='First\nQuarter'||this.name=='Last\nQuarter'||this.name=='Foehn'||name=='Yukari, Boundary\nof Fantasy'||name=='Keystone\nCannon'||name=='Keiki, Sculptor\nof Isolation'||name=='Hakurei\nTalisman'?6:7.5)
+                                this.layer.textSize(
+                                    name=='Charred\nLizard'||this.name=='Flame of\nNirvana'||this.name=='First\nQuarter'||this.name=='Last\nQuarter'||this.name=='Foehn'||name=='Yukari, Boundary\nof Fantasy'||name=='Keystone\nCannon'||name=='Keiki, Sculptor\nof Isolation'||name=='Hakurei\nTalisman'||
+                                    !spec.includes(12)&&getIndicesOf(desc,'\n',true)>=8?6:7.5)
                             }
                             if(spec.includes(12)){
                                 this.layer.text(this.description(attack[0],effect[0],reality[0],target),0,-15)
                                 this.layer.text(this.description(attack[1],effect[1],reality[1],target),0,this.height/2-25)
                             }else{
-                                this.layer.text(this.description(attack,effect,spec,target),0,10)
+                                this.layer.text(desc,0,10)
                             }
                             this.layer.textSize(6)
                             if(options.id){

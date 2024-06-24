@@ -1995,6 +1995,10 @@ class group{
                 userCombatant.statusEffect('Temporary Strength',-card.effect[0])
                 userCombatant.statusEffect('Temporary Dexterity',-card.effect[1])
             break
+            case -74:
+                userCombatant.statusEffect('Luck Guarantee',1)
+                this.drawEffects.push([5,card.effect[0]])
+            break
 
             //mark n
             
