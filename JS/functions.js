@@ -958,6 +958,8 @@ function intentDescription(attack,user,info){
 			case 359: return `Add ${info?attack.effect[0]:`?`} Block\nRetain Block\nFor 3 Turns\nRemove All Self Debuffs`
 			case 360: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 (10) Times\n3 Tiles Wide\nRange 1-2`
 			case 361: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 (4) Times\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6`
+			case 364: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`}-${info?calculateIntent(attack.effect[1],user,14):`?`}*Range Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6\nNo Movement`
+			case 365: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block to All Enemies\nAll Enemies Gain ${info?attack.effect[1]:`?`} Armor`
 			
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
@@ -1359,6 +1361,15 @@ function quickAdd(name){
 		return 'Invalid'
 	}
 }
+function quickAddSec(name){
+	if(findName(name,types.card)>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),0,types.card[findName(name,types.card)].list>=0&&types.card[findName(name,types.card)].list<=game.playerNumber+5?types.card[findName(name,types.card)].list:0)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].cost=0
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
+}
 function quickAddEdition(name,edition){
 	if(findName(name,types.card)>=0){
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),0,0,edition)
@@ -1665,7 +1676,7 @@ function mtgManaBase(energy,player){
 			case 4: return [playerColor[0],playerColor[0],playerColor[1],playerColor[2]]
 			case 5: return [playerColor[0],playerColor[0],playerColor[1],playerColor[1],playerColor[2]]
 		}
-	}else{
+	}else if(playerColor.length==2){
 		switch(energy){
 			case 0: return []
 			case 1: return [playerColor[0]]
@@ -1674,8 +1685,17 @@ function mtgManaBase(energy,player){
 			case 4: return [playerColor[0],playerColor[0],playerColor[1],playerColor[1]]
 			case 5: return [playerColor[0],playerColor[0],playerColor[0],playerColor[1],playerColor[1]]
 		}
+	}else{
+		switch(energy){
+			case 0: return []
+			case 1: return [playerColor[0]]
+			case 2: return [playerColor[0],-1]
+			case 3: return [playerColor[0],playerColor[0],-1]
+			case 4: return [playerColor[0],playerColor[0],playerColor[1],-1]
+			case 5: return [playerColor[0],playerColor[0],playerColor[1],playerColor[1],-1]
+		}
 	}
 }
-function total6(list){
-	return list[0]+list[1]+list[2]+list[3]+list[4]+list[5]
+function total7(list){
+	return list[0]+list[1]+list[2]+list[3]+list[4]+list[5]+list[6]
 }

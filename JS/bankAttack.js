@@ -3823,7 +3823,7 @@ attack.prototype.update=function(){
         case 3044: case 3074: case 3075: case 3076: case 3077: case 3078: case 3082: case 3084: case 3093: case 3134:
         case 3135: case 3140: case 3144: case 3159: case 3160: case 3166: case 3170: case 3176: case 3181: case 3182:
         case 3193: case 3210: case 3252: case 3314: case 3315: case 3334: case 3335: case 3351: case 3366: case 3375:
-        case 3381: case 3382: case 3383: case 3390: case 3395: case 3396: case 3397:
+        case 3381: case 3382: case 3383: case 3390: case 3395: case 3396: case 3397: case 3461:
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
             }else{
@@ -7974,6 +7974,39 @@ attack.prototype.update=function(){
                     }
                 }
             }else if(this.timer>=75){
+                this.remove=true
+            }
+        break
+        case 3460:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(32)
+            }
+            this.userCombatant.runAnimation(1/30,32)
+            if(this.timer==5||this.timer==25){
+                for(let a=0,la=10;a<la;a++){
+                    this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,
+                        this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                        this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                        101,[360*(a+0.5)/la,20]))
+                }
+            }
+            if(this.timer==15){
+                for(let a=0,la=2;a<la;a++){
+                    this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.id])
+                }
+                for(let a=0,la=10;a<la;a++){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,
+                        this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                        this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                        101,[360*a/la,30]))
+                }
+                if(this.userCombatant.getStatus('Temporary Strength')>0){
+                    this.battle.addEnergy(this.effect[1],this.player)
+                }
+                if(this.userCombatant.getStatus('Temporary Dexterity')>0){
+                    this.battle.addEnergy(this.effect[2],this.player)
+                }
+            }else if(this.timer>=30){
                 this.remove=true
             }
         break

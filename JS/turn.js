@@ -144,6 +144,7 @@ class turn{
                                 case 235: case 236: case 245: case 262: case 263: case 266: case 268: case 279: case 283: case 284:
                                 case 285: case 287: case 290: case 303: case 306: case 313: case 316: case 320: case 321: case 327:
                                 case 328: case 335: case 336: case 337: case 338: case 340: case 353: case 358: case 361: case 362:
+                                case 364:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -658,7 +659,7 @@ class turn{
                                         case 202: case 206: case 208: case 235: case 236: case 245: case 262: case 263: case 266: case 268:
                                         case 279: case 283: case 284: case 285: case 287: case 290: case 303: case 306: case 313: case 316:
                                         case 320: case 321: case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353:
-                                        case 358: case 361: case 362:
+                                        case 358: case 361: case 362: case 364:
                                             if(
                                                 (a>=1&&this.targetTile[0]<0)||
                                                 (a>=2&&this.targetTile[1]<0)||
@@ -1439,6 +1440,10 @@ class turn{
                     case 257:
                         this.battle.combatantManager.allEffect(6,[this.effect[0]])
                         this.battle.combatantManager.allEffect(8,[this.effect[1]])
+                    break
+                    case 365:
+                        this.battle.combatantManager.allEffect(6,[this.effect[0]])
+                        this.battle.combatantManager.allEffect(13,[this.effect[1]])
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])

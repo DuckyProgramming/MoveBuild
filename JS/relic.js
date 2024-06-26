@@ -702,7 +702,7 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('2',0,0)
                 break
-                case '5 Turn Intangible':
+                case '8 Turn Intangible':
                     displaySymbol(this.layer,-8,-2,48,0,1,this.fade)
                     displaySymbol(this.layer,7,10,4,0,0.6,this.fade)
                     displaySymbol(this.layer,7,-10,5,0,0.6,this.fade)
@@ -710,7 +710,7 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('1',-8,0)
                     this.layer.textSize(15)
-                    this.layer.text('5',7,1)
+                    this.layer.text('8',7,1)
                 break
                 case 'No Shop Currency':
                     displaySymbol(this.layer,-8,0,16,0,0.6,this.fade)
@@ -2382,7 +2382,7 @@ class relic{
             }
             if(detail!=-1){
                 switch(this.internal){
-                    case '5 Turn Energy': case '5 Turn Intangible':
+                    case '5 Turn Energy':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%5+1}/5`,0,-16)
@@ -2451,6 +2451,11 @@ class relic{
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${active-detail}/${active}`,0,-16)
+                    break
+                    case '8 Turn Intangible':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail%8+1}/8`,0,-16)
                     break
                 }
             }

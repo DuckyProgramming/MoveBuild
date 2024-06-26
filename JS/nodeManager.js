@@ -218,8 +218,8 @@ class nodeManager{
                     this.battle.setupSpecificEvent(findName('Placeholder Event',types.event))
                 }else{
                     let send=game.ascend>=15
-                    ?this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
-                    :this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
+                    ?this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,1,1,3,4,5,5,5,5,5,5,5,5,5,5][floor(random(0,16))]
+                    :this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,1,3,4,5,5,5,5,5,5,5,5,5,5][floor(random(0,16))]
                     if(send==5){
                         this.battle.relicManager.activate(7,[type])
                         transition.scene='event'

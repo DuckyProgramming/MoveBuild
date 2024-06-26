@@ -91,7 +91,10 @@ class eventManager{
                 !(this.listing.event[a]==93&&this.battle.currency.money[this.player]<60)&&
                 !(this.listing.event[a]==94&&(this.battle.currency.money[this.player]<200||this.battle.nodeManager.world!=2))&&
                 !(this.listing.event[a]==97&&this.battle.currency.money[this.player]<65)&&
-                !(this.listing.event[a]==99&&this.battle.currency.money[this.player]<40)
+                !(this.listing.event[a]==99&&this.battle.currency.money[this.player]<40)&&
+                !(this.listing.event[a]==100&&(userCombatant.life<16||this.battle.currency.money[this.player]<40))&&
+                !(this.listing.event[a]==103&&userCombatant.life>=userCombatant.base.life-7)&&
+                !(this.listing.event[a]==104&&this.battle.nodeManager.world!=2)
 
             ){
                 sublist.push(this.listing.event[a])
@@ -106,7 +109,11 @@ class eventManager{
         this.complete=false
         this.id=types.event[this.event].id
         this.name=types.event[this.event].name
-        this.pages=types.event[this.event].pages
+        this.pages=[]
+        for(let a=0,la=types.event[this.event].pages.length;a<la;a++){
+            let base=types.event[this.event].pages[a]
+            this.pages.push({desc:base.desc,option:copyArray(base.option),optionDesc:copyArray(base.optionDesc),link:copyArray(base.link)})
+        }
         this.page=0
         this.primaryFade=1
         for(let a=0,la=this.pages.length;a<la;a++){
@@ -1094,9 +1101,6 @@ class eventManager{
                         if(this.page==0&&a==0){
                             transition.scene='battle'
                             this.battle.setupBattle(types.encounter[findName('Duck Hunt',types.encounter)])
-                            this.battle.cardManagers[this.player].hand.add(findName('Hunting\nRifle',types.card),0,0)
-                            this.battle.cardManagers[this.player].hand.add(findName('Hunting\nRifle',types.card),0,0)
-                            this.battle.cardManagers[this.player].hand.add(findName('Hunting\nRifle',types.card),0,0)
                         }
                     break
                     case 96:
@@ -1126,12 +1130,43 @@ class eventManager{
                         }
                     break
                     case 100:
+                        if(this.page==0&&a==0){
+                            this.harm(userCombatant,15)
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(33,this.player)
+                        }else if((this.page==1||this.page==2)&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,0,32])
+                        }else if(this.page==3&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName(`Reimu's\nWrath`,types.card),0,game.playerNumber+2)
+                        }
                     break
                     case 101:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Inchling\nBowl',types.card),0,0)
+                        }else if(this.page==0&&a==1){
+                            current.addCurrency(25,this.player)
+                        }
                     break
                     case 102:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Final\nRest',types.card),0,0)
+                        }else if(this.page==0&&a==1){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                        }
                     break
                     case 103:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Mountain\nEcho',types.card),0,0)
+                        }else if(this.page==0&&a==1){
+                            userCombatant.heal(7)
+                        }
+                    break
+                    case 104:
+                        if(this.page==0&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Sniper Outpost',types.encounter)])
+                        }
                     break
 
                 }
@@ -1155,7 +1190,7 @@ class eventManager{
     onClick(){
         if(this.page>=0){
             for(let a=0,la=this.pages[this.page].option.length;a<la;a++){
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.posKey,y:300+a*50},width:180,height:30})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.posKey,y:300+a*50},width:220,height:30})){
                     this.callInput(0,a)
                 }
             }

@@ -331,7 +331,7 @@ turn.prototype.update=function(){
                 case 4: case 10: case 29: case 48: case 65: case 72: case 102: case 108: case 110: case 111:
                 case 126: case 182: case 190: case 230: case 231: case 232: case 234: case 237: case 238: case 239:
                 case 240: case 241: case 254: case 257: case 261: case 267: case 269: case 280: case 293: case 318:
-                case 346: case 359:
+                case 346: case 359: case 365:
                     if(variants.nobasicanim){
                         this.selfCall(1)
                         this.remove=true
@@ -3202,7 +3202,7 @@ turn.prototype.update=function(){
                         this.remove=true
                     }
                 break
-                case 303:
+                case 303: case 364:
                     if(variants.nobasicanim){
                         this.targetCombatant.takeDamage(this.effect[0]-this.effect[1]*this.targetDistance,this.user)
                         this.remove=true
@@ -3220,6 +3220,15 @@ turn.prototype.update=function(){
                             }
                         }else if(this.timer==5*this.targetDistance+15){
                             this.targetCombatant.takeDamage(this.effect[0]-this.effect[1]*this.targetDistance,this.user)
+                            switch(this.type){
+                                case 364:
+                                    if(this.targetCombatant.blocked>0){
+                                        for(let b=0,lb=this.effect[2];b<lb;b++){
+                                            this.battle.drop(this.targetCombatant.id,findName(this.effect[3],types.card),0,game.playerNumber+1)
+                                        }
+                                    }
+                                break
+                            }
                         }else if(this.timer>=max(30,5*this.targetDistance+25)){
                             this.remove=true
                         }

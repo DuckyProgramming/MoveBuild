@@ -219,24 +219,33 @@ class overlay{
                 if(variants.cursed){
                     args[0]=min(args[0]+1,2)
                 }
+                if(this.options<=0){
+                    this.active=false
+                }
                 switch(args[2]){
                     case 0: case 7:
                         list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                        let list2=[[],[],[],[]]
+                        if(this.args[0]==0&&this.battle.relicManager.hasRelic(315,this.player)){
+                            list2=copyArrayStack(this.battle.cardManagers[this.player].listing.card[game.playerNumber+5])
+                        }
                         for(let a=0,la=this.options;a<la;a++){
                             if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
+                                let index=0
                                 if(this.args[0]==0&&this.battle.relicManager.hasRelic(315,this.player)&&floor(random(0,30))<this.battle.relicManager.active[315][this.player+1]){
-                                    let list2=copyArrayStack(this.battle.cardManagers[this.player].listing.card[game.playerNumber+5])
+                                    index=floor(random(0,list2[3].length))
                                     this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120-this.battle.relicManager.active[172][this.player+1]*60,this.layer.height/2+20,
                                         list2[3][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,10))<this.battle.relicManager.active[219][this.player+1]?2:args[0],game.playerNumber+5,-1))
+                                    list2[3].splice(index,1)
                                 }else{
+                                    index=floor(random(0,list[args[1]].length))
                                     this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120-this.battle.relicManager.active[172][this.player+1]*60,this.layer.height/2+20,
                                         list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,10))<this.battle.relicManager.active[219][this.player+1]?2:args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:this.battle.player[this.player],-1))
                                     let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,60)):floor(random(0,360))
                                     this.cards[this.cards.length-1].edition=this.battle.relicManager.hasRelic(213,this.player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                                    list[args[1]].splice(index,1)
                                 }
                                 this.cards[this.cards.length-1].upSize=true
-                                list[args[1]].splice(index,1)
                             }
                         }
                         if(this.args[0]==0&&this.battle.relicManager.hasRelic(172,this.player)){
@@ -645,6 +654,12 @@ class overlay{
                             }
                         }
                     break
+                    case 32:
+                        for(let a=0,la=this.options;a<la;a++){
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Hakurei\nTalisman','Hakurei\nOrb','Hakurei\nAmulet'][a%3],types.card),0,0,-1))
+                            this.cards[a].upSize=true
+                        }
+                    break
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].nonCalc=true
@@ -750,11 +765,18 @@ class overlay{
             break
             case 16:
                 this.colors=[]
-                let possible=[1,2,3,4,5]
+                let possible=[0,1,1,2,2,3,3,4,4,5,5,6]
                 for(let a=0,la=3;a<la;a++){
                     let index=floor(random(0,possible.length))
-                    this.colors.push(possible[index])
-                    possible.splice(index,1)
+                    let remove=possible[index]
+                    this.colors.push(remove)
+                    for(let b=0,lb=possible.length;b<lb;b++){
+                        if(possible[b]==remove){
+                            possible.splice(b,1)
+                            b--
+                            lb--
+                        }
+                    }
                 }
             break
             case 17:
@@ -1707,22 +1729,22 @@ class overlay{
             break
             case 16:
                 this.layer.fill(160,this.fade*0.8)
-                this.layer.rect(this.layer.width/2,this.layer.height/2,180,70,10)
-                this.layer.rect(this.layer.width/2,this.layer.height/2-60,180,40,10)
-                this.layer.rect(this.layer.width/2,this.layer.height/2+60,120,40,10)
+                this.layer.rect(this.layer.width/2+225*(this.player*2-this.battle.players+1),this.layer.height/2,180,70,10)
+                this.layer.rect(this.layer.width/2+225*(this.player*2-this.battle.players+1),this.layer.height/2-60,180,40,10)
+                this.layer.rect(this.layer.width/2+225*(this.player*2-this.battle.players+1),this.layer.height/2+60,120,40,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(20)
-                this.layer.text('Select New Mana',this.layer.width/2,this.layer.height/2-60)
-                this.layer.text('Skip',this.layer.width/2,this.layer.height/2+60)
+                this.layer.text('Select New Mana',this.layer.width/2+225*(this.player*2-this.battle.players+1),this.layer.height/2-60)
+                this.layer.text('Skip',this.layer.width/2+225*(this.player*2-this.battle.players+1),this.layer.height/2+60)
                 this.layer.strokeJoin(ROUND)
                 for(let a=0,la=this.colors.length;a<la;a++){
                     this.layer.push()
-                    this.layer.translate(this.layer.width/2-55+a*55,this.layer.height/2)
+                    this.layer.translate(this.layer.width/2-55+a*55+225*(this.player*2-this.battle.players+1),this.layer.height/2)
                     this.layer.scale(2)
                     switch(this.colors[a]){
                         case 0:
                             this.layer.fill(180,this.fade)
-                            this.layer.stroke(150,this.fade)
+                            this.layer.stroke(140,this.fade)
                         break
                         case 1:
                             this.layer.fill(60,240,60,this.fade)
@@ -1744,9 +1766,49 @@ class overlay{
                             this.layer.fill(240,60,60,this.fade)
                             this.layer.stroke(200,50,50,this.fade)
                         break
+                        case 6:
+                            let gradient=[new p5.ConicGradient(0,0,0),new p5.ConicGradient(0,0,0),new p5.ConicGradient(0,0,0)]
+                            this.layer.colorMode(HSB,360,1,1,1)
+                            gradient[0].colors(0.0,
+                                this.layer.color(0,1,0.9,this.fade),1/6,
+                                this.layer.color(60,1,0.9,this.fade),1/3,
+                                this.layer.color(120,1,0.9,this.fade),1/2,
+                                this.layer.color(180,1,0.9,this.fade),2/3,
+                                this.layer.color(240,1,0.9,this.fade),5/6,
+                                this.layer.color(300,1,0.9,this.fade),1.0,
+                                this.layer.color(360,1,0.9,this.fade))
+                            gradient[1].colors(0.0,
+                                this.layer.color(0,1,1,this.fade),1/6,
+                                this.layer.color(60,1,1,this.fade),1/3,
+                                this.layer.color(120,1,1,this.fade),1/2,
+                                this.layer.color(180,1,1,this.fade),2/3,
+                                this.layer.color(240,1,1,this.fade),5/6,
+                                this.layer.color(300,1,1,this.fade),1.0,
+                                this.layer.color(360,1,1,this.fade))
+                            gradient[2].colors(0.0,
+                                this.layer.color(0,1,0.8,this.fade),1/6,
+                                this.layer.color(60,1,0.8,this.fade),1/3,
+                                this.layer.color(120,1,0.8,this.fade),1/2,
+                                this.layer.color(180,1,0.8,this.fade),2/3,
+                                this.layer.color(240,1,0.8,this.fade),5/6,
+                                this.layer.color(300,1,0.8,this.fade),1.0,
+                                this.layer.color(360,1,0.8,this.fade))
+                            this.layer.noStroke()
+                            this.layer.fillGradient(gradient[0])
+                            this.layer.ellipse(0,0,21.5)
+                            this.layer.fillGradient(gradient[1])
+                            this.layer.ellipse(0,0,18.5)
+                            this.layer.fillGradient(gradient[2])
+                            for(let c=0,lc=5;c<lc;c++){
+                                this.layer.quad(lsin(c*72)*5.5,lcos(c*72)*5.5,lsin(c*72-18)*8,lcos(c*72-18)*8,lsin(c*72)*8.5,lcos(c*72)*8.5,lsin(c*72+18)*8,lcos(c*72+18)*8)
+                            }
+                            this.layer.colorMode(RGB,255,255,255,1)
+                        break
                     }
                     this.layer.strokeWeight(1.5)
-                    this.layer.ellipse(0,0,20)
+                    if(this.colors[a]!=6){
+                        this.layer.ellipse(0,0,20)
+                    }
                     this.layer.noFill()
                     this.layer.strokeWeight(2)
                     switch(this.colors[a]){
@@ -1783,6 +1845,10 @@ class overlay{
                         case 5:
                             this.layer.stroke(160,40,40,this.fade)
                             this.layer.quad(-3,0,0,-6,3,0,0,6)
+                        break
+                        case 6:
+                            this.layer.stroke(250,this.fade)
+                            regStar(this.layer,0,0,5,2.5,2.5,6,6,0)
                         break
                     }
                     this.layer.pop()
@@ -2772,7 +2838,7 @@ class overlay{
                 break
                 case 16:
                     for(let a=0,la=this.colors.length;a<la;a++){
-                        if(dist(this.layer.width/2-55+a*55,this.layer.height/2,inputs.rel.x,inputs.rel.y)<40){
+                        if(dist(this.layer.width/2-55+a*55+225*(this.player*2-this.battle.players+1),this.layer.height/2,inputs.rel.x,inputs.rel.y)<40){
                             this.battle.energy.base[this.player].push(this.colors[a])
                             this.battle.cardManagers[this.player].mtgListing()
                             this.active=false

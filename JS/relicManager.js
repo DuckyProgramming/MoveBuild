@@ -1144,7 +1144,7 @@ class relicManager{
                     }
                     if(this.active[90][a+1]>0){
                         this.detail[90][a]++
-                        if(this.detail[90][a]%5==4){
+                        if(this.detail[90][a]%8==7){
                             this.getPlayer(a).statusEffect('Intangible',this.active[90][a+1])
                         }
                     }

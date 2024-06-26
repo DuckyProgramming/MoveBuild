@@ -39,7 +39,7 @@ p5.RadialGradient=class RadialGradient extends p5.Gradient{
 		this.outerRadius=outerRadius||100
 		this.x=x||0
 		this.y=y||0
-		this.gradient = drawingContext.createRadialGradient(this.x,this.y,this.innerRadius,this.x,this.y,this.outerRadius)
+		this.gradient=drawingContext.createRadialGradient(this.x,this.y,this.innerRadius,this.x,this.y,this.outerRadius)
 	}
 }
 p5.ConicGradient=class ConicGradient extends p5.Gradient{
@@ -59,16 +59,6 @@ p5.prototype.createConicGradient=function(angle,x,y){
 }
 p5.prototype.createRadialGradient=function(innerRadius,outerRadius,x,y){
 	return new p5.RadialGradient(innerRadius,outerRadius,x,y)
-}
-p5.prototype.fillGradient=function(gradient){
-	this.drawingContext.fillStyle=gradient.gradient?gradient.gradient:gradient
-}
-p5.prototype.strokeGradient=function(gradient){
-	this.drawingContext.strokeStyle=gradient.gradient?gradient.gradient:gradient
-}
-p5.prototype.backgroundGradient=function(gradient){
-	this.drawingContext.fillStyle=gradient.gradient?gradient.gradient:gradient
-	this.drawingContext.fillRect(0, 0, this.width, this.height);
 }
 p5.prototype.createPattern=function(patternElement,repeat){
 	if(patternElement.canvas){

@@ -3527,6 +3527,24 @@ class combatant{
                         this.trigger.display.circlet=true
                         this.trigger.display.logo=true
                     break
+                    case 'Management Shotgunner':
+                        this.color={skin:{head:[240,220,180],body:[95,105,95],legs:[65,85,65],arms:[85,135,85]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.belt=[30,25,0]
+                        this.color.helmet=[80,85,90]
+                        this.color.visor=[45,85,45]
+                        this.color.armor=[40,50,40]
+                        this.color.badge=[[180,190,220],[60,150,60]]
+                        this.fades.belt=1
+                        this.fades.helmet=1
+                        this.fades.visor=1
+                        this.fades.armor=1
+                        this.fades.badge=1
+                        this.trigger.display.belt=true
+                        this.trigger.display.helmet=true
+                        this.trigger.display.visor=true
+                        this.trigger.display.armor=true
+                        this.trigger.display.badge=true
+                    break
                     default:
                         this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     break
@@ -3636,6 +3654,9 @@ class combatant{
                 this.statusEffect('Strength',3)
             }
             if(this.battle.modded(47)&&(this.name.includes('F')||this.name.includes('f'))){
+                this.statusEffect('Strength',3)
+            }
+            if(this.battle.modded(178)&&(this.name.includes('N')||this.name.includes('n'))){
                 this.statusEffect('Strength',3)
             }
             if(this.battle.modded(88)){
@@ -4135,7 +4156,7 @@ class combatant{
             case 202: case 206: case 208: case 235: case 236: case 245: case 262: case 263: case 266: case 268:
             case 279: case 283: case 284: case 285: case 287: case 290: case 303: case 306: case 313: case 316:
             case 320: case 321: case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353:
-            case 358: case 361: case 362:
+            case 358: case 361: case 362: case 364:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -4587,6 +4608,10 @@ class combatant{
         if(this.spec.includes(8)){
             this.battle.turnManager.loadEnemyAttackRepeat(this.id)
         }
+        if(this.spec.includes(21)&&!this.spec.includes(-1)){
+            this.battle.turnManager.loadEnemyAttackRepeat(this.id)
+            this.spec.push(-1)
+        }
     }
     playCardFront(cardClass,card){
         if(this.status.main[77]>0){
@@ -4610,7 +4635,7 @@ class combatant{
     autoAim(){
         let list=[]
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(legalTargetCombatant(0,1,6,this,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].team!=this.team&!(this.construct&&this.battle.combatantManager.combatants[a].team>0)&&this.battle.combatantManager.combatants[a].life>0){
+            if(legalTargetCombatant(0,1,6,this,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].team!=this.team&&!(this.construct&&this.battle.combatantManager.combatants[a].team>0)&&this.battle.combatantManager.combatants[a].life>0){
                 list.push(a)
             }
         }
@@ -4639,7 +4664,7 @@ class combatant{
             let target=this.getTarget()
             this.targetTile=this.convertTile(target)
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                if(this.battle.combatantManager.combatants[a].team!=this.team&&type==0||this.battle.combatantManager.combatants[a].id==id&&(type==1||type==2)){
+                if((this.battle.combatantManager.combatants[a].team!=this.team&&type==0||this.battle.combatantManager.combatants[a].id==id&&(type==1||type==2))&&!(this.construct&&this.battle.combatantManager.combatants[a].team>0)){
                     switch(this.attack[this.intent].type){
                         case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                         case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
@@ -4721,7 +4746,7 @@ class combatant{
                         case 208: case 235: case 236: case 245: case 262: case 263: case 266: case 268: case 279: case 283:
                         case 284: case 285: case 287: case 290: case 303: case 306: case 313: case 316: case 320: case 321:
                         case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353: case 358: case 361:
-                        case 362:
+                        case 362: case 364:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -4910,7 +4935,7 @@ class combatant{
                     case 235: case 236: case 245: case 262: case 263: case 266: case 268: case 279: case 283: case 284:
                     case 285: case 287: case 290: case 303: case 306: case 313: case 316: case 320: case 321: case 322:
                     case 327: case 328: case 336: case 337: case 338: case 340: case 346: case 353: case 358: case 361:
-                    case 362:
+                    case 362: case 364:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -6599,7 +6624,7 @@ class combatant{
     multiplyStatusClass(multiplier,classes){
         for(let a=0,la=this.status.class.length;a<la;a++){
             if(classes.includes(this.status.class[a])){
-                this.status.main[status]=constrain(this.status.main[status]*multiplier,-999,999)
+                this.status.main[a]=constrain(this.status.main[a]*multiplier,-999,999)
             }
         }
     }
@@ -6677,6 +6702,13 @@ class combatant{
                 this.statusEffect('Strength',-1)
             }
             this.elemental=false
+        }
+        for(let a=0,la=this.spec.length;a<la;a++){
+            if(this.spec[a]<0){
+                this.spec.splice(a,1)
+                a--
+                la--
+            }
         }
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0){
@@ -9329,6 +9361,7 @@ class combatant{
                                 case 18: this.layer.text('On Defeat, Gain a Relic',40,305+a*10); break
                                 case 19: this.layer.text('Robot',40,305+a*10); break
                                 case 20: this.layer.text('On Defeat, Gain 100 Currency',40,305+a*10); break
+                                case 21: this.layer.text('Attacks When You Play the First Card Each Turn',40,305+a*10); break
 
                             }
                         }

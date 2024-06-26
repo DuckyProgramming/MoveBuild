@@ -30,6 +30,9 @@ class cardManager{
         this.carry=[0,0,0,0,0]
         this.bufferedTurn=0
         this.pack=[]
+        if(variants.mtg){
+            this.mtgLastColor=6
+        }
 
         this.initialListing()
     }
@@ -128,16 +131,16 @@ class cardManager{
     }
     mtgListing(){
         this.listing.mtg=[[],[],[],[]]
-        let effectiveMana=[0,0,0,0,0,0]
+        let effectiveMana=[0,0,0,0,0,0,0]
         for(let a=0,la=this.battle.energy.base[this.player].length;a<la;a++){
             effectiveMana[this.battle.energy.base[this.player][a]]++
         }
         for(let a=0,la=types.card.length;a<la;a++){
             let cardColor=mtgPlayerColor(types.card[a].list)
             let manaColor=cardColor[a%cardColor.length]
-            if(types.card[a].rarity>=0&&types.card[a].list>0&&types.card[a].list<=game.playerNumber&&
-                (cardColor.length==1&&effectiveMana[cardColor[0]]>0||cardColor.length==2&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0||cardColor.length==3&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0&&effectiveMana[cardColor[2]]>0)&&
-                (manaColor==0||effectiveMana[manaColor]>=types.card[a].levels[0].cost||types.card[a].levels[0].spec.includes(35))
+            if(types.card[a].rarity>=0&&(types.card[a].list>0||effectiveMana[0]>0&&types.card[a].list==0)&&types.card[a].list<=game.playerNumber&&
+                (cardColor.length==1&&effectiveMana[cardColor[0]]>0||cardColor.length==2&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0||cardColor.length==3&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0&&effectiveMana[cardColor[2]]>0||effectiveMana[6]>0)&&
+                (manaColor==0||effectiveMana[manaColor]+effectiveMana[6]>=types.card[a].levels[0].cost||types.card[a].levels[0].spec.includes(11)||types.card[a].levels[0].spec.includes(21)||types.card[a].levels[0].spec.includes(35))
             ){
                 this.listing.mtg[types.card[a].rarity].push(a)
                 this.listing.mtg[3].push(a)
@@ -824,11 +827,11 @@ class cardManager{
     display(scene,args){
         switch(scene){
             case 'battle':
-                this.drop.display('drop',[])
                 this.layer.push()
                 this.layer.translate(0,200-args[0]*200)
                 this.hand.display('battle',[])
                 this.layer.pop()
+                this.drop.display('drop',[])
             break
         }
     }

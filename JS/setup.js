@@ -17,7 +17,7 @@ function setup(){
             //transition.trigger=true
             //transition.scene='menu'
 
-        current.menu.combatant=[16]
+        current.menu.combatant=[1]
         current.menu.deck=[0]
         current.startGame()
         game.animRate=4
@@ -36,23 +36,23 @@ function setup(){
         stage.scene='battle'
         current.setupBattle(types.encounter[1])
 
-            transition.trigger=true
+            /*transition.trigger=true
             transition.scene='event'
-            current.setupSpecificEvent(100)
+            current.setupSpecificEvent(104)*/
 
             /*player(0).size=3
             player(0).goal.anim.direction=-30
             player(0).anim.direction=-30*/
 
             /*variants.mod=true
-            for(let a=0,la=5;a<la;a++){
-                current.modManager.addMod(172+a)
+            for(let a=0,la=2;a<la;a++){
+                current.modManager.addMod(177+a)
             }*/
 
-            for(let a=0,la=5;a<la;a++){
-                ///current.relicManager.addRandomRelic(0)
-                //quickRelic(306+a)
-            }
+            /*for(let a=0,la=5;a<la;a++){
+                current.relicManager.addRandomRelic(0)
+                quickRelic(306+a)
+            }*/
 
             //stage.scene='tier'
     }

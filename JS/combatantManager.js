@@ -924,7 +924,6 @@ class combatantManager{
         this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30,minion))
         this.combatants[this.combatants.length-1].construct=true
         this.combatants[this.combatants.length-1].builder=builder
-        this.combatants[this.combatants.length-1].activated=true
         if(this.combatants[this.combatants.length-1].spec.includes(17)){
             this.combatants[this.combatants.length-1].autoAim()
         }

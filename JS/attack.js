@@ -162,7 +162,7 @@ class attack{
             case 3247: case 3249: case 3251: case 3256: case 3257: case 3258: case 3260: case 3261: case 3262: case 3263: case 3264: case 3265: case 3266: case 3270: case 3275: case 3279: case 3284: case 3295: case 3298: case 3300:
             case 3304: case 3310: case 3316: case 3319: case 3321: case 3322: case 3323: case 3326: case 3327: case 3329: case 3331: case 3333: case 3336: case 3337: case 3340: case 3344: case 3345: case 3349: case 3350: case 3352:
             case 3356: case 3360: case 3363: case 3364: case 3365: case 3368: case 3372: case 3373: case 3375: case 3376: case 3384: case 3386: case 3392: case 3393: case 3394: case 3398: case 3401: case 3405: case 3407: case 3411:
-            case 3431: case 3433: case 3449: case 3452: case 3453: case 3455: case 3456: case 3459:
+            case 3431: case 3433: case 3449: case 3452: case 3453: case 3455: case 3456: case 3459: case 3461:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -1228,18 +1228,18 @@ class attack{
                         }
                     break
                     case 1521:
-                        let total7=0
+                        let total1521=0
                         let left3=4
                         for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
                             if(this.userManager.hand.cards[a].attack!=1521&&this.userManager.hand.cards[a].effect[0]>0&&this.userManager.hand.cards[a].class==1&&this.userManager.hand.cards[a].effect.length>0&&!this.userManager.hand.cards[a].spec.includes(12)){
-                                total7+=min(this.effect[0],this.userManager.hand.cards[a].effect[0])
+                                total1521+=min(this.effect[0],this.userManager.hand.cards[a].effect[0])
                                 left3--
                                 if(left3<=0){
                                     a=la
                                 }
                             }
                         }
-                        this.targetCombatant.takeDamage(total7,this.user)
+                        this.targetCombatant.takeDamage(total1521,this.user)
                     break
                     case 1522:
                         if(this.relPos[0]==this.relPos[1]){
@@ -13751,6 +13751,10 @@ class attack{
                         }else if(this.cost>=3){
                             this.userCombatant.addBlock(this.userCombatant.lastBlock*this.effect[1])
                         }
+                    break
+                    case 3461:
+                        this.battle.combatantManager.damageArea(this.targetCombatant.life*2,this.user,-1,this.targetCombatant.tilePosition)
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,36,[20]))
                     break
 
                 }

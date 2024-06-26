@@ -9361,7 +9361,7 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(0,-48,16,42)
                     this.layer.ellipse(0,-81,33,33)
                 }
-                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Riot Police')&&this.trigger.display.visor&&lcos(this.anim.direction)<=0){
+                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Riot Police'||this.name=='Management Shotgunner')&&this.trigger.display.visor&&lcos(this.anim.direction)<=0){
                     this.layer.noStroke()
                     this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor/2)
                     this.layer.rect(lsin(this.anim.direction)*18,-78,20*lcos(this.anim.direction),6)
@@ -9534,6 +9534,16 @@ combatant.prototype.display=function(){
                             this.layer.line(
                                 this.graphics.arms[g].middle.x*0.7+this.graphics.arms[g].bottom.x*0.3,this.graphics.arms[g].middle.y*0.7+this.graphics.arms[g].bottom.y*0.3,
                                 this.graphics.arms[g].middle.x*0.3+this.graphics.arms[g].bottom.x*0.7,this.graphics.arms[g].middle.y*0.3+this.graphics.arms[g].bottom.y*0.7)
+                        }
+                        if(this.name=='Management Shotgunner'&&this.trigger.display.armor){
+                            this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(
+                                this.graphics.arms[g].top.x*0.75+this.graphics.arms[g].middle.x*0.27,this.graphics.arms[g].top.y*0.75+this.graphics.arms[g].middle.y*0.25,
+                                this.graphics.arms[g].top.x*0.25+this.graphics.arms[g].middle.x*0.75,this.graphics.arms[g].top.y*0.25+this.graphics.arms[g].middle.y*0.75)
+                            this.layer.line(
+                                this.graphics.arms[g].middle.x*0.75+this.graphics.arms[g].bottom.x*0.25,this.graphics.arms[g].middle.y*0.75+this.graphics.arms[g].bottom.y*0.25,
+                                this.graphics.arms[g].middle.x*0.25+this.graphics.arms[g].bottom.x*0.75,this.graphics.arms[g].middle.y*0.25+this.graphics.arms[g].bottom.y*0.75)
                         }
                         if(this.name=='Assistant Fitness Officer'&&this.trigger.display.muscles){
                             this.layer.strokeWeight(6)
@@ -9745,6 +9755,13 @@ combatant.prototype.display=function(){
                     this.layer.fill(this.flashColor(this.color.badge)[0],this.flashColor(this.color.badge)[1],this.flashColor(this.color.badge)[2],this.fade*this.fades.badge)
                     this.layer.ellipse(lsin(this.anim.direction-36)*6,-57,4*lcos(this.anim.direction-36),4)
                 }
+                if(this.name=='Management Shotgunner'&&this.trigger.display.badge&&lcos(this.anim.direction+36)>0){
+                    this.layer.noStroke()
+                    this.layer.fill(this.flashColor(this.color.badge[0])[0],this.flashColor(this.color.badge[0])[1],this.flashColor(this.color.badge[0])[2],this.fade*this.fades.badge)
+                    this.layer.ellipse(lsin(this.anim.direction+36)*6,-57,5*lcos(this.anim.direction+36),5)
+                    this.layer.fill(this.flashColor(this.color.badge[1])[0],this.flashColor(this.color.badge[1])[1],this.flashColor(this.color.badge[1])[2],this.fade*this.fades.badge)
+                    regTriangle(this.layer,lsin(this.anim.direction+36)*6,-57,2*lcos(this.anim.direction+36),2,60)
+                }
                 if((this.name=='Bouncer'||this.name=='Drunk'||this.name=='Management Officer'||this.name=='Management Caller'||this.name=='Deployer'||this.name=='Chief Deployer')&&this.trigger.display.belt){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.belt)[0],this.flashColor(this.color.belt)[1],this.flashColor(this.color.belt)[2],this.fade*this.fades.belt)
@@ -9801,7 +9818,7 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Riot Police')&&this.trigger.display.belt){
+                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Riot Police'||this.name=='Management Shotgunner')&&this.trigger.display.belt){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.belt)[0],this.flashColor(this.color.belt)[1],this.flashColor(this.color.belt)[2],this.fade*this.fades.belt)
                     for(let a=0,la=8;a<la;a++){
@@ -9957,6 +9974,16 @@ combatant.prototype.display=function(){
                                 this.graphics.arms[g].middle.x*0.7+this.graphics.arms[g].bottom.x*0.3,this.graphics.arms[g].middle.y*0.7+this.graphics.arms[g].bottom.y*0.3,
                                 this.graphics.arms[g].middle.x*0.3+this.graphics.arms[g].bottom.x*0.7,this.graphics.arms[g].middle.y*0.3+this.graphics.arms[g].bottom.y*0.7)
                         }
+                        if(this.name=='Management Shotgunner'&&this.trigger.display.armor){
+                            this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(
+                                this.graphics.arms[g].top.x*0.75+this.graphics.arms[g].middle.x*0.27,this.graphics.arms[g].top.y*0.75+this.graphics.arms[g].middle.y*0.25,
+                                this.graphics.arms[g].top.x*0.25+this.graphics.arms[g].middle.x*0.75,this.graphics.arms[g].top.y*0.25+this.graphics.arms[g].middle.y*0.75)
+                            this.layer.line(
+                                this.graphics.arms[g].middle.x*0.75+this.graphics.arms[g].bottom.x*0.25,this.graphics.arms[g].middle.y*0.75+this.graphics.arms[g].bottom.y*0.25,
+                                this.graphics.arms[g].middle.x*0.25+this.graphics.arms[g].bottom.x*0.75,this.graphics.arms[g].middle.y*0.25+this.graphics.arms[g].bottom.y*0.75)
+                        }
                         if(this.name=='Assistant Fitness Officer'&&this.trigger.display.muscles){
                             this.layer.strokeWeight(6)
                             this.layer.line(
@@ -10097,6 +10124,16 @@ combatant.prototype.display=function(){
                             this.layer.line(
                                 this.graphics.arms[g].middle.x*0.7+this.graphics.arms[g].bottom.x*0.3,this.graphics.arms[g].middle.y*0.7+this.graphics.arms[g].bottom.y*0.3,
                                 this.graphics.arms[g].middle.x*0.3+this.graphics.arms[g].bottom.x*0.7,this.graphics.arms[g].middle.y*0.3+this.graphics.arms[g].bottom.y*0.7)
+                        }
+                        if(this.name=='Management Shotgunner'&&this.trigger.display.armor){
+                            this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(
+                                this.graphics.arms[g].top.x*0.75+this.graphics.arms[g].middle.x*0.27,this.graphics.arms[g].top.y*0.75+this.graphics.arms[g].middle.y*0.25,
+                                this.graphics.arms[g].top.x*0.25+this.graphics.arms[g].middle.x*0.75,this.graphics.arms[g].top.y*0.25+this.graphics.arms[g].middle.y*0.75)
+                            this.layer.line(
+                                this.graphics.arms[g].middle.x*0.75+this.graphics.arms[g].bottom.x*0.25,this.graphics.arms[g].middle.y*0.75+this.graphics.arms[g].bottom.y*0.25,
+                                this.graphics.arms[g].middle.x*0.25+this.graphics.arms[g].bottom.x*0.75,this.graphics.arms[g].middle.y*0.25+this.graphics.arms[g].bottom.y*0.75)
                         }
                         if(this.name=='Assistant Fitness Officer'&&this.trigger.display.muscles){
                             this.layer.strokeWeight(6)
@@ -10333,6 +10370,16 @@ combatant.prototype.display=function(){
                                     this.graphics.arms[g].middle.x*0.7+this.graphics.arms[g].bottom.x*0.3,this.graphics.arms[g].middle.y*0.7+this.graphics.arms[g].bottom.y*0.3,
                                     this.graphics.arms[g].middle.x*0.3+this.graphics.arms[g].bottom.x*0.7,this.graphics.arms[g].middle.y*0.3+this.graphics.arms[g].bottom.y*0.7)
                             }
+                            if(this.name=='Management Shotgunner'&&this.trigger.display.armor){
+                                this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                                this.layer.strokeWeight(4)
+                                this.layer.line(
+                                    this.graphics.arms[g].top.x*0.75+this.graphics.arms[g].middle.x*0.27,this.graphics.arms[g].top.y*0.75+this.graphics.arms[g].middle.y*0.25,
+                                    this.graphics.arms[g].top.x*0.25+this.graphics.arms[g].middle.x*0.75,this.graphics.arms[g].top.y*0.25+this.graphics.arms[g].middle.y*0.75)
+                                this.layer.line(
+                                    this.graphics.arms[g].middle.x*0.75+this.graphics.arms[g].bottom.x*0.25,this.graphics.arms[g].middle.y*0.75+this.graphics.arms[g].bottom.y*0.25,
+                                    this.graphics.arms[g].middle.x*0.25+this.graphics.arms[g].bottom.x*0.75,this.graphics.arms[g].middle.y*0.25+this.graphics.arms[g].bottom.y*0.75)
+                            }
                             if(this.name=='Assistant Fitness Officer'&&this.trigger.display.muscles){
                                 this.layer.strokeWeight(6)
                                 this.layer.line(
@@ -10353,6 +10400,13 @@ combatant.prototype.display=function(){
                                 this.layer.line(
                                     this.graphics.arms[g].middle.x*0.7+this.graphics.arms[g].bottom.x*0.3,this.graphics.arms[g].middle.y*0.7+this.graphics.arms[g].bottom.y*0.3,
                                     this.graphics.arms[g].middle.x*0.3+this.graphics.arms[g].bottom.x*0.7,this.graphics.arms[g].middle.y*0.3+this.graphics.arms[g].bottom.y*0.7)
+                            }
+                            if(this.name=='Management Shotgunner'&&this.trigger.display.armor){
+                                this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                                this.layer.strokeWeight(4)
+                                this.layer.line(
+                                    this.graphics.arms[g].middle.x*0.75+this.graphics.arms[g].bottom.x*0.25,this.graphics.arms[g].middle.y*0.75+this.graphics.arms[g].bottom.y*0.25,
+                                    this.graphics.arms[g].middle.x*0.25+this.graphics.arms[g].bottom.x*0.75,this.graphics.arms[g].middle.y*0.25+this.graphics.arms[g].bottom.y*0.75)
                             }
                             if(this.name=='Assistant Fitness Officer'&&this.trigger.display.muscles){
                                 this.layer.strokeWeight(6)
@@ -10557,12 +10611,12 @@ combatant.prototype.display=function(){
                     this.layer.line(-15,-90,15,-90)
                     this.layer.rect(0,-97,16,14,1)
                 }
-                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Gas Man'||this.name=='Riot Police'||this.name=='Coffee Commander')&&this.trigger.display.helmet){
+                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Gas Man'||this.name=='Riot Police'||this.name=='Coffee Commander'||this.name=='Management Shotgunner')&&this.trigger.display.helmet){
                     this.layer.noStroke()
                     this.layer.fill(this.color.helmet[0],this.color.helmet[1],this.color.helmet[2],this.fade*this.fades.helmet)
                     this.layer.arc(0,-81,36,36,-180,0)
                 }
-                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Gas Man'||this.name=='Riot Police'||this.name=='Coffee Commander')&&this.trigger.display.visor&&lcos(this.anim.direction)>0){
+                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Gas Man'||this.name=='Riot Police'||this.name=='Coffee Commander'||this.name=='Management Shotgunner')&&this.trigger.display.visor&&lcos(this.anim.direction)>0){
                     this.layer.noStroke()
                     this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor/2)
                     this.layer.rect(lsin(this.anim.direction)*18,-78,20*lcos(this.anim.direction),6)

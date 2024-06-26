@@ -96,7 +96,7 @@ types={
         {name:'Bush Thing',life:18,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[4]},{type:110,effect:[3,3]},{type:111,effect:[2]}],description:`Somewhat armored`},
         {name:'Fireball',life:30,behavior:10,spec:[],move:{type:0,speed:2},attack:[{type:112,effect:[4,2]},{type:21,effect:[]}],description:`Hurts to touch`},
         {name:'Dead Shell',life:34,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:20,effect:[6]},{type:113,effect:[8]},{type:114,effect:[5,3]}],description:`More alive then intended`},
-        {name:'Management Drone',life:75,behavior:1,spec:[8,19],move:{type:0,speed:1},attack:[{type:10,effect:[6]},{type:115,effect:[10]}],description:`Automated pain`},
+        {name:'Management Drone',life:75,behavior:1,spec:[0,21,19],move:{type:0,speed:1},attack:[{type:10,effect:[15]},{type:115,effect:[12]}],description:`Automated pain`},
         {name:'Executive',life:95,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:12,effect:[10]},{type:120,effect:[1]},{type:6,effect:[8]}],description:`Thinks he outsmarted you`},
         {name:'Mechanized',life:130,behavior:0,spec:[0,19],move:{type:0,speed:2},attack:[{type:124,effect:[8,1]},{type:125,effect:[12]},{type:126,effect:[6]}],description:`More machine than man`},
         {name:'Ninja Master',life:56,behavior:1,spec:[],move:{type:3,speed:1},attack:[{type:121,effect:[12]},{type:122,effect:[12]},{type:123,effect:[5]}],description:`Mastered teleportation, but not much else`},
@@ -157,6 +157,7 @@ types={
         {name:'Embodimental Destabilization',life:202,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[1,1,1,1]}],description:`This is getting out of hand!`},
         {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[18]},{type:300,effect:[3]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
         {name:'Golden Duck',life:38,behavior:16,spec:[20],move:{type:0,speed:3},attack:[{type:21,effect:[]},{type:68,effect:[]}],description:`Why is this thing alive?`},
+        {name:'Management Shotgunner',life:146,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:364,effect:[24,3,1,'Electrocuted']},{type:365,effect:[7,3]}],description:`At least he doesn't OHKO`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -237,7 +238,7 @@ types={
         {name:'Rich Kid',life:20,behavior:0,spec:[16],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Still barely pays you`},
         {name:'MobMan',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`No brain?`},
         {name:'AllyMonkey',life:24,behavior:0,spec:[17],move:{type:0,speed:2},attack:[{type:11,effect:[2]}],description:`Your best friend`},
-        {name:'Antizone',life:500,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Basically indistructable`},
+        {name:'Antizone',life:100,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Basically indistructable`},
         {name:'L',life:6,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:136,effect:[6]}],description:`LOBSTER!`},
         {name:'Fat Duck',life:40,behavior:2,spec:[17],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:109,effect:[5]}],description:`Hamburger`},
         {name:'Man',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Small brain?`},
@@ -612,6 +613,8 @@ types={
         {name:'6 Tile Double Statusing Strike (Doubled)',class:1},
         {name:'Counter Gun',class:1},
         {name:'2 Tile Counter Bomb Throw',class:5},
+        {name:'Injuring Shotgun',class:1},
+        {name:'All Enemy Block / Armor',class:2},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -713,7 +716,7 @@ types={
         {name:'Hexachoron',internal:'Per Enemy Block',id:88,rarity:2,list:0,description:'Gain 1 Block Per Enemy\nat the Start of Your Turn'},
         {name:'Hummingbird Wing',internal:'2 Turn Half Damage',id:89,rarity:2,list:0,description:'Take Half Damage in\nthe First 2 Turns'},
 
-        {name:'Cracked Urn',internal:'5 Turn Intangible',id:90,rarity:2,list:0,description:'Every 5 Turns,\nGain 1 Intangible'},
+        {name:'Cracked Urn',internal:'8 Turn Intangible',id:90,rarity:2,list:0,description:'Every 8 Turns,\nGain 1 Intangible'},
         {name:'Swear Jar',internal:'No Shop Currency',id:91,rarity:0,list:0,description:'Gain 20 Currency Every Room\nUntil Your Enter a Shop'},
         {name:'Meatball Ticket',internal:'Shop Heal',id:92,rarity:0,list:0,description:'Heal 15 HP When\nYou Enter a Shop'},
         {name:'Top Hat',internal:'Shop Energy',id:93,rarity:0,list:0,description:'Gain 2 Energy After\nEntering a Shop'},
@@ -842,7 +845,7 @@ types={
         {name:'The Duo',internal:'Same Card Energy',id:205,rarity:2,list:0,description:'Gain 1 Energy When You Play\n2 of the Same Card in a Row\nThat Costs 1 or More'},
         {name:'The Order',internal:'Ascending Cost Energy',id:206,rarity:2,list:0,description:'Gain 1 Energy When You Play\n3 Cards With Ascending Cost'},
         {name:'Dusk Sphere',internal:'Turn 4 Duplicate',id:207,rarity:-1,list:0,description:'On Turn 4, Duplicate 3 Cards'},
-        {name:'Timed Contract',internal:'Speedrunner',id:208,rarity:1,list:0,description:'Gain 50 Currency If Combat\nEnds Before or on Turn 5'},
+        {name:'Timed Contract',internal:'Speedrunner',id:208,rarity:1,list:0,description:'Gain 50 Currency if Combat\nEnds Before or on Turn 5'},
         {name:'Bootstraps',internal:'Currency Strength',id:209,rarity:3,list:0,description:'Gain 2 Strength Per\n500 Currency You Have\nat the Start of Combat'},
 
         {name:'To The Moon',internal:'1000 Currency Currency Per Room',id:210,rarity:3,list:0,description:'Gain 40 Currency Every Room\nWhen You Have 1000 Currency or More'},
@@ -1395,7 +1398,7 @@ Inside you find something useful.`,
                 },
             ],
         },{
-            name:'Glowing Spring',id:13,list:0,
+            name:'Glowing Spring',id:13,list:-1,
             pages:[
                 {
                     desc:
@@ -4086,16 +4089,51 @@ before they leave as a group down the road.`,
                     link:[-1],
                 },
             ],
-        },/*{
+        },{
             name:'Fake Adventure',id:100,list:0,
             pages:[
                 {
                     desc:
-`As you walk along the road, you are suddenly surprised by a
-girl running toward you, dressed in red shrine maiden's clothing.
-"You're the one I've been looking for!" she shouts as she approaches.`,
-                    option:[''],
-                    optionDesc:[''],
+`As you pass through the village at night, you are suddenly surprised by
+a girl running toward you, dressed in red shrine maiden's clothing.
+"You're the one I've been looking for!" she shouts as she approaches.
+With a disapproving look on her face and a talisman in her hand,
+she stands before you. "You've been causing some trouble around here,
+and it's my task to keep the peace... it's time to fight!"
+You're taken by utter surprise and unprepared for a battle,
+but it doesn't look like she's messing around.`,
+                    option:['Act Confused','Bribery','Run'],
+                    optionDesc:['Lose 15 Health','Lose 33 Currency',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+`Your attempt to feign ignorance doesn't fool her, unfortunately.
+She knocks you to the ground, but after beating you up further and examining
+you again a few times, concludes that the incident should be resolved.
+"No hard feelings!" she shouts out as she runs off, leaving you confused.
+"Once you're feeling normal, you can come visit me at the shrine!"
+Maybe you'll pass by there in the future.`,
+                    option:['Get Up'],
+                    optionDesc:['Choose a Hakurei Tool to Add to Deck'],
+                    link:[-1],
+                },{
+                    desc:
+`Handing a few coins to her, she seems to lose her earlier anger.
+"I'm short on money, so I'll leave you be" she tells you, "but try not to 
+cause trouble again, alright? Come on, I'll take you to the shrine.
+Just don't do anything stupid, and you'll be free to go later."`,
+                    option:['Follow Her'],
+                    optionDesc:['Choose a Hakurei Tool to Add to Deck'],
+                    link:[-1],
+                },{
+                    desc:
+`Turning to run, you start to get away, but she pursues. "I knew it!"
+she shouts after you. "Get back here, it's time for your exorcism!"
+Still, you continue, and it looks like you're just fast enough to escape.
+After a lengthy dash, you lose sight of each other. But the
+strange encounter resonates with you - something is following you around.`,
+                    option:['Leave'],
+                    optionDesc:[`Become Cursed - Reimu's Wrath`],
                     link:[-1],
                 },
             ],
@@ -4103,8 +4141,27 @@ girl running toward you, dressed in red shrine maiden's clothing.
             name:'Shining Castle',id:101,list:0,
             pages:[
                 {
-                    desc:'',
-                    option:[''],
+                    desc:
+`The planet used to be covered in castles. They weren't useful
+by then of course - warfare outpaced them, but at least they were
+architecture. Yet most have long since been demolished. Now, you
+find yourself before one of the last. It's said the owner is
+gone now, but she moved in following Management relocation efforts.
+It's open to the public now, but there's not much of value inside.
+Maybe something here is useful?`,
+                    option:['Take an Item','Take Money'],
+                    optionDesc:['Add an Inchling Bowl to Deck','Gain 25 Currency'],
+                    link:[1,2],
+                },{
+                    desc:
+`You find at least a few items still in usable condition.
+But they're all too small for you, so there's not much you can really take.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:'You grab some coins on the ground and get on your way.',
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4113,8 +4170,28 @@ girl running toward you, dressed in red shrine maiden's clothing.
             name:'Graveyard',id:102,list:0,
             pages:[
                 {
-                    desc:'',
-                    option:[''],
+                    desc:
+`You've found one of the last intact graveyards on the planet.
+At least the Management was kind enough not to demolish this one
+like the rest. It's not a beautiful place, filled with broken pieces
+of wood and a creeping greenish smoke. Clearly there's not much
+left here, but you feel an odd peace in such a strange place.`,
+                    option:['Pay Respects','Steal'],
+                    optionDesc:['Add a Final Rest to Deck','Gain a Relic'],
+                    link:[1,2],
+                },{
+                    desc:
+`Spending some time there, you ultimately decide to leave.
+You've got places to be... there's nothing to do here.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`Given the state of destruction the area's in, nobody will notice
+if you take what you find. Maybe the Management was right to
+recquisition the rest... certainly that's impossible.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4123,13 +4200,50 @@ girl running toward you, dressed in red shrine maiden's clothing.
             name:'Cissni Peak',id:103,list:0,
             pages:[
                 {
-                    desc:'',
-                    option:[''],
+                    desc:
+`You have finally reached the top of Cissni Peak, a mountain
+known for its unique shape that creates echoes from almost anywhere.
+The mountain's been settled for a long time by now, there's amenities
+there and everything. You could spent the night here in safety,
+or you can go out and hear the echoing for yourself.`,
+                    option:['Go Outside','Sleep'],
+                    optionDesc:['Add a Mountain Echo to Deck','Heal 7 Health'],
+                    link:[1,2],
+                },{
+                    desc:
+`You go out during the night and are
+mesmerized by the echoes around yourself.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`Getting some sleep, you feel refreshed, but by the time you wake up,
+there's already too much noise from others to hear anything.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
             ],
-        },*/
+        },{
+            name:'Terminate the Tower',id:104,list:0,
+            pages:[
+                {
+                    desc:
+`A massive Management watchtower stands before you,
+bristling with weapons emplacements and guards. Not an easy task.
+The rebels in the area have an assault plan ready, however.
+Just before the assault begins, their commander brings you aside.
+"A series of enemy outposts on the hill nearby have been detected.
+If left alone, they threaten our forces. Optimally, it would be you
+who takes thsoe units out. It should just be a few snipers in a hole.
+Nothing hard for you, right?"`,
+                    option:['Accept','Decline'],
+                    optionDesc:['Start Fight',''],
+                    link:[-2,-1],
+                },
+            ],
+        },
     ],color:{
         card:[
             {
@@ -5644,6 +5758,15 @@ girl running toward you, dressed in red shrine maiden's clothing.
                 [{type:-1},{type:[]},{type:[]},{type:-1},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Split Induction 7',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
         },
 
         /*{
@@ -5672,6 +5795,16 @@ girl running toward you, dressed in red shrine maiden's clothing.
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Split Induction 7'],class:0,world:-1,
+            name:'Sniper Outpost',
+            player:{position:[[{x:1,y:2}],[{x:1,y:1},{x:2,y:3}]]},
+            enemy:[
+                {position:{x:4,y:1},name:'Management Sniper'},
+                {position:{x:5,y:3},name:'Management Sniper'},
+                {position:{x:3,y:2},name:'Management Shotgunner'},
             ],reinforce:[
             ],
         },{
@@ -6365,7 +6498,8 @@ girl running toward you, dressed in red shrine maiden's clothing.
             name:'Management Drone',
             player:{position:[[{x:6,y:6}],[{x:5,y:5},{x:6,y:5}]]},
             enemy:[
-                {position:{x:4,y:2},name:'Management Drone'},
+                {position:{x:3,y:2},name:'Management Drone'},
+                {position:{x:5,y:2},name:'Management Drone'},
             ],reinforce:[
             ],
         },{
@@ -7732,6 +7866,8 @@ Costs 2 to use and retains. Range 1-3.`,
         {name:'Archivist',desc:'Polymorph Yourself'},
         {name:'Eternal Judge',desc:'If Combat Reaches Turn 20, You Die'},
         {name:'Keystone',desc:'Confuse a Random Card Each Turn'},
+        {name:'Golden Duck',desc:'Only Earn Currency From Battles if They End Before or on Turn 5'},
+        {name:'Management Shotgunner',desc:'Enemies With a N in Their Name Get 3 Strength'},
     ],deckmode:[
         {name:'Standard Deck'},
         {name:'Draft Deck'},

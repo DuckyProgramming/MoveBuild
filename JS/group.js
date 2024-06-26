@@ -2844,7 +2844,7 @@ class group{
                 this.battle.attackManager.amplify=true
             }else if(this.battle.getEnergy(this.player)>=1&&spec.includes(27)){
                 if(variants.mtg){
-                    this.battle.loseSpecificEnergy(1,this.player,0)
+                    this.battle.loseSpecificEnergy(1,this.player,6)
                 }else{
                     this.battle.loseEnergy(1,this.player)
                 }
@@ -2857,7 +2857,7 @@ class group{
             }
             if(this.battle.getEnergy(this.player)>=2&&spec.includes(28)){
                 if(variants.mtg){
-                    this.battle.loseSpecificEnergy(2,this.player,0)
+                    this.battle.loseSpecificEnergy(2,this.player,6)
                 }else{
                     this.battle.loseEnergy(2,this.player)
                 }
