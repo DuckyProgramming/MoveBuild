@@ -12,8 +12,9 @@ class cardManager{
         this.discard=new group(this.layer,this.battle,this.player,3)
         this.drop=new group(this.layer,this.battle,this.player,4)
         this.exhaust=new group(this.layer,this.battle,this.player,5)
+        this.remove=new group(this.layer,this.battle,this.player,6)
         if(variants.inventor){
-            this.tech=new group(this.layer,this.battle,this.player,6)
+            this.tech=new group(this.layer,this.battle,this.player,7)
             this.tech.add(findName('Techless',types.card),0,0)
         }
 
@@ -140,7 +141,7 @@ class cardManager{
             let manaColor=cardColor[a%cardColor.length]
             if(types.card[a].rarity>=0&&(types.card[a].list>0||effectiveMana[0]>0&&types.card[a].list==0)&&types.card[a].list<=game.playerNumber&&
                 (cardColor.length==1&&effectiveMana[cardColor[0]]>0||cardColor.length==2&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0||cardColor.length==3&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0&&effectiveMana[cardColor[2]]>0||effectiveMana[6]>0)&&
-                (manaColor==0||effectiveMana[manaColor]+effectiveMana[6]>=types.card[a].levels[0].cost||types.card[a].levels[0].spec.includes(11)||types.card[a].levels[0].spec.includes(21)||types.card[a].levels[0].spec.includes(35))
+                (manaColor==6||effectiveMana[manaColor]+effectiveMana[6]>=types.card[a].levels[0].cost||types.card[a].levels[0].spec.includes(11)||types.card[a].levels[0].spec.includes(21)||types.card[a].levels[0].spec.includes(35))&&!(manaColor==0&&types.card[a].levels[0].cost==0)
             ){
                 this.listing.mtg[types.card[a].rarity].push(a)
                 this.listing.mtg[3].push(a)
@@ -158,6 +159,7 @@ class cardManager{
             case 3: return this.discard
             case 4: return this.drop
             case 5: return this.exhaust
+            case 6: return this.remove
         }
     }
     cardInUse(){

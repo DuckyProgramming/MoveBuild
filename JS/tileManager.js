@@ -91,7 +91,8 @@ class tileManager{
         return -1
     }
     getRandomTilePosition(){
-        return this.getRandomTile().tilePosition
+        let tile=this.getRandomTile()
+        return tile==-1?-1:tile.tilePosition
     }
     getEmptyTiles(){
         let list=[]

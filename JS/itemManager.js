@@ -311,7 +311,7 @@ class itemManager{
                 userCombatant.heal(10*effectiveness)
             break
             case 50:
-                for(let a=0,la=15;a<la;a++){
+                for(let a=0,la=10;a<la;a++){
                     this.battle.combatantManager.randomEnemyEffect(0,[6])
                 }
             break

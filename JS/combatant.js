@@ -157,7 +157,7 @@ class combatant{
             behavior:[
                 0,2,1,0,2,1,0,0,4,4,//1
                 4,0,0,2,0,0,1,2,2,0,//2
-                2,0,0,0,1,1,2,0,4,2,//3
+                4,0,0,0,1,1,2,0,4,2,//3
                 0,1,4,1,0,0,0,2,1,2,//4
                 2,2,0,0,0,0,0,2,0,0,//5
                 0,1,0,1,0,2,2,1,2,2,//6
@@ -3768,7 +3768,7 @@ class combatant{
             break
             case 'Rewriter':
                 this.statusEffect('Cannot Die',999)
-                this.life-=this.battle.combatantManager.rewriterSwitch
+                this.life-=this.battle.combatantManager.finalBossSwitch
             break
             case 'Mirror Shield':
                 this.statusEffect('Reflect',1)
@@ -3801,9 +3801,15 @@ class combatant{
             case 'Eternal Judge':
                 this.sins=[]
                 this.infoAnim.sins=[]
+                this.life-=this.battle.combatantManager.finalBossSwitch
             break
         }
         if(this.team==0){
+            if(this.type<=game.playerNumber){
+                this.life*=3
+                this.base.life*=3
+                this.collect.life*=3
+            }
             if(game.ascend>=2&&this.battle.encounter.class==0||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2){
                 for(let a=0,la=this.attack.length;a<la;a++){
                     if((types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==5)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){

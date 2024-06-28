@@ -5,7 +5,6 @@ class group{
         this.player=player
         this.id=id
         this.cards=[]
-        this.removed=[]
         this.sorted=[]
         this.drawEffects=[]
         this.spec=[]
@@ -1388,10 +1387,10 @@ class group{
     }
     allEffectArgs(effect,args){
         let total=0
-        if(effect==9){
-            total=args[1]
-        }else if(effect==10||effect==12||effect==18||effect==19){
+        if(effect==3||effect==10||effect==12||effect==18||effect==19){
             total=0
+        }else if(effect==9){
+            total=args[1]
         }
         for(let a=0,la=this.cards.length;a<la;a++){
             switch(effect){
@@ -1413,7 +1412,8 @@ class group{
                     }
                 break
                 case 3:
-                    if(a%args[0]==0){
+                    total++
+                    if(total%args[0]==0){
                         this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                         a--
                         la--
@@ -2658,7 +2658,7 @@ class group{
                 costs.push(this.cards[a].cost)
             }
         }
-        this.sorted=costs.sort()
+        this.sorted=sortNumbers(costs)
     }
     sortSpecLength(){
         this.lastSort=2
@@ -2668,7 +2668,7 @@ class group{
                 costs.push(this.cards[a].spec.length)
             }
         }
-        this.sorted=costs.sort()
+        this.sorted=sortNumbers(costs)
     }
     sortRarity(){
         this.lastSort=3
@@ -2678,7 +2678,7 @@ class group{
                 rarities.push(this.cards[a].rarity)
             }
         }
-        this.sorted=rarities.sort()
+        this.sorted=rarsortNumbers(ities)
     }
     sortClass(cardClass){
         this.lastSort=4
@@ -2693,9 +2693,8 @@ class group{
     remove(index){
         let possible=!this.cards[index].spec.includes(7)&&!(this.battle.initialized&&this.battle.modded(97))
         if(possible){
-            this.removed.push(copyCard(this.cards[index]))
             this.cards[index].callRemoveEffect()
-            this.cards.splice(index,1)
+            this.send(this.battle.cardManagers[this.player].remove.cards,index,index+1,0)
         }
         return possible
     }
@@ -2709,8 +2708,7 @@ class group{
         return !this.cards[index].spec.includes(7)
     }
     unRemove(){
-        this.cards.push(this.removed[this.removed.length-1])
-        this.removed.splice(this.removed.length-1,1)
+        this.battle.cardManagers[this.player].remove.send(this.cards,this.battle.cardManagers[this.player].remove.cards.length-1,this.battle.cardManagers[this.player].remove.length,0)
     }
     hasCard(type){
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -3097,7 +3095,7 @@ class group{
                     }else if(this.cards[a].spec.includes(15)||this.cards[a].spec.includes(38)){
                         if(this.cards[a].spec.includes(15)){
                             this.cards[a].limit=round(this.cards[a].limit-1)
-                        }else if(this.cards[a].spec.includes(38)){
+                        }else if(this.cards[a].spec.includes(38)&&this.cards[a].limit>0){
                             this.cards[a].limit[0]=round(this.cards[a].limit[0]-1)
                         }
                         if(this.cards[a].limit<=0&&this.cards[a].spec.includes(15)||this.cards[a].limit[0]<=0&&this.cards[a].spec.includes(38)){
@@ -3896,7 +3894,10 @@ class group{
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(9),1)
                             }else if(this.cards[a].discardEffect.includes(13)){
                                 this.cards[a].spec.push(55)
+                                this.cards[a].additionalSpec.push(55)
                                 this.cards[a].usable=true
+                                this.cards[a].edited.cost-=this.cards[a].cost
+                                this.cards[a].edited.costComplete=true
                                 this.cards[a].cost=0
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(13),1)
                             }

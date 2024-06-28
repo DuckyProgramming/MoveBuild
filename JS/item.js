@@ -337,7 +337,7 @@ class item{
                     displaySymbol(this.layer,-6,0,18,0,1.2,this.fade)
                     this.layer.fill(0)
                     this.layer.textSize(6)
-                    this.layer.text('6x15',-6,0)
+                    this.layer.text('6x10',-6,0)
                     this.layer.textSize(20)
                     this.layer.text('?',10,0)
                 break

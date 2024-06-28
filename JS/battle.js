@@ -305,6 +305,9 @@ class battle{
             if(variants.transcend){
                 this.cardManagers[a].allGroupEffect(88)
             }
+            if(variants.mtg){
+                this.cardManagers[a].mtgLastColor=6
+            }
         }
         this.combatantManager.deTargetCombatants()
         if(this.modded(21)&&this.encounter.class==0){
@@ -777,6 +780,9 @@ class battle{
     }
     playCard(card,player,mode){
         let cardClass=card.spec.includes(12)?card.class[mode]:card.class
+        if(variants.mtg){
+            this.cardManagers[player].mtgLastColor=card.mtgManaColor
+        }
         if(card.spec.includes(0)||card.spec.includes(12)&&card.reality[mode].includes(0)){
             this.cardManagers[player].fatigue()
         }
@@ -989,9 +995,6 @@ class battle{
         }
         if(card.spec.includes(25)&&userCombatant.getStatus('Gun Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Gun Block'))
-        }
-        if(variants.mtg){
-            this.cardManagers[player].mtgLastColor=card.color==0&&card.rarity<0?6:card.mtgManaColor
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed])
@@ -2050,7 +2053,7 @@ class battle{
                             allClosed=false
                         }
                     }
-                    if(allClosed&&!this.result.defeat){
+                    if(allClosed&&!this.result.defeat&&!transition.trigger){
                         transition.trigger=true
                         for(let a=0,la=this.players;a<la;a++){
                             this.itemManager.activateEndBattle(a)

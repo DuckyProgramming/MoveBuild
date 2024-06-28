@@ -1023,7 +1023,7 @@ types={
         {name:'Mirror Dome',id:47,rarity:2,list:0,menu:false,temp:false,description:'Draw 10 Cards,\nBecome Confused'},
         {name:'Shield Field',id:48,rarity:2,list:0,menu:false,temp:false,description:'Gain 2 Buffer'},
         {name:'Bottled Fairy',id:49,rarity:2,list:0,menu:true,temp:false,description:'When You Die,\nHeal 10 HP'},
-        {name:'Particle Storm',id:50,rarity:2,list:0,menu:false,temp:false,description:'Deal 6 Damage to a\nRandom Enemy 15 Times'},
+        {name:'Particle Storm',id:50,rarity:2,list:0,menu:false,temp:false,description:'Deal 6 Damage to a\nRandom Enemy 10 Times'},
         {name:'Pile of Junk',id:51,rarity:2,list:0,menu:true,temp:false,description:'Fill All Item Slots'},
         {name:'Skill Box',id:52,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Free Skills\nto Your Hand'},
 

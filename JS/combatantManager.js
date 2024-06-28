@@ -12,7 +12,7 @@ class combatantManager{
         this.sorted=[]
         this.summons=[]
 
-        this.rewriterSwitch=0
+        this.finalBossSwitch=0
     }
     assignPlayer(){
         for(let a=0,la=this.combatants.length;a<la;a++){

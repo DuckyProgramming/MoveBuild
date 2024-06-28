@@ -1329,6 +1329,30 @@ function numeralizeDirection(type,direction){
 function directionCombatant(combatant1,combatant2){
 	return atan2(combatant1.relativePosition.x-combatant2.relativePosition.x,combatant1.relativePosition.y-combatant2.relativePosition.y)
 }
+function sortNumbers(numbers){
+	if(numbers.length==0){
+		return []
+	}
+	let result=[]
+	for(let a=0,la=numbers.length;a<la;a++){
+		if(numbers.length==0){
+			break
+		}
+		let minimum=numbers[0]
+		for(let b=0,lb=numbers.length;b<lb;b++){
+			minimum=min(minimum,numbers[b])
+		}
+		for(let b=0,lb=numbers.length;b<lb;b++){
+			if(numbers[b]==minimum){
+				result.push(numbers[b])
+				numbers.splice(b,1)
+				b--
+				lb--
+			}
+		}
+	}
+	return result
+}
 function prime(value){
 	for(let a=2,la=sqrt(value);a<la;a++){
 		if(value%a==0){
@@ -1592,6 +1616,58 @@ function outClass(){
 	}
 	for(let a=0,la=game.playerNumber+1;a<la;a++){
 		build+=(a==0?`Colorless:`:`${types.combatant[a].name}:`)+`\nAttacks: ${totals[a][0]}\nDefenses: ${totals[a][1]}\nSkills: ${totals[a][10]}\nMovements: ${totals[a][2]}\nPowers: ${totals[a][3]}\n\n`
+	}
+	print(build)
+}
+function outCost(){
+	let averages=[]
+	let totals=[]
+	let build=``
+	for(let a=0,la=game.playerNumber+1;a<la;a++){
+		averages.push([0,0])
+		totals.push([])
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(
+			types.card[a].list>=0&&types.card[a].list<=game.playerNumber&&types.card[a].rarity>=0&&
+			!types.card[a].levels[0].spec.includes(5)&&
+			!types.card[a].levels[0].spec.includes(11)&&
+			!types.card[a].levels[0].spec.includes(21)&&
+			!types.card[a].levels[0].spec.includes(35)&&
+			!types.card[a].levels[0].spec.includes(41)
+		){
+			if(types.card[a].levels[0].cost>=0){
+				averages[types.card[a].list][0]+=types.card[a].levels[0].cost
+				averages[types.card[a].list][1]++
+			}
+			let complete=false
+			for(let b=0,lb=totals[types.card[a].list].length;b<lb;b++){
+				if(totals[types.card[a].list][b][0]==types.card[a].levels[0].cost){
+					totals[types.card[a].list][b][1]++
+					complete=true
+				}
+			}
+			if(!complete){
+				totals[types.card[a].list].push([types.card[a].levels[0].cost,1])
+			}
+		}
+	}
+	for(let a=0,la=game.playerNumber+1;a<la;a++){
+		build+=`${(a==0?`Colorless:`:`${types.combatant[a].name}:`)}\nAverage: ${round(averages[a][0]/averages[a][1]*1000)/1000}\n`
+		let left=[]
+		for(let b=0,lb=totals[a].length;b<lb;b++){
+			left.push(totals[a][b][0])
+		}
+		for(let b=0,lb=left.length;b<lb;b++){
+			left=sortNumbers(left)
+			for(let c=0,lc=totals[a].length;c<lc;c++){
+				if(totals[a][c][0]==left[0]){
+					build+=`${totals[a][c][0]==-1?`X`:totals[a][c][0]} Cost: ${totals[a][c][1]}\n`
+				}
+			}
+			left.splice(0,1)
+		}
+		build+=`\n`
 	}
 	print(build)
 }

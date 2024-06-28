@@ -6352,7 +6352,7 @@ attack.prototype.update=function(){
         break
         case 2527: case 2528: case 2529: case 2530: case 2531: case 2532: case 2533: case 2534: case 2535:
         case 2536: case 2537: case 2538: case 2539: case 2540: case 2541: case 2542: case 2556: case 2557:
-        case 3409:
+        case 3409: case 3462:
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
             }else{
@@ -7911,7 +7911,11 @@ attack.prototype.update=function(){
             this.userCombatant.runAnimation(1/20,32)
             if(this.timer==10){
                 this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,97,[10]))
-                this.userCombatant.statusEffect('Temporary Free Non-Rare Colorless',this.effect[0])
+                if(variants.mtg){
+                    this.battle.addEnergy(this.effect[0],this.player)
+                }else{
+                    this.userCombatant.statusEffect('Temporary Free Non-Rare Colorless',this.effect[0])
+                }
                 this.userManager.draw(this.effect[1])
             }else if(this.timer>=20){
                 this.remove=true

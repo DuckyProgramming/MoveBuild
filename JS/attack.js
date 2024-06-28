@@ -1497,21 +1497,21 @@ class attack{
                         let roll2025=this.userCombatant.diceRoll(1,20)
                         this.targetCombatant.takeDamage(this.effect[0]*roll2025,this.user)
                         if(roll2025==20){
-                            this.targetCombatant.statusEffect('Free Card',this.effect[1])
+                            this.userCombatant.statusEffect('Free Card',this.effect[1])
                         }
                     break
                     case 2026:
                         let roll2026=this.userCombatant.diceRoll(1,20)
                         this.targetCombatant.takeDamage(this.effect[0]*roll2026,this.user)
                         if(roll2026==19||roll2026==20){
-                            this.targetCombatant.statusEffect('Free Card',this.effect[1])
+                            this.userCombatant.statusEffect('Free Card',this.effect[1])
                         }
                     break
                     case 2027:
                         let roll2027=this.userCombatant.diceRoll(1,20)
                         this.targetCombatant.takeDamage(this.effect[0]*roll2027,this.user)
                         if(roll2027==18||roll2027==19||roll2027==20){
-                            this.targetCombatant.statusEffect('Free Card',this.effect[1])
+                            this.userCombatant.statusEffect('Free Card',this.effect[1])
                         }
                     break
                     case 2032:
@@ -8616,7 +8616,7 @@ class attack{
                         this.userManager.hand.allEffectArgs(28,[this.effect[0]])
                     break
                     case 3447:
-                        this.userManager.hand.allEffectArgs(29,[this.effect[0]])
+                        this.userManager.hand.allEffectArgs(29,[this.effect[0],this.effect[0]])
                     break
                     case 3451:
                         this.battle.overlayManager.overlays[86][this.player].active=true
@@ -8967,7 +8967,7 @@ class attack{
                     case 1230:
                         this.userCombatant.heal(this.effect[0])
                         if(this.userCombatant.base.life<=this.userCombatant.life){
-                            this.battle.combatantManager.damageAreaID(this.effect[1],-1,this.userCombatant.id,this.userCombatant.tilePosition)
+                            this.battle.combatantManager.damageAreaID(this.effect[1],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         }
                     break
                     case 1235:
@@ -12293,7 +12293,7 @@ class attack{
                         this.battle.drop(this.player,findName('Starlight',types.card),0,game.playerNumber+1)
                     break
                     case 3186:
-                        this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],thsi.user])
+                        this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.user])
                     break
                     case 3192:
                         this.userManager.hand.add(findName('Stride',types.card),0,0)
@@ -13046,7 +13046,7 @@ class attack{
                         this.battle.combatantManager.fullAllEffect(8,[this.effect[1]])
                     break
                     case 1860:
-                        this.battle.combatantManager.rewriterSwitch+=this.effect[0]
+                        this.battle.combatantManager.finalBossSwitch+=this.effect[0]
                     break
                     case 1873:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -13599,6 +13599,7 @@ class attack{
                             this.selfCall(20)
                         }else if(this.cost>=5){
                             this.userManager.hand.add(findName('17 of\nNothings',types.card),0,0)
+                            this.userManager.draw(this.effect[1])
                         }
                     break
                     case 3140:
@@ -14022,6 +14023,10 @@ class attack{
                     case 3409:
                         this.battle.overlayManager.overlays[3][this.player].active=true
                         this.battle.overlayManager.overlays[3][this.player].activate([0,3,17,5,11])
+                    break
+                    case 3462:
+                        this.battle.overlayManager.overlays[94][this.player].active=true
+                        this.battle.overlayManager.overlays[94][this.player].activate()
                     break
                 }
             break

@@ -1,237 +1,7 @@
-UPDATE 3:
 
 
 
-make a card with the juicy animation with the sphere that explodes into a bunch of lines that curve in circular patterns
 
-fatigues be ugly
-
-ouija - choose any card
-
-
-
-
-
-UPDATE 4:
-
-
-
-
-100 final cards
-
-
-
-[devil's rain - 16 damage, heal 2, 2 range, but if not played you lose 1 health, exhaust]
-
-[azimuth - advance and nerf target]
-
-[refine chemicals - gain prismatic bomb damage up, add 1 prismatic bomb]
-
-[oracle lite]
-
-[starstream - damage and get starlight]
-
-[worldline]
-
-
-
-[halfwheel - if you above half health 9 damage and 6 block, otherwise 6 damage and 9 block]
-
-[semiwheel - if you above half health 6 damage and 9 block, otherwise 9 damage and 6 block]
-
-[deep memory - 2 cost recall, but if the card is at the left or right of your hand, the recalled card costs 0 temporarily]
-
-[english weather - dev card, your balls but it adds a card including "storm"]
-
-[feast of dew - draw 2 cards, discards to draw, when drawn 3 times, gain a buff]
-
-[pauli exclusion principle - make a card negative, if it's a duplicate]
-
-
-
-[ally card - remove a card, transfer its edition]
-
-[ally card]
-
-[new spectral (add an ally card)]
-
-[new spectral]
-
-[new spectral]
-
-[new tarot - LXXVII - the force - move any character as far from you has possible]
-
-
-
-[epicycle but an attack]
-
-[extending move (based off extending arm)]
-
-[call airstrike]
-
-[red planet]
-
-[wave-particle duality]
-
-[2 cost - take no damage this turn, deal no damage next turn]
-
-
-
-[scaled waves - 2 cost add block, draw to 7 cards]
-
-[close-eye shot - 2 cost, 8 damage to a random enemy 4 times]
-
-[necromancy - gain 5 temporary strength, gain 5 hp, lose 5 hp next turn]
-
-[instantaneous - take another turn, but you can only play 2 cards during it]
-
-[skyshot - 8 damage, spend 5 charge: gain 1 dodge]
-
-[fire of complexity - cost 2, deal 6 damage to a random enemy whenever you play a 2+ cost card]
-
-
-
-[opposite of honey]
-
-[chocolate bar (rename) - sour candy but it gives armor]
-
-[corrugated iron - get something when vanished]
-
-[cosmic latte - based on icterine]
-
-[cashflow - like wired funds]
-
-[cauchy-riemann equations]
-
-
-
-[exploit miracle]
-
-[infinite plain]
-
-[mesh]
-
-[oil money]
-
-[tiny lodger]
-
-[creation of idols]
-
-
-
-[imaginary friend]
-
-[luck of the celestial]
-
-[starry sky]
-
-[shizuha ally card]
-
-[technical ally card]
-
-[swallow shell - curse, exhaust itself if you gain 20 or more block]
-
-
-
-[sapper rocket]
-
-[dark residue - burn, but there's a way to make it exhaust itself]
-
-[approach of spring - 1 cost, add 2 random 1 cost cards to hand, gain 1 energy next turn]
-
-[mountain avens]
-
-[shikigami protection - get an uncommon card and it costs 0]
-
-[ran, summoned kitsune]
-
-
-
-[floret fractal - damage multiple times, get dark residue]
-
-[psychosis - gain 1 base energy, all enemies gain 2 strength and 2 dexterity]
-
-[twin barrage - 10 damage 2 times, countdown 2, decreases by 2 when incremented]
-
-[focus light - add block, X cost, gain X-1 energy next turn]
-
-[ship's phantom - 0 cost damage, when exhausted, draw 2 cards, 1 costs 1 less, the other is free]
-
-[propellant - next x cost card played gets +2 to x]
-
-
-
-[yes men]
-
-[flames of servitude]
-
-[bisected spiral]
-
-[immortal flame - gain 1 strength per turn, heal 4 hp at the end of combat]
-
-[clay spinner - 6 damage and 6 block, damage increases by 2 when attack played, blcok increases by 2 when defense played]
-
-[golden sunrise - 0 cost gain 4 temporary strength, heal 4 health, lose 4 health next turn]
-
-
-
-[fire of ena - deal 6 damage to all enemies when you gain energy]
-
-[aggressor - agent power, draw an attack every turn]
-
-[dualic phosphor - dev card, add a random free skill to hand every turn, it costs 1 and exhausts]
-
-[bricklaying]
-
-[knife hellscape - get a shiv whenever you exhaust a non-shiv card]
-
-[spread amulet - 2 range splash damage, get barrier for unblocked damage dealt]
-
-
-
-[orb of hatred - 10 damage 3 times, increases by 1 when a card is drawn outside of the draw step, retain]
-
-[across the sea - whenever you gain 20 or more block, draw a card]
-
-[wind manipulation - scry 3, gain 10 block for each defense discarded]
-
-[gain 16 block and retain it for 1 turn, then take another turn]
-
-[frozen pulse - 7 damage, 3 directions, spend 2 charge: apply 1 freeze]
-
-[lightning laser - 2 cost 12 damage, 12 block, adds double block when in wrath and triple in divinity]
-
-
-
-[canister of luminosity - add 12 block, when exhausted, add a prismatic bomb]
-
-[reverse boundary - add 5 block when you lose a buff]
-
-[clickjack - deal 9 damage, deals 3 more if you have strength]
-
-[astrology study - add an astrology to hand whenever you don't have one at the start of your turn]
-
-[geometric optics - 1 cost, rare, 18 block, gain 6 more whenever you use a prismatic bomb this turn]
-
-[pyrolysis - 1 cost gain 2 energy, draw 2 attacks, exhaust]
-
-
-
-[donakho power]
-
-[prehex power]
-
-[]
-
-[]
-
-[]
-
-[]
-
-
-
-[carbon star - 2 cost 19 damage, if you are in wrath, add a smite to hand]
 
 [splash - add 2 blue mana]
 
@@ -241,18 +11,88 @@ UPDATE 4:
 
 [delay all damage taken this turn to 3 turns from now]
 
-[glassy carbon - 2 cost, 28 block, if you are in sturdy, add a sfety to hand]
+
+
+[guided meteor - make a card with the juicy animation with the sphere that explodes into a bunch of lines that curve in circular patterns]
+
+[foilcopy - create a foil card of the next card added]
+
+[golf ball]
+
+[more mtg-specific cards]
+
+[clarion call]
+
+[solution dilution]
 
 
 
-[]
+[ally card]
 
-[]
+[ally card]
 
-[]
+[new spectral (add an ally card)]
 
-[]
+[new spectral - remove a card, transfer its edition]
 
+[new spectral]
+
+[new tarot - LXXVII - the force - move any character as far from you has possible]
+
+
+
+[left of hand - pull from discard, right of hand - pull from draw]
+
+[magic of the mallet - all cards created cost 1 less]
+
+[pyrolysis - 1 cost gain 2 energy, draw 2 attacks, exhaust]
+
+[frozen pulse - 7 damage, 3 directions, spend 2 charge: apply 1 freeze]
+
+
+
+[gain 1 strength whenever you dodge an attack]
+
+[bamboo stick - gain 1 energy when you dodge an attack]
+
+[flashing needle]
+
+[quickwing - get 2 random cards from draw pile, choose to put one in hand and other to discard]
+
+[positive force]
+
+[paced energy]
+
+
+
+[assembly - draw 2 cards, compact cards in your hand this combat]
+
+[shizuha ally card]
+
+[technical ally card]
+
+[ran, summoned kitsune]
+
+quantum tunnel - 0 cost, 8 damage, ignore block, gain 1 energy, when drawn lose 1 energy, return on extra turn
+
+[spread amulet - 2 range splash damage, get barrier for unblocked damage dealt]
+
+
+
+
+withdraw inchling bowl
+
+
+
+how is chip doing?
+
+
+liles of murder could look a lot cooler
+
+eternal judge's sins spawn particles and annoy the player
+
+
+GLOBAL GOAL 150 ALL
 
 
 
