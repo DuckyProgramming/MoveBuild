@@ -1814,7 +1814,7 @@ class turn{
                         this.userCombatant.statusEffect('Speed Up',this.effect[0])
                     break
                     case 216:
-                        this.userCombatant.life-=this.effect[0]
+                        this.userCombatant.loseHealth(this.effect[0])
                         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                             if(this.battle.combatantManager.combatants[a].spec.includes(2)){
                                 this.battle.combatantManager.combatants[a].heal(this.effect[0])

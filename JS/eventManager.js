@@ -485,13 +485,13 @@ class eventManager{
                             if(userCombatant.life<=0){
                                 tempPage=-this.pages[this.page].link[a]
                             }else{
-                                userCombatant.life-=8
+                                userCombatant.loseHealth(8)
                             }
                         }else if(this.page==0&&a==2){
                             if(userCombatant.life<=0){
                                 tempPage=-this.pages[this.page].link[a]
                             }else{
-                                userCombatant.life-=24
+                                userCombatant.loseHealth(24)
                             }
                         }else if(this.page==1&&a==0){
                             this.battle.addCurrency(45,this.player)

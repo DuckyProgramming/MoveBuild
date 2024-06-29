@@ -104,13 +104,14 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[71])],//return removed to deck
                     [new overlay(this.layer,this.battle,0,8,[1,0])],//new card to hand, allcard
                     [new overlay(this.layer,this.battle,0,2,[72])],//negative edition smush, no return
+                    [new overlay(this.layer,this.battle,0,2,[73,0,0,0])],//scry, block on defense
 
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
                 }
                 this.positionOverlays()
-                this.priority=[51,61,82,64,41,42,24,4,16,38,17,3,26,28,10,83,35,95,6,90,91,92,93,94,44,71,72,48,49,87,88,96,12,0,25,1,13,36,2,15,5,32,7,18,50,30,56,57,58,67,68,69,80,70,63,59,33,52,53,8,86,81,65,66,46,47,73,79,34,37,19,20,21,22,23,85,29,31,40,9,89,14,74,75,76,77,84,62,54,11,27,39,43,55,78,45,60]
+                this.priority=[51,61,82,64,41,42,24,4,16,38,17,3,26,28,10,83,35,95,6,90,91,92,93,94,44,71,72,48,49,87,88,96,12,0,25,1,13,36,2,15,5,32,7,18,50,30,56,57,58,67,68,69,80,97,70,63,59,33,52,53,8,86,81,65,66,46,47,73,79,34,37,19,20,21,22,23,85,29,31,40,9,89,14,74,75,76,77,84,62,54,11,27,39,43,55,78,45,60]
             break
             case 1:
                 this.overlays.push(

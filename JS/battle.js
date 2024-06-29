@@ -79,7 +79,7 @@ class battle{
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
         this.lastEncounter=types.encounter[0]
         
-        this.turn={main:0,total:0,time:0,accelerate:0,endReady:false}
+        this.turn={main:0,total:0,time:0,accelerate:0,endReady:false,active:false}
         this.counter={enemy:0,killed:0}
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[]}
@@ -251,7 +251,7 @@ class battle{
         for(let a=0,la=this.energy.base.length;a<la;a++){
             this.energy.gen[a]=variants.mtg?copyArray(this.energy.base[a]):this.energy.base[a]
         }
-        this.turn={main:0,total:0,time:0,accelerate:0}
+        this.turn={main:0,total:0,time:0,accelerate:0,active:false}
         this.counter={enemy:0,killed:0}
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[]}
@@ -577,6 +577,7 @@ class battle{
         }
     }
     newTurn(){
+        this.turn.active=false
         if(!this.tutorialManager.active){
             if(this.turn.total==1){
                 for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
@@ -605,6 +606,7 @@ class battle{
                 this.cardManagers[this.turn.main].allEffect(3,42)
             }
         }
+        this.turn.active=true
         this.cardManagers[this.turn.main].allEffect(3,39)
         if(variants.cyclicDraw||variants.blackjack){
             this.cardManagers[this.turn.main].regenDrops()
@@ -699,6 +701,7 @@ class battle{
         }
     }
     startTurn(){
+        this.turn.active=false
         if(this.modded(109)){
             this.combatantManager.allEffect(7,[this.counter.enemy-this.counter.killed-1])
         }
@@ -776,7 +779,13 @@ class battle{
         }else if(this.combatantManager.combatants[this.turn.main].getStatus('Distracted')>0){
             this.combatantManager.combatants[this.turn.main].statusEffect('Distracted',-1)
             this.endTurn()
+        }else{
+            this.turn.active=true
         }
+    }
+    getXBoost(player){
+        let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
+        return this.relicManager.active[121][player+1]*2+userCombatant.getStatus('X Cost Boost')
     }
     playCard(card,player,mode){
         let cardClass=card.spec.includes(12)?card.class[mode]:card.class
@@ -859,7 +868,7 @@ class battle{
         if(this.modded(155)){
             switch(card.edition){
                 case 1:
-                    userCombatant.life-=2
+                    userCombatant.loseHealth(2)
                 break
                 case 2:
                     userCombatant.block=max(0,userCombatant.block-5)
@@ -1002,6 +1011,9 @@ class battle{
         if(card.cost>=2&&userCombatant.getStatus('2+ Cost Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('2+ Cost Block'))
         }
+        if(card.cost==-1&&userCombatant.getStatus('X Cost Boost')>0){
+            userCombatant.status.main[findList('X Cost Boost',userCombatant.status.name)]=0
+        }
         if(userCombatant.getStatus('Play Limit')>0&&this.cardManagers[player].hand.turnPlayed[0]>=userCombatant.getStatus('Play Limit')){
             this.cardManagers[player].allEffect(2,2)
         }
@@ -1049,6 +1061,7 @@ class battle{
                 this.anim[amount>0?'energyUp':'energyDown']=1
             }
             this.cardManagers[player].allEffectArgs(2,25,[amount])
+            this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount)
             if(variants.mtg){
                 this.energy.main[player][this.cardManagers[player].mtgLastColor]+=amount
             }else{
@@ -1062,6 +1075,7 @@ class battle{
                 this.anim[amount>0?'energyUp':'energyDown']=1
             }
             this.cardManagers[player].allEffectArgs(2,25,[amount])
+            this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount)
             if(variants.mtg){
                 this.energy.main[player][type]+=amount
                 let cap=484
@@ -1096,6 +1110,7 @@ class battle{
                 this.anim[amount>0?'energyDown':'energyUp']=1
             }
             this.cardManagers[player].allEffectArgs(2,25,[-amount])
+            this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(-amount)
             if(variants.mtg){
                 let available=[]
                 for(let a=0,la=this.energy.main[player].length;a<la;a++){
@@ -1137,6 +1152,7 @@ class battle{
                 this.anim[amount>0?'energyDown':'energyUp']=1
             }
             this.cardManagers[player].allEffectArgs(2,25,[-amount])
+            this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(-amount)
             if(type==6){
                 let amountLeft=amount
                 for(let a=0,la=amountLeft;a<la;a++){
@@ -1191,6 +1207,7 @@ class battle{
                     this.anim[amount>total7(this.energy.main[player])?'energyUp':'energyDown']=1
                 }
                 this.cardManagers[player].allEffectArgs(2,25,[amount-total7(this.energy.main[player])])
+                this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount-total7(this.energy.main[player]))
                 if(total7(this.energy.main[player])>amount){
                     this.loseEnergy(total7(this.energy.main[player])-amount,player)
                 }else if(total7(this.energy.main[player])<amount){
@@ -1201,6 +1218,7 @@ class battle{
                     this.anim[amount>this.energy.main[player]?'energyUp':'energyDown']=1
                 }
                 this.cardManagers[player].allEffectArgs(2,25,[amount-this.energy.main[player]])
+                this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount-this.energy.main[player])
                 this.energy.main[player]=amount
             }
         }
@@ -1212,11 +1230,13 @@ class battle{
             }
             if(variants.mtg){
                 this.cardManagers[player].allEffectArgs(2,25,[(amount-1)*total7(this.energy.main[player])])
+                this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange((amount-1)*total7(this.energy.main[player]))
                 for(let a=0,la=this.energy.main[player].length;a<la;a++){
                     this.energy.main[player][a]*=amount
                 }
             }else{
                 this.cardManagers[player].allEffectArgs(2,25,[(amount-1)*this.energy.main[player]])
+                this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange((amount-1)*this.energy.main[player])
                 this.energy.main[player]*=amount
             }
         }

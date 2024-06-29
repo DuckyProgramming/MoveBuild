@@ -135,7 +135,7 @@ class combatant{
             'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
             'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
             'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
-            'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
+        'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
             'Single Damage Convert','2 Exhaust Draw','Dice Up','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
             '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
             'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
@@ -154,7 +154,8 @@ class combatant{
             'Burn Strength','Burn Bypass','Basic Boost','Mineral Boost','Cable Boost','Free Defenses','Exhausting Defenses','Strike Range','Skill Cost Down','Exhausting Skills',
             'Step Draw','Cable Range','Mineral Range','Common Attack Boost','Free Cables','Construct Turn','Construct Dual Block','Metal Per Turn','All Construct Speed Up','Construct Strength',
             'Construct Dexterity','Gun Temporary Strength','Gun Block','Turn Speed','Extra Turn Block','Turn Reversal','Deluxe Weak','Prismatic Bomb Boost','No Damage Turn Next Turn','Play Limit',
-            '2+ Cost Single Damage Up','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block',
+            '2+ Cost Single Damage Up','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block','X Cost Boost','Self Life Loss Splash','Energy Gain Splash',
+            'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,4,4,//1
@@ -200,7 +201,8 @@ class combatant{
                 0,1,0,0,0,1,1,1,0,0,//41
                 1,1,1,1,1,0,0,0,0,0,//42
                 0,0,0,0,0,1,1,0,2,2,//43
-                0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,//44
+                0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -246,7 +248,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//41
                 2,2,2,2,2,2,2,2,2,2,//42
                 2,2,2,2,2,2,2,2,1,3,//43
-                2,2,0,0,0,2,2,
+                2,2,0,0,0,2,2,2,2,2,//44
+                2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -3549,6 +3552,20 @@ class combatant{
                         this.trigger.display.armor=true
                         this.trigger.display.badge=true
                     break
+                    case 'Yes Man':
+                        this.color={skin:{head:[240,220,180],body:[220,220,40],legs:[200,200,40],arms:[210,210,49]},eye:{back:[60,60,0],front:[40,40,0],glow:[255,255,150]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.spin.eye=[-24,24]
+                        this.anim.mouth={x:9,y:1,open:0}
+                        this.parts.mouth-=2
+                        this.spin.mouth=186
+                        this.color.tie=[[160,160,100],[80,80,40]]
+                        this.fades.tie=1
+                        this.trigger.display.tie=true
+                        this.spin.mouth+=180
+                        this.parts.mouth-=2
+                        this.anim.mouth.x-=1
+                        this.anim.mouth.y+=1.5
+                    break
                     default:
                         this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     break
@@ -3785,7 +3802,7 @@ class combatant{
             break
             case 'Rewriter':
                 this.statusEffect('Cannot Die',999)
-                this.life-=this.battle.combatantManager.finalBossSwitch
+                this.loseHealth(this.battle.combatantManager.finalBossSwitch)
             break
             case 'Mirror Shield':
                 this.statusEffect('Reflect',1)
@@ -3818,7 +3835,7 @@ class combatant{
             case 'Eternal Judge':
                 this.sins=[]
                 this.infoAnim.sins=[]
-                this.life-=this.battle.combatantManager.finalBossSwitch
+                this.loseHealth(this.battle.combatantManager.finalBossSwitch)
             break
         }
         if(this.team==0){
@@ -5057,6 +5074,11 @@ class combatant{
     orbTake(value,user,spec){
         this.takeDamage(value*(this.status.main[117]>0?2:1),user,spec)
     }
+    energyChange(amount){
+        if(amount>0&&this.status.main[439]>0){
+            this.battle.combatantManager.damageAreaID(this.status.main[439],this.id,this.id,this.tilePosition)
+        }
+    }
     lowRoll(){
         if(this.status.main[162]>0){
             this.statusEffect('Strength',this.status.main[162])
@@ -5555,7 +5577,7 @@ class combatant{
                         }
                         if(damageLeft>0){
                             this.infoAnim.upFlash[0]=true
-                            this.life-=damageLeft
+                            this.loseHealth(damageLeft)
                             this.taken=damageLeft
                             this.infoAnim.upFlash[0]=true
                             this.battle.relicManager.activate(6,[this.id])
@@ -5997,6 +6019,9 @@ class combatant{
                     for(let a=0,la=this.status.main[275];a<la;a++){
                         this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)
                     }
+                }
+                if(block>=12&&this.status.main[444]>0){
+                    this.battle.cardManagers[this.id].draw(this.status.main[444])
                 }
                 if(this.battle.modded(74)&&this.team==0){
                     this.heal(block)
@@ -6728,6 +6753,12 @@ class combatant{
         this.base.life=max(1,this.base.life-amount)
         this.life=min(this.life,this.base.life)
     }
+    loseHealth(amount){
+        this.life-=amount
+        if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[438]>0){
+            this.battle.combatantManager.damageAreaID(this.status.main[438],this.id,this.id,this.tilePosition)
+        }
+    }
     tick(sub){
         this.charge++
         if(this.elemental&&this.getStatus('Awakening')<=0){
@@ -6763,7 +6794,7 @@ class combatant{
                     case 81: this.status.main[findList('Energy Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 83: this.status.main[findList('Double Damage Turn',this.status.name)]+=this.status.main[a]; break
                     case 85: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.discard(this.status.main[a])}; break
-                    case 86: case 128: this.life-=this.status.main[a]; break
+                    case 86: case 128: this.loseHealth(this.status.main[a]); break
                     case 88: this.status.main[findList('Intangible',this.status.name)]+=this.status.main[a]; break
                     case 89: this.status.main[findList('Block Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 107: if(this.armed){this.addBlock(this.status.main[a])} break
@@ -6808,7 +6839,7 @@ class combatant{
                     case 268: this.addBlock(this.status.main[a]);this.status.next[findList('Block Cycle 2 2',this.status.name)]+=this.status.main[a]; break
                     case 269: this.status.main[findList('Block Cycle 2 1',this.status.name)]+=this.status.main[a]; break
                     case 270: this.status.main[findList('Temporary Damage Up',this.status.name)]+=this.status.main[a]; break
-                    case 278: this.life-=1; break
+                    case 278: this.loseHealth(1); break
                     case 282: this.status.main[findList('Strength Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 283: this.status.main[findList('Dexterity Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 287: this.status.main[findList('Strength in 2 Turns',this.status.name)]+=this.status.main[a]; break
@@ -6853,6 +6884,8 @@ class combatant{
                     case 423: this.battle.setTurn(this.battle.turn.total+this.status.main[a]); break
                     case 428: this.status.main[findList('No Damage Turn',this.status.name)]+=this.status.main[a]; break
                     case 435: if(this.id<this.battle.players){this.battle.overlayManager.overlays[46][this.id].active=true;this.battle.overlayManager.overlays[46][this.id].activate([this.status.main[a]])} break
+                    case 440: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDrawClass[1]+=this.status.main[a]} break
+                    case 441: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,2,2,[0],[3,11,1,[[1]]])}} break
                     
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
@@ -6943,7 +6976,7 @@ class combatant{
             }
             if(this.sins.includes(9)){
                 for(let a=0,la=this.battle.players;a<la;a++){
-                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].life-=10
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].loseHealth(10)
                 }
             }
             if(this.sins.includes(10)){

@@ -3875,34 +3875,28 @@ class card{
             case 3506: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50% Change to Damage\nEach Adjacent Combatant`; break
             case 3507: string+=`Add ${effect[0]} Random\n1 Cost Card${effect[0]!=1?`s`:``} of\nEquivalent Level to Hand\nGain ${effect[1]} Energy Next Turn`; break
             case 3508: string+=`Choose an Uncommon\nCard to Add to Hand\nIt Costs 0`; break
-
             case 3509: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 2 Times\nAdd a Dark Residue\nto Discard`; break
             case 3510: string+=`Gain ${effect[0]} Base\nEnergy This Combat\nAll Enemies Gain\n${effect[1]} Strength And\n${effect[2]} Dexterity`; break
             case 3511: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 2 Times\nDecreases by ${effect[1]}\nWhen Incremented`; break
             case 3512: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nGain X-1 Energy\nNext Turn`; break
             case 3513: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Exhausted,\nGain ${effect[1]} Energy\nA Random Card\nCosts ${effect[2]} Less`; break
             case 3514: string+=`Next X Cost Card\nPlayed Gets +${effect[0]} to X`; break
-
-            case 3515: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash\nDamage When Your\nBlock is Broken`; break
+            case 3515: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash\nDamage When Lose\nHealth On Your Turn`; break
             case 3516: string+=`Gain ${effect[0]} Currency\nApply ${effect[1]} Burn\nIf Target Has Burn`; break
             case 3517: string+=`Summon in a Yes Man`; break
             case 3518: string+=`All Cards in Hand\nBecome Ethereal\nGain ${effect[0]} Strength\nPer Card in Hand`; break
             case 3519: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nDamage Increases by ${effect[2]}\nWhen Attack Played\nBlock Increases by ${effect[3]}\nWhen Defense Played`; break
             case 3520: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nThe Final Boss\nLoses ${effect[1]} Health`; break
-
             case 3521: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nWhen You Gain Energy`; break
             case 3522: string+=`Draw ${effect[0]} Attack${pl(effect[0])}\nEvery Turn`; break
             case 3523: string+=`Add Any ${effect[0]} Random\nSkill${pl(effect[0])} to Hand Each Turn\n${effect[0]!=1?`They Cost`:`It Costs`} 0 and Exhaust${effect[0]==1?`s`:``}`; break
             case 3524: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPermanently\nIncreases by ${effect[1]}\nLose ${effect[2]} Health`; break
             case 3525: string+=`For Every 3\nCards Exhausted,\nDraw ${effect[0]} Card${pl(effect[0])}`; break
-            //1953
             case 3526: string+=`When a Non-Shiv\nCard is Exhausted,\nAdd ${effect[0]} Shiv${pl(effect[0])}\nto Hand`; break
-
             case 3527: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 3 Times\nIncreases by ${effect[1]} When a\nCard is Drawn Outside\nof the Draw Step`; break
-            case 3528: string+=`When You Add\n10 or More Block,\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 3528: string+=`When You Add\n12 or More Block,\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 3529: string+=`Scry ${effect[0]}\nAdd ${this.calculateEffect(effect[1],1)} Block For\nEach Defense Discarded\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
             case 3530: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nScry ${effect[1]}\nDraw ${effect[2]} Card${pl(effect[2])}`; break
-            //2900
             case 3531: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nTake Another Turn`; break
             case 3532: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nWrath:\nAdds Double Block\nDivinity:\nAdds Triple Block`; break
 
@@ -4115,7 +4109,7 @@ class card{
                 userCombatant.statusEffect('Energy Next Turn',this.effect[1])
             break
             case 3463:
-                userCombatant.life-=this.effect[2]
+                userCombatant.loseHealth(this.effect[2])
             break
         }
     }
@@ -4241,10 +4235,15 @@ class card{
             break
         }
     }
-    callAnotherDrawEffect(){
+    callAnotherDrawEffect(number){
         switch(this.attack){
             case 2775:
                 this.cost=0
+            break
+            case 3527:
+                if(this.battle.turn.active){
+                    this.effect[0]+=this.effect[1]*number
+                }
             break
         }
     }
@@ -4315,7 +4314,7 @@ class card{
     callExhaustEffect(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(this.battle.modded(159)){
-            userCombatant.life-=2
+            userCombatant.loseHealth(2)
         }
         switch(this.attack){
             case 202: case 1710:
@@ -4350,6 +4349,10 @@ class card{
             break
             case 3343: 
                 this.battle.loseEnergy(this.effect[1],this.player)
+            break
+            case 3513:
+                this.battle.addEnergy(this.effect[1],this.player)
+                this.battle.cardManagers[this.player].randomEffect(2,1,[this.effect[2]])
             break
         }
     }
@@ -4530,6 +4533,9 @@ class card{
             break
             case 3216:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.effect[1])
+            break
+            case 3511:
+                this.effect[0]-=this.effect[1]
             break
         }
     }
@@ -4887,6 +4893,13 @@ class card{
                         this.target[2]=min(this.target[2]+this.effect[1],3)
                     }
                 break
+                case 3519:
+                    if(card.class==1){
+                        this.effect[0]+=this.effect[2]
+                    }else if(card.class==2){
+                        this.effect[1]+=this.effect[3]
+                    }
+                break
                 
             }
         }
@@ -4979,7 +4992,7 @@ class card{
             break
             case -65:
                 if(this.battle.cardManagers[this.player].hand.numberAbstract(0,[[this.nmae]])>=3){
-                    userCombatant.life-=this.effect[0]
+                    userCombatant.loseHealth(this.effect[0])
                 }
             break
             case 757:

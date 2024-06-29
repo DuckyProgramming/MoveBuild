@@ -242,6 +242,7 @@ types={
         {name:'L',life:6,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:136,effect:[6]}],description:`LOBSTER!`},
         {name:'Fat Duck',life:40,behavior:2,spec:[17],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:109,effect:[5]}],description:`Hamburger`},
         {name:'Man',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Small brain?`},
+        {name:'Yes Man',life:12,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:366,effect:[1]}],description:`Can't make decisions`},
         
         {name:'NumberDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Takes damage`},
         {name:'AttackDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:1,effect:[1]}],description:`Does damage`},
@@ -615,6 +616,7 @@ types={
         {name:'2 Tile Counter Bomb Throw',class:5},
         {name:'Injuring Shotgun',class:1},
         {name:'All Enemy Block / Armor',class:2},
+        {name:'Boss Double Damage',class:4},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},

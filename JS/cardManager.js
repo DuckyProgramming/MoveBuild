@@ -23,6 +23,7 @@ class cardManager{
         this.tempDraw=0
         this.tempDrawFreeze=0
         this.tempDrawBurn=0
+        this.tempDrawClass=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.tempCostDown=0
         this.baseDrops=variants.cyclicDraw?3:0
         this.drops=0
@@ -297,7 +298,7 @@ class cardManager{
                     this.getList(group).addAbstract(type,level,color,edition,[args[ticker++]],[])
                 break
                 case 2:
-                    this.getList(group).addAbstract(type,level,color,edition,[args[ticker++],4],[[ticker++]])
+                    this.getList(group).addAbstract(type,level,color,edition,[args[ticker++],4],[[args[ticker]++]])
                 break
                 case 3:
                     return this.getList(group).addReturn(type,level,color,edition)
@@ -324,7 +325,7 @@ class cardManager{
     }
     draw(amount,spec=0){
         if(amount>0){
-            this.hand.allEffect(87)
+            this.hand.allEffectArgs(31,[amount])
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             if(userCombatant.getStatus('No Draw')<=0){
                 this.battle.stats.drawn[this.player]+=amount
@@ -361,7 +362,7 @@ class cardManager{
     drawReturn(amount,spec=0){
         let sent=[]
         if(amount>0){
-            this.hand.allEffect(87)
+            this.hand.allEffectArgs(31,[amount])
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             if(userCombatant.getStatus('No Draw')<=0){
                 this.battle.stats.drawn[this.player]+=amount
@@ -406,7 +407,7 @@ class cardManager{
     }
     drawBottom(amount){
         if(amount>0){
-            this.hand.allEffect(87)
+            this.hand.allEffectArgs(31,[amount])
             this.battle.stats.drawn[this.player]+=amount
             if(variants.witch){
                 for(let a=0,la=amount;a<la;a++){
@@ -439,7 +440,7 @@ class cardManager{
     }
     drawToCost(cost){
         if(cost>0){
-            this.hand.allEffect(87)
+            this.hand.allEffectArgs(31,[amount])
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             let left=cost
             if(userCombatant.getStatus('No Draw')<=0){
@@ -495,7 +496,7 @@ class cardManager{
     }
     drawAbstract(amount,variant,output,args){
         if(amount>0){
-            this.hand.allEffect(87)
+            this.hand.allEffectArgs(31,[amount])
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             if(userCombatant.getStatus('No Draw')<=0){
                 this.battle.stats.drawn[this.player]+=amount
@@ -618,6 +619,11 @@ class cardManager{
         if(this.tempDrawBurn>0){
             this.draw(this.tempDrawBurn,2)
         }
+        for(let a=0,la=this.tempDrawClass.length;a<la;a++){
+            if(this.tempDrawClass[a]>0){
+                this.drawAbstract(this.tempDrawClass[a],0,0,[a])
+            }
+        }
         if(this.tempCostDown>0){
             for(let a=0,la=this.tempCostDown;a<la;a++){
                 this.randomEffect(2,1,[1])
@@ -626,6 +632,7 @@ class cardManager{
         this.tempDraw=0
         this.tempDrawFreeze=0
         this.tempDrawBurn=0
+        this.tempDrawClass=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.tempCostDown=0
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.getStatus('Random Card Cost Less Per Turn')>0){

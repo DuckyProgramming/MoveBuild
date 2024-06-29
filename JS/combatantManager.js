@@ -775,7 +775,7 @@ class combatantManager{
                     break
                     case 41:
                         this.combatants[a].statusEffect('Poison',args[0])
-                        this.combatants[a].life-=this.combatants[a].getStatus('Poison')
+                        this.combatants[a].loseHealth(this.combatants[a].getStatus('Poison'))
                     break
                     case 42:
                         this.combatants[a].heal(args[0])

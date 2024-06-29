@@ -2054,7 +2054,7 @@ turn.prototype.update=function(){
                         this.procedure[0]++
                     }
                 break
-                case 163: case 187:
+                case 163: case 187: case 366:
                     if(this.timer==1){
                         this.userCombatant.startAnimation(14)
                     }
@@ -2068,6 +2068,10 @@ turn.prototype.update=function(){
                             case 187:
                                 this.userCombatant.statusEffect('Buffer',this.effect[0])
                                 this.userCombatant.statusEffect('Strength',this.effect[1])
+                            break
+                            case 366:
+                                this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Double Damage',this.effect[0])
+                                this.battle.particleManager.createNumber(106,this.position.x,this.position.y,'Yes')
                             break
                         }
                     }else if(this.timer>=30){

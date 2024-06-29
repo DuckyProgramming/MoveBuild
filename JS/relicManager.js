@@ -1563,7 +1563,7 @@ class relicManager{
                             this.getPlayer(args[1]).heal(2*this.active[27][args[1]+1])
                         }
                         if(this.battle.modded(84)){
-                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].life-=3
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].loseHealth(3)
                         }
                     break
                 }

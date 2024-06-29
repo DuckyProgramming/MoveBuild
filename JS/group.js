@@ -205,6 +205,8 @@ class group{
     }
     clear(){
         this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
+        this.exhausts=0
+        this.rewinds=0
     }
     cancel(){
         this.status=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -1374,7 +1376,11 @@ class group{
                         this.cards[a].exhaust=true
                     }
                 break
-
+                case 105:
+                    if(!this.cards[a].spec.includes(4)){
+                        this.cards[a].spec.push(4)
+                    }
+                break
 
             }
         }
@@ -1582,6 +1588,9 @@ class group{
                     if(this.cards[a].cost>0&&args[1].includes(this.cards[a].class)){
                         this.cards[a].cost=max(min(this.cards[a].cost,0),this.cards[a].cost-args[0])
                     }
+                break
+                case 31:
+                    this.cards[a].callAnotherDrawEffect(args[0])
                 break
             }
         }
@@ -2849,7 +2858,7 @@ class group{
             }else if(effectiveCost!=0&&userCombatant.getStatus('Free Card')>0){
                 userCombatant.status.main[findList('Free Card',userCombatant.status.name)]--
             }else if(effectiveCost!=0&&spec.includes(58)){
-                userCombatant.life-=effectiveCost
+                userCombatant.loseHealth(effectiveCost)
             }else if(effectiveCost!=0&&spec.includes(11)){
                 userCombatant.combo-=effectiveCost
             }else if(effectiveCost!=0&&spec.includes(21)){
@@ -2877,7 +2886,7 @@ class group{
             }
         }
         if(effectiveCost==0&&this.battle.modded(38)){
-            userCombatant.life-=2
+            userCombatant.loseHealth(2)
         }
         if(userCombatant.getStatus('No Amplify')<=0){
             if(userCombatant.getStatus('Free Amplify')>0){
@@ -2922,8 +2931,9 @@ class group{
                 this.battle.attackManager.mtgManaColor=this.cards[a].mtgManaColor
                 this.battle.attackManager.player=this.player
 
+                this.battle.attackManager.cost=-999
                 this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
-                this.battle.attackManager.energy=this.battle.getEnergy(this.player)+(this.battle.relicManager.hasRelic(121,this.player)?2:0)
+                this.battle.attackManager.energy=this.battle.getEnergy(this.player)+this.battle.getXBoost(this.player)
                 this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
                 this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
                 this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
@@ -2937,7 +2947,6 @@ class group{
                 this.battle.attackManager.id=-1
                 this.battle.attackManager.edition=-1
                 this.battle.attackManager.drawn=-1
-                this.battle.attackManager.cost=-1
 
                 this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
                 this.battle.attackManager.targetDistance=0
@@ -3580,7 +3589,7 @@ class group{
             break
             case 5:
                 this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
-                this.battle.attackManager.energy=this.battle.getEnergy(this.player)+(this.battle.relicManager.hasRelic(121,this.player)?2:0)
+                this.battle.attackManager.energy=this.battle.getEnergy(this.player)+this.battle.getXBoost(this.player)
                 this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
                 this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
                 this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
@@ -3819,12 +3828,20 @@ class group{
     generalExhaust(a){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(this.cards[a].spec.includes(56)){
+            this.exhausts++
             if(userCombatant.getStatus('Exhaust Draw')>0){
                 this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Exhaust Draw'))
             }
-            this.exhausts++
             if(userCombatant.getStatus('2 Exhaust Draw')>0&&this.exhausts%2==0){
                 this.battle.cardManagers[this.player].draw(userCombatant.getStatus('2 Exhaust Draw'))
+            }
+            if(userCombatant.getStatus('3 Exhaust Draw')>0&&this.exhausts%3==0){
+                this.battle.cardManagers[this.player].draw(userCombatant.getStatus('3 Exhaust Draw'))
+            }
+            if(userCombatant.getStatus('Exhaust Shiv')>0&&this.cards[a].name!='Shiv'&&this.cards[a].name!='Broken\nShiv'&&this.cards[a].name!='Deluxe\nShiv'){
+                for(let a=0,la=userCombatant.getStatus('Exhaust Shiv');a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
+                }
             }
             this.battle.relicManager.activate(10,[this.player])
             if(variants.witch&&this.cards[a].spec.includes(31)){
@@ -3845,12 +3862,20 @@ class group{
             a--
             la--
         }else{
+            this.exhausts++
             if(userCombatant.getStatus('Exhaust Draw')>0){
                 this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Exhaust Draw'))
             }
-            this.exhausts++
             if(userCombatant.getStatus('2 Exhaust Draw')>0&&this.exhausts%2==0){
                 this.battle.cardManagers[this.player].draw(userCombatant.getStatus('2 Exhaust Draw'))
+            }
+            if(userCombatant.getStatus('3 Exhaust Draw')>0&&this.exhausts%3==0){
+                this.battle.cardManagers[this.player].draw(userCombatant.getStatus('3 Exhaust Draw'))
+            }
+            if(userCombatant.getStatus('Exhaust Shiv')>0&&this.cards[a].name!='Shiv'&&this.cards[a].name!='Broken\nShiv'&&this.cards[a].name!='Deluxe\nShiv'){
+                for(let a=0,la=userCombatant.getStatus('Exhaust Shiv');a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
+                }
             }
             this.battle.relicManager.activate(10,[this.player])
             if(variants.witch&&this.cards[a].spec.includes(31)){
@@ -4163,7 +4188,7 @@ class group{
         if(this.battle.attackManager.targetInfo[0]==7){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(this.battle.tileManager.tiles[a].occupied==0&&
-                    legalTargetCombatant(0,1,this.battle.getEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+(this.battle.relicManager.hasRelic(121,this.battle.attackManager.player)?2:0),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&
+                    legalTargetCombatant(0,1,this.battle.getEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+this.battle.getXBoost(this.battle.attackManager.player),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
                     this.callInput(2,a)
                 }
@@ -4429,7 +4454,7 @@ class group{
         if(this.battle.attackManager.targetInfo[0]==51){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(this.battle.tileManager.tiles[a].occupied==0&&
-                    legalTargetCombatant(0,1,this.battle.turn.total+this.battle.attackManager.targetInfo[1]+(this.battle.relicManager.hasRelic(121,this.battle.attackManager.player)?2:0),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&
+                    legalTargetCombatant(0,1,this.battle.turn.total+this.battle.attackManager.targetInfo[1]+this.battle.getXBoost(this.battle.attackManager.player),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
                     this.callInput(2,a)
                 }
@@ -4564,7 +4589,7 @@ class group{
         if(this.battle.attackManager.targetInfo[0]==7){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1+this.battle.tileManager.offset.x>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
                 let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
-                if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(0,1,this.battle.getEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+(this.battle.relicManager.hasRelic(121,this.battle.attackManager.player)?2:0),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
+                if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(0,1,this.battle.getEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+this.battle.getXBoost(this.battle.attackManager.player),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
                     this.callInput(2,a)
                 }
             }
@@ -4827,7 +4852,7 @@ class group{
         if(this.battle.attackManager.targetInfo[0]==51){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1+this.battle.tileManager.offset.x>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
                 let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
-                if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(0,1,this.battle.turn.total+this.battle.attackManager.targetInfo[1]+(this.battle.relicManager.hasRelic(121,this.battle.attackManager.player)?2:0),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
+                if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(0,1,this.battle.turn.total+this.battle.attackManager.targetInfo[1]+this.battle.getXBoost(this.battle.attackManager.player),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
                     this.callInput(2,a)
                 }
             }
