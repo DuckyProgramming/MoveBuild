@@ -101,7 +101,7 @@ attack.prototype.update=function(){
         case 3241: case 3245: case 3247: case 3249: case 3251: case 3261: case 3262: case 3263: case 3264: case 3266:
         case 3275: case 3300: case 3304: case 3323: case 3326: case 3327: case 3345: case 3350: case 3352: case 3360:
         case 3363: case 3364: case 3372: case 3376: case 3392: case 3401: case 3405: case 3407: case 3453: case 3455:
-        case 3456:
+        case 3456: case 3469: case 3470: case 3475: case 3479: case 3503:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false
@@ -239,7 +239,7 @@ attack.prototype.update=function(){
         case 3204: case 3211: case 3213: case 3219: case 3221: case 3229: case 3246: case 3255: case 3272: case 3276:
         case 3278: case 3296: case 3297: case 3301: case 3305: case 3308: case 3309: case 3311: case 3312: case 3317:
         case 3320: case 3339: case 3342: case 3343: case 3357: case 3367: case 3389: case 3412: case 3429: case 3450:
-        case 3457:
+        case 3457: case 3481: case 3494: case 3495:
             //mark 2
             if(this.type==2616&&this.timer==1&&!this.userManager.hand.allClassLeeway(2)){
                 this.remove=true
@@ -294,7 +294,8 @@ attack.prototype.update=function(){
         case 2927: case 2928: case 2929: case 2930: case 2931: case 2932: case 2933: case 2934: case 2935: case 2936:
         case 2938: case 2939: case 2940: case 2941: case 2942: case 2944: case 2945: case 2948: case 2955: case 2973:
         case 3013: case 3027: case 3054: case 3081: case 3102: case 3115: case 3117: case 3119: case 3157: case 3164:
-        case 3218: case 3234: case 3332: case 3353: case 3354: case 3378: case 3404: case 3410:
+        case 3218: case 3234: case 3332: case 3353: case 3354: case 3378: case 3404: case 3410: case 3476: case 3480:
+        case 3491: case 3493:
             //mark 3
             if(
                 this.type==808&&this.userCombatant.stance!=3||
@@ -590,7 +591,8 @@ attack.prototype.update=function(){
         case 3238: case 3253: case 3254: case 3269: case 3271: case 3299: case 3302: case 3325: case 3346: case 3348:
         case 3362: case 3388: case 3406: case 3408: case 3416: case 3417: case 3418: case 3419: case 3420: case 3421:
         case 3422: case 3423: case 3424: case 3425: case 3426: case 3427: case 3428: case 3434: case 3435: case 3436:
-        case 3437: case 3438: case 3439: case 3440: case 3441: case 3442: case 3443: case 3444: case 3445:
+        case 3437: case 3438: case 3439: case 3440: case 3441: case 3442: case 3443: case 3444: case 3445: case 3466:
+        case 3484: case 3497: case 3501: case 3502: case 3507: case 3508:
             //mark 4
             if(
                 this.type==799&&this.battle.turn.total<4||
@@ -659,7 +661,7 @@ attack.prototype.update=function(){
         case 3085: case 3105: case 3113: case 3123: case 3126: case 3141: case 3153: case 3154: case 3168: case 3217:
         case 3230: case 3248: case 3277: case 3281: case 3307: case 3324: case 3328: case 3330: case 3338: case 3355:
         case 3359: case 3371: case 3379: case 3380: case 3385: case 3387: case 3403: case 3414: case 3415: case 3446:
-        case 3447: case 3451:
+        case 3447: case 3451: case 3471: case 3472: case 3473: case 3474: case 3478: case 3486: case 3487: case 3489:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -769,7 +771,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case -13: case -21: case -33: case -36: case -41: case -62:
+        case -13: case -21: case -33: case -36: case -41: case -62: case -77:
         case 10: case 64: case 72: case 73: case 74: case 164: case 166: case 167: case 168: case 169:
         case 170: case 171: case 180: case 195: case 202: case 224: case 283: case 349: case 360: case 369:
         case 380: case 391: case 442: case 456: case 470: case 608: case 641: case 642: case 643: case 659:
@@ -782,7 +784,7 @@ attack.prototype.update=function(){
         case 2452: case 2502: case 2507: case 2508: case 2509: case 2519: case 2548: case 2581: case 2590: case 2598:
         case 2642: case 2688: case 2695: case 2727: case 2738: case 2805: case 2820: case 2895: case 2958: case 2965:
         case 2990: case 3005: case 3008: case 3171: case 3223: case 3259: case 3267: case 3268: case 3282: case 3283:
-        case 3285: case 3291:
+        case 3285: case 3291: case 3483: case 3490:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||
@@ -1166,7 +1168,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 21: case 3431: case 3433:
+        case 21: case 3431: case 3433: case 3464: case 3465:
             if(this.timer==1){
                 this.userCombatant.startAnimation(0)
             }
@@ -1182,6 +1184,12 @@ attack.prototype.update=function(){
                         if(this.userManager.hand.turnPlayed[1]>0){
                             this.userManager.draw(this.effect[0])
                         }
+                    break
+                    case 3464:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
+                    break
+                    case 3465:
+                        this.targetCombatant.statusEffect('Cannot Move',this.effect[0])
                     break
                 }
                 let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
@@ -1547,7 +1555,7 @@ attack.prototype.update=function(){
         case 2978: case 2981: case 2995: case 3006: case 3026: case 3031: case 3034: case 3053: case 3124: case 3125:
         case 3155: case 3156: case 3158: case 3179: case 3183: case 3187: case 3242: case 3244: case 3256: case 3260:
         case 3279: case 3295: case 3310: case 3316: case 3319: case 3321: case 3322: case 3331: case 3337: case 3384:
-        case 3386: case 3393: case 3411:
+        case 3386: case 3393: case 3411: case 3463: case 3485:
             //mark 8
             if(
                 this.type==1247&&this.userCombatant.energyParity(this.energy)!=0||
@@ -2210,7 +2218,7 @@ attack.prototype.update=function(){
         case 2985: case 2991: case 3018: case 3058: case 3061: case 3069: case 3090: case 3091: case 3116: case 3147:
         case 3148: case 3169: case 3174: case 3180: case 3185: case 3186: case 3192: case 3197: case 3201: case 3202:
         case 3240: case 3250: case 3273: case 3286: case 3287: case 3288: case 3289: case 3290: case 3306: case 3318:
-        case 3340: case 3361: case 3369: case 3370: case 3374: case 3402: case 3458:
+        case 3340: case 3361: case 3369: case 3370: case 3374: case 3402: case 3458: case 3468: case 3496: case 3498:
             if(this.type==1935&&this.userCombatant.energyParity(this.energy)!=0){
                 this.remove=true
             }else if(variants.nobasicanim){
@@ -2635,7 +2643,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 176: case 1720: case 2146: case 2229: case 3143:
+        case 176: case 1720: case 2146: case 2229: case 3143: case 3506:
             if(this.timer==1){
                 this.userCombatant.startAnimation(15)
             }
@@ -2653,6 +2661,20 @@ attack.prototype.update=function(){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,10,[10]))
                     this.targetCombatant.takeDamage(this.effect[0],this.user,2)
                     this.battle.combatantManager.damageAreaID(this.effect[0],this.userCombatant.id,this.targetCombatant.id,this.targetCombatant.tilePosition,2)
+                }else if(this.type==3506){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,10,[10]))
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    let targets=this.battle.combatantManager.getAreaId(this.targetCombatant.id,this.targetCombatant.tilePosition,1)
+                    let luckCheck=this.userCombatant.luckCheck()
+                    let luckCheckFail=false
+                    if(!luckCheck){
+                        luckCheckFail=this.userCombatant.luckCheckFail()
+                    }
+                    for(let a=0,la=targets.length;a<la;a++){
+                        if(luckCheck||floor(random(0,2))==0&&!luckCheckFail){
+                            targets[a].takeDamage(this.effect[0],this.user)
+                        }
+                    }
                 }else{
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,10,[10]))
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -2695,8 +2717,8 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 179:
-            if(this.targetDistance==1){
+        case 179: case 3504: case 3505:
+            if(this.targetDistance==1&&this.type==179){
                 if(this.timer==1){
                     let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                     this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
@@ -2758,6 +2780,16 @@ attack.prototype.update=function(){
                 }else if(this.timer==10*this.targetDistance+15){
                     this.battle.combatantManager.damageArea(this.effect[0],this.user,-1,this.targetCombatant.tilePosition)
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,2,[8]))
+                    switch(this.type){
+                        case 3504:
+                            this.targetCombatant.statusEffect('Stun',this.effect[1])
+                        break
+                        case 3505:
+                            if(this.relPos[0]==0){
+                                this.battle.addEnergy(this.effect[1],this.player)
+                            }
+                        break
+                    }
                 }else if(this.timer>=10*this.targetDistance+25){
                     this.remove=true
                 }
@@ -2855,7 +2887,7 @@ attack.prototype.update=function(){
             }
         break
         case 211: case 255: case 501: case 616: case 617: case 618: case 1172: case 1173: case 1815: case 1891:
-        case 2228: case 2653: case 2711: case 2765: case 2813: case 3007: case 3298: case 3336:
+        case 2228: case 2653: case 2711: case 2765: case 2813: case 3007: case 3298: case 3336: case 3488:
             if(this.type==1815&&this.energy!=0){
                 this.remove=true
             }else{
@@ -2958,6 +2990,10 @@ attack.prototype.update=function(){
                             break
                             case 3336:
                                 this.userCombatant.life-=this.effect[2]
+                            break
+                            case 3488:
+                                this.targetCombatant.statusEffect('Damage Taken Up',this.effect[1])
+                                this.userCombatant.statusEffect('Intangible',this.effect[2])
                             break
                         }
                     }
@@ -3823,7 +3859,7 @@ attack.prototype.update=function(){
         case 3044: case 3074: case 3075: case 3076: case 3077: case 3078: case 3082: case 3084: case 3093: case 3134:
         case 3135: case 3140: case 3144: case 3159: case 3160: case 3166: case 3170: case 3176: case 3181: case 3182:
         case 3193: case 3210: case 3252: case 3314: case 3315: case 3334: case 3335: case 3351: case 3366: case 3375:
-        case 3381: case 3382: case 3383: case 3390: case 3395: case 3396: case 3397: case 3461:
+        case 3381: case 3382: case 3383: case 3390: case 3395: case 3396: case 3397: case 3461: case 3477:
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
             }else{
@@ -4810,7 +4846,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                42,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
+                    42,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
             }else if(this.timer==5*this.targetDistance+15){
                 this.targetCombatant.takeDamage((this.userCombatant.charge>=3?2:1)*this.effect[0],this.user)
             }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -4828,7 +4864,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                43,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
+                    43,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
             }else if(this.timer==5*this.targetDistance+15){
                 this.targetCombatant.takeDamage((this.userCombatant.charge<3?2:1)*this.effect[0],this.user)
             }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -4846,7 +4882,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                44,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
+                    44,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
             }else if(this.timer==5*this.targetDistance+15){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 if(this.userCombatant.charge>=3){
@@ -5986,7 +6022,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                49,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+15),5*this.targetDistance-1]))
+                    49,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+15),5*this.targetDistance-1]))
             }else if(this.timer==10*this.targetDistance+15){
                 this.targetCombatant.takeDamage(this.effect[0],this.user,1)
                 this.userManager.draw(this.effect[1])
@@ -6108,7 +6144,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                49,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+15),5*this.targetDistance-1]))
+                    49,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+15),5*this.targetDistance-1]))
             }else if(this.timer==10*this.targetDistance+15){
                 this.targetCombatant.takeDamage(this.effect[0],this.user,1)
                 this.userManager.hand.discard(this.effect[1])
@@ -6232,7 +6268,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                50,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+15),5*this.targetDistance-1]))
+                    50,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+15),5*this.targetDistance-1]))
             }else if(this.timer==10*this.targetDistance+15){
                 this.targetCombatant.takeDamage(this.effect[0],this.user,1)
             }else if(this.timer>=10*this.targetDistance+25){
@@ -6442,7 +6478,7 @@ attack.prototype.update=function(){
             if(this.timer==1){
                 for(let a=0,la=this.effect[0];a<la;a++){
                     let index=floor(random(0,types.card.length))
-                    this.userManager.hand.add(index,0,types.card[index].list<0?0:types.card[index].list>=types.color.card.list?0:types.card[index].list)
+                    this.userManager.hand.addAbstract(index,0,types.card[index].list<0?0:types.card[index].list>=types.color.card.list?0:types.card[index].list,0,[1],[])
                 }
             }else if(this.timer==20){
                 this.remove=true
@@ -6587,7 +6623,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                61,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
+                    61,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
             }else if(this.timer==21+this.targetDistance*3||this.timer==69-this.targetDistance*3){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 if(this.timer==69-this.targetDistance*3){
@@ -6622,7 +6658,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                62,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
+                    62,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
             }else if(this.timer==21+this.targetDistance*3||this.timer==69-this.targetDistance*3){
                 switch(this.type){
                     case 2824:
@@ -6653,7 +6689,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                63,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
+                    63,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
             }else if(this.timer==21+this.targetDistance*3||this.timer==69-this.targetDistance*3){
                 this.targetCombatant.takeDamage(this.effect[0],this.user,2)
                 if(this.timer==69-this.targetDistance*3){
@@ -6793,7 +6829,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                64,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
+                    64,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
             }else if(this.timer==21+this.targetDistance*3||this.timer==69-this.targetDistance*3){
                 switch(this.type){
                     case 2886:
@@ -6808,7 +6844,7 @@ attack.prototype.update=function(){
             }
         break
         case 2891: case 2893: case 2896: case 2906: case 2910: case 2960: case 2963: case 2964: case 2970: case 3017:
-        case 3022: case 3049: case 3341: case 3347:
+        case 3022: case 3049: case 3341: case 3347: case 3500:
             if(variants.nobasicanim){
                 this.selfCall(1)
                 this.remove=true
@@ -7030,7 +7066,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                    79,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
+                        79,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
             }else if(this.timer==5*this.targetDistance+15){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 this.battle.combatantManager.allEffect(39,[this.effect[0]/2,this.targetCombatant.id])
@@ -7881,7 +7917,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                96,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
+                    96,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
             }else if(this.timer==21+this.targetDistance*3||this.timer==69-this.targetDistance*3){
                 switch(this.type){
                     case 3398:
@@ -7964,7 +8000,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                100,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
+                    100,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
             }else if(this.timer==21+this.targetDistance*3||this.timer==69-this.targetDistance*3){
                 if(this.timer==69-this.targetDistance*3){
                     let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
@@ -8014,6 +8050,60 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
+        case 3467:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(17)
+            }
+            if(this.timer<=10||this.timer>20&&this.timer<=30){
+                this.userCombatant.runAnimation(1/20,17)
+            }
+            if(this.timer==15){
+                for(let a=0,la=4;a<la;a++){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,
+                        this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                        this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                    102,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30)+random(-3,3)-a*12+a*6,10]))
+                }
+            }else if(this.timer==5*this.targetDistance+15){
+                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.battle.drop(this.player,findName('Starlight',types.card),0,game.playerNumber+1)
+                }
+            }else if(this.timer>=max(30,5*this.targetDistance+25)){
+                this.remove=true
+            }
+        break
+        case 3482:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(26)
+            }
+            this.userCombatant.runAnimation(1/10,26)
+            if(this.timer==4||this.timer==8||this.timer==12||this.timer==16){
+                this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.user])
+                this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,
+                    this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                    this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                    103,[this.timer+4]))
+            }else if(this.timer>=20){
+                this.remove=true
+            }
+        break
+        case 3499:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(26)
+            }
+            this.userCombatant.runAnimation(1/10,26)
+            if(this.timer==10){
+                this.userCombatant.statusEffect('Strength',this.effect[0])
+                this.battle.dropDrawShuffle(this.player,findName('Refracted\nSunlight',types.card),0,game.playerNumber+1)
+                this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,
+                    this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                    this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                    104,[20]))
+            }else if(this.timer>=20){
+                this.remove=true
+            }
+        break
 
         default:
             this.remove=true
@@ -8053,6 +8143,12 @@ attack.prototype.update=function(){
                 if(this.userCombatant.getStatus('Double Damage Next')>0&&this.clearAttack[9]){
                     this.userCombatant.status.main[findList('Double Damage',this.userCombatant.status.name)]++
                     this.userCombatant.status.main[findList('Double Damage Next',this.userCombatant.status.name)]--
+                }
+                if(this.userCombatant.getStatus('Damage Block Convert')>0&&this.clearAttack[10]){
+                    this.userCombatant.status.main[findList('Damage Block Convert',this.userCombatant.status.name)]--
+                }
+                if(this.userCombatant.getStatus('Damage Half Block Convert')>0&&this.clearAttack[11]){
+                    this.userCombatant.status.main[findList('Damage Half Block Convert',this.userCombatant.status.name)]--
                 }
                 this.userCombatant.doubling=false
             break

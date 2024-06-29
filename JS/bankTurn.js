@@ -3583,6 +3583,16 @@ turn.prototype.update=function(){
                         if(this.userCombatant.getStatus('Single Damage Down')>0&&this.clearAttack[8]){
                             this.userCombatant.status.main[findList('Single Damage Down',this.userCombatant.status.name)]=0
                         }
+                        if(this.userCombatant.getStatus('Double Damage Next')>0&&this.clearAttack[9]){
+                            this.userCombatant.status.main[findList('Double Damage',this.userCombatant.status.name)]++
+                            this.userCombatant.status.main[findList('Double Damage Next',this.userCombatant.status.name)]--
+                        }
+                        if(this.userCombatant.getStatus('Damage Block Convert')>0&&this.clearAttack[10]){
+                            this.userCombatant.status.main[findList('Damage Block Convert',this.userCombatant.status.name)]--
+                        }
+                        if(this.userCombatant.getStatus('Damage Half Block Convert')>0&&this.clearAttack[11]){
+                            this.userCombatant.status.main[findList('Damage Half Block Convert',this.userCombatant.status.name)]--
+                        }
                     break
                 }
             }

@@ -21,7 +21,7 @@ class turn{
     base(){
         switch(this.attackClass){
             case 1:
-                this.clearAttack=[false,false,false,false,false,false,false,false,false]
+                this.clearAttack=[false,false,false,false,false,false,false,false,false,false,false,false]
                 if(this.userCombatant.getStatus('Double Damage')>0){
                     this.clearAttack[0]=true
                 }
@@ -49,6 +49,15 @@ class turn{
                 }
                 if(this.userCombatant.getStatus('Single Damage Down')>0){
                     this.clearAttack[8]=true
+                }
+                if(this.userCombatant.getStatus('Double Damage Next')>0){
+                    this.clearAttack[9]=true
+                }
+                if(this.userCombatant.getStatus('Damage Block Convert')>0){
+                    this.clearAttack[10]=true
+                }
+                if(this.userCombatant.getStatus('Damage Half Block Convert')>0){
+                    this.clearAttack[11]=true
                 }
             break
         }

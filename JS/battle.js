@@ -996,6 +996,15 @@ class battle{
         if(card.spec.includes(25)&&userCombatant.getStatus('Gun Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Gun Block'))
         }
+        if(card.cost>=2&&userCombatant.getStatus('2+ Cost Single Damage Up')>0){
+            userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('2+ Cost Single Damage Up'))
+        }
+        if(card.cost>=2&&userCombatant.getStatus('2+ Cost Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('2+ Cost Block'))
+        }
+        if(userCombatant.getStatus('Play Limit')>0&&this.cardManagers[player].hand.turnPlayed[0]>=userCombatant.getStatus('Play Limit')){
+            this.cardManagers[player].allEffect(2,2)
+        }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed])
     }

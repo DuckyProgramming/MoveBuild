@@ -98,6 +98,7 @@ class combatant{
         this.lastDeal=0
         this.lastTake=0
         this.permanentStrength=0
+        this.carry=[0,0,0]
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
         this.collect={life:this.life}
         this.infoAnim={
@@ -152,7 +153,8 @@ class combatant{
             'Single Damage All','Prismatic Bomb Per Turn','Fatigue Splash','Random Deck Card Per Turn','Energy Cycle 2 1','Energy Cycle 2 2','Random Negative Per Turn','Rewind Next Turn','Damage All','Armament Bypass',
             'Burn Strength','Burn Bypass','Basic Boost','Mineral Boost','Cable Boost','Free Defenses','Exhausting Defenses','Strike Range','Skill Cost Down','Exhausting Skills',
             'Step Draw','Cable Range','Mineral Range','Common Attack Boost','Free Cables','Construct Turn','Construct Dual Block','Metal Per Turn','All Construct Speed Up','Construct Strength',
-            'Construct Dexterity','Gun Temporary Strength','Gun Block','Turn Speed','Extra Turn Block','Turn Reversal','Deluxe Weak',
+            'Construct Dexterity','Gun Temporary Strength','Gun Block','Turn Speed','Extra Turn Block','Turn Reversal','Deluxe Weak','Prismatic Bomb Boost','No Damage Turn Next Turn','Play Limit',
+            '2+ Cost Single Damage Up','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,4,4,//1
@@ -197,7 +199,8 @@ class combatant{
                 2,0,0,0,2,2,0,2,0,1,//40
                 0,1,0,0,0,1,1,1,0,0,//41
                 1,1,1,1,1,0,0,0,0,0,//42
-                0,0,0,0,0,1,1,
+                0,0,0,0,0,1,1,0,2,2,//43
+                0,0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -242,7 +245,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//40
                 2,2,2,2,2,2,2,2,2,2,//41
                 2,2,2,2,2,2,2,2,2,2,//42
-                2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,1,3,//43
+                2,2,0,0,0,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -3593,6 +3597,19 @@ class combatant{
         if(this.permanentStrength>0){
             this.statusEffect('Strength',this.permanentStrength)
         }
+        for(let a=0,la=this.carry.length;a<la;a++){
+            if(this.carry[a]>0){
+                switch(a){
+                    case 0:
+                        this.addBlock(this.carry[a])
+                    break
+                    case 1:
+                        this.addBarrier(this.carry[a])
+                    break
+                }
+                this.carry[a]=0
+            }
+        }
         this.infoAnim={
             life:1,block:0,blockSize:1,barrier:0,barrierSize:1,blockBarrier:0,
             size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],
@@ -5623,6 +5640,12 @@ class combatant{
                         userCombatant.addBlock(damage)
                         userCombatant.status.main[139]--
                     }
+                    if(userCombatant.status.main[432]>0){
+                        userCombatant.addBlock(damage)
+                    }
+                    if(userCombatant.status.main[433]>0){
+                        userCombatant.addBlock(damage/2)
+                    }
                     if(userCombatant.status.main[170]>0&&userCombatant.id<this.battle.players){
                         this.battle.addCurrency(round(damage),userCombatant.id)
                     }
@@ -5960,6 +5983,10 @@ class combatant{
                 for(let a=0,la=this.status.main[141];a<la;a++){
                     this.battle.cardManagers[this.id].hand.add(findName('Spark',types.card),1,0)
                 }
+            }
+            if(this.status.main[434]>0){
+                this.status.main[434]=0
+                this.battle.combatantManager.randomEnemyEffect(3,[block,this.id])
             }
             if(this.battle.modded(140)&&this.team==0){
                 block*=2
@@ -6824,6 +6851,8 @@ class combatant{
                     case 397: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[a])} break
                     case 417: this.metal+=this.status.main[a]; break
                     case 423: this.battle.setTurn(this.battle.turn.total+this.status.main[a]); break
+                    case 428: this.status.main[findList('No Damage Turn',this.status.name)]+=this.status.main[a]; break
+                    case 435: if(this.id<this.battle.players){this.battle.overlayManager.overlays[46][this.id].active=true;this.battle.overlayManager.overlays[46][this.id].activate([this.status.main[a]])} break
                     
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
@@ -9481,6 +9510,9 @@ class combatant{
                     this.statusEffect('Strength',1)
                 }
                 this.elemental=true
+                if(this.status.main[436]>0){
+                    this.addBlock(this.status.main[436])
+                }
             }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)

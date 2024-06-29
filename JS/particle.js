@@ -206,7 +206,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 94:
+            case 94: case 102:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.color=floor(random(0,6))
@@ -215,6 +215,12 @@ class particle{
                 this.trigger=false
                 this.size=1
                 this.scale=1
+            break
+            case 103: case 104:
+                this.size=args[0]
+                this.fade=1
+                this.scale=0
+                this.direction=random(0,360)
             break
         }
     }
@@ -1304,6 +1310,33 @@ class particle{
                     this.layer.rect(-2,5.5,1,2)
                     this.layer.rect(2,5.5,1,2)
                 break
+                case 102:
+                    this.layer.fill(180+this.color*15,180+this.color*15,180-this.color*15,this.fade*0.5)
+                    this.layer.stroke(180+this.color*15,180+this.color*15,180-this.color*15,this.fade)
+                    this.layer.strokeWeight(2)
+                    regStar(this.layer,0,0,5,12,12,5,5,this.position.y*3)
+                break
+                case 103:
+                    this.layer.rotate(this.direction)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.fill(0,100,225,this.fade)
+                        this.layer.quad(0,0,-1,-4,0,-12,1,-4)
+                        this.layer.fill(50,0,125,this.fade)
+                        this.layer.quad(0,0,-0.5,-2,0,-8,0.5,-2)
+                        this.layer.rotate(360/la)
+                    }
+                break
+                case 104:
+                    this.layer.rotate(this.direction+this.time*3)
+                    for(let a=0,la=10;a<la;a++){
+                        this.layer.fill(255,100+a*15,0,this.fade)
+                        for(let b=0,lb=6;b<lb;b++){
+                            this.layer.quad(-1*(1-a/la),-5,0,-5+3*(1-a/la),1*(1-a/la),-5,0,-5-3*(1-a/la))
+                            this.layer.rotate(360/lb)
+                        }
+                        this.layer.rotate(2)
+                    }
+                break
 
             }
             this.layer.pop()
@@ -1341,7 +1374,7 @@ class particle{
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
             case 46: case 51: case 52: case 54: case 56: case 57: case 60: case 65: case 66: case 72:
             case 73: case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 90: case 93:
-            case 95: case 97: case 99:
+            case 95: case 97: case 99: case 103: case 104:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){
@@ -1464,7 +1497,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 81: case 94:
+            case 81: case 94: case 102:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,5)

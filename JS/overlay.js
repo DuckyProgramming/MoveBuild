@@ -16,32 +16,6 @@ class overlay{
             case 2:
                 this.page=0
                 switch(this.args[0]){
-                    case 0: case 6: case 9: case 13: case 14: case 15: case 16: case 18: case 20: case 22:
-                    case 23: case 25: case 30: case 41: case 44: case 45: case 47: case 48: case 49: case 58:
-                    case 59: case 60: case 62: case 63:
-                        this.battle.cardManagers[this.player].reserve.cards.forEach(card=>card.size=0)
-                    break
-                    case 1: case 5: case 11: case 19: case 21: case 31: case 34: case 39: case 40: case 42:
-                    case 46: case 52:
-                        this.battle.cardManagers[this.player].discard.cards.forEach(card=>card.size=0)
-                    break
-                    case 2: case 3: case 4: case 7: case 8: case 10: case 17: case 26: case 27: case 28:
-                    case 29: case 32: case 33: case 35: case 36: case 37: case 38: case 43: case 50: case 51:
-                    case 53: case 54: case 55: case 56: case 57: case 61: case 64: case 65: case 66: case 67:
-                    case 68: case 69: case 70:
-                        this.battle.cardManagers[this.player].deck.cards.forEach(card=>card.size=0)
-                    break
-                    case 12:
-                        this.battle.cardManagers[this.player].exhaust.cards.forEach(card=>card.size=0)
-                    break
-                    case 71:
-                        this.battle.cardManagers[this.player].remove.cards.forEach(card=>card.size=0)
-                    break
-                    case 24:
-                        this.battle.tierManager.tiers[this.args[1]].cards.forEach(card=>card.size=0)
-                    break
-                }
-                switch(this.args[0]){
                     case 3: case 17: case 43:
                         this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0)
                         this.card.nonCalc=true
@@ -135,7 +109,7 @@ class overlay{
                     case 2: case 3: case 4: case 7: case 8: case 10: case 17: case 26: case 27: case 28:
                     case 29: case 32: case 33: case 35: case 36: case 37: case 38: case 43: case 50: case 51:
                     case 53: case 54: case 55: case 56: case 57: case 61: case 64: case 65: case 66: case 67:
-                    case 68: case 69: case 70:
+                    case 68: case 69: case 70: case 72:
                         this.battle.cardManagers[this.player].deck.resetAnim()
                     break
                     case 12:
@@ -666,6 +640,26 @@ class overlay{
                             this.cards[a].upSize=true
                         }
                     break
+                    case 33:
+                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                        for(let a=0,la=list[args[1]].length;a<la;a++){
+                            if(types.card[list[args[1]][a]].rarity!=args[3]){
+                                list[args[1]].splice(a,1)
+                                a--
+                                la--
+                            }
+                        }
+                        for(let a=0,la=this.options;a<la;a++){
+                            if(list[args[1]].length>0){
+                                let index=floor(random(0,list[args[1]].length))
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],types.card[list[args[1]][index]].list,-1))
+                                if(args[2]==33){
+                                    this.cards[a].cost=0
+                                }
+                                this.cards[a].upSize=true
+                            }
+                        }
+                    break
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].nonCalc=true
@@ -684,16 +678,18 @@ class overlay{
                     case 0:
                         list=copyArrayStack(this.battle.cardManagers[this.player].listing.coc)
                         let tick=0
+                        let total=0
                         for(let a=0,la=list[args[1]].length;a<la;a++){
-                            //if(types.card[list[args[1]][a]].levels[0].class==3){
+                            if(types.card[list[args[1]][a]].rarity==this.args[1]||this.args[1]==-1){
                                 this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-350+tick%8*100,this.layer.height/2-130+floor(tick/8)%3*130,list[args[1]][a],args[0],types.card[list[args[1]][a]].list,-1))
                                 this.cards[tick].upSize=true
                                 tick++
                                 if(types.card[list[args[1]][a]].list!=mark){
                                     mark=types.card[list[args[1]][a]].list
-                                    this.marks.push(floor(a/24))
+                                    this.marks.push(floor(total/24))
                                 }
-                            //}
+                                total++
+                            }
                         }
                         this.marks.push(ceil(this.cards.length/24))
                     break
@@ -1347,6 +1343,7 @@ class overlay{
                     case 69: this.title='Make a Card Exhaust'; break
                     case 70: this.title='Make a Card Health-Costing'; break
                     case 71: this.title='Put a Removed Card in Deck'; break
+                    case 72: this.title='Combine Two Equivalent Cards Into a Negative Copy'; break
 
                 }
                 this.layer.fill(160,this.fade*0.8)
@@ -1373,7 +1370,7 @@ class overlay{
                     case 36: case 37: case 38: case 39: case 40: case 41: case 42: case 43: case 44: case 45:
                     case 46: case 47: case 48: case 49: case 50: case 51: case 52: case 53: case 54: case 55:
                     case 56: case 57: case 58: case 59: case 60: case 61: case 62: case 63: case 64: case 65:
-                    case 66: case 67: case 68: case 69: case 70: case 71:
+                    case 66: case 67: case 68: case 69: case 70: case 71: case 72:
                         this.layer.text('Skip',this.layer.width/2,this.layer.height/2+225); break
                 }
                 switch(this.args[0]){
@@ -1384,7 +1381,7 @@ class overlay{
                         this.battle.cardManagers[this.player].discard.display('overlay',[1,this.page]); break
                     case 2: case 3: case 4: case 7: case 8: case 10: case 17: case 26: case 27: case 28:
                     case 29: case 32: case 33: case 35: case 36: case 37: case 38: case 43: case 50: case 51:
-                    case 57: case 64: case 65: case 66: case 67: case 68: case 69: case 70:
+                    case 57: case 64: case 65: case 66: case 67: case 68: case 69: case 70: case 72:
                         this.battle.cardManagers[this.player].deck.display('overlay',[1,this.page]); break
                     case 9: this.battle.cardManagers[this.player].reserve.display('overlay',[1,this.page]); break
                     case 12: this.battle.cardManagers[this.player].exhaust.display('overlay',[1,this.page]); break
@@ -1947,7 +1944,7 @@ class overlay{
                         break
                         case 2: case 3: case 4: case 7: case 8: case 10: case 17: case 26: case 27: case 28:
                         case 29: case 32: case 33: case 35: case 36: case 37: case 38: case 43: case 50: case 51:
-                        case 57: case 64: case 65: case 66: case 67: case 68: case 69: case 70:
+                        case 57: case 64: case 65: case 66: case 67: case 68: case 69: case 70: case 72:
                             this.page=constrain(this.page,0,ceil(this.battle.cardManagers[this.player].deck.cards.length/15)-1)
                         break
                         case 12:
@@ -1985,7 +1982,7 @@ class overlay{
                         case 2: case 3: case 4: case 7: case 8: case 10: case 17: case 26: case 27: case 28:
                         case 29: case 32: case 33: case 35: case 36: case 37: case 38: case 43: case 50: case 51:
                         case 53: case 54: case 55: case 56: case 57: case 61: case 64: case 65: case 66: case 67:
-                        case 68: case 69: case 70:
+                        case 68: case 69: case 70: case 72:
                             this.battle.cardManagers[this.player].deck.update('overlay',[this.page])
                         break
                         case 12:
@@ -2015,7 +2012,7 @@ class overlay{
                         case 2: case 3: case 4: case 7: case 8: case 10: case 17: case 26: case 27: case 28:
                         case 29: case 32: case 33: case 35: case 36: case 37: case 38: case 43: case 50: case 51:
                         case 53: case 54: case 55: case 56: case 57: case 61: case 64: case 65: case 66: case 67:
-                        case 68: case 69: case 70:
+                        case 68: case 69: case 70: case 72:
                             for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
                                 this.battle.cardManagers[this.player].deck.cards[a].size=constrain(this.battle.cardManagers[this.player].deck.cards[a].size,0,this.fade)
                             }
@@ -2110,7 +2107,7 @@ class overlay{
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+285,y:this.layer.height/2},width:40,height:40})&&(
                             this.page<ceil(this.battle.cardManagers[this.player].reserve.cards.length/15)-1&&(this.args[0]==0||this.args[0]==6||this.args[0]==9||this.args[0]==18||this.args[0]==23||this.args[0]==25||this.args[0]==30||this.args[0]==45||this.args[0]==58||this.args[0]==60||this.args[0]==63)||
                             this.page<ceil(this.battle.cardManagers[this.player].discard.cards.length/15)-1&&(this.args[0]==1||this.args[0]==5||this.args[0]==11||this.args[0]==19||this.args[0]==21||this.args[0]==31||this.args[0]==34||this.args[0]==39||this.args[0]==40||this.args[0]==42||this.args[0]==46||this.args[0]==52)||
-                            this.page<ceil(this.battle.cardManagers[this.player].deck.cards.length/15)-1&&(this.args[0]==2||this.args[0]==3||this.args[0]==4||this.args[0]==7||this.args[0]==8||this.args[0]==10||this.args[0]==17||this.args[0]==26||this.args[0]==27||this.args[0]==28||this.args[0]==29||this.args[0]==32||this.args[0]==33||this.args[0]==35||this.args[0]==36||this.args[0]==37||this.args[0]==38||this.args[0]==43||this.args[0]==50||this.args[0]==51||this.args[0]==57||this.args[0]==64||this.args[0]==65||this.args[0]==66||this.args[0]==67||this.args[0]==68||this.args[0]==69||this.args[0]==70)||
+                            this.page<ceil(this.battle.cardManagers[this.player].deck.cards.length/15)-1&&(this.args[0]==2||this.args[0]==3||this.args[0]==4||this.args[0]==7||this.args[0]==8||this.args[0]==10||this.args[0]==17||this.args[0]==26||this.args[0]==27||this.args[0]==28||this.args[0]==29||this.args[0]==32||this.args[0]==33||this.args[0]==35||this.args[0]==36||this.args[0]==37||this.args[0]==38||this.args[0]==43||this.args[0]==50||this.args[0]==51||this.args[0]==57||this.args[0]==64||this.args[0]==65||this.args[0]==66||this.args[0]==67||this.args[0]==68||this.args[0]==69||this.args[0]==70||this.args[0]==72)||
                             this.page<ceil(this.battle.cardManagers[this.player].exhaust.cards.length/15)-1&&(this.args[0]==12)||
                             this.page<ceil(this.battle.cardManagers[this.player].remove.cards.length/15)-1&&(this.args[0]==71)||
                             this.page<ceil(this.battle.cardManagers[this.player].deck.sorted.length/15)-1&&(this.args[0]==53||this.args[0]==54||this.args[0]==55||this.args[0]==56||this.args[0]==61)||
@@ -2152,7 +2149,7 @@ class overlay{
                         case 3: case 4: case 7: case 8: case 10: case 17: case 26: case 27: case 28: case 29:
                         case 32: case 33: case 35: case 36: case 37: case 38: case 43: case 50: case 51: case 53:
                         case 54: case 55: case 56: case 57: case 61: case 64: case 65: case 66: case 67: case 68:
-                        case 69: case 70:
+                        case 69: case 70: case 72:
                             for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
                                 if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].deck.cards[a])&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5&&this.battle.cardManagers[this.player].deck.cards[a].select&&
                                     !((this.args[0]==3||this.args[0]==17||this.args[0]==26)&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(37))&&
@@ -2312,6 +2309,14 @@ class overlay{
                                             }else{
                                                 this.battle.cardManagers[this.player].deck.cards[a].spec.push(58)
                                                 this.battle.cardManagers[this.player].deck.cards[a].additionalSpec.push(58)
+                                            }
+                                        break
+                                        case 72:
+                                            if(this.battle.cardManagers[this.player].deck.smooshNeg(a)){
+                                                la--
+                                                a--
+                                            }else{
+                                                complete=false
                                             }
                                         break
 
@@ -2685,7 +2690,7 @@ class overlay{
                             for(let b=0,lb=lists.length;b<lb;b++){
                                 if(this.setupArgs[2]==27){
                                     this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player][lists[b]].cards,this.setupArgs[4][a],this.setupArgs[4][a]+1,4)
-                                }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29){
+                                }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29||this.setupArgs[2]==33){
                                     this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[1],[])
                                 }else if(this.setupArgs[2]!=22){
                                     this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
@@ -2956,7 +2961,7 @@ class overlay{
                         }else if(code==RIGHT_ARROW&&(
                             this.page<ceil(this.battle.cardManagers[this.player].reserve.cards.length/15)-1&&(this.args[0]==0||this.args[0]==6||this.args[0]==9||this.args[0]==18||this.args[0]==22||this.args[0]==25||this.args[0]==30||this.args[0]==45||this.args[0]==58||this.args[0]==60||this.args[0]==63)||
                             this.page<ceil(this.battle.cardManagers[this.player].discard.cards.length/15)-1&&(this.args[0]==1||this.args[0]==5||this.args[0]==11||this.args[0]==19||this.args[0]==21||this.args[0]==31||this.args[0]==34||this.args[0]==39||this.args[0]==40||this.args[0]==42||this.args[0]==46||this.args[0]==52)||
-                            this.page<ceil(this.battle.cardManagers[this.player].deck.cards.length/15)-1&&(this.args[0]==2||this.args[0]==3||this.args[0]==4||this.args[0]==7||this.args[0]==8||this.args[0]==10||this.args[0]==17||this.args[0]==26||this.args[0]==27||this.args[0]==28||this.args[0]==29||this.args[0]==32||this.args[0]==33||this.args[0]==35||this.args[0]==36||this.args[0]==37||this.args[0]==38||this.args[0]==43||this.args[0]==50||this.args[0]==51||this.args[0]==57||this.args[0]==64||this.args[0]==65||this.args[0]==66||this.args[0]==67||this.args[0]==68||this.args[0]==69||this.args[0]==70)||
+                            this.page<ceil(this.battle.cardManagers[this.player].deck.cards.length/15)-1&&(this.args[0]==2||this.args[0]==3||this.args[0]==4||this.args[0]==7||this.args[0]==8||this.args[0]==10||this.args[0]==17||this.args[0]==26||this.args[0]==27||this.args[0]==28||this.args[0]==29||this.args[0]==32||this.args[0]==33||this.args[0]==35||this.args[0]==36||this.args[0]==37||this.args[0]==38||this.args[0]==43||this.args[0]==50||this.args[0]==51||this.args[0]==57||this.args[0]==64||this.args[0]==65||this.args[0]==66||this.args[0]==67||this.args[0]==68||this.args[0]==69||this.args[0]==70||this.args[0]==72)||
                             this.page<ceil(this.battle.cardManagers[this.player].exhaust.cards.length/15)-1&&(this.args[0]==12)||
                             this.page<ceil(this.battle.cardManagers[this.player].remove.cards.length/15)-1&&(this.args[0]==71)||
                             this.page<ceil(this.battle.cardManagers[this.player].deck.sorted.length/15)-1&&(this.args[0]==53||this.args[0]==54||this.args[0]==55||this.args[0]==56||this.args[0]==61)||
@@ -2998,7 +3003,7 @@ class overlay{
                         case 3: case 4: case 7: case 8: case 10: case 17: case 26: case 27: case 28: case 29:
                         case 32: case 33: case 35: case 36: case 37: case 38: case 43: case 50: case 51: case 53:
                         case 54: case 55: case 56: case 57: case 61: case 64: case 65: case 66: case 67: case 68:
-                        case 69: case 70:
+                        case 69: case 70: case 72:
                             for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
                                 if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5&&this.battle.cardManagers[this.player].deck.cards[a].select&&
                                     !((this.args[0]==3||this.args[0]==17||this.args[0]==26)&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(37))&&
@@ -3158,6 +3163,14 @@ class overlay{
                                             }else{
                                                 this.battle.cardManagers[this.player].deck.cards[a].spec.push(58)
                                                 this.battle.cardManagers[this.player].deck.cards[a].additionalSpec.push(58)
+                                            }
+                                        break
+                                        case 72:
+                                            if(this.battle.cardManagers[this.player].deck.smooshNeg(a)){
+                                                la--
+                                                a--
+                                            }else{
+                                                complete=false
                                             }
                                         break
 
@@ -3527,7 +3540,7 @@ class overlay{
                             for(let b=0,lb=lists.length;b<lb;b++){
                                 if(this.setupArgs[2]==27){
                                     this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player][lists[b]].cards,this.setupArgs[4][a],this.setupArgs[4][a]+1,4)
-                                }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29){
+                                }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29||this.setupArgs[2]==33){
                                     this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[1],[])
                                 }else if(this.setupArgs[2]!=22){
                                     this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
