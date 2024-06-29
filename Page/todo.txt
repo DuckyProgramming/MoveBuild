@@ -39,6 +39,10 @@ dynamic overlay stacking
 
 [frozen pulse - 7 damage, 3 directions, spend 2 charge: apply 1 freeze]
 
+[direct sunlight]
+
+[another card with an effect on vanish]
+
 
 
 [gain 1 strength whenever you dodge an attack]
@@ -69,7 +73,12 @@ quantum tunnel - 0 cost, 8 damage, ignore block, gain 1 energy, when drawn lose 
 
 
 
-another card with an effect on vanish
+
+
+
+
+
+
 
 
 
@@ -84,6 +93,8 @@ how is chip doing?
 liles of murder could look a lot cooler
 
 eternal judge's sins spawn particles and annoy the player
+
+"shoot the moon" with a rainbow laser with squares and stars (stars look better when white with colored outline)
 
 
 

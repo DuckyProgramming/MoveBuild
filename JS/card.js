@@ -3899,36 +3899,29 @@ class card{
             case 3530: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nScry ${effect[1]}\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 3531: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nTake Another Turn`; break
             case 3532: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nWrath:\nAdds Double Block\nDivinity:\nAdds Triple Block`; break
-
             case 3533: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Exhausted,\nAdd ${effect[1]} Prismatic\nBomb${pl(effect[1])} to Draw Pile`; break
-            case 3534: string+=`Add ${this.calculateEffect(effect[0],1)} Barrier\nWhen You Lose a Buff`; break
+            case 3534: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier\nWhen You Lose a Buff`; break
             case 3535: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Damage\nIf You Have Strength`; break
             case 3536: string+=`Add ${effect[0]} Astrolog${effect[0]!=1?`ies`:`y`}\nto Hand Each Turn\nIf You Have None`; break
             case 3537: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd an Astrology\nto Hand`; break
             case 3538: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIncreases by ${effect[1]} When a\nPrismatic Bomb Activates`; break
-
             case 3539: string+=`When You Build a\nConstruct, Gain ${effect[0]} Metal`; break
             case 3540: string+=`Attacks This Combat\nApply ${effect[0]} Jinx`; break
             case 3541: string+=`Attacks This Combat\nApply ${effect[0]} Shock`; break
             case 3542: string+=`Gain ${effect[0]} Ammo\nPer Turn`; break
             case 3543: string+=`When You Play\na Countdown,\nReduce Another\nCountdown by ${effect[0]}`; break
             case 3544: string+=`Add ${effect[0]} Random\nCommon Colorless Card${pl(effect[0])}\nto Hand\nEvery Turn`; break
-
             case 3545: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWrath:\nAdd a Smite to Hand`; break
             case 3546: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nSturdy:\nAdd a Safety to Hand`; break
-            case 3547: string+=`Gain a Card Reward\nLose ${effect[0]} Health`; break
+            case 3547: string+=`Gain a Common\nCard Reward\nLose ${effect[0]} Health`; break
             case 3548: string+=`Add ${effect[0]} Random\nSkill${pl(effect[0])} to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0\nTemporarily`; break
             case 3549: string+=`Add ${effect[0]} Random\nSkill${pl(effect[0])} to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
             case 3550: string+=`Take No Damage\nThis Turn\nTake it in 2 Turns Instead`; break
             case 3551: string+=`${variants.mtg?`Gain ${effect[0]} Energy\n(Random)`:`A Random Card\nCosts ${effect[0]} Less`}`; break
-            
             case 3552: string+=`20%:\nEdition a Card`; break
             case 3553: string+=`30%:\nEdition a Card`; break
-            //2512-2514
-
-
-            
-
+            case 3554: string+=`Apply ${effect[0]} Dodge\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 3555: string+=`Gain an Uncommon\nCard Reward\nLose ${effect[0]} Health`; break
 
             //mark p
 
@@ -4354,6 +4347,11 @@ class card{
                 this.battle.addEnergy(this.effect[1],this.player)
                 this.battle.cardManagers[this.player].randomEffect(2,1,[this.effect[2]])
             break
+            case 3533:
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.battle.dropDrawShuffle(this.player,findName('Prismatic\nBomb',types.card),0,0)
+                }
+            break
         }
     }
     callVanishEffect(){
@@ -4536,6 +4534,13 @@ class card{
             break
             case 3511:
                 this.effect[0]-=this.effect[1]
+            break
+        }
+    }
+    prismaticActivation(){
+        switch(this.attack){
+            case 3538:
+                this.effect[0]+=this.effect[1]
             break
         }
     }

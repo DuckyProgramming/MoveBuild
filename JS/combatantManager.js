@@ -582,6 +582,9 @@ class combatantManager{
             if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dexterity')>0){
                 this.combatants[this.combatants.length-1].statusEffect('Dexterity',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dexterity'))
             }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Metal')>0){
+                this.combatants[this.getPlayerCombatantIndex(builder)].metal+=this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Metal')
+            }
         }
     }
     summonConstructRandom(tilePosition,type,team,direction,builder){
@@ -620,6 +623,9 @@ class combatantManager{
             }
             if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dexterity')>0){
                 this.combatants[this.combatants.length-1].statusEffect('Dexterity',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dexterity'))
+            }
+            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Metal')>0){
+                this.combatants[this.getPlayerCombatantIndex(builder)].metal+=this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Metal')
             }
         }
     }

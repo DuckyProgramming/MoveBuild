@@ -1381,6 +1381,9 @@ class group{
                         this.cards[a].spec.push(4)
                     }
                 break
+                case 106:
+                    this.cards[a].prismaticActivation()
+                break
 
             }
         }
@@ -1939,7 +1942,7 @@ class group{
                 this.drawEffects.push([0,19,[]])
             break
             case -26:
-                this.drawEffects.push([4])
+                this.drawEffects.push([3,12])
             break
             case -27:
                 userCombatant.statusEffect('Temporary Strength',-card.effect[0])
@@ -2169,6 +2172,7 @@ class group{
                 )
                 this.battle.addEnergy(card.effect[1],this.player)
                 this.drawEffects.push([5,card.effect[2]])
+                this.drawEffects.push([3,106])
             break
             case 2904:
                 userCombatant.statusEffect('Temporary Draw',card.effect[0])
@@ -2197,14 +2201,14 @@ class group{
                 userCombatant.block=0
             break
             case 3358:
-                this.drawEffects.push([9,card.effect[0],[2]])
-                this.drawEffects.push([9,card.effect[1],[3]])
-                this.drawEffects.push([9,card.effect[2],[4]])
+                this.drawEffects.push([4,card.effect[0],[2]])
+                this.drawEffects.push([4,card.effect[1],[3]])
+                this.drawEffects.push([4,card.effect[2],[4]])
             break
             case 3413:
-                this.drawEffects.push([9,card.effect[0],[2]])
-                this.drawEffects.push([9,card.effect[1],[3]])
-                this.drawEffects.push([9,card.effect[2],[11]])
+                this.drawEffects.push([4,card.effect[0],[2]])
+                this.drawEffects.push([4,card.effect[1],[3]])
+                this.drawEffects.push([4,card.effect[2],[11]])
             break
         }
     }
@@ -2246,10 +2250,10 @@ class group{
                         }
                     break
                     case 3:
-                        parent.allEffect(11)
+                        parent.allEffect(this.drawEffects[a][1])
                     break
                     case 4:
-                        parent.allEffect(12)
+                        classDrawCount[this.drawEffects[a][2]]+=this.drawEffects[a][1]
                     break
                     case 5:
                         drawCount+=this.drawEffects[a][1]
@@ -2262,9 +2266,6 @@ class group{
                     break
                     case 8:
                         this.battle.cardManagers[this.player].randomEffect(2,1,[this.drawEffects[a][1]])
-                    break
-                    case 9:
-                        classDrawCount[this.drawEffects[a][2]]+=this.drawEffects[a][1]
                     break
                 }
             }

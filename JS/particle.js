@@ -1339,6 +1339,7 @@ class particle{
                 break
                 case 105:
                     this.layer.rotate(this.direction)
+                    this.layer.scale(0.8)
                     this.layer.stroke(90,0,120,this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.line(0,-8,-6,-2)

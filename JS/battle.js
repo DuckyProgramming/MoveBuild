@@ -1017,6 +1017,9 @@ class battle{
         if(userCombatant.getStatus('Play Limit')>0&&this.cardManagers[player].hand.turnPlayed[0]>=userCombatant.getStatus('Play Limit')){
             this.cardManagers[player].allEffect(2,2)
         }
+        if(card.spec.includes(35)&&userCombatant.getStatus('Countdown Chain')>0){
+            this.cardManagers[player].hand.randomEffect(26,[userCombatant.getStatus('Countdown Chain')])
+        }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed])
     }

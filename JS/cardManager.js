@@ -857,7 +857,7 @@ class cardManager{
                 }
                 if(this.bufferedTurn>0){
                     this.bufferedTurn-=game.animRate
-                    if(this.bufferedTurn<=0){
+                    if(this.bufferedTurn<=0&&this.battle.turn.main<this.battle.players){
                         this.battle.newTurn()
                     }
                 }

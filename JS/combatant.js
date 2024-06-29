@@ -135,7 +135,7 @@ class combatant{
             'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
             'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
             'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
-        'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
+            'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
             'Single Damage Convert','2 Exhaust Draw','Dice Up','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
             '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
             'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
@@ -155,8 +155,9 @@ class combatant{
             'Step Draw','Cable Range','Mineral Range','Common Attack Boost','Free Cables','Construct Turn','Construct Dual Block','Metal Per Turn','All Construct Speed Up','Construct Strength',
             'Construct Dexterity','Gun Temporary Strength','Gun Block','Turn Speed','Extra Turn Block','Turn Reversal','Deluxe Weak','Prismatic Bomb Boost','No Damage Turn Next Turn','Play Limit',
             '2+ Cost Single Damage Up','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block','X Cost Boost','Self Life Loss Splash','Energy Gain Splash',
-            'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw',
-            ],next:[],display:[],active:[],position:[],size:[],
+            'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw','Buff Loss Barrier','Astrology Per Turn','Construct Metal','Attack Jinx Combat','Attack Shock Combat',
+            'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2',
+            ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,0,2,1,0,0,4,4,//1
                 4,0,0,2,0,0,1,2,2,0,//2
@@ -202,7 +203,8 @@ class combatant{
                 1,1,1,1,1,0,0,0,0,0,//42
                 0,0,0,0,0,1,1,0,2,2,//43
                 0,0,0,0,0,0,0,0,0,0,//44
-                0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,//45
+                0,0,0,1,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -249,7 +251,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//42
                 2,2,2,2,2,2,2,2,1,3,//43
                 2,2,0,0,0,2,2,2,2,2,//44
-                2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//45
+                2,2,2,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -259,6 +262,7 @@ class combatant{
             this.status.active.push(false)
             this.status.position.push(0)
             this.status.size.push(0)
+            this.status.sign.push(0)
         }
 
         for(let a=0,la=this.attack.length;a<la;a++){
@@ -5303,6 +5307,12 @@ class combatant{
                 if(userCombatant.status.main[318]>0){
                     this.statusEffect('Shock',userCombatant.status.main[318])
                 }
+                if(userCombatant.status.main[448]>0){
+                    this.statusEffect('Jinx',userCombatant.status.main[448])
+                }
+                if(userCombatant.status.main[449]>0){
+                    this.statusEffect('Shock',userCombatant.status.main[449])
+                }
                 if(userCombatant.team==this.team&&this.team==0&&this.battle.modded(12)){
                     hit=false
                 }
@@ -5318,14 +5328,18 @@ class combatant{
                     }
                 }
             }
-            if(this.status.main[21]>0){
+            if(this.status.main[21]>0&&hit){
                 this.status.main[21]--
                 hit=false
                 dodged=true
                 this.infoAnim.upFlash[2]=true
             }
-            if(this.status.main[210]>0&&this.battle.turn.main==this.id){
+            if(this.status.main[210]>0&&this.battle.turn.main==this.id&&hit){
                 hit=false
+            }
+            if(this.status.main[453]>0&&hit){
+                hit=false
+                this.statusEffect('Take Damage in 2 Turns',damage)
             }
             if(this.status.main[43]>0){
                 this.statusEffect('Strength',this.status.main[43])
@@ -6525,6 +6539,7 @@ class combatant{
     clearStatus(){
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
+            this.statusSignUpdate(a)
         }
     }
     statusEffect(name,value){
@@ -6570,6 +6585,7 @@ class combatant{
                     this.takeDamage(userCombatant.getStatus('Debuff Damage'),-1)
                 }
             }
+            this.statusSignUpdate(status)
         }
     }
     statusEffectNext(name,value){
@@ -6595,10 +6611,12 @@ class combatant{
     multiplyStatus(name,multiplier){
         let status=findList(name,this.status.name)
         this.status.main[status]=constrain(this.status.main[status]*multiplier,-999,999)
+        this.statusSignUpdate(status)
     }
     reverseStatus(){
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]*=-1
+            this.statusSignUpdate(a)
         }
     }
     deStatus(name,value){
@@ -6607,6 +6625,7 @@ class combatant{
         if(status>=0){
             this.status.main[status]=max(0,this.status.main[status])
         }
+        this.statusSignUpdate(status)
     }
     totalUniqueStatus(buff){
         let total=0
@@ -6684,6 +6703,28 @@ class combatant{
             if(classes.includes(this.status.class[a])){
                 this.status.main[a]=constrain(this.status.main[a]*multiplier,-999,999)
             }
+        }
+    }
+    statusSignUpdate(index){
+        if(this.status.main[index]==0&&this.status.sign[index]!=0){
+            if((
+                (this.status.class[index]==0||this.status.class[index]==2)&&this.status.sign[index]==1||
+                (this.status.class[index]==1||this.status.class[index]==3)&&this.status.sign[index]==-1
+                )&&this.status.main[445]>0
+            ){
+                this.addBarrier(this.status.main[445])
+            }
+            this.status.sign[index]=0
+        }else if(this.status.main[index]>0&&this.status.sign[index]!=1){
+            if((this.status.class[index]==1||this.status.class[index]==3)&&this.status.sign[index]==-1&&this.status.main[445]>0){
+                this.addBarrier(this.status.main[445])
+            }
+            this.status.sign[index]=1
+        }else if(this.status.main[index]<0&&this.status.sign[index]!=-1){
+            if((this.status.class[index]==0||this.status.class[index]==2)&&this.status.sign[index]==1&&this.status.main[445]>0){
+                this.addBarrier(this.status.main[445])
+            }
+            this.status.sign[index]=-1
         }
     }
     callEndEffect(){
@@ -6886,6 +6927,9 @@ class combatant{
                     case 435: if(this.id<this.battle.players){this.battle.overlayManager.overlays[46][this.id].active=true;this.battle.overlayManager.overlays[46][this.id].activate([this.status.main[a]])} break
                     case 440: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDrawClass[1]+=this.status.main[a]} break
                     case 441: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,2,2,[0],[3,11,1,[[1]]])}} break
+                    case 446: for(let b=0,lb=this.status.main[a];b<lb;b++){if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Astrology']])<=0){this.battle.cardManagers[this.id].hand.add(findName('Astrology',types.card),0,0)}} break
+                    case 450: this.ammo+=this.status.main[a]; break
+                    case 452: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,1,2,[],[0,0])}} break
                     
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
@@ -6903,11 +6947,12 @@ class combatant{
                 }else if(this.status.behavior[a]==2){
                     this.status.main[a]=0
                 }
+                this.statusSignUpdate(a)
             }
         }
         for(let a=0,la=this.status.next.length;a<la;a++){
             if(this.status.next[a]!=0){
-                this.status.main[a]+=this.status.next[a]
+                this.statusEffect(this.status.name[a],this.status.next[a])
                 this.status.next[a]=0
             }
         }
@@ -6996,6 +7041,7 @@ class combatant{
                         this.status.main[a]++
                     }
                 }
+                this.statusSignUpdate(a)
             }
         }
     }
@@ -7009,6 +7055,7 @@ class combatant{
                         this.status.main[a]++
                     }
                 }
+                this.statusSignUpdate(a)
             }
         }
     }
@@ -9961,6 +10008,7 @@ class combatant{
                 this.status.active[this.status.display[a]]=false
                 this.status.display.splice(a,1)
             }
+            this.statusSignUpdate(this.status.display[a])
         }
         for(let a=0,la=this.infoAnim.intent.length;a<la;a++){
             this.infoAnim.intent[a]=smoothAnim(this.infoAnim.intent[a],a==this.intent,0,1,5)
