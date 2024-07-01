@@ -4,6 +4,7 @@ class overlayManager{
         this.battle=battle
 
         this.overlays=[]
+        this.priority=[]
         switch(initMode){
             case 0:
                 this.overlays.push(
@@ -16,7 +17,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[4,1,0])],//remove card, no return
                     [new overlay(this.layer,this.battle,0,2,[5])],//bring in discard card, no return
                     [new overlay(this.layer,this.battle,0,2,[6])],//bring in draw card, no return
-                    [new overlay(this.layer,this.battle,0,2,[7])],//transform card, no return
+                    [new overlay(this.layer,this.battle,0,2,[7,0])],//transform card, no return
                     [new overlay(this.layer,this.battle,0,3,[1])],//new card to hand,10
                     [new overlay(this.layer,this.battle,0,4,[])],//end stats
                     [new overlay(this.layer,this.battle,0,2,[8])],//duplicate card, no return
@@ -105,13 +106,15 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,8,[1,0])],//new card to hand, allcard
                     [new overlay(this.layer,this.battle,0,2,[72])],//negative edition smush, no return
                     [new overlay(this.layer,this.battle,0,2,[73,0,0,0])],//scry, block on defense
+                    [new overlay(this.layer,this.battle,0,2,[4,1,3])],//remove, edition transfer
+                    [new overlay(this.layer,this.battle,0,2,[7,1])],//transform card, no return
 
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
                 }
                 this.positionOverlays()
-                this.priority=[51,61,82,64,41,42,24,4,16,38,17,3,26,28,10,83,35,95,6,90,91,92,93,94,44,71,72,48,49,87,88,96,12,0,25,1,13,36,2,15,5,32,7,18,50,30,56,57,58,67,68,69,80,97,70,63,59,33,52,53,8,86,81,65,66,46,47,73,79,34,37,19,20,21,22,23,85,29,31,40,9,89,14,74,75,76,77,84,62,54,11,27,39,43,55,78,45,60]
+                //this.priority=[51,61,82,64,41,42,24,4,16,38,17,3,26,28,10,83,35,95,6,90,91,92,93,94,98,44,71,72,48,49,87,88,96,12,0,25,1,13,36,2,15,5,32,7,18,50,30,56,57,58,67,68,69,80,97,70,63,59,33,52,53,8,86,81,65,66,46,47,73,79,34,37,19,20,21,22,23,85,29,31,40,9,99,89,14,74,75,76,77,84,62,54,11,27,39,43,55,78,45,60]
             break
             case 1:
                 this.overlays.push(
@@ -125,8 +128,13 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[24,7])],//view tier 8
                     [new overlay(this.layer,this.battle,0,2,[24,8])],//view tier 9
                 )
-                this.priority=[0,1,2,3,4,5,6,7,8]
+                //this.priority=[0,1,2,3,4,5,6,7,8]
             break
+        }
+        for(let a=0,la=this.overlays.length;a<la;a++){
+            for(let b=0,lb=this.overlays[a].length;b<lb;b++){
+                this.overlays[a][b].index=a
+            }
         }
         this.anyActive=false
     }
@@ -183,12 +191,21 @@ class overlayManager{
     }
     update(){
         let first=-1
+        let firstType=-1
+        for(let a=0,la=this.priority.length-1;a<la;a++){
+            if(this.priority[a][0]==this.priority[a+1][0]&&this.priority[a][1]>this.priority[a+1][1]){
+                [this.priority[a][1],this.priority[a+1][1]]=[this.priority[a+1][1],this.priority[a][1]]
+            }
+        }
         for(let a=0,la=this.priority.length;a<la;a++){
-            for(let b=0,lb=this.overlays[this.priority[a]].length;b<lb;b++){
-                this.overlays[this.priority[a]][b].update(first)
-                if(this.overlays[this.priority[a]][b].fade>0){
-                    first=this.overlays[this.priority[a]][b].type
-                }
+            this.overlays[this.priority[a][0]][this.priority[a][1]].update(first,firstType)
+            if(this.overlays[this.priority[a][0]][this.priority[a][1]].fade>0){
+                first=this.overlays[this.priority[a][0]][this.priority[a][1]].index
+                firstType=this.overlays[this.priority[a][0]][this.priority[a][1]].type
+            }else if(!this.overlays[this.priority[a][0]][this.priority[a][1]].active){
+                this.priority.splice(a,1)
+                a--
+                la--
             }
         }
         this.anyActive=false
@@ -196,27 +213,25 @@ class overlayManager{
             for(let b=0,lb=this.overlays[a].length;b<lb;b++){
                 if(this.overlays[a][b].active){
                     this.anyActive=true
+                    if(!arrayIncludes(this.priority,[a,b])){
+                        this.priority.push([a,b])
+                    }
                 }
             }
         }
     }
     onClick(){
         for(let a=0,la=this.priority.length;a<la;a++){
-            for(let b=0,lb=this.overlays[this.priority[a]].length;b<lb;b++){
-                if(this.overlays[this.priority[a]][b].active&&this.overlays[this.priority[a]][b].fade>0.5){
-                    this.overlays[this.priority[a]][b].onClick()
-                }
+            if(this.overlays[this.priority[a][0]][this.priority[a][1]].active&&this.overlays[this.priority[a][0]][this.priority[a][1]].fade>0.5){
+                this.overlays[this.priority[a][0]][this.priority[a][1]].onClick()
             }
         }
     }
     onKey(key,code){
         for(let a=0,la=this.priority.length;a<la;a++){
-            for(let b=0,lb=this.overlays[this.priority[a]].length;b<lb;b++){
-                if(this.overlays[this.priority[a]][b].active&&this.overlays[this.priority[a]][b].fade>0.5){
-                    this.overlays[this.priority[a]][b].onKey(key,code)
-                    a=la
-                    b=lb
-                }
+            if(this.overlays[this.priority[a][0]][this.priority[a][1]].active&&this.overlays[this.priority[a][0]][this.priority[a][1]].fade>0.5){
+                this.overlays[this.priority[a][0]][this.priority[a][1]].onKey(key,code)
+                a=la
             }
         }
     }

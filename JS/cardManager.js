@@ -4,7 +4,7 @@ class cardManager{
         this.battle=battle
         this.player=player
 
-        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[],junk:[],sub:[],mtg:[]}
+        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[],junk:[],sub:[],ally:[],mtg:[]}
 
         this.deck=new group(this.layer,this.battle,this.player,0)
         this.reserve=new group(this.layer,this.battle,this.player,1)
@@ -48,6 +48,7 @@ class cardManager{
         this.listing.all=[[],[],[],[]]
         this.listing.junk=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
         this.listing.sub=[]
+        this.listing.ally=[]
         for(let a=0,la=types.card.length;a<la;a++){
             if(types.card[a].rarity==-10){
                 this.listing.junk[types.card[a].list].push(a)
@@ -55,6 +56,9 @@ class cardManager{
             }
             if(types.card[a].rarity==-6){
                 this.listing.sub.push(a)
+            }
+            if(types.card[a].rarity==-7&&types.card[a].levels[0].class==9){
+                this.listing.ally.push(a)
             }
             if(variants.prismrule.includes(types.card[a].list)&&types.card[a].rarity>-10||variants.prismrule.includes(-1)&&types.card[a].list<0||variants.prismrule.includes(-2)&&types.card[a].rarity==-10){
                 if(types.card[a].rarity<0){
@@ -221,6 +225,9 @@ class cardManager{
             break
             case 5:
                 list=copyArray(this.listing.sub)
+            break
+            case 6:
+                list=copyArray(this.listing.ally)
             break
         }
         for(let a=0,la=filter.length;a<la;a++){
@@ -637,6 +644,9 @@ class cardManager{
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.getStatus('Random Card Cost Less Per Turn')>0){
             this.randomEffect(2,1,[userCombatant.getStatus('Random Card Cost Less Per Turn')])
+        }
+        if(userCombatant.getStatus('Random Card Cost Less Next Turn')>0){
+            this.randomEffect(2,1,[userCombatant.getStatus('Random Card Cost Less Next Turn')])
         }
         if(turn%4==0&&game.ascend>=24){
             this.reserve.addAbstract(findName('Dazed',types.card),0,game.playerNumber+1,0,[5],[])

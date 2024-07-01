@@ -1,93 +1,26 @@
-dynamic overlay stacking
 
 
+direct sunlight triggers at end of turn, not when drawn
 
-
-[guided meteor - make a card with the juicy animation with the sphere that explodes into a bunch of lines that curve in circular patterns]
-
-[foilcopy - create a foil card of the next card added]
-
-[golf ball]
-
-[more mtg-specific cards]
-
-[clarion call]
-
-[solution dilution]
-
-
-
-[ally card]
-
-[ally card]
-
-[new spectral (add an ally card)]
-
-[new spectral - remove a card, transfer its edition]
-
-[new spectral]
-
-[new tarot - LXXVII - the force - move any character as far from you has possible]
-
-
-
-[left of hand - pull from discard, right of hand - pull from draw]
-
-[magic of the mallet - all cards created cost 1 less]
-
-[pyrolysis - 1 cost gain 2 energy, draw 2 attacks, exhaust]
-
-[frozen pulse - 7 damage, 3 directions, spend 2 charge: apply 1 freeze]
-
-[direct sunlight]
-
-[another card with an effect on vanish]
-
-
-
-[gain 1 strength whenever you dodge an attack]
-
-[bamboo stick - gain 1 energy when you dodge an attack]
-
-[flashing needle]
-
-[quickwing - get 2 random cards from draw pile, choose to put one in hand and other to discard]
-
-[positive force]
-
-[paced energy]
-
-
-
-[assembly - draw 2 cards, compact cards in your hand this combat]
-
-[shizuha ally card]
-
-[technical ally card]
-
-[ran, summoned kitsune]
-
-quantum tunnel - 0 cost, 8 damage, ignore block, gain 1 energy, when drawn lose 1 energy, return on extra turn
-
-[spread amulet - 2 range splash damage, get barrier for unblocked damage dealt]
+make revolver a gun - but it gives one ammo
 
 
 
 
 
-
-
-
-
-
-
-
+grenade item - increase damage but strict targetting
 
 withdraw inchling bowl
 
+replacement event
 
+reimu event
+visiting her (new storyline)
+
+clean energy as an attack
 
 how is chip doing?
+and other regulations
 
 
 liles of murder could look a lot cooler
@@ -96,9 +29,23 @@ eternal judge's sins spawn particles and annoy the player
 
 "shoot the moon" with a rainbow laser with squares and stars (stars look better when white with colored outline)
 
+variants of monkeywrench
 
 
-GLOBAL GOAL 150 ALL
+
+
+
+SUKUNA MECHANICS
+
+strike and defend
+common cards
+
+"size of hand (withdraw from edgar?)"
+
+counters? (unlikely)
+
+frail?
+
 
 
 

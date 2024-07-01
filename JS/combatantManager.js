@@ -373,6 +373,9 @@ class combatantManager{
                         this.combatants[index].takeDamage(args[0],args[1])
                     }
                 break
+                case 11:
+                    this.combatants[index].takeDamage(args[0],args[1],args[2])
+                break
             }
         }
     }
@@ -803,6 +806,9 @@ class combatantManager{
                         this.combatants[a].takeDamage(args[0],args[1])
                         this.combatants[a].statusEffect('Freeze',args[2])
                     break
+                    case 47:
+                        this.combatants[a].block=0
+                    break
                 }
             }
         }
@@ -1064,155 +1070,69 @@ class combatantManager{
         this.bank=[]
         this.assignPlayer()
     }
-    damageArea(damage,user,team,tilePosition,spec){
+    areaAbstract(effect,values,tilePosition,targetter,range,diagonal,output){
         let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&(this.combatants[a].team!=team&&distance>=0&&distance<=1||this.battle.modded(121))){
-                this.combatants[a].takeDamage(damage,user,spec)
-                total++
-            }
-        }
-        return total
-    }
-    damageArea2(damage,user,team,tilePosition,spec){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&(this.combatants[a].team!=team&&distance>=0&&distance<=2||this.battle.modded(121))){
-                this.combatants[a].takeDamage(damage,user,spec)
-            }
-        }
-    }
-    damageAreaID(damage,user,id,tilePosition,spec){
-        let total=0
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121))){
-                this.combatants[a].takeDamage(damage,user,spec)
-                total++
-            }
-        }
-        return total
-    }
-    damageAreaID2(damage,user,id,tilePosition,spec){
-        let total=0
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&distance>=0&&distance<=2||this.battle.modded(121))){
-                this.combatants[a].takeDamage(damage,user,spec)
-                total++
-            }
-        }
-        return total
-    }
-    damageAreaRuleless(damage,tilePosition){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&(distance>=0&&distance<=1||this.battle.modded(121))){
-                this.combatants[a].takeDamage(damage,-1)
-            }
-        }
-    }
-    damageAreaRulelessID(damage,id,tilePosition){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121))){
-                this.combatants[a].takeDamage(damage,-1)
-            }
-        }
-    }
-    damageAreaIDReturnFatal(damage,user,id,tilePosition,spec){
-        let total=0
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121))){
-                this.combatants[a].takeDamage(damage,user,spec)
-                if(this.combatants[a].life<=0){
+            let distance=diagonal?distTargetDiagonalCombatant(0,{tilePosition:tilePosition},this.combatants[a]):distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(this.combatants[a].life>0&&((
+                    targetter[0]==0||
+                    targetter[0]==1&&this.combatants[a].team!=targetter[1]||
+                    targetter[0]==2&&this.combatants[a].team==targetter[1]||
+                    targetter[0]==3&&this.combatants[a].id!=targetter[1]||
+                    targetter[0]==4&&this.combatants[a].id==targetter[1]||
+                    targetter[0]==5&&this.combatants[a].id!=targetter[1]&&this.combatants[a].block<=0||
+                    targetter[0]==6&&this.combatants[a].id==targetter[1]&&this.combatants[a].block<=0
+                )&&distance>=range[0]&&distance<=range[1]
+                ||this.battle.modded(121))
+            ){
+                switch(effect){
+                    case 0:
+                       this.combatants[a].takeDamage(values[0],values[1],values[2])
+                    break
+                    case 1:
+                       this.combatants[a].heal(values[0])
+                    break
+                    case 2:
+                       this.combatants[a].statusEffect(values[0],values[1])
+                    break
+                    case 3:
+                       this.combatants[a].statusEffectNext(values[0],values[1])
+                    break
+                    case 4:
+                        if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
+                            this.battle.drop(this.combatants[a].id,values[0],values[1].values[2])
+                        }
+                    break
+                    case 5:
+                        if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
+                            this.battle.energy.temp[this.combatants[a].id]-=values[0]
+                        }
+                    break
+                    case 6:
+                        if(types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==values[0]){
+                            this.combatants[a].attack[this.combatants[a].intent].effect[0]=max(0,this.combatants[a].attack[this.combatants[a].intent].effect[0]-values[1])
+                        }
+                    break
+                    case 7:
+                        if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
+                            for(let b=0,lb=values[0];b<lb;b++){
+                                this.battle.cardManagers[this.combatants[a].id].randomEffect(this.battle.cardManagers[this.combatants[a].id].reserve.cards.length>0?1:this.battle.cardManagers[this.combatants[a].id].discard.cards.length>0?3:2,values[1],values[2])
+                            }
+                        }
+                    break
+                }
+                if(
+                    output==0||
+                    output==1&&this.combatants[a].life<=0
+                ){
                     total++
                 }
             }
         }
-        return total
-    }
-    damageAreaReverse(damage,user,team,tilePosition,spec){
-        let total=0
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&(this.combatants[a].team==team&&distance>=0&&distance<=1||this.battle.modded(121))){
-                this.combatants[a].takeDamage(damage,user,spec)
-                total++
-            }
+        switch(output){
+            case 0: case 1:
+                return total
         }
-        return total
-    }
-    healAreaRuleless(effect,tilePosition){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&(distance>=0&&distance<=1||this.battle.modded(121))){
-                this.combatants[a].heal(effect)
-            }
-        }
-    }
-    statusAreaIDBlock(name,amount,id,tilePosition){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&this.combatants[a].block<=0&&distance>=0&&distance<=1||this.battle.modded(121))){
-                this.combatants[a].statusEffect(name,amount)
-            }
-        }
-    }
-    statusAreaID(name,amount,id,tilePosition){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121))){
-                this.combatants[a].statusEffect(name,amount)
-            }
-        }
-    }
-    statusAreaNextID(name,amount,id,tilePosition){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121))){
-                this.combatants[a].statusEffectNext(name,amount)
-            }
-        }
-    }
-    statusAreaID2(name,amount,id,tilePosition){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&distance>=0&&distance<=2||this.battle.modded(121))){
-                this.combatants[a].statusEffect(name,amount)
-            }
-        }
-    }
-    dropAreaID(variant,type,level,color,id,tilePosition){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&((this.combatants[a].id!=id&&(variant==0||this.combatants[a].blocked>0)&&distance>=0&&distance<=1||this.battle.modded(121))&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support)){
-                this.battle.drop(this.combatants[a].id,type,level,color)
-            }
-        }
-    }
-    energyDownAreaID(effect,id,tilePosition){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&((this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121))&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support)){
-                this.battle.energy.temp[this.combatants[a].id]-=effect
-            }
-        }
-    }
-    intentNerfArea(intent,effect,team,tilePosition){
-        let total=0
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].team!=team&&distance>=0&&distance<=1||this.battle.modded(121)){
-                if(types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==intent){
-                    this.combatants[a].attack[this.combatants[a].intent].effect[0]=max(0,this.combatants[a].attack[this.combatants[a].intent].effect[0]-effect)
-                }
-                total++
-            }
-        }
-        return total
     }
     getArea(team,tilePosition,range){
         let combatants=[]
@@ -1240,20 +1160,6 @@ class combatantManager{
             }
         }
         return combatants
-    }
-    randomEffectArea(loop,type,args,team,tilePosition){
-        for(let b=0,lb=loop;b<lb;b++){
-            for(let a=0,la=this.combatants.length;a<la;a++){
-                let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-                if(this.combatants[a].team!=team&&distance>=0&&distance<=1&&this.combatants[a].id<this.battle.players||this.battle.modded(121)){
-                    if(this.battle.cardManagers[this.combatants[a].id].reserve.cards.length>0){
-                        this.battle.cardManagers[this.combatants[a].id].randomEffect(1,type,args)
-                    }else{
-                        this.battle.cardManagers[this.combatants[a].id].randomEffect(3,type,args)
-                    }
-                }
-            }
-        }
     }
     clearTile(tile){
         for(let a=0,la=this.combatants.length;a<la;a++){

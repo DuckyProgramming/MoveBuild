@@ -21,7 +21,7 @@ class turn{
     base(){
         switch(this.attackClass){
             case 1:
-                this.clearAttack=[false,false,false,false,false,false,false,false,false,false,false,false]
+                this.clearAttack=[false,false,false,false,false,false,false,false,false,false,false,false,false]
                 if(this.userCombatant.getStatus('Double Damage')>0){
                     this.clearAttack[0]=true
                 }
@@ -58,6 +58,9 @@ class turn{
                 }
                 if(this.userCombatant.getStatus('Damage Half Block Convert')>0){
                     this.clearAttack[11]=true
+                }
+                if(this.userCombatant.getStatus('Damage Repeat in 2 Turns')>0){
+                    this.clearAttack[12]=true
                 }
             break
         }
@@ -1949,30 +1952,30 @@ class turn{
             case 8:
                 if(this.type==132){
                     for(let a=0,la=this.effect[0];a<la;a++){
-                        this.battle.combatantManager.dropAreaID(0,findName(this.effect[1],types.card),0,game.playerNumber+1,this.userCombatant.id,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.areaAbstract(4,[findName(this.effect[1],types.card),0,game.playerNumber+1],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     }
                 }else{
-                    this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
+                    this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                 }
                 switch(this.type){
                     case 17:
-                        this.battle.combatantManager.statusAreaID('Cannot Move Next Turn',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.areaAbstract(2,['Cannot Move Next Turn',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 54:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.combatantManager.dropAreaID(0,findName(this.effect[2],types.card),0,game.playerNumber+1,this.userCombatant.id,this.userCombatant.tilePosition)
+                            this.battle.combatantManager.areaAbstract(4,[findName(this.effect[2],types.card),0,game.playerNumber+1],this.userCombatant.tilePosition,[5,this.userCombatant.id],[0,1],false,0)
                         }
                     break
                     case 128:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.combatantManager.dropAreaID(1,findName(this.effect[2],types.card),0,game.playerNumber+1,this.userCombatant.id,this.userCombatant.tilePosition)
+                            this.battle.combatantManager.areaAbstract(4,[findName(this.effect[2],types.card),0,game.playerNumber+1],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                         }
                     break
                     case 198:
-                        this.battle.combatantManager.energyDownAreaID(this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.areaAbstract(5,[this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 215:
-                        this.battle.combatantManager.statusAreaID('Dissipating',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.areaAbstract(2,['Dissipating',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 217:
                         for(let a=0,la=this.effect[1];a<la;a++){
@@ -1980,10 +1983,10 @@ class turn{
                         }
                     break
                     case 255:
-                        this.battle.combatantManager.statusAreaID('Weak',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 256:
-                        this.battle.combatantManager.statusAreaID('Vulnerable',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.areaAbstract(2,['Vulnerable',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                 }
             break

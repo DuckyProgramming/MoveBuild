@@ -1856,7 +1856,7 @@ class relic{
                     displaySymbol(this.layer,0,8,4,0,0.8,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('3',-10,-3)
+                    this.layer.text('2',-10,-3)
                 break
                 case 'Health Loss Currency':
                     displaySymbol(this.layer,0,0,18,0,1.5,this.fade)

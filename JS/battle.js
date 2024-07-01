@@ -578,34 +578,7 @@ class battle{
     }
     newTurn(){
         this.turn.active=false
-        if(!this.tutorialManager.active){
-            if(this.turn.total==1){
-                for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
-                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
-                }
-                if(this.encounter.name=='Rewriter'){
-                    this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
-                }
-                if(this.encounter.name=='Duck Hunt'){
-                    for(let a=0,la=3;a<la;a++){
-                        this.cardManagers[this.turn.main].hand.add(findName('Hunting\nRifle',types.card),0,0)
-                    }
-                }
-                this.cardManagers[this.turn.main].switchCheck()
-                if(variants.witch){
-                    this.cardManagers[this.turn.main].hand.add(findName('Slot\nShift',types.card),0,0)
-                }
-            }
-            if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
-                this.cardManagers[this.turn.main].allEffect(3,47)
-                this.cardManagers[this.turn.main].turnDraw(this.turn.total)
-                if(this.turn.total==1){
-                    this.cardManagers[this.turn.main].allEffect(0,48)
-                }
-            }else if(variants.witch){
-                this.cardManagers[this.turn.main].allEffect(3,42)
-            }
-        }
+        this.subTurn()
         this.turn.active=true
         this.cardManagers[this.turn.main].allEffect(3,39)
         if(variants.cyclicDraw||variants.blackjack){
@@ -622,6 +595,9 @@ class battle{
         this.cardManagers[this.turn.main].allEffect(2,1)
         this.cardManagers[this.turn.main].reset()
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
+        if(variants.mtg){
+            this.cardManagers[this.turn.main].mtgLastColor=6
+        }
         let extra=false
         let noDraw=false
         if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Drawless Turn')>0){
@@ -700,6 +676,43 @@ class battle{
             this.cardManagers[a].allGroupEffect(63)
         }
     }
+    subTurn(){
+        if(!this.tutorialManager.active){
+            if(this.turn.total==1){
+                for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
+                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                }
+                if(this.encounter.name=='Rewriter'){
+                    this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
+                }
+                if(this.encounter.name=='Duck Hunt'){
+                    for(let a=0,la=3;a<la;a++){
+                        this.cardManagers[this.turn.main].hand.add(findName('Hunting\nRifle',types.card),0,0)
+                    }
+                }
+                this.cardManagers[this.turn.main].switchCheck()
+                if(variants.witch){
+                    this.cardManagers[this.turn.main].hand.add(findName('Slot\nShift',types.card),0,0)
+                }
+            }
+            if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
+                this.cardManagers[this.turn.main].allEffect(3,47)
+                if(this.cardManagers[this.turn.main].reserve.cards.length+this.cardManagers[this.turn.main].discard.cards.length<this.cardManagers[this.turn.main].drawAmount&&this.cardManagers[this.turn.main].hand.cards.length>0){
+                    this.cardManagers[this.turn.main].bufferedTurn=30
+                }else{
+                    this.cardManagers[this.turn.main].turnDraw(this.turn.total)
+                }
+                if(this.turn.total==1){
+                    this.cardManagers[this.turn.main].allEffect(0,48)
+                }
+                if(variants.mtg){
+                    this.cardManagers[this.turn.main].mtgLastColor=6
+                }
+            }else if(variants.witch){
+                this.cardManagers[this.turn.main].allEffect(3,42)
+            }
+        }
+    }
     startTurn(){
         this.turn.active=false
         if(this.modded(109)){
@@ -737,38 +750,7 @@ class battle{
         this.combatantManager.activateCombatants(0,0)
         this.updateTargetting()
         this.turnManager.clear()
-        if(!this.tutorialManager.active){
-            if(this.turn.total==1){
-                for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
-                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
-                }
-                if(this.encounter.name=='Rewriter'){
-                    this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
-                }
-                if(this.encounter.name=='Duck Hunt'){
-                    for(let a=0,la=3;a<la;a++){
-                        this.cardManagers[this.turn.main].hand.add(findName('Hunting\nRifle',types.card),0,0)
-                    }
-                }
-                this.cardManagers[this.turn.main].switchCheck()
-                if(variants.witch){
-                    this.cardManagers[this.turn.main].hand.add(findName('Slot\nShift',types.card),0,0)
-                }
-            }
-            if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
-                this.cardManagers[this.turn.main].allEffect(3,47)
-                if(this.cardManagers[this.turn.main].reserve.cards.length+this.cardManagers[this.turn.main].discard.cards.length<this.cardManagers[this.turn.main].drawAmount&&this.cardManagers[this.turn.main].hand.cards.length>0){
-                    this.cardManagers[this.turn.main].bufferedTurn=30
-                }else{
-                    this.cardManagers[this.turn.main].turnDraw(this.turn.total)
-                }
-                if(this.turn.total==1){
-                    this.cardManagers[this.turn.main].allEffect(0,48)
-                }
-            }else if(variants.witch){
-                this.cardManagers[this.turn.main].allEffect(3,42)
-            }
-        }
+        this.subTurn()
         this.cardManagers[this.turn.main].allEffect(3,39)
         this.cardManagers[0].regenDrops()
         this.relicManager.activate(2,[this.turn.total,this.turn.main,this.cardManagers[this.turn.main].hand.lastTurnPlayed])
@@ -996,7 +978,7 @@ class battle{
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Common Temporary Strength'))
         }
         if(card.name=='Fatigue'&&userCombatant.getStatus('Fatigue Splash')>0){
-            this.combatantManager.damageAreaID(userCombatant.getStatus('Fatigue Splash'),userCombatant.id,userCombatant.id,userCombatant.tilePosition)
+            this.battle.combatantManager.areaAbstract(0,[userCombatant.getStatus('Fatigue Splash'),userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
             this.particleManager.particlesBack.push(new particle(this.layer,userCombatant.position.x,userCombatant.position.y,93,[8]))
         }
         if(card.spec.includes(25)&&userCombatant.getStatus('Gun Temporary Strength')>0){
@@ -2049,7 +2031,7 @@ class battle{
                 for(let a=0,la=this.anim.turn.length;a<la;a++){
                     this.anim.turn[a]=smoothAnim(this.anim.turn[a],this.turn.main==a,0,1,5)
                     this.anim.extra[a]=smoothAnim(this.anim.extra[a],this.turn.main==a&&
-                        (this.cardManagers[a].hand.status[0]<0||this.cardManagers[a].hand.status[1]<0||this.cardManagers[a].hand.status[8]<0||this.cardManagers[a].hand.status[10]>0),0,1,5)
+                        (this.cardManagers[a].hand.status[0]<0||this.cardManagers[a].hand.status[1]<0||this.cardManagers[a].hand.status[8]<0||this.cardManagers[a].hand.status[10]>0||this.cardManagers[a].hand.status[27]>0),0,1,5)
                     this.anim.drop[a]=smoothAnim(this.anim.drop[a],pointInsideBox({position:inputs.rel},{position:{x:66,y:680-this.anim.turn[a]*100},width:32,height:20})&&!this.overlayManager.anyActive&&(variants.cyclicDraw||variants.blackjack),1,1.5,5)
                 }
                 this.anim.reserve=smoothAnim(this.anim.reserve,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:494},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)

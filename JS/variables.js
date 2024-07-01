@@ -896,7 +896,7 @@ types={
 
         {name:'Starfish',internal:'2 Tile Move Draw',id:250,rarity:0,list:0,description:'After Moving 2 or More\nTiles, Draw 1 Card'},
         {name:'Rosemary',internal:'Fatigue Draw',id:251,rarity:2,list:0,description:'Draw 1 Card When You Play a Fatigue'},
-        {name:'Frozen Frog',internal:'Extra Energy Double Damage',id:252,rarity:2,list:0,description:'When You End Your Turn With\n3 or More Energy, Your Next\nAttack Played Deals Double Damage'},
+        {name:'Frozen Frog',internal:'Extra Energy Double Damage',id:252,rarity:2,list:0,description:'When You End Your Turn With\n2 or More Energy, Your Next\nAttack Played Deals Double Damage'},
         {name:'Blood Diamond',internal:'Health Loss Currency',id:253,rarity:0,list:0,description:'When You Lose Health to Enemy Attacks,\nGain 5 Currency Per HP Lost'},
         {name:'Managerial Banner',internal:'Rest Cost Down',id:254,rarity:2,list:0,description:'You May Reduce the Cost of a\nCard By 1 When Resting, 3 Uses'},
         {name:'Quartz Cube',internal:'3 Enemy Stun',id:255,rarity:1,list:0,description:'At the Start of Combats With 3 or More\nEnemies, Apply 2 Stun to a Random Enemy'},
@@ -2406,12 +2406,12 @@ The spirits toss small bones and fragments
 into the fire, which brilliantly erupts each time.
 As you approach, the spirits all turn to you, expectantly...`,
                     option:['Toss something in','Decline'],
-                    optionDesc:['Remove a Card, Receive Reward Based on Card'],
+                    optionDesc:['Remove a Card, Receive Reward Based on Card',''],
                     link:[1,2],
                 },{
                     desc:`The spirits make no move to stop you from leaving.`,
                     option:['Leave'],
-                    optionDesc:[],
+                    optionDesc:[''],
                     link:[-1],
                 },{
                     desc:`They wait, ready for you to make your offering.`,
@@ -3784,8 +3784,8 @@ from an untimely death. Filled with gratitude, he hands you something.`,
                     desc:
 `After finishing the job, the murderer
 hands you some money to keep quiet.`,
-                    option:['Gain 120 Currency'],
-                    optionDesc:[''],
+                    option:['Take Bribe'],
+                    optionDesc:['Gain 120 Currency'],
                     link:[-1],
                 },{
                     desc:'You get away and forget about what just happened.',
@@ -4092,7 +4092,7 @@ before they leave as a group down the road.`,
                 },
             ],
         },{
-            name:'Fake Adventure',id:100,list:0,
+            name:'Fake Adventure',id:100,list:-1,
             pages:[
                 {
                     desc:
@@ -4140,7 +4140,7 @@ strange encounter resonates with you - something is following you around.`,
                 },
             ],
         },{
-            name:'Shining Castle',id:101,list:0,
+            name:'Shining Castle',id:101,list:-1,
             pages:[
                 {
                     desc:
@@ -6500,8 +6500,9 @@ Nothing hard for you, right?"`,
             name:'Management Drone',
             player:{position:[[{x:6,y:6}],[{x:5,y:5},{x:6,y:5}]]},
             enemy:[
-                {position:{x:3,y:2},name:'Management Drone'},
-                {position:{x:5,y:2},name:'Management Drone'},
+                {position:{x:3,y:0},name:'Management Robot'},
+                {position:{x:3,y:4},name:'Management Drone'},
+                {position:{x:7,y:4},name:'Management Drone'},
             ],reinforce:[
             ],
         },{

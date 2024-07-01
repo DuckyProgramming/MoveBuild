@@ -53,8 +53,7 @@ class tile{
                 case 2:
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(3)){
                         if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
-                            this.battle.combatantManager.combatants[this.combatant].takeDamage(10,-1,0)
-                            this.battle.combatantManager.damageArea(10,-1,-1,this.tilePosition)
+                            this.battle.combatantManager.areaAbstract(0,[10,-1,0],this.tilePosition,[0],[0,1],false,0)
                             this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[20]))
                             this.anim.upPart[a]=false
                         }
@@ -239,8 +238,10 @@ class tile{
                 case 27:
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(3)){
                         if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
-                            this.battle.combatantManager.combatants[this.combatant].takeDamage(10,-1,0)
-                            this.battle.combatantManager.damageAreaReverse(10,-1,0,this.tilePosition)
+                            if(this.battle.combatantManager.combatants[this.combatant].team!=0){
+                                this.battle.combatantManager.combatants[this.combatant].takeDamage(10,-1)
+                            }
+                            this.battle.combatantManager.areaAbstract(0,[10,-1,0],this.tilePosition,[2,0],[0,1],false,0)
                             this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[20]))
                             this.anim.upPart[a]=false
                         }
@@ -253,7 +254,7 @@ class tile{
         for(let a=0,la=this.type.length;a<la;a++){
             switch(this.type[a]){
                 case 22:
-                    this.battle.combatantManager.damageArea(5,-1,-1,this.tilePosition)
+                    this.battle.combatantManager.areaAbstract(0,[5,-1,0],this.tilePosition,[0],[0,1],false,0)
                     this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[15]))
                     this.anim.upPart[a]=false
                 break

@@ -26,7 +26,7 @@ class particleManager{
     update(){
         for(let a=0,la=this.particlesBack.length;a<la;a++){
             for(let b=0,lb=game.animRate;b<lb;b++){
-                this.particlesBack[a].update()
+                this.particlesBack[a].update(this)
             }
             if(this.particlesBack[a].remove){
                 delete this.particlesBack[a]
@@ -37,7 +37,7 @@ class particleManager{
         }
         for(let a=0,la=this.particles.length;a<la;a++){
             for(let b=0,lb=game.animRate;b<lb;b++){
-                this.particles[a].update()
+                this.particles[a].update(this)
             }
             if(this.particles[a].remove){
                 delete this.particles[a]

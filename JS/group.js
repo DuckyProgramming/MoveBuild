@@ -22,6 +22,7 @@ class group{
         this.turnRewinds=0
         this.lastSort=-1
         this.basicChange=[0,0]
+        this.addEffect=[]
         this.listInput=[
             [0,4],
             [1,8],
@@ -47,6 +48,7 @@ class group{
             [23,28],
             [24,29],
             [26,30],
+            [27,31],
         ]
 
         this.reset()
@@ -196,7 +198,7 @@ class group{
             break
             case 2:
                 this.cancel()
-                this.anim=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                this.anim=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 this.lastTurnPlayed=copyArray(this.turnPlayed)
                 this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
                 this.turnRewinds=0
@@ -209,7 +211,7 @@ class group{
         this.rewinds=0
     }
     cancel(){
-        this.status=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        this.status=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     }
     added(){
         this.cards[this.cards.length-1].callAddEffect()
@@ -255,6 +257,16 @@ class group{
                 if(this.id==0){
                     this.cards[this.cards.length-1].nonCalc=true
                     this.added()
+                }
+                for(let a=0,la=this.addEffect.length;a<la;a++){
+                    switch(this.addEffect[a][0]){
+                        case 0:
+                            this.cards[this.cards.length-1].edition=this.addEffect[a][1]
+                        break
+                    }
+                    this.addEffect.splice(a,1)
+                    a--
+                    la--
                 }
                 if(this.id>=1&&this.id<=3&&(this.cards[this.cards.length-1].name=='Shiv'||this.cards[this.cards.length-1].name=='Broken\nShiv'||this.cards[this.cards.length-1].name=='Deluxe\nShiv')&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Shiv Range Up')>0){
                     this.cards[this.cards.length-1].target[2]+=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Shiv Range Up')
@@ -454,6 +466,9 @@ class group{
     exhaustDrawSame(amount){
         this.status[26]+=amount
     }
+    discardViable(amount){
+        this.status[27]+=amount
+    }
     shuffle(after){
         let cards=[]
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -490,7 +505,7 @@ class group{
     shuffled(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.status.main[151]>0){
-            this.battle.addEnergy(userCombatant.status.main[151],this.player)
+            this.battle.addSpecificEnergy(userCombatant.status.main[151],this.player,6)
         }
         if(userCombatant.status.main[152]>0){
             this.battle.cardManagers[this.player].draw(userCombatant.status.main[152])
@@ -2009,7 +2024,7 @@ class group{
                 this.battle.cardManagers[this.player].hand.discard(card.effect[0])
             break
             case -70:
-                this.battle.addEnergy(card.effect[0],this.player)
+                this.battle.addSpecificEnergy(card.effect[0],this.player,6)
                 this.drawEffects.push([5,card.effect[1]])
                 for(let a=0,la=card.effect[2];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)
@@ -2036,6 +2051,9 @@ class group{
             case -76:
                 this.drawEffects.push([7,18,[11]])
             break
+            case -78:
+                this.battle.drop(this.player,findName('Refracted\nSunlight',types.card),0,game.playerNumber+1)
+            break
 
             //mark n
             
@@ -2050,7 +2068,11 @@ class group{
                 }
             break
             case 933:
-                this.battle.addEnergy(card.effect[0],this.player)
+                if(variants.mtg){
+                    this.battle.addSpecificEnergy(card.effect[0],this.player,card.mtgManaColor)
+                }else{
+                    this.battle.addEnergy(card.effect[0],this.player)
+                }
             break
             case 1064:
                 this.drawEffects.push([5,card.effect[2]])
@@ -2170,7 +2192,7 @@ class group{
                         userCombatant.getStatus('Prismatic Bomb Poison')
                     ]
                 )
-                this.battle.addEnergy(card.effect[1],this.player)
+                this.battle.addSpecificEnergy(card.effect[1],this.player,6)
                 this.drawEffects.push([5,card.effect[2]])
                 this.drawEffects.push([3,106])
             break
@@ -2209,6 +2231,9 @@ class group{
                 this.drawEffects.push([4,card.effect[0],[2]])
                 this.drawEffects.push([4,card.effect[1],[3]])
                 this.drawEffects.push([4,card.effect[2],[11]])
+            break
+            case 3581:
+                this.battle.loseEnergy(card.effect[2],this.player)
             break
         }
     }
@@ -2841,9 +2866,19 @@ class group{
         if(spec.includes(25)&&userCombatant.ammo>0&&!(target[0]==46&&this.battle.attackManager.targetDistance<=1)){
             userCombatant.ammo--
         }
-        if(effectiveCost>0&&userCombatant.getStatus('Skill Cost Down')>0){
+        if(effectiveCost>0&&userCombatant.getStatus('Skill Cost Down')>0&&cardClass==11){
             effectiveCost=max(effectiveCost-userCombatant.getStatus('Skill Cost Down'),0)
         }
+        if(effectiveCost>0&&userCombatant.getStatus('Combo Cost Down')>0&&spec.includes(11)){
+            effectiveCost=max(effectiveCost-userCombatant.getStatus('Combo Cost Down'),0)
+        }
+        if(effectiveCost>0&&userCombatant.getStatus('All Cost Down')>0){
+            effectiveCost=max(effectiveCost-userCombatant.getStatus('All Cost Down'),0)
+        }
+        if(effectiveCost>0&&userCombatant.getStatus('Defense Cost Down')>0&&cardClass==2){
+            effectiveCost=max(effectiveCost-userCombatant.getStatus('Defense Cost Down'),0)
+        }
+
         if(
             !(userCombatant.getStatus('Free Defenses')>0&&cardClass==2)&&
             !(userCombatant.getStatus('Free Cables')>0&&card.name.includes('Cable')&&cardClass==1)
@@ -2966,7 +3001,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[26]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25]]
+                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[26]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -3733,7 +3768,11 @@ class group{
             break
             case 21:
                 if(this.cards[a].attack!=-3){
-                    this.battle.addEnergy(max(0,this.cards[a].cost),this.player)
+                    if(variants.mtg){
+                        this.battle.addSpecificEnergy(max(0,this.cards[a].cost),this.player,this.cards[a].mtgManaColor)
+                    }else{
+                        this.battle.addEnergy(max(0,this.cards[a].cost),this.player)
+                    }
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
                     if(this.status[16]>0){
@@ -3822,6 +3861,20 @@ class group{
                         this.status[26]--
                     }
                     this.battle.cardManagers[this.player].drawAbstract(1,0,0,[this.cards[a].class])
+                }
+            break
+            case 31:
+                this.cards[a].deSize=true
+                this.cards[a].callSpecDiscardEffect()
+                if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block')>0){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block'))
+                }
+                for(let b=0,lb=this.cards.length;b<lb;b++){
+                    this.cards[b].otherDiscard()
+                }
+                this.battle.cardManagers[this.player].draw(1)
+                if(this.status[27]>0){
+                    this.status[27]--
                 }
             break
         }

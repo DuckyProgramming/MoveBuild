@@ -1,3 +1,8 @@
+
+class disabledCombatant{
+    constructor(){}
+    getStatus(){return 0}
+}
 class combatant{
     constructor(layer,battle,x,y,relativeX,relativeY,tileX,tileY,type,team,id,direction,minion=false){
         this.layer=layer
@@ -156,7 +161,8 @@ class combatant{
             'Construct Dexterity','Gun Temporary Strength','Gun Block','Turn Speed','Extra Turn Block','Turn Reversal','Deluxe Weak','Prismatic Bomb Boost','No Damage Turn Next Turn','Play Limit',
             '2+ Cost Single Damage Up','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block','X Cost Boost','Self Life Loss Splash','Energy Gain Splash',
             'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw','Buff Loss Barrier','Astrology Per Turn','Construct Metal','Attack Jinx Combat','Attack Shock Combat',
-            'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2',
+            'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
+            'Damage Repeat in 2 Turns',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,0,2,1,0,0,4,4,//1
@@ -204,7 +210,8 @@ class combatant{
                 0,0,0,0,0,1,1,0,2,2,//43
                 0,0,0,0,0,0,0,0,0,0,//44
                 0,0,0,0,0,0,0,0,0,0,//45
-                0,0,0,1,
+                0,0,0,1,0,0,2,0,0,0,//46
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -252,7 +259,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,1,3,//43
                 2,2,0,0,0,2,2,2,2,2,//44
                 2,2,2,2,2,2,2,2,2,2,//45
-                2,2,2,0,
+                2,2,2,0,2,2,2,2,2,2,//46
+                0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -5080,7 +5088,7 @@ class combatant{
     }
     energyChange(amount){
         if(amount>0&&this.status.main[439]>0){
-            this.battle.combatantManager.damageAreaID(this.status.main[439],this.id,this.id,this.tilePosition)
+            this.battle.combatantManager.areaAbstract(0,[this.status.main[439],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
         }
     }
     lowRoll(){
@@ -5094,7 +5102,7 @@ class combatant{
             this.statusEffect('Dexterity',this.status.main[253])
         }
         if(this.status.main[254]>0){
-            this.battle.addEnergy(this.status.main[254],this.id)
+            this.battle.addSpecificEnergy(this.status.main[254],this.id,6)
         }
     }
     highRoll(){
@@ -5108,7 +5116,7 @@ class combatant{
             this.statusEffect('Dexterity',this.status.main[257])
         }
         if(this.status.main[258]>0){
-            this.battle.addEnergy(this.status.main[258],this.id)
+            this.battle.addSpecificEnergy(this.status.main[258],this.id,6)
         }
     }
     takeDamage(value,user,spec=0){
@@ -5269,6 +5277,16 @@ class combatant{
                         dodged=true
                         this.blocked=0
                         this.dodges.push({timer:0,direction:atan2(userCombatant.relativePosition.x-this.relativePosition.x,userCombatant.relativePosition.y-this.relativePosition.y)-90+180*floor(random(0,2))})
+                        if(this.status.main[458]>0){
+                            this.statusEffect('Strength',this.status.main[458])
+                        }
+                        if(this.status.main[459]>0){
+                            if(this.battle.turn.main<=this.id){
+                                this.battle.addSpecificEnergy(this.status.main[459],this.id,6)
+                            }else{
+                                this.statusEffect('Energy Next Turn',this.status.main[459])
+                            }
+                        }
                     }
                     if(this.status.main[173]>0){
                         this.status.main[173]--
@@ -5313,6 +5331,10 @@ class combatant{
                 if(userCombatant.status.main[449]>0){
                     this.statusEffect('Shock',userCombatant.status.main[449])
                 }
+                if(userCombatant.status.main[460]>0){
+                    this.statusEffect('Take Damage Next Turn',round(damage))
+                    userCombatant.status.main[460]--
+                }
                 if(userCombatant.team==this.team&&this.team==0&&this.battle.modded(12)){
                     hit=false
                 }
@@ -5352,7 +5374,11 @@ class combatant{
                 }
             }
             if(this.status.main[64]>0){
-                this.statusEffect('Energy Next Turn',this.status.main[64])
+                if(this.battle.turn.main<=this.id){
+                    this.battle.addSpecificEnergy(this.status.main[64],this.id,6)
+                }else{
+                    this.statusEffect('Energy Next Turn',this.status.main[64])
+                }
             }
             if(this.status.main[183]>0){
                 this.statusEffect('Dexterity',this.status.main[183])
@@ -5608,7 +5634,7 @@ class combatant{
                             this.statusEffect('Metallicize',this.battle.relicManager.active[229][this.id+1])
                         }
                         if(preBlock>0&&this.block<=0&&this.status.main[277]>0){
-                            this.battle.combatantManager.damageAreaID(this.status.main[277],this.id,this.id,this.tilePosition)
+                            this.battle.combatantManager.areaAbstract(0,[this.status.main[277],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
                         }
                         if(preBlock>0&&this.block<=0&&0<=user&&user<this.battle.players){
                             if(this.battle.relicManager.hasRelic(124,user)){
@@ -6214,14 +6240,14 @@ class combatant{
             break
             case 2:
                 if(target==this.id){
-                    this.battle.combatantManager.damageAreaRulelessID(round(20*multi),this.id,this.battle.combatantManager.combatants[target].tilePosition)
+                    this.battle.combatantManager.areaAbstract(0,[round(20*multi),-1,0],this.battle.combatantManager.combatants[target].tilePosition,[3,this.id],[0,1],false,0)
                 }else{
-                    this.battle.combatantManager.damageAreaRuleless(round(20*multi),this.battle.combatantManager.combatants[target].tilePosition)
+                    this.battle.combatantManager.areaAbstract(0,[round(20*multi),-1,0],this.battle.combatantManager.combatants[target].tilePosition,[0],[0,1],false,0)
                 }
             break
             case 3:
                 if(target<this.battle.players||this.id<this.battle.players){
-                    this.battle.addEnergy(round(3*multi),target>=this.battle.players?this.id:target)
+                    this.battle.addSpecificEnergy(round(3*multi),target>=this.battle.players?this.id:target,6)
                 }
             break
             case 4:
@@ -6262,24 +6288,29 @@ class combatant{
         }else if(this.status.main[111]<0){
             multi=max(0.2,1+this.status.main[111]*0.1)
         }
+        let playerMulti=target==this.id?0.1:1
         switch(type){
             case 0:
-                this.battle.combatantManager.combatants[target].orbTake(round(6*multi),-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(6*multi*playerMulti),-1)
             break
             case 1:
                 this.battle.combatantManager.combatants[target].addBlock(round(8*multi))
             break
             case 2:
-                this.battle.combatantManager.damageAreaRuleless(round(10*multi),this.battle.combatantManager.combatants[target].tilePosition)
+                if(target==this.id){
+                    this.battle.combatantManager.areaAbstract(0,[round(10*multi),-1,0],this.battle.combatantManager.combatants[target].tilePosition,[3,this.id],[0,1],false,0)
+                }else{
+                    this.battle.combatantManager.areaAbstract(0,[round(10*multi),-1,0],this.battle.combatantManager.combatants[target].tilePosition,[0],[0,1],false,0)
+                }
             break
             case 3:
-                this.battle.addEnergy(round(2*multi),target>=this.battle.players?this.id:target)
+                this.battle.addSpecificEnergy(round(2*multi),target>=this.battle.players?this.id:target,6)
             break
             case 4:
-                this.battle.combatantManager.combatants[target].orbTake(round(detail*multi/2),-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(detail*multi*playerMulti/2),-1)
             break
             case 5:
-                this.battle.combatantManager.combatants[target].orbTake(round(4*multi),-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(4*multi*playerMulti),-1)
             break
             case 6:
                 this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(2*multi))
@@ -6300,7 +6331,7 @@ class combatant{
                 this.battle.combatantManager.combatants[target].statusEffect('Poison',round(2*multi))
             break
             case 12:
-                this.battle.combatantManager.combatants[target].orbTake(round(2*multi),-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(2*multi*playerMulti),-1)
             break
         }
     }
@@ -6350,7 +6381,7 @@ class combatant{
             case 2:
                 for(let a=0,la=this.orbs.length;a<la;a++){
                     if(this.orbs[a]>=0){
-                        this.battle.addEnergy(1,this.id)
+                        this.battle.addSpecificEnergy(1,this.id,6)
                         this.battle.cardManagers[this.id].draw(1)
                         this.orbs[a]=-1
                     }
@@ -6359,7 +6390,7 @@ class combatant{
             case 3:
                 for(let a=0,la=this.orbs.length;a<la;a++){
                     if(this.orbs[a]>=0){
-                        this.battle.addEnergy(1,this.id)
+                        this.battle.addSpecificEnergy(1,this.id,6)
                         this.battle.cardManagers[this.id].draw(1)
                         this.subEvoke(this.orbs[a],this.orbDetail[a],target)
                         this.orbs[a]=-1
@@ -6470,7 +6501,7 @@ class combatant{
                 this.battle.cardManagers[this.id].hand.add(findName('Speed',types.card),0,0)
             break
             case 5:
-                this.battle.addEnergy(3,this.id)
+                this.battle.addSpecificEnergy(3,this.id,6)
                 this.battle.cardManagers[this.id].draw(3)
             break
         }
@@ -6484,7 +6515,7 @@ class combatant{
     leaveStance(stance){
         switch(stance){
             case 2:
-                this.battle.addEnergy(2,this.id)
+                this.battle.addSpecificEnergy(2,this.id,6)
             break
         }
     }
@@ -6797,7 +6828,7 @@ class combatant{
     loseHealth(amount){
         this.life-=amount
         if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[438]>0){
-            this.battle.combatantManager.damageAreaID(this.status.main[438],this.id,this.id,this.tilePosition)
+            this.battle.combatantManager.areaAbstract(0,[this.status.main[438],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
         }
     }
     tick(sub){
@@ -6818,7 +6849,7 @@ class combatant{
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0){
                 switch(a){
-                    case 4: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addEnergy(this.status.main[a],this.id)} break
+                    case 4: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,6)} break
                     case 5: case 31: case 52: case 62: case 110: case 121: case 179: this.takeDamage(this.status.main[a],-1); break
                     case 13: case 14: case 19: case 217: this.addBlock(this.status.main[a]); break
                     case 20: this.status.main[findList('Weak',this.status.name)]+=this.status.main[a]; break
@@ -6850,7 +6881,7 @@ class combatant{
                     case 131: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0)}}; break
                     case 132: this.enterStance(1); break
                     case 133: if(this.id<this.battle.players){this.battle.cardManagers[this.id].reserve.addAbstract(findName('Insight',types.card),0,0,0,[5],[])}; break
-                    case 135: case 343: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addEnergy(this.status.main[a],this.id)};if(this.status.main[a]<0){this.battle.loseEnergyGen(-this.status.main[a],this.id)}else{this.battle.addEnergyGen(this.status.main[a],this.id)} break
+                    case 135: case 343: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,6)};if(this.status.main[a]<0){this.battle.loseEnergyGen(-this.status.main[a],this.id)}else{this.battle.addEnergyGen(this.status.main[a],this.id)} break
                     case 142: case 155: this.charge+=this.status.main[a]; break
                     case 143: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Burn',types.card),0,game.playerNumber+1)}} break
                     case 149: this.status.main[findList('No Amplify',this.status.name)]+=this.status.main[a]; break
@@ -6912,12 +6943,12 @@ class combatant{
                     case 371: this.status.main[findList('Dexterity in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 372: this.status.main[findList('Strength in 3 Turns',this.status.name)]+=this.status.main[a]; break
                     case 373: this.status.main[findList('Dexterity in 3 Turns',this.status.name)]+=this.status.main[a]; break
-                    case 377: this.battle.combatantManager.damageAreaID(this.status.main[a],this.id,this.id,this.tilePosition); break
+                    case 377: this.battle.combatantManager.areaAbstract(0,[this.status.main[a],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0); break
                     case 389: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 390: this.battle.combatantManager.allEffect(43,[this.status.main[a],this.id]); break
                     case 391: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].discard.add(findName('Prismatic\nBomb',types.card),0,0)}} break
                     case 393: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){let index=floor(random(0,this.battle.cardManagers[this.id].deck.cards.length));this.battle.cardManagers[this.id].deck.send(this.battle.cardManagers[this.id].hand.cards,index,index+1,1)}} break
-                    case 394: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addEnergy(this.status.main[a],this.id)};this.status.next[findList('Energy Cycle 2 2',this.status.name)]+=this.status.main[a]; break
+                    case 394: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,6)};this.status.next[findList('Energy Cycle 2 2',this.status.name)]+=this.status.main[a]; break
                     case 395: this.status.main[findList('Energy Cycle 2 1',this.status.name)]+=this.status.main[a]; break
                     case 396: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,5,2,0,[],[3])}} break
                     case 397: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[a])} break
@@ -9631,10 +9662,10 @@ class combatant{
                 this.battle.tileManager.activate()
                 this.battle.updateTargetting()
                 if(this.status.main[80]>0){
-                    this.battle.combatantManager.damageAreaID(this.base.life*this.status.main[80],this.id,this.id,this.tilePosition)
+                    this.battle.combatantManager.areaAbstract(0,[this.base.life*this.status.main[80],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
                 }
                 if(this.status.main[199]>0){
-                    this.battle.combatantManager.damageAreaID(this.status.main[199],this.id,this.id,this.tilePosition)
+                    this.battle.combatantManager.areaAbstract(0,[this.status.main[199],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
                     this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,10,[30]))
                 }
                 if(this.team<=this.battle.players){
@@ -9708,10 +9739,10 @@ class combatant{
                             {type:0,value:[this.status.main[42]]}]])
                 }
                 if(this.status.main[80]>0){
-                    this.battle.combatantManager.damageAreaID(this.base.life*this.status.main[80],this.id,this.id,this.tilePosition)
+                    this.battle.combatantManager.areaAbstract(0,[this.base.life*this.status.main[80],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
                 }
                 if(this.status.main[199]>0){
-                    this.battle.combatantManager.damageAreaID(this.status.main[199],this.id,this.id,this.tilePosition)
+                    this.battle.combatantManager.areaAbstract(0,[this.status.main[199],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
                     this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,10,[30]))
                 }
                 this.battle.combatantManager.dead()
@@ -10037,7 +10068,7 @@ class combatant{
             this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
             if(this.balance>this.balanceCap){
                 if(this.status.main[105]>0){
-                    this.battle.addEnergy(1,this.id)
+                    this.battle.addSpecificEnergy(1,this.id,6)
                 }else if(this.status.main[104]<=0){
                     this.balance=0
                 }
