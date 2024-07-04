@@ -49,6 +49,7 @@ class group{
             [24,29],
             [26,30],
             [27,31],
+            [28,32],
         ]
 
         this.reset()
@@ -198,7 +199,7 @@ class group{
             break
             case 2:
                 this.cancel()
-                this.anim=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                this.anim=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 this.lastTurnPlayed=copyArray(this.turnPlayed)
                 this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
                 this.turnRewinds=0
@@ -211,7 +212,7 @@ class group{
         this.rewinds=0
     }
     cancel(){
-        this.status=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        this.status=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     }
     added(){
         this.cards[this.cards.length-1].callAddEffect()
@@ -469,6 +470,9 @@ class group{
     discardViable(amount){
         this.status[27]+=amount
     }
+    exhaustViable(amount){
+        this.status[28]+=amount
+    }
     shuffle(after){
         let cards=[]
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -680,7 +684,9 @@ class group{
                 type==9&&this.cards[a].basic&&args[0].includes(this.cards[a].class)||
                 type==10&&args[0].includes(this.cards[a].class)&&!args[1].includes(this.cards[a].name)||
                 type==11&&this.cards[a].colorless()||
-                type==12&&args[0].includes(this.cards[a].attack)&&this.cards[a].name.includes(args[1])
+                type==12&&args[0].includes(this.cards[a].attack)&&this.cards[a].name.includes(args[1])||
+                type==13&&!this.cards[a].usable||
+                type==14&&args[0].includes(this.cards[a].class)&&!this.cards[a].spec.includes(args[1])
             ){
                 total++
             }
@@ -1637,7 +1643,7 @@ class group{
                 &&!(effect==19&&this.cards[a].spec.includes(1))
                 &&!((effect==20||effect==24)&&this.cards[a].effect.length<=0)
                 &&!(effect==21&&!this.removable(a))
-                &&!(effect==22&&this.cards[a].spec.includes(39))
+                &&!(effect==22&&(this.cards[a].spec.includes(39)||this.cards[a].attack==55))
                 &&!((effect==26||effect==27)&&!(this.cards[a].spec.includes(35)&&this.cards[a].cost>0))
                 &&!((effect==18||effect==29)&&(this.cards[a].spec.includes(15)||this.cards[a].spec.includes(30)||this.cards[a].spec.includes(36)||this.cards[a].spec.includes(38)))
                 &&!(effect==29&&(this.cards[a].limit!=[]||this.cards[a].spec.includes(15)||this.cards[a].spec.includes(38)))
@@ -1658,6 +1664,7 @@ class group{
                 &&!(effect==50&&this.cards[a].class!=5)
                 &&!(effect==51&&this.cards[a].spec.includes(57))
                 &&!(effect==52&&(!this.removable(a)||this.cards[a].class!=args[0]&&args[0]!=0))
+                &&!(effect==53&&(this.cards[a].spec.includes(48)||this.cards[a].attack==80))
                 ){
                     list.push(a)
                 }
@@ -1898,6 +1905,11 @@ class group{
                     case 51:
                         this.cards[index].spec.push(57)
                     break
+                    case 53:
+                        if(!this.cards[index].spec.includes(48)){
+                            this.cards[index].spec.push(48)
+                        }
+                    break
 
                 }
             }
@@ -1995,7 +2007,7 @@ class group{
                 card.base.cost=max(0,card.base.cost-1)
             break
             case -55:
-                this.battle.cardManagers[this.player].randomEffect(2,22,[])
+                this.drawEffects.push([0,22,[]])
             break
             case -56:
                 this.battle.loseEnergy(card.effect[0],this.player)
@@ -2053,6 +2065,9 @@ class group{
             break
             case -78:
                 this.battle.drop(this.player,findName('Refracted\nSunlight',types.card),0,game.playerNumber+1)
+            break
+            case -80:
+                this.drawEffects.push([0,53,[]])
             break
 
             //mark n
@@ -2878,7 +2893,6 @@ class group{
         if(effectiveCost>0&&userCombatant.getStatus('Defense Cost Down')>0&&cardClass==2){
             effectiveCost=max(effectiveCost-userCombatant.getStatus('Defense Cost Down'),0)
         }
-
         if(
             !(userCombatant.getStatus('Free Defenses')>0&&cardClass==2)&&
             !(userCombatant.getStatus('Free Cables')>0&&card.name.includes('Cable')&&cardClass==1)
@@ -2903,7 +2917,15 @@ class group{
                 userCombatant.status.main[findList('Twos',userCombatant.status.name)]-=effectiveCost
             }else{
                 if(effectiveCost==-1){
-                    this.battle.setEnergy(0,this.player)
+                    if(variants.mtg){
+                        this.battle.attackManager.energy=this.battle.getSpecificEnergy(this.player,card.mtgManaColor)
+                        for(let a=0,la=this.battle.attackManager.attacks.length;a<la;a++){
+                            this.battle.attackManager.attacks[a].energy=this.battle.getSpecificEnergy(this.player,card.mtgManaColor)
+                        }
+                        this.battle.setSpecificEnergy(0,this.player,card.mtgManaColor)
+                    }else{
+                        this.battle.setEnergy(0,this.player)
+                    }
                 }else{
                     if(variants.mtg){
                         if(spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0){
@@ -3001,7 +3023,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[26]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27]]
+                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[26]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -3303,6 +3325,7 @@ class group{
                 this.battle.attackManager.target[0]=a
                 this.spec=[]
                 this.target=[]
+                this.cardInUse={discardEffect:[]}
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
@@ -3465,6 +3488,7 @@ class group{
                     this.battle.attackManager.target[0]=a
                     this.spec=[]
                     this.target=[]
+                    this.cardInUse={discardEffect:[]}
                     for(let b=0,lb=this.cards.length;b<lb;b++){
                         if(!this.cards[b].usable){
                             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
@@ -3875,6 +3899,16 @@ class group{
                 this.battle.cardManagers[this.player].draw(1)
                 if(this.status[27]>0){
                     this.status[27]--
+                }
+            break
+            case 32:
+                if(this.cards[a].attack!=-3){
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    this.battle.cardManagers[this.player].draw(1)
+                    if(this.status[28]>0){
+                        this.status[28]--
+                    }
                 }
             break
         }

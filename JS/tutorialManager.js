@@ -543,7 +543,7 @@ The ice orb applies 3 freeze (frozen attacks buff the target).`,
 The nerf orb applies 3 weak.
 The poison orb applies 4 poison.`,
 `Orbs can be improved through focus,
-and enemies can be made weak to orbs using lock-on.`,
+and enemies can be made weak to orbs using Node.`,
 `Countdowns are a set of cards with a special marker on the energy symbol.
 Many characters have some countdowns but Azis has the most.`,
 `Countdowns can be paid for over time by putting energy in.

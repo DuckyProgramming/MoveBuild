@@ -254,6 +254,40 @@ class perk{
                 this.layer.textSize(24)
                 this.layer.text('Edition',0,60-this.player*120)
             break
+            case 13:
+                this.layer.stroke(mergeColor([25,25,25],[50,255,50],this.anim.complete)[0],mergeColor([25,25,25],[50,255,50],this.anim.complete)[1],mergeColor([25,25,25],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.rect(-11,-11,16,16)
+                this.layer.rect(11,-11,16,16)
+                this.layer.rect(-11,11,16,16)
+                this.layer.rect(11,11,16,16)
+                this.layer.rect(0,0,48,48)
+                regStar(this.layer,0,0,12,36,36,48,48,0)
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([25,25,25],[50,255,50],this.anim.complete)[0],mergeColor([25,25,25],[50,255,50],this.anim.complete)[1],mergeColor([25,25,25],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(24)
+                this.layer.text('Rare Item',0,60-this.player*120)
+            break
+            case 14:
+                this.layer.stroke(mergeColor([25,25,25],[50,255,50],this.anim.complete)[0],mergeColor([25,25,25],[50,255,50],this.anim.complete)[1],mergeColor([25,25,25],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.push()
+                this.layer.scale(0.5)
+                this.layer.line(30,-30,-30,30)
+                this.layer.translate(40,40)
+                plus(this.layer,10)
+                this.layer.translate(-80,-80)
+                this.layer.rect(0,0,60,80,5)
+                this.layer.strokeWeight(2)
+                regStar(this.layer,0,0,12,10,10,22.5,22.5,0)
+                this.layer.pop()
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([25,25,25],[50,255,50],this.anim.complete)[0],mergeColor([25,25,25],[50,255,50],this.anim.complete)[1],mergeColor([25,25,25],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(16)
+                this.layer.text('Lose Max HP\nSpectral Pack',0,60-this.player*120)
+            break
         }
         this.layer.pop()
     }

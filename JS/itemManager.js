@@ -182,7 +182,7 @@ class itemManager{
                 userCombatant.addBlock(20*effectiveness)
             break
             case 12:
-                this.battle.cardManagers[player].hand.callInput(6,[82,[10*effectiveness],4,[8,1,3]])
+                this.battle.cardManagers[player].hand.callInput(6,[3595,[20*effectiveness],4,[2,1,3]])
             break
             case 13:
                 this.battle.cardManagers[player].allEffect(2,4)

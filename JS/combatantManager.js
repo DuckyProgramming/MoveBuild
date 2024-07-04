@@ -11,8 +11,31 @@ class combatantManager{
         this.playerCombatantIndex=[]
         this.sorted=[]
         this.summons=[]
+        this.allies=[]
+        for(let a=0,la=this.battle.players;a<la;a++){
+            this.allies.push([])
+        }
 
         this.finalBossSwitch=0
+    }
+    sendAllies(){
+        for(let a=0,la=this.allies.length;a<la;a++){
+            for(let b=0,lb=this.allies[a].length;b<lb;b++){
+                let tiles=this.battle.tileManager.getArea(this.combatants[this.getPlayerCombatantIndex(a)].tilePosition,1)
+                if(tiles.length>0){
+                    this.battle.addCombatantSupport(tiles[floor(random(0,tiles.length))].tilePosition,this.allies[a][b],a+1,this.combatants[this.getPlayerCombatantIndex(a)].goal.anim.direction,false)
+                    this.combatants[this.combatants.length-1].ally=a
+                }
+            }
+        }
+    }
+    purgeAlly(player,type){
+        for(let a=0,la=this.allies[player].length;a<la;a++){
+            if(this.allies[player]==type){
+                this.allies[player].splice(a,1)
+                a=la
+            }
+        }
     }
     assignPlayer(){
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -98,7 +121,7 @@ class combatantManager{
     }
     setupCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0||this.combatants[a].construct){
+            if(this.combatants[a].team==0||this.combatants[a].construct||this.combatants[a].support){
                 this.combatants[a].setIntent(0)
             }else{
                 this.combatants[a].endBlock()
@@ -108,14 +131,14 @@ class combatantManager{
     }
     enableCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if((this.combatants[a].team==0||this.combatants[a].construct)&&this.combatants[a].life>0){
+            if((this.combatants[a].team==0||this.combatants[a].construct||this.combatants[a].support)&&this.combatants[a].life>0){
                 this.combatants[a].endBlock()
             }
         }
     }
     unmoveCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if((this.combatants[a].team==0||this.combatants[a].construct)&&this.combatants[a].life>0){
+            if((this.combatants[a].team==0||this.combatants[a].construct||this.combatants[a].support)&&this.combatants[a].life>0){
                 this.combatants[a].moved=false
                 this.combatants[a].activated=types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==2||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==4||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==5
             }
@@ -124,7 +147,7 @@ class combatantManager{
     setTargets(){
         let list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team>0&&!this.combatants[a].construct&&this.combatants[a].life>0){
+            if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support||this.combatants[a].support&&this.combatants[a].life>0){
                 list.push(a)
             }
         }
@@ -183,7 +206,7 @@ class combatantManager{
     }
     activateCombatants(type,id){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if((this.combatants[a].team==0||this.combatants[a].construct)&&this.combatants[a].life>0){
+            if((this.combatants[a].team==0||this.combatants[a].construct||this.combatants[a].support)&&this.combatants[a].life>0){
                 this.combatants[a].activate(type,id)
             }
         }
@@ -197,7 +220,7 @@ class combatantManager{
     }
     targetCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if((this.combatants[a].team==0||this.combatants[a].construct)&&this.combatants[a].life>0){
+            if((this.combatants[a].team==0||this.combatants[a].construct||this.combatants[a].support)&&this.combatants[a].life>0){
                 this.combatants[a].markTarget()
             }
             if(
@@ -258,7 +281,7 @@ class combatantManager{
                 (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.relicManager.hasRelic(145,this.battle.attackManager.player)?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||
                 legalTargetCombatant(0,this.battle.attackManager.targetInfo[3],this.battle.relicManager.hasRelic(145,this.battle.attackManager.player)?1:this.battle.attackManager.targetInfo[4],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.attackManager.player)].ammo>0)
             ){
-                this.subTarget(this.combatants[a])
+                this.subTarget(a)
             }
             if(
                 (this.battle.attackManager.targetInfo[0]==54)&&

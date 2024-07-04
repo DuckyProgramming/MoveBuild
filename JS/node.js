@@ -24,7 +24,7 @@ class node{
         this.layer.translate(this.position.x,this.position.y)
         this.layer.scale(this.size)
         if(this.battle.modded(93)){
-            this.layer.stroke(color[0],color[1],color[2],this.fade)
+            this.layer.stroke(...color,this.fade)
             this.layer.strokeWeight(3)
             this.layer.noFill()
             this.layer.arc(0,-6,16,16,-180,90)
@@ -34,13 +34,13 @@ class node{
             this.layer.noStroke()
             this.layer.fill(70,75,80,this.fade*cap)
             this.layer.rect(0,24,48,14,3)
-            this.layer.fill(color[0],color[1],color[2],this.fade*cap)
+            this.layer.fill(...color,this.fade*cap)
             this.layer.textSize(12)
             this.layer.text('Unknown',0,25)
         }else{
             switch(type){
                 case 0:
-                    this.layer.stroke(color[0],color[1],color[2],this.fade)
+                    this.layer.stroke(...color,this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.ellipse(0,0,30,30)
@@ -50,12 +50,12 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,42,14,3)
-                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
+                    this.layer.fill(...color,this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Battle',0,25)
                 break
                 case 1:
-                    this.layer.stroke(color[0],color[1],color[2],this.fade)
+                    this.layer.stroke(...color,this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.ellipse(0,0,30,30)
@@ -70,7 +70,7 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,35,14,3)
-                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
+                    this.layer.fill(...color,this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Elite',0,25)
                 break
@@ -78,7 +78,7 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade)
                     this.layer.ellipse(0,0,90,90)
-                    this.layer.stroke(color[0],color[1],color[2],this.fade)
+                    this.layer.stroke(...color,this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.ellipse(0,0,70,70)
@@ -98,12 +98,12 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,49,36,16,3)
-                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
+                    this.layer.fill(...color,this.fade*cap)
                     this.layer.textSize(15)
                     this.layer.text('Boss',0,50)
                 break
                 case 3:
-                    this.layer.stroke(color[0],color[1],color[2],this.fade)
+                    this.layer.stroke(...color,this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.line(-10,7,10,17)
@@ -115,12 +115,12 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,28,14,3)
-                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
+                    this.layer.fill(...color,this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Rest',0,25)
                 break
                 case 4:
-                    this.layer.stroke(color[0],color[1],color[2],this.fade)
+                    this.layer.stroke(...color,this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.rect(0,0,40,24,2)
@@ -133,12 +133,12 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,28,14,3)
-                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
+                    this.layer.fill(...color,this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Shop',0,25)
                 break
                 case 5:
-                    this.layer.stroke(color[0],color[1],color[2],this.fade)
+                    this.layer.stroke(...color,this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.arc(0,-6,16,16,-180,90)
@@ -148,12 +148,12 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,48,14,3)
-                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
+                    this.layer.fill(...color,this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Unknown',0,25)
                 break
                 case 6:
-                    this.layer.stroke(color[0],color[1],color[2],this.fade)
+                    this.layer.stroke(...color,this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.rect(0,-7,32,12)
@@ -162,12 +162,12 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,36,14,3)
-                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
+                    this.layer.fill(...color,this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Stash',0,25)
                 break
                 case 7:
-                    this.layer.stroke(color[0],color[1],color[2],this.fade)
+                    this.layer.stroke(...color,this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.ellipse(0,0,30,30)
@@ -177,12 +177,12 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,36,14,3)
-                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
+                    this.layer.fill(...color,this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Fortune',0,25)
                 break
                 case 8:
-                    this.layer.stroke(color[0],color[1],color[2],this.fade)
+                    this.layer.stroke(...color,this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     regPoly(this.layer,0,0,8,16,16,22.5)
@@ -192,7 +192,7 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,36,14,3)
-                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
+                    this.layer.fill(...color,this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Not Visible',0,25)
                 break

@@ -1,35 +1,228 @@
 
 
-direct sunlight triggers at end of turn, not when drawn
-
-make revolver a gun - but it gives one ammo
+new items
 
 
 
 
 
-grenade item - increase damage but strict targetting
 
-withdraw inchling bowl
 
-replacement event
 
-reimu event
-visiting her (new storyline)
+
+
+
+
+
+
+
+
+
+LISTING GROUP 43
+
+
 
 clean energy as an attack
 
-how is chip doing?
-and other regulations
-
-
-liles of murder could look a lot cooler
-
-eternal judge's sins spawn particles and annoy the player
-
 "shoot the moon" with a rainbow laser with squares and stars (stars look better when white with colored outline)
 
-variants of monkeywrench
+[lapse rate - altitude but its random which (and the numbers are lower)]
+
+[on the street - add block, gain 10 currency if you have less than 500, exhaust]
+
+[bonus roll - next time you roll dice, roll an extra]
+
+[rolldown - 1 cost, redraw your hnad, upgrade a card]
+
+
+
+
+[liles of murder could look a lot cooler - named "spirit of the lilies"]
+
+[variant of monkeywrench]
+
+[replace the spectral card "wraith" with something usable
+ultimately the idea of mythic cards is much worse than using ally cards]
+
+[a card like milky way]
+
+[trained strike - 10 damage, increases by 5 after every boss]
+
+[star of orion - curse, when drawn gain 3 damage takem up]
+
+
+
+[ally card - yuyuko]
+rename existing yuyuko
+
+[ally card - youmu]
+
+[ally card]
+
+[ally card]
+
+[plexiglass - add block, upgrade a card from discard pile]
+
+[seeping miasma]
+
+
+
+[junkyard lock 3 - lock 6]
+
+[above the clouds]
+
+[quickbuild - 1 cost, draw a construct, it costs 2 less]
+
+[snowy mountain]
+
+[frostly leaf razor]
+
+[summer star - gain mana, blue, green, green, rainbow]
+
+
+
+[deliberation - 13 block, or draw 2 cards (the choice occurs through the overlay prompt used for allies)]
+
+[wave equation - next block added repeats after 2 turns]
+
+[sandbag - 1 cost, gain 3 energy next turn, lose 3 health]
+
+[destruction dance - when you exhaust a card, gain 1 temporary strength]
+
+[dig up - recall, costs 2, but the recalled card gains duplicate once]
+
+[brain overclock - gain 3 energy, draw a card, lose 1 energy next turn]
+
+
+
+[toxic dance - attacks this combat apply 1 poison]
+
+[grudge - 11 damage, exhaust the top card of draw pile]
+
+[bucket bash - 14 damage, 10 block, 2 cost, if first card played apply 2 damage taken up]
+
+[poison raze - 2 cost, if target has poison, deal 22 damage, otherwise apply 7 poison]
+
+[counter bullet - gain 9 block, retain block for 1 turn, counter 9 once]
+
+[song of darkness - put 2 shadows in your hand, apply 5 temporary strength splash down]
+
+
+
+[Rip and Lacerate]
+
+[forklift - builder variant of trident or harpoon, applies vulnerable]
+
+[tagline - even energy: deal 13 damage, gain 3 block]
+
+[collect salary - agent, gain currency, but only if you've attacked 3 times this turn]
+
+[b-b-busted - curse, if you don't play it within 5 secods you take 10 damage and it discards itself]
+
+[air fryer - air current + pressure cooker]
+
+
+
+[lunatic dream]
+
+[celestial flight]
+
+[swap out but discard UP TO 2]
+
+[]
+
+[]
+
+[]
+
+
+
+
+LISTING GROUP 44 (SUKUNA)
+
+
+
+[surprise entrance - deal 6 splash damage, gain 1 energy if first card played, innate]
+
+[in plain sight - 2 cost, add block, retain that block, gain 1 dodge]
+
+[incident]
+
+[a card similar to instant ramen]
+
+[sea of sky - variant of sea of trees]
+
+[castle keep - block and a special retain]
+
+
+
+[tranquil sky - everybody gets 1 dodge]
+
+[crafty but a defend]
+
+[attack, deals more whne you draw a card]
+
+[defense, adds more when you draw a card]
+
+[pacing - retain, gain 1 energy, draw 1 card, lose 1 energy next turn]
+
+[pinpoint]
+
+
+
+[land of giants]
+
+[extending shield]
+
+[opposite of extending strike]
+
+[opposite of extending shield]
+
+[opposite of extending step]
+
+[the waves]
+
+
+
+[card shrink - uncommon, remove a non-basic non-curse card, vanish 1]
+
+[card growth - uncommon, upgrade a basic card, vanish 1]
+
+[card transform - uncommon, transform a basic card into a common card, vanish 1]
+
+[miracle of simplicity - double the effects of all basic cards]
+
+[]
+
+[]
+
+
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
 
 
 
@@ -40,20 +233,44 @@ SUKUNA MECHANICS
 strike and defend
 common cards
 
-"size of hand (withdraw from edgar?)"
+dodge
 
-counters? (unlikely)
+lock on
 
-frail?
+holding cards in prison?
+||
+[P]
+
+
+
+MOTIFS
+
+fishing for certain cards
+
+"size of hand (withdraw from edgar and daiyousei?)"
 
 
 
 
 
-END:
 
-go make glory v2,
-celestite
 
-sanae gaming
+chip boss needs another attack
+sukuna boss also needs to get 2 attacks and setup code with archivist
 
+
+
+
+
+
+but what is pocket watch in the rain actually a remix of?
+
+
+
+
+
+
+
+SUBGROUP 17
+
+go make glory v2, celestite, for the new background

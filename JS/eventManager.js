@@ -38,7 +38,7 @@ class eventManager{
                 !(this.listing.event[a]==9&&(userCombatant.life<6||this.battle.nodeManager.world!=1))&&
                 !(this.listing.event[a]==10&&this.battle.nodeManager.world!=1)&&
                 !(this.listing.event[a]==12&&userCombatant.life<16)&&
-                !(this.listing.event[a]==13&&this.battle.cardManagers[this.player].deck.numberAbstract(10,[[6],[`Ascender's\nBane`]])<=0)&&
+                !(this.listing.event[a]==13&&this.battle.cardManagers[this.player].deck.numberAbstract(14,[[6],7])<=0)&&
                 !(this.listing.event[a]==19&&userCombatant.life<13)&&
                 !(this.listing.event[a]==20&&this.battle.currency.money[this.player]<50)&&
                 !(this.listing.event[a]==22&&this.battle.cardManagers[this.player].deck.numberAbstract(8,[])<=0)&&
@@ -87,15 +87,16 @@ class eventManager{
                 !(this.listing.event[a]==88&&this.battle.relicManager.total[this.player]<1)&&
                 !(this.listing.event[a]==89&&userCombatant.life<31)&&
                 !(this.listing.event[a]==90&&this.battle.currency.money[this.player]<125)&&
-                !(this.listing.event[a]==92&&this.battle.cardManagers[this.player].deck.numberAbstract(10,[[6],[`Ascender's\nBane`]])<=0)&&
+                !(this.listing.event[a]==92&&this.battle.cardManagers[this.player].deck.numberAbstract(14,[[6],7])<=0)&&
                 !(this.listing.event[a]==93&&this.battle.currency.money[this.player]<60)&&
                 !(this.listing.event[a]==94&&(this.battle.currency.money[this.player]<200||this.battle.nodeManager.world!=2))&&
                 !(this.listing.event[a]==97&&this.battle.currency.money[this.player]<65)&&
                 !(this.listing.event[a]==99&&this.battle.currency.money[this.player]<40)&&
                 !(this.listing.event[a]==100&&(userCombatant.life<16||this.battle.currency.money[this.player]<40))&&
                 !(this.listing.event[a]==103&&userCombatant.life>=userCombatant.base.life-7)&&
-                !(this.listing.event[a]==104&&this.battle.nodeManager.world!=2)
-
+                !(this.listing.event[a]==104&&this.battle.nodeManager.world!=2)&&
+                !(this.listing.event[a]==105&&this.battle.nodeManager.world!=0)&&
+                !(this.listing.event[a]==106&&this.battle.currency.money[this.player]<25)
             ){
                 sublist.push(this.listing.event[a])
             }
@@ -1166,6 +1167,21 @@ class eventManager{
                         if(this.page==0&&a==0){
                             transition.scene='battle'
                             this.battle.setupBattle(types.encounter[findName('Sniper Outpost',types.encounter)])
+                        }
+                    break
+                    case 105:
+                        if(this.page==0&&a==0){
+                            this.battle.combatantManager.allies[this.player].push(findName('Bowler Duck',types.combatant))
+                        }
+                    break
+                    case 106:
+                        if(this.page==0&&a>=0&&a<=1){
+                            this.battle.loseCurrency(25,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,0,32])
+                        }else if(this.page==2&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Spring-Colored\nPath',types.card),0,0)
                         }
                     break
 

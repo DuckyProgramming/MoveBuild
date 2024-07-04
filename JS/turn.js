@@ -746,7 +746,7 @@ class turn{
                                 let works=true
                                 if(this.setTarget!=-1){
                                     this.targetCombatant=this.setTarget
-                                }else if(this.userCombatant.construct){
+                                }else if(this.userCombatant.construct||this.userCombatant.support){
                                     this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
                                     this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
                                     if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
@@ -1104,8 +1104,8 @@ class turn{
                         }
                     break
                     case 2: case 4:
-                        if(this.userCombatant.getStatus('Lock')>0){
-                            this.userCombatant.status.main[findList('Lock',this.userCombatant.status.name)]--
+                        if(this.userCombatant.getStatus('Chained')>0){
+                            this.userCombatant.status.main[findList('Chained',this.userCombatant.status.name)]--
                         }else if(this.userCombatant.getStatus('Confusion')>0){
                             this.userCombatant.status.main[findList('Confusion',this.userCombatant.status.name)]--
                             this.userCombatant.goal.anim.direction=-30+60*floor(random(0,6))
@@ -1151,8 +1151,8 @@ class turn{
                         this.selfRemoved=true
                     break
                     case 3:
-                        if(this.userCombatant.getStatus('Lock')>0){
-                            this.userCombatant.status.main[findList('Lock',this.userCombatant.status.name)]--
+                        if(this.userCombatant.getStatus('Chained')>0){
+                            this.userCombatant.status.main[findList('Chained',this.userCombatant.status.name)]--
                         }else if(this.userCombatant.getStatus('Confusion')>0){
                             this.userCombatant.status.main[findList('Confusion',this.userCombatant.status.name)]--
                             this.userCombatant.goal.anim.direction=-30+60*floor(random(0,6))

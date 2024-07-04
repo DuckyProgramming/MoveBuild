@@ -336,6 +336,7 @@ class battle{
                 this.combatantManager.recount()
             }
         }
+        this.combatantManager.sendAllies()
         if(this.modded(51)){
             let tile=this.tileManager.getRandomTilePosition()
             if(tile!=-1){
@@ -697,7 +698,7 @@ class battle{
             }
             if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
                 this.cardManagers[this.turn.main].allEffect(3,47)
-                if(this.cardManagers[this.turn.main].reserve.cards.length+this.cardManagers[this.turn.main].discard.cards.length<this.cardManagers[this.turn.main].drawAmount&&this.cardManagers[this.turn.main].hand.cards.length>0){
+                if(this.cardManagers[this.turn.main].reserve.cards.length+this.cardManagers[this.turn.main].discard.cards.length<this.cardManagers[this.turn.main].drawAmount&&this.cardManagers[this.turn.main].hand.cards.length>0&&this.cardManagers[this.turn.main].hand.numberAbstract(13,[])>0){
                     this.cardManagers[this.turn.main].bufferedTurn=30
                 }else{
                     this.cardManagers[this.turn.main].turnDraw(this.turn.total)
@@ -1064,8 +1065,8 @@ class battle{
             if(variants.mtg){
                 this.energy.main[player][type]+=amount
                 let cap=484
-                for(let b=0,lb=this.energy.crystal[a].length;b<lb;b++){
-                    cap=min(b==0?458:this.energy.crystal[a][b-1][1]-26,cap)
+                for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+                    cap=min(a==0?458:this.energy.crystal[player][a-1][1]-26,cap)
                 }
                 cap-=26
                 this.energy.crystal[player].push([type,cap,0,true])
@@ -1197,6 +1198,30 @@ class battle{
                     this.loseEnergy(total7(this.energy.main[player])-amount,player)
                 }else if(total7(this.energy.main[player])<amount){
                     this.addEnergy(amount-total7(this.energy.main[player]),player)
+                }
+            }else{
+                if(amount!=this.energy.main[player]){
+                    this.anim[amount>this.energy.main[player]?'energyUp':'energyDown']=1
+                }
+                this.cardManagers[player].allEffectArgs(2,25,[amount-this.energy.main[player]])
+                this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount-this.energy.main[player])
+                this.energy.main[player]=amount
+            }
+        }
+    }
+    setSpecificEnergy(amount,player,type){
+        if(player<this.players){
+            if(variants.mtg){
+                let total=type==6?total7(this.energy.main[player]):this.energy.main[player][type]+this.energy.main[player][6]
+                if(amount!=total){
+                    this.anim[amount>total?'energyUp':'energyDown']=1
+                }
+                this.cardManagers[player].allEffectArgs(2,25,[amount-total])
+                this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount-total7(this.energy.main[player]))
+                if(total7(this.energy.main[player])>amount){
+                    this.loseSpecificEnergy(total-amount,player,type)
+                }else if(total7(this.energy.main[player])<amount){
+                    this.addSpecificEnergy(amount-total,player,type)
                 }
             }else{
                 if(amount!=this.energy.main[player]){
@@ -1635,15 +1660,15 @@ class battle{
                         this.layer.noStroke()
                         let merge=mergeColor([225,255,255],[255,0,0],this.anim.afford)
                         if(this.anim.energyUp){
-                            this.layer.fill(merge[0],merge[1],merge[2],this.anim.energyUp)
+                            this.layer.fill(...merge,this.anim.energyUp)
                             this.layer.triangle(-90+this.anim.turn[a]*100,454,-74+this.anim.turn[a]*100,394+this.anim.energyUp*40,-58+this.anim.turn[a]*100,454)
                         }
                         if(this.anim.energyDown){
-                            this.layer.fill(merge[0],merge[1],merge[2],this.anim.energyDown)
+                            this.layer.fill(...merge,this.anim.energyDown)
                             this.layer.triangle(-90+this.anim.turn[a]*100,454,-74+this.anim.turn[a]*100,514-this.anim.energyDown*40,-58+this.anim.turn[a]*100,454)
                         }
-                        this.layer.fill(merge[0],merge[1],merge[2])
-                        this.layer.stroke(merge[0],merge[1],merge[2])
+                        this.layer.fill(...merge)
+                        this.layer.stroke(...merge)
                         this.layer.strokeWeight(3)
                         this.layer.quad(-90+this.anim.turn[a]*100,454,-74+this.anim.turn[a]*100,434,-58+this.anim.turn[a]*100,454,-74+this.anim.turn[a]*100,474)
                     }

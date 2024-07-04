@@ -8,15 +8,16 @@ types={
         {name:'Azis',moniker:'The Executor',identifier:['Brother','Mister'],life:62,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:311,effect:[4]},{type:312,effect:[5,5,1,1,2,2,2,2,10]},{type:313,effect:[]}],description:`Former Management-aligned free actor,\nhaving ended his partnership.\nNow on an indepdent research mission,\ndiscovering his capabilities.`},
         {name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[0],move:{type:9,speed:1},attack:[{type:314,effect:[]},{type:315,effect:[]},{type:316,effect:[15,1]}],description:`Duck "transferral district" escapee,\nnow getting his revenge.\nDoesn't seem to have much motivation\nexcept for desire to take out his anger.`},
         {name:'Setsuna',moniker:'The Duelist',identifier:['Sister','Miss'],life:68,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:317,effect:[12]},{type:318,effect:[42]},{type:319,effect:[12]}],description:`Once motivated by a desire for revenge.\nNot anymore, they're all dead.\nMakes it's time for her to stop?\nShe doesn't seem to think so.`},
-        {name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:320,effect:[15,2]},{type:321,effect:[10,2,'Burn',2]},{type:322,effect:[10]}],description:`A guardian of dreams, in her mind, she\nviews everything else as a nightmare.\nHow she got her powers, well,\nblame the Management as always.`},
+        {name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:44,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:320,effect:[15,2]},{type:321,effect:[10,2,'Burn',2]},{type:322,effect:[10]}],description:`A guardian of dreams, in her mind, she\nviews everything else as a nightmare.\nHow she got her powers, well,\nblame the Management as always.`},
         {name:'Edgar',moniker:'The Disgraced CEO',identifier:['Brother','Mister'],life:76,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:303,effect:[25,5]},{type:323,effect:[1]},{type:324,effect:[2]}],description:`Having lost his powerful role after\na mass of insider trading,\nhe now takes his anger out against\nthe Management that wronged him.`},
-        {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:72,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:128,effect:[7,1,'Invoice']},{type:326,effect:[1,1]}],description:`A gambler now trapped in debt,\nescaping was his only option.\nBut it seems the Management is also\ntracking him down for his crimes.`},
+        {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:72,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:128,effect:[7,1,'Invoice']}],description:`A gambler now trapped in debt,\nescaping was his only option.\nBut it seems the Management is also\ntracking him down for his crimes.`},
         {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:327,effect:[24]},{type:328,effect:[17,2]},{type:329,effect:[14,1]}],description:`Pursuing a Rewriter for some time now,\ntracking the supposed ghost\nacross several Managerial worlds,\nfinally arriving at its location.`},
         {name:'DD-610',moniker:'The Paradigm',identifier:['Friend','Robot'],life:66,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:330,effect:[4]},{type:331,effect:[19,1]},{type:332,effect:[16,8]}],description:`One of hundreds of prototypes sent\nto Managerial High Command from\nthe manufcaturing detartments.\nOnly this one escaped destruction.`},
         {name:'Prehextorica',moniker:'The Recollection',identifier:['Brother','Mister'],life:64,behavior:14,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[33]},{type:72,effect:[28,3]},{type:21,effect:[]}],description:`A member of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
         {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:`Overworked professor who barely\nearned enough to slay alive.\nNow ready to take the share of\npay he believes he deserves.`},
         {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:`Fairy formed by the planet\nas a natural defense mechanism.\nReckless but seemingly immortal,\nnature's incarnates always return.`},
-        {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:339,effect:[8,8]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:`A conflicted devotee to the\nManagement's proprietary ARTREL\nprogram. Loyal only to the now-replaced\nearlier directors of the faith.`},
+        {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:339,effect:[8,8]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:``},
+        {name:'Sukuna',moniker:'',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]}],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -158,6 +159,7 @@ types={
         {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[18]},{type:300,effect:[3]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
         {name:'Golden Duck',life:38,behavior:16,spec:[20],move:{type:0,speed:3},attack:[{type:21,effect:[]},{type:68,effect:[]}],description:`Why is this thing alive?`},
         {name:'Management Shotgunner',life:146,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:364,effect:[24,3,1,'Electrocuted']},{type:365,effect:[7,3]}],description:`At least he doesn't OHKO`},
+        {name:'Bowler Duck',life:24,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:4,effect:[7]}],description:`He's broke, actually`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -987,7 +989,7 @@ types={
         {name:'Small Smoke Bomb',id:9,rarity:0,list:0,menu:false,temp:false,description:'Move to Any\nEmpty Tile'},
         {name:'Battery Pack',id:10,rarity:0,list:0,menu:false,temp:false,description:'Counter 5 All'},
         {name:'Portable Shield',id:11,rarity:0,list:0,menu:false,temp:false,description:'Add 20 Block'},
-        {name:'Grenade',id:12,rarity:0,list:0,menu:false,temp:false,description:'Deal 10 Splash Damage\nRange 1-3'},
+        {name:'Grenade',id:12,rarity:0,list:0,menu:false,temp:false,description:'Deal 20 Splash Damage\nRange 1-3'},
         {name:'Rapid Forge',id:13,rarity:0,list:0,menu:false,temp:false,description:'Upgrade All\nCards in Hand'},
         {name:'Caffeine',id:14,rarity:0,list:0,menu:false,temp:false,description:'Gain 3 Energy'},
         {name:'Attack Juice',id:15,rarity:0,list:0,menu:false,temp:false,description:'Gain 2 Strength'},
@@ -1022,12 +1024,23 @@ types={
         {name:'Duck Soup',id:44,rarity:2,list:0,menu:true,temp:false,description:'Gain 5 Max HP'},
         {name:'Hologram Projector',id:45,rarity:2,list:0,menu:false,temp:false,description:'Gain 2 Intangible'},
         {name:'Large Smoke Bomb',id:46,rarity:2,list:0,menu:false,temp:false,description:'End a Non-Boss\nCombat'},
-        {name:'Mirror Dome',id:47,rarity:2,list:0,menu:false,temp:false,description:'Draw 10 Cards,\nBecome Confused'},
+        {name:'Mirror Dome',id:47,rarity:1,list:0,menu:false,temp:false,description:'Draw 10 Cards,\nBecome Confused'},
         {name:'Shield Field',id:48,rarity:2,list:0,menu:false,temp:false,description:'Gain 2 Buffer'},
         {name:'Bottled Fairy',id:49,rarity:2,list:0,menu:true,temp:false,description:'When You Die,\nHeal 10 HP'},
         {name:'Particle Storm',id:50,rarity:2,list:0,menu:false,temp:false,description:'Deal 6 Damage to a\nRandom Enemy 10 Times'},
         {name:'Pile of Junk',id:51,rarity:2,list:0,menu:true,temp:false,description:'Fill All Item Slots'},
         {name:'Skill Box',id:52,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Free Skills\nto Your Hand'},
+
+        {name:'',id:53,rarity:0,list:0,menu:false,temp:false,description:''},
+        {name:'',id:54,rarity:0,list:0,menu:false,temp:false,description:''},
+        {name:'',id:55,rarity:0,list:0,menu:false,temp:false,description:''},
+        {name:'',id:56,rarity:0,list:0,menu:false,temp:false,description:''},
+        {name:'',id:57,rarity:1,list:0,menu:false,temp:false,description:''},
+        {name:'',id:58,rarity:1,list:0,menu:false,temp:false,description:''},
+        {name:'',id:59,rarity:2,list:0,menu:false,temp:false,description:''},
+        {name:'Elemental Burst',id:60,rarity:2,list:0,menu:false,temp:false,description:'Deal 30 Splash Damage,\nApply 2 Splash Burn, Freeze, and Shock'},
+        {name:'Hypergrowth',id:61,rarity:2,list:0,menu:false,temp:false,description:'Deal 20 Damage to All Enemies,\mGain 1 Base Energy This Combat'},
+
 
         {name:'Starflame Prototype',id:101,rarity:-1,list:-1,menu:false,temp:false,description:'Gain 5 Strength,\nShuffle 5 Burns into Draw'},
         {name:'Cola',id:102,rarity:-1,list:-1,menu:true,temp:false,description:'Heal 15 HP\nCan No Longer Gain Block'},
@@ -4092,7 +4105,7 @@ before they leave as a group down the road.`,
                 },
             ],
         },{
-            name:'Fake Adventure',id:100,list:-1,
+            name:'Fake Adventure [DISBANDED]',id:100,list:-1,
             pages:[
                 {
                     desc:
@@ -4238,11 +4251,77 @@ The rebels in the area have an assault plan ready, however.
 Just before the assault begins, their commander brings you aside.
 "A series of enemy outposts on the hill nearby have been detected.
 If left alone, they threaten our forces. Optimally, it would be you
-who takes thsoe units out. It should just be a few snipers in a hole.
+who takes those units out. It should just be a few snipers in a hole.
 Nothing hard for you, right?"`,
                     option:['Accept','Decline'],
                     optionDesc:['Start Fight',''],
                     link:[-2,-1],
+                },
+            ],
+        },{
+            name:'Friendly Duck',id:105,list:0,
+            pages:[
+                {
+                    desc:
+`You find a duck wearing a bowler hat sitting on the side of
+the road. He looks up at you as you arrive with excited eyes.
+"I'm saved! You there, would you be so kind as to help an old
+duck on his final journey? I ended up here on the way to a
+critical meeting in the city of Septar. Bring me there!"
+Little does he know, Septar is the capital of Executrix.
+You're never going to get there, but he might be a useful ally.`,
+                    option:['Bring Him Along','Slap Him'],
+                    optionDesc:['Bowler Duck Will Join Your Team',''],
+                    link:[1,2],
+                },{
+                    desc:`He gets up and follows you. Who knows how long he'll survive?`,
+                    option:['Go'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`You slap him, sending him into the ground.
+You continue on without him.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Fake Adventure',id:106,list:0,
+            pages:[
+                {
+                    desc:
+`You come across a shrine some distance from the road.
+It's empty and doesn't seem to get many visitors,
+except for the maiden who notices you right away.
+"Welcome to the shrine! You need an incident dealt with,
+I presume. Where might it be?"
+You respond that you're just here to visit.
+She sounds a little disappointed.
+"Well then, what are you here to do?"`,
+                    option:['Ask for Help','Ask For Directions','Nothing'],
+                    optionDesc:['Lose 25 Currency','Lose 25 Currency',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+`"I'm a little busy right now with other incidents," she replies,
+"but feel free to take something that might be useful."`,
+                    option:['Take Something'],
+                    optionDesc:['Choose a Hakurei Tool to Add to Deck'],
+                    link:[-1],
+                },{
+                    desc:
+`She explains some directions to you, but you haven't
+heard of the places she's talking about.`,
+                    option:['Leave'],
+                    optionDesc:['Add Spring-Colored Path to Deck'],
+                    link:[-1],
+                },{
+                    desc:'She shoots you an annoyed glance as you leave.',
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
                 },
             ],
         },
@@ -4259,13 +4338,13 @@ Nothing hard for you, right?"`,
                 text:[0,75,75],
                 active:[200,225,225],
             },{
-                fill:[150,200,150],
-                stroke:[125,175,125],
+                fill:[160,200,150],
+                stroke:[135,175,125],
                 text:[0,100,0],
-                active:[200,255,200],
+                active:[210,255,200],
             },{
-                fill:[220,200,240],
-                stroke:[180,160,200],
+                fill:[250,200,240],
+                stroke:[210,160,200],
                 text:[100,0,100],
                 active:[255,200,255],
             },{
@@ -4334,6 +4413,13 @@ Nothing hard for you, right?"`,
                 text:[80,80,20],
                 active:[255,255,200],
             },{
+                fill:[200,165,230],
+                stroke:[175,130,180],
+                text:[75,25,100],
+                active:[230,210,255],
+            },
+            
+            {
                 fill:[125,125,125],
                 stroke:[100,100,100],
                 text:[40,40,40],
@@ -4390,7 +4476,9 @@ Nothing hard for you, right?"`,
                 stroke:[225,75,75],
                 text:[100,0,0],
                 active:[255,200,200],
-            },{},{},{},{},{},{},{},{},{},{},{},{
+            },{},{},{},{},{},{},{},{},{},{},{},{},
+            
+            {
                 fill:[125,125,125],
                 stroke:[100,100,100],
                 text:[40,40,40],
@@ -7394,7 +7482,8 @@ Removes itself in the process.`,
 `Refers to the target's intent.
 Mouseover enemies to see their intent.`,
         },{name:'Bleed',desc:
-`Deals damage every turn. Decreases by 1 afterward.`,
+`Deals damage every turn. Decrements afterward.
+Usually, bleed can only be applied to targets without block.`,
         },{name:'Upgrade',desc:
 `Each card has an upgraded version that is typically better.
 Cards can be upgraded at rest sites, in events, by relics, or by other cards (usually temporary).`,
@@ -7543,6 +7632,8 @@ Does not spend the orb.`,
 `On evoke, applies 3 Weak.`,
         },{name:'Poison Orb',desc:
 `On evoke, applies 4 Poison.`,
+        },{name:'Glass Orb',desc:
+`On evoke, deals 4 damage.`,
         },{name:'Holding',desc:
 `Draw a Card When Discarded`,
         },{name:'Quickdraw',desc:
@@ -7567,6 +7658,8 @@ Does not spend the orb.`,
 `Stance. Deal 60% damage and take 40% damage. `,
         },{name:'Divinity',desc:
 `Stance. When entered, gain 3 energy and draw 3 cards. Deal triple damage.`,
+        },{name:'Depression',desc:
+`Stance. Lose 1 energy per turn.`,
         },{name:'Faith',desc:
 `Gained through cards. When you gain 8 faith, enter Divinity.`,
         },{name:'Safety',desc:
@@ -7631,10 +7724,10 @@ Is removed when damage taken.`,
 `Reduces enemy attack to just damage, no additional effects.`,
         },{name:'Mixed',desc:
 `Will face 180 degrees from target.`,
-        },{name:'Lock',desc:
+        },{name:'Chained',desc:
 `Cannot turn around. Decrements afterward.`,
         },{name:'Poison',desc:
-`Deals damage every turn. Decreases by 1 afterward.`,
+`Deals damage every turn. Decrements afterward.`,
         },{name:'Vision',desc:
 `Counts up by 1 whenever you play a card.
 When you gain 12 Vision, lose 12 and gain 1 Awakening.`,
@@ -7658,6 +7751,9 @@ Block is reduced before barrier when calculating hits taken.`,
         },{name:'Discus',desc:
 `Generatable card. Does decent damage and gives some barrier as well.
 Costs 2 to use and retains. Range 1-3.`,
+        },{name:'Lock-On',desc:
+`Increases damage takne by 1 per stack.
+Stacks degrade by 1 each turn.`,
         },
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0
@@ -7885,7 +7981,7 @@ Costs 2 to use and retains. Range 1-3.`,
     ],
 }
 stage={scale:0,scene:'title',internal:{version:1}}
-game={player:[],deck:[],playerNumber:16,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[],deck:[],playerNumber:17,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
 variants={
     mtg:false,mod:false,selectCombat:false,

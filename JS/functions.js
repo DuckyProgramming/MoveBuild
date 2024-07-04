@@ -991,6 +991,15 @@ function pl(value){
 function vectorAtan(point1,point2){
 	return atan2(point2.x-point1.x,point2.y-point1.y)
 }
+function stringMatch(string1,string2){
+	let total=0
+	for(let a=0,la=min(string1.length,string2.length);a<la;a++){
+		if(string1[a]==string2[a]){
+			total++
+		}
+	}
+	return total
+}
 function findList(entry,list){
 	for(let a=0,la=list.length;a<la;a++){
 		if(list[a]==entry){
@@ -1003,6 +1012,44 @@ function findName(name,list){
 	for(let a=0,la=list.length;a<la;a++){
 		if(list[a].name==name){
 			return a
+		}
+	}
+	return -1
+}
+function findNameApprox(name,list){
+	name=name.toLowerCase()
+	for(let a=0,la=list.length;a<la;a++){
+		if(list[a].name.toLowerCase()==name){
+			return a
+		}
+	}
+	let closest=0
+	for(let a=0,la=list.length;a<la;a++){
+		if(list[a].name.toLowerCase().length==name.length){
+			closest=max(closest,stringMatch(list[a].name.toLowerCase(),name))
+		}
+	}
+	if(closest>=name.length-1&&closest>=1){
+		for(let a=0,la=list.length;a<la;a++){
+			if(list[a].name.toLowerCase().length==name.length&&closest==stringMatch(list[a].name.toLowerCase(),name)){
+				return a
+			}
+		}
+	}
+	for(let a=0,la=name.length;a<la;a++){
+		for(let b=0,lb=list.length;b<lb;b++){
+			if(list[b].name.toLowerCase().length>=name.length&&list[b].name.toLowerCase().substr(0,name.length-a)==name.substr(0,name.length-a)){
+				return b
+			}
+		}
+	}
+	for(let a=0,la=name.length-1;a<la;a++){
+		if(closest>=name.length-a-1){
+			for(let b=0,lb=list.length;b<lb;b++){
+				if(list[b].name.toLowerCase().length==name.length&&closest==stringMatch(list[b].name.toLowerCase(),name)){
+					return b
+				}
+			}
 		}
 	}
 	return -1
@@ -1378,17 +1425,31 @@ function updateMouse(layer){
 	inputs.rel.y=(inputs.mouse.y-height/2)/stage.scale+layer.height/2
 }
 function quickAdd(name){
-	if(findName(name,types.card)>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),0,0)
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,0)
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
 		return 'Added'
 	}else{
 		return 'Invalid'
 	}
 }
+function quickAddAlly(name){
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,0)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].spec.push(55)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].cost=99
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
+}
 function quickAddSec(name){
-	if(findName(name,types.card)>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),0,types.card[findName(name,types.card)].list>=0&&types.card[findName(name,types.card)].list<=game.playerNumber+5?types.card[findName(name,types.card)].list:0)
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,types.card[type].list>=0&&types.card[type].list<=game.playerNumber+5?types.card[type].list:0)
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].cost=0
 		return 'Added'
 	}else{
@@ -1396,8 +1457,9 @@ function quickAddSec(name){
 	}
 }
 function quickAddEdition(name,edition){
-	if(findName(name,types.card)>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),0,0,edition)
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,0,edition)
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
 		return 'Added'
 	}else{
@@ -1405,8 +1467,9 @@ function quickAddEdition(name,edition){
 	}
 }
 function quickAddFull(name,group,level,color){
-	if(findName(name,types.card)>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).add(findName(name,types.card),level,color)
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).add(type,level,color)
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).cards.length-1].colorful=true
 		return 'Added'
 	}else{
@@ -1700,18 +1763,19 @@ function mtgPlayerColor(player){
 		case 2: return [4]
 		case 3: return [3,5]
 		case 4: return [5]
-		case 5: return [1,2]
-		case 6: return [1,3]
-		case 7: return [1,5]
+		case 5: return [2,1]
+		case 6: return [3,1]
+		case 7: return [5,1]
 		case 8: return [4,5]
-		case 9: return [1,4]
+		case 9: return [4,1]
 		case 10: return [2]
 		case 11: return [2,3]
 		case 12: return [3]
-		case 13: return [3,4]
+		case 13: return [4,3]
 		case 14: return [2,5]
-		case 15: return [2,4]
-		case 16: return [1,2,4]
+		case 15: return [4,2]
+		case 16: return [4,2,1]
+		case 17: return [3,5,1]
 		default: return [0]
 	}
 }

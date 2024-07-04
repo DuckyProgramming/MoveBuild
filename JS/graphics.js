@@ -116,8 +116,8 @@ function displayTrianglesBack(layer,parts,direction,base,width,weight,slant,colo
 		layer.stroke(0,fade)
 		layer.erase(fade,fade)
 	}else{
-		layer.fill(color[0],color[1],color[2],fade)
-		layer.stroke(color[0],color[1],color[2],fade)
+		layer.fill(...color,fade)
+		layer.stroke(...color,fade)
 	}
 	layer.strokeWeight(weight)
 	layer.strokeJoin(ROUND)
@@ -146,11 +146,11 @@ function displayTrianglesFront(layer,parts,direction,base,width,weight,slant,col
 		layer.stroke(0,fade)
 		layer.erase(fade,fade)
 	}else if(weight==0){
-		layer.fill(color[0],color[1],color[2],fade)
+		layer.fill(...color,fade)
 		layer.noStroke()
 	}else{
-		layer.fill(color[0],color[1],color[2],fade)
-		layer.stroke(color[0],color[1],color[2],fade)
+		layer.fill(...color,fade)
+		layer.stroke(...color,fade)
 	}
 	layer.strokeWeight(weight)
 	layer.strokeJoin(ROUND)
@@ -4562,7 +4562,7 @@ function setupGeneralGraphics(){
 	graphics.minor[36].rotate(-155)
 	for(let a=0,la=16;a<la;a++){
 		let merge=mergeColor([234,200,116],[203,130,68],abs(8-a)/8)
-		graphics.minor[36].fill(merge[0],merge[1],merge[2])
+		graphics.minor[36].fill(...merge)
 		graphics.minor[36].rotate(-10)
 		graphics.minor[36].quad(0,0,-48+a/la*24,-24+a/la*24,-39+a/la*12,0,-48+a/la*24,24-a/la*24)
 		graphics.minor[36].rotate(20)

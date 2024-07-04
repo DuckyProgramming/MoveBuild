@@ -96,6 +96,7 @@ class combatant{
         this.support=false
         this.programmedDeath=false
         this.doubling=false
+        this.ally=-1
         this.blocked=0
         this.taken=0
         this.builder=0
@@ -110,7 +111,7 @@ class combatant{
             life:1,block:0,blockSize:1,barrier:0,barrierSize:1,blockBarrier:0,
             size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],
             flash:[0,0,0,0],upFlash:[false,false,false,false],
-            stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0],elemental:0}
+            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0],elemental:0}
         this.block=0
         this.barrier=0
         this.lastBlock=0
@@ -127,7 +128,7 @@ class combatant{
             'Explode on Death','Energy in 2 Turns','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block in 2 Turns',
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
-            'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic Orb','Basic Orb on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
+            'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic Orb','Basic Orb on Hit','Random Common Per Turn','Node','Focus Per Turn','Freeze',
             'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
             'Miracle Time','Miracle+ Time','Wrath Next Turn','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Triple Block','Single Damage Block Convert',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
@@ -136,7 +137,7 @@ class combatant{
             'Damage Dealt Currency','Attack Regeneration','Take Credit Block Turn','Reflect','Currency Tank','Damage Down','Counter Damage Down All','Temporary Ammo on Hit','Ichor','Take Damage',
             'Take Damage Next Turn','Take Damage in 2 Turns','Block in 3 Turns','Dexterity on Hit','Temporary Dexterity on Hit','Temporary Block Up','Damage Up','Block Down','End Move','Conviction Next Turn',
             'Rizz','Shock','Shiv Range Up','Double Exhaust','Miss','Single Attack Strength','Rotate Lock','Jinx','Half Damage Turn','Numeric Explode on Death',
-            'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Lock','Fragile Heal',
+            'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Chained','Fragile Heal',
             'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
             'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
             'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
@@ -162,7 +163,7 @@ class combatant{
             '2+ Cost Single Damage Up','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block','X Cost Boost','Self Life Loss Splash','Energy Gain Splash',
             'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw','Buff Loss Barrier','Astrology Per Turn','Construct Metal','Attack Jinx Combat','Attack Shock Combat',
             'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
-            'Damage Repeat in 2 Turns',
+            'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn'
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,0,2,1,0,0,4,4,//1
@@ -211,7 +212,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//44
                 0,0,0,0,0,0,0,0,0,0,//45
                 0,0,0,1,0,0,2,0,0,0,//46
-                0,
+                0,1,2,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -260,7 +261,7 @@ class combatant{
                 2,2,0,0,0,2,2,2,2,2,//44
                 2,2,2,2,2,2,2,2,2,2,//45
                 2,2,2,0,2,2,2,2,2,2,//46
-                0,
+                0,1,1,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -1209,6 +1210,32 @@ class combatant{
 
                 this.goal={anim:{direction:this.anim.direction,sword:true}}
             break
+            case 'Sukuna':
+                this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
+                    legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
+                    arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
+                this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
+                this.parts={eyeLevel:-78,mouth:-70,minor:15,
+                    legs:[{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                    arms:[{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
+                this.graphics={
+                    legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                    arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
+                this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
+                this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
+                this.trigger.display.extra={damage:false}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+
+
+
+
+                this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
+                this.goal={anim:{direction:this.anim.direction,sword:true}}
+            break
             case 'Ume':
                 this.anim={direction:direction,head:direction,sword:1,mouth:{x:6,y:4,open:0},
                     eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{
@@ -1469,7 +1496,7 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Void Duck': case 'Golden Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck':
                 this.anim={direction:direction,eye:[0,0],legs:[{top:24,length:{top:10}},{top:24,length:{top:10}}],arms:[{top:54,length:{top:10}},{top:54,length:{top:10}}]}
                 this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1}}
                 this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
@@ -1509,6 +1536,12 @@ class combatant{
                         this.color.shine=[255,245,145]
                         this.fades.shine=1
                         this.trigger.display.shine=true
+                    break
+                    case 'Bowler Duck':
+                        this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[255,225,15],legs:[255,210,0],arms:[255,215,5]}}
+                        this.color.hat=[30,30,35]
+                        this.fades.hat=1
+                        this.trigger.display.hat=true
                     break
                 }
             break
@@ -3643,7 +3676,7 @@ class combatant{
             life:1,block:0,blockSize:1,barrier:0,barrierSize:1,blockBarrier:0,
             size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],
             flash:[0,0,0,0],upFlash:[false,false,false,false],
-            stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0],elemental:0}
+            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0],elemental:0}
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.infoAnim.orbSpec.push([])
             for(let b=0,lb=game.orbNumber;b<lb;b++){
@@ -4013,7 +4046,7 @@ class combatant{
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
-            case 'Certes': case 'Airi': case 'Shiru': case 'Daiyousei': case 'Sanae':
+            case 'Certes': case 'Airi': case 'Shiru': case 'Daiyousei': case 'Sanae': case 'Sukuna':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -4073,7 +4106,7 @@ class combatant{
                     this.graphics.arms[g].bottom.y=this.graphics.arms[g].middle.y
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -5400,6 +5433,13 @@ class combatant{
                 if(this.status.main[63]>0){
                     damage+=this.status.main[63]
                 }
+                if(this.status.main[462]>0){
+                    damage+=this.status.main[462]
+                }
+                if(this.status.main[165]>0){
+                    damage+=this.status.main[165]
+                    this.status.main[165]--
+                }
                 if(this.status.main[352]>0){
                     damage=max(min(1,damage),damage-this.status.main[352])
                 }
@@ -5441,12 +5481,17 @@ class combatant{
                 if(this.status.main[319]>0){
                     damage*=0.25
                 }
+                let totalLck=0
+                if(this.status.main[461]>0){
+                    totalLck+=this.status.main[461]
+                }
+                if(totalLck>0){
+                    damage*=1+totalLck*0.1
+                }else if(totalLck<0){
+                    damage*=max(0.2,1+totalLck*0.1)
+                }
                 if(this.status.main[324]>0&&damage>0&&damage<10){
                     damage=10
-                }
-                if(this.status.main[165]>0){
-                    damage+=this.status.main[165]
-                    this.status.main[165]--
                 }
                 if(this.status.main[25]>0&&damage>1){
                     damage=1
@@ -5677,6 +5722,9 @@ class combatant{
                     if(userCombatant.status.main[370]>0){
                         this.statusEffect('Damage Taken Up',userCombatant.status.main[370])
                     }
+                    if(userCombatant.status.main[463]>0){
+                        this.statusEffect('Lock On',userCombatant.status.main[463])
+                    }
                     if(this.battle.relicManager.hasRelic(246,user)&&damage>=25){
                         this.battle.cardManagers[user].draw(this.battle.relicManager.active[246][user+1])
                     }
@@ -5719,211 +5767,213 @@ class combatant{
                         userCombatant.heal(damage)
                     }
                     if(this.life>0){
-                        if(this.battle.turnManager.turns.length==0){
-                            if(this.status.main[1]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[0].target=[user]
-                                this.battle.turnManager.turns[0].auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,1,[this.status.main[1]],this.id,false))
-                            }
-                            if(this.status.main[36]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
-                                this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
-                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id,false))
-                            }
-                            if(this.status.main[38]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turnsBack[0].target=[user]
-                                this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
-                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,3,[0],this.id,false))
-                            }
-                            if(this.status.main[39]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[0].target=[user]
-                                this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,58,[this.status.main[39]],this.id,false))
-                            }
-                            if(this.status.main[47]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
-                                this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[47]],this.id,false))
-                            }
-                            if(this.status.main[73]>0&&distance<=2){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[0].target=[user]
-                                this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,6,[this.status.main[73]],this.id,false))
-                            }
-                            if(this.status.main[92]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[0].target=[user]
-                                this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,122,[0],this.id,false))
-                            }
-                            if(this.status.main[93]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[0].target=[user]
-                                this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,121,[0],this.id,false))
-                            }
-                            if(this.status.main[94]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[0].target=[user]
-                                this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,226,[this.status.main[94]],this.id,false))
-                            }
-                            if(this.status.main[102]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[0].target=[user]
-                                this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,227,[this.status.main[102]],this.id,false))
-                            }
-                            if(this.status.main[106]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[0].target=[user]
-                                this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,2,[this.status.main[106]],this.id,false))
-                            }
-                            if(this.status.main[147]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[0].target=[user]
-                                this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,242,[this.status.main[147]],this.id,false))
-                            }
-                            if(this.status.main[206]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[0].target=[user]
-                                this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,246,[this.status.main[206]],this.id,false))
-                            }
-                            if(this.status.main[266]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
-                                this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
-                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[266]],this.id,false))
-                                this.status.main[266]=0
-                            }
-                            if(this.status.main[272]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
-                                this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,31,[this.status.main[272]],this.id,false))
-                            }
-                            if(this.status.main[360]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[0].target=[user]
-                                this.battle.turnManager.turns[0].auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,1,[this.status.main[360]],this.id,false))
-                                this.status.main[360]=0
-                            }
-                            if(this.status.main[386]>0&&distance<=6&&this.ammo>0){
-                                this.ammo--
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[0].target=[user]
-                                this.battle.turnManager.turns[0].auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,362,[this.status.main[386]],this.id,false))
-                            }
-                            if(this.status.main[387]>0){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[0].target=[user]
-                                this.battle.turnManager.turns[0].auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,363,[this.status.main[387]],this.id,false))
-                            }
-                        }else{
-                            if(this.status.main[1]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[1]],this.id,false))
-                            }
-                            if(this.status.main[36]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
-                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id,false))
-                            }
-                            if(this.status.main[38]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,3,[0],this.id,false))
-                            }
-                            if(this.status.main[39]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,58,[this.status.main[39]],this.id,false))
-                            }
-                            if(this.status.main[47]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
-                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[47]],this.id,false))
-                            }
-                            if(this.status.main[73]>0&&distance<=2){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,6,[this.status.main[73]],this.id,false))
-                            }
-                            if(this.status.main[92]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,122,[0],this.id,false))
-                            }
-                            if(this.status.main[93]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,121,[0],this.id,false))
-                            }
-                            if(this.status.main[94]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,226,[this.status.main[94]],this.id,false))
-                            }
-                            if(this.status.main[102]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,227,[this.status.main[102]],this.id,false))
-                            }
-                            if(this.status.main[106]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,2,[this.status.main[106]],this.id,false))
-                            }
-                            if(this.status.main[147]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,242,[this.status.main[147]],this.id,false))
-                            }
-                            if(this.status.main[206]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,246,[this.status.main[206]],this.id,false))
-                            }
-                            if(this.status.main[266]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
-                                this.battle.turnManager.turnsBack.splice(2,0,new turn(0,this.battle,1,[this.status.main[266]],this.id,false))
-                                this.status.main[266]=0
-                            }
-                            if(this.status.main[272]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
-                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,31,[this.status.main[272]],this.id,false))
-                            }
-                            if(this.status.main[360]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[360]],this.id,false))
-                                this.status.main[360]=0
-                            }
-                            if(this.status.main[386]>0&&distance<=6&&this.ammo>0){
-                                this.ammo--
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,362,[this.status.main[386]],this.id,false))
-                            }
-                            if(this.status.main[387]>0){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,363,[this.status.main[387]],this.id,false))
+                        if(this.status.main[32]<=0){
+                            if(this.battle.turnManager.turns.length==0){
+                                if(this.status.main[1]>0&&distance<=1){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.turns[0].auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,1,[this.status.main[1]],this.id,false))
+                                }
+                                if(this.status.main[36]>0&&distance<=1){
+                                    this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id,false))
+                                }
+                                if(this.status.main[38]>0&&distance<=1){
+                                    this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turnsBack[0].target=[user]
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,3,[0],this.id,false))
+                                }
+                                if(this.status.main[39]>0&&distance<=1){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,58,[this.status.main[39]],this.id,false))
+                                }
+                                if(this.status.main[47]>0&&distance<=1){
+                                    this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[47]],this.id,false))
+                                }
+                                if(this.status.main[73]>0&&distance<=2){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,6,[this.status.main[73]],this.id,false))
+                                }
+                                if(this.status.main[92]>0&&distance<=1){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,122,[0],this.id,false))
+                                }
+                                if(this.status.main[93]>0&&distance<=1){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,121,[0],this.id,false))
+                                }
+                                if(this.status.main[94]>0&&distance<=1){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,226,[this.status.main[94]],this.id,false))
+                                }
+                                if(this.status.main[102]>0&&distance<=1){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,227,[this.status.main[102]],this.id,false))
+                                }
+                                if(this.status.main[106]>0&&distance<=1){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,2,[this.status.main[106]],this.id,false))
+                                }
+                                if(this.status.main[147]>0&&distance<=1){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,242,[this.status.main[147]],this.id,false))
+                                }
+                                if(this.status.main[206]>0&&distance<=1){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,246,[this.status.main[206]],this.id,false))
+                                }
+                                if(this.status.main[266]>0&&distance<=1){
+                                    this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[266]],this.id,false))
+                                    this.status.main[266]=0
+                                }
+                                if(this.status.main[272]>0&&distance<=1){
+                                    this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,31,[this.status.main[272]],this.id,false))
+                                }
+                                if(this.status.main[360]>0&&distance<=1){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.turns[0].auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,1,[this.status.main[360]],this.id,false))
+                                    this.status.main[360]=0
+                                }
+                                if(this.status.main[386]>0&&distance<=6&&this.ammo>0){
+                                    this.ammo--
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.turns[0].auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,362,[this.status.main[386]],this.id,false))
+                                }
+                                if(this.status.main[387]>0){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.turns[0].auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,363,[this.status.main[387]],this.id,false))
+                                }
+                            }else{
+                                if(this.status.main[1]>0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[1]],this.id,false))
+                                }
+                                if(this.status.main[36]>0&&distance<=1){
+                                    this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id,false))
+                                }
+                                if(this.status.main[38]>0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,3,[0],this.id,false))
+                                }
+                                if(this.status.main[39]>0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,58,[this.status.main[39]],this.id,false))
+                                }
+                                if(this.status.main[47]>0&&distance<=1){
+                                    this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[47]],this.id,false))
+                                }
+                                if(this.status.main[73]>0&&distance<=2){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,6,[this.status.main[73]],this.id,false))
+                                }
+                                if(this.status.main[92]>0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,122,[0],this.id,false))
+                                }
+                                if(this.status.main[93]>0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,121,[0],this.id,false))
+                                }
+                                if(this.status.main[94]>0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,226,[this.status.main[94]],this.id,false))
+                                }
+                                if(this.status.main[102]>0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,227,[this.status.main[102]],this.id,false))
+                                }
+                                if(this.status.main[106]>0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,2,[this.status.main[106]],this.id,false))
+                                }
+                                if(this.status.main[147]>0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,242,[this.status.main[147]],this.id,false))
+                                }
+                                if(this.status.main[206]>0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,246,[this.status.main[206]],this.id,false))
+                                }
+                                if(this.status.main[266]>0&&distance<=1){
+                                    this.battle.turnManager.turnsBack.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                    this.battle.turnManager.turnsBack.splice(2,0,new turn(0,this.battle,1,[this.status.main[266]],this.id,false))
+                                    this.status.main[266]=0
+                                }
+                                if(this.status.main[272]>0&&distance<=1){
+                                    this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,31,[this.status.main[272]],this.id,false))
+                                }
+                                if(this.status.main[360]>0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[360]],this.id,false))
+                                    this.status.main[360]=0
+                                }
+                                if(this.status.main[386]>0&&distance<=6&&this.ammo>0){
+                                    this.ammo--
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,362,[this.status.main[386]],this.id,false))
+                                }
+                                if(this.status.main[387]>0){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,363,[this.status.main[387]],this.id,false))
+                                }
                             }
                         }
                         if(this.battle.relicManager.hasRelic(61,this.id)){
@@ -6987,8 +7037,13 @@ class combatant{
                 this.status.next[a]=0
             }
         }
-        if(this.stance==5){
-            this.stance=0
+        switch(this.stance){
+            case 5:
+                this.stance=0
+            break
+            case 6:
+                this.battle.loseEnergy(1,this.id)
+            break
         }
         if(this.battle.modded(28)&&this.team==0&&floor(random(0,4))==0){
             this.addBlock(20)
@@ -7110,7 +7165,7 @@ class combatant{
     startAnimation(type){
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
-            case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Ume':
+            case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Sukuna': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -7169,8 +7224,8 @@ class combatant{
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
                     break
-                    case 2: case 4: case 6: case 7: case 16: case 17: case 19: case 25: case 26: case 32:
-                    case 41:
+                    case 1: case 2: case 4: case 6: case 7: case 16: case 17: case 19: case 25: case 26:
+                    case 32: case 41:
                         this.animSet.loop=0
                     break
                     case 5:
@@ -7179,7 +7234,7 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Bowler Duck':
             case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Slimoid': case 'Big Slimoid':
             case 'Modicum': case 'Rock Golem': case 'Shield Particle':  case 'Bush Thing': case 'Fireball': case 'Fungling': case 'Bee': case 'Pixie': case 'Darkblot': case 'Lead Brick':  case 'Golden Duck':
                 switch(type){
@@ -7187,7 +7242,7 @@ class combatant{
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
                     break
-                    case 2: case 3: case 4: case 6: case 7: case 10:
+                    case 1: case 2: case 3: case 4: case 6: case 7: case 10:
                         this.animSet.loop=0
                     break
                 }
@@ -7218,7 +7273,7 @@ class combatant{
     runAnimation(rate,type){
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
-            case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Ume':
+            case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Sukuna': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -7723,13 +7778,20 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck':  case 'Golden Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
                         for(let g=0;g<2;g++){
                             this.spin.legs[g].top=(-90+lsin((this.animSet.loop+this.animSet.flip)*180)*75)*(g*2-1)
                             this.spin.arms[g].top=(-90+lsin((this.animSet.loop+this.animSet.flip)*180)*60)*(g*2-1)
+                        }
+                    break
+                    case 1:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.spin.arms[g].top=(90-abs(lsin(this.animSet.loop*180)*36))*(g*2-1)
+                            this.anim.arms[g].top=54+abs(lsin(this.animSet.loop*180))*12
                         }
                     break
                     case 2:
@@ -8496,7 +8558,7 @@ class combatant{
                         colors=[this.flashColor(this.color.dress.sleeveHighlight),this.flashColor(this.color.dress.sleeve),this.flashColor(this.color.dress.dot)]
                         dir=atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
                         this.layer.noStroke()
-                        this.layer.fill(colors[0][0],colors[0][1],colors[0][2],this.fade*this.fades.dress.sleeve)
+                        this.layer.fill(...colors[0],this.fade*this.fades.dress.sleeve)
                         this.layer.quad(
                             this.graphics.arms[key].top.x*0.5+this.graphics.arms[key].middle.x*0.5+3.6*sin(dir+90),
                             this.graphics.arms[key].top.y*0.5+this.graphics.arms[key].middle.y*0.5+3.6*cos(dir+90),
@@ -8515,7 +8577,7 @@ class combatant{
                         this.layer.ellipse(0,0,7.68,1)
                         this.layer.pop()
 
-                        this.layer.fill(colors[1][0],colors[1][1],colors[1][2],this.fade*this.fades.dress.sleeve)
+                        this.layer.fill(...colors[1],this.fade*this.fades.dress.sleeve)
                         this.layer.quad(
                             this.graphics.arms[key].middle.x-2.2*sin(dir+90),
                             this.graphics.arms[key].middle.y-2.2*cos(dir+90),
@@ -8537,7 +8599,7 @@ class combatant{
                         this.layer.push()
                         this.layer.translate(this.graphics.arms[key].top.x*0.525+this.graphics.arms[key].middle.x*0.475,this.graphics.arms[key].top.y*0.525+this.graphics.arms[key].middle.y*0.475)
                         this.layer.rotate(-dir)
-                        this.layer.stroke(colors[2][0],colors[2][1],colors[2][2],this.fade*this.fades.dress.sleeve)
+                        this.layer.stroke(...colors[2],this.fade*this.fades.dress.sleeve)
                         this.layer.strokeWeight(0.4)
                         for(let a=0,la=6;a<la;a++){
                             this.layer.point(3.72*lcos(a*30+15),1.19*lsin(a*30+15))
@@ -8600,7 +8662,7 @@ class combatant{
                         colors=[this.flashColor(this.color.dress.sleeveHighlight),this.flashColor(this.color.dress.sleeve),this.flashColor(this.color.dress.dot)]
                         dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.noStroke()
-                        this.layer.fill(colors[0][0],colors[0][1],colors[0][2],this.fade*this.fades.dress.sleeve)
+                        this.layer.fill(...colors[0],this.fade*this.fades.dress.sleeve)
                         this.layer.quad(
                             this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25+6*sin(dir+90),
                             this.graphics.arms[key].bottom.y*0.75+this.graphics.arms[key].middle.y*0.25+6*cos(dir+90),
@@ -8619,7 +8681,7 @@ class combatant{
                         this.layer.ellipse(0,0,12.48,1)
                         this.layer.pop()
 
-                        this.layer.fill(colors[1][0],colors[1][1],colors[1][2],this.fade*this.fades.dress.sleeve)
+                        this.layer.fill(...colors[1],this.fade*this.fades.dress.sleeve)
                         this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4.4)
                         this.layer.quad(
                             this.graphics.arms[key].middle.x-2.2*sin(dir+90),
@@ -8642,7 +8704,7 @@ class combatant{
                         this.layer.push()
                         this.layer.translate(this.graphics.arms[key].bottom.x*0.775+this.graphics.arms[key].middle.x*0.225,this.graphics.arms[key].bottom.y*0.775+this.graphics.arms[key].middle.y*0.225)
                         this.layer.rotate(-dir)
-                        this.layer.stroke(colors[2][0],colors[2][1],colors[2][2],this.fade*this.fades.dress.sleeve)
+                        this.layer.stroke(...colors[2],this.fade*this.fades.dress.sleeve)
                         this.layer.strokeWeight(0.4)
                         for(let a=0,la=9;a<la;a++){
                             this.layer.point(6.12*lcos(a*20+10),-2.04*lsin(a*20+10))
@@ -8746,7 +8808,7 @@ class combatant{
             case 'Billy Beatup':
                 switch(type){
                     case 1:
-                        this.layer.stroke(this.color.band[0],this.color.band[1],this.color.band[2],this.fade*this.fades.band)
+                        this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1)
                         this.layer.line(
                             this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
@@ -8759,7 +8821,7 @@ class combatant{
             case 'Lunar Shard': case 'Solar Shard':
                 switch(type){
                     case 1:
-                        this.layer.stroke(this.color.band[0],this.color.band[1],this.color.band[2],this.fade*this.fades.band)
+                        this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(2)
                         this.layer.line(
                             this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.85*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
@@ -8772,7 +8834,7 @@ class combatant{
             case 'Coffee Commander':
                 switch(type){
                     case 1:
-                        this.layer.stroke(this.color.band[0],this.color.band[1],this.color.band[2],this.fade*this.fades.band)
+                        this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1.5)
                         this.layer.line(
                             this.graphics.arms[key].middle.x*0.2+this.graphics.arms[key].bottom.x*0.8+1.8875*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
@@ -8873,7 +8935,7 @@ class combatant{
             case 'Billy Beatup':
                 switch(type){
                     case 1:
-                        this.layer.stroke(this.color.band[0],this.color.band[1],this.color.band[2],this.fade*this.fades.band)
+                        this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1.5)
                         this.layer.line(
                             this.graphics.arms[key].middle.x*0.35+this.graphics.arms[key].bottom.x*0.65+1.9*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
@@ -8957,7 +9019,7 @@ class combatant{
                         this.layer.pop()
                     break
                     case 1:
-                        this.layer.stroke(this.color.band[0],this.color.band[1],this.color.band[2],this.fade*this.fades.band)
+                        this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1.5)
                         this.layer.line(
                             this.graphics.arms[key].middle.x*0.35+this.graphics.arms[key].bottom.x*0.65+1.8875*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
@@ -8990,7 +9052,7 @@ class combatant{
                         this.layer.pop()
                     break
                     case 1:
-                        this.layer.stroke(this.color.band[0],this.color.band[1],this.color.band[2],this.fade*this.fades.band)
+                        this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1)
                         this.layer.line(
                             this.graphics.arms[key].middle.x*0.275+this.graphics.arms[key].bottom.x*0.725+1.9*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
@@ -9046,7 +9108,7 @@ class combatant{
             case 'Boss1':
                 switch(type){
                     case 1:
-                        this.layer.stroke(this.color.band[0],this.color.band[1],this.color.band[2],this.fade*this.fades.band)
+                        this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1.2)
                         this.layer.line(
                             this.graphics.arms[key].middle.x*0.375+this.graphics.arms[key].bottom.x*0.625+1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
@@ -9109,7 +9171,7 @@ class combatant{
             case 'Crusader':
                 switch(type){
                     case 1:
-                        this.layer.stroke(this.color.band[0],this.color.band[1],this.color.band[2],this.fade*this.fades.band)
+                        this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1)
                         this.layer.line(
                             this.graphics.arms[key].middle.x*0.3+this.graphics.arms[key].bottom.x*0.7+1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
@@ -9134,7 +9196,7 @@ class combatant{
                         this.layer.noStroke()
                         for(let a=0,la=10;a<la;a++){
                             let merge=mergeColor([192,115,110],[228,222,215],a/la)
-                            this.layer.fill(merge[0],merge[1],merge[2],this.fade)
+                            this.layer.fill(...merge,this.fade)
                             pentagon(this.layer,-2*(1-a/la),0,-2*(1-a/la),-45,0,-60,2*(1-a/la),-45,2*(1-a/la),0)
                         }
                         this.layer.fill(98,85,82)
@@ -9156,18 +9218,18 @@ class combatant{
             case 0:
                 this.layer.noFill()
                 if(this.anim.eyeStyle[key]==6&&this.anim.eye[key]>0){
-                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*4,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2)
-                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2+this.anim.eye[key]*2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2)
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2+this.anim.eye[key]*4,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2+this.anim.eye[key]*2)
                 }else if(this.anim.eyeStyle[key]==5){
-                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((6-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     if(this.anim.eye[key]==0){
                         this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
@@ -9176,7 +9238,7 @@ class combatant{
                         this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
                         this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2)
                     }
-                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((6-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     if(this.anim.eye[key]==0){
                         this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2)
@@ -9186,40 +9248,40 @@ class combatant{
                         this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
                     }
                     if(this.anim.eye[key]==0&&constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1)>0){
-                        this.layer.stroke(this.color.eye.glow[0],this.color.eye.glow[1],this.color.eye.glow[2],this.fade*this.fades.eye[key]/4)
+                        this.layer.stroke(...this.color.eye.glow,this.fade*this.fades.eye[key]/4)
                         this.layer.strokeWeight(0.6)
                         this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*(this.parts.minor+0.5),this.parts.eyeLevel,2.7*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),2.7*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-72,-12)
                         if(this.anim.eyeStyle[key]==4){
-                            this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                            this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                             this.layer.strokeWeight(0.5)
                             this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel,10*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),10*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-165+key*90,-105+key*90)
                         }
                     }
                 }else if(this.anim.eyeStyle[key]==3&&this.anim.eye[key]>0){
-                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
-                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2+this.anim.eye[key]*2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2)
                 }else if(this.anim.eyeStyle[key]==2&&this.anim.eye[key]>0){
-                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel-1*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],30,150)
-                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5),this.parts.eyeLevel-1*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],30,150)
                 }else if(this.anim.eyeStyle[key]==1&&this.anim.eye[key]>0){                    
-                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
-                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5),this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
                 }else{
-                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     if(this.anim.eye[key]==0){
                         this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
@@ -9228,7 +9290,7 @@ class combatant{
                         this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
                         this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2)
                     }
-                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     if(this.anim.eye[key]==0){
                         this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2)
@@ -9238,11 +9300,11 @@ class combatant{
                         this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
                     }
                     if(this.anim.eye[key]==0&&constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1)>0){
-                        this.layer.stroke(this.color.eye.glow[0],this.color.eye.glow[1],this.color.eye.glow[2],this.fade*this.fades.eye[key]/4)
+                        this.layer.stroke(...this.color.eye.glow,this.fade*this.fades.eye[key]/4)
                         this.layer.strokeWeight(0.6)
                         this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*(this.parts.minor+0.5),this.parts.eyeLevel,1.8*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),1.8*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-72,-12)
                         if(this.anim.eyeStyle[key]==4){
-                            this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                            this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                             this.layer.strokeWeight(0.5)
                             this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel,6.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),6.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-165+key*90,-105+key*90)
                         }
@@ -9265,30 +9327,30 @@ class combatant{
             case 2:
                 this.layer.noFill()
                 if(this.anim.eyeStyle[key]==3&&this.anim.eye[key]>0){
-                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((2.5-this.anim.eye[key]*1.75)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
-                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((2-this.anim.eye[key]*1.25)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2+this.anim.eye[key]*2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2)
                 }else if(this.anim.eyeStyle[key]==2&&this.anim.eye[key]>0){
-                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((2.5-this.anim.eye[key]*1.75)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel-1*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],30,150)
-                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((2-this.anim.eye[key]*1.25)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5),this.parts.eyeLevel-1*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],30,150)
                 }else if(this.anim.eyeStyle[key]==1&&this.anim.eye[key]>0){                    
-                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((2.5-this.anim.eye[key]*1.75)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
-                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((2-this.anim.eye[key]*1.25)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5),this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
                 }else{
-                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((2.5-this.anim.eye[key]*1.75)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     if(this.anim.eye[key]==0){
                         this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
@@ -9299,7 +9361,7 @@ class combatant{
                         this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
                         this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2)
                     }
-                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((2-this.anim.eye[key]*1.25)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     if(this.anim.eye[key]==0){
                         this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2)
@@ -9311,11 +9373,11 @@ class combatant{
                         this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5),this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
                     }
                     if(this.anim.eye[key]==0&&constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1)>0){
-                        this.layer.stroke(this.color.eye.glow[0],this.color.eye.glow[1],this.color.eye.glow[2],this.fade*this.fades.eye[key]/4)
+                        this.layer.stroke(...this.color.eye.glow,this.fade*this.fades.eye[key]/4)
                         this.layer.strokeWeight(0.4)
                         this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*(this.parts.minor+0.5),this.parts.eyeLevel,1.2*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),1.2*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-72,-12)
                         if(this.anim.eyeStyle[key]==4){
-                            this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                            this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                             this.layer.strokeWeight(0.3)
                             this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel,4.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),4.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-165+key*90,-105+key*90)
                         }
@@ -9408,18 +9470,26 @@ class combatant{
             this.layer.noStroke()
             for(let a=0,la=10;a<la;a++){
                 this.layer.fill(255,200*a/la,200*a/la,this.fade*this.infoAnim.balance)
-                this.layer.rect(-18+a*4,-8,4,5)
+                if(a==0){
+                    this.layer.rect(-17+a*4,-8.5,2,6)
+                    this.layer.rect(-18+a*4,-8.5,4,6,2)
+                }else if(a==9){
+                    this.layer.rect(-19+a*4,-8.5,2,6)
+                    this.layer.rect(-18+a*4,-8.5,4,6,2)
+                }else{
+                    this.layer.rect(-18+a*4,-8.5,4,6)
+                }
             }
             this.layer.stroke(0,this.fade*this.infoAnim.balance)
             this.layer.strokeWeight(1)
             this.layer.noFill()
-            this.layer.rect(0,-8,40,5,2)
+            this.layer.rect(0,-8.5,40,6,3)
             this.layer.stroke(255,this.fade*this.infoAnim.balance)
-            this.layer.line(-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),-11,-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),-5)
-            this.layer.fill(255,this.fade*this.infoAnim.balance)
+            this.layer.line(-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),-12,-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),-5)
+            this.layer.fill(0,this.fade*this.infoAnim.balance)
             this.layer.noStroke()
             this.layer.textSize(5)
-            this.layer.text(this.balance,0,-8)
+            this.layer.text(this.balance,0,-8.5)
         }
         if(this.name=='Daiyousei'&&!this.graphic&&this.team>0){
             this.layer.noFill()
@@ -9705,6 +9775,9 @@ class combatant{
                             }
                         }
                     break
+                }
+                if(this.ally>=0){
+                    this.battle.combatantManager.purgeAlly(this.ally,this.type)
                 }
             }
         }else{
@@ -10081,7 +10154,7 @@ class combatant{
             }
         }
         switch(this.name){
-            case 'Lira': case 'Setsuna': case 'Sanae': case 'Ume':
+            case 'Lira': case 'Setsuna': case 'Sanae': case 'Sukuna': case 'Ume':
                 this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
             break
             case 'Sakura':
@@ -10132,6 +10205,13 @@ class combatant{
             case 'Eternal Judge':
                 for(let a=0,la=this.sins.length;a<la;a++){
                     this.infoAnim.sins[a]=smoothAnim(this.infoAnim.sins[a],this.sins[a]>=0,0,1,5)
+                    let marker=[0,4,8,2,6,9,1,5,10,10,3,7][a]/11
+                    if(this.time%22==marker*22){
+                        let spin=this.time*(1+marker)*(a%2*2-1)+360*marker
+                        this.battle.particleManager.particlesBack.push(new particle(
+                            this.layer,this.position.x+lsin(spin)*45,this.position.y-45+lcos(this.time*2+360*marker)*10+lcos(-this.time+360*marker)*30+a*4-20,112,
+                            [[100-50*this.sins[a]%2,0,50*floor(this.sins[a]/2)]]))
+                    }
                 }
             break
         }

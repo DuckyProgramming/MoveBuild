@@ -568,10 +568,10 @@ class tile{
                 break
                 case 25:
                     let color=[[200,0,255],[0,100,200],[0,150,255],[255,150,50],[255,75,255],[50,255,50],[125,255,125],[255,255,100],[180,180,180],[255,100,100]][floor((game.timer+this.tilePosition.x*64+this.tilePosition.y*27)/15)%10]
-                    this.layer.fill(color[0],color[1],color[2],this.fade*this.anim.part[a])
+                    this.layer.fill(...color,this.fade*this.anim.part[a])
                     this.layer.ellipse(0,0,8)
                     color=[[200,0,255],[0,100,200],[0,150,255],[255,150,50],[255,75,255],[50,255,50],[125,255,125],[255,255,100],[180,180,180],[255,100,100]][floor((game.timer+this.tilePosition.x*64+this.tilePosition.y*27)/15+5)%10]
-                    this.layer.fill(color[0],color[1],color[2],this.fade*this.anim.part[a])
+                    this.layer.fill(...color,this.fade*this.anim.part[a])
                     this.layer.quad(0,-3,-3,0,0,3,3,0)
                 break
                 case 26:

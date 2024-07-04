@@ -25,7 +25,7 @@ class pack{
                         a==0&&this.battle.player[this.player]==1&&!variants.mtg&&!variants.junk&&!variants.ultraprism&&!variants.prism?findName(['Security\nPack','Sapper\nPack','Infantry\nPack'][this.id],types.card):list[group[a]][index],
                         variants.cursed?1:0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[group[a]][index]].list<0?0:types.card[list[group[a]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:this.battle.player[this.player],a+this.id*4+this.player*12))
                     let roll=floor(random(0,180))
-                    this.cards[a].edition=roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                    this.cards[this.cards.length-1].edition=roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
                 }
             }
         }

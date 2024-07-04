@@ -1006,14 +1006,11 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(3,-1,3,1,4.5,0)
         break
         case 117:
-            layer.stroke(200,0,0,fade)
-            layer.strokeWeight(2)
-            layer.point(0,0)
-            layer.ellipse(0,0,6,6)
-            layer.line(0,-3,0,-6)
-            layer.line(-3,0,-6,0)
-            layer.line(0,3,0,6)
-            layer.line(3,0,6,0)
+            layer.stroke(150,225,50,fade)
+            layer.strokeWeight(1)
+            regPoly(layer,0,0,6,5,5,30)
+            layer.line(-2.5,-sqrt(3)*2.5,-2.5,sqrt(3)*2.5)
+            layer.line(2.5,-sqrt(3)*2.5,2.5,sqrt(3)*2.5)
         break
         case 118:
             layer.fill(0,150,255,fade)
@@ -4313,9 +4310,35 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.quad(0,-1,3,2,0,5,-3,2)
         break
         case 461:
-            layer.fill(255,50,50,fade)
-            layer.triangle(-2,6,-4,-3,0,-3)
-            layer.ellipse(3,0,4,4)
+            layer.stroke(225,75,25,fade)
+            layer.strokeWeight(1.5)
+            layer.point(0,0)
+            layer.ellipse(0,0,6,6)
+            layer.line(0,-3,0,-5)
+            layer.line(-3,0,-5,0)
+            layer.line(0,3,0,5)
+            layer.line(3,0,5,0)
+        break
+        case 462:
+            layer.fill(0,150,255,fade)
+            layer.triangle(2,6,4,-3,0,-3)
+            layer.rect(-3,2,3,3)
+            layer.quad(-4.5,-2,-3,-0.5,-1.5,-2,-3,-3.5)
+        break
+        case 463:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,5,5,3,3,0)
+            layer.stroke(225,75,25,fade)
+            layer.strokeWeight(1.5)
+            layer.point(0,0)
+            layer.ellipse(0,0,6,6)
+            layer.line(0,-3,0,-5)
+            layer.line(-3,0,-5,0)
+            layer.line(0,3,0,5)
+            layer.line(3,0,5,0)
+            layer.noStroke()
+            layer.fill(255,125,25,fade)
+            layer.ellipse(4,4,3)
         break
 
     }
@@ -4394,8 +4417,8 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
                     layer.line(0,6,6,2)
                     layer.line(-6,2,-3,-6)
                     layer.line(0,0,-3,-6)
-                    layer.line(6,0,3,-6)
-                    layer.line(0,2,3,-6)
+                    layer.line(6,2,3,-6)
+                    layer.line(0,0,3,-6)
                 break
                 case 8:
                     layer.noFill()
