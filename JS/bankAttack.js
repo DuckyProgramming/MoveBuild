@@ -1880,7 +1880,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 57: case 1492: case 1773: case 1982: case 2028: case 2282: case 3344: case 3560:
+        case 57: case 1492: case 1773: case 1982: case 2028: case 2282: case 3344: case 3560: case 3640:
             if(this.timer==1){
                 this.userCombatant.startAnimation(15)
             }
@@ -1909,6 +1909,10 @@ attack.prototype.update=function(){
                     case 3344:
                         this.userCombatant.addBlock(this.effect[0])
                         this.userCombatant.takeDamage(this.effect[1]*this.userCombatant.diceRoll(1,6),this.user,1)
+                    break
+                    case 3640:
+                        this.targetCombatant.block=0
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user,1)
@@ -8377,6 +8381,45 @@ attack.prototype.update=function(){
                 this.userManager.draw(this.effect[1])
                 this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,game.playerNumber+1)
             }else if(this.timer>=20){
+                this.remove=true
+            }
+        break
+        case 3632:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(17)
+            }
+            if(this.timer<=10||this.timer>20&&this.timer<=30){
+                this.userCombatant.runAnimation(1/20,17)
+            }
+            if(this.timer==15){
+                this.battle.particleManager.particles.push(new particle(this.battle.layer,
+                    this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                    this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                    123,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y-10),this.distance/15-3]))
+            }else if(this.timer==5*this.targetDistance+15){
+                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                this.userCombatant.statusEffect('Extra Turn',1)
+                this.userCombatant.statusEffect('Temporary All Cost Up Next Turn',this.effect[1])
+            }else if(this.timer>=max(30,5*this.targetDistance+25)){
+                this.remove=true
+            }
+        break
+        case 3633:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(32)
+                this.selfCall(19)
+            }
+            if(this.timer<=10||this.timer>30){
+                this.userCombatant.runAnimation(1/20,32)
+            }
+            if(this.timer==10){
+                current.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y-50,122,[30]))
+            }else if(this.timer==30){
+                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.battle.dropDrawShuffle(this.player,findName('Prismatic\nBomb',types.card),0,0)
+                }
+            }else if(this.timer>=40){
                 this.remove=true
             }
         break

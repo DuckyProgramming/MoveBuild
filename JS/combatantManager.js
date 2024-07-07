@@ -832,6 +832,11 @@ class combatantManager{
                     case 47:
                         this.combatants[a].block=0
                     break
+                    case 48:
+                        for(let b=0,lb=floor(args.length/2);b<lb;b++){
+                            this.combatants[a].statusEffect(args[b*2],args[b*2+1])
+                        }
+                    break
                 }
             }
         }

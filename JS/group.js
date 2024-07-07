@@ -797,6 +797,34 @@ class group{
             }
         }
     }
+    extremaEffect(effect,extrema){
+        switch(extrema){
+            case 0: case 1:
+                this.sortCost()
+            break
+        }
+        if((extrema==0||extrema==1)&&this.sorted.length==0){
+            return false
+        }
+        let possible=[]
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(
+                extrema==0&&this.cards[a].cost==this.sorted[0]||
+                extrema==1&&this.cards[a].cost==this.sorted[this.sorted.length-1]
+            ){
+                possible.push(a)
+            }
+        }
+        if(possible.length>0){
+            let index=possible[floor(random(0,possible.length))]
+            switch(effect){
+                case 0:
+                    this.cards[index].cost=0
+                break
+            }
+        }
+        return true
+    }
     allEffect(effect){
         let total=0
         switch(effect){
@@ -1405,6 +1433,9 @@ class group{
                 case 106:
                     this.cards[a].prismaticActivation()
                 break
+                case 107:
+                    this.copySelfInput(a)
+                break
 
             }
         }
@@ -1418,7 +1449,7 @@ class group{
     }
     allEffectArgs(effect,args){
         let total=0
-        if(effect==3||effect==10||effect==12||effect==18||effect==19){
+        if(effect==3||effect==10||effect==12||effect==18||effect==19||effect==32){
             total=0
         }else if(effect==9){
             total=args[1]
@@ -1616,11 +1647,17 @@ class group{
                 case 31:
                     this.cards[a].callAnotherDrawEffect(args[0])
                 break
+                case 32:
+                    if(this.cards[a].class!=args[0]){
+                        this.cards[a].deSize=true
+                        total++
+                    }
+                break
             }
         }
         if(effect==9){
             return args[1]-total
-        }else if(effect==10||effect==12||effect==18||effect==19){
+        }else if(effect==10||effect==12||effect==18||effect==19||effect==32){
             return total
         }
     }
@@ -2794,9 +2831,8 @@ class group{
         return possible
     }
     removeBypass(index){
-        this.removed.push(copyCard(this.cards[index]))
         this.cards[index].callRemoveEffect()
-        this.cards.splice(index,1)
+        this.send(this.battle.cardManagers[this.player].remove.cards,index,index+1,0)
         return true
     }
     removable(index){
@@ -2880,6 +2916,9 @@ class group{
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(spec.includes(25)&&userCombatant.ammo>0&&!(target[0]==46&&this.battle.attackManager.targetDistance<=1)){
             userCombatant.ammo--
+        }
+        if(effectiveCost>=0&&userCombatant.getStatus('Temporary All Cost Down')>0){
+            effectiveCost+=userCombatant.getStatus('Temporary All Cost Down'),0
         }
         if(effectiveCost>0&&userCombatant.getStatus('Skill Cost Down')>0&&cardClass==11){
             effectiveCost=max(effectiveCost-userCombatant.getStatus('Skill Cost Down'),0)
@@ -2978,6 +3017,12 @@ class group{
                     this.battle.overlayManager.overlays[7][this.player].activate()
                 }
             }
+        }
+        if(this.battle.getEnergy(this.player)<0){
+            for(let a=0,la=-this.battle.getEnergy(this.player);a<la;a++){
+                this.battle.dropDrawShuffle(this.player,findName('Burn',types.card),0,game.playerNumber+1)
+            }
+            this.battle.setEnergy(0,this.player)
         }
     }
     callAmalgums(){
@@ -3944,7 +3989,7 @@ class group{
             a--
             la--
             this.battle.cardManagers[this.player].reserve.copySelfInput(this.battle.cardManagers[this.player].reserve.cards.length-1)
-        }else if(userCombatant.getStatus('Cancel Exhaust')>0&&this.cards[a].attack!=56&&this.cards[a].attack!=180){
+        }else if(userCombatant.getStatus('Cancel Exhaust')>0&&this.cards[a].attack!=180){
             userCombatant.status.main[findList('Cancel Exhaust',userCombatant.status.name)]--
             this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1,7)
             a--

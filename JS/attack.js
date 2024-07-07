@@ -173,7 +173,7 @@ class attack{
             case 3360: case 3363: case 3364: case 3365: case 3368: case 3372: case 3373: case 3375: case 3376: case 3384: case 3386: case 3392: case 3393: case 3394: case 3398: case 3401: case 3405: case 3407: case 3411: case 3431:
             case 3433: case 3449: case 3452: case 3453: case 3455: case 3456: case 3459: case 3461: case 3463: case 3464: case 3465: case 3467: case 3469: case 3470: case 3475: case 3479: case 3485: case 3488: case 3503: case 3504:
             case 3505: case 3506: case 3509: case 3511: case 3513: case 3516: case 3519: case 3520: case 3527: case 3530: case 3532: case 3535: case 3545: case 3554: case 3558: case 3560: case 3562: case 3577: case 3579: case 3581:
-            case 3594: case 3605: case 3614: case 3615: case 3616: case 3617: case 3619: case 3620: case 3621: case 3622: case 3623:
+            case 3594: case 3605: case 3614: case 3615: case 3616: case 3617: case 3619: case 3620: case 3621: case 3622: case 3623: case 3632: case 3633: case 3640:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -4178,7 +4178,7 @@ class attack{
                         this.userCombatant.statusEffect('Retain Block',this.effect[1])
                     break
                     case 65:
-                        this.userCombatant.statusEffect('Cannot Gain Block',this.effect[1])
+                        this.userCombatant.statusEffect('Cannot Add Block',this.effect[1])
                     break
                     case 95: case 2893:
                         this.userManager.hand.exhaust(this.effect[1])
@@ -4299,7 +4299,7 @@ class attack{
                         this.battle.overlayManager.overlays[7][this.player].activate()
                     break
                     case 522:
-                        this.userManager.hand.allEffect(24)
+                        this.userCombatant.statusEffect('Retain Hand',effectiveness)
                     break
                     case 547:
                         for(let a=0,la=this.effect[1];a<la;a++){
@@ -6379,7 +6379,7 @@ class attack{
                         this.userManager.hand.allEffect(45)
                     break
                     case 1304:
-                        if(this.energy==3){
+                        if(this.energy==this.effect[0]){
                             this.userManager.hand.add(findName('Keyblade',types.card),this.level,0)
                         }
                     break
@@ -12564,7 +12564,7 @@ class attack{
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userManager.hand.add(findName('Shiv',types.card),0,0)
                         }
-                        this.userCombatant.statusEffect('Cannot Gain Block',this.effect[1])
+                        this.userCombatant.statusEffect('Cannot Add Block',this.effect[1])
                     break
                     case 2414:
                         this.userManager.addRandomAbstract(2,0,0,2,5,[4],[3,25,1])

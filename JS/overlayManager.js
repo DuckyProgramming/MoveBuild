@@ -81,20 +81,20 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,17,[0])],//dual card choice,70
                     [new overlay(this.layer,this.battle,0,2,[50])],//random edition basic, no return
                     [new overlay(this.layer,this.battle,0,2,[51])],//become colorless, no return
-                    [new overlay(this.layer,this.battle,0,2,[52,0])],//transform draw card, no return
+                    [new overlay(this.layer,this.battle,0,2,[52,0])],//transform discard card, no return
                     [new overlay(this.layer,this.battle,0,2,[53])],//make attack innate
                     [new overlay(this.layer,this.battle,0,2,[54])],//make defend innate
                     [new overlay(this.layer,this.battle,0,2,[55])],//make movement innate
                     [new overlay(this.layer,this.battle,0,2,[56])],//make power innate
                     [new overlay(this.layer,this.battle,0,2,[57])],//polychrome edition and double duplicate, no return
-                    [new overlay(this.layer,this.battle,0,2,[58,0])],//transform discard card, no return
+                    [new overlay(this.layer,this.battle,0,2,[58,0])],//transform draw card, no return
                     [new overlay(this.layer,this.battle,0,2,[59,0,0,0,0,0])],//scry, damage and block,80
                     [new overlay(this.layer,this.battle,0,2,[60,0])],//bring in draw card as multiple copies, no return
                     [new overlay(this.layer,this.battle,0,18,[])],//select combat type
                     [new overlay(this.layer,this.battle,0,3,[2])],//new card to hand and deck
                     [new overlay(this.layer,this.battle,0,2,[61])],//make power innate
                     [new overlay(this.layer,this.battle,0,2,[62])],//bring in draw card-skill, no return
-                    [new overlay(this.layer,this.battle,0,2,[63])],//bring in draw copy card, no return
+                    [new overlay(this.layer,this.battle,0,2,[63])],//bring in copy of draw card, no return
                     [new overlay(this.layer,this.battle,0,2,[64])],//foil edition, no return
                     [new overlay(this.layer,this.battle,0,2,[65])],//erratic edition, no return
                     [new overlay(this.layer,this.battle,0,2,[66])],//transform basic card, no return
@@ -108,27 +108,26 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[73,0,0,0])],//scry, block on defense
                     [new overlay(this.layer,this.battle,0,2,[4,1,3])],//remove, edition transfer
                     [new overlay(this.layer,this.battle,0,2,[7,1])],//transform card, no return
+                    [new overlay(this.layer,this.battle,0,2,[74])],//bring in discard card as free, no return,100
 
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
                 }
                 this.positionOverlays()
-                //this.priority=[51,61,82,64,41,42,24,4,16,38,17,3,26,28,10,83,35,95,6,90,91,92,93,94,98,44,71,72,48,49,87,88,96,12,0,25,1,13,36,2,15,5,32,7,18,50,30,56,57,58,67,68,69,80,97,70,63,59,33,52,53,8,86,81,65,66,46,47,73,79,34,37,19,20,21,22,23,85,29,31,40,9,99,89,14,74,75,76,77,84,62,54,11,27,39,43,55,78,45,60]
             break
             case 1:
                 this.overlays.push(
                     [new overlay(this.layer,this.battle,0,2,[24,0])],//view tier 1
                     [new overlay(this.layer,this.battle,0,2,[24,1])],//view tier 2
                     [new overlay(this.layer,this.battle,0,2,[24,2])],//view tier 3
-                    [new overlay(this.layer,this.battle,0,2,[24,3])],//view tier 4,
+                    [new overlay(this.layer,this.battle,0,2,[24,3])],//view tier 4
                     [new overlay(this.layer,this.battle,0,2,[24,4])],//view tier 5
                     [new overlay(this.layer,this.battle,0,2,[24,5])],//view tier 6
                     [new overlay(this.layer,this.battle,0,2,[24,6])],//view tier 7
                     [new overlay(this.layer,this.battle,0,2,[24,7])],//view tier 8
                     [new overlay(this.layer,this.battle,0,2,[24,8])],//view tier 9
                 )
-                //this.priority=[0,1,2,3,4,5,6,7,8]
             break
         }
         for(let a=0,la=this.overlays.length;a<la;a++){

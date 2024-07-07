@@ -5231,7 +5231,7 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2-600,layer.height*0.4+100,125,55)
 			layer.rect(layer.width/2-600,layer.height*0.6,275,75)
 			layer.rect(layer.width/2-600,layer.height*0.6+85,275,75)
-			for(let a=0,la=27;a<la;a++){
+			for(let a=0,la=30;a<la;a++){
 				layer.rect(layer.width/2-160+a%3*380,layer.height/2-la*15+45+floor(a/3)*90,350,80)
 			}
 			layer.fill(0)
@@ -5239,7 +5239,7 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2-600,layer.height*0.4+100,100,30)
 			layer.rect(layer.width/2-600,layer.height*0.6,250,50)
 			layer.rect(layer.width/2-600,layer.height*0.6+85,250,50)
-			for(let a=0,la=27;a<la;a++){
+			for(let a=0,la=30;a<la;a++){
 				layer.rect(layer.width/2-192.5+a%3*380,layer.height/2-la*15+45+floor(a/3)*90,260,55)
 				layer.rect(layer.width/2-25+a%3*380,layer.height/2-la*15+45+floor(a/3)*90,55,55)
 			}
@@ -5260,6 +5260,7 @@ function setupBackground(type,layer){
 				'SHORT MAP','SHORTER MAP','STRAIGHT MAP',
 				'PRISM','ULTRAPRISM','JUNKYARD',
 				'ALL VANISHING','SILENT CARDS','TRANSCEND MODE',
+				'ENEMY INITIATIVE','COLORSHIFT','OVERHEAT'
 			]
 			for(let a=0,la=names.length;a<la;a++){
 				layer.text(names[a],layer.width/2-192.5+a%3*380,layer.height*0.5-floor(la/3)*45+45+floor(a/3)*90)

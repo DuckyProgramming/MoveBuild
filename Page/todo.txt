@@ -1,14 +1,62 @@
 
-
-new items
-
-
+MAJOR CHANGES TO DODGE - IT NOW DECREMENTS
+rebalance cards
 
 
+new events:
 
+the shot - 5% chance to hit the shot, repeat until you hit when you get an upgrade, costs 5 currency each attempt
 
+broken road - choice
+fix the road - lose a random card, gain 35 currency
+do nothing
 
+take game console relic, but become cursed with gamer
 
+get relic - laevateinn
+vulnerable is 2 times more effective TO EVERYBODY
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
 
 
 
@@ -39,7 +87,7 @@ clean energy as an attack
 
 [liles of murder could look a lot cooler - named "spirit of the lilies"]
 
-[variant of monkeywrench]
+[pliers - damage, 2nd card in hand: apply lock on]
 
 [replace the spectral card "wraith" with something usable
 ultimately the idea of mythic cards is much worse than using ally cards]
@@ -109,7 +157,7 @@ rename existing yuyuko
 
 
 
-[Rip and Lacerate]
+[rip and lacerate - damage, if blocked, target gains 5 bruise]
 
 [forklift - builder variant of trident or harpoon, applies vulnerable]
 
@@ -123,11 +171,53 @@ rename existing yuyuko
 
 
 
-[lunatic dream]
+[rain of insanity - deal 2X splash damage for every card played this turn (make a cool animation)]
 
-[celestial flight]
+[terriball - junkyard golf ball]
 
 [swap out but discard UP TO 2]
+
+[thorny rose - start next combat in elemental form]
+
+[overaggressive - curse, take 10 damage if you don't attack this turn]
+
+[pentacolor talisman but different]
+
+
+
+[pizza slice]
+
+overreaching wrath - deal triple but take triple in wrath, rare power
+
+wingbeats - add 20 block, apply 1 weak in all directions, apply 6 poison to all enemies if you have an ACTIVE ally in hand
+
+popsphere - block, exhaust a random card from discard
+
+bomblet generator - deal 6 splash damage 2 tiles away in a random direction 3 times
+
+long fuse - deal 9 damage, every 3rd time played does splash instead
+
+
+
+[4th of july card]
+
+reorganization - swap 2 random enemy locations
+
+[shivering nightmare could have a cool animation]
+
+[that meteor card still]
+
+[the sanae attack that makes a grid]
+
+[exploding blue sanae star]
+
+
+
+[furious purification rod]
+
+[]
+
+[]
 
 []
 
@@ -152,7 +242,7 @@ LISTING GROUP 44 (SUKUNA)
 
 [sea of sky - variant of sea of trees]
 
-[castle keep - block and a special retain]
+[magic fortress - block and a special retain]
 
 
 
@@ -164,7 +254,7 @@ LISTING GROUP 44 (SUKUNA)
 
 [defense, adds more when you draw a card]
 
-[pacing - retain, gain 1 energy, draw 1 card, lose 1 energy next turn]
+[pacing - retain, gain 1 energy, add 6 block, lose 1 energy next turn]
 
 [pinpoint]
 
@@ -192,33 +282,19 @@ LISTING GROUP 44 (SUKUNA)
 
 [miracle of simplicity - double the effects of all basic cards]
 
-[]
+[sunny's spellcard]
 
-[]
-
-
-
-[]
-
-[]
-
-[]
-
-[]
-
-[]
-
-[]
+[inclined plane]
 
 
 
-[]
+[bucket bash - 2 cost 13 damage 13 block, if first card played this turn apply 1 lock on]
 
-[]
+[wind god girl - ability card]
 
-[]
+[refresher - add 16 block, when drawn shuffle draw pile (doesn't seem useful?)]
 
-[]
+[something like impale]
 
 []
 
@@ -237,9 +313,7 @@ dodge
 
 lock on
 
-holding cards in prison?
-||
-[P]
+[P]-ability cards
 
 
 

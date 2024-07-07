@@ -136,6 +136,7 @@ class itemManager{
         this.battle.cardManagers[player].hand.allEffect(70)
         let effectiveness=this.effectiveness[player]*this.combatEffectiveness[player]*this.tempEffectiveness[player]
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)]
+        let holdTempEffectiveness=1
         if(userCombatant.getStatus('Item Use Energy')>0){
             this.battle.addSpecificEnergy(userCombatant.getStatus('Item Use Energy'),player,6)
         }
@@ -170,10 +171,10 @@ class itemManager{
                 userCombatant.heal(15*effectiveness)
             break
             case 8:
-                this.battle.cardManagers[player].hand.callInput(6,[81,[10*effectiveness],4,[2,1,2]])
+                this.battle.cardManagers[player].hand.callInput(6,[81,[10*effectiveness],1,[2,1,2]])
             break
             case 9:
-                this.battle.cardManagers[player].hand.callInput(6,[54,[],4,[6]])
+                this.battle.cardManagers[player].hand.callInput(6,[54,[],3,[6]])
             break
             case 10:
                 userCombatant.statusEffect('Counter All',10*effectiveness)
@@ -182,7 +183,7 @@ class itemManager{
                 userCombatant.addBlock(20*effectiveness)
             break
             case 12:
-                this.battle.cardManagers[player].hand.callInput(6,[3595,[20*effectiveness],4,[2,1,3]])
+                this.battle.cardManagers[player].hand.callInput(6,[3595,[20*effectiveness],1,[2,1,3]])
             break
             case 13:
                 this.battle.cardManagers[player].allEffect(2,4)
@@ -203,7 +204,7 @@ class itemManager{
                 userCombatant.statusEffect('Temporary Dexterity',5*effectiveness)
             break
             case 19:
-                this.battle.cardManagers[player].hand.callInput(6,[83,[1],1,[2,1,6]])
+                this.battle.cardManagers[player].hand.callInput(6,[83,[effectiveness],11,[2,1,6]])
             break
             case 20:
                 this.addItemSlots(1,player)
@@ -213,13 +214,13 @@ class itemManager{
                 this.battle.overlayManager.overlays[10][player].activate([0,3,1])
             break
             case 22:
-                this.battle.cardManagers[player].hand.callInput(6,[84,[3*effectiveness],4,[2,1,3]])
+                this.battle.cardManagers[player].hand.callInput(6,[84,[3*effectiveness],11,[2,1,3]])
             break
             case 23:
-                this.battle.cardManagers[player].hand.callInput(6,[85,[3*effectiveness],4,[2,1,3]])
+                this.battle.cardManagers[player].hand.callInput(6,[85,[3*effectiveness],11,[2,1,3]])
             break
             case 24:
-                this.battle.cardManagers[player].hand.callInput(6,[86,[3*effectiveness],4,[2,1,3]])
+                this.battle.cardManagers[player].hand.callInput(6,[86,[3*effectiveness],11,[2,1,3]])
             break
             case 25:
                 this.battle.cardManagers[player].draw(3*effectiveness)
@@ -249,7 +250,7 @@ class itemManager{
             break
             case 33:
                 this.battle.overlayManager.overlays[18][player].active=true
-                this.battle.overlayManager.overlays[18][player].activate([0,3,1])
+                this.battle.overlayManager.overlays[18][player].activate()
             break
             case 34:
                 for(let a=0,la=3*effectiveness;a<la;a++){
@@ -263,7 +264,7 @@ class itemManager{
                 this.battle.cardManagers[player].draw(3*effectiveness,5)
             break
             case 37:
-                userCombatant.statusEffect('Retain Block',99)
+                userCombatant.statusEffect('Retain Block',5*effectiveness)
             break
             case 38:
                 this.battle.combatantManager.randomizeCombatants()
@@ -325,64 +326,264 @@ class itemManager{
                     this.battle.cardManagers[player].addRandomAbstract(2,0,0,0,1,[0],[3,11,0])
                 }
             break
+            case 53:
+                userCombatant.statusEffect('Double Damage',effectiveness)
+            break
+            case 54:
+                this.battle.overlayManager.overlays[40][player].active=true
+                this.battle.overlayManager.overlays[40][player].activate()
+            break
+            case 55:
+                this.battle.overlayManager.overlays[7][player].active=true
+                this.battle.overlayManager.overlays[7][player].activate()
+            break
+            case 56:
+                this.battle.overlayManager.overlays[8][player].active=true
+                this.battle.overlayManager.overlays[8][player].activate()
+            break
+            case 57:
+                for(let a=0,la=effectiveness;a<la;a++){
+                    this.battle.cardManagers[player].randomEffect(0,2,[0])
+                }
+            break
+            case 58:
+                this.battle.addSpecificEnergy(3*effectiveness,player,6)
+                this.battle.cardManagers[player].draw(5*effectiveness)
+                userCombatant.loseHealth(3*effectiveness)
+            break
+            case 59:
+                this.battle.addSpecificEnergy(5*effectiveness,player,6)
+                userCombatant.statusEffect('Retain Energy',5*effectiveness)
+            break
+            case 60:
+                current.particleManager.particles.push(new particle(this.battle.layer,userCombatant.position.x,userCombatant.position.y-50,120,[40]))
+                this.battle.combatantManager.areaAbstract(0,[30*effectiveness,userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                this.battle.combatantManager.areaAbstract(2,['Burn',2*effectiveness],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                this.battle.combatantManager.areaAbstract(2,['Freeze',2*effectiveness],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                this.battle.combatantManager.areaAbstract(2,['Shock',2*effectiveness],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+            break
+            case 61:
+                current.particleManager.particles.push(new particle(this.battle.layer,userCombatant.position.x,userCombatant.position.y-50,121,[20]))
+                this.battle.addEnergyGen(effectiveness,player)
+            break
+            case 62:
+                this.battle.addSpecificEnergy(effectiveness,player,6)
+                this.battle.cardManagers[player].draw(this.battle.cardManagers[player].hand.allEffectArgs(32,[1])*effectiveness)
+            break
+            case 63:
+                this.battle.addSpecificEnergy(effectiveness,player,6)
+                this.battle.cardManagers[player].draw(this.battle.cardManagers[player].hand.allEffectArgs(32,[2])*effectiveness)
+            break
+            case 64:
+                userCombatant.statusEffect('Cancel Exhaust',3*effectiveness)
+            break
+            case 65:
+                this.battle.overlayManager.overlays[19][player].active=true
+                this.battle.overlayManager.overlays[19][player].activate()
+            break
+            case 66:
+                this.battle.itemManager.dupeRandom(player)
+            break
+            case 67:
+                userCombatant.statusEffect('Take Half Damage',2*effectiveness)
+            break
+            case 69:
+                this.battle.overlayManager.overlays[3][player].active=true
+                this.battle.overlayManager.overlays[3][player].activate([0,1,12])
+            break
+            case 70:
+                this.battle.overlayManager.overlays[35][player].active=true
+                this.battle.overlayManager.overlays[35][player].activate([0,3,0])
+            break
+            case 71:
+                this.battle.cardManagers[player].hand.callInput(6,[3632,[24*effectiveness,1],1,[2,1,6]])
+            break
+            case 72:
+                this.battle.cardManagers[player].hand.callInput(6,[3633,[35*effectiveness,2*effectiveness],1,[2,1,6]])
+            break
+            case 73:
+                this.battle.overlayManager.overlays[43][player].active=true
+                this.battle.overlayManager.overlays[43][player].activate()
+            break
+            case 74:
+                this.battle.overlayManager.overlays[44][player].active=true
+                this.battle.overlayManager.overlays[44][player].activate()
+            break
+            case 75:
+                userCombatant.heal(userCombatant.base.life*effectiveness)
+            break
+            case 76:
+                this.battle.purchaseManager.free[player]+=3
+            break
+            case 77:
+                for(let a=0,la=effectiveness;a<la;a++){
+                    this.battle.cardManagers[player].hand.add(findName('Strike',types.card),0,this.battle.player[player])
+                    this.battle.cardManagers[player].hand.add(findName('Defend',types.card),0,this.battle.player[player])
+                    this.battle.cardManagers[player].hand.add(findName('Step',types.card),0,this.battle.player[player])
+                }
+            break
+            case 78:
+                userCombatant.statusEffect('Retain Hand',effectiveness)
+            break
+            case 79:
+                for(let a=0,la=3*effectiveness;a<la;a++){
+                    this.battle.cardManagers[player].hand.add(findName(`${floor(random(1,12))} of\nNothings`,types.card),0,0)
+                }
+            break
+            case 80:
+                let amount80=this.battle.cardManagers[player].hand.cards.length
+                this.battle.cardManagers[player].allEffect(2,2)
+                userCombatant.addBlock(5*amount80*effectiveness)
+                for(let a=0,la=effectiveness;a<la;a++){
+                    this.battle.cardManagers[player].hand.add(findName('Miracle',types.card),0,0)
+                }
+            break
+            case 81:
+                holdTempEffectiveness=max(1+effectiveness,holdTempEffectiveness)
+            break
+            case 82:
+                for(let a=0,la=effectiveness;a<la;a++){
+                    this.battle.combatantManager.tick()
+                }
+            break
+            case 83:
+                this.battle.combatantManager.allEffect(48,['Cannot Move',effectiveness])
+            break
+            case 84:
+                this.battle.combatantManager.allEffect(43,[effectiveness,userCombatant.id])
+            break
+            case 86:
+                this.battle.combatantManager.allEffect(48,['Cannot Add Block',2*effectiveness])
+            break
+            case 87:
+                for(let a=0,la=3*effectiveness;a<la;a++){
+                    this.battle.cardManagers[player].hand.add(findName('Pristine',types.card),0,0)
+                }
+            break
+            case 88:
+                this.battle.cardManagers[player].hand.extremaEffect(0,1)
+            break
+            case 89:
+                this.battle.overlayManager.overlays[100][player].active=true
+                this.battle.overlayManager.overlays[100][player].activate()
+            break
+            case 90:
+                this.battle.cardManagers[player].allEffect(1,4)
+                this.battle.cardManagers[player].allEffect(2,3)
+                this.battle.cardManagers[player].allEffect(3,4)
+                userCombatant.statusEffect('Burn',2*effectiveness)
+            break
+            case 91:
+                userCombatant.removeAllStatuses([1,3])
+            break
+            case 92:
+                this.battle.overlayManager.overlays[46][player].active=true
+                this.battle.overlayManager.overlays[46][player].activate([5*effectiveness])
+            break
+            case 93:
+                this.battle.cardManagers[player].hand.callInput(6,[342,[8*effectiveness],1,[5]])
+            break
+            case 94:
+                this.battle.cardManagers[player].allEffect(2,35)
+            break
+            case 95:
+                this.battle.cardManagers[player].hand.callInput(6,[250,[],1,[2,1,1]])
+            break
+            case 96:
+                userCombatant.statusEffect('Strength in 3 Turns',3*effectiveness)
+                userCombatant.statusEffect('Dexterity in 3 Turns',3*effectiveness)
+            break
+            case 97:
+                this.battle.addSpecificEnergy(effectiveness,player,6)
+                this.battle.cardManagers[player].draw(this.battle.cardManagers[player].hand.allEffectArgs(32,[3])*effectiveness)
+            break
+            case 98:
+                this.battle.addSpecificEnergy(effectiveness,player,6)
+                this.battle.cardManagers[player].draw(this.battle.cardManagers[player].hand.allEffectArgs(32,[4])*effectiveness)
+            break
+            case 99:
+                this.battle.addSpecificEnergy(effectiveness,player,6)
+                this.battle.cardManagers[player].draw(this.battle.cardManagers[player].hand.allEffectArgs(32,[11])*effectiveness)
+            break
+            case 100:
+                this.battle.cardManagers[player].hand.allEffect(107)
+            break
             case 101:
+                this.battle.cardManagers[player].hand.callInput(6,[3640,[25*effectiveness],1,[2,1,3]])
+            break
+
+            //mark p
+
+            case 1001:
                 userCombatant.statusEffect('Strength',5*effectiveness)
                 for(let a=0,la=5*effectiveness;a<la;a++){
                     this.battle.dropDrawShuffle(player,findName('Burn',types.card),0,game.playerNumber+1)
                 }
             break
-            case 102:
+            case 1002:
                 userCombatant.heal(15*effectiveness)
                 if(stage.scene=='battle'){
-                    userCombatant.statusEffect('Cannot Gain Block',99)
+                    userCombatant.statusEffect('Cannot Add Block',99)
                 }
             break
-            case 103:
+            case 1003:
                 userCombatant.heal(3*effectiveness)
             break
-            case 104:
+            case 1004:
                 this.battle.addSpecificEnergy(2*effectiveness,player,6)
             break
-            case 105:
+            case 1005:
                 this.battle.cardManagers[player].hand.callInput(6,[57,[5*effectiveness],1,[2,1,3]])
             break
-            case 106:
+            case 1006:
                 userCombatant.addBlock(10*effectiveness)
             break
-            case 107:
+            case 1007:
                 this.battle.cardManagers[player].draw(2*effectiveness)
             break
-            case 108:
+            case 1008:
                 userCombatant.statusEffect('Strength',effectiveness)
             break
-            case 109:
+            case 1009:
                 userCombatant.statusEffect('Dexterity',effectiveness)
             break
-            case 110:
+            case 1010:
                 for(let a=0,la=effectiveness;a<la;a++){
                     this.battle.cardManagers[player].addRandomAbstract(2,0,0,0,1,[],[3,1])
                 }
             break
-            case 112:
+            case 1012:
                 this.battle.overlayManager.overlays[3][player].active=true
                 this.battle.overlayManager.overlays[3][player].activate([0,3,20,16])
             break
-            case 113:
+            case 1013:
                 this.battle.overlayManager.overlays[3][player].active=true
                 this.battle.overlayManager.overlays[3][player].activate([0,3,20,3])
             break
         }
-        this.tempEffectiveness[player]=1
+        this.tempEffectiveness[player]=holdTempEffectiveness
         if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,100))<(100-100*0.5**this.battle.relicManager.active[80][player+1])&&!types.item[type].temp){
             this.addRandomItem(player)
         }
     }
-    activateEndBattle(player){
+    activateEndBattle(player,encounterClass){
         for(let a=0,la=this.items[player].length;a<la;a++){
             if(this.items[player][a].temp){
                 this.items[player][a].type=1
                 this.items[player][a].refresh()
                 this.total[player]--
+            }
+            switch(encounterClass){
+                case 2:
+                    switch(types.item[this.items[player][a].type].id){
+                        case 68:
+                            this.battle.relicManager.addRandomRelic(player)
+                            this.items[player][a].type=1
+                            this.items[player][a].refresh()
+                            this.total[player]--
+                        break
+                    }
+                break
             }
         }
         this.combatEffectiveness[player]=1
@@ -440,11 +641,19 @@ class itemManager{
     }
     onClick(scene){
         switch(scene){
-            case 'battle': case 'map': case 'shop': case 'event':
+            case 'battle': case 'map': case 'event':
                 if(dist(inputs.rel.x,inputs.rel.y,25,50)<20&&this.items[0].length>0){
                     this.up[0]=toggle(this.up[0])
                 }
                 if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.items[1].length>0){
+                    this.up[1]=toggle(this.up[1])
+                }
+            break
+            case 'shop':
+                if(dist(inputs.rel.x,inputs.rel.y,100,25)<20&&this.items[0].length>0){
+                    this.up[0]=toggle(this.up[0])
+                }
+                if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-100,25)<20&&this.items[1].length>0){
                     this.up[1]=toggle(this.up[1])
                 }
             break
@@ -499,7 +708,7 @@ class itemManager{
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
                         if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].altPosition.x,this.items[a][b].altPosition.y)<20*this.items[a][b].size&&this.items[a][b].name!='Mundane Dust'&&this.items[a][b].type>=2&&this.up[a]){
-                            this.battle.addCurrency(10,a)
+                            this.battle.addCurrency(types.item[this.items[a][b].type].id==85?50:10,a)
                             this.total[a]--
                             this.items[a][b].type=1
                             this.items[a][b].refresh()

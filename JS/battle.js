@@ -25,7 +25,7 @@ class battle{
             this.menu.anim.animRate.push(-1)
             this.menu.anim.turnTime.push(-1)
         }
-        for(let a=0,la=27;a<la;a++){
+        for(let a=0,la=30;a<la;a++){
             this.menu.anim.variants.push(0)
         }
         for(let a=-2,la=game.playerNumber+6;a<la;a++){
@@ -362,6 +362,9 @@ class battle{
             this.replayManager.list.push(new attack(-1005,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
             this.combatantManager.enableCombatants()
             this.turn.main=this.players
+        }else if(variants.initiative){
+            this.turnManager.loadEnemyTurnsMove()
+            this.turn.main=this.players
         }else{
             this.startTurn()
         }
@@ -589,11 +592,16 @@ class battle{
         this.turn.time=game.turnTime
     }
     endTurn(){
+        let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
         this.turn.endReady=false
         this.replayManager.list.push(new attack(-1000,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
         this.combatantManager.tickEarly()
         this.relicManager.activate(14,[this.turn.main,this.getEnergy(this.turn.main)])
-        this.cardManagers[this.turn.main].allEffect(2,1)
+        if(combatant.getStatus('Retain Hand')>0){
+            combatant.status.main[findList('Retain Hand',combatant.status.name)]--
+        }else{
+            this.cardManagers[this.turn.main].allEffect(2,1)
+        }
         this.cardManagers[this.turn.main].reset()
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
         if(variants.mtg){
@@ -601,21 +609,22 @@ class battle{
         }
         let extra=false
         let noDraw=false
-        if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Drawless Turn')>0){
-            let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
+        if(combatant.getStatus('Extra Drawless Turn')>0){
             combatant.status.main[findList('Extra Drawless Turn',combatant.status.name)]--
+            let lastEnergy=this.getEnergy(this.turn.main)
             combatant.extraTurn()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
-            this.addEnergy(max(0,(this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.getEnergy(this.turn.main)>=1?1:0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
+            this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
             combatant.tick()
             noDraw=true
-        }else if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
-            let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
+            extra=true
+        }else if(combatant.getStatus('Extra Turn')>0){
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
+            let lastEnergy=this.getEnergy(this.turn.main)
             combatant.extraTurn()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
-            this.addEnergy(max(0,(this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.getEnergy(this.turn.main)>=1?1:0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
+            this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
             combatant.tick()
             extra=true
@@ -680,8 +689,10 @@ class battle{
     subTurn(){
         if(!this.tutorialManager.active){
             if(this.turn.total==1){
-                for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
-                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                if(!variants.initiative){
+                    for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
+                        this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                    }
                 }
                 if(this.encounter.name=='Rewriter'){
                     this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
@@ -731,8 +742,10 @@ class battle{
         this.setTurn(this.turn.total+1)
         this.turn.time=game.turnTime
         for(let a=0,la=this.energy.gen.length;a<la;a++){
+            let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
+            let lastEnergy=this.getEnergy(this.turn.main)
             this.baselineEnergy(a,this.energy.gen[a])
-            this.addEnergy(max(0,(this.relicManager.hasRelic(28,a)&&this.turn.total>1&&this.getEnergy(a)>=1?1:0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[a],a)
+            this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[a]=0
         }
         this.combatantManager.setupCombatants()
@@ -1836,9 +1849,9 @@ class battle{
                         this.layer.text('50 Currency',194+a*(this.layer.width-388),628-50*this.anim.rerollActive[a]+4*this.anim.reroll[a])
                     }
                 }
+                this.itemManager.display(stage.scene)
                 this.purchaseManager.display()
                 this.overlayManager.display()
-                this.itemManager.display(stage.scene)
                 this.displayCurrency()
             break
             case 'victory':
@@ -2030,6 +2043,7 @@ class battle{
                     'shortmap','shortermap','singlemap',
                     'prism','ultraprism','junk',
                     'vanish','blind','transcend',
+                    'initiative','colorshift','overheat',
                 ]
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     this.menu.anim.variants[a]=smoothAnim(this.menu.anim.variants[a],variants[variantNames[a]],0,1,5)
@@ -2094,9 +2108,6 @@ class battle{
                     }
                     if(allClosed&&!this.result.defeat&&!transition.trigger){
                         transition.trigger=true
-                        for(let a=0,la=this.players;a<la;a++){
-                            this.itemManager.activateEndBattle(a)
-                        }
                         if(this.encounter.class==2){
                             if(this.nodeManager.world==3){
                                 transition.scene='victory'
@@ -2114,6 +2125,9 @@ class battle{
                 }else if(this.counter.killed>=this.counter.enemy&&!this.result.defeat&&!this.overlayManager.anyActive&&!this.tutorialManager.active){
                     this.result.victory=true
                     this.overlayManager.closeAll()
+                    for(let a=0,la=this.players;a<la;a++){
+                        this.itemManager.activateEndBattle(a,this.encounter.class)
+                    }
                     let prefered=floor(random(0,this.overlayManager.overlays[0].length))
                     this.cardManagers.forEach(cardManager=>cardManager.allEffect(0,44))
                     this.combatantManager.fullAllEffect(10)
@@ -2470,6 +2484,7 @@ class battle{
                     'shortmap','shortermap','singlemap',
                     'prism','ultraprism','junk',
                     'vanish','blind','transcend',
+                    'initiative','colorshift','overheat',
                 ]
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-12.5+a%3*190,y:this.layer.height/2-floor(la/3)*22.5+22.5+floor(a/3)*45},width:27.5,height:27.5})){
@@ -2836,6 +2851,7 @@ class battle{
                     'shortmap','shortermap','singlemap',
                     'prism','ultraprism','junk',
                     'vanish','blind','transcend',
+                    'initiative','colorshift','overheat',
                 ]
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(key==inputs.hexadec[a]){

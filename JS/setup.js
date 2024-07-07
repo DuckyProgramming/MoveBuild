@@ -10,7 +10,7 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    if(false){
+    if(true){
             //stage.scene='tier'
             //current.overlayManager=new overlayManager(current.layer,current,1)
 
@@ -18,7 +18,7 @@ function setup(){
             //transition.scene='menu'
 
         current.menu.combatant=[17]
-        current.menu.deck=[-1]
+        current.menu.deck=[0]
         current.startGame()
         //game.animRate=4
 
@@ -52,6 +52,11 @@ function setup(){
             /*for(let a=0,la=5;a<la;a++){
                 current.relicManager.addRandomRelic(0)
                 quickRelic(306+a)
+            }*/
+
+            /*current.itemManager.addItemSlots(2,0)
+            for(let a=0,la=5;a<la;a++){
+                current.itemManager.addItem(98+a,0)
             }*/
 
             //stage.scene='tier'

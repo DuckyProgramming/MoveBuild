@@ -74,10 +74,27 @@ class purchaseManager{
                                 let index=floor(random(0,list[group[a]].length))
                                 this.purchases.push(new purchase(this.layer,this.battle,0,95+a%6*130,130+floor(a/6)*170,1,
                                     [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?0.5:1))],
-                                    [list[group[a]][index],0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[group[a]][index]].list<0?0:types.card[list[group[a]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:this.battle.player[0],sale==a],
+                                    [list[group[a]][index],0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg||variants.colorshift?(types.card[list[group[a]][index]].list<0?0:types.card[list[group[a]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:this.battle.player[0],sale==a],
                                     group[a]+1
                                 ))
                                 list[group[a]].splice(index,1)
+                                if(variants.colorshift){
+                                    (variants.ultraprism?this.battle.cardManagers[0].listing.all[group[a]]:variants.prism?this.battle.cardManagers[0].listing.allPlayerCard[group[a]]:variants.mtg?this.battle.cardManagers[0].listing.mtg[group[a]]:variants.junk?this.battle.cardManagers[0].listing.junk[game.playerNumber+1]:this.battle.cardManagers[0].listing.card[this.battle.player[0]][group[a]]).splice(index,1)
+                                    if(!variants.ultraprism&&!variants.prism&&!variants.mtg&&!variants.junk){
+                                        let possible=[]
+                                        for(let b=0,lb=game.playerNumber;b<lb;b++){
+                                            if(!this.battle.player.includes(b+1)){
+                                                possible.push(b+1)
+                                            }
+                                        }
+                                        let type=possible[floor(random(0,possible.length))]
+                                        if(this.battle.cardManagers[0].listing.card[type][group[a]].length>0){
+                                            let index=floor(random(0,this.battle.cardManagers[0].listing.card[type][group[a]].length))
+                                            this.battle.cardManagers[0].listing.card[this.battle.player[0]][group[a]].push(this.battle.cardManagers[0].listing.card[type][group[a]][index])
+                                            this.battle.cardManagers[0].listing.card[type][group[a]].splice(index,1)
+                                        }
+                                    }
+                                }
                             }
                         }
                         list=copyArrayStack(this.battle.cardManagers[0].listing.card[0])
@@ -152,11 +169,28 @@ class purchaseManager{
                                     let index=floor(random(0,list[group[b]].length))
                                     let price=round(random(cost[group[b]][0],cost[group[b]][1])*(sale==b?0.5:1))
                                     this.purchases.push(new purchase(this.layer,this.battle,a,450+(905-b%4*130)*(a*2-1),130+floor(b/4)*170,1,
-                                        [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:price,group[a]==0&&this.battle.relicManager.hasRelic(216,1)?0:price],
-                                        [list[group[b]][index],0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[group[b]][index]].list<0?0:types.card[list[group[b]][index]].list>=types.color.card.length?0:types.card[list[group[b]][index]].list):variants.prism?types.card[list[group[b]][index]].list:this.battle.player[a],sale==b],
-                                        group[a]+1
+                                        [this.battle.relicManager.hasRelic([216,267,268][group[b]],0)?0:price,group[b]==0&&this.battle.relicManager.hasRelic(216,1)?0:price],
+                                        [list[group[b]][index],0,variants.junk?types.card[list[group[b]][index]].list:variants.ultraprism||variants.mtg||variants.colorshift?(types.card[list[group[b]][index]].list<0?0:types.card[list[group[b]][index]].list>=types.color.card.length?0:types.card[list[group[b]][index]].list):variants.prism?types.card[list[group[b]][index]].list:this.battle.player[a],sale==b],
+                                        group[b]+1
                                     ))
                                     list[group[b]].splice(index,1)
+                                    if(variants.colorshift){
+                                        (variants.ultraprism?this.battle.cardManagers[a].listing.all[group[b]]:variants.prism?this.battle.cardManagers[a].listing.allPlayerCard[group[b]]:variants.mtg?this.battle.cardManagers[a].listing.mtg[group[b]]:variants.junk?this.battle.cardManagers[a].listing.junk[game.playerNumber+1]:this.battle.cardManagers[a].listing.card[this.battle.player[a]][group[b]]).splice(index,1)
+                                        if(!variants.ultraprism&&!variants.prism&&!variants.mtg&&!variants.junk){
+                                            let possible=[]
+                                            for(let c=0,lc=game.playerNumber;c<lc;c++){
+                                                if(!this.battle.player.includes(c+1)){
+                                                    possible.push(c+1)
+                                                }
+                                            }
+                                            let type=possible[floor(random(0,possible.length))]
+                                            if(this.battle.cardManagers[a].listing.card[type][group[b]].length>0){
+                                                let index=floor(random(0,this.battle.cardManagers[a].listing.card[type][group[b]].length))
+                                                this.battle.cardManagers[a].listing.card[this.battle.player[a]][group[b]].push(this.battle.cardManagers[a].listing.card[type][group[b]][index])
+                                                this.battle.cardManagers[a].listing.card[type][group[b]].splice(index,1)
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

@@ -123,7 +123,7 @@ class item{
                 break
                 case 'Rapid Forge':
                     displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
-                    displaySymbol(this.layer,0,0,7,0,1,this.fade)
+                    displaySymbol(this.layer,0,0,7,0,0.9,this.fade)
                 break
                 case 'Caffeine':
                     displaySymbol(this.layer,0,0,9,0,1.2,this.fade)
@@ -235,6 +235,7 @@ class item{
                 case 'Memory Pearl':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
                     displaySymbol(this.layer,-8,0,5,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,0,125,0,0.8,this.fade)
                     displaySymbol(this.layer,8,0,9,0,1,this.fade)
                     this.layer.fill(0)
                     this.layer.textSize(10)
@@ -265,6 +266,9 @@ class item{
                 break
                 case 'Melted Steel':
                     displaySymbol(this.layer,0,0,74,0,1.2,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('5',0)
                 break
                 case 'Flashbang':
                     displaySymbol(this.layer,0,0,3,0,0.4,this.fade)
@@ -274,8 +278,10 @@ class item{
                     displaySymbol(this.layer,0,-12,7,0,0.4,this.fade)
                 break
                 case 'Buggy Horn':
-                    displaySymbol(this.layer,-10,0,20,0,0.8,this.fade)
-                    displaySymbol(this.layer,9,0,3,0,0.5,this.fade)
+                    displaySymbol(this.layer,-8,-8,20,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,8,20,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-8,3,0,0.4,this.fade)
+                    displaySymbol(this.layer,7,8,3,0,0.4,this.fade)
                 break
                 case 'Orange Juice':
                     displaySymbol(this.layer,0,0,8,0,1.2,this.fade)
@@ -353,6 +359,340 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('0',8,0)
                 break
+                case 'Spiked Glove':
+                    displaySymbol(this.layer,0,2,39,0,1.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'Floppy Disc':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,5,0,0.9,this.fade)
+                    displaySymbol(this.layer,0,0,124,0,1.2,this.fade)
+                break
+                case 'Red Pill':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,5,0,0.9,this.fade)
+                    displaySymbol(this.layer,0,0,125,0,1.2,this.fade)
+                break
+                case 'Blue Pill':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,5,0,0.9,this.fade)
+                    displaySymbol(this.layer,0,0,126,0,1.2,this.fade)
+                break
+                case 'Booster Shot':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,7,0,0.9,this.fade)
+                    displaySymbol(this.layer,0,0,64,0,0.4,this.fade)
+                break
+                case 'Contained Boundary':
+                    displaySymbol(this.layer,-8,-4,9,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,-4,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,9,2,0,0.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,-4)
+                    this.layer.text('5',8,-4)
+                    this.layer.textSize(8)
+                    this.layer.text('-3',0,9)
+                break
+                case 'Jeweled Branch':
+                    displaySymbol(this.layer,-9,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,128,0,1,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('5',-9,0)
+                    this.layer.text('5',9,0)
+                break
+                case 'Elemental Burst':
+                    displaySymbol(this.layer,0,-5,18,0,1,this.fade)
+                    displaySymbol(this.layer,-8,11,65,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,11,129,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,13,130,0,0.6,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('30',0,-5)
+                    this.layer.text('2',-8,11)
+                    this.layer.text('2',8,11)
+                    this.layer.text('2',0,13)
+                break
+                case 'Hypergrowth':
+                    displaySymbol(this.layer,0,0,131,0,1.2,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'Offense Tonic':
+                    displaySymbol(this.layer,-9,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,7,-7,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,7,-7,14,0,0.75,this.fade)
+                    displaySymbol(this.layer,7,8,16,0,0.5,this.fade)
+                    displaySymbol(this.layer,7,8,18,0,0.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-9,0)
+                break
+                case 'Defense Tonic':
+                    displaySymbol(this.layer,-9,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,7,-7,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,7,-7,14,0,0.75,this.fade)
+                    displaySymbol(this.layer,7,8,16,0,0.5,this.fade)
+                    displaySymbol(this.layer,7,8,19,0,0.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-9,0)
+                break
+                case 'Deuterium':
+                    displaySymbol(this.layer,0,0,132,0,2,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(15)
+                    this.layer.text('3',0,0)
+                break
+                case 'Anaglyph Pill':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,5,0,0.9,this.fade)
+                    displaySymbol(this.layer,0,0,127,0,1.2,this.fade)
+                break
+                case 'Golden Camera':
+                    displaySymbol(this.layer,0,0,30,0,1,this.fade)
+                    displaySymbol(this.layer,0,0,64,0,0.6,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(15)
+                    this.layer.text('x2',0,0)
+                break
+                case 'Hummingbird Feather':
+                    displaySymbol(this.layer,0,0,47,0,2.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',0,0)
+                break
+                case 'Surplus Voucher':
+                    displaySymbol(this.layer,-10,0,1,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,0,35,0,0.25,this.fade)
+                break
+                case 'Grimoire Page':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,-5,114,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,5,95,0,0.6,this.fade)
+                break
+                case 'Oracle':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,-4,120,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,6,64,0,0.4,this.fade)
+                break
+                case 'Blinkseal':
+                    displaySymbol(this.layer,-9,0,18,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,9,0,0.6,this.fade)
+                    displaySymbol(this.layer,9,0,75,0,0.9,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('24',-9,0)
+                break
+                case 'Vacuum Collapse':
+                    displaySymbol(this.layer,-8,0,18,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,133,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('35',-8,0)
+                    this.layer.text('2',10,0)
+                break
+                case 'Binary Die':
+                    displaySymbol(this.layer,-8,0,89,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,16,0,0.6,this.fade)
+                break
+                case 'Replacement Papers':
+                    displaySymbol(this.layer,0,0,88,0,1.5,this.fade)
+                break
+                case 'Full Medkit':
+                    displaySymbol(this.layer,-8,0,2,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,10,0,0.4,this.fade)
+                break
+                case 'Surprise Coupon':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,1,0,0.5,this.fade)
+                    displaySymbol(this.layer,9,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,0)
+                    this.layer.text('0',9,0)
+                break
+                case 'Starter Pack':
+                    displaySymbol(this.layer,-12,0,18,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,0,19,0,0.6,this.fade)
+                    displaySymbol(this.layer,12,0,20,0,0.6,this.fade)
+                break
+                case 'Equilibrium System':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,49,0,1.5,this.fade)
+                break
+                case 'Unfinished Potion':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,134,0,1.5,this.fade)
+                break
+                case 'Cup of Water':
+                    displaySymbol(this.layer,-8,-4,8,0,0.9,this.fade)
+                    displaySymbol(this.layer,-8,-4,6,0,0.54,this.fade)
+                    displaySymbol(this.layer,8,-4,8,0,0.9,this.fade)
+                    displaySymbol(this.layer,8,-4,15,0,0.9,this.fade)
+                    displaySymbol(this.layer,0,11,27,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',0,11)
+                break
+                case 'Fuel Cell':
+                    displaySymbol(this.layer,0,-6,30,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2x',0,10)
+                break
+                case 'Bumper Sticker':
+                    displaySymbol(this.layer,0,0,135,0,1.5,this.fade)
+                break
+                case 'Tape Roll':
+                    displaySymbol(this.layer,0,0,136,0,2,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'Confetti':
+                    for(let a=0,la=6;a<la;a++){
+                        displaySymbol(this.layer,lsin(a*60)*12,lcos(a*60)*12,18,0,0.6,this.fade)
+                    }
+                    displaySymbol(this.layer,0,0,18,0,0.6,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'Shiny Coin':
+                    displaySymbol(this.layer,0,0,28,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('50',0,0)
+                break
+                case 'Helium Canister':
+                    displaySymbol(this.layer,0,0,137,0,1.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('2',0,0)
+                break
+                case 'Spare Spacebar':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,138,0,1,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('3',0,0)
+                break
+                case 'Coffee Creamer':
+                    displaySymbol(this.layer,-9,0,8,0,1.1,this.fade)
+                    displaySymbol(this.layer,-9,1,139,0,0.5,this.fade)
+                    displaySymbol(this.layer,9,0,9,0,1,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('0',9,0)
+                break
+                case 'Divination Pearl':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,5,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,0,126,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,0,9,0,1,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('0',8,0)
+                break
+                case 'Sun Stone':
+                    displaySymbol(this.layer,-7,0,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,-15,0,8,0,0.45,this.fade)
+                    displaySymbol(this.layer,1,0,8,0,0.45,this.fade)
+                    displaySymbol(this.layer,-7,0,7,0,0.36,this.fade)
+                    displaySymbol(this.layer,11,1,65,0,1,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('2',11,0)
+                break
+                case 'Soap':
+                    displaySymbol(this.layer,0,0,143,0,2,this.fade)
+                break
+                case 'Giant Scissors':
+                    displaySymbol(this.layer,0,-4,8,0,1,this.fade)
+                    displaySymbol(this.layer,0,-4,16,0,1,this.fade)
+                    displaySymbol(this.layer,0,-4,126,0,0.8,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('5',0,15)
+                break
+                case 'Falling Stick':
+                    displaySymbol(this.layer,0,0,18,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,120,0,2,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('8',0,0)
+                break
+                case 'Catalytic Converter':
+                    displaySymbol(this.layer,0,0,8,0,0.9,this.fade)
+                    displaySymbol(this.layer,-12,0,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,12,0,8,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('?',0,0)
+                break
+                case 'Large Speaker':
+                    displaySymbol(this.layer,-13,0,20,0,0.6,this.fade)
+                    displaySymbol(this.layer,2,0,3,0,0.4,this.fade)
+                    displaySymbol(this.layer,14,0,144,0,0.6,this.fade)
+                break
+                case 'Tree Sapling':
+                    displaySymbol(this.layer,-7,-3,145,0,1.75,this.fade)
+                    displaySymbol(this.layer,7,-3,146,0,1.75,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-7,-3)
+                    this.layer.text('3',7,-3)
+                break
+                case 'Mobile Tonic':
+                    displaySymbol(this.layer,-9,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,7,-7,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,7,-7,14,0,0.75,this.fade)
+                    displaySymbol(this.layer,7,8,16,0,0.5,this.fade)
+                    displaySymbol(this.layer,7,8,20,0,0.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-9,0)
+                break
+                case 'Skillful Tonic':
+                    displaySymbol(this.layer,-9,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,7,-7,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,7,-7,14,0,0.75,this.fade)
+                    displaySymbol(this.layer,7,8,16,0,0.5,this.fade)
+                    displaySymbol(this.layer,7,8,123,0,0.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-9,0)
+                break
+                case 'Powerful Tonic':
+                    displaySymbol(this.layer,-9,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,7,-7,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,7,-7,14,0,0.75,this.fade)
+                    displaySymbol(this.layer,7,8,16,0,0.5,this.fade)
+                    displaySymbol(this.layer,7,8,21,0,0.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-9,0)
+                break
+                case 'Two-Sided Mirror':
+                    displaySymbol(this.layer,0,0,89,0,0.8,this.fade)
+                    displaySymbol(this.layer,-12,0,89,0,0.6,this.fade)
+                    displaySymbol(this.layer,12,0,89,0,0.6,this.fade)
+                break
+                case 'Bottled Cement':
+                    displaySymbol(this.layer,-9,0,27,0,0.6,this.fade)
+                    displaySymbol(this.layer,-9,0,16,0,0.6,this.fade)
+                    displaySymbol(this.layer,9,0,18,0,0.8,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('25',9,0)
+                break
+
                 case 'Starflame Prototype':
                     displaySymbol(this.layer,-8,0,11,0,1,this.fade)
                     displaySymbol(this.layer,8,0,8,0,1,this.fade)

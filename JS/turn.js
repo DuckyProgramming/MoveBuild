@@ -1313,7 +1313,7 @@ class turn{
                         }
                     break
                     case 193: case 342:
-                        this.targetCombatant.statusEffect('Cannot Gain Block Next Turn',this.effect[1])
+                        this.targetCombatant.statusEffect('Cannot Add Block Next Turn',this.effect[1])
                     break
                     case 250:
                         this.userCombatant.statusEffect('Vulnerable',this.effect[1])
@@ -1723,7 +1723,7 @@ class turn{
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 switch(this.type){
                     case 50:
-                        this.targetCombatant.statusEffect('Cannot Gain Block Next Turn',this.effect[1])
+                        this.targetCombatant.statusEffect('Cannot Add Block Next Turn',this.effect[1])
                     break
                     case 81:
                         for(let a=0,la=this.effect[1];a<la;a++){
