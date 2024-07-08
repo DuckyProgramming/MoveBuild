@@ -1,11 +1,8 @@
 
-MAJOR CHANGES TO DODGE - IT NOW DECREMENTS
-rebalance cards
 
+26 new events:
 
-new events:
-
-the shot - 5% chance to hit the shot, repeat until you hit when you get an upgrade, costs 5 currency each attempt
+the shot - 10% chance to hit the shot, repeat until you hit when you get an upgrade, costs 5 currency each attempt
 
 broken road - choice
 fix the road - lose a random card, gain 35 currency
@@ -13,8 +10,32 @@ do nothing
 
 take game console relic, but become cursed with gamer
 
-get relic - laevateinn
-vulnerable is 2 times more effective TO EVERYBODY
+interview - choice
+"i'm doing it for the people" - gain good news card - vanishing 5, 0 cost, next card reward has 1 more extra option, draw 1 card
+"i'm doing it for money" - gain money, gain bad news card - vanishing 5, 0 cost, next card reward has 1 less extra option
+
+SCT fighter raid - choice
+lose health, and gain a solar shield card (vanishing)
+escape
+
+mt. hinokizuka event
+
+item shop - enter a special shop that just sells item
+
+smith shed - pay 125 for a double upgrade
+
+trash can - replace false healer, simply remove a card
+
+rooftop chase - you fall
+fall through a window - lose 10 health, add a card
+cool landing - lose 15 health, remove a card
+hit the ground - lose 5 health
+
+canyon - run into management troops
+fight - very constricted fight against management soldiers and engineers
+run - lose a random card 
+
+the ambassador - a special fight with the ambassador, you get a lot of money if he survives against ganster hitmen
 
 []
 
@@ -46,21 +67,16 @@ vulnerable is 2 times more effective TO EVERYBODY
 
 []
 
-[]
-
-[]
-
-[]
-
-[]
-
-[]
-
-[]
 
 
 
 
+
+dodge counter doesn't actually counter???
+shiru conditional draw 1 movements should be draw 2
+update random variants button
+
+a set of 6 missing no.s to follow the mark q before the garbled
 
 
 
@@ -70,84 +86,13 @@ LISTING GROUP 43
 
 
 
-clean energy as an attack
-
-"shoot the moon" with a rainbow laser with squares and stars (stars look better when white with colored outline)
-
-[lapse rate - altitude but its random which (and the numbers are lower)]
-
-[on the street - add block, gain 10 currency if you have less than 500, exhaust]
-
-[bonus roll - next time you roll dice, roll an extra]
-
-[rolldown - 1 cost, redraw your hnad, upgrade a card]
-
-
-
-
-[liles of murder could look a lot cooler - named "spirit of the lilies"]
-
-[pliers - damage, 2nd card in hand: apply lock on]
-
-[replace the spectral card "wraith" with something usable
-ultimately the idea of mythic cards is much worse than using ally cards]
-
-[a card like milky way]
-
-[trained strike - 10 damage, increases by 5 after every boss]
-
-[star of orion - curse, when drawn gain 3 damage takem up]
-
-
-
-[ally card - yuyuko]
-rename existing yuyuko
-
-[ally card - youmu]
-
-[ally card]
-
-[ally card]
-
-[plexiglass - add block, upgrade a card from discard pile]
-
-[seeping miasma]
-
-
-
-[junkyard lock 3 - lock 6]
-
-[above the clouds]
-
-[quickbuild - 1 cost, draw a construct, it costs 2 less]
-
-[snowy mountain]
-
-[frostly leaf razor]
-
-[summer star - gain mana, blue, green, green, rainbow]
-
-
-
-[deliberation - 13 block, or draw 2 cards (the choice occurs through the overlay prompt used for allies)]
-
-[wave equation - next block added repeats after 2 turns]
-
-[sandbag - 1 cost, gain 3 energy next turn, lose 3 health]
-
-[destruction dance - when you exhaust a card, gain 1 temporary strength]
-
-[dig up - recall, costs 2, but the recalled card gains duplicate once]
-
-[brain overclock - gain 3 energy, draw a card, lose 1 energy next turn]
-
 
 
 [toxic dance - attacks this combat apply 1 poison]
 
 [grudge - 11 damage, exhaust the top card of draw pile]
 
-[bucket bash - 14 damage, 10 block, 2 cost, if first card played apply 2 damage taken up]
+[tritanopia (blue yellow colorblindness)]
 
 [poison raze - 2 cost, if target has poison, deal 22 damage, otherwise apply 7 poison]
 
@@ -213,15 +158,96 @@ reorganization - swap 2 random enemy locations
 
 
 
+[immortal fire - gain 2 strength, if you are below half health heal 4, exhaust]
+
+[dd-610 movement to replace reroute]
+
+[vivid flower wreath - add 12 block, counter 8 all if you are in elemental form]
+
+[double helix - damage,]
+
+[DNA shotgun -]
+
+[starry flight - gain block, and might gain more later this turn]
+
+
+
+[self isolation - add block, ?]
+
+[ritual of exorcism - damage, if target has less than 30 health it gets stunned]
+
+[task management - when you draw a status card draw 1 card]
+
+"shoot the moon" with a rainbow laser with squares and stars (stars look better when white with colored outline)
+
+[adaptive armor - ]
+
+[bellcurve - deal randomly 5-15 damage based on a normal distribution]
+
+
+
+[ally card - yuyuko]
+rename existing yuyuko
++1-
+
+[ally card - youmu]
++1-apply 1 Lock On to a random enemy
+-3-all attacks this turn apply 1 Lock On
+-8-to a random enemy: 8 damage twice, 2 lock on
+
+[ally card]
+flan?
++1-discard a non-attack, gain 1 temporary strength each
+-4-add 4 Four of a Kinds to draw (0 cost 16 damage, draw a card if you've played less than 4)
+-8-all cards in hand become ethereal, gain 1 strength each
+
+[apricot - on play, heal 2 health, on vanish gain 4 max hp, vanishing 10]
+
+[locked and loaded - agent, 1 cost, add a random equiment pack]
+
+[assault badge - agent, 1 cost, upgrade all attacks in hand, draw a card]
+
+
+
+[pure furies - liles of murder but it looks a lot cooler]
+
+[loanshark - when taken, gain 500 currency, unplayable, when removed lose 1000 currency]
+
+[fairy mischief - lose 3 health, add a random fairy of light to hand and the others to draw pile]
+
+[review notes - choose a common card to add to hand, it costs 0 (equivalent to shikigami protection),
+if drawn 1 time, gain 1 energy]
+
+[why is onsen reimu a thing]
+
+[light the furnace - 2 cost, gain 2 strength, gain 2 faith, gain double strength in divinity]
+
+
+
+[seeping miasma]
+
+[vega, or maybe another star]
+
 [furious purification rod]
 
-[]
+[mtg card]
 
-[]
+[mtg card]
 
-[]
+[mtg card]
 
-[]
+
+
+[x cost option play]
+
+[garden of the sun]
+rename existing sunny garden
+
+[add block and create plant tile under self]
+
+[3 movements with 1 range mostly and 3 range in one specific direction]
+
+[switchblade]
 
 []
 
@@ -262,15 +288,15 @@ LISTING GROUP 44 (SUKUNA)
 
 [land of giants]
 
-[extending shield]
+[a parry]
 
-[opposite of extending strike]
+[nifty - gain 3 dodge, end your turn]
 
-[opposite of extending shield]
+[second wind]
 
-[opposite of extending step]
+[bucket bash - 14 damage, 10 block, 2 cost, if first card played apply 2 damage taken up]
 
-[the waves]
+[]
 
 
 
@@ -290,15 +316,57 @@ LISTING GROUP 44 (SUKUNA)
 
 [bucket bash - 2 cost 13 damage 13 block, if first card played this turn apply 1 lock on]
 
-[wind god girl - ability card]
+[wind god girl - ability card, gain 1 dodge]
 
 [refresher - add 16 block, when drawn shuffle draw pile (doesn't seem useful?)]
 
 [something like impale]
 
+[incense - ability card, upgrade a random card in hand every turn]
+
+[continued centuries - ability card, take extra turns where you can only play 1 card]
+
+
+
+[HAND SIZE]
+
+[HAND SIZE]
+
+[HAND SIZE]
+
+[pincushion]
+
+[interlace]
+
+[]
+
+
+
 []
 
 []
+
+[]
+
+[]
+
+[]
+
+[]
+
+
+
+[]
+
+[]
+
+[]
+
+[check the situation with chip cards]
+
+[check the situation with chip cards]
+
+[check the situation with chip cards]
 
 
 
@@ -321,7 +389,23 @@ MOTIFS
 
 fishing for certain cards
 
-"size of hand (withdraw from edgar and daiyousei?)"
+size of hand
+
+
+
+
+
+
+
+new enemies:
+
+world 2:
+event security - counter pushes
+electrobaton guard - aggressive and takes your energy, but little hp
+
+world 3:
+sagacious spirit - permanent intangible, lose 1 energy per 5 cards played
+
 
 
 
@@ -338,6 +422,7 @@ sukuna boss also needs to get 2 attacks and setup code with archivist
 
 
 but what is pocket watch in the rain actually a remix of?
+and scattered rose?
 
 
 

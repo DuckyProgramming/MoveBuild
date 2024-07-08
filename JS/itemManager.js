@@ -509,7 +509,7 @@ class itemManager{
                 this.battle.cardManagers[player].hand.allEffect(107)
             break
             case 101:
-                this.battle.cardManagers[player].hand.callInput(6,[3640,[25*effectiveness],1,[2,1,3]])
+                this.battle.cardManagers[player].hand.callInput(6,[3645,[25*effectiveness],1,[2,1,3]])
             break
 
             //mark p

@@ -1751,6 +1751,68 @@ function colorTest(){
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(1,0,a,0)
 	}
 }
+function attackTest(type,target,startpoint){
+	switch(type){
+		case 0:
+			current.combatantManager.combatants[target].setMaxHP(999999)
+			for(let a=startpoint,la=types.card.length;a<la;a++){
+				for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+					if(types.card[a].levels[b].target[0]==2){
+						current.attackManager.type=types.card[a].levels[b].attack
+						current.attackManager.player=0
+						current.attackManager.effect=types.card[a].levels[b].effect
+						current.attackManager.attackClass=types.card[a].levels[b].class
+						current.attackManager.user=0
+						current.attackManager.level=b
+						current.attackManager.color=types.card[a].list<0?0:types.card[a].list>=types.color.card.length?0:types.card[a].list
+						current.attackManager.energy=3
+						current.attackManager.target[0]=target
+						current.attackManager.targetDistance=1
+						current.attackManager.targetClass=2
+						current.attackManager.combo=0
+						current.attackManager.amplify=true
+						current.attackManager.relPos=[0,0]
+						current.attackManager.limit=types.card[a].levels[b].limit
+						current.attackManager.id=-1
+						current.attackManager.edition=0
+						current.attackManager.drawn=0
+						current.attackManager.cost=types.card[a].levels[b].cost
+						current.attackManager.execute()
+					}
+				}
+			}
+		break
+		case 1:
+			current.combatantManager.combatants[target[1]].setMaxHP(999999)
+			for(let a=startpoint,la=types.card.length;a<la;a++){
+				for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+					if(types.card[a].levels[b].target[0]==1){
+						current.attackManager.type=types.card[a].levels[b].attack
+						current.attackManager.player=0
+						current.attackManager.effect=types.card[a].levels[b].effect
+						current.attackManager.attackClass=types.card[a].levels[b].class
+						current.attackManager.user=0
+						current.attackManager.level=b
+						current.attackManager.color=types.card[a].list<0?0:types.card[a].list>=types.color.card.length?0:types.card[a].list
+						current.attackManager.energy=3
+						current.attackManager.target[0]=target[0]
+						current.attackManager.targetDistance=1
+						current.attackManager.targetClass=2
+						current.attackManager.combo=0
+						current.attackManager.amplify=true
+						current.attackManager.relPos=[0,0]
+						current.attackManager.limit=types.card[a].levels[b].limit
+						current.attackManager.id=-1
+						current.attackManager.edition=0
+						current.attackManager.drawn=0
+						current.attackManager.cost=types.card[a].levels[b].cost
+						current.attackManager.execute()
+					}
+				}
+			}
+		break
+	}
+}
 function cursed(){
 	for(let a=0,la=current.combatantManager.combatants.length;a<la;a++){
 		current.combatantManager.combatants[a].goal.anim.direction=0

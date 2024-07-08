@@ -1,4 +1,3 @@
-
 class disabledCombatant{
     constructor(){}
     getStatus(){return 0}
@@ -154,7 +153,7 @@ class combatant{
             'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy in 2 Turns','Scry Barrier','Miracle in 2 Turns','Tick Per Turn','Barrier Next Turn','Miracle in 3 Turns',
             'Extra Turn Next Turn','Extra Turn in 2 Turns','Damage Taken Down','Fragile Damage Up','Temporary Free Non-Rare Colorless','Extra Drawless Turn','Damage Highest','No Damage Turn','Heal on Hit Taken','Temporary Dexterity Per Turn',
             'Counter Once','Common Temporary Strength','Temporary Strength Convert','Double Damage Without Movement','No Energy','End of Combat Heal','Pristine Per Turn','Colorless Damage All','Stride Next Turn','Stride in 2 Turns',
-            'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Buffer','Enemy Death Shiv','Single Splash Damage','Retain Intent','Move Retain Combo',
+            'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Bounce','Enemy Death Shiv','Single Splash Damage','Retain Intent','Move Retain Combo',
             'Construct Speed Up','Weak Reverse','Drawn Shiv Draw','Prismatic Bomb Freeze','Prismatic Bomb Poison','Prismatic Bomb Targets','Counter Gun','Counter Bomb','Low Health Construct','Temporary Strength Per Turn',
             'Single Damage All','Prismatic Bomb Per Turn','Fatigue Splash','Random Deck Card Per Turn','Energy Cycle 2 1','Energy Cycle 2 2','Random Negative Per Turn','Rewind Next Turn','Damage All','Armament Bypass',
             'Burn Strength','Burn Bypass','Basic Boost','Mineral Boost','Cable Boost','Free Defenses','Exhausting Defenses','Strike Range','Skill Cost Down','Exhausting Skills',
@@ -163,10 +162,10 @@ class combatant{
             '2+ Cost Single Damage Up','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block','X Cost Boost','Self Life Loss Splash','Energy Gain Splash',
             'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw','Buff Loss Barrier','Astrology Per Turn','Construct Metal','Attack Jinx Combat','Attack Shock Combat',
             'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
-            'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand',
+            'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
-                0,2,1,0,2,1,0,0,4,4,//1
+                0,2,1,1,2,1,0,0,4,4,//1
                 4,0,0,2,0,0,1,2,2,0,//2
                 4,0,0,0,1,1,2,0,4,2,//3
                 0,1,4,1,0,0,0,2,1,2,//4
@@ -212,7 +211,8 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//44
                 0,0,0,0,0,0,0,0,0,0,//45
                 0,0,0,1,0,0,2,0,0,0,//46
-                0,1,2,2,0,2,2,0,
+                0,1,2,2,0,2,2,0,2,0,//47
+
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -261,7 +261,8 @@ class combatant{
                 2,2,0,0,0,2,2,2,2,2,//44
                 2,2,2,2,2,2,2,2,2,2,//45
                 2,2,2,0,2,2,2,2,2,2,//46
-                0,1,1,0,2,3,3,2,
+                0,1,1,0,2,3,3,2,0,2,//47
+                
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -7020,6 +7021,7 @@ class combatant{
                     case 450: this.ammo+=this.status.main[a]; break
                     case 452: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,1,2,[],[0,0])}} break
                     case 466: this.status.main[findList('Temporary All Cost Up',this.status.name)]+=this.status.main[a]; break
+                    case 468: this.status.main[findList('Buffer',this.status.name)]+=this.status.main[a]; break
                     
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
@@ -9581,7 +9583,7 @@ class combatant{
                                 case 13: this.layer.text('On Survival, Heal 20 HP',40,305+a*10); break
                                 case 14: this.layer.text('On Survival, Deluxe Upgrade a Card',40,305+a*10); break
                                 case 15: this.layer.text('On Survival, Move Freely',40,305+a*10); break
-                                case 16: this.layer.text('On Survival, Gain 25 Currency',40,305+a*10); break
+                                case 16: this.layer.text('On Survival, Gain 25 Currency\nIf Killed by Player, Gain 5 Currency',40,305+a*10); break
                                 case 17: this.layer.text('Auto-Aims',40,305+a*10); break
                                 case 18: this.layer.text('On Defeat, Gain a Relic',40,305+a*10); break
                                 case 19: this.layer.text('Robot',40,305+a*10); break

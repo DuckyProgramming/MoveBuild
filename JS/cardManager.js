@@ -96,15 +96,23 @@ class cardManager{
             if(variants.cyclicDraw){
                 let list=['Buster','Multicard','Dropbox','DeDrop','Eye\nDropper']
                 for(let b=0,lb=list.length;b<lb;b++){
-                    this.listing.card[a][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
-                    this.listing.card[a][3].push(findName(list[b],types.card))
+                    this.listing.card[a+1][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
+                    this.listing.card[a+1][3].push(findName(list[b],types.card))
                 }
-            }else if(variants.blackjack){
+            }
+            if(variants.blackjack){
                 let list=['Heat\nSink','Memory\nLeak','Ruby','Stack\nOverflow','House\nRules','Gate','Screwdriver','Gear\nGrind','Virus','Fixed\nPayout']
                 for(let b=0,lb=list.length;b<lb;b++){
-                    this.listing.card[a][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
-                    this.listing.card[a][3].push(findName(list[b],types.card))
+                    this.listing.card[a+1][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
+                    this.listing.card[a+1][3].push(findName(list[b],types.card))
                 }
+            }
+        }
+        if(variants.mtg){
+            let list=['Artifice','Soft\nRadiance','Sure\nGamble','Lily of\nthe Valley','Clean\nEnergy']
+            for(let b=0,lb=list.length;b<lb;b++){
+                this.listing.card[0][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
+                this.listing.card[0][3].push(findName(list[b],types.card))
             }
         }
         let list=[]

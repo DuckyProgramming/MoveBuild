@@ -2938,12 +2938,14 @@ class group{
         ){
             if(effectiveCost!=0&&card.colorless()&&card.rarity!=2&&userCombatant.getStatus('Temporary Free Non-Rare Colorless')>0){
                 userCombatant.status.main[findList('Temporary Free Non-Rare Colorless',userCombatant.status.name)]--
-            }else if(effectiveCost==1&&userCombatant.getStatus('Free 1 Cost Card')>0){
-                userCombatant.status.main[findList('Free 1 Cost Card',userCombatant.status.name)]--
-            }else if(effectiveCost!=0&&cardClass==3&&userCombatant.getStatus('Free Movement')>0){
-                userCombatant.status.main[findList('Free Movement',userCombatant.status.name)]--
             }else if(effectiveCost!=0&&cardClass==1&&userCombatant.getStatus('Free Attack')>0){
                 userCombatant.status.main[findList('Free Attack',userCombatant.status.name)]--
+            }else if(effectiveCost!=0&&cardClass==3&&userCombatant.getStatus('Free Movement')>0){
+                userCombatant.status.main[findList('Free Movement',userCombatant.status.name)]--
+            }else if(effectiveCost!=0&&cardClass==11&&userCombatant.getStatus('Free Skill')>0){
+                userCombatant.status.main[findList('Free Skill',userCombatant.status.name)]--
+            }else if(effectiveCost==1&&userCombatant.getStatus('Free 1 Cost Card')>0){
+                userCombatant.status.main[findList('Free 1 Cost Card',userCombatant.status.name)]--
             }else if(effectiveCost!=0&&userCombatant.getStatus('Free Card')>0){
                 userCombatant.status.main[findList('Free Card',userCombatant.status.name)]--
             }else if(effectiveCost!=0&&spec.includes(58)){

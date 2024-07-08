@@ -125,7 +125,7 @@ types={
         {name:'Host Drone',life:9,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:165,effect:[5]}],description:`Random walk`},
         {name:'Host',life:44,behavior:12,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:155,effect:[1,'Host Drone']}],description:`Voluntary`},
         {name:'Antihwurmp',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:166,effect:[6,2,'Dazed']}],description:`Kinda illogical`},
-        {name:'Junkie',life:40,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[8]},{type:79,effect:[6]},{type:167,effect:[1,3]}],description:`Purchases product`},
+        {name:'Junkie',life:80,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[16]},{type:79,effect:[6]},{type:167,effect:[1,3]}],description:`Purchases product`},
         {name:'Prestige',life:131,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:168,effect:[2]}],description:`Back for more?`},
         {name:'Darkblot',life:51,behavior:13,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[11]},{type:31,effect:[8]},{type:29,effect:[12]},{type:186,effect:[]}],description:`Blame the Lobster`},
         {name:'Divine Guard',life:375,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:221,effect:[12]},{type:222,effect:[10]},{type:72,effect:[15,1]}],description:`You shall not pass`},
@@ -1476,7 +1476,7 @@ until you find out what it is.`,
                 },
             ],
         },{
-            name:'Hidden Bank',id:14,list:0,
+            name:'Hidden Bank',id:14,list:-1,
             pages:[
                 {
                     desc:
@@ -1556,7 +1556,7 @@ He doesn't follow.`,
                 },
             ],
         },{
-            name:'False Healer',id:17,list:0,
+            name:'False Healer',id:17,list:-1,
             pages:[
                 {
                     desc:
@@ -7169,7 +7169,7 @@ heard of the places she's talking about.`,
             ],reinforce:[
             ],
         },{
-            level:['Hallway 5'],class:0,world:1,
+            level:['Hallway 5'],class:0,world:0,
             name:'Biker',
             player:{position:[[{x:2,y:2}],[{x:1,y:0},{x:0,y:1}]]},
             enemy:[
@@ -7915,7 +7915,7 @@ Stacks degrade by 1 each turn.`,
         {name:'Corrupt Detective',desc:'Playing a Power Costs 3 HP'},
         {name:'Elf Archer',desc:'Randomly Remove 1 Rest Site Option (Other Than Skip)'},
         {name:'Riot Police',desc:'All Enemies Are Untargettable From Front First 2 Turns'},
-        {name:'Reichswehr',desc:'Off-Color Cards Cost 1 More'},
+        {name:'Reichswehr',desc:'Offcolor Cards Cost 1 More'},
         {name:'Louse',desc:'All Enemies Get 10 Block the First Time They Take Damage'},
         {name:'Fungling',desc:'Gain 1 Poison Whenever You Move'},
         {name:'Hwurmp',desc:'Add 10 Completely Random Cards to Deck'},//90
