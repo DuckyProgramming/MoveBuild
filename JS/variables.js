@@ -795,7 +795,7 @@ types={
         {name:'Golden Eye',internal:'Confused Draw',id:156,rarity:-1,list:0,description:'Draw 3 More Cards Every Turn,\nStart Combat Confused'},
         {name:'Platinum Spoon',internal:'Much Better Items',id:157,rarity:4,list:0,description:'Items are 5x\nMore Effective'},
         {name:'Holy Water',internal:'3 Starting Miracles',id:158,rarity:4,list:0,description:'Add 3 Miracles\nat the Start of Combat'},
-        {name:'Pentaxon',internal:'Random',id:159,rarity:4,list:0,description:'When Taken, Gain 1 Item,\n300 Currency, 10 Max HP, a Rare Card,\nand Upgrade a Random Card'},
+        {name:'Pentaxon',internal:'Random',id:159,rarity:4,list:0,description:'When Taken, Gain an Item,\n300 Currency, 10 Max HP, a Rare Card,\nand Upgrade a Random Card'},
 
         {name:'Watermelon',internal:'30 Max HP',id:160,rarity:4,list:0,description:'When Taken,\nGain 30 Max HP'},
         {name:'Bent Pliers',internal:'Upgrade Random Turn',id:161,rarity:-1,list:0,description:'Every Turn, Upgrade a Random\nCard in Your Hand'},
@@ -972,8 +972,12 @@ types={
         {name:'Call Button',internal:'Click to Swap',id:317,rarity:-1,list:0,description:'Click to Draw a Card and Discard a Card\n1 Use Per Encounter'},
         {name:'A Brief History of Time',internal:'Turn 10 Turn',id:318,rarity:-1,list:0,description:'On Turn 10, Take Another Turn'},
         {name:'The Road to Reality',internal:'Turn 5 Buffer',id:319,rarity:-1,list:0,description:'On Turn 5, Gain 2 Buffer'},
+
         {name:'Hina Charm',internal:'Curse Strength',id:320,rarity:-1,list:0,description:'On Turn 5, Gain 2 Buffer'},
-        {name:'Barbcoin',internal:'Random Value',id:321,rarity:-1,list:0,description:'Sell Value is Dynamic'},
+        {name:'Barbcoin',internal:'Random Value',id:321,rarity:-1,list:0,description:'The Sell Value of This\nRelic is Dynamic'},
+        {name:'Gaming Console',internal:'Glitched Cards',id:322,rarity:-1,list:0,description:'Glitched Cards Can Appear'},
+        {name:'SCT Parts',internal:'Click to Block',id:323,rarity:2,list:0,description:'Click to Add 6 Block\n1 Use Per Encounter'},
+        {name:'Managerial History',internal:'Click For Energy',id:324,rarity:2,list:0,description:'Click to Gain 3 Energy\n1 Use Per Encounter'},
 
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,temp:false,description:''},
@@ -996,7 +1000,7 @@ types={
         {name:'Attack Syringe',id:17,rarity:0,list:0,menu:false,temp:false,description:'Gain 5 Temporary\nStrength'},
         {name:'Defense Syringe',id:18,rarity:0,list:0,menu:false,temp:false,description:'Gain 5 Temporary\nDexterity'},
         {name:'Stun Dart',id:19,rarity:0,list:0,menu:false,temp:false,description:'Apply 1 Stun\nRange 1-6'},
-        {name:'Extra Bag',id:20,rarity:1,list:0,menu:true,temp:false,description:'Gain 1 Item Slot'},
+        {name:'Extra Bag',id:20,rarity:1,list:0,menu:true,temp:false,description:'Gain an Item Slot'},
         {name:'Blank Paper',id:21,rarity:0,list:0,menu:false,temp:false,description:'Add 1 Colorless\nCard to Your Hand'},
         {name:'Sand',id:22,rarity:0,list:0,menu:false,temp:false,description:'Apply 3 Weak'},
         {name:'Dirt',id:23,rarity:0,list:0,menu:false,temp:false,description:'Apply 3 Vulnerable'},
@@ -1081,7 +1085,6 @@ types={
 
         {name:'Starflame Prototype',id:1001,rarity:-1,list:-1,menu:false,temp:false,description:'Gain 5 Strength,\nShuffle 5 Burns into Draw'},
         {name:'Cola',id:1002,rarity:-1,list:-1,menu:true,temp:false,description:'Heal 15 HP\nCan No Longer Gain Block'},
-
         {name:'Salad',id:1003,rarity:-1,list:-1,menu:true,temp:true,description:'Heal 3 HP\nTemporary'},
         {name:'Energy Drink',id:1004,rarity:-1,list:-1,menu:false,temp:true,description:'Gain 2 Energy\nTemporary'},
         {name:'Glass Shard',id:1005,rarity:-1,list:-1,menu:false,temp:true,description:'Deal 5 Damage\nRange 1-3'},
@@ -1091,9 +1094,9 @@ types={
         {name:'Defense Dust',id:1009,rarity:-1,list:-1,menu:false,temp:true,description:'Gain 1 Dexterity\nTemporary'},
         {name:'Mystery Box',id:1010,rarity:-1,list:-1,menu:false,temp:true,description:'Add 1 Random Free Card\nto Your Hand\nTemporary'},
         {name:'Mundane Dust',id:1011,rarity:-1,list:-1,menu:false,temp:true,description:'No Effect'},
-
         {name:'Cream Paper',id:1012,rarity:-1,list:-1,menu:true,temp:false,description:'Choose a Sanae Card\nto Add to Deck'},
         {name:'Pink Paper',id:1013,rarity:-1,list:-1,menu:true,temp:false,description:'Choose a Sakura Card\nto Add to Deck'},
+        {name:'Quality Coffee',id:1014,rarity:-1,list:-1,menu:false,temp:false,description:'Gain 3 Energy,\nDraw and Upgrade 3 Cards'},
 
     ],event:[
         {
@@ -1145,12 +1148,12 @@ but there's still enough to grab something before you leave.`,
 `The building collapses as you carry the heavy case out,
 but you get out without major injuries. You get the materials out
 of the box and they turn out to be potentially valuable.`,
-                    option:['Collect the money'],
+                    option:['Collect the Money'],
                     optionDesc:['Gain 300 Currency, Take 20 Damage'],
                     link:[-1],
                 },{
                     desc:`You manage to make it out, and the kit is exactly what it looks like.`,
-                    option:['Use the kit'],
+                    option:['Use the Kit'],
                     optionDesc:['Heal to Full'],
                     link:[-1],
                 }
@@ -1164,7 +1167,7 @@ of the box and they turn out to be potentially valuable.`,
 and the rock you're standing on collapses beneath your feet,
 sending you falling into a gap. You can see the bottom from
 where you are, but it is a long drop.`,
-                    option:['Grab on to the side','Try to land on a ledge','Hope for the best'],
+                    option:['Grab onto the Side','Try to Land on a Ledge','Hope for the Best'],
                     optionDesc:['','',''],
                     link:[1,2,3],
                 },{
@@ -1172,7 +1175,7 @@ where you are, but it is a long drop.`,
 `With some difficulty, you successfully grab on to the side and
 use friction with the edge to slow your fall. You seem to have
 dropped some items along the way, but they could be anywhere now.`,
-                    option:['Get out of the hole'],
+                    option:['Get Out of the Hole'],
                     optionDesc:['Lose a Random Relic'],
                     link:[-1],
                 },{
@@ -1181,14 +1184,14 @@ dropped some items along the way, but they could be anywhere now.`,
 You manage to move over, but the landing knocks you unconscious.
 When you get up, your head is spinning, and you forget some
 of what you were doing beforehand.`,
-                    option:['Get out of the hole'],
+                    option:['Get Out of the Hole'],
                     optionDesc:['Remove 2 Random Cards'],
                     link:[-1],
                 },{
                     desc:
 `You land with a crash.
 After a minute of lying in pain, you get back up and leave.`,
-                    option:['Get out of the hole'],
+                    option:['Get Out of the Hole'],
                     optionDesc:['Lose 13 Health'],
                     link:[-1],
                 },
@@ -1226,12 +1229,12 @@ He asks you which you would like to test.`,
 `You hear a call and rush over to help. The Management
 has planted a bomb in the city. The locals have no
 idea how to defuse it, but you might have a guess.`,
-                    option:['Cut the red wire','Cut the green wire','Cut the blue wire','Back away'],
+                    option:['Cut the Red Wire','Cut the Green Wire','Cut the Blue Wire','Back Away'],
                     optionDesc:['','','',''],
                     link:[1,1,1,3],
                 },{
                     desc:`You're thanked for preventing needless destruction.`,
-                    option:['Job well done'],
+                    option:['Job Well Done'],
                     optionDesc:['Gain 200 Currency'],
                     link:[-1],
                 },{
@@ -1259,12 +1262,12 @@ The people here might not know who you are.
 But they definitely know that you don't belong here.
 His friends surround you, ready to get some information out of you.
 Things could quickly get ugly.`,
-                    option:['Ask them what they want ','Punch him'],
+                    option:['Talk Back','Punch Him'],
                     optionDesc:['','Start Fight'],
                     link:[1,-2],
                 },{
                     desc:`He asks you where you're from, and why you're here.`,
-                    option:['Tell the truth.','Punch him'],
+                    option:['Tell the Truth','Punch Him'],
                     optionDesc:['','Start Fight'],
                     link:[2,-2],
                 },{
@@ -1291,7 +1294,7 @@ while you enjoy some well-earned rest.`,
 Looks like nobody's used it for a long time.
 Despite that, it appears to be in good condition.
 You might still be able to use it for its intended purpose.`,
-                    option:['Use it','Take tools','Leave'],
+                    option:['Use it','Take Tools','Leave'],
                     optionDesc:['','',''],
                     link:[1,2,3],
                 },{
@@ -1326,7 +1329,7 @@ but your arm continues to hurt.`,
 when you hear some rustling in the leaves
 Turning around, you're too slow to stop the monkeys
 from grabbing you as more and more appear.`,
-                    option:['Fight the monkeys','Throw something valuable'],
+                    option:['Fight the Monkeys','Throw Something Valuable'],
                     optionDesc:['Start Fight',''],
                     link:[-2,1],
                 },{
@@ -1347,7 +1350,7 @@ Sure enough, you notice a poorly concealed weapon inside one's coat.
 And the other ones probably all did the same.
 If they wanted to kill you, it would be easy, now that
 they have you surrounded and unprepared.`,
-                    option:['Attack them','Jump out of the window','Act normal'],
+                    option:['Attack Them','Jump out of the Window','Act Normal'],
                     optionDesc:['Start Fight','',''],
                     link:[-2,1,2],
                 },{
@@ -1364,7 +1367,7 @@ far away before they can get after you.`,
                     link:[-1],
                 },{
                     desc:`A few minutes later, they jump you simultaneously.`,
-                    option:['Fight back'],
+                    option:['Fight Back'],
                     optionDesc:['Start Fight, Lose 5 Health'],
                     link:[-2],
                 },
@@ -1377,12 +1380,12 @@ far away before they can get after you.`,
 `You notice a strange man hiding in an alley.
 When he notices you, he runs off. He turns the corner,
 but you still have a chance to chase him down.`,
-                    option:['Run after him','Not worth it'],
+                    option:['Run After Him','Not Worth it'],
                     optionDesc:['',''],
                     link:[1,2],
                 },{
                     desc:`He leads you into an alley where his friends lie in wait.`,
-                    option:['Fight them'],
+                    option:['Fight Them'],
                     optionDesc:['Start Fight'],
                     link:[-2],
                 },{
@@ -1483,21 +1486,21 @@ until you find out what it is.`,
 `You find a crate of money lying open on the
 side of the road, overflowing with coins. A sign
 nearby says to take only the coins on the outside.`,
-                    option:['Take the coins','Smash it'],
+                    option:['Take the Coins','Smash it'],
                     optionDesc:['',''],
                     link:[1,2],
                 },{
                     desc:
 `You pick up the scattered coins and
 leave the rest where you found it.`,
-                    option:['Take the money'],
+                    option:['Take the Money'],
                     optionDesc:['Gain 75 Currency'],
                     link:[-1],
                 },{
                     desc:
 `You smash the crate and watch as more
 and more money streams out.`,
-                    option:['Take the money'],
+                    option:['Take the Money'],
                     optionDesc:['Gain 175 Currency, Become Cursed - Regret'],
                     link:[-1],
                 },
@@ -1510,14 +1513,14 @@ and more money streams out.`,
 `While resting, you notice an abandoned
 punching bag on the ground. Perfect for
 testing some of your combat abilities?`,
-                    option:['Beat it up','Leave it there'],
+                    option:['Beat it up','Leave it There'],
                     optionDesc:['',''],
                     link:[1,2],
                 },{
                     desc:
 `You have a good time hitting the bag,
 until it breaks a few minutes later.`,
-                    option:['That was fun'],
+                    option:['That was Fun'],
                     optionDesc:['Upgrade a card'],
                     link:[-1],
                 },{
@@ -1538,12 +1541,12 @@ You finish up and leave the area.`,
 In return for a card, he'll give you another.
 You see a small pack in his hand, but he looks
 at you expectedly for your end of the deal.`,
-                    option:['Hand him a card','Back out'],
+                    option:['Hand him a Card','Back Out'],
                     optionDesc:['',''],
                     link:[1,2],
                 },{
                     desc:`You give him a card and he gives you the pack.`,
-                    option:['Good deal'],
+                    option:['Good Deal'],
                     optionDesc:['Transform a Card'],
                     link:[-1],
                 },{
@@ -1577,7 +1580,7 @@ I just help them unlearn bad habits..."
 you've ever heard. And yet, it's a new perspective.
 He escapes when you're not looking,
 but you've gotten what you need.`,
-                    option:['Try it out'],
+                    option:['Try it Out'],
                     optionDesc:['Remove a Card'],
                     link:[-1],
                 },{
@@ -1598,7 +1601,7 @@ When you enter, you realize that this is no ordinary
 donut shop. They don't take normal currency.
 Whatever's in the box, it can't be
 worth more than a donut, right?`,
-                    option:['Buy a donut','Keep the box'],
+                    option:['Buy a Donut','Keep the Box'],
                     optionDesc:['',''],
                     link:[1,2],
                 },{
@@ -1610,7 +1613,7 @@ worth more than a donut, right?`,
                     desc:
 `You resist the urge and open the box later.
 But you really wanted the donut...`,
-                    option:['Take the contents'],
+                    option:['Take the Contents'],
                     optionDesc:['Gain 2 Relics, Become Cursed - Regret'],
                     link:[-1],
                 },
@@ -1624,14 +1627,14 @@ But you really wanted the donut...`,
 floating in the center of the area.
 You feel a warm glow coming from it,
 and feel compelled to enter.`,
-                    option:['Enter the ball','Ignore it'],
+                    option:['Enter the Ball','Ignore it'],
                     optionDesc:['Lose 12 Health',''],
                     link:[1,2],
                 },{
                     desc:
 `Despite the pain, you see great knowledge
 within the ball, feeling invigorated.`,
-                    option:['Gain knowledge'],
+                    option:['GainKknowledge'],
                     optionDesc:['Upgrade 2 Random Cards'],
                     link:[-1],
                 },{
@@ -1690,7 +1693,7 @@ he tries to hand you some money as thanks.`,
                     desc:
 `He runs off, leaving you with the paper.
 You try to read it, but it's all bureaucratic nonsense.`,
-                    option:['Easy money'],
+                    option:['Easy Money'],
                     optionDesc:['Become Cursed - Doubt'],
                     link:[-1],
                 },{
@@ -1721,12 +1724,12 @@ As you continue to read, the meanings become clear.`,
                     desc:
 `The answer was elegance.
 Of course.`,
-                    option:['That'+"'"+'s what it meant'],
+                    option:[`That's what it meant`],
                     optionDesc:['Remove a Card'],
                     link:[-1],
                 },{
                     desc:`The truth is always simple.`,
-                    option:['That'+"'"+'s what it meant'],
+                    option:[`That's what it meant`],
                     optionDesc:['Upgrade All Strikes, Defends, and Steps'],
                     link:[-1],
                 },
@@ -1773,14 +1776,14 @@ table notice you and ask you to come over.
 "Would like to bet on who wins? That would make the
 game a little more interesting, don't you agree?"
 The other man smiles and stares at you expectantly.`,
-                    option:['Bet on first player','Bet on second player','Refuse'],
+                    option:['Bet on First Player','Bet on Second Player','Refuse'],
                     optionDesc:['Lose 50 Currency','Lose 50 Currency',''],
                     link:[1,1,3],
                 },{
                     desc:
 `The man you bet on wins the game.
 You receive the return on your bet.`,
-                    option:['Collect winnings'],
+                    option:['Collect Winnings'],
                     optionDesc:['Gain 100 Currency'],
                     link:[-1],
                 },{
@@ -1815,7 +1818,7 @@ and many spots to read in.`,
 to preserve the culture destroyed in Americanization.
 Atlorium Inc.'s Manager personally met with the
 colonists' leader to negotiate the travel expenses.`,
-                    option:['Interesting story'],
+                    option:['Interesting Story'],
                     optionDesc:['Add a Card'],
                     link:[-1],
                 },{
@@ -1947,7 +1950,7 @@ While he's distracted, you escape.`,
 of the catacombs. There lies a large coffin covered in gems.
 The text on the side is unintelligible, but you can
 recognize strange smoke coming out of the sides.`,
-                    option:['Open the Coffin','Don'+"'"+'t'],
+                    option:['Open the Coffin',`Don't`],
                     optionDesc:['Gain a Relic',''],
                     link:[1,3],
                 },{
@@ -1984,7 +1987,7 @@ A screen in the center of the room lights up,
 and a voice beguns speaking from within it.
 "What are you here for? And more importantly,
 what shall be the price?"`,
-                    option:['Money','Success (Cards)','Help (Relic)','The exit'],
+                    option:['Money','Success (Colorless Cards)','Help (Relic)','The Exit'],
                     optionDesc:['Lose 8 Health','Lose 8 Health','Lose 24 Health',''],
                     link:[1,2,3,4],
                 },{
@@ -2075,7 +2078,7 @@ The largest smiles and extends a hand toward you.
 `He pulls you forward and sinks his teeth through your neck.
 You feel a dark force moving through your body from the bite.\n
 You wake up some time later, alone and hungry.`,
-                    option:['You must feed'],
+                    option:['You Must Feed'],
                     optionDesc:['Add 5 Bites to Deck'],
                     link:[-1],
                 },{
@@ -2132,12 +2135,12 @@ you begin to see a distant memory from within.`,
                     link:[1,2],
                 },{
                     desc:`A flash of thought jumps through your mind.`,
-                    option:['Accept the memories'],
+                    option:['Accept the Memories'],
                     optionDesc:['Add 1 Uncommon Colorless Card'],
                     link:[-1],
                 },{
                     desc:`A flash of thought jumps through your mind.`,
-                    option:['Accept the memories'],
+                    option:['Accept the Memories'],
                     optionDesc:['Add 1 Rare Colorless Card'],
                     link:[-1],
                 },
@@ -2155,7 +2158,7 @@ your head aren't helping things either.
 Passing by a structure you are certain you have previously seen,
 you start to question if you are going insane.
 You need to change something, and soon.`,
-                    option:['Embrace madness','Continue','Head back'],
+                    option:['Embrace Madness','Continue','Head Back'],
                     optionDesc:['','',''],
                     link:[1,2,3],
                 },{
@@ -2164,7 +2167,7 @@ You need to change something, and soon.`,
 Things are beginning to make sense now.
 "Maybe those voices were right after all.
 Things do seem to make so much more sense now.`,
-                    option:['Get out'],
+                    option:['Get Out'],
                     optionDesc:['Gain 2 Madness, Lose 10 Max Health'],
                     link:[-1],
                 },{
@@ -2175,7 +2178,7 @@ the hint of a pattern starts to emerge from within
 the randomness. Whenever the demented noises
 begin to interrupt your thoughts, you struggle
 through the mental pain and ignore it.`,
-                    option:['Get out'],
+                    option:['Get Out'],
                     optionDesc:['Become Cursed - Writhe'],
                     link:[-1],
                 },{
@@ -2183,7 +2186,7 @@ through the mental pain and ignore it.`,
 `You spend what seems like an eternity lost in the maze.
 Slowly, you are able to retrace your steps,
 reorient yourself, and make it out.`,
-                    option:['Get out'],
+                    option:['Get Out'],
                     optionDesc:['Lose 5 Max Health'],
                     link:[-1],
                 },
@@ -2206,8 +2209,8 @@ quickly enough that you don't think you can escape.`,
 causing it to move backwards and land harmlessly nearby.
 The driver quickly starts up the engine again and
 leaves without you, much to your confusion.`,
-                    option:['It'+"'"+'s gone'],
-                    optionDesc:['Lose 1 Random Card'],
+                    option:[`It's Gone`],
+                    optionDesc:['Remove a Random Card'],
                     link:[-1],
                 },{
                     desc:
@@ -2241,7 +2244,7 @@ along with the money of others who have fallen in.`,
                     desc:
 `Feeling the sting of the goo as the prolonged exposure
 starts to melt away at your skin, you get the gold.`,
-                    option:['Get out'],
+                    option:['Get Out'],
                     optionDesc:['Lose 11 Health'],
                     link:[-1],
                 },{
@@ -2262,7 +2265,7 @@ They're blocking the path, so it's impossible
 for you to go around the patch.
 You could just walk over them, but you
 feel like eating one for some reason...`,
-                    option:['Walk through them','Eat one'],
+                    option:['Walk Through Them','Eat One'],
                     optionDesc:['',''],
                     link:[1,2],
                 },{
@@ -2301,7 +2304,7 @@ yourself to be surrounded by deactivated automata.`,
                     desc:
 `As soon as you smash the sphere open,
 the sentries spring up and attack you.`,
-                    option:['Fight them'],
+                    option:['Fight Them'],
                     optionDesc:['Start Fight'],
                     link:[-2],
                 },{
@@ -2397,7 +2400,7 @@ But as you prepare to take his possessions,
 you realize that you've seen this trap before.
 The Management is known for using its
 soldiers long past their lifetimes...`,
-                    option:['Steal from him','Leave him alone'],
+                    option:['Steal From Him','Leave Him Alone'],
                     optionDesc:['',''],
                     link:[1,3],
                 },{
@@ -2433,7 +2436,7 @@ help itself from using underhanded tactics.`,
 The owner, tinkering with something in the back, turns to face you.
 "Come on in and buy something,
 I've got plenty of products here!"`,
-                    option:['Buy something','Get out'],
+                    option:['Buy something','Get Out'],
                     optionDesc:['',''],
                     link:[-2,1],
                 },{
@@ -2514,7 +2517,7 @@ You're liking the place, when he looks over you again.
 "Actually, we don't serve people like you, not that it's illegal, of course..."\n
 He reconsiders the final time. "Fine, what service would you like?"
 You could take one of the services, but you would rather punch him.`,
-                    option:['Adjustments','Cleanup','Punch him'],
+                    option:['Adjustments','Cleanup','Punch Him'],
                     optionDesc:['Lose 40 Currency','Lose 60 Currency',''],
                     link:[1,2,3],
                 },{
@@ -2537,7 +2540,7 @@ Should've punched him.`,
                     desc:
 `You hit him so hard that your fist might even hurt a little.
 He recoils from the collision. You leave, feeling satisfied.`,
-                    option:['Serves him right'],
+                    option:['Serves Him Right'],
                     optionDesc:['Lose 1 Health'],
                     link:[-1],
                 },
@@ -2551,7 +2554,7 @@ He recoils from the collision. You leave, feeling satisfied.`,
 you notice a strange creature eating something inside.
 When it notices you, it drops its food and runs towards you,
 trying to take your possessions.`,
-                    option:['Give it a relic','Run'],
+                    option:['Give it a Relic','Run'],
                     optionDesc:['Lose a Random Relic, Gain a Relic - Mandelbox',''],
                     link:[1,2],
                 },{
@@ -2579,7 +2582,7 @@ The test is safe for viewers at 20 kilometers,
 and it has been announced that all are welcome to view it.
 A typical show of force for the Management, they want
 the citizens to know what they're up against.`,
-                    option:['View the test','Rest'],
+                    option:['View the Test','Rest'],
                     optionDesc:['',''],
                     link:[1,2],
                 },{
@@ -2592,14 +2595,14 @@ If the Management has four of these on every ship,
 they have no reason to even try to fight.
 That's probably enough firepower to destroy entire planets...`,
                     option:['Beautiful?'],
-                    optionDesc:['Gain 1 Item'],
+                    optionDesc:['Gain an Item'],
                     link:[-1],
                 },{
                     desc:
 `You don't have the additional time
 to watch such a meaningless spectacle.
 You rest in the meantime while others gather to watch.`,
-                    option:['Good rest'],
+                    option:['Good Rest'],
                     optionDesc:['Heal 6 Health'],
                     link:[-1],
                 },
@@ -2612,7 +2615,7 @@ You rest in the meantime while others gather to watch.`,
 `You stumble across a secret fight club in
 the criminal underworld. There are multiple fights
 scheduled today, but also some vacancies.`,
-                    option:['Join a fight','Bet on a fight','Ignore it'],
+                    option:['Join a Fight','Bet on a Fight','Ignore it'],
                     optionDesc:['Start Fight','',''],
                     link:[-2,1,3],
                 },{
@@ -2657,7 +2660,7 @@ It might not have any direct value, but it may have other uses.`,
 causing a giant stone ball to fall in front of you.
 You realize the ground is slightly slanted
 as the ball begins rolling toward you.`,
-                    option:['Get hit','Duck','Run'],
+                    option:['Get Hit','Duck','Run'],
                     optionDesc:['','',''],
                     link:[3,4,5],
                 },{
@@ -2697,7 +2700,7 @@ It's safe to drink, but I'm afraid it's illegal."
 "Not exactly. The concentrations of some of
 the parts are above regulated levels."
 "Anyway, I'll give you a sample if you keep quiet."`,
-                    option:['Take some','Refuse'],
+                    option:['Take Some','Refuse'],
                     optionDesc:['',''],
                     link:[1,2],
                 },{
@@ -2706,7 +2709,7 @@ the parts are above regulated levels."
 and pulls out a bottle containing suspicious brown liquid.
 "Enjoy your drink!"`,
                     option:['Take it'],
-                    optionDesc:['Gain 1 Item'],
+                    optionDesc:['Gain an Item'],
                     link:[-1],
                 },{
                     desc:`You leave them to do their business alone.`,
@@ -2755,7 +2758,7 @@ Unfolding the ball, you find a message from
 some sort of organization operating on the planet.
 "We would like to meet you tomorrow at our base."
 Looks like they've given you directions there as well.`,
-                    option:['Go there',"Don't"],
+                    option:['Go There',"Don't"],
                     optionDesc:['',''],
                     link:[2,1],
                 },{
@@ -2776,14 +2779,14 @@ out from all sides and attack you.`,
                     desc:
 `There's nobody there,
 only a drop box and some security systems.`,
-                    option:['Go toward the box','Leave'],
+                    option:['Go Toward the Box','Leave'],
                     optionDesc:['Lose 3 Health',''],
                     link:[4,5],
                 },{
                     desc:
 `You advance, but the security system
 takes a chunk out of you.`,
-                    option:['Keep going','Leave'],
+                    option:['Keep Going','Leave'],
                     optionDesc:['Lose 3 Health',''],
                     link:[6,5],
                 },{
@@ -2846,14 +2849,14 @@ You open up one closet and look inside.
 Hundreds of books are inside,
 along with many ages of notes.
 There's space for one large book in the center, but it's gone.`,
-                    option:['Take the stuff','Destroy the evidence'],
+                    option:['Take the Stuff','Destroy the Evidence'],
                     optionDesc:['',''],
                     link:[1,2],
                 },{
                     desc:
 `You grab every book you can and
 leave the house with the materials.`,
-                    option:['Keep them'],
+                    option:['Keep Them'],
                     optionDesc:['Gain a Relic - Survival Notes'],
                     link:[-1],
                 },{
@@ -2878,7 +2881,7 @@ As he continually speeds up, you begin to get worried.
 This is exacerbated when he starts swerving through traffic.
 It is at that moment you realize that the
 other cars are driving the other way.`,
-                    option:['Grab the wheel','Hope for the best','Jump out the door'],
+                    option:['Grab the Wheel','Hope for the Best','Jump out the door'],
                     optionDesc:['','',''],
                     link:[1,2,3],
                 },{
@@ -2888,7 +2891,7 @@ the taxi down. Other cards turn around the taxi,
 While you can't drive, you are able to jump
 out and run the rest of the trip on foot.`,
                     option:['Escape'],
-                    optionDesc:['Add 1 Random Card'],
+                    optionDesc:['Add a Random Card'],
                     link:[-1],
                 },{
                     desc:
@@ -2904,7 +2907,7 @@ You wake up hours later, in severe pain.`,
 The taxi goes on and crashes in the distance.
 You spend the next few minutes frantically 
 dashing between cars to get off the bridge.`,
-                    option:['Get out of there'],
+                    option:['Get Out of There'],
                     optionDesc:['Lose 9 Health'],
                     link:[-1],
                 },
@@ -2916,14 +2919,14 @@ dashing between cars to get off the bridge.`,
                     desc:
 `You are stopped in the road by a gang of monkeys.
 "We'd like your protection payment," the first one says.`,
-                    option:['How much?','Attack him'],
+                    option:['How Much?','Attack Him'],
                     optionDesc:['','Start Fight'],
                     link:[1,-2],
                 },{
                     desc:`
 "40", he answers.
 "Standard Management currency."`,
-                    option:['Pay up','Attack him'],
+                    option:['Pay up','Attack Him'],
                     optionDesc:['Lose 40 Currency','Start Fight'],
                     link:[2,-2],
                 },{
@@ -2936,7 +2939,7 @@ The monkeys leave.`,
                 },
             ],
         },{
-            name:'Call of the Void',id:57,list:0,
+            name:'Call of the Void',id:57,list:-1,
             pages:[
                 {
                     desc:
@@ -2945,7 +2948,7 @@ middle of the air. It's made of nothing.
 Like, it's literally nothing.
 Not empty space, just nothing at all.
 Probably a glitch or something...`,
-                    option:['Put something in','Jump in'],
+                    option:['Put Something in','Jump in'],
                     optionDesc:['Remove a Card','Delete All Cards'],
                     link:[1,2],
                 },{
@@ -3274,13 +3277,20 @@ different from the others, with a slightly edited uniform.
 When you approach, he tells you that he's part of a branch
 group of the Reds working to start a Revolution against
 rare cards. "Comrade, join us!" he requests.`,
-                    option:['Slap Him','Join the Rebellion'],
-                    optionDesc:['Transform a Basic Card','Remove a Non-Basic Card'],
-                    link:[1,2],
+                    option:['Slap Him','Receive a Brochure','Join the Rebellion'],
+                    optionDesc:['Transform a Basic Card','Double Upgrade a Random Basic Card','Remove a Non-Basic Card'],
+                    link:[1,2,3],
                 },{
                     desc:
 `Thoroughly beating him up, you reaffirm
 you hatred towards those basic cards.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`You'll consider the idea of joining.
+Basic cards aren't your favorite, but they never did you wrong.`,
                     option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
@@ -3422,7 +3432,7 @@ beckons you to enter. Rather than products, the
 shop contains only a counter, where he explains
 that he is a collector of rare items and may be
 interested in trading with you.`,
-                    option:['Try Trading','Get out'],
+                    option:['Try Trading','Get Out'],
                     optionDesc:['',''],
                     link:[-2,1],
                 },{
@@ -4361,24 +4371,60 @@ heard of the places she's talking about.`,
                     link:[-1],
                 },
             ],
-        },/*{
-            name:'Target\nPractice',id:107,list:0,
+        },{
+            name:'Target Practice',id:107,list:0,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`You walk into a carnival. Most of the games don't
+interest you, but one stand offers "Target Practice"
+against some distant objects. The entry fee is on the
+cheap side, so maybe it's worth giving it a shot?`,
+                    option:['Give it a Try','Decline'],
+                    optionDesc:['Lose 5 Currency',''],
+                    link:[1,3],
+                },{
+                    desc:`You hit the target! Your aim is a little better now.`,
+                    option:['Leave'],
+                    optionDesc:['Upgrade a Card'],
+                    link:[-1],
+                },{
+                    desc:
+`You miss the target.
+The proprietor asks if you'd like another attempt.`,
+                    option:['Try Again','Decline'],
+                    optionDesc:['Lose 5 Currency',''],
+                    link:[1,3],
+                },{
+                    desc:
+`You decide it's not worth the money.`,
+                    option:['Exit'],
                     optionDesc:[''],
                     link:[-1],
                 },
             ],
         },{
-            name:'Broken\nBridge',id:108,list:0,
+            name:'Broken Bridge',id:108,list:0,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`At a river crossing, you find the bridge destroyed.
+Several other travelers are there, failing to make
+a solution. Some are leaving to go find another
+crossing further downriver.`,
+                    option:['Fix the Bridge','Find Another Crossing'],
+                    optionDesc:['Remove a Random Card',''],
+                    link:[1,2],
+                },{
+                    desc:
+`You manage to repair the crossing.
+The others toss you a few coins as thanks.`,
+                    option:['Cross'],
+                    optionDesc:['Gain 35 Currency'],
+                    link:[-1],
+                },{
+                    desc:`You reach the other crossing and cross successfully.`,
+                    option:['Cross'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4388,8 +4434,26 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`You come across an unfamiliar gathering of people.
+It looks like they're sitting across from each other
+at desks, each using a computer. Perhaps there's
+something that's making them all so excited?`,
+                    option:['Enter','Run Away'],
+                    optionDesc:['Gain a Relic - Gaming Console, Become Cursed - Gamer',''],
+                    link:[1,2],
+                },{
+                    desc:
+`You leave hours later a changed person.
+You might even see yourself returning there later.
+You've learned some things... but at what cost?`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`You get away from there as fast as possible.
+Something about that place, it doesn't smell right.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4399,8 +4463,30 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`As part of a rebel publicity stunt, a broadcaster
+approaches you to ask for an interview.`,
+                    option:['Accept','Decline'],
+                    optionDesc:['',''],
+                    link:[1,3],
+                },{
+                    desc:
+`After some filler questions, he gets to the real one.
+"Why are you doing this? What's your ultimate goal?"`,
+                    option:[`It's for the People!`,`It's for Money!`,`It's for Fun!`],
+                    optionDesc:['Add a Good News to Deck','Add a Bad News to Deck, Gain 200 Currency','Add Entertaining News to Deck'],
+                    link:[2,2,2],
+                },{
+                    desc:
+`Your answer is broadcasted to the world.
+Who knows what they'll think?`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`You decline the interview.
+You prefer to remain out of the public eye.`,
+                    option:['Exit'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4410,8 +4496,33 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`As you rest at a "hidden" rebel base, you and your
+allies hear a distant noise that can only mean one thing.
+The Management SCT Fighters arrive within seconds and fire
+indiscriminantly. Several rebels head to the anti-aircraft
+weaponry, but are killed by the first salvo. You manage to
+dodge, as the fighters prepare for their second attack run.`,
+                    option:['Man the Guns','Get to Shelter'],
+                    optionDesc:['Lose 27 Health',''],
+                    link:[1,2],
+                },{
+                    desc:
+`Working with the other defenders, you manage to shoot
+down a few SCT Fighters and convince the others to retreat.
+The rebels have taken some casualties as well, but your
+injuries aren't too bad. With the sky empty, your eyes
+return to the landscape before you, dotted with
+bodies and the remnants of destroyed fighters.`,
+                    option:['Take the Parts'],
+                    optionDesc:['Gain a Relic - SCT Parts'],
+                    link:[-1],
+                },{
+                    desc:
+`Getting deep underground, you and the other survivors
+successfully wait out the attacks until the fighters
+run out of ammunition and withdraw. But it looks
+like a lot of rebels didn't make it out alive...`,
+                    option:['Exit'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4421,19 +4532,40 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`You see a small shop on the side of the road,
+looks like a store for old tools and equipment.
+Maybe it's worth checking out what it has in stock?`,
+                    option:['Consider Buying','Get Out'],
+                    optionDesc:['',''],
+                    link:[-2,1],
+                },{
+                    desc:`You `,
+                    option:['Exit'],
                     optionDesc:[''],
                     link:[-1],
                 },
             ],
         },{
-            name:`Smith's Shed`,id:113,list:0,
+            name:`Smith's Forge`,id:113,list:0,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`You find a still-manned forge where a Smith works,
+repairing some older weapons. When you arrive, he asks
+if you'd like his services in improving your tools.`,
+                    option:['Purchase Upgrades','Decline'],
+                    optionDesc:['Lose 125 Currency, Deluxe Upgrade a Card',''],
+                    link:[1,2],
+                },{
+                    desc:
+`He gets to work and returns your reforged items later.
+They look at least a little shinier and higher quality.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:`You'd rather not pay his hefty prices.`,
+                    option:['Exit'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4443,8 +4575,42 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`Arriving at a local waste plant, you're given the
+opportunity to try it out, or maybe to buy some of
+their equipment. You don't have much use for waste
+disposal equipment, but those items may have some
+value in the short-term if you have lots of trash.`,
+                    option:['Throw Something Away','Buy a Trash Can','Buy a Dumpster','Decline'],
+                    optionDesc:['','Lose 150 Currency','Lose 375 Currency',''],
+                    link:[1,2,3,4],
+                },{
+                    desc:
+`You throw something onto the assembly line and
+watch as it is chewed up by the machine, with its
+remnants desposited into the plant's many reservoirs.`,
+                    option:['Leave'],
+                    optionDesc:['Remove a Card'],
+                    link:[-1],
+                },{
+                    desc:
+`With a trash can in tow, you're able to dispose
+of a lot of your old items, freeing up some space
+and lightening your load. But you have to return
+the trash can - you can't afford their long-term
+waste disposal plans.`,
+                    option:['Leave'],
+                    optionDesc:['Remove 2 Cards'],
+                    link:[-1],
+                },{
+                    desc:
+`The dumpster you purchased is too heavy for you to move,
+but you're able to fill it with trash to your heart's content.`,
+                    option:['Leave'],
+                    optionDesc:['Remove 3 Cards'],
+                    link:[-1],
+                },{
+                    desc:`You'd rather just leave this strange place.`,
+                    option:['Exit'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4454,8 +4620,26 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`As you chase a target across the rooftops, you suddenly
+lose your grip and begin falling towards the ground.`,
+                    option:['Fall Through a Window','Attempt a Three-Point Landing','Hit the Ground'],
+                    optionDesc:['','Lose 15 Health','Lose 5 Health'],
+                    link:[1,2,3],
+                },{
+                    desc:
+`You manage to get inside the nearby building,
+but the speed of the fall makes you dizzy.`,
+                    option:['Escape'],
+                    optionDesc:['Add a Random Card'],
+                    link:[-1],
+                },{
+                    desc:'You look great, but injure your leg.',
+                    option:['Get up'],
+                    optionDesc:['Remove a Card'],
+                    link:[-1],
+                },{
+                    desc:'You hit the ground hard.',
+                    option:['Exit'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4465,8 +4649,18 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`Navigating through a narrow canyon with little space
+to maneuver, you suddenly spot a squad of Management
+troops ahead of you. Because of the little space, this
+isn't exactly the best battleground to be facing them.`,
+                    option:['Fight Them','Escape'],
+                    optionDesc:['Start Fight',''],
+                    link:[-2,1],
+                },{
+                    desc:
+`You escape just barely, with the Management
+forces unable to catch you in the terrain.`,
+                    option:['Escape'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4476,8 +4670,20 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`You receive news that a rebel negotiator has been
+ambushed on the way to meet with their Management
+counterpart, not by the Management, but by gangsters.
+The rebels promise a nice paycheck if you save him,
+but even if he dies, this is a good opportunity
+to take out some gangster threats.`,
+                    option:['Take the Mission','Decline'],
+                    optionDesc:['Start Fight',''],
+                    link:[-2,1],
+                },{
+                    desc:
+`It's too dangerous a job for you.
+Those gangster assassins are no joke.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4487,19 +4693,43 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`You see two ducks, each dressed in strange cothing,
+having an argument. Each claims he came up with some
+idea first, about a chocolate experience.`,
+                    option:['Help Ducky Donka','Help Ducky McDuff',`Don't`],
+                    optionDesc:['Start Fight, Gain a Relic - Ducky Donka Ticket','Start Fight, Gain a Relic - Ducky McDuff Ticket',''],
+                    link:[-2,-2,1],
+                },{
+                    desc:
+`You choose not to take a side in so frivolous
+a dispute as the one the ducks are having.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
             ],
         },{
-            name:'Management Defector',id:119,list:0,
+            name:'Prison Informant',id:119,list:0,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`The prisoner gang has been acting up recently,
+you're informed, but there's some good news -
+one prisoner with some valuable intel is thinking
+about defecting and could join your side.
+The rebels tell you the plan - you'll kill the other
+prisoners while leaving him alive, so he has every
+chance he can get to switch sides. It's unlikely
+he'll defect until the others are all defeated,
+however, so you'll have to deal with all of them.`,
+                    option:['Take the Mission','Decline'],
+                    optionDesc:['Start Fight',''],
+                    link:[-1],
+                },{
+                    desc:
+`You decide against it, thinking that it's a trap.
+The informant isn't confirmed to be real, after all.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4509,7 +4739,27 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
+`You're offered some extra work protecting a local
+rebel-friendly politician as he makes a speech.`,
+                    option:['Accept','Decline'],
+                    optionDesc:['Gain 100 Currency'],
+                    link:[1,3],
+                },{
+                    desc:`It's easy money, an uneventful day.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`The Management launches a strike and you escort the
+politican to safety, but get shot in the process.`,
+                    option:['Ouch'],
+                    optionDesc:['Lose 18 Health'],
+                    link:[-1],
+                },{
+                    desc:
+`You know the Management is probably planning something.
+Taking the job is too risky.`,
                     option:[''],
                     optionDesc:[''],
                     link:[-1],
@@ -4519,6 +4769,26 @@ heard of the places she's talking about.`,
             name:'Mount Hinokizuka',id:121,list:0,
             pages:[
                 {
+                    desc:
+`At the base of Mt. Hinokizuka, you see a girl preparing
+for the climb. You'd never make it up the mountain yourself,
+so you doubt how somebody like her could do it.`,
+                    option:['Wish Her Luck','Sell Her Equipment','Leave'],
+                    optionDesc:['','Lose a Random Colorless Card, Gain 160 Currency',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
                     desc:
 ``,
                     option:[''],
@@ -4575,19 +4845,52 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`A traveling metalworker offers you an interesting proposition:
+with a little extra metal and some reforging, he could make a
+weapon far more effective. It'll be heavier, though.`,
+                    option:['Accept','Decline'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:`He asks you what weapon you'd like to "improve".`,
+                    option:['Give it'],
+                    optionDesc:['Double an Attack`s Effect, but Double its Cost'],
+                    link:[-1],
+                },{
+                    desc:'You decline his services.',
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
             ],
         },{
-            name:'Curse of Misfortune',id:127,list:0,
+            name:'Goddess of Poverty',id:127,list:0,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`In the midst of the darkness, a purple glow surrounds you,
+and the Spectre of Poverty appears before you, with an accursed smile.
+It's said that she rarely appears to people, but when she does,
+it never ends well for them.
+"Well, well, well..." she begins. "Are you poor?"`,
+                    option:[`I'm Poor!`,`I'm not Poor!`],
+                    optionDesc:['Lose All Currency','Become Cursed - Misfortune'],
+                    link:[1,2],
+                },{
+                    desc:
+`You feel the coins you have collected being drained,
+disappearing into invisible voids, as she laughs, the purple glow
+becomeing stronger as it blocks out everything else around.
+"Yes... you are poor."`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`She smiles and says something unintelligible as you feel
+the coins you have collected becoming increasingly heavy.
+"Continue your fantasies," she says. "You'll wish you were poor!"`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4597,8 +4900,26 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`You enter a small coffee shop, filled with a few people
+enjoying their breakfasts. Perhaps you could order something.`,
+                    option:['Buy Coffee','Buy a Scone','Buy Nothing'],
+                    optionDesc:['Lose 10 Currency','Lose 20 Currency'],
+                    link:[1,2,3],
+                },{
+                    desc:
+`You get handed your cup of coffee.
+It looks a little better than what you're used to.`,
+                    option:['Take it'],
+                    optionDesc:['Gain an Item - Quality Coffee'],
+                    link:[-1],
+                },{
+                    desc:'You get handed your scone. It looks pretty decent.',
+                    option:['Eat it'],
+                    optionDesc:['Gain 3 Max HP'],
+                    link:[-1],
+                },{
+                    desc:`You don't feel like having anything.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4608,8 +4929,48 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`On a particularly sunny day, the rays of light suddenly
+seem to focus inward onto you. As you blink, stunned,
+the light dissipates, revealing a laughing, smirking fairy.
+It looks like she's charging up an even larger beam of light...`,
+                    option:['Collect Sunlight','Absorb Sunlight','Deflect Sunlight'],
+                    optionDesc:['Lose 12 Max Health','Become Cursed - Direct Sunlight','Lose 8 Health'],
+                    link:[1,2,3],
+                },{
+                    desc:
+`Using all your power, you manage to collect some of the sunlight
+within you, despite feeling your body melting around you as it happens.
+When it's all over, the fairy remains there, impressed by your ability.
+"You're good with this stuff! Wanna be a team?"`,
+                    option:['Accept','Decline'],
+                    optionDesc:['Add Sunny, Glowing Sunlight (Ally Card) to Deck',''],
+                    link:[4,5],
+                },{
+                    desc:
+`Allowing the sunlight to become part of you, you feel strengthened.
+But it also feels as if the sunlight is still there within...`,
+                    option:['Leave'],
+                    optionDesc:['Deluxe Upgrade 2 Cards'],
+                    link:[-1],
+                },{
+                    desc:
+`You manage to block as much of the sunlight as you can,
+but you still get burned a little, though you can also feel
+some of the power now coursing through you.
+By the time you open your eyes again, the fairy is long gone.`,
+                    option:['Leave'],
+                    optionDesc:['Upgrade 2 Cards'],
+                    link:[-1],
+                },{
+                    desc:
+`She begins following you around. Maybe she's not the most
+reliable companion, but she's proven her power at the very least.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:`After that "prank", you're never gonna work with her.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4619,9 +4980,59 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`You see an abandoned temple. Within, a book is
+opened on a pedestal, flipped to a random page.
+You arrive. It's about an abandoned
+Management project, known as Project Duality.`,
+                    option:['Read','Stop'],
+                    optionDesc:['Lose 2 Health',''],
+                    link:[2,1],
+                },{
+                    desc:`You resist the urge to read and put down the book.`,
+                    option:['Exit'],
                     optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`Project Duality was engineered as a counterpart to Project Godhood.
+While Project Godhood was about unlocking the source of life, Project
+Duality was about creating a device that could shift cosmic objects.
+This had already been accomplished using massive attachable engine
+rings, but the goal of Project Duality was to move objects from
+a distance such that it could move stars or even black holes.`,
+                    option:['Read','Stop'],
+                    optionDesc:['Lose 4 Health',''],
+                    link:[3,1],
+                },{
+                    desc:
+`Project Duality went off to a bad start, with engineering faults
+and incompetent leadership delaying the beginning of construction.
+Three Directors were removed from the Project as delays mounted,
+and costs were far overbudget. Ultimately, only the timely intervention
+of the Admiral-Manager himself could save the plan, but even he
+thought it wasn't worth the expenditures.`,
+                    option:['Read','Stop'],
+                    optionDesc:['Lose 8 Health',''],
+                    link:[4,1],
+                },{
+                    desc:
+`The ultimate device, named the Diploid, was completed after
+6 years of construction, and used to rearrange stellar objects
+to the Management's desires, but only for a few decades before
+it was infiltrated by rebel operatives. The fatal weakness of
+the Diploid was its weak manpower commitment, resulting in a
+frail defense that collapsed quickly, with the rebelks managing
+to enter the control rooms and disable the device entirely.
+It was never repaired. The Admiral-Manager fired those involved
+and advised his successors never to repeat their mistakes.`,
+                    option:['Take','Stop'],
+                    optionDesc:['Lose 8 Max HP',''],
+                    link:[5,1],
+                },{
+                    desc:
+`Finishing the chapter, you keep the book.`,
+                    option:['Keep it'],
+                    optionDesc:['Gain a Relic - Managerial History'],
                     link:[-1],
                 },
             ],
@@ -4630,8 +5041,31 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`In the center of a field, the clouds suddenly rush into
+position above, and a torrent of rain begins, along with wind.
+The planet's weather is normally very mild, but it's often
+said that sometimes, it can become very poor indeed.`,
+                    option:['Embrace','Channel','Hide'],
+                    optionDesc:['Gain a Relic - Maelstrom, Lose 27 Health','Remove a Card, Add a Random Card to Deck',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+`You allow the wind to surround you, absorbing its strength.
+It dissipates after a few moments, having completed its task.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`Your mind becomes gradually absorbed into the weather,
+only being freed as it passes.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`Getting to nearby shelter, you watch the weather pass by.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4641,7 +5075,30 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
+`You enter a shop that sells "Paper Balls".
+They don't look like they have much value,
+but they're collectors' items, apparently.
+Maybe it's worth buying one?`,
+                    option:['Buy a Paper Ball','Buy a Deluxe Paper Ball','Decline'],
+                    optionDesc:['Lose 25 Currency','Lose 100 Currency',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+`You're handed a paper ball. It's slightly shiny
+and might prove to be useful later on.`,
+                    option:['Take it'],
+                    optionDesc:['Add a Paper Ball to Deck'],
+                    link:[-1],
+                },{
+                    desc:
+`You get your paper ball, very shiny but quite
+fragile as well. Maybe it'll be useful.`,
+                    option:['Take it'],
+                    optionDesc:['Add a Polychrome Paper Ball to Deck'],
+                    link:[-1],
+                },{
+                    desc:
+`You're not going to buy something so obviously useless.`,
                     option:[''],
                     optionDesc:[''],
                     link:[-1],
@@ -4652,8 +5109,20 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`A counterfeiter offers his services for a cheap price.
+He claims to be capable of duplicating anything with the right materials,
+but his shop is looking a little shady.`,
+                    option:['Accept','Decline'],
+                    optionDesc:['Lose 25 Currency',''],
+                    link:[1,2],
+                },{
+                    desc:`He takes your object and promises to return a "copy".`,
+                    option:['Leave'],
+                    optionDesc:['Duplicate a Card, the Copy Costs 1 More'],
+                    link:[-1],
+                },{
+                    desc:`With something as shady as this, you decide not to take the offer.`,
+                    option:['Exit'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4663,8 +5132,20 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`Rebel command approaches you with bad news:
+according to their sources, a former friend is
+looking to switch sides and is planning to meet
+with Management officers. The rebels need your help
+in dealing with this threat and offer a good reward.`,
+                    option:['Take the Mission','Decline'],
+                    optionDesc:['Gain 200 Currency, Start Fight',''],
+                    link:[-2,1],
+                },{
+                    desc:
+`It sounds like a Management plot to get you to turn
+against your allies. Better let the rebels investigate
+it more before you make any premature decisions.`,
+                    option:['Exit'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4674,13 +5155,36 @@ heard of the places she's talking about.`,
             pages:[
                 {
                     desc:
+`At a rebel base, one engineer approaches you with an idea.
+He's been experimenting with larger versions of defense tools,
+and is interested in testing his techniques on one of yours.`,
+                    option:['Accept','Decline'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:`He asks for a test item.`,
+                    option:['Give it'],
+                    optionDesc:['Double a Defense`s Effect, but Double its Cost'],
+                    link:[-1],
+                },{
+                    desc:`You don't trust this guy.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'',id:136,list:0,
+            pages:[
+                {
+                    desc:
 ``,
                     option:[''],
                     optionDesc:[''],
                     link:[-1],
                 },
             ],
-        },*/
+        },
     ],color:{
         card:[
             {
@@ -6241,6 +6745,51 @@ heard of the places she's talking about.`,
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:[''],class:0,world:-1,
+            name:'Canyon',
+            player:{position:[[{x:1,y:3}],[{x:1,y:3},{x:0,y:2}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Management Light Infantry'},
+                {position:{x:3,y:5},name:'Management Light Infantry'},
+            ],reinforce:[
+            ],
+        },{
+            level:[''],class:0,world:-1,
+            name:'Negotiator',
+            player:{position:[[{x:1,y:3}],[{x:1,y:3},{x:0,y:2}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Gangster'},
+                {position:{x:3,y:5},name:'Gangster'},
+                {position:{x:3,y:5},name:'Gangster Assassin'},
+            ],reinforce:[
+            ],
+        },{
+            level:[''],class:0,world:-1,
+            name:`Ducky's Chocolate Experience (1)`,
+            player:{position:[[{x:1,y:3}],[{x:1,y:3},{x:0,y:2}]]},
+            enemy:[
+                {position:{x:3,y:5},name:'Ducky McDuff'},
+            ],reinforce:[
+            ],
+        },{
+            level:[''],class:0,world:-1,
+            name:`Ducky's Chocolate Experience (2)`,
+            player:{position:[[{x:1,y:3}],[{x:1,y:3},{x:0,y:2}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Ducky Donka'},
+            ],reinforce:[
+            ],
+        },{
+            level:[''],class:0,world:-1,
+            name:`Prison Informant`,
+            player:{position:[[{x:1,y:3}],[{x:1,y:3},{x:0,y:2}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Prisoner'},
+                {position:{x:1,y:0},name:'Prisoner'},
+                {position:{x:3,y:5},name:'Prisoner Informant'},
             ],reinforce:[
             ],
         },{

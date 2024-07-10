@@ -1661,7 +1661,7 @@ class group{
             return total
         }
     }
-    randomEffect(effect,args){
+    randomEffect(effect,args=[]){
         if(this.cards.length>0){
             let list=[]
             for(let a=0,la=this.cards.length;a<la;a++){
@@ -1702,6 +1702,7 @@ class group{
                 &&!(effect==51&&this.cards[a].spec.includes(57))
                 &&!(effect==52&&(!this.removable(a)||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==53&&(this.cards[a].spec.includes(48)||this.cards[a].attack==80))
+                &&!(effect==54&&(this.cards[a].level>=2||!this.cards[a].basic))
                 ){
                     list.push(a)
                 }
@@ -1946,6 +1947,9 @@ class group{
                         if(!this.cards[index].spec.includes(48)){
                             this.cards[index].spec.push(48)
                         }
+                    break
+                    case 54:
+                        this.cards[index]=upgradeCard(upgradeCard(this.cards[index]))
                     break
 
                 }

@@ -38,6 +38,14 @@ class itemManager{
             this.tempEffectiveness.push(1)
         }
     }
+    hasEmpty(player){
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            if(this.items[player][a].type==1){
+                return true
+            }
+        }
+        return false
+    }
     addItem(type,player){
         if(!this.battle.relicManager.hasRelic(138,player)){
             for(let a=0,la=this.items[player].length;a<la;a++){
@@ -91,6 +99,18 @@ class itemManager{
     addSetItem(rarity,player){
         let index=floor(random(0,this.listing.item[rarity].length))
         this.addItem(this.listing.item[rarity][index],player)
+    }
+    makeItemSelection(rarity){
+        let list=[]
+        let items=copyArrayStack(this.listing.item)
+        for(let a=0,la=rarity.length;a<la;a++){
+            if(items[rarity[a]].length>0){
+                let index=floor(random(0,items[rarity[a]].length))
+                list.push(items[rarity[a]][index])
+                items[rarity[a]].splice(index,1)
+            }
+        }
+        return list
     }
     addItemSlots(amount,player){
         for(let a=0;a<amount;a++){

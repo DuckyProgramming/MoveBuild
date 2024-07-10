@@ -329,7 +329,10 @@ class cardManager{
                     card.cost=max(min(card.cost,0),card.cost-args[ticker++])
                 break
                 case 6:
-                    this.getList(group).addSAbstract(type,level,color,edition,0,[5],[])
+                    this.getList(group).addAbstract(type,level,color,edition,0,[5],[])
+                break
+                case 7:
+                    this.getList(group).addAbstract(type,level,color,edition,[4],[[args[ticker]++]])
                 break
             }
         }

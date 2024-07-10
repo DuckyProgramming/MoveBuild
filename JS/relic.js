@@ -2368,6 +2368,23 @@ class relic{
                     displaySymbol(this.layer,0,0,28,0,1,this.fade)
                     displaySymbol(this.layer,0,0,64,0,1,this.fade)
                 break
+                case 'Glitched Cards':
+                    displaySymbol(this.layer,0,0,147,0,1.5,this.fade)
+                break
+                case 'Click to Block':
+                    displaySymbol(this.layer,-8,0,27,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,120,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('6',-8,0)
+                break
+                case 'Click For Energy':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,120,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,0)
+                break
 
             }
             if(value){
@@ -2447,7 +2464,7 @@ class relic{
                         this.layer.textSize(6)
                         this.layer.text(`${detail%6+1}/6`,0,-16)
                     break
-                    case 'Click to Swap':
+                    case 'Click to Swap': case 'Click to Block': case 'Click For Energy':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${active-detail}/${active}`,0,-16)
@@ -2503,11 +2520,21 @@ class relic{
     onClick(mouse,battle){
         if(dist(mouse.x,mouse.y,this.position.x,this.position.y)<20){
             switch(this.internal){
-                case 'Click to Swap':
+                case 'Click to Swap': case 'Click to Block': case 'Click For Energy':
                     if(battle.relicManager.detail[this.type][this.player]<battle.relicManager.active[this.type][this.player+1]){
                         battle.relicManager.detail[this.type][this.player]++
-                        battle.cardManagers[this.player].draw(1)
-                        battle.cardManagers[this.player].hand.discard(1)
+                        switch(this.internal){
+                            case 'Click to Swap':
+                                battle.cardManagers[this.player].draw(1)
+                                battle.cardManagers[this.player].hand.discard(1)
+                            break
+                            case 'Click to Block':
+                                battle.combatantManager.combatants[battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(6)
+                            break
+                            case 'Click For Energy':
+                                battle.addEnergy(3,this.player)
+                            break
+                        }
                     }
                 break
             }

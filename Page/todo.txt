@@ -2,65 +2,18 @@ you never yt-dlp'd pure furies ALR
 TW8vi6GlH0E
 
 
-27 new events:
 
-the shot - 10% chance to hit the shot, repeat until you hit when you get an upgrade, costs 5 currency each attempt
-
-broken road - choice
-fix the road - lose a random card, gain 35 currency
-do nothing
-
-take game console relic, but become cursed with gamer
-game console - cards from rewards have a chance to be glitched
-glitched - edition that makes it add a random card to hand
-
-interview - choice
-"i'm doing it for the people" - gain good news card - vanishing 5, 0 cost, next card reward has 1 more extra option, draw 1 card
-"i'm doing it for money" - gain money, gain bad news card - vanishing 5, 0 cost, next card reward has 1 less extra option
-
-SCT fighter raid - choice
-lose health, and gain a solar shield card (vanishing)
-escape
-
-item shop - enter a special shop that just sells item
-
-smith shed - pay 125 for a double upgrade
-
-trash can - replace false healer, simply remove a card
-or pay 150 to remove 2
-
-rooftop chase - you fall
-fall through a window - lose 10 health, add a card
-cool landing - lose 15 health, remove a card
-hit the ground - lose 5 health
-
-canyon - run into management troops
-fight - very constricted fight against management soldiers and engineers
-run - lose a random card 
+decide on a name for [P]
+decide on fishing-themed names for group 14, 1728,3737-3740
+decie on names for the crafty detachment, group 15, 3742-3746
 
 
-
-
-
-
-
-the ambassador - a special fight with the ambassador
-you get a lot of money if he survives against gangster hitmen
-
-duck experience event - fight between ducky donka and ducky mcduff
-side with either one or decline
-
-management defector - keep a management soldier alive while killing the others
-get money if he lives
-he'll attack like any enemy though
-
-security detail - protect a guy
-do it - 50% get money, 50% get smacked
-decline - nothing
 
 mt. hinokizuka event - hana is preparing for the ascent
 wish her good luck - get mountain flowers - vanishing ritual card
 sell her equipment - lose a random colorless card and gain 160 currency
+
+
 
 suiji, the farmer - choice
 buy rice grains relic - heal 1 when you play a basic card
@@ -80,73 +33,18 @@ take one - item that gives you more choices for the next card reward
 eat one - heal 5
 []
 
-weapon enlargements - make an attack cost twice as much but double its effect
-ONLY works on attacks
-have to add a custom additionalspec to it
-
-
-
-
-
-
-shion event - faced with poverty
-poverty - lose 100 currency
-buy safety - get a curse
-[this event sucks...]
-
-coffee shop - choice
-buy coffee - get an item
-buy a scone - gain a bit of max hp
-do nothing
-
-overwhelming sunlight - meet sunny
-befriend her - get sunny card, lose 12 max hp
-absorb sunlight - get direct sunlight, double upgrade 2 cards
-deflect sunlight - take 8 damage, upgrade 2 cards
-
-gated temple - can lose max hp to get sutra of dharmatic power
-sutra of dharmatic power - relic, gain 3 energy, 1 use per combat
-
-maelstrom - you find yourself in the midst of bad weather
-embrace - add maelstrom to deck
-channel - remove a card, add a random card to deck
-hide - nothing happens
-
-fancy paper ball shop - add a paper ball card to deck
-choose its edition (and pay the price)
-get it plain (free)
-decline entirely
-
-counterfeiter - duplicate a card but it costs 1 more
-or just don't
-
-traitor - an ally (other player character) is working with the management
-take em out - gain 100 currency, start fight with the traitor and a management liaison
-decline
-
-defense enlargement - weapon enlargement but for block
-
-
-
-
-basic card rebellion - add a choice
-"receive a brochure" - upgrade 3 random basic cards
+[]
 
 
 
 add new bonus mods:[
+    management light infantry
+    gangster assassin
+    ducky donka
+    ducky mcduff
+    prison informant
+
 ]
-
-
-
-
-
-dodge counter doesn't actually counter???
-shiru conditional draw 1 movements should be draw 2
-update random variants button
-
-
-
 
 
 
@@ -154,6 +52,7 @@ LISTING GROUP 43
 
 
 
+[BONUS CHIP DETACHMENT!]
 
 
 [immortal fire - gain 2 strength, if you are below half health heal 4, exhaust]
@@ -181,7 +80,6 @@ LISTING GROUP 43
 [adaptive armor - ]
 
 [bellcurve - deal randomly 5-15 damage based on a normal distribution]
-
 
 
 
@@ -248,12 +146,11 @@ reorganization - swap 2 random enemy locations
 
 [pleochroism - upgrade either all attacks or all defenses in hand based on where the card is]
 
-[]
+[canned tuna - heal 15, when drawn draw a card, vanishing 2]
+
+[sea of sky - variant of sea of trees]
 
 []
-
-[]
-
 
 
 
@@ -261,45 +158,18 @@ LISTING GROUP 44 (SUKUNA)
 
 
 
-[surprise entrance - deal 6 splash damage, gain 1 energy if first card played, innate]
-
-[in plain sight - 2 cost, add block, retain that block, gain 1 dodge]
 
 [incident]
 
 [a card similar to instant ramen]
 
-[sea of sky - variant of sea of trees]
-
-[magic fortress - block and a special retain]
-
-
-
-[tranquil sky - everybody gets 1 dodge]
-
-[crafty but a defend]
-
-[attack, deals more whne you draw a card]
-
-[defense, adds more when you draw a card]
-
-[pacing - retain, gain 1 energy, add 6 block, lose 1 energy next turn]
-
 [pinpoint]
-
-
 
 [land of giants]
 
 [a parry]
 
-[nifty - gain 3 dodge, end your turn]
-
 [second wind]
-
-[bucket bash - 14 damage, 10 block, 2 cost, if first card played apply 2 damage taken up]
-
-[]
 
 
 
@@ -316,8 +186,7 @@ LISTING GROUP 44 (SUKUNA)
 [inclined plane]
 
 
-
-[bucket bash - 2 cost 13 damage 13 block, if first card played this turn apply 1 lock on]
+[versatility - draw 2 cards, ?]
 
 [wind god girl - ability card, gain 1 dodge]
 
@@ -341,21 +210,7 @@ LISTING GROUP 44 (SUKUNA)
 
 [interlace]
 
-[song of darkness - put 2 shadows in your hand, apply 5 temporary strength splash down, gain [P]]
-
-
-
-[versatility - draw 2 cards, ?]
-
-[defend, draw an attack]
-
-[defend, draw a defense]
-
-[defend, draw a movement]
-
-[defend, draw a power]
-
-[defend, draw a skill]
+[]
 
 
 
@@ -365,17 +220,15 @@ LISTING GROUP 44 (SUKUNA)
 
 []
 
-[check the situation with chip cards]
+[]
 
-[check the situation with chip cards]
+[]
 
-[check the situation with chip cards]
-
+[]
 
 
 
 update the MTG-ONLY card listing
-
 
 
 
@@ -390,8 +243,6 @@ lock on
 
 [P]-ability cards
 
-
-
 MOTIFS
 
 fishing for certain cards
@@ -400,31 +251,17 @@ size of hand
 
 
 
-
-
-
-
 new enemies:
 
 world 2:
 event security - counter pushes
-electrobaton guard - aggressive and takes your energy, but little hp
+[]
 
 world 3:
 sagacious spirit - permanent intangible, lose 1 energy per 5 cards played
 
-
-
-
-
-
-
-
 chip boss needs another attack
 sukuna boss also needs to get 2 attacks and setup code with archivist
-
-
-
 
 
 
@@ -433,12 +270,10 @@ and scattered rose?
 
 
 
-
-
-
-
 SUBGROUP 17
 
 go make glory v2, celestite, for logo purposes
 
 maybe another new background
+
+

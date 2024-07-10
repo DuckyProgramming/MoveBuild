@@ -37,7 +37,7 @@ class relicManager{
                 case 4: case 18: case 37: case 38: case 39: case 42: case 43: case 44: case 59: case 60:
                 case 63: case 64: case 70: case 73: case 78: case 90: case 93: case 108: case 111: case 118:
                 case 139: case 201: case 204: case 205: case 244: case 254: case 293: case 298: case 308: case 317:
-                case 321:
+                case 321: case 323: case 324:
                     this.detail.push([])
                     for(let b=0,lb=this.battle.players;b<lb;b++){
                         this.detail[this.detail.length-1].push(0)
@@ -1001,6 +1001,8 @@ class relicManager{
                             if(this.active[108][a+1]>0){this.detail[108][a]=0}
                             if(this.active[206][a+1]>0){this.detail[206][a][0]=0}
                             if(this.active[317][a+1]>0){this.detail[317][a]=0}
+                            if(this.active[323][a+1]>0){this.detail[323][a]=0}
+                            if(this.active[324][a+1]>0){this.detail[324][a]=0}
                         }
                         if(this.active[96][0]>0&&args[1]==1){
                             this.battle.combatantManager.allEffect(1,[1-this.active[96][0]*0.2])
@@ -1671,9 +1673,8 @@ class relicManager{
             break
             case 10://card exhausted [player]
                 if(this.active[113][args[0]+1]>0){
-                    let manager=this.battle.cardManagers[args[0]]
                     for(let a=0,la=this.active[113][args[0]+1];a<la;a++){
-                        manager.hand.add(manager.listing.card[this.battle.player[manager.player]][3][floor(random(0,manager.listing.card[this.battle.player[manager.player]][3].length))],0,this.battle.player[args[0]])
+                        this.battle.cardManagers[args[0]].addRandomAbstract(2,0,0,0,0,[],[3])
                     }
                 }
             break

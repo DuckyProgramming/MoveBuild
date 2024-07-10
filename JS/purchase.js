@@ -23,7 +23,7 @@ class purchase{
                 }
                 this.card=new card(this.layer,this.battle,this.player,0,0,this.args[0],this.args[1],this.args[2],0)
                 roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,60)):floor(random(0,360))
-                this.card.edition=this.battle.relicManager.hasRelic(213,player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                this.card.edition=this.battle.relicManager.hasRelic(213,player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:this.battle.relicManager.hasRelic(322,this.player)&&roll>=12&&roll<=11+this.battle.relicManager.active[322][this.player+1]*12?8:0
             break
             case 3:
                 this.relic=new relic(this.layer,this.player,0,0,this.args[0],1.5)
@@ -40,6 +40,10 @@ class purchase{
                 roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,60)):floor(random(0,360))
                 this.card.edition=this.battle.relicManager.hasRelic(213,player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
                 this.card.position={x:80,y:0}
+            break
+            case 6:
+                this.item=new item(this.layer,this.player,0,0,0,0,this.args[0],1.5)
+                this.item.fade=1
             break
         }
         if(this.player==-1){
@@ -74,44 +78,57 @@ class purchase{
             }else{
                 purchaser=this.player
             }
-            this.battle.loseCurrency(round(this.cost[purchaser]),purchaser)
-            this.usable=false
-            this.deSize=true
-            this.battle.relicManager.activate(13,[purchaser])
-            switch(this.type){
-                case 1:
-                    if(this.battle.relicManager.hasRelic(110,purchaser)){
-                        this.battle.cardManagers[purchaser].deck.add(this.card.type,1,this.card.color,this.card.edition)
-                    }else{
-                        this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color,this.card.edition)
-                    }
-                    if(this.battle.relicManager.hasRelic(118,purchaser)&&this.cost[purchaser]>0){
-                        this.battle.purchaseManager.bogo(purchaser,1)
-                    }
-                break
-                case 2:
-                    this.battle.overlayManager.overlays[6][purchaser].active=true
-                    this.battle.overlayManager.overlays[6][purchaser].activate()
-                break
-                case 3:
-                    this.battle.relicManager.addRelic(this.relic.type,purchaser)
-                    if(this.battle.relicManager.hasRelic(118,purchaser)&&this.cost[purchaser]>0&&this.battle.relicManager.detail[118][purchaser]==0){
-                        this.battle.purchaseManager.bogo(purchaser,3)
-                        this.battle.relicManager.detail[118][purchaser]=1
-                    }
-                break
-                case 4:
-                    this.battle.cardManagers[purchaser].deck.cards.splice(this.baseID,1)
-                    if(this.battle.relicManager.hasRelic(110,purchaser)){
-                        this.battle.cardManagers[purchaser].deck.add(this.card.type,1,this.card.color,this.card.edition)
-                    }else{
-                        this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color,this.card.edition)
-                    }
-                break
-                case 5:
-                    this.battle.overlayManager.overlays[3][purchaser].active=true
-                    this.battle.overlayManager.overlays[3][purchaser].activate([0,3,[14,15,16,25][this.args[0]]])
-                break
+            let cancel=false
+            if(this.type==6&&!this.battle.itemManager.hasEmpty(this.player)){
+                cancel=true
+            }
+            if(!cancel){
+                this.battle.loseCurrency(round(this.cost[purchaser]),purchaser)
+                this.usable=false
+                this.deSize=true
+                this.battle.relicManager.activate(13,[purchaser])
+                switch(this.type){
+                    case 1:
+                        if(this.battle.relicManager.hasRelic(110,purchaser)){
+                            this.battle.cardManagers[purchaser].deck.add(this.card.type,1,this.card.color,this.card.edition)
+                        }else{
+                            this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color,this.card.edition)
+                        }
+                        if(this.battle.relicManager.hasRelic(118,purchaser)&&this.cost[purchaser]>0){
+                            this.battle.purchaseManager.bogo(purchaser,1)
+                        }
+                    break
+                    case 2:
+                        this.battle.overlayManager.overlays[6][purchaser].active=true
+                        this.battle.overlayManager.overlays[6][purchaser].activate()
+                    break
+                    case 3:
+                        this.battle.relicManager.addRelic(this.relic.type,purchaser)
+                        if(this.battle.relicManager.hasRelic(118,purchaser)&&this.cost[purchaser]>0&&this.battle.relicManager.detail[118][purchaser]==0){
+                            this.battle.purchaseManager.bogo(purchaser,3)
+                            this.battle.relicManager.detail[118][purchaser]=1
+                        }
+                    break
+                    case 4:
+                        this.battle.cardManagers[purchaser].deck.cards.splice(this.baseID,1)
+                        if(this.battle.relicManager.hasRelic(110,purchaser)){
+                            this.battle.cardManagers[purchaser].deck.add(this.card.type,1,this.card.color,this.card.edition)
+                        }else{
+                            this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color,this.card.edition)
+                        }
+                    break
+                    case 5:
+                        this.battle.overlayManager.overlays[3][purchaser].active=true
+                        this.battle.overlayManager.overlays[3][purchaser].activate([0,3,[14,15,16,25][this.args[0]]])
+                    break
+                    case 6:
+                        this.battle.itemManager.addItem(this.item.type,purchaser)
+                        if(this.battle.relicManager.hasRelic(118,purchaser)&&this.cost[purchaser]>0&&this.battle.relicManager.detail[118][purchaser]==0){
+                            this.battle.purchaseManager.bogo(purchaser,6)
+                            this.battle.relicManager.detail[118][purchaser]=1
+                        }
+                    break
+                }
             }
         }
     }
@@ -240,14 +257,14 @@ class purchase{
                         this.layer.noStroke()
                         this.gradient=[new p5.LinearGradient(15,20),new p5.LinearGradient(15,20),new p5.LinearGradient(15,20)]
                         this.gradient[0].colors(0.0,
-                            color(types.color.card[this.battle.player[0]].stroke[0],types.color.card[this.battle.player[0]].stroke[1],types.color.card[this.battle.player[0]].stroke[2]),1.0,
-                            color(types.color.card[this.battle.player[1]].stroke[0],types.color.card[this.battle.player[1]].stroke[1],types.color.card[this.battle.player[1]].stroke[2]))
+                            color(...types.color.card[this.battle.player[0]].stroke),1.0,
+                            color(...types.color.card[this.battle.player[1]].stroke))
                         this.gradient[1].colors(0.0,
-                            color(types.color.card[this.battle.player[0]].fill[0],types.color.card[this.battle.player[0]].fill[1],types.color.card[this.battle.player[0]].fill[2]),1.0,
-                            color(types.color.card[this.battle.player[1]].fill[0],types.color.card[this.battle.player[1]].fill[1],types.color.card[this.battle.player[1]].fill[2]))
+                            color(...types.color.card[this.battle.player[0]].fill),1.0,
+                            color(...types.color.card[this.battle.player[1]].fill))
                         this.gradient[2].colors(0.0,
-                            color(types.color.card[this.battle.player[0]].active[0],types.color.card[this.battle.player[0]].active[1],types.color.card[this.battle.player[0]].active[2]),1.0,
-                            color(types.color.card[this.battle.player[1]].active[0],types.color.card[this.battle.player[1]].active[1],types.color.card[this.battle.player[1]].active[2]))
+                            color(...types.color.card[this.battle.player[0]].active),1.0,
+                            color(...types.color.card[this.battle.player[1]].active))
 
                         this.layer.fillGradient(this.gradient[0])
                         this.layer.rect(10,0,60,100)
@@ -324,6 +341,9 @@ class purchase{
                         break
                     }
                 break
+                case 6:
+                    this.item.display(0)
+                break
             }
             this.layer.scale(1/min(this.size,1))
         }
@@ -343,7 +363,7 @@ class purchase{
                     this.layer.fill(255,0,0,1-this.anim.usable)
                     this.layer.text('Sold Out',0,72.5)
                 break
-                case 3:
+                case 3: case 6:
                     this.layer.textSize(16)
                     for(let a=0,la=this.battle.players;a<la;a++){
                         this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
@@ -376,7 +396,7 @@ class purchase{
                     this.layer.fill(255,0,0,1-this.anim.usable)
                     this.layer.text('Sold Out',0,72.5)
                 break
-                case 3:
+                case 3: case 6:
                     this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
                     this.layer.textSize(16)
                     this.layer.text(round(this.cost[this.player]),0,40)
@@ -396,6 +416,9 @@ class purchase{
         switch(this.type){
             case 3:
                 this.relic.displayInfo()
+            break
+            case 6:
+                this.item.displayInfo()
             break
         }
     }
@@ -423,14 +446,19 @@ class purchase{
                 this.card.anim.afford=1
             break
         }
-        this.upSize=!this.battle.overlayManager.anyActive&&this.position.x>0&&this.position.x<this.layer.width&&
-            (this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width*this.midSize,height:this.card.height*this.midSize})||
+        this.upSize=!this.battle.overlayManager.anyActive&&this.position.x>0&&this.position.x<this.layer.width&&(
+            this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width*this.midSize,height:this.card.height*this.midSize})||
             this.type==2&&pointInsideBox({position:inputs.rel},{position:this.position,width:90*this.midSize,height:120*this.midSize})||
             this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size||
-            this.type==5&&pointInsideBox({position:inputs.rel},{position:this.position,width:72*this.midSize,height:96*this.midSize}))
+            this.type==5&&pointInsideBox({position:inputs.rel},{position:this.position,width:72*this.midSize,height:96*this.midSize})||
+            this.type==6&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.item.size
+        )
         switch(this.type){
             case 3:
                 this.relic.update(true,0,{rel:{x:inputs.rel.x-this.position.x,y:inputs.rel.y-this.position.y}},undefined,!this.battle.overlayManager.anyActive)
+            break
+            case 6:
+                this.item.update(true,0,{rel:{x:inputs.rel.x-this.position.x,y:inputs.rel.y-this.position.y}},false)
             break
         }
     }
@@ -440,7 +468,8 @@ class purchase{
             this.type==2&&pointInsideBox({position:inputs.rel},{position:this.position,width:90*this.midSize,height:120*this.midSize})||
             this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size||
             this.type==4&&pointInsideBox({position:inputs.rel},{position:{x:this.position.x,y:this.position.y-25},width:300,height:200})||
-            this.type==5&&pointInsideBox({position:inputs.rel},{position:this.position,width:72*this.midSize,height:96*this.midSize})
+            this.type==5&&pointInsideBox({position:inputs.rel},{position:this.position,width:72*this.midSize,height:96*this.midSize})||
+            this.type==6&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.item.size
         )&&!this.battle.overlayManager.anyActive){
             this.buy()
         }

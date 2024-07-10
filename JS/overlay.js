@@ -80,6 +80,9 @@ class overlay{
     getPosKey(){
         this.posKey=1-this.battle.players+this.player*2
     }
+    rollEdition(roll){
+        return this.battle.relicManager.hasRelic(213,this.player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:this.battle.relicManager.hasRelic(322,this.player)&&roll>=12&&roll<=11+this.battle.relicManager.active[322][this.player+1]*12?8:0
+    }
     activate(args){
         if(!arrayIncludes(this.battle.overlayManager.priority,[this.index,this.player])){
             this.battle.overlayManager.priority.splice(0,0,[this.index,this.player])
@@ -226,7 +229,7 @@ class overlay{
                                     this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120-this.battle.relicManager.active[172][this.player+1]*60,this.layer.height/2+20,
                                         list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,10))<this.battle.relicManager.active[219][this.player+1]?2:args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism||variants.mtg||variants.colorshift?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:this.battle.player[this.player],-1))
                                     let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,60)):floor(random(0,360))
-                                    this.cards[this.cards.length-1].edition=this.battle.relicManager.hasRelic(213,this.player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                                    this.cards[this.cards.length-1].edition=this.rollEdition(roll)
                                     list[args[1]].splice(index,1)
                                     if(variants.colorshift){
                                         (variants.ultraprism?this.battle.cardManagers[this.player].listing.all[args[1]]:variants.prism?this.battle.cardManagers[this.player].listing.allPlayerCard[args[1]]:variants.mtg?this.battle.cardManagers[this.player].listing.mtg[args[1]]:variants.junk?this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1]:this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][args[1]]).splice(index,1)
@@ -257,7 +260,7 @@ class overlay{
                                     this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+this.options*60+60+a*120-this.battle.relicManager.active[172][this.player+1]*60,this.layer.height/2+20,
                                         list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,10))<this.battle.relicManager.active[219][this.player+1]?2:args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:types.card[list[args[1]][index]].list,-1))
                                     let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,60)):floor(random(0,360))
-                                    this.cards[this.cards.length-1].edition=this.battle.relicManager.hasRelic(213,this.player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                                    this.cards[this.cards.length-1].edition=this.rollEdition(roll)
                                     this.cards[this.cards.length-1].upSize=true
                                     list.splice(index,1)
                                 }
@@ -373,7 +376,7 @@ class overlay{
                                 let index=floor(random(0,list[args[1]].length))
                                 this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0],2.5)),variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:this.battle.player[this.player],-1))
                                 let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,15)):floor(random(0,90))
-                                this.cards[this.cards.length-1].edition=this.battle.relicManager.hasRelic(213,this.player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                                this.cards[this.cards.length-1].edition=this.rollEdition(roll)
                                 this.cards[this.cards.length-1].upSize=true
                                 list[args[1]].splice(index,1)
                             }
@@ -386,7 +389,7 @@ class overlay{
                                 let index=floor(random(0,list[args[1]].length))
                                 this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0],2.5)),0,-1))
                                 let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,15)):floor(random(0,90))
-                                this.cards[this.cards.length-1].edition=this.battle.relicManager.hasRelic(213,this.player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                                this.cards[this.cards.length-1].edition=this.rollEdition(roll)
                                 this.cards[this.cards.length-1].upSize=true
                                 list[args[1]].splice(index,1)
                             }
@@ -476,7 +479,7 @@ class overlay{
                                 let index=floor(random(0,list[args[1]].length))
                                 this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,20))==0?2:args[0],args[3],-1))
                                 let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,60)):floor(random(0,360))
-                                this.cards[this.cards.length-1].edition=this.battle.relicManager.hasRelic(213,this.player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                                this.cards[this.cards.length-1].edition=this.rollEdition(roll)
                                 this.cards[this.cards.length-1].upSize=true
                                 list[args[1]].splice(index,1)
                             }
@@ -543,7 +546,7 @@ class overlay{
                                 let index=floor(random(0,list[args[1]].length))
                                 this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0],2.5)),types.card[list[args[1]][index]].list,-1))
                                 let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,15)):floor(random(0,90))
-                                this.cards[this.cards.length-1].edition=this.battle.relicManager.hasRelic(213,this.player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                                this.cards[this.cards.length-1].edition=this.rollEdition(roll)
                                 this.cards[this.cards.length-1].upSize=true
                                 list[args[1]].splice(index,1)
                             }
@@ -2538,8 +2541,7 @@ class overlay{
                                             la--
                                         break
                                         case 40:
-                                            this.battle.cardManagers[this.player].discard.cards[a]=upgradeCard(this.battle.cardManagers[this.player].discard.cards[a],true)
-                                            this.battle.cardManagers[this.player].discard.cards[a]=upgradeCard(this.battle.cardManagers[this.player].discard.cards[a],true)
+                                            this.battle.cardManagers[this.player].discard.cards[a]=upgradeCard(upgradeCard(this.battle.cardManagers[this.player].discard.cards[a],true))
                                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].activateRewind()
                                             if(this.battle.cardManagers[this.player].discard.cards[a].callRewindEffect()){
                                                 this.battle.cardManagers[this.player].discard.generalExhaust(a)
@@ -3424,8 +3426,7 @@ class overlay{
                                             la--
                                         break
                                         case 40:
-                                            this.battle.cardManagers[this.player].discard.cards[a]=upgradeCard(this.battle.cardManagers[this.player].discard.cards[a],true)
-                                            this.battle.cardManagers[this.player].discard.cards[a]=upgradeCard(this.battle.cardManagers[this.player].discard.cards[a],true)
+                                            this.battle.cardManagers[this.player].discard.cards[a]=upgradeCard(upgradeCard(this.battle.cardManagers[this.player].discard.cards[a],true))
                                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].activateRewind()
                                             if(this.battle.cardManagers[this.player].discard.cards[a].callRewindEffect()){
                                                 this.battle.cardManagers[this.player].discard.generalExhaust(a)

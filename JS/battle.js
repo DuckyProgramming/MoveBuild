@@ -891,6 +891,9 @@ class battle{
                 case 7:
                     this.cardManagers[player].draw(1)
                 break
+                case 8:
+                    this.cardManagers[player].hand.randomEffect(0,[])
+                break
             }
         }else{
             switch(card.edition){
@@ -920,6 +923,9 @@ class battle{
                 break
                 case 7:
                     this.cardManagers[player].hand.randomEffect(0,[])
+                break
+                case 8:
+                    this.cardManagers[player].addRandomAbstract(2,0,0,0,7,[],[3,[1]])
                 break
             }
         }
@@ -2501,17 +2507,18 @@ class battle{
                     variants.ultraprism=true
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-300,y:this.layer.height*0.6+42.5},width:137.5,height:37.5})){
-                    let keys=[floor(random(0,15)),floor(random(0,5)),floor(random(0,5)),floor(random(0,10))]
+                    let keys=[floor(random(0,15)),floor(random(0,5)),floor(random(0,5)),floor(random(0,13))]
                     let subkeys=[
-                        floor(random(0,10))==0,floor(random(0,10))==0,floor(random(0,10))==0,
-                        keys[0]==3,keys[0]==4,keys[0]==5,
+                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
+                        keys[3]==6,keys[0]==4,keys[0]==5,
                         keys[0]==6,keys[0]==7,keys[0]==8,
                         keys[0]==9,keys[0]==10,keys[0]==11,
                         keys[0]==12,keys[0]==13,keys[0]==14,
                         keys[1]==2,keys[1]==3,keys[1]==4,
                         keys[2]==2,keys[2]==3,keys[2]==4,
                         keys[3]==7,keys[3]==8,keys[3]==9,
-                        floor(random(0,10))==0,floor(random(0,10))==0,floor(random(0,10))==0
+                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
+                        floor(random(0,20))==0,floor(random(0,20))==0&&keys[3]<=5,floor(random(0,20))==0
                     ]
                     for(let a=0,la=variantNames.length;a<la;a++){
                         variants[variantNames[a]]=subkeys[a]
@@ -2870,15 +2877,16 @@ class battle{
                 if(key=='R'){
                     let keys=[floor(random(0,15)),floor(random(0,5)),floor(random(0,5)),floor(random(0,10))]
                     let subkeys=[
-                        floor(random(0,10))==0,floor(random(0,10))==0,floor(random(0,10))==0,
-                        keys[0]==3,keys[0]==4,keys[0]==5,
+                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
+                        keys[3]==6,keys[0]==4,keys[0]==5,
                         keys[0]==6,keys[0]==7,keys[0]==8,
                         keys[0]==9,keys[0]==10,keys[0]==11,
                         keys[0]==12,keys[0]==13,keys[0]==14,
                         keys[1]==2,keys[1]==3,keys[1]==4,
                         keys[2]==2,keys[2]==3,keys[2]==4,
                         keys[3]==7,keys[3]==8,keys[3]==9,
-                        floor(random(0,10))==0,floor(random(0,10))==0,floor(random(0,10))==0
+                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
+                        floor(random(0,20))==0,floor(random(0,20))==0&&keys[3]<=5,floor(random(0,20))==0
                     ]
                     for(let a=0,la=variantNames.length;a<la;a++){
                         variants[variantNames[a]]=subkeys[a]

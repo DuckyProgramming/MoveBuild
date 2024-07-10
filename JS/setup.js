@@ -10,7 +10,7 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    if(false){
+    if(true){
             //stage.scene='tier'
             //current.overlayManager=new overlayManager(current.layer,current,1)
 
@@ -38,7 +38,7 @@ function setup(){
 
             /*transition.trigger=true
             transition.scene='event'
-            current.setupSpecificEvent(106)*/
+            current.setupSpecificEvent(116)*/
 
             /*player(0).size=3
             player(0).goal.anim.direction=-30

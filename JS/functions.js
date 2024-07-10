@@ -1530,7 +1530,10 @@ function faith(value){
 	current.combatantManager.combatants[0].faith+=value
 }
 function elemental(){
-	player(0).vision+=12
+	current.combatantManager.combatants[0].vision+=12
+}
+function edition(edition){
+	current.cardManagers[0].hand.cards[0].edition=edition
 }
 function fight(name){
 	current.setupBattle(types.encounter[findName(name,types.encounter)])

@@ -5546,6 +5546,98 @@ function setupEdition(type,layer,crop){
 				layer.endShape()
 			}
 		break
+		case 8:
+			let gradient=[new p5.LinearGradient(-10,layer.width),new p5.LinearGradient(5,layer.width),new p5.LinearGradient(15,layer.width)]
+			gradient[0].colors(
+				0.00,color(255,255,255,0.5),
+				0.05,color(0,255,255,0.5),
+				0.10,color(0,255,0,0.5),
+				0.15,color(255,255,0,0.5),
+				0.20,color(255,255,255,0.5),
+				0.25,color(255,255,0,0.5),
+				0.30,color(0,255,0,0.5),
+				0.35,color(0,255,255,0.5),
+				0.40,color(255,255,255,0.5),
+				0.45,color(0,255,255,0.5),
+				0.50,color(0,255,0,0.5),
+				0.55,color(255,255,0,0.5),
+				0.60,color(255,255,255,0.5),
+				0.65,color(255,255,0,0.5),
+				0.70,color(0,255,0,0.5),
+				0.75,color(0,255,255,0.5),
+				0.80,color(255,255,255,0.5),
+				0.85,color(0,255,255,0.5),
+				0.90,color(0,255,0,0.5),
+				0.95,color(255,255,0,0.5),
+				1.00,color(255,255,255,0.5)
+			)
+			gradient[1].colors(
+				0.00,color(255,0,255,0.5),
+				0.05,color(255,125,125,0.5),
+				0.10,color(255,255,255,0.5),
+				0.15,color(255,125,125,0.5),
+				0.20,color(255,0,255,0.5),
+				0.25,color(0,255,255,0.5),
+				0.30,color(255,255,255,0.5),
+				0.35,color(0,255,255,0.5),
+				0.40,color(255,0,255,0.5),
+				0.45,color(255,125,125,0.5),
+				0.50,color(255,255,255,0.5),
+				0.55,color(255,125,125,0.5),
+				0.60,color(255,0,255,0.5),
+				0.65,color(0,255,255,0.5),
+				0.70,color(255,255,255,0.5),
+				0.75,color(0,255,255,0.5),
+				0.80,color(255,0,255,0.5),
+				0.85,color(255,125,125,0.5),
+				0.90,color(255,255,255,0.5),
+				0.95,color(255,125,125,0.5),
+				1.00,color(255,0,255,0.5)
+			)
+			gradient[2].colors(
+				0.00,color(125,125,255,0.5),
+				0.05,color(255,255,255,0.5),
+				0.10,color(125,125,255,0.5),
+				0.15,color(125,255,255,0.5),
+				0.20,color(125,255,125,0.5),
+				0.25,color(255,255,255,0.5),
+				0.30,color(125,255,125,0.5),
+				0.35,color(125,255,255,0.5),
+				0.40,color(125,125,255,0.5),
+				0.45,color(255,255,255,0.5),
+				0.50,color(125,125,255,0.5),
+				0.55,color(125,255,255,0.5),
+				0.60,color(125,255,125,0.5),
+				0.65,color(255,255,255,0.5),
+				0.70,color(125,255,125,0.5),
+				0.75,color(125,255,255,0.5),
+				0.80,color(125,125,255,0.5),
+				0.85,color(255,255,255,0.5),
+				0.90,color(125,125,255,0.5),
+				0.95,color(125,255,125,0.5),
+				1.00,color(125,255,255,0.5)
+			)
+			for(let a=0,la=layer.width/10+2;a<la;a++){
+				for(let b=0,lb=layer.height/3;b<lb;b++){
+					let bounce=floor(random(-10,10))
+					let length=(floor(random(0,20))==0?layer.width/5:floor(random(0,5))==0?3:floor(random(0,3))==0?2:1)
+					layer.translate(bounce,0)
+					if(floor(random(0,6))==0){
+						layer.fillGradient(gradient[floor(random(0,3))])
+						layer.rect(a*10-bounce-length%2*5,1.5+b*3,10*length,3)
+					}
+					layer.translate(-bounce,0)
+				}
+			}
+			for(let a=0,la=layer.width/10*3+1;a<la;a++){
+				for(let b=0,lb=layer.height/3;b<lb;b++){
+					if(floor(random(0,20))==0){
+						layer.fill(75+(a+b)%2*25,0.5)
+						layer.rect(a*10/3,1.5+b*3,10/3,3)
+					}
+				}
+			}
+		break
 	}
 }
 function setupGraphics(){
@@ -5574,7 +5666,7 @@ function setupGraphics(){
 		setupLayer(graphics.overlays[a])
 		setupOverlay(a,graphics.overlays[a])
 	}
-	for(let a=0,la=7;a<la;a++){
+	for(let a=0,la=8;a<la;a++){
 		graphics.edition.push([createGraphics(200,150),createGraphics(200,150)])
 		setupLayer(graphics.edition[a][0])
 		setupLayer(graphics.edition[a][1])

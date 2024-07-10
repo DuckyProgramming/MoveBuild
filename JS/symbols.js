@@ -9265,6 +9265,19 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(0,6,-1,8,1,8)
             layer.triangle(0,8.5,-1,10.5,1,10.5)
         break
+        case 147:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,12,16,2)
+            layer.strokeWeight(1)
+            layer.line(-6,-6,-2,-6)
+            layer.line(-6,-4,3,-4)
+            layer.line(6,-2,5,-2)
+            layer.line(-6,0,-4,0)
+            layer.line(6,2,-4,2)
+            layer.line(6,4,-1,4)
+            layer.line(-6,6,-1,6)
+        break
 
     }
     layer.pop()
@@ -9413,4 +9426,5 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 144-Stop
 145-Strength in 3 Turns
 146-Dexterity in 3 Turns
+147-Glitched Card
 */

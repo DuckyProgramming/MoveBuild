@@ -62,9 +62,10 @@ class eventManager{
                 !(this.listing.event[a]==43&&this.battle.currency.money[this.player]<250)&&
                 !(this.listing.event[a]==45&&this.battle.currency.money[this.player]<60)&&
                 !(this.listing.event[a]==46&&this.battle.relicManager.total[this.player]<1)&&
-                !(this.listing.event[a]==47&&userCombatant.life>=userCombatant.base.life-6)&&
+                !(this.listing.event[a]==47&&(userCombatant.life>=userCombatant.base.life-6||!this.battle.itemManager.hasEmpty(this.player)))&&
                 !(this.listing.event[a]==48&&(this.battle.nodeManager.world!=1||this.battle.currency.money[this.player]<125))&&
                 !(this.listing.event[a]==49&&(userCombatant.life<17||userCombatant.base.life<5))&&
+                !(this.listing.event[a]==50&&!this.battle.itemManager.hasEmpty(this.player))&&
                 !(this.listing.event[a]==51&&this.battle.currency.money[this.player]<100)&&
                 !(this.listing.event[a]==52&&userCombatant.life<13)&&
                 !(this.listing.event[a]==55&&userCombatant.life<10)&&
@@ -96,7 +97,15 @@ class eventManager{
                 !(this.listing.event[a]==103&&userCombatant.life>=userCombatant.base.life-7)&&
                 !(this.listing.event[a]==104&&this.battle.nodeManager.world!=2)&&
                 !(this.listing.event[a]==105&&this.battle.nodeManager.world!=0)&&
-                !(this.listing.event[a]==106&&this.battle.currency.money[this.player]<25)
+                !(this.listing.event[a]==106&&this.battle.currency.money[this.player]<25)&&
+                !(this.listing.event[a]==107&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==111&&userCombatant.life<28)&&
+                !(this.listing.event[a]==112&&(this.battle.currency.money[this.player]<100||!this.battle.itemManager.hasEmpty(this.player)))&&
+                !(this.listing.event[a]==113&&this.battle.currency.money[this.player]<125)&&
+                !(this.listing.event[a]==114&&this.battle.currency.money[this.player]<375)&&
+                !(this.listing.event[a]==115&&userCombatant.life<16)&&
+                !(this.listing.event[a]==116&&this.battle.nodeManager.world!=2)
+
             ){
                 sublist.push(this.listing.event[a])
             }
@@ -563,7 +572,7 @@ class eventManager{
                     break
                     case 36:
                         if(this.page==1&&a==0){
-                            this.battle.cardManagers[this.player].randomEffect(0,6,[])
+                            this.battle.cardManagers[this.player].randomEffect(0,21,[])
                         }else if(this.page==2&&a==0){
                             this.harm(userCombatant,6)
                         }
@@ -846,6 +855,8 @@ class eventManager{
                             this.battle.overlayManager.overlays[89][this.player].active=true
                             this.battle.overlayManager.overlays[89][this.player].activate()
                         }else if(this.page==0&&a==1){
+                            this.battle.cardManagers[this.player].randomEffect(0,54)
+                        }else if(this.page==0&&a==2){
                             this.battle.overlayManager.overlays[90][this.player].active=true
                             this.battle.overlayManager.overlays[90][this.player].activate()
                         }
@@ -1182,6 +1193,96 @@ class eventManager{
                             this.battle.overlayManager.overlays[3][this.player].activate([0,0,32])
                         }else if(this.page==2&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Spring-Colored\nPath',types.card),0,0)
+                        }
+                    break
+                    case 107:
+                        if((this.page==0||this.page==2)&a==0&&this.battle.currency.money[this.player]>=5){
+                            this.battle.loseCurrency(5,this.player)
+                            if(floor(random(0,4))!=0){
+                                tempPage++
+                            }
+                        }else if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[5][this.player].active=true
+                            this.battle.overlayManager.overlays[5][this.player].activate()
+                        }
+                    break
+                    case 108:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].randomEffect(0,21)
+                        }else if(this.page==1&&a==0){
+                            this.battle.addCurrency(35,this.player)
+                        }
+                    break
+                    case 109:
+                        if(this.page==0&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Glitched Cards',types.relic),this.player)
+                            this.battle.cardManagers[this.player].deck.add(findName('Gamer',types.card),0,game.playerNumber+2)
+                        }
+                    break
+                    case 110:
+                        if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Good\nNews',types.card),0,0)
+                        }else if(this.page==1&&a==1){
+                            this.battle.cardManagers[this.player].deck.add(findName('Bad\nNews',types.card),0,0)
+                            this.battle.addCurrency(200,this.player)
+                        }else if(this.page==1&&a==2){
+                            this.battle.cardManagers[this.player].deck.add(findName('Entertaining\nNews',types.card),0,0)
+                        }
+                    break
+                    case 111:
+                        if(this.page==0&&a==0){
+                            this.harm(userCombatant,27)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Click to Block',types.relic),this.player)
+                        }
+                    break
+                    case 112:
+                        if(this.page==0&&a==0){
+                            transition.scene='shop'
+                            this.battle.purchaseManager.setup(3)
+                        }
+                    break
+                    case 113:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(125,this.player)
+                            this.battle.overlayManager.overlays[28][this.player].active=true
+                            this.battle.overlayManager.overlays[28][this.player].activate()
+                        }
+                    break
+                    case 114:
+                        if(this.page==0&&a==1){
+                            this.battle.loseCurrency(150,this.player)
+                        }else if(this.page==0&&a==2){
+                            this.battle.loseCurrency(375,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[6][this.player].active=true
+                            this.battle.overlayManager.overlays[6][this.player].activate()
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[15][this.player].active=true
+                            this.battle.overlayManager.overlays[15][this.player].activate([])
+                            this.battle.overlayManager.overlays[15][this.player].args[1]=2
+                        }else if(this.page==3&&a==0){
+                            this.battle.overlayManager.overlays[15][this.player].active=true
+                            this.battle.overlayManager.overlays[15][this.player].activate([])
+                            this.battle.overlayManager.overlays[15][this.player].args[1]=3
+                        }
+                    break
+                    case 115:
+                        if(this.page==0&&a==1){
+                            this.harm(userCombatant,15)
+                        }else if(this.page==0&&a==2){
+                            this.harm(userCombatant,5)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,0,0,[],[3])
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[6][this.player].active=true
+                            this.battle.overlayManager.overlays[6][this.player].activate()
+                        }
+                    break
+                    case 116:
+                        if(this.page==0&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Canyon',types.encounter)])
                         }
                     break
 

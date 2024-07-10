@@ -24,7 +24,7 @@ class item{
         this.description=types.item[this.type].description
         this.rarity=types.item[this.type].rarity
     }
-    display(total,alt){
+    display(total,alt=false){
         if(this.fade>0){
             this.layer.push()
             this.layer.translate(alt?this.altPosition.x:this.position.x,alt?this.altPosition.y:this.position.y)

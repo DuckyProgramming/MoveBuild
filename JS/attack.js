@@ -12034,6 +12034,7 @@ class attack{
                     break
 
                 }
+                //mark 9
             break
             case 9:
                 switch(this.type){
@@ -12165,7 +12166,9 @@ class attack{
                     case 3594:
                         this.userCombatant.ammo++
                     break
+
                 }
+                //mark 10
             break
             case 10:
                 switch(this.type){
@@ -13026,8 +13029,25 @@ class attack{
                     case 3618:
                         this.userCombatant.statusEffect('Attack Lock On Turn',this.effect[0])
                     break
+                    case 3728:
+                        this.battle.overlayManager.overlays[3][this.player].additionalOptions+=this.effect[0]
+                    break
+                    case 3729:
+                        this.battle.overlayManager.overlays[3][this.player].additionalOptions-=this.effect[0]
+                    break
+                    case 3730:
+                        let possible3730=[]
+                        for(let a=0,la=game.playerNumber;a<la;a++){
+                            if(a+1!=this.battle.players[this.player]){
+                                possible3730.push(a+1)
+                            }
+                        }
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        this.battle.overlayManager.overlays[3][this.player].activate([0,0,20,possible3730[floor(random(0,possible3730.length))]])
+                    break
 
                 }
+                //mark 11
             break
             case 11:
                 switch(this.type){
