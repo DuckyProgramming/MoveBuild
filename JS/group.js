@@ -1682,7 +1682,7 @@ class group{
                 &&!(effect==21&&!this.removable(a))
                 &&!(effect==22&&(this.cards[a].spec.includes(39)||this.cards[a].attack==55))
                 &&!((effect==26||effect==27)&&!(this.cards[a].spec.includes(35)&&this.cards[a].cost>0))
-                &&!((effect==18||effect==29)&&(this.cards[a].spec.includes(15)||this.cards[a].spec.includes(30)||this.cards[a].spec.includes(36)||this.cards[a].spec.includes(38)))
+                &&!((effect==18||effect==29)&&(this.cards[a].spec.includes(15)||this.cards[a].spec.includes(30)||this.cards[a].spec.includes(36)||this.cards[a].spec.includes(38)||this.cards[a].limit!=[]))
                 &&!(effect==29&&(this.cards[a].limit!=[]||this.cards[a].spec.includes(15)||this.cards[a].spec.includes(38)))
                 &&!(effect==30&&this.cards[a].edition!=0)
                 &&!(effect==31&&this.cards[a].edition!=args[0])

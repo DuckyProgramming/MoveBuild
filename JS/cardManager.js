@@ -4,7 +4,7 @@ class cardManager{
         this.battle=battle
         this.player=player
 
-        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[],junk:[],sub:[],ally:[],mtg:[]}
+        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[],junk:[],sub:[],ally:[],disband:[],mtg:[]}
 
         this.deck=new group(this.layer,this.battle,this.player,0)
         this.reserve=new group(this.layer,this.battle,this.player,1)
@@ -49,6 +49,7 @@ class cardManager{
         this.listing.junk=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
         this.listing.sub=[]
         this.listing.ally=[]
+        this.listing.disband=[]
         for(let a=0,la=types.card.length;a<la;a++){
             if(types.card[a].rarity==-10){
                 this.listing.junk[types.card[a].list].push(a)
@@ -59,6 +60,9 @@ class cardManager{
             }
             if(types.card[a].rarity==-7&&types.card[a].levels[0].class==9){
                 this.listing.ally.push(a)
+            }
+            if(types.card[a].rarity==-1&&types.card[a].list==-8){
+                this.listing.disband.push(a)
             }
             if(variants.prismrule.includes(types.card[a].list)&&types.card[a].rarity>-10||variants.prismrule.includes(-1)&&types.card[a].list<0||variants.prismrule.includes(-2)&&types.card[a].rarity==-10){
                 if(types.card[a].rarity<0){

@@ -3883,6 +3883,9 @@ class combatant{
                 this.infoAnim.sins=[]
                 this.loseHealth(this.battle.combatantManager.finalBossSwitch)
             break
+            case 'Golden Duck':
+                this.statusEffect('Currency',100)
+            break
         }
         if(this.team==0){
             if(this.type<=game.playerNumber){
@@ -4694,7 +4697,7 @@ class combatant{
         if(this.spec.includes(8)){
             this.battle.turnManager.loadEnemyAttackRepeat(this.id)
         }
-        if(this.spec.includes(21)&&!this.spec.includes(-1)){
+        if(this.spec.includes(20)&&!this.spec.includes(-1)){
             this.battle.turnManager.loadEnemyAttackRepeat(this.id)
             this.spec.push(-1)
         }
@@ -9587,8 +9590,7 @@ class combatant{
                                 case 17: this.layer.text('Auto-Aims',40,305+a*10); break
                                 case 18: this.layer.text('On Defeat, Gain a Relic',40,305+a*10); break
                                 case 19: this.layer.text('Robot',40,305+a*10); break
-                                case 20: this.layer.text('On Defeat, Gain 100 Currency',40,305+a*10); break
-                                case 21: this.layer.text('Attacks When You Play the First Card Each Turn',40,305+a*10); break
+                                case 20: this.layer.text('Attacks When You Play the First Card Each Turn',40,305+a*10); break
 
                             }
                         }
@@ -9864,10 +9866,6 @@ class combatant{
                 if(this.spec.includes(18)){
                     this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].active=true
                     this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].activate([0,[{type:2,value:[]}]])
-                }
-                if(this.spec.includes(20)){
-                    this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].active=true
-                    this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].activate([0,[{type:0,value:[100]}]])
                 }
                 if(this.name=='Prestige'&&this.base.life>10){
                     this.doubleHalf()

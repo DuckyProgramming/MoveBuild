@@ -346,7 +346,7 @@ function arrayIncludes(array,includes){
 }
 function calculateEffect(effect,user,type,player,relicManager,variant,args){
 	switch(type){
-		case 0: case 2: case 5: case 7: case 8: case 10: case 11: case 12: case 13:
+		case 0: case 2: case 5: case 7: case 8: case 10: case 11: case 12: case 13: case 20:
 			let damage=effect
 			let bonus=0
 			let totalStr=0
@@ -506,6 +506,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 11: return (damage==effect?(effect==1?``:`${tennify(effect)}`)+'X':tennify(effect)+`(${tennify(damage)})X`)
 				case 12: return effect==1?(damage==effect?'Faith':`1(${tennify(damage)})*Faith`):(damage==effect?tennify(effect)+'*Faith':tennify(effect)+`(${tennify(damage)})*Faith`)
 				case 13: return effect==1?(damage==effect?'':`1(${tennify(damage)})*`):(damage==effect?tennify(effect)+'*':tennify(effect)+`(${tennify(damage)})*`)
+				case 20: return (damage==effect?(effect==1?``:tennify(effect))+'XY':tennify(effect)+`(${tennify(damage)})XY`)+(bonus>0?`(+${tennify(bonus)})`:``)
 
 			}
 		case 1: case 3: case 6: case 14: case 15: case 16:
@@ -1624,6 +1625,8 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+5][3].length}/15				${current.cardManagers[0].listing.card[game.playerNumber+5][3].length-15}
 		Subcard:
 	Total:${current.cardManagers[0].listing.sub.length}/100				${current.cardManagers[0].listing.sub.length-100}
+		Disband:
+	Total:${current.cardManagers[0].listing.disband.length}/200				${current.cardManagers[0].listing.disband.length-200}
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/150				${current.cardManagers[0].listing.junk[game.playerNumber+1].length-150}
 			`)

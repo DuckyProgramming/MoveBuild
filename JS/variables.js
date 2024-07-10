@@ -97,7 +97,7 @@ types={
         {name:'Bush Thing',life:18,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:110,effect:[3,3]},{type:111,effect:[2]}],description:`Somewhat armored`},
         {name:'Fireball',life:30,behavior:10,spec:[],move:{type:0,speed:2},attack:[{type:112,effect:[4,2]},{type:21,effect:[]}],description:`Hurts to touch`},
         {name:'Dead Shell',life:34,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:20,effect:[6]},{type:113,effect:[8]},{type:114,effect:[5,3]}],description:`More alive then intended`},
-        {name:'Management Drone',life:75,behavior:1,spec:[0,21,19],move:{type:0,speed:1},attack:[{type:10,effect:[15]},{type:115,effect:[12]}],description:`Automated pain`},
+        {name:'Management Drone',life:75,behavior:1,spec:[0,20,19],move:{type:0,speed:1},attack:[{type:10,effect:[15]},{type:115,effect:[12]}],description:`Automated pain`},
         {name:'Executive',life:95,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:12,effect:[10]},{type:120,effect:[1]},{type:6,effect:[8]}],description:`Thinks he outsmarted you`},
         {name:'Mechanized',life:130,behavior:0,spec:[0,19],move:{type:0,speed:2},attack:[{type:124,effect:[8,1]},{type:125,effect:[12]},{type:126,effect:[6]}],description:`More machine than man`},
         {name:'Ninja Master',life:56,behavior:1,spec:[],move:{type:3,speed:1},attack:[{type:121,effect:[12]},{type:122,effect:[12]},{type:123,effect:[5]}],description:`Mastered teleportation, but not much else`},
@@ -157,7 +157,7 @@ types={
         {name:'Concentric',life:177,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunaria in never spawning`},
         {name:'Embodimental Destabilization',life:202,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[1,1,1,1]}],description:`This is getting out of hand!`},
         {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[18]},{type:300,effect:[3]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
-        {name:'Golden Duck',life:38,behavior:16,spec:[20],move:{type:0,speed:3},attack:[{type:21,effect:[]},{type:68,effect:[]}],description:`Why is this thing alive?`},
+        {name:'Golden Duck',life:38,behavior:16,spec:[],move:{type:0,speed:3},attack:[{type:21,effect:[]},{type:68,effect:[]}],description:`Why is this thing alive?`},
         {name:'Management Shotgunner',life:146,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:364,effect:[24,3,1,'Electrocuted']},{type:365,effect:[7,3]}],description:`At least he doesn't OHKO`},
         {name:'Bowler Duck',life:24,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:4,effect:[7]}],description:`He's broke, actually`},
 
@@ -713,7 +713,7 @@ types={
         {name:'Helix Fossil',internal:'Revive',id:81,rarity:2,list:0,description:'Next Time You Die,\nHeal to 50% HP'},
         {name:'Waterwheel',internal:'Low Play Draw',id:82,rarity:2,list:0,description:'When You Play Less Than 3 Cards,\nDraw 2 Cards Next Turn'},
         {name:'Dolphin Figurine',internal:'Item Collector',id:83,rarity:2,list:0,description:'Fights Always\nDrop Items'},
-        {name:'Entrenching Tool',internal:'Block Collection',id:84,rarity:2,list:0,description:'Gain 4 Block Per\nTurn After Turn 2'},
+        {name:'Entrenching Tool',internal:'Block Collection',id:84,rarity:2,list:0,description:'Gain 4 Block Each\nTurn After Turn 2'},
         {name:'Coupon',internal:'Free Shop Relic',id:85,rarity:3,list:0,description:'A Random Relic in\nthe Shop is Free'},
         {name:'Art of War',internal:'First Attack Free',id:86,rarity:2,list:0,description:'The First Attack\nPer Combat is Free'},
         {name:'DVD Player',internal:'First Card Double Play',id:87,rarity:-1,list:0,description:'The First Card Per Combat\nMay be Played Twice'},
@@ -1223,8 +1223,8 @@ He asks you which you would like to test.`,
             pages:[
                 {
                     desc:
-`You hear a call and rush over to help. The rebels
-have planted a bomb in the city. The locals have no
+`You hear a call and rush over to help. The Management
+has planted a bomb in the city. The locals have no
 idea how to defuse it, but you might have a guess.`,
                     option:['Cut the red wire','Cut the green wire','Cut the blue wire','Back away'],
                     optionDesc:['','','',''],
@@ -1703,7 +1703,7 @@ trying to find more passerby.`,
                 },
             ],
         },{
-            name:'Humanic Writings',id:22,list:0,
+            name:'Humanic Writings',id:22,list:-1,
             pages:[
                 {
                     desc:
@@ -1829,7 +1829,7 @@ You wake up feeling refreshed.`,
                 },
             ],
         },{
-            name:'Forgotten Altar',id:26,list:0,
+            name:'Forgotten Altar',id:26,list:-1,
             pages:[
                 {
                     desc:
@@ -2745,7 +2745,7 @@ He thanks you for your time as you leave.`,
                 },
             ],
         },{
-            name:'Paper Ball',id:52,list:0,
+            name:'The Message',id:52,list:0,
             pages:[
                 {
                     desc:
@@ -2827,7 +2827,7 @@ culture and how it remains despite fierce resistance.`,
 `Within, you see a discussion of the the future
 prospects of Managemental conquests.`,
                     option:['Interesting'],
-                    optionDesc:['Gain 1 Random Card'],
+                    optionDesc:['Add a Random Card'],
                     link:[-1],
                 },
             ],
@@ -2999,7 +2999,7 @@ As you are left holding it, the mirror disappears.`,
             pages:[
                 {
                     desc:
-`You find your way to the waste disposal site, for some reason.
+`You find your way to the waste disposal site.
 Your notice several boxes on the side, containing random stuff.
 Suddenly, an employee notices you.
 You might be able to grab something before you run.`,
@@ -4361,7 +4361,326 @@ heard of the places she's talking about.`,
                     link:[-1],
                 },
             ],
-        },
+        },/*{
+            name:'Target\nPractice',id:107,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Broken\nBridge',id:108,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Gaming',id:109,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'News Interview',id:110,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'SCT Fighters',id:111,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Item Shop',id:112,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:`Smith's Shed`,id:113,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Waste Dump',id:114,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Rooftop Chase',id:115,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Canyon',id:116,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'The Negotiator',id:117,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:`Ducky's Chocolate Experience`,id:118,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Management Defector',id:119,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Security Detail',id:120,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Mount Hinokizuka',id:121,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Farmer Girl',id:122,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Awful Tower',id:123,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Spring is Here!',id:124,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Fireflies',id:125,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Weapon Enlargement',id:126,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Curse of Misfortune',id:127,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Coffee Shop',id:128,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Fairy of Sunlight',id:129,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Gated Temple',id:130,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Maelstrom',id:131,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Paper Ball Shop',id:132,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Counterfeiter',id:133,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'The Traitor',id:134,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Defense Enlargement',id:135,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },*/
     ],color:{
         card:[
             {
