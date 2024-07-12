@@ -1386,7 +1386,7 @@ class battle{
                 for(let a=0,la=game.playerNumber;a<=la;a++){
                     if(this.menu.anim.combatant[0][a]>0){
                         this.layer.fill(255,this.menu.anim.combatant[0][a])
-                        this.layer.textSize(10)
+                        this.layer.textSize(types.combatant[a].name.length>=12?9:10)
                         this.layer.text(a==0?'000_BLANK':`0${a<10?`0`:``}${a}_${types.combatant[a].name.toUpperCase()}`,this.layer.width/2,this.layer.height*0.65)
                         this.layer.textSize(9)
                         this.layer.text(types.combatant[a].moniker.toUpperCase(),this.layer.width/2,this.layer.height*0.65+40)

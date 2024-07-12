@@ -103,7 +103,7 @@ attack.prototype.update=function(){
         case 3363: case 3364: case 3372: case 3376: case 3392: case 3401: case 3405: case 3407: case 3453: case 3455:
         case 3456: case 3469: case 3470: case 3475: case 3479: case 3503: case 3513: case 3519: case 3520: case 3530:
         case 3535: case 3545: case 3579: case 3581: case 3614: case 3619: case 3621: case 3637: case 3638: case 3644:
-        case 3651:
+        case 3651: case 3753: case 3754:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false

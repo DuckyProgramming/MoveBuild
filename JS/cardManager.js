@@ -98,25 +98,31 @@ class cardManager{
         }
         for(let a=0,la=game.playerNumber;a<la;a++){
             if(variants.cyclicDraw){
-                let list=['Buster','Multicard','Dropbox','DeDrop','Eye\nDropper']
+                let list=['Buster','Multicard','sDropbox','DeDrop','Eye\nDropper','Dropout']
                 for(let b=0,lb=list.length;b<lb;b++){
-                    this.listing.card[a+1][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
-                    this.listing.card[a+1][3].push(findName(list[b],types.card))
+                    if(findName(list[b],types.card)>=0){
+                        this.listing.card[a+1][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
+                        this.listing.card[a+1][3].push(findName(list[b],types.card))
+                    }
                 }
             }
             if(variants.blackjack){
-                let list=['Heat\nSink','Memory\nLeak','Ruby','Stack\nOverflow','House\nRules','Gate','Screwdriver','Gear\nGrind','Virus','Fixed\nPayout']
+                let list=['Heat\nSink','Memory\nLeak','Ruby','Stack\nOverflow','House\nRules','Gate','Screwdriver','Gear\nGrind','Virus','Fixed\nPayout','Token\nCannon','Hitshield']
                 for(let b=0,lb=list.length;b<lb;b++){
-                    this.listing.card[a+1][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
-                    this.listing.card[a+1][3].push(findName(list[b],types.card))
+                    if(findName(list[b],types.card)>=0){
+                        this.listing.card[a+1][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
+                        this.listing.card[a+1][3].push(findName(list[b],types.card))
+                    }
                 }
             }
         }
         if(variants.mtg){
-            let list=['Artifice','Soft\nRadiance','Sure\nGamble','Lily of\nthe Valley','Clean\nEnergy']
-            for(let b=0,lb=list.length;b<lb;b++){
-                this.listing.card[0][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
-                this.listing.card[0][3].push(findName(list[b],types.card))
+            let list=['Artifice','Soft\nRadiance','Sure\nGamble','Lily of\nthe Valley','Clean\nEnergy','Recycling','Summer\nStar','Silver\nWatch','Red\nPennant','Black\nLotus','Wavelength','Vivid\nDownpour']
+            for(let a=0,la=list.length;a<la;a++){
+                if(findName(list[a],types.card)>=0){
+                    this.listing.card[0][types.card[findName(list[a],types.card)].rarity].push(findName(list[a],types.card))
+                    this.listing.card[0][3].push(findName(list[a],types.card))
+                }
             }
         }
         let list=[]
@@ -148,7 +154,7 @@ class cardManager{
         }
     }
     mtgListing(){
-        this.listing.mtg=[[],[],[],[]]
+        this.listing.mtg=[[[],[],[],[]],[[],[],[],[]]]
         let effectiveMana=[0,0,0,0,0,0,0]
         for(let a=0,la=this.battle.energy.base[this.player].length;a<la;a++){
             effectiveMana[this.battle.energy.base[this.player][a]]++
@@ -160,8 +166,14 @@ class cardManager{
                 (cardColor.length==1&&effectiveMana[cardColor[0]]>0||cardColor.length==2&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0||cardColor.length==3&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0&&effectiveMana[cardColor[2]]>0||effectiveMana[6]>0)&&
                 (manaColor==6||effectiveMana[manaColor]+effectiveMana[6]>=types.card[a].levels[0].cost||types.card[a].levels[0].spec.includes(11)||types.card[a].levels[0].spec.includes(21)||types.card[a].levels[0].spec.includes(35))&&!(manaColor==0&&types.card[a].levels[0].cost==0)
             ){
-                this.listing.mtg[types.card[a].rarity].push(a)
-                this.listing.mtg[3].push(a)
+                this.listing.mtg[0][types.card[a].rarity].push(a)
+                this.listing.mtg[0][3].push(a)
+            }
+            if(types.card[a].rarity>=0&&types.card[a].list==0&&
+                (types.card[a].levels[0].cost<=effectiveMana[0]+1&&this.battle.players==1||types.card[a].levels[0].spec.includes(11)||types.card[a].levels[0].spec.includes(21)||types.card[a].levels[0].spec.includes(35))
+            ){
+                this.listing.mtg[1][types.card[a].rarity].push(a)
+                this.listing.mtg[1][3].push(a)
             }
         }
     }

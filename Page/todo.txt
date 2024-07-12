@@ -1,43 +1,17 @@
-you never yt-dlp'd pure furies ALR
-TW8vi6GlH0E
 
-
-
-decide on a name for [P]
-decide on fishing-themed names for group 14, 1728,3737-3740
-decie on names for the crafty detachment, group 15, 3742-3746
-
-
-
-mt. hinokizuka event - hana is preparing for the ascent
-wish her good luck - get mountain flowers - vanishing ritual card
-sell her equipment - lose a random colorless card and gain 160 currency
-
-
-
-suiji, the farmer - choice
-buy rice grains relic - heal 1 when you play a basic card
-buy a meal - heal to full
-leave
-
-awful tower - choice
-climb up - take a random amount of damage, rewards are random
-decline
-
-fairy of spring - choice
-announce spring - choose between 1 cost cards to add, they cost 0 though
-stay in winter - upgrade a card
-
-fireflies event - choice
-take one - item that gives you more choices for the next card reward
-eat one - heal 5
-[]
-
-[]
-
-
+relics:[
+    Ducky Donka Ticket
+    Ducky McDuff Ticket
+    Bottled Firefly
+    Death Butterfly
+    Ghostblade
+    Asagian Charm
+    Rice Grains
+    Maelstrom
+]
 
 add new bonus mods:[
+    bowler duck
     management light infantry
     gangster assassin
     ducky donka
@@ -52,73 +26,18 @@ LISTING GROUP 43
 
 
 
-[BONUS CHIP DETACHMENT!]
-
-
-[immortal fire - gain 2 strength, if you are below half health heal 4, exhaust]
-
-[dd-610 movement to replace reroute]
-
-[vivid flower wreath - add 12 block, counter 8 all if you are in elemental form]
-
-[double helix - damage, ]
-
-[DNA shotgun -]
-
-[starry flight - gain block, and might gain more later this turn]
-
-
-
-[self isolation - add block, ?]
-
-[ritual of exorcism - damage, if target has less than 30 health it gets stunned]
-
-[task management - when you draw a status card draw 1 card]
 
 "shoot the moon" with a rainbow laser with squares and stars (stars look better when white with colored outline)
 
-[adaptive armor - ]
 
-[bellcurve - deal randomly 5-15 damage based on a normal distribution]
-
-
-
-[mtg card - black lotus - choose a color of mana and add 3 of it]
-
-[mtg card - silver watch - gain 1 random mana per 5 cards played]
-
-[mtg card - locked ribbon - gain 1 red mana, gain triple against elite and boss combats]
-
-[loanshark - when taken, gain 500 currency, unplayable, when removed lose 1000 currency]
-
-[fairy mischief - lose 3 health, add a random fairy of light to hand and the others to draw pile]
-
-[review notes - choose a common card to add to hand, it costs 0 (equivalent to shikigami protection),
-if drawn 1 time, gain 1 energy]
-
-
-
-[light the furnace - 2 cost, gain 2 strength, gain 2 faith, gain double strength in divinity]
 
 [pure furies - liles of murder but it looks a lot cooler]
 
 [seeping miasma]
 
-[vega, or maybe another star]
-
-[furious purification rod]
-
 [why is onsen reimu a thing]
 
 
-
-[card like financial crisis]
-
-[\]
-
-[3 movements with 1 range mostly and 3 range in one specific direction]
-
-[\]
 
 wingbeats - add 20 block, apply 1 weak in all directions, apply 6 poison to all enemies if you have an ACTIVE ally in hand
 
@@ -127,8 +46,6 @@ wingbeats - add 20 block, apply 1 weak in all directions, apply 6 poison to all 
 
 
 [4th of july card]
-
-reorganization - swap 2 random enemy locations
 
 [shivering nightmare could have a cool animation]
 
@@ -140,17 +57,24 @@ reorganization - swap 2 random enemy locations
 
 
 
+[triskaidekaphobia]
+
+[fairy mischief - lose 3 health, add a random fairy of light to hand and the others to draw pile]
+
+[rainbow dupion - 5 cost 18 damage, get a miracle,
+gain 2 strength, 2 dexterity, and 2 focus if you have full, unique orb slots]
+
+[cleaning - exhaust a card, gain wish power]
+
+[a way to get vision]
+
+
+
+
+
 [laevateinn]
 
-[geiger counter - add block, counter poison]
-
 [pleochroism - upgrade either all attacks or all defenses in hand based on where the card is]
-
-[canned tuna - heal 15, when drawn draw a card, vanishing 2]
-
-[sea of sky - variant of sea of trees]
-
-[]
 
 
 
@@ -159,13 +83,13 @@ LISTING GROUP 44 (SUKUNA)
 
 
 
-[incident]
-
-[a card similar to instant ramen]
+[hourai burst -
+For each mana of a different color spent: Deal 8 damage to each enemy.
+If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 [pinpoint]
 
-[land of giants]
+[]
 
 [a parry]
 
@@ -183,14 +107,14 @@ LISTING GROUP 44 (SUKUNA)
 
 [sunny's spellcard]
 
-[inclined plane]
+[]
 
 
 [versatility - draw 2 cards, ?]
 
 [wind god girl - ability card, gain 1 dodge]
 
-[refresher - add 16 block, when drawn shuffle draw pile (doesn't seem useful?)]
+[]
 
 [something like impale]
 
@@ -200,35 +124,15 @@ LISTING GROUP 44 (SUKUNA)
 
 
 
-[HAND SIZE]
+[]
 
-[HAND SIZE]
+[]
 
-[HAND SIZE]
+[]
 
 [pincushion]
 
 [interlace]
-
-[]
-
-
-
-[]
-
-[]
-
-[]
-
-[]
-
-[]
-
-[]
-
-
-
-update the MTG-ONLY card listing
 
 
 
@@ -236,18 +140,19 @@ SUKUNA MECHANICS
 
 strike and defend
 common cards
-
 dodge
-
 lock on
-
 [P]-ability cards
 
 MOTIFS
 
 fishing for certain cards
-
 size of hand
+
+DEVELOPMENT
+
+model
+icon
 
 
 
@@ -262,11 +167,6 @@ sagacious spirit - permanent intangible, lose 1 energy per 5 cards played
 
 chip boss needs another attack
 sukuna boss also needs to get 2 attacks and setup code with archivist
-
-
-
-but what is pocket watch in the rain actually a remix of?
-and scattered rose?
 
 
 

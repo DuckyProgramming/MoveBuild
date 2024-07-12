@@ -5674,6 +5674,9 @@ function setupGraphics(){
 		setupEdition(a+1,graphics.edition[a][1],1)
 		setupEdition(0,graphics.edition[a][1])
 	}
+	for(let a=0,la=50;a<la;a++){
+		graphics.paperball.push([random(0,80),random(0,360)])
+	}
 	/*
 	0-Perk
 	1-Loss

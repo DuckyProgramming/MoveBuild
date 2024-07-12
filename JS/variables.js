@@ -17,7 +17,7 @@ types={
         {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:`Overworked professor who barely\nearned enough to slay alive.\nNow ready to take the share of\npay he believes he deserves.`},
         {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:`Fairy formed by the planet\nas a natural defense mechanism.\nReckless but seemingly immortal,\nnature's incarnates always return.`},
         {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:339,effect:[8,8]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:``},
-        {name:'Sukuna',moniker:'',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]}],description:``},
+        {name:'Shinmyoumaru',moniker:'',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]}],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -976,8 +976,18 @@ types={
         {name:'Hina Charm',internal:'Curse Strength',id:320,rarity:-1,list:0,description:'On Turn 5, Gain 2 Buffer'},
         {name:'Barbcoin',internal:'Random Value',id:321,rarity:-1,list:0,description:'The Sell Value of This\nRelic is Dynamic'},
         {name:'Gaming Console',internal:'Glitched Cards',id:322,rarity:-1,list:0,description:'Glitched Cards Can Appear'},
-        {name:'SCT Parts',internal:'Click to Block',id:323,rarity:2,list:0,description:'Click to Add 6 Block\n1 Use Per Encounter'},
-        {name:'Managerial History',internal:'Click For Energy',id:324,rarity:2,list:0,description:'Click to Gain 3 Energy\n1 Use Per Encounter'},
+        {name:'SCT Parts',internal:'Click to Block',id:323,rarity:-1,list:0,description:'Click to Add 6 Block\n1 Use Per Encounter'},
+        {name:'Managerial History',internal:'Click For Energy',id:324,rarity:-1,list:0,description:'Click to Gain 3 Energy\n1 Use Per Encounter'},
+
+        {name:'Ducky Donka Ticket',internal:'',id:325,rarity:-1,list:0,description:''},
+        {name:'Ducky McDuff Ticket',internal:'',id:326,rarity:-1,list:0,description:''},
+        {name:'Bottled Firefly',internal:'',id:327,rarity:-1,list:0,description:''},
+        {name:'Death Bufferflies',internal:'',id:328,rarity:-1,list:0,description:''},
+        {name:'Ghostblade',internal:'',id:329,rarity:-1,list:0,description:''},
+
+        {name:'Asagian Charm',internal:'',id:330,rarity:-1,list:0,description:''},
+        {name:'Rice Grains',internal:'',id:331,rarity:-1,list:0,description:''},
+        {name:'Maelstrom',internal:'',id:332,rarity:-1,list:0,description:''},
 
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,temp:false,description:''},
@@ -4774,35 +4784,61 @@ Taking the job is too risky.`,
 for the climb. You'd never make it up the mountain yourself,
 so you doubt how somebody like her could do it.`,
                     option:['Wish Her Luck','Sell Her Equipment','Leave'],
-                    optionDesc:['','Lose a Random Colorless Card, Gain 160 Currency',''],
+                    optionDesc:['','Lose a Random Colorless Card, Gain 150 Currency',''],
                     link:[1,2,3],
                 },{
                     desc:
-``,
-                    option:[''],
+`She thanks you and hands you a little trinket.
+"I have a bunch of these, and there's no use in carrying
+them up the mountain, so... I guess you can have one."`,
+                    option:['Take it'],
+                    optionDesc:['Gain a Relic - Asagian Charm'],
+                    link:[-1],
+                },{
+                    desc:
+`Giving her some of your equipment, she gives you some money in return.
+"There's no reason to carry all this up the mountain...
+Guess I'll spent it all while I'm at the base!"`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },{
                     desc:
-``,
-                    option:[''],
-                    optionDesc:[''],
-                    link:[-1],
-                },{
-                    desc:
-``,
-                    option:[''],
+`You pass by, leaving her to her task.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
             ],
         },{
-            name:'Farmer Girl',id:122,list:0,
+            name:'Rice Farm',id:122,list:0,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`Off the road, you run into a rice farm. It looks like any
+other farm, but just on the road, a girl sits in a wooden stall
+surrounded by bags of rice. She calls you over as you arrive.
+"Would you like some rice?" she says with a smile.`,
+                    option:['Buy Some Rice','Buy a Meal','Decline'],
+                    optionDesc:['Lose 50 Currency, Gain a Relic - Rice Grains','Lose 50 Currency, Heal to Full',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+`You take a bag of rice with you for future use.
+Cooking rice is easy, right?`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`It's a nice meal, even though it's mostly just rice.
+You can tell how much manual labor goes into making it, though.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:`She's cute, but you don't need rice now.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4812,8 +4848,30 @@ so you doubt how somebody like her could do it.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`You run into an "attraction" - a multicolored, segmented
+building labeled "Awful Tower". The appearance certainly
+doesn't suggest a good time, but you look inside anyway.
+Apparently, it's a parkour game with rewards within.`,
+                    option:['Try it','Decline'],
+                    optionDesc:[''],
+                    link:[1,3],
+                },{
+                    desc:
+`It's time to begin your climb of Awful Tower.
+Looks a little risky...`,
+                    option:['Begin','Back Away'],
+                    optionDesc:['',''],
+                    link:[2,3],
+                },{
+                    desc:
+`Continue your climb?`,
+                    option:['Continue','Stop'],
+                    optionDesc:['',''],
+                    link:[3,4],
+                },{
+                    desc:
+`You leave the "attraction" a little disappointed.`,
+                    option:['Exit'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4823,9 +4881,29 @@ so you doubt how somebody like her could do it.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`You start to notice the ground changing. The snow is melting.
+Or at least in the mountains it is. The season here aren't that pronounced.
+Still, though spring is on its way. But this year, you notice the
+Fairy of Spring appear before you.
+"Is it time for me to announce spring's arrival?" she asks.
+Or would you prefer a little more winter so the other
+fairy can do all the work?`,
+                    option:['Announce Spring','Stay in Winter'],
                     optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`"Alright!" she says. She heads off towards anybody
+she can find, repeating that "Spring is Here!"`,
+                    option:[`It's Spring`],
+                    optionDesc:['Add a 1 Cost Card, it Costs 0'],
+                    link:[-1],
+                },{
+                    desc:
+`"Sure!" she says, disappearing.
+You wish the Fairy of Winter would actually do something...`,
+                    option:[`It's Winter`],
+                    optionDesc:['Upgrade a Card'],
                     link:[-1],
                 },
             ],
@@ -4834,8 +4912,32 @@ so you doubt how somebody like her could do it.`,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`In the midst of a clearing in the darkened night forest,
+you spot a cloud of fireflies buzzing around seemingly nothing.
+They don't notice as you approach their position.`,
+                    option:['Collect One','Watch Them','Eat Them'],
+                    optionDesc:['Gain a Relic - Bottled Firefly','Add a Rare Card','Gain 20 Max HP'],
+                    link:[1,2,3],
+                },{
+                    desc:
+`With a swift hand you pinch one and place it in a bottle.
+With some training and some luck it could become loyal to you.
+Only one way to find out...`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`You watch them buzz throughout the night, until they eventaully scatter.
+It wasn't much, but for some reason, you feel englightened.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`You manage to grab a few before the rest scatter.
+They're surprisingly tasty.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -4874,7 +4976,7 @@ It's said that she rarely appears to people, but when she does,
 it never ends well for them.
 "Well, well, well..." she begins. "Are you poor?"`,
                     option:[`I'm Poor!`,`I'm not Poor!`],
-                    optionDesc:['Lose All Currency','Become Cursed - Misfortune'],
+                    optionDesc:['Lose All Currency','Become Cursed - Buy Safety'],
                     link:[1,2],
                 },{
                     desc:
@@ -5026,7 +5128,7 @@ to enter the control rooms and disable the device entirely.
 It was never repaired. The Admiral-Manager fired those involved
 and advised his successors never to repeat their mistakes.`,
                     option:['Take','Stop'],
-                    optionDesc:['Lose 8 Max HP',''],
+                    optionDesc:['Lose 10 Max HP',''],
                     link:[5,1],
                 },{
                     desc:
@@ -5094,7 +5196,7 @@ and might prove to be useful later on.`,
 `You get your paper ball, very shiny but quite
 fragile as well. Maybe it'll be useful.`,
                     option:['Take it'],
-                    optionDesc:['Add a Polychrome Paper Ball to Deck'],
+                    optionDesc:['Add a Deluxe Paper Ball to Deck'],
                     link:[-1],
                 },{
                     desc:
@@ -5174,12 +5276,53 @@ and is interested in testing his techniques on one of yours.`,
                 },
             ],
         },{
-            name:'',id:136,list:0,
+            name:'Netherworld Party',id:136,list:0,
             pages:[
                 {
                     desc:
-``,
-                    option:[''],
+`As you pass through a seemingly empty forest,
+you find a glowing pinkish portal. Peering through, you
+spot a unique sight - ghosts and phantoms, unlike the ones
+you're use to as they take forms similar to humans, abound
+and celebrate what looks to be the birthday of their ruler,
+as she's sitting in the center and talking loudly.
+You're probably not welcome, but while they're all distracted
+you might be able to steal something through the portal...`,
+                    option:['Catch a Ghost','Steal a Weapon',`It's too Risky`],
+                    optionDesc:['','',''],
+                    link:[1,2,3,4],
+                },{
+                    desc:
+`You manage to grab a spirit within your hands.
+When you secure it in a bottle, it appears to be a bunch
+of butterflies hovering around a central spirit flame.
+They don't have any physical presence, but you're certain
+you'll be able to use them for something.`,
+                    option:['Keep it'],
+                    optionDesc:['Gain a Relic - Death Butterflies'],
+                    link:[-1],
+                },{
+                    desc:
+`You manage to grab a sword through the portal without them noticing.
+Unfortunately it's a ghost sword and can't slice physical objects,
+but you might still be able to use it for something.`,
+                    option:['Keep it'],
+                    optionDesc:['Gain a Relic - Ghostblade'],
+                    link:[-1],
+                },{
+                    desc:
+`As you reach a hand through the portal, you're immediately noticed.
+You manage to pull your hand back just in time, and the phantoms
+are unable to pass through the portal, securing your safety.
+Your hand's a little burnt though.`,
+                    option:['Leave'],
+                    optionDesc:['Lose 5 Health'],
+                    link:[-1],
+                },{
+                    desc:
+`You decide that intervening in such a place is risky.
+Besides, ghost objects aren't useful in the real world, right?`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -8916,7 +9059,7 @@ constants={collisionDamage:4,
     HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]
 }
 options={damage:false,alt:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false,devGen:false}
-graphics={main:0,backgroundGen:14,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],proxyBattle:0,test:0}
+graphics={main:0,backgroundGen:14,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],paperball:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0

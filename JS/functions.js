@@ -1161,6 +1161,19 @@ function copyArrayAttack(base){
 function copyFalsed(base){
 	return {trigger:base.trigger,name:base.name,attack:base.attack,effect:base.effect,spec:base.spec,rarity:base.rarity,class:base.class,reality:base.reality,colorDetail:base.colorDetail,target:base.target,cost:base.cost}
 }
+function normalDistribution(){
+	let u=random(0,1),v=random(0,1),s=0.449871,t=-0.386595,a=0.19600,b=0.25472,r1=0.27597,r2=0.27846
+	v=1.7156*(v-0.5)
+	let x=u-s,y=abs(v)-t
+	let Q=x**2+y*(a*y-b*x)
+	if(Q<0.27597){
+		return v/u
+	}else if(Q>0.27846||v^2>-4*u^2){
+		return normalDistribution()
+	}else{
+		return v/u
+	}
+}
 function legalTarget(type,lengthStart,lengthEnd,x,y){
 	switch(type){
 		case 0:
@@ -1843,11 +1856,11 @@ function mtgPlayerColor(player){
 		case 7: return [5,1]
 		case 8: return [4,5]
 		case 9: return [4,1]
-		case 10: return [2]
+		case 10: return [3]
 		case 11: return [2,3]
-		case 12: return [3]
+		case 12: return [2,5]
 		case 13: return [4,3]
-		case 14: return [2,5]
+		case 14: return [2]
 		case 15: return [4,2]
 		case 16: return [4,2,1]
 		case 17: return [3,5,1]
@@ -1855,7 +1868,7 @@ function mtgPlayerColor(player){
 	}
 }
 function mtgCardColor(color){
-	if(color>=1&&color<=16){
+	if(color>=1&&color<=game.playerNumber){
 		return mtgPlayerColor(color)
 	}else{
 		return [color]

@@ -104,7 +104,22 @@ class eventManager{
                 !(this.listing.event[a]==113&&this.battle.currency.money[this.player]<125)&&
                 !(this.listing.event[a]==114&&this.battle.currency.money[this.player]<375)&&
                 !(this.listing.event[a]==115&&userCombatant.life<16)&&
-                !(this.listing.event[a]==116&&this.battle.nodeManager.world!=2)
+                !(this.listing.event[a]==116&&this.battle.nodeManager.world!=2)&&
+                !(this.listing.event[a]==117&&this.battle.nodeManager.world!=1)&&
+                !(this.listing.event[a]==118&&this.battle.nodeManager.world!=0)&&
+                !(this.listing.event[a]==119&&this.battle.nodeManager.world!=0)&&
+                !(this.listing.event[a]==120&&userCombatant.life<19)&&
+                !(this.listing.event[a]==121&&this.battle.cardManagers[this.player].deck.numberAbstract(11,[])<=0)&&
+                !(this.listing.event[a]==122&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==123&&userCombatant.life<41)&&
+                !(this.listing.event[a]==127&&this.battle.currency.money[this.player]<200)&&
+                !(this.listing.event[a]==128&&this.battle.currency.money[this.player]<20)&&
+                !(this.listing.event[a]==129&&(userCombatant.life<9||userCombatant.life<13))&&
+                !(this.listing.event[a]==130&&(userCombatant.life<15||userCombatant.life<11))&&
+                !(this.listing.event[a]==131&&userCombatant.life<28)&&
+                !(this.listing.event[a]==132&&this.battle.currency.money[this.player]<100)&&
+                !(this.listing.event[a]==134&&this.battle.nodeManager.world!=2)&&
+                !(this.listing.event[a]==136&&userCombatant.life<6)
 
             ){
                 sublist.push(this.listing.event[a])

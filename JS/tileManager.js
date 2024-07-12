@@ -316,6 +316,13 @@ class tileManager{
             }else if((this.battle.attackManager.targetInfo[0]==51)&&this.tiles[a].occupied==0&&
             (legalTargetCombatant(0,1,this.battle.turn.total+this.battle.attackManager.targetInfo[1]+this.battle.getXBoost(this.battle.attackManager.player),this.tiles[a],this.battle.attackManager,this.tiles))){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
+            }else if((this.battle.attackManager.targetInfo[0]==56||this.battle.attackManager.targetInfo[0]==57||this.battle.attackManager.targetInfo[0]==58)&&this.tiles[a].occupied==0&&
+            (
+                legalTargetCombatant(this.battle.relicManager.active[150][this.battle.attackManager.player+1]>0?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)||
+                legalTargetCombatant(this.battle.relicManager.active[150][this.battle.attackManager.player+1]>0?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[3],this.tiles[a],this.battle.attackManager,this.tiles)&&
+                targetDirectionCombatant(0,this.battle.attackManager,this.tiles[a])%3==this.battle.attackManager.targetInfo[0]-56
+            )){
+                this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }
         }
     }
