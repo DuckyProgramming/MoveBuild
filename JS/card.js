@@ -3386,7 +3386,7 @@ class card{
             case 3038: string+=`Shuffle Discard Pile\nInto Draw Pile\nScry Entire Draw Pile`; break
             case 3039: string+=`Add ${effect[0]} Miracle${pl(effect[0])}\nto Hand\nin 3 Turns`; break
             case 3040: string+=`Upgrade ${effect[0]} Random Card${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-            case 3041: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nWhen You Break Balance`; break
+            case 3041: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]} When\nYou Break Balance`; break
             case 3042: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCosts 0 Temporarily\nWhen You Rearm`; break
             case 3043: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIncreases by ${effect[1]}\nWhen You Move Upward`; break
             case 3044: string+=`Shuffle Discard Pile And\nHand Into Draw Pile\nShuffle Draw Pile\nDraw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Energy`; break
@@ -4246,7 +4246,33 @@ class card{
             case 3807: string+=`Scry ${effect[0]}\nLose ${effect[1]} Energy\nNext Turn`; break
             case 3808: string+=`When Etherealed,\nAdd a Dual Discus\nof Equivalent Level\nto Hand`; break
 
+            case 3809: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Common Card${pl(effect[1])}\nDiscard ${effect[2]} Random Card${pl(effect[2])}`; break
+            case 3810: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Uncommon Card${pl(effect[1])}\nDiscard ${effect[2]} Random Card${pl(effect[2])}`; break
+            case 3811: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Rare Card${pl(effect[1])}\nDiscard ${effect[2]} Random Card${pl(effect[2])}`; break
+            case 3812: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less\nTemporarily\nIf First Card\nPlayed This Turn,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 3813: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Bleed`; break
+            case 3814: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Bleed`; break
 
+            case 3815: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 Temporarily\nWhen You Rearm`; break
+            case 3816: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIncreases by ${effect[1]} When\nYou Break Balance`; break
+            case 3817: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nApply ${effect[1]} Weak\nin All Directions\nIf You Have an Active\nAlly Card in Hand,\nApply ${effect[2]} Poison\nin All Directions`; break
+            case 3818: string+=`Lose ${effect[0]} Health\nSummon 3 Fairies of Light\nAdd One to Hand\nShuffle the Others\ninto Draw Pile`; break
+            case 3819: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n5+ Balance:\nGain ${effect[1]} Energy`; break
+            case 3820: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage\n${effect[1]} Balance`; break
+            
+            case 3821: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nNext Turn, Gain ${effect[1]} Energy\nand a Random\nCard Costs ${effect[2]} More`; break
+            //moon shard
+            case 3822: string+=``; break
+            //grid
+            case 3823: string+=``; break
+            //exploding blue star
+            case 3824: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify 3:\n`; break
+            //rainbow laser with squares and stars
+            case 3825: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 3 Times\nin All Directions\nCosts 1 Less When a\nColorless Card is Played`; break
+            //lilies
+            case 3826: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 2 Times\nTarget Loses ${effect[1]} Health\nPer Enemy Defeated\nThis Combat`; break
+            //butterflies things of light from below randomly
+            //animate all of these!
 
 
 
@@ -5204,7 +5230,7 @@ class card{
                     }
                 break
                 case 3100: case 3101: case 3102:
-                    if(card.color==0&&!card.colorful){
+                    if(card.colorless()){
                         this.cost=0
                     }
                 break

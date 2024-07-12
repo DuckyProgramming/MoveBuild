@@ -1,5 +1,5 @@
 function draw(){
-    clear()
+    //clear()
     background(125)
     graphics.main.push()
     switch(stage.scene){

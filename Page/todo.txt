@@ -26,40 +26,19 @@ LISTING GROUP 43
 
 
 
-
-"shoot the moon" with a rainbow laser with squares and stars (stars look better when white with colored outline)
-
+[4th of july card]
 
 
-[pure furies - liles of murder but it looks a lot cooler]
+
 
 [seeping miasma]
 
 [why is onsen reimu a thing]
 
+[apricot - heal health, exhausting 2, when exhausted gain block]
 
+[triskaidekaphobia - every 13 cards played, deal 13 splash damage]
 
-wingbeats - add 20 block, apply 1 weak in all directions, apply 6 poison to all enemies if you have an ACTIVE ally in hand
-
-[apricot - ]
-
-
-
-[4th of july card]
-
-[shivering nightmare could have a cool animation]
-
-[that meteor card still]
-
-[the sanae attack that makes a grid]
-
-[exploding blue sanae star]
-
-
-
-[triskaidekaphobia]
-
-[fairy mischief - lose 3 health, add a random fairy of light to hand and the others to draw pile]
 
 [rainbow dupion - 5 cost 18 damage, get a miracle,
 gain 2 strength, 2 dexterity, and 2 focus if you have full, unique orb slots]
@@ -68,18 +47,9 @@ gain 2 strength, 2 dexterity, and 2 focus if you have full, unique orb slots]
 
 [a way to get vision]
 
+[sphalerite]
 
-
-
-
-[laevateinn]
-
-[pleochroism - upgrade either all attacks or all defenses in hand based on where the card is]
-
-
-
-LISTING GROUP 44 (SUKUNA)
-
+[aluminum alloy]
 
 
 
@@ -89,7 +59,9 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 [pinpoint]
 
-[]
+[laevateinn]
+
+[pleochroism - upgrade either all attacks or all defenses in hand based on where the card is]
 
 [a parry]
 
@@ -97,24 +69,10 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 
 
-[card shrink - uncommon, remove a non-basic non-curse card, vanish 1]
-
-[card growth - uncommon, upgrade a basic card, vanish 1]
-
-[card transform - uncommon, transform a basic card into a common card, vanish 1]
-
-[miracle of simplicity - double the effects of all basic cards]
-
-[sunny's spellcard]
-
-[]
-
-
 [versatility - draw 2 cards, ?]
 
 [wind god girl - ability card, gain 1 dodge]
 
-[]
 
 [something like impale]
 
@@ -124,15 +82,17 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 
 
-[]
 
-[]
+[miracle of simplicity - double the effects of all basic cards]
 
-[]
+[sunny's spellcard]
 
 [pincushion]
 
 [interlace]
+
+
+
 
 
 

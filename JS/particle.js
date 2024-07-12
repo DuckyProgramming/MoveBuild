@@ -238,7 +238,7 @@ class particle{
                 this.delay=args[1]
                 this.curve=args[2]
                 this.points=[]
-                this.speed=5
+                this.speed=6
                 this.fade=1
                 this.size=1
                 this.scale=1
@@ -257,6 +257,22 @@ class particle{
             case 122:
                 this.size=args[0]
                 this.fade=0
+                this.scale=1
+            break
+            case 124:
+                this.size=args[0]
+                this.fade=1
+                this.scale=0
+                this.direction=random(0,360)
+                this.curve=random(0.5,1)*(floor(random(0,2))*2-1)
+                this.tick=[]
+                for(let a=0,la=60;a<la;a++){
+                    this.tick.push([random(0,40),random(1,2)])
+                }
+            break
+            case 125:
+                this.size=1
+                this.fade=1
                 this.scale=1
             break
         }
@@ -1436,12 +1452,29 @@ class particle{
                             this.points[max(round(this.points.length*2/3),this.points.length-11)][0]-this.position.x,this.points[max(round(this.points.length*2/3),this.points.length-11)][1]-this.position.y,
                             this.points[max(round(this.points.length/3),this.points.length-21)][0]-this.position.x,this.points[max(round(this.points.length/3),this.points.length-21)][1]-this.position.y
                         )*/
-                        this.layer.bezier(
-                            this.points[this.points.length-1][0]-this.position.x,this.points[this.points.length-1][1]-this.position.y,
-                            this.points[max(round(this.points.length*2/3),this.points.length-9)][0]-this.position.x,this.points[max(round(this.points.length*2/3),this.points.length-9)][1]-this.position.y,
-                            this.points[max(round(this.points.length/3),this.points.length-17)][0]-this.position.x,this.points[max(round(this.points.length/3),this.points.length-17)][1]-this.position.y,
-                            this.points[max(0,this.points.length-25)][0]-this.position.x,this.points[max(0,this.points.length-25)][1]-this.position.y
-                        )
+                            this.layer.bezier(
+                                this.points[this.points.length-1][0]-this.position.x,this.points[this.points.length-1][1]-this.position.y,
+                                this.points[max(round(this.points.length*2/3),this.points.length-9)][0]-this.position.x,this.points[max(round(this.points.length*2/3),this.points.length-9)][1]-this.position.y,
+                                this.points[max(round(this.points.length/3),this.points.length-17)][0]-this.position.x,this.points[max(round(this.points.length/3),this.points.length-17)][1]-this.position.y,
+                                this.points[max(0,this.points.length-25)][0]-this.position.x,this.points[max(0,this.points.length-25)][1]-this.position.y
+                            )
+                            /*let keypoints=[
+                                this.points[this.points.length-1][0]-this.position.x,this.points[this.points.length-1][1]-this.position.y,
+                                this.points[max(round(this.points.length/2),this.points.length-13)][0]-this.position.x,this.points[max(round(this.points.length/2),this.points.length-13)][1]-this.position.y,
+                                this.points[max(0,this.points.length-25)][0]-this.position.x,this.points[max(0,this.points.length-25)][1]-this.position.y
+                            ]
+                            let mid=circleMid(...keypoints)
+                            if(this.curve>=0){
+                                this.layer.arc(mid[0],mid[1],mid[2]*2,mid[2]*2,
+                                    -90+atan2(keypoints[0]-mid[0],-keypoints[1]+mid[1]),
+                                    -90+atan2(keypoints[4]-mid[0],-keypoints[5]+mid[1])
+                                )
+                            }else{
+                                this.layer.arc(mid[0],mid[1],mid[2]*2,mid[2]*2,
+                                    -90+atan2(keypoints[4]-mid[0],-keypoints[5]+mid[1]),
+                                    -90+atan2(keypoints[0]-mid[0],-keypoints[1]+mid[1])
+                                )
+                            }*/
                         /*this.layer.curve(
                             this.points[max(round(this.points.length*2/3),this.points.length-11)][0]-this.position.x,this.points[max(round(this.points.length*2/3),this.points.length-11)][1]-this.position.y,
                             this.points[max(round(this.points.length/3),this.points.length-21)][0]-this.position.x,this.points[max(round(this.points.length/3),this.points.length-21)][1]-this.position.y,
@@ -1643,6 +1676,32 @@ class particle{
                     this.layer.fill(225,225,25,this.fade)
                     regStar(this.layer,0,0,9,6,6,15,15,-this.time)
                 break
+                case 124:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(120,this.fade*0.5)
+                    this.layer.stroke(140,this.fade*10)
+                    this.layer.strokeWeight(1)
+                    this.layer.ellipse(0,0,20)
+                    this.layer.strokeWeight(0.5)
+                    for(let a=0,la=12;a<la;a++){
+                        this.layer.line(10*lsin(a/la*360),10*lcos(a/la*360),50*lsin(a/la*360),50*lcos(a/la*360))
+                    }
+                    this.layer.noFill()
+                    this.layer.strokeWeight(2)
+                    for(let a=0,la=12;a<la;a++){
+                        this.layer.arc(0,0,20,20,(a-0.1)/la*360,(a+0.1)/la*360)
+                    }
+                    this.layer.noStroke()
+                    this.layer.fill(160,this.fade)
+                    for(let a=0,la=60;a<la;a++){
+                        this.layer.rotate(135+this.tick[a][0])
+                        this.layer.quad(0,-19+a*0.3,-0.05*this.tick[a][1],-19+0.25*this.tick[a][1]+a*0.3,0,-19+0.5*this.tick[a][1]+a*0.3,0.05*this.tick[a][1],-19+0.25*this.tick[a][1]+a*0.3)
+                    }
+                break
+                case 125:
+                    this.layer.fill(125,this.fade)
+                    this.layer.ellipse(0,0,10000,10000)
+                break
 
             }
             this.layer.pop()
@@ -1837,10 +1896,10 @@ class particle{
                 if(this.fade<=0){
                     this.remove=true
                     for(let a=0,la=20;a<la;a++){
-                        parent.particles.push(new particle(this.layer,this.position.x-lsin(this.direction-4.5-a*9)*100,this.position.y+lcos(this.direction-4.5-a*9)*100,109,[this.direction-4.5-a*9,a*2,-6]))
-                        parent.particles.push(new particle(this.layer,this.position.x-lsin(this.direction+4.5+a*9)*100,this.position.y+lcos(this.direction+4.5+a*9)*100,109,[this.direction+4.5+a*9,a*2,-6]))
-                        parent.particles.push(new particle(this.layer,this.position.x-lsin(this.direction-4.5-a*9)*100,this.position.y+lcos(this.direction-4.5-a*9)*100,109,[this.direction-4.5-a*9,a*2,6]))
-                        parent.particles.push(new particle(this.layer,this.position.x-lsin(this.direction+4.5+a*9)*100,this.position.y+lcos(this.direction+4.5+a*9)*100,109,[this.direction+4.5+a*9,a*2,6]))
+                        parent.particles.push(new particle(this.layer,this.position.x-lsin(this.direction-4.5-a*9)*120,this.position.y+lcos(this.direction-4.5-a*9)*120,109,[this.direction-4.5-a*9,a*2,-8]))
+                        parent.particles.push(new particle(this.layer,this.position.x-lsin(this.direction+4.5+a*9)*120,this.position.y+lcos(this.direction+4.5+a*9)*120,109,[this.direction+4.5+a*9,a*2,-8]))
+                        parent.particles.push(new particle(this.layer,this.position.x-lsin(this.direction-4.5-a*9)*120,this.position.y+lcos(this.direction-4.5-a*9)*120,109,[this.direction-4.5-a*9,a*2,8]))
+                        parent.particles.push(new particle(this.layer,this.position.x-lsin(this.direction+4.5+a*9)*120,this.position.y+lcos(this.direction+4.5+a*9)*120,109,[this.direction+4.5+a*9,a*2,8]))
                     }
                 }
             break
@@ -1849,7 +1908,13 @@ class particle{
                     this.position.x+=lsin(this.direction)*this.speed
                     this.position.y-=lcos(this.direction)*this.speed
                     this.direction+=this.curve
-                    this.curve*=0.98
+                    if(this.time<this.delay+30){
+                        this.curve*=1.01
+                        this.speed*=0.99
+                    }else{
+                        this.curve*=0.96
+                        this.speed*=1.02
+                    }
                     this.speed*=1.03
                     this.points.push([this.position.x,this.position.y])
                 }
@@ -1885,6 +1950,20 @@ class particle{
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed
                 this.fade=smoothAnim(this.fade,this.time<this.timer,0,1,5)
+                if(this.fade<=0){
+                    this.remove=true
+                }
+            break
+            case 124:
+                this.fade-=0.02
+                this.scale=(this.scale+0.02)*(1+this.time*0.001)
+                this.direction+=this.curve
+                if(this.fade<=0){
+                    this.remove=true
+                }
+            break
+            case 125:
+                this.fade-=0.1
                 if(this.fade<=0){
                     this.remove=true
                 }

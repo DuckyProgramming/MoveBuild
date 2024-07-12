@@ -7306,19 +7306,20 @@ attack.prototype.update=function(){
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
             }
-            if(this.timer<=15||this.timer>30){
+            if(this.timer<=15||this.timer>60){
                 this.userCombatant.runAnimation(1/30,17)
             }
-            if(this.timer==15||this.timer==20||this.timer==25||this.timer==30){
+            if(this.timer==15||this.timer==30||this.timer==45||this.timer==60){
+                this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,124,[100]))
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
-                if(this.timer==30){
+                if(this.timer==60){
                     this.procedure[0]=this.userManager.hand.cards.length
                     this.userManager.hand.allEffect(22)
                     for(let a=0,la=min(100,this.procedure[0]);a<la;a++){
                         this.userManager.hand.add(findName('Pristine',types.card),0,0)
                     }
                 }
-            }else if(this.timer>=45){
+            }else if(this.timer>=75){
                 this.remove=true
             }
         break

@@ -1174,6 +1174,70 @@ function normalDistribution(){
 		return v/u
 	}
 }
+function matrixDet3(matrix){
+	return matrix[0][0]*(matrix[1][1]*matrix[2][2]-matrix[2][1]*matrix[1][2])-
+		matrix[0][1]*(matrix[1][0]*matrix[2][2]-matrix[2][0]*matrix[1][2])+
+		matrix[0][2]*(matrix[1][0]*matrix[2][1]-matrix[2][0]*matrix[1][1])
+}
+function matrixInv3(matrix){
+	let det=matrixDet3(matrix)
+	if(det==0){
+		return [
+			[0,0,0],
+			[0,0,0],
+			[0,0,0]
+		]
+	}else{
+		return [
+			[
+				(matrix[1][1]*matrix[2][2]-matrix[2][1]*matrix[1][2])/det,
+				-(matrix[0][1]*matrix[2][2]-matrix[2][1]*matrix[0][2])/det,
+				(matrix[0][1]*matrix[1][2]-matrix[1][1]*matrix[0][2])/det
+			],[
+				-(matrix[1][0]*matrix[2][2]-matrix[2][0]*matrix[1][2])/det,
+				(matrix[0][0]*matrix[2][2]-matrix[2][0]*matrix[0][2])/det,
+				-(matrix[0][0]*matrix[1][2]-matrix[1][0]*matrix[0][2])/det
+			],[
+				(matrix[1][0]*matrix[2][1]-matrix[2][0]*matrix[1][1])/det,
+				-(matrix[0][0]*matrix[2][1]-matrix[2][0]*matrix[0][1])/det,
+				(matrix[0][0]*matrix[1][1]-matrix[1][0]*matrix[0][1])/det
+			]
+		]
+	}
+}
+function matrixMult3313(matrix1,matrix2){
+	let result=[]
+	for(let a=0,la=3;a<la;a++){
+		result.push(
+			matrix1[a][0]*matrix2[0]+
+			matrix1[a][1]*matrix2[1]+
+			matrix1[a][2]*matrix2[2]
+		)
+	}
+	return result
+}
+function circleMid(x1,y1,x2,y2,x3,y3){
+	result=matrixMult3313(matrixInv3([
+		[2*x1,2*y1,1],
+		[2*x2,2*y2,1],
+		[2*x3,2*y3,1],
+	]),[-(x1**2+y1**2),-(x2**2+y2**2),-(x3**2+y3**2)])
+	return [-result[0],-result[1],sqrt(result[0]**2+result[1]**2-result[2])]
+}
+function arcMid3(layer,keypoints,side){
+	let mid=circleMid(...keypoints)
+	if(side==0){
+		layer.arc(mid[0],mid[1],mid[2]*2,mid[2]*2,
+			-90+atan2(keypoints[0]-mid[0],-keypoints[1]+mid[1]),
+			-90+atan2(keypoints[4]-mid[0],-keypoints[5]+mid[1])
+		)
+	}else{
+		layer.arc(mid[0],mid[1],mid[2]*2,mid[2]*2,
+			-90+atan2(keypoints[4]-mid[0],-keypoints[5]+mid[1]),
+			-90+atan2(keypoints[0]-mid[0],-keypoints[1]+mid[1])
+		)
+	}
+}
 function legalTarget(type,lengthStart,lengthEnd,x,y){
 	switch(type){
 		case 0:
@@ -1858,8 +1922,8 @@ function mtgPlayerColor(player){
 		case 9: return [4,1]
 		case 10: return [3]
 		case 11: return [2,3]
-		case 12: return [2,5]
-		case 13: return [4,3]
+		case 12: return [4,3]
+		case 13: return [2,5]
 		case 14: return [2]
 		case 15: return [4,2]
 		case 16: return [4,2,1]
