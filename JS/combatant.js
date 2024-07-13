@@ -300,6 +300,7 @@ class combatant{
         this.ammo=3
         this.vision=0
         this.elemental=false
+        this.wish=3
 
         this.intent=0
         this.activated=this.construct
@@ -3644,6 +3645,7 @@ class combatant{
         this.ammo=3
         this.vision=0
         this.elemental=false
+        this.wish=3
 
         this.resetAnim()
         for(let a=0,la=this.status.main.length;a<la;a++){

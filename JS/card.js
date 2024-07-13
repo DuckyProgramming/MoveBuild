@@ -372,7 +372,8 @@ class card{
                 string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile`; break
             case 6: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage`; break
             case 7: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nGain ${effect[1]} Energy`; break
-            case 8: string+=`Draw ${effect[0]} Card${pl(effect[0])}`; break
+            case 8: case 3827:
+                string+=`Draw ${effect[0]} Card${pl(effect[0])}`; break
             case 9: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nor\nMove ${effect[0]} Tile${pl(effect[0])}`; break
             case 10: string+=`Heal ${this.calculateEffect(effect[0],4)} Health`; break
             case 11: case 251:
@@ -395,7 +396,8 @@ class card{
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdvance`; break
             case 28: string+=`Put a Card in Discard\nPile in Your Hand`; break
             case 29: string+=`Put a Card in Draw\nPile in Your Hand`; break
-            case 30: string+=`Gain ${effect[0]} Dodge`; break
+            case 30: case 3830:
+                string+=`Gain ${effect[0]} Dodge`; break
             case 31: case 489:
                 string+=`Push 1 Tile\nin All Directions`; break
             case 34: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nNext Turn`; break
@@ -457,7 +459,8 @@ class card{
                 string+=`Remove All\nBlock of Target\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 90: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext Attack Deals\n${effect[1]} More Damage`; break
             case 91: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
-            case 92: string+=`Remove ${effect[0]} Fatigue${pl(effect[0])}`; break
+            case 92: case 3832:
+                string+=`Remove ${effect[0]} Fatigue${pl(effect[0])}`; break
             case 93: string+=`Put a Card in Exhaust\nPile in Your Hand`; break
             case 94: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
             case 95: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
@@ -3992,13 +3995,14 @@ class card{
             case 3609: string+=`Enter Depression\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
             case 3610: string+=`Gain ${effect[0]} Charge\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
             case 3611: string+=`Scry ${effect[0]}\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
-            case 3612: string+=`Add ${effect[0]} Defend${pl(effect[0])}\nto Hand\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+            case 3612: string+=`Add ${effect[0]} Defend${pl(effect[0])} to Hand\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
             case 3613: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nMay Target Any Tile\nWithin Range ${target[1]}-${target[2]}\nOdd Energy:\nGain ${effect[1]} Energy`; break
             case 3614: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOdd Energy:\nDraw ${effect[1]} Card${pl(effect[1])}\nDiscard ${effect[2]} Card${pl(effect[2])}`; break
             case 3615: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nOdd Energy:\nApply ${effect[1]} Freeze\nEven Energy:\nApply ${effect[1]} Burn`; break
             case 3616: string+=`Target Moves in a\nRandom Direction\nApply ${effect[0]} Vulnerable`; break
             case 3617: string+=`Target Moves in a\nRandom Direction\nApply ${effect[0]} Vulnerable\nDeal ${this.calculateEffect(effect[1],0)} Damage`; break
-            case 3618: string+=`All Attacks This Turn\nApply ${effect[0]} Lock On`; break
+            case 3618: case 3834:
+                string+=`All Attacks This Turn\nApply ${effect[0]} Lock On`; break
             case 3619: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked, Apply\n${effect[1]} Lock On`; break
             case 3620: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOdd Energy:\nApply ${effect[1]} Freeze\nEven Energy:\nApply ${effect[1]} Burn`; break
             case 3621: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOdd Energy:\nApply ${effect[1]} Jinx`; break
@@ -4246,11 +4250,11 @@ class card{
             case 3807: string+=`Scry ${effect[0]}\nLose ${effect[1]} Energy\nNext Turn`; break
             case 3808: string+=`When Etherealed,\nAdd a Dual Discus\nof Equivalent Level\nto Hand`; break
 
-            case 3809: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Common Card${pl(effect[1])}\nDiscard ${effect[2]} Random Card${pl(effect[2])}`; break
-            case 3810: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Uncommon Card${pl(effect[1])}\nDiscard ${effect[2]} Random Card${pl(effect[2])}`; break
-            case 3811: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Rare Card${pl(effect[1])}\nDiscard ${effect[2]} Random Card${pl(effect[2])}`; break
-            case 3812: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less\nTemporarily\nIf First Card\nPlayed This Turn,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-            case 3813: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Bleed`; break
+            case 3809: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nDiscard ${effect[2]} Random Attack${pl(effect[2])}`; break
+            case 3810: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nDiscard ${effect[2]} Random Defense${pl(effect[2])}`; break
+            case 3811: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nDiscard ${effect[2]} Random Movement${pl(effect[2])}`; break
+            case 3812: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nDiscard ${effect[2]} Random Power${pl(effect[2])}`; break
+            case 3813: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nDiscard ${effect[2]} Random Skill${pl(effect[2])}`; break
             case 3814: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Bleed`; break
 
             case 3815: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 Temporarily\nWhen You Rearm`; break
@@ -4262,17 +4266,40 @@ class card{
             
             case 3821: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nNext Turn, Gain ${effect[1]} Energy\nand a Random\nCard Costs ${effect[2]} More`; break
             //moon shard
-            case 3822: string+=``; break
+            case 3822: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter Remove ${effect[1]} Dexterity`; break
             //grid
-            case 3823: string+=``; break
+            case 3823: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Miracle${pl(effect[1])} to Hand\nGain ${effect[2]} Strength Per Power\nPlayed This Combat`; break
             //exploding blue star
-            case 3824: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify 3:\n`; break
+            case 3824: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[0],1)} Block\nAmplify 2:\nAll Cards in Hand\nCost ${effect[1]} Less Temporarily`; break
             //rainbow laser with squares and stars
             case 3825: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 3 Times\nin All Directions\nCosts 1 Less When a\nColorless Card is Played`; break
             //lilies
             case 3826: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 2 Times\nTarget Loses ${effect[1]} Health\nPer Enemy Defeated\nThis Combat`; break
             //butterflies things of light from below randomly
             //animate all of these!
+
+            case 3828: string+=`Upgrade ${effect[0]} Card${pl(effect[0])}\nCannot be Selected to\nUpgrade During Combat`; break
+            case 3829: string+=`If You Have no Dodge,\nGain ${effect[0]} Dodge`; break
+            //done!
+
+            case 3831: string+=`All Cards Cost ${effect[0]} Less\nThis Turn`; break
+            //3832
+            case 3833: string+=`Gain ${effect[0]} Damage\nTaken Down\nThis Turn`; break
+            //3834
+            case 3835: string+=`Gain ${effect[0]} Temporary\nStrength\nIf You Have No Strength,\nGain ${effect[1]} Strength`; break
+            case 3836: string+=`Take Another Turn\nCan Only Play\n${effect[0]} Card${pl(effect[0])} on That Turn`; break
+
+            case 3837: string+=`Take Another Turn\nAll Cards Cost\n${effect[0]} More on That Turn`; break
+            //3632
+            case 3838: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Uncommon Card${pl(effect[1])}`; break
+            //3561
+            case 3839: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less\nTemporarily\nIf First Card\nPlayed This Turn,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 3840: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Bleed`; break
+            case 3841: string+=`Left of Hand: Upgrade\nAll Attacks in Hand\nRight of Hand: Upgrade\nAll Defenses in Hand\nExact Center of Hand:\nUpgrades Both`; break
+            case 3842: string+=`Draw ${effect[0]} Card${pl(effect[0])}${effect[0]>=2?`\n${effect[0]==2?`Swap Their Costs`:`Rotate Their Costs`}`:``}`; break
+
+
+
 
 
 
@@ -5057,6 +5084,13 @@ class card{
             case 3365:
                 this.effect[1]=0
             break
+            case 3827: case 3828: case 3829: case 3830:
+                if(this.spec.includes(60)){
+                    this.discardEffectBuffered.push(1)
+                }else{
+                    this.discardEffect.push(14)
+                }
+            break
         }
         if(this.battle.modded(94)&&this.battle.cardManagers[this.player].hand.turnPlayed[0]>=6){
             this.battle.cardManagers[this.player].allEffect(2,2)
@@ -5500,9 +5534,29 @@ class card{
                     userCombatant.statusEffect('Temporary Strength',this.effect[0])
                     userCombatant.statusEffect('Temporary Dexterity',this.effect[1])
                 break
-                case 3586:
-                    this.battle.cardManagers[this.player].hand.discardViable(this.effect[0])
-                break
+            }
+        }else if(this.spec.includes(60)){
+            if(userCombatant.wish>=this.cost){
+                userCombatant.wish-=this.cost
+                switch(this.attack){
+                    case 3827:
+                        this.battle.cardManagers[this.player].draw(this.effect[0])
+                    break
+                    case 3828:
+                        this.battle.cardManagers[this.player].hand.upgrade(this.effect[0])
+                    break
+                    case 3829:
+                        if(userCombatant.getStatus('Dodge')==0){
+                            userCombatant.statusEffect('Dodge',this.effect[0])
+                        }
+                    break
+                    case 3830:
+                        userCombatant.statusEffect('Dodge',this.effect[0])
+                    break
+                }
+            }else{
+                this.deSize=true
+                this.discardEffectBuffered.push(2)
             }
         }
     }
@@ -6679,20 +6733,7 @@ class card{
                     this.layer.strokeWeight(2)
                     this.layer.ellipse(-this.width/2+10,-this.height/2+(this.colorful?15:12),20)
                 }
-                if(spec.includes(58)){
-                    this.layer.fill(255,50,50,this.fade)
-                    this.layer.stroke(200,0,0,this.fade)
-                    this.layer.strokeWeight(2)
-                    this.layer.quad(
-                        -this.width/2+10,-this.height/2+12,
-                        -this.width/2+10-4*sqrt(2),-this.height/2+12-4*sqrt(2),
-                        -this.width/2+10,-this.height/2+12-8*sqrt(2),
-                        -this.width/2+10+4*sqrt(2),-this.height/2+12-4*sqrt(2)
-                    )
-                    this.layer.arc(-this.width/2+10,-this.height/2+12,16,16,-45,225)
-                    this.layer.noStroke()
-                    this.layer.ellipse(-this.width/2+10,-this.height/2+12,14)
-                }else if(spec.includes(11)){
+                if(spec.includes(11)){
                     this.layer.noFill()
                     this.layer.stroke(240,240,40,this.fade)
                     this.layer.strokeWeight(3)
@@ -6831,6 +6872,49 @@ class card{
                         this.layer.strokeWeight(2)
                         regStar(this.layer,-this.width/2+10,-this.height/2+13,5,12,12,4.5,4.5,36)
                     }
+                }else if(spec.includes(58)){
+                    this.layer.fill(255,50,50,this.fade)
+                    this.layer.stroke(200,0,0,this.fade)
+                    this.layer.strokeWeight(2)
+                    this.layer.quad(
+                        -this.width/2+10,-this.height/2+12,
+                        -this.width/2+10-4*sqrt(2),-this.height/2+12-4*sqrt(2),
+                        -this.width/2+10,-this.height/2+12-8*sqrt(2),
+                        -this.width/2+10+4*sqrt(2),-this.height/2+12-4*sqrt(2)
+                    )
+                    this.layer.arc(-this.width/2+10,-this.height/2+12,16,16,-45,225)
+                    this.layer.noStroke()
+                    this.layer.ellipse(-this.width/2+10,-this.height/2+12,14)
+                }else if(spec.includes(59)){
+                    this.layer.translate(-this.width/2+10,-this.height/2+12)
+                    if(!spec.includes(60)){
+                        this.layer.fill(90,90,135,this.fade)
+                        this.layer.stroke(105,105,150,this.fade)
+                    }else if(this.colorful){
+                        this.layer.fill(150,this.fade)
+                        this.layer.stroke(175,this.fade)
+                    }else{
+                        this.layer.fill(255,100,150,this.fade)
+                        this.layer.stroke(255,125,175,this.fade)
+                    }
+                    this.layer.strokeWeight(1.5)
+                    this.layer.strokeJoin(ROUND)
+                    regStarGear(this.layer,0,0,6,2,7,7,9,9,30)  
+                    this.layer.strokeJoin(MITER)
+                    this.layer.noStroke()
+                    if(!spec.includes(60)){
+                        this.layer.fill(150,150,195,this.fade)
+                    }else if(this.colorful){
+                        this.layer.fill(200,this.fade)
+                    }else{
+                        this.layer.fill(255,150,200,this.fade)
+                    }
+                    this.layer.ellipse(0,0,6)
+                    for(let a=0,la=3;a<la;a++){
+                        this.layer.quad(-1.5,-4.25,1.5,-4.25,0.5,-6,-0.5,-6)
+                        this.layer.rotate(120)
+                    }
+                    this.layer.translate(this.width/2-10,this.height/2-12)
                 }else if(!spec.includes(5)&&!spec.includes(41)){
                     if(this.colorful){
                         this.layer.translate(-this.width/2+10,-this.height/2+15)
@@ -6999,22 +7083,12 @@ class card{
                         this.layer.text(effectiveCost==-1?`X`:effectiveCost,-this.width/2+10,-this.height/2+13)
                     }
                 }
-                if(this.spec.includes(53)){
-                    if(this.edition==5){
-                        this.layer.fill(255,this.fade)
-                    }else if(this.colorful){
-                        this.layer.fill(240,this.fade)
-                    }else{
-                        this.layer.fill(0,this.fade)
-                    }
+                if(this.edition==5){
+                    this.layer.fill(255,this.fade)
+                }else if(this.colorful){
+                    this.layer.fill(240,this.fade)
                 }else{
-                    if(this.edition==5){
-                        this.layer.fill(255,this.fade)
-                    }else if(this.colorful){
-                        this.layer.fill(240,this.fade)
-                    }else{
-                        this.layer.fill(0,this.fade)
-                    }
+                    this.layer.fill(0,this.fade)
                 }
                 if(name.substr(0,2)!='-h'){
                     if(spec.includes(34)){
@@ -7094,6 +7168,9 @@ class card{
                                         case 11:
                                             this.layer.text('Skill',0,4+a*(this.height/2-10))
                                         break
+                                        case 12:
+                                            this.layer.text('Wish',0,4+a*(this.height/2-10))
+                                        break
                                     }
                                 }
                             }else{
@@ -7130,6 +7207,9 @@ class card{
                                     break
                                     case 11:
                                         this.layer.text('Skill',0,this.height/2-6)
+                                    break
+                                    case 12:
+                                        this.layer.text('Wish',0,this.height/2-6)
                                     break
                                 }
                             }
@@ -7264,6 +7344,9 @@ class card{
     colorless(){
         return this.color==0&&!this.colorful&&this.attack!=1328&&this.attack!=1330&&this.attack!=1393&&this.attack!=1615&&this.attack!=2064&&this.attack!=-131&&this.attack!=-132&&this.attack!=3454&&this.attack!=3459&&this.attack!=3460&&this.attack!=3629&&this.attack!=3630&&this.attack!=3631&&!(this.attack>=3694&&this.attack<=3699)&&this.list!=-8&&!(this.list==-9&&variants.ultraprism)
     }
+    specialCost(){
+        return this.spec.includes(5)||this.spec.includes(11)||this.spec.includes(35)||this.spec.includes(40)||this.spec.includes(41)||this.spec.includes(55)||this.spec.includes(58)||this.spec.includes(59)
+    }
     update(sizeCap=1,diff='nonhand',fattened=false){
         this.time++
         this.sizeCap=sizeCap
@@ -7301,10 +7384,11 @@ class card{
                 userCombatant.getStatus('Temporary Free Non-Rare Colorless')>0&&this.colorless()&&this.rarity!=2||
                 userCombatant.getStatus('Free Defenses')>0&&(this.class==2||this.spec.includes(12)&&this.class[0]==2&&this.class[1]==2)||
                 userCombatant.getStatus('Free Cables')>0&&this.name.includes('Cable')&&this.class==1||
-                effectiveEnergy>=cost&&!this.spec.includes(11)&&!this.spec.includes(21)&&!this.spec.includes(40)||
+                effectiveEnergy>=cost&&!this.spec.includes(11)&&!this.spec.includes(21)&&!this.spec.includes(40)&&!this.spec.includes(59)||
                 this.battle.combatantManager.combatants[this.player].combo>=cost&&this.spec.includes(11)||
                 this.battle.combatantManager.combatants[this.player].metal>=cost&&this.spec.includes(21)||
                 this.battle.combatantManager.combatants[this.player].getStatus('Twos')>=cost&&this.spec.includes(40)||
+                this.battle.combatantManager.combatants[this.player].wish>=cost&&this.spec.includes(59)||
                 this.spec.includes(55)||
                 this.spec.includes(58)||
                 variants.overheat

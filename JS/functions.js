@@ -121,6 +121,13 @@ function regStar(layer,x,y,sides,radiusX,radiusY,radius2X,radius2Y,direction){
 	}
 	layer.endShape(CLOSE)
 }
+function regStarGear(layer,x,y,sides,gear,radiusX,radiusY,radius2X,radius2Y,direction){
+	layer.beginShape()
+	for(k=0;k<sides*(1+gear);k++){
+		layer.vertex(x+sin(direction+k*360/(1+gear)/sides)*(k%(1+gear)==0?radiusX:radius2X),y+cos(direction+k*360/(1+gear)/sides)*(k%(1+gear)==0?radiusY:radius2Y))
+	}
+	layer.endShape(CLOSE)
+}
 function halfRegStar(layer,x,y,sides,radiusX,radiusY,radius2X,radius2Y,direction){
 	layer.beginShape()
 	for(k=0;k<sides*2+1;k++){
@@ -1082,10 +1089,10 @@ function multiplyString(base,multiply){
 	}
 }
 function copyCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost)
 }
 function copyCardFree(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost)
 }
 function upgradeCard(base,nonlimiting=false){
 	if(base.spec.includes(37)){

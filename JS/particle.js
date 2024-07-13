@@ -30,7 +30,7 @@ class particle{
             case 51: case 52: case 54: case 57: case 60: case 65: case 66: case 68: case 72: case 73:
             case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 88: case 90: case 93:
             case 95: case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120:
-            case 121:
+            case 121: case 126:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -1702,6 +1702,21 @@ class particle{
                     this.layer.fill(125,this.fade)
                     this.layer.ellipse(0,0,10000,10000)
                 break
+                case 126:
+                    this.layer.fill(255,50,100,this.fade)
+                    this.layer.stroke(255,75,125,this.fade)
+                    this.layer.strokeWeight(1.5)
+                    this.layer.strokeJoin(ROUND)
+                    regStarGear(this.layer,0,0,6,2,7,7,9,9,30)  
+                    this.layer.strokeJoin(MITER)
+                    this.layer.noStroke()
+                    this.layer.fill(255,100,150,this.fade)
+                    this.layer.ellipse(0,0,6)
+                    for(let a=0,la=3;a<la;a++){
+                        this.layer.quad(-1.5,-4.25,1.5,-4.25,0.5,-6,-0.5,-6)
+                        this.layer.rotate(120)
+                    }
+                break
 
             }
             this.layer.pop()
@@ -1741,7 +1756,7 @@ class particle{
             case 46: case 51: case 52: case 54: case 56: case 57: case 60: case 65: case 66: case 72:
             case 73: case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 90: case 93:
             case 95: case 97: case 99: case 103: case 104: case 110: case 114: case 115: case 116: case 117:
-            case 118: case 119: case 120: case 121:
+            case 118: case 119: case 120: case 121: case 126:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){

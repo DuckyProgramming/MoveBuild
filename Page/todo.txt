@@ -1,4 +1,3 @@
-
 relics:[
     Ducky Donka Ticket
     Ducky McDuff Ticket
@@ -22,12 +21,7 @@ add new bonus mods:[
 
 
 
-LISTING GROUP 43
-
-
-
-[4th of july card]
-
+LISTING GROUP 45
 
 
 
@@ -39,19 +33,18 @@ LISTING GROUP 43
 
 [triskaidekaphobia - every 13 cards played, deal 13 splash damage]
 
-
 [rainbow dupion - 5 cost 18 damage, get a miracle,
 gain 2 strength, 2 dexterity, and 2 focus if you have full, unique orb slots]
 
 [cleaning - exhaust a card, gain wish power]
+
+
 
 [a way to get vision]
 
 [sphalerite]
 
 [aluminum alloy]
-
-
 
 [hourai burst -
 For each mana of a different color spent: Deal 8 damage to each enemy.
@@ -61,27 +54,23 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 [laevateinn]
 
-[pleochroism - upgrade either all attacks or all defenses in hand based on where the card is]
+
 
 [a parry]
 
 [second wind]
 
-
-
-[versatility - draw 2 cards, ?]
-
-[wind god girl - ability card, gain 1 dodge]
-
-
 [something like impale]
-
-[incense - ability card, upgrade a random card in hand every turn]
 
 [continued centuries - ability card, take extra turns where you can only play 1 card]
 
+[eye stab]
+
+[mallet's love]
 
 
+
+[big bullet branch]
 
 [miracle of simplicity - double the effects of all basic cards]
 
@@ -91,8 +80,13 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 [interlace]
 
+[gulliver's travel reference?]
 
 
+
+9 more wish cards
+
+[wish that adds a random card]
 
 
 

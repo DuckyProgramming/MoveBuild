@@ -11,6 +11,7 @@ class group{
         this.target=[]
         this.lastDuplicate=[]
         this.lastPlayed=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0],0,[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+        this.totalPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.compact=1
@@ -207,6 +208,7 @@ class group{
         }
     }
     clear(){
+        this.totalPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.exhausts=0
         this.rewinds=0
@@ -679,7 +681,7 @@ class group{
                 type==4&&args[0].includes(this.cards[a].class)||
                 type==5&&args[0]==this.cards[a].color&&!this.cards[a].colorful||
                 type==6&&args[0]==this.cards[a].color&&args[1]==this.cards[a].rarity&&!this.cards[a].colorful||
-                type==7&&(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)||this.cards[a].spec.includes(55)||this.battle.relicManager.hasRelic(128,this.player))||
+                type==7&&(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(59)||this.battle.relicManager.hasRelic(128,this.player))||
                 type==8&&this.cards[a].basic||
                 type==9&&this.cards[a].basic&&args[0].includes(this.cards[a].class)||
                 type==10&&args[0].includes(this.cards[a].class)&&!args[1].includes(this.cards[a].name)||
@@ -861,7 +863,7 @@ class group{
                         this.cards[a].etherealed()
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
-                    }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.cards[a].spec.includes(55)||this.battle.relicManager.hasRelic(128,this.player)||variants.cardHold){
+                    }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(59)||this.battle.relicManager.hasRelic(128,this.player)||variants.cardHold){
                         this.cards[a].retained()
                         this.cards.forEach(card=>card.anotherRetained())
                         total++
@@ -2918,120 +2920,122 @@ class group{
         }
     }
     cost(cost,cardClass,spec,target,mtgManaColor=0,card){
-        let effectiveCost=cost
-        this.battle.attackManager.amplify=false
-        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-        if(spec.includes(25)&&userCombatant.ammo>0&&!(target[0]==46&&this.battle.attackManager.targetDistance<=1)){
-            userCombatant.ammo--
-        }
-        if(effectiveCost>=0&&userCombatant.getStatus('Temporary All Cost Down')>0){
-            effectiveCost+=userCombatant.getStatus('Temporary All Cost Down'),0
-        }
-        if(effectiveCost>0&&userCombatant.getStatus('Skill Cost Down')>0&&cardClass==11){
-            effectiveCost=max(effectiveCost-userCombatant.getStatus('Skill Cost Down'),0)
-        }
-        if(effectiveCost>0&&userCombatant.getStatus('Combo Cost Down')>0&&spec.includes(11)){
-            effectiveCost=max(effectiveCost-userCombatant.getStatus('Combo Cost Down'),0)
-        }
-        if(effectiveCost>0&&userCombatant.getStatus('All Cost Down')>0){
-            effectiveCost=max(effectiveCost-userCombatant.getStatus('All Cost Down'),0)
-        }
-        if(effectiveCost>0&&userCombatant.getStatus('Defense Cost Down')>0&&cardClass==2){
-            effectiveCost=max(effectiveCost-userCombatant.getStatus('Defense Cost Down'),0)
-        }
-        if(
-            !(userCombatant.getStatus('Free Defenses')>0&&cardClass==2)&&
-            !(userCombatant.getStatus('Free Cables')>0&&card.name.includes('Cable')&&cardClass==1)
-        ){
-            if(effectiveCost!=0&&card.colorless()&&card.rarity!=2&&userCombatant.getStatus('Temporary Free Non-Rare Colorless')>0){
-                userCombatant.status.main[findList('Temporary Free Non-Rare Colorless',userCombatant.status.name)]--
-            }else if(effectiveCost!=0&&cardClass==1&&userCombatant.getStatus('Free Attack')>0){
-                userCombatant.status.main[findList('Free Attack',userCombatant.status.name)]--
-            }else if(effectiveCost!=0&&cardClass==3&&userCombatant.getStatus('Free Movement')>0){
-                userCombatant.status.main[findList('Free Movement',userCombatant.status.name)]--
-            }else if(effectiveCost!=0&&cardClass==11&&userCombatant.getStatus('Free Skill')>0){
-                userCombatant.status.main[findList('Free Skill',userCombatant.status.name)]--
-            }else if(effectiveCost==1&&userCombatant.getStatus('Free 1 Cost Card')>0){
-                userCombatant.status.main[findList('Free 1 Cost Card',userCombatant.status.name)]--
-            }else if(effectiveCost!=0&&userCombatant.getStatus('Free Card')>0){
-                userCombatant.status.main[findList('Free Card',userCombatant.status.name)]--
-            }else if(effectiveCost!=0&&spec.includes(58)){
-                userCombatant.loseHealth(effectiveCost)
-            }else if(effectiveCost!=0&&spec.includes(11)){
-                userCombatant.combo-=effectiveCost
-            }else if(effectiveCost!=0&&spec.includes(21)){
-                userCombatant.metal-=effectiveCost
-            }else if(effectiveCost!=0&&spec.includes(40)){
-                userCombatant.status.main[findList('Twos',userCombatant.status.name)]-=effectiveCost
-            }else{
-                if(effectiveCost==-1){
-                    if(variants.mtg){
-                        this.battle.attackManager.energy=this.battle.getSpecificEnergy(this.player,card.mtgManaColor)
-                        for(let a=0,la=this.battle.attackManager.attacks.length;a<la;a++){
-                            this.battle.attackManager.attacks[a].energy=this.battle.getSpecificEnergy(this.player,card.mtgManaColor)
-                        }
-                        this.battle.setSpecificEnergy(0,this.player,card.mtgManaColor)
-                    }else{
-                        this.battle.setEnergy(0,this.player)
-                    }
+        if(!card.spec.includes(55)&&!card.spec.includes(59)){
+            let effectiveCost=cost
+            this.battle.attackManager.amplify=false
+            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+            if(spec.includes(25)&&userCombatant.ammo>0&&!(target[0]==46&&this.battle.attackManager.targetDistance<=1)){
+                userCombatant.ammo--
+            }
+            if(effectiveCost>=0&&userCombatant.getStatus('Temporary All Cost Down')>0){
+                effectiveCost+=userCombatant.getStatus('Temporary All Cost Down'),0
+            }
+            if(effectiveCost>0&&userCombatant.getStatus('Skill Cost Down')>0&&cardClass==11){
+                effectiveCost=max(effectiveCost-userCombatant.getStatus('Skill Cost Down'),0)
+            }
+            if(effectiveCost>0&&userCombatant.getStatus('Combo Cost Down')>0&&spec.includes(11)){
+                effectiveCost=max(effectiveCost-userCombatant.getStatus('Combo Cost Down'),0)
+            }
+            if(effectiveCost>0&&userCombatant.getStatus('All Cost Down')>0){
+                effectiveCost=max(effectiveCost-userCombatant.getStatus('All Cost Down'),0)
+            }
+            if(effectiveCost>0&&userCombatant.getStatus('Defense Cost Down')>0&&cardClass==2){
+                effectiveCost=max(effectiveCost-userCombatant.getStatus('Defense Cost Down'),0)
+            }
+            if(
+                !(userCombatant.getStatus('Free Defenses')>0&&cardClass==2)&&
+                !(userCombatant.getStatus('Free Cables')>0&&card.name.includes('Cable')&&cardClass==1)
+            ){
+                if(effectiveCost!=0&&card.colorless()&&card.rarity!=2&&userCombatant.getStatus('Temporary Free Non-Rare Colorless')>0){
+                    userCombatant.status.main[findList('Temporary Free Non-Rare Colorless',userCombatant.status.name)]--
+                }else if(effectiveCost!=0&&cardClass==1&&userCombatant.getStatus('Free Attack')>0){
+                    userCombatant.status.main[findList('Free Attack',userCombatant.status.name)]--
+                }else if(effectiveCost!=0&&cardClass==3&&userCombatant.getStatus('Free Movement')>0){
+                    userCombatant.status.main[findList('Free Movement',userCombatant.status.name)]--
+                }else if(effectiveCost!=0&&cardClass==11&&userCombatant.getStatus('Free Skill')>0){
+                    userCombatant.status.main[findList('Free Skill',userCombatant.status.name)]--
+                }else if(effectiveCost==1&&userCombatant.getStatus('Free 1 Cost Card')>0){
+                    userCombatant.status.main[findList('Free 1 Cost Card',userCombatant.status.name)]--
+                }else if(effectiveCost!=0&&userCombatant.getStatus('Free Card')>0){
+                    userCombatant.status.main[findList('Free Card',userCombatant.status.name)]--
+                }else if(effectiveCost!=0&&spec.includes(58)){
+                    userCombatant.loseHealth(effectiveCost)
+                }else if(effectiveCost!=0&&spec.includes(11)){
+                    userCombatant.combo-=effectiveCost
+                }else if(effectiveCost!=0&&spec.includes(21)){
+                    userCombatant.metal-=effectiveCost
+                }else if(effectiveCost!=0&&spec.includes(40)){
+                    userCombatant.status.main[findList('Twos',userCombatant.status.name)]-=effectiveCost
                 }else{
-                    if(variants.mtg){
-                        if(spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0){
-                            this.battle.loseSpecificEnergy(round(effectiveCost/2),this.player,mtgManaColor)
+                    if(effectiveCost==-1){
+                        if(variants.mtg){
+                            this.battle.attackManager.energy=this.battle.getSpecificEnergy(this.player,card.mtgManaColor)
+                            for(let a=0,la=this.battle.attackManager.attacks.length;a<la;a++){
+                                this.battle.attackManager.attacks[a].energy=this.battle.getSpecificEnergy(this.player,card.mtgManaColor)
+                            }
+                            this.battle.setSpecificEnergy(0,this.player,card.mtgManaColor)
                         }else{
-                            this.battle.loseSpecificEnergy(effectiveCost,this.player,mtgManaColor)
+                            this.battle.setEnergy(0,this.player)
                         }
                     }else{
-                        if(spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0){
-                            this.battle.loseEnergy(round(effectiveCost/2),this.player)
+                        if(variants.mtg){
+                            if(spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0){
+                                this.battle.loseSpecificEnergy(round(effectiveCost/2),this.player,mtgManaColor)
+                            }else{
+                                this.battle.loseSpecificEnergy(effectiveCost,this.player,mtgManaColor)
+                            }
                         }else{
-                            this.battle.loseEnergy(effectiveCost,this.player)
+                            if(spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0){
+                                this.battle.loseEnergy(round(effectiveCost/2),this.player)
+                            }else{
+                                this.battle.loseEnergy(effectiveCost,this.player)
+                            }
                         }
                     }
                 }
             }
-        }
-        if(effectiveCost==0&&this.battle.modded(38)){
-            userCombatant.loseHealth(2)
-        }
-        if(userCombatant.getStatus('No Amplify')<=0){
-            if(userCombatant.getStatus('Free Amplify')>0){
-                this.battle.attackManager.amplify=true
-            }else if(userCombatant.getStatus('Single Free Amplify')>0){
-                userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
-                this.battle.attackManager.amplify=true
-            }else if(this.battle.getEnergy(this.player)>=1&&spec.includes(27)){
-                if(variants.mtg){
-                    this.battle.loseSpecificEnergy(1,this.player,6)
-                }else{
-                    this.battle.loseEnergy(1,this.player)
+            if(effectiveCost==0&&this.battle.modded(38)){
+                userCombatant.loseHealth(2)
+            }
+            if(userCombatant.getStatus('No Amplify')<=0){
+                if(userCombatant.getStatus('Free Amplify')>0){
+                    this.battle.attackManager.amplify=true
+                }else if(userCombatant.getStatus('Single Free Amplify')>0){
+                    userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
+                    this.battle.attackManager.amplify=true
+                }else if(this.battle.getEnergy(this.player)>=1&&spec.includes(27)){
+                    if(variants.mtg){
+                        this.battle.loseSpecificEnergy(1,this.player,6)
+                    }else{
+                        this.battle.loseEnergy(1,this.player)
+                    }
+                    this.battle.attackManager.amplify=true
+                    this.cards.forEach(card=>card.anotherAmplified())
+                    if(userCombatant.status.main[144]>0){
+                        this.battle.overlayManager.overlays[7][this.player].active=true
+                        this.battle.overlayManager.overlays[7][this.player].activate()
+                    }
                 }
-                this.battle.attackManager.amplify=true
-                this.cards.forEach(card=>card.anotherAmplified())
-                if(userCombatant.status.main[144]>0){
-                    this.battle.overlayManager.overlays[7][this.player].active=true
-                    this.battle.overlayManager.overlays[7][this.player].activate()
+                if(this.battle.getEnergy(this.player)>=2&&spec.includes(28)){
+                    if(variants.mtg){
+                        this.battle.loseSpecificEnergy(2,this.player,6)
+                    }else{
+                        this.battle.loseEnergy(2,this.player)
+                    }
+                    this.battle.attackManager.amplify=true
+                    this.cards.forEach(card=>card.anotherAmplified())
+                    if(userCombatant.status.main[144]>0){
+                        this.battle.overlayManager.overlays[7][this.player].active=true
+                        this.battle.overlayManager.overlays[7][this.player].activate()
+                    }
                 }
             }
-            if(this.battle.getEnergy(this.player)>=2&&spec.includes(28)){
-                if(variants.mtg){
-                    this.battle.loseSpecificEnergy(2,this.player,6)
-                }else{
-                    this.battle.loseEnergy(2,this.player)
+            if(this.battle.getEnergy(this.player)<0&&variants.overheat){
+                for(let a=0,la=-this.battle.getEnergy(this.player);a<la;a++){
+                    this.battle.dropDrawShuffle(this.player,findName('Burn',types.card),0,game.playerNumber+1)
                 }
-                this.battle.attackManager.amplify=true
-                this.cards.forEach(card=>card.anotherAmplified())
-                if(userCombatant.status.main[144]>0){
-                    this.battle.overlayManager.overlays[7][this.player].active=true
-                    this.battle.overlayManager.overlays[7][this.player].activate()
-                }
+                this.battle.setEnergy(0,this.player)
             }
-        }
-        if(this.battle.getEnergy(this.player)<0){
-            for(let a=0,la=-this.battle.getEnergy(this.player);a<la;a++){
-                this.battle.dropDrawShuffle(this.player,findName('Burn',types.card),0,game.playerNumber+1)
-            }
-            this.battle.setEnergy(0,this.player)
         }
     }
     callAmalgums(){
@@ -3328,9 +3332,7 @@ class group{
                     this.battle.playCard(this.cards[a],this.player,0)
                     this.cardInUse=this.cards[a]
                     this.callInput(5,0)
-                    if(!this.cards[a].spec.includes(55)){
-                        this.cost(this.cards[a].cost,this.cards[a].class,this.cards[a].spec,this.cards[a].target,this.cards[a].mtgManaColor,this.cards[a])
-                    }
+                    this.cost(this.cards[a].cost,this.cards[a].class,this.cards[a].spec,this.cards[a].target,this.cards[a].mtgManaColor,this.cards[a])
                     this.cards[a].played()
                     this.cards.forEach(card=>card.anotherPlayed(this.cards[a]))
                     this.cards.forEach(card=>card.anotherPlayedAfter())
@@ -3510,9 +3512,7 @@ class group{
                         }
                     }
                 }
-                if(!this.spec.includes(55)){
-                    this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor,this.cardInUse)
-                }
+                this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor,this.cardInUse)
                 this.cards.forEach(card=>card.anotherPlayedAfter())
                 if(!this.cardInUse.discardEffect.includes(13)){
                     this.battle.attackManager.execute()
@@ -3669,9 +3669,7 @@ class group{
                             }
                         }
                     }
-                    if(!this.spec.includes(55)){
-                        this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor,this.cardInUse)
-                    }
+                    this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor,this.cardInUse)
                     this.cards.forEach(card=>card.anotherPlayedAfter())
                     if(!this.cardInUse.discardEffect.includes(13)){
                         this.battle.attackManager.execute()
@@ -3761,10 +3759,12 @@ class group{
                 }
             break
             case 11:
-                this.cards[a].deSize=true
-                this.cards[a].discardEffect.push(0)
-                if(this.status[6]>0){
-                    this.status[6]--
+                if(this.cards[a].attack!=3828){
+                    this.cards[a].deSize=true
+                    this.cards[a].discardEffect.push(0)
+                    if(this.status[6]>0){
+                        this.status[6]--
+                    }
                 }
             break
             case 12:
@@ -4112,6 +4112,11 @@ class group{
                                 this.cards[a].edited.costComplete=true
                                 this.cards[a].cost=0
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(13),1)
+                            }else if(this.cards[a].discardEffect.includes(14)){
+                                this.cards[a].spec.push(60)
+                                this.cards[a].additionalSpec.push(60)
+                                this.cards[a].usable=true
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(14),1)
                             }
                             if(this.cards[a].discardEffect.includes(2)){
                                 let hold=this.cards[a].discardEffect
@@ -4252,6 +4257,23 @@ class group{
                                 if(this.cards[a].discardEffectBuffered.includes(0)){
                                     this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(0))
                                 }
+                            }else if(this.cards[a].discardEffectBuffered.includes(1)){
+                                if(this.cards[a].spec.includes(60)){
+                                    this.cards[a].spec.splice(this.cards[a].spec.indexOf(60))
+                                }
+                                if(this.cards[a].additionalSpec.includes(60)){
+                                    this.cards[a].additionalSpec.splice(this.cards[a].additionalSpec.indexOf(60))
+                                }
+                                this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(1),1)
+                            }else if(this.cards[a].discardEffectBuffered.includes(2)){
+                                if(this.cards[a].spec.includes(60)){
+                                    this.cards[a].spec.splice(this.cards[a].spec.indexOf(60))
+                                }
+                                if(this.cards[a].additionalSpec.includes(60)){
+                                    this.cards[a].additionalSpec.splice(this.cards[a].additionalSpec.indexOf(60))
+                                }
+                                this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(1),1)
+                                this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.cards[a].position.x,this.cards[a].position.y,126,[20]))
                             }
                             if(this.battle.modded(160)&&!this.cards[a].usable){
                                 this.cards[a]=unupgradeCard(this.cards[a])

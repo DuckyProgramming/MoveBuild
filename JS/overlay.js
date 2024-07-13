@@ -431,11 +431,7 @@ class overlay{
                         for(let a=0,la=list[args[1]].length;a<la;a++){
                             if(
                                 types.card[list[args[1]][a]].levels[args[0]].cost!=args[3]||
-                                types.card[list[args[1]][a]].levels[args[0]].spec.includes(5)||
-                                types.card[list[args[1]][a]].levels[args[0]].spec.includes(11)||
-                                types.card[list[args[1]][a]].levels[args[0]].spec.includes(21)||
-                                types.card[list[args[1]][a]].levels[args[0]].spec.includes(35)||
-                                types.card[list[args[1]][a]].levels[args[0]].spec.includes(41)
+                                types.card[list[args[1]][a]].levels[args[0]].specialCost()
                             ){
                                 list[args[1]].splice(a,1)
                                 a--
@@ -558,11 +554,7 @@ class overlay{
                             for(let b=0,lb=list[args[1]].length;b<lb;b++){
                                 if(
                                     types.card[list[args[1]][b]].levels[args[0]].cost!=a+1||
-                                    types.card[list[args[1]][b]].levels[args[0]].spec.includes(5)||
-                                    types.card[list[args[1]][b]].levels[args[0]].spec.includes(11)||
-                                    types.card[list[args[1]][b]].levels[args[0]].spec.includes(21)||
-                                    types.card[list[args[1]][b]].levels[args[0]].spec.includes(35)||
-                                    types.card[list[args[1]][b]].levels[args[0]].spec.includes(41)
+                                    types.card[list[args[1]][b]].levels[args[0]].specialCost()
                                 ){
                                     list[args[1]].splice(b,1)
                                     b--
@@ -638,11 +630,7 @@ class overlay{
                             if(
                                 types.card[list[args[1]][a]].levels[args[0]].cost!=args[3]&&args[3]!=-99||
                                 types.card[list[args[1]][a]].levels[args[0]].class!=args[4]||
-                                types.card[list[args[1]][a]].levels[args[0]].spec.includes(5)||
-                                types.card[list[args[1]][a]].levels[args[0]].spec.includes(11)||
-                                types.card[list[args[1]][a]].levels[args[0]].spec.includes(21)||
-                                types.card[list[args[1]][a]].levels[args[0]].spec.includes(35)||
-                                types.card[list[args[1]][a]].levels[args[0]].spec.includes(41)
+                                types.card[list[args[1]][a]].levels[args[0]].specialCost()
                             ){
                                 list[args[1]].splice(a,1)
                                 a--
@@ -2274,7 +2262,7 @@ class overlay{
                                     !(this.args[0]==67&&this.battle.cardManagers[this.player].deck.cards[a].basic)&&
                                     !(this.args[0]==68&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(4))&&
                                     !(this.args[0]==69&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(1))&&
-                                    !(this.args[0]==70&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(58))
+                                    !(this.args[0]==70&&this.battle.cardManagers[this.player].deck.cards[a].specialCost())
                                 ){
                                     this.battle.cardManagers[this.player].deck.cards[a].select=false
                                     let size=this.battle.cardManagers[this.player].deck.cards[a].size
@@ -2464,7 +2452,7 @@ class overlay{
                                         !(this.args[0]==67&&this.battle.cardManagers[this.player].deck.cards[a].basic)&&
                                         !(this.args[0]==68&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(4))&&
                                         !(this.args[0]==69&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(1))&&
-                                        !(this.args[0]==70&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(58))
+                                        !(this.args[0]==70&&this.battle.cardManagers[this.player].deck.cards[a].specialCost())
                                     ){
                                         this.battle.cardManagers[this.player].deck.cards[a].select=true
                                         switch(this.args[0]){
@@ -3161,7 +3149,7 @@ class overlay{
                                     !(this.args[0]==67&&this.battle.cardManagers[this.player].deck.cards[a].basic)&&
                                     !(this.args[0]==68&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(4))&&
                                     !(this.args[0]==69&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(1))&&
-                                    !(this.args[0]==70&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(58))
+                                    !(this.args[0]==70&&this.battle.cardManagers[this.player].deck.cards[a].specialCost())
                                 ){
                                     this.battle.cardManagers[this.player].deck.cards[a].select=false
                                     let size=this.battle.cardManagers[this.player].deck.cards[a].size
@@ -3351,7 +3339,7 @@ class overlay{
                                         !(this.args[0]==67&&this.battle.cardManagers[this.player].deck.cards[a].basic)&&
                                         !(this.args[0]==68&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(4))&&
                                         !(this.args[0]==69&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(1))&&
-                                        !(this.args[0]==70&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(58))
+                                        !(this.args[0]==70&&this.battle.cardManagers[this.player].deck.cards[a].specialCost())
                                     ){
                                         this.battle.cardManagers[this.player].deck.cards[a].select=true
                                         switch(this.args[0]){

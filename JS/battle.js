@@ -858,6 +858,8 @@ class battle{
         }
         this.stats.played[player][0]++
         this.stats.played[player][cardClass]++
+        this.cardManagers[player].hand.totalPlayed[0]++
+        this.cardManagers[player].hand.totalPlayed[cardClass]++
         this.cardManagers[player].hand.turnPlayed[0]++
         this.cardManagers[player].hand.turnPlayed[cardClass]++
         let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
