@@ -181,7 +181,7 @@ class turnManager{
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if((this.battle.combatantManager.combatants[a].spec.includes(17)||(this.battle.combatantManager.combatants[a].construct||this.battle.combatantManager.combatants[a].support)&&(this.battle.combatantManager.combatants[a].attack.length>1||this.battle.combatantManager.combatants[a].attack[0].type!=21))&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0){
-                this.turns.push(new turn(5,this.battle,0,0,a))
+                this.turns.push(new turn(this.battle.combatantManager.combatants[a].spec.includes(17)?5:2,this.battle,0,0,a))
             }
         }
     }
@@ -261,8 +261,8 @@ class turnManager{
                     this.phase=false
                     this.loadEnemyTurnsMove()
                     this.battle.replayManager.list.push(new attack(-1001,this.battle,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
-                    this.battle.combatantManager.tickLate()
                 }else{
+                    this.battle.combatantManager.tickLate()
                     this.battle.startTurn()
                 }
             }

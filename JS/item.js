@@ -770,6 +770,15 @@ class item{
                 case 'Pink Paper':
                     displaySymbol(this.layer,0,0,102,0,2,this.fade)
                 break
+                case 'Quality Coffee':
+                    displaySymbol(this.layer,-9,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,11,0,7,0,0.4,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-9,0)
+                    this.layer.text('3',6,0)
+                break
             }
             this.layer.pop()
         }

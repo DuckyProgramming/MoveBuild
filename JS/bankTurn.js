@@ -9,7 +9,7 @@ turn.prototype.update=function(){
                 case 205: case 214: case 229: case 242: case 246: case 247: case 248: case 250: case 253: case 260:
                 case 262: case 263: case 268: case 270: case 271: case 274: case 275: case 276: case 277: case 279:
                 case 287: case 290: case 291: case 295: case 304: case 306: case 316: case 325: case 328: case 329:
-                case 332: case 335: case 342: case 343: case 353:
+                case 332: case 335: case 342: case 343: case 353: case 369:
                     if(this.type==205&&this.timer==1){
                         this.userCombatant.goal.anim.direction=this.relativeDirection
                     }
@@ -110,7 +110,7 @@ turn.prototype.update=function(){
                     }
                 break
                 case 2: case 19: case 34: case 45: case 76: case 149: case 282: case 297: case 298: case 299:
-                case 355:
+                case 355: case 367: case 370: case 371:
                     if(variants.nobasicanim){
                         if(this.targetDistance>1){
                             this.userCombatant.moveTile(this.direction,this.distance*(this.targetDistance-1)/this.targetDistacne)
@@ -154,7 +154,7 @@ turn.prototype.update=function(){
                                     this.userCombatant.combo++
                                 break
                             }
-                            if(this.timer==15*this.targetDistance-5){
+                            if(this.timer==15*this.targetDistance+5){
                                 this.selfCall(7)
                             }
                         }else if(this.timer>=15*this.targetDistance+15){
@@ -388,7 +388,7 @@ turn.prototype.update=function(){
                 break
                 case 9: case 28: case 44: case 53: case 60: case 64: case 82: case 84: case 85: case 105:
                 case 114: case 124: case 153: case 204: case 259: case 264: case 265: case 278: case 288: case 308:
-                case 330:
+                case 330: case 368:
                     if(variants.nobasicanim){
                         this.selfCall(3)
                         this.remove=true

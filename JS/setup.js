@@ -38,7 +38,7 @@ function setup(){
 
             /*transition.trigger=true
             transition.scene='event'
-            current.setupSpecificEvent(116)*/
+            current.setupSpecificEvent(136)*/
 
             /*player(0).size=3
             player(0).goal.anim.direction=-30
@@ -50,8 +50,8 @@ function setup(){
             }*/
 
             /*for(let a=0,la=5;a<la;a++){
-                current.relicManager.addRandomRelic(0)
-                quickRelic(306+a)
+                //current.relicManager.addRandomRelic(0)
+                quickRelic(325+a,0)
             }*/
 
             /*current.itemManager.addItemSlots(2,0)

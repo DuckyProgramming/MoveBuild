@@ -3923,7 +3923,7 @@ attack.prototype.update=function(){
         case 3135: case 3140: case 3144: case 3159: case 3160: case 3166: case 3170: case 3176: case 3181: case 3182:
         case 3193: case 3210: case 3252: case 3314: case 3315: case 3334: case 3335: case 3351: case 3366: case 3375:
         case 3381: case 3382: case 3383: case 3390: case 3395: case 3396: case 3397: case 3461: case 3477: case 3523:
-        case 3568: case 3569: case 3584: case 3585: case 3586: case 3608: case 3615: case 3643:
+        case 3568: case 3569: case 3584: case 3585: case 3586: case 3608: case 3615: case 3643: case 3843:
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
             }else{

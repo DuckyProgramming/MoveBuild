@@ -774,7 +774,7 @@ class card{
             case 401: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\nAdvance`; break
             case 402: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal Health Equal\nto Target's Bleed`; break
             case 403: string+=`Attacks This Turn\nApply ${effect[0]} Bleed`; break
-            case 404: string+=`Next Attack This Turn\nApplies ${effect[0]} Bleed`; break
+            case 404: string+=`Next Attack\nApplies ${effect[0]} Bleed`; break
             case 405: string+=`Attacks This Combat\nApply ${effect[0]} Bleed`; break
             case 406: string+=`Gain ${effect[0]} Bleed\nGain ${effect[1]} Strength`; break
             case 407: string+=`Multiply All\nBleed by ${effect[0]}`; break
@@ -1724,7 +1724,7 @@ class card{
             case 1358: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Shock`; break
             case 1359: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExactly 4 Energy:\nApply ${effect[1]} Burn`; break
             case 1360: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExactly 4 Energy:\nApply ${effect[1]} Freeze`; break
-            case 1361: string+=`Add a Random\nCard to Deck\nRemove a Card\nPermanently`; break
+            case 1361: string+=`Add Any Random\nCard to Deck\nRemove a Card\nPermanently`; break
             case 1362: string+=`Even Energy:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nAt Range 3,\nGain ${effect[1]} Charge`; break
             case 1363: string+=`Gain ${effect[0]} Energy\nNext Turn\nAmplify:\nGet ${effect[1]} Instead`; break
             case 1364: string+=`Add ${effect[0]} 6-Miracle${pl(effect[0])}\nto Hand\nDraw ${effect[1]} Card${pl(effect[1])}`; break
@@ -4279,7 +4279,7 @@ class card{
             //animate all of these!
 
             case 3828: string+=`Upgrade ${effect[0]} Card${pl(effect[0])}\nCannot be Selected to\nUpgrade During Combat`; break
-            case 3829: string+=`If You Have no Dodge,\nGain ${effect[0]} Dodge`; break
+            case 3829: string+=`If You Have No Dodge,\nGain ${effect[0]} Dodge`; break
             //done!
 
             case 3831: string+=`All Cards Cost ${effect[0]} Less\nThis Turn`; break
@@ -4297,6 +4297,10 @@ class card{
             case 3840: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Bleed`; break
             case 3841: string+=`Left of Hand: Upgrade\nAll Attacks in Hand\nRight of Hand: Upgrade\nAll Defenses in Hand\nExact Center of Hand:\nUpgrades Both`; break
             case 3842: string+=`Draw ${effect[0]} Card${pl(effect[0])}${effect[0]>=2?`\n${effect[0]==2?`Swap Their Costs`:`Rotate Their Costs`}`:``}`; break
+
+            case 3843: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nRemove a Random Buff\nFrom Target`; break
+            //done
+
 
 
 
@@ -5557,6 +5561,20 @@ class card{
             }else{
                 this.deSize=true
                 this.discardEffectBuffered.push(2)
+            }
+        }
+    }
+    multiplyBoth(mult){
+        this.cost*=mult
+        if(this.spec.includes(12)){
+            for(let a=0,la=this.effect.length;a<la;a++){
+                for(let b=0,lb=this.attack[a].length;b<lb;b++){
+                    this.effect[a][b]*=mult
+                }
+            }
+        }else{
+            for(let a=0,la=this.effect.length;a<la;a++){
+                this.effect[a]*=mult
             }
         }
     }
@@ -7343,9 +7361,6 @@ class card{
     }
     colorless(){
         return this.color==0&&!this.colorful&&this.attack!=1328&&this.attack!=1330&&this.attack!=1393&&this.attack!=1615&&this.attack!=2064&&this.attack!=-131&&this.attack!=-132&&this.attack!=3454&&this.attack!=3459&&this.attack!=3460&&this.attack!=3629&&this.attack!=3630&&this.attack!=3631&&!(this.attack>=3694&&this.attack<=3699)&&this.list!=-8&&!(this.list==-9&&variants.ultraprism)
-    }
-    specialCost(){
-        return this.spec.includes(5)||this.spec.includes(11)||this.spec.includes(35)||this.spec.includes(40)||this.spec.includes(41)||this.spec.includes(55)||this.spec.includes(58)||this.spec.includes(59)
     }
     update(sizeCap=1,diff='nonhand',fattened=false){
         this.time++

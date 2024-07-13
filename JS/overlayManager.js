@@ -13,7 +13,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[1])],//view discard
                     [new overlay(this.layer,this.battle,0,3,[0])],//new card to deck
                     [new overlay(this.layer,this.battle,0,2,[2])],//view deck
-                    [new overlay(this.layer,this.battle,0,2,[3])],//upgrade card, no return
+                    [new overlay(this.layer,this.battle,0,2,[3,1])],//upgrade card, no return
                     [new overlay(this.layer,this.battle,0,2,[4,1,0])],//remove card, no return
                     [new overlay(this.layer,this.battle,0,2,[5])],//bring in discard card, no return
                     [new overlay(this.layer,this.battle,0,2,[6])],//bring in draw card, no return
@@ -36,7 +36,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,1,[1])],//rewards (draft)
                     [new overlay(this.layer,this.battle,0,2,[3])],//upgrade card, no return, out of rewards
                     [new overlay(this.layer,this.battle,0,7,[])],//food
-                    [new overlay(this.layer,this.battle,0,2,[17])],//deluxe upgrade card, no return
+                    [new overlay(this.layer,this.battle,0,2,[17,1])],//deluxe upgrade card, no return
                     [new overlay(this.layer,this.battle,0,2,[18])],//bring in draw card, upgrade, no return
                     [new overlay(this.layer,this.battle,0,2,[19])],//bring in discard card to draw, no return,30
                     [new overlay(this.layer,this.battle,0,2,[20])],//bring in first 3 draw card as free, no return
@@ -70,7 +70,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[42])],//rewind discard card, cost down, no return
                     [new overlay(this.layer,this.battle,0,14,[])],//select intent,60
                     [new overlay(this.layer,this.battle,0,15,[])],//select combat
-                    [new overlay(this.layer,this.battle,0,2,[43])],//deck card cost down
+                    [new overlay(this.layer,this.battle,0,2,[43,1])],//deck card cost down
                     [new overlay(this.layer,this.battle,0,2,[44,0,0])],//scry, cost 0
                     [new overlay(this.layer,this.battle,0,16,[])],//mtg mana choice
                     [new overlay(this.layer,this.battle,0,2,[45,0,0,0])],//exhaust draw card, then trigger exhaust discard, no return
@@ -109,6 +109,11 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[4,1,3])],//remove, edition transfer
                     [new overlay(this.layer,this.battle,0,2,[7,1])],//transform card, no return
                     [new overlay(this.layer,this.battle,0,2,[74])],//bring in discard card as free, no return,100
+                    [new overlay(this.layer,this.battle,0,2,[75,0])],//double cost and effect of attack, no return
+                    [new overlay(this.layer,this.battle,0,2,[75,1])],//double cost and effect of defense. no return
+                    [new overlay(this.layer,this.battle,0,2,[3,0])],//upgrade number cards, no return
+                    [new overlay(this.layer,this.battle,0,2,[17,0])],//deluxe upgrade number cards, no return
+                    [new overlay(this.layer,this.battle,0,2,[76])],//duplicate card, costs 1 more, no return
 
                 )
                 if(this.battle.players==2){

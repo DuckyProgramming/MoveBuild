@@ -73,7 +73,7 @@ class battle{
         this.initialManagersAfter()
         this.initialized=true
 
-        this.encounter={class:0,name:'',custom:[0,0]}
+        this.encounter={class:0,world:0,name:'',custom:[0,0]}
         this.currency={money:[],ss:[]}
         this.energy={main:[],gen:[],base:[],temp:[]}
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
@@ -247,6 +247,7 @@ class battle{
     setupBattle(encounter,first=true){
         this.lastEncounter=encounter
         this.encounter.class=encounter.class
+        this.encounter.world=encounter.world
         this.encounter.name=encounter.name
         for(let a=0,la=this.energy.base.length;a<la;a++){
             this.energy.gen[a]=variants.mtg?copyArray(this.energy.base[a]):this.energy.base[a]
@@ -277,13 +278,25 @@ class battle{
             }
         }
         for(let a=0,la=encounter.enemy.length;a<la;a++){
+            let effectiveName=encounter.enemy[a].name
+            if(effectiveName=='-h Traitor'){
+                let possible=[]
+                for(let a=1,la=game.playerNumber+1;a<la;a++){
+                    if(!this.player.includes(a)){
+                        possible.push(a)
+                    }
+                }
+                effectiveName=types.combatant[possible[floor(random(0,possible.length))]].name
+            }
             if(this.modded(1)&&floor(random(0,2))==0){
-                this.reinforce.back.push({position:{x:encounter.enemy[a].position.x,y:encounter.enemy[a].position.y},name:encounter.enemy[a].name,turn:1,minion:false})
+                this.reinforce.back.push({position:{x:encounter.enemy[a].position.x,y:encounter.enemy[a].position.y},name:effectiveName,turn:1,minion:false})
                 this.quickReinforce(encounter.enemy[a].name)
             }else{
-                this.addCombatant(encounter.enemy[a].position,findName(encounter.enemy[a].name,types.combatant),0,0,false)
+                this.addCombatant(encounter.enemy[a].position,findName(effectiveName,types.combatant),0,0,false)
             }
-            this.counter.enemy++
+            if(effectiveName!='Prisoner Informant'){
+                this.counter.enemy++
+            }
         }
         for(let a=0,la=this.players;a<la;a++){
             let playerCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)]
@@ -293,7 +306,13 @@ class battle{
         }
         for(let a=0,la=encounter.reinforce.length;a<la;a++){
             this.reinforce.back.push({position:{x:encounter.reinforce[a].position.x,y:encounter.reinforce[a].position.y},name:encounter.reinforce[a].name,turn:encounter.reinforce[a].turn,minion:false})
-            this.counter.enemy++
+            if(encounter.reinforce[a].name!='Prisoner Informant'){
+                this.counter.enemy++
+            }
+        }
+        for(let a=0,la=encounter.ally.length;a<la;a++){
+            this.addCombatantAbstract(encounter.ally[a].position,findName(encounter.ally[a].name,types.combatant),this.players+1,0,false,0)
+            this.combatantManager.lastAlly()
         }
         for(let a=0,la=this.cardManagers.length;a<la;a++){
             this.cardManagers[a].reset()
@@ -325,14 +344,14 @@ class battle{
         this.attackManager.clear()
         this.turnManager.clear()
         this.particleManager.clear()
-        if(this.encounter.class==0&&!this.modded(10)){
+        if(this.encounter.class==0&&this.encounter.world!=-1&&encounter.ally.length==0&&!this.modded(10)){
             if(this.first){
                 let tile=this.tileManager.getRandomTilePosition()
                 this.encounter.custom=tile==-1?[0,0]:[constrain(floor(random(-3,5)),0,4),tile]
             }
             if(this.encounter.custom[0]>0){
                 let list=['Medic','Smith','Navigator','Rich Kid']
-                this.addCombatantSupport(this.encounter.custom[1],findName(list[this.encounter.custom[0]-1],types.combatant),this.players+1,-30+floor(random(0,6))*60,false)
+                this.addCombatantAbstract(this.encounter.custom[1],findName(list[this.encounter.custom[0]-1],types.combatant),this.players+1,-30+floor(random(0,6))*60,false,0)
                 this.combatantManager.recount()
             }
         }
@@ -352,7 +371,6 @@ class battle{
                 this.combatantManager.recount()
             }
         }
-        this.combatantManager.setTargets()
         this.combatantManager.reID()
         if(this.modded(63)&&floor(random(0,2))==0){
             this.tileManager.activate()
@@ -410,10 +428,10 @@ class battle{
         let relativePosition=this.tileManager.getTileRelativePosition(position.x,position.y)
         this.combatantManager.addCombatant(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):direction,minion)
     }
-    addCombatantSupport(position,type,team,direction,minion){
+    addCombatantAbstract(position,type,team,direction,minion,spec){
         let truePosition=this.tileManager.getTilePosition(position.x,position.y)
         let relativePosition=this.tileManager.getTileRelativePosition(position.x,position.y)
-        this.combatantManager.addCombatantSupport(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):direction,minion)
+        this.combatantManager.addCombatantAbstract(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):direction,minion,spec)
     }
     positionCombatant(combatant,position){
         if(position.x==-1){
@@ -593,9 +611,8 @@ class battle{
     }
     endTurn(){
         let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
+        combatant.tick()
         this.turn.endReady=false
-        this.replayManager.list.push(new attack(-1000,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
-        this.combatantManager.tickEarly()
         this.relicManager.activate(14,[this.turn.main,this.getEnergy(this.turn.main)])
         if(combatant.getStatus('Retain Hand')>0){
             combatant.status.main[findList('Retain Hand',combatant.status.name)]--
@@ -616,7 +633,6 @@ class battle{
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
             this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
-            combatant.tick()
             noDraw=true
             extra=true
         }else if(combatant.getStatus('Extra Turn')>0){
@@ -626,7 +642,6 @@ class battle{
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
             this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
-            combatant.tick()
             extra=true
         }else{
             this.turn.main++
@@ -636,10 +651,7 @@ class battle{
             this.sendReinforce()
             this.tileManager.fire()
             this.turnManager.loadEnemyTurns()
-            this.replayManager.list.push(new attack(-1005,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
             this.combatantManager.enableCombatants()
-            this.replayManager.list.push(new attack(-1002,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
-            this.combatantManager.tickA()
         }else if(!noDraw){
             if(extra){
                 this.cardManagers[this.turn.main].bufferedTurn=30
@@ -749,11 +761,6 @@ class battle{
             this.energy.temp[a]=0
         }
         this.combatantManager.setupCombatants()
-        this.replayManager.list.push(new attack(-1004,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
-        if(this.turn.total>1){
-            this.replayManager.list.push(new attack(-1003,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
-            this.combatantManager.tickB()
-        }
         this.combatantManager.unmoveCombatants()
         this.combatantManager.resetCombatantsAnim()
         this.tileManager.activate()
@@ -1025,7 +1032,7 @@ class battle{
             this.cardManagers[player].hand.randomEffect(26,[userCombatant.getStatus('Countdown Chain')])
         }
         this.combatantManager.playCardFront(cardClass,card)
-        this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed])
+        this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed,card.basic])
     }
     displayCurrency(){
         this.layer.stroke(0)
@@ -2226,6 +2233,13 @@ class battle{
                                 }
                                 if(this.combatantManager.combatants[b].spec.includes(16)){
                                     reward.push({type:0,value:[25]})
+                                }
+                                if(this.combatantManager.combatants[b].spec.includes(21)){
+                                    reward.push({type:4,value:[10]})
+                                    reward.push({type:0,value:[250]})
+                                }
+                                if(this.combatantManager.combatants[b].spec.includes(22)){
+                                    reward.push({type:0,value:[100]})
                                 }
                             }
                         }

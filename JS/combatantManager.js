@@ -23,10 +23,19 @@ class combatantManager{
             for(let b=0,lb=this.allies[a].length;b<lb;b++){
                 let tiles=this.battle.tileManager.getArea(this.combatants[this.getPlayerCombatantIndex(a)].tilePosition,1)
                 if(tiles.length>0){
-                    this.battle.addCombatantSupport(tiles[floor(random(0,tiles.length))].tilePosition,this.allies[a][b],a+1,this.combatants[this.getPlayerCombatantIndex(a)].goal.anim.direction,false)
+                    this.battle.addCombatantAbstract(tiles[floor(random(0,tiles.length))].tilePosition,this.allies[a][b],a+1,this.combatants[this.getPlayerCombatantIndex(a)].goal.anim.direction,false,0)
                     this.combatants[this.combatants.length-1].ally=a
+                    if(this.combatants[this.combatants.length-1].spec.includes(0)){
+                        this.combatants[this.combatants.length-1].spec.splice(this.combatants[this.combatants.length-1].spec.indexOf(0),1)
+                    }
                 }
             }
+        }
+    }
+    lastAlly(){
+        this.combatants[this.combatants.length-1].ally=a
+        if(this.combatants[this.combatants.length-1].spec.includes(0)){
+            this.combatants[this.combatants.length-1].spec.splice(this.combatants[this.combatants.length-1].spec.indexOf(0),1)
         }
     }
     purgeAlly(player,type){
@@ -144,6 +153,21 @@ class combatantManager{
             }
         }
     }
+    subSetTarget(a,list){
+        let minimum=1000
+        for(let b=0,lb=list.length;b<lb;b++){
+            minimum=min(minimum,dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y))
+        }
+        let available=[]
+        for(let b=0,lb=list.length;b<lb;b++){
+            if(dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y)<minimum+100){
+                available.push(list[b])
+            }
+        }
+        if(available.length>0){
+            this.combatants[a].target=available[floor(random(0,available.length))]
+        }
+    }
     setTargets(){
         let list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -151,23 +175,23 @@ class combatantManager{
                 list.push(a)
             }
         }
-        if(list==[]){
-            list.push(0)
+        if(list.length>0){
+            for(let a=0,la=this.combatants.length;a<la;a++){
+                if(this.combatants[a].team==0){
+                    this.subSetTarget(a,list)
+                }
+            }
         }
+        list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if((this.combatants[a].team==0||this.combatants[a].construct)){
-                let minimum=1000
-                for(let b=0,lb=list.length;b<lb;b++){
-                    minimum=min(minimum,dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y))
-                }
-                let available=[]
-                for(let b=0,lb=list.length;b<lb;b++){
-                    if(dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y)<minimum+100){
-                        available.push(list[b])
-                    }
-                }
-                if(available.length>0){
-                    this.combatants[a].target=available[floor(random(0,available.length))]
+            if(this.combatants[a].team==0){
+                list.push(a)
+            }
+        }
+        if(list.length>0){
+            for(let a=0,la=this.combatants.length;a<la;a++){
+                if(this.combatants[a].construct||this.combatants[a].support){
+                    this.subSetTarget(a,list)
                 }
             }
         }
@@ -949,9 +973,13 @@ class combatantManager{
         this.sort()
         this.reorder()
     }
-    addCombatantSupport(x,y,relativeX,relativeY,tileX,tileY,type,team,direction,minion){
+    addCombatantAbstract(x,y,relativeX,relativeY,tileX,tileY,type,team,direction,minion,spec){
         this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30,minion))
-        this.combatants[this.combatants.length-1].support=true
+        switch(spec){
+            case 0:
+                this.combatants[this.combatants.length-1].support=true
+            break
+        }
         if(this.id<this.battle.players){
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
@@ -1225,8 +1253,8 @@ class combatantManager{
     }
     tickLate(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0){
-                this.combatants[a].tickLate()
+            if(this.combatants[a].team==0||this.combatants[a].construct||this.combatants[a].support){
+                this.combatants[a].tick()
             }
         }
     }

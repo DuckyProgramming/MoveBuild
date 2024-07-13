@@ -171,7 +171,7 @@ class eventManager{
             case 85:
                 let possible=[]
                 for(let a=1,la=game.playerNumber+1;a<la;a++){
-                    if(!game.player.includes(a)){
+                    if(!this.battle.player.includes(a)){
                         possible.push(a)
                     }
                 }
@@ -192,6 +192,9 @@ class eventManager{
                 this.pages[0].optionDesc[0]=`Lose Relic - ${types.relic[this.selection].name}`
                 this.pages[0].optionDesc[1]=`Lose Relic - ${types.relic[this.selection].name}`
             break
+            case 123:
+                this.selection=[]
+            break
         }
     }
     display(){
@@ -209,7 +212,7 @@ class eventManager{
             this.layer.textSize(20)
             this.layer.text('Skip',this.posKey,35)
         }
-        this.layer.textSize(30)
+        this.layer.textSize(this.name.length>=25?24:30)
         this.layer.text(this.name,this.posKey,100)
         for(let a=0,la=this.pages.length;a<la;a++){
             this.layer.fill(0,this.fade[a]*this.primaryFade)
@@ -1298,6 +1301,239 @@ class eventManager{
                         if(this.page==0&&a==0){
                             transition.scene='battle'
                             this.battle.setupBattle(types.encounter[findName('Canyon',types.encounter)])
+                        }
+                    break
+                    case 117:
+                        if(this.page==0&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Negotiator',types.encounter)])
+                        }
+                    break
+                    case 118:
+                        if(this.page==0&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Rest Max HP',types.relic),this.player)
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName(`Ducky's Chocolate Experience (1)`,types.encounter)])
+                        }else if(this.page==0&&a==1){
+                            this.battle.relicManager.addRelic(findInternal('Shop Max HP',types.relic),this.player)
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName(`Ducky's Chocolate Experience (2)`,types.encounter)])
+                        }
+                    break
+                    case 119:
+                        if(this.page==0&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Prison Informant',types.encounter)])
+                        }
+                    break
+                    case 120:
+                        if(this.page==0&&a==0){
+                            this.battle.addCurrency(100,this.player)
+                            if(floor(random(0,2))==0){
+                                tempPage++
+                            }
+                        }else if(this.page==2&&a==0){
+                            this.harm(userCombatant,18)
+                        }
+                    break
+                    case 121:
+                        if(this.page==0&&a==1){
+                            this.battle.cardManagers[this.player].deck.randomEffect(55)
+                            this.battle.addCurrency(300,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal(`Low Health Permanent Strength`,types.relic),this.player)
+                        }
+                    break
+                    case 122:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(50,this.player)
+                            this.battle.relicManager.addRelic(findInternal(`Basic Heal`,types.relic),this.player)
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(50,this.player)
+                            userCombatant.heal(userCombatant.base.life)
+                        }
+                    break
+                    case 123:
+                        if(this.page==0&&a==0){
+                            this.selection=[floor(random(2,5)),floor(random(0,8))]
+                            this.pages[1].optionDesc[0]=`Lose ${this.selection[0]} Health, ${[
+                                `Gain 5 Currency`,
+                                `Gain 10 Currency`,
+                                `Gain 25 Currency`,
+                                `Gain an Item`,
+                                `Add a Card`,
+                                `Gain a Common Relic`,
+                                `Upgrade a Card`,
+                                `Get Nothing`
+                            ][this.selection[1]]}`
+                        }else if((this.page==1||this.page==2||this.page==3)&&a==0){
+                            this.harm(userCombatant,this.selection[0])
+                            switch(this.selection[1]){
+                                case 0:
+                                    this.battle.addCurrency(5,this.player)
+                                break
+                                case 1:
+                                    this.battle.addCurrency(10,this.player)
+                                break
+                                case 2:
+                                    this.battle.addCurrency(25,this.player)
+                                break
+                                case 3:
+                                    this.battle.itemManager.addRandomItem(this.player)
+                                break
+                                case 4:
+                                    this.battle.overlayManager.overlays[3][this.player].active=true
+                                    this.battle.overlayManager.overlays[3][this.player].activate([0,floor(random(0,2)),0])
+                                break
+                                case 5:
+                                    this.battle.relicManager.addSetRelic(this.player,0)
+                                break
+                                case 6:
+                                    this.battle.overlayManager.overlays[5][this.player].active=true
+                                    this.battle.overlayManager.overlays[5][this.player].activate()
+                                break
+                            }
+                            this.selection=[this.selection[0]+floor(random(0,3)),floor(random(0,8))]
+                            this.pages[this.page==2?3:2].optionDesc[0]=`Lose ${this.selection[0]} Health, ${[
+                                `Gain 5 Currency`,
+                                `Gain 10 Currency`,
+                                `Gain 25 Currency`,
+                                `Gain an Item`,
+                                `Gain a Card Reward`,
+                                `Gain a Common Relic`,
+                                `Upgrade a Card`,
+                                `Get Nothing`
+                            ][this.selection[1]]}`
+                        }
+                    break
+                    case 124:
+                        if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,3,36,1])
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[5][this.player].active=true
+                            this.battle.overlayManager.overlays[5][this.player].activate()
+                        }
+                    break
+                    case 125:
+                        if(this.page==0&a==0){
+                            this.battle.relicManager.addRelic(findInternal(`6 Card 3 Damage All`,types.relic),this.player)
+                        }else if(this.page==0&a==1){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
+                        }else if(this.page==0&a==2){
+                            userCombatant.gainMaxHP(5)
+                        }
+                    break
+                    case 126:
+                        if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[101][this.player].active=true
+                            this.battle.overlayManager.overlays[101][this.player].activate()
+                        }
+                    break
+                    case 127:
+                        if(this.page==0&&a==0&&this.battle.currency.money[this.player]>0){
+                            this.battle.loseCurrency(this.battle.currency.money[this.player],this.player)
+                        }else if(this.page==0&&a==1){
+                            this.battle.cardManagers[this.player].deck.add(findName('Buy\nSafety',types.card),0,game.playerNumber+2)
+                        }
+                    break
+                    case 128:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(20,this.player)
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(25,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.itemManager.addItem(findName('Quality Coffee',types.item),this.player)
+                        }else if(this.page==2&&a==0){
+                            userCombatant.gainMaxHP(3)
+                        }
+                    break
+                    case 129:
+                        if(this.page==0&&a==0){
+                            userCombatant.loseMaxHP(12)
+                        }else if(this.page==0&&a==1){
+                            this.battle.cardManagers[this.player].deck.add(findName('Direct\nSunlight',types.card),0,game.playerNumber+2)
+                        }else if(this.page==0&&a==2){
+                            this.harm(userCombatant,8)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Sunny, Glowing\nSunlight',types.card),0,game.playerNumber+5)
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[104][this.player].active=true
+                            this.battle.overlayManager.overlays[104][this.player].activate([])
+                            this.battle.overlayManager.overlays[104][this.player].args[1]=2
+                        }else if(this.page==3&&a==0){
+                            this.battle.overlayManager.overlays[103][this.player].active=true
+                            this.battle.overlayManager.overlays[103][this.player].activate([])
+                            this.battle.overlayManager.overlays[103][this.player].args[1]=2
+                        }
+                    break
+                    case 130:
+                        if(this.page==0&&a==0){
+                            this.harm(userCombatant,2)
+                        }else if(this.page==2&&a==0){
+                            this.harm(userCombatant,4)
+                        }else if(this.page==3&&a==0){
+                            this.harm(userCombatant,8)
+                        }else if(this.page==4&&a==0){
+                            this.harm(userCombatant,18)
+                        }else if(this.page==5&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Click For Energy',types.relic),this.player)
+                        }
+                    break
+                    case 131:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Maelstrom',types.card),0,0)
+                            this.harm(userCombatant,15)
+                        }else if(this.page==0&&a==1){
+                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,2,0,[],[3])
+                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,2,0,[],[3])
+                            this.battle.overlayManager.overlays[15][this.player].active=true
+                            this.battle.overlayManager.overlays[15][this.player].activate([0,3,1])
+                            this.battle.overlayManager.overlays[15][this.player].args[1]=2
+                        }
+                    break
+                    case 132:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(25,this.player)
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(100,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Paper\nBall',types.card),0,0)
+                        }else if(this.page==2&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Deluxe\nPaper Ball',types.card),0,0)
+                        }
+                    break
+                    case 133:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(25,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[105][this.player].active=true
+                            this.battle.overlayManager.overlays[105][this.player].activate()
+                        }
+                    break
+                    case 134:
+                        if(this.page==0&&a==0){
+                            this.battle.addCurrency(200,this.player)
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Traitor',types.encounter)])
+                        }
+                    break
+                    case 135:
+                        if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[102][this.player].active=true
+                            this.battle.overlayManager.overlays[102][this.player].activate()
+                        }
+                    break
+                    case 136:
+                        if(this.page==0&&(a==0||a==1)&&floor(random(0,3)==0)){
+                            tempPage=2-a
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('First Enemy Lose Per Turn',types.relic),this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('First Enemy Remove Block',types.relic),this.player)
+                        }else if(this.page==3&&a==0){
+                            this.harm(userCombatant,5)
                         }
                     break
 

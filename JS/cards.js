@@ -4924,7 +4924,7 @@ types.card=[
             {effect:[22],attack:1291,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
-        name:'Pass',rarity:1,list:5,
+        name:'Entry\nPass',rarity:1,list:5,
         levels:[
             {effect:[8],attack:1183,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[12],attack:1183,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -18761,15 +18761,15 @@ types.card=[
         name:'Flash\nStrike',rarity:0,list:0,
         levels:[
             {effect:[3,1],attack:42,cost:0,target:[2,1,1],spec:[],class:1},
-            {effect:[6,1],attack:42,cost:0,target:[2,1,1],spec:[],class:1},
-            {effect:[8,1],attack:42,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[5,1],attack:42,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[7,1],attack:42,cost:0,target:[2,1,1],spec:[],class:1},
         ],
     },{
         name:'Finesse',rarity:0,list:0,
         levels:[
             {effect:[4,1],attack:43,cost:0,target:[0],spec:[],class:2},
             {effect:[7,1],attack:43,cost:0,target:[0],spec:[],class:2},
-            {effect:[9,1],attack:43,cost:0,target:[0],spec:[],class:2},
+            {effect:[10,1],attack:43,cost:0,target:[0],spec:[],class:2},
         ],
     },{
         name:'Bandage',rarity:0,list:0,
@@ -19809,13 +19809,6 @@ types.card=[
             {effect:[4],attack:3202,cost:0,target:[0],spec:[1],class:11},
         ],
     },{
-        name:'Enlighten',rarity:2,list:0,
-        levels:[
-            {effect:[1],attack:3446,cost:0,target:[0],spec:[],class:11},
-            {effect:[1],attack:3447,cost:0,target:[0],spec:[],class:11},
-            {effect:[1],attack:3447,cost:0,target:[0],spec:[22],class:11},
-        ],
-    },{
         name:'Polyglot',rarity:2,list:0,
         levels:[
             {effect:[1],attack:3544,cost:3,target:[0],spec:[],class:4},
@@ -20109,6 +20102,13 @@ types.card=[
             {effect:[12,4],attack:3754,cost:1,target:[2,1,1],spec:[0,1],class:1},
             {effect:[18,6],attack:3754,cost:1,target:[2,1,1],spec:[0,1],class:1},
             {effect:[24,8],attack:3754,cost:1,target:[2,1,1],spec:[0,1],class:1},
+        ],
+    },{
+        name:'Maelstrom',rarity:-1,list:0,
+        levels:[
+            {effect:[12],attack:3843,cost:1,target:[5],spec:[0,2,3],class:1},
+            {effect:[18],attack:3843,cost:1,target:[5],spec:[0,2,3],class:1},
+            {effect:[22],attack:3843,cost:1,target:[5],spec:[0,2,3],class:1},
         ],
     },
 
@@ -26040,6 +26040,13 @@ types.card=[
             {effect:[2,1,1],attack:1837,cost:0,target:[2,1,6],spec:[],class:1},
             {effect:[3,1,1],attack:1837,cost:0,target:[2,1,6],spec:[],class:1},
             {effect:[4,1,1],attack:1837,cost:0,target:[2,1,6],spec:[],class:1},
+        ],
+    },{
+        name:'Enlighten',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:3446,cost:0,target:[0],spec:[],class:11},
+            {effect:[1],attack:3447,cost:0,target:[0],spec:[],class:11},
+            {effect:[1],attack:3447,cost:0,target:[0],spec:[22],class:11},
         ],
     },
 

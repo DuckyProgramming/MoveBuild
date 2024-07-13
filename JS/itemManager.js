@@ -580,6 +580,10 @@ class itemManager{
                 this.battle.overlayManager.overlays[3][player].active=true
                 this.battle.overlayManager.overlays[3][player].activate([0,3,20,3])
             break
+            case 1014:
+                this.battle.addSpecificEnergy(effectiveness,3*player,6)
+                this.battle.cardManagers[player].draw(3*effectiveness,1)
+            break
         }
         this.tempEffectiveness[player]=holdTempEffectiveness
         if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,100))<(100-100*0.5**this.battle.relicManager.active[80][player+1])&&!types.item[type].temp){

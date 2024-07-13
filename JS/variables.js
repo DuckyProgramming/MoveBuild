@@ -66,7 +66,7 @@ types={
         {name:'Management Prototype',life:90,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:116,effect:[8]},{type:31,effect:[4]},{type:4,effect:[6]}],description:`Doesn't work as intended`},
         {name:'Management Robot',life:90,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Mass produced soldier`},
         {name:'Management Soldier',life:135,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:14,effect:[8,1,'Electrocuted']},{type:60,effect:[12,2,'Dazed']},{type:10,effect:[6]}],description:`Wishes he was paid`},
-        {name:'Management Officer',life:49,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[1]},{type:81,effect:[8,3,'Dazed']}],description:`Hates his suboordinates`},
+        {name:'Management Officer',life:49,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[1]},{type:81,effect:[8,3,'Dazed']}],description:`Hates his subordinates`},
         {name:'Management Special Forces',life:120,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:82,effect:[4,1,'Void']},{type:83,effect:[8,1,'Electrocuted']},{type:6,effect:[18]},{type:45,effect:[5]}],description:`Gets paid if he can win`},
         {name:'Sneaky Gremlin',life:13,behavior:0,spec:[1],move:{type:0,speed:1},attack:[{type:1,effect:[6]},{type:4,effect:[3]}],description:`Pretends to be hidden`},
         {name:'Fat Gremlin',life:17,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[5]},{type:84,effect:[3,1]}],description:`Resembles somebody`},
@@ -160,6 +160,11 @@ types={
         {name:'Golden Duck',life:38,behavior:16,spec:[],move:{type:0,speed:3},attack:[{type:21,effect:[]},{type:68,effect:[]}],description:`Why is this thing alive?`},
         {name:'Management Shotgunner',life:146,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:364,effect:[24,3,1,'Electrocuted']},{type:365,effect:[7,3]}],description:`At least he doesn't OHKO`},
         {name:'Bowler Duck',life:24,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:4,effect:[7]}],description:`He's broke, actually`},
+        {name:'Management Light Infantry',life:135,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:367,effect:[6]},{type:368,effect:[10,1]}],description:`How can he dodge with that armor?`},
+        {name:'Gangster Assassin',life:72,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:369,effect:[22,4]}],description:`Good at stabbing`},
+        {name:'Ducky Donka',life:48,behavior:2,spec:[0],move:{type:0,speed:1},attack:[{type:370,effect:[2,2]}],description:`Legit`},
+        {name:'Ducky McDuff',life:48,behavior:2,spec:[0],move:{type:0,speed:1},attack:[{type:371,effect:[2,2]}],description:`Probably not legit`},
+        {name:'Prisoner Informant',life:28,behavior:1,spec:[22],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Whose side is he on?`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -234,10 +239,6 @@ types={
         {name:'Armored Turret',life:48,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[6]}],description:`Sentry goin' up`},
         {name:'Shotgun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:303,effect:[18,3]}],description:`Shotgun duck game?`},
 
-        {name:'Medic',life:20,behavior:0,spec:[13],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not a combat man`},
-        {name:'Smith',life:20,behavior:0,spec:[14],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Walking rest site`},
-        {name:'Navigator',life:20,behavior:0,spec:[15],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Where we droppin boys`},
-        {name:'Rich Kid',life:20,behavior:0,spec:[16],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Still barely pays you`},
         {name:'MobMan',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`No brain?`},
         {name:'AllyMonkey',life:24,behavior:0,spec:[17],move:{type:0,speed:2},attack:[{type:11,effect:[2]}],description:`Your best friend`},
         {name:'Antizone',life:100,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Basically indistructable`},
@@ -245,6 +246,12 @@ types={
         {name:'Fat Duck',life:40,behavior:2,spec:[17],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:109,effect:[5]}],description:`Hamburger`},
         {name:'Man',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Small brain?`},
         {name:'Yes Man',life:12,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:366,effect:[1]}],description:`Can't make decisions`},
+        
+        {name:'Medic',life:20,behavior:0,spec:[13],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not a combat man`},
+        {name:'Smith',life:20,behavior:0,spec:[14],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Walking rest site`},
+        {name:'Navigator',life:20,behavior:0,spec:[15],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Where we droppin boys`},
+        {name:'Rich Kid',life:20,behavior:0,spec:[16],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Still barely pays you`},
+        {name:'Rebel Negotiator',life:20,behavior:0,spec:[21],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Comes in peace?`},
         
         {name:'NumberDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Takes damage`},
         {name:'AttackDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:1,effect:[1]}],description:`Does damage`},
@@ -619,6 +626,11 @@ types={
         {name:'Injuring Shotgun',class:1},
         {name:'All Enemy Block / Armor',class:2},
         {name:'Boss Double Damage',class:4},
+        {name:'3 Tile Triple Strike',class:1},
+        {name:'3 Spread Strike / Vulnerable',class:1},
+        {name:'Strike / Bleed',class:1},
+        {name:'Triple Strike / Vulnerable',class:1},//370
+        {name:'Triple Strike / Weak',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -710,7 +722,7 @@ types={
         {name:'Clip-On Tie',internal:'Important Enemies',id:79,rarity:1,list:0,description:'Enemies Can Give\nElite Rewards'},
 
         {name:'Rummaging Rum',internal:'Item Reuse',id:80,rarity:1,list:0,description:'When an Item is Used,\n50% Chance to Get Another'},
-        {name:'Helix Fossil',internal:'Revive',id:81,rarity:2,list:0,description:'Next Time You Die,\nHeal to 50% HP'},
+        {name:'Helix Fossil',internal:'Revive',id:81,rarity:2,list:0,description:'When You Die, Heal to 50% HP\nRemoves Self Afterward'},
         {name:'Waterwheel',internal:'Low Play Draw',id:82,rarity:2,list:0,description:'When You Play Less Than 3 Cards,\nDraw 2 Cards Next Turn'},
         {name:'Dolphin Figurine',internal:'Item Collector',id:83,rarity:2,list:0,description:'Fights Always\nDrop Items'},
         {name:'Entrenching Tool',internal:'Block Collection',id:84,rarity:2,list:0,description:'Gain 4 Block Each\nTurn After Turn 2'},
@@ -736,7 +748,7 @@ types={
         {name:'Sticky Hand',internal:'Take 2 Cards',id:102,rarity:1,list:0,description:'You Can Take 2\nCards From Rewards'},
         {name:'Exit Sign',internal:'Skip Events',id:103,rarity:2,list:0,description:'You Can Skip Events'},
         {name:'Fake Meat',internal:'Remove Max HP',id:104,rarity:-1,list:0,description:'When a Card is Removed,\nGain 7 Max HP'},
-        {name:'Anger Insurance',internal:'Low Health Strength',id:105,rarity:1,list:0,description:'Gain 1 Strength Every Turn\nWhen Health Below 50%'},
+        {name:'Anger Insurance',internal:'Low Health Strength',id:105,rarity:-1,list:0,description:'Gain 1 Strength Every Turn\nWhen Health Below 50%'},
         {name:'Clear Candle',internal:'Status Immunity',id:106,rarity:1,list:0,description:'Status Cards Other Than\nFatigue Exhaust When Drawn'},
         {name:'Oil Can',internal:'Early Initiative',id:107,rarity:1,list:0,description:'Start Each Combat With 2 Initiative'},
         {name:'Orange Peel',internal:'Less Fatigue',id:108,rarity:1,list:0,description:'Remove the First Fatigue\nAdded Each Combat'},
@@ -748,7 +760,7 @@ types={
         {name:'Unhelpful Duck',internal:'Exhaust Random',id:113,rarity:-1,list:0,description:'When a Card is Exhausted,\nAdd a Random Card to Your Hand'},
         {name:'Whisper Loop',internal:'Reuse Card',id:114,rarity:-1,list:0,description:'At the Start of Turn 2,\nPut a Random Card From Your\nDiscard Pile in Your Hand'},
         {name:'Peacock Feather',internal:'Always Back Up',id:115,rarity:-1,list:0,description:'At the Start of Your Turn,\nAdd a Back Up to Your Hand'},
-        {name:'Bounty Hunter',internal:'Death Money',id:116,rarity:2,list:0,description:'Get 10 Currency\nWhen an Enemy Dies'},
+        {name:'Bounty Hunter',internal:'Death Money',id:116,rarity:2,list:0,description:'Gain 10 Currency\nWhen an Enemy Dies'},
         {name:'Sleep Powder',internal:'Double Rest',id:117,rarity:2,list:0,description:'Can Pick 2 Different\nEffects When Resting'},
         {name:'Happy Hour',internal:'Buy One Get One',id:118,rarity:2,list:0,description:'After Purchasing a Card or a\nRelic (Cap 1 Relic Per Shop),\nAnother Becomes Free'},
         {name:'Managerial Statue',internal:'Premium',id:119,rarity:2,list:0,description:'Whenever You Gain\nCurrency, Gain 20 More'},
@@ -832,9 +844,9 @@ types={
         
         {name:'Half-Full Glass',internal:'Unplayed Card Damage',id:190,rarity:0,list:0,description:'At the End of Your Turn,\nGain 1 Damage Up Per Unplayed Card'},
         {name:'Clown Bowtie',internal:'Shop Reroll',id:191,rarity:0,list:0,description:'You May Pay 50 Currency to\nReroll the Shop Once Per Visit'},
-        {name:'Magic Rope',internal:'Last Card Retain',id:192,rarity:-1,list:0,description:'If You End You Turn With\n1 Card Left in Hand, Retain it'},
+        {name:'Magic Rope',internal:'Last Card Retain',id:192,rarity:0,list:0,description:'If You End You Turn With\n1 Card Left in Hand, Retain it'},
         {name:'Blue Disc',internal:'Draw Over Discard Block',id:193,rarity:0,list:0,description:'Gain 3 Block Per Turn When Draw Pile\nHas More Cards Than Discard Pile'},
-        {name:'Golf Club',internal:'Rare Draw',id:194,rarity:0,list:0,description:'Draw a Card When You\nPlay a Rare Card'},
+        {name:'Golf Club',internal:'Rare Draw',id:194,rarity:1,list:0,description:'Draw a Card When You\nPlay a Rare Card'},
         {name:'Space Ball',internal:'Upgrade Played Card',id:195,rarity:1,list:0,description:'25% Chance to Upgrade\nPlayed Cards Temporarily'},
         {name:'Odd Rock',internal:'Odd Turn Block',id:196,rarity:1,list:0,description:'On Odd Turns, Gain 5 Block'},
         {name:'Even Rock',internal:'Even Turn Block',id:197,rarity:1,list:0,description:'On Even Turns, Gain 5 Block'},
@@ -977,18 +989,17 @@ types={
         {name:'Barbcoin',internal:'Random Value',id:321,rarity:-1,list:0,description:'The Sell Value of This\nRelic is Dynamic'},
         {name:'Gaming Console',internal:'Glitched Cards',id:322,rarity:-1,list:0,description:'Glitched Cards Can Appear'},
         {name:'SCT Parts',internal:'Click to Block',id:323,rarity:-1,list:0,description:'Click to Add 6 Block\n1 Use Per Encounter'},
-        {name:'Managerial History',internal:'Click For Energy',id:324,rarity:-1,list:0,description:'Click to Gain 3 Energy\n1 Use Per Encounter'},
+        {name:'Managerial History',internal:'Click For Energy',id:324,rarity:-1,list:0,description:'Click to Gain 2 Energy\n1 Use Per Encounter'},
+        {name:'Ducky Donka Ticket',internal:'Rest Max HP',id:325,rarity:-1,list:0,description:'Gain 2 Max HP When\nEntering a Rest Site'},
+        {name:'Ducky McDuff Ticket',internal:'Shop Max HP',id:326,rarity:-1,list:0,description:'Gain 2 Max HP When\nEntering a Shop'},
+        {name:'Bottled Firefly',internal:'6 Card 3 Damage All',id:327,rarity:-1,list:0,description:'Deal 3 Damage to All Enemies\nAfter Playing 6 Cards,\nTriggers Once Per Turn'},
+        {name:'Death Butterflies',internal:'First Enemy Lose Per Turn',id:328,rarity:-1,list:0,description:'The First Enemy\nYou Attack Each Combat\nLoses 3 Health Per Turn'},
+        {name:'Ghostblade',internal:'First Enemy Remove Block',id:329,rarity:-1,list:0,description:'The First Enemy With Block\nYou Attack Each Combat\nLoses All Block'},
 
-        {name:'Ducky Donka Ticket',internal:'',id:325,rarity:-1,list:0,description:''},
-        {name:'Ducky McDuff Ticket',internal:'',id:326,rarity:-1,list:0,description:''},
-        {name:'Bottled Firefly',internal:'',id:327,rarity:-1,list:0,description:''},
-        {name:'Death Bufferflies',internal:'',id:328,rarity:-1,list:0,description:''},
-        {name:'Ghostblade',internal:'',id:329,rarity:-1,list:0,description:''},
+        {name:'Asagian Charm',internal:'Low Health Permanent Strength',id:330,rarity:-1,list:0,description:'When You Start Your Turn Below 5 Health,\nGain 1 Strength Permanently\nDestroys Self Afterward'},
+        {name:'Rice Grains',internal:'Basic Heal',id:331,rarity:-1,list:0,description:'Heal 1 Health When You\nPlay a Strike or Defend'},
 
-        {name:'Asagian Charm',internal:'',id:330,rarity:-1,list:0,description:''},
-        {name:'Rice Grains',internal:'',id:331,rarity:-1,list:0,description:''},
-        {name:'Maelstrom',internal:'',id:332,rarity:-1,list:0,description:''},
-
+        //mark r
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,temp:false,description:''},
         {name:'Empty',id:1,rarity:-1,list:-1,menu:false,temp:false,description:'None'},
@@ -1039,7 +1050,7 @@ types={
         {name:'Large Smoke Bomb',id:46,rarity:2,list:0,menu:false,temp:false,description:'End a Non-Boss\nCombat'},
         {name:'Mirror Dome',id:47,rarity:1,list:0,menu:false,temp:false,description:'Draw 10 Cards,\nBecome Confused'},
         {name:'Shield Field',id:48,rarity:2,list:0,menu:false,temp:false,description:'Gain 2 Buffer'},
-        {name:'Bottled Fairy',id:49,rarity:2,list:0,menu:true,temp:false,description:'When You Die,\nHeal 10 HP'},
+        {name:'Bottled Fairy',id:49,rarity:2,list:0,menu:true,temp:false,description:'When You Die, Heal 10 HP\nRemoves Self Afterward'},
         {name:'Particle Storm',id:50,rarity:2,list:0,menu:false,temp:false,description:'Deal 6 Damage to a\nRandom Enemy 10 Times'},
         {name:'Pile of Junk',id:51,rarity:2,list:0,menu:true,temp:false,description:'Fill All Item Slots'},
         {name:'Skill Box',id:52,rarity:0,list:0,menu:false,temp:false,description:'Add 3 Free Skills\nto Your Hand'},
@@ -4734,7 +4745,7 @@ he'll defect until the others are all defeated,
 however, so you'll have to deal with all of them.`,
                     option:['Take the Mission','Decline'],
                     optionDesc:['Start Fight',''],
-                    link:[-1],
+                    link:[-2,-1],
                 },{
                     desc:
 `You decide against it, thinking that it's a trap.
@@ -4752,7 +4763,7 @@ The informant isn't confirmed to be real, after all.`,
 `You're offered some extra work protecting a local
 rebel-friendly politician as he makes a speech.`,
                     option:['Accept','Decline'],
-                    optionDesc:['Gain 100 Currency'],
+                    optionDesc:['Gain 100 Currency',''],
                     link:[1,3],
                 },{
                     desc:`It's easy money, an uneventful day.`,
@@ -4784,7 +4795,7 @@ Taking the job is too risky.`,
 for the climb. You'd never make it up the mountain yourself,
 so you doubt how somebody like her could do it.`,
                     option:['Wish Her Luck','Sell Her Equipment','Leave'],
-                    optionDesc:['','Lose a Random Colorless Card, Gain 150 Currency',''],
+                    optionDesc:['','Lose a Random Colorless Card, Gain 300 Currency',''],
                     link:[1,2,3],
                 },{
                     desc:
@@ -4798,7 +4809,7 @@ them up the mountain, so... I guess you can have one."`,
                     desc:
 `Giving her some of your equipment, she gives you some money in return.
 "There's no reason to carry all this up the mountain...
-Guess I'll spent it all while I'm at the base!"`,
+Guess I'll spend it all while I'm down here!"`,
                     option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
@@ -4853,21 +4864,27 @@ building labeled "Awful Tower". The appearance certainly
 doesn't suggest a good time, but you look inside anyway.
 Apparently, it's a parkour game with rewards within.`,
                     option:['Try it','Decline'],
-                    optionDesc:[''],
-                    link:[1,3],
+                    optionDesc:['',''],
+                    link:[1,4],
                 },{
                     desc:
 `It's time to begin your climb of Awful Tower.
 Looks a little risky...`,
                     option:['Begin','Back Away'],
                     optionDesc:['',''],
-                    link:[2,3],
+                    link:[2,4],
                 },{
                     desc:
 `Continue your climb?`,
                     option:['Continue','Stop'],
                     optionDesc:['',''],
                     link:[3,4],
+                },{
+                    desc:
+`Continue your climb?`,
+                    option:['Continue','Stop'],
+                    optionDesc:['',''],
+                    link:[2,4],
                 },{
                     desc:
 `You leave the "attraction" a little disappointed.`,
@@ -4889,8 +4906,8 @@ Fairy of Spring appear before you.
 Or would you prefer a little more winter so the other
 fairy can do all the work?`,
                     option:['Announce Spring','Stay in Winter'],
-                    optionDesc:[''],
-                    link:[-1],
+                    optionDesc:['',''],
+                    link:[1,2],
                 },{
                     desc:
 `"Alright!" she says. She heads off towards anybody
@@ -4916,7 +4933,7 @@ You wish the Fairy of Winter would actually do something...`,
 you spot a cloud of fireflies buzzing around seemingly nothing.
 They don't notice as you approach their position.`,
                     option:['Collect One','Watch Them','Eat Them'],
-                    optionDesc:['Gain a Relic - Bottled Firefly','Add a Rare Card','Gain 20 Max HP'],
+                    optionDesc:['Gain a Relic - Bottled Firefly','Add a Rare Card','Gain 5 Max HP'],
                     link:[1,2,3],
                 },{
                     desc:
@@ -5005,7 +5022,7 @@ the coins you have collected becoming increasingly heavy.
 `You enter a small coffee shop, filled with a few people
 enjoying their breakfasts. Perhaps you could order something.`,
                     option:['Buy Coffee','Buy a Scone','Buy Nothing'],
-                    optionDesc:['Lose 10 Currency','Lose 20 Currency'],
+                    optionDesc:['Lose 20 Currency','Lose 25 Currency',''],
                     link:[1,2,3],
                 },{
                     desc:
@@ -5128,7 +5145,7 @@ to enter the control rooms and disable the device entirely.
 It was never repaired. The Admiral-Manager fired those involved
 and advised his successors never to repeat their mistakes.`,
                     option:['Take','Stop'],
-                    optionDesc:['Lose 10 Max HP',''],
+                    optionDesc:['Lose 18 Health',''],
                     link:[5,1],
                 },{
                     desc:
@@ -5148,7 +5165,7 @@ position above, and a torrent of rain begins, along with wind.
 The planet's weather is normally very mild, but it's often
 said that sometimes, it can become very poor indeed.`,
                     option:['Embrace','Channel','Hide'],
-                    optionDesc:['Gain a Relic - Maelstrom, Lose 27 Health','Remove a Card, Add a Random Card to Deck',''],
+                    optionDesc:['Add Maelstrom to Deck, Lose 15 Health','Remove 2 Cards, Add Any 2 Random Cards to Deck',''],
                     link:[1,2,3],
                 },{
                     desc:
@@ -6860,9 +6877,67 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Canyon 4',
+            map:[
+                [{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+            ],
+        },{
+            name:'Rooftop 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Dual Induction 3',
+            map:[
+                [{type:-1},{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Uncrushed Hole 5',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Traitor 5',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+            ],
         },
 
         /*{
+            name:'Basic 3',
+            map:[
+                [{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Basic 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Basic 7',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
@@ -6881,6 +6956,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             player:{position:[[{x:0,y:0}],[{x:0,y:0},{x:0,y:0}]]},
             enemy:[
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 7'],class:0,world:-1,
@@ -6889,51 +6965,72 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
-            level:[''],class:0,world:-1,
-            name:'Canyon',
-            player:{position:[[{x:1,y:3}],[{x:1,y:3},{x:0,y:2}]]},
+            level:['Traitor 5'],class:0,world:-1,
+            name:'Traitor',
+            player:{position:[[{x:5,y:2}],[{x:5,y:2},{x:5,y:1}]]},
             enemy:[
-                {position:{x:1,y:0},name:'Management Light Infantry'},
-                {position:{x:3,y:5},name:'Management Light Infantry'},
+                {position:{x:1,y:0},name:'-h Traitor'},
+                {position:{x:1,y:3},name:'Management Officer'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
-            level:[''],class:0,world:-1,
-            name:'Negotiator',
-            player:{position:[[{x:1,y:3}],[{x:1,y:3},{x:0,y:2}]]},
-            enemy:[
-                {position:{x:1,y:0},name:'Gangster'},
-                {position:{x:3,y:5},name:'Gangster'},
-                {position:{x:3,y:5},name:'Gangster Assassin'},
-            ],reinforce:[
-            ],
-        },{
-            level:[''],class:0,world:-1,
-            name:`Ducky's Chocolate Experience (1)`,
-            player:{position:[[{x:1,y:3}],[{x:1,y:3},{x:0,y:2}]]},
-            enemy:[
-                {position:{x:3,y:5},name:'Ducky McDuff'},
-            ],reinforce:[
-            ],
-        },{
-            level:[''],class:0,world:-1,
-            name:`Ducky's Chocolate Experience (2)`,
-            player:{position:[[{x:1,y:3}],[{x:1,y:3},{x:0,y:2}]]},
-            enemy:[
-                {position:{x:1,y:0},name:'Ducky Donka'},
-            ],reinforce:[
-            ],
-        },{
-            level:[''],class:0,world:-1,
+            level:['Uncrushed Hole 5'],class:0,world:-1,
             name:`Prison Informant`,
-            player:{position:[[{x:1,y:3}],[{x:1,y:3},{x:0,y:2}]]},
+            player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:2,y:3}]]},
             enemy:[
-                {position:{x:1,y:0},name:'Prisoner'},
-                {position:{x:1,y:0},name:'Prisoner'},
-                {position:{x:3,y:5},name:'Prisoner Informant'},
+                {position:{x:3,y:1},name:'Prisoner'},
+                {position:{x:4,y:3},name:'Prisoner'},
+                {position:{x:4,y:2},name:'Prisoner Informant'},
             ],reinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Dual Induction 3'],class:0,world:-1,
+            name:`Ducky's Chocolate Experience (1)`,
+            player:{position:[[{x:2,y:0}],[{x:2,y:1},{x:3,y:1}]]},
+            enemy:[
+                {position:{x:1,y:2},name:'Ducky McDuff'},
+            ],reinforce:[
+            ],ally:[
+                {position:{x:5,y:2},name:'Ducky Donka'},
+            ],
+        },{
+            level:['Dual Induction 3'],class:0,world:-1,
+            name:`Ducky's Chocolate Experience (2)`,
+            player:{position:[[{x:2,y:0}],[{x:2,y:1},{x:3,y:1}]]},
+            enemy:[
+                {position:{x:5,y:2},name:'Ducky Donka'},
+            ],reinforce:[
+            ],ally:[
+                {position:{x:1,y:2},name:'Ducky McDuff'},
+            ],
+        },{
+            level:['Rooftop 5'],class:0,world:-1,
+            name:'Negotiator',
+            player:{position:[[{x:3,y:3}],[{x:3,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Gangster'},
+                {position:{x:4,y:5},name:'Gangster'},
+                {position:{x:1,y:5},name:'Gangster Gunner'},
+                {position:{x:3,y:0},name:'Gangster Assassin'},
+            ],reinforce:[
+            ],ally:[
+                {position:{x:2,y:2},name:'Rebel Negotiator'},
+            ],
+        },{
+            level:['Canyon 4'],class:0,world:-1,
+            name:'Canyon',
+            player:{position:[[{x:0,y:1}],[{x:0,y:0},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'Management Light Infantry'},
+                {position:{x:3,y:1},name:'Management Soldier'},
+                {position:{x:4,y:1},name:'Management Light Infantry'},
+            ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Split Induction 7'],class:0,world:-1,
@@ -6944,6 +7041,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:5,y:3},name:'Management Sniper'},
                 {position:{x:3,y:2},name:'Management Shotgunner'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Dihole 5'],class:0,world:-1,
@@ -6957,6 +7055,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:2},name:'Duck'},
                 {position:{x:0,y:0},name:'Golden Duck'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Keystone 6'],class:2,world:1,
@@ -6966,6 +7065,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:1},name:'Daughter of Heaven'},
                 {position:{x:3,y:3},name:'Keystone'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Judge 7'],class:2,world:3,
@@ -6974,6 +7074,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:1},name:'Eternal Judge'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Archival 7'],class:2,world:2,
@@ -6982,6 +7083,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:1},name:'Archivist'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Broken 7'],class:2,world:0,
@@ -6990,6 +7092,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Crusader'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Sliced 7'],class:1,world:3,
@@ -6998,6 +7101,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:3},name:'Dimension Wanderer'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Unstable 7'],class:0,world:2,
@@ -7006,6 +7110,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:3},name:'Embodimental Destabilization'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Radial 7'],class:1,world:2,
@@ -7014,6 +7119,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Concentric'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Cuffed 3'],class:1,world:2,
@@ -7022,6 +7128,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Recollection'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Inducer 7'],class:1,world:1,
@@ -7031,6 +7138,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:3},name:'Anomaly'},
                 {position:{x:5,y:3},name:'Anomaly'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Timeline 5'],class:1,world:1,
@@ -7039,6 +7147,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:1},name:'Legacy'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Temple 6'],class:1,world:0,
@@ -7047,6 +7156,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:4,y:2},name:'Relic'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Bented 5'],class:0,world:0,
@@ -7058,6 +7168,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'Precision'},
                 {position:{x:4,y:3},name:'Precision'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Regenerative 5'],class:0,world:0,
@@ -7067,6 +7178,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:2},name:'Regen Balloon'},
                 {position:{x:4,y:2},name:'Regen Balloon'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Divide 4'],class:0,world:0,
@@ -7076,6 +7188,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Lead Brick'},
                 {position:{x:2,y:3},name:'Lead Brick'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Intrusion 5'],class:0,world:1,
@@ -7088,6 +7201,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:5},name:'Intruder'},
                 {position:{x:3,y:2},name:'Intruder'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Dented 5'],class:1,world:1,
@@ -7096,6 +7210,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:0},name:'Voidglass'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Augmented 3'],class:1,world:0,
@@ -7104,6 +7219,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Kugelblitz'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Deslice 6'],class:0,world:2,
@@ -7113,6 +7229,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:5,y:1},name:'Disorder Energy'},
                 {position:{x:0,y:1},name:'Disorder Energy'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Slice 6'],class:0,world:1,
@@ -7122,6 +7239,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:1},name:'Structural Energy'},
                 {position:{x:0,y:1},name:'Structural Energy'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Blocked 7'],class:0,world:2,
@@ -7133,6 +7251,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:4},name:'Obstruction'},
                 {position:{x:4,y:1},name:'Obstruction'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Position 5'],class:0,world:2,
@@ -7142,6 +7261,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Carbonado Robot'},
                 {position:{x:5,y:4},name:'Carbonado Robot'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Quadral 7'],class:1,world:2,
@@ -7153,6 +7273,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:4},name:'Danger'},
                 {position:{x:6,y:4},name:'Danger'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Sliced 6'],class:1,world:0,
@@ -7167,6 +7288,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:4},name:'Normal1'},
                 {position:{x:5,y:4},name:'Normal1'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Causal 5'],class:1,world:0,
@@ -7175,6 +7297,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:2},name:'Lalex'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Decornered 5'],class:3,world:0,
@@ -7183,6 +7306,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:2},name:'Jester'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Distapered 5'],class:3,world:0,
@@ -7193,6 +7317,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'Flying Rock'},
                 {position:{x:3,y:4},name:'Flying Rock'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Redraw 7'],class:2,world:2,
@@ -7201,6 +7326,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Lunaria'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Killzone 7'],class:2,world:1,
@@ -7209,6 +7335,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Gangmaster'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Debent 5'],class:1,world:1,
@@ -7217,6 +7344,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:0},name:'Tech Support'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Transform 7'],class:2,world:0,
@@ -7225,6 +7353,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Wiz'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Manhattan 5'],class:1,world:0,
@@ -7233,6 +7362,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:4,y:0},name:'Vengeful'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Nudged 5'],class:3,world:0,
@@ -7241,6 +7371,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:0},name:'Rusty'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Gate2 7'],class:1,world:3,
@@ -7249,6 +7380,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:0},name:'Avant Guard'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Gate1 7'],class:1,world:3,
@@ -7257,6 +7389,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:0},name:'Divine Guard'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Cord 7'],class:2,world:3,
@@ -7269,6 +7402,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:4},name:'Glitch'},
                 {position:{x:4,y:1},name:'Glitch'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Triplet 6'],class:0,world:2,
@@ -7279,6 +7413,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:2},name:'Darkblot'},
                 {position:{x:3,y:4},name:'Darkblot'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Clipped 7'],class:2,world:2,
@@ -7287,6 +7422,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Purge X02'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Drain 7'],class:2,world:2,
@@ -7295,6 +7431,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Shadow Trooper'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Spikespawn 7'],class:2,world:1,
@@ -7303,6 +7440,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Councilman'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['No Step 7'],class:2,world:1,
@@ -7313,6 +7451,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:3},name:'Red'},
                 {position:{x:3,y:1},name:'Red'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Hole 5'],class:1,world:1,
@@ -7321,6 +7460,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Prestige'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Dump 5'],class:0,world:1,
@@ -7329,6 +7469,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Junkie'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Heart 5'],class:0,world:0,
@@ -7337,6 +7478,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:2},name:'Host'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Gunfire 5'],class:1,world:2,
@@ -7345,6 +7487,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:1},name:'Coffee Commander'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Derectangular 5'],class:0,world:0,
@@ -7354,6 +7497,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:0},name:'Glimerrer'},
                 {position:{x:2,y:0},name:'Glimerrer'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Antisingleside 5'],class:0,world:0,
@@ -7362,6 +7506,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:3},name:'Antihwurmp'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Outsliced 5'],class:0,world:1,
@@ -7371,6 +7516,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'PhD'},
                 {position:{x:4,y:3},name:'PhD'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Lanes 3'],class:3,world:0,
@@ -7380,6 +7526,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:0},name:'Bolt'},
                 {position:{x:4,y:2},name:'Bolt'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Expanse 7'],class:3,world:0,
@@ -7388,6 +7535,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:1},name:'Pixie'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Singleside2 5'],class:1,world:0,
@@ -7396,6 +7544,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:1},name:'Beekeeper'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Singleside 5'],class:0,world:0,
@@ -7404,6 +7553,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:3},name:'Hwurmp'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Rebound 7'],class:0,world:0,
@@ -7413,6 +7563,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Fungling'},
                 {position:{x:3,y:6},name:'Fungling'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Dual Induction 5'],class:0,world:0,
@@ -7422,6 +7573,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Louse'},
                 {position:{x:6,y:2},name:'Louse'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Defense 5'],class:0,world:1,
@@ -7431,6 +7583,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Reichswehr'},
                 {position:{x:2,y:0},name:'Reichswehr'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Dual Induction 7'],class:0,world:2,
@@ -7440,6 +7593,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:2},name:'Riot Police'},
                 {position:{x:5,y:2},name:'Riot Police'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Star2 7'],class:0,world:0,
@@ -7448,6 +7602,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Elf Archer'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Gapped 7'],class:2,world:2,
@@ -7456,6 +7611,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Chief Engineering Officer'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Thin Bent 5'],class:0,world:2,
@@ -7464,6 +7620,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:4,y:3},name:'Corrupt Detective'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Short Atrium 6'],class:1,world:2,
@@ -7472,6 +7629,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:0},name:'Assistant Fitness Officer'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Factory3 7'],class:0,world:2,
@@ -7481,6 +7639,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:0},name:'Destructor Bot'},
                 {position:{x:5,y:6},name:'Destructor Bot'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Extended Cut 5'],class:1,world:1,
@@ -7493,6 +7652,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             ],reinforce:[
                 {position:{x:3,y:0},name:'Ninja',turn:2},
                 {position:{x:5,y:4},name:'Ninja',turn:2},
+            ],ally:[
             ],
         },{
             level:['Channel 5'],class:1,world:2,
@@ -7501,6 +7661,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:0},name:'Jet'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Long Spikes 5'],class:1,world:1,
@@ -7511,6 +7672,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:2},name:'Gangster'},
                 {position:{x:3,y:2},name:'Gangster'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Atrium 6'],class:1,world:2,
@@ -7519,6 +7681,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:0},name:'Assistant Hiring Officer'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Landmine 5'],class:1,world:1,
@@ -7527,6 +7690,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Bomber Boy'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Hole Rectangular 6'],class:0,world:1,
@@ -7537,6 +7701,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Ninja'},
                 {position:{x:4,y:4},name:'Ninja'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Lounge2 5'],class:1,world:2,
@@ -7547,6 +7712,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Executive'},
                 {position:{x:1,y:1},name:'Mechanized'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Lounge 5'],class:0,world:2,
@@ -7556,6 +7722,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Mechanized'},
                 {position:{x:0,y:1},name:'Mechanized'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Cornered 7'],class:2,world:2,
@@ -7566,6 +7733,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Management Robot'},
                 {position:{x:0,y:2},name:'Management Robot'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Rectangular 7'],class:2,world:2,
@@ -7574,6 +7742,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:1},name:'Capitalist'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Funneled 7'],class:2,world:1,
@@ -7583,6 +7752,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Roger Reviv'},
                 {position:{x:2,y:2},name:'Cartel'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Trap 7'],class:2,world:1,
@@ -7591,6 +7761,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Sharpshot'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 7'],class:2,world:0,
@@ -7605,6 +7776,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:5},name:'Hexaghost Orb'},
                 {position:{x:5,y:5},name:'Hexaghost Orb'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Dualized 7'],class:2,world:0,
@@ -7614,6 +7786,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Donu'},
                 {position:{x:3,y:0},name:'Deca'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Shielded 7'],class:2,world:0,
@@ -7622,6 +7795,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Slow King'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Slime 7'],class:2,world:0,
@@ -7630,6 +7804,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Slime Boss'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Hole Triangle 7'],class:0,world:2,
@@ -7640,6 +7815,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:4},name:'Management Drone'},
                 {position:{x:7,y:4},name:'Management Drone'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Triangle 3'],class:1,world:0,
@@ -7648,6 +7824,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Dead Shell'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Half-Crushed 5'],class:3,world:0,
@@ -7656,6 +7833,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:1},name:'Fireball'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Cornered 5'],class:3,world:0,
@@ -7664,6 +7842,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Bush Thing'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Arrow Crushed 5'],class:1,world:2,
@@ -7672,6 +7851,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Champion'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Extended Trapezoid 5'],class:0,world:2,
@@ -7682,6 +7862,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Management Autoduck'},
                 {position:{x:6,y:3},name:'Management Autoduck'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['3-Crushed 6'],class:3,world:0,
@@ -7690,6 +7871,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:1},name:'Repulsor'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Fat Trapezoid 5'],class:0,world:0,
@@ -7700,6 +7882,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Thornvine'},
                 {position:{x:5,y:1},name:'Thornvine'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Rhombic 3'],class:3,world:0,
@@ -7708,6 +7891,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:2},name:'Gremlin'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Burning 5'],class:1,world:1,
@@ -7716,6 +7900,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:3},name:'Gas Man'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Rectangular 3'],class:1,world:0,
@@ -7724,6 +7909,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Swordmaster'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Peak Extended 3'],class:0,world:2,
@@ -7733,6 +7919,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Lightspeed'},
                 {position:{x:0,y:1},name:'Lightspeed'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Randhole 5'],class:1,world:0,
@@ -7742,6 +7929,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:2},name:'Prison Guard'},
                 {position:{x:2,y:0},name:'Prison Guard'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Crushed Hole 5'],class:0,world:0,
@@ -7751,6 +7939,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Prisoner'},
                 {position:{x:4,y:2},name:'Prisoner'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Extended Hole 3'],class:0,world:2,
@@ -7760,6 +7949,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Walker Driver'},
                 {position:{x:1,y:1},name:'Management Soldier'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Pointed 4'],class:0,world:2,
@@ -7770,6 +7960,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:2},name:'Management Soldier'},
                 {position:{x:3,y:4},name:'Management Custodian'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Pointed 5'],class:1,world:2,
@@ -7778,6 +7969,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:4,y:6},name:'Management Caller'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Short Induction 7'],class:0,world:2,
@@ -7787,6 +7979,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:5,y:2},name:'Management Soldier'},
                 {position:{x:0,y:2},name:'Management Sniper'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 7'],class:2,world:1,
@@ -7800,6 +7993,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:6,y:3},name:'Bronze Orb C'},
                 {position:{x:3,y:6},name:'Bronze Orb C'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Broken Star 5'],class:1,world:2,
@@ -7808,6 +8002,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:1},name:'Solar Shard'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Crescent 5'],class:0,world:2,
@@ -7817,6 +8012,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:4},name:'Lunar Shard'},
                 {position:{x:4,y:4},name:'Lunar Shard'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Rectangular 6'],class:1,world:1,
@@ -7827,6 +8023,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:0},name:'Sentry'},
                 {position:{x:3,y:0},name:'Sentry'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Winged Rectangular 4'],class:0,world:1,
@@ -7837,6 +8034,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Deployer'},
                 {position:{x:1,y:0},name:'Sentry'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['3-7'],class:0,world:0,
@@ -7847,6 +8045,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:5,y:5},name:'Fat Gremlin'},
                 {position:{x:1,y:3},name:'Angry Gremlin'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Factory1 5'],class:0,world:2,
@@ -7856,6 +8055,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:0},name:'Management Special Forces'},
                 {position:{x:0,y:2},name:'Management Special Forces'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Factory2C 7'],class:0,world:2,
@@ -7866,6 +8066,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:2},name:'Management Soldier'},
                 {position:{x:5,y:5},name:'Management Officer'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Factory2B 7'],class:0,world:2,
@@ -7875,6 +8076,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:0},name:'Management Soldier'},
                 {position:{x:3,y:5},name:'Management Soldier'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Factory1 7'],class:0,world:2,
@@ -7886,6 +8088,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:6,y:6},name:'Management Robot'},
                 {position:{x:6,y:5},name:'Management Robot'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:4,world:2,
@@ -7894,6 +8097,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Management Prototype'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Trapezoid 7'],class:0,world:1,
@@ -7904,6 +8108,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:0},name:'Blue Duck'},
                 {position:{x:6,y:1},name:'Blue Duck'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Trapezoid 5'],class:0,world:0,
@@ -7914,6 +8119,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Duck'},
                 {position:{x:4,y:1},name:'Duck'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:4,world:1,
@@ -7922,6 +8128,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Human'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Off Induction 4'],class:0,world:1,
@@ -7931,6 +8138,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Mugger'},
                 {position:{x:3,y:2},name:'Mugger'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Induction 4'],class:0,world:0,
@@ -7939,6 +8147,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Looter'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Workshop 6'],class:0,world:1,
@@ -7948,6 +8157,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:5,y:2},name:'Scrapper'},
                 {position:{x:5,y:3},name:'Fat Scrapper'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Rhombic 4'],class:0,world:1,
@@ -7957,6 +8167,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Nerfer'},
                 {position:{x:2,y:3},name:'Buffer'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Slid Crushed 5'],class:1,world:1,
@@ -7965,6 +8176,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Agent Duck'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Star 7'],class:0,world:0,
@@ -7984,6 +8196,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:6},name:'Goblin'},
                 {position:{x:5,y:6},name:'Goblin'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Star 7'],class:0,world:-1,
@@ -8003,6 +8216,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:6},name:'Management Robot'},
                 {position:{x:5,y:6},name:'Management Robot'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Cut Triangle 7'],class:0,world:0,
@@ -8013,6 +8227,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:7,y:5},name:'Moss Creature'},
                 {position:{x:3,y:6},name:'Moss Creature'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Tapered 5'],class:0,world:0,
@@ -8022,6 +8237,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:4},name:'Rock Golem'},
                 {position:{x:4,y:4},name:'Rock Golem'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Crushed Hole 7'],class:1,world:1,
@@ -8033,6 +8249,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:6,y:4},name:'Ninja'},
                 {position:{x:0,y:2},name:'Enforcer'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Triangle 5'],class:0,world:0,
@@ -8041,6 +8258,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:4,y:4},name:'Spheron'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Induction 7'],class:0,world:1,
@@ -8051,6 +8269,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:6,y:4},name:'Gangster'},
                 {position:{x:0,y:2},name:'Gangster Gunner'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['A 5'],class:0,world:1,
@@ -8061,6 +8280,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:3},name:'Slippery Gangster'},
                 {position:{x:4,y:3},name:'Slippery Gangster'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Hallway 7'],class:0,world:1,
@@ -8072,6 +8292,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Batter'},
                 {position:{x:6,y:3},name:'Batter'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:1,world:0,
@@ -8084,6 +8305,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             ],reinforce:[
                 {position:{x:0,y:2},name:'Duck',turn:2},
                 {position:{x:4,y:2},name:'Duck',turn:2},
+            ],ally:[
             ],
         },{
             level:['Sliced 5'],class:0,world:1,
@@ -8093,6 +8315,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:2},name:'Red'},
                 {position:{x:4,y:2},name:'Red'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Cut 5'],class:0,world:1,
@@ -8103,6 +8326,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:3},name:'Ninja'},
                 {position:{x:3,y:2},name:'Ninja'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 3'],class:0,world:1,
@@ -8112,6 +8336,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:2},name:'Gangster'},
                 {position:{x:2,y:2},name:'Gangster'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Crushed Rectangular 5'],class:0,world:1,
@@ -8121,6 +8346,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:2},name:'Cartel'},
                 {position:{x:2,y:4},name:'Cartel'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:1,world:2,
@@ -8131,6 +8357,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:4},name:'Slimoid'},
                 {position:{x:0,y:0},name:'Big Slimoid'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:1,world:0,
@@ -8141,6 +8368,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:4},name:'Spike Slime'},
                 {position:{x:0,y:0},name:'Big Spike Slime'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:1,world:0,
@@ -8151,6 +8379,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:4},name:'Slime'},
                 {position:{x:0,y:0},name:'Big Slime'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:0,world:2,
@@ -8160,6 +8389,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'Slimoid'},
                 {position:{x:1,y:3},name:'Slimoid'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:0,world:0,
@@ -8169,6 +8399,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'Spike Slime'},
                 {position:{x:1,y:3},name:'Spike Slime'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:0,world:0,
@@ -8178,6 +8409,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'Slime'},
                 {position:{x:1,y:3},name:'Slime'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Hallway 5'],class:0,world:0,
@@ -8187,6 +8419,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:4},name:'Biker'},
                 {position:{x:4,y:3},name:'Biker'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Hallway 5'],class:0,world:1,
@@ -8196,6 +8429,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Thug'},
                 {position:{x:1,y:0},name:'Thug'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Crushed 5'],class:0,world:1,
@@ -8207,6 +8441,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:1},name:'Bouncer',turn:1},
                 {position:{x:0,y:1},name:'Bouncer',turn:2},
                 {position:{x:4,y:1},name:'Bouncer',turn:3},
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:4,world:0,
@@ -8215,6 +8450,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Little Guy'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:0,world:-1,
@@ -8226,6 +8462,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:2},name:'Drunk'},
                 {position:{x:0,y:0},name:'Drunk Boss'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Crushed 5'],class:0,world:-1,
@@ -8239,6 +8476,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             ],reinforce:[
                 {position:{x:1,y:1},name:'Monkey',turn:3},
                 {position:{x:3,y:1},name:'Monkey',turn:3},
+            ],ally:[
             ],
         },{
             level:['2-Crushed 7'],class:0,world:-1,
@@ -8250,6 +8488,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:1},name:'Trenchcoat'},
                 {position:{x:1,y:2},name:'Trenchcoat'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Bent 5'],class:0,world:-1,
@@ -8260,6 +8499,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:4},name:'Goon'},
                 {position:{x:4,y:4},name:'Goon'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 3'],class:0,world:-1,
@@ -8268,6 +8508,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Slaver'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Rectangular 5'],class:0,world:-1,
@@ -8279,6 +8520,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:4},name:'Fungal Duck'},
                 {position:{x:5,y:4},name:'Fungal Duck'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Crushed 4'],class:0,world:-1,
@@ -8288,6 +8530,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Orb Walker'},
                 {position:{x:1,y:1},name:'Orb Walker'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Star 5'],class:0,world:-1,
@@ -8297,6 +8540,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'Pointy'},
                 {position:{x:4,y:3},name:'Romeo'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 3'],class:0,world:-1,
@@ -8305,6 +8549,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Billy Beatup'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Crushed 7'],class:0,world:-1,
@@ -8320,6 +8565,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             ],reinforce:[
                 {position:{x:1,y:2},name:'Monkey Gangster',turn:3},
                 {position:{x:5,y:2},name:'Monkey Gangster',turn:3},
+            ],ally:[
             ],
         },{
             level:['War 7'],class:2,world:0,
@@ -8332,6 +8578,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:5,y:4},name:'Duckforce'},
                 {position:{x:4,y:5},name:'Duckforce'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Offset Crushed 7'],class:-1,world:-1,
@@ -8347,6 +8594,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             ]},
             enemy:[
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:-1,world:-1,
@@ -8356,6 +8604,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Kugelblitz'},
                 {position:{x:1,y:1},name:'Kugelblitz'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:-1,world:-1,
@@ -8364,6 +8613,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'NumberDummy'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:-1,world:-1,
@@ -8372,6 +8622,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'MoveDummy'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:-1,world:-1,
@@ -8380,6 +8631,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:1},name:'AttackDummy'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:-1,world:-1,
@@ -8390,6 +8642,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:3},name:'NumberDummy'},
                 {position:{x:3,y:4},name:'NumberDummy'},
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:-1,world:-1,
@@ -8397,6 +8650,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             player:{position:[[{x:2,y:2}],[{x:0,y:0},{x:0,y:0}]]},
             enemy:[
             ],reinforce:[
+            ],ally:[
             ],
         },{
             level:['Basic 5'],class:-1,world:-1,
@@ -8410,6 +8664,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:2},name:'NumberDummy'},
                 {position:{x:2,y:1},name:'NumberDummy'},
             ],reinforce:[
+            ],ally:[
             ],
         },
     ],dictionary:[
@@ -8868,7 +9123,7 @@ Stacks degrade by 1 each turn.`,
         {name:'Spheron',desc:'Enemies Retain Block'},
         {name:'Enforcer',desc:'All Enemies Gain 1 Strength When Attacked'},
         {name:'Rock Golem',desc:'Enemies Have a 25% Chance to Get 20 Block Each Turn'},
-        {name:'Big Slime',desc:'All Elites Split on Death'},
+        {name:'Big Slime',desc:'More Elites Split on Death'},
         {name:'Spike Slime',desc:'All Fatigues Become Spiked, and You Get 50% More'},//30
         {name:'Big Spike Slime',desc:'Get Spiked Every 5 Turns'},
         {name:'Moss Creature',desc:'All Enemies Get 3 Block Per Turn'},

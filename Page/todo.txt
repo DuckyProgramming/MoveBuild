@@ -1,22 +1,11 @@
-relics:[
-    Ducky Donka Ticket
-    Ducky McDuff Ticket
-    Bottled Firefly
-    Death Butterfly
-    Ghostblade
-    Asagian Charm
-    Rice Grains
-    Maelstrom
-]
-
 add new bonus mods:[
     bowler duck
     management light infantry
+    rebel negotiator
     gangster assassin
     ducky donka
     ducky mcduff
     prison informant
-
 ]
 
 
@@ -84,6 +73,10 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 
 
+[forgetful - curse, become frail at end of turn]
+
+
+
 9 more wish cards
 
 [wish that adds a random card]
@@ -93,10 +86,10 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 SUKUNA MECHANICS
 
 strike and defend
-common cards
+common cards?
 dodge
 lock on
-[P]-ability cards
+wish cards
 
 MOTIFS
 

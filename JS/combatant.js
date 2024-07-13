@@ -42,45 +42,47 @@ class combatant{
         if(this.attack.length==0||this.id<game.players){
             this.attack=[{type:0,effect:[]}]
         }
-        if(this.battle.initialized&&this.team==0&&this.battle.modded(7)){
-            this.name='Unknown'
-            this.description='Unrecognizable'
-        }
-        if(this.battle.initialized&&this.team==0&&this.battle.modded(13)){
-            for(let a=0,la=this.attack.length;a<la;a++){
-                if(this.attack[a].type==21){
-                    this.attack.splice(a,1)
-                    a--
-                    la--
+        if(this.battle.initialized&&this.team==0){
+            if(this.battle.modded(7)){
+                this.name='Unknown'
+                this.description='Unrecognizable'
+            }
+            if(this.battle.modded(13)){
+                for(let a=0,la=this.attack.length;a<la;a++){
+                    if(this.attack[a].type==21){
+                        this.attack.splice(a,1)
+                        a--
+                        la--
+                    }
                 }
             }
-        }
-        if(this.battle.initialized&&this.team==0&&this.battle.modded(42)&&floor(random(0,10))==0&&!this.spec.includes(1)){
-            this.spec.push(1)
-        }
-        if(this.battle.initialized&&this.team==0&&this.battle.modded(53)&&!this.spec.includes(0)){
-            this.spec.push(0)
-        }
-        if(this.battle.initialized&&this.team==0&&this.battle.modded(80)&&this.move.type!=3&&floor(random(0,4))==0){
-            this.move.type=3
-        }
-        if(this.battle.initialized&&this.team==0&&this.battle.modded(96)&&this.battle.turn.total>1&&!this.spec.includes(1)){
-            this.spec.push(1)
-        }
-        if(this.battle.initialized&&this.team==0&&this.battle.modded(123)&&!this.spec.includes(3)){
-            this.spec.push(3)
-        }
-        if(this.battle.initialized&&this.team==0&&(this.battle.modded(126)&&this.battle.encounter.class==2||this.battle.modded(127)&&this.battle.encounter.class==1)&&this.battle.turn.total==0&&this.battle.nodeManager.world!=3){
-            this.battle.quickReinforce(this.name)
-        }
-        if(this.battle.initialized&&this.team==0&&(this.battle.modded(126)&&this.battle.encounter.class==2||this.battle.modded(127)&&this.battle.encounter.class==1)&&this.spec.includes(2)){
-            this.spec.splice(this.spec.indexOf(2))
-        }
-        if(this.battle.initialized&&this.team==0&&this.battle.players>1){
-            this.life*=1.5
-            for(let a=0,la=this.attack.length;a<la;a++){
-                if(types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==2){
-                    this.attack[a].effect[0]=round(this.attack[a].effect[0]*1.5)
+            if(this.battle.modded(42)&&floor(random(0,10))==0&&!this.spec.includes(1)){
+                this.spec.push(1)
+            }
+            if(this.battle.modded(53)&&!this.spec.includes(0)){
+                this.spec.push(0)
+            }
+            if(this.battle.modded(80)&&this.move.type!=3&&floor(random(0,4))==0){
+                this.move.type=3
+            }
+            if(this.battle.modded(96)&&this.battle.turn.total>1&&!this.spec.includes(1)){
+                this.spec.push(1)
+            }
+            if(this.battle.modded(123)&&!this.spec.includes(3)){
+                this.spec.push(3)
+            }
+            if((this.battle.modded(126)&&this.battle.encounter.class==2||this.battle.modded(127)&&this.battle.encounter.class==1)&&this.battle.turn.total==0&&this.battle.nodeManager.world!=3){
+                this.battle.quickReinforce(this.name)
+            }
+            if((this.battle.modded(126)&&this.battle.encounter.class==2||this.battle.modded(127)&&this.battle.encounter.class==1)&&this.spec.includes(2)){
+                this.spec.splice(this.spec.indexOf(2))
+            }
+            if(this.battle.players>1){
+                this.life*=1.5
+                for(let a=0,la=this.attack.length;a<la;a++){
+                    if(types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==2){
+                        this.attack[a].effect[0]=round(this.attack[a].effect[0]*1.5)
+                    }
                 }
             }
         }
@@ -128,7 +130,7 @@ class combatant{
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
             'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic Orb','Basic Orb on Hit','Random Common Per Turn','Node','Focus Per Turn','Freeze',
-            'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
+            'Step Next Turn','Jagged Bleed','Counter Bleed All Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
             'Miracle Time','Miracle+ Time','Wrath Next Turn','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Triple Block','Single Damage Block Convert',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
@@ -163,12 +165,13 @@ class combatant{
             'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw','Buff Loss Barrier','Astrology Per Turn','Construct Metal','Attack Jinx Combat','Attack Shock Combat',
             'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
             'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
+            'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
-                0,2,1,1,2,1,0,0,4,4,//1
-                4,0,0,2,0,0,1,2,2,0,//2
-                4,0,0,0,1,1,2,0,4,2,//3
-                0,1,4,1,0,0,0,2,1,2,//4
+                0,2,1,1,2,1,0,0,1,1,//1
+                1,0,0,2,0,0,1,2,2,0,//2
+                1,0,0,0,1,1,2,0,1,2,//3
+                0,1,1,1,0,0,0,2,1,2,//4
                 2,2,0,0,0,0,0,2,0,0,//5
                 0,1,0,1,0,2,2,1,2,2,//6
                 1,0,2,0,2,0,0,1,0,0,//7
@@ -195,7 +198,7 @@ class combatant{
                 2,0,2,0,0,0,1,2,1,0,//28
                 0,2,2,2,0,2,0,2,0,1,//29
                 0,0,0,0,0,0,0,1,0,1,//30
-                0,0,2,2,0,1,5,0,0,1,//31
+                0,0,2,2,0,1,1,0,0,1,//31
                 1,0,0,0,0,0,0,1,2,1,//32
                 0,1,0,0,0,0,0,0,0,1,//33
                 0,0,0,2,2,0,0,0,0,2,//34
@@ -212,7 +215,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//45
                 0,0,0,1,0,0,2,0,0,0,//46
                 0,1,2,2,0,2,2,0,2,0,//47
-
+                0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -262,6 +265,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//45
                 2,2,2,0,2,2,2,2,2,2,//46
                 0,1,1,0,2,3,3,2,0,2,//47
+                0,0,0,
                 
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
@@ -1498,7 +1502,7 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff':
                 this.anim={direction:direction,eye:[0,0],legs:[{top:24,length:{top:10}},{top:24,length:{top:10}}],arms:[{top:54,length:{top:10}},{top:54,length:{top:10}}]}
                 this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1}}
                 this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
@@ -1543,7 +1547,25 @@ class combatant{
                         this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[255,225,15],legs:[255,210,0],arms:[255,215,5]}}
                         this.color.hat=[30,30,35]
                         this.fades.hat=1
+                        this.trigger.display.hat=true  
+                    break
+                    case 'Ducky Donka':
+                        this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,195,25],body:[255,185,15],legs:[255,170,0],arms:[255,175,5]}}
+                        this.color.hat=[160,100,20]
+                        this.color.bowtie=[120,30,180]
+                        this.fades.hat=1
+                        this.fades.bowtie=1
                         this.trigger.display.hat=true
+                        this.trigger.display.bowtie=true
+                    break
+                    case 'Ducky McDuff':
+                        this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,65],body:[255,225,55],legs:[255,210,40],arms:[255,215,45]}}
+                        this.color.hat=[120,30,180]
+                        this.color.bowtie=[160,100,20]
+                        this.fades.hat=1
+                        this.fades.bowtie=1
+                        this.trigger.display.hat=true
+                        this.trigger.display.bowtie=true
                     break
                 }
             break
@@ -3613,6 +3635,43 @@ class combatant{
                         this.anim.mouth.x-=1
                         this.anim.mouth.y+=1.5
                     break
+                    case 'Management Light Infantry':
+                        this.color={skin:{head:[240,220,180],body:[95,115,110],legs:[65,95,85],arms:[85,145,195]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.belt=[[30,25,0],[240,220,80]]
+                        this.fades.belt=1
+                        this.trigger.display.belt=true
+                        this.color.sunglasses=[[0,0,0],[220,200,40],[120,240,60]]
+                        this.fades.sunglasses=1
+                        this.trigger.display.sunglasses=true
+                    break
+                    case 'Rebel Negotiator':
+                        this.color={skin:{head:[240,220,180],body:[225,225,45],legs:[210,210,42],arms:[200,200,40]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.monocle=[[240,240,220],[30,30,20]]
+                        this.color.bowtie=[[210,210,180],[120,120,40]]
+                        this.color.coat=[150,150,30]
+                        this.fades.monocle=1
+                        this.fades.bowtie=1
+                        this.fades.coat=1
+                        this.trigger.display.monocle=true
+                        this.trigger.display.bowtie=true
+                        this.trigger.display.coat=true
+                    break
+                    case 'Gangster Assassin':
+                        this.color={skin:{head:[60,40,70],body:[40,20,50],legs:[35,15,45],arms:[30,10,40]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.eyeHole=[240,220,180]
+                        this.color.button=[200,180,200]
+                        this.color.belt=[240,230,240]
+                        this.fades.button=1
+                        this.fades.belt=1
+                        this.trigger.display.button=true
+                        this.trigger.display.belt=true
+                    break
+                    case 'Prisoner Informant':
+                        this.color={skin:{head:[240,220,180],body:[205,205,25],legs:[200,200,20],arms:[195,195,15]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.belt=[230,230,230]
+                        this.fades.belt=1
+                        this.trigger.display.belt=true
+                    break
                     default:
                         this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     break
@@ -3843,7 +3902,7 @@ class combatant{
                 this.statusEffect('Counter All Combat',4)
             break
             case 'Barbed Pillar':
-                this.statusEffect('Counter Bleed Combat',2)
+                this.statusEffect('Counter Bleed All Combat',2)
             break
             case 'Glitch':
                 this.statusEffect('End Move',floor(random(1,3)))
@@ -3887,6 +3946,13 @@ class combatant{
             break
             case 'Golden Duck':
                 this.statusEffect('Currency',100)
+            break
+            case 'Management Light Infantry':
+                this.statusEffect('Dodge',2)
+            break
+            case 'Gangster Assassin':
+                this.statusEffect('Counter Combat',8)
+                this.statusEffect('Counter Bleed Combat',2)
             break
         }
         if(this.team==0){
@@ -4112,7 +4178,7 @@ class combatant{
                     this.graphics.arms[g].bottom.y=this.graphics.arms[g].middle.y
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -4202,8 +4268,8 @@ class combatant{
         switch(this.attack[this.intent].type){
             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
             case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
-            case 212: case 229: case 242: case 246: case 247: case 251: case 252:  case 270: case 271: case 274:
-            case 282: case 295: case 305: case 309: case 332: case 341: case 355:
+            case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 270: case 271: case 274:
+            case 282: case 295: case 305: case 309: case 332: case 341: case 355: case 369: case 370: case 371:
                 return this.battle.modded(57)?[
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2)
@@ -4219,7 +4285,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2)
                 ]
             case 71: case 73: case 79: case 99: case 143: case 172: case 175: case 312: case 319: case 322:
-            case 339: case 348:
+            case 339: case 348: case 367:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -4233,7 +4299,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*4,this.tilePosition.y+transformBase[1]*4)
                 ]
             case 9: case 60: case 64: case 69: case 82: case 84: case 95: case 104: case 114: case 124:
-            case 153: case 264: case 265: case 278: case 308: case 330:
+            case 153: case 264: case 265: case 278: case 308: case 330: case 368:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction-60)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction-60)[1]),
@@ -4673,7 +4739,7 @@ class combatant{
         return targetTile
     }
     pareidolia(){
-        if(this.battle.initialized&&this.team==0&&!this.spec.includes(2)){
+        if(!this.spec.includes(2)){
             this.battle.combatantManager.holdSummonCombatant(this.tilePosition,this.type,this.direction)
             this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].life=1
             this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].base.life=1
@@ -4681,7 +4747,7 @@ class combatant{
         }
     }
     baseDuplicate(){
-        if(this.battle.initialized&&this.team==0&&!this.spec.includes(2)){
+        if(!this.spec.includes(2)){
             this.battle.combatantManager.holdSummonCombatant(this.tilePosition,this.type,this.direction)
         }
     }
@@ -4738,16 +4804,16 @@ class combatant{
     }
     activate(type,id){
         if(this.life>0&&!this.moved){
-            if(this.spec.includes(0)&&(id==this.target||(this.spec.includes(2)||this.spec.includes(12))&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100&&this.getStatus('Stun')<=0&&this.battle.turnManager.loads<100&&this.getStatus('Cannot Move')<=0){
+            if(this.spec.includes(0)&&id<this.battle.players&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100&&this.getStatus('Stun')<=0&&this.battle.turnManager.loads<100&&this.getStatus('Cannot Move')<=0){
                 this.target=id
                 this.battle.turnManager.loadEnemyRotate(this.id)
             }
-            if(this.spec.includes(1)&&(id==this.target||(this.spec.includes(2)||this.spec.includes(12))&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100&&this.getStatus('Stun')<=0&&this.battle.turnManager.loads<100&&this.getStatus('Cannot Move')<=0){
+            if(this.spec.includes(1)&&id<this.battle.players&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100&&this.getStatus('Stun')<=0&&this.battle.turnManager.loads<100&&this.getStatus('Cannot Move')<=0){
                 this.target=id
                 this.battle.turnManager.loadEnemyMoveBack(this.id)
                 this.battle.turnManager.loadEnemyRotateBack(this.id)
             }
-            if(this.spec.includes(7)&&(id==this.target||(this.spec.includes(2)||this.spec.includes(12))&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players&&!this.aggressor&&this.getStatus('Stun')<=0){
+            if(this.spec.includes(7)&&id<this.battle.players&&type==1&&this.battle.turn.main<this.battle.players&&!this.aggressor&&this.getStatus('Stun')<=0){
                 this.target=id
                 this.battle.turnManager.loadEnemyAttackRepeat(this.id)
                 this.aggressor=true
@@ -4760,7 +4826,8 @@ class combatant{
                         case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                         case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
                         case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 270: case 271: case 274:
-                        case 282: case 295: case 304: case 305: case 309: case 332: case 341: case 355:
+                        case 282: case 295: case 304: case 305: case 309: case 332: case 341: case 355: case 369: case 370:
+                        case 371:
                             if(this.battle.modded(57)){
                                 for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                     if(
@@ -4792,6 +4859,7 @@ class combatant{
                             }
                         break
                         case 71: case 73: case 79: case 143: case 172: case 312: case 319: case 322: case 339: case 348:
+                        case 367:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -4820,7 +4888,7 @@ class combatant{
                         case 147: case 153: case 157: case 168: case 171: case 174: case 175: case 176: case 192: case 195:
                         case 198: case 204: case 213: case 215: case 217: case 222: case 255: case 256: case 259: case 264:
                         case 265: case 278: case 288: case 291: case 292: case 308: case 330: case 350: case 351: case 357:
-                        case 360:
+                        case 360: case 368:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -4941,7 +5009,7 @@ class combatant{
                     case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 127:
                     case 150: case 181: case 209: case 212: case 229: case 242: case 246: case 247: case 251: case 252:
                     case 270: case 271: case 274: case 282: case 295: case 304: case 305: case 309: case 331: case 332:
-                    case 341: case 355: case 363:
+                    case 341: case 355: case 363: case 369: case 370: case 371:
                         if(this.battle.modded(57)){
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
@@ -4977,7 +5045,7 @@ class combatant{
                             }
                         }
                     break
-                    case 71: case 73: case 79: case 143: case 172: case 312: case 339: case 348:
+                    case 71: case 73: case 79: case 143: case 172: case 312: case 339: case 348: case 367:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -5004,7 +5072,7 @@ class combatant{
                     case 153: case 154: case 157: case 168: case 171: case 175: case 176: case 192: case 198: case 204:
                     case 213: case 215: case 217: case 222: case 255: case 256: case 259: case 264: case 265: case 278:
                     case 288: case 291: case 292: case 308: case 319: case 330: case 344: case 347: case 350: case 351:
-                    case 357: case 360:
+                    case 357: case 360: case 368:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(this.targetTile[b].tilePosition.x>=0){
                                 this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
@@ -5374,6 +5442,14 @@ class combatant{
                     this.statusEffect('Take Damage Next Turn',round(damage))
                     userCombatant.status.main[460]--
                 }
+                if(userCombatant.status.main[470]>0){
+                    this.statusEffect('Lose Per Turn',userCombatant.status.main[470])
+                    userCombatant.status.main[470]=0
+                }
+                if(userCombatant.status.main[471]>0&&this.block>0){
+                    this.block=0
+                    userCombatant.status.main[471]--
+                }
                 if(userCombatant.team==this.team&&this.team==0&&this.battle.modded(12)){
                     hit=false
                 }
@@ -5661,7 +5737,7 @@ class combatant{
                                 this.barrier=0
                             }
                         }
-                        this.blocked=damageLeft==0?0:damageLeft<damage?1:2
+                        this.blocked=damageLeft==0&&this.block>0?0:damageLeft<damage?1:2
                         this.taken=damageLeft
                         if(this.battle.relicManager.hasRelic(253,this.id)){
                             this.battle.addCurrency(damageLeft*5*this.battle.relicManager.active[253][this.id+1],this.id)
@@ -5781,11 +5857,23 @@ class combatant{
                                     this.battle.turnManager.turns[0].auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,1,[this.status.main[1]],this.id,false))
                                 }
-                                if(this.status.main[36]>0&&distance<=1){
+                                if(this.status.main[36]>0){
+                                    if(this.status.main[472]>0&&distance<=1){
+                                        this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                        this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                        this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
+                                        this.battle.turnManager.turnsBack.push(new turn(0,this.battle,369,[this.status.main[36],this.status.main[472]],this.id,false))
+                                    }else{
+                                        this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                        this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                        this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
+                                        this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id,false))
+                                    }
+                                }else if(this.status.main[472]>0&&distance<=1){
                                     this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
-                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id,false))
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,58,[this.status.main[472]],this.id,false))
                                 }
                                 if(this.status.main[38]>0&&distance<=1){
                                     this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
@@ -5893,9 +5981,19 @@ class combatant{
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[1]],this.id,false))
                                 }
                                 if(this.status.main[36]>0&&distance<=1){
+                                    if(this.status.main[472]>0&&distance<=1){
+                                        this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                        this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                        this.battle.turnManager.turnsBack.push(new turn(0,this.battle,369,[this.status.main[36],this.status.main[472]],this.id,false))
+                                    }else{
+                                        this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                        this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                        this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id,false))
+                                    }
+                                }else if(this.status.main[472]>0&&distance<=1){
                                     this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
-                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id,false))
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,58,[this.status.main[472]],this.id,false))
                                 }
                                 if(this.status.main[38]>0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
@@ -6912,6 +7010,17 @@ class combatant{
         }
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0){
+                if(this.status.behavior[a]==5){
+                    if(this.status.main[a]>0){
+                        this.status.main[a]--
+                    }else if(this.status.main[a]<0){
+                        this.status.main[a]++
+                    }
+                }
+            }
+        }
+        for(let a=0,la=this.status.main.length;a<la;a++){
+            if(this.status.main[a]!=0){
                 switch(a){
                     case 4: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,6)} break
                     case 5: case 31: case 52: case 62: case 110: case 121: case 179: this.takeDamage(this.status.main[a],-1); break
@@ -7250,7 +7359,7 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Bowler Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff':
             case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Slimoid': case 'Big Slimoid':
             case 'Modicum': case 'Rock Golem': case 'Shield Particle':  case 'Bush Thing': case 'Fireball': case 'Fungling': case 'Bee': case 'Pixie': case 'Darkblot': case 'Lead Brick':  case 'Golden Duck':
                 switch(type){
@@ -7794,7 +7903,7 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -9593,6 +9702,8 @@ class combatant{
                                 case 18: this.layer.text('On Defeat, Gain a Relic',40,305+a*10); break
                                 case 19: this.layer.text('Robot',40,305+a*10); break
                                 case 20: this.layer.text('Attacks When You Play the First Card Each Turn',40,305+a*10); break
+                                case 21: this.layer.text('On Survival, Heal 10 HP\nand Gain 250 Currency',40,305+a*10); break
+                                case 22: this.layer.text('On Survival, Gain 100 Currency',40,305+a*10); break
 
                             }
                         }
@@ -9689,7 +9800,7 @@ class combatant{
         if(this.team>0&&!this.construct&&!this.support){
             this.fade=smoothAnim(this.fade,this.status.main[51]<=0&&this.status.main[374]<=0,0,1,15)
             for(let a=0,la=this.infoAnim.stance.length;a<la;a++){
-                this.infoAnim.stance[a]=smoothAnim(this.infoAnim.stance[a],a==this.stance,0,1,5)
+                this.infoAnim.stance[a]=smoothAnim(this.infoAnim.stance[a],a==this.stance&&this.life>0,0,1,5)
             }
             for(let a=0,la=this.infoAnim.faith.length;a<la;a++){
                 this.infoAnim.faith[a]=smoothAnim(this.infoAnim.faith[a],this.faith>a,0,1,5)
@@ -9798,15 +9909,12 @@ class combatant{
         }else{
             this.fade=smoothAnim(this.fade,this.life>0&&this.status.main[51]<=0&&this.status.main[374]<=0,0,1,15)
             this.infoAnim.life=smoothAnim(this.infoAnim.life,this.life>0,0,1,5)
-            if(this.name=='Setsuna'){
-                for(let a=0,la=this.infoAnim.stance.length;a<la;a++){
-                    this.infoAnim.stance[a]=smoothAnim(this.infoAnim.stance[a],a==this.stance,0,1,5)
-                }
-            }
             if(this.life<=0&&!this.dead){
                 this.dead=true
                 this.battle.tileManager.activate()
-                this.battle.counter.killed++
+                if(this.name!='Prisoner Informant'){
+                    this.battle.counter.killed++
+                }
                 this.battle.updateTargetting()
                 if(this.battle.turn.main<this.battle.players){
                     this.battle.cardManagers[this.battle.turn.main].hand.deathEffect()

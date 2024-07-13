@@ -2372,20 +2372,77 @@ class relic{
                     displaySymbol(this.layer,0,0,147,0,1.5,this.fade)
                 break
                 case 'Click to Block':
-                    displaySymbol(this.layer,-8,0,27,0,1,this.fade)
-                    displaySymbol(this.layer,8,0,120,0,1,this.fade)
+                    displaySymbol(this.layer,-6,0,27,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,120,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('6',-6,0)
+                break
+                case 'Click For Energy':
+                    displaySymbol(this.layer,-6,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,120,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',-6,0)
+                break
+                case 'Rest Max HP':
+                    displaySymbol(this.layer,-7,0,10,0,0.5,this.fade)
+                    displaySymbol(this.layer,10,0,32,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',-7,0)
+                break
+                case 'Shop Max HP':
+                    displaySymbol(this.layer,-6,0,10,0,0.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('$',9,1)
+                    this.layer.textSize(10)
+                    this.layer.text('2',-6,0)
+                break
+                case '6 Card 3 Damage All':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,-4,18,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('6',-8,0)
+                    this.layer.text('3',8,-4)
                 break
-                case 'Click For Energy':
-                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
-                    displaySymbol(this.layer,8,0,120,0,1,this.fade)
+                case 'First Enemy Lose Per Turn':
+                    displaySymbol(this.layer,-8,-4,3,0,0.5,this.fade)
+                    displaySymbol(this.layer,-8,10,120,0,1,this.fade)
+                    displaySymbol(this.layer,8,2,148,0,1.2,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('3',-8,0)
+                    this.layer.text('3',8,2)
+                break
+                case 'First Enemy Remove Block':
+                    displaySymbol(this.layer,-8,-4,3,0,0.5,this.fade)
+                    displaySymbol(this.layer,-8,10,120,0,1,this.fade)
+                    displaySymbol(this.layer,9,2,27,0,0.6,this.fade)
+                    displaySymbol(this.layer,9,2,16,0,0.6,this.fade)
+                break
+                case 'Low Health Permanent Strength':
+                    displaySymbol(this.layer,-8,-2,2,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,-2,149,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,10,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,-2)
+                    this.layer.textSize(8)
+                    this.layer.text('<5',-8,-2)
+                break
+                case 'Basic Heal':
+                    displaySymbol(this.layer,-9,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-9,0,108,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',9,0)
                 break
 
+                //mark p
             }
             if(value){
                 this.layer.fill(230,230,210,this.fade)
@@ -2521,7 +2578,7 @@ class relic{
         if(dist(mouse.x,mouse.y,this.position.x,this.position.y)<20){
             switch(this.internal){
                 case 'Click to Swap': case 'Click to Block': case 'Click For Energy':
-                    if(battle.relicManager.detail[this.type][this.player]<battle.relicManager.active[this.type][this.player+1]){
+                    if(battle.relicManager.detail[this.type][this.player]<battle.relicManager.active[this.type][this.player+1]&&battle.turn.main==this.player){
                         battle.relicManager.detail[this.type][this.player]++
                         switch(this.internal){
                             case 'Click to Swap':
@@ -2532,7 +2589,7 @@ class relic{
                                 battle.combatantManager.combatants[battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(6)
                             break
                             case 'Click For Energy':
-                                battle.addEnergy(3,this.player)
+                                battle.addEnergy(2,this.player)
                             break
                         }
                     }

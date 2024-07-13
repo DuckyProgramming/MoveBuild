@@ -976,6 +976,11 @@ function intentDescription(attack,user,info){
 			case 364: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`}-${info?calculateIntent(attack.effect[1],user,14):`?`}*Range Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6\nNo Movement`
 			case 365: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block to All Enemies\nAll Enemies Gain ${info?attack.effect[1]:`?`} Armor`
 			case 366: return `Next ${info?attack.effect[0]:`?`} Attack${attack.effect[0]!=1?`s`:``}\nFrom Builder\nDeal Double Damage`
+			case 367: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-3`
+			case 368: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Vulnerable\n3 Tiles Wide\nRange 1-1`
+			case 369: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Bleed\nRange 1-1`
+			case 370: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Vulnerable\nRange 1-1`
+			case 371: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-1`
 			
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
@@ -983,6 +988,8 @@ function intentDescription(attack,user,info){
 			case 3: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nRange 1-1`
 			case 4: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block`
 			case 5: return `Shuffle in ${info?attack.effect[0]:'?'} ${info?attack.effect[1].replace(/(\r\n|\n|\r)/gm,' '):'?'}`
+			case 9: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nRange 1-1`
+			case 15: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-2`
 			*/
 
 			default: return `INVALID`
@@ -1244,6 +1251,9 @@ function arcMid3(layer,keypoints,side){
 			-90+atan2(keypoints[0]-mid[0],-keypoints[1]+mid[1])
 		)
 	}
+}
+function specialCost(card){
+	return card.spec.includes(5)||card.spec.includes(11)||card.spec.includes(35)||card.spec.includes(40)||card.spec.includes(41)||card.spec.includes(55)||card.spec.includes(58)||card.spec.includes(59)
 }
 function legalTarget(type,lengthStart,lengthEnd,x,y){
 	switch(type){

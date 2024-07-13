@@ -174,7 +174,7 @@ class attack{
             case 3449: case 3452: case 3453: case 3455: case 3456: case 3459: case 3461: case 3463: case 3464: case 3465: case 3467: case 3469: case 3470: case 3475: case 3479: case 3485: case 3488: case 3503: case 3504: case 3505:
             case 3506: case 3509: case 3511: case 3513: case 3516: case 3519: case 3520: case 3527: case 3530: case 3532: case 3535: case 3545: case 3554: case 3558: case 3560: case 3562: case 3577: case 3579: case 3581: case 3594:
             case 3605: case 3614: case 3615: case 3616: case 3617: case 3619: case 3620: case 3621: case 3622: case 3623: case 3632: case 3633: case 3634: case 3635: case 3636: case 3637: case 3638: case 3643: case 3644: case 3645:
-            case 3646: case 3647: case 3651: case 3753: case 3754:
+            case 3646: case 3647: case 3651: case 3753: case 3754: case 3843:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -5639,9 +5639,7 @@ class attack{
                         this.userCombatant.statusEffect('Shock',this.effect[1])
                     break
                     case 2456:
-                        this.userCombatant.tickEarly()
                         this.userCombatant.tick()
-                        this.userCombatant.tickLate()
                     break
                     case 2475:
                         if(!this.userCombatant.armed){
@@ -8192,8 +8190,7 @@ class attack{
                         }
                     break
                     case 1361:
-                        let index=floor(random(0,this.userManager.listing.allPlayerCard[3].length))
-                        this.userManager.deck.add(this.userManager.listing.allPlayerCard[3][index],0,types.card[this.userManager.listing.allPlayerCard[3][index]].list)
+                        this.userManager.addRandomAbstract(0,0,0,2,0,[],[3])
                         this.battle.overlayManager.overlays[6][this.player].active=true
                         this.battle.overlayManager.overlays[6][this.player].activate([0,3,1])
                     break
@@ -14477,6 +14474,10 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect('Miss',this.effect[1])
                         this.targetCombatant.statusEffect('Weak',this.effect[2])
+                    break
+                    case 3843:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.removeRandomStatus([0,2])
                     break
 
                 }

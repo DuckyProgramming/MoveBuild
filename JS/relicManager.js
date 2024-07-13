@@ -997,6 +997,12 @@ class relicManager{
                             if(this.active[320][a+1]>0){
                                 this.getPlayer(a).statusEffect('Strength',this.active[320][a+1]*this.battle.cardManagers[a].deck.numberAbstract(4,[[6]]))
                             }
+                            if(this.active[328][a+1]>0){
+                                this.getPlayer(a).statusEffect('Single Attack Lose Per Turn',3*this.active[328][a+1])
+                            }
+                            if(this.active[329][a+1]>0){
+                                this.getPlayer(a).statusEffect('Single Attack Remove Block',this.active[329][a+1])
+                            }
                             if(this.active[39][a+1]>0){this.detail[39][a]=0}
                             if(this.active[108][a+1]>0){this.detail[108][a]=0}
                             if(this.active[206][a+1]>0){this.detail[206][a][0]=0}
@@ -1399,6 +1405,11 @@ class relicManager{
                         this.battle.cardManagers[args[1]].randomEffect(2,1,[1])
                     }
                 }
+                if(this.active[330][args[1]+1]>0&&this.getPlayer(args[1]).life<5){
+                    this.getPlayer(args[1]).statusEffect('Strength',this.active[330][args[1]+1])
+                    this.getPlayer(args[1]).permanentStrength+=this.active[330][args[1]+1]
+                    this.loseRelic(330,a)
+                }
                 if(this.battle.modded(143)){
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].statusEffect(['Burn','Freeze','Shock'][floor(random(0,3))],1)
                 }
@@ -1428,7 +1439,7 @@ class relicManager{
                     }
                 }
             break
-            case 4://playing card [class,player,cost,rarity,name,edition,turnPlayed]
+            case 4://playing card [class,player,cost,rarity,name,edition,turnPlayed,basic]
                 if(this.active[18][args[1]+1]>0){
                     this.detail[18][args[1]]++
                     if(this.detail[18][args[1]]%15==0){
@@ -1486,6 +1497,9 @@ class relicManager{
                 if(this.active[296][args[1]+1]>0&&args[6][0]==3){
                     this.battle.addSpecificEnergy(this.active[296][args[1]+1],args[1],6)
                 }
+                if(this.active[327][args[1]+1]>0&&args[6][0]==6){
+                    this.battle.combatantManager.allEffect(43,[3*this.active[327][args[1]+1],this.getPlayer(args[1]).id])
+                }
                 switch(args[0]){
                     case 1:
                         if(this.active[37][args[1]+1]>0&&this.detail[37][args[1]]==0){
@@ -1536,6 +1550,9 @@ class relicManager{
                                 this.getPlayer(args[1]).statusEffect('Strength',this.active[295][args[1]+1])
                             }
                         }
+                        if(this.active[331][args[1]+1]>0&&args[7]){
+                            this.getPlayer(args[1]).heal(this.active[331][args[1]+1])
+                        }
                     break
                     case 2:
                         if(this.active[73][args[1]+1]>0){
@@ -1555,6 +1572,9 @@ class relicManager{
                             if(this.detail[295][args[1]][1]%3==0){
                                 this.getPlayer(args[1]).statusEffect('Dexterity',this.active[295][args[1]+1])
                             }
+                        }
+                        if(this.active[331][args[1]+1]>0&&args[7]){
+                            this.getPlayer(args[1]).heal(this.active[331][args[1]+1])
                         }
                     break
                     case 4:
@@ -1628,6 +1648,9 @@ class relicManager{
                                     this.battle.overlayManager.overlays[25][a].activate([1,[{type:1,value:[0,0,0]}]])
                                 }
                             }
+                            if(this.active[325][a+1]>0){
+                                this.getPlayer(a).gainMaxHP(2*this.active[325][a+1])
+                            }
                         break
                         case 4://shop
                             if(this.active[91][a+1]>0){
@@ -1644,6 +1667,9 @@ class relicManager{
                             }
                             if(this.active[263][a+1]>0){
                                 this.battle.addCurrency(50*this.active[263][a+1],a)
+                            }
+                            if(this.active[326][a+1]>0){
+                                this.getPlayer(a).gainMaxHP(2*this.active[326][a+1])
                             }
                         break
                     }
@@ -1691,7 +1717,7 @@ class relicManager{
                     this.battle.addCurrency(400*this.active[212][args[0]+1],args[0])
                 }
             break
-            case 12://preentering room [room]
+            case 12://preentering node [node]
                 switch(args[0]){
                     case 5://event
                         for(let a=0,la=this.battle.players;a<la;a++){

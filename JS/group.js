@@ -1705,6 +1705,7 @@ class group{
                 &&!(effect==52&&(!this.removable(a)||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==53&&(this.cards[a].spec.includes(48)||this.cards[a].attack==80))
                 &&!(effect==54&&(this.cards[a].level>=2||!this.cards[a].basic))
+                &&!(effect==55&&!this.cards[a].colorless())
                 ){
                     list.push(a)
                 }
@@ -1826,7 +1827,7 @@ class group{
                             }
                         }
                     break
-                    case 21: case 52:
+                    case 21: case 52: case 55:
                         this.remove(index)
                     break
                     case 22:
@@ -2680,6 +2681,19 @@ class group{
         this.lastDuplicate.push(this.cards[index].name)
         this.cards.splice(index,0,copyCard(this.cards[index]))
         this.cards[index+1].id=game.id
+    }
+    copySelfAbstract(index,spec){
+        game.id++
+        this.lastDuplicate.push(this.cards[index].name)
+        this.cards.splice(index,0,copyCard(this.cards[index]))
+        this.cards[index+1].id=game.id
+        switch(spec){
+            case 0:
+                if(this.cards[index+1].cost>=0){
+                    this.cards[index+1].cost++
+                }
+            break
+        }
     }
     copySelfInput(index){
         game.id++
