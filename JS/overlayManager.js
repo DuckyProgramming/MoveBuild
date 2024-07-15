@@ -34,7 +34,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[16])],//bring in draw card-power, no return
                     [new overlay(this.layer,this.battle,0,6,[])],//dictionary
                     [new overlay(this.layer,this.battle,0,1,[1])],//rewards (draft)
-                    [new overlay(this.layer,this.battle,0,2,[3])],//upgrade card, no return, out of rewards
+                    [new overlay(this.layer,this.battle,0,2,[3,1])],//upgrade card, no return, out of rewards
                     [new overlay(this.layer,this.battle,0,7,[])],//food
                     [new overlay(this.layer,this.battle,0,2,[17,1])],//deluxe upgrade card, no return
                     [new overlay(this.layer,this.battle,0,2,[18])],//bring in draw card, upgrade, no return

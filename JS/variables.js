@@ -1077,7 +1077,7 @@ types={
         {name:'Binary Die',id:73,rarity:2,list:0,menu:true,temp:false,description:'Randomly Duplicate a Card\nor Destroy it Permanently'},
         {name:'Replacement Papers',id:74,rarity:2,list:0,menu:true,temp:false,description:'Edition a Card'},
         {name:'Full Medkit',id:75,rarity:2,list:0,menu:false,temp:false,description:'Heal All Health'},
-        {name:'Surprise Coupon',id:76,rarity:2,list:0,menu:false,temp:false,description:'Make 3 Things Something\nFree at the Next Shop'},
+        {name:'Surprise Coupon',id:76,rarity:2,list:0,menu:false,temp:false,description:'Make 3 Things Free\nat the Next Shop'},
         {name:'Starter Pack',id:77,rarity:0,list:0,menu:false,temp:false,description:'Add 1 Strike, Defend,\nand Step to Hand'},
         {name:'Equilibrium System',id:78,rarity:0,list:0,menu:false,temp:false,description:'Retain Your Hand This Turn'},
         {name:'Unfinished Potion',id:79,rarity:0,list:0,menu:false,temp:false,description:'Add 3 1-11 of Nothings to Hand'},

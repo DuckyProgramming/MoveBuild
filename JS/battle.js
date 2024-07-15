@@ -601,6 +601,8 @@ class battle{
     newTurn(){
         this.turn.active=false
         this.subTurn()
+        let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
+        combatant.tick()
         this.turn.active=true
         this.cardManagers[this.turn.main].allEffect(3,39)
         if(variants.cyclicDraw||variants.blackjack){
@@ -611,7 +613,6 @@ class battle{
     }
     endTurn(){
         let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
-        combatant.tick()
         this.turn.endReady=false
         this.relicManager.activate(14,[this.turn.main,this.getEnergy(this.turn.main)])
         if(combatant.getStatus('Retain Hand')>0){
@@ -630,6 +631,7 @@ class battle{
             combatant.status.main[findList('Extra Drawless Turn',combatant.status.name)]--
             let lastEnergy=this.getEnergy(this.turn.main)
             combatant.extraTurn()
+            combatant.tick()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
             this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
@@ -639,6 +641,7 @@ class battle{
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
             let lastEnergy=this.getEnergy(this.turn.main)
             combatant.extraTurn()
+            combatant.tick()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
             this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
@@ -1305,7 +1308,7 @@ class battle{
         }
     }
     setEnergyMainGen(player){
-        if(varaints.mtg){
+        if(variants.mtg){
             this.energy.main[player]=[0,0,0,0,0,0,0]
             for(let a=0,la=this.energy.gen[player].length;a<la;a++){
                 this.energy.main[player][this.energy.gen[player][a]]++

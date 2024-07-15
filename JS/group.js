@@ -3152,6 +3152,7 @@ class group{
                         for(let a=0,la=min(args[2],this.cards.length);a<la;a++){
                             this.cards[a].deSize=!(a>=args[1]*15&&a<args[1]*15+15)
                             this.cards[a].fade=1
+                            this.cards[a].relIndex=a
                             this.cards[a].position.x=this.layer.width/2-200+a%5*100
                             this.cards[a].position.y=this.layer.height/2-130+floor(a/5)%3*130
                             this.cards[a].anim.afford=1
@@ -3162,6 +3163,7 @@ class group{
                         for(let a=0,la=this.cards.length;a<la;a++){
                             this.cards[a].deSize=a>=args[1]
                             this.cards[a].fade=1
+                            this.cards[a].relIndex=a
                             this.cards[a].position.x=this.layer.width/2-200+a%5*100
                             this.cards[a].position.y=this.layer.height/2-130+floor(a/5)%3*130
                             this.cards[a].anim.afford=1
@@ -3172,6 +3174,7 @@ class group{
                         for(let a=0,la=this.cards.length;a<la;a++){
                             this.cards[a].deSize=!(a>=args[1]*15&&a<args[1]*15+15)
                             this.cards[a].fade=1
+                            this.cards[a].relIndex=a
                             this.cards[a].position.x=this.layer.width/2-200+a%5*100
                             this.cards[a].position.y=this.layer.height/2-130+floor(a/5)%3*130
                             this.cards[a].anim.afford=1

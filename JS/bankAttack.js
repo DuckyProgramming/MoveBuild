@@ -7774,7 +7774,7 @@ attack.prototype.update=function(){
                         this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x+this.offset[0],this.targetCombatant[a].tilePosition.y+this.offset[1])
                         if(index>=0){
-                            this.targetCombatant[index].takeDamage(game.collisionDamage,-1)
+                            this.battle.combatnatManager.combatants[index].takeDamage(game.collisionDamage,-1)
                         }
                     }else if(this.procedure[1][a]>=26){
                         this.procedure[0][a]=3
@@ -8303,7 +8303,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case -9999:
+        case 3828:
             if(variants.nobasicanim){
                 this.selfCall(22)
                 this.remove=true
@@ -8320,7 +8320,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 3622:
+        case 3622: case 3827: case 3829:
             if(variants.nobasicanim){
                 this.selfCall(22)
                 this.remove=true

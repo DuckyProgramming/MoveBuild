@@ -1,31 +1,93 @@
+
 add new bonus mods:[
     bowler duck
     management light infantry
     rebel negotiator
-    gangster assassin
+    gangster assassin - make a random card cost 99 energy
     ducky donka
     ducky mcduff
     prison informant
 ]
 
 
+bonus roll + d20 caps
+
+diffraction - double upgrade the card
+
+upgrading "expanded" card resets it
+and show the updated card like when upgrading
+expand attacks shows cards in alphabetical order
+
+triangulate doesn't work
+
+don't forget to remove the extra ? spaces
+
+item and relic tooltips appear below cards in the shop
+
+bolts don't bolt
+
+orchis bad formatting
+
+gated temple spawn barrier is wrong
+
+item shop items don't have 2 player bar
+event is busted
+
+can't move in perpetuity
+
+nerf orchis
+
+shizuha doesn't give you anything
+
+fairy of spring card costs 1 again when upgraded
+
+clearing only 1 of the reward prompts on 2 player removes character statuses
+
+failsafe - start of turn reset hand so cards can be selected
+niche bug with sunny
+
+discarded ally cards reset their cost
+
+flower pot doesn't spawn a plant tile
+
+no items from supply chain
+
+roundhouse kick doesn't update targetting
+
+ammo box doesn't exist
+
+cliffs -2 cards bugged
+
+pep talk doesn't work
+
+ran scheming fox doesn't work
+and the cards don't look like they cost 0
+
+test using moving fortress to bonk ducks
+
+check vent steam
+
+update the dictionary with node
+
+nobody got 100 from the duck when he died last
+
+check rebuilding the antizone
+
+check harvest basket overall
+
+stat page didn't spawn
+
+damage taken unblocked and blocked don't math
+
+change enemy ai to be less exploitable
+
+
+
+
+
+
 
 LISTING GROUP 45
-
-
-
-[seeping miasma]
-
-[why is onsen reimu a thing]
-
-[apricot - heal health, exhausting 2, when exhausted gain block]
-
-[triskaidekaphobia - every 13 cards played, deal 13 splash damage]
-
-[rainbow dupion - 5 cost 18 damage, get a miracle,
-gain 2 strength, 2 dexterity, and 2 focus if you have full, unique orb slots]
-
-[cleaning - exhaust a card, gain wish power]
 
 
 
@@ -45,15 +107,15 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 
 
-[a parry]
+[why is onsen reimu a thing]
+
+[]
 
 [second wind]
 
-[something like impale]
+[something like skipping rock for sakura]
 
-[continued centuries - ability card, take extra turns where you can only play 1 card]
-
-[eye stab]
+[eyelet stab]
 
 [mallet's love]
 
@@ -75,11 +137,66 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 [forgetful - curse, become frail at end of turn]
 
+add a funny planeswalker from mtg
+NOT HATSUNE MIKU
+
+[azis must be able to build around fire of ena]
+
+[primal vision]
+
+be like grandfather clock
+
+name a card after an enemy from space war
 
 
-9 more wish cards
 
-[wish that adds a random card]
+last chance - take another turn, die if you don't win on that turn
+
+swords to plowshares - exhaust a card, heal equal to its cost
+
+6 cost dovescape - innate, create a miracle whenever you play a power
+
+greater good - exhaust a card, draw cards equal to its cost, discard a card
+
+rain of filth - 2 cost azis, exhaust any number of cards, gain 1 energy back per card exhausted
+
+strip mine - gain 1 energy, exhaust powers in hand
+
+
+
+cheap fuel - gain 1 energy, cannot go above base energy
+
+auricalchite - damage, if energy divisible by 3, [character-specific] [light blue probably builder]
+
+forget the past - choose any disbanded card to add to hand
+
+canopy vista - tappable waste that gives 0 energy, increases by 1 when played, exhausts on 2
+
+grand arbiter augustin IV
++1: skills in hand cost 1 less
+-3: attacks in hand cost 1 less
+-6: all cards in hand cost 1 less
+
+miku, child of song
++1: draw a movement if you do not have one in hand
+-4: gain 1 of each energy (or 5 off mtg)
+-12: add a card from discard, draw, and exhaust pile to hand,
+they cost 0
+
+
+
+[giant rotation wish]
+
+[wish]
+
+[wish]
+
+[wish]
+
+[wish]
+
+[wish]
+
 
 
 
@@ -122,5 +239,3 @@ SUBGROUP 17
 go make glory v2, celestite, for logo purposes
 
 maybe another new background
-
-

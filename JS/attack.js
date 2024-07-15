@@ -1537,21 +1537,21 @@ class attack{
                     case 1979:
                         let roll1979=this.userCombatant.diceRoll(1,20)
                         this.targetCombatant.takeDamage(this.effect[0]*roll1979,this.user)
-                        if(roll1979==20){
+                        if(roll1979>=20){
                             this.targetCombatant.statusEffect('Jinx',this.effect[1])
                         }
                     break
                     case 1980:
                         let roll1980=this.userCombatant.diceRoll(1,20)
                         this.targetCombatant.takeDamage(this.effect[0]*roll1980,this.user)
-                        if(roll1980==19||roll1980==20){
+                        if(roll1980>=19){
                             this.targetCombatant.statusEffect('Jinx',this.effect[1])
                         }
                     break
                     case 1981:
                         let roll1981=this.userCombatant.diceRoll(1,20)
                         this.targetCombatant.takeDamage(this.effect[0]*roll1981,this.user)
-                        if(roll1981==18||roll1981==19||roll1981==20){
+                        if(roll1981>=18){
                             this.targetCombatant.statusEffect('Jinx',this.effect[1])
                         }
                     break
@@ -1561,21 +1561,21 @@ class attack{
                     case 2025:
                         let roll2025=this.userCombatant.diceRoll(1,20)
                         this.targetCombatant.takeDamage(this.effect[0]*roll2025,this.user)
-                        if(roll2025==20){
+                        if(roll2025>=20){
                             this.userCombatant.statusEffect('Free Card',this.effect[1])
                         }
                     break
                     case 2026:
                         let roll2026=this.userCombatant.diceRoll(1,20)
                         this.targetCombatant.takeDamage(this.effect[0]*roll2026,this.user)
-                        if(roll2026==19||roll2026==20){
+                        if(roll2026>=19){
                             this.userCombatant.statusEffect('Free Card',this.effect[1])
                         }
                     break
                     case 2027:
                         let roll2027=this.userCombatant.diceRoll(1,20)
                         this.targetCombatant.takeDamage(this.effect[0]*roll2027,this.user)
-                        if(roll2027==18||roll2027==19||roll2027==20){
+                        if(roll2027>=18){
                             this.userCombatant.statusEffect('Free Card',this.effect[1])
                         }
                     break

@@ -58,7 +58,7 @@ class nodeManager{
                 }
             }
         }else if(variants.singlemap){
-            let possibilities=game.ascend>=1?[0,0,0,0,0,1,1,1,3,3,3,4,4,5,5,5,5]:[0,0,0,0,0,0,1,1,3,3,3,4,4,5,5,5,5]
+            let possibilities=game.ascend>=1?[0,0,0,0,0,1,1,1,3,3,3,4,4,5,5,5,5     ,5,5,5,5]:[0,0,0,0,0,0,1,1,3,3,3,4,4,5,5,5,5     ,5,5,5,5]
             let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
             for(let a=0,la=length;a<la;a++){
                 this.nodes.push(new node(this.layer,this.battle,this.layer.width/2,this.layer.height/2+a*100-150-min(3,a)*10,0,a,
@@ -68,7 +68,7 @@ class nodeManager{
                 }
             }
         }else{
-            let possibilities=game.ascend>=1?[0,0,0,0,0,1,1,1,3,3,3,4,4,5,5,5,5]:[0,0,0,0,0,0,1,1,3,3,3,4,4,5,5,5,5]
+            let possibilities=game.ascend>=1?[0,0,0,0,0,1,1,1,3,3,3,4,4,5,5,5,5     ,5,5,5,5]:[0,0,0,0,0,0,1,1,3,3,3,4,4,5,5,5,5     ,5,5,5,5]
             let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
             for(let a=0,la=length;a<la;a++){
                 for(let b=0,lb=min(min(a+1,4),la-a);b<lb;b++){
