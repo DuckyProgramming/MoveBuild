@@ -2370,6 +2370,7 @@ class group{
     }
     sendAbstract(list,amount,variant,output,args){
         let total=0
+        let ticker=0
         switch(variant){
             case 5: case 6:
                 this.sortCost()
@@ -2386,19 +2387,20 @@ class group{
         }
         for(let a=0,la=this.cards.length;a<la;a++){
             if(
-                variant==0&&this.cards[a].class==args[0]||
-                variant==1&&this.cards[a].cost==args[0]||
-                variant==2&&this.cards[a].attack==args[0]||
-                variant==3&&this.cards[a].name==args[0]||
-                variant==4&&this.cards[a].rarity==args[0]||
+                variant==-1||
+                variant==0&&this.cards[a].class==args[ticker++]||
+                variant==1&&this.cards[a].cost==args[ticker++]||
+                variant==2&&this.cards[a].attack==args[ticker++]||
+                variant==3&&this.cards[a].name==args[ticker++]||
+                variant==4&&this.cards[a].rarity==args[ticker++]||
                 variant==5&&this.cards[a].cost==this.sorted[0]||
                 variant==6&&this.cards[a].cost==this.sorted[this.sorted.length-1]||
                 variant==7&&this.cards[a].spec.length==this.sorted[0]||
                 variant==8&&this.cards[a].spec.length==this.sorted[this.sorted.length-1]||
-                variant==9&&this.cards[a].cost%[args[0]]==args[1]||
-                variant==10&&this.cards[a].spec.includes(args[0])||
+                variant==9&&this.cards[a].cost%[args[ticker++]]==args[ticker++]||
+                variant==10&&this.cards[a].spec.includes(args[ticker++])||
                 variant==11&&this.cards[a].colorless()||
-                variant==12&&this.cards[a].rarity==this.sorted[0]||
+                variant==12&&this.cards[a].rarity==this.sorted[ticker++]||
                 variant==13&&this.cards[a].rarity==this.sorted[this.sorted.length-1]
             ){
                 if(output==1){
@@ -2422,6 +2424,12 @@ class group{
                     break
                     case 5:
                         list[list.length-1].retain=true
+                    break
+                    case 6:
+                        let listId=args[ticker++]
+                        for(let a=0,la=args[ticker++];a<la;a++){
+                            this.battle.cardManagers[this.player].getList(listId).copySelfInput(list.length-1)
+                        }
                     break
                 }
                 delete this.cards[a]

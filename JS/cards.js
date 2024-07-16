@@ -3341,8 +3341,8 @@ types.card=[
         name:'Merged\nStrike',rarity:0,list:4,
         levels:[
             {effect:[6,2],attack:280,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[6,4],attack:280,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[6,5],attack:280,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[9,3],attack:280,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[10,4],attack:280,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Launch',rarity:1,list:4,
@@ -3504,13 +3504,6 @@ types.card=[
             {effect:[7,1],attack:323,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[9,2],attack:323,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[10,3],attack:323,cost:1,target:[2,1,1],spec:[0],class:1},
-        ],
-    },{
-        name:'Freeblading',rarity:1,list:4,
-        levels:[
-            {effect:[],attack:324,cost:1,target:[0],spec:[1],class:11},
-            {effect:[],attack:324,cost:1,target:[0],spec:[],class:11},
-            {effect:[],attack:324,cost:1,target:[0],spec:[2],class:11},
         ],
     },{
         name:'Shivstream',rarity:1,list:4,
@@ -7218,11 +7211,11 @@ types.card=[
             {effect:[2],attack:834,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
-        name:'Starburn',rarity:0,list:8,
+        name:'Starburn',rarity:1,list:8,
         levels:[
-            {effect:[16,8],attack:837,cost:2,target:[2,1,2],spec:[0,27],class:1},
-            {effect:[22,11],attack:837,cost:2,target:[2,1,2],spec:[0,27],class:1},
-            {effect:[25,15],attack:837,cost:2,target:[2,1,2],spec:[0,27],class:1},
+            {effect:[16,12],attack:837,cost:2,target:[2,1,2],spec:[0,27],class:1},
+            {effect:[20,20],attack:837,cost:2,target:[2,1,2],spec:[0,27],class:1},
+            {effect:[20,30],attack:837,cost:2,target:[2,1,2],spec:[0,27],class:1},
         ],
     },{
         name:'Star\nCasket',rarity:1,list:8,
@@ -9384,16 +9377,16 @@ types.card=[
     },{
         name:'Rollout',rarity:0,list:10,
         levels:[
-            {effect:[9],attack:1390,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[13],attack:1390,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[16],attack:1390,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[8],attack:1390,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[12],attack:1390,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[15],attack:1390,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Rollback',rarity:0,list:10,
         levels:[
-            {effect:[14],attack:1983,cost:1,target:[0],spec:[],class:2},
-            {effect:[20],attack:1983,cost:1,target:[0],spec:[],class:2},
-            {effect:[25],attack:1983,cost:1,target:[0],spec:[],class:2},
+            {effect:[12],attack:1983,cost:1,target:[0],spec:[],class:2},
+            {effect:[18],attack:1983,cost:1,target:[0],spec:[],class:2},
+            {effect:[22],attack:1983,cost:1,target:[0],spec:[],class:2},
         ],
     },{
         name:'Beat the\nOdds',rarity:2,list:10,
@@ -14554,13 +14547,6 @@ types.card=[
             {effect:[15,1],attack:2702,cost:1,target:[2,1,1],spec:[0,1],class:1},
         ],
     },{
-        name:'Evening',rarity:0,list:15,
-        levels:[
-            {effect:[0],attack:2703,cost:0,target:[0],spec:[],class:11},
-            {effect:[2],attack:2703,cost:0,target:[0],spec:[],class:11},
-            {effect:[3],attack:2703,cost:0,target:[0],spec:[3],class:11},
-        ],
-    },{
         name:'Knowledge\nis Power',rarity:1,list:15,
         levels:[
             {effect:[3],attack:2704,cost:1,target:[0],spec:[],class:11},
@@ -17946,6 +17932,13 @@ types.card=[
             {effect:[2,2],attack:285,cost:0,target:[0],spec:[],class:11},
             {effect:[3,2],attack:285,cost:0,target:[0],spec:[],class:11},
         ],
+    },{
+        name:'Flechettes',rarity:-10,list:4,
+        levels:[
+            {effect:[5],attack:267,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[8],attack:267,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[10],attack:267,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],
     },
 
     //mark j
@@ -21013,7 +21006,7 @@ types.card=[
 
     //mark p
     
-    /*{
+    {
         name:'Stitch',rarity:0,list:17,
         levels:[
             {effect:[2],attack:3656,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -21055,8 +21048,7 @@ types.card=[
             {effect:[12,6],attack:3661,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[14,8],attack:3661,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
-    },*/
-    //1
+    },
 
     /*{
         name:'Recycling',rarity:0,list:-9,
@@ -26303,6 +26295,20 @@ types.card=[
             {effect:[12,6,6],attack:2266,cost:1,target:[0],spec:[],class:2},
             {effect:[18,8,8],attack:2266,cost:1,target:[0],spec:[],class:2},
             {effect:[22,10,10],attack:2266,cost:1,target:[0],spec:[],class:2},
+        ],
+    },{
+        name:'Evening',rarity:-1,list:-8,
+        levels:[
+            {effect:[0],attack:2703,cost:0,target:[0],spec:[],class:11},
+            {effect:[2],attack:2703,cost:0,target:[0],spec:[],class:11},
+            {effect:[3],attack:2703,cost:0,target:[0],spec:[3],class:11},
+        ],
+    },{
+        name:'Freeblading',rarity:-1,list:-8,
+        levels:[
+            {effect:[],attack:324,cost:1,target:[0],spec:[1],class:11},
+            {effect:[],attack:324,cost:1,target:[0],spec:[],class:11},
+            {effect:[],attack:324,cost:1,target:[0],spec:[2],class:11},
         ],
     },
 
