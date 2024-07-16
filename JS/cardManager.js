@@ -15,7 +15,6 @@ class cardManager{
         this.remove=new group(this.layer,this.battle,this.player,6)
         if(variants.inventor){
             this.tech=new group(this.layer,this.battle,this.player,7)
-            this.tech.add(findName('Techless',types.card),0,0)
         }
 
         this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.cyclicDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0)-(variants.compress?1:0)-(variants.unexpected?1:0)+(variants.polar?1:0)-(variants.cardHold?1:0))
@@ -179,6 +178,9 @@ class cardManager{
     }
     initialDeck(){
         this.deck.initialCards(this.battle.deck[this.player],this.battle.player[this.player])
+        if(variants.inventor){
+            this.tech.add(findName('Techless',types.card),0,0)
+        }
     }
     getList(type){
         switch(type){
@@ -474,9 +476,9 @@ class cardManager{
     }
     drawToCost(cost){
         if(cost>0){
-            this.hand.allEffectArgs(31,[amount])
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             let left=cost
+            let total=0
             if(userCombatant.getStatus('No Draw')<=0){
                 if(variants.witch){
                     for(let a=0,la=cost;a<la;a++){
@@ -486,6 +488,7 @@ class cardManager{
                     for(let a=0,la=10;a<la;a++){
                         if(left>0){
                             this.battle.stats.drawn[this.player]++
+                            total++
                             if(this.reserve.cards.length>0){
                                 let success=false
                                 for(let b=0,lb=this.reserve.cards.length;b<lb;b++){
@@ -526,6 +529,7 @@ class cardManager{
                     }
                 }
             }
+            this.hand.allEffectArgs(31,[total])
         }
     }
     drawAbstract(amount,variant,output,args){

@@ -33,7 +33,7 @@ class combatantManager{
         }
     }
     lastAlly(){
-        this.combatants[this.combatants.length-1].ally=a
+        this.combatants[this.combatants.length-1].ally=floor(random(0,this.battle.players))
         if(this.combatants[this.combatants.length-1].spec.includes(0)){
             this.combatants[this.combatants.length-1].spec.splice(this.combatants[this.combatants.length-1].spec.indexOf(0),1)
         }
@@ -153,20 +153,32 @@ class combatantManager{
             }
         }
     }
-    subSetTarget(a,list){
+    subSetTarget(a,list,priority){
         let minimum=1000
         for(let b=0,lb=list.length;b<lb;b++){
-            minimum=min(minimum,dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y))
+            minimum=min(minimum,round(dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y)-(list[b]==priority?10:0)))
         }
         let available=[]
         for(let b=0,lb=list.length;b<lb;b++){
-            if(dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y)<minimum+100){
+            if(round(dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y)-(list[b]==priority?10:0))<minimum+5){
                 available.push(list[b])
             }
         }
         if(available.length>0){
             this.combatants[a].target=available[floor(random(0,available.length))]
         }
+    }
+    setSingleTarget(index,priority){
+        let list=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(
+                this.combatants[index].team==0&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support||this.combatants[a].support&&this.combatants[a].life>0||
+                (this.combatants[index].construct||this.combatants[index].support)&&this.combatants[a].team==0
+            ){
+                list.push(a)
+            }
+        }
+        this.subSetTarget(index,list,priority)
     }
     setTargets(){
         let list=[]
@@ -178,7 +190,7 @@ class combatantManager{
         if(list.length>0){
             for(let a=0,la=this.combatants.length;a<la;a++){
                 if(this.combatants[a].team==0){
-                    this.subSetTarget(a,list)
+                    this.subSetTarget(a,list,-1)
                 }
             }
         }
@@ -191,7 +203,7 @@ class combatantManager{
         if(list.length>0){
             for(let a=0,la=this.combatants.length;a<la;a++){
                 if(this.combatants[a].construct||this.combatants[a].support){
-                    this.subSetTarget(a,list)
+                    this.subSetTarget(a,list,-1)
                 }
             }
         }
@@ -742,7 +754,7 @@ class combatantManager{
                     break
                     case 18:
                         if(this.combatants[a].team==0&&this.combatants[a].id!=args[0]){
-                            this.battle.turnManager.loadEnemyRotate(a)
+                            this.battle.turnManager.loadEnemyRotate(a,args[0])
                             this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,a,false))
                             this.battle.turnManager.turns[this.battle.turnManager.turns.length-1].target=[args[0]]
                             this.battle.turnManager.turns[this.battle.turnManager.turns.length-1].auxiliary=true
@@ -1156,7 +1168,7 @@ class combatantManager{
                     break
                     case 4:
                         if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
-                            this.battle.drop(this.combatants[a].id,values[0],values[1].values[2])
+                            this.battle.drop(this.combatants[a].id,values[0],values[1],values[2])
                         }
                     break
                     case 5:

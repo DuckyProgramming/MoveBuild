@@ -109,6 +109,11 @@ class modManager{
                 }
                 this.battle.initialGraphics()
             break
+            case 182:
+                for(let a=0,la=this.battle.players;a<la;a++){
+                    this.battle.cardManagers[a].randomEffect(0,9,[100])
+                }
+            break
         }
     }
     display(){

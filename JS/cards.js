@@ -871,9 +871,9 @@ types.card=[
     },{
         name:'Spinbash',rarity:1,list:1,
         levels:[
-            {effect:[2],attack:1051,cost:0,target:[0],spec:[],class:1},
-            {effect:[3],attack:1051,cost:0,target:[0],spec:[],class:1},
-            {effect:[4],attack:1051,cost:0,target:[0],spec:[],class:1},
+            {effect:[2],attack:1051,cost:0,target:[0],spec:[],class:11},
+            {effect:[3],attack:1051,cost:0,target:[0],spec:[],class:11},
+            {effect:[4],attack:1051,cost:0,target:[0],spec:[],class:11},
         ],
     },{
         name:'Lockbox',rarity:1,list:1,
@@ -4989,9 +4989,9 @@ types.card=[
     },{
         name:'Vent\nSteam',rarity:1,list:5,
         levels:[
-            {effect:[1,1],attack:1858,cost:1,target:[2,1,3],spec:[],class:11},
             {effect:[2,1],attack:1858,cost:1,target:[2,1,3],spec:[],class:11},
             {effect:[3,1],attack:1858,cost:1,target:[2,1,3],spec:[],class:11},
+            {effect:[4,1],attack:1858,cost:1,target:[2,1,3],spec:[],class:11},
         ],
     },{
         name:'Paw\nClaw',rarity:2,list:5,
@@ -10172,9 +10172,9 @@ types.card=[
     },{
         name:'Survivor',rarity:0,list:11,
         levels:[
-            {effect:[10,1],attack:120,cost:1,target:[0],spec:[],class:2},
-            {effect:[15,1],attack:120,cost:1,target:[0],spec:[],class:2},
-            {effect:[19,1],attack:120,cost:1,target:[0],spec:[],class:2},
+            {effect:[13,1],attack:120,cost:1,target:[0],spec:[],class:2},
+            {effect:[20,1],attack:120,cost:1,target:[0],spec:[],class:2},
+            {effect:[26,1],attack:120,cost:1,target:[0],spec:[],class:2},
         ],
     },{
         name:'Rejinx',rarity:1,list:11,

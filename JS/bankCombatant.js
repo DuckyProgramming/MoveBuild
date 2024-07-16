@@ -8559,18 +8559,16 @@ combatant.prototype.display=function(){
                     this.layer.stroke(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                     this.layer.strokeWeight(2)
                     this.layer.ellipse(0,-25,40,40)
-                    this.layer.arc(0,-25,40,20,-180,0)
                     this.layer.line(-20,-25,20,-25)
-                    this.layer.arc(0,-25,40,20,0,180)
-                    if(this.time%20==0){
-                        this.layer.arc(0,-25,20,40,90,270)
-                        this.layer.line(0,-5,0,-45)
-                        this.layer.arc(0,-25,20,40,-90,90)
+                    this.layer.ellipse(0,-25,40,lsin(45)*40)
+                    if(this.time%45==0){
+                        this.layer.line(0,-45,0,-5)
+                        this.layer.ellipse(0,-25,lsin(45)*40,40)
                     }else{
-                        this.layer.arc(0,-25,40-this.time%20,40,90,270)
-                        this.layer.arc(0,-25,20-this.time%20,40,90,270)
-                        this.layer.arc(0,-25,this.time%20,40,-90,90)
-                        this.layer.arc(0,-25,20+this.time%20,40,-90,90)
+                        this.layer.arc(0,-25,lsin(90-this.time%90)*40,40,90,270)
+                        this.layer.arc(0,-25,lsin(90-(this.time+45)%90)*40,40,90,270)
+                        this.layer.arc(0,-25,lsin(this.time%90)*40,40,-90,90)
+                        this.layer.arc(0,-25,lsin((this.time+45)%90)*40,40,-90,90)
                     }
                 }
             break

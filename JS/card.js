@@ -92,6 +92,14 @@ class card{
             this.spec=spec
             this.additionalSpec=additionalSpec
             this.additionalSpec=this.additionalSpec==undefined?[]:copyArray(additionalSpec)
+            let doubles=[]
+            if(this.additionalSpec.includes(61)&&spec==undefined){
+                for(let a=0,la=this.additionalSpec.length;a<la;a++){
+                    if(this.additionalSpec[a]==61){
+                        doubles++
+                    }
+                }
+            }
             if(types.card[this.type].levels[0].spec.includes(53)){
                 this.spec=this.spec==undefined?copyArray(types.card[this.type].levels[0].spec.concat(this.additionalSpec)):copyArray(this.spec)
                 this.effect=effect
@@ -195,6 +203,11 @@ class card{
             if(this.additionalSpec.includes(-1)){
                 this.cost=0
                 this.base.cost=0
+            }
+            if(doubles>0){
+                for(let a=0,la=doubles;a<la;a++){
+                    this.doubleBoth()
+                }
             }
         }catch(error){
             print('!!!',this.type,error)
@@ -539,8 +552,8 @@ class card{
             case 167: string+=`Add to Hand:\nRiot Shield\nPepper Spray\nShock Baton\nUpgrade 1\nat Random`; break
             case 168: string+=`Add to Hand:\nFlamethrower\nImpact Grenade\nSafemine`; break
             case 169: string+=`Add to Hand:\nFlamethrower\nImpact Grenade\nSafemine\nUpgrade 1\nat Random`; break
-            case 170: string+=`Add to Hand:\nSubmachine\nAntitank Rocket\nAmmo Box`; break
-            case 171: string+=`Add to Hand:\nSubmachine\nAntitank Rocket\nAmmo Box\nUpgrade 1\nat Random`; break
+            case 170: string+=`Add to Hand:\nSubmachine\nAntitank Rocket\nResupply`; break
+            case 171: string+=`Add to Hand:\nSubmachine\nAntitank Rocket\nResupply\nUpgrade 1\nat Random`; break
             case 172: string+=`You Cannot Take\nFrontal Damage\nFor ${effect[0]} Turn${pl(effect[0])}`; break
             case 173: string+=`Target Moves in a\nRandom Direction ${effect[0]} Time${pl(effect[0])}`; break
             case 174: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Stun`; break
@@ -1009,7 +1022,7 @@ class card{
             case 640: string+=`Draw Cards Equal\nto Hand Size${effect[0]>0?`+${effect[0]}`:``}`; break
             case 641: string+=`Add to Hand:\nRiot Shield\nPepper Spray\nShock Baton\nUpgrade 2\nat Random`; break
             case 642: string+=`Add to Hand:\nFlamethrower\nImpact Grenade\nSafemine\nUpgrade 2\nat Random`; break
-            case 643: string+=`Add to Hand:\nSubmachine\nAntitank Rocket\nAmmo Box\nUpgrade 2\nat Random`; break
+            case 643: string+=`Add to Hand:\nSubmachine\nAntitank Rocket\nResupply\nUpgrade 2\nat Random`; break
             case 644: string+=`Gain ${effect[0]} Combo\nGain ${effect[1]} Energy\nNext Turn\nGain ${effect[2]} Combo\nNext Turn`; break
             case 645: string+=`Gain ${effect[0]} Energy\nNext Turn\nDraw ${effect[1]} Card${pl(effect[1])}\nNext Turn`; break
             case 646: string+=`Each Hit Gains\n${effect[0]} More Combo\nGain ${effect[1]} Combo`; break
@@ -2629,7 +2642,7 @@ class card{
             case 2276: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nDraw and Upgrade\n${effect[1]} Card${pl(effect[1])}`; break
             case 2277: string+=`2nd Card in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage\n50%: Apply ${effect[1]} Weak\n50%: Apply ${effect[2]} Vulnerable\n50%: Apply ${effect[3]} Frail`; break
             case 2278: string+=`When You Heal,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy`; break
-            case 2279: string+=`Add ${effect[0]} Shiv${pl(effect[0])}\nto Hand\nAll Shivs in Hand\nDeal ${effect[1]} More Damage`; break
+            case 2279: string+=`Add ${effect[0]} Shiv${pl(effect[0])} to Hand\nAll Shivs in Hand\nDeal ${effect[1]} More Damage`; break
             case 2280: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd a Paradigm Shift\nof Equivalent Level\nto Hand`; break
             case 2281: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Control`; break
             case 2282: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Attack,\nDraw ${effect[1]} Card${pl(effect[1])}\nOtherwise,\nGain ${effect[2]} Energy`; break
@@ -4063,7 +4076,7 @@ class card{
             case 3670: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas a Different Color,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 3671: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nAfter Each Elite or\nBoss is Defeated`; break
             case 3672: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nUpgrade a Card\nFrom Discard`; break
-            case 3673: string+=`Transform a Card\nInto a Random Card\nof Any Color\nof Equivalent Level\nWith an Edition`; break
+            case 3673: string+=`Transform a Card\nInto Any Random\nDouble Upgraded Card\nof Equivalent Level\nWith an Edition`; break
 
             case -81: string+=`At the End of Your Turn,\nAdd a Quiet\nMoonlight to Discard`; break
             case -82: string+=`At the End of Your Turn,\nAdd a Glamorous\nStarlight to Discard`; break
@@ -5600,6 +5613,9 @@ class card{
                     userCombatant.statusEffect('Temporary Strength',this.effect[0])
                     userCombatant.statusEffect('Temporary Dexterity',this.effect[1])
                 break
+                case 3586:
+                    this.battle.cardManagers[this.player].hand.discardViable(this.effect[0])
+                break
             }
         }else if(this.spec.includes(60)){
             if(userCombatant.wish>=this.cost){
@@ -5626,17 +5642,20 @@ class card{
             }
         }
     }
-    multiplyBoth(mult){
-        this.cost*=mult
+    doubleBoth(){
+        if(!this.additionalSpec.includes(-3)){
+            this.additionalSpec.push(-3)
+        }
+        this.cost*=2
         if(this.spec.includes(12)){
             for(let a=0,la=this.effect.length;a<la;a++){
                 for(let b=0,lb=this.attack[a].length;b<lb;b++){
-                    this.effect[a][b]*=mult
+                    this.effect[a][b]*=2
                 }
             }
         }else{
             for(let a=0,la=this.effect.length;a<la;a++){
-                this.effect[a]*=mult
+                this.effect[a]*=2
             }
         }
     }

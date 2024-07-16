@@ -128,7 +128,7 @@ class combatant{
             'Combo on Block','Combo Per Turn','Combo Next Turn','2 Range Counter','Card Play Block','Temporary Damage Down','Shiv Boost','Take Per Card Played','Counter All Combat','No Draw',
             'Explode on Death','Energy in 2 Turns','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block in 2 Turns',
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
-            'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
+            'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block Combat','Heal Gain Max HP',
             'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic Orb','Basic Orb on Hit','Random Common Per Turn','Node','Focus Per Turn','Freeze',
             'Step Next Turn','Jagged Bleed','Counter Bleed All Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
             'Miracle Time','Miracle+ Time','Wrath Next Turn','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Triple Block','Single Damage Block Convert',
@@ -3800,6 +3800,9 @@ class combatant{
             if(this.battle.modded(178)&&(this.name.includes('N')||this.name.includes('n'))){
                 this.statusEffect('Strength',3)
             }
+            if(this.battle.modded(180)&&(this.name.includes('L')||this.name.includes('l'))){
+                this.statusEffect('Strength',3)
+            }
             if(this.battle.modded(88)){
                 this.statusEffect('Single Counter Block',10)
             }
@@ -3833,6 +3836,9 @@ class combatant{
             }
             if(this.battle.modded(173)){
                 this.statusEffect('Heal on Hit Taken',1)
+            }
+            if(this.battle.modded(179)){
+                this.statusEffect('Counter Block Combat',2)
             }
         }
         if(this.name.includes('Duck')){
@@ -4805,13 +4811,11 @@ class combatant{
     activate(type,id){
         if(this.life>0&&!this.moved){
             if(this.spec.includes(0)&&id<this.battle.players&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100&&this.getStatus('Stun')<=0&&this.battle.turnManager.loads<100&&this.getStatus('Cannot Move')<=0){
-                this.target=id
-                this.battle.turnManager.loadEnemyRotate(this.id)
+                this.battle.turnManager.loadEnemyRotate(this.id,id)
             }
             if(this.spec.includes(1)&&id<this.battle.players&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100&&this.getStatus('Stun')<=0&&this.battle.turnManager.loads<100&&this.getStatus('Cannot Move')<=0){
-                this.target=id
                 this.battle.turnManager.loadEnemyMoveBack(this.id)
-                this.battle.turnManager.loadEnemyRotateBack(this.id)
+                this.battle.turnManager.loadEnemyRotateBack(this.id,id)
             }
             if(this.spec.includes(7)&&id<this.battle.players&&type==1&&this.battle.turn.main<this.battle.players&&!this.aggressor&&this.getStatus('Stun')<=0){
                 this.target=id
@@ -5450,8 +5454,14 @@ class combatant{
                     this.block=0
                     userCombatant.status.main[471]--
                 }
-                if(userCombatant.team==this.team&&this.team==0&&this.battle.modded(12)){
-                    hit=false
+                if(this.team==0&&userCombatant.team==0){
+                    if(this.battle.modded(12)){
+                        hit=false
+                    }
+                    if(this.battle.modded(185)){
+                        this.statusEffect('Strength',2)
+                        userCombatant.statusEffect('Strength',2)
+                    }
                 }
                 if(userCombatant.team==0&&this.battle.modded(18)){
                     this.statusEffect('Bleed',1)
@@ -5697,6 +5707,9 @@ class combatant{
                     this.battle.loseCurrency(damage*this.status.main[174],this.id)
                 }else{
                     if(damage>0){
+                        if(this.id<this.battle.players){
+                            this.battle.stats.taken[this.id][0]+=damage
+                        }
                         let damageLeft=damage
                         let preBlock=this.block
                         if(damageLeft>0&&this.block>0&&spec!=2){
@@ -5731,7 +5744,7 @@ class combatant{
                                 this.taken=0
                             }else{
                                 if(this.id<this.battle.players){
-                                    this.battle.stats.taken[this.id][1]+=this.block
+                                    this.battle.stats.taken[this.id][1]+=this.barrier
                                 }
                                 damageLeft-=this.barrier
                                 this.barrier=0
@@ -5782,9 +5795,6 @@ class combatant{
                         let userCombatant=this.battle.combatantManager.combatants[user]
                         userCombatant.combo+=1+userCombatant.status.main[68]
                     }
-                }
-                if(this.id<this.battle.players){
-                    this.battle.stats.taken[this.id][0]+=damage
                 }
                 if(this.battle.modded(9)&&this.team>0&&this.team<=this.battle.players&&damage>10){
                     this.battle.drop(this.id,findName('Concussion',types.card),0,game.playerNumber+1)
@@ -6234,7 +6244,7 @@ class combatant{
         }
     }
     addBarrier(value){
-        if(value>0&&this.status.main[16]<=0){
+        if(value>0){
             let barrier=value
             let totalDex=0
             if(this.status.main[7]!=0){
@@ -6255,7 +6265,7 @@ class combatant{
             if(barrier>=0){
                 this.barrier+=barrier
                 if(this.id<this.battle.players){
-                    this.battle.stats.block[this.id]+=barrier
+                    this.battle.stats.barrier[this.id]+=barrier
                 }
             }
         }
@@ -9644,6 +9654,7 @@ class combatant{
             break
             case 'overlay':
                 if(this.fade>0&&this.infoAnim.description>0){
+                    this.battle.encounter.tooltip++
                     if(this.team>0&&!this.construct&&!this.support){
                         this.layer.fill(mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[0],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[1],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[2],this.fade*this.infoAnim.description)
                     }else{
@@ -9886,9 +9897,6 @@ class combatant{
                 this.deTarget()
                 this.battle.tileManager.activate()
                 this.battle.updateTargetting()
-                if(this.battle.modded(114)){
-                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Soul',types.combatant),this.goal.anim.direction)
-                }
                 switch(this.name){
                     case 'Medic':
                         for(let a=0,la=this.battle.players;a<la;a++){
@@ -9904,6 +9912,15 @@ class combatant{
                 }
                 if(this.ally>=0){
                     this.battle.combatantManager.purgeAlly(this.ally,this.type)
+                }else{
+                    if(this.battle.modded(114)){
+                        this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Soul',types.combatant),this.goal.anim.direction)
+                    }
+                    if(this.battle.modded(181)){
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            this.battle.loseCurrency(200,a)
+                        }
+                    }
                 }
             }
         }else{
@@ -9930,8 +9947,9 @@ class combatant{
                     this.battle.clearReinforce()
                 }
                 if(this.status.main[42]>0){
-                    this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].active=true
-                    this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].activate([0,[
+                    let player=this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players?this.battle.turn.main:floor(random(0,this.battle.players))
+                    this.battle.overlayManager.overlays[25][player].active=true
+                    this.battle.overlayManager.overlays[25][player].activate([0,[
                             {type:0,value:[this.status.main[42]]}]])
                 }
                 if(this.status.main[80]>0){

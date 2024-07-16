@@ -1,6 +1,7 @@
 class relic{
-    constructor(layer,player,x,y,type,size){
+    constructor(layer,battle,player,x,y,type,size){
         this.layer=layer
+        this.battle=battle
         this.player=player
         this.position={x:x,y:y}
         this.type=type
@@ -2031,7 +2032,7 @@ class relic{
                     displaySymbol(this.layer,8,0,10,0,0.5,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('2',8,0)
+                    this.layer.text('1',8,0)
                 break
                 case 'Innate Attack':
                     displaySymbol(this.layer,-6,0,8,0,1.2,this.fade)
@@ -2571,7 +2572,7 @@ class relic{
     }
     update(up,total,inputs,position=this.position,overlayed=true){
         this.fade=smoothAnim(this.fade,up&&!this.deFade||this.type==0&&total>0,0,1,5)
-        this.infoFade=smoothAnim(this.infoFade,up&&dist(inputs.rel.x,inputs.rel.y,position.x,position.y)<20*this.size&&this.type!=0&&overlayed,0,1,5)
+        this.infoFade=smoothAnim(this.infoFade,up&&this.battle.encounter.tooltip==0&&dist(inputs.rel.x,inputs.rel.y,position.x,position.y)<20*this.size&&this.type!=0&&overlayed,0,1,5)
         this.anim.active=smoothAnim(this.anim.active,this.active,0,1,5)
     }
     onClick(mouse,battle){

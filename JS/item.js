@@ -1,6 +1,7 @@
 class item{
-    constructor(layer,player,x,y,altX,altY,type,size){
+    constructor(layer,battle,player,x,y,altX,altY,type,size){
         this.layer=layer
+        this.battle=battle
         this.player=player
         this.position={x:x,y:y}
         this.altPosition={x:altX,y:altY}
@@ -37,6 +38,10 @@ class item{
                 this.layer.ellipse(0,0,36)
                 this.layer.fill(200,this.fade)
                 this.layer.ellipse(0,0,33)
+            }
+            if(this.player==-1){
+                this.layer.fill(150,this.fade)
+                this.layer.rect(0,0,2,40)
             }
             switch(this.name){
                 case '':
@@ -809,6 +814,6 @@ class item{
     }
     update(up,total,inputs,alt){
         this.fade=smoothAnim(this.fade,up&&!this.deFade||this.type==0&&total>0,0,1,5)
-        this.infoFade=smoothAnim(this.infoFade,up&&dist(inputs.rel.x,inputs.rel.y,alt?this.altPosition.x:this.position.x,alt?this.altPosition.y:this.position.y)<20*this.size&&this.type!=0,0,1,5)
+        this.infoFade=smoothAnim(this.infoFade,up&&this.battle.encounter.tooltip==0&&dist(inputs.rel.x,inputs.rel.y,alt?this.altPosition.x:this.position.x,alt?this.altPosition.y:this.position.y)<20*this.size&&this.type!=0,0,1,5)
     }
 }

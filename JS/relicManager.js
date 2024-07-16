@@ -69,7 +69,7 @@ class relicManager{
         }
         if(this.battle.tutorialManager.active){
             for(let a=0,la=3;a<la;a++){
-                this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,findInternal('Placeholder',types.relic),2))
+                this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,findInternal('Placeholder',types.relic),2))
             }
         }else{
             let relics=copyArrayStack(this.listing.relic)
@@ -77,10 +77,10 @@ class relicManager{
             for(let a=0,la=this.active[109]>0?5:3;a<la;a++){
                 let rarity=possible[floor(random(0,possible.length))]
                 if(relics[rarity].length==0){
-                    this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,findName('Menger Square',types.relic),2))
+                    this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,findName('Menger Square',types.relic),2))
                 }else{
                     let index=floor(random(0,relics[rarity].length))
-                    this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,relics[rarity][index],2))
+                    this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,relics[rarity][index],2))
                     relics[rarity].splice(index,1)
                 }
             }
@@ -93,14 +93,14 @@ class relicManager{
         }
         if(this.battle.tutorialManager.active){
             for(let a=0,la=3;a<la;a++){
-                this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,findInternal('Placeholder',types.relic),2))
+                this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,findInternal('Placeholder',types.relic),2))
             }
         }else{
             let relics=copyArrayStack(this.listing.relic)
             for(let a=0,la=3;a<la;a++){
                 let rarity=4
                 let index=floor(random(0,relics[rarity].length))
-                this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2+50-la*50+a*100,this.layer.height/2-45,relics[rarity][index],2))
+                this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2+50-la*50+a*100,this.layer.height/2-45,relics[rarity][index],2))
                 relics[rarity].splice(index,1)
             }
         }
@@ -128,9 +128,9 @@ class relicManager{
         }
         if(!stop){
             if(this.battle.players==2){
-                this.relics.push(new relic(this.layer,player,this.layer.width*player+(25+(this.position[player]%8)*50)*(1-2*player),100+floor(this.position[player]/8)*50,types.relic[type].id,1))
+                this.relics.push(new relic(this.layer,this.battle,player,this.layer.width*player+(25+(this.position[player]%8)*50)*(1-2*player),100+floor(this.position[player]/8)*50,types.relic[type].id,1))
             }else{
-                this.relics.push(new relic(this.layer,player,25+(this.position[player]%18)*50,100+floor(this.position[player]/18)*50,types.relic[type].id,1))
+                this.relics.push(new relic(this.layer,this.battle,player,25+(this.position[player]%18)*50,100+floor(this.position[player]/18)*50,types.relic[type].id,1))
             }
             this.position[player]++
         }
@@ -1651,6 +1651,9 @@ class relicManager{
                             if(this.active[325][a+1]>0){
                                 this.getPlayer(a).gainMaxHP(2*this.active[325][a+1])
                             }
+                            if(this.battle.modded(183)){
+                                this.getPlayer(a).loseHealth(10)
+                            }
                         break
                         case 4://shop
                             if(this.active[91][a+1]>0){
@@ -1670,6 +1673,9 @@ class relicManager{
                             }
                             if(this.active[326][a+1]>0){
                                 this.getPlayer(a).gainMaxHP(2*this.active[326][a+1])
+                            }
+                            if(this.battle.modded(184)){
+                                this.getPlayer(a).loseHealth(10)
                             }
                         break
                     }
@@ -1854,57 +1860,18 @@ class relicManager{
             break
         }
     }
-    callInput(type,a){
+    callInput(type,args){
         switch(type){
             case 0:
-                this.displayRelics[a].deFade=true
-                if(this.battle.players==1){
-                    this.addRelic(this.displayRelics[a].type,0)
-                    this.complete[0]=true
-                    transition.trigger=true
-                    transition.scene='map'
-                }else if(this.battle.players==2){
-                    if(inputs.rel.x<this.displayRelics[a].position.x||this.complete[1]){
-                        this.addRelic(this.displayRelics[a].type,0)
-                        this.complete[0]=true
-                        if(this.complete[1]){
-                            transition.trigger=true
-                            transition.scene='map'
-                        }
-                    }else if(inputs.rel.x>this.displayRelics[a].position.x||this.complete[0]){
-                        this.addRelic(this.displayRelics[a].type,1)
-                        this.complete[1]=true
-                        if(this.complete[0]){
-                            transition.trigger=true
-                            transition.scene='map'
-                        }
-                    }
-                }
-            break
-            case 1:
-                this.displayRelics[a].deFade=true
-                if(this.battle.players==1){
-                    this.addRelic(this.displayRelics[a].type,0)
-                    this.complete[0]=true
-                    transition.trigger=true
-                    this.battle.nextWorld()
-                    transition.scene='map'
-                }else if(this.battle.players==2){
-                    if(inputs.rel.x<this.displayRelics[a].position.x){
-                        this.addRelic(this.displayRelics[a].type,0)
-                        this.complete[0]=true
-                        if(this.complete[1]){
-                            transition.trigger=true
+                if(!this.complete[args[1]]){
+                    this.displayRelics[args[0]].deFade=true
+                    this.addRelic(this.displayRelics[args[0]].type,args[1])
+                    this.complete[args[1]]=true
+                    if(this.battle.players==1&&this.complete[0]||this.battle.players==2&&this.complete[0]&&this.complete[1]){
+                        transition.trigger=true
+                        transition.scene='map'
+                        if(args[2]){
                             this.battle.nextWorld()
-                            transition.scene='map'
-                        }
-                    }else if(inputs.rel.x>this.displayRelics[a].position.x){
-                        this.addRelic(this.displayRelics[a].type,1)
-                        this.complete[1]=true
-                        if(this.complete[0]){
-                            transition.trigger=true
-                            this.battle.nextWorld()
-                            transition.scene='map'
                         }
                     }
                 }
@@ -1959,8 +1926,8 @@ class relicManager{
             break
             case 'stash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
-                    if(dist(inputs.rel.x,inputs.rel.y,this.displayRelics[a].position.x,this.displayRelics[a].position.y)<20*this.displayRelics[a].size&&!this.displayRelics[a].deFade&&(this.battle.players==1&&!this.complete[0]||this.battle.players==2&&(inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||inputs.rel.x>this.displayRelics[a].position.x&&!this.complete[1]))){
-                        this.callInput(0,a)
+                    if(dist(inputs.rel.x,inputs.rel.y,this.displayRelics[a].position.x,this.displayRelics[a].position.y)<20*this.displayRelics[a].size&&!this.displayRelics[a].deFade){
+                        this.callInput(0,[a,this.battle.players==1?0:inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||this.complete[1]?0:1,false])
                     }
                 }
                 if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2,this.layer.height/2+40+this.displayRelics.length*50)<30){
@@ -1970,8 +1937,8 @@ class relicManager{
             break
             case 'bossstash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
-                    if(dist(inputs.rel.x,inputs.rel.y,this.displayRelics[a].position.x,this.displayRelics[a].position.y)<20*this.displayRelics[a].size&&!this.displayRelics[a].deFade&&(this.battle.players==1&&!this.complete[0]||this.battle.players==2&&(inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||inputs.rel.x>this.displayRelics[a].position.x&&!this.complete[1]))){
-                        this.callInput(1,a)
+                    if(dist(inputs.rel.x,inputs.rel.y,this.displayRelics[a].position.x,this.displayRelics[a].position.y)<20*this.displayRelics[a].size&&!this.displayRelics[a].deFade){
+                        this.callInput(0,[a,this.battle.players==1?0:inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||this.complete[1]?0:1,true])
                     }
                 }
                 if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2,this.layer.height/2+45)<30){
@@ -2010,8 +1977,8 @@ class relicManager{
             break
             case 'stash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
-                    if((int(key)+9)%10==a&&!this.displayRelics[a].deFade&&(this.battle.players==1&&!this.complete[0]||this.battle.players==2&&(inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||inputs.rel.x>this.displayRelics[a].position.x&&!this.complete[1]))){
-                        this.callInput(0,a)
+                    if((int(key)+9)%10==a&&!this.displayRelics[a].deFade){
+                        this.callInput(0,[a,this.complete[0]?1:0,false])
                     }
                 }
                 if(code==ENTER){
@@ -2021,8 +1988,8 @@ class relicManager{
             break
             case 'bossstash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
-                    if((int(key)+9)%10==a&&!this.displayRelics[a].deFade&&(this.battle.players==1&&!this.complete[0]||this.battle.players==2&&(inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||inputs.rel.x>this.displayRelics[a].position.x&&!this.complete[1]))){
-                        this.callInput(1,a)
+                    if((int(key)+9)%10==a&&!this.displayRelics[a].deFade){
+                        this.callInput(0,[a,this.complete[0]?1:0,true])
                     }
                 }
                 if(code==ENTER){

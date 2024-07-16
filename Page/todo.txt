@@ -1,92 +1,3 @@
-
-add new bonus mods:[
-    bowler duck
-    management light infantry
-    rebel negotiator
-    gangster assassin - make a random card cost 99 energy
-    ducky donka
-    ducky mcduff
-    prison informant
-]
-
-
-bonus roll + d20 caps
-
-diffraction - double upgrade the card
-
-upgrading "expanded" card resets it
-and show the updated card like when upgrading
-expand attacks shows cards in alphabetical order
-
-triangulate doesn't work
-
-don't forget to remove the extra ? spaces
-
-item and relic tooltips appear below cards in the shop
-
-bolts don't bolt
-
-orchis bad formatting
-
-gated temple spawn barrier is wrong
-
-item shop items don't have 2 player bar
-event is busted
-
-can't move in perpetuity
-
-nerf orchis
-
-shizuha doesn't give you anything
-
-fairy of spring card costs 1 again when upgraded
-
-clearing only 1 of the reward prompts on 2 player removes character statuses
-
-failsafe - start of turn reset hand so cards can be selected
-niche bug with sunny
-
-discarded ally cards reset their cost
-
-flower pot doesn't spawn a plant tile
-
-no items from supply chain
-
-roundhouse kick doesn't update targetting
-
-ammo box doesn't exist
-
-cliffs -2 cards bugged
-
-pep talk doesn't work
-
-ran scheming fox doesn't work
-and the cards don't look like they cost 0
-
-test using moving fortress to bonk ducks
-
-check vent steam
-
-update the dictionary with node
-
-nobody got 100 from the duck when he died last
-
-check rebuilding the antizone
-
-check harvest basket overall
-
-stat page didn't spawn
-
-damage taken unblocked and blocked don't math
-
-change enemy ai to be less exploitable
-
-
-
-
-
-
-
 LISTING GROUP 45
 
 
@@ -103,7 +14,7 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 [pinpoint]
 
-[laevateinn]
+[]
 
 
 
@@ -231,6 +142,15 @@ sagacious spirit - permanent intangible, lose 1 energy per 5 cards played
 
 chip boss needs another attack
 sukuna boss also needs to get 2 attacks and setup code with archivist
+
+new relics:
+
+B laevateinn - gain 1 base energy but you start with 2 vulnerable and vulnerable is worse for you
+S 5d multiverse time travel - you can go backwards on the map, 3 updatePassive
+B the solo - gain 1 base energy, you can never have duplicate NON-BASIC cards
+C jankman - draw 2 cards when you play a tarot or spectral card
+C gros michel - like tauball
+
 
 
 

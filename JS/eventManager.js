@@ -115,7 +115,7 @@ class eventManager{
                 !(this.listing.event[a]==127&&this.battle.currency.money[this.player]<200)&&
                 !(this.listing.event[a]==128&&this.battle.currency.money[this.player]<20)&&
                 !(this.listing.event[a]==129&&(userCombatant.life<9||userCombatant.life<13))&&
-                !(this.listing.event[a]==130&&(userCombatant.life<15||userCombatant.life<11))&&
+                !(this.listing.event[a]==130&&userCombatant.life<33)&&
                 !(this.listing.event[a]==131&&userCombatant.life<28)&&
                 !(this.listing.event[a]==132&&this.battle.currency.money[this.player]<100)&&
                 !(this.listing.event[a]==134&&this.battle.nodeManager.world!=2)&&
@@ -275,10 +275,8 @@ class eventManager{
                         if(this.page==1&&a==0){
                             this.battle.relicManager.loseRandom(this.player)
                         }else if(this.page==2&&a==0){
-                            for(let a=0;a<2;a++){
-                                let index=floor(random(0,this.battle.cardManagers[this.player].listing.card[0][3].length))
-                                this.battle.cardManagers[this.player].hand.add(this.battle.cardManagers[this.player].listing.card[0][3][index],0,0)
-                            }
+                            this.battle.cardManagers[this.player].randomEffect(0,21,[])
+                            this.battle.cardManagers[this.player].randomEffect(0,21,[])
                         }else if(this.page==3&&a==0){
                             this.harm(userCombatant,13)
                         }

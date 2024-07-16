@@ -26,7 +26,7 @@ class purchase{
                 this.card.edition=this.battle.relicManager.hasRelic(213,player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:this.battle.relicManager.hasRelic(322,this.player)&&roll>=12&&roll<=11+this.battle.relicManager.active[322][this.player+1]*12?8:0
             break
             case 3:
-                this.relic=new relic(this.layer,this.player,0,0,this.args[0],1.5)
+                this.relic=new relic(this.layer,this.battle,this.player,0,0,this.args[0],1.5)
                 this.relic.fade=1
             break
             case 4:
@@ -42,7 +42,7 @@ class purchase{
                 this.card.position={x:80,y:0}
             break
             case 6:
-                this.item=new item(this.layer,this.player,0,0,0,0,this.args[0],1.5)
+                this.item=new item(this.layer,this.battle,this.player,0,0,0,0,this.args[0],1.5)
                 this.item.fade=1
             break
         }
@@ -79,7 +79,7 @@ class purchase{
                 purchaser=this.player
             }
             let cancel=false
-            if(this.type==6&&!this.battle.itemManager.hasEmpty(this.player)){
+            if(this.type==6&&!this.battle.itemManager.hasEmpty(purchaser)){
                 cancel=true
             }
             if(!cancel){
@@ -413,6 +413,8 @@ class purchase{
             }
         }
         this.layer.pop()
+    }
+    displayInfo(){
         switch(this.type){
             case 3:
                 this.relic.displayInfo()
@@ -455,10 +457,10 @@ class purchase{
         )
         switch(this.type){
             case 3:
-                this.relic.update(true,0,{rel:{x:inputs.rel.x-this.position.x,y:inputs.rel.y-this.position.y}},undefined,!this.battle.overlayManager.anyActive)
+                this.relic.update(true,0,this.usable?{rel:{x:inputs.rel.x-this.position.x,y:inputs.rel.y-this.position.y}}:{rel:{x:-100,y:-100}},undefined,!this.battle.overlayManager.anyActive)
             break
             case 6:
-                this.item.update(true,0,{rel:{x:inputs.rel.x-this.position.x,y:inputs.rel.y-this.position.y}},false)
+                this.item.update(true,0,this.usable?{rel:{x:inputs.rel.x-this.position.x,y:inputs.rel.y-this.position.y}}:{rel:{x:-100,y:-100}},false)
             break
         }
     }

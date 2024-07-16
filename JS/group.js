@@ -54,7 +54,7 @@ class group{
         ]
 
         this.reset()
-        
+        this.cancel()
     }
     initialCards(type,player){
         let level=variants.cursed?1:0
@@ -199,7 +199,6 @@ class group{
                 this.basicChange=[0,0]
             break
             case 2:
-                this.cancel()
                 this.anim=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 this.lastTurnPlayed=copyArray(this.turnPlayed)
                 this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
@@ -230,7 +229,7 @@ class group{
             types.card[type].levels[level].attack!=1612&&
             types.card[type].levels[level].attack!=1881
         ){
-            this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),color,game.id))
+            this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
             if(this.id==0){
                 this.cards[this.cards.length-1].nonCalc=true
                 this.added()
@@ -239,7 +238,7 @@ class group{
     }
     addInitialBypass(type,level,color){
         game.id++
-        this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),color,game.id))
+        this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
         if(this.id==0){
             this.cards[this.cards.length-1].nonCalc=true
             this.added()
@@ -358,6 +357,12 @@ class group{
                     break
                     case 10:
                         this.cards[this.cards.length-1].limit=args[ticker++]
+                    break
+                    case 11:
+                        for(let a=0,la=args[ticker].length;a<la;a++){
+                            this.cards[this.cards.length-1].additionalSpec.push(args[ticker][a])
+                        }
+                        ticker++
                     break
                 }
             }
@@ -519,14 +524,10 @@ class group{
         this.battle.relicManager.activate(16,[this.id,this.player])
     }
     selfLevel(type,level){
-        if(this.battle.initialized){
-            if(this.battle.combatantManager.combatants.length>0){
-                let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-                if(userCombatant.status.main[161]>0){
-                    return min(level+userCombatant.status.main[161],types.card[type].levels.length-1)
-                }else{
-                    return level
-                }
+        if(this.battle.initialized&&this.battle.combatantManager.combatants.length>this.player){
+            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+            if(userCombatant.status.main[161]>0){
+                return min(level+userCombatant.status.main[161],types.card[type].levels.length-1)
             }else{
                 return level
             }
@@ -3170,6 +3171,20 @@ class group{
                             this.cards[a].display(this.id==0)
                         }
                     break
+                    case 9:
+                        for(let a=0,la=this.cards.length;a<la;a++){
+                            if(this.cards[a].class==args[2]){
+                                this.cards[a].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
+                                this.cards[a].fade=1
+                                this.cards[a].relIndex=position
+                                this.cards[a].position.x=this.layer.width/2-200+position%5*100
+                                this.cards[a].position.y=this.layer.height/2-130+floor(position/5)%3*130
+                                this.cards[a].anim.afford=1
+                                this.cards[a].display(this.id==0)
+                                position++
+                            }
+                        }
+                    break
                     default:
                         for(let a=0,la=this.cards.length;a<la;a++){
                             this.cards[a].deSize=!(a>=args[1]*15&&a<args[1]*15+15)
@@ -4124,6 +4139,7 @@ class group{
                             }else if(this.cards[a].discardEffect.includes(13)){
                                 this.cards[a].spec.push(55)
                                 this.cards[a].additionalSpec.push(55)
+                                this.cards[a].additionalSpec.push(-2)
                                 this.cards[a].usable=true
                                 this.cards[a].edited.cost-=this.cards[a].cost
                                 this.cards[a].edited.costComplete=true

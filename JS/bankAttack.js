@@ -1034,6 +1034,9 @@ attack.prototype.update=function(){
                 }
                 if(this.timer>=26){
                     this.remove=true
+                    if(this.type==1001){
+                        this.battle.updateTargetting()
+                    }
                 }
             }else if(this.procedure[0]==1){
                 if(this.timer>10&&this.timer<=18){
@@ -1051,6 +1054,9 @@ attack.prototype.update=function(){
                     }
                 }else if(this.timer>=26){
                     this.remove=true
+                    if(this.type==1001){
+                        this.battle.updateTargetting()
+                    }
                 }
             }else{
                 if(this.timer>10){
@@ -7747,9 +7753,7 @@ attack.prototype.update=function(){
                 this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                 this.battle.activate(1,this.userCombatant.id)
             }
-            if(this.timer>=max(15*this.targetDistance,16)){
-                this.remove=true
-            }
+            let allDone3294=true
             for(let a=0,la=this.targetCombatant.length;a<la;a++){
                 if(this.procedure[0][a]==2){
                     if(this.procedure[1][a]>10&&this.procedure[1][a]<=18){
@@ -7762,6 +7766,7 @@ attack.prototype.update=function(){
                     if(this.procedure[1][a]>=26){
                         this.procedure[0][a]=3
                     }
+                    allDone3294=false
                 }else if(this.procedure[0][a]==1){
                     if(this.procedure[1][a]>10&&this.procedure[1][a]<=18){
                         this.targetCombatant[a].moveTile(this.direction,this.distance/10)
@@ -7774,11 +7779,12 @@ attack.prototype.update=function(){
                         this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x+this.offset[0],this.targetCombatant[a].tilePosition.y+this.offset[1])
                         if(index>=0){
-                            this.battle.combatnatManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                            this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                         }
                     }else if(this.procedure[1][a]>=26){
                         this.procedure[0][a]=3
                     }
+                    allDone3294=false
                 }else if(this.procedure[0][a]==0){
                     if(this.procedure[1][a]>10){
                         this.targetCombatant[a].moveTile(this.direction,this.distance/10)
@@ -7789,8 +7795,12 @@ attack.prototype.update=function(){
                         this.battle.activate(1,this.targetCombatant[a].id)
                         this.procedure[0][a]=-1
                     }
+                    allDone3294=false
                 }
                 this.procedure[1][a]++
+            }
+            if(this.timer>=15*this.targetDistance&&allDone3294){
+                this.remove=true
             }
         break
         case 3313: case 3391:

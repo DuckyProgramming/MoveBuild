@@ -1107,6 +1107,9 @@ class turn{
                         }
                     break
                     case 2: case 4:
+                        if(this.action==4){
+                            this.battle.combatantManager.setSingleTarget(this.userCombatant.id,this.effect[0])
+                        }
                         if(this.userCombatant.getStatus('Chained')>0){
                             this.userCombatant.status.main[findList('Chained',this.userCombatant.status.name)]--
                         }else if(this.userCombatant.getStatus('Confusion')>0){
@@ -1127,10 +1130,10 @@ class turn{
                                     if(!(this.battle.tileManager.tiles[target].tilePosition.x==this.targetCombatant.tilePosition.x&&this.battle.tileManager.tiles[target].tilePosition.y==this.targetCombatant.tilePosition.y)&&this.battle.tileManager.tiles[target].occupied>0){
                                         this.userCombatant.goal.anim.direction=remember
                                     }else{
-                                        this.battle.activateCombatant(2,this.type==4?this.userCombatant.id:this.userCombatant.target)
+                                        this.battle.activateCombatant(2,this.userCombatant.target)
                                     }
                                 }else{
-                                    this.battle.activateCombatant(2,this.type==4?this.userCombatant.id:this.userCombatant.target)
+                                    this.battle.activateCombatant(2,this.userCombatant.target)
                                 }
                                 if(this.userCombatant.getStatus('Mixed')>0){
                                     this.userCombatant.status.main[findList('Mixed',this.userCombatant.status.name)]--

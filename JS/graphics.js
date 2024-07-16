@@ -4496,7 +4496,7 @@ function setupGeneralGraphics(){
 	graphics.minor[25].endShape()
 	graphics.minor[26].fill(0,100,0)
 	graphics.minor[26].ellipse(40,40,54,54)
-	for(let a=0,la=40;a<la;a++){
+	for(let a=0,la=60;a<la;a++){
 		b=360*a/la
 		c=sqrt(random(0,28**2))
 		graphics.minor[26].fill(random(0,50),100+random(0,100),random(0,50))
@@ -5250,20 +5250,8 @@ function setupBackground(type,layer){
 			layer.text('BACK',layer.width/2-600,layer.height*0.4+100)
 			layer.text('CUSTOM ULTRAPRISM',layer.width/2-600,layer.height*0.6)
 			layer.text('RANDOM SETTINGS',layer.width/2-600,layer.height*0.6+85)
-			let names=[
-				'MTG MANA','BONUS MODS','CHOOSE COMBATS',
-				'-1 DRAW','CYCLIC DRAW','BALANCED DRAW',
-				'BLACKJACK DRAW','CARD SLOT DRAW','POLAR MODE',
-				'CHOOSE OR LOSE DRAW','COMPRESSION DRAW','FIVE-CARD HOLD',
-				'CARD TECHIFY MODE','EXPECT THE UNEXPECTED','CURSED MODE',
-				'20% HP','50% HP','TERMINAL',
-				'SHORT MAP','SHORTER MAP','STRAIGHT MAP',
-				'PRISM','ULTRAPRISM','JUNKYARD',
-				'ALL VANISHING','SILENT CARDS','TRANSCEND MODE',
-				'ENEMY INITIATIVE','COLORSHIFT','OVERHEAT'
-			]
-			for(let a=0,la=names.length;a<la;a++){
-				layer.text(names[a],layer.width/2-192.5+a%3*380,layer.height*0.5-floor(la/3)*45+45+floor(a/3)*90)
+			for(let a=0,la=variants.names.length;a<la;a++){
+				layer.text(variants.names[a].toUpperCase(),layer.width/2-192.5+a%3*380,layer.height*0.5-floor(la/3)*45+45+floor(a/3)*90)
 			}
 		break
 		case 12:

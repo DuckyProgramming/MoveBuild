@@ -75,10 +75,10 @@ class turnManager{
         this.turns.push(new turn(1,this.battle,10,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
         this.turns[this.turns.length-1].procedure[0]=directionCombatant(this.battle.combatantManager.combatants[enemy],this.battle.combatantManager.combatants[user])
     }
-    loadEnemyRotate(enemy){
+    loadEnemyRotate(enemy,priority){
         this.loads++
         this.auxiliary=true
-        this.turns.push(new turn(4,this.battle,0,0,enemy))
+        this.turns.push(new turn(4,this.battle,0,[priority],enemy))
     }
     loadEnemyMoveBack(enemy){
         this.loads++
@@ -87,10 +87,10 @@ class turnManager{
             this.turnsBack.push(new turn(1,this.battle,this.battle.combatantManager.combatants[enemy].move.type,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
         }
     }
-    loadEnemyRotateBack(enemy){
+    loadEnemyRotateBack(enemy,priority){
         this.loads++
         this.auxiliary=true
-        this.turnsBack.push(new turn(4,this.battle,0,0,enemy))
+        this.turnsBack.push(new turn(4,this.battle,0,[priority],enemy))
     }
     loadEnemyTurns(){
         this.auxiliary=false

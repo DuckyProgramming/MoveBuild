@@ -62,7 +62,7 @@ types={
         {name:'Looter',life:28,behavior:7,spec:[0],move:{type:0,speed:1},attack:[{type:68,effect:[]},{type:4,effect:[6]},{type:67,effect:[4,25]},{type:67,effect:[8,15]}],description:`Looting people instead`},
         {name:'Mugger',life:42,behavior:7,spec:[0],move:{type:0,speed:1},attack:[{type:68,effect:[]},{type:4,effect:[6]},{type:67,effect:[9,60]},{type:69,effect:[5]}],description:`Got a little extra violent`},
         {name:'Little Guy',life:15,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:4,effect:[6]}],description:`Not really a threat`},
-        {name:'Blue Duck',life:30,behavior:2,spec:[1],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:5,effect:[2,'Dazed']}],description:`Lost a flying race with you in 2016`},
+        {name:'Blue Duck',life:30,behavior:2,spec:[1],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Lost a flying race with you in 2016`},
         {name:'Management Prototype',life:90,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:116,effect:[8]},{type:31,effect:[4]},{type:4,effect:[6]}],description:`Doesn't work as intended`},
         {name:'Management Robot',life:90,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Mass produced soldier`},
         {name:'Management Soldier',life:135,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:14,effect:[8,1,'Electrocuted']},{type:60,effect:[12,2,'Dazed']},{type:10,effect:[6]}],description:`Wishes he was paid`},
@@ -8728,11 +8728,17 @@ When it reaches 0, card is exhausted and removed from deck (permanently).`,
         },{name:'Ethereal',desc:
 `A card with ethereal will exhaust itself if it is left in the hand and discarded at the end of the turn.`,
         },{name:'Strength',desc:
-`Deal 20% more damage for every positive stack of strength and 10% less per negative stack.
-Does not decay `,
+`Deal 20% more damage for every positive stack and 10% less per negative stack.
+Does not decrement.`,
         },{name:'Dexterity',desc:
-`Add 20% more block for every positive stack of strength and 10% less per negative stack.
-Does not decay `,
+`Add 20% more block for every positive stack and 10% less per negative stack.
+Does not decrement.`,
+        },{name:'Focus',desc:
+`Orbs are 20% more effective for every positive stack and 10% less per negative stack.
+Does not decrement.`,
+        },{name:'Node',desc:
+`Doubles damage taken from orbs.
+Decrements by 1 each turn.`,
         },{name:'Damage',desc:
 `Reduces enemy health. Deducts block before health.
 A wide variety of things deal damage or edit its value.`,
@@ -9273,6 +9279,14 @@ Stacks degrade by 1 each turn.`,
         {name:'Keystone',desc:'Confuse a Random Card Each Turn'},
         {name:'Golden Duck',desc:'Only Earn Currency From Battles if They End Before or on Turn 5'},
         {name:'Management Shotgunner',desc:'Enemies With a N in Their Name Get 3 Strength'},
+        {name:'Bowler Duck',desc:'All Enemies Add 2 Block When They Take Damage'},
+        {name:'Management Light Infantry',desc:'Enemies With an L in Their Name Get 3 Strength'},//180
+        {name:'Rebel Negotiator',desc:'Lose 200 Currency When a Random Ally Dies'},
+        {name:'Gangster Assassin',desc:'A Random Card in Deck Costs 100 More'},
+        {name:'Ducky Donka',desc:'Lose 10 Health When Entering a Rest Site'},
+        {name:'Ducky McDuff',desc:'Lose 10 Health When Entering a Shop'},
+        {name:'Prison Informant',desc:'When an Enemy Hurts Another Enemy, Both Gain 2 Strength'},
+
     ],deckmode:[
         {name:'Standard Deck'},
         {name:'Draft Deck'},
@@ -9302,6 +9316,30 @@ variants={
     initiative:false,colorshift:false,overheat:false,
 
     speedmove:false,speedcard:false,nobasicanim:false,deckbuild:false,
+
+    map:[
+        'mtg','mod','selectCombat',
+        'lowDraw','cyclicDraw','balance',
+        'blackjack','witch','polar',
+        'chooselose','compress','cardHold',
+        'inventor','unexpected','cursed',
+        'lowhealth','midhealth','terminal',
+        'shortmap','shortermap','singlemap',
+        'prism','ultraprism','junk',
+        'vanish','blind','transcend',
+        'initiative','colorshift','overheat',
+    ],names:[
+        'MTG Mana','Bonus Mods','Choose Combats',
+        '-1 Draw','Cyclic Draw','Balanced Draw',
+        'Blackjack Draw','Card Slot Draw','Polar',
+        'Choose or Lose','Compression Draw','Five-Card Hold',
+        'Card Techify','Expect the Unexpected','Cursed Mode',
+        '20% HP','50% HP','Terminal',
+        'Short Map','Shorter Map','Straight Map',
+        'Prism','Ultraprism','Junkyard',
+        'All Vanishing','Silent Cards','Transcend',
+        'Enemy Initiative','Colorshift','Overheat'
+    ]
 }
 constants={collisionDamage:4,
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],

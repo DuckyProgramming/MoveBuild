@@ -76,11 +76,11 @@ class battle{
         this.encounter={class:0,world:0,name:'',custom:[0,0]}
         this.currency={money:[],ss:[]}
         this.energy={main:[],gen:[],base:[],temp:[]}
-        this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
+        this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],barrier:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
         this.lastEncounter=types.encounter[0]
         
         this.turn={main:0,total:0,time:0,accelerate:0,endReady:false,active:false}
-        this.counter={enemy:0,killed:0}
+        this.counter={enemy:0,killed:0,tooltip:0}
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[]}
         this.first=true
@@ -143,6 +143,7 @@ class battle{
             this.stats.earned.push(0)
             this.stats.damage.push(0)
             this.stats.block.push(0)
+            this.stats.barrier.push(0)
             this.stats.move.push(0)
             this.stats.drawn.push(0)
             this.stats.played.push([0,0,0,0,0,0,0,0,0,0,0,0])
@@ -601,8 +602,6 @@ class battle{
     newTurn(){
         this.turn.active=false
         this.subTurn()
-        let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
-        combatant.tick()
         this.turn.active=true
         this.cardManagers[this.turn.main].allEffect(3,39)
         if(variants.cyclicDraw||variants.blackjack){
@@ -662,7 +661,6 @@ class battle{
                 this.newTurn()
             }
         }
-        this.attackManager.clear()
         this.updateTargetting()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.players){
             this.endTurn()
@@ -702,6 +700,8 @@ class battle{
         }
     }
     subTurn(){
+        let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
+        combatant.tick()
         if(!this.tutorialManager.active){
             if(this.turn.total==1){
                 if(!variants.initiative){
@@ -739,6 +739,7 @@ class battle{
                 this.cardManagers[this.turn.main].allEffect(3,42)
             }
         }
+        this.attackManager.clear()
     }
     startTurn(){
         this.turn.active=false
@@ -1524,6 +1525,7 @@ class battle{
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
             break
             case 'battle':
+                this.encounter.tooltip=0
                 this.layer.background(110,115,120)
                 for(let a=0,la=this.players;a<la;a++){
                     this.layer.fill(this.colorDetail[a].fill)
@@ -2051,20 +2053,8 @@ class battle{
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
             break
             case 'variants':
-                let variantNames=[
-                    'mtg','mod','selectCombat',
-                    'lowDraw','cyclicDraw','balance',
-                    'blackjack','witch','polar',
-                    'chooselose','compress','cardHold',
-                    'inventor','unexpected','cursed',
-                    'lowhealth','midhealth','terminal',
-                    'shortmap','shortermap','singlemap',
-                    'prism','ultraprism','junk',
-                    'vanish','blind','transcend',
-                    'initiative','colorshift','overheat',
-                ]
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
-                    this.menu.anim.variants[a]=smoothAnim(this.menu.anim.variants[a],variants[variantNames[a]],0,1,5)
+                    this.menu.anim.variants[a]=smoothAnim(this.menu.anim.variants[a],variants[variants.map[a]],0,1,5)
                 }
             break
             case 'custom':
@@ -2126,6 +2116,8 @@ class battle{
                     }
                     if(allClosed&&!this.result.defeat&&!transition.trigger){
                         transition.trigger=true
+                        this.combatantManager.clearBlockCombatants()
+                        this.combatantManager.clearStatusCombatants()
                         if(this.encounter.class==2){
                             if(this.nodeManager.world==3){
                                 transition.scene='victory'
@@ -2499,21 +2491,9 @@ class battle{
                 }
             break
             case 'variants':
-                let variantNames=[
-                    'mtg','mod','selectCombat',
-                    'lowDraw','cyclicDraw','balance',
-                    'blackjack','witch','polar',
-                    'chooselose','compress','cardHold',
-                    'inventor','unexpected','cursed',
-                    'lowhealth','midhealth','terminal',
-                    'shortmap','shortermap','singlemap',
-                    'prism','ultraprism','junk',
-                    'vanish','blind','transcend',
-                    'initiative','colorshift','overheat',
-                ]
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-12.5+a%3*190,y:this.layer.height/2-floor(la/3)*22.5+22.5+floor(a/3)*45},width:27.5,height:27.5})){
-                        variants[variantNames[a]]=toggle(variants[variantNames[a]])
+                        variants[variants.map[a]]=toggle(variants[variants.map[a]])
                     }
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-300,y:this.layer.height*0.4},width:62.5,height:62.5})){
@@ -2539,8 +2519,8 @@ class battle{
                         floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
                         floor(random(0,20))==0,floor(random(0,20))==0&&keys[3]<=5,floor(random(0,20))==0
                     ]
-                    for(let a=0,la=variantNames.length;a<la;a++){
-                        variants[variantNames[a]]=subkeys[a]
+                    for(let a=0,la=variants.map.length;a<la;a++){
+                        variants[variants.map[a]]=subkeys[a]
                     }
                 }
             break
@@ -2867,21 +2847,9 @@ class battle{
                 }
             break
             case 'variants':
-                let variantNames=[
-                    'mtg','mod','selectCombat',
-                    'lowDraw','cyclicDraw','balance',
-                    'blackjack','witch','polar',
-                    'chooselose','compress','cardHold',
-                    'inventor','unexpected','cursed',
-                    'lowhealth','midhealth','terminal',
-                    'shortmap','shortermap','singlemap',
-                    'prism','ultraprism','junk',
-                    'vanish','blind','transcend',
-                    'initiative','colorshift','overheat',
-                ]
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(key==inputs.hexadec[a]){
-                        variants[variantNames[a]]=toggle(variants[variantNames[a]])
+                        variants[variants.map[a]]=toggle(variants[variants.map[a]])
                     }
                 }
                 if(code==ENTER){
@@ -2907,8 +2875,8 @@ class battle{
                         floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
                         floor(random(0,20))==0,floor(random(0,20))==0&&keys[3]<=5,floor(random(0,20))==0
                     ]
-                    for(let a=0,la=variantNames.length;a<la;a++){
-                        variants[variantNames[a]]=subkeys[a]
+                    for(let a=0,la=variants.map.length;a<la;a++){
+                        variants[variants.map[a]]=subkeys[a]
                     }
                 }
             break
@@ -2994,7 +2962,7 @@ class battle{
                                 this.cardManagers[this.turn.main].allEffect(2,1)
                             break
                             case 'A':
-                                this.setEnergy(99,0)
+                                this.setEnergy(99,this.turn.main)
                             break
                             case 'Z':
                                 this.endTurn()

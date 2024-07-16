@@ -6079,7 +6079,7 @@ class attack{
                         this.userCombatant.balance*=2
                     break
                     case 454:
-                        this.userCombatant.statusEffect('Counter Block',this.effect[0])
+                        this.userCombatant.statusEffect('Counter Block Combat',this.effect[0])
                     break
                     case 455:
                         this.userCombatant.statusEffect('Heal Gain Max HP',this.effect[0])
@@ -9224,22 +9224,22 @@ class attack{
                     case 170:
                         this.userManager.hand.add(findName('Submachine',types.card),0,this.color)
                         this.userManager.hand.add(findName('Antitank\nRocket',types.card),0,this.color)
-                        this.userManager.hand.add(findName('Ammo\nBox',types.card),0,this.color)
+                        this.userManager.hand.add(findName('Resupply',types.card),0,this.color)
                     break
                     case 171:
                         if(this.userCombatant.luckCheck()){
                             this.userManager.hand.add(findName('Submachine',types.card),1,this.color)
                             this.userManager.hand.add(findName('Antitank\nRocket',types.card),1,this.color)
-                            this.userManager.hand.add(findName('Ammo\nBox',types.card),1,this.color)
+                            this.userManager.hand.add(findName('Resupply',types.card),1,this.color)
                         }else if(this.userCombatant.luckCheckFail()){
                             this.userManager.hand.add(findName('Submachine',types.card),0,this.color)
                             this.userManager.hand.add(findName('Antitank\nRocket',types.card),0,this.color)
-                            this.userManager.hand.add(findName('Ammo\nBox',types.card),0,this.color)
+                            this.userManager.hand.add(findName('Resupply',types.card),0,this.color)
                         }else{
                             this.number=floor(random(0,3))
                             this.userManager.hand.add(findName('Submachine',types.card),this.number==0?1:0,this.color)
                             this.userManager.hand.add(findName('Antitank\nRocket',types.card),this.number==1?1:0,this.color)
-                            this.userManager.hand.add(findName('Ammo\nBox',types.card),this.number==2?1:0,this.color)
+                            this.userManager.hand.add(findName('Resupply',types.card),this.number==2?1:0,this.color)
                         }
                     break
                     case 180:
@@ -9337,16 +9337,16 @@ class attack{
                         if(this.userCombatant.luckCheck()){
                             this.userManager.hand.add(findName('Submachine',types.card),1,this.color)
                             this.userManager.hand.add(findName('Antitank\nRocket',types.card),1,this.color)
-                            this.userManager.hand.add(findName('Ammo\nBox',types.card),1,this.color)
+                            this.userManager.hand.add(findName('Resupply',types.card),1,this.color)
                         }else if(this.userCombatant.luckCheckFail()){
                             this.userManager.hand.add(findName('Submachine',types.card),0,this.color)
                             this.userManager.hand.add(findName('Antitank\nRocket',types.card),0,this.color)
-                            this.userManager.hand.add(findName('Ammo\nBox',types.card),0,this.color)
+                            this.userManager.hand.add(findName('Resupply',types.card),0,this.color)
                         }else{
                             this.number=floor(random(0,3))
                             this.userManager.hand.add(findName('Submachine',types.card),this.number==0?0:1,this.color)
                             this.userManager.hand.add(findName('Antitank\nRocket',types.card),this.number==1?0:1,this.color)
-                            this.userManager.hand.add(findName('Ammo\nBox',types.card),this.number==2?0:1,this.color)
+                            this.userManager.hand.add(findName('Resupply',types.card),this.number==2?0:1,this.color)
                         }
                     break
                     case 659:
@@ -11120,7 +11120,7 @@ class attack{
                         }
                         this.userManager.draw(this.effect[1])
                         let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
-                        if(index>=0&&this.battle.tileManager.tiles[index].type.includes(19)){
+                        if(index>=0){
                             this.battle.tileManager.tiles[index].addType(19)
                         }
                     break
@@ -11201,7 +11201,7 @@ class attack{
                     break
                     case 1858:
                         this.targetCombatant.statusEffect('Freeze',this.effect[0])
-                        this.userManager.hand.allEffectArgs(8,[this.effect[1]])
+                        this.userManager.hand.randomEffect(26,[this.effect[1]])
                     break
                     case 1863:
                         this.targetCombatant.statusEffect('Freeze',this.effect[0])
@@ -12948,6 +12948,9 @@ class attack{
                     case 3318:
                         this.battle.attackManager.endAfter=true
                         this.userCombatant.statusEffect('Temporary Draw',this.effect[0])
+                    break
+                    case 3340:
+                        this.targetCombatant.addBlock(this.effect[0])
                     break
                     case 3361:
                         for(let a=0,la=this.effect[0];a<la;a++){

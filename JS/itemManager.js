@@ -23,13 +23,13 @@ class itemManager{
         }
         for(let a=0,la=this.battle.players;a<la;a++){
             this.items.push(game.ascend>=11?[
-                new item(this.layer,a,25+(this.layer.width-50)*a,50,100+(this.layer.width-200)*a,25,0,1),
-                new item(this.layer,a,75+(this.layer.width-150)*a,50,150+(this.layer.width-300)*a,25,1,1),
-                new item(this.layer,a,125+(this.layer.width-250)*a,50,200+(this.layer.width-400)*a,25,1,1)]:[
-                new item(this.layer,a,25+(this.layer.width-50)*a,50,100+(this.layer.width-200)*a,25,0,1),
-                new item(this.layer,a,75+(this.layer.width-150)*a,50,150+(this.layer.width-300)*a,25,1,1),
-                new item(this.layer,a,125+(this.layer.width-250)*a,50,200+(this.layer.width-400)*a,25,1,1),
-                new item(this.layer,a,175+(this.layer.width-350)*a,50,250+(this.layer.width-500)*a,25,1,1)])
+                new item(this.layer,this.battle,a,25+(this.layer.width-50)*a,50,100+(this.layer.width-200)*a,25,0,1),
+                new item(this.layer,this.battle,a,75+(this.layer.width-150)*a,50,150+(this.layer.width-300)*a,25,1,1),
+                new item(this.layer,this.battle,a,125+(this.layer.width-250)*a,50,200+(this.layer.width-400)*a,25,1,1)]:[
+                new item(this.layer,this.battle,a,25+(this.layer.width-50)*a,50,100+(this.layer.width-200)*a,25,0,1),
+                new item(this.layer,this.battle,a,75+(this.layer.width-150)*a,50,150+(this.layer.width-300)*a,25,1,1),
+                new item(this.layer,this.battle,a,125+(this.layer.width-250)*a,50,200+(this.layer.width-400)*a,25,1,1),
+                new item(this.layer,this.battle,a,175+(this.layer.width-350)*a,50,250+(this.layer.width-500)*a,25,1,1)])
             this.position.push(game.ascend>=11?-1:0)
             this.up.push(true)
             this.total.push(0)
@@ -653,12 +653,12 @@ class itemManager{
         switch(scene){
             case 'battle': case 'map': case 'event':
                 for(let a=0,la=this.items.length;a<la;a++){
-                    this.items[a].forEach(item=>item.update(this.up[a],la,inputs,false))
+                    this.items[a].forEach(item=>item.update(this.up[a],la,inputs,false,this.battle))
                 }
             break
             case 'shop':
                 for(let a=0,la=this.items.length;a<la;a++){
-                    this.items[a].forEach(item=>item.update(this.up[a],la,inputs,true))
+                    this.items[a].forEach(item=>item.update(this.up[a],la,inputs,true,this.battle))
                 }
             break
         }

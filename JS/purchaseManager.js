@@ -481,6 +481,7 @@ class purchaseManager{
                 this.purchases[a].display()
             }
         }
+        this.purchases.forEach(purchase=>purchase.displayInfo())
     }
     update(){
         this.purchases.forEach(purchase=>purchase.update())
