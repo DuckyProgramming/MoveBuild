@@ -919,6 +919,11 @@ class combatantManager{
                         }
                     }
                 break
+                case 12:
+                    for(let b=0,lb=floor(args.length/2);b<lb;b++){
+                        this.combatants[a].statusEffect(args[b*2],args[b*2+1])
+                    }
+                break
                 
             }
         }
@@ -927,7 +932,9 @@ class combatantManager{
         if(this.combatants.length>0){
             let list=[]
             for(let a=0,la=this.combatants.length;a<la;a++){
-                if(this.combatants[a].team==0&&this.combatants[a].life>0){
+                if(this.combatants[a].team==0&&this.combatants[a].life>0
+                    &&!(effect==4&&this.combatants[a].getStatus('Lose Per Turn')>0)
+                ){
                     list.push(a)
                 }
             }
@@ -945,6 +952,12 @@ class combatantManager{
                     break
                     case 3:
                         this.combatants[index].statusEffect('Protected Invisible',args[0])
+                    break
+                    case 4:
+                        this.combatants[index].statusEffect('Lose Per Turn',args[0])
+                    break
+                    case 5:
+                        this.combatants[index].statusEffect('Lock On',args[0])
                     break
                         
                 }

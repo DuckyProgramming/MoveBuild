@@ -620,7 +620,6 @@ class cardManager{
         this.discard.allClaw(effect)
     }
     turnDraw(turn){
-        this.hand.allEffect(103)
         let tempDrawAmount=this.drawAmount+this.tempDraw-(this.battle.turn.total==1&&(variants.cyclicDraw||game.ascend>=21)?1:0)
         if(turn==1){
             tempDrawAmount-=this.drawInnate()
@@ -707,6 +706,7 @@ class cardManager{
         if(variants.unexpected){
             this.addRandomAbstract(2,0,0,4,0,[],[3])
         }
+        this.hand.allEffect(103)
     }
     subFatigue(name,bypass){
         this.interval++

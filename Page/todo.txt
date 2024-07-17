@@ -48,8 +48,7 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 [forgetful - curse, become frail at end of turn]
 
-add a funny planeswalker from mtg
-NOT HATSUNE MIKU
+[]
 
 [azis must be able to build around fire of ena]
 
@@ -108,6 +107,13 @@ they cost 0
 
 [wish]
 
+
+
+[split card like deliberation]
+
+barter box - remove all items, replace with random other items
+
+[is lira still in a defecit]
 
 
 
@@ -175,7 +181,7 @@ U blossoming chip - gain an additional normal relic after every boss
 
 new variants:
 
-unary - only a choice per battle
+unary - only 1 choice per battle
 chaos - all card effects are randomized
 []
 
@@ -184,9 +190,6 @@ chaos - all card effects are randomized
 []
 
 
-CONSIDER A MAJOR AZIS CHANGE?
-
-s
 
 SUBGROUP 17
 

@@ -804,7 +804,17 @@ class group{
     extremaEffect(effect,extrema){
         switch(extrema){
             case 0: case 1:
-                this.sortCost()
+                this.lastSort=1
+                let costs=[]
+                for(let a=0,la=this.cards.length;a<la;a++){
+                    if(
+                        !costs.includes(this.cards[a].cost)
+                        &&!(effect==1&&(this.cards[a].spec.includes(2)||this.cards[a].retain2))
+                    ){
+                        costs.push(this.cards[a].cost)
+                    }
+                }
+                this.sorted=sortNumbers(costs)
             break
         }
         if((extrema==0||extrema==1)&&this.sorted.length==0){
@@ -813,8 +823,12 @@ class group{
         let possible=[]
         for(let a=0,la=this.cards.length;a<la;a++){
             if(
-                extrema==0&&this.cards[a].cost==this.sorted[0]||
-                extrema==1&&this.cards[a].cost==this.sorted[this.sorted.length-1]
+                (
+                    extrema==0&&this.cards[a].cost==this.sorted[0]||
+                    extrema==1&&this.cards[a].cost==this.sorted[this.sorted.length-1]
+                )
+                &&!(effect==0&&this.cards[a].cost==0)
+                &&!(effect==1&&(this.cards[a].spec.includes(2)||this.cards[a].retain2))
             ){
                 possible.push(a)
             }
@@ -824,6 +838,9 @@ class group{
             switch(effect){
                 case 0:
                     this.cards[index].cost=0
+                break
+                case 1:
+                    this.cards[index].retain2=true
                 break
             }
         }
@@ -1660,6 +1677,12 @@ class group{
                 case 33:
                     this.cards[a].callEndEffect(args[0])
                 break
+                case 34:
+                    if(this.cards[a].class==args[0]){
+                        this.cards[a].deSize=true
+                        this.cards[a].discardEffect.push(0)
+                    }
+                break
             }
         }
         if(effect==9){
@@ -1711,6 +1734,7 @@ class group{
                 &&!(effect==53&&(this.cards[a].spec.includes(48)||this.cards[a].attack==80))
                 &&!(effect==54&&(this.cards[a].level>=2||!this.cards[a].basic))
                 &&!(effect==55&&!this.cards[a].colorless())
+                &&!(effect==57&&(this.cards[a].class==args[0]&&args[0]!=0||this.cards[a].spec.includes(55)))
                 ){
                     list.push(a)
                 }
@@ -1718,7 +1742,7 @@ class group{
             if(list.length>0){
                 let index=list[floor(random(0,list.length))]
                 switch(effect){
-                    case 0: case 17:
+                    case 0: case 17: case 57:
                         this.cards[index].deSize=true
                     break
                     case 1: case 35:
@@ -3395,7 +3419,7 @@ class group{
                 this.battle.attackManager.target[0]=a
                 this.spec=[]
                 this.target=[]
-                this.cardInUse={discardEffect:[]}
+                this.cardInUse=-1
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
                         this.spec=this.cards[b].spec
@@ -3525,9 +3549,13 @@ class group{
                         }
                     }
                 }
-                this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor,this.cardInUse)
-                this.cards.forEach(card=>card.anotherPlayedAfter())
-                if(!this.cardInUse.discardEffect.includes(13)){
+                if(this.cardInUse!=-1){
+                    this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor,this.cardInUse)
+                    this.cards.forEach(card=>card.anotherPlayedAfter())
+                    if(!this.cardInUse.discardEffect.includes(13)){
+                        this.battle.attackManager.execute()
+                    }
+                }else{
                     this.battle.attackManager.execute()
                 }
                 this.battle.updateTargetting()
@@ -3555,7 +3583,7 @@ class group{
                     this.battle.attackManager.target[0]=a
                     this.spec=[]
                     this.target=[]
-                    this.cardInUse={discardEffect:[]}
+                    this.cardInUse=-1
                     for(let b=0,lb=this.cards.length;b<lb;b++){
                         if(!this.cards[b].usable){
                             this.spec=this.cards[b].spec
@@ -3681,9 +3709,13 @@ class group{
                             }
                         }
                     }
-                    this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor,this.cardInUse)
-                    this.cards.forEach(card=>card.anotherPlayedAfter())
-                    if(!this.cardInUse.discardEffect.includes(13)){
+                    if(this.cardInUse!=-1){
+                        this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor,this.cardInUse)
+                        this.cards.forEach(card=>card.anotherPlayedAfter())
+                        if(!this.cardInUse.discardEffect.includes(13)){
+                            this.battle.attackManager.execute()
+                        }
+                    }else{
                         this.battle.attackManager.execute()
                     }
                     this.battle.updateTargetting()

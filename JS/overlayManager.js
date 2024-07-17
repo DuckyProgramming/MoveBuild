@@ -72,13 +72,13 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,15,[])],//select combat
                     [new overlay(this.layer,this.battle,0,2,[43,1])],//deck card cost down
                     [new overlay(this.layer,this.battle,0,2,[44,0,0])],//scry, cost 0
-                    [new overlay(this.layer,this.battle,0,16,[])],//mtg mana choice
+                    [new overlay(this.layer,this.battle,0,16,[0])],//mtg mana choice
                     [new overlay(this.layer,this.battle,0,2,[45,0,0,0])],//exhaust draw card, then trigger exhaust discard, no return
                     [new overlay(this.layer,this.battle,0,2,[46,0,0])],//exhaust discard card, then trigger hand discard, no return
                     [new overlay(this.layer,this.battle,0,2,[47,0,0,0])],//scry, freeze target
                     [new overlay(this.layer,this.battle,0,2,[48,0,0])],//scry, shuffle afterward
                     [new overlay(this.layer,this.battle,0,2,[49,0,0,0])],//scry, draw into intangible
-                    [new overlay(this.layer,this.battle,0,17,[0])],//dual card choice,70
+                    [new overlay(this.layer,this.battle,0,17,[0,2])],//dual card choice,70
                     [new overlay(this.layer,this.battle,0,2,[50])],//random edition basic, no return
                     [new overlay(this.layer,this.battle,0,2,[51])],//become colorless, no return
                     [new overlay(this.layer,this.battle,0,2,[52,0])],//transform discard card, no return
@@ -116,9 +116,13 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[76])],//duplicate card, costs 1 more, no return
                     [new overlay(this.layer,this.battle,0,2,[77,1])],//upgrade discard card, no return
                     [new overlay(this.layer,this.battle,0,2,[78])],//transform any, double upgrade, edition, no return
-                    [new overlay(this.layer,this.battle,0,17,[1])],//dual card choice, secondary
+                    [new overlay(this.layer,this.battle,0,17,[1,2])],//dual card choice, secondary
                     [new overlay(this.layer,this.battle,0,2,[79])],//bring in discard card as duplicate once, no return
                     [new overlay(this.layer,this.battle,0,2,[80,0])],//exhaust from first cards of draw, no return,110
+                    [new overlay(this.layer,this.battle,0,17,[0,3])],//triple card choice
+                    [new overlay(this.layer,this.battle,0,2,[81,1,0])],//remove curse
+                    [new overlay(this.layer,this.battle,0,2,[82])],//transform curse
+                    [new overlay(this.layer,this.battle,0,16,[1])],//mtg any energy
 
                 )
                 if(this.battle.players==2){

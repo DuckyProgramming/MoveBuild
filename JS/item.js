@@ -588,7 +588,7 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('3',0,0)
                 break
-                case 'Coffee Creamer':
+                case 'Corn Cob':
                     displaySymbol(this.layer,-9,0,8,0,1.1,this.fade)
                     displaySymbol(this.layer,-9,1,139,0,0.5,this.fade)
                     displaySymbol(this.layer,9,0,9,0,1,this.fade)

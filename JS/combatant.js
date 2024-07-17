@@ -165,7 +165,8 @@ class combatant{
             'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw','Buff Loss Barrier','Astrology Per Turn','Construct Metal','Attack Jinx Combat','Attack Shock Combat',
             'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
             'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
-            'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath',
+            'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Energy',
+            '5 Card Energy',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -215,7 +216,8 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//45
                 0,0,0,1,0,0,2,0,0,0,//46
                 0,1,2,2,0,2,2,0,2,0,//47
-                0,0,0,0,0,0,0,2,1,
+                0,0,0,0,0,0,0,2,1,0,//48
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -265,7 +267,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//45
                 2,2,2,0,2,2,2,2,2,2,//46
                 0,1,1,0,2,3,3,2,0,2,//47
-                0,0,0,2,0,2,2,0,2,
+                0,0,0,2,0,2,2,0,2,2,//48
+                2,
                 
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy

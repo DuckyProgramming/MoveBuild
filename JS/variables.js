@@ -1089,7 +1089,7 @@ types={
         {name:'Shiny Coin',id:85,rarity:0,list:0,menu:false,temp:false,description:'Sells For 50 Currency at the Shop\n(No Effect Otherwise)'},
         {name:'Helium Canister',id:86,rarity:0,list:0,menu:false,temp:false,description:'All Enemies Cannot Add\nBlock For 2 Turns'},
         {name:'Spare Spacebar',id:87,rarity:1,list:0,menu:false,temp:false,description:'Add 3 Pristines to Hand'},
-        {name:'Coffee Creamer',id:88,rarity:0,list:0,menu:false,temp:false,description:'The Most Expensive Card\nin Hand Costs 0 Temporarily\n(Picks Randomly if Multiple Highest)'},
+        {name:'Corn Cob',id:88,rarity:0,list:0,menu:false,temp:false,description:'The Most Expensive Card\nin Hand Costs 0 Temporarily\n(Picks Randomly if Tied)'},
         {name:'Divination Pearl',id:89,rarity:1,list:0,menu:false,temp:false,description:'Put a Card From Draw Pile\nin Your Hand, it Costs 0'},
         {name:'Sun Stone',id:90,rarity:1,list:0,menu:false,temp:false,description:'Upgrade All Cards This Combat\nGain 2 Burn'},
         {name:'Soap',id:91,rarity:0,list:0,menu:false,temp:false,description:'Remove All Debuffs'},
@@ -8935,9 +8935,9 @@ Does not spend the orb.`,
         },{name:'Light Orb',desc:
 `On evoke, draw 4 cards.`,
         },{name:'Flame Orb',desc:
-`On evoke, deals 30 damage. Adds a Burn each turn it's not used.`,
+`On evoke, applies 3 Burn.`,
         },{name:'Ice Orb',desc:
-`On evoke, applies 1 Freeze.`,
+`On evoke, applies 3 Freeze.`,
         },{name:'Buff Orb',desc:
 `On evoke, applies 3 Strength.`,
         },{name:'Nerf Orb',desc:
@@ -9314,6 +9314,7 @@ variants={
     prism:false,ultraprism:false,junk:false,prismrule:[],
     vanish:false,blind:false,transcend:false,
     initiative:false,colorshift:false,overheat:false,
+    unary:false,chaos:true,
 
     speedmove:false,speedcard:false,nobasicanim:false,deckbuild:false,
 
