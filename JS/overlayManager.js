@@ -110,10 +110,15 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[7,1])],//transform card, no return
                     [new overlay(this.layer,this.battle,0,2,[74])],//bring in discard card as free, no return,100
                     [new overlay(this.layer,this.battle,0,2,[75,0])],//double cost and effect of attack, no return
-                    [new overlay(this.layer,this.battle,0,2,[75,1])],//double cost and effect of defense. no return
+                    [new overlay(this.layer,this.battle,0,2,[75,1])],//double cost and effect of defense, no return
                     [new overlay(this.layer,this.battle,0,2,[3,0])],//upgrade number cards, no return
                     [new overlay(this.layer,this.battle,0,2,[17,0])],//deluxe upgrade number cards, no return
                     [new overlay(this.layer,this.battle,0,2,[76])],//duplicate card, costs 1 more, no return
+                    [new overlay(this.layer,this.battle,0,2,[77,1])],//upgrade discard card, no return
+                    [new overlay(this.layer,this.battle,0,2,[78])],//transform any, double upgrade, edition, no return
+                    [new overlay(this.layer,this.battle,0,17,[1])],//dual card choice, secondary
+                    [new overlay(this.layer,this.battle,0,2,[79])],//bring in discard card as duplicate once, no return
+                    [new overlay(this.layer,this.battle,0,2,[80,0])],//exhaust from first cards of draw, no return,110
 
                 )
                 if(this.battle.players==2){

@@ -2015,7 +2015,7 @@ class turn{
                         this.targetCombatant.statusEffect('Jinx',this.effect[8])
                     break
                     case 314:
-                        let tiles314=this.battle.tileManager.getArea(this.userCombatant.tilePosition,1)
+                        let tiles314=this.battle.tileManager.getArea(this.userCombatant.tilePosition,1,1)
                         if(tiles314.length>0){
                             this.targetTile=tiles314[floor(random(0,tiles314.length))]
                             this.userCombatant.goal.anim.direction=round(atan2(this.targetTile.relativePosition.x-this.userCombatant.relativePosition.x,this.targetTile.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
@@ -2023,7 +2023,7 @@ class turn{
                         }
                     break
                     case 315:
-                        let tiles315=this.battle.tileManager.getArea(this.userCombatant.tilePosition,1)
+                        let tiles315=this.battle.tileManager.getArea(this.userCombatant.tilePosition,1,1)
                         if(tiles315.length>0){
                             this.targetTile=tiles315[floor(random(0,tiles315.length))]
                             this.userCombatant.goal.anim.direction=round(atan2(this.targetTile.relativePosition.x-this.userCombatant.relativePosition.x,this.targetTile.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30

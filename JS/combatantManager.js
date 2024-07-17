@@ -21,7 +21,7 @@ class combatantManager{
     sendAllies(){
         for(let a=0,la=this.allies.length;a<la;a++){
             for(let b=0,lb=this.allies[a].length;b<lb;b++){
-                let tiles=this.battle.tileManager.getArea(this.combatants[this.getPlayerCombatantIndex(a)].tilePosition,1)
+                let tiles=this.battle.tileManager.getArea(this.combatants[this.getPlayerCombatantIndex(a)].tilePosition,1,1)
                 if(tiles.length>0){
                     this.battle.addCombatantAbstract(tiles[floor(random(0,tiles.length))].tilePosition,this.allies[a][b],a+1,this.combatants[this.getPlayerCombatantIndex(a)].goal.anim.direction,false,0)
                     this.combatants[this.combatants.length-1].ally=a

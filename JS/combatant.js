@@ -143,7 +143,7 @@ class combatant{
             'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
             'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
             'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
-            'Single Damage Convert','2 Exhaust Draw','Dice Up','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
+            'Single Damage Convert','2 Exhaust Draw','Dice Boost','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
             '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
             'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
             'Heal Damage Random','Block Single Damage Up Convert','Strength in 2 Turns','Dexterity in 2 Turns','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength in 3 Turns','Free Movement','Cable Swap',
@@ -165,7 +165,7 @@ class combatant{
             'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw','Buff Loss Barrier','Astrology Per Turn','Construct Metal','Attack Jinx Combat','Attack Shock Combat',
             'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
             'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
-            'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat',
+            'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -215,7 +215,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//45
                 0,0,0,1,0,0,2,0,0,0,//46
                 0,1,2,2,0,2,2,0,2,0,//47
-                0,0,0,
+                0,0,0,0,0,0,0,2,1,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -265,7 +265,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//45
                 2,2,2,0,2,2,2,2,2,2,//46
                 0,1,1,0,2,3,3,2,0,2,//47
-                0,0,0,
+                0,0,0,2,0,2,2,0,2,
                 
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
@@ -3730,6 +3730,9 @@ class combatant{
                     case 1:
                         this.addBarrier(this.carry[a])
                     break
+                    case 2:
+                        this.vision+=this.carry[a]
+                    break
                 }
                 this.carry[a]=0
             }
@@ -3891,7 +3894,7 @@ class combatant{
                 this.statusEffect('Weak on Kill',2)
             break
             case 'Fireball':
-                this.statusEffect('Counter All Combat',3)
+                this.statusEffect('Counter All Combat',2)
             break
             case 'Armored Ninja':
                 this.addBlock(18)
@@ -5416,16 +5419,7 @@ class combatant{
                         damage=0
                     }
                 }
-                if(userCombatant.status.main[98]>0){
-                    this.statusEffect('Bleed',userCombatant.status.main[98])
-                }
-                if(userCombatant.status.main[99]>0){
-                    this.statusEffect('Bleed',userCombatant.status.main[99])
-                    userCombatant.status.main[99]=0
-                }
-                if(userCombatant.status.main[100]>0){
-                    this.statusEffect('Bleed',userCombatant.status.main[100])
-                }
+                
                 if(userCombatant.status.main[171]>0){
                     this.statusEffect('Regeneration',userCombatant.status.main[171])
                 }
@@ -5454,6 +5448,9 @@ class combatant{
                     this.block=0
                     userCombatant.status.main[471]--
                 }
+                if(userCombatant.status.main[476]>0){
+                    this.statusEffect('Poison',userCombatant.status.main[476])
+                }
                 if(this.team==0&&userCombatant.team==0){
                     if(this.battle.modded(12)){
                         hit=false
@@ -5473,6 +5470,15 @@ class combatant{
                     }else{
                         userCombatant.combo++
                     }
+                }
+                if(userCombatant.stance==1){
+                    damage*=userCombatant.status.main[478]>0?3:2
+                }
+                if(userCombatant.stance==4){
+                    damage*=0.5
+                }
+                if(userCombatant.stance==5){
+                    damage*=3
                 }
             }
             if(this.status.main[21]>0&&hit){
@@ -5588,13 +5594,6 @@ class combatant{
                 if(this.status.main[25]>0&&damage>1){
                     damage=1
                 }
-                if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
-                    if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
-                        if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].stance==1){
-                            damage*=2
-                        }
-                    }
-                }
                 if(this.battle.modded(2)&&this.team>0){
                     damage*=1.2
                 }
@@ -5624,24 +5623,10 @@ class combatant{
                     }
                 }
                 if(this.stance==1){
-                    damage*=2
-                }
-                if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
-                    if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
-                        if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].stance==4){
-                            damage*=0.5
-                        }
-                    }
+                    damage*=this.status.main[478]>0?3:2
                 }
                 if(this.stance==4){
                     damage*=0.5
-                }
-                if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
-                    if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
-                        if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].stance==5){
-                            damage*=3
-                        }
-                    }
                 }
                 if(this.status.main[321]>0){
                     damage=ceil(damage/5)*5
@@ -5808,6 +5793,16 @@ class combatant{
                 if(user>=0&&user<this.battle.combatantManager.combatants.length){
                     let userCombatant=this.battle.combatantManager.combatants[user]
                     userCombatant.lastDeal=damage
+                    if(userCombatant.status.main[98]>0&&this.block==0){
+                        this.statusEffect('Bleed',userCombatant.status.main[98])
+                    }
+                    if(userCombatant.status.main[99]>0&&this.block==0){
+                        this.statusEffect('Bleed',userCombatant.status.main[99])
+                        userCombatant.status.main[99]=0
+                    }
+                    if(userCombatant.status.main[100]>0&&this.block==0){
+                        this.statusEffect('Bleed',userCombatant.status.main[100])
+                    }
                     if(userCombatant.status.main[202]>0&&damage>=20){
                         this.statusEffect('Miss',userCombatant.status.main[202])
                     }
@@ -6226,6 +6221,10 @@ class combatant{
                 }
                 if(block>=12&&this.status.main[444]>0){
                     this.battle.cardManagers[this.id].draw(this.status.main[444])
+                }
+                if(this.status.main[474]>0){
+                    this.statusEffect('Block in 2 Turns',round(block))
+                    this.status.main[474]--
                 }
                 if(this.battle.modded(74)&&this.team==0){
                     this.heal(block)
@@ -6717,6 +6716,10 @@ class combatant{
         let roll=0
         let luckCheck=false
         let luckCheckFail=false
+        if(this.status.main[473]>0){
+            number+=this.status.main[473]
+            this.status.main[473]=0
+        }
         if(this.status.main[261]>0){
             luckCheck=true
         }else{
@@ -7146,6 +7149,7 @@ class combatant{
                     case 452: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,1,2,[],[0,0])}} break
                     case 466: this.status.main[findList('Temporary All Cost Up',this.status.name)]+=this.status.main[a]; break
                     case 468: this.status.main[findList('Buffer',this.status.name)]+=this.status.main[a]; break
+                    case 477: this.status.main[findList('Counter Once',this.status.name)]+=this.status.main[a]; break
                     
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){

@@ -496,12 +496,16 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				bonus*=2
 			}
 			if(user.stance==1){
-				damage*=2
-				bonus*=2
+				damage*=user.status.main[478]>0?3:2
+				bonus*=user.status.main[478]>0?3:2
 			}
 			if(user.stance==4){
 				damage*=0.5
 				bonus*=0.5
+			}
+			if(user.stance==5){
+				damage*=3
+				bonus*=3
 			}
 			switch(type){
 				case 0: return damage==effect&&bonus==0?tennify(effect):tennify(effect)+`(${tennify(damage+bonus)})`

@@ -14,13 +14,13 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 [pinpoint]
 
-[]
+[tempest + evoke]
 
 
 
 [why is onsen reimu a thing]
 
-[]
+[sky veil - variant of raiment]
 
 [second wind]
 
@@ -96,11 +96,11 @@ they cost 0
 
 
 
-[giant rotation wish]
+[giant rotation - wish]
 
-[wish]
+[wheat promise - wish]
 
-[wish]
+[night seclusion - wish]
 
 [wish]
 
@@ -131,6 +131,22 @@ icon
 
 
 
+AZIS CHANGES
+
+remove countdowns
+
+rearrange orbs
+
+~30 new cards
+
+
+
+CHARACTER 18
+
+countdowns
+
+
+
 new enemies:
 
 world 2:
@@ -146,11 +162,26 @@ sukuna boss also needs to get 2 attacks and setup code with archivist
 new relics:
 
 B laevateinn - gain 1 base energy but you start with 2 vulnerable and vulnerable is worse for you
-S 5d multiverse time travel - you can go backwards on the map, 3 updatePassive
+S 5d multiverse time travel - you can go backwards on the map, 3 uses
 B the solo - gain 1 base energy, you can never have duplicate NON-BASIC cards
 C jankman - draw 2 cards when you play a tarot or spectral card
 C gros michel - like tauball
 
+B horizon diamond - gain 1 base energy add a random card to deck every 5 nodes
+U old key - find more paths on the map
+U blossoming chip - gain an additional normal relic after every boss
+[]
+[]
+
+new variants:
+
+unary - only a choice per battle
+chaos - all card effects are randomized
+[]
+
+[]
+[]
+[]
 
 
 CONSIDER A MAJOR AZIS CHANGE?

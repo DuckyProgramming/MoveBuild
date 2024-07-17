@@ -208,7 +208,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 94: case 102:
+            case 94: case 102: case 127:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.color=floor(random(0,6))
@@ -272,6 +272,23 @@ class particle{
             break
             case 125:
                 this.size=1
+                this.fade=1
+                this.scale=1
+            break
+            case 128:
+                this.value=floor(random(1,10))
+                this.direction=args[0]
+                this.speed=random(2.5,5)
+                this.gravity=random(0.1,0.2)
+                this.color=random(0,1)
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=1
+                this.velocity={x:lsin(this.direction)*this.speed,y:lcos(this.direction)*this.speed}
+            break
+            case 129: case 130:
+                this.size=args[0]
                 this.fade=1
                 this.scale=1
             break
@@ -1717,6 +1734,72 @@ class particle{
                         this.layer.rotate(120)
                     }
                 break
+                case 127:
+                    this.layer.rotate(this.direction)
+                    this.layer.scale(0.6)
+                    this.layer.fill(100,200,255,this.fade*0.5)
+                    regStar(this.layer,0,0,5,24,24,2,2,0)
+                    this.layer.fill(150,25,200,this.fade*0.5)
+                    regStar(this.layer,0,0,5,24,24,2,2,180)
+                    this.layer.fill(100,200,255,this.fade)
+                    regStar(this.layer,0,0,5,20,20,1,1,0)
+                    this.layer.fill(150,25,200,this.fade)
+                    regStar(this.layer,0,0,5,20,20,1,1,180)
+                    this.layer.fill(150,225,75,this.fade)
+                    this.layer.ellipse(0,0,10,24)
+                    this.layer.fill(100,150,50,this.fade)
+                    this.layer.quad(-1,0,0,-12,1,0,0,12)
+                    this.layer.rotate(-36)
+                    this.layer.quad(-1,0,0,-10,1,0,0,10)
+                    this.layer.rotate(72)
+                    this.layer.quad(-1,0,0,-10,1,0,0,10)
+                    this.layer.rotate(-36)
+                break
+                case 128:
+                    this.layer.textSize(20)
+                    this.layer.fill(this.color*250,this.color*125+125,250,this.fade)
+                    this.layer.stroke(0,this.fade)
+                    this.layer.strokeWeight(1)
+                    this.layer.text(this.value,0,0)
+                break
+                case 129:
+                    this.layer.rotate(this.position.x+this.position.y)
+                    for(let a=0,la=40;a<la;a++){
+                        let mult=this.fade+a%10*0.1+floor(a/20)*0.5
+                        this.layer.rotate(360/la*2)
+                        if(mult>0&&mult<1){
+                            this.layer.fill(240,40,40,mult)
+                            regStar(this.layer,0,20*(1-mult),8,0.4*(1-mult),0.8*(1-mult),2*(1-mult),6*(1-mult),0)
+                        }
+                    }
+                    for(let a=0,la=40;a<la;a++){
+                        let mult=this.fade+a%10*0.1+floor(a/20)*0.5
+                        this.layer.rotate(360/la*2)
+                        if(mult>0&&mult<1){
+                            this.layer.fill(180,30,30,mult)
+                            regStar(this.layer,0,20*(1-mult),8,0.24*(1-mult),0.48*(1-mult),1.2*(1-mult),3.6*(1-mult),0)
+                        }
+                    }
+                break
+                case 130:
+                    this.layer.rotate(this.position.x+this.position.y-9)
+                    for(let a=0,la=40;a<la;a++){
+                        let mult=this.fade+a%10*0.1+floor(a/20)*0.5
+                        this.layer.rotate(-360/la*2)
+                        if(mult>0&&mult<1){
+                            this.layer.fill(40,140,240,mult)
+                            regStar(this.layer,0,20*(1-mult),8,0.4*(1-mult),0.8*(1-mult),2*(1-mult),6*(1-mult),0)
+                        }
+                    }
+                    for(let a=0,la=40;a<la;a++){
+                        let mult=this.fade+a%10*0.1+floor(a/20)*0.5
+                        this.layer.rotate(-360/la*2)
+                        if(mult>0&&mult<1){
+                            this.layer.fill(30,105,180,mult)
+                            regStar(this.layer,0,20*(1-mult),8,0.24*(1-mult),0.48*(1-mult),1.2*(1-mult),3.6*(1-mult),0)
+                        }
+                    }
+                break
 
             }
             this.layer.pop()
@@ -1725,7 +1808,7 @@ class particle{
     update(parent){
         this.time++
         switch(this.type){
-            case 0: case 41: case 77: case 106:
+            case 0: case 41: case 77: case 106: case 128:
                 this.position.x+=this.velocity.x/game.animRate
                 this.position.y+=this.velocity.y/game.animRate
                 this.velocity.y+=this.gravity/game.animRate
@@ -1879,7 +1962,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 81: case 94: case 102:
+            case 81: case 94: case 102: case 127:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,5)
@@ -1980,6 +2063,12 @@ class particle{
             case 125:
                 this.fade-=0.1
                 if(this.fade<=0){
+                    this.remove=true
+                }
+            break
+            case 129: case 130:
+                this.fade-=0.05
+                if(this.fade<=-1.5){
                     this.remove=true
                 }
             break

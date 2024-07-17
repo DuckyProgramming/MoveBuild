@@ -103,10 +103,10 @@ class tileManager{
         }
         return list
     }
-    getArea(tilePosition,range){
+    getArea(tilePosition,range1,range2){
         let tiles=[]
         for(let a=0,la=this.tiles.length;a<la;a++){
-            if(this.tiles[a].occupied==0&&legalTargetCombatant(0,1,range,{tilePosition:tilePosition},this.tiles[a],this.tiles)){
+            if(this.tiles[a].occupied==0&&legalTargetCombatant(0,range1,range2,{tilePosition:tilePosition},this.tiles[a],this.tiles)){
                 tiles.push(this.tiles[a])
             }
         }

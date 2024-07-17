@@ -1365,14 +1365,16 @@ class battle{
         }
     }
     addCurrency(amount,player){
-        let multi=this.relicManager.hasRelic(135,player)?0.5:1*this.relicManager.hasRelic(165,player)?1.25:1
-        let bonus=this.relicManager.hasRelic(119,player)?20:0
-        this.stats.earned[player]+=round((amount+bonus)*multi)
-        if(this.cardManagers[player].deck.hasCard(findName('Social\nSecurity Card',types.card))){
-            this.currency.ss[player]+=round((amount+bonus)*multi/2)
-            this.currency.money[player]+=round((amount+bonus)*multi/2)
-        }else{
-            this.currency.money[player]+=round((amount+bonus)*multi)
+        if(player>=0&&player<this.players){
+            let multi=this.relicManager.hasRelic(135,player)?0.5:1*this.relicManager.hasRelic(165,player)?1.25:1
+            let bonus=this.relicManager.hasRelic(119,player)?20:0
+            this.stats.earned[player]+=round((amount+bonus)*multi)
+            if(this.cardManagers[player].deck.hasCard(findName('Social\nSecurity Card',types.card))){
+                this.currency.ss[player]+=round((amount+bonus)*multi/2)
+                this.currency.money[player]+=round((amount+bonus)*multi/2)
+            }else{
+                this.currency.money[player]+=round((amount+bonus)*multi)
+            }
         }
     }
     loseCurrency(amount,player){
@@ -2139,7 +2141,7 @@ class battle{
                         this.itemManager.activateEndBattle(a,this.encounter.class)
                     }
                     let prefered=floor(random(0,this.overlayManager.overlays[0].length))
-                    this.cardManagers.forEach(cardManager=>cardManager.allEffect(0,44))
+                    this.cardManagers.forEach(cardManager=>cardManager.allEffectArgs(0,33,[this.encounter.class]))
                     this.combatantManager.fullAllEffect(10)
                     for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
                         this.overlayManager.overlays[0][a].active=true

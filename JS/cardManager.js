@@ -339,14 +339,18 @@ class cardManager{
                     this.getList(group).addAbstract(type,level,color,edition,[args[ticker++],5],[])
                 break
                 case 5:
-                    let card=this.getList(group).addReturn(type,level,color,edition)
-                    card.cost=max(min(card.cost,0),card.cost-args[ticker++])
+                    let card5=this.getList(group).addReturn(type,level,color,edition)
+                    card5.cost=max(min(card.cost,0),card.cost-args[ticker++])
                 break
                 case 6:
                     this.getList(group).addAbstract(type,level,color,edition,0,[5],[])
                 break
                 case 7:
                     this.getList(group).addAbstract(type,level,color,edition,[4],[[args[ticker]++]])
+                break
+                case 8:
+                    let card8=this.getList(group).addReturn(type,level,color,edition)
+                    card8.retain2=true
                 break
             }
         }
@@ -813,6 +817,13 @@ class cardManager{
         }else{
             return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,game.playerNumber+1,base.id)
         }
+    }
+    transformCardPrism(base){
+        let index=floor(random(0,this.listing.allPlayerCard[3].length))
+        while(this.listing.allPlayerCard[3][index]==base.type){
+            index=floor(random(0,this.listing.card[base.list][3].length))
+        }
+        return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.allPlayerCard[3][index],base.level,types.card[this.listing.allPlayerCard[3][index]].list,base.id)
     }
     transformCardToBasic(base){
         return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName(['Strike','Defend','Step'][floor(random(0,3))],types.card),base.level,base.color,base.id)
