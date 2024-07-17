@@ -9314,7 +9314,7 @@ variants={
     prism:false,ultraprism:false,junk:false,prismrule:[],
     vanish:false,blind:false,transcend:false,
     initiative:false,colorshift:false,overheat:false,
-    unary:false,chaos:true,
+    unary:false,chaos:false,
 
     speedmove:false,speedcard:false,nobasicanim:false,deckbuild:false,
 
