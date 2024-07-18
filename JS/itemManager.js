@@ -114,7 +114,7 @@ class itemManager{
     }
     addItemSlots(amount,player){
         for(let a=0;a<amount;a++){
-            this.items[player].push(new item(this.layer,player,225+50*this.position[player]+(this.layer.width-450-100*this.position[player])*player,50,300+this.position[player]*50+(this.layer.width-600-this.position[player]*100)*player,25,1,1))
+            this.items[player].push(new item(this.layer,this.battle,player,225+50*this.position[player]+(this.layer.width-450-100*this.position[player])*player,50,300+this.position[player]*50+(this.layer.width-600-this.position[player]*100)*player,25,1,1))
             this.position[player]++
         }
     }
@@ -625,7 +625,17 @@ class itemManager{
     }
     display(scene){
         switch(scene){
-            case 'battle': case 'map': case 'event':
+            case 'battle':
+                for(let a=0,la=this.items.length;a<la;a++){
+                    this.items[a].forEach(item=>item.display(this.total[a],false))
+                }
+            break
+            case 'info':
+                for(let a=0,la=this.items.length;a<la;a++){
+                    this.items[a].forEach(item=>item.displayInfo(0))
+                }
+            break
+            case 'map': case 'event':
                 for(let a=0,la=this.items.length;a<la;a++){
                     this.items[a].forEach(item=>item.display(this.total[a],false))
                 }

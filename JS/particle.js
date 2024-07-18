@@ -29,9 +29,9 @@ class particle{
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
             case 51: case 52: case 54: case 57: case 60: case 65: case 66: case 68: case 72: case 73:
-            case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 88: case 90: case 93:
-            case 95: case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120:
-            case 121: case 126: case 135:
+            case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 88: case 90: case 95:
+            case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120: case 121:
+            case 126: case 135:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -209,6 +209,12 @@ class particle{
                 this.size=1
                 this.scale=1
             break
+            case 93: case 103: case 104: case 110:
+                this.size=args[0]
+                this.fade=1
+                this.scale=0
+                this.direction=random(0,360)
+            break
             case 94: case 102: case 127:
                 this.direction=args[0]
                 this.timer=args[1]
@@ -218,12 +224,6 @@ class particle{
                 this.trigger=false
                 this.size=1
                 this.scale=1
-            break
-            case 103: case 104: case 110:
-                this.size=args[0]
-                this.fade=1
-                this.scale=0
-                this.direction=random(0,360)
             break
             case 108:
                 this.direction=args[0]
@@ -1263,7 +1263,7 @@ class particle{
                     }
                 break
                 case 93:
-                    this.layer.rotate(this.position.x+this.position.y-this.time*10)
+                    this.layer.rotate(this.direction-this.time*10)
                     this.layer.fill(200,40,20,this.fade)
                     for(let a=0,la=36;a<la;a++){
                         this.layer.rotate(360/la)

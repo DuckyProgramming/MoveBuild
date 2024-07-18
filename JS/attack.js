@@ -7247,7 +7247,7 @@ class attack{
                     break
                     case 3348:
                         this.userCombatant.statusEffect('Fatigue Splash',this.effect[0])
-                        this.userManager.discard.sendAbstractShuffle(this.userManager.reserve.cards,-1,3,1,['Fatigue'])
+                        this.userManager.discard.sendAbstract(this.userManager.reserve.cards,-1,3,1,['Fatigue'])
                     break
                     case 3362:
                         this.userCombatant.statusEffect('Energy Cycle 2 2',this.effect[0])

@@ -16,6 +16,7 @@ class group{
         this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.compact=1
         this.cardInUse=0
+        this.cardSelectIndex=0
         this.cardShuffledIndex=0
         this.pole=0
         this.exhausts=0
@@ -374,7 +375,6 @@ class group{
         this.cardShuffledIndex=floor(random(0,this.cards.length-1))
         this.cards.splice(this.cardShuffledIndex,0,this.cards[this.cards.length-1])
         this.cards.splice(this.cards.length-1,1)
-        this.shuffled()
     }
     slideTop(){
         this.cards.splice(0,0,this.cards[this.cards.length-1])
@@ -481,7 +481,7 @@ class group{
     exhaustViable(amount){
         this.status[28]+=amount
     }
-    shuffle(after){
+    shuffle(){
         let cards=[]
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards.length>0){
@@ -516,11 +516,11 @@ class group{
     }
     shuffled(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-        if(userCombatant.status.main[151]>0){
-            this.battle.addSpecificEnergy(userCombatant.status.main[151],this.player,6)
+        if(userCombatant.getStatus('Shuffle Energy')>0){
+            this.battle.addSpecificEnergy(userCombatant.getStatus('Shuffle Energy'),this.player,6)
         }
-        if(userCombatant.status.main[152]>0){
-            this.battle.cardManagers[this.player].draw(userCombatant.status.main[152])
+        if(userCombatant.getStatus('Shuffle Draw')>0){
+            this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Shuffle Draw'))
         }
         this.battle.relicManager.activate(16,[this.id,this.player])
     }
@@ -597,8 +597,16 @@ class group{
         }
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].usable){
-                if(names.includes(this.cards[a].name)&&numbers[names.indexOf(this.cards[a].name)]>=limit&&this.cards[a].effect.length>=1){
-                    this.cards[a].effect[0]+=value
+                if(names.includes(this.cards[a].name)&&numbers[names.indexOf(this.cards[a].name)]>=limit){
+                    if(this.cards[a].spec.includes(12)){
+                        for(let b=0,lb=this.cards[a].effect.length;b<lb;b++){
+                            if(this.cards[a].effect[b].length>=1&&this.cards[a].class[b]!=3){
+                                this.cards[a].effect[b][0]+=value
+                            }
+                        }
+                    }else if(this.cards[a].effect.length>=1&&this.cards[a].class!=3){
+                        this.cards[a].effect[0]+=value
+                    }
                 }
             }
         }
@@ -2439,16 +2447,16 @@ class group{
                 variant==12&&this.cards[a].rarity==this.sorted[0]||
                 variant==13&&this.cards[a].rarity==this.sorted[this.sorted.length-1]
             ){
-                if(output==1){
-                    list.splice(index,0,copyCard(this.cards[a]))
-                }else{
-                    list.push(copyCard(this.cards[a]))
-                }
+                list.push(copyCard(this.cards[a]))
                 list[list.length-1].size=0
                 list[list.length-1].position.x=1200
                 list[list.length-1].position.y=500
                 if(this.drawEffect(list[list.length-1])){la=0}
                 switch(output){
+                    case 1:
+                        list.splice(floor(random(0,list.length-1)),0,list[list.length-1])
+                        list.splice(list.length-1,1)
+                    break
                     case 2:
                         list[list.length-1].cost=0
                     break
@@ -3123,7 +3131,7 @@ class group{
                 this.battle.attackManager.tilePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.y
                 this.battle.attackManager.combo=this.battle.combatantManager.combatants[this.battle.attackManager.user].combo
                 this.battle.attackManager.amplify=false
-                this.battle.attackManager.relPos=[-1,999]
+                this.battle.attackManager.relPos=[-1,this.cards.length]
                 this.battle.attackManager.limit=0
                 this.battle.attackManager.id=-1
                 this.battle.attackManager.edition=-1
@@ -3265,6 +3273,7 @@ class group{
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         switch(type){
             case 0:
+                this.cardSelectIndex=a
                 this.callInput(34,this.cards[a])
                 this.cards[a].usable=false
                 if(this.cards[a].spec.includes(57)&&this.cards[a].attack!=1491&&options.oldDuplicate){
@@ -4033,7 +4042,7 @@ class group{
                 this.battle.attackManager.attackClass=a.class
                 this.battle.attackManager.mtgManaColor=a.mtgManaColor
                 this.battle.attackManager.player=this.player
-                this.battle.attackManager.relPos=[a,this.cards.length-1]
+                this.battle.attackManager.relPos=[this.cardSelectIndex,this.cards.length-1]
                 this.battle.attackManager.limit=a.limit
                 this.battle.attackManager.id=a.id
                 this.battle.attackManager.edition=a.edition

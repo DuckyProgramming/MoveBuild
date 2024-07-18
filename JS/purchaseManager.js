@@ -202,7 +202,7 @@ class purchaseManager{
                             let price=random(cost[group[a]][0],cost[group[a]][1])
                             this.purchases.push(new purchase(this.layer,this.battle,-1,[65,195,705,835][a%4],130+floor(a/4)*170,1,
                                 [round((this.battle.relicManager.hasRelic([269,300,301][group[a]],0)?0.5:1)*price),round((this.battle.relicManager.hasRelic([269,300,301][group[a]],1)?0.5:1)*price)],
-                                [list[group[a]][index],0,variants.junk?types.card[list[group[b]][index]].list:variants.ultraprism||variants.mtg||variants.colorshift?(types.card[list[group[b]][index]].list<0?0:types.card[list[group[b]][index]].list>=types.color.card.length?0:types.card[list[group[b]][index]].list):variants.prism?types.card[list[group[b]][index]].list:0],
+                                [list[group[a]][index],0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg||variants.colorshift?(types.card[list[group[a]][index]].list<0?0:types.card[list[group[a]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:0],
                                 group[a]+4
                             ))
                             list[group[a]].splice(index,1)
@@ -255,8 +255,8 @@ class purchaseManager{
                         for(let a=0,la=this.battle.players;a<la;a++){
                             let list=variants.mtg?copyArrayStack(this.battle.cardManagers[a].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[a].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[a].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[a].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
                             let valid=[]
-                            for(let b=0,lb=this.battle.cardManagers[0].deck.cards.length;b<lb;b++){
-                                if(!this.battle.cardManagers[0].deck.cards[b].basic){
+                            for(let b=0,lb=this.battle.cardManagers[a].deck.cards.length;b<lb;b++){
+                                if(!this.battle.cardManagers[a].deck.cards[b].basic){
                                     valid.push(b)
                                 }
                             }

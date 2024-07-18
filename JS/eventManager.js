@@ -12,7 +12,6 @@ class eventManager{
         this.page=0
         this.primaryFade=0
         this.fade=[]
-        this.firstEvent=''
 
         this.listing={event:[],complete:[]}
         this.posKey=this.layer.width/2+225*(this.player*2-this.battle.players+1)
@@ -71,7 +70,7 @@ class eventManager{
                 !(this.listing.event[a]==55&&userCombatant.life<10)&&
                 !(this.listing.event[a]==56&&this.battle.currency.money[this.player]<40)&&
                 !(this.listing.event[a]==60&&userCombatant.life>=userCombatant.base.life-12)&&
-                !(this.listing.event[a]==63&&(this.firstEvent==''||this.battle.nodeManager.world==0))&&
+                !(this.listing.event[a]==63&&(this.listing.complete.length<=3||this.battle.nodeManager.world==0))&&
                 !(this.listing.event[a]==66&&this.battle.currency.money[this.player]<50)&&
                 !(this.listing.event[a]==68&&this.battle.cardManagers[this.player].deck.numberAbstract(8,[])<=0)&&
                 !(this.listing.event[a]==69&&userCombatant.life<7)&&
@@ -150,10 +149,14 @@ class eventManager{
         switch(this.id){
             case 63:
                 let correct=floor(random(0,5))
-                this.pages[0].option[correct]=this.firstEvent
+                this.pages[0].option[correct]=types.event[this.listing.complete[0]].name
                 this.pages[0].link[correct]=1
                 let sublist=copyArray(this.listing.complete)
                 let backlist=copyArray(this.listing.event)
+                sublist.splice(0,1)
+                if(sublist.includes(63)){
+                    sublist.splice(sublist.indexOf(63),1)
+                }
                 for(let a=0,la=5;a<la;a++){
                     if(a!=correct){
                         if(sublist.length>0){

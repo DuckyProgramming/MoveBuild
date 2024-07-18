@@ -270,6 +270,7 @@ class tile{
         }
     }
     customActivate(type,effect){
+        this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
         for(let a=0,la=this.type.length;a<la;a++){
             switch(this.type[a]){
                 case 19:

@@ -1864,7 +1864,7 @@ class relic{
                     displaySymbol(this.layer,0,0,28,0,0.75,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('5',0,0)
+                    this.layer.text('3',0,0)
                 break
                 case 'Rest Cost Down':
                     displaySymbol(this.layer,0,-6,8,0,1,this.fade)
@@ -2572,7 +2572,7 @@ class relic{
     }
     update(up,total,inputs,position=this.position,overlayed=true){
         this.fade=smoothAnim(this.fade,up&&!this.deFade||this.type==0&&total>0,0,1,5)
-        this.infoFade=smoothAnim(this.infoFade,up&&this.battle.encounter.tooltip==0&&dist(inputs.rel.x,inputs.rel.y,position.x,position.y)<20*this.size&&this.type!=0&&overlayed,0,1,5)
+        this.infoFade=smoothAnim(this.infoFade,up&&(this.battle.encounter.tooltip==0||stage.scene!='battle')&&dist(inputs.rel.x,inputs.rel.y,position.x,position.y)<20*this.size&&this.type!=0&&overlayed,0,1,5)
         this.anim.active=smoothAnim(this.anim.active,this.active,0,1,5)
     }
     onClick(mouse,battle){

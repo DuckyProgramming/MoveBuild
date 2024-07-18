@@ -160,7 +160,7 @@ class combatantManager{
         }
         let available=[]
         for(let b=0,lb=list.length;b<lb;b++){
-            if(round(dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y)-(list[b]==priority?10:0))<minimum+5){
+            if(round(dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y)-(list[b]==priority?10:0))<minimum+5&&this.combatants[list[b]].life>0){
                 available.push(list[b])
             }
         }
@@ -172,8 +172,9 @@ class combatantManager{
         let list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(
-                this.combatants[index].team==0&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support||this.combatants[a].support&&this.combatants[a].life>0||
-                (this.combatants[index].construct||this.combatants[index].support)&&this.combatants[a].team==0
+                this.combatants[a].life>0&&
+                (this.combatants[index].team==0&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support||this.combatants[a].support&&this.combatants[a].life>0||
+                (this.combatants[index].construct||this.combatants[index].support)&&this.combatants[a].team==0)
             ){
                 list.push(a)
             }
@@ -183,7 +184,7 @@ class combatantManager{
     setTargets(){
         let list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support||this.combatants[a].support&&this.combatants[a].life>0){
+            if(this.combatants[a].life>0&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support||this.combatants[a].support&&this.combatants[a].life>0){
                 list.push(a)
             }
         }
@@ -196,7 +197,7 @@ class combatantManager{
         }
         list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0){
+            if(this.combatants[a].life>0&&this.combatants[a].team==0){
                 list.push(a)
             }
         }
@@ -618,6 +619,7 @@ class combatantManager{
         if(index>=0){
             let tile=this.battle.tileManager.tiles[index]
             this.addCombatantConstruct(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,team,direction,false,builder)
+            this.battle.activate(1,this.combatants.length-1)
             this.battle.updateTargetting()
             this.battle.tileManager.activate()
             if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Speed Up')>0){
@@ -1033,7 +1035,6 @@ class combatantManager{
         this.id++
         this.sort()
         this.reorder()
-        this.battle.updateTargetting()
     }
     constructAlive(team){
         for(let a=0,la=this.combatants.length;a<la;a++){

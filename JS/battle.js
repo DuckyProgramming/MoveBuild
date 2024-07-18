@@ -137,14 +137,14 @@ class battle{
                         if(types.card[a].levels[b].spec.includes(12)){
                             for(let c=0,lc=types.card[a].levels[b].effect.length;c<lc;c++){
                                 for(let d=0,ld=types.card[a].levels[b].effect[c].length;d<ld;d++){
-                                    if(!types.card[a].levels[b].class[c]==3&&d==0){
+                                    if(!(types.card[a].levels[b].class[c]==3&&d==0)){
                                         types.card[a].levels[b].effect[c][d]=round(types.card[a].levels[b].effect[c][d]*(10**random(-1.6,0.8)))
                                     }
                                 }
                             }
                         }else{
                             for(let c=0,lc=types.card[a].levels[b].effect.length;c<lc;c++){
-                                if(!types.card[a].levels[b].class==3&&c==0){
+                                if(!(types.card[a].levels[b].class==3&&c==0)){
                                     types.card[a].levels[b].effect[c]=round(types.card[a].levels[b].effect[c]*(10**random(-1.6,0.8)))
                                 }
                             }
@@ -697,11 +697,15 @@ class battle{
             }else{
                 this.newTurn()
             }
+            combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
+            if(combatant.life<=0&&this.turn.main<this.players){
+                this.endTurn()
+            }else if(combatant.getStatus('Distracted')>0){
+                combatant.statusEffect('Distracted',-1)
+                this.endTurn()
+            }
         }
         this.updateTargetting()
-        if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.players){
-            this.endTurn()
-        }
     }
     baselineEnergy(player,gen){
         if(variants.mtg){
@@ -794,8 +798,8 @@ class battle{
         this.turn.main=0
         this.setTurn(this.turn.total+1)
         this.turn.time=game.turnTime
+        let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
         for(let a=0,la=this.energy.gen.length;a<la;a++){
-            let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             let lastEnergy=this.getEnergy(this.turn.main)
             this.baselineEnergy(a,this.energy.gen[a])
             this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
@@ -818,10 +822,10 @@ class battle{
         this.relicManager.activate(2,[this.turn.total,this.turn.main,this.cardManagers[this.turn.main].hand.lastTurnPlayed])
         this.relicManager.activate(0,[this.turn.total,this.encounter.class])
         this.loadReinforce()
-        if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.players){
+        if(combatant.life<=0&&this.turn.main<this.players){
             this.endTurn()
-        }else if(this.combatantManager.combatants[this.turn.main].getStatus('Distracted')>0){
-            this.combatantManager.combatants[this.turn.main].statusEffect('Distracted',-1)
+        }else if(combatant.getStatus('Distracted')>0){
+            combatant.statusEffect('Distracted',-1)
             this.endTurn()
         }else{
             this.turn.active=true
@@ -1048,7 +1052,7 @@ class battle{
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Common Temporary Strength'))
         }
         if(card.name=='Fatigue'&&userCombatant.getStatus('Fatigue Splash')>0){
-            this.battle.combatantManager.areaAbstract(0,[userCombatant.getStatus('Fatigue Splash'),userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+            this.combatantManager.areaAbstract(0,[userCombatant.getStatus('Fatigue Splash'),userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
             this.particleManager.particlesBack.push(new particle(this.layer,userCombatant.position.x,userCombatant.position.y,93,[8]))
         }
         if(card.spec.includes(25)&&userCombatant.getStatus('Gun Temporary Strength')>0){
@@ -1072,10 +1076,10 @@ class battle{
         if(card.spec.includes(35)&&userCombatant.getStatus('Countdown Chain')>0){
             this.cardManagers[player].hand.randomEffect(26,[userCombatant.getStatus('Countdown Chain')])
         }
-        if(this.cardManagers[a].hand.totalPlayed[0]%5==0&&userCombatant.getStatus('5 Card Energy')>0){
+        if(this.cardManagers[player].hand.totalPlayed[0]%5==0&&userCombatant.getStatus('5 Card Energy')>0){
             this.addEnergy(userCombatant.getStatus('5 Card Energy'),player)
         }
-        if(this.cardManagers[a].hand.totalPlayed[0]%5==0&&userCombatant.getStatus('5 Card Random Energy')>0){
+        if(this.cardManagers[player].hand.totalPlayed[0]%5==0&&userCombatant.getStatus('5 Card Random Energy')>0){
             this.addSpecificEnergy(userCombatant.getStatus('5 Card Random Energy'),player,floor(random(0,7)))
         }
         this.combatantManager.playCardFront(cardClass,card)
@@ -1804,15 +1808,17 @@ class battle{
                 this.tileManager.display(scene)
                 this.particleManager.display('back')
                 this.combatantManager.display(scene)
-                this.combatantManager.displayInfo(scene)
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
                     this.cardManagers[a].display(scene,[this.anim.turn[a]])
                 }
                 this.tileManager.displayCoordinate()
                 this.particleManager.display('front')
-                this.overlayManager.display()
                 this.relicManager.display(stage.scene)
                 this.itemManager.display(stage.scene)
+                this.combatantManager.displayInfo(scene)
+                this.relicManager.display('info')
+                this.itemManager.display('info')
+                this.overlayManager.display()
                 this.modManager.display()
                 this.displayCurrency()
                 if(this.anim.defeat>0){
@@ -1865,9 +1871,9 @@ class battle{
                     this.layer.text('Dictionary',26+a*(this.layer.width-52),522)
                 }
                 this.nodeManager.display()
-                this.overlayManager.display()
                 this.relicManager.display(stage.scene)
                 this.itemManager.display(stage.scene)
+                this.overlayManager.display()
                 this.modManager.display()
                 this.displayCurrency()
             break
@@ -1934,8 +1940,8 @@ class battle{
                         this.layer.text('50 Currency',194+a*(this.layer.width-388),628-50*this.anim.rerollActive[a]+4*this.anim.reroll[a])
                     }
                 }
-                this.itemManager.display(stage.scene)
                 this.purchaseManager.display()
+                this.itemManager.display(stage.scene)
                 this.overlayManager.display()
                 this.displayCurrency()
             break

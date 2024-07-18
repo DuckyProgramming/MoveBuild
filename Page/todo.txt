@@ -48,7 +48,7 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 [forgetful - curse, become frail at end of turn]
 
-[]
+[lodestone evoke]
 
 [azis must be able to build around fire of ena]
 
@@ -114,6 +114,22 @@ they cost 0
 barter box - remove all items, replace with random other items
 
 [is lira still in a defecit]
+
+[diagonal evoke]
+
+[]
+
+[]
+
+
+
+move poison cards
+
+create "toxic" status that decrements and makes poison increase rather than decrease at end of turn
+
+create more poison cards
+
+bring back rotten tomatoes
 
 
 
@@ -181,8 +197,6 @@ U blossoming chip - gain an additional normal relic after every boss
 
 new variants:
 
-unary - only 1 choice per battle
-chaos - all card effects are randomized
 []
 
 []

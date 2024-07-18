@@ -3911,10 +3911,10 @@ class combatant{
                 this.statusEffect('Dissipating',5)
             break
             case 'Spike Pillar':
-                this.statusEffect('Counter All Combat',4)
+                this.statusEffect('Counter All Combat',6)
             break
             case 'Barbed Pillar':
-                this.statusEffect('Counter Bleed All Combat',2)
+                this.statusEffect('Counter Bleed All Combat',3)
             break
             case 'Glitch':
                 this.statusEffect('End Move',floor(random(1,3)))
@@ -5740,9 +5740,6 @@ class combatant{
                         }
                         this.blocked=damageLeft==0&&this.block>0?0:damageLeft<damage?1:2
                         this.taken=damageLeft
-                        if(this.battle.relicManager.hasRelic(253,this.id)){
-                            this.battle.addCurrency(damageLeft*5*this.battle.relicManager.active[253][this.id+1],this.id)
-                        }
                         if(damageLeft>0){
                             this.infoAnim.upFlash[0]=true
                             this.loseHealth(damageLeft)
@@ -5751,9 +5748,6 @@ class combatant{
                             this.battle.relicManager.activate(6,[this.id])
                             if(this.id<this.battle.players){
                                 this.battle.stats.taken[this.id][2]+=damage
-                            }
-                            if(this.battle.relicManager.hasRelic(253,this.id)){
-                                this.battle.addCurrency(damage*5*this.battle.relicManager.active[253][this.id+1],this.id)
                             }
                         }else{
                             this.infoAnim.upFlash[1]=true
@@ -7007,6 +7001,9 @@ class combatant{
         this.life-=amount
         if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[438]>0){
             this.battle.combatantManager.areaAbstract(0,[this.status.main[438],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
+        }
+        if(this.battle.relicManager.hasRelic(253,this.id)){
+            this.battle.addCurrency(amount*3*this.battle.relicManager.active[253][this.id+1],this.id)
         }
     }
     tick(sub){
@@ -9957,7 +9954,7 @@ class combatant{
                     let player=this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players?this.battle.turn.main:floor(random(0,this.battle.players))
                     this.battle.overlayManager.overlays[25][player].active=true
                     this.battle.overlayManager.overlays[25][player].activate([0,[
-                            {type:0,value:[this.status.main[42]]}]])
+                        {type:0,value:[this.status.main[42]]}]])
                 }
                 if(this.status.main[80]>0){
                     this.battle.combatantManager.areaAbstract(0,[this.base.life*this.status.main[80],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
@@ -9999,8 +9996,10 @@ class combatant{
                     }
                 }
                 if(this.spec.includes(18)){
-                    this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].active=true
-                    this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].activate([0,[{type:2,value:[]}]])
+                    let player=this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players?this.battle.turn.main:floor(random(0,this.battle.players))
+                    this.battle.overlayManager.overlays[25][player].active=true
+                    this.battle.overlayManager.overlays[25][player].activate([0,[
+                        {type:2,value:[]}]])
                 }
                 if(this.name=='Prestige'&&this.base.life>10){
                     this.doubleHalf()

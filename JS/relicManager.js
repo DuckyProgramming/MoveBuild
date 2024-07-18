@@ -1406,7 +1406,7 @@ class relicManager{
                 if(this.active[330][args[1]+1]>0&&this.getPlayer(args[1]).life<5){
                     this.getPlayer(args[1]).statusEffect('Strength',this.active[330][args[1]+1])
                     this.getPlayer(args[1]).permanentStrength+=this.active[330][args[1]+1]
-                    this.loseRelic(330,a)
+                    this.loseRelic(330,args[1])
                 }
                 if(this.battle.modded(143)){
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].statusEffect(['Burn','Freeze','Shock'][floor(random(0,3))],1)
@@ -1809,7 +1809,15 @@ class relicManager{
     display(scene,args){
         let lea=this.displayRelics.length
         switch(scene){
-            case 'battle': case 'map': case 'event':
+            case 'battle':
+                for(let a=0,la=this.relics.length;a<la;a++){
+                    this.relics[a].display(this.total[this.relics[a].player],this.active[types.relic[this.relics[a].type].id][this.relics[a].player+1],undefined,undefined,this.detail[this.relics[a].type][this.relics[a].player])
+                }
+            break
+            case 'info':
+                this.relics.forEach(relic=>relic.displayInfo())
+            break
+            case 'map': case 'event':
                 for(let a=0,la=this.relics.length;a<la;a++){
                     this.relics[a].display(this.total[this.relics[a].player],this.active[types.relic[this.relics[a].type].id][this.relics[a].player+1],undefined,undefined,this.detail[this.relics[a].type][this.relics[a].player])
                 }
