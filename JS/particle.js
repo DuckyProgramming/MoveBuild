@@ -31,7 +31,7 @@ class particle{
             case 51: case 52: case 54: case 57: case 60: case 65: case 66: case 68: case 72: case 73:
             case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 88: case 90: case 95:
             case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120: case 121:
-            case 126: case 135:
+            case 126: case 135: case 136: case 139:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -308,6 +308,28 @@ class particle{
                 for(let a=0,la=20;a<la;a++){
                     this.notes.push([floor(random(0,2)),floor(random(0,3)),-1+floor(random(0,2))*2])
                 }
+            break
+            case 137:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.color=args[2]
+                this.distance=0
+                this.speed=4
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=1
+            break
+            case 138:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.color=args[2]
+                this.distance=0
+                this.speed=3.5
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=1
             break
         }
     }
@@ -1924,6 +1946,108 @@ class particle{
                         this.layer.translate(0,(50-a%2*20))
                     }
                 break
+                case 136:
+                    this.layer.rotate(this.time*6)
+                    this.layer.fill(100,0,150,this.fade)
+                    this.layer.ellipse(-20,0,8)
+                    this.layer.fill(100,0,150,this.fade*0.5)
+                    this.layer.beginShape()
+                    this.layer.vertex(-23,0)
+                    this.layer.bezierVertex(-22*lcos(30),22*lsin(30),-21*lcos(60),21*lsin(60),0,20)
+                    this.layer.bezierVertex(-19*lcos(60),19*lsin(60),-18*lcos(30),18*lsin(30),-17,0)
+                    this.layer.endShape()
+                    this.layer.fill(250,225,150,this.fade)
+                    this.layer.ellipse(20,0,8)
+                    this.layer.fill(250,225,150,this.fade*0.5)
+                    this.layer.beginShape()
+                    this.layer.vertex(23,0)
+                    this.layer.bezierVertex(22*lcos(30),-22*lsin(30),21*lcos(60),-21*lsin(60),0,-20)
+                    this.layer.bezierVertex(19*lcos(60),-19*lsin(60),18*lcos(30),-18*lsin(30),17,0)
+                    this.layer.endShape()
+                break
+                case 137:
+                    this.layer.rotate(this.direction)
+                    this.layer.stroke(...this.color,this.fade)
+                    this.layer.strokeWeight(3)
+                    this.layer.noFill()
+                    for(let a=max(0,floor(this.distance/30)-3),la=floor(this.distance/30);a<la;a++){
+                        this.layer.ellipse(0,-15-30*a,18,30)
+                        this.layer.line(-9,-15-30*a,9,-15-30*a)
+                    }
+                    this.layer.arc(0,-15-30*floor(this.distance/30),18,30,90,90+this.distance%30*6)
+                    this.layer.arc(0,-15-30*floor(this.distance/30),18,30,90-this.distance%30*6,90)
+                    if(this.distance%30>24){
+                        this.layer.line(-9,-15-30*floor(this.distance/30),9,-15-30*floor(this.distance/30))
+                    }else if(this.distance%30>15){
+                        this.layer.line(-9,-15-30*floor(this.distance/30),-24+this.distance%30,-15-30*floor(this.distance/30))
+                        this.layer.line(9,-15-30*floor(this.distance/30),24-this.distance%30,-15-30*floor(this.distance/30))
+                    }
+                    if(floor(this.distance/30)>3){
+                        this.layer.arc(0,105-30*floor(this.distance/30),18,30,90+this.distance%30*6,270)
+                        this.layer.arc(0,105-30*floor(this.distance/30),18,30,-90,90-this.distance%30*6)
+                        if(this.distance%30<5){
+                            this.layer.line(-9,105-30*floor(this.distance/30),9,105-30*floor(this.distance/30))
+                        }else if(this.distance%30<14){
+                            this.layer.line(-9,105-30*floor(this.distance/30),5-this.distance%30,105-30*floor(this.distance/30))
+                            this.layer.line(9,105-30*floor(this.distance/30),-5+this.distance%30,105-30*floor(this.distance/30))
+                        }
+                    }else if(floor(this.distance/30)==3&&this.distance%30>=15){
+                        this.layer.arc(0,15,18,30,90+this.distance%30*6,270)
+                        this.layer.arc(0,15,18,30,-90,90-this.distance%30*6)
+                    }else{
+                        this.layer.arc(0,15,18,30,180,270)
+                        this.layer.arc(0,15,18,30,-90,0)
+                    }
+                break
+                case 138:
+                    this.layer.rotate(this.direction)
+                    this.layer.stroke(...this.color,this.fade)
+                    this.layer.strokeWeight(2)
+                    this.layer.noFill()
+                    for(let a=max(0,floor(this.distance/20)-3),la=floor(this.distance/20);a<la;a++){
+                        this.layer.ellipse(0,-10-20*a,12,20)
+                        this.layer.line(-6,-10-20*a,6,-10-20*a)
+                    }
+                    this.layer.arc(0,-10-20*floor(this.distance/20),12,20,90,90+this.distance%20*9)
+                    this.layer.arc(0,-10-20*floor(this.distance/20),12,20,90-this.distance%20*9,90)
+                    if(this.distance%20>16){
+                        this.layer.line(-6,-10-20*floor(this.distance/20),6,-10-20*floor(this.distance/20))
+                    }else if(this.distance%20>10){
+                        this.layer.line(-6,-10-20*floor(this.distance/20),-18+this.distance%20,-10-20*floor(this.distance/20))
+                        this.layer.line(6,-10-20*floor(this.distance/20),18-this.distance%20,-10-20*floor(this.distance/20))
+                    }
+                    if(floor(this.distance/20)>3){
+                        this.layer.arc(0,70-20*floor(this.distance/20),12,20,90+this.distance%20*9,270)
+                        this.layer.arc(0,70-20*floor(this.distance/20),12,20,-90,90-this.distance%20*9)
+                        if(this.distance%20<3){
+                            this.layer.line(-6,70-20*floor(this.distance/20),6,70-20*floor(this.distance/20))
+                        }else if(this.distance%20<9){
+                            this.layer.line(-6,70-20*floor(this.distance/20),3-this.distance%20,70-20*floor(this.distance/20))
+                            this.layer.line(6,70-20*floor(this.distance/20),-3+this.distance%20,70-20*floor(this.distance/20))
+                        }
+                    }else if(floor(this.distance/20)==3&&this.distance%20>=10){
+                        this.layer.arc(0,10,12,20,90+this.distance%20*9,270)
+                        this.layer.arc(0,10,12,20,-90,90-this.distance%20*9)
+                    }else{
+                        this.layer.arc(0,10,12,20,180,270)
+                        this.layer.arc(0,10,12,20,-90,0)
+                    }
+                break
+                case 139:
+                    this.layer.rotate(this.position.x*2.2-this.time)
+                    this.layer.fill(60,150,60,this.fade*2)
+                    for(let a=0,la=24;a<la;a++){
+                        this.layer.ellipse(lsin(360*a/la)*10,lcos(360*a/la)*10,6)
+                    }
+                    this.layer.fill(40,100,40,this.fade*1.5)
+                    for(let a=0,la=24;a<la;a++){
+                        this.layer.ellipse(lsin(360*a/la)*10,lcos(360*a/la)*10,4)
+                    }
+                    this.layer.fill(150,75,200,this.fade*3)
+                    for(let a=0,la=18;a<la;a++){
+                        regStarFlower(this.layer,lsin(360*a/la)*(11-a%2*2),lcos(360*a/la)*(11-a%2*2),5,0.2,0.2,1,1,360*a/la)
+                    }
+                break
 
             }
             this.layer.pop()
@@ -2095,7 +2219,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 88: case 133:
+            case 88: case 133: case 136:
                 this.fade-=0.05
                 this.scale+=0.05
                 if(this.fade<=0){
@@ -2207,6 +2331,20 @@ class particle{
             break
             case 135:
                 this.fade-=0.05
+                this.scale+=0.1-this.time*0.005
+                if(this.fade<=0){
+                    this.remove=true
+                }
+            break
+            case 137: case 138:
+                this.distance+=this.speed
+                this.fade=smoothAnim(this.fade,this.time<this.timer,0,1,5)
+                if(this.fade<=0){
+                    this.remove=true
+                }
+            break
+            case 139:
+                this.fade-=0.04
                 this.scale+=0.1-this.time*0.005
                 if(this.fade<=0){
                     this.remove=true

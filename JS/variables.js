@@ -5,19 +5,20 @@ types={
         {name:'Lira',moniker:'The Apprentice',identifier:['Sister','Miss'],life:60,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:305,effect:[5,6]},{type:25,effect:[14]},{type:306,effect:[18]}],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
         {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:307,effect:[2]},{type:24,effect:[8,8]},{type:308,effect:[13]}],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to reclaim her.`},
         {name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:52,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:309,effect:[4]},{type:88,effect:[2]},{type:310,effect:[12,2,2]}],description:`An experiment gone wrong... or right.\nDirector Stavresk wants his work\nback, but it appears he has failed.\nThe entity was allowed to go free.`},
-        {name:'Azis',moniker:'The Executor',identifier:['Brother','Mister'],life:62,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:311,effect:[4]},{type:312,effect:[5,5,1,1,2,2,2,2,10]},{type:313,effect:[]}],description:`Former Management-aligned free actor,\nhaving ended his partnership.\nNow on an indepdent research mission,\ndiscovering his capabilities.`},
+        {name:'Azis',moniker:'The Executor',identifier:['Brother','Mister'],life:66,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:311,effect:[4]},{type:312,effect:[5,5,1,1,2,2,2,2,10]},{type:313,effect:[]}],description:`Former Management-aligned free actor,\nhaving ended his partnership.\nNow on an indepdent research mission,\ndiscovering his capabilities.`},
         {name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[0],move:{type:9,speed:1},attack:[{type:314,effect:[]},{type:315,effect:[]},{type:316,effect:[15,1]}],description:`Duck "transferral district" escapee,\nnow getting his revenge.\nDoesn't seem to have much motivation\nexcept for desire to take out his anger.`},
         {name:'Setsuna',moniker:'The Duelist',identifier:['Sister','Miss'],life:68,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:317,effect:[12]},{type:318,effect:[42]},{type:319,effect:[12]}],description:`Once motivated by a desire for revenge.\nNot anymore, they're all dead.\nMakes it's time for her to stop?\nShe doesn't seem to think so.`},
         {name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:44,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:320,effect:[15,2]},{type:321,effect:[10,2,'Burn',2]},{type:322,effect:[10]}],description:`A guardian of dreams, in her mind, she\nviews everything else as a nightmare.\nHow she got her powers, well,\nblame the Management as always.`},
         {name:'Edgar',moniker:'The Disgraced CEO',identifier:['Brother','Mister'],life:76,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:303,effect:[25,5]},{type:323,effect:[1]},{type:324,effect:[2]}],description:`Having lost his powerful role after\na mass of insider trading,\nhe now takes his anger out against\nthe Management that wronged him.`},
-        {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:72,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:128,effect:[7,1,'Invoice']}],description:`A gambler now trapped in debt,\nescaping was his only option.\nBut it seems the Management is also\ntracking him down for his crimes.`},
+        {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:74,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:128,effect:[7,1,'Invoice']}],description:`A gambler now trapped in debt,\nescaping was his only option.\nBut it seems the Management is also\ntracking him down for his crimes.`},
         {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:327,effect:[24]},{type:328,effect:[17,2]},{type:329,effect:[14,1]}],description:`Pursuing a Rewriter for some time now,\ntracking the supposed ghost\nacross several Managerial worlds,\nfinally arriving at its location.`},
-        {name:'DD-610',moniker:'The Paradigm',identifier:['Friend','Robot'],life:66,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:330,effect:[4]},{type:331,effect:[19,1]},{type:332,effect:[16,8]}],description:`One of hundreds of prototypes sent\nto Managerial High Command from\nthe manufcaturing detartments.\nOnly this one escaped destruction.`},
+        {name:'DD-610',moniker:'The Paradigm',identifier:['Friend','Robot'],life:72,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:330,effect:[4]},{type:331,effect:[19,1]},{type:332,effect:[16,8]}],description:`One of hundreds of prototypes sent\nto Managerial High Command from\nthe manufcaturing detartments.\nOnly this one escaped destruction.`},
         {name:'Prehextorica',moniker:'The Recollection',identifier:['Brother','Mister'],life:64,behavior:14,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[33]},{type:72,effect:[28,3]},{type:21,effect:[]}],description:`A member of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
         {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:`Overworked professor who barely\nearned enough to slay alive.\nNow ready to take the share of\npay he believes he deserves.`},
         {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:`Fairy formed by the planet\nas a natural defense mechanism.\nReckless but seemingly immortal,\nnature's incarnates always return.`},
         {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:339,effect:[8,8]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:``},
         {name:'Shinmyoumaru',moniker:'',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]}],description:``},
+        {name:'',moniker:'',identifier:['Brother','Mister'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -631,6 +632,7 @@ types={
         {name:'Strike / Bleed',class:1},
         {name:'Triple Strike / Vulnerable',class:1},//370
         {name:'Triple Strike / Weak',class:1},
+        {name:'Poison',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -5437,6 +5439,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 stroke:[175,130,180],
                 text:[75,25,100],
                 active:[230,210,255],
+            },{
+                fill:[100,90,150],
+                stroke:[75,70,120],
+                text:[30,25,40],
+                active:[240,235,250],
             },
             
             {
@@ -5496,7 +5503,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 stroke:[225,75,75],
                 text:[100,0,0],
                 active:[255,200,200],
-            },{},{},{},{},{},{},{},{},{},{},{},{},
+            },{},{},{},{},{},{},{},{},{},{},{},{},{},
             
             {
                 fill:[125,125,125],
@@ -9027,7 +9034,8 @@ Is removed when damage taken.`,
         },{name:'Shock',desc:
 `Take damage after each movement step.`,
         },{name:'Jinx',desc:
-`Take damage after a random period of time, a 1/3 chance each turn.`,
+`Take damage after a random period of time, a 1/3 chance each turn.
+Reduces to half, rounded down, afterward.`,
         },{name:'Fade',desc:
 `After a successful hit, the next attack next turn will do no damage.`,
         },{name:'Contains',desc:
@@ -9301,7 +9309,7 @@ Stacks degrade by 1 each turn.`,
     ],
 }
 stage={scale:0,scene:'title',internal:{version:1}}
-game={player:[],deck:[],playerNumber:17,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[],deck:[],playerNumber:18,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
 variants={
     mtg:false,mod:false,selectCombat:false,

@@ -966,17 +966,23 @@ class combatantManager{
             }
         }
     }
-    getRandom(){
+    getRandom(number){
         if(this.combatants.length>0){
             let list=[]
+            let result=[]
             for(let a=0,la=this.combatants.length;a<la;a++){
                 if(this.combatants[a].team==0&&this.combatants[a].life>0){
                     list.push(a)
                 }
             }
-            if(list.length>0){
-                return list[floor(random(0,list.length))]
+            for(let a=0,la=number;a<la;a++){
+                if(list.length>0){
+                    let index=floor(random(0,list.length))
+                    result.push(list[index])
+                    list.splice(index,1)
+                }
             }
+            return result
         }
     }
     killAll(name){

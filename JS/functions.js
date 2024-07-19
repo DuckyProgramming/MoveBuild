@@ -98,45 +98,62 @@ function displayTransition(layer,transition){
 	}
 }
 function regTriangle(layer,x,y,radiusX,radiusY,direction){
-	layer.triangle(x+sin(direction)*radiusX,y+cos(direction)*radiusY,x+sin(direction+120)*radiusX,y+cos(direction+120)*radiusY,x+sin(direction+240)*radiusX,y+cos(direction+240)*radiusY)
+	layer.triangle(x+lsin(direction)*radiusX,y+lcos(direction)*radiusY,x+lsin(direction+120)*radiusX,y+lcos(direction+120)*radiusY,x+lsin(direction+240)*radiusX,y+lcos(direction+240)*radiusY)
 }
 function regPoly(layer,x,y,sides,radiusX,radiusY,direction){
 	layer.beginShape()
 	for(k=0;k<sides;k++){
-		layer.vertex(x+sin(direction+k*360/sides)*radiusX,y+cos(direction+k*360/sides)*radiusY)
+		layer.vertex(x+lsin(direction+k*360/sides)*radiusX,y+lcos(direction+k*360/sides)*radiusY)
 	}
 	layer.endShape(CLOSE)
 }
 function regPolyBroken(layer,x,y,sides,radiusX,radiusY,direction){
 	layer.beginShape()
 	for(k=0;k<sides;k++){
-		layer.vertex(x+sin(direction+(k-k%2*0.5)*360/sides)*radiusX,y+cos(direction+(k-k%2*0.5)*360/sides)*radiusY)
+		layer.vertex(x+lsin(direction+(k-k%2*0.5)*360/sides)*radiusX,y+lcos(direction+(k-k%2*0.5)*360/sides)*radiusY)
 	}
 	layer.endShape(CLOSE)
 }
 function regStar(layer,x,y,sides,radiusX,radiusY,radius2X,radius2Y,direction){
 	layer.beginShape()
 	for(k=0;k<sides*2;k++){
-		layer.vertex(x+sin(direction+k*180/sides)*(k%2==0?radiusX:radius2X),y+cos(direction+k*180/sides)*(k%2==0?radiusY:radius2Y))
+		layer.vertex(x+lsin(direction+k*180/sides)*(k%2==0?radiusX:radius2X),y+lcos(direction+k*180/sides)*(k%2==0?radiusY:radius2Y))
 	}
 	layer.endShape(CLOSE)
 }
 function regStarGear(layer,x,y,sides,gear,radiusX,radiusY,radius2X,radius2Y,direction){
 	layer.beginShape()
 	for(k=0;k<sides*(1+gear);k++){
-		layer.vertex(x+sin(direction+k*360/(1+gear)/sides)*(k%(1+gear)==0?radiusX:radius2X),y+cos(direction+k*360/(1+gear)/sides)*(k%(1+gear)==0?radiusY:radius2Y))
+		layer.vertex(x+lsin(direction+k*360/(1+gear)/sides)*(k%(1+gear)==0?radiusX:radius2X),y+lcos(direction+k*360/(1+gear)/sides)*(k%(1+gear)==0?radiusY:radius2Y))
 	}
 	layer.endShape(CLOSE)
 }
 function halfRegStar(layer,x,y,sides,radiusX,radiusY,radius2X,radius2Y,direction){
 	layer.beginShape()
 	for(k=0;k<sides*2+1;k++){
-		layer.vertex(x+sin(direction+k*90/sides)*(k%2==0?radiusX:radius2X),y+cos(direction+k*90/sides)*(k%2==0?radiusY:radius2Y))
+		layer.vertex(x+lsin(direction+k*90/sides)*(k%2==0?radiusX:radius2X),y+lcos(direction+k*90/sides)*(k%2==0?radiusY:radius2Y))
+	}
+	layer.endShape(CLOSE)
+}
+function regStarFlower(layer,x,y,sides,radiusX,radiusY,radius2X,radius2Y,direction){
+	layer.beginShape()
+	layer.vertex(x+lsin(direction)*radiusX,y+lcos(direction)*radiusY)
+	for(k=0;k<sides;k++){
+		layer.bezierVertex(
+			x+lsin(direction+(k+1/6)*360/sides)*(radiusX*0.3+radius2X*0.7),y+lcos(direction+(k+1/6)*360/sides)*(radiusY*0.3+radius2Y*0.7),
+			x+lsin(direction+(k+1/3)*360/sides)*(radiusX*0.1+radius2X*0.9),y+lcos(direction+(k+1/3)*360/sides)*(radiusY*0.1+radius2Y*0.9),
+			x+lsin(direction+(k+0.5)*360/sides)*radius2X,y+lcos(direction+(k+0.5)*360/sides)*radius2Y
+		)
+		layer.bezierVertex(
+			x+lsin(direction+(k+2/3)*360/sides)*(radiusX*0.1+radius2X*0.9),y+lcos(direction+(k+2/3)*360/sides)*(radiusY*0.1+radius2Y*0.9),
+			x+lsin(direction+(k+5/6)*360/sides)*(radiusX*0.3+radius2X*0.7),y+lcos(direction+(k+5/6)*360/sides)*(radiusY*0.3+radius2Y*0.7),
+			x+lsin(direction+(k+1)*360/sides)*radiusX,y+lcos(direction+(k+1)*360/sides)*radiusY
+		)
 	}
 	layer.endShape(CLOSE)
 }
 function diamond(layer,x,y,width,height,direction){
-	layer.quad(x-width*cos(direction),y-width*sin(direction),x-height*sin(direction),y-height*cos(direction),x+width*cos(direction),y+width*sin(direction),x+height*sin(direction),y+height*cos(direction))
+	layer.quad(x-width*lcos(direction),y-width*lsin(direction),x-height*lsin(direction),y-height*lcos(direction),x+width*lcos(direction),y+width*lsin(direction),x+height*lsin(direction),y+height*lcos(direction))
 }
 function pentagon(layer,x1,y1,x2,y2,x3,y3,x4,y4,x5,y5){
 	layer.beginShape()
@@ -985,6 +1002,7 @@ function intentDescription(attack,user,info){
 			case 369: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Bleed\nRange 1-1`
 			case 370: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Vulnerable\nRange 1-1`
 			case 371: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-1`
+			case 372: return `Apply ${info?attack.effect[0]:`?`} Poison\nRange 1-1`
 			
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
@@ -1146,6 +1164,13 @@ function getIndicesOf(searchString,string,caseSensitive){
 }
 function quadroArray(base){
 	return [base,base,base,base]
+}
+function multiplyArray(base,number){
+	let result=[]
+	for(let a=0,la=number;a<la;a++){
+		result.push(base)
+	}
+	return result
 }
 function copyArray(base){
 	/*let list=[]
@@ -1850,7 +1875,7 @@ function colorTest(){
 	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards=[]
 	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName('Charm\nQuark',types.card),0,0)
 	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
-	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.compact=0.6
+	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.compact=0.56
 	for(let a=0,la=game.playerNumber+6;a<la;a++){
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(1,0,a,0)
 	}
@@ -1949,6 +1974,7 @@ function mtgPlayerColor(player){
 		case 15: return [4,2]
 		case 16: return [4,2,1]
 		case 17: return [3,5,1]
+		case 18: return [4,2,5]
 		default: return [0]
 	}
 }

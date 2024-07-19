@@ -4571,6 +4571,40 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,2,1.2)
             layer.ellipse(0,4,1.2)
         break
+        case 481:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(-3.5,0,4.5,6,1)
+            layer.rect(3.5,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(255,255,150,fade)
+            regStar(layer,-3.5,0,10,0.5,0.5,3.5,3.5,0)
+        break
+        case 482:
+            layer.fill(150,0,200,fade)
+            layer.quad(-5,-0.5,5,-0.5,2.5,-2.5*sqrt(3),-2.5,-2.5*sqrt(3))
+            layer.quad(-5,0.5,5,0.5,2.5,2.5*sqrt(3),-2.5,2.5*sqrt(3))
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
+        case 483:
+            layer.fill(150,255,100,fade)
+            layer.arc(0,0,8,8,-30,210)
+            layer.quad(0,0,sqrt(3)*2,-2,0,-2/(2-sqrt(3)),-sqrt(3)*2,-2)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.ellipse(-8,0,3,3)
+        break
+        case 484:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(200,255,255,fade)
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+        break
 
     }
     //mark s
@@ -8173,6 +8207,11 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(3,-3,-6,-5,-6,-1)
             layer.triangle(3,3,-6,1,-6,5)
         break
+        case 372:
+            layer.fill(150,255,100,fade)
+            layer.arc(0,0,8,8,-30,210)
+            layer.quad(0,0,sqrt(3)*2,-2,0,-2/(2-sqrt(3)),-sqrt(3)*2,-2)
+        break
 
     }
     //mark i
@@ -8202,7 +8241,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 291: case 296: case 300: case 304: case 306: case 307: case 308: case 311: case 317: case 318:
             case 319: case 320: case 321: case 322: case 323: case 324: case 327: case 330: case 332: case 334:
             case 335: case 336: case 340: case 344: case 347: case 350: case 351: case 359: case 362: case 363:
-            case 366:
+            case 366: case 372:
                 layer.text(effect[0],0,0)
             break
             case 20: case 31: case 47: case 59: case 66: case 69: case 97: case 99: case 103: case 133:
@@ -8668,11 +8707,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         break
         case 51:
             layer.fill(255,255,150,fade)
-            layer.beginShape()
-            for(let a=0,la=10;a<la;a++){
-                layer.vertex(lsin(a*36)*(1+a%2*6),lcos(a*36)*(1+a%2*6))
-            }
-            layer.endShape()
+            regStar(layer,0,0,10,1,1,7,7,0)
         break
         case 52:
             layer.stroke(0,fade)
@@ -9515,7 +9550,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 48-Intangible
 49-Retain
 50-Luck
-51-Status
+51-Status Card
 52-Stash
 53-Assort
 54-Exhaust

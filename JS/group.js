@@ -698,7 +698,8 @@ class group{
                 type==11&&this.cards[a].colorless()||
                 type==12&&args[0].includes(this.cards[a].attack)&&this.cards[a].name.includes(args[1])||
                 type==13&&!this.cards[a].usable||
-                type==14&&args[0].includes(this.cards[a].class)&&!this.cards[a].spec.includes(args[1])
+                type==14&&args[0].includes(this.cards[a].class)&&!this.cards[a].spec.includes(args[1])||
+                type==15&&!args[0].includes(this.cards[a].class)
             ){
                 total++
             }
@@ -722,26 +723,6 @@ class group{
             }
         }
         return types.length
-    }
-    allClass(cardClass){
-        for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].class!=cardClass){
-                return false
-            }
-        }
-        return true
-    }
-    allClassLeeway(cardClass){
-        let total=0
-        for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].class!=cardClass){
-                total++
-                if(total>1){
-                    return false
-                }
-            }
-        }
-        return true
     }
     allClaw(effect){
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -1743,6 +1724,7 @@ class group{
                 &&!(effect==54&&(this.cards[a].level>=2||!this.cards[a].basic))
                 &&!(effect==55&&!this.cards[a].colorless())
                 &&!(effect==57&&(this.cards[a].class==args[0]&&args[0]!=0||this.cards[a].spec.includes(55)))
+                &&!(effect==58&&this.cards[a].class!=args[0]&&args[0]!=0)
                 ){
                     list.push(a)
                 }
@@ -1750,7 +1732,7 @@ class group{
             if(list.length>0){
                 let index=list[floor(random(0,list.length))]
                 switch(effect){
-                    case 0: case 17: case 57:
+                    case 0: case 17: case 57: case 58:
                         this.cards[index].deSize=true
                     break
                     case 1: case 35:
@@ -2015,6 +1997,9 @@ class group{
                 card.effect[0]+=this.basicChange[1]
             }
         }
+        if(card.class==5&&userCombatant.getStatus('Drawn Status Draw')>0){
+            this.drawEffects.push([5,this.drawEffects.push([5,userCombatant.getStatus('Drawn Status Draw')])])
+        }
         switch(card.attack){
             case -3:
                 this.drawEffects.push([1,card.effect[0]])
@@ -2182,7 +2167,7 @@ class group{
             case 1064:
                 this.drawEffects.push([5,card.effect[2]])
             break
-            case 1065: case 3103: case 3113: case 3114: case 3119:
+            case 1065: case 3103: case 3113: case 3114: case 3119: case 3776:
                 this.drawEffects.push([5,card.effect[1]])
             break
             case 1076:
@@ -3023,6 +3008,8 @@ class group{
                     userCombatant.status.main[findList('Temporary Free Non-Rare Colorless',userCombatant.status.name)]--
                 }else if(effectiveCost!=0&&cardClass==1&&userCombatant.getStatus('Free Attack')>0){
                     userCombatant.status.main[findList('Free Attack',userCombatant.status.name)]--
+                }else if(effectiveCost!=0&&cardClass==2&&userCombatant.getStatus('Free Defense')>0){
+                    userCombatant.status.main[findList('Free Defense',userCombatant.status.name)]--
                 }else if(effectiveCost!=0&&cardClass==3&&userCombatant.getStatus('Free Movement')>0){
                     userCombatant.status.main[findList('Free Movement',userCombatant.status.name)]--
                 }else if(effectiveCost!=0&&cardClass==11&&userCombatant.getStatus('Free Skill')>0){

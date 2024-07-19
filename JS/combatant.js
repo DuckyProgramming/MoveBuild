@@ -130,7 +130,7 @@ class combatant{
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block Combat','Heal Gain Max HP',
             'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic Orb','Basic Orb on Hit','Random Common Per Turn','Node','Focus Per Turn','Freeze',
-            'Step Next Turn','Jagged Bleed','Counter Bleed All Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
+            'Step Next Turn','Jagged Bleed','Counter Bleed All Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Health','Faith Per Turn',
             'Miracle Time','Miracle+ Time','Wrath Next Turn','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Triple Block','Single Damage Block Convert',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
@@ -166,7 +166,7 @@ class combatant{
             'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
             'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
             'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Energy',
-            '5 Card Energy',
+            '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -210,14 +210,14 @@ class combatant{
                 0,1,0,0,0,0,2,2,0,0,//39
                 2,0,0,0,2,2,0,2,0,1,//40
                 0,1,0,0,0,1,1,1,0,0,//41
-                1,1,1,1,1,0,0,0,0,0,//42
+                1,1,1,0,1,0,0,0,0,0,//42
                 0,0,0,0,0,1,1,0,2,2,//43
                 0,0,0,0,0,0,0,0,0,0,//44
                 0,0,0,0,0,0,0,0,0,0,//45
                 0,0,0,1,0,0,2,0,0,0,//46
                 0,1,2,2,0,2,2,0,2,0,//47
                 0,0,0,0,0,0,0,2,1,0,//48
-                0,
+                0,0,0,2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -268,7 +268,7 @@ class combatant{
                 2,2,2,0,2,2,2,2,2,2,//46
                 0,1,1,0,2,3,3,2,0,2,//47
                 0,0,0,2,0,2,2,0,2,2,//48
-                2,
+                2,2,2,0,2,
                 
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
@@ -4282,6 +4282,7 @@ class combatant{
             case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
             case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 270: case 271: case 274:
             case 282: case 295: case 305: case 309: case 332: case 341: case 355: case 369: case 370: case 371:
+            case 372:
                 return this.battle.modded(57)?[
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2)
@@ -4837,7 +4838,7 @@ class combatant{
                         case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
                         case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 270: case 271: case 274:
                         case 282: case 295: case 304: case 305: case 309: case 332: case 341: case 355: case 369: case 370:
-                        case 371:
+                        case 371: case 372:
                             if(this.battle.modded(57)){
                                 for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                     if(
@@ -5019,7 +5020,7 @@ class combatant{
                     case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 127:
                     case 150: case 181: case 209: case 212: case 229: case 242: case 246: case 247: case 251: case 252:
                     case 270: case 271: case 274: case 282: case 295: case 304: case 305: case 309: case 331: case 332:
-                    case 341: case 355: case 363: case 369: case 370: case 371:
+                    case 341: case 355: case 363: case 369: case 370: case 371: case 372:
                         if(this.battle.modded(57)){
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
@@ -5976,6 +5977,12 @@ class combatant{
                                     this.battle.turnManager.turns[0].auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,363,[this.status.main[387]],this.id,false))
                                 }
+                                if(this.status.main[483]>0&&distance<=1){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,372,[this.status.main[483]],this.id,false))
+                                }
                             }else{
                                 if(this.status.main[1]>0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
@@ -6079,6 +6086,11 @@ class combatant{
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,363,[this.status.main[387]],this.id,false))
+                                }
+                                if(this.status.main[483]>0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,372,[this.status.main[483]],this.id,false))
                                 }
                             }
                         }
@@ -6377,7 +6389,7 @@ class combatant{
                 }
             }
             if(!success){
-                this.evoke(0,this.status.main[375]>0?this.battle.combatantManager.getRandom():this.id,[1])
+                this.evoke(0,this.status.main[375]>0?this.battle.combatantManager.getRandom(1)[0]:this.id,[1])
                 this.holdOrb(type)
             }
             this.checkAnyOrb()
@@ -6811,6 +6823,17 @@ class combatant{
             }
         }
     }
+    upRandomStatus(value,classes){
+        let list=[]
+        for(let a=0,la=this.status.main.length;a<la;a++){
+            if(this.status.main[a]>0&&classes.includes(this.status.class[a])){
+                list.push(a)
+            }
+        }
+        if(list.length>0){
+            this.statusEffect(this.status.name[list[floor(random(0,list.length))]],value)
+        }
+    }
     multiplyStatus(name,multiplier){
         let status=findList(name,this.status.name)
         this.status.main[status]=constrain(this.status.main[status]*multiplier,-999,999)
@@ -7078,7 +7101,7 @@ class combatant{
                     case 181: this.status.main[findList('Take Damage Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 182: this.status.main[findList('Block in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 189: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Conviction',types.card),0,types.card[findName('Conviction',types.card)].list)}} break
-                    case 197: if(floor(random(0,3))==0){this.takeDamage(this.status.main[a],-1);this.status.main[a]=0} break
+                    case 197: if(floor(random(0,3))==0){this.takeDamage(this.status.main[a],-1);this.status.main[a]=floor(this.status.main[a]/2)} break
                     case 203: this.heal(this.status.main[a]); break
                     case 207: this.status.main[findList('Temporary Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 212: this.status.main[findList('Half Damage Turn',this.status.name)]+=this.status.main[a]; break
@@ -7384,6 +7407,9 @@ class combatant{
                     case 1: case 2: case 3: case 4: case 6: case 7: case 10:
                         this.animSet.loop=0
                     break
+                    case 19:
+                        this.animSet.loop=0
+                    break
                 }
             break
             case 'Orb Walker': case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Louse': case 'Hwurmp': case 'Glimerrer': case 'Antihwurmp': case 'Host': case 'Host Drone': case 'Thornvine': case 'Keystone':
@@ -7391,7 +7417,13 @@ class combatant{
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun':
+                switch(type){
+                    case 19:
+                        this.animSet.loop=0
+                    break
+                }
+            break
             default:
                 switch(type){
                     case 0: case 2: case 4: case 6:
@@ -7403,6 +7435,9 @@ class combatant{
                         }
                     break
                     case 1: case 3: case 5: case 7: case 8: case 9: case 10: case 11: case 12: case 13: case 14:
+                        this.animSet.loop=0
+                    break
+                    case 19:
                         this.animSet.loop=0
                     break
                 }
@@ -7625,7 +7660,7 @@ class combatant{
                     break
                     case 19:
                         this.animSet.loop+=rate
-                        this.size=1-lsin(this.animSet.loop*180)
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
                     break
                     case 20:
                         this.animSet.loop+=rate
@@ -7954,6 +7989,10 @@ class combatant{
                         this.animSet.loop+=rate
                         this.size=this.base.size*(1-lsin(this.animSet.loop*180))
                     break
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
+                    break
                 }
             break
             case 'Orb Walker':
@@ -7982,6 +8021,10 @@ class combatant{
                             this.anim.legs[g].top=39+lsin(this.animSet.loop*90)*51
                             this.anim.legs[g].length.top=36+lsin(this.animSet.loop*90)*24
                         }
+                    break
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
                     break
                 }
             break
@@ -8029,6 +8072,10 @@ class combatant{
                         this.animSet.loop+=rate
                         this.size=this.base.size*(1-lsin(this.animSet.loop*180))
                     break
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
+                    break
                 }
             break
             case 'Spheron': case 'Louse':
@@ -8038,11 +8085,23 @@ class combatant{
                         this.offset.position.x=abs(lsin(this.animSet.loop*180))*lsin(this.anim.direction)*60
                         this.offset.position.y=abs(lsin(this.animSet.loop*180))*lcos(this.anim.direction)*30
                     break
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
+                    break
                 }
             break
             case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Thornvine':
-                this.animSet.loop+=rate
-                this.anim.glow=1+abs(lsin(this.animSet.loop*180))*0.5
+                switch(type){
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
+                    break
+                    default:
+                        this.animSet.loop+=rate
+                        this.anim.glow=1+abs(lsin(this.animSet.loop*180))*0.5
+                    break
+                }
             break
             case 'Flying Rock':
                 switch(type){
@@ -8064,6 +8123,10 @@ class combatant{
                         this.offset.position.x=abs(lsin(this.animSet.loop*180))*lsin(this.anim.direction)*60
                         this.offset.position.y=abs(lsin(this.animSet.loop*180))*lcos(this.anim.direction)*30
                     break
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
+                    break
                 }
             break
             case 'Repulsor':
@@ -8082,6 +8145,10 @@ class combatant{
                         this.animSet.loop+=rate
                         this.anim.body+=rate*180
                         this.offset.position.y=lsin(this.animSet.loop*180)*-20
+                    break
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
                     break
                 }
             break
@@ -8105,6 +8172,10 @@ class combatant{
                             this.spin.legs[g]+=rate*360*lcos(this.animSet.loop*180)
                         }
                     break
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
+                    break
                 }
             break
             case 'Hwurmp':
@@ -8112,6 +8183,10 @@ class combatant{
                     case 9:
                         this.animSet.loop+=rate
                         this.anim.body=1+lsin(this.animSet.loop*180)
+                    break
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
                     break
                 }
             break
@@ -8121,6 +8196,10 @@ class combatant{
                         this.animSet.loop+=rate
                         this.anim.body=2-lsin(this.animSet.loop*180)
                     break
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
+                    break
                 }
             break
             case 'Glimerrer':
@@ -8128,6 +8207,10 @@ class combatant{
                     case 9:
                         this.animSet.loop+=rate
                         this.offset.position.y=lsin(this.animSet.loop*180)*-20
+                    break
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
                     break
                 }
             break
@@ -8142,18 +8225,45 @@ class combatant{
                         this.offset.position.x=abs(lsin(this.animSet.loop*180))*lsin(this.anim.direction)*60
                         this.offset.position.y=abs(lsin(this.animSet.loop*180))*lcos(this.anim.direction)*30
                     break
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
+                    break
                 }
             break
             case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster':
-                this.animSet.loop+=rate
-                this.anim.light=lsin(this.animSet.loop*180)+1
+                switch(type){
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
+                    break
+                    default:
+                        this.animSet.loop+=rate
+                        this.anim.light=lsin(this.animSet.loop*180)+1
+                    break
+                }
             break
             case 'Keystone':
-                this.animSet.loop+=rate
-                this.anim.spin+=rate*20
+                switch(type){
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
+                    break
+                    default:
+                        this.animSet.loop+=rate
+                        this.anim.spin+=rate*20
+                    break
+                }
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun':
+                switch(type){
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
+                    break
+                }
+            break
             default:
                 switch(type){
                     case 0:
@@ -8303,7 +8413,10 @@ class combatant{
                         this.spin.arms[1].top=93-lsin(this.animSet.loop*180)*39
                         this.spin.arms[1].bottom=75-lsin(this.animSet.loop*180)*66
                     break
-
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
+                    break
                 }
             break
             

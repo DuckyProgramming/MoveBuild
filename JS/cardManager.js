@@ -45,7 +45,7 @@ class cardManager{
         this.listing.allListableCard=[[],[],[],[]]
         this.listing.coc=[[],[],[],[]]
         this.listing.all=[[],[],[],[]]
-        this.listing.junk=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+        this.listing.junk=multiplyArray([],game.playerNumber+2)
         this.listing.sub=[]
         this.listing.ally=[]
         this.listing.disband=[]

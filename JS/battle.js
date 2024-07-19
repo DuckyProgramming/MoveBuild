@@ -1082,6 +1082,9 @@ class battle{
         if(this.cardManagers[player].hand.totalPlayed[0]%5==0&&userCombatant.getStatus('5 Card Random Energy')>0){
             this.addSpecificEnergy(userCombatant.getStatus('5 Card Random Energy'),player,floor(random(0,7)))
         }
+        if(cardClass==11&&userCombatant.getStatus('Skill Temporary Strength')>0){
+            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Skill Temporary Strength'))
+        }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed,card.basic])
     }

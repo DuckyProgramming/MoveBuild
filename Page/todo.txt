@@ -60,11 +60,11 @@ name a card after an enemy from space war
 
 
 
-last chance - take another turn, die if you don't win on that turn
+[]
 
-swords to plowshares - exhaust a card, heal equal to its cost
+coolheaded - get a shield orb, []
 
-6 cost dovescape - innate, create a miracle whenever you play a power
+[lucent]
 
 greater good - exhaust a card, draw cards equal to its cost, discard a card
 
@@ -180,6 +180,7 @@ sagacious spirit - permanent intangible, lose 1 energy per 5 cards played
 
 chip boss needs another attack
 sukuna boss also needs to get 2 attacks and setup code with archivist
+[!gamer] boss needs 3 attacks and setup code
 
 new relics:
 
