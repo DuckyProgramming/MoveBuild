@@ -107,6 +107,13 @@ function regPoly(layer,x,y,sides,radiusX,radiusY,direction){
 	}
 	layer.endShape(CLOSE)
 }
+function regPolyStellate(layer,x,y,sides,stellate,radiusX,radiusY,direction){
+	layer.beginShape()
+	for(k=0;k<sides;k++){
+		layer.vertex(x+lsin(direction+k*360/sides*stellate)*radiusX,y+lcos(direction+k*360/sides*stellate)*radiusY)
+	}
+	layer.endShape(CLOSE)
+}
 function regPolyBroken(layer,x,y,sides,radiusX,radiusY,direction){
 	layer.beginShape()
 	for(k=0;k<sides;k++){
@@ -1003,6 +1010,7 @@ function intentDescription(attack,user,info){
 			case 370: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Vulnerable\nRange 1-1`
 			case 371: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-1`
 			case 372: return `Apply ${info?attack.effect[0]:`?`} Poison\nRange 1-1`
+			case 373: return `Remove ${info?attack.effect[0]:`?`} Dexterity\nRange 1-1`
 			
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`

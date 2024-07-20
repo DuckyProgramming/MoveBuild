@@ -633,6 +633,7 @@ types={
         {name:'Triple Strike / Vulnerable',class:1},//370
         {name:'Triple Strike / Weak',class:1},
         {name:'Poison',class:1},
+        {name:'Dexterity Down',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},

@@ -8,13 +8,11 @@ LISTING GROUP 45
 
 [aluminum alloy]
 
-[hourai burst -
-For each mana of a different color spent: Deal 8 damage to each enemy.
-If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
-
 [pinpoint]
 
-[tempest + evoke]
+[more evokes]
+
+[more evokes]
 
 
 
@@ -24,11 +22,11 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 [second wind]
 
-[something like skipping rock for sakura]
-
 [eyelet stab]
 
 [mallet's love]
+
+[skypunch]
 
 
 
@@ -46,52 +44,31 @@ If at least 7 mana was spent, return up to 1 card from Exile to the hand.]
 
 
 
-[forgetful - curse, become frail at end of turn]
-
-[lodestone evoke]
-
 [azis must be able to build around fire of ena]
 
 [primal vision]
 
-be like grandfather clock
-
 name a card after an enemy from space war
 
-
-
 []
+
+[sakura-colored sea - when drawn, add vitality, ethereal]
+
+[fire a leaf that repeatedly explodes into 4 more small leaves]
+
+
 
 coolheaded - get a shield orb, []
 
 [lucent]
 
-greater good - exhaust a card, draw cards equal to its cost, discard a card
-
 rain of filth - 2 cost azis, exhaust any number of cards, gain 1 energy back per card exhausted
-
-strip mine - gain 1 energy, exhaust powers in hand
-
-
-
-cheap fuel - gain 1 energy, cannot go above base energy
-
-auricalchite - damage, if energy divisible by 3, [character-specific] [light blue probably builder]
 
 forget the past - choose any disbanded card to add to hand
 
 canopy vista - tappable waste that gives 0 energy, increases by 1 when played, exhausts on 2
 
-grand arbiter augustin IV
-+1: skills in hand cost 1 less
--3: attacks in hand cost 1 less
--6: all cards in hand cost 1 less
-
-miku, child of song
-+1: draw a movement if you do not have one in hand
--4: gain 1 of each energy (or 5 off mtg)
--12: add a card from discard, draw, and exhaust pile to hand,
-they cost 0
+[cannonball variant for #18]
 
 
 
@@ -117,9 +94,9 @@ barter box - remove all items, replace with random other items
 
 [diagonal evoke]
 
-[]
+[simple damage in all directions, and draw a card]
 
-[]
+[claustrophobia]
 
 
 
@@ -130,6 +107,10 @@ create "toxic" status that decrements and makes poison increase rather than decr
 create more poison cards
 
 bring back rotten tomatoes
+
+cookie clicker - damage, if you have strength heal 3 health
+
+
 
 
 
@@ -155,10 +136,7 @@ icon
 
 AZIS CHANGES
 
-remove countdowns
-
 rearrange orbs
-
 ~30 new cards
 
 
@@ -166,6 +144,7 @@ rearrange orbs
 CHARACTER 18
 
 countdowns
+poison????
 
 
 
@@ -194,7 +173,7 @@ B horizon diamond - gain 1 base energy add a random card to deck every 5 nodes
 U old key - find more paths on the map
 U blossoming chip - gain an additional normal relic after every boss
 []
-[]
+B rainbow lotus - every turn a random card costs 1 less, when you gain energy add 3 block
 
 new variants:
 

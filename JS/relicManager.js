@@ -1024,7 +1024,7 @@ class relicManager{
                             this.battle.combatantManager.allEffect(35,[this.active[241][0]])
                         }
                         if(this.active[255][0]>0&&current.counter.enemy>=3){
-                            this.battle.combatantManager.randomEffect(1,[2*this.active[255][0]])
+                            this.battle.combatantManager.randomEnemyEffect(13,[2*this.active[255][0]])
                         }
                         if(this.active[281][0]>0&&args[1]==1){
                             this.battle.combatantManager.allEffect(3,[this.active[281][0]*5])

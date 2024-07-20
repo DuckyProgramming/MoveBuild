@@ -166,7 +166,7 @@ class combatant{
             'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
             'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
             'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Energy',
-            '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense',
+            '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -214,10 +214,10 @@ class combatant{
                 0,0,0,0,0,1,1,0,2,2,//43
                 0,0,0,0,0,0,0,0,0,0,//44
                 0,0,0,0,0,0,0,0,0,0,//45
-                0,0,0,1,0,0,2,0,0,0,//46
+                0,0,0,1,0,0,0,0,0,0,//46
                 0,1,2,2,0,2,2,0,2,0,//47
                 0,0,0,0,0,0,0,2,1,0,//48
-                0,0,0,2,0,
+                0,0,0,2,0,2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -268,7 +268,7 @@ class combatant{
                 2,2,2,0,2,2,2,2,2,2,//46
                 0,1,1,0,2,3,3,2,0,2,//47
                 0,0,0,2,0,2,2,0,2,2,//48
-                2,2,2,0,2,
+                2,2,2,0,2,0,3,
                 
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
@@ -4282,7 +4282,7 @@ class combatant{
             case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
             case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 270: case 271: case 274:
             case 282: case 295: case 305: case 309: case 332: case 341: case 355: case 369: case 370: case 371:
-            case 372:
+            case 372: case 373:
                 return this.battle.modded(57)?[
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2)
@@ -4838,7 +4838,7 @@ class combatant{
                         case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
                         case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 270: case 271: case 274:
                         case 282: case 295: case 304: case 305: case 309: case 332: case 341: case 355: case 369: case 370:
-                        case 371: case 372:
+                        case 371: case 372: case 373:
                             if(this.battle.modded(57)){
                                 for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                     if(
@@ -5020,7 +5020,7 @@ class combatant{
                     case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 127:
                     case 150: case 181: case 209: case 212: case 229: case 242: case 246: case 247: case 251: case 252:
                     case 270: case 271: case 274: case 282: case 295: case 304: case 305: case 309: case 331: case 332:
-                    case 341: case 355: case 363: case 369: case 370: case 371: case 372:
+                    case 341: case 355: case 363: case 369: case 370: case 371: case 372: case 373:
                         if(this.battle.modded(57)){
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
@@ -5983,6 +5983,12 @@ class combatant{
                                     this.battle.turnManager.auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,372,[this.status.main[483]],this.id,false))
                                 }
+                                if(this.status.main[485]>0&&distance<=1){
+                                    this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[0].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turns.push(new turn(0,this.battle,373,[this.status.main[485]],this.id,false))
+                                }
                             }else{
                                 if(this.status.main[1]>0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
@@ -6091,6 +6097,11 @@ class combatant{
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,372,[this.status.main[483]],this.id,false))
+                                }
+                                if(this.status.main[485]>0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,373,[this.status.main[485]],this.id,false))
                                 }
                             }
                         }

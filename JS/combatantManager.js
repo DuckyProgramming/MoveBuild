@@ -387,7 +387,10 @@ class combatantManager{
     randomEnemyEffect(effect,args){
         let list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0&&this.combatants[a].life>0){
+            if(this.combatants[a].team==0&&this.combatants[a].life>0
+                &&!(effect==16&&this.combatants[a].getStatus('Lose Per Turn')>0)
+                &&!(effect==18&&this.combatants[a].id==args[2])
+            ){
                 list.push(a)
             }
         }
@@ -404,7 +407,7 @@ class combatantManager{
                 case 2:
                     this.combatants[index].takeDamage(args[0],-1)
                     return this.combatants[index].life<=0
-                case 3:
+                case 3: case 18:
                     this.combatants[index].takeDamage(args[0],args[1])
                 break
                 case 4:
@@ -435,6 +438,24 @@ class combatantManager{
                 break
                 case 11:
                     this.combatants[index].takeDamage(args[0],args[1],args[2])
+                break
+                case 12:
+                    this.combatants[index].baseDuplicate()
+                break
+                case 13:
+                    this.combatants[index].statusEffect('Stun',args[0])
+                break
+                case 14:
+                    this.combatants[index].statusEffect('Poison',args[0])
+                break
+                case 15:
+                    this.combatants[index].statusEffect('Protected Invisible',args[0])
+                break
+                case 16:
+                    this.combatants[index].statusEffect('Lose Per Turn',args[0])
+                break
+                case 17:
+                    this.combatants[index].statusEffect('Lock On',args[0])
                 break
             }
         }
@@ -927,42 +948,6 @@ class combatantManager{
                     }
                 break
                 
-            }
-        }
-    }
-    randomEffect(effect,args){
-        if(this.combatants.length>0){
-            let list=[]
-            for(let a=0,la=this.combatants.length;a<la;a++){
-                if(this.combatants[a].team==0&&this.combatants[a].life>0
-                    &&!(effect==4&&this.combatants[a].getStatus('Lose Per Turn')>0)
-                ){
-                    list.push(a)
-                }
-            }
-            if(list.length>0){
-                let index=list[floor(random(0,list.length))]
-                switch(effect){
-                    case 0:
-                        this.combatants[index].baseDuplicate()
-                    break
-                    case 1:
-                        this.combatants[index].statusEffect('Stun',args[0])
-                    break
-                    case 2:
-                        this.combatants[index].statusEffect('Poison',args[0])
-                    break
-                    case 3:
-                        this.combatants[index].statusEffect('Protected Invisible',args[0])
-                    break
-                    case 4:
-                        this.combatants[index].statusEffect('Lose Per Turn',args[0])
-                    break
-                    case 5:
-                        this.combatants[index].statusEffect('Lock On',args[0])
-                    break
-                        
-                }
             }
         }
     }

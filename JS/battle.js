@@ -377,7 +377,7 @@ class battle{
             this.combatantManager.allEffect(26,[])
         }
         if(this.modded(154)){
-            this.combatantManager.randomEffect(0,[])
+            this.combatantManager.randomEnemyEffect(12,[])
         }
         this.attackManager.clear()
         this.turnManager.clear()

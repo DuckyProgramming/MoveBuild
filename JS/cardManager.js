@@ -681,6 +681,11 @@ class cardManager{
         }
         if(userCombatant.getStatus('Random Card Cost Less Next Turn')>0){
             this.randomEffect(2,1,[userCombatant.getStatus('Random Card Cost Less Next Turn')])
+            userCombatant.status.main[findList('Random Card Cost Less Next Turn',userCombatant.status.name)]=0
+        }
+        if(userCombatant.getStatus('Random Card Cost More Next Turn')>0){
+            this.randomEffect(2,7,[userCombatant.getStatus('Random Card Cost More Next Turn')])
+            userCombatant.status.main[findList('Random Card Cost More Next Turn',userCombatant.status.name)]=0
         }
         if(turn%4==0&&game.ascend>=24){
             this.reserve.addAbstract(findName('Dazed',types.card),0,game.playerNumber+1,0,[5],[])

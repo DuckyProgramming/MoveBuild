@@ -4605,6 +4605,28 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(200,255,255,fade)
             layer.quad(-3.2,0,0,-4,3.2,0,0,4)
         break
+        case 485:
+            layer.fill(150,175,200,fade)
+            layer.triangle(0,-6,-3,3,3,3)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.ellipse(-8,0,3,3)
+            layer.fill(200,50,0,fade)
+            layer.triangle(0,4,-2,-2,2,-2)
+        break
+        case 486:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.fill(200,255,255,fade)
+            layer.noStroke()
+            layer.triangle(-2,2,2,2,0,-3)
+            layer.noStroke()
+            layer.fill(75,fade)
+            layer.rect(-5,0,2)
+        break
 
     }
     //mark s
@@ -8212,6 +8234,12 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.arc(0,0,8,8,-30,210)
             layer.quad(0,0,sqrt(3)*2,-2,0,-2/(2-sqrt(3)),-sqrt(3)*2,-2)
         break
+        case 373:
+            layer.fill(150,175,200,fade)
+            layer.triangle(0,-6,-3,3,3,3)
+            layer.fill(200,50,0,fade)
+            layer.triangle(0,4,-2,-2,2,-2)
+        break
 
     }
     //mark i
@@ -8241,7 +8269,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 291: case 296: case 300: case 304: case 306: case 307: case 308: case 311: case 317: case 318:
             case 319: case 320: case 321: case 322: case 323: case 324: case 327: case 330: case 332: case 334:
             case 335: case 336: case 340: case 344: case 347: case 350: case 351: case 359: case 362: case 363:
-            case 366: case 372:
+            case 366: case 372: case 373:
                 layer.text(effect[0],0,0)
             break
             case 20: case 31: case 47: case 59: case 66: case 69: case 97: case 99: case 103: case 133:
