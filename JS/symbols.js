@@ -3986,11 +3986,6 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(0,5,1,7,-1,7)
         break
         case 429:
-            layer.stroke(40,fade)
-            layer.strokeWeight(1.5)
-            layer.ellipse(0,0,10,10)
-            layer.line(0,0,0,-3.25)
-            layer.line(0,0,2,2)
             layer.fill(125,fade)
             layer.stroke(100,fade)
             layer.strokeWeight(1)
@@ -4626,6 +4621,65 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.noStroke()
             layer.fill(75,fade)
             layer.rect(-5,0,2)
+        break
+        case 487:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(255,125,0,fade)
+            layer.triangle(-2,-2,-2,2,4,0)
+            layer.triangle(-2.5,0,-4,-1,-4,1)
+        break
+        case 488:
+            layer.scale(0.8)
+            layer.fill(255,100,150,fade)
+            layer.stroke(255,125,175,fade)
+            layer.strokeWeight(1.2)
+            layer.strokeJoin(ROUND)
+            regStarGear(layer,0,0,6,2,5.6,5.6,7.2,7.2,30)  
+            layer.strokeJoin(MITER)
+            layer.noStroke()
+            layer.fill(255,150,200,fade)
+            layer.ellipse(0,0,4.8)
+            for(let a=0,la=3;a<la;a++){
+                layer.quad(-1.2,-3.4,1.2,-3.4,0.4,-4.8,-0.4,-4.8)
+                layer.rotate(120)
+            }
+            layer.scale(1.25)
+            layer.fill(200,fade)
+            layer.triangle(0,-1.5,0,1.5,6,0)
+        break
+        case 489:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(40,120,40,fade)
+            layer.ellipse(-1.2,0,1.6)
+            layer.fill(40,fade)
+            layer.ellipse(1,-2,1.2)
+            layer.ellipse(1,0,1.2)
+            layer.ellipse(1,2,1.2)
+        break
+        case 490:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(-3.5,0,4.5,6,1)
+            layer.rect(3.5,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(40,120,40,fade)
+            layer.ellipse(-4.7,0,1.6)
+            layer.fill(40,fade)
+            layer.ellipse(-2.5,-2,1.2)
+            layer.ellipse(-2.5,0,1.2)
+            layer.ellipse(-2.5,2,1.2)
         break
 
     }

@@ -166,7 +166,8 @@ class combatant{
             'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
             'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
             'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Energy',
-            '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn',
+            '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
+            '13 Card Draw',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -217,7 +218,8 @@ class combatant{
                 0,0,0,1,0,0,0,0,0,0,//46
                 0,1,2,2,0,2,2,0,2,0,//47
                 0,0,0,0,0,0,0,2,1,0,//48
-                0,0,0,2,0,2,0,
+                0,0,0,2,0,2,0,2,0,0,//49
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -268,7 +270,8 @@ class combatant{
                 2,2,2,0,2,2,2,2,2,2,//46
                 0,1,1,0,2,3,3,2,0,2,//47
                 0,0,0,2,0,2,2,0,2,2,//48
-                2,2,2,0,2,0,3,
+                2,2,2,0,2,0,3,3,2,2,//49
+                2,
                 
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
@@ -3712,6 +3715,7 @@ class combatant{
         this.resetAnim()
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
+            this.status.next[a]=0
             this.status.active[a]=false
             this.status.position[a]=0
             this.status.size[a]=0
@@ -3936,7 +3940,7 @@ class combatant{
                 this.statusEffect('Regeneration',9)
             break
             case 'Precision':
-                this.statusEffect('Dodge',1)
+                this.statusEffect('Dodge',2)
                 this.statusEffect('Lasting Counter Once',4)
             break
             case 'Legacy':
@@ -4011,7 +4015,7 @@ class combatant{
             }
             if(game.ascend>=27&&this.battle.encounter.class==0||game.ascend>=28&&this.battle.encounter.class==1){
                 let randombuffs=[
-                    ['Double Damage',1],['Dodge',1],['Strength',2],['Dexterity',2],['Single Damage Up',6],
+                    ['Double Damage',1],['Dodge',2],['Strength',2],['Dexterity',2],['Single Damage Up',6],
                     ['Retain Block',10],['Block Next Turn',10],['Armor',4],['Control',1],['Metallicize',2],
                     ['Buffer',1],['Take Half Damage',2],['Counter All',3],['Strength Per Turn',1],['Regeneration',5],
                     ['Dexterity Per Turn',1],['Strength on Hit',1],['Weak on Kill',2],['Vulnerable on Kill',2],['Single Counter Block',10],
@@ -5319,9 +5323,9 @@ class combatant{
             }
             if(userCombatant.status.main[119]>0){
                 if(this.battle.turn.main<this.battle.players){
-                    this.statusEffect('Temporary Damage Up',userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1)+this.status.main[336])
+                    this.statusEffect('Temporary Damage Up',2*userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1)+this.status.main[336])
                 }else{
-                    this.statusEffectNext('Temporary Damage Up',userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1)+this.status.main[336])
+                    this.statusEffect('Temporary Damage Up Next Turn',2*userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1)+this.status.main[336])
                 }
             }
         }
@@ -5854,14 +5858,14 @@ class combatant{
                     if(this.life>0){
                         if(this.status.main[32]<=0){
                             if(this.battle.turnManager.turns.length==0){
-                                if(this.status.main[1]>0&&distance<=1){
+                                if(this.status.main[1]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[0].target=[user]
                                     this.battle.turnManager.turns[0].auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,1,[this.status.main[1]],this.id,false))
                                 }
                                 if(this.status.main[36]>0){
-                                    if(this.status.main[472]>0&&distance<=1){
+                                    if(this.status.main[472]>0&&distance>=0&&distance<=1){
                                         this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                         this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                         this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
@@ -5872,25 +5876,25 @@ class combatant{
                                         this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
                                         this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id,false))
                                     }
-                                }else if(this.status.main[472]>0&&distance<=1){
+                                }else if(this.status.main[472]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
                                     this.battle.turnManager.turnsBack.push(new turn(0,this.battle,58,[this.status.main[472]],this.id,false))
                                 }
-                                if(this.status.main[38]>0&&distance<=1){
+                                if(this.status.main[38]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turnsBack[0].target=[user]
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
                                     this.battle.turnManager.turnsBack.push(new turn(0,this.battle,3,[0],this.id,false))
                                 }
-                                if(this.status.main[39]>0&&distance<=1){
+                                if(this.status.main[39]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[0].target=[user]
                                     this.battle.turnManager.auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,58,[this.status.main[39]],this.id,false))
                                 }
-                                if(this.status.main[47]>0&&distance<=1){
+                                if(this.status.main[47]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                     this.battle.turnManager.auxiliary=true
@@ -5902,62 +5906,62 @@ class combatant{
                                     this.battle.turnManager.auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,6,[this.status.main[73]],this.id,false))
                                 }
-                                if(this.status.main[92]>0&&distance<=1){
+                                if(this.status.main[92]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[0].target=[user]
                                     this.battle.turnManager.auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,122,[0],this.id,false))
                                 }
-                                if(this.status.main[93]>0&&distance<=1){
+                                if(this.status.main[93]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[0].target=[user]
                                     this.battle.turnManager.auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,121,[0],this.id,false))
                                 }
-                                if(this.status.main[94]>0&&distance<=1){
+                                if(this.status.main[94]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[0].target=[user]
                                     this.battle.turnManager.auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,226,[this.status.main[94]],this.id,false))
                                 }
-                                if(this.status.main[102]>0&&distance<=1){
+                                if(this.status.main[102]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[0].target=[user]
                                     this.battle.turnManager.auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,227,[this.status.main[102]],this.id,false))
                                 }
-                                if(this.status.main[106]>0&&distance<=1){
+                                if(this.status.main[106]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[0].target=[user]
                                     this.battle.turnManager.auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,2,[this.status.main[106]],this.id,false))
                                 }
-                                if(this.status.main[147]>0&&distance<=1){
+                                if(this.status.main[147]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[0].target=[user]
                                     this.battle.turnManager.auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,242,[this.status.main[147]],this.id,false))
                                 }
-                                if(this.status.main[206]>0&&distance<=1){
+                                if(this.status.main[206]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[0].target=[user]
                                     this.battle.turnManager.auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,246,[this.status.main[206]],this.id,false))
                                 }
-                                if(this.status.main[266]>0&&distance<=1){
+                                if(this.status.main[266]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
                                     this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[266]],this.id,false))
                                     this.status.main[266]=0
                                 }
-                                if(this.status.main[272]>0&&distance<=1){
+                                if(this.status.main[272]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                     this.battle.turnManager.auxiliary=true
                                     this.battle.turnManager.turnsBack.push(new turn(0,this.battle,31,[this.status.main[272]],this.id,false))
                                 }
-                                if(this.status.main[360]>0&&distance<=1){
+                                if(this.status.main[360]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[0].target=[user]
                                     this.battle.turnManager.turns[0].auxiliary=true
@@ -5977,26 +5981,26 @@ class combatant{
                                     this.battle.turnManager.turns[0].auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,363,[this.status.main[387]],this.id,false))
                                 }
-                                if(this.status.main[483]>0&&distance<=1){
+                                if(this.status.main[483]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[0].target=[user]
                                     this.battle.turnManager.auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,372,[this.status.main[483]],this.id,false))
                                 }
-                                if(this.status.main[485]>0&&distance<=1){
+                                if(this.status.main[485]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[0].target=[user]
                                     this.battle.turnManager.auxiliary=true
                                     this.battle.turnManager.turns.push(new turn(0,this.battle,373,[this.status.main[485]],this.id,false))
                                 }
                             }else{
-                                if(this.status.main[1]>0&&distance<=1){
+                                if(this.status.main[1]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[1]],this.id,false))
                                 }
-                                if(this.status.main[36]>0&&distance<=1){
-                                    if(this.status.main[472]>0&&distance<=1){
+                                if(this.status.main[36]>0&&distance>=0&&distance<=1){
+                                    if(this.status.main[472]>0&&distance>=0&&distance<=1){
                                         this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                         this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                         this.battle.turnManager.turnsBack.push(new turn(0,this.battle,369,[this.status.main[36],this.status.main[472]],this.id,false))
@@ -6005,22 +6009,22 @@ class combatant{
                                         this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                         this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id,false))
                                     }
-                                }else if(this.status.main[472]>0&&distance<=1){
+                                }else if(this.status.main[472]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                     this.battle.turnManager.turnsBack.push(new turn(0,this.battle,58,[this.status.main[472]],this.id,false))
                                 }
-                                if(this.status.main[38]>0&&distance<=1){
+                                if(this.status.main[38]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,3,[0],this.id,false))
                                 }
-                                if(this.status.main[39]>0&&distance<=1){
+                                if(this.status.main[39]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,58,[this.status.main[39]],this.id,false))
                                 }
-                                if(this.status.main[47]>0&&distance<=1){
+                                if(this.status.main[47]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                     this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[47]],this.id,false))
@@ -6030,53 +6034,53 @@ class combatant{
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,6,[this.status.main[73]],this.id,false))
                                 }
-                                if(this.status.main[92]>0&&distance<=1){
+                                if(this.status.main[92]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,122,[0],this.id,false))
                                 }
-                                if(this.status.main[93]>0&&distance<=1){
+                                if(this.status.main[93]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,121,[0],this.id,false))
                                 }
-                                if(this.status.main[94]>0&&distance<=1){
+                                if(this.status.main[94]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,226,[this.status.main[94]],this.id,false))
                                 }
-                                if(this.status.main[102]>0&&distance<=1){
+                                if(this.status.main[102]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,227,[this.status.main[102]],this.id,false))
                                 }
-                                if(this.status.main[106]>0&&distance<=1){
+                                if(this.status.main[106]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,2,[this.status.main[106]],this.id,false))
                                 }
-                                if(this.status.main[147]>0&&distance<=1){
+                                if(this.status.main[147]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,242,[this.status.main[147]],this.id,false))
                                 }
-                                if(this.status.main[206]>0&&distance<=1){
+                                if(this.status.main[206]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,246,[this.status.main[206]],this.id,false))
                                 }
-                                if(this.status.main[266]>0&&distance<=1){
+                                if(this.status.main[266]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turnsBack.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                     this.battle.turnManager.turnsBack.splice(2,0,new turn(0,this.battle,1,[this.status.main[266]],this.id,false))
                                     this.status.main[266]=0
                                 }
-                                if(this.status.main[272]>0&&distance<=1){
+                                if(this.status.main[272]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                     this.battle.turnManager.turnsBack.push(new turn(0,this.battle,31,[this.status.main[272]],this.id,false))
                                 }
-                                if(this.status.main[360]>0&&distance<=1){
+                                if(this.status.main[360]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[360]],this.id,false))
@@ -6093,12 +6097,12 @@ class combatant{
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,363,[this.status.main[387]],this.id,false))
                                 }
-                                if(this.status.main[483]>0&&distance<=1){
+                                if(this.status.main[483]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,372,[this.status.main[483]],this.id,false))
                                 }
-                                if(this.status.main[485]>0&&distance<=1){
+                                if(this.status.main[485]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                     this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,373,[this.status.main[485]],this.id,false))
@@ -7184,6 +7188,8 @@ class combatant{
                     case 466: this.status.main[findList('Temporary All Cost Up',this.status.name)]+=this.status.main[a]; break
                     case 468: this.status.main[findList('Buffer',this.status.name)]+=this.status.main[a]; break
                     case 477: this.status.main[findList('Counter Once',this.status.name)]+=this.status.main[a]; break
+                    case 487: this.status.main[findList('Play Limit',this.status.name)]+=this.status.main[a]; break
+                    case 488: this.wish+=this.status.main[a]; break
                     
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){

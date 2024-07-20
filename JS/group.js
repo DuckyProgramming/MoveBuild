@@ -691,7 +691,7 @@ class group{
                 type==4&&args[0].includes(this.cards[a].class)||
                 type==5&&args[0]==this.cards[a].color&&!this.cards[a].colorful||
                 type==6&&args[0]==this.cards[a].color&&args[1]==this.cards[a].rarity&&!this.cards[a].colorful||
-                type==7&&(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(59)||this.battle.relicManager.hasRelic(128,this.player))||
+                type==7&&(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(60)||this.battle.relicManager.hasRelic(128,this.player))||
                 type==8&&this.cards[a].basic||
                 type==9&&this.cards[a].basic&&args[0].includes(this.cards[a].class)||
                 type==10&&args[0].includes(this.cards[a].class)&&!args[1].includes(this.cards[a].name)||
@@ -871,7 +871,7 @@ class group{
                         this.cards[a].etherealed()
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
-                    }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(59)||this.battle.relicManager.hasRelic(128,this.player)||variants.cardHold){
+                    }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(60)||this.battle.relicManager.hasRelic(128,this.player)||variants.cardHold){
                         this.cards[a].retained()
                         this.cards.forEach(card=>card.anotherRetained())
                         total++
@@ -1670,6 +1670,11 @@ class group{
                     if(this.cards[a].class==args[0]){
                         this.cards[a].deSize=true
                         this.cards[a].discardEffect.push(0)
+                    }
+                break
+                case 35:
+                    if(this.cards[a].cost>0&&!this.cards[a].spec.includes(args[1])){
+                        this.cards[a].cost=max(min(this.cards[a].cost,0),this.cards[a].cost-args[0])
                     }
                 break
             }
@@ -3547,10 +3552,10 @@ class group{
                 }
                 if(this.cardInUse!=-1){
                     this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor,this.cardInUse)
-                    this.cards.forEach(card=>card.anotherPlayedAfter())
                     if(!this.cardInUse.discardEffect.includes(13)){
                         this.battle.attackManager.execute()
                     }
+                    this.cards.forEach(card=>card.anotherPlayedAfter())
                 }else{
                     this.battle.attackManager.execute()
                 }
@@ -3558,7 +3563,9 @@ class group{
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
                         this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition]
-                        this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition]
+                        if(this.cards[b].class!=0){
+                            this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition]
+                        }
                     }
                 }
             break
@@ -3707,10 +3714,10 @@ class group{
                     }
                     if(this.cardInUse!=-1){
                         this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor,this.cardInUse)
-                        this.cards.forEach(card=>card.anotherPlayedAfter())
                         if(!this.cardInUse.discardEffect.includes(13)){
                             this.battle.attackManager.execute()
                         }
+                        this.cards.forEach(card=>card.anotherPlayedAfter())
                     }else{
                         this.battle.attackManager.execute()
                     }
@@ -3718,7 +3725,9 @@ class group{
                     for(let b=0,lb=this.cards.length;b<lb;b++){
                         if(!this.cards[b].usable){
                             this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition]
-                            this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition]
+                            if(this.cards[b].class!=0){
+                                this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition]
+                            }
                             if(this.cards[b].spec.includes(26)){
                                 this.battle.cardManagers[this.battle.players-1-this.player].callAmalgums(this.battle.attackManager)
                             }
@@ -4013,12 +4022,14 @@ class group{
                 this.cost(a.cost,a.class,a.spec,a.target,a.mtgManaColor,a)
                 a.played()
                 this.cards.forEach(card=>card.anotherPlayed(a))
-                this.cards.forEach(card=>card.anotherPlayedAfter())
                 if(!a.discardEffect.includes(13)){
                     this.battle.attackManager.execute()
                 }
+                this.cards.forEach(card=>card.anotherPlayedAfter())
                 this.lastPlayed[0]=[a.type,a.level,a.color,a.edition]
-                this.lastPlayed[a.class]=[a.type,a.level,a.color,a.edition]
+                if(a.class!=0){
+                    this.lastPlayed[a.class]=[a.type,a.level,a.color,a.edition]
+                }
                 if(variants.polar){
                     this.pole=1-this.pole
                 }

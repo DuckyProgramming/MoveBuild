@@ -8754,7 +8754,7 @@ A wide variety of things deal damage or edit its value.`,
 `Damage deducts block before health. Block is removed at the end of your turn.
 A wide variety of things add block, edit its value, or remove it.`,
         },{name:'Move Tiles',desc:
-`Allows movement of character to adjacent tiles in a straight line.
+`Allows movement of combatant to adjacent tiles in a straight line.
 Can be used in six directions unless otherwise specified.`,
         },{name:'Push',desc:
 `Pushed combatants will move in the direction they are pushed.
@@ -9031,7 +9031,8 @@ Vary greatly in effect.`,
 `Distracted enemies do not get a turn. Stacks degrade by 1 each turn.
 Is removed when damage taken.`,
         },{name:'Freeze',desc:
-`Being hit by a frozen character gives 2*Freeze Single Damage.`,
+`Being hit by a frozen combatant makes the target's
+attacks next turn deal 2*Freeze damage.`,
         },{name:'Shock',desc:
 `Take damage after each movement step.`,
         },{name:'Jinx',desc:
@@ -9279,7 +9280,7 @@ Stacks degrade by 1 each turn.`,
         {name:'Anomaly',desc:'All Enemies Each Battle With 2 Fragile Speed Up'},
         {name:'Recollection',desc:'All Enemies Deal Double Damage on Turn 4'},
         {name:'Concentric',desc:'Cannot See Targetting Guidelines'},
-        {name:'Embodimental Destabilization',desc:'All Characters Become Offset'},//170
+        {name:'Embodimental Destabilization',desc:'All Combatants Become Offset'},//170
         {name:'Dimension Wanderer',desc:'Make 5 Random Cards Braided'},
         {name:'Crusader',desc:'All Enemies Remove Their Debuffs on Turn 5'},
         {name:'Daughter of Heaven',desc:'All Enemies Heal 1 on Hit'},

@@ -402,7 +402,7 @@ class combatantManager{
                 break
                 case 1:
                     this.combatants[index].takeDamage(args[0],-1)
-                    this.combatants[index].statusEffect('Weak',args[1])
+                    this.combatants[index].statusEffect('Strength',-args[1])
                 break
                 case 2:
                     this.combatants[index].takeDamage(args[0],-1)
@@ -456,6 +456,10 @@ class combatantManager{
                 break
                 case 17:
                     this.combatants[index].statusEffect('Lock On',args[0])
+                break
+                case 19:
+                    this.combatants[index].takeDamage(args[0],args[1])
+                    this.combatants[index].statusEffect('Weak',args[2])
                 break
             }
         }

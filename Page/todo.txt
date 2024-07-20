@@ -1,3 +1,8 @@
+decide on character #18
+conduct a purge and mass renaming
+
+
+
 LISTING GROUP 45
 
 
@@ -44,13 +49,13 @@ LISTING GROUP 45
 
 
 
-[azis must be able to build around fire of ena]
+[#18 must be able to build around fire of ena]
 
 [primal vision]
 
 name a card after an enemy from space war
 
-[]
+[nether trumpet]
 
 [sakura-colored sea - when drawn, add vitality, ethereal]
 
@@ -108,9 +113,9 @@ create more poison cards
 
 bring back rotten tomatoes
 
-cookie clicker - damage, if you have strength heal 3 health
+[multitool]
 
-
+broken parts - 1 cost add a random blueprint, draw 2 cards
 
 
 

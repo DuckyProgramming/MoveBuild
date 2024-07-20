@@ -667,7 +667,6 @@ class battle{
             combatant.status.main[findList('Extra Drawless Turn',combatant.status.name)]--
             let lastEnergy=this.getEnergy(this.turn.main)
             combatant.extraTurn()
-            combatant.tick()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
             this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
@@ -677,7 +676,6 @@ class battle{
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
             let lastEnergy=this.getEnergy(this.turn.main)
             combatant.extraTurn()
-            combatant.tick()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
             this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
@@ -809,9 +807,6 @@ class battle{
         this.combatantManager.unmoveCombatants()
         this.combatantManager.resetCombatantsAnim()
         this.tileManager.activate()
-        if(this.turn.total>1){
-            this.tileManager.tick()
-        }
         this.combatantManager.setTargets()
         this.combatantManager.activateCombatants(0,0)
         this.updateTargetting()
@@ -911,9 +906,13 @@ class battle{
         this.stats.played[player][0]++
         this.stats.played[player][cardClass]++
         this.cardManagers[player].hand.totalPlayed[0]++
-        this.cardManagers[player].hand.totalPlayed[cardClass]++
+        if(cardClass!=0){
+            this.cardManagers[player].hand.totalPlayed[cardClass]++
+        }
         this.cardManagers[player].hand.turnPlayed[0]++
-        this.cardManagers[player].hand.turnPlayed[cardClass]++
+        if(cardClass!=0){
+            this.cardManagers[player].hand.turnPlayed[cardClass]++
+        }
         let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
         if(this.modded(155)){
             switch(card.edition){
@@ -1084,6 +1083,12 @@ class battle{
         }
         if(cardClass==11&&userCombatant.getStatus('Skill Temporary Strength')>0){
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Skill Temporary Strength'))
+        }
+        if(this.cardManagers[player].hand.totalPlayed[0]%13==0&&userCombatant.getStatus('13 Card Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('13 Card Block'))
+        }
+        if(this.cardManagers[player].hand.totalPlayed[0]%13==0&&userCombatant.getStatus('13 Card Draw')>0){
+            this.cardManagers[player].draw(userCombatant.getStatus('13 Card Draw'))
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed,card.basic])

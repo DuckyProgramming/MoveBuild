@@ -311,10 +311,17 @@ class cardManager{
                             lb--
                         }
                     break
+                    case 5:
+                        if(!args[ticker].includes(types.card[list[b]].levels[level].class)){
+                            list.splice(b,1)
+                            b--
+                            lb--
+                        }
+                    break
                 }
             }
             switch(filter[a]){
-                case 0: case 1: case 2: case 3: case 4:
+                case 0: case 1: case 2: case 3: case 4: case 5:
                     ticker++
                 break
             }

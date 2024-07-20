@@ -1176,7 +1176,7 @@ function quadroArray(base){
 function multiplyArray(base,number){
 	let result=[]
 	for(let a=0,la=number;a<la;a++){
-		result.push(base)
+		result.push(copyArray(base))
 	}
 	return result
 }
@@ -1730,7 +1730,7 @@ Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.l
 function outListing(){
 	let box=``
 	let goal=125+125*game.playerNumber+30+20+15+30+15+100+150
-	let arbitrary=3000
+	let arbitrary=4000
 	for(let a=0,la=game.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
 Common:${current.cardManagers[0].listing.card[a+1][0].length}/50				${current.cardManagers[0].listing.card[a+1][0].length-50}
