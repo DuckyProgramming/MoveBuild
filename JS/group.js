@@ -10,7 +10,7 @@ class group{
         this.spec=[]
         this.target=[]
         this.lastDuplicate=[]
-        this.lastPlayed=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0],0,[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+        this.lastPlayed=multiplyArray([0,0,0,0,[]],13)
         this.totalPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
@@ -52,6 +52,8 @@ class group{
             [26,30],
             [27,31],
             [28,32],
+            [29,35],
+            [30,36],
         ]
 
         this.reset()
@@ -200,7 +202,7 @@ class group{
                 this.basicChange=[0,0]
             break
             case 2:
-                this.anim=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                this.anim=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 this.lastTurnPlayed=copyArray(this.turnPlayed)
                 this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
                 this.turnRewinds=0
@@ -208,6 +210,7 @@ class group{
         }
     }
     clear(){
+        this.lastPlayed=multiplyArray([0,0,0,0,[]],13)
         this.totalPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.exhausts=0
@@ -215,7 +218,7 @@ class group{
         this.cancel()
     }
     cancel(){
-        this.status=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        this.status=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     }
     added(){
         this.cards[this.cards.length-1].callAddEffect()
@@ -480,6 +483,12 @@ class group{
     }
     exhaustViable(amount){
         this.status[28]+=amount
+    }
+    exhaustHeal(amount){
+        this.status[29]+=amount
+    }
+    exhaustDrawKey(amount){
+        this.status[30]+=amount
     }
     shuffle(){
         let cards=[]
@@ -1677,6 +1686,30 @@ class group{
                         this.cards[a].cost=max(min(this.cards[a].cost,0),this.cards[a].cost-args[0])
                     }
                 break
+                case 36:
+                    if(this.cards[a].class==args[0]){
+                        this.cards[a].deSize=true
+                        this.cards[a].exhaust=true
+                        this.battle.addEnergy(args[1],this.player)
+                    }
+                break
+                case 37:
+                    if(this.cards[a].class==args[0]){
+                        this.cards[a].deSize=true
+                        this.cards[a].exhaust=true
+                    }
+                break
+                case 38:
+                    if(this.cards[a].cost>0&&this.cards[a].class==args[0]){
+                        this.cards[a].cost=max(min(this.cards[a].cost,0),this.cards[a].cost-args[1])
+                        this.cards[a].base.cost=max(min(this.cards[a].base.cost,0),this.cards[a].base.cost-args[1])
+                    }
+                break
+                case 39:
+                    if(this.cards[a].cost>0&&(this.cards[a].class==args[0]||args[0]==0)){
+                        this.cards[a].cost=max(min(this.cards[a].cost,0),this.cards[a].cost-args[1])
+                    }
+                break
             }
         }
         if(effect==9){
@@ -2332,6 +2365,13 @@ class group{
             break
             case 3753: case 3754:
                 card.edition=floor(random(1,7))
+            break
+            case 3910:
+                if(variants.mtg){
+                    this.battle.addSpecificEnergy(card.effect[4],this.player,card.mtgManaColor)
+                }else{
+                    this.battle.addEnergy(card.effect[4],this.player)
+                }
             break
         }
     }
@@ -3146,7 +3186,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[26]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28]]
+                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[26],this.anim[29],this.anim[30]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -3552,7 +3592,7 @@ class group{
                 }
                 if(this.cardInUse!=-1){
                     this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor,this.cardInUse)
-                    if(!this.cardInUse.discardEffect.includes(13)){
+                    if(!this.cardInUse.discardEffect.includes(13)&&!this.cardInUse.discardEffectBuffered.includes(1)){
                         this.battle.attackManager.execute()
                     }
                     this.cards.forEach(card=>card.anotherPlayedAfter())
@@ -3562,9 +3602,9 @@ class group{
                 this.battle.updateTargetting()
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
-                        this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition]
+                        this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
                         if(this.cards[b].class!=0){
-                            this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition]
+                            this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
                         }
                     }
                 }
@@ -3714,7 +3754,7 @@ class group{
                     }
                     if(this.cardInUse!=-1){
                         this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor,this.cardInUse)
-                        if(!this.cardInUse.discardEffect.includes(13)){
+                        if(!this.cardInUse.discardEffect.includes(13)&&!this.cardInUse.discardEffectBuffered.includes(1)){
                             this.battle.attackManager.execute()
                         }
                         this.cards.forEach(card=>card.anotherPlayedAfter())
@@ -3724,9 +3764,9 @@ class group{
                     this.battle.updateTargetting()
                     for(let b=0,lb=this.cards.length;b<lb;b++){
                         if(!this.cards[b].usable){
-                            this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition]
+                            this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
                             if(this.cards[b].class!=0){
-                                this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition]
+                                this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
                             }
                             if(this.cards[b].spec.includes(26)){
                                 this.battle.cardManagers[this.battle.players-1-this.player].callAmalgums(this.battle.attackManager)
@@ -4022,13 +4062,13 @@ class group{
                 this.cost(a.cost,a.class,a.spec,a.target,a.mtgManaColor,a)
                 a.played()
                 this.cards.forEach(card=>card.anotherPlayed(a))
-                if(!a.discardEffect.includes(13)){
+                if(!a.discardEffect.includes(13)&&!a.discardEffectBuffered.includes(1)){
                     this.battle.attackManager.execute()
                 }
                 this.cards.forEach(card=>card.anotherPlayedAfter())
-                this.lastPlayed[0]=[a.type,a.level,a.color,a.edition]
+                this.lastPlayed[0]=[a.type,a.level,a.color,a.edition,copyArray(a.spec)]
                 if(a.class!=0){
-                    this.lastPlayed[a.class]=[a.type,a.level,a.color,a.edition]
+                    this.lastPlayed[a.class]=[a.type,a.level,a.color,a.edition,copyArray(a.spec)]
                 }
                 if(variants.polar){
                     this.pole=1-this.pole
@@ -4069,6 +4109,27 @@ class group{
                 }
                 if(a.rarity==0&&a.class==1&&userCombatant.status.main[413]>0){
                     this.battle.attackManager.effect[0]+=userCombatant.status.main[413]
+                }
+            break
+            case 35:
+                if(this.cards[a].attack!=-3){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(this.status[29]*max(0,this.cards[a].cost))
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    this.battle.cardManagers[this.player].draw(1)
+                    if(this.status[29]>0){
+                        this.status[29]=0
+                    }
+                }
+            break
+            case 36:
+                if(this.cards[a].attack!=-3){
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    this.battle.cardManagers[this.player].draw(max(0,this.cards[a].cost)+this.status[30]-1)
+                    if(this.status[30]>0){
+                        this.status[30]=0
+                    }
                 }
             break
         }

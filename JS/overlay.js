@@ -929,6 +929,12 @@ class overlay{
                                 case 3727:
                                     this.cards[a].attack=[-1047,-1048,-1049][a]
                                 break
+                                case 3908:
+                                    this.cards[a].attack=[-1050,-1051][a]
+                                break
+                                case 3909:
+                                    this.cards[a].attack=[-1052,-1053][a]
+                                break
                             }
                         }
                     break
@@ -1239,6 +1245,27 @@ class overlay{
                                 this.card.cost-=9
                                 this.battle.overlayManager.overlays[113][this.player].active=true
                                 this.battle.overlayManager.overlays[113][this.player].activate()
+                            break
+                            case -1050:
+                                this.card.cost-=2
+                                this.battle.cardManagers[this.player].allEffectArgs(2,39,[1,args[0].effect[1]])
+                            break
+                            case -1051:
+                                this.card.cost-=6
+                                this.battle.cardManagers[this.player].allEffectArgs(2,39,[0,args[0].effect[2]])
+                            break
+                            case -1052:
+                                this.card.cost-=4
+                                this.battle.overlayManager.overlays[7][this.player].active=true
+                                this.battle.overlayManager.overlays[7][this.player].activate()
+                                this.battle.overlayManager.overlays[8][this.player].active=true
+                                this.battle.overlayManager.overlays[8][this.player].activate()
+                            break
+                            case -1053:
+                                this.card.cost-=9
+                                this.battle.cardManagers[this.player].allEffect(2,2)
+                                this.battle.addEnergy(args[0].effect[2],this.player)
+                                this.battle.cardManagers[this.player].draw(args[0].effect[3])
                             break
                         }
                     break

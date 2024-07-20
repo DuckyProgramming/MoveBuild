@@ -70,7 +70,7 @@ class nodeManager{
             let possibilities=game.ascend>=1?[0,0,0,0,0,1,1,1,3,3,3,4,4,5,5,5,5]:[0,0,0,0,0,0,1,1,3,3,3,4,4,5,5,5,5]
             let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
             for(let a=0,la=length;a<la;a++){
-                for(let b=0,lb=min(min(a+1,4),la-a);b<lb;b++){
+                for(let b=0,lb=min(a+1,4,la-a);b<lb;b++){
                     this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,
                     game.allMap>=0?game.allMap:a<2?0:a==la-1?2:a==la-2?3:a==round(la/2)?6:a==round(la/4)&&this.world==1?7:possibilities[floor(random(0,possibilities.length))]))
                 }

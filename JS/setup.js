@@ -18,7 +18,7 @@ function setup(){
             //transition.scene='menu'
 
         current.menu.combatant=[17]
-        current.menu.deck=[-1]
+        current.menu.deck=[0]
         current.startGame()
         //game.animRate=4
 
@@ -38,7 +38,7 @@ function setup(){
 
             /*transition.trigger=true
             transition.scene='event'
-            current.setupSpecificEvent(3)*/
+            current.setupSpecificEvent(136)*/
 
             /*player(0).size=3
             player(0).goal.anim.direction=-30

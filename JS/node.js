@@ -19,7 +19,7 @@ class node{
     }
     display(type=this.type){
         let color=mergeColor(mergeColor([110,115,120],[50,255,50],this.anim.complete),[210,195,180],this.anim.active)
-        let cap=max(max(this.anim.complete,this.anim.active),this.anim.description)
+        let cap=max(this.anim.complete,this.anim.active,this.anim.description)
         this.layer.push()
         this.layer.translate(this.position.x,this.position.y)
         this.layer.scale(this.size)

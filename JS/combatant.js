@@ -167,7 +167,7 @@ class combatant{
             'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
             'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Energy',
             '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
-            '13 Card Draw',
+            '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -219,7 +219,7 @@ class combatant{
                 0,1,2,2,0,2,2,0,2,0,//47
                 0,0,0,0,0,0,0,2,1,0,//48
                 0,0,0,2,0,2,0,2,0,0,//49
-                0,
+                0,2,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -271,7 +271,7 @@ class combatant{
                 0,1,1,0,2,3,3,2,0,2,//47
                 0,0,0,2,0,2,2,0,2,2,//48
                 2,2,2,0,2,0,3,3,2,2,//49
-                2,
+                2,1,2,2,
                 
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
@@ -6633,6 +6633,11 @@ class combatant{
                     }
                 }
             break
+            case 8:
+                for(let a=0,la=args[0];a<la;a++){
+                    this.subEvoke(this.orbs[0],this.orbDetail[0],target)
+                }
+            break
         }
         this.checkAnyOrb()
     }
@@ -7190,6 +7195,8 @@ class combatant{
                     case 477: this.status.main[findList('Counter Once',this.status.name)]+=this.status.main[a]; break
                     case 487: this.status.main[findList('Play Limit',this.status.name)]+=this.status.main[a]; break
                     case 488: this.wish+=this.status.main[a]; break
+                    case 491: this.status.main[findList('Lose Health',this.status.name)]+=this.status.main[a]; break
+                    case 493: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.exhaustViable(this.status.main[a])}; break
                     
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){

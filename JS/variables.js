@@ -5308,9 +5308,9 @@ and celebrate what looks to be the birthday of their ruler,
 as she's sitting in the center and talking loudly.
 You're probably not welcome, but while they're all distracted
 you might be able to steal something through the portal...`,
-                    option:['Catch a Ghost','Steal a Weapon',`It's too Risky`],
-                    optionDesc:['','',''],
-                    link:[1,2,3,4],
+                    option:['Grab Something',`It's Too Risky`],
+                    optionDesc:['',''],
+                    link:[1,5],
                 },{
                     desc:
 `You manage to grab a spirit within your hands.
@@ -5328,6 +5328,14 @@ Unfortunately it's a ghost sword and can't slice physical objects,
 but you might still be able to use it for something.`,
                     option:['Keep it'],
                     optionDesc:['Gain a Relic - Ghostblade'],
+                    link:[-1],
+                },{
+                    desc:
+`You fail to grab anything, but a few of the
+ghostly lights seem to absort themselves into your hands,
+granting you a tiny bit of their power.`,
+                    option:['Keep it'],
+                    optionDesc:['Add Temptation of the Next World to Deck'],
                     link:[-1],
                 },{
                     desc:

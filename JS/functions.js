@@ -1198,6 +1198,16 @@ function copyArrayStack(base){
 	}
 	return list
 }
+function copyArrayLastPlayed(base){
+	let list=[]
+	for(let a=0,la=base.length;a<la;a++){
+		list.push([])
+		for(let b=0,lb=base[a].length;b<lb;b++){
+			list[a].push(b==4?base[a][b].slice():base[a][b])
+		}
+	}
+	return list
+}
 function copyArrayAttack(base){
 	let list=[]
 	for(let a=0,la=base.length;a<la;a++){

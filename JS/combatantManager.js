@@ -955,12 +955,12 @@ class combatantManager{
             }
         }
     }
-    getRandom(number){
+    getRandom(number,reject){
         if(this.combatants.length>0){
             let list=[]
             let result=[]
             for(let a=0,la=this.combatants.length;a<la;a++){
-                if(this.combatants[a].team==0&&this.combatants[a].life>0){
+                if(this.combatants[a].team==0&&this.combatants[a].life>0&&!reject.includes(this.combatants[a].id)){
                     list.push(a)
                 }
             }

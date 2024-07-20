@@ -2261,16 +2261,16 @@ class particle{
                     this.layer.rotate(-39)
                     this.layer.fill(...this.color,this.fade*0.5)
                     this.layer.ellipse(0,-8,9,22)
-                    this.layer.ellipse(0,4,6,10)
+                    this.layer.ellipse(0,5,6,10)
                     this.layer.rotate(78)
                     this.layer.ellipse(0,-8,9,22)
-                    this.layer.ellipse(0,4,6,10)
+                    this.layer.ellipse(0,5,6,10)
                     this.layer.fill(223,234,235,this.fade)
                     this.layer.ellipse(0,-8,7,20)
-                    this.layer.ellipse(0,6,4,8)
+                    this.layer.ellipse(0,5,4,8)
                     this.layer.rotate(-78)
                     this.layer.ellipse(0,-8,7,20)
-                    this.layer.ellipse(0,6,4,8)
+                    this.layer.ellipse(0,5,4,8)
                 break
                 case 151:
                     for(let a=0,la=this.clouds.length;a<la;a++){

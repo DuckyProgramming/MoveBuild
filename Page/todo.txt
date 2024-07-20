@@ -119,6 +119,10 @@ broken parts - 1 cost add a random blueprint, draw 2 cards
 
 
 
+[how many allies are active?]
+
+
+
 SUKUNA MECHANICS
 
 strike and defend

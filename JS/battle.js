@@ -1090,6 +1090,11 @@ class battle{
         if(this.cardManagers[player].hand.totalPlayed[0]%13==0&&userCombatant.getStatus('13 Card Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('13 Card Draw'))
         }
+        if(cardClass==12&&!card.spec.includes(60)&&userCombatant.getStatus('Wish Miracle')>0){
+            for(let a=0,la=userCombatant.getStatus('Wish Miracle');a<la;a++){
+                this.cardManagers[player].hand.add(findName('Miracle',types.card),0,0)
+            }
+        }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed,card.basic])
     }

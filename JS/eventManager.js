@@ -1527,13 +1527,15 @@ class eventManager{
                         }
                     break
                     case 136:
-                        if(this.page==0&&(a==0||a==1)&&floor(random(0,3)==0)){
-                            tempPage=2-a
+                        if(this.page==0&&a==0){
+                            tempPage=floor(random(0,4))
                         }else if(this.page==1&&a==0){
                             this.battle.relicManager.addRelic(findInternal('First Enemy Lose Per Turn',types.relic),this.player)
                         }else if(this.page==2&&a==0){
                             this.battle.relicManager.addRelic(findInternal('First Enemy Remove Block',types.relic),this.player)
                         }else if(this.page==3&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Temptation of\nthe Next World',types.card),0,0)
+                        }else if(this.page==4&&a==0){
                             this.harm(userCombatant,5)
                         }
                     break
