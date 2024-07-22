@@ -69,8 +69,6 @@ coolheaded - get a shield orb, []
 
 rain of filth - 2 cost azis, exhaust any number of cards, gain 1 energy back per card exhausted
 
-forget the past - choose any disbanded card to add to hand
-
 canopy vista - tappable waste that gives 0 energy, increases by 1 when played, exhausts on 2
 
 [cannonball variant for #18]
@@ -91,6 +89,19 @@ canopy vista - tappable waste that gives 0 energy, increases by 1 when played, e
 
 
 
+[multihit on shinmy]
+
+remembrance - get an instant stance with the current stance, exit stance
+DOES NOT WORK WITH DIVINITY
+
+[certes movement]
+
+[depth charge]
+
+drowning curse
+
+
+
 [split card like deliberation]
 
 barter box - remove all items, replace with random other items
@@ -105,14 +116,6 @@ barter box - remove all items, replace with random other items
 
 
 
-move poison cards
-
-create "toxic" status that decrements and makes poison increase rather than decrease at end of turn
-
-create more poison cards
-
-bring back rotten tomatoes
-
 [multitool]
 
 broken parts - 1 cost add a random blueprint, draw 2 cards
@@ -120,6 +123,34 @@ broken parts - 1 cost add a random blueprint, draw 2 cards
 
 
 [how many allies are active?]
+
+pulp - 0 cost, gain 1 energy if you have block
+
+black glow - dark orbs scale by 2 more per turn
+
+new moonlit lotus
+rename old moonlit lotus
+
+lapio - upgrade the 3 most expensive cards in deck, vanish 1
+
+md's notebook - 10% chance to gain an item slot, 10% chance to make a card glitched
+
+
+
+crystal glare but with a cool animation
+
+heart except slash
+
+[dark pristine]
+
+overthink - 1 cost, draw 4 cards, lose 2 health
+
+city tax - all enemies lose 1 health, you heal 1 each
+
+gold pan - gain 5 currency, draw a acrd next turn
+
+new maiden's waltz
+rename old maiden's waltz
 
 
 
@@ -168,29 +199,25 @@ sagacious spirit - permanent intangible, lose 1 energy per 5 cards played
 
 chip boss needs another attack
 sukuna boss also needs to get 2 attacks and setup code with archivist
-[!gamer] boss needs 3 attacks and setup code
+#18 boss needs 3 attacks and setup code
 
-new relics:
 
-B laevateinn - gain 1 base energy but you start with 2 vulnerable and vulnerable is worse for you
-S 5d multiverse time travel - you can go backwards on the map, 3 uses
-B the solo - gain 1 base energy, you can never have duplicate NON-BASIC cards
-C jankman - draw 2 cards when you play a tarot or spectral card
-C gros michel - like tauball
-
-B horizon diamond - gain 1 base energy add a random card to deck every 5 nodes
-U old key - find more paths on the map
-U blossoming chip - gain an additional normal relic after every boss
-[]
-B rainbow lotus - every turn a random card costs 1 less, when you gain energy add 3 block
 
 new variants:
 
+rooftop - fill empty space on map adjacent to tiles with tiles that instantly kill
+
+assault - most fights get extra reinforcements (manually programmed)
+[]
 []
 
-[]
-[]
-[]
+
+
+MAJOR MTG CHANGES
+
+every card changed lol
+split cards into character and non-character
+character bosses
 
 
 
@@ -199,3 +226,4 @@ SUBGROUP 17
 go make glory v2, celestite, for logo purposes
 
 maybe another new background
+

@@ -273,7 +273,7 @@ class item{
                     displaySymbol(this.layer,0,0,74,0,1.2,this.fade)
                     this.layer.fill(0)
                     this.layer.textSize(10)
-                    this.layer.text('5',0)
+                    this.layer.text('5',0,0)
                 break
                 case 'Flashbang':
                     displaySymbol(this.layer,0,0,3,0,0.4,this.fade)

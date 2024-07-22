@@ -7,7 +7,7 @@ class nodeManager{
         this.listing={encounter:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]],name:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]]}
 
         this.tilePosition={x:0,y:-1}
-        this.scroll=this.layer.height-150
+        this.scroll=0
         this.world=0
         this.total=0
 
@@ -28,7 +28,6 @@ class nodeManager{
     }
     nextWorld(){
         this.tilePosition={x:0,y:-1}
-        this.scroll=this.layer.height-150
         this.world++
         this.saveBoss=-1
         this.setupMap()
@@ -43,7 +42,7 @@ class nodeManager{
     }
     setupMap(){
         this.nodes=[]
-        this.scroll=this.layer.height/2-240
+        this.scroll=this.layer.height/2-150
         if(this.world==3){
             let list=[4,3,1,2]
             for(let a=0,la=4;a<la;a++){
@@ -62,8 +61,12 @@ class nodeManager{
             for(let a=0,la=length;a<la;a++){
                 this.nodes.push(new node(this.layer,this.battle,this.layer.width/2,this.layer.height/2+a*100-150-min(3,a)*10,0,a,
                 game.allMap>=0?game.allMap:a<2?0:a==la-1?2:a==la-2?3:a==round(la/2)?6:a==round(la/4)&&this.world==1?7:possibilities[floor(random(0,possibilities.length))]))
-                if(a>0){
-                    this.nodes[a-1].connections.push(a)
+            }
+            for(let a=0,la=this.nodes.length;a<la;a++){
+                for(let b=0,lb=this.nodes.length;b<lb;b++){
+                    if(this.nodes[a].tilePosition.y==this.nodes[b].tilePosition.y-1){
+                        this.nodes[a].connections.push(b)
+                    }
                 }
             }
         }else{
@@ -75,16 +78,31 @@ class nodeManager{
                     game.allMap>=0?game.allMap:a<2?0:a==la-1?2:a==la-2?3:a==round(la/2)?6:a==round(la/4)&&this.world==1?7:possibilities[floor(random(0,possibilities.length))]))
                 }
             }
-            let side=[floor(random(0,2)),floor(random(0,4)),floor(random(0,4)),floor(random(0,2))]
+            let side=[floor(random(0,2)),floor(random(0,3)),floor(random(0,3)),floor(random(0,2))]
             for(let a=0,la=this.nodes.length;a<la;a++){
                 for(let b=0,lb=this.nodes.length;b<lb;b++){
-                    if(this.nodes[a].tilePosition.y==this.nodes[b].tilePosition.y-1&&(
-                        this.nodes[a].tilePosition.y==0||this.nodes[a].tilePosition.y==1&&(this.nodes[b].tilePosition.x==this.nodes[a].tilePosition.x*2||this.nodes[b].tilePosition.x==1&&(this.nodes[a].tilePosition.x==side[0]||this.nodes[a].tilePosition.x==1-side[0]&&floor(random(0,3))==0))||
-                        this.nodes[a].tilePosition.y==2&&(this.nodes[b].tilePosition.x==this.nodes[a].tilePosition.x*3/2||(this.nodes[a].tilePosition.x+this.nodes[b].tilePosition.x!=side[1]+1||floor(random(0,3))==0)&&(this.nodes[a].tilePosition.x==this.nodes[b].tilePosition.x||this.nodes[a].tilePosition.x==this.nodes[b].tilePosition.x-1))||
-                        this.nodes[a].tilePosition.y>=3&&this.nodes[a].tilePosition.y<=length-5&&(this.nodes[b].tilePosition.x==this.nodes[a].tilePosition.x||abs(this.nodes[b].tilePosition.x-this.nodes[a].tilePosition.x)<=1&&floor(random(0,3))==0)||
-                        this.nodes[a].tilePosition.y==length-4&&(this.nodes[b].tilePosition.x==this.nodes[a].tilePosition.x*2/3||(this.nodes[a].tilePosition.x+this.nodes[b].tilePosition.x!=side[2]+1||floor(random(0,3))==0)&&(this.nodes[a].tilePosition.x==this.nodes[b].tilePosition.x||this.nodes[a].tilePosition.x==this.nodes[b].tilePosition.x+1))||
-                        this.nodes[a].tilePosition.y==length-2||this.nodes[a].tilePosition.y==length-3&&(this.nodes[b].tilePosition.x==this.nodes[a].tilePosition.x/2||this.nodes[a].tilePosition.x==1&&(this.nodes[b].tilePosition.x==side[3]||this.nodes[b].tilePosition.x==1-side[3]&&floor(random(0,3))==0)))){
+                    let posA=this.nodes[a].tilePosition
+                    let posB=this.nodes[b].tilePosition
+                    if(posA.y==posB.y-1&&(
+                        posA.y==0||
+                        posA.y==1&&(posB.x==posA.x*2||posB.x==1&&posA.x==side[0])||
+                        posA.y==2&&(posB.x==posA.x*3/2||(posA.x==posB.x||posA.x==posB.x-1)&&[[0,2],[1,2],[1,3]][side[1]].includes(posA.x+posB.x-1))||
+                        posA.y>=3&&posA.y<=length-5&&(posB.x==posA.x||abs(posB.x-posA.x)<=1&&floor(random(0,3))==0)||
+                        posA.y==length-4&&(posB.x==posA.x*2/3||(posA.x==posB.x||posA.x==posB.x+1)&&[[0,2],[1,2],[1,3]][side[3]].includes(posB.x+posA.x-1))||
+                        posA.y==length-3&&(posB.x==posA.x/2||posA.x==1&&posB.x==side[3])||
+                        posA.y==length-2
+                    )){
                         this.nodes[a].connections.push(b)
+                    }else if(floor(random(0,5))==0&&posA.y==posB.y-1&&(
+                        posA.y==0||
+                        posA.y==1&&posA.x==1&&posA.x==1-side[0]||
+                        posA.y==2&&(posA.x==posB.x||posA.x==posB.x-1)&&![[0,2],[1,2],[1,3]][side[1]].includes(posA.x+posB.x-1)||
+                        posA.y>=3&&posA.y<=length-5&&abs(posB.x-posA.x)==1&&!this.nodes[a].connections.includes(b)||
+                        posA.y==length-4&&(posA.x==posB.x||posA.x==posB.x+1)&&![[0,2],[1,2],[1,3]][side[3]].includes(posB.x+posA.x-1)||
+                        posA.y==length-3&&posA.x==1&&posB.x==1-side[3]||
+                        posA.y==length-2
+                    )){
+                        this.nodes[a].extraConnections.push(b)
                     }
                 }
             }
@@ -248,13 +266,36 @@ class nodeManager{
     }
     update(){
         for(let a=0,la=this.nodes.length;a<la;a++){
-            this.nodes[a].update(!this.nodes[a].complete&&(this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||this.tilePosition.y>=0&&(this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a)||this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2)))
+            this.nodes[a].update(!(this.nodes[a].tilePosition.y==this.tilePosition.y&&this.nodes[a].complete)&&(
+                this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||
+                this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].getConnections().includes(a)||
+                this.tilePosition.y>=0&&this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2||
+                this.tilePosition.y>0&&(this.nodes[a].getConnections().includes(this.getNodeIndex(this.tilePosition.x,this.tilePosition.y))&&this.battle.relicManager.hasRelic(336,-1))
+            ),this.nodes[a].tilePosition.y<this.tilePosition.y)
         }
     }
     onClick(){
         for(let a=0,la=this.nodes.length;a<la;a++){
-            if(dist(inputs.rel.x,inputs.rel.y,this.nodes[a].position.x,this.nodes[a].position.y)<25&&!this.nodes[a].complete&&(this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||this.tilePosition.y>=0&&(this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a)||this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2))){
+            if(dist(inputs.rel.x,inputs.rel.y,this.nodes[a].position.x,this.nodes[a].position.y)<25&&!(this.nodes[a].tilePosition.y==this.tilePosition.y&&this.nodes[a].complete)&&(
+                this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||
+                this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].getConnections().includes(a)||
+                this.tilePosition.y>=0&&this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2||
+                this.tilePosition.y>0&&(this.nodes[a].getConnections().includes(this.getNodeIndex(this.tilePosition.x,this.tilePosition.y))&&this.battle.relicManager.hasRelic(336,-1))
+            )){
                 this.total++
+                if(this.nodes[a].tilePosition.y<this.tilePosition.y){
+                    if(this.battle.relicManager.hasRelic(336,0)){
+                        this.battle.relicManager.detail[336][0]++
+                        if(this.battle.relicManager.detail[336][0]>=3*this.battle.relicManager.active[336][1]){
+                            this.battle.relicManager.loseRelic(336,0)
+                        }
+                    }else if(this.battle.relicManager.hasRelic(336,1)){
+                        this.battle.relicManager.detail[336][1]++
+                        if(this.battle.relicManager.detail[336][1]>=3*this.battle.relicManager.active[336][2]){
+                            this.battle.relicManager.loseRelic(336,1)
+                        }
+                    }
+                }
                 if(variants.mod&&this.total%6==0){
                     this.battle.overlayManager.overlays[42][0].active=true
                     this.battle.overlayManager.overlays[42][0].activate()
@@ -275,8 +316,25 @@ class nodeManager{
     }
     onKey(key,code){
         for(let a=0,la=this.nodes.length;a<la;a++){
-            if((int(key)+9)%10==this.nodes[a].tilePosition.x&&!this.nodes[a].complete&&(this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||this.tilePosition.y>=0&&(this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a)||this.freeMove>0&&this.nodes[a].tilePosition.y==this.tilePosition.y+1))){
+            if((int(key)+9)%10==this.nodes[a].tilePosition.x&&!(this.nodes[a].tilePosition.y==this.tilePosition.y&&this.nodes[a].complete)&&(
+                this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||
+                this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a)||
+                this.tilePosition.y>=0&&this.freeMove>0&&this.nodes[a].tilePosition.y==this.tilePosition.y+1
+            )){
                 this.total++
+                if(this.nodes[a].tilePosition.y<this.tilePosition.y){
+                    if(this.battle.relicManager.hasRelic(336,0)){
+                        this.battle.relicManager.detail[336][0]++
+                        if(this.battle.relicManager.detail[336][0]>=3*this.battle.relicManager.active[336][1]){
+                            this.battle.relicManager.loseRelic(336,0)
+                        }
+                    }else if(this.battle.relicManager.hasRelic(336,1)){
+                        this.battle.relicManager.detail[336][1]++
+                        if(this.battle.relicManager.detail[336][1]>=3*this.battle.relicManager.active[336][2]){
+                            this.battle.relicManager.loseRelic(336,1)
+                        }
+                    }
+                }
                 if(variants.mod&&this.total%6==0){
                     this.battle.overlayManager.overlays[42][0].active=true
                     this.battle.overlayManager.overlays[42][0].activate()

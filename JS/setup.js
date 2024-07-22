@@ -51,7 +51,7 @@ function setup(){
 
             /*for(let a=0,la=5;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(325+a,0)
+                quickRelic(355+a,0)
             }*/
 
             /*current.itemManager.addItemSlots(2,0)

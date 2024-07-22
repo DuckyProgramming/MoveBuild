@@ -43,7 +43,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[4,1,2])],//remove card, obliterative
                     [new overlay(this.layer,this.battle,0,2,[21])],//bring in discard card, get block, no return
                     [new overlay(this.layer,this.battle,0,2,[22])],//bring in draw card, get block, no return
-                    [new overlay(this.layer,this.battle,0,8,[1,-1])],//new card to hand, allcard
+                    [new overlay(this.layer,this.battle,0,8,[1,-1,0])],//new card to hand, allcard
                     [new overlay(this.layer,this.battle,0,2,[23,3])],//view draw (ordered, only 3)
                     [new overlay(this.layer,this.battle,0,2,[25])],//bring in draw card, originated (card slot), no return
                     [new overlay(this.layer,this.battle,0,9,[0])],//choose card to techify
@@ -103,7 +103,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[69])],//make card exhaust, no return
                     [new overlay(this.layer,this.battle,0,2,[70])],//make card health-costing, no return
                     [new overlay(this.layer,this.battle,0,2,[71])],//return removed to deck
-                    [new overlay(this.layer,this.battle,0,8,[1,0])],//new card to hand, allcard
+                    [new overlay(this.layer,this.battle,0,8,[1,0,0])],//new card to hand, all common card
                     [new overlay(this.layer,this.battle,0,2,[72])],//negative edition smush, no return
                     [new overlay(this.layer,this.battle,0,2,[73,0,0,0])],//scry, block on defense
                     [new overlay(this.layer,this.battle,0,2,[4,1,3])],//remove, edition transfer
@@ -123,6 +123,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[81,1,0])],//remove curse
                     [new overlay(this.layer,this.battle,0,2,[82])],//transform curse
                     [new overlay(this.layer,this.battle,0,16,[1])],//mtg any energy
+                    [new overlay(this.layer,this.battle,0,8,[1,-1,1])],//new card to hand, all disbanded card
+                    [new overlay(this.layer,this.battle,0,2,[83])],//make card replenish
 
                 )
                 if(this.battle.players==2){

@@ -4724,6 +4724,18 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(100,255,150,fade)
             layer.triangle(-2,6,2,6,0,9)
         break
+        case 494:
+            layer.fill(150,fade)
+            layer.triangle(0,0,-6,0,0,-6)
+            layer.triangle(0,0,6,0,0,6)
+            layer.fill(125,fade)
+            layer.triangle(0,0,-6,0,0,6)
+            layer.triangle(0,0,6,0,0,-6)
+            layer.fill(200,255,255,fade)
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            layer.triangle(-4,1,-5,1,-4.5,-1)
+            layer.triangle(4,1,5,1,4.5,-1)
+        break
 
     }
     //mark s
@@ -9623,6 +9635,58 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.fill(255,50,50,fade)
             layer.triangle(0,-12,-6,6,6,6)
         break
+        case 150:
+            layer.stroke(80,fade)
+            layer.strokeWeight(2)
+            layer.rect(0,0,16)
+            layer.line(-2,-8,-8,-4)
+            layer.line(4,8,8,4)
+            layer.line(0,16,0,24)
+            layer.line(-8*sqrt(2),8*sqrt(2),-12*sqrt(2),12*sqrt(2))
+            layer.line(8*sqrt(2),8*sqrt(2),12*sqrt(2),12*sqrt(2))
+        break
+        case 151:
+            layer.fill(225,fade)
+            layer.ellipse(0,0,8)
+            layer.rotate(-22.5)
+            for(let a=0,la=8;a<la;a++){
+                layer.triangle(-1,3,1,3,0,8)
+                layer.rotate(45)
+            }
+            layer.rotate(22.5)
+        break
+        case 152:
+            layer.stroke(80,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,10,3)
+            layer.rect(0,-5,10,3)
+            layer.rect(0,5,10,3)
+        break
+        case 153:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(200,255,255,fade)
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+        break
+        case 154:
+            layer.fill(25,75,250,fade)
+            layer.quad(0,-3,-3,0,0,3,3,0)
+            layer.triangle(-1,-6,6,1,6,-6)
+            layer.triangle(1,6,-6,-1,-6,6)
+        break
+        case 155:
+            layer.fill(200,255,255,fade)
+            layer.quad(-8,0,0,-10,8,0,0,10)
+            layer.ellipse(10,6,4)
+            layer.ellipse(16,6,4)
+            layer.ellipse(22,6,4)
+            layer.fill(225,255,255,fade)
+            layer.quad(-6.4,0,0,-8,6.4,0,0,8)
+            layer.ellipse(10,6,2)
+            layer.ellipse(16,6,2)
+            layer.ellipse(22,6,2)
+        break
 
     }
     layer.pop()
@@ -9774,4 +9838,10 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 147-Glitched Card
 148-Lose Per Turn
 149-Permanent Strength
+150-Node With Paths
+151-Invisible
+152-Event Choice
+153-Free Defense
+154-Replenish
+155-Delayed Energy
 */

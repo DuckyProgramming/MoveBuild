@@ -1003,8 +1003,8 @@ class relic{
                     displaySymbol(this.layer,12,0,7,0,0.8,this.fade)
                 break
                 case 'Innate Card':
-                    displaySymbol(this.layer,0,0,8,0,1.2,this.fade)
-                    displaySymbol(this.layer,0,0,58,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,58,1.5,this.fade)
                 break
                 case 'Energy/Card Choice':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
@@ -1224,7 +1224,7 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('+25%',0,0)
                 break
-                case 'Currency Per Room':
+                case 'Currency Per Node':
                     displaySymbol(this.layer,6,0,28,0,0.8,this.fade)
                     displaySymbol(this.layer,-10,0,7,0,0.8,this.fade)
                     this.layer.fill(0,this.fade)
@@ -1567,7 +1567,7 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('1',8,-3)
                 break
-                case '1000 Currency Currency Per Room':
+                case '1000 Currency Currency Per Node':
                     displaySymbol(this.layer,4,-9,28,0,0.6,this.fade)
                     displaySymbol(this.layer,4,9,28,0,0.6,this.fade)
                     displaySymbol(this.layer,-10,0,7,0,0.8,this.fade)
@@ -1626,8 +1626,8 @@ class relic{
                     this.layer.text('2x',0,10)
                 break
                 case 'Anti-Innate Card':
-                    displaySymbol(this.layer,0,0,8,0,1.2,this.fade)
-                    displaySymbol(this.layer,0,0,98,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,98,1.5,this.fade)
                 break
                 case 'Double Upgraded Card Rewards':
                     displaySymbol(this.layer,-12,0,8,0,0.8,this.fade)
@@ -2442,6 +2442,194 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('1',9,0)
                 break
+                case 'Low Play Energy':
+                    displaySymbol(this.layer,-9,0,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,-9,0,16,0,0.75,this.fade)
+                    displaySymbol(this.layer,10,0,9,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-9,0)
+                    this.layer.text('1',10,0)
+                break
+                case 'Booster Pack Upgrade':
+                    displaySymbol(this.layer,-8,0,103,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,7,0,0.6,this.fade)
+                break
+                case 'First Defense Free':
+                    displaySymbol(this.layer,0,0,153,0,2.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'Energy/Power Vulnerable':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,-6,21,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,6,26,0,0.6,this.fade)
+                break
+                case 'Backwards Move':
+                    displaySymbol(this.layer,0,4,150,180,0.6,this.fade)
+                break
+                case 'Energy/Duplicate Cards':
+                    displaySymbol(this.layer,-9,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,89,0,1,this.fade)
+                break
+                case 'Special Draw':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,-3.5,113,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,3.5,99,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',8,0)
+                break
+                case 'Energy/Event Options':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,152,0,1,this.fade)
+                break
+                case 'Energy/Invisible':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,151,0,1,this.fade)
+                break
+                case 'Extra Map Path':
+                    displaySymbol(this.layer,0,-4,150,0,0.6,this.fade)
+                break
+                case 'Boss Extra Relic':
+                    displaySymbol(this.layer,-8,0,35,0,0.25,this.fade)
+                    displaySymbol(this.layer,10,0,1,0,0.5,this.fade)
+                break
+                case '8 Skill Draw':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,123,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,8,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('8',-8,0)
+                    this.layer.text('1',9,0)
+                break
+                case '1 Cost Down Per Turn Energy Gain Block':
+                    displaySymbol(this.layer,-8,-4,9,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,-4,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-8,8,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,27,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('-1',-8,-4)
+                    this.layer.text('4',8,0)
+                break
+                case 'Energy/Shop Relics':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,-7,1,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,7,28,0,0.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('x2',8,6.5)
+                break
+                case 'No Shop Items':
+                    displaySymbol(this.layer,-8,0,16,0,0.6,this.fade)
+                    displaySymbol(this.layer,9,0,30,0,0.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('$',-8,1)
+                break
+                case 'Energy/Leftover Energy':
+                    displaySymbol(this.layer,0,8,9,0,1,this.fade)
+                    displaySymbol(this.layer,-8,-6,9,0,0.75,this.fade)
+                    displaySymbol(this.layer,8,-6,2,0,0.5,this.fade)
+                    displaySymbol(this.layer,0,-12,4,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(8)
+                    this.layer.text('-2',8,-6)
+                break
+                case 'Turn 1 Energy/Turn 2 Heal/Turn 3 Temporary Strength':
+                    displaySymbol(this.layer,-12,-5,9,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,-5,2,0,0.4,this.fade)
+                    displaySymbol(this.layer,12,-5,41,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,15,4,0,0.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-12,-5)
+                    this.layer.text('2',0,-5)
+                    this.layer.text('3',12,-5)
+                    this.layer.textSize(8)
+                    this.layer.text('1',-12,8)
+                    this.layer.text('2',0,8)
+                    this.layer.text('3',12,8)
+                break
+                case 'Double Foil':
+                    displaySymbol(this.layer,0,0,78,0,1.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('x2',0,0)
+                break
+                case 'Energy Gain Draw':
+                    displaySymbol(this.layer,0,0,9,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,8,0,1.25,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'Replenish Card':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,154,0.9,this.fade)
+                break
+                case '3 Turn Duplicate':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,89,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,120,0,1,this.fade)
+                    displaySymbol(this.layer,7,10,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-10,5,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('3',7,1)
+                break
+                case '25 Block Draw':
+                    displaySymbol(this.layer,-8,0,27,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,8,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('25',-8,0)
+                    this.layer.text('1',9,0)
+                break
+                case 'Double Silver':
+                    displaySymbol(this.layer,0,0,82,0,1.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('x2',0,0)
+                break
+                case 'Double First Attack':
+                    displaySymbol(this.layer,-8,0,39,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Protocol':
+                    displaySymbol(this.layer,-9,0,155,0,1,this.fade)
+                break
+                case 'Cheap Skills':
+                    displaySymbol(this.layer,-9,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-9,0,123,0,0.6,this.fade)
+                    displaySymbol(this.layer,9,0,9,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('-1',9,0)
+                break
+                case 'Energy/Colorless':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,57,0,1.2,this.fade)
+                break
+                case 'Power Draw':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,21,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,0)
+                break
 
                 //mark p
             }
@@ -2467,7 +2655,7 @@ class relic{
                         this.layer.textSize(6)
                         this.layer.text(`${detail%15}/15`,0,-16)
                     break
-                    case '8 Attack Strength': case '8 Attack Dexterity':
+                    case '8 Attack Strength': case '8 Attack Dexterity': case '8 Skill Draw':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%8}/8`,0,-16)
@@ -2477,7 +2665,7 @@ class relic{
                         this.layer.textSize(6)
                         this.layer.text(`${detail%3}/3`,0,-16)
                     break
-                    case 'Strength Rest': case '3 Enemy 1 HP': case 'Spectral Rest': case 'Rest Cost Down':
+                    case 'Strength Rest': case '3 Enemy 1 HP': case 'Spectral Rest': case 'Rest Cost Down': case 'Backwards Move':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail}/3`,0,-16)
@@ -2487,7 +2675,7 @@ class relic{
                         this.layer.textSize(6)
                         this.layer.text(`${detail%12}/12`,0,-16)
                     break
-                    case '3 Turn Draw':
+                    case '3 Turn Draw': case '3 Turn Duplicate':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%3+1}/3`,0,-16)

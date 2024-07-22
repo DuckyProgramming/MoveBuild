@@ -293,9 +293,7 @@ class group{
                     if(types.card[type].rarity>=0||types.card[type].list>=0){
                         this.battle.stats.card[this.player]++
                     }
-                    if(this.battle.relicManager.hasRelic(274,this.player)){
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].gainMaxHP(this.battle.relicManager.active[274][this.player+1])
-                    }
+                    i
                 }
                 return true
             }
@@ -558,14 +556,26 @@ class group{
         }
         return collect
     }
-    killDupes(){
+    removeDupes(){
         for(let a=0,la=this.cards.length;a<la;a++){
             for(let b=0,lb=this.cards.length;b<lb;b++){
                 if(a!=b&&b>a&&this.cards[a].name==this.cards[b].name&&!this.cards[a].basic&&!this.cards[b].basic){
-                    this.cards.splice(b,1)
+                    this.remove(b)
                     b--
                     lb--
                     la--
+                }
+            }
+        }
+    }
+    unRemoveDupes(){
+        for(let a=0,la=this.battle.cardManagers[this.player].remove.cards.length;a<la;a++){
+            for(let b=0,lb=this.cards.length;b<lb;b++){
+                if(this.battle.cardManagers[this.player].remove.cards[a].name==this.cards[b].name){
+                    this.battle.cardManagers[this.player].remove.send(this.cards,a,a+1,0)
+                    a--
+                    la--
+                    b=lb
                 }
             }
         }
@@ -2023,20 +2033,37 @@ class group{
         card.drawn++
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         userCombatant.activateDraw()
-        if((card.class==1||card.class==2)&&card.basic){
-            if(this.battle.relicManager.hasRelic(264,this.player)&&floor(random(0,4))==0&&card.cost>0){
-                card.cost--
-            }
-            if(this.basicChange[0]>0){
-                card.cost=0
-                card.cost=0
-            }
-            if(this.basicChange[1]>0){
-                card.effect[0]+=this.basicChange[1]
-            }
+        switch(card.class){
+            case 1: case 2:
+                if(card.basic){
+                    if(this.battle.relicManager.hasRelic(264,this.player)&&floor(random(0,4))<this.battle.relicManager.active[264][a+1]&&card.cost>0){
+                        card.cost--
+                    }
+                    if(this.basicChange[0]>0){
+                        card.cost=0
+                        card.cost=0
+                    }
+                    if(this.basicChange[1]>0){
+                        card.effect[0]+=this.basicChange[1]
+                    }
+                }
+            break
+            case 5:
+                if(userCombatant.getStatus('Drawn Status Draw')>0){
+                    this.drawEffects.push([5,this.drawEffects.push([5,userCombatant.getStatus('Drawn Status Draw')])])
+                }
+            break
+            case 11:
+                if(this.battle.relicManager.hasRelic(357,this.player)&&floor(random(0,10))<this.battle.relicManager.active[357][a+1]){
+                    card.cost--
+                }
+            break
         }
-        if(card.class==5&&userCombatant.getStatus('Drawn Status Draw')>0){
-            this.drawEffects.push([5,this.drawEffects.push([5,userCombatant.getStatus('Drawn Status Draw')])])
+        if(card.spec.includes(62)){
+            this.drawEffects.push([5,1])
+        }
+        if(card.spec.includes(63)){
+            this.drawEffects.push([5,2])
         }
         switch(card.attack){
             case -3:
@@ -3031,7 +3058,7 @@ class group{
                 userCombatant.ammo--
             }
             if(effectiveCost>=0&&userCombatant.getStatus('Temporary All Cost Down')>0){
-                effectiveCost+=userCombatant.getStatus('Temporary All Cost Down'),0
+                effectiveCost+=userCombatant.getStatus('Temporary All Cost Down')
             }
             if(effectiveCost>0&&userCombatant.getStatus('Skill Cost Down')>0&&cardClass==11){
                 effectiveCost=max(effectiveCost-userCombatant.getStatus('Skill Cost Down'),0)
@@ -3044,6 +3071,9 @@ class group{
             }
             if(effectiveCost>0&&userCombatant.getStatus('Defense Cost Down')>0&&cardClass==2){
                 effectiveCost=max(effectiveCost-userCombatant.getStatus('Defense Cost Down'),0)
+            }
+            if(effectiveCost>=0&&userCombatant.getStatus('Colorless Cost Up')>0&&card.colorless()){
+                effectiveCost+=userCombatant.getStatus('Colorless Cost Up')
             }
             if(
                 !(userCombatant.getStatus('Free Defenses')>0&&cardClass==2)&&
@@ -3339,6 +3369,12 @@ class group{
                             )&&this.battle.relicManager.hasRelic(11,this.player)
                         ){
                             this.cards[a].exhaust=true
+                            if(
+                                this.cards[a].class==4||
+                                this.cards[a].spec.includes(56)
+                            ){
+                                this.cards[a].purge=true
+                            }
                         }
                     }
                     if(this.battle.modded(108)&&floor(random(0,50))==0){
@@ -4136,32 +4172,13 @@ class group{
     }
     generalExhaust(a){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-        if(this.cards[a].spec.includes(56)){
-            this.exhausts++
-            if(userCombatant.getStatus('Exhaust Draw')>0){
-                this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Exhaust Draw'))
-            }
-            if(userCombatant.getStatus('2 Exhaust Draw')>0&&this.exhausts%2==0){
-                this.battle.cardManagers[this.player].draw(userCombatant.getStatus('2 Exhaust Draw'))
-            }
-            if(userCombatant.getStatus('3 Exhaust Draw')>0&&this.exhausts%3==0){
-                this.battle.cardManagers[this.player].draw(userCombatant.getStatus('3 Exhaust Draw'))
-            }
-            if(userCombatant.getStatus('Exhaust Shiv')>0&&this.cards[a].name!='Shiv'&&this.cards[a].name!='Broken\nShiv'&&this.cards[a].name!='Deluxe\nShiv'){
-                for(let a=0,la=userCombatant.getStatus('Exhaust Shiv');a<la;a++){
-                    this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
-                }
-            }
-            if(userCombatant.getStatus('Exhaust Temporary Strength')>0){
-                userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Exhaust Temporary Strength'))
-            }
-            this.battle.relicManager.activate(10,[this.player])
+        if(this.cards[a].purge){
             if(variants.witch&&this.cards[a].spec.includes(31)){
                 this.battle.cardManagers[this.player].draw(1)
             }
             this.cards[a].callExhaustEffect()
-            this.cards.splice(a,1)
             delete this.cards[a]
+            this.cards.splice(a,1)
         }else if(userCombatant.getStatus('Double Exhaust')>0&&this.cards[a].attack!=1287){
             userCombatant.status.main[findList('Double Exhaust',userCombatant.status.name)]--
             this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,7)
@@ -4551,7 +4568,7 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==26){
+        if(this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==59){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                 if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team==this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<game.targetRadius){
@@ -4569,7 +4586,7 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==14||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==48||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53){
+        if(this.battle.attackManager.targetInfo[0]==14||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==48||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==59){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                 if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&
                     (legalTargetDiagonalCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5)&&
@@ -4963,7 +4980,7 @@ class group{
                 this.callInput(2,a)
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==26){
+        if(this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==59){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                     if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team==this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&
@@ -4983,7 +5000,7 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==14||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==48||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53){
+        if(this.battle.attackManager.targetInfo[0]==14||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==48||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==59){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                     if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&

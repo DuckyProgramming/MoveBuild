@@ -74,6 +74,7 @@ class eventManager{
                 !(this.listing.event[a]==66&&this.battle.currency.money[this.player]<50)&&
                 !(this.listing.event[a]==68&&this.battle.cardManagers[this.player].deck.numberAbstract(8,[])<=0)&&
                 !(this.listing.event[a]==69&&userCombatant.life<7)&&
+                !(this.listing.event[a]==73&&this.battle.nodeManager.world==0)&&
                 !(this.listing.event[a]==74&&userCombatant.life<9)&&
                 !(this.listing.event[a]==75&&(userCombatant.life>=userCombatant.base.life-20||this.battle.currency.money[this.player]<35))&&
                 !(this.listing.event[a]==77&&this.battle.currency.money[this.player]<50)&&
@@ -226,11 +227,11 @@ class eventManager{
                 ,this.posKey,200)
             this.layer.textSize(12)
             for(let b=0,lb=this.pages[a].option.length;b<lb;b++){
-                this.layer.text(this.pages[a].option[b],this.posKey,300+b*50-(this.pages[a].optionDesc[b].length>0?2:0))
+                this.layer.text(b>0&&this.battle.relicManager.hasRelic(339,this.player)?'-':this.pages[a].option[b],this.posKey,300+b*50-(this.pages[a].optionDesc[b].length>0?2:0))
             }
             this.layer.textSize(8)
             for(let b=0,lb=this.pages[a].optionDesc.length;b<lb;b++){
-                this.layer.text(this.pages[a].optionDesc[b],this.posKey,310+b*50)
+                this.layer.text(b>0&&this.battle.relicManager.hasRelic(339,this.player)?'':this.pages[a].optionDesc[b],this.posKey,310+b*50)
             }
             this.layer.noFill()
             this.layer.stroke(0,this.fade[a]*this.primaryFade)
@@ -732,7 +733,7 @@ class eventManager{
                         if(this.page==0&&a==0){
                             this.battle.loseCurrency(100,this.player)
                         }else if(this.page==1&&a==0){
-                            this.battle.relicManager.addRelic(findInternal('Currency Per Room',types.relic),this.player)
+                            this.battle.relicManager.addRelic(findInternal('Currency Per Node',types.relic),this.player)
                         }
                     break
                     case 52:
@@ -1561,7 +1562,7 @@ class eventManager{
     onClick(){
         if(this.page>=0){
             for(let a=0,la=this.pages[this.page].option.length;a<la;a++){
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.posKey,y:300+a*50},width:220,height:30})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.posKey,y:300+a*50},width:220,height:30})&&!(a>0&&this.battle.relicManager.hasRelic(339,this.player))){
                     this.callInput(0,a)
                 }
             }
@@ -1573,7 +1574,7 @@ class eventManager{
     onKey(key,code){
         if(this.page>=0){
             for(let a=0,la=this.pages[this.page].option.length;a<la;a++){
-                if(int(key)-1==a){
+                if(int(key)-1==a&&!(a>0&&this.battle.relicManager.hasRelic(339,this.player))){
                     this.callInput(0,a)
                 }
             }

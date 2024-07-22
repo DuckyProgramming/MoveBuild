@@ -85,7 +85,7 @@ class modManager{
                 }
             break
             case 149:
-                this.battle.cardManagers.forEach(cardManager=>cardManager.deck.killDupes())
+                this.battle.cardManagers.forEach(cardManager=>cardManager.deck.removeDupes())
             break
             case 165:
                 for(let a=0,la=this.battle.players;a<la;a++){

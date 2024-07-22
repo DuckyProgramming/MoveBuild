@@ -107,7 +107,7 @@ attack.prototype.update=function(){
         case 3693: case 3700: case 3702: case 3704: case 3707: case 3709: case 3711: case 3741: case 3744: case 3753:
         case 3754: case 3778: case 3787: case 3792: case 3815: case 3816: case 3847: case 3851: case 3853: case 3855:
         case 3861: case 3876: case 3879: case 3885: case 3886: case 3893: case 3902: case 3904: case 3905: case 3907:
-        case 3912:
+        case 3912: case 3917: case 3921: case 3935:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false
@@ -617,7 +617,7 @@ attack.prototype.update=function(){
         case 3652: case 3653: case 3654: case 3655: case 3664: case 3676: case 3678: case 3679: case 3710: case 3718:
         case 3723: case 3750: case 3757: case 3760: case 3761: case 3769: case 3777: case 3783: case 3785: case 3820:
         case 3837: case 3841: case 3845: case 3856: case 3858: case 3859: case 3865: case 3887: case 3897: case 3898:
-        case 3899: case 3900: case 3911: case 3914:
+        case 3899: case 3900: case 3911: case 3914: case 3916: case 3934:
             //mark 4
             if(
                 this.type==799&&this.battle.turn.total<4||
@@ -690,7 +690,7 @@ attack.prototype.update=function(){
         case 3525: case 3526: case 3547: case 3548: case 3549: case 3552: case 3553: case 3555: case 3556: case 3557:
         case 3567: case 3570: case 3578: case 3592: case 3607: case 3609: case 3612: case 3660: case 3666: case 3675:
         case 3684: case 3686: case 3687: case 3708: case 3712: case 3731: case 3768: case 3784: case 3791: case 3839:
-        case 3842: case 3849: case 3850: case 3852: case 3869: case 3890: case 3891:
+        case 3842: case 3849: case 3850: case 3852: case 3869: case 3890: case 3891: case 3918: case 3919: case 3936:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -9002,6 +9002,17 @@ attack.prototype.update=function(){
             }
             if(this.timer>=26){
                 this.userCombatant.combo=0
+                this.remove=true
+            }
+        break
+        case 3920:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(2)
+            }
+            this.userCombatant.runAnimation(1/20,2)
+            if(this.timer%20==1){
+                this.selfCall(0)
+            }else if(this.timer>=80){
                 this.remove=true
             }
         break

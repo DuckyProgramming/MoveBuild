@@ -917,10 +917,18 @@ class battle{
         if(this.modded(155)){
             switch(card.edition){
                 case 1:
-                    userCombatant.loseHealth(2)
+                    if(this.relicManager.hasRelic(354,player)){
+                        userCombatant.loseHealth(2+2*this.relicManager.active[354][player+1])
+                    }else{
+                        userCombatant.loseHealth(2)
+                    }
                 break
                 case 2:
-                    userCombatant.block=max(0,userCombatant.block-5)
+                    if(this.relicManager.hasRelic(349,player)){
+                        userCombatant.block=max(0,userCombatant.block-(5+5*this.relicManager.active[349][player+1]))
+                    }else{
+                        userCombatant.block=max(0,userCombatant.block-5)
+                    }
                 break
                 case 3:
                     userCombatant.statusEffect('Strength',-1)
@@ -951,10 +959,18 @@ class battle{
         }else{
             switch(card.edition){
                 case 1:
-                    userCombatant.heal(2)
+                    if(this.relicManager.hasRelic(354,player)){
+                        userCombatant.heal(2+2*this.relicManager.active[354][player+1])
+                    }else{
+                        userCombatant.heal(2)
+                    }
                 break
                 case 2:
-                    userCombatant.addBlock(5)
+                    if(this.relicManager.hasRelic(349,player)){
+                        userCombatant.addBlock(5+5*this.relicManager.active[349][player+1])
+                    }else{
+                        userCombatant.addBlock(5)
+                    }
                 break
                 case 3:
                     userCombatant.statusEffect('Strength',1)
@@ -1096,7 +1112,7 @@ class battle{
             }
         }
         this.combatantManager.playCardFront(cardClass,card)
-        this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed,card.basic])
+        this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed,card.basic,card.list])
     }
     displayCurrency(){
         this.layer.stroke(0)
@@ -1134,6 +1150,7 @@ class battle{
         this.layer.textAlign(CENTER,CENTER)
     }
     addEnergy(amount,player){
+        this.relicManager.activate(17,[amount,player])
         if(player<this.players){
             if(amount!=0){
                 this.anim[amount>0?'energyUp':'energyDown']=1
@@ -1148,6 +1165,7 @@ class battle{
         }
     }
     addSpecificEnergy(amount,player,type){
+        this.relicManager.activate(17,[amount,player])
         if(player<this.players){
             if(amount!=0){
                 this.anim[amount>0?'energyUp':'energyDown']=1
@@ -1183,6 +1201,7 @@ class battle{
         }
     }
     loseEnergy(amount,player){
+        this.relicManager.activate(17,[-amount,player])
         this.energy.lastSpend[player]=variants.mtg?[]:amount
         if(player<this.players){
             if(amount!=0){
@@ -1210,23 +1229,8 @@ class battle{
             }
         }
     }
-    loseEnergyGen(amount,player){
-        if(player<this.players){
-            if(amount!=0){
-                this.anim[amount>0?'energyDown':'energyUp']=1
-            }
-            if(variants.mtg){
-                for(let a=0,la=amount;a<la;a++){
-                    if(this.energy.gen[player].length>0){
-                        this.energy.gen[player].splice(floor(random(0,this.energy.gen[player].length)),1)
-                    }
-                }
-            }else{
-                this.energy.gen[player]+=amount
-            }
-        }
-    }
     loseSpecificEnergy(amount,player,type){
+        this.relicManager.activate(17,[-amount,player])
         this.energy.lastSpend[player]=variants.mtg?[]:amount
         if(player<this.players){
             if(amount!=0){
@@ -1295,12 +1299,29 @@ class battle{
             }
         }
     }
+    loseEnergyGen(amount,player){
+        if(player<this.players){
+            if(amount!=0){
+                this.anim[amount>0?'energyDown':'energyUp']=1
+            }
+            if(variants.mtg){
+                for(let a=0,la=amount;a<la;a++){
+                    if(this.energy.gen[player].length>0){
+                        this.energy.gen[player].splice(floor(random(0,this.energy.gen[player].length)),1)
+                    }
+                }
+            }else{
+                this.energy.gen[player]+=amount
+            }
+        }
+    }
     setEnergy(amount,player){
         if(player<this.players){
             if(variants.mtg){
                 if(amount!=total7(this.energy.main[player])){
                     this.anim[amount>total7(this.energy.main[player])?'energyUp':'energyDown']=1
                 }
+                this.relicManager.activate(17,[amount-total7(this.energy.main[player]),player])
                 this.cardManagers[player].allEffectArgs(2,25,[amount-total7(this.energy.main[player])])
                 this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount-total7(this.energy.main[player]))
                 if(total7(this.energy.main[player])>amount){
@@ -1312,6 +1333,7 @@ class battle{
                 if(amount!=this.energy.main[player]){
                     this.anim[amount>this.energy.main[player]?'energyUp':'energyDown']=1
                 }
+                this.relicManager.activate(17,[amount-this.energy.main[player],player])
                 this.cardManagers[player].allEffectArgs(2,25,[amount-this.energy.main[player]])
                 this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount-this.energy.main[player])
                 this.energy.main[player]=amount
@@ -1325,6 +1347,7 @@ class battle{
                 if(amount!=total){
                     this.anim[amount>total?'energyUp':'energyDown']=1
                 }
+                this.relicManager.activate(17,[amount-total,player])
                 this.cardManagers[player].allEffectArgs(2,25,[amount-total])
                 this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount-total7(this.energy.main[player]))
                 if(total7(this.energy.main[player])>amount){
@@ -1336,6 +1359,7 @@ class battle{
                 if(amount!=this.energy.main[player]){
                     this.anim[amount>this.energy.main[player]?'energyUp':'energyDown']=1
                 }
+                this.relicManager.activate(17,[amount-this.energy.main[player],player])
                 this.cardManagers[player].allEffectArgs(2,25,[amount-this.energy.main[player]])
                 this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount-this.energy.main[player])
                 this.energy.main[player]=amount
@@ -2278,11 +2302,11 @@ class battle{
                                 }
                             break
                             case 1:
+                                reward.push({type:0,value:[floor(random(120,201)*mult)]})
                                 if(!this.modded(48)&&!this.relicManager.hasRelic(289,a)){
                                     this.relicManager.activate(15,[a,1,reward,this.turn.total])
                                     reward.push({type:2,value:[]})
                                 }
-                                reward.push({type:0,value:[floor(random(120,201)*mult)]})
                                 if((floor(random(0,3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
                                     reward.push({type:3,value:[]})
                                 }

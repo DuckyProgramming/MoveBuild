@@ -167,7 +167,7 @@ class combatant{
             'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
             'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Energy',
             '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
-            '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal',
+            '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -219,7 +219,7 @@ class combatant{
                 0,1,2,2,0,2,2,0,2,0,//47
                 0,0,0,0,0,0,0,2,1,0,//48
                 0,0,0,2,0,2,0,2,0,0,//49
-                0,2,0,0,
+                0,2,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -271,9 +271,7 @@ class combatant{
                 0,1,1,0,2,3,3,2,0,2,//47
                 0,0,0,2,0,2,2,0,2,2,//48
                 2,2,2,0,2,0,3,3,2,2,//49
-                2,1,2,2,
-                
-            ]}
+                2,1,2,2,2,            ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
         for(let a=0;a<this.status.name.length;a++){
@@ -6262,6 +6260,9 @@ class combatant{
                 }
                 if(this.id<this.battle.players){
                     this.battle.stats.block[this.id]+=block
+                }
+                if(this.battle.relicManager.hasRelic(353,this.id)&&block>=25){
+                    this.battle.cardManagers[this.id].draw(this.battle.relicManager.active[353][this.id+1])
                 }
             }
         }
