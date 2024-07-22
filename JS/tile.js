@@ -190,7 +190,7 @@ class tile{
                     }
                 break
                 case 17:
-                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team<=0){
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1){
                         if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
                             this.battle.combatantManager.combatants[this.combatant].life=0
                         }

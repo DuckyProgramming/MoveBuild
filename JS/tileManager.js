@@ -32,15 +32,31 @@ class tileManager{
             }
         }
         this.center={x:this.layer.width/2,y:this.layer.height/2-60}
-        for(let a=0,la=level.map.length;a<la;a++){
-            for(let b=0,lb=level.map[a].length;b<lb;b++){
-                if(level.map[a][b].type>=0){
+        for(let a=variants.cliff?-1:0,la=level.map.length;a<la+(variants.cliff?1:0);a++){
+            for(let b=variants.cliff?-1:0,lb=level.map[a>=0&&a<=la-1?a:0].length;b<lb+(variants.cliff?1:0);b++){
+                if(a>=0&&b>=0&&a<=la-1&&b<=lb-1&&level.map[a][b].type>=0){
                     this.tiles.push(new tile(this.layer,this.battle,
                         this.layer.width/2-(lb-1)*60+(la-1)*30+b*120-a*60,
                         this.layer.height/2-60-(la-1)*25+a*50,
                         this.layer.width/2-(lb-1)*50+(la-1)*25+b*100-a*50,
                         this.layer.height/2-50-(la-1)*25*sqrt(3)+a*50*sqrt(3),
                         b,a,this.offset,level.map[a][b].type))
+                    this.diagonal[0]=min(this.diagonal[0],a-b)
+                    this.diagonal[1]=max(this.diagonal[1],a-b)
+                }else if(variants.cliff&&floor(random(0,5))==0&&(
+                    a>0&&b>=0&&b<=lb-1&&level.map[a-1][b].type>=0||
+                    a<la-1&&b>=0&&b<=lb-1&&level.map[a+1][b].type>=0||
+                    b>0&&a>=0&&a<=la-1&&level.map[a][b-1].type>=0||
+                    b<lb-1&&a>=0&&a<=la-1&&level.map[a][b+1].type>=0||
+                    a>0&&b>0&&level.map[a-1][b-1].type>=0||
+                    a<la-1&&b<lb-1&&level.map[a+1][b+1].type>=0
+                )){
+                    this.tiles.push(new tile(this.layer,this.battle,
+                        this.layer.width/2-(lb-1)*60+(la-1)*30+b*120-a*60,
+                        this.layer.height/2-60-(la-1)*25+a*50,
+                        this.layer.width/2-(lb-1)*50+(la-1)*25+b*100-a*50,
+                        this.layer.height/2-50-(la-1)*25*sqrt(3)+a*50*sqrt(3),
+                        b,a,this.offset,[17]))
                     this.diagonal[0]=min(this.diagonal[0],a-b)
                     this.diagonal[1]=max(this.diagonal[1],a-b)
                 }

@@ -119,7 +119,7 @@ class turn{
                                 case 107: case 112: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223:
                                 case 224: case 248: case 250: case 253: case 258: case 260: case 272: case 273: case 275: case 276:
                                 case 277: case 297: case 298: case 299: case 310: case 317: case 325: case 329: case 332: case 342:
-                                case 343: case 354:
+                                case 343: case 354: case 374: case 375:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2]
@@ -646,7 +646,7 @@ class turn{
                                         case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99:
                                         case 107: case 112: case 140: case 156: case 183: case 203: case 211: case 248: case 253: case 258:
                                         case 260: case 272: case 273: case 275: case 276: case 277: case 297: case 298: case 299: case 310:
-                                        case 317: case 325: case 329: case 342: case 343: case 354:
+                                        case 317: case 325: case 329: case 342: case 343: case 354: case 374: case 375:
                                             if(a==1&&this.targetTile[0]<0){
                                                 fail=true
                                             }
@@ -1328,10 +1328,10 @@ class turn{
                     case 260: case 268:
                         this.userCombatant.statusEffect('Speed Up',this.effect[1])
                     break
-                    case 262:
+                    case 262: case 374:
                         this.targetCombatant.statusEffect('Shock',this.effect[1])
                     break
-                    case 263:
+                    case 263: case 375:
                         this.targetCombatant.statusEffect('Burn',this.effect[1])
                     break
                     case 270:
@@ -1640,18 +1640,7 @@ class turn{
                         }
                     break
                     case 352:
-                        let remaining352=[]
-                        for(let a=0,la=game.playerNumber;a<la;a++){
-                            remaining352.push(a+1)
-                        }
-                        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                            if(this.battle.combatantManager.combatants[a].type>0&&this.battle.combatantManager.combatants[a].type<=game.playerNumber&&remaining352.includes(this.battle.combatantManager.combatants[a].type)){
-                                remaining352.splice(remaining352.indexOf(this.battle.combatantManager.combatants[a].type),1)
-                            }
-                        }
-                        if(remaining352.length>0){
-                            this.battle.setReinforce(types.combatant[remaining352[floor(random(0,remaining352.length))]].name,{x:2,y:1})
-                        }
+                        this.battle.setReinforce('-h Traitor',{x:2,y:1})
                     break
                 }
             break

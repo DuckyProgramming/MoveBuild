@@ -1,5 +1,28 @@
-decide on character #18
-conduct a purge and mass renaming
+AZIS CHANGES
+
+rearrange orbs
+~30 new cards
+
+
+
+new bonus mods:
+
+embodimental element
+kugelblitz particle
+pure swordsman
+
+
+
+deploy the cards currently in mark p
+
+
+
+
+
+
+
+
+shadow trooper pull bug
 
 
 
@@ -59,7 +82,7 @@ name a card after an enemy from space war
 
 [sakura-colored sea - when drawn, add vitality, ethereal]
 
-[fire a leaf that repeatedly explodes into 4 more small leaves]
+[fire 2 leaves, blue and yellow that repeatedly explodes into 4 more small leaves]
 
 
 
@@ -72,6 +95,8 @@ rain of filth - 2 cost azis, exhaust any number of cards, gain 1 energy back per
 canopy vista - tappable waste that gives 0 energy, increases by 1 when played, exhausts on 2
 
 [cannonball variant for #18]
+
+[split card like deliberation]
 
 
 
@@ -100,11 +125,9 @@ DOES NOT WORK WITH DIVINITY
 
 drowning curse
 
-
-
-[split card like deliberation]
-
 barter box - remove all items, replace with random other items
+
+
 
 [is lira still in a defecit]
 
@@ -113,8 +136,6 @@ barter box - remove all items, replace with random other items
 [simple damage in all directions, and draw a card]
 
 [claustrophobia]
-
-
 
 [multitool]
 
@@ -137,6 +158,8 @@ md's notebook - 10% chance to gain an item slot, 10% chance to make a card glitc
 
 
 
+asteroid belt that spams red stars that create more stars with holes in them
+
 crystal glare but with a cool animation
 
 heart except slash
@@ -147,10 +170,16 @@ overthink - 1 cost, draw 4 cards, lose 2 health
 
 city tax - all enemies lose 1 health, you heal 1 each
 
+
+
 gold pan - gain 5 currency, draw a acrd next turn
 
 new maiden's waltz
 rename old maiden's waltz
+
+dimensional point rift - create a bunch of glowing yellow squares (composed of particles) that get large and then shrink on the target
+
+hold a dark orb and increase all dark orbs
 
 
 
@@ -174,13 +203,6 @@ icon
 
 
 
-AZIS CHANGES
-
-rearrange orbs
-~30 new cards
-
-
-
 CHARACTER 18
 
 countdowns
@@ -191,25 +213,32 @@ poison????
 new enemies:
 
 world 2:
-event security - counter pushes
+
+bar security - counter pushes
+bartender - annoying gangster
+
 []
 
 world 3:
+
 sagacious spirit - permanent intangible, lose 1 energy per 5 cards played
 
+azis boss needs another attack
 chip boss needs another attack
-sukuna boss also needs to get 2 attacks and setup code with archivist
-#18 boss needs 3 attacks and setup code
+sukuna boss needs 2 attacks and setup code
+#18 boss needs 2 attacks and setup code
 
 
 
 new variants:
 
-rooftop - fill empty space on map adjacent to tiles with tiles that instantly kill
+[]
+[]
 
-assault - most fights get extra reinforcements (manually programmed)
-[]
-[]
+
+
+decide on character #18
+conduct a purge and mass renaming
 
 
 

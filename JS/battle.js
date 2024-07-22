@@ -82,7 +82,7 @@ class battle{
         this.turn={main:0,total:0,time:0,accelerate:0,endReady:false,active:false}
         this.counter={enemy:0,killed:0,tooltip:0}
         this.result={defeat:false,victory:false,noAnim:false}
-        this.reinforce={back:[],front:[]}
+        this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
         this.first=true
         this.colorDetail=[]
         
@@ -293,7 +293,7 @@ class battle{
         this.turn={main:0,total:0,time:0,accelerate:0,active:false}
         this.counter={enemy:0,killed:0}
         this.result={defeat:false,victory:false,noAnim:false}
-        this.reinforce={back:[],front:[]}
+        this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
         this.first=first
 
         game.collisionDamage=constants.collisionDamage
@@ -318,13 +318,10 @@ class battle{
         for(let a=0,la=encounter.enemy.length;a<la;a++){
             let effectiveName=encounter.enemy[a].name
             if(effectiveName=='-h Traitor'){
-                let possible=[]
-                for(let a=1,la=game.playerNumber+1;a<la;a++){
-                    if(!this.player.includes(a)){
-                        possible.push(a)
-                    }
+                let summon=this.combatantManager.getRandomNonexistingPlayer()
+                if(summon>=0){
+                    effectiveName=types.combatant[summon].name
                 }
-                effectiveName=types.combatant[possible[floor(random(0,possible.length))]].name
             }
             if(this.modded(1)&&floor(random(0,2))==0){
                 this.reinforce.back.push({position:{x:encounter.enemy[a].position.x,y:encounter.enemy[a].position.y},name:effectiveName,turn:1,minion:false})
@@ -346,6 +343,11 @@ class battle{
             this.reinforce.back.push({position:{x:encounter.reinforce[a].position.x,y:encounter.reinforce[a].position.y},name:encounter.reinforce[a].name,turn:encounter.reinforce[a].turn,minion:false})
             if(encounter.reinforce[a].name!='Prisoner Informant'){
                 this.counter.enemy++
+            }
+        }
+        if(variants.assault){
+            for(let a=0,la=encounter.assaultReinforce.length;a<la;a++){
+                this.reinforce.assault.back.push({position:{x:encounter.assaultReinforce[a].position.x,y:encounter.assaultReinforce[a].position.y},name:encounter.assaultReinforce[a].name,turn:encounter.assaultReinforce[a].turn,minion:false})
             }
         }
         for(let a=0,la=encounter.ally.length;a<la;a++){
@@ -521,7 +523,7 @@ class battle{
     }
     clearReinforce(){
         this.counter.enemy-=this.reinforce.back.length+this.reinforce.front.length
-        this.reinforce={back:[],front:[]}
+        this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
         this.tileManager.clearReinforce()
     }
     loadReinforce(){
@@ -534,11 +536,29 @@ class battle{
                 la--
             }
         }
+        if(variants.assault){
+            for(let a=0,la=this.reinforce.assault.back.length;a<la;a++){
+                if(this.turn.total+this.turn.accelerate>=this.reinforce.assault.back[a].turn){
+                    this.reinforce.assault.front.push({position:{x:this.reinforce.assault.back[a].position.x,y:this.reinforce.assault.back[a].position.y},name:this.reinforce.assault.back[a].name,minion:this.reinforce.assault.back[a].minion})
+                    this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.assault.back[a].position.x,this.reinforce.assault.back[a].position.y)].reinforce=true
+                    this.reinforce.assault.back.splice(a,1)
+                    a--
+                    la--
+                }
+            }
+        }
     }
     sendReinforce(){
         for(let a=0,la=this.reinforce.front.length;a<la;a++){
             if(this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].occupied==0){
-                this.addCombatant(this.reinforce.front[a].position,findName(this.reinforce.front[a].name,types.combatant),0,1,this.reinforce.front[a].minion)
+                let effectiveName=this.reinforce.front[a].name
+                if(effectiveName=='-h Traitor'){
+                    let summon=this.combatantManager.getRandomNonexistingPlayer()
+                    if(summon>=0){
+                        effectiveName=types.combatant[summon].name
+                    }
+                }
+                this.addCombatant(this.reinforce.front[a].position,findName(effectiveName,types.combatant),0,1,this.reinforce.front[a].minion)
                 this.tileManager.activate()
                 this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].reinforce=false
                 this.reinforce.front.splice(a,1)
@@ -551,6 +571,34 @@ class battle{
                     let tile=empty[floor(random(0,empty.length))]
                     this.reinforce.front[a].position={x:this.tileManager.tiles[tile].tilePosition.x,y:this.tileManager.tiles[tile].tilePosition.y}
                     this.tileManager.tiles[tile].reinforce=true
+                }
+            }
+        }
+        if(variants.assault){
+            for(let a=0,la=this.reinforce.assault.front.length;a<la;a++){
+                if(this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.assault.front[a].position.x,this.reinforce.assault.front[a].position.y)].occupied==0){
+                    let effectiveName=this.reinforce.assault.front[a].name
+                    if(effectiveName=='-h Traitor'){
+                        let summon=this.combatantManager.getRandomNonexistingPlayer()
+                        if(summon>=0){
+                            effectiveName=types.combatant[summon].name
+                        }
+                    }
+                    this.addCombatant(this.reinforce.assault.front[a].position,findName(effectiveName,types.combatant),0,1,this.reinforce.assault.front[a].minion)
+                    this.counter.enemy++
+                    this.tileManager.activate()
+                    this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.assault.front[a].position.x,this.reinforce.assault.front[a].position.y)].reinforce=false
+                    this.reinforce.assault.front.splice(a,1)
+                    a--
+                    la--
+                }else{
+                    this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.assault.front[a].position.x,this.reinforce.assault.front[a].position.y)].reinforce=false
+                    let empty=this.tileManager.getEmptyTiles()
+                    if(empty.length>0){
+                        let tile=empty[floor(random(0,empty.length))]
+                        this.reinforce.assault.front[a].position={x:this.tileManager.tiles[tile].tilePosition.x,y:this.tileManager.tiles[tile].tilePosition.y}
+                        this.tileManager.tiles[tile].reinforce=true
+                    }
                 }
             }
         }

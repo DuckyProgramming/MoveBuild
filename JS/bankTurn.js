@@ -9,7 +9,7 @@ turn.prototype.update=function(){
                 case 205: case 214: case 229: case 242: case 246: case 247: case 248: case 250: case 253: case 260:
                 case 262: case 263: case 268: case 270: case 271: case 274: case 275: case 276: case 277: case 279:
                 case 287: case 290: case 291: case 295: case 304: case 306: case 316: case 325: case 328: case 329:
-                case 332: case 335: case 342: case 343: case 353: case 369: case 372: case 373:
+                case 332: case 335: case 342: case 343: case 353: case 369: case 372: case 373: case 374: case 375:
                     if(this.type==205&&this.timer==1){
                         this.userCombatant.goal.anim.direction=this.relativeDirection
                     }
@@ -3347,7 +3347,7 @@ turn.prototype.update=function(){
                                 }
                             break
                             case 313:
-                                this.userCombatant.evoke(7,this.targetCombatant.id,[1])
+                                this.userCombatant.evoke(7,this.targetCombatant==-1?this.user:this.targetCombatant.id,[])
                             break
                         }
                         this.remove=true
@@ -3364,7 +3364,7 @@ turn.prototype.update=function(){
                                     }
                                 break
                                 case 313:
-                                    this.userCombatant.evoke(7,this.targetCombatant.id,[1])
+                                    this.userCombatant.evoke(7,this.targetCombatant==-1?this.user:this.targetCombatant.id,[])
                                 break
                             }
                         }else if(this.timer>=20){
@@ -3664,9 +3664,9 @@ turn.prototype.update=function(){
                         this.remove=true
                     }else{
                         if(this.timer==1){
-                            this.userCombatant.startAnimation(10)
+                            this.userCombatant.startAnimation(19)
                         }
-                        this.userCombatant.runAnimation(1/20,10)
+                        this.userCombatant.runAnimation(1/20,19)
                         if(this.timer==10){
                             this.userCombatant.moveTile(this.direction,this.distance)
                             this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)

@@ -111,20 +111,6 @@ types.card=[
             {effect:[7],attack:2,cost:1,target:[0],spec:[],class:2},
             {effect:[9],attack:2,cost:1,target:[0],spec:[],class:2},
         ],
-    },{
-        name:'Tap',rarity:-2,list:-1,
-        levels:[
-            {effect:[3],attack:1,cost:0,target:[2,1,1],spec:[0],class:1},
-            {effect:[5],attack:1,cost:0,target:[2,1,1],spec:[0],class:1},
-            {effect:[6],attack:1,cost:0,target:[2,1,1],spec:[0],class:1},
-        ],
-    },{
-        name:'Stop',rarity:-2,list:-1,
-        levels:[
-            {effect:[4],attack:2,cost:0,target:[0],spec:[],class:2},
-            {effect:[6],attack:2,cost:0,target:[0],spec:[],class:2},
-            {effect:[8],attack:2,cost:0,target:[0],spec:[],class:2},
-        ],
     },
 
     //mark b
@@ -22737,9 +22723,9 @@ types.card=[
     },{
         name:'Concussion',rarity:0,list:19,
         levels:[
-            {effect:[1],attack:-12,cost:0,target:[0],spec:[5],class:5},
-            {effect:[1],attack:-12,cost:0,target:[0],spec:[5],class:5},
-            {effect:[1],attack:-12,cost:0,target:[0],spec:[5],class:5},
+            {effect:[1],attack:-12,cost:0,target:[0],spec:[4,5],class:5},
+            {effect:[1],attack:-12,cost:0,target:[0],spec:[4,5],class:5},
+            {effect:[1],attack:-12,cost:0,target:[0],spec:[4,5],class:5},
         ],
     },{
         name:'Spiked',rarity:0,list:19,

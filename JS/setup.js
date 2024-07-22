@@ -20,6 +20,7 @@ function setup(){
         current.menu.combatant=[17]
         current.menu.deck=[0]
         current.startGame()
+
         //game.animRate=4
 
             //current.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]

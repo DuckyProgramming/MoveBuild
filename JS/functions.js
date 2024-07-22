@@ -1011,7 +1011,9 @@ function intentDescription(attack,user,info){
 			case 371: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-1`
 			case 372: return `Apply ${info?attack.effect[0]:`?`} Poison\nRange 1-1`
 			case 373: return `Remove ${info?attack.effect[0]:`?`} Dexterity\nRange 1-1`
-			
+			case 374: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Shock\nRange 1-2`
+			case 375: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Burn\nRange 1-2`
+
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
 			case 2: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-1`

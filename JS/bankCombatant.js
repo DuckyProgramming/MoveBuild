@@ -9579,7 +9579,7 @@ combatant.prototype.display=function(){
                     this.layer.strokeWeight(2)
                     this.layer.rect(lsin(this.anim.direction)*15.5,this.parts.eyeLevel,lcos(this.anim.direction)*20,7,2)
                 }
-                if(this.name=='Kugelblitz'&&this.trigger.display.loop){
+                if((this.name=='Kugelblitz'||this.name=='Kugelblitz Particle')&&this.trigger.display.loop){
                     this.layer.stroke(...this.flashColor(this.color.loop),this.fade*this.fades.loop)
                     this.layer.strokeWeight(4)
                     this.layer.noFill()
@@ -9643,7 +9643,7 @@ combatant.prototype.display=function(){
                     }
                 }
                 for(let g=0;g<2;g++){
-                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer')&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
+                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman')&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
@@ -9651,7 +9651,7 @@ combatant.prototype.display=function(){
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
-                        if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
+                        if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader'||this.name=='Champion')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
                             this.minorDisplay(1,g)
                         }
                         if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -9976,17 +9976,6 @@ combatant.prototype.display=function(){
                         this.layer.rect(lsin(this.anim.direction)*7,-45,4*lcos(this.anim.direction),4)
                     }
                 }
-                if((this.name=='Gangster'||this.name=='Batter'||this.name=='Gangster Gunner'||this.name=='Gangster Machinegunner')&&this.trigger.display.overall){
-                    this.layer.noStroke()
-                    this.layer.fill(this.color.overall[0],this.color.overall[1],this.color.overall[2],this.fade)
-                    this.layer.arc(0,-48,15,41,0,180)
-                    for(let a=0,la=4;a<la;a++){
-                        let direction=this.anim.direction-36+a*72+floor(a/2)*48
-                        if(lcos(direction)>0){
-                            this.layer.quad(lsin(direction)*7.5-lcos(direction),-46,lsin(direction)*7.5+lcos(direction),-46,lsin(direction)*3+lcos(direction),-72,lsin(direction)*3-lcos(direction),-72)
-                        }
-                    }
-                }
                 if((this.name=='Prisoner'||this.name=='Prisoner Informant')&&this.trigger.display.belt){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.belt),this.fade*this.fades.belt)
@@ -10115,7 +10104,7 @@ combatant.prototype.display=function(){
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
-                        if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
+                        if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader'||this.name=='Champion')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
                             this.minorDisplay(1,g)
                         }
                         if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -10280,7 +10269,7 @@ combatant.prototype.display=function(){
                     this.layer.triangle(lsin(this.anim.direction)*6,-62,lsin(this.anim.direction)*6+lcos(this.anim.direction)*5,-64,lsin(this.anim.direction)*6+lcos(this.anim.direction)*5,-60)
                 }
                 for(let g=0;g<2;g++){
-                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6)&&g==0){
+                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6)&&g==0){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
@@ -10288,7 +10277,7 @@ combatant.prototype.display=function(){
                         this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                         this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                         this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
-                        if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
+                        if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader'||this.name=='Champion')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
                             this.minorDisplay(1,g)
                         }
                         if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -10316,6 +10305,17 @@ combatant.prototype.display=function(){
                             this.layer.line(
                                 this.graphics.arms[g].top.x*0.7+this.graphics.arms[g].middle.x*0.3,this.graphics.arms[g].top.y*0.7+this.graphics.arms[g].middle.y*0.3,
                                 this.graphics.arms[g].top.x*0.3+this.graphics.arms[g].middle.x*0.7,this.graphics.arms[g].top.y*0.3+this.graphics.arms[g].middle.y*0.7)
+                        }
+                    }
+                }
+                if((this.name=='Gangster'||this.name=='Batter'||this.name=='Gangster Gunner'||this.name=='Gangster Machinegunner')&&this.trigger.display.overall){
+                    this.layer.noStroke()
+                    this.layer.fill(this.color.overall[0],this.color.overall[1],this.color.overall[2],this.fade)
+                    this.layer.arc(0,-48,15,41,0,180)
+                    for(let a=0,la=4;a<la;a++){
+                        let direction=this.anim.direction-36+a*72+floor(a/2)*48
+                        if(lcos(direction)>0){
+                            this.layer.quad(lsin(direction)*7.5-lcos(direction),-46,lsin(direction)*7.5+lcos(direction),-46,lsin(direction)*3+lcos(direction),-72,lsin(direction)*3-lcos(direction),-72)
                         }
                     }
                 }
@@ -10525,7 +10525,7 @@ combatant.prototype.display=function(){
                         this.layer.triangle(lsin(this.anim.direction)*11-lcos(this.anim.direction)*4,-71,lsin(this.anim.direction)*11+lcos(this.anim.direction)*4,-71,lsin(this.anim.direction)*10,-59)
                     }
                     for(let g=0;g<2;g++){
-                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.6)&&g==0){
+                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.6)&&g==0){
                             this.minorDisplay(0,g)
                         }
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
@@ -10533,7 +10533,7 @@ combatant.prototype.display=function(){
                             this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                             this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
-                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
+                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader'||this.name=='Champion')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
                                 this.minorDisplay(1,g)
                             }
                             if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -10567,7 +10567,7 @@ combatant.prototype.display=function(){
                             this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
-                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
+                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader'||this.name=='Champion')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
                                 this.minorDisplay(1,g)
                             }
                             if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -11101,7 +11101,7 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if(this.name=='Kugelblitz'&&this.trigger.display.loop){
+                if((this.name=='Kugelblitz'||this.name=='Kugelblitz Particle')&&this.trigger.display.loop){
                     this.layer.stroke(...this.flashColor(this.color.loop),this.fade*this.fades.loop)
                     this.layer.strokeWeight(4)
                     this.layer.noFill()

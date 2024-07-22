@@ -5,7 +5,7 @@ types={
         {name:'Lira',moniker:'The Apprentice',identifier:['Sister','Miss'],life:60,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:305,effect:[5,6]},{type:25,effect:[14]},{type:306,effect:[18]}],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
         {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:307,effect:[2]},{type:24,effect:[8,8]},{type:308,effect:[13]}],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to reclaim her.`},
         {name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:52,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:309,effect:[4]},{type:88,effect:[2]},{type:310,effect:[12,2,2]}],description:`An experiment gone wrong... or right.\nDirector Stavresk wants his work\nback, but it appears he has failed.\nThe entity was allowed to go free.`},
-        {name:'Azis',moniker:'The Executor',identifier:['Brother','Mister'],life:66,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:311,effect:[4]},{type:312,effect:[5,5,1,1,2,2,2,2,10]},{type:313,effect:[]}],description:`Former Management-aligned free actor,\nhaving ended his partnership.\nNow on an indepdent research mission,\ndiscovering his capabilities.`},
+        {name:'Azis',moniker:'The Executor',identifier:['Brother','Mister'],life:66,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:311,effect:[4]},{type:313,effect:[]}],description:`Former Management-aligned free actor,\nhaving ended his partnership.\nNow on an indepdent research mission,\ndiscovering his capabilities.`},
         {name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[0],move:{type:9,speed:1},attack:[{type:314,effect:[]},{type:315,effect:[]},{type:316,effect:[15,1]}],description:`Duck "transferral district" escapee,\nnow getting his revenge.\nDoesn't seem to have much motivation\nexcept for desire to take out his anger.`},
         {name:'Setsuna',moniker:'The Duelist',identifier:['Sister','Miss'],life:68,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:317,effect:[12]},{type:318,effect:[42]},{type:319,effect:[12]}],description:`Once motivated by a desire for revenge.\nNot anymore, they're all dead.\nMakes it's time for her to stop?\nShe doesn't seem to think so.`},
         {name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:44,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:320,effect:[15,2]},{type:321,effect:[10,2,'Burn',2]},{type:322,effect:[10]}],description:`A guardian of dreams, in her mind, she\nviews everything else as a nightmare.\nHow she got her powers, well,\nblame the Management as always.`},
@@ -13,12 +13,12 @@ types={
         {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:74,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:128,effect:[7,1,'Invoice']}],description:`A gambler now trapped in debt,\nescaping was his only option.\nBut it seems the Management is also\ntracking him down for his crimes.`},
         {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:327,effect:[24]},{type:328,effect:[17,2]},{type:329,effect:[14,1]}],description:`Pursuing a Rewriter for some time now,\ntracking the supposed ghost\nacross several Managerial worlds,\nfinally arriving at its location.`},
         {name:'DD-610',moniker:'The Paradigm',identifier:['Friend','Robot'],life:72,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:330,effect:[4]},{type:331,effect:[19,1]},{type:332,effect:[16,8]}],description:`One of hundreds of prototypes sent\nto Managerial High Command from\nthe manufcaturing detartments.\nOnly this one escaped destruction.`},
-        {name:'Prehextorica',moniker:'The Recollection',identifier:['Brother','Mister'],life:64,behavior:14,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[33]},{type:72,effect:[28,3]},{type:21,effect:[]}],description:`A member of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
+        {name:'Prehextorica',moniker:'The Retrospect',identifier:['Brother','Mister'],life:64,behavior:14,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[33]},{type:72,effect:[28,3]},{type:21,effect:[]}],description:`A member of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
         {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:`Overworked professor who barely\nearned enough to slay alive.\nNow ready to take the share of\npay he believes he deserves.`},
         {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:`Fairy formed by the planet\nas a natural defense mechanism.\nReckless but seemingly immortal,\nnature's incarnates always return.`},
         {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:339,effect:[8,8]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:``},
         {name:'Shinmyoumaru',moniker:'',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]}],description:``},
-        {name:'',moniker:'',identifier:['Brother','Mister'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:``},
+        {name:'',moniker:'',identifier:['',''],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:312,effect:[5,5,1,1,2,2,2,2,10]}],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -157,7 +157,7 @@ types={
         {name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
         {name:'Concentric',life:177,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunaria in never spawning`},
         {name:'Embodimental Destabilization',life:202,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[1,1,1,1]}],description:`This is getting out of hand!`},
-        {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[18]},{type:300,effect:[3]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
+        {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[18]},{type:300,effect:[2]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
         {name:'Golden Duck',life:38,behavior:16,spec:[],move:{type:0,speed:3},attack:[{type:21,effect:[]},{type:68,effect:[]}],description:`Why is this thing alive?`},
         {name:'Management Shotgunner',life:146,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:364,effect:[24,3,1,'Electrocuted']},{type:365,effect:[7,3]}],description:`At least he doesn't OHKO`},
         {name:'Bowler Duck',life:24,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:4,effect:[7]}],description:`He's broke, actually`},
@@ -166,13 +166,18 @@ types={
         {name:'Ducky Donka',life:48,behavior:2,spec:[0],move:{type:0,speed:1},attack:[{type:370,effect:[2,2]}],description:`Legit`},
         {name:'Ducky McDuff',life:48,behavior:2,spec:[0],move:{type:0,speed:1},attack:[{type:371,effect:[2,2]}],description:`Probably not legit`},
         {name:'Prisoner Informant',life:28,behavior:1,spec:[22],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Whose side is he on?`},
+        {name:'Embodimental Element',life:51,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:31,effect:[5]},{type:294,effect:[2,2]}],description:`Tandemaus`},
+        {name:'Kugelblitz Particle',life:31,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:374,effect:[7,1]},{type:375,effect:[7,1]}],description:`He's smol`},
+        {name:'Pure Swordsman',life:30,behavior:1,spec:[0],move:{type:0,speed:2},attack:[{type:107,effect:[6,1]}],description:`Appointed up`},
+
+        //{name:'Bartender',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[1]},{type:93,effect:[1]},{type:39,effect:[1,'Gangster']}],description:`I guess he's a gang member`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         {name:'Flame',life:5,behavior:5,spec:[],move:{type:0,speed:2},attack:[{type:22,effect:[2,1,'Burn']},{type:6,effect:[4]}],description:`Very annoying`},
         {name:'Hexaghost Orb',life:16,behavior:5,spec:[],move:{type:0,speed:0},attack:[{type:54,effect:[4,1,'Burn']},{type:72,effect:[3,1]},{type:70,effect:[10]}],description:`Should probably kill it`},
         {name:'Bodyguard',life:45,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[10]},{type:77,effect:[3]},{type:13,effect:[4,1,'Dizzy']}],description:`Paid to die`},
-        {name:'Bronze Orb C',life:33,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:78,effect:[5]}],description:`Circuitry simulator`},
+        {name:'Bronze Orb C',life:33,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:78,effect:[5]}],description:`Circuitry simulator`},
         {name:'Bronze Orb A',life:27,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:80,effect:[5]}],description:`Goes for the kill`},
         {name:'Dark Priest',life:36,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:173,effect:[4]}],description:`Trolling`},
         {name:'Soul',life:80,behavior:1,spec:[],move:{type:2,speed:2},attack:[{type:252,effect:[2]},{type:215,effect:[4,1]}],description:`Stolen`},
@@ -203,7 +208,7 @@ types={
         {name:'Gangmaster',life:305,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Gangster']},{type:205,effect:[12]},{type:206,effect:[8]},{type:39,effect:[1,'Gangster Gunner']},{type:207,effect:[1]}],description:`Legitimate businessman`},
         {name:'Daughter of Heaven',life:300,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:348,effect:[12,2,2]},{type:349,effect:[1,2]},{type:296,effect:[22]},{type:39,effect:[1,'Keystone']}],description:`Cut character POV`},
         
-        {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Concussion']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
+        {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Dizzy']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
         {name:'Chief Engineering Officer',life:480,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:144,effect:[19,2]},{type:145,effect:[14,2,'Electrocuted']},{type:146,effect:[24]},{type:147,effect:[9]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
         {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:177,effect:[5]},{type:178,effect:[12,1,'Convulsive']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,1,'Napalm']}],description:`Classic warcriminal`},
@@ -634,6 +639,8 @@ types={
         {name:'Triple Strike / Weak',class:1},
         {name:'Poison',class:1},
         {name:'Dexterity Down',class:1},
+        {name:'2 Tile Strike / Shock',class:1},
+        {name:'2 Tile Strike / Burn',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -6737,9 +6744,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
         },{
             name:'Deslice 6',
             map:[
-                [{type:-1},{type:[]},{type:[]},{type:-1},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:-1},{type:[]},{type:[]},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
-                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
             ],
         },{
             name:'Augmented 3',
@@ -7002,6 +7009,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             player:{position:[[{x:0,y:0}],[{x:0,y:0},{x:0,y:0}]]},
             enemy:[
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7011,6 +7019,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7021,6 +7030,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:0},name:'-h Traitor'},
                 {position:{x:1,y:3},name:'Management Officer'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:1},name:'Management Soldier',turn:2},
+                {position:{x:5,y:2},name:'Management Soldier',turn:4},
             ],ally:[
             ],
         },{
@@ -7032,6 +7044,12 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:3},name:'Prisoner'},
                 {position:{x:4,y:2},name:'Prisoner Informant'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:1},name:'Prisoner',turn:3},
+                {position:{x:1,y:3},name:'Prisoner',turn:3},
+                {position:{x:2,y:0},name:'Prisoner',turn:6},
+                {position:{x:4,y:4},name:'Prisoner',turn:6},
+                {position:{x:2,y:2},name:'Prisoner',turn:8},
             ],ally:[
             ],
         },{
@@ -7041,6 +7059,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:2},name:'Ducky McDuff'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
                 {position:{x:5,y:2},name:'Ducky Donka'},
             ],
@@ -7051,6 +7070,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:5,y:2},name:'Ducky Donka'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
                 {position:{x:1,y:2},name:'Ducky McDuff'},
             ],
@@ -7064,6 +7084,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:5},name:'Gangster Gunner'},
                 {position:{x:3,y:0},name:'Gangster Assassin'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:3},name:'Gangster Machinegunner',turn:3},
+                {position:{x:0,y:3},name:'Gangster',turn:5},
+                {position:{x:3,y:5},name:'Slippery Gangster',turn:8},
+                {position:{x:1,y:0},name:'Gangster',turn:12},
             ],ally:[
                 {position:{x:2,y:2},name:'Rebel Negotiator'},
             ],
@@ -7076,6 +7101,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'Management Soldier'},
                 {position:{x:4,y:1},name:'Management Light Infantry'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:1},name:'Management Soldier',turn:4},
+                {position:{x:4,y:1},name:'Management Light Infantry',turn:5},
             ],ally:[
             ],
         },{
@@ -7087,6 +7115,12 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:5,y:3},name:'Management Sniper'},
                 {position:{x:3,y:2},name:'Management Shotgunner'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:2},name:'Management Soldier',turn:3},
+                {position:{x:3,y:0},name:'Management Shotgunner',turn:6},
+                {position:{x:5,y:4},name:'Management Shotgunner',turn:6},
+                {position:{x:1,y:0},name:'Management Sniper',turn:10},
+                {position:{x:3,y:4},name:'Management Sniper',turn:10},
             ],ally:[
             ],
         },{
@@ -7101,6 +7135,13 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:2},name:'Duck'},
                 {position:{x:0,y:0},name:'Golden Duck'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Duck',turn:1},
+                {position:{x:3,y:1},name:'Duck',turn:2},
+                {position:{x:4,y:3},name:'Duck',turn:3},
+                {position:{x:3,y:4},name:'Duck',turn:4},
+                {position:{x:1,y:3},name:'Duck',turn:5},
+                {position:{x:0,y:1},name:'Duck',turn:6},
             ],ally:[
             ],
         },{
@@ -7111,6 +7152,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:1},name:'Daughter of Heaven'},
                 {position:{x:3,y:3},name:'Keystone'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:1},name:'Keystone',turn:4},
+                {position:{x:1,y:2},name:'Keystone',turn:8},
+                {position:{x:4,y:2},name:'Keystone',turn:8},
+                {position:{x:4,y:5},name:'Keystone',turn:12},
             ],ally:[
             ],
         },{
@@ -7120,6 +7166,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:1},name:'Eternal Judge'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7129,6 +7176,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:1},name:'Archivist'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:5},name:'-h Traitor',turn:2},
+                {position:{x:2,y:4},name:'-h Traitor',turn:6},
+                {position:{x:1,y:2},name:'-h Traitor',turn:10},
             ],ally:[
             ],
         },{
@@ -7138,6 +7189,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Crusader'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7147,6 +7199,13 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:3},name:'Dimension Wanderer'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:1},name:'Anomaly',turn:4},
+                {position:{x:5,y:5},name:'Anomaly',turn:4},
+                {position:{x:3,y:1},name:'Anomaly',turn:8},
+                {position:{x:3,y:5},name:'Anomaly',turn:8},
+                {position:{x:1,y:3},name:'Anomaly',turn:12},
+                {position:{x:5,y:3},name:'Anomaly',turn:12},
             ],ally:[
             ],
         },{
@@ -7156,6 +7215,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:3},name:'Embodimental Destabilization'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:3},name:'Embodimental Element',turn:4},
+                {position:{x:5,y:3},name:'Embodimental Element',turn:4},
+                {position:{x:2,y:1},name:'Embodimental Element',turn:6},
+                {position:{x:4,y:5},name:'Embodimental Element',turn:6},
             ],ally:[
             ],
         },{
@@ -7165,6 +7229,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Concentric'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7174,6 +7239,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Recollection'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7184,6 +7250,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:3},name:'Anomaly'},
                 {position:{x:5,y:3},name:'Anomaly'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:4},name:'Anomaly',turn:2},
+                {position:{x:3,y:2},name:'Anomaly',turn:5},
+                {position:{x:2,y:0},name:'Anomaly',turn:8},
             ],ally:[
             ],
         },{
@@ -7193,6 +7263,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:1},name:'Legacy'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7202,6 +7273,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:4,y:2},name:'Relic'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7214,6 +7286,12 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'Precision'},
                 {position:{x:4,y:3},name:'Precision'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:2},name:'Precision',turn:1},
+                {position:{x:0,y:0},name:'Precision',turn:8},
+                {position:{x:2,y:0},name:'Precision',turn:8},
+                {position:{x:2,y:4},name:'Precision',turn:8},
+                {position:{x:4,y:4},name:'Precision',turn:8},
             ],ally:[
             ],
         },{
@@ -7224,6 +7302,8 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:2},name:'Regen Balloon'},
                 {position:{x:4,y:2},name:'Regen Balloon'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:6},name:'Regen Balloon',turn:5},
             ],ally:[
             ],
         },{
@@ -7234,6 +7314,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Lead Brick'},
                 {position:{x:2,y:3},name:'Lead Brick'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Lead Brick',turn:6},
+                {position:{x:0,y:1},name:'Lead Brick',turn:6},
             ],ally:[
             ],
         },{
@@ -7247,6 +7330,14 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:5},name:'Intruder'},
                 {position:{x:3,y:2},name:'Intruder'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Intruder',turn:2},
+                {position:{x:5,y:5},name:'Intruder',turn:2},
+                {position:{x:0,y:2},name:'Intruder',turn:7},
+                {position:{x:3,y:5},name:'Intruder',turn:7},
+                {position:{x:2,y:1},name:'Intruder',turn:12},
+                {position:{x:3,y:3},name:'Intruder',turn:12},
+
             ],ally:[
             ],
         },{
@@ -7256,6 +7347,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:0},name:'Voidglass'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7265,6 +7357,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Kugelblitz'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:2},name:'Kugelblitz Particle',turn:3},
+                {position:{x:0,y:1},name:'Kugelblitz Particle',turn:9},
+                {position:{x:3,y:1},name:'Kugelblitz Particle',turn:12},
             ],ally:[
             ],
         },{
@@ -7275,6 +7371,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:5,y:1},name:'Disorder Energy'},
                 {position:{x:0,y:1},name:'Disorder Energy'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:2},name:'Disorder Energy',turn:5},
+                {position:{x:1,y:0},name:'Disorder Energy',turn:6},
+                {position:{x:3,y:0},name:'Disorder Energy',turn:6},
             ],ally:[
             ],
         },{
@@ -7285,6 +7385,12 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:1},name:'Structural Energy'},
                 {position:{x:0,y:1},name:'Structural Energy'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:0},name:'Structural Energy',turn:4},
+                {position:{x:5,y:2},name:'Structural Energy',turn:4},
+                {position:{x:1,y:1},name:'Structural Energy',turn:6},
+                {position:{x:2,y:0},name:'Structural Energy',turn:8},
+                {position:{x:3,y:2},name:'Structural Energy',turn:8},
             ],ally:[
             ],
         },{
@@ -7297,6 +7403,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:4},name:'Obstruction'},
                 {position:{x:4,y:1},name:'Obstruction'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:5,y:3},name:'Obstruction',turn:2},
+                {position:{x:3,y:5},name:'Obstruction',turn:2},
+                {position:{x:1,y:1},name:'Obstruction',turn:7},
+                {position:{x:5,y:5},name:'Obstruction',turn:7},
             ],ally:[
             ],
         },{
@@ -7307,6 +7418,8 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Carbonado Robot'},
                 {position:{x:5,y:4},name:'Carbonado Robot'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:1},name:'Carbonado Robot',turn:6},
             ],ally:[
             ],
         },{
@@ -7319,6 +7432,13 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:4},name:'Danger'},
                 {position:{x:6,y:4},name:'Danger'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:2},name:'Danger',turn:3},
+                {position:{x:4,y:2},name:'Danger',turn:3},
+                {position:{x:1,y:0},name:'Danger',turn:9},
+                {position:{x:3,y:0},name:'Danger',turn:9},
+                {position:{x:3,y:4},name:'Danger',turn:9},
+                {position:{x:5,y:4},name:'Danger',turn:9},
             ],ally:[
             ],
         },{
@@ -7334,6 +7454,16 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:4},name:'Normal1'},
                 {position:{x:5,y:4},name:'Normal1'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:5},name:'Normal1',turn:3},
+                {position:{x:4,y:5},name:'Normal1',turn:3},
+                {position:{x:0,y:1},name:'Normal1',turn:8},
+                {position:{x:3,y:1},name:'Normal1',turn:8},
+                {position:{x:0,y:2},name:'Normal1',turn:8},
+                {position:{x:4,y:2},name:'Normal1',turn:8},
+                {position:{x:1,y:4},name:'Normal1',turn:8},
+                {position:{x:5,y:4},name:'Normal1',turn:8},
+                {position:{x:1,y:0},name:'Normal1',turn:9},
             ],ally:[
             ],
         },{
@@ -7343,6 +7473,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:2},name:'Lalex'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7352,6 +7483,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:2},name:'Jester'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7363,6 +7495,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'Flying Rock'},
                 {position:{x:3,y:4},name:'Flying Rock'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:2},name:'Flying Rock',turn:7},
+                {position:{x:2,y:4},name:'Flying Rock',turn:4},
+                {position:{x:4,y:4},name:'Flying Rock',turn:4},
             ],ally:[
             ],
         },{
@@ -7372,6 +7508,27 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Lunaria'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:0},name:'Soul',turn:2},
+                {position:{x:4,y:1},name:'Soul',turn:4},
+                {position:{x:5,y:2},name:'Soul',turn:6},
+                {position:{x:6,y:3},name:'Soul',turn:8},
+                {position:{x:6,y:4},name:'Soul',turn:10},
+                {position:{x:6,y:5},name:'Soul',turn:12},
+                {position:{x:6,y:6},name:'Soul',turn:14},
+                {position:{x:5,y:6},name:'Soul',turn:16},
+                {position:{x:4,y:6},name:'Soul',turn:18},
+                {position:{x:3,y:6},name:'Soul',turn:20},
+                {position:{x:2,y:5},name:'Soul',turn:22},
+                {position:{x:1,y:4},name:'Soul',turn:24},
+                {position:{x:0,y:3},name:'Soul',turn:26},
+                {position:{x:0,y:2},name:'Soul',turn:28},
+                {position:{x:0,y:1},name:'Soul',turn:30},
+                {position:{x:0,y:0},name:'Soul',turn:32},
+                {position:{x:1,y:1},name:'Soul',turn:34},
+                {position:{x:2,y:2},name:'Soul',turn:36},
+                {position:{x:3,y:3},name:'Soul',turn:38},
+                {position:{x:4,y:4},name:'Soul',turn:40},
             ],ally:[
             ],
         },{
@@ -7381,6 +7538,19 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Gangmaster'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Gangster',turn:1},
+                {position:{x:0,y:1},name:'Gangster',turn:1},
+                {position:{x:2,y:0},name:'Gangster Gunner',turn:5},
+                {position:{x:0,y:2},name:'Gangster Gunner',turn:5},
+                {position:{x:1,y:0},name:'Slippery Gangster',turn:9},
+                {position:{x:0,y:2},name:'Slippery Gangster',turn:9},
+                {position:{x:2,y:0},name:'Gangster Assassin',turn:13},
+                {position:{x:0,y:2},name:'Gangster Assassin',turn:13},
+                {position:{x:1,y:0},name:'Gangster Machinegunner',turn:17},
+                {position:{x:0,y:1},name:'Gangster Machinegunner',turn:17},
+                {position:{x:2,y:0},name:'Batter',turn:21},
+                {position:{x:0,y:2},name:'Batter',turn:21},
             ],ally:[
             ],
         },{
@@ -7390,6 +7560,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:0},name:'Tech Support'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7399,6 +7570,13 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Wiz'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:2},name:'Buried',turn:3},
+                {position:{x:4,y:4},name:'Buried',turn:3},
+                {position:{x:1,y:3},name:'Buried',turn:6},
+                {position:{x:3,y:1},name:'Buried',turn:6},
+                {position:{x:5,y:3},name:'Buried',turn:9},
+                {position:{x:3,y:5},name:'Buried',turn:9},
             ],ally:[
             ],
         },{
@@ -7408,6 +7586,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:4,y:0},name:'Vengeful'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7417,6 +7596,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:0},name:'Rusty'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7426,6 +7606,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:0},name:'Avant Guard'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7435,6 +7616,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:0},name:'Divine Guard'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7448,6 +7630,18 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:4},name:'Glitch'},
                 {position:{x:4,y:1},name:'Glitch'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:6},name:'Nil',turn:5},
+                {position:{x:6,y:3},name:'Nil',turn:5},
+                {position:{x:0,y:3},name:'Nil',turn:7},
+                {position:{x:3,y:0},name:'Nil',turn:7},
+                {position:{x:0,y:0},name:'Glitch',turn:10},
+                {position:{x:1,y:0},name:'Glitch',turn:10},
+                {position:{x:2,y:0},name:'Glitch',turn:10},
+                {position:{x:0,y:1},name:'Glitch',turn:10},
+                {position:{x:0,y:2},name:'Glitch',turn:10},
+                {position:{x:5,y:6},name:'Glitched Giant',turn:16},
+                {position:{x:6,y:5},name:'Glitched Giant',turn:16},
             ],ally:[
             ],
         },{
@@ -7459,6 +7653,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:2},name:'Darkblot'},
                 {position:{x:3,y:4},name:'Darkblot'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Darkblot',turn:3},
+                {position:{x:1,y:4},name:'Darkblot',turn:9},
+                {position:{x:5,y:4},name:'Darkblot',turn:9},
             ],ally:[
             ],
         },{
@@ -7468,6 +7666,16 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Purge X02'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:0},name:'Management Robot',turn:4},
+                {position:{x:0,y:3},name:'Management Robot',turn:4},
+                {position:{x:5,y:2},name:'Management Soldier',turn:8},
+                {position:{x:2,y:5},name:'Management Soldier',turn:8},
+                {position:{x:0,y:0},name:'Management Officer',turn:10},
+                {position:{x:1,y:0},name:'Management Sniper',turn:14},
+                {position:{x:0,y:1},name:'Management Sniper',turn:14},
+                {position:{x:3,y:0},name:'Management Shotgunner',turn:18},
+                {position:{x:0,y:3},name:'Management Shotgunner',turn:18},
             ],ally:[
             ],
         },{
@@ -7477,6 +7685,21 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Shadow Trooper'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:6},name:'Management Robot',turn:2},
+                {position:{x:6,y:3},name:'Management Robot',turn:2},
+                {position:{x:4,y:6},name:'Management Robot',turn:10},
+                {position:{x:6,y:4},name:'Management Robot',turn:10},
+                {position:{x:5,y:6},name:'Management Robot',turn:18},
+                {position:{x:6,y:5},name:'Management Robot',turn:18},
+                {position:{x:6,y:6},name:'Management Robot',turn:25},
+                {position:{x:0,y:3},name:'Management Robot',turn:6},
+                {position:{x:3,y:0},name:'Management Robot',turn:6},
+                {position:{x:0,y:2},name:'Management Robot',turn:14},
+                {position:{x:2,y:0},name:'Management Robot',turn:14},
+                {position:{x:0,y:1},name:'Management Robot',turn:22},
+                {position:{x:1,y:0},name:'Management Robot',turn:22},
+                {position:{x:0,y:0},name:'Management Robot',turn:28},
             ],ally:[
             ],
         },{
@@ -7486,6 +7709,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Councilman'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:5,y:2},name:'Structural Energy',turn:7},
+                {position:{x:2,y:5},name:'Disorder Energy',turn:9},
             ],ally:[
             ],
         },{
@@ -7497,6 +7723,12 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:3},name:'Red'},
                 {position:{x:3,y:1},name:'Red'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:4},name:'Red',turn:5},
+                {position:{x:2,y:5},name:'Red',turn:8},
+                {position:{x:3,y:6},name:'Red',turn:11},
+                {position:{x:2,y:5},name:'Red',turn:14},
+                {position:{x:1,y:4},name:'Red',turn:17},
             ],ally:[
             ],
         },{
@@ -7506,6 +7738,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Prestige'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7515,6 +7748,8 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Junkie'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Junkie',turn:5},
             ],ally:[
             ],
         },{
@@ -7524,6 +7759,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:2},name:'Host'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:4},name:'Host Drone',turn:2},
+                {position:{x:0,y:0},name:'Host Drone',turn:5},
+                {position:{x:2,y:0},name:'Host Drone',turn:10},
             ],ally:[
             ],
         },{
@@ -7533,6 +7772,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:1},name:'Coffee Commander'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:1},name:'Management Officer',turn:5},
+                {position:{x:4,y:1},name:'Management Officer',turn:5},
+                {position:{x:1,y:1},name:'Management Robot',turn:15},
+                {position:{x:5,y:1},name:'Management Robot',turn:15},
             ],ally:[
             ],
         },{
@@ -7543,6 +7787,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:0},name:'Glimerrer'},
                 {position:{x:2,y:0},name:'Glimerrer'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Glimerrer',turn:6},
+                {position:{x:3,y:1},name:'Glimerrer',turn:6},
             ],ally:[
             ],
         },{
@@ -7552,6 +7799,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:3},name:'Antihwurmp'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7562,6 +7810,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'PhD'},
                 {position:{x:4,y:3},name:'PhD'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'PhD',turn:6},
+                {position:{x:2,y:4},name:'PhD',turn:6},
+                {position:{x:4,y:1},name:'PhD',turn:8},
+                {position:{x:5,y:3},name:'PhD',turn:8},
             ],ally:[
             ],
         },{
@@ -7572,6 +7825,8 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:0},name:'Bolt'},
                 {position:{x:4,y:2},name:'Bolt'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:1},name:'Bolt',turn:3},
             ],ally:[
             ],
         },{
@@ -7581,6 +7836,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:1},name:'Pixie'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7590,6 +7846,13 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:1},name:'Beekeeper'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:2},name:'Bee',turn:4},
+                {position:{x:4,y:2},name:'Bee',turn:4},
+                {position:{x:1,y:4},name:'Bee',turn:8},
+                {position:{x:5,y:4},name:'Bee',turn:8},
+                {position:{x:0,y:0},name:'Bee',turn:12},
+                {position:{x:2,y:0},name:'Bee',turn:12},
             ],ally:[
             ],
         },{
@@ -7599,6 +7862,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:3},name:'Hwurmp'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7609,6 +7873,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Fungling'},
                 {position:{x:3,y:6},name:'Fungling'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:3},name:'Fungling',turn:2},
+                {position:{x:2,y:3},name:'Fungling',turn:6},
+                {position:{x:2,y:0},name:'Fungling',turn:8},
+                {position:{x:5,y:6},name:'Fungling',turn:8},
             ],ally:[
             ],
         },{
@@ -7619,6 +7888,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Louse'},
                 {position:{x:6,y:2},name:'Louse'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:0},name:'Louse',turn:5},
+                {position:{x:3,y:3},name:'Louse',turn:5},
+                {position:{x:1,y:2},name:'Louse',turn:10},
+                {position:{x:5,y:1},name:'Louse',turn:10},
             ],ally:[
             ],
         },{
@@ -7629,6 +7903,12 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Reichswehr'},
                 {position:{x:2,y:0},name:'Reichswehr'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:2},name:'Reichswehr',turn:5},
+                {position:{x:4,y:2},name:'Reichswehr',turn:5},
+                {position:{x:1,y:0},name:'Reichswehr',turn:8},
+                {position:{x:0,y:1},name:'Reichswehr',turn:11},
+                {position:{x:3,y:1},name:'Reichswehr',turn:11},
             ],ally:[
             ],
         },{
@@ -7639,6 +7919,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:2},name:'Riot Police'},
                 {position:{x:5,y:2},name:'Riot Police'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:0},name:'Riot Police',turn:4},
+                {position:{x:4,y:4},name:'Riot Police',turn:10},
             ],ally:[
             ],
         },{
@@ -7648,6 +7931,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Elf Archer'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7657,6 +7941,14 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Chief Engineering Officer'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Management Caller',turn:3},
+                {position:{x:5,y:2},name:'Management Drone',turn:6},
+                {position:{x:2,y:5},name:'Management Drone',turn:6},
+                {position:{x:3,y:1},name:'Management Sniper',turn:12},
+                {position:{x:1,y:3},name:'Management Sniper',turn:12},
+                {position:{x:5,y:6},name:'Management Drone',turn:15},
+                {position:{x:6,y:5},name:'Management Drone',turn:15},
             ],ally:[
             ],
         },{
@@ -7666,6 +7958,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:4,y:3},name:'Corrupt Detective'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7675,6 +7968,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:0},name:'Assistant Fitness Officer'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Management Light Infantry',turn:4},
+                {position:{x:2,y:0},name:'Management Light Infantry',turn:4},
+                {position:{x:1,y:0},name:'Management Caller',turn:8},
             ],ally:[
             ],
         },{
@@ -7685,6 +7982,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:0},name:'Destructor Bot'},
                 {position:{x:5,y:6},name:'Destructor Bot'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:3},name:'Destructor Bot',turn:7},
+                {position:{x:5,y:3},name:'Destructor Bot',turn:7},
             ],ally:[
             ],
         },{
@@ -7693,11 +7993,15 @@ Besides, ghost objects aren't useful in the real world, right?`,
             player:{position:[[{x:1,y:2}],[{x:0,y:1},{x:1,y:3}]]},
             enemy:[
                 {position:{x:3,y:2},name:'Armored Ninja'},
-                {position:{x:2,y:0},name:'Ninja',turn:2},
-                {position:{x:4,y:4},name:'Ninja',turn:2},
+                {position:{x:2,y:0},name:'Ninja'},
+                {position:{x:4,y:4},name:'Ninja'},
             ],reinforce:[
-                {position:{x:3,y:0},name:'Ninja',turn:2},
-                {position:{x:5,y:4},name:'Ninja',turn:2},
+                {position:{x:3,y:0},name:'Ninja',turn:3},
+                {position:{x:5,y:4},name:'Ninja',turn:3},
+            ],assaultReinforce:[
+                {position:{x:0,y:1},name:'Ninja',turn:9},
+                {position:{x:1,y:3},name:'Ninja',turn:9},
+                {position:{x:0,y:2},name:'Ninja',turn:5},
             ],ally:[
             ],
         },{
@@ -7707,6 +8011,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:0},name:'Jet'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:0},name:'Management Robot',turn:3},
+                {position:{x:2,y:1},name:'Management Robot',turn:9},
             ],ally:[
             ],
         },{
@@ -7718,6 +8025,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:2},name:'Gangster'},
                 {position:{x:3,y:2},name:'Gangster'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:1},name:'Gangster Gunner',turn:5},
+                {position:{x:2,y:1},name:'Gangster Gunner',turn:5},
+                {position:{x:0,y:3},name:'Gangster',turn:9},
+                {position:{x:4,y:3},name:'Gangster',turn:9},
             ],ally:[
             ],
         },{
@@ -7727,6 +8039,16 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:0},name:'Assistant Hiring Officer'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Intern',turn:2},
+                {position:{x:2,y:0},name:'Intern',turn:2},
+                {position:{x:1,y:0},name:'Intern',turn:4},
+                {position:{x:0,y:0},name:'Intern',turn:6},
+                {position:{x:2,y:0},name:'Intern',turn:6},
+                {position:{x:1,y:0},name:'Intern',turn:8},
+                {position:{x:0,y:0},name:'Intern',turn:10},
+                {position:{x:2,y:0},name:'Intern',turn:10},
+                {position:{x:1,y:0},name:'Intern',turn:12},
             ],ally:[
             ],
         },{
@@ -7736,6 +8058,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Bomber Boy'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7747,6 +8070,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Ninja'},
                 {position:{x:4,y:4},name:'Ninja'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:1},name:'Ninja',turn:3},
+                {position:{x:5,y:3},name:'Ninja',turn:3},
+                {position:{x:3,y:0},name:'Ninja',turn:7},
+                {position:{x:5,y:4},name:'Ninja',turn:7},
             ],ally:[
             ],
         },{
@@ -7758,6 +8086,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Executive'},
                 {position:{x:1,y:1},name:'Mechanized'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:3},name:'Executive',turn:4},
+                {position:{x:0,y:2},name:'Mechanized',turn:8},
             ],ally:[
             ],
         },{
@@ -7768,6 +8099,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Mechanized'},
                 {position:{x:0,y:1},name:'Mechanized'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:2},name:'Mechanized',turn:3},
+                {position:{x:3,y:1},name:'Mechanized',turn:4},
+                {position:{x:1,y:1},name:'Mechanized',turn:5},
             ],ally:[
             ],
         },{
@@ -7779,6 +8114,13 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Management Robot'},
                 {position:{x:0,y:2},name:'Management Robot'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Carbonado Robot',turn:5},
+                {position:{x:2,y:0},name:'Management Robot',turn:5},
+                {position:{x:0,y:2},name:'Management Robot',turn:5},
+                {position:{x:0,y:0},name:'Management Drone',turn:10},
+                {position:{x:2,y:0},name:'Management Robot',turn:10},
+                {position:{x:0,y:2},name:'Management Robot',turn:10},
             ],ally:[
             ],
         },{
@@ -7788,6 +8130,19 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:1},name:'Capitalist'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Bodyguard',turn:2},
+                {position:{x:1,y:0},name:'Bodyguard',turn:4},
+                {position:{x:2,y:0},name:'Bodyguard',turn:6},
+                {position:{x:3,y:0},name:'Bodyguard',turn:8},
+                {position:{x:4,y:0},name:'Bodyguard',turn:10},
+                {position:{x:5,y:0},name:'Bodyguard',turn:12},
+                {position:{x:0,y:0},name:'Bodyguard',turn:14},
+                {position:{x:1,y:0},name:'Bodyguard',turn:16},
+                {position:{x:2,y:0},name:'Bodyguard',turn:18},
+                {position:{x:3,y:0},name:'Bodyguard',turn:20},
+                {position:{x:4,y:0},name:'Bodyguard',turn:22},
+                {position:{x:5,y:0},name:'Bodyguard',turn:24},
             ],ally:[
             ],
         },{
@@ -7798,6 +8153,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Roger Reviv'},
                 {position:{x:2,y:2},name:'Cartel'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:4},name:'Cartel',turn:6},
+                {position:{x:4,y:1},name:'Cartel',turn:6},
+                {position:{x:1,y:0},name:'Cartel',turn:9},
+                {position:{x:0,y:1},name:'Cartel',turn:9},
             ],ally:[
             ],
         },{
@@ -7807,6 +8167,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Sharpshot'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7822,6 +8183,25 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:5},name:'Hexaghost Orb'},
                 {position:{x:5,y:5},name:'Hexaghost Orb'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Flame',turn:7},
+                {position:{x:0,y:3},name:'Flame',turn:7},
+                {position:{x:3,y:0},name:'Flame',turn:7},
+                {position:{x:6,y:3},name:'Flame',turn:7},
+                {position:{x:3,y:6},name:'Flame',turn:7},
+                {position:{x:6,y:6},name:'Flame',turn:7},
+                {position:{x:2,y:1},name:'Flame',turn:14},
+                {position:{x:4,y:2},name:'Flame',turn:14},
+                {position:{x:5,y:4},name:'Flame',turn:14},
+                {position:{x:4,y:5},name:'Flame',turn:14},
+                {position:{x:2,y:4},name:'Flame',turn:14},
+                {position:{x:1,y:2},name:'Flame',turn:14},
+                {position:{x:2,y:2},name:'Flame',turn:21},
+                {position:{x:2,y:3},name:'Flame',turn:21},
+                {position:{x:3,y:2},name:'Flame',turn:21},
+                {position:{x:4,y:3},name:'Flame',turn:21},
+                {position:{x:3,y:4},name:'Flame',turn:21},
+                {position:{x:4,y:4},name:'Flame',turn:21},
             ],ally:[
             ],
         },{
@@ -7832,6 +8212,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Donu'},
                 {position:{x:3,y:0},name:'Deca'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7841,6 +8222,20 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Slow King'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:3},name:'Shield Particle',turn:2},
+                {position:{x:3,y:0},name:'Shield Particle',turn:2},
+                {position:{x:1,y:4},name:'Shield Particle',turn:5},
+                {position:{x:4,y:1},name:'Shield Particle',turn:5},
+                {position:{x:2,y:5},name:'Shield Particle',turn:8},
+                {position:{x:5,y:2},name:'Shield Particle',turn:8},
+                {position:{x:3,y:6},name:'Shield Particle',turn:11},
+                {position:{x:6,y:3},name:'Shield Particle',turn:11},
+                {position:{x:4,y:6},name:'Shield Particle',turn:14},
+                {position:{x:6,y:4},name:'Shield Particle',turn:14},
+                {position:{x:5,y:6},name:'Shield Particle',turn:17},
+                {position:{x:6,y:5},name:'Shield Particle',turn:17},
+                {position:{x:6,y:6},name:'Shield Particle',turn:20},
             ],ally:[
             ],
         },{
@@ -7850,6 +8245,13 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Slime Boss'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:5,y:5},name:'Slime',turn:8},
+                {position:{x:5,y:3},name:'Slime',turn:11},
+                {position:{x:3,y:5},name:'Slime',turn:11},
+                {position:{x:3,y:1},name:'Slime',turn:19},
+                {position:{x:1,y:3},name:'Slime',turn:19},
+                {position:{x:1,y:1},name:'Slime',turn:22},
             ],ally:[
             ],
         },{
@@ -7861,6 +8263,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:4},name:'Management Drone'},
                 {position:{x:7,y:4},name:'Management Drone'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:2},name:'Management Robot',turn:6},
+                {position:{x:5,y:2},name:'Management Robot',turn:6},
             ],ally:[
             ],
         },{
@@ -7870,6 +8275,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Dead Shell'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7879,6 +8285,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:1},name:'Fireball'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7888,6 +8295,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Bush Thing'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7897,6 +8305,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Champion'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Pure Swordsman',turn:3},
+                {position:{x:1,y:2},name:'Pure Swordsman',turn:3},
             ],ally:[
             ],
         },{
@@ -7908,6 +8319,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Management Autoduck'},
                 {position:{x:6,y:3},name:'Management Autoduck'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:1},name:'Management Autoduck',turn:6},
+                {position:{x:3,y:1},name:'Management Autoduck',turn:6},
+                {position:{x:1,y:3},name:'Management Autoduck',turn:8},
+                {position:{x:4,y:3},name:'Management Autoduck',turn:8},
             ],ally:[
             ],
         },{
@@ -7917,6 +8333,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:1},name:'Repulsor'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7928,6 +8345,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Thornvine'},
                 {position:{x:5,y:1},name:'Thornvine'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Thornvine',turn:5},
+                {position:{x:3,y:0},name:'Thornvine',turn:5},
+                {position:{x:1,y:2},name:'Thornvine',turn:9},
+                {position:{x:5,y:2},name:'Thornvine',turn:9},
             ],ally:[
             ],
         },{
@@ -7937,6 +8359,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:2},name:'Gremlin'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7946,6 +8369,13 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:3,y:3},name:'Gas Man'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Fireball',turn:8},
+                {position:{x:2,y:0},name:'Fireball',turn:8},
+                {position:{x:0,y:2},name:'Fireball',turn:8},
+                {position:{x:4,y:2},name:'Fireball',turn:8},
+                {position:{x:2,y:4},name:'Fireball',turn:8},
+                {position:{x:4,y:4},name:'Fireball',turn:8},
             ],ally:[
             ],
         },{
@@ -7955,6 +8385,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Swordmaster'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -7965,6 +8396,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Lightspeed'},
                 {position:{x:0,y:1},name:'Lightspeed'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Lightspeed',turn:4},
+                {position:{x:1,y:2},name:'Lightspeed',turn:4},
+                {position:{x:0,y:0},name:'Lightspeed',turn:10},
+                {position:{x:0,y:1},name:'Lightspeed',turn:10},
             ],ally:[
             ],
         },{
@@ -7975,6 +8411,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:2},name:'Prison Guard'},
                 {position:{x:2,y:0},name:'Prison Guard'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:4},name:'Prison Guard',turn:3},
+                {position:{x:0,y:0},name:'Prison Guard',turn:9},
             ],ally:[
             ],
         },{
@@ -7985,6 +8424,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Prisoner'},
                 {position:{x:4,y:2},name:'Prisoner'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:0},name:'Prisoner',turn:6},
+                {position:{x:1,y:2},name:'Prisoner',turn:6},
+                {position:{x:0,y:1},name:'Prisoner',turn:8},
+                {position:{x:4,y:1},name:'Prisoner',turn:8},
             ],ally:[
             ],
         },{
@@ -7995,6 +8439,8 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Walker Driver'},
                 {position:{x:1,y:1},name:'Management Soldier'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:1},name:'Management Light Infantry',turn:5},
             ],ally:[
             ],
         },{
@@ -8006,6 +8452,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:2},name:'Management Soldier'},
                 {position:{x:3,y:4},name:'Management Custodian'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Management Soldier',turn:4},
+                {position:{x:3,y:4},name:'Management Officer',turn:6},
+                {position:{x:0,y:0},name:'Management Soldier',turn:12},
+                {position:{x:2,y:0},name:'Management Soldier',turn:12},
             ],ally:[
             ],
         },{
@@ -8015,6 +8466,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:4,y:6},name:'Management Caller'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:6},name:'Management Soldier',turn:3},
+                {position:{x:4,y:6},name:'Management Soldier',turn:7},
+                {position:{x:4,y:6},name:'Management Soldier',turn:12},
+                {position:{x:4,y:6},name:'Management Soldier',turn:18},
             ],ally:[
             ],
         },{
@@ -8025,6 +8481,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:5,y:2},name:'Management Soldier'},
                 {position:{x:0,y:2},name:'Management Sniper'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:4},name:'Management Sniper',turn:5},
+                {position:{x:3,y:0},name:'Management Sniper',turn:7},
             ],ally:[
             ],
         },{
@@ -8033,12 +8492,21 @@ Besides, ghost objects aren't useful in the real world, right?`,
             player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
             enemy:[
                 {position:{x:0,y:0},name:'Bronze Automaton'},
-                {position:{x:3,y:3},name:'Bronze Orb C'},
-                {position:{x:0,y:3},name:'Bronze Orb A'},
-                {position:{x:3,y:0},name:'Bronze Orb A'},
-                {position:{x:6,y:3},name:'Bronze Orb C'},
+                {position:{x:0,y:1},name:'Bronze Orb A'},
+                {position:{x:1,y:0},name:'Bronze Orb A'},
+                {position:{x:0,y:3},name:'Bronze Orb C'},
+                {position:{x:3,y:0},name:'Bronze Orb C'},
                 {position:{x:3,y:6},name:'Bronze Orb C'},
+                {position:{x:6,y:3},name:'Bronze Orb C'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Bronze Orb C',turn:7},
+                {position:{x:3,y:3},name:'Bronze Orb C',turn:7},
+                {position:{x:6,y:6},name:'Bronze Orb C',turn:7},
+                {position:{x:0,y:2},name:'Bronze Orb C',turn:11},
+                {position:{x:2,y:0},name:'Bronze Orb C',turn:11},
+                {position:{x:4,y:6},name:'Bronze Orb C',turn:11},
+                {position:{x:6,y:4},name:'Bronze Orb C',turn:11},
             ],ally:[
             ],
         },{
@@ -8048,6 +8516,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:1},name:'Solar Shard'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Lunar Shard',turn:8},
+                {position:{x:1,y:3},name:'Lunar Shard',turn:8},
+                {position:{x:3,y:1},name:'Lunar Dust',turn:9},
+                {position:{x:3,y:4},name:'Lunar Dust',turn:9},
             ],ally:[
             ],
         },{
@@ -8058,6 +8531,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:4},name:'Lunar Shard'},
                 {position:{x:4,y:4},name:'Lunar Shard'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Lunar Shard',turn:2},
+                {position:{x:0,y:1},name:'Lunar Dust',turn:6},
+                {position:{x:3,y:1},name:'Lunar Dust',turn:6},
             ],ally:[
             ],
         },{
@@ -8069,6 +8546,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:0},name:'Sentry'},
                 {position:{x:3,y:0},name:'Sentry'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8080,6 +8558,8 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Deployer'},
                 {position:{x:1,y:0},name:'Sentry'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:4},name:'Deployer',turn:5},
             ],ally:[
             ],
         },{
@@ -8091,6 +8571,8 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:5,y:5},name:'Fat Gremlin'},
                 {position:{x:1,y:3},name:'Angry Gremlin'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:3},name:'Gremlin',turn:4},
             ],ally:[
             ],
         },{
@@ -8101,6 +8583,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:0},name:'Management Special Forces'},
                 {position:{x:0,y:2},name:'Management Special Forces'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:4},name:'Management Shotgunner',turn:3},
+                {position:{x:0,y:0},name:'Management Special Forces',turn:7},
+                {position:{x:0,y:1},name:'Management Special Forces',turn:7},
             ],ally:[
             ],
         },{
@@ -8112,6 +8598,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:2},name:'Management Soldier'},
                 {position:{x:5,y:5},name:'Management Officer'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:0},name:'Management Robot',turn:4},
+                {position:{x:1,y:3},name:'Management Robot',turn:8},
+                {position:{x:5,y:3},name:'Management Robot',turn:12},
+                {position:{x:4,y:5},name:'Management Robot',turn:16},
             ],ally:[
             ],
         },{
@@ -8122,6 +8613,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:0},name:'Management Soldier'},
                 {position:{x:3,y:5},name:'Management Soldier'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Management Soldier',turn:6},
+                {position:{x:2,y:5},name:'Management Soldier',turn:6},
             ],ally:[
             ],
         },{
@@ -8134,6 +8628,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:6,y:6},name:'Management Robot'},
                 {position:{x:6,y:5},name:'Management Robot'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Management Robot',turn:6},
+                {position:{x:5,y:6},name:'Management Robot',turn:6},
+                {position:{x:1,y:3},name:'Management Robot',turn:8},
+                {position:{x:5,y:3},name:'Management Robot',turn:8},
             ],ally:[
             ],
         },{
@@ -8143,6 +8642,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Management Prototype'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8154,6 +8654,13 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:0},name:'Blue Duck'},
                 {position:{x:6,y:1},name:'Blue Duck'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Blue Duck',turn:4},
+                {position:{x:5,y:0},name:'Blue Duck',turn:4},
+                {position:{x:1,y:2},name:'Blue Duck',turn:10},
+                {position:{x:7,y:2},name:'Blue Duck',turn:10},
+                {position:{x:3,y:2},name:'Blue Duck',turn:12},
+                {position:{x:5,y:2},name:'Blue Duck',turn:12},
             ],ally:[
             ],
         },{
@@ -8165,6 +8672,13 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Duck'},
                 {position:{x:4,y:1},name:'Duck'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Duck',turn:4},
+                {position:{x:3,y:0},name:'Duck',turn:4},
+                {position:{x:1,y:2},name:'Duck',turn:10},
+                {position:{x:5,y:2},name:'Duck',turn:10},
+                {position:{x:2,y:2},name:'Duck',turn:12},
+                {position:{x:4,y:2},name:'Duck',turn:12},
             ],ally:[
             ],
         },{
@@ -8174,6 +8688,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Human'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8184,6 +8699,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:0},name:'Mugger'},
                 {position:{x:3,y:2},name:'Mugger'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Mugger',turn:4},
+                {position:{x:1,y:2},name:'Mugger',turn:4},
+                {position:{x:3,y:1},name:'Mugger',turn:6},
             ],ally:[
             ],
         },{
@@ -8193,16 +8712,21 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Looter'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:1},name:'Looter',turn:3},
             ],ally:[
             ],
         },{
             level:['Workshop 6'],class:0,world:1,
             name:'Scrapper',
-            player:{position:[[{x:1,y:0}],[{x:1,y:0},{x:2,y:1}]]},
+            player:{position:[[{x:1,y:0}],[{x:1,y:0},{x:1,y:1}]]},
             enemy:[
                 {position:{x:5,y:2},name:'Scrapper'},
                 {position:{x:5,y:3},name:'Fat Scrapper'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Scrapper',turn:4},
+                {position:{x:1,y:0},name:'Fat Scrapper',turn:8},
             ],ally:[
             ],
         },{
@@ -8213,6 +8737,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Nerfer'},
                 {position:{x:2,y:3},name:'Buffer'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:3},name:'Human',turn:1},
+                {position:{x:0,y:0},name:'Human',turn:4},
+                {position:{x:3,y:3},name:'Human',turn:4},
             ],ally:[
             ],
         },{
@@ -8222,6 +8750,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'Agent Duck'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8242,6 +8771,25 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:6},name:'Goblin'},
                 {position:{x:5,y:6},name:'Goblin'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:1},name:'Goblin',turn:8},
+                {position:{x:1,y:3},name:'Goblin',turn:8},
+                {position:{x:3,y:1},name:'Goblin',turn:8},
+                {position:{x:3,y:5},name:'Goblin',turn:8},
+                {position:{x:5,y:3},name:'Goblin',turn:8},
+                {position:{x:5,y:5},name:'Goblin',turn:8},
+                {position:{x:1,y:0},name:'Goblin',turn:16},
+                {position:{x:2,y:0},name:'Goblin',turn:16},
+                {position:{x:0,y:1},name:'Goblin',turn:16},
+                {position:{x:0,y:2},name:'Goblin',turn:16},
+                {position:{x:1,y:4},name:'Goblin',turn:16},
+                {position:{x:2,y:5},name:'Goblin',turn:16},
+                {position:{x:4,y:1},name:'Goblin',turn:16},
+                {position:{x:5,y:2},name:'Goblin',turn:16},
+                {position:{x:6,y:4},name:'Goblin',turn:16},
+                {position:{x:6,y:5},name:'Goblin',turn:16},
+                {position:{x:4,y:6},name:'Goblin',turn:16},
+                {position:{x:5,y:6},name:'Goblin',turn:16},
             ],ally:[
             ],
         },{
@@ -8262,6 +8810,25 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:6},name:'Management Robot'},
                 {position:{x:5,y:6},name:'Management Robot'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:1},name:'Management Robot',turn:8},
+                {position:{x:1,y:3},name:'Management Robot',turn:8},
+                {position:{x:3,y:1},name:'Management Robot',turn:8},
+                {position:{x:3,y:5},name:'Management Robot',turn:8},
+                {position:{x:5,y:3},name:'Management Robot',turn:8},
+                {position:{x:5,y:5},name:'Management Robot',turn:8},
+                {position:{x:1,y:0},name:'Management Robot',turn:16},
+                {position:{x:2,y:0},name:'Management Robot',turn:16},
+                {position:{x:0,y:1},name:'Management Robot',turn:16},
+                {position:{x:0,y:2},name:'Management Robot',turn:16},
+                {position:{x:1,y:4},name:'Management Robot',turn:16},
+                {position:{x:2,y:5},name:'Management Robot',turn:16},
+                {position:{x:4,y:1},name:'Management Robot',turn:16},
+                {position:{x:5,y:2},name:'Management Robot',turn:16},
+                {position:{x:6,y:4},name:'Management Robot',turn:16},
+                {position:{x:6,y:5},name:'Management Robot',turn:16},
+                {position:{x:4,y:6},name:'Management Robot',turn:16},
+                {position:{x:5,y:6},name:'Management Robot',turn:16},
             ],ally:[
             ],
         },{
@@ -8273,6 +8840,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:7,y:5},name:'Moss Creature'},
                 {position:{x:3,y:6},name:'Moss Creature'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:4},name:'Moss Creature',turn:3},
+                {position:{x:3,y:1},name:'Moss Creature',turn:12},
+                {position:{x:7,y:6},name:'Moss Creature',turn:12},
+                {position:{x:2,y:5},name:'Moss Creature',turn:12},
             ],ally:[
             ],
         },{
@@ -8283,6 +8855,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:2,y:4},name:'Rock Golem'},
                 {position:{x:4,y:4},name:'Rock Golem'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:2},name:'Rock Golem',turn:4},
+                {position:{x:3,y:2},name:'Rock Golem',turn:4},
+                {position:{x:1,y:0},name:'Rock Golem',turn:7},
             ],ally:[
             ],
         },{
@@ -8295,6 +8871,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:6,y:4},name:'Ninja'},
                 {position:{x:0,y:2},name:'Enforcer'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:6,y:4},name:'Ninja',turn:3},
+                {position:{x:2,y:4},name:'Ninja',turn:6},
+                {position:{x:0,y:0},name:'Ninja',turn:9},
+                {position:{x:4,y:0},name:'Ninja',turn:12},
             ],ally:[
             ],
         },{
@@ -8304,6 +8885,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:4,y:4},name:'Spheron'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8315,6 +8897,12 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:6,y:4},name:'Gangster'},
                 {position:{x:0,y:2},name:'Gangster Gunner'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:1},name:'Gangster Gunner',turn:4},
+                {position:{x:1,y:3},name:'Gangster Gunner',turn:4},
+                {position:{x:2,y:0},name:'Gangster',turn:10},
+                {position:{x:4,y:4},name:'Gangster',turn:10},
+                {position:{x:6,y:2},name:'Gangster',turn:13},
             ],ally:[
             ],
         },{
@@ -8326,6 +8914,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:3},name:'Slippery Gangster'},
                 {position:{x:4,y:3},name:'Slippery Gangster'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Gangster',turn:4},
+                {position:{x:0,y:1},name:'Slippery Gangster',turn:5},
+                {position:{x:3,y:1},name:'Slippery Gangster',turn:5},
             ],ally:[
             ],
         },{
@@ -8338,6 +8930,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Batter'},
                 {position:{x:6,y:3},name:'Batter'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:0},name:'Gangster',turn:6},
+                {position:{x:3,y:4},name:'Gangster',turn:6},
+                {position:{x:2,y:2},name:'Batter',turn:10},
+                {position:{x:4,y:2},name:'Batter',turn:10},
             ],ally:[
             ],
         },{
@@ -8349,8 +8946,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:4},name:'Duck'},
                 {position:{x:1,y:0},name:'Big Duck'},
             ],reinforce:[
-                {position:{x:0,y:2},name:'Duck',turn:2},
-                {position:{x:4,y:2},name:'Duck',turn:2},
+                {position:{x:0,y:2},name:'Duck',turn:3},
+                {position:{x:4,y:2},name:'Duck',turn:3},
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Duck',turn:5},
+                {position:{x:2,y:0},name:'Duck',turn:5},
             ],ally:[
             ],
         },{
@@ -8361,6 +8961,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:2},name:'Red'},
                 {position:{x:4,y:2},name:'Red'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Red',turn:6},
+                {position:{x:4,y:4},name:'Red',turn:6},
+                {position:{x:2,y:0},name:'Red',turn:8},
+                {position:{x:2,y:4},name:'Red',turn:8},
             ],ally:[
             ],
         },{
@@ -8372,6 +8977,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:3},name:'Ninja'},
                 {position:{x:3,y:2},name:'Ninja'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:2},name:'Ninja',turn:2},
+                {position:{x:2,y:0},name:'Ninja',turn:7},
+                {position:{x:4,y:4},name:'Ninja',turn:7},
             ],ally:[
             ],
         },{
@@ -8382,6 +8991,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:2},name:'Gangster'},
                 {position:{x:2,y:2},name:'Gangster'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Gangster',turn:3},
+                {position:{x:2,y:1},name:'Gangster',turn:5},
             ],ally:[
             ],
         },{
@@ -8392,6 +9004,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:2},name:'Cartel'},
                 {position:{x:2,y:4},name:'Cartel'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:0},name:'Cartel',turn:4},
+                {position:{x:1,y:2},name:'Cartel',turn:9},
+                {position:{x:4,y:4},name:'Cartel',turn:14},
             ],ally:[
             ],
         },{
@@ -8403,6 +9019,12 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:4},name:'Slimoid'},
                 {position:{x:0,y:0},name:'Big Slimoid'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:0},name:'Slimoid',turn:4},
+                {position:{x:0,y:2},name:'Slimoid',turn:4},
+                {position:{x:4,y:4},name:'Slimoid',turn:6},
+                {position:{x:4,y:2},name:'Slimoid',turn:12},
+                {position:{x:2,y:4},name:'Slimoid',turn:12},
             ],ally:[
             ],
         },{
@@ -8414,6 +9036,12 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:4},name:'Spike Slime'},
                 {position:{x:0,y:0},name:'Big Spike Slime'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:0},name:'Spike Slime',turn:4},
+                {position:{x:0,y:2},name:'Spike Slime',turn:4},
+                {position:{x:4,y:4},name:'Spike Slime',turn:6},
+                {position:{x:4,y:2},name:'Spike Slime',turn:12},
+                {position:{x:2,y:4},name:'Spike Slime',turn:12},
             ],ally:[
             ],
         },{
@@ -8425,6 +9053,12 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:4},name:'Slime'},
                 {position:{x:0,y:0},name:'Big Slime'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:0},name:'Slime',turn:4},
+                {position:{x:0,y:2},name:'Slime',turn:4},
+                {position:{x:4,y:4},name:'Slime',turn:6},
+                {position:{x:4,y:2},name:'Slime',turn:12},
+                {position:{x:2,y:4},name:'Slime',turn:12},
             ],ally:[
             ],
         },{
@@ -8435,6 +9069,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'Slimoid'},
                 {position:{x:1,y:3},name:'Slimoid'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:4},name:'Slimoid',turn:6},
+                {position:{x:0,y:0},name:'Slimoid',turn:10},
             ],ally:[
             ],
         },{
@@ -8445,6 +9082,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'Spike Slime'},
                 {position:{x:1,y:3},name:'Spike Slime'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:4},name:'Spike Slime',turn:6},
+                {position:{x:0,y:0},name:'Spike Slime',turn:10},
             ],ally:[
             ],
         },{
@@ -8455,6 +9095,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'Slime'},
                 {position:{x:1,y:3},name:'Slime'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:4},name:'Slime',turn:6},
+                {position:{x:0,y:0},name:'Slime',turn:10},
             ],ally:[
             ],
         },{
@@ -8465,6 +9108,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:4},name:'Biker'},
                 {position:{x:4,y:3},name:'Biker'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:1},name:'Biker',turn:5},
+                {position:{x:1,y:0},name:'Biker',turn:5},
+                {position:{x:1,y:1},name:'Biker',turn:8},
+                {position:{x:3,y:3},name:'Biker',turn:11},
             ],ally:[
             ],
         },{
@@ -8475,6 +9123,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Thug'},
                 {position:{x:1,y:0},name:'Thug'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:4},name:'Thug',turn:5},
+                {position:{x:4,y:3},name:'Thug',turn:5},
+                {position:{x:3,y:3},name:'Thug',turn:8},
+                {position:{x:1,y:1},name:'Thug',turn:11},
             ],ally:[
             ],
         },{
@@ -8487,6 +9140,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:1},name:'Bouncer',turn:1},
                 {position:{x:0,y:1},name:'Bouncer',turn:2},
                 {position:{x:4,y:1},name:'Bouncer',turn:3},
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Bouncer',turn:5},
+                {position:{x:3,y:0},name:'Bouncer',turn:6},
+                {position:{x:4,y:2},name:'Bouncer',turn:7},
+                {position:{x:1,y:2},name:'Bouncer',turn:8},
             ],ally:[
             ],
         },{
@@ -8496,6 +9154,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'Little Guy'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8508,6 +9167,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:2},name:'Drunk'},
                 {position:{x:0,y:0},name:'Drunk Boss'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:3},name:'Drunk',turn:5},
+                {position:{x:3,y:4},name:'Drunk',turn:5},
+                {position:{x:1,y:0},name:'Drunk',turn:9},
+                {position:{x:0,y:1},name:'Drunk',turn:9},
             ],ally:[
             ],
         },{
@@ -8522,6 +9186,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
             ],reinforce:[
                 {position:{x:1,y:1},name:'Monkey',turn:3},
                 {position:{x:3,y:1},name:'Monkey',turn:3},
+            ],assaultReinforce:[
+                {position:{x:2,y:1},name:'Monkey',turn:5},
+                {position:{x:0,y:1},name:'Monkey',turn:9},
+                {position:{x:4,y:1},name:'Monkey',turn:9},
             ],ally:[
             ],
         },{
@@ -8534,6 +9202,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:1,y:1},name:'Trenchcoat'},
                 {position:{x:1,y:2},name:'Trenchcoat'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Trenchcoat',turn:6},
+                {position:{x:1,y:2},name:'Trenchcoat',turn:6},
+                {position:{x:0,y:1},name:'Trenchcoat Gunner',turn:7},
             ],ally:[
             ],
         },{
@@ -8541,10 +9213,14 @@ Besides, ghost objects aren't useful in the real world, right?`,
             name:'The Alley',
             player:{position:[[{x:2,y:1}],[{x:2,y:1},{x:3,y:1}]]},
             enemy:[
-                {position:{x:0,y:1},name:'Go\on'},
+                {position:{x:0,y:1},name:'Goon'},
                 {position:{x:3,y:4},name:'Goon'},
                 {position:{x:4,y:4},name:'Goon'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:0},name:'Goon',turn:3},
+                {position:{x:4,y:1},name:'Goon',turn:4},
+                {position:{x:0,y:0},name:'Goon',turn:10},
             ],ally:[
             ],
         },{
@@ -8554,6 +9230,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Slaver'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8566,6 +9243,15 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:4,y:4},name:'Fungal Duck'},
                 {position:{x:5,y:4},name:'Fungal Duck'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:4},name:'Fungal Duck',turn:7},
+                {position:{x:3,y:4},name:'Fungal Duck',turn:7},
+                {position:{x:4,y:4},name:'Fungal Duck',turn:7},
+                {position:{x:5,y:4},name:'Fungal Duck',turn:7},
+                {position:{x:0,y:0},name:'Fungal Duck',turn:12},
+                {position:{x:1,y:0},name:'Fungal Duck',turn:12},
+                {position:{x:2,y:0},name:'Fungal Duck',turn:12},
+                {position:{x:3,y:0},name:'Fungal Duck',turn:12},
             ],ally:[
             ],
         },{
@@ -8576,6 +9262,9 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:1},name:'Orb Walker'},
                 {position:{x:1,y:1},name:'Orb Walker'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Orb Walker',turn:6},
+                {position:{x:1,y:2},name:'Orb Walker',turn:6},
             ],ally:[
             ],
         },{
@@ -8586,6 +9275,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:1},name:'Pointy'},
                 {position:{x:4,y:3},name:'Romeo'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8595,6 +9285,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:2},name:'Billy Beatup'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8611,6 +9302,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
             ],reinforce:[
                 {position:{x:1,y:2},name:'Monkey Gangster',turn:3},
                 {position:{x:5,y:2},name:'Monkey Gangster',turn:3},
+            ],assaultReinforce:[
+                {position:{x:0,y:2},name:'Monkey Gangster',turn:4},
+                {position:{x:6,y:2},name:'Monkey Gangster',turn:4},
+                {position:{x:2,y:2},name:'Monkey Gangster',turn:10},
+                {position:{x:4,y:2},name:'Monkey Gangster',turn:10},
             ],ally:[
             ],
         },{
@@ -8624,6 +9320,11 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:5,y:4},name:'Duckforce'},
                 {position:{x:4,y:5},name:'Duckforce'},
             ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:0},name:'Duckforce',turn:8},
+                {position:{x:0,y:3},name:'Duckforce',turn:8},
+                {position:{x:1,y:0},name:'Duckforce',turn:14},
+                {position:{x:0,y:1},name:'Duckforce',turn:14},
             ],ally:[
             ],
         },{
@@ -8640,6 +9341,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             ]},
             enemy:[
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8650,6 +9352,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:0,y:0},name:'Kugelblitz'},
                 {position:{x:1,y:1},name:'Kugelblitz'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8659,6 +9362,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:1,y:1},name:'NumberDummy'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8668,6 +9372,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:0,y:0},name:'MoveDummy'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8677,6 +9382,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             enemy:[
                 {position:{x:2,y:1},name:'AttackDummy'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8688,6 +9394,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:3},name:'NumberDummy'},
                 {position:{x:3,y:4},name:'NumberDummy'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8696,6 +9403,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             player:{position:[[{x:2,y:2}],[{x:0,y:0},{x:0,y:0}]]},
             enemy:[
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -8710,6 +9418,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 {position:{x:3,y:2},name:'NumberDummy'},
                 {position:{x:2,y:1},name:'NumberDummy'},
             ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },
@@ -9362,7 +10071,8 @@ variants={
     prism:false,ultraprism:false,junk:false,prismrule:[],
     vanish:false,blind:false,transcend:false,
     initiative:false,colorshift:false,overheat:false,
-    unary:false,chaos:false,
+    unary:false,chaos:false,cliff:false,
+    assault:false,
 
     speedmove:false,speedcard:false,nobasicanim:false,deckbuild:false,
 

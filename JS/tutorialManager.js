@@ -271,8 +271,7 @@ Such enemies are harder to avoid and more dangerous to battle.`,
 should give a decent idea of what they do. Reading their descriptions should
 be enough to understand them, as they're mostly self-explanatory.`,
 `On multiplayer, or when another sort of ally is present, enemies
-will select a target that they will go after. This can change mid-combat.
-Bosses will always pursue whichever player moved last if possible.`,
+will select a target that they will go after. This can change mid-combat.`,
 `Attacking enemies will only activate if they have a player or another valid
 (non-enemy) target. Once activated for that turn, they will attack regardless
 of what they hit (as long as some valid target still exists.)`,

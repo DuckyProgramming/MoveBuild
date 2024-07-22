@@ -980,6 +980,21 @@ class combatantManager{
             return result
         }
     }
+    getRandomNonexistingPlayer(){
+        let list=[]
+        for(let a=0,la=game.playerNumber;a<la;a++){
+            list.push(a+1)
+        }
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].type>0&&this.combatants[a].type<=game.playerNumber&&list.includes(this.combatants[a].type)){
+                list.splice(list.indexOf(this.combatants[a].type),1)
+            }
+        }
+        if(list.length>=0){
+            return list[floor(random(0,list.length))]
+        }
+        return -1
+    }
     killAll(name){
         let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){

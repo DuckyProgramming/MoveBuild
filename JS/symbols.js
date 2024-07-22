@@ -8349,6 +8349,30 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.fill(200,50,0,fade)
             layer.triangle(0,4,-2,-2,2,-2)
         break
+        case 374:
+            layer.fill(255,255,50,fade)
+            layer.beginShape()
+            layer.vertex(0.5,-10)
+            layer.vertex(-4,1.5)
+            layer.vertex(0.5,1.5)
+            layer.vertex(-0.5,10)
+            layer.vertex(4,-1.5)
+            layer.vertex(-0.5,-1.5)
+            layer.endShape()
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+            layer.rect(-5.5,0,1,6)
+        break
+        case 375:
+            layer.fill(150,0,0,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.triangle(-4,0,-3,-4,-2,0)
+            layer.triangle(4,0,3,-4,2,0)
+            layer.triangle(-2,0,2,0,0,-6)
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+            layer.rect(-5.5,0,1,6)
+        break
 
     }
     //mark i
@@ -8405,7 +8429,8 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 262: case 263: case 264: case 265: case 266: case 267: case 268: case 270: case 271: case 274:
             case 278: case 279: case 280: case 281: case 282: case 284: case 285: case 287: case 288: case 290:
             case 294: case 303: case 310: case 316: case 328: case 329: case 331: case 333: case 337: case 338:
-            case 342: case 343: case 346: case 349: case 353: case 364: case 365: case 368: case 369:
+            case 342: case 343: case 346: case 349: case 353: case 364: case 365: case 368: case 369: case 374:
+            case 375:
                 layer.text(`${effect[0]}|${effect[1]}`,0,0)
             break
             case 21:
