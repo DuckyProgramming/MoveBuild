@@ -6,7 +6,7 @@ class battle{
     }
     createBasic(){
         this.initialized=false
-        this.menu={combatant:[1],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[],turnTime:[],variants:[],prismrule:[]}}
+        this.menu={combatant:[1],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[],turnTime:[],variants:[],prismrule:[],mtg:[]},mtg:{manaChoice:[],manaBase:[],manaOld:[],manaNew:[]}}
         for(let a=0,la=game.playerNumber;a<=la;a++){
             for(let b=0,lb=2;b<lb;b++){
                 this.menu.anim.combatant[b].push(-1)
@@ -32,6 +32,13 @@ class battle{
             this.menu.anim.prismrule.push(0)
             variants.prismrule.push(a)
         }
+        for(let a=0,la=2;a<la;a++){
+            this.menu.anim.mtg.push(0)
+            this.menu.mtg.manaChoice.push(0)
+            this.menu.mtg.manaBase.push([])
+            this.menu.mtg.manaOld.push([])
+            this.menu.mtg.manaNew.push([])
+        }
         this.proxyPlayer=new combatant(this.layer,this,0,0,0,0,0,0,0,0,0,0)
         this.tutorialManager=new tutorialManager(this.layer,this)
         //this.tierManager=new tierManager(this.layer,this)
@@ -56,6 +63,21 @@ class battle{
         game.theme=0
         this.players=this.player.length
         this.initialGraphics()
+
+        this.encounter={class:0,world:0,name:'',custom:[0,0]}
+        this.currency={money:[],ss:[]}
+        this.energy={main:[],gen:[],base:[],temp:[],lastSpend:[],crystal:[],crystalTotal:[]}
+        this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],barrier:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
+        this.lastEncounter=types.encounter[0]
+        
+        this.turn={main:0,total:0,time:0,accelerate:0,endReady:false,active:false}
+        this.counter={enemy:0,killed:0,tooltip:0}
+        this.result={defeat:false,victory:false,noAnim:false}
+        this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
+        this.first=true
+        this.colorDetail=[]
+
+        this.initialConstants()
         this.initialManagers()
         this.tileManager=new tileManager(this.layer,this)
         this.combatantManager=new combatantManager(this.layer,this)
@@ -69,22 +91,9 @@ class battle{
         this.overlayManager=new overlayManager(this.layer,this,0)
         this.modManager=new modManager(this.layer,this)
         this.replayManager=new replayManager(this.layer,this)
-        
+
         this.initialManagersAfter()
         this.initialized=true
-
-        this.encounter={class:0,world:0,name:'',custom:[0,0]}
-        this.currency={money:[],ss:[]}
-        this.energy={main:[],gen:[],base:[],temp:[],lastSpend:[]}
-        this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],barrier:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
-        this.lastEncounter=types.encounter[0]
-        
-        this.turn={main:0,total:0,time:0,accelerate:0,endReady:false,active:false}
-        this.counter={enemy:0,killed:0,tooltip:0}
-        this.result={defeat:false,victory:false,noAnim:false}
-        this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
-        this.first=true
-        this.colorDetail=[]
         
         this.initial()
     }
@@ -108,15 +117,42 @@ class battle{
     initialManagersAfter(){
         this.cardManagers.forEach(cardManager=>cardManager.initialDeck())
     }
+    initialConstants(){
+        this.colorDetail=[]
+        for(let a=0,la=this.players;a<la;a++){
+            this.colorDetail.push(types.color.card[this.player[a]])
+
+            this.currency.money.push(game.ascend>=22?0:100)
+            this.currency.ss.push(0)
+
+            this.energy.main.push(variants.mtg?[]:0)
+            this.energy.gen.push(variants.mtg?[]:0)
+            this.energy.base.push(variants.mtg?this.menu.mtg.manaBase[a][this.menu.mtg.manaChoice[a]]:game.startEnergy)
+            this.energy.temp.push(0)
+            this.energy.lastSpend.push(variants.mtg?[]:0)
+            if(variants.mtg){
+                this.energy.crystal.push([])
+                this.energy.crystalTotal.push([0,0,0,0,0,0,0])
+            }
+
+            this.stats.killed.push(0)
+            this.stats.earned.push(0)
+            this.stats.damage.push(0)
+            this.stats.block.push(0)
+            this.stats.barrier.push(0)
+            this.stats.move.push(0)
+            this.stats.drawn.push(0)
+            this.stats.played.push([0,0,0,0,0,0,0,0,0,0,0,0])
+            this.stats.taken.push([0,0,0])
+            this.stats.card.push(0)
+            this.stats.relic.push(0)
+            this.stats.item.push(0)
+        }
+    }
     initial(){
         this.combatantManager.clearCombatants()
         this.nodeManager.setupMap()
-        this.colorDetail=[]
         this.resetAnim()
-        if(variants.mtg){
-            this.energy.crystal=[]
-            this.energy.crystalTotal=[]
-        }
         if(variants.chaos){
             for(let a=0,la=types.card.length;a<la;a++){
                 if(
@@ -155,39 +191,6 @@ class battle{
         }
         for(let a=0,la=this.players;a<la;a++){
             this.addCombatant({x:0,y:0},this.player[a],a+1,0,false)
-
-            this.colorDetail.push(types.color.card[this.player[a]])
-
-            this.currency.money.push(game.ascend>=22?0:100)
-            this.currency.ss.push(0)
-
-            this.energy.main.push(variants.mtg?[]:0)
-            this.energy.gen.push(variants.mtg?[]:0)
-            this.energy.base.push(variants.mtg?mtgManaBase(game.startEnergy,this.player[a]):game.startEnergy)
-            this.energy.temp.push(0)
-            this.energy.lastSpend.push(variants.mtg?[]:0)
-            if(variants.mtg){
-                this.energy.crystal.push([])
-                this.energy.crystalTotal.push([0,0,0,0,0,0,0])
-                if(this.energy.base[a].includes(-1)){
-                    this.energy.base[a].splice(this.energy.base[a].indexOf(-1),1)
-                    this.overlayManager.overlays[64][a].active=true
-                    this.overlayManager.overlays[64][a].activate([])
-                }
-            }
-
-            this.stats.killed.push(0)
-            this.stats.earned.push(0)
-            this.stats.damage.push(0)
-            this.stats.block.push(0)
-            this.stats.barrier.push(0)
-            this.stats.move.push(0)
-            this.stats.drawn.push(0)
-            this.stats.played.push([0,0,0,0,0,0,0,0,0,0,0,0])
-            this.stats.taken.push([0,0,0])
-            this.stats.card.push(0)
-            this.stats.relic.push(0)
-            this.stats.item.push(0)
         }
         if(variants.mtg){
             this.cardManagers.forEach(cardManager=>cardManager.mtgListing())
@@ -759,7 +762,7 @@ class battle{
             this.energy.main[player]=[0,0,0,0,0,0,0]
             let cap=484
             for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
-                let goal=a==0?458:this.energy.crystal[player][a-1][1]-26
+                let goal=a==0?459:this.energy.crystal[player][a-1][1]-25
                 cap=min(goal,cap)
             }
             for(let a=0,la=gen.length;a<la;a++){
@@ -1224,7 +1227,7 @@ class battle{
                 this.energy.main[player][type]+=amount
                 let cap=484
                 for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
-                    cap=min(a==0?458:this.energy.crystal[player][a-1][1]-26,cap)
+                    cap=min(a==0?459:this.energy.crystal[player][a-1][1]-25,cap)
                 }
                 cap-=26
                 this.energy.crystal[player].push([type,cap,0,true])
@@ -1478,7 +1481,7 @@ class battle{
         for(let a=0,la=this.players;a<la;a++){
             let cap=484
             for(let b=0,lb=this.energy.crystal[a].length;b<lb;b++){
-                let goal=b==0?458:this.energy.crystal[a][b-1][1]-26
+                let goal=b==0?459:this.energy.crystal[a][b-1][1]-25
                 cap=min(goal,cap)
                 for(let c=0,lc=2;c<lc;c++){
                     if(this.energy.crystal[a][b][1]<goal-1){
@@ -1515,6 +1518,13 @@ class battle{
                 }
             }
         }
+    }
+    setupMtgManaChoice(player){
+        this.menu.anim.mtg[player]=0
+        this.menu.mtg.manaChoice[player]=0
+        this.menu.mtg.manaBase[player]=mtgManaBase(this.menu.combatant[player])
+        this.menu.mtg.manaOld[player]=copyArray(this.menu.mtg.manaNew[player])
+        this.menu.mtg.manaNew[player]=copyArray(this.menu.mtg.manaBase[player][0])
     }
     addCurrency(amount,player){
         if(player>=0&&player<this.players&&this.initialized){
@@ -1596,6 +1606,25 @@ class battle{
                         this.layer.rect(this.layer.width/2+62.5+a*75,this.layer.height-30,67.5,4)
                     }
                 }
+                if(variants.mtg){
+                    this.layer.fill(120)
+                    this.layer.rect(this.layer.width/2-140,this.layer.height*0.5-5,42.5,142.5)
+                    this.layer.rect(this.layer.width/2-140,this.layer.height*0.5-100,37.5,37.5)
+                    this.layer.rect(this.layer.width/2-140,this.layer.height*0.5+90,37.5,37.5)
+                    this.layer.fill(0)
+                    this.layer.rect(this.layer.width/2-140,this.layer.height*0.5-5,30,130)
+                    this.layer.rect(this.layer.width/2-140,this.layer.height*0.5-100,25,25)
+                    this.layer.rect(this.layer.width/2-140,this.layer.height*0.5+90,25,25)
+                    this.layer.fill(120)
+                    regTriangle(this.layer,this.layer.width/2-140,this.layer.height*0.5-98.75,10,10,60)
+                    regTriangle(this.layer,this.layer.width/2-140,this.layer.height*0.5+88.75,10,10,0)
+                    for(let a=0,la=this.menu.mtg.manaOld[0].length;a<la;a++){
+                        displayMtgManaSymbol(this.layer,this.layer.width/2-140,this.layer.height*0.5+45-a*25,this.menu.mtg.manaOld[0][a],0,1-this.menu.anim.mtg[0],1)
+                    }
+                    for(let a=0,la=this.menu.mtg.manaNew[0].length;a<la;a++){
+                        displayMtgManaSymbol(this.layer,this.layer.width/2-140,this.layer.height*0.5+45-a*25,this.menu.mtg.manaNew[0][a],0,this.menu.anim.mtg[0],1)
+                    }
+                }
             break
             case 'menu2':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
@@ -1654,6 +1683,27 @@ class battle{
                     if(this.menu.anim.turnTime[a]>0){
                         this.layer.fill(255,0,0,this.menu.anim.turnTime[a])
                         this.layer.rect(this.layer.width/2+62.5+a*75,this.layer.height-30,67.5,4)
+                    }
+                }
+                if(variants.mtg){
+                    for(let a=0,la=2;a<la;a++){
+                        this.layer.fill(120)
+                        this.layer.rect(this.layer.width/4+140+(this.layer.width/2-280)*a,this.layer.height*0.5-5,42.5,142.5)
+                        this.layer.rect(this.layer.width/4+140+(this.layer.width/2-280)*a,this.layer.height*0.5-100,37.5,37.5)
+                        this.layer.rect(this.layer.width/4+140+(this.layer.width/2-280)*a,this.layer.height*0.5+90,37.5,37.5)
+                        this.layer.fill(0)
+                        this.layer.rect(this.layer.width/4+140+(this.layer.width/2-280)*a,this.layer.height*0.5-5,30,130)
+                        this.layer.rect(this.layer.width/4+140+(this.layer.width/2-280)*a,this.layer.height*0.5-100,25,25)
+                        this.layer.rect(this.layer.width/4+140+(this.layer.width/2-280)*a,this.layer.height*0.5+90,25,25)
+                        this.layer.fill(120)
+                        regTriangle(this.layer,this.layer.width/4+140+(this.layer.width/2-280)*a,this.layer.height*0.5-98.75,10,10,60)
+                        regTriangle(this.layer,this.layer.width/4+140+(this.layer.width/2-280)*a,this.layer.height*0.5+88.75,10,10,0)
+                        for(let b=0,lb=this.menu.mtg.manaOld[a].length;b<lb;b++){
+                            displayMtgManaSymbol(this.layer,this.layer.width/4+140+(this.layer.width/2-280)*a,this.layer.height*0.5+45-b*25,this.menu.mtg.manaOld[a][b],0,1-this.menu.anim.mtg[a],1)
+                        }
+                        for(let b=0,lb=this.menu.mtg.manaNew[a].length;b<lb;b++){
+                            displayMtgManaSymbol(this.layer,this.layer.width/4+140+(this.layer.width/2-280)*a,this.layer.height*0.5+45-b*25,this.menu.mtg.manaNew[a][b],0,this.menu.anim.mtg[a],1)
+                        }
                     }
                 }
             break
@@ -1726,123 +1776,9 @@ class battle{
                         this.layer.line(-90+this.anim.turn[a]*100,474,-58+this.anim.turn[a]*100,474)
                         this.layer.line(-90+this.anim.turn[a]*100,474,-90+this.anim.turn[a]*100,374)
                         this.layer.line(-58+this.anim.turn[a]*100,474,-58+this.anim.turn[a]*100,374)
-                        this.layer.strokeJoin(ROUND)
                         for(let b=0,lb=this.energy.crystal[a].length;b<lb;b++){
-                            this.layer.push()
-                            this.layer.translate(-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1])
-                            switch(this.energy.crystal[a][b][0]){
-                                case 0:
-                                    this.layer.fill(180,this.energy.crystal[a][b][2])
-                                    this.layer.stroke(140,this.energy.crystal[a][b][2])
-                                break
-                                case 1:
-                                    this.layer.fill(60,240,60,this.energy.crystal[a][b][2])
-                                    this.layer.stroke(50,200,50,this.energy.crystal[a][b][2])
-                                break
-                                case 2:
-                                    this.layer.fill(60,150,240,this.energy.crystal[a][b][2])
-                                    this.layer.stroke(50,125,200,this.energy.crystal[a][b][2])
-                                break
-                                case 3:
-                                    this.layer.fill(120,30,120,this.energy.crystal[a][b][2])
-                                    this.layer.stroke(100,25,100,this.energy.crystal[a][b][2])
-                                break
-                                case 4:
-                                    this.layer.fill(240,240,120,this.energy.crystal[a][b][2])
-                                    this.layer.stroke(200,200,100,this.energy.crystal[a][b][2])
-                                break
-                                case 5:
-                                    this.layer.fill(240,60,60,this.energy.crystal[a][b][2])
-                                    this.layer.stroke(200,50,50,this.energy.crystal[a][b][2])
-                                break
-                                case 6:
-                                    let gradient=[new p5.ConicGradient(0,0,0),new p5.ConicGradient(0,0,0),new p5.ConicGradient(0,0,0)]
-                                    this.layer.colorMode(HSB,360,1,1,1)
-                                    gradient[0].colors(0.0,
-                                        this.layer.color(0,1,0.9,this.energy.crystal[a][b][2]),1/6,
-                                        this.layer.color(60,1,0.9,this.energy.crystal[a][b][2]),1/3,
-                                        this.layer.color(120,1,0.9,this.energy.crystal[a][b][2]),1/2,
-                                        this.layer.color(180,1,0.9,this.energy.crystal[a][b][2]),2/3,
-                                        this.layer.color(240,1,0.9,this.energy.crystal[a][b][2]),5/6,
-                                        this.layer.color(300,1,0.9,this.energy.crystal[a][b][2]),1.0,
-                                        this.layer.color(360,1,0.9,this.energy.crystal[a][b][2]))
-                                    gradient[1].colors(0.0,
-                                        this.layer.color(0,1,1,this.energy.crystal[a][b][2]),1/6,
-                                        this.layer.color(60,1,1,this.energy.crystal[a][b][2]),1/3,
-                                        this.layer.color(120,1,1,this.energy.crystal[a][b][2]),1/2,
-                                        this.layer.color(180,1,1,this.energy.crystal[a][b][2]),2/3,
-                                        this.layer.color(240,1,1,this.energy.crystal[a][b][2]),5/6,
-                                        this.layer.color(300,1,1,this.energy.crystal[a][b][2]),1.0,
-                                        this.layer.color(360,1,1,this.energy.crystal[a][b][2]))
-                                    gradient[2].colors(0.0,
-                                        this.layer.color(0,1,0.8,this.energy.crystal[a][b][2]),1/6,
-                                        this.layer.color(60,1,0.8,this.energy.crystal[a][b][2]),1/3,
-                                        this.layer.color(120,1,0.8,this.energy.crystal[a][b][2]),1/2,
-                                        this.layer.color(180,1,0.8,this.energy.crystal[a][b][2]),2/3,
-                                        this.layer.color(240,1,0.8,this.energy.crystal[a][b][2]),5/6,
-                                        this.layer.color(300,1,0.8,this.energy.crystal[a][b][2]),1.0,
-                                        this.layer.color(360,1,0.8,this.energy.crystal[a][b][2]))
-                                    this.layer.noStroke()
-                                    this.layer.fillGradient(gradient[0])
-                                    this.layer.ellipse(0,0,21.5)
-                                    this.layer.fillGradient(gradient[1])
-                                    this.layer.ellipse(0,0,18.5)
-                                    this.layer.fillGradient(gradient[2])
-                                    for(let c=0,lc=5;c<lc;c++){
-                                        this.layer.quad(lsin(c*72)*5.5,lcos(c*72)*5.5,lsin(c*72-18)*8,lcos(c*72-18)*8,lsin(c*72)*8.5,lcos(c*72)*8.5,lsin(c*72+18)*8,lcos(c*72+18)*8)
-                                    }
-                                    this.layer.colorMode(RGB,255,255,255,1)
-                                break
-                            }
-                            this.layer.strokeWeight(1.5)
-                            if(this.energy.crystal[a][b][0]!=6){
-                                this.layer.ellipse(0,0,20)
-                            }
-                            this.layer.noFill()
-                            this.layer.strokeWeight(2)
-                            switch(this.energy.crystal[a][b][0]){
-                                case 0:
-                                    this.layer.stroke(120,this.energy.crystal[a][b][2])
-                                    this.layer.rect(-1.5,1.5,7)
-                                    this.layer.line(-5,-2,-2,-5)
-                                    this.layer.line(2,-2,5,-5)
-                                    this.layer.line(2,5,5,2)
-                                    this.layer.line(5,-5,5,2)
-                                    this.layer.line(-2,-5,5,-5)
-                                break
-                                case 1:
-                                    this.layer.stroke(40,160,40,this.energy.crystal[a][b][2])
-                                    regPoly(this.layer,0,0,6,5,5,30)
-                                break
-                                case 2:
-                                    this.layer.stroke(40,100,160,this.energy.crystal[a][b][2])
-                                    this.layer.arc(0,0,8,8,-45,225)
-                                    this.layer.line(-2*sqrt(2),-2*sqrt(2),0,0-4*sqrt(2))
-                                    this.layer.line(+2*sqrt(2),-2*sqrt(2),0,0-4*sqrt(2))
-                                break
-                                case 3:
-                                    this.layer.stroke(80,20,80,this.energy.crystal[a][b][2])
-                                    this.layer.arc(0,0,10,10,-270,45)
-                                    this.layer.line(0,0,0,5)
-                                break
-                                case 4:
-                                    this.layer.stroke(160,160,80,this.energy.crystal[a][b][2])
-                                    this.layer.line(0,-6,0,6)
-                                    this.layer.line(-3*sqrt(3),-3,+3*sqrt(3),3)
-                                    this.layer.line(-3*sqrt(3),3,+3*sqrt(3),-3)
-                                break
-                                case 5:
-                                    this.layer.stroke(160,40,40,this.energy.crystal[a][b][2])
-                                    this.layer.quad(-3,0,0,-6,3,0,0,6)
-                                break
-                                case 6:
-                                    this.layer.stroke(250,this.energy.crystal[a][b][2])
-                                    regStar(this.layer,0,0,5,2.5,2.5,6,6,0)
-                                break
-                            }
-                            this.layer.pop()
+                            displayMtgManaSymbol(this.layer,-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1],this.energy.crystal[a][b][0],0,this.energy.crystal[a][b][2],1)
                         }
-                        this.layer.strokeJoin(MITER)
                     }else{
                         this.layer.noStroke()
                         let merge=mergeColor([225,255,255],[255,0,0],this.anim.afford)
@@ -2184,6 +2120,9 @@ class battle{
                     this.menu.anim.turnTime[a]=smoothAnim(this.menu.anim.turnTime[a],game.turnTime==[0,900,1800,3600][a],0,1,5)
                 }
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
+                if(variants.mtg&&this.menu.anim.mtg[0]<1){
+                    this.menu.anim.mtg[0]=min(1,this.menu.anim.mtg[0]+0.2)
+                }
             break
             case 'menu2':
                 for(let a=0,la=game.playerNumber;a<=la;a++){
@@ -2207,6 +2146,13 @@ class battle{
                     this.menu.anim.turnTime[a]=smoothAnim(this.menu.anim.turnTime[a],game.turnTime==[0,900,1800,3600][a],0,1,5)
                 }
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
+                if(variants.mtg){
+                    for(let a=0,la=2;a<la;a++){
+                        if(this.menu.anim.mtg[a]<1){
+                            this.menu.anim.mtg[a]=min(1,this.menu.anim.mtg[a]+0.2)
+                        }
+                    }
+                }
             break
             case 'variants':
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
@@ -2545,12 +2491,20 @@ class battle{
                     if(this.menu.combatant.length==2){
                         this.menu.combatant=[1]
                     }
+                    if(variants.mtg){
+                        this.setupMtgManaChoice(0)
+                    }
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='menu2'
                     if(this.menu.combatant.length==1){
                         this.menu.combatant=[this.menu.combatant[0],1]
+                    }
+                    if(variants.mtg){
+                        for(let a=0,la=this.menu.combatant.length;a<la;a++){
+                            this.setupMtgManaChoice(a)
+                        }
                     }
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
@@ -2565,9 +2519,15 @@ class battle{
             case 'menu':
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-80,y:this.layer.height*0.65},width:37.5,height:37.5})){
                     this.menu.combatant[0]=(this.menu.combatant[0]+game.playerNumber-2)%game.playerNumber+1
+                    if(variants.mtg){
+                        this.setupMtgManaChoice(0)
+                    }
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+80,y:this.layer.height*0.65},width:37.5,height:37.5})){
                     this.menu.combatant[0]=this.menu.combatant[0]%game.playerNumber+1
+                    if(variants.mtg){
+                        this.setupMtgManaChoice(0)
+                    }
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-80,y:this.layer.height*0.65+80},width:37.5,height:37.5})){
                     this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length-1)%types.deckmode.length
@@ -2602,14 +2562,33 @@ class battle{
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+150,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     this.startGame()
                 }
+                if(variants.mtg){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-140,y:this.layer.height*0.5-100},width:37.5,height:37.5})){
+                        this.menu.mtg.manaChoice[0]=(this.menu.mtg.manaChoice[0]+this.menu.mtg.manaBase[0].length-1)%this.menu.mtg.manaBase[0].length
+                        this.menu.mtg.manaOld[0]=copyArray(this.menu.mtg.manaNew[0])
+                        this.menu.mtg.manaNew[0]=copyArray(this.menu.mtg.manaBase[0][this.menu.mtg.manaChoice[0]])
+                        this.menu.anim.mtg[0]=0
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-140,y:this.layer.height*0.5+90},width:37.5,height:37.5})){
+                        this.menu.mtg.manaChoice[0]=(this.menu.mtg.manaChoice[0]+this.menu.mtg.manaBase[0].length+1)%this.menu.mtg.manaBase[0].length
+                        this.menu.mtg.manaOld[0]=copyArray(this.menu.mtg.manaNew[0])
+                        this.menu.mtg.manaNew[0]=copyArray(this.menu.mtg.manaBase[0][this.menu.mtg.manaChoice[0]])
+                        this.menu.anim.mtg[0]=0
+                    }
+                }
             break
             case 'menu2':
                 for(let a=0,la=2;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a-80,y:this.layer.height*0.65},width:37.5,height:37.5})){
                         this.menu.combatant[a]=(this.menu.combatant[a]+game.playerNumber-2)%game.playerNumber+1
+                        if(variants.mtg){
+                            this.setupMtgManaChoice(a)
+                        }
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a+80,y:this.layer.height*0.65},width:37.5,height:37.5})){
                         this.menu.combatant[a]=this.menu.combatant[a]%game.playerNumber+1
+                        if(variants.mtg){
+                            this.setupMtgManaChoice(a)
+                        }
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a-80,y:this.layer.height*0.65+80},width:37.5,height:37.5})){
                         this.menu.deck[a]=(this.menu.deck[a]+types.deckmode.length-1)%types.deckmode.length
@@ -2625,6 +2604,19 @@ class battle{
                             }
                         }
                         this.menu.combatant[a]=remaining[floor(random(0,remaining.length))]
+                    }
+                    if(variants.mtg){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+140+(this.layer.width/2-280)*a,y:this.layer.height*0.5-100},width:37.5,height:37.5})){
+                            this.menu.mtg.manaChoice[a]=(this.menu.mtg.manaChoice[a]+this.menu.mtg.manaBase[a].length-1)%this.menu.mtg.manaBase[a].length
+                            this.menu.mtg.manaOld[a]=copyArray(this.menu.mtg.manaNew[a])
+                            this.menu.mtg.manaNew[a]=copyArray(this.menu.mtg.manaBase[a][this.menu.mtg.manaChoice[a]])
+                            this.menu.anim.mtg[a]=0
+                        }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+140+(this.layer.width/2-280)*a,y:this.layer.height*0.5+90},width:37.5,height:37.5})){
+                            this.menu.mtg.manaChoice[a]=(this.menu.mtg.manaChoice[a]+this.menu.mtg.manaBase[a].length+1)%this.menu.mtg.manaBase[a].length
+                            this.menu.mtg.manaOld[a]=copyArray(this.menu.mtg.manaNew[a])
+                            this.menu.mtg.manaNew[a]=copyArray(this.menu.mtg.manaBase[a][this.menu.mtg.manaChoice[a]])
+                            this.menu.anim.mtg[a]=0
+                        }
                     }
                 }
                 for(let a=0,la=types.ascend.length;a<la;a++){
@@ -2732,6 +2724,7 @@ class battle{
                         }
                     }else if(this.turn.main<this.players){
                         this.cardManagers[this.turn.main].onClick(stage.scene)
+                        this.combatantManager.onClick(stage.scene,[this.turn.main])
                         this.relicManager.onClick(stage.scene)
                         this.itemManager.onClick(stage.scene)
                         this.modManager.onClick()
@@ -2901,12 +2894,20 @@ class battle{
                     if(this.menu.combatant.length==2){
                         this.menu.combatant=[1]
                     }
+                    if(variants.mtg){
+                        this.setupMtgManaChoice(0)
+                    }
                 }
                 if(key=='2'){
                     transition.trigger=true
                     transition.scene='menu2'
                     if(this.menu.combatant.length==1){
                         this.menu.combatant=[this.menu.combatant[0],1]
+                    }
+                    if(variants.mtg){
+                        for(let a=0,la=this.menu.combatant.length;a<la;a++){
+                            this.setupMtgManaChoice(a)
+                        }
                     }
                 }
                 if(key=='3'){
@@ -2921,9 +2922,15 @@ class battle{
             case 'menu':
                 if(code==LEFT_ARROW){
                     this.menu.combatant[0]=(this.menu.combatant[0]+game.playerNumber-2)%game.playerNumber+1
+                    if(variants.mtg){
+                        this.setupMtgManaChoice(0)
+                    }
                 }
                 if(code==RIGHT_ARROW){
                     this.menu.combatant[0]=this.menu.combatant[0]%game.playerNumber+1
+                    if(variants.mtg){
+                        this.setupMtgManaChoice(0)
+                    }
                 }
                 if(key=='a'||key=='A'){
                     this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length-1)%types.deckmode.length
@@ -2963,9 +2970,15 @@ class battle{
                 for(let a=0,la=2;a<la;a++){
                     if(code==LEFT_ARROW&&a==0||(key=='a'||key=='A')&&a==1){
                         this.menu.combatant[a]=(this.menu.combatant[a]+game.playerNumber-2)%game.playerNumber+1
+                        if(variants.mtg){
+                            this.setupMtgManaChoice(a)
+                        }
                     }
                     if(code==RIGHT_ARROW&&a==0||(key=='d'||key=='D')&&a==1){
                         this.menu.combatant[a]=this.menu.combatant[a]%game.playerNumber+1
+                        if(variants.mtg){
+                            this.setupMtgManaChoice(a)
+                        }
                     }
                     if(key==','&&a==0||(key=='z'||key=='Z')&&a==1){
                         this.menu.deck[a]=(this.menu.deck[a]+types.deckmode.length-1)%types.deckmode.length

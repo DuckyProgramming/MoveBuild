@@ -2203,9 +2203,9 @@ turn.prototype.update=function(){
                             this.userCombatant.moveTile(this.direction,-this.distance/15/this.targetDistance)
                             this.userCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/15/this.targetDistance)
                         }
-                        if(this.timer>15*this.targetDistance-5&&this.timer<=30*this.targetDistance-30){
-                            this.targetCombatant.moveTile(this.direction,-this.distance/10/this.targetDistance)
-                            this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
+                        if(this.timer>15*this.targetDistance-5&&this.timer<=30*this.targetDistance-20){
+                            this.targetCombatant.moveTile(this.direction,-this.distance/15/this.targetDistance)
+                            this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/15/this.targetDistance)
                         }
                         if(this.timer==30*this.targetDistance-29){
                             this.targetCombatant.moveTilePosition(round(this.userCombatant.tilePosition.x*(1-1/this.targetDistance)+this.targetCombatant.tilePosition.x/this.targetDistance),round(this.userCombatant.tilePosition.y*(1-1/this.targetDistance)+this.targetCombatant.tilePosition.y/this.targetDistance))

@@ -912,11 +912,11 @@ class eventManager{
                     break
                     case 72:
                         if(this.page==0&&a==0){
-                            this.battle.addCurrency(150,this.player)
+                            this.battle.addCurrency(450,this.player)
                         }else if(this.page==2&&a==0){
-                            this.battle.loseCurrency(150,this.player)
+                            this.battle.loseCurrency(450,this.player)
                         }else if(this.page==2&&a==1){
-                            this.battle.loseCurrency(75,this.player)
+                            this.battle.loseCurrency(300,this.player)
                         }else if(this.page==2&&a==2){
                             this.battle.cardManagers[this.player].deck.add(findName('Unfortunate',types.card),0,game.playerNumber+2)
                         }else if(this.page==3&&a==0){

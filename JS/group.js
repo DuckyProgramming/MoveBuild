@@ -61,6 +61,7 @@ class group{
     }
     initialCards(type,player){
         let level=variants.cursed?1:0
+        let activeList=variants.mtg?types.deck.mtg:types.deck.start
         switch(type){
             case -1:
                 for(let a=0,la=6;a<la;a++){
@@ -79,8 +80,8 @@ class group{
                         }
                     }
                 }else{
-                    for(let a=0,la=types.deck.start[game.ascend>=20?1:0].length;a<la;a++){
-                        this.add(findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card),types.deck.start[game.ascend>=20?1:0][a][1]+level,types.deck.start[game.ascend>=20?1:0][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card)].list:types.deck.start[game.ascend>=20?1:0][a][2]==-1?(variants.mtg?0:player):types.deck.start[game.ascend>=20?1:0][a][2])
+                    for(let a=0,la=activeList[game.ascend>=20?1:0].length;a<la;a++){
+                        this.add(findName(activeList[game.ascend>=20?1:0][a][0],types.card),activeList[game.ascend>=20?1:0][a][1]+level,activeList[game.ascend>=20?1:0][a][2]==-2?types.card[findName(activeList[game.ascend>=20?1:0][a][0],types.card)].list:activeList[game.ascend>=20?1:0][a][2]==-1?(variants.mtg?0:player):activeList[game.ascend>=20?1:0][a][2])
                     }
                 }
             break
@@ -104,13 +105,13 @@ class group{
                     {type:1,value:[0,1,0]},
                     {type:1,value:[0,1,0]},
                     ]])
-                for(let a=0,la=types.deck.start[game.ascend>=20?5:4].length;a<la;a++){
-                    this.addInitial(findName(types.deck.start[game.ascend>=20?5:4][a][0],types.card),types.deck.start[game.ascend>=20?5:4][a][1]+level,types.deck.start[game.ascend>=20?5:4][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?5:4][a][0],types.card)].list:types.deck.start[game.ascend>=20?5:4][a][2]==-1?player:types.deck.start[game.ascend>=20?5:4][a][2])
+                for(let a=0,la=activeList[game.ascend>=20?5:4].length;a<la;a++){
+                    this.addInitial(findName(activeList[game.ascend>=20?5:4][a][0],types.card),activeList[game.ascend>=20?5:4][a][1]+level,activeList[game.ascend>=20?5:4][a][2]==-2?types.card[findName(activeList[game.ascend>=20?5:4][a][0],types.card)].list:activeList[game.ascend>=20?5:4][a][2]==-1?player:activeList[game.ascend>=20?5:4][a][2])
                 }
             break
             case 2:
-                for(let a=0,la=types.deck.start[game.ascend>=20?3:2].length;a<la;a++){
-                    this.addInitial(findName(types.deck.start[game.ascend>=20?3:2][a][0],types.card),types.deck.start[game.ascend>=20?3:2][a][1]+level,types.deck.start[game.ascend>=20?3:2][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?3:2][a][0],types.card)].list:types.deck.start[game.ascend>=20?3:2][a][2]==-1?player:types.deck.start[game.ascend>=20?3:2][a][2])
+                for(let a=0,la=activeList[game.ascend>=20?3:2].length;a<la;a++){
+                    this.addInitial(findName(activeList[game.ascend>=20?3:2][a][0],types.card),activeList[game.ascend>=20?3:2][a][1]+level,activeList[game.ascend>=20?3:2][a][2]==-2?types.card[findName(activeList[game.ascend>=20?3:2][a][0],types.card)].list:activeList[game.ascend>=20?3:2][a][2]==-1?player:activeList[game.ascend>=20?3:2][a][2])
                 }
             break
             case 3:
@@ -1617,7 +1618,7 @@ class group{
                     }
                 break
                 case 20:
-                    this.cards[a].callMoveTileEffect(args[0],args[1])
+                    this.cards[a].callMoveTileEffect(args[0],args[1],args[2])
                 break
                 case 21:
                     if(this.cards[a].cost>0){

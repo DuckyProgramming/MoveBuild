@@ -167,7 +167,7 @@ class combatant{
             'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
             'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Energy',
             '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
-            '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up',
+            '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -219,7 +219,7 @@ class combatant{
                 0,1,2,2,0,2,2,0,2,0,//47
                 0,0,0,0,0,0,0,2,1,0,//48
                 0,0,0,2,0,2,0,2,0,0,//49
-                0,2,0,0,0,
+                0,2,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -271,7 +271,8 @@ class combatant{
                 0,1,1,0,2,3,3,2,0,2,//47
                 0,0,0,2,0,2,2,0,2,2,//48
                 2,2,2,0,2,0,3,3,2,2,//49
-                2,1,2,2,2,            ]}
+                2,1,2,2,2,2,
+            ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
         for(let a=0;a<this.status.name.length;a++){
@@ -6359,7 +6360,7 @@ class combatant{
             if(this.battle.relicManager.hasRelic(250,this.id)&&distance>=2){
                 this.battle.cardManagers[this.id].draw(this.battle.relicManager.active[250][this.id+1])
             }
-            this.battle.cardManagers[this.id].hand.allEffectArgs(20,[this.tilePosition,{x:x,y:y}])
+            this.battle.cardManagers[this.id].hand.allEffectArgs(20,[this.tilePosition,{x:x,y:y},distance])
             if(this.status.main[379]<=0){
                 this.combo=max(this.combo-distance,0)
             }
@@ -6790,6 +6791,9 @@ class combatant{
         }else if(total>average*1.2){
             this.highRoll()
 
+        }
+        if(this.status.main[495]>0){
+            this.addBlock(this.status.main[495])
         }
         return total
     }
@@ -10385,14 +10389,13 @@ class combatant{
         this.infoAnim.barrier=smoothAnim(this.infoAnim.barrier,this.barrier>0,0,1,5)
         this.infoAnim.barrierSize=smoothAnim(this.infoAnim.barrier,this.barrier>100||this.barrier!=round(this.barrier)&&this.barrier>10,1,1.5,10)
         this.infoAnim.blockBarrier=smoothAnim(this.infoAnim.blockBarrier,this.block>0&&this.barrier>0,0,1,5)
-
         this.infoAnim.size=smoothAnim(this.infoAnim.size,this.infoAnim.upSize,1,1.5,5)
         this.infoAnim.description=smoothAnim(this.infoAnim.description,this.infoAnim.upSize,0,1,5)
         this.infoAnim.balance=smoothAnim(this.infoAnim.balance,this.balance>0,0,1,5)
         this.infoAnim.orb=smoothAnim(this.infoAnim.orb,this.anyOrb,0,1,5)
         for(let a=0,la=this.orbs.length;a<la;a++){
             for(let b=0,lb=game.orbNumber;b<lb;b++){
-                this.infoAnim.orbSpec[a][b]=smoothAnim(this.infoAnim.orbSpec[a][b],this.orbs[a]==b,0,1,5)
+                this.infoAnim.orbSpec[a][b]=smoothAnim(this.infoAnim.orbSpec[a][b],this.orbs[a]==b,0,1,10)
             }
         }
         if(abs(this.anim.direction-this.goal.anim.direction)<=18||abs(this.anim.direction-this.goal.anim.direction-360)<=18||abs(this.anim.direction-this.goal.anim.direction+360)<=18||abs(this.anim.direction-this.goal.anim.direction-720)<=18||abs(this.anim.direction-this.goal.anim.direction+720)<=18){
@@ -10547,6 +10550,39 @@ class combatant{
                         this.battle.particleManager.particlesBack.push(new particle(
                             this.layer,this.position.x+lsin(spin)*45,this.position.y-45+lcos(this.time*2+360*marker)*10+lcos(-this.time+360*marker)*30+a*4-20,112,
                             [[100-50*this.sins[a]%2,0,50*floor(this.sins[a]/2)]]))
+                    }
+                }
+            break
+        }
+    }
+    onClick(scene){
+        switch(scene){
+            case 'battle':
+                if(this.life>0&&this.infoAnim.orb>0){
+                    let complete=false
+                    for(let a=1,la=this.orbs.length;a<la;a++){
+                        if(lcos(this.time/game.animRate+360*a/la)>0){
+                            if(dist(inputs.rel.x,inputs.rel.y,this.position.x+lsin(this.time/game.animRate+360*a/la)*30,this.position.y-45+lcos(this.time/game.animRate+360*a/la)*10)<10&&this.orbs[0]>=0&&this.orbs[a]>=0){
+                                let hold=[this.orbs[a],this.orbDetail[a]]
+                                this.orbs[a]=this.orbs[0]
+                                this.orbs[0]=hold[0]
+                                this.orbDetail[a]=this.orbDetail[0]
+                                this.orbDetail[0]=hold[1]
+                            }
+                        }
+                    }
+                    if(!complete){
+                        for(let a=1,la=this.orbs.length;a<la;a++){
+                            if(lcos(this.time/game.animRate+360*a/la)<=0){
+                                if(dist(inputs.rel.x,inputs.rel.y,this.position.x+lsin(this.time/game.animRate+360*a/la)*30,this.position.y-45+lcos(this.time/game.animRate+360*a/la)*10)<10&&this.orbs[0]>=0&&this.orbs[a]>=0){
+                                    let hold=[this.orbs[a],this.orbDetail[a]]
+                                    this.orbs[a]=this.orbs[0]
+                                    this.orbs[0]=hold[0]
+                                    this.orbDetail[a]=this.orbDetail[0]
+                                    this.orbDetail[0]=hold[1]
+                                }
+                            }
+                        }
                     }
                 }
             break

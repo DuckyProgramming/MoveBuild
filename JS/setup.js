@@ -10,15 +10,21 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    if(false){
+    if(true){
+
             //stage.scene='tier'
             //current.overlayManager=new overlayManager(current.layer,current,1)
 
             //transition.trigger=true
             //transition.scene='menu'
 
-        current.menu.combatant=[17]
+        current.menu.combatant=[1]
         current.menu.deck=[0]
+        if(variants.mtg){
+            for(let a=0,la=current.menu.combatant.length;a<la;a++){
+                current.setupMtgManaChoice(a)
+            }
+        }
         current.startGame()
 
         //game.animRate=4
@@ -46,8 +52,8 @@ function setup(){
             player(0).anim.direction=-30*/
 
             /*variants.mod=true
-            for(let a=0,la=5;a<la;a++){
-                current.modManager.addMod(181+a)
+            for(let a=0,la=3;a<la;a++){
+                current.modManager.addMod(186+a)
             }*/
 
             /*for(let a=0,la=5;a<la;a++){

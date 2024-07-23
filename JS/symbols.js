@@ -4736,9 +4736,267 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-4,1,-5,1,-4.5,-1)
             layer.triangle(4,1,5,1,4.5,-1)
         break
+        case 495:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(225,fade)
+            layer.rect(0,0,7.5,7.5,1.5)
+            layer.fill(40,fade)
+            layer.ellipse(-2.25,0,1.5)
+            layer.ellipse(-2.25,-2.25,1.5)
+            layer.ellipse(-2.25,2.25,1.5)
+            layer.ellipse(2.25,0,1.5)
+            layer.ellipse(2.25,-2.25,1.5)
+            layer.ellipse(2.25,2.25,1.5)
+        break
 
     }
     //mark s
+    layer.pop()
+}
+function displayMtgManaIcon(layer,x,y,type,direction,size,fade){
+    layer.push()
+    layer.translate(x,y)
+    layer.rotate(direction)
+    layer.scale(size)
+    layer.strokeJoin(ROUND)
+    layer.noFill()
+    layer.strokeWeight(2)
+    switch(type){
+        case -1:
+            layer.stroke(160,150,130,this.fade)
+            layer.quad(-this.width/2+10-5,-this.height/2+13,-this.width/2+10,-this.height/2+13-5,-this.width/2+10+5,-this.height/2+13,-this.width/2+10,-this.height/2+13+5)
+        break
+        case 0:
+            layer.stroke(120,fade)
+            layer.rect(-1.5,1.5,7)
+            layer.line(-5,-2,-2,-5)
+            layer.line(2,-2,5,-5)
+            layer.line(2,5,5,2)
+            layer.line(5,-5,5,2)
+            layer.line(-2,-5,5,-5)
+        break
+        case 1:
+            layer.stroke(160,160,80,fade)
+            layer.line(0,-6,0,6)
+            layer.line(-3*sqrt(3),-3,+3*sqrt(3),3)
+            layer.line(-3*sqrt(3),3,+3*sqrt(3),-3)
+        break
+        case 2:
+            layer.stroke(40,100,160,fade)
+            layer.arc(0,0,8,8,-45,225)
+            layer.line(-2*sqrt(2),-2*sqrt(2),0,0-4*sqrt(2))
+            layer.line(+2*sqrt(2),-2*sqrt(2),0,0-4*sqrt(2))
+        break
+        case 3:
+            layer.stroke(80,20,80,fade)
+            layer.arc(0,0,10,10,-270,45)
+            layer.line(0,0,0,5)
+        break
+        case 4:
+            layer.stroke(40,160,40,fade)
+            regPoly(layer,0,0,6,5,5,30)
+        break
+        case 5:
+            layer.stroke(160,40,40,fade)
+            layer.quad(-3,0,0,-6,3,0,0,6)
+        break
+        case 6:
+            layer.stroke(250,fade)
+            regStar(layer,0,0,5,2.5,2.5,6,6,0)
+        break
+    }
+    layer.strokeJoin(MITER)
+    layer.strokeCap(ROUND)
+    layer.pop()
+}
+function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=0,args=[]){
+    layer.push()
+    layer.translate(x,y)
+    layer.rotate(direction)
+    layer.scale(size)
+    layer.strokeCap(SQUARE)
+    let fill=[0,0,0]
+    let stroke=[0,0,0]
+    switch(type){
+        case 0: case -2:
+            fill=[180,180,180]
+            stroke=[140,140,140]
+        break
+        case -1:
+            fill=[220,210,190]
+            stroke=[180,170,150]
+        break
+        case 1:
+            fill=[240,240,120]
+            stroke=[200,200,100]
+        break
+        case 2:
+            fill=[60,150,240]
+            stroke=[50,125,200]
+        break
+        case 3:
+            fill=[120,30,120]
+            stroke=[100,25,100]
+        break
+        case 4:
+            fill=[60,240,60]
+            stroke=[50,200,50]
+        break
+        case 5:
+            fill=[240,60,60]
+            stroke=[200,50,50]
+        break
+        case 6:
+            let gradient=[new p5.ConicGradient(0,0,0),new p5.ConicGradient(0,0,0),new p5.ConicGradient(0,0,0)]
+            layer.colorMode(HSB,360,1,1,1)
+            gradient[0].colors(0.0,
+                layer.color(0,1,0.9,fade),1/6,
+                layer.color(60,1,0.9,fade),1/3,
+                layer.color(120,1,0.9,fade),1/2,
+                layer.color(180,1,0.9,fade),2/3,
+                layer.color(240,1,0.9,fade),5/6,
+                layer.color(300,1,0.9,fade),1.0,
+                layer.color(360,1,0.9,fade))
+            gradient[1].colors(0.0,
+                layer.color(0,1,1,fade),1/6,
+                layer.color(60,1,1,fade),1/3,
+                layer.color(120,1,1,fade),1/2,
+                layer.color(180,1,1,fade),2/3,
+                layer.color(240,1,1,fade),5/6,
+                layer.color(300,1,1,fade),1.0,
+                layer.color(360,1,1,fade))
+            gradient[2].colors(0.0,
+                layer.color(0,1,0.8,fade),1/6,
+                layer.color(60,1,0.8,fade),1/3,
+                layer.color(120,1,0.8,fade),1/2,
+                layer.color(180,1,0.8,fade),2/3,
+                layer.color(240,1,0.8,fade),5/6,
+                layer.color(300,1,0.8,fade),1.0,
+                layer.color(360,1,0.8,fade))
+            layer.noStroke()
+            layer.fillGradient(gradient[0])
+            layer.ellipse(0,0,21.5)
+            layer.fillGradient(gradient[1])
+            layer.ellipse(0,0,18.5)
+            layer.fillGradient(gradient[2])
+            for(let c=0,lc=5;c<lc;c++){
+                layer.quad(lsin(c*72)*5.5,lcos(c*72)*5.5,lsin(c*72-18)*8,lcos(c*72-18)*8,lsin(c*72)*8.5,lcos(c*72)*8.5,lsin(c*72+18)*8,lcos(c*72+18)*8)
+            }
+            layer.colorMode(RGB,255,255,255,1)
+        break
+        case 7:
+            fill=[[240,240,120],[60,150,240]]
+            stroke=[[200,200,100],[50,125,200]]
+        break
+        case 8:
+            fill=[[240,240,120],[120,30,120]]
+            stroke=[[200,200,100],[100,25,100]]
+        break
+        case 9:
+            fill=[[240,240,120],[60,240,60]]
+            stroke=[[200,200,100],[50,200,50]]
+        break
+        case 10:
+            fill=[[240,240,120],[240,60,60]]
+            stroke=[[200,200,100],[200,50,50]]
+        break
+        case 11:
+            fill=[[60,150,240],[120,30,120]]
+            stroke=[[50,125,200],[100,25,100]]
+        break
+        case 12:
+            fill=[[60,150,240],[60,240,60]]
+            stroke=[[50,125,200],[50,200,50]]
+        break
+        case 13:
+            fill=[[60,150,240],[240,60,60]]
+            stroke=[[50,125,200],[200,50,50]]
+        break
+        case 14:
+            fill=[[120,30,120],[60,240,60]]
+            stroke=[[100,25,100],[50,200,50]]
+        break
+        case 15:
+            fill=[[120,30,120],[240,60,60]]
+            stroke=[[100,25,100],[200,50,50]]
+        break
+        case 16:
+            fill=[[60,240,60],[240,60,60]]
+            stroke=[[50,200,50],[200,50,50]]
+        break
+    }
+    layer.strokeWeight(1.5)
+    switch(type){
+        case -2:
+            layer.fill(...fill,this.fade)
+            layer.stroke(...stroke,this.fade)
+            switch(variant){
+                case 0:
+                    layer.ellipse(0,0,20)
+                break
+                case 1:
+                    layer.rect(-4.5,-4.5,9)
+                    layer.arc(0,0,18,18,-90,180)
+                    layer.noStroke()
+                    layer.ellipse(0,0,16)
+                break
+            }
+            layer.fill(0,this.fade)
+            layer.noStroke()
+            layer.textSize(10)
+            layer.text(args[0],0,0)
+        break
+        case -1: case 0: case 1: case 2: case 3: case 4: case 5:
+            layer.fill(...fill,this.fade)
+            layer.stroke(...stroke,this.fade)
+            switch(variant){
+                case 0:
+                    layer.ellipse(0,0,20)
+                break
+                case 1:
+                    layer.rect(-4.5,-4.5,9)
+                    layer.arc(0,0,18,18,-90,180)
+                    layer.noStroke()
+                    layer.ellipse(0,0,16)
+                break
+            }
+            displayMtgManaIcon(layer,x,y,type,direction,size,fade)
+        break
+        case 6:
+            displayMtgManaIcon(layer,x,y,type,direction,size,fade)
+        break
+        case 7: case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15: case 16:
+            layer.fill(...fill[0],this.fade)
+            layer.stroke(...stroke[0],this.fade)
+            switch(variant){
+                case 0:
+                    layer.arc(0,0,20,20,-45,135)
+                break
+                case 1:
+                    layer.rect(-4.5,-4.5,9)
+                    layer.arc(0,0,18,18,-90,180)
+                    layer.noStroke()
+                    layer.ellipse(0,0,16)
+                break
+            }
+            layer.fill(...fill[1],this.fade)
+            layer.stroke(...stroke[1],this.fade)
+            switch(variant){
+                case 0:
+                    layer.arc(0,0,20,20,-225,-45)
+                break
+                case 1:
+                    layer.rect(-4.5,-4.5,9)
+                    layer.arc(0,0,18,18,-90,180)
+                    layer.noStroke()
+                    layer.ellipse(0,0,16)
+                break
+            }
+        break
+    }
+    layer.strokeCap(ROUND)
     layer.pop()
 }
 function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
@@ -4753,7 +5011,7 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
     layer.textSize(10)
     layer.text(id+1,0,20)
     for(let a=0,la=game.orbNumber;a<la;a++){
-        if(typeFades[a]>=0.2){
+        if(typeFades[a]>0){
             switch(a){
                 case 0:
                     layer.stroke(100,255,100,fade*typeFades[a])

@@ -826,7 +826,7 @@ function intentDescription(attack,user,info){
 			case 177: return `Become Invisible for ${info?attack.effect[0]:`?`} Turns`
 			case 178: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6`
 			case 179: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6\nNo Movement`
-			case 180: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdvances to and Pulls\nat Range 2 at Above\nRange 1-6`
+			case 180: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPulls at Range 2\nand Above\nRange 1-6`
 			case 181: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Splash Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 2-2`
 			case 182: return `Add ${info?attack.effect[0]:`?`} Block\nRetain Block\nFor 6 Turns`
 			case 183: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nShuffle in (3-Range)x${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-2`
@@ -1970,32 +1970,33 @@ function cursed(){
 function mtgPlayerColor(player){
 	/*
 	0-colorless
-	1-green
+	1-white
 	2-blue
 	3-black
-	4-white
+	4-green
 	5-red
+	6-rainbow
 	*/
 	switch(player){
-		case 1: return [1]
-		case 2: return [4]
+		case 1: return [4]
+		case 2: return [1]
 		case 3: return [3,5]
 		case 4: return [5]
-		case 5: return [2,1]
-		case 6: return [3,1]
-		case 7: return [5,1]
-		case 8: return [4,5]
-		case 9: return [4,1]
+		case 5: return [2,4]
+		case 6: return [3,4]
+		case 7: return [5,4]
+		case 8: return [1,5]
+		case 9: return [1,4]
 		case 10: return [3]
 		case 11: return [2,3]
-		case 12: return [4,3]
+		case 12: return [1,3]
 		case 13: return [2,5]
 		case 14: return [2]
-		case 15: return [4,2]
-		case 16: return [4,2,1]
-		case 17: return [3,5,1]
-		case 18: return [4,2,5]
-		default: return [0]
+		case 15: return [1,2]
+		case 16: return [1,2,4]
+		case 17: return [3,5,4]
+		case 18: return [1,2,5]
+		default: return [6]
 	}
 }
 function mtgCardColor(color){
@@ -2005,55 +2006,141 @@ function mtgCardColor(color){
 		return [color]
 	}
 }
-function mtgManaBase(energy,player){
+function mtgManaBase(player){
 	let playerColor=mtgPlayerColor(player)
-	if(playerColor.length==2&&floor(random(0,2))==0){
-		playerColor=[playerColor[1],playerColor[0]]
-	}else if(playerColor.length==3){
-		let left=copyArray(playerColor)
-		playerColor=[]
-		for(let a=0,la=left.length;a<la;a++){
-			let index=floor(random(0,left.length))
-			playerColor.push(left[index])
-			left.splice(index,1)
-		}		
-	}
-	if(playerColor.length==1){
-		let remaining=[1,2,3,4,5]
-		for(let a=0,la=playerColor.length;a<la;a++){
-			remaining.splice(remaining.indexOf(playerColor[a]),1)
-		}
-		for(let a=0,la=remaining.length;a<la;a++){
-			playerColor.push(remaining[floor(random(0,remaining.length))])
+	let missing=[]
+	for(let a=0,la=5;a<la;a++){
+		if(!playerColor.includes(a+1)){
+			missing.push(a+1)
 		}
 	}
 	if(playerColor.length==3){
-		switch(energy){
-			case 0: return []
-			case 1: return [playerColor[0]]
-			case 2: return [playerColor[0],playerColor[1]]
-			case 3: return [playerColor[0],playerColor[1],playerColor[2]]
-			case 4: return [playerColor[0],playerColor[0],playerColor[1],playerColor[2]]
-			case 5: return [playerColor[0],playerColor[0],playerColor[1],playerColor[1],playerColor[2]]
-		}
+		return [
+			[playerColor[0],playerColor[0],playerColor[1],playerColor[1],playerColor[2]],
+			[playerColor[0],playerColor[0],playerColor[1],playerColor[2],playerColor[2]],
+			[playerColor[0],playerColor[1],playerColor[1],playerColor[2],playerColor[2]],
+			[playerColor[0],playerColor[0],playerColor[0],playerColor[1],playerColor[1]],
+			[playerColor[0],playerColor[0],playerColor[1],playerColor[1],playerColor[1]],
+			[playerColor[0],playerColor[0],playerColor[0],playerColor[2],playerColor[2]],
+			[playerColor[0],playerColor[0],playerColor[2],playerColor[2],playerColor[2]],
+			[playerColor[1],playerColor[1],playerColor[1],playerColor[2],playerColor[2]],
+			[playerColor[1],playerColor[1],playerColor[2],playerColor[2],playerColor[2]]
+		]
 	}else if(playerColor.length==2){
-		switch(energy){
-			case 0: return []
-			case 1: return [playerColor[0]]
-			case 2: return [playerColor[0],playerColor[1]]
-			case 3: return [playerColor[0],playerColor[0],playerColor[1]]
-			case 4: return [playerColor[0],playerColor[0],playerColor[1],playerColor[1]]
-			case 5: return [playerColor[0],playerColor[0],playerColor[0],playerColor[1],playerColor[1]]
-		}
+		return [
+			[playerColor[0],playerColor[0],playerColor[0],playerColor[1],playerColor[1]],
+			[playerColor[0],playerColor[0],playerColor[1],playerColor[1],playerColor[1]],
+			[playerColor[0],playerColor[0],playerColor[1],playerColor[1],missing[0]],
+			[playerColor[0],playerColor[0],playerColor[1],playerColor[1],missing[1]],
+			[playerColor[0],playerColor[0],playerColor[1],playerColor[1],missing[2]]
+		]
 	}else{
-		switch(energy){
-			case 0: return []
-			case 1: return [playerColor[0]]
-			case 2: return [playerColor[0],-1]
-			case 3: return [playerColor[0],playerColor[0],-1]
-			case 4: return [playerColor[0],playerColor[0],playerColor[1],-1]
-			case 5: return [playerColor[0],playerColor[0],playerColor[1],playerColor[1],-1]
-		}
+		return [
+			[playerColor[0],playerColor[0],playerColor[0],missing[0],missing[0]],
+			[playerColor[0],playerColor[0],playerColor[0],missing[1],missing[1]],
+			[playerColor[0],playerColor[0],playerColor[0],missing[2],missing[2]],
+			[playerColor[0],playerColor[0],playerColor[0],missing[3],missing[3]]
+		]
+	}
+}
+function mtgCombineColor(base1,base2){
+	/*
+	0-colorless
+	1-white
+	2-blue
+	3-black
+	4-green
+	5-red
+	6-rainbow
+
+	7-white+blue
+	8-white+black
+	9-white+green
+	10-white+red
+	11-blue+black
+	12-blue+green
+	13-blue+red
+	14-black+green
+	15-black+red
+	16-green+red
+	*/
+	switch(base1){
+		case 1:
+			switch(base2){
+				case 1:
+					return 1
+				case 2:
+					return 7
+				case 3:
+					return 8
+				case 4:
+					return 9
+				case 5:
+					return 10
+				default:
+					return 6
+			}
+		case 2:
+			switch(base2){
+				case 1:
+					return 7
+				case 2:
+					return 2
+				case 3:
+					return 11
+				case 4:
+					return 12
+				case 5:
+					return 13
+				default:
+					return 6
+			}
+		case 3:
+			switch(base2){
+				case 1:
+					return 8
+				case 2:
+					return 11
+				case 3:
+					return 3
+				case 4:
+					return 14
+				case 5:
+					return 15
+				default:
+					return 6
+			}
+		case 4:
+			switch(base2){
+				case 1:
+					return 9
+				case 2:
+					return 12
+				case 3:
+					return 14
+				case 4:
+					return 4
+				case 5:
+					return 16
+				default:
+					return 6
+			}
+		case 5:
+			switch(base2){
+				case 1:
+					return 10
+				case 2:
+					return 13
+				case 3:
+					return 15
+				case 4:
+					return 16
+				case 5:
+					return 5
+				default:
+					return 6
+			}
+		default: return 6
 	}
 }
 function total7(list){

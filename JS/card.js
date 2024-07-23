@@ -36,10 +36,18 @@ class card{
         this.id=id
         this.cost=cost
         if(cost==undefined&&this.type<types.card.length&&this.type>=0){
-            if(types.card[this.type].levels[0].spec.includes(53)){
-                this.cost=types.card[this.type].levels[0].cost
+            if(variants.mtg&&types.card[this.type].mtg!=undefined){
+                if(types.card[this.type].levels[0].spec.includes(53)){
+                    this.cost=copyArray(types.card[this.type].mtg.levels[0].cost)
+                }else{
+                    this.cost=copyArray(types.card[this.type].mtg.levels[this.level].cost)
+                }
             }else{
-                this.cost=types.card[this.type].levels[this.level].cost
+                if(types.card[this.type].levels[0].spec.includes(53)){
+                    this.cost=types.card[this.type].levels[0].cost
+                }else{
+                    this.cost=types.card[this.type].levels[this.level].cost
+                }
             }
         }
         if(this.cost==-2){
@@ -77,14 +85,6 @@ class card{
 
         this.anim={select:0,afford:0}
         
-        if(variants.mtg){
-            let baseColor=mtgPlayerColor(this.color)
-            this.mtgManaColor=baseColor[this.type%baseColor.length]
-            this.mtgCardColor=mtgCardColor(this.color)
-        }
-        
-        this.setColorDetail()
-
         try{
             this.name=name||types.card[this.type].name
             this.checkReplacement()
@@ -101,46 +101,93 @@ class card{
                     }
                 }
             }
-            if(types.card[this.type].levels[0].spec.includes(53)){
-                this.spec=this.spec==undefined?copyArray(types.card[this.type].levels[0].spec.concat(this.additionalSpec)):copyArray(this.spec)
-                this.effect=effect
-                this.effect=this.effect==undefined?[types.card[this.type].levels[0].effect[0]+types.card[this.type].levels[0].effect[1]*this.level,types.card[this.type].levels[0].effect[1]]:copyArray(this.effect)
-                this.attack=attack||types.card[this.type].levels[0].attack
-                this.target=target
-                this.target=this.target==undefined?copyArray(types.card[this.type].levels[0].target):copyArray(this.target)
-                this.class=cardClass||types.card[this.type].levels[0].class
-                this.levels=types.card[this.type].levels.length
-                this.limit=limit
-                this.limit=this.limit==undefined?this.attack==1947?-1:this.attack==1352?findName('Duck',types.combatant):(this.spec.includes(15)||this.spec.includes(30)||this.spec.includes(38)||this.spec.includes(42)||this.attack==1947)?types.card[this.type].levels[this.level].limit:0:this.limit
-                this.edition=edition
-                this.edition=this.edition==undefined?0:this.edition
-                this.drawn=drawn
-                this.drawn=this.drawn==undefined?0:this.drawn
-                this.nonCalc=nonCalc
-                this.nonCalc=this.nonCalc==undefined?false:this.nonCalc
-                if(this.list==-1){
-                    this.list=this.color
+            this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'||this.name=='Strike-'||this.name=='Defend-'||this.name=='Step-L'||this.name=='Step-R'||this.name=='Strike_'||this.name=='Defend_'||this.name=='Step_'||this.name=='Deckbuild\nDefend'||this.name=='Deckbuild\nDefend-'||this.name=='$colormtg\nBash'||this.name=='$colormtg\nShield'||this.name=='$colormtg\nBash-'||this.name=='$colormtg\nShield-'
+            if(variants.mtg&&types.card[this.type].mtg!=undefined){
+                if(types.card[this.type].mtg.levels[0].spec.includes(53)){
+                    this.spec=this.spec==undefined?copyArray(types.card[this.type].mtg.levels[0].spec.concat(this.additionalSpec)):copyArray(this.spec)
+                    this.effect=effect
+                    this.effect=this.effect==undefined?[types.card[this.type].mtg.levels[0].effect[0]+types.card[this.type].mtg.levels[0].effect[1]*this.level,types.card[this.type].mtg.levels[0].effect[1]]:copyArray(this.effect)
+                    this.attack=attack||types.card[this.type].mtg.levels[0].attack
+                    this.target=target
+                    this.target=this.target==undefined?copyArray(types.card[this.type].mtg.levels[0].target):copyArray(this.target)
+                    this.class=cardClass||types.card[this.type].mtg.levels[0].class
+                }else{
+                    this.spec=this.spec==undefined?copyArray(types.card[this.type].mtg.levels[this.level].spec.concat(this.additionalSpec)):copyArray(this.spec)
+                    this.effect=effect
+                    this.effect=this.effect==undefined?(this.spec.includes(12)?copyArrayStack(types.card[this.type].mtg.levels[this.level].effect):copyArray(types.card[this.type].mtg.levels[this.level].effect)):(this.spec.includes(12)?copyArrayStack(this.effect):copyArray(this.effect))
+                    this.attack=attack||types.card[this.type].mtg.levels[this.level].attack
+                    this.target=target
+                    this.target=this.target==undefined?copyArray(types.card[this.type].mtg.levels[this.level].target):copyArray(this.target)
+                    this.class=cardClass||types.card[this.type].mtg.levels[this.level].class
+                }
+                this.mtgCardColor=copyArray(types.card[this.type].mtg.color)
+                if(this.mtgCardColor[0]==-2){
+                    let totals=[0,0,0,0,0,0,0]
+                    for(let a=0,la=this.battle.energy.base[this.player].length;a<la;a++){
+                        totals[this.battle.energy.base[this.player][a]]++
+                    }
+                    let above=[]
+                    for(let a=0,la=5;a<la;a++){
+                        for(let b=0,lb=totals.length;b<lb;b++){
+                            if(totals[b]==5-a){
+                                above.push(b)
+                            }
+                        }
+                    }
+                    let resolve=0
+                    switch(this.class){
+                        case 1:
+                            this.mtgCardColor=[above[0]]
+                            resolve=above[0]
+                        break
+                        case 2:
+                            this.mtgCardColor=[above[min(above.length-1,1)]]
+                            resolve=above[min(above.length-1,1)]
+                        break
+                        default:
+                            this.mtgCardColor=above.length==3?[above[2]]:above.length==2?[above[0],above[1]]:[above[0]]
+                            resolve=above.length==3?above[2]:above.length==2?mtgCombineColor(above[0],above[1]):above[0]
+                        break
+                    }
+                    for(let a=0,la=this.cost.length;a<la;a++){
+                        if(this.cost[a]==-2){
+                            this.cost[a]=resolve
+                        }
+                    }
                 }
             }else{
-                this.spec=this.spec==undefined?copyArray(types.card[this.type].levels[this.level].spec.concat(this.additionalSpec)):copyArray(this.spec)
-                this.effect=effect
-                this.effect=this.effect==undefined?(this.spec.includes(12)?copyArrayStack(types.card[this.type].levels[this.level].effect):copyArray(types.card[this.type].levels[this.level].effect)):(this.spec.includes(12)?copyArrayStack(this.effect):copyArray(this.effect))
-                this.attack=attack||types.card[this.type].levels[this.level].attack
-                this.target=target
-                this.target=this.target==undefined?copyArray(types.card[this.type].levels[this.level].target):copyArray(this.target)
-                this.class=cardClass||types.card[this.type].levels[this.level].class
-                this.levels=types.card[this.type].levels.length
-                this.limit=limit
-                this.limit=this.limit==undefined?this.attack==1947?-1:this.attack==1352?findName('Duck',types.combatant):(this.spec.includes(15)||this.spec.includes(30)||this.spec.includes(38)||this.spec.includes(42)||this.attack==1947)?types.card[this.type].levels[this.level].limit:0:this.limit
-                this.edition=edition
-                this.edition=this.edition==undefined?0:this.edition
-                this.drawn=drawn
-                this.drawn=this.drawn==undefined?0:this.drawn
-                this.nonCalc=nonCalc
-                this.nonCalc=this.nonCalc==undefined?false:this.nonCalc
-                if(this.list==-1){
-                    this.list=this.color
+                if(variants.mtg){
+                    this.mtgCardColor=[0]
                 }
+                if(types.card[this.type].levels[0].spec.includes(53)){
+                    this.spec=this.spec==undefined?copyArray(types.card[this.type].levels[0].spec.concat(this.additionalSpec)):copyArray(this.spec)
+                    this.effect=effect
+                    this.effect=this.effect==undefined?[types.card[this.type].levels[0].effect[0]+types.card[this.type].levels[0].effect[1]*this.level,types.card[this.type].levels[0].effect[1]]:copyArray(this.effect)
+                    this.attack=attack||types.card[this.type].levels[0].attack
+                    this.target=target
+                    this.target=this.target==undefined?copyArray(types.card[this.type].levels[0].target):copyArray(this.target)
+                    this.class=cardClass||types.card[this.type].levels[0].class
+                }else{
+                    this.spec=this.spec==undefined?copyArray(types.card[this.type].levels[this.level].spec.concat(this.additionalSpec)):copyArray(this.spec)
+                    this.effect=effect
+                    this.effect=this.effect==undefined?(this.spec.includes(12)?copyArrayStack(types.card[this.type].levels[this.level].effect):copyArray(types.card[this.type].levels[this.level].effect)):(this.spec.includes(12)?copyArrayStack(this.effect):copyArray(this.effect))
+                    this.attack=attack||types.card[this.type].levels[this.level].attack
+                    this.target=target
+                    this.target=this.target==undefined?copyArray(types.card[this.type].levels[this.level].target):copyArray(this.target)
+                    this.class=cardClass||types.card[this.type].levels[this.level].class
+                }
+            }
+            this.levels=types.card[this.type].levels.length
+            this.limit=limit
+            this.limit=this.limit==undefined?this.attack==1947?-1:this.attack==1352?findName('Duck',types.combatant):(this.spec.includes(15)||this.spec.includes(30)||this.spec.includes(38)||this.spec.includes(42)||this.attack==1947)?types.card[this.type].levels[this.level].limit:0:this.limit
+            this.edition=edition
+            this.edition=this.edition==undefined?0:this.edition
+            this.drawn=drawn
+            this.drawn=this.drawn==undefined?0:this.drawn
+            this.nonCalc=nonCalc
+            this.nonCalc=this.nonCalc==undefined?false:this.nonCalc
+            if(this.list==-1){
+                this.list=this.color
             }
             this.base={cost:baseCost}
             if(this.base.cost==undefined){
@@ -167,7 +214,6 @@ class card{
                 this.reality=[]
             }
 
-            this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'||this.name=='Strike-'||this.name=='Defend-'||this.name=='Step-L'||this.name=='Step-R'||this.name=='Strike_'||this.name=='Defend_'||this.name=='Step_'||this.name=='Deckbuild\nDefend'||this.name=='Deckbuild\nDefend-'
             this.colorful=this.rarity==-5&&this.attack!=1754||colorful
 
             this.remove=false
@@ -178,17 +224,6 @@ class card{
             }
             if(variants.polar){
                 this.pole=this.type%2==0?1:0
-            }
-            if(variants.mtg){
-                if(this.basic){
-                    this.color=0
-                    this.mtgManaColor=6
-                    if(this.mtgCardColor.length==2){
-                        this.colorDetail=types.color.mtg[0]
-                    }
-                }else if(this.mtgManaColor==0&&!(this.rarity>=0&&this.rarity<=2&&this.color==0)&&this.attack!=3430){
-                    this.mtgManaColor=6
-                }
             }
             this.falsed=falsed
             this.falsed=this.falsed==undefined?{trigger:false,name:this.name,attack:this.attack,effect:this.effect,spec:this.spec,rarity:this.rarity,class:this.class,reality:this.reality,colorDetail:this.colorDetail,target:this.target,cost:this.cost}:copyFalsed(this.falsed)
@@ -215,6 +250,7 @@ class card{
             this.remove=true
             this.spec=[]
         }
+        this.setColorDetail()
     }
     setColorDetail(){
         if(variants.mtg){
@@ -299,7 +335,7 @@ class card{
             case -4: string+=`At the End of Your Turn,\nTake ${effect[0]} Damage`; break
             case -5: string+=`Take ${effect[0]} Damage\nWhen You Play a Card`; break
             case -6: string+=`When Drawn,\nGain ${effect[0]} Weak`; break
-            case -7: string+=`At the End of Your Turn,\nTake ${effect[0]} Damage\nPer You Card Left\nat End of Turn`; break
+            case -7: string+=`At the End of Your Turn,\nTake ${effect[0]} Damage\nPer You Card Remaining\nat End of Turn`; break
             case -8: string+=`Take ${effect[0]} Damage\nWhen an Enemy Dies`; break
             case -9: string+=`You Cannot\nPlay More Than ${effect[0]}\nCards This Turn`; break
             case -10: string+=`When Removed,\nLose ${effect[0]} Max Health`; break
@@ -2135,7 +2171,7 @@ class card{
             case 1754: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Random ${[`Setsuna`,`Lira`][this.battle.turn.total%2]}\nCard${pl(effect[1])} to Hand`; break
             case 1755: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nDiscard ${effect[2]} Random Card${pl(effect[2])}\nSpend ${effect[3]} Charge:\nDeal Triple Damage`; break
             case 1756: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nSpend ${effect[1]} Charge:\nX Increased by ${effect[2]}`; break
-            case 1757: string+=`Add ${effect[0]} Miracle${pl(effect[0])}\nAdd ${effect[1]} Wrong Miracle${pl(effect[1])}\nto Hand\nLose All Energy`; break
+            case 1757: string+=`Add ${effect[0]} Miracle${pl(effect[0])} to Hand\nAdd ${effect[1]} Wrong Miracle${pl(effect[1])}\nto Hand\nLose All Energy`; break
             case 1758: string+=`50%: Gain ${effect[0]} Energy\n50% Lose ${effect[1]} Energy`; break
             case 1759: string+=`Move ${effect[0]} Tile${pl(effect[0])}\n10%: Gain ${effect[1]} Dodge`; break
             case 1760: string+=`Move ${effect[0]} Tile${pl(effect[0])}\n20%: Gain ${effect[1]} Dodge`; break
@@ -2280,7 +2316,7 @@ class card{
             case 1899: string+=`Add ${effect[0]} Sick Shot${pl(effect[0])}\nto Hand\nGain ${effect[1]} Ammo`; break
             case 1900: string+=`Apply ${effect[0]} Poison\nGain ${effect[1]} Single\nAttack Strength`; break
             case 1901: string+=`Gain ${effect[0]} Dodge\nTake ${effect[1]} Damage`; break
-            case 1902: string+=`Deal ${effect[0]} Damage\nApply ${effect[1]} Shock\nApplies Double if\nLast Card Left`; break
+            case 1902: string+=`Deal ${effect[0]} Damage\nApply ${effect[1]} Shock\nApplies Double if Last\nCard Remaining in Hand`; break
             case 1903: string+=`Add ${effect[0]} Wrong\nMiracle${pl(effect[0])} to Hand\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
             case 1904: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEvery 3 Turns`; break
             case 1905: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nUse Target's Attack`; break
@@ -2683,7 +2719,7 @@ class card{
             case 2307: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain ${effect[1]} Random\nCard${pl(effect[1])} Once`; break
             case 2309: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf You Have No Armor,\nGain ${effect[1]} Armor`; break
             case 2310: string+=`Gain ${effect[0]} Regeneration\nWhen You Take Damage`; break
-            case 2311: string+=`Discard ${effect[0]} Card${pl(effect[0])}\nLast Card Left in Hand:\nGain ${effect[1]} Strength`; break
+            case 2311: string+=`Discard ${effect[0]} Card${pl(effect[0])}\nLast Card\nRemaining in Hand:\nGain ${effect[1]} Strength`; break
             case 2312: string+=`Gain ${effect[0]} Energy\nFor Each Power\nin Hand`; break
             case 2313: string+=`When Drawn,\nGain ${effect[0]} Dexterity\nWhen Selectively\nDiscarded,\nGain ${effect[1]} Armor`; break
             case 2314: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\nin All Directions`; break
@@ -4335,32 +4371,37 @@ class card{
             case 3918: string+=`Enter Depression`; break
             case 3919: string+=`Add ${effect[0]} Random Cards\nof Equivalent Level\nContaining 'Time'\nto Hand`; break
             case 3921: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Are Debuffed,\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
-
             case 3922: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Dice are Rolled`; break
-            case 3923: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRange Increases by ${effect[1]}\nWhen a Basic\nCard is Played`; break
-            //2006
+            case 3923: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRange Increases by ${effect[1]}\nWhen a Basic\nCard is Played\n(Max 6)`; break
             case 3924: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nBasic Cards in Deck`; break
-            //1809
             case 3925: string+=`Add ${effect[0]} Strike${pl(effect[0])}\nof Equivalent Level\nWith ${effect[0]!=1?``:`a `}Random Edition${pl(effect[0])}\nto Deck Permanently`; break
             case 3926: string+=`Add ${effect[0]} Defend${pl(effect[0])}\nof Equivalent Level\nWith ${effect[0]!=1?``:`a `}Random Edition${pl(effect[0])}\nto Deck Permanently`; break
             case 3927: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Attack,\nDraw ${effect[1]} Defense${pl(effect[1])}\nOtherwise,\nDraw ${effect[2]} Attack${pl(effect[2])}`; break
-
-            case 3928: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]} When\nYou Use an Item`; break
-            case 3929: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRange Increases by ${effect[1]}\nWhen You Use an Item`; break
+            case 3928: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nWhen You Move\n${effect[2]} or More Tiles`; break
+            case 3929: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRange Increases by ${effect[1]}\nWhen You Use an Item\n(Max 6)`; break
             case 3930: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nHold ${effect[1]} Shield Orb${pl(effect[1])}`; break
             case 3931: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nHold ${effect[1]} Energy Orb${pl(effect[1])}`; break
             case 3932: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nHold ${effect[1]} Light Orb${pl(effect[1])}`; break
             case 3933: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nDiagonally`; break
-
             case 3934: string+=`Gain ${effect[0]} Base\nEnergy This Combat\nGain ${effect[1]} Energy`; break
             case 3935: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Target\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto All Enemies`; break
             case 3936: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAll Cards in Hand\nCost 0 This Turn`; break
-            //done
-
-
             
+            case 3937: string+=`Gain ${effect[0]} Vision\nPer Turn`; break
+            case 3938: string+=`Gain ${effect[0]} Knowledge\nNext 3 Turns\nGain ${effect[1]} Wisdom`; break
+            case 3939: string+=`When You Start Your\nTurn in Elemental Form,\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 3940: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnergy Divisible by 3:\nHold ${effect[1]} Dark Orb${pl(effect[1])}`; break
+            //3407
+            case 3941: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnergy Divisible by 3:\nAdd ${effect[1]} Shiv${pl(effect[1])}\nto Hand`; break
+            //3407
+            case 3942: string+=`Gain ${effect[0]} Strength\nGives Double if Last\nCard Remaining in Hand`; break
 
-            
+
+
+
+
+
+
             //mark p
 
             //mark q
@@ -4736,10 +4777,15 @@ class card{
             break
         }
     }
-    callMoveTileEffect(oldTilePosition,newTilePosition){
+    callMoveTileEffect(oldTilePosition,newTilePosition,distance){
         switch(this.attack){
             case 3043:
                 if(newTilePosition.y<oldTilePosition.y){
+                    this.effect[0]+=this.effect[1]
+                }
+            break
+            case 3928:
+                if(distance>=this.effect[2]){
                     this.effect[0]+=this.effect[1]
                 }
             break
@@ -5062,6 +5108,9 @@ class card{
             break
             case 2554:
                 this.effect[0]+=this.effect[1]
+            break
+            case 3929:
+                this.target[2]=min(this.target[2]+this.effect[1],6)
             break
         }
     }
@@ -5441,6 +5490,11 @@ class card{
                         this.cost--
                     }
                 break
+                case 3923:
+                    if(card.basic){
+                        this.target[2]=min(this.target[2]+this.effect[1],6)
+                    }
+                break
                 
             }
         }
@@ -5539,6 +5593,9 @@ class card{
     }
     retained(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        if(this.battle.modded(187)){
+            userCombatant.loseHealth(2)
+        }
         switch(this.attack){
             case -37: case 1698:
                 userCombatant.statusEffect('Temporary Draw',-1)
@@ -6127,7 +6184,7 @@ class card{
                     this.layer.line(0,-this.height/2,0,this.height/2)
                     this.layer.strokeWeight(5)
                     this.layer.noFill()
-                }else if(this.attack>=3753&&this.attack<=3754){
+                }else if(this.attack==3753||this.attack==3754){
                     this.layer.noStroke()
                     this.layer.fill(50,this.fade*this.anim.select*0.2)
                     this.layer.rect(0,0,this.width+15,this.height+15,10)
@@ -6598,7 +6655,7 @@ class card{
                     this.layer.line(0,-this.height/2,0,this.height/2)
                     this.layer.strokeWeight(5)
                     this.layer.noFill()
-                }else if(this.attack>=3753&&this.attack<=3754){
+                }else if(this.attack==3753||this.attack==3754){
                     this.layer.noStroke()
                     this.layer.fill(250,this.fade*this.anim.select*0.2)
                     this.layer.rect(0,0,this.width+15,this.height+15,10)
@@ -6982,83 +7039,7 @@ class card{
                 }else if(spec.includes(35)){
                     this.layer.strokeJoin(ROUND)
                     if(variants.mtg){
-                        switch(this.mtgManaColor){
-                            case 0:
-                                this.layer.fill(180,this.fade)
-                                this.layer.stroke(140,this.fade)
-                            break
-                            case 1:
-                                this.layer.fill(60,240,60,this.fade)
-                                this.layer.stroke(50,200,50,this.fade)
-                            break
-                            case 2:
-                                this.layer.fill(60,150,240,this.fade)
-                                this.layer.stroke(50,125,200,this.fade)
-                            break
-                            case 3:
-                                this.layer.fill(120,30,120,this.fade)
-                                this.layer.stroke(100,25,100,this.fade)
-                            break
-                            case 4:
-                                this.layer.fill(240,240,120,this.fade)
-                                this.layer.stroke(200,200,100,this.fade)
-                            break
-                            case 5:
-                                this.layer.fill(240,60,60,this.fade)
-                                this.layer.stroke(200,50,50,this.fade)
-                            break
-                            case 6:
-                                this.layer.fill(220,210,190,this.fade)
-                                this.layer.stroke(180,170,150,this.fade)
-                            break
-                        }
-                        this.layer.strokeWeight(2)
-                        this.layer.rect(-this.width/2+5.5,-this.height/2+8.5,9)
-                        this.layer.arc(-this.width/2+10,-this.height/2+13,18,18,-90,180)
-                        this.layer.noStroke()
-                        this.layer.ellipse(-this.width/2+10,-this.height/2+13,16)
-                        this.layer.noFill()
-                        this.layer.strokeWeight(2)
-                        switch(this.mtgManaColor){
-                            case 0:
-                                this.layer.stroke(120,this.fade)
-                                this.layer.rect(-this.width/2+10-1.5,-this.height/2+13+1.5,7)
-                                this.layer.line(-this.width/2+10-5,-this.height/2+13-2,-this.width/2+10-2,-this.height/2+13-5)
-                                this.layer.line(-this.width/2+10+2,-this.height/2+13-2,-this.width/2+10+5,-this.height/2+13-5)
-                                this.layer.line(-this.width/2+10+2,-this.height/2+13+5,-this.width/2+10+5,-this.height/2+13+2)
-                                this.layer.line(-this.width/2+10+5,-this.height/2+13-5,-this.width/2+10+5,-this.height/2+13+2)
-                                this.layer.line(-this.width/2+10-2,-this.height/2+13-5,-this.width/2+10+5,-this.height/2+13-5)
-                            break
-                            case 1:
-                                this.layer.stroke(40,160,40,this.fade)
-                                regPoly(this.layer,-this.width/2+10,-this.height/2+13,6,5,5,30)
-                            break
-                            case 2:
-                                this.layer.stroke(40,100,160,this.fade)
-                                this.layer.arc(-this.width/2+10,-this.height/2+13,8,8,-45,225)
-                                this.layer.line(-this.width/2+10-2*sqrt(2),-this.height/2+13-2*sqrt(2),-this.width/2+10,-this.height/2+13-4*sqrt(2))
-                                this.layer.line(-this.width/2+10+2*sqrt(2),-this.height/2+13-2*sqrt(2),-this.width/2+10,-this.height/2+13-4*sqrt(2))
-                            break
-                            case 3:
-                                this.layer.stroke(80,20,80,this.fade)
-                                this.layer.arc(-this.width/2+10,-this.height/2+13,10,10,-270,45)
-                                this.layer.line(-this.width/2+10,-this.height/2+13,-this.width/2+10,-this.height/2+13+5)
-                            break
-                            case 4:
-                                this.layer.stroke(160,160,80,this.fade)
-                                this.layer.line(-this.width/2+10,-this.height/2+13-6,-this.width/2+10,-this.height/2+13+6)
-                                this.layer.line(-this.width/2+10-3*sqrt(3),-this.height/2+13-3,-this.width/2+10+3*sqrt(3),-this.height/2+13+3)
-                                this.layer.line(-this.width/2+10-3*sqrt(3),-this.height/2+13+3,-this.width/2+10+3*sqrt(3),-this.height/2+13-3)
-                            break
-                            case 5:
-                                this.layer.stroke(160,40,40,this.fade)
-                                this.layer.quad(-this.width/2+10-3,-this.height/2+13,-this.width/2+10,-this.height/2+13-6,-this.width/2+10+3,-this.height/2+13,-this.width/2+10,-this.height/2+13+6)
-                            break
-                            case 6:
-                                this.layer.stroke(160,150,130,this.fade)
-                                this.layer.quad(-this.width/2+10-5,-this.height/2+13,-this.width/2+10,-this.height/2+13-5,-this.width/2+10+5,-this.height/2+13,-this.width/2+10,-this.height/2+13+5)
-                            break
-                        }
+                        displayMtgManaSymbol(this.layer,-this.width/2+10,-this.height/2+13,this.mtgManaColor,0,1,this.fade,1)
                     }else if(this.colorful){
                         this.layer.fill(200,175,50,this.fade)
                         this.layer.stroke(175,150,25,this.fade)
@@ -7159,80 +7140,7 @@ class card{
                         this.layer.colorMode(RGB,255,255,255,1)
                         this.layer.text('',0,0)
                     }else if(variants.mtg){
-                        switch(this.mtgManaColor){
-                            case 0:
-                                this.layer.fill(180,this.fade)
-                                this.layer.stroke(150,this.fade)
-                            break
-                            case 1:
-                                this.layer.fill(60,240,60,this.fade)
-                                this.layer.stroke(50,200,50,this.fade)
-                            break
-                            case 2:
-                                this.layer.fill(60,150,240,this.fade)
-                                this.layer.stroke(50,125,200,this.fade)
-                            break
-                            case 3:
-                                this.layer.fill(120,30,120,this.fade)
-                                this.layer.stroke(100,25,100,this.fade)
-                            break
-                            case 4:
-                                this.layer.fill(240,240,120,this.fade)
-                                this.layer.stroke(200,200,100,this.fade)
-                            break
-                            case 5:
-                                this.layer.fill(240,60,60,this.fade)
-                                this.layer.stroke(200,50,50,this.fade)
-                            break
-                            case 6:
-                                this.layer.fill(220,210,190,this.fade)
-                                this.layer.stroke(180,170,150,this.fade)
-                            break
-                        }
-                        this.layer.strokeWeight(1.5)
-                        this.layer.ellipse(-this.width/2+10,-this.height/2+13,20)
-                        this.layer.noFill()
-                        this.layer.strokeWeight(2)
-                        switch(this.mtgManaColor){
-                            case 0:
-                                this.layer.stroke(120,this.fade)
-                                this.layer.rect(-this.width/2+10-1.5,-this.height/2+13+1.5,7)
-                                this.layer.line(-this.width/2+10-5,-this.height/2+13-2,-this.width/2+10-2,-this.height/2+13-5)
-                                this.layer.line(-this.width/2+10+2,-this.height/2+13-2,-this.width/2+10+5,-this.height/2+13-5)
-                                this.layer.line(-this.width/2+10+2,-this.height/2+13+5,-this.width/2+10+5,-this.height/2+13+2)
-                                this.layer.line(-this.width/2+10+5,-this.height/2+13-5,-this.width/2+10+5,-this.height/2+13+2)
-                                this.layer.line(-this.width/2+10-2,-this.height/2+13-5,-this.width/2+10+5,-this.height/2+13-5)
-                            break
-                            case 1:
-                                this.layer.stroke(40,160,40,this.fade)
-                                regPoly(this.layer,-this.width/2+10,-this.height/2+13,6,5,5,30)
-                            break
-                            case 2:
-                                this.layer.stroke(40,100,160,this.fade)
-                                this.layer.arc(-this.width/2+10,-this.height/2+13,8,8,-45,225)
-                                this.layer.line(-this.width/2+10-2*sqrt(2),-this.height/2+13-2*sqrt(2),-this.width/2+10,-this.height/2+13-4*sqrt(2))
-                                this.layer.line(-this.width/2+10+2*sqrt(2),-this.height/2+13-2*sqrt(2),-this.width/2+10,-this.height/2+13-4*sqrt(2))
-                            break
-                            case 3:
-                                this.layer.stroke(80,20,80,this.fade)
-                                this.layer.arc(-this.width/2+10,-this.height/2+13,10,10,-270,45)
-                                this.layer.line(-this.width/2+10,-this.height/2+13,-this.width/2+10,-this.height/2+13+5)
-                            break
-                            case 4:
-                                this.layer.stroke(160,160,80,this.fade)
-                                this.layer.line(-this.width/2+10,-this.height/2+13-6,-this.width/2+10,-this.height/2+13+6)
-                                this.layer.line(-this.width/2+10-3*sqrt(3),-this.height/2+13-3,-this.width/2+10+3*sqrt(3),-this.height/2+13+3)
-                                this.layer.line(-this.width/2+10-3*sqrt(3),-this.height/2+13+3,-this.width/2+10+3*sqrt(3),-this.height/2+13-3)
-                            break
-                            case 5:
-                                this.layer.stroke(160,40,40,this.fade)
-                                this.layer.quad(-this.width/2+10-3,-this.height/2+13,-this.width/2+10,-this.height/2+13-6,-this.width/2+10+3,-this.height/2+13,-this.width/2+10,-this.height/2+13+6)
-                            break
-                            case 6:
-                                this.layer.stroke(160,150,130,this.fade)
-                                this.layer.quad(-this.width/2+10-5,-this.height/2+13,-this.width/2+10,-this.height/2+13-5,-this.width/2+10+5,-this.height/2+13,-this.width/2+10,-this.height/2+13+5)
-                            break
-                        }
+                        displayMtgManaSymbol(this.layer,-this.width/2+10,-this.height/2+13,this.mtgManaColor,0,1,this.fade,0)
                     }else{
                         this.layer.fill(225,255,255,this.fade)
                         this.layer.stroke(200,255,255,this.fade)
@@ -7318,21 +7226,22 @@ class card{
                     this.layer.fill(0,this.fade)
                 }
                 if(name.substr(0,2)!='-h'){
+                    let effectiveName=name.replace('$colorcharacter',types.combatant[this.color].name).replace('$colormtg',variants.mtg?(this.mtgCardColor.length==2?`${['Neutral','White','Blue','Black','Green','Red','Rainbow'][this.mtgCardColor[0]]}-${['Neutral','White','Blue','Black','Green','Red','Rainbow'][this.mtgCardColor[1]]}`:['Neutral','White','Blue','Black','Green','Red','Rainbow'][this.mtgCardColor[0]]):'Standard')
                     if(spec.includes(34)){
                         this.layer.rotate(90)
                         this.layer.textSize(12)
                         if(spec.includes(37)){
-                            this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+":",0,0)
+                            this.layer.text(effectiveName+":",0,0)
                         }else{
-                            this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+(this.level>=3?`+[${this.level}]`:multiplyString('+',this.level)),0,0)
+                            this.layer.text(effectiveName+(this.level>=3?`+[${this.level}]`:multiplyString('+',this.level)),0,0)
                         }
                         this.layer.rotate(-90)
                     }else{
                         this.layer.textSize(variants.blind?12:10-((name.length>=24&&name.includes('Discus')||name.length>=23&&this.class==9)&&!name.includes('$colorcharacter')||name=='Cauchy-Riemann\nEquations'||name=='Temptation of\nthe Next World'?3:0))
                         if(spec.includes(37)){
-                            this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+":",0,variants.blind?0:-this.height/2+15)
+                            this.layer.text(effectiveName+":",0,variants.blind?0:-this.height/2+15)
                         }else{
-                            this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+(this.level>=3?`+[${this.level}]`:multiplyString('+',this.level)),0,variants.blind?0:-this.height/2+15)
+                            this.layer.text(effectiveName+(this.level>=3?`+[${this.level}]`:multiplyString('+',this.level)),0,variants.blind?0:-this.height/2+15)
                         }
                         if(!variants.blind){
                             if(this.edition==5){
@@ -7345,6 +7254,9 @@ class card{
                             this.desc=''
                             if(!spec.includes(12)){
                                 this.desc=this.description(attack,effect,spec,target)
+                            }
+                            if(this.battle.modded(186)){
+                                this.desc=this.desc.toLowerCase()
                             }
                             this.layer.textSize(
                                 name=='Charred\nLizard'||name=='Flame of\nNirvana'||name=='First\nQuarter'||name=='Last\nQuarter'||name=='Foehn'||name=='Yukari, Boundary\nof Fantasy'||name=='Keystone\nCannon'||name=='Hakurei\nTalisman'||name=='Hakurei\nAmulet'||name=='Shizuha, Symbol\nof Loneliness'||name=='Ran,\nScheming Fox'||name==`Flandre,\nDevil's Sister`||name=='Hina, Ward\nof Misfortune'||
@@ -7585,7 +7497,7 @@ class card{
         }
     }
     colorless(){
-        return this.color==0&&!this.colorful&&this.attack!=1328&&this.attack!=1330&&this.attack!=1393&&this.attack!=1615&&this.attack!=2064&&this.attack!=-131&&this.attack!=-132&&this.attack!=3454&&this.attack!=3459&&this.attack!=3460&&this.attack!=3629&&this.attack!=3630&&this.attack!=3631&&!(this.attack>=3694&&this.attack<=3699)&&this.list!=-8&&!(this.list==-9&&variants.ultraprism)
+        return this.color==0&&!this.colorful&&this.attack!=1328&&this.attack!=1330&&this.attack!=1393&&this.attack!=1615&&this.attack!=2064&&this.attack!=-131&&this.attack!=-132&&this.attack!=3454&&this.attack!=3459&&this.attack!=3460&&this.attack!=3629&&this.attack!=3630&&this.attack!=3631&&!(this.attack>=3694&&this.attack<=3699)&&this.attack!=3753&&this.attack!=3754&&this.list!=-8&&!(this.list==-9&&variants.ultraprism)
     }
     update(sizeCap=1,diff='nonhand',fattened=false){
         this.time++

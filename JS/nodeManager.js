@@ -202,8 +202,23 @@ class nodeManager{
             break
             case 2:
                 transition.scene='battle'
-                this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][2][this.saveBoss>=0?this.saveBoss:floor(random(0,this.listing.encounter[this.world][2].length))]])
-                this.saveBoss=-1
+                if(this.battle.modded(188)){
+                    if(variants.selectCombat){
+                        transition.trigger=false
+                        this.battle.overlayManager.overlays[61][0].active=true
+                        this.battle.overlayManager.overlays[61][0].activate([2,y])
+                    }else{
+                        let list=this.listing.encounter[this.world][1]
+                        let index=floor(random(0,list.length))
+                        this.battle.setupBattle(types.encounter[list[index]])
+                        list.splice(index,1)
+                        this.battle.combatantManager.allEffect(24,[2])
+                        this.battle.combatantManager.allEffect(3,[5])
+                    }
+                }else{
+                    this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][2][this.saveBoss>=0?this.saveBoss:floor(random(0,this.listing.encounter[this.world][2].length))]])
+                    this.saveBoss=-1
+                }
             break
             case 3:
                 if(this.battle.modded(161)&&floor(random(0,4))==0){

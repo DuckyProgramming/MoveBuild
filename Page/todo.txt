@@ -1,38 +1,12 @@
-AZIS CHANGES
-
-rearrange orbs
-~30 new cards
-
-
-
-new bonus mods:
-
-embodimental element
-kugelblitz particle
-pure swordsman
-
-
-
-deploy the cards currently in mark p
-
-
-
-
-
-
-
-
-shadow trooper pull bug
-
-
-
 LISTING GROUP 45
 
 
 
-[a way to get vision]
+3 ally cards
 
-[sphalerite]
+1 technical ally card
+
+
 
 [aluminum alloy]
 
@@ -181,6 +155,28 @@ dimensional point rift - create a bunch of glowing yellow squares (composed of p
 
 hold a dark orb and increase all dark orbs
 
+mayhem - every turn, draw a card it costs 0
+
+ferrero rocher - paper ball but it heals you
+
+
+
+floret fractal but rainbow
+
+[aozora]
+
+[satellite slash - distant flowers]
+
+split runaway seasons into one that only gives skills
+
+electrodynamics - hold lightning orbs and trigger them
+
+aura of poverty - apply weak and vulnerable in all directions, lose 5 currency
+
+
+
+empty mask - reverse of sadism
+
 
 
 SUKUNA MECHANICS
@@ -212,16 +208,53 @@ poison????
 
 new enemies:
 
-world 2:
+world 1:
 
-bar security - counter pushes
-bartender - annoying gangster
+easies:
+
+[]
+[]
+[]
+
+enemies:
+
+sick - when killed you get a bunch of debuffs
+drowned - can randomly apply drowned to you
+[]
+
+bosses:
 
 []
 
+world 2:
+
+enemies:
+
+bar security - counter pushes
+bartender - annoying gangster
+[]
+
+bosses:
+
+renegade agent - switches abilities every turn on a 4 turn cycle
+
 world 3:
 
-sagacious spirit - permanent intangible, lose 1 energy per 5 cards played
+enemies:
+
+infinite spirit - lose 1 energy when you hit this enemy
+[permanent intangible]
+[]
+
+bosses:
+
+[]
+
+world 4:
+
+elites:
+
+[]
 
 azis boss needs another attack
 chip boss needs another attack

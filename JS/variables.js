@@ -3444,7 +3444,7 @@ on the wall with details about each upcoming stop.`,
 in the middle of a forest. There's nothing around you,
 just some distant noises of rustling in the trees.`,
                     option:['Take it','Leave it'],
-                    optionDesc:['Gain 150 Currency',''],
+                    optionDesc:['Gain 450 Currency',''],
                     link:[2,1],
                 },{
                     desc:`You don't trust the pile.`,
@@ -3458,7 +3458,7 @@ appears out of the trees, silently, but noticed by you.
 "Looks like you're very lucky today..." it hisses,
 "If you want that to stay, it'll cost you..."`,
                     option:['Give Money Back','Split the Money','Punch Him'],
-                    optionDesc:['Lose 150 Currency','Lose 75 Currency','Become Cursed - Unfortunate'],
+                    optionDesc:['Lose 450 Currency','Lose 300 Currency','Become Cursed - Unfortunate'],
                     link:[3,4,5],
                 },{
                     desc:
@@ -5525,10 +5525,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 text:[50,50,50],
                 active:[255,255,255],
             },{
-                fill:[100,200,100],
-                stroke:[75,175,75],
-                text:[0,100,0],
-                active:[200,255,200],
+                fill:[240,240,160],
+                stroke:[200,200,120],
+                text:[80,80,0],
+                active:[255,255,200],
             },{
                 fill:[100,150,225],
                 stroke:[75,125,200],
@@ -5540,10 +5540,10 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 text:[50,25,75],
                 active:[225,200,255],
             },{
-                fill:[240,240,160],
-                stroke:[200,200,120],
-                text:[80,80,0],
-                active:[255,255,200],
+                fill:[100,200,100],
+                stroke:[75,175,75],
+                text:[0,100,0],
+                active:[200,255,200],
             },{
                 fill:[255,100,100],
                 stroke:[225,75,75],
@@ -5586,6 +5586,13 @@ Besides, ghost objects aren't useful in the real world, right?`,
             [['Strike-',0,-1],['Defend-',0,-1],['Step-L',0,-1],['Step-R',0,-1]],
             [['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
             [['Step-L',0,-1],['Step-R',0,-1],['Step-L',0,-1],['Step-R',0,-1]],
+        ],mtg:[
+            [['Strike',0,0],['Strike',0,0],['$colormtg\nBash',0,-1],['$colormtg\nBash',0,-1],['Defend',0,0],['Defend',0,0],['$colormtg\nShield',0,-1],['$colormtg\nShield',0,-1],['Step',0,-1],['Step',0,-1],['$colormtg\nRun',0,-1],['$colormtg\nRun',0,-1]],
+            [['Strike-',0,0],['Strike-',0,0],['$colormtg\nBash-',0,-1],['$colormtg\nBash-',0,-1],['Defend-',0,0],['Defend-',0,0],['$colormtg\nShield-',0,-1],['$colormtg\nShield-',0,-1],['Step-L',0,-1],['$colormtg\nRun-L',0,-1],['Step-R',0,-1],['$colormtg\nRun-R',0,-1]],
+            [['$colormtg\nBash',0,-1],['$colormtg\nShield',0,-1],['$colormtg\nRun',0,-1],['$colormtg\nRun',0,-1]],
+            [['$colormtg\nBash-',0,-1],['$colormtg\nShield-',0,-1],['$colormtg\nRun-L',0,-1],['$colormtg\nRun-R',0,-1]],
+            [['Step',0,-1],['Step',0,-1],['$colormtg\nRun',0,-1],['$colormtg\nRun',0,-1]],
+            [['Step-L',0,-1],['$colormtg\nRun-L',0,-1],['Step-R',0,-1],['$colormtg\nRun-R',0,-1]],
         ]
     },level:[
         {
@@ -8706,7 +8713,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             ],ally:[
             ],
         },{
-            level:['Induction 4'],class:0,world:0,
+            level:['Induction 4'],class:0,world:1,
             name:'Looter',
             player:{position:[[{x:2,y:1}],[{x:2,y:0},{x:3,y:2}]]},
             enemy:[
@@ -10043,6 +10050,9 @@ Stacks degrade by 1 each turn.`,
         {name:'Ducky Donka',desc:'Lose 10 Health When Entering a Rest Site'},
         {name:'Ducky McDuff',desc:'Lose 10 Health When Entering a Shop'},
         {name:'Prison Informant',desc:'When an Enemy Hurts Another Enemy, Both Gain 2 Strength'},
+        {name:'Embodimental Element',desc:'Card Names and Descriptions are All Lowercase'},
+        {name:'Kugelblitz Particle',desc:'Lose 2 Health When You Retain a Card'},
+        {name:'Pure Swordsman',desc:'Elites Appear as Bosses, But Are Buffed'},
 
     ],deckmode:[
         {name:'Standard Deck'},
@@ -10061,7 +10071,7 @@ stage={scale:0,scene:'title',internal:{version:1}}
 game={player:[],deck:[],playerNumber:18,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
 variants={
-    mtg:false,mod:false,selectCombat:false,
+    mtg:true,mod:false,selectCombat:false,
     lowDraw:false,cyclicDraw:false,balance:false,
     blackjack:false,witch:false,polar:false,
     chooselose:false,compress:false,cardHold:false,

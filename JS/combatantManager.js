@@ -1387,4 +1387,11 @@ class combatantManager{
             break
         }
     }
+    onClick(scene,args){
+        switch(scene){
+            case 'battle':
+                this.combatants[this.getPlayerCombatantIndex(args[0])].onClick(scene)
+            break
+        }
+    }
 }

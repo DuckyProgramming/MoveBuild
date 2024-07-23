@@ -7,8 +7,8 @@ combatant.prototype.display=function(){
         this.layer.scale(this.size)
         if(this.infoAnim.orb>0){
             for(let a=0,la=this.orbs.length;a<la;a++){
-                if(lcos(this.time*2+360*a/la)<=0){
-                    displayOrb(this.layer,lsin(this.time*2+360*a/la)*30,-45+lcos(this.time*2+360*a/la)*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb,a)
+                if(lcos(this.time/game.animRate+360*a/la)<=0){
+                    displayOrb(this.layer,lsin(this.time/game.animRate+360*a/la)*30,-45+lcos(this.time/game.animRate+360*a/la)*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb,a)
                 }
             }
         }
@@ -2510,11 +2510,11 @@ combatant.prototype.display=function(){
                     this.layer.fill(140,120,160,this.fade)
                     this.layer.stroke(120,100,140,this.fade)
                     this.layer.strokeWeight(2)
-                    regPoly(this.layer,0,10,8,7,7,0)
+                    regPoly(this.layer,0,10-this.offset.position.y,8,7,7,0)
                     this.layer.noStroke()
                     this.layer.fill(50,40,60,this.fade)
                     this.layer.textSize(12)
-                    this.layer.text(this.metal,0,10)
+                    this.layer.text(this.metal,0,10-this.offset.position.y)
                 }
             break
             case 'Setsuna':
@@ -3321,18 +3321,18 @@ combatant.prototype.display=function(){
                     this.layer.stroke(240,255,250,this.fade)
                     this.layer.strokeWeight(1)
                     this.layer.noFill()
-                    this.layer.translate(0,10)
+                    this.layer.translate(0,10-this.offset.position.y)
                     this.layer.ellipse(0,0,10)
                     for(let a=0,la=5;a<la;a++){
                         this.layer.rotate(72)
                         this.layer.line(0,5,0,8)
                         this.layer.line(0,8,-2,7)
                     }
-                    this.layer.translate(0,-10)
+                    this.layer.translate(0,-10+this.offset.position.y)
                     this.layer.noStroke()
                     this.layer.fill(240,255,250,this.fade)
                     this.layer.textSize(8)
-                    this.layer.text(this.charge,0,10.5)
+                    this.layer.text(this.charge,0,10.5-this.offset.position.y)
                 }
             break
             case 'Edgar':
@@ -3439,14 +3439,14 @@ combatant.prototype.display=function(){
                 if(!this.graphic&&this.team>0){
                     this.layer.noStroke()
                     this.layer.fill(60,75,90,this.fade)
-                    this.layer.rect(-2,10,12,12)
-                    this.layer.arc(4,10,12,12,-90,90)
+                    this.layer.rect(-2,10-this.offset.position.y,12,12)
+                    this.layer.arc(4,10-this.offset.position.y,12,12,-90,90)
                     this.layer.fill(80,100,120,this.fade)
-                    this.layer.rect(-1,10,10,8)
-                    this.layer.arc(4,10,8,8,-90,90)
+                    this.layer.rect(-1,10-this.offset.position.y,10,8)
+                    this.layer.arc(4,10-this.offset.position.y,8,8,-90,90)
                     this.layer.fill(20,25,30,this.fade)
                     this.layer.textSize(12)
-                    this.layer.text(this.ammo,0,10)
+                    this.layer.text(this.ammo,0,10-this.offset.position.y)
                 }
             break
             case 'Chip':
@@ -4767,7 +4767,7 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(!this.graphic&&this.team>0){
-                    this.layer.translate(0,12)
+                    this.layer.translate(0,11-this.offset.position.y)
                     this.layer.fill(255,100,150,this.fade)
                     this.layer.stroke(255,125,175,this.fade)
                     this.layer.strokeWeight(1.2)
@@ -4781,10 +4781,10 @@ combatant.prototype.display=function(){
                         this.layer.quad(-1.2,-3.4,1.2,-3.4,0.4,-4.8,-0.4,-4.8)
                         this.layer.rotate(120)
                     }
-                    this.layer.translate(0,-12)
+                    this.layer.translate(0,-11+this.offset.position.y)
                     this.layer.fill(15,5,10,this.fade)
                     this.layer.textSize(12)
-                    this.layer.text(this.wish,0,12)
+                    this.layer.text(this.wish,0,11-this.offset.position.y)
                 }
             break
             case 'Ume':
@@ -11169,8 +11169,8 @@ combatant.prototype.display=function(){
         }
         if(this.infoAnim.orb>0){
             for(let a=0,la=this.orbs.length;a<la;a++){
-                if(lcos(this.time*2+360*a/la)>0){
-                    displayOrb(this.layer,lsin(this.time*2+360*a/la)*30,-45+lcos(this.time*2+360*a/la)*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb,a)
+                if(lcos(this.time/game.animRate+360*a/la)>0){
+                    displayOrb(this.layer,lsin(this.time/game.animRate+360*a/la)*30,-45+lcos(this.time/game.animRate+360*a/la)*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb,a)
                 }
             }
         }
