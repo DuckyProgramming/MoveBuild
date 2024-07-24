@@ -66,7 +66,8 @@ class group{
         switch(type){
             case -1:
                 for(let a=0,la=6;a<la;a++){
-                    this.addInitialBypass(findName('-h Marker',types.card)+1+a,level,types.card[findName('-h Riff-Raff',types.card)+1+a].list>=0?types.card[findName('-h Riff-Raff',types.card)+1+a].list:0)
+                    let type=findName('-h Marker',types.card)+1+a
+                    this.addInitialBypass(type,level,types.card[type].list>=0?types.card[type].list:0)
                 }
             break
             case 0:

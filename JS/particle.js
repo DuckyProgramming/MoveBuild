@@ -349,11 +349,11 @@ class particle{
                 this.direction=args[0]
                 this.timer=args[1]
                 this.color=args[2]
-                this.speed=1
+                this.speed=args[3]
+                this.scale=args[4]
                 this.fade=0
                 this.trigger=false
                 this.size=1
-                this.scale=1
             break
             case 147:
                 this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
@@ -2187,8 +2187,8 @@ class particle{
                     this.layer.rect(0,0,8)
                 break
                 case 146:
-                    this.layer.fill([255,255,255,100,100,200][this.color],[150,200,255,255,200,100][this.color],[100,100,100,150,255,225][this.color],this.fade*0.5)
-                    this.layer.stroke([255,255,255,100,100,200][this.color],[150,200,255,255,200,100][this.color],[100,100,100,150,255,225][this.color],this.fade)
+                    this.layer.fill([255,255,255,100,100,200,150][this.color],[150,200,255,255,200,100,225][this.color],[100,100,100,150,255,225,240][this.color],this.fade)
+                    this.layer.stroke([255,255,255,100,100,200,150][this.color],[150,200,255,255,200,100,225][this.color],[100,100,100,150,255,225,240][this.color],this.fade)
                     this.layer.strokeWeight(1.5)
                     regStar(this.layer,0,0,5,6,6,2.5,2.5,this.time*3)
                     this.layer.noFill()
@@ -2591,6 +2591,10 @@ class particle{
                                     parent.particles.push(new particle(this.layer,this.position.x,this.position.y,143,[this.direction+360*a/la,20,3]))
                                 }
                             }
+                            for(let a=0,la=18;a<la;a++){
+                                parent.particles.push(new particle(this.layer,this.position.x,this.position.y,
+                                    146,[this.direction+(a+0.5)/la*360,120,7,8+a%2*4,2+a%2*0.5]))
+                            }
                         break
                     }
                 }
@@ -2718,7 +2722,7 @@ class particle{
                 parent.particles.push(new particle(this.layer,
                     this.position.x+lsin(this.direction)*distance+random(-20,20),
                     this.position.y-lcos(this.direction)*distance+random(-20,20),
-                    145+floor(random(0,2)),[random(0,360),random(0.5,1),floor(random(0,6))]))
+                    145+floor(random(0,2)),[random(0,360),random(10,15),floor(random(0,6)),random(1,2),1]))
             break
             case 145: case 146:
                 this.position.x+=lsin(this.direction)*this.speed
@@ -2726,7 +2730,10 @@ class particle{
                 if(!this.trigger){
                     this.fade+=0.2
                     if(this.fade>=2){
-                        this.trigger=true
+                        this.fade=2
+                        if(this.time>this.timer){
+                            this.trigger=true
+                        }
                     }
                 }else{
                     this.fade-=0.2

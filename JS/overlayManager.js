@@ -120,11 +120,15 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[79])],//bring in discard card as duplicate once, no return
                     [new overlay(this.layer,this.battle,0,2,[80,0])],//exhaust from first cards of draw, no return,110
                     [new overlay(this.layer,this.battle,0,17,[0,3])],//triple card choice
-                    [new overlay(this.layer,this.battle,0,2,[81,1,0])],//remove curse
-                    [new overlay(this.layer,this.battle,0,2,[82])],//transform curse
+                    [new overlay(this.layer,this.battle,0,2,[81,1,0])],//remove curse, no return
+                    [new overlay(this.layer,this.battle,0,2,[82])],//transform curse, no return
                     [new overlay(this.layer,this.battle,0,16,[1])],//mtg any energy
                     [new overlay(this.layer,this.battle,0,8,[1,-1,1])],//new card to hand, all disbanded card
-                    [new overlay(this.layer,this.battle,0,2,[83])],//make card replenish
+                    [new overlay(this.layer,this.battle,0,2,[83])],//make card replenish, no return
+
+                    [new overlay(this.layer,this.battle,0,2,[84,0,[]])],//scry, drawabstract, no return
+                    [new overlay(this.layer,this.battle,0,2,[85,0,0,0])],//scry, vulnerable target
+                    //41,47
 
                 )
                 if(this.battle.players==2){

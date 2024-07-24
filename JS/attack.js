@@ -179,7 +179,8 @@ class attack{
             case 3697: case 3698: case 3699: case 3700: case 3701: case 3702: case 3704: case 3706: case 3707: case 3709: case 3711: case 3715: case 3717: case 3733: case 3741: case 3744: case 3753: case 3754: case 3762: case 3765:
             case 3767: case 3770: case 3771: case 3778: case 3781: case 3782: case 3786: case 3787: case 3792: case 3809: case 3810: case 3811: case 3812: case 3813: case 3815: case 3821: case 3823: case 3824: case 3825: case 3826:
             case 3843: case 3844: case 3847: case 3848: case 3851: case 3853: case 3855: case 3857: case 3861: case 3863: case 3868: case 3870: case 3871: case 3876: case 3879: case 3881: case 3885: case 3886: case 3892: case 3893:
-            case 3895: case 3901: case 3902: case 3904: case 3905: case 3906: case 3907: case 3912: case 3915: case 3917: case 3920: case 3921: case 3923: case 3924: case 3927: case 3928: case 3929: case 3933: case 3935:
+            case 3895: case 3901: case 3902: case 3904: case 3905: case 3906: case 3907: case 3912: case 3915: case 3917: case 3920: case 3921: case 3923: case 3924: case 3927: case 3928: case 3929: case 3933: case 3935: case 3940:
+            case 3941: case 3944: case 3945:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -3967,6 +3968,20 @@ class attack{
                     case 3921:
                         if(this.userCombatant.totalUniqueStatus(1)>0){
                             this.userCombatant.addBlock(this.effect[1])
+                        }
+                    break
+                    case 3940:
+                        if(this.energy%3==0){
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userCombatant.holdOrb(4)
+                            }
+                        }
+                    break
+                    case 3941:
+                        if(this.energy%3==0){
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userManager.hand.add(findName('Shiv',types.card),0,0)
+                            }
                         }
                     break
 
@@ -7871,6 +7886,9 @@ class attack{
                         this.battle.addEnergyGen(this.effect[0],this.player)
                         this.battle.addEnergy(this.effect[1],this.player)
                     break
+                    case 3942:
+                        this.userCombatant.statusEffect('Strength',this.effect[0]*(this.handSize==1?2:1))
+                    break
 
                 }
                 //mark 4
@@ -9720,6 +9738,19 @@ class attack{
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userCombatant.holdOrb(6)
                         }
+                    break
+                    case 3937:
+                        this.userCombatant.statusEffect('Vision Per Turn',this.effect[0])
+                    break
+                    case 3938:
+                        this.userCombatant.statusEffect('Knowledge',this.effect[0])
+                        this.userCombatant.statusEffect('Knowledge Next Turn',this.effect[0])
+                        this.userCombatant.statusEffect('Knowledge in 2 Turns',this.effect[0])
+                        this.userCombatant.statusEffect('Wisdom',this.effect[1])
+                    break
+                    case 3939:
+                        this.userCombatant.statusEffect('Elemental Energy',this.effect[0])
+                        this.userCombatant.statusEffect('Elemental Draw',this.effect[1])
                     break
 
                 }

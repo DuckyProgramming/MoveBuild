@@ -167,7 +167,8 @@ class combatant{
             'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
             'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Energy',
             '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
-            '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block',
+            '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
+            'Elemental Draw',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -219,7 +220,8 @@ class combatant{
                 0,1,2,2,0,2,2,0,2,0,//47
                 0,0,0,0,0,0,0,2,1,0,//48
                 0,0,0,2,0,2,0,2,0,0,//49
-                0,2,0,0,0,0,
+                0,2,0,0,0,0,0,2,2,0,//50
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -271,7 +273,8 @@ class combatant{
                 0,1,1,0,2,3,3,2,0,2,//47
                 0,0,0,2,0,2,2,0,2,2,//48
                 2,2,2,0,2,0,3,3,2,2,//49
-                2,1,2,2,2,2,
+                2,1,2,2,2,2,2,2,2,2,//50
+                2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -7080,11 +7083,24 @@ class combatant{
     }
     tick(sub){
         this.charge++
-        if(this.elemental&&this.getStatus('Awakening')<=0){
-            if(this.getStatus('Strength')>0){
-                this.statusEffect('Strength',-1)
+        if(this.elemental){
+            if(this.status.main[305]<=0){
+                if(this.status.main[6]>0){
+                    this.statusEffect('Strength',-1)
+                }
+                this.elemental=false
+            }else{
+                if(this.status.main[499]>0){
+                    if(this.id<this.battle.players){
+                        this.battle.cardManagers[this.id].tempDraw+=this.status.main[499]
+                    }
+                }
+                if(this.status.main[500]>0){
+                    this.battle.addSpecificEnergy(this.status.main[500],this.id,6)
+                }else if(this.status.main[500]<0){
+                    this.battle.loseEnergy(-this.status.main[500],this.id)
+                }
             }
-            this.elemental=false
         }
         for(let a=0,la=this.spec.length;a<la;a++){
             if(this.spec[a]<0){
@@ -7226,6 +7242,9 @@ class combatant{
                     case 488: this.wish+=this.status.main[a]; break
                     case 491: this.status.main[findList('Lose Health',this.status.name)]+=this.status.main[a]; break
                     case 493: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.exhaustViable(this.status.main[a])}; break
+                    case 496: this.vision+=this.status.main[a]; break
+                    case 497: this.status.main[findList('Knowledge',this.status.name)]+=this.status.main[a]; break
+                    case 498: this.status.main[findList('Knowledge Next Turn',this.status.name)]+=this.status.main[a]; break
                     
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){

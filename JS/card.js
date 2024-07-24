@@ -4403,26 +4403,15 @@ class card{
             case 3934: string+=`Gain ${effect[0]} Base\nEnergy This Combat\nGain ${effect[1]} Energy`; break
             case 3935: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Target\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto All Enemies`; break
             case 3936: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAll Cards in Hand\nCost 0 This Turn`; break
-            
             case 3937: string+=`Gain ${effect[0]} Vision\nPer Turn`; break
             case 3938: string+=`Gain ${effect[0]} Knowledge\nNext 3 Turns\nGain ${effect[1]} Wisdom`; break
             case 3939: string+=`When You Start Your\nTurn in Elemental Form,\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 3940: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnergy Divisible by 3:\nHold ${effect[1]} Dark Orb${pl(effect[1])}`; break
-            //3407
             case 3941: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnergy Divisible by 3:\nAdd ${effect[1]} Shiv${pl(effect[1])}\nto Hand`; break
-            //3407
             case 3942: string+=`Gain ${effect[0]} Strength\nGives Double if Last\nCard Remaining in Hand`; break
-
-            //MTG GROUP, LIKELY DONE
-
             case 3943: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nCosts (N) More When\na Card is Played`; break
-            //56
-
-
-
-
-
-
+            case 3944: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nScry ${effect[1]}\nDraw ${effect[2]} Defense${pl(effect[2])}\n${effect[2]!=1?`They Cost`:`It Costs`} 2 Less`; break
+            case 3945: string+=`Scry ${effect[0]}\nApply ${effect[1]} Vulnerable\nPer Card Discarded`; break
 
             //mark p
 

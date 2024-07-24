@@ -4750,6 +4750,70 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(2.25,-2.25,1.5)
             layer.ellipse(2.25,2.25,1.5)
         break
+        case 496:
+            layer.stroke(150,255,100,fade)
+            layer.strokeWeight(1)
+            layer.bezier(-5,0,-3,-3.5,3,-3.5,5,0)
+            layer.bezier(-5,0,-3,3.5,3,3.5,5,0)
+            layer.strokeWeight(3)
+            layer.point(0,0)
+            layer.fill(150,255,100,fade)
+            layer.noStroke()
+            layer.triangle(0,3.5,-1,5,1,5)
+        break
+        case 497:
+            layer.fill(150,200,100,fade)
+            layer.stroke(125,175,75,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(200,255,150)
+            layer.ellipse(0,0,4)
+            layer.quad(0.6,-0.6,-3.6,-3.6,-0.6,0.6,3.6,3.6)
+            layer.fill(150,200,100,fade)
+            layer.noStroke()
+            layer.triangle(0,4,-1,5.5,1,5.5)
+        break
+        case 498:
+            layer.fill(150,200,100,fade)
+            layer.stroke(125,175,75,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(200,255,150)
+            layer.ellipse(0,0,4)
+            layer.quad(0.6,-0.6,-3.6,-3.6,-0.6,0.6,3.6,3.6)
+            layer.fill(150,200,100,fade)
+            layer.noStroke()
+            layer.triangle(0,4,-1,5.5,1,5.5)
+            layer.triangle(0,6,-1,7.5,1,7.5)
+        break
+        case 499:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,6,8,1.5)
+            layer.noFill()
+            layer.stroke(150,200,255,fade)
+            layer.strokeWeight(1)
+            layer.bezier(-5,0,-3,-3.5,3,-3.5,5,0)
+            layer.bezier(-5,0,-3,3.5,3,3.5,5,0)
+            layer.strokeWeight(3)
+            layer.point(0,0)
+        break
+        case 500:
+            layer.fill(200,255,255,fade)
+            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+            layer.noFill()
+            layer.stroke(150,200,255,fade)
+            layer.strokeWeight(1)
+            layer.bezier(-5,0,-3,-3.5,3,-3.5,5,0)
+            layer.bezier(-5,0,-3,3.5,3,3.5,5,0)
+            layer.strokeWeight(3)
+            layer.point(0,0)
+        break
 
     }
     //mark s
