@@ -25,7 +25,7 @@ class battle{
             this.menu.anim.animRate.push(-1)
             this.menu.anim.turnTime.push(-1)
         }
-        for(let a=0,la=30;a<la;a++){
+        for(let a=0,la=variants.names.length;a<la;a++){
             this.menu.anim.variants.push(0)
         }
         for(let a=-2,la=game.playerNumber+6;a<la;a++){
@@ -712,6 +712,9 @@ class battle{
         if(variants.mtg){
             this.cardManagers[this.turn.main].mtgLastColor=6
         }
+        if(variants.hungry){
+            combatant.loseHealth(2)
+        }
         let extra=false
         let noDraw=false
         if(combatant.getStatus('Extra Drawless Turn')>0){
@@ -768,8 +771,8 @@ class battle{
             for(let a=0,la=gen.length;a<la;a++){
                 this.energy.main[player][gen[a]]++
                 this.energy.crystalTotal[player][gen[a]]++
-                cap-=26
-                this.energy.crystal[player].push([gen[a],cap,0,true])
+                cap-=25
+                this.energy.crystal[player].push([gen[a],cap,0,true,false])
             }
         }else{
             this.energy.main[player]=gen
@@ -952,6 +955,15 @@ class battle{
         }
         if(this.modded(101)){
             this.cardManagers[player].hand.randomEffect(0)
+            this.cardManagers[player].draw(1)
+        }
+        if(variants.running){
+            for(let a=0,la=this.cardManagers[player].hand.cards.length;a<la;a++){
+                if(!this.cardManagers[player].hand.cards[a].deSize){
+                    this.cardManagers[player].hand.cards[a].deSize=true
+                    a=la
+                }
+            }
             this.cardManagers[player].draw(1)
         }
         this.stats.played[player][0]++
@@ -1229,8 +1241,8 @@ class battle{
                 for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
                     cap=min(a==0?459:this.energy.crystal[player][a-1][1]-25,cap)
                 }
-                cap-=26
-                this.energy.crystal[player].push([type,cap,0,true])
+                cap-=25
+                this.energy.crystal[player].push([type,cap,0,true,false])
                 this.energy.crystalTotal[player][type]++
             }else{
                 this.energy.main[player]+=amount
@@ -1293,11 +1305,11 @@ class battle{
                 let amountLeft=amount
                 for(let a=0,la=amountLeft;a<la;a++){
                     for(let b=0,lb=this.energy.crystal[player].length;b<lb;b++){
-                        if(this.energy.crystal[player][lb-b-1][3]&&this.energy.crystal[player][lb-b-1][0]!=6&&amountLeft>0){
-                            this.energy.crystal[player][lb-b-1][3]=false
-                            this.energy.crystalTotal[player][this.energy.crystal[player][lb-b-1][0]]--
-                            this.energy.main[player][this.energy.crystal[player][lb-b-1][0]]--
-                            this.energy.lastSpend[player].push(this.energy.crystal[player][lb-b-1][0])
+                        if(this.energy.crystal[player][lb-1-b][3]&&this.energy.crystal[player][lb-1-b][0]!=6&&amountLeft>0){
+                            this.energy.crystal[player][lb-1-b][3]=false
+                            this.energy.crystalTotal[player][this.energy.crystal[player][lb-1-b][0]]--
+                            this.energy.main[player][this.energy.crystal[player][lb-1-b][0]]--
+                            this.energy.lastSpend[player].push(this.energy.crystal[player][lb-1-b][0])
                             b=lb
                             amountLeft--
                         }
@@ -1306,11 +1318,11 @@ class battle{
                 if(amountLeft>0){
                     for(let a=0,la=amountLeft;a<la;a++){
                         for(let b=0,lb=this.energy.crystal[player].length;b<lb;b++){
-                            if(this.energy.crystal[player][lb-b-1][3]&&amountLeft>0){
-                                this.energy.crystal[player][lb-b-1][3]=false
-                                this.energy.crystalTotal[player][this.energy.crystal[player][lb-b-1][0]]--
-                                this.energy.main[player][this.energy.crystal[player][lb-b-1][0]]--
-                                this.energy.lastSpend[player].push(this.energy.crystal[player][lb-b-1][0])
+                            if(this.energy.crystal[player][lb-1-b][3]&&amountLeft>0){
+                                this.energy.crystal[player][lb-1-b][3]=false
+                                this.energy.crystalTotal[player][this.energy.crystal[player][lb-1-b][0]]--
+                                this.energy.main[player][this.energy.crystal[player][lb-1-b][0]]--
+                                this.energy.lastSpend[player].push(this.energy.crystal[player][lb-1-b][0])
                                 b=lb
                                 amountLeft--
                             }
@@ -1348,6 +1360,55 @@ class battle{
                     }
                 }
             }
+        }
+    }
+    mtgCost(cost,player,cards){
+        let costLeft=copyArray(cost)
+        let effectiveEnergy=[0,0,0,0,0,0,0]
+        for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+            if(this.energy.crystal[player][a][4]){
+                effectiveEnergy[this.energy.crystal[player][a][0]]++
+            }
+        }
+        let result=mtgAutoCost(effectiveEnergy,costLeft,2,[cards],true)
+        let energyPay=result[0]
+        costLeft=result[1]
+        for(let a=0,la=energyPay.length;a<la;a++){
+            if(this.energy.main[player][energyPay[a]]>0){
+                this.energy.main[player][energyPay[a]]--
+            }
+        }
+        energyPay=mtgAutoCost(this.energy.main[player],costLeft,1,[cards],true)
+        for(let a=0,la=energyPay.length;a<la;a++){
+            if(this.energy.main[player][energyPay[a]]>0){
+                this.energy.main[player][energyPay[a]]--
+            }
+        }
+    }
+    mtgMark(cost,player,cards){
+        let energyPay=mtgAutoCost(this.energy.main[player],cost,1,[cards],true)
+        let replace=[]
+        for(let a=0,la=energyPay.length;a<la;a++){
+            for(let b=0,lb=this.energy.crystal[player].length;b<lb;b++){
+                if(this.energy.crystal[player][lb-1-b][0]==energyPay[a]&&this.energy.crystal[player][lb-1-b][3]&&!this.energy.crystal[player][lb-1-b][4]){
+                    this.energy.crystal[player][lb-1-b][4]=true
+                    replace.push(lb-1-b)
+                    b=lb
+                }
+            }
+        }
+        replace=sortNumbers(replace)
+        let totalMoved=0
+        for(let a=0,la=replace.length;a<la;a++){
+            let temp=this.energy.crystal[player][replace[a]-totalMoved]
+            this.energy.crystal[player].splice(replace[a]-totalMoved,1)
+            this.energy.crystal[player].push(temp)
+            totalMoved++
+        }
+    }
+    mtgUnmark(player){
+        for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+            this.energy.crystal[player][a][4]=false
         }
     }
     loseEnergyGen(amount,player){
@@ -1444,6 +1505,9 @@ class battle{
     getSingularEnergy(player,type){
         return this.energy.main[player][type]
     }
+    getSplitEnergy(player){
+        return this.energy.main[player]
+    }
     getEnergyBase(player){
         return variants.mtg?this.energy.base[player].length:this.energy.base[player]
     }
@@ -1481,39 +1545,78 @@ class battle{
         for(let a=0,la=this.players;a<la;a++){
             let cap=484
             for(let b=0,lb=this.energy.crystal[a].length;b<lb;b++){
-                let goal=b==0?459:this.energy.crystal[a][b-1][1]-25
-                cap=min(goal,cap)
-                for(let c=0,lc=2;c<lc;c++){
+                if(!this.energy.crystal[a][b][4]){
+                    let goal=459
+                    for(let c=1,lc=b+1;c<lc;c++){
+                        if(this.energy.crystal[a][b-c][1]>this.energy.crystal[a][b][1]-25&&!this.energy.crystal[a][b-c][4]){
+                            goal=this.energy.crystal[a][b-c][1]-25-(this.energy.crystal[a][b][4]&&!this.energy.crystal[a][b-c][4]?50:0)
+                            c=lc
+                        }
+                    }
+                    cap=min(goal,cap)
                     if(this.energy.crystal[a][b][1]<goal-1){
-                        this.energy.crystal[a][b][1]+=2
+                        this.energy.crystal[a][b][1]+=5
                     }else if(this.energy.crystal[a][b][1]>goal+1){
-                        this.energy.crystal[a][b][1]-=2
+                        this.energy.crystal[a][b][1]-=5
+                    }
+                    this.energy.crystal[a][b][2]=smoothAnim(this.energy.crystal[a][b][2],this.energy.crystal[a][b][3],0,1,5)
+                    if(this.energy.crystal[a][b][2]<=0&&!this.energy.crystal[a][b][3]){
+                        this.energy.crystal[a].splice(b,1)
+                        b--
+                        lb--
                     }
                 }
-                this.energy.crystal[a][b][2]=smoothAnim(this.energy.crystal[a][b][2],this.energy.crystal[a][b][3],0,1,5)
-                if(this.energy.crystal[a][b][2]<=0&&!this.energy.crystal[a][b][3]){
-                    this.energy.crystal[a].splice(b,1)
-                    b--
-                    lb--
+            }
+            let midcap=cap
+            for(let b=0,lb=this.energy.crystal[a].length;b<lb;b++){
+                if(this.energy.crystal[a][b][4]){
+                    let goal=midcap-75
+                    for(let c=1,lc=b+1;c<lc;c++){
+                        if(this.energy.crystal[a][b-c][1]>this.energy.crystal[a][b][1]-25&&this.energy.crystal[a][b-c][4]){
+                            goal=this.energy.crystal[a][b-c][1]-25-(this.energy.crystal[a][b][4]&&!this.energy.crystal[a][b-c][4]?50:0)
+                            c=lc
+                        }
+                    }
+                    cap=min(goal,cap)
+                    if(this.energy.crystal[a][b][1]<goal-1){
+                        this.energy.crystal[a][b][1]+=5
+                    }else if(this.energy.crystal[a][b][1]>goal+1){
+                        this.energy.crystal[a][b][1]-=5
+                    }
+                    this.energy.crystal[a][b][2]=smoothAnim(this.energy.crystal[a][b][2],this.energy.crystal[a][b][3],0,1,5)
+                    if(this.energy.crystal[a][b][2]<=0&&!this.energy.crystal[a][b][3]){
+                        this.energy.crystal[a].splice(b,1)
+                        b--
+                        lb--
+                    }
                 }
             }
             for(let b=0,lb=this.energy.crystalTotal[a].length;b<lb;b++){
                 while(this.energy.crystalTotal[a][b]<this.energy.main[a][b]){
-                    cap-=26
-                    this.energy.crystal[a].push([b,cap,0,true])
+                    cap-=25
+                    this.energy.crystal[a].push([b,cap,0,true,false])
                     this.energy.crystalTotal[a][b]++
                 }
                 while(this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
                     let triggered=false
                     for(let c=0,lc=this.energy.crystal[a].length;c<lc;c++){
-                        if(this.energy.crystal[a][c][0]==b&&this.energy.crystal[a][c][3]&&this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
-                            this.energy.crystal[a][c][3]=false
+                        if(this.energy.crystal[a][lc-1-c][0]==b&&this.energy.crystal[a][lc-1-c][3]&&this.energy.crystal[a][lc-1-c][4]&&this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
+                            this.energy.crystal[a][lc-1-c][3]=false
                             this.energy.crystalTotal[a][b]--
                             triggered=true
                         }
                     }
                     if(!triggered){
-                        this.energy.crystalTotal[a][b]--
+                        for(let c=0,lc=this.energy.crystal[a].length;c<lc;c++){
+                            if(this.energy.crystal[a][lc-1-c][0]==b&&this.energy.crystal[a][lc-1-c][3]&&this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
+                                this.energy.crystal[a][lc-1-c][3]=false
+                                this.energy.crystalTotal[a][b]--
+                                triggered=true
+                            }
+                        }
+                        if(!triggered){
+                            this.energy.crystalTotal[a][b]--
+                        }
                     }
                 }
             }
@@ -2710,6 +2813,7 @@ class battle{
                             for(let b=0,lb=this.energy.crystal[a].length;b<lb;b++){
                                 if(dist(inputs.rel.x,inputs.rel.y,-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1])<12){
                                     let temp=this.energy.crystal[a][b]
+                                    this.energy.crystal[a][b][4]=!this.energy.crystal[a][b][4]
                                     this.energy.crystal[a].splice(b,1)
                                     this.energy.crystal[a].push(temp)
                                     b=lb
@@ -3083,6 +3187,7 @@ class battle{
                         for(let a=0,la=this.energy.crystal[this.turn.main].length;a<la;a++){
                             if(key==inputs.above[a]){
                                 let temp=this.energy.crystal[this.turn.main][a]
+                                this.energy.crystal[this.turn.main][a][4]=!this.energy.crystal[this.turn.main][a][4]
                                 this.energy.crystal[this.turn.main].splice(a,1)
                                 this.energy.crystal[this.turn.main].push(temp)
                                 a=la

@@ -5227,31 +5227,25 @@ function setupBackground(type,layer){
 		case 11:
 			menuBackground(layer)
 			layer.fill(120)
-			layer.rect(layer.width/2-600,layer.height*0.4,125,125)
-			layer.rect(layer.width/2-600,layer.height*0.4+100,125,55)
-			layer.rect(layer.width/2-600,layer.height*0.6,275,75)
-			layer.rect(layer.width/2-600,layer.height*0.6+85,275,75)
-			for(let a=0,la=30;a<la;a++){
-				layer.rect(layer.width/2-160+a%3*380,layer.height/2-la*15+45+floor(a/3)*90,350,80)
+			layer.rect(layer.width/2,layer.height*0.7+190,125,125)
+			layer.rect(layer.width/2,layer.height*0.7+290,125,55)
+			for(let a=0,la=variants.names.length;a<la;a++){
+				layer.rect(layer.width/2-570+a%4*380,layer.height/2-360+floor(a/4)*90,350,80)
 			}
 			layer.fill(0)
-			layer.rect(layer.width/2-600,layer.height*0.4,100,100)
-			layer.rect(layer.width/2-600,layer.height*0.4+100,100,30)
-			layer.rect(layer.width/2-600,layer.height*0.6,250,50)
-			layer.rect(layer.width/2-600,layer.height*0.6+85,250,50)
-			for(let a=0,la=30;a<la;a++){
-				layer.rect(layer.width/2-192.5+a%3*380,layer.height/2-la*15+45+floor(a/3)*90,260,55)
-				layer.rect(layer.width/2-25+a%3*380,layer.height/2-la*15+45+floor(a/3)*90,55,55)
+			layer.rect(layer.width/2,layer.height*0.7+190,100,100)
+			layer.rect(layer.width/2,layer.height*0.7+290,100,30)
+			for(let a=0,la=variants.names.length;a<la;a++){
+				layer.rect(layer.width/2-602.5+a%4*380,layer.height/2-360+floor(a/4)*90,260,55)
+				layer.rect(layer.width/2-435+a%4*380,layer.height/2-360+floor(a/4)*90,55,55)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-605,layer.height*0.4,40,40,-30)
+			regTriangle(layer,layer.width/2-5,layer.height*0.7+190,40,40,-30)
 			layer.fill(255)
 			layer.textSize(20)
-			layer.text('BACK',layer.width/2-600,layer.height*0.4+100)
-			layer.text('CUSTOM ULTRAPRISM',layer.width/2-600,layer.height*0.6)
-			layer.text('RANDOM SETTINGS',layer.width/2-600,layer.height*0.6+85)
+			layer.text('BACK',layer.width/2,layer.height*0.7+290)
 			for(let a=0,la=variants.names.length;a<la;a++){
-				layer.text(variants.names[a].toUpperCase(),layer.width/2-192.5+a%3*380,layer.height*0.5-floor(la/3)*45+45+floor(a/3)*90)
+				layer.text(variants.names[a].toUpperCase(),layer.width/2-602.5+a%4*380,layer.height/2-360+floor(a/4)*90)
 			}
 		break
 		case 12:

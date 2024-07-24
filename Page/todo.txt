@@ -1,3 +1,30 @@
+update variants pages
+
+finish the cards in mark p
+
+
+
+
+
+
+
+
+MAJOR MTG CHANGES
+
+every card changed lol
+split cards into character and non-character
+character bosses
+
+
+
+
+some relics will be unavailable
+corn cob item
+energized jade event gotta be changed
+
+
+
+
 LISTING GROUP 45
 
 
@@ -177,6 +204,16 @@ aura of poverty - apply weak and vulnerable in all directions, lose 5 currency
 
 empty mask - reverse of sadism
 
+[discus of [] and []]
+
+[moon rain - animate actual rain particles]
+
+reverse conveyor belt
+
+variant of Toffee
+
+autoshield - gain block, but only if you have no block
+
 
 
 SUKUNA MECHANICS
@@ -267,19 +304,13 @@ new variants:
 
 []
 []
+[]
+[]
 
 
 
 decide on character #18
 conduct a purge and mass renaming
-
-
-
-MAJOR MTG CHANGES
-
-every card changed lol
-split cards into character and non-character
-character bosses
 
 
 

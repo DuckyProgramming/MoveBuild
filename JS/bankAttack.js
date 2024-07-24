@@ -311,6 +311,7 @@ attack.prototype.update=function(){
         case 3491: case 3493: case 3629: case 3630: case 3631: case 3641: case 3642: case 3659: case 3663: case 3681:
         case 3735: case 3743: case 3746: case 3780: case 3788: case 3789: case 3790: case 3795: case 3796: case 3797:
         case 3798: case 3799: case 3800: case 3801: case 3802: case 3803: case 3814: case 3884: case 3930: case 3931:
+        case 3943:
             //mark 3
             if(this.type==3797&&this.timer==1&&this.userManager.hand.numberAbstract(15,[[3]])>1){
                 this.remove=true

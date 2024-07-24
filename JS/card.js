@@ -31,28 +31,12 @@ class card{
                 break
             }
         }
+        if(variants.mtg&&types.card[this.type].mtg==undefined){
+            this.type=0
+        }
         this.level=level
         this.color=constrain(color,0,types.color.card.length-1)
         this.id=id
-        this.cost=cost
-        if(cost==undefined&&this.type<types.card.length&&this.type>=0){
-            if(variants.mtg&&types.card[this.type].mtg!=undefined){
-                if(types.card[this.type].levels[0].spec.includes(53)){
-                    this.cost=copyArray(types.card[this.type].mtg.levels[0].cost)
-                }else{
-                    this.cost=copyArray(types.card[this.type].mtg.levels[this.level].cost)
-                }
-            }else{
-                if(types.card[this.type].levels[0].spec.includes(53)){
-                    this.cost=types.card[this.type].levels[0].cost
-                }else{
-                    this.cost=types.card[this.type].levels[this.level].cost
-                }
-            }
-        }
-        if(this.cost==-2){
-            this.cost=floor(random(0,10))
-        }
 
         this.width=90
         this.height=120
@@ -101,7 +85,7 @@ class card{
                     }
                 }
             }
-            this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'||this.name=='Strike-'||this.name=='Defend-'||this.name=='Step-L'||this.name=='Step-R'||this.name=='Strike_'||this.name=='Defend_'||this.name=='Step_'||this.name=='Deckbuild\nDefend'||this.name=='Deckbuild\nDefend-'||this.name=='$colormtg\nBash'||this.name=='$colormtg\nShield'||this.name=='$colormtg\nBash-'||this.name=='$colormtg\nShield-'
+            this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'||this.name=='Strike-'||this.name=='Defend-'||this.name=='Step-L'||this.name=='Step-R'||this.name=='Strike_'||this.name=='Defend_'||this.name=='Step_'||this.name=='Deckbuild\nDefend'||this.name=='Deckbuild\nDefend-'||this.name=='Bash'||this.name=='Shield'||this.name=='Bash-'||this.name=='Shield-'
             if(variants.mtg&&types.card[this.type].mtg!=undefined){
                 if(types.card[this.type].mtg.levels[0].spec.includes(53)){
                     this.spec=this.spec==undefined?copyArray(types.card[this.type].mtg.levels[0].spec.concat(this.additionalSpec)):copyArray(this.spec)
@@ -119,6 +103,29 @@ class card{
                     this.target=target
                     this.target=this.target==undefined?copyArray(types.card[this.type].mtg.levels[this.level].target):copyArray(this.target)
                     this.class=cardClass||types.card[this.type].mtg.levels[this.level].class
+                }
+                this.specialCost=this.spec.includes(5)||this.spec.includes(11)||this.spec.includes(35)||this.spec.includes(40)||this.spec.includes(41)||this.spec.includes(55)||this.spec.includes(58)||this.spec.includes(59)
+                this.cost=cost
+                if(cost==undefined&&this.type<types.card.length&&this.type>=0){
+                    if(this.specialCost){
+                        if(types.card[this.type].levels[0].spec.includes(53)){
+                            this.cost=types.card[this.type].levels[0].cost
+                        }else{
+                            this.cost=types.card[this.type].levels[this.level].cost
+                        }
+                    }else{
+                        if(types.card[this.type].levels[0].spec.includes(53)){
+                            this.cost=sortNumbers(copyArray(types.card[this.type].mtg.levels[0].cost))
+                        }else{
+                            this.cost=sortNumbers(copyArray(types.card[this.type].mtg.levels[this.level].cost))
+                        }
+                    }
+                }else if(variants.mtg&&!this.specialCost){
+                    if(typeof this.cost=='number'){
+                        this.cost=[this.cost]
+                    }else{
+                        this.cost=sortNumbers(copyArray(this.cost))
+                    }
                 }
                 this.mtgCardColor=copyArray(types.card[this.type].mtg.color)
                 if(this.mtgCardColor[0]==-2){
@@ -145,7 +152,7 @@ class card{
                             resolve=above[min(above.length-1,1)]
                         break
                         default:
-                            this.mtgCardColor=above.length==3?[above[2]]:above.length==2?[above[0],above[1]]:[above[0]]
+                            this.mtgCardColor=above.length==3?[above[2]]:above.length==2?sortNumbers([above[0],above[1]]):[above[0]]
                             resolve=above.length==3?above[2]:above.length==2?mtgCombineColor(above[0],above[1]):above[0]
                         break
                     }
@@ -176,6 +183,15 @@ class card{
                     this.target=this.target==undefined?copyArray(types.card[this.type].levels[this.level].target):copyArray(this.target)
                     this.class=cardClass||types.card[this.type].levels[this.level].class
                 }
+                this.specialCost=this.spec.includes(5)||this.spec.includes(11)||this.spec.includes(35)||this.spec.includes(40)||this.spec.includes(41)||this.spec.includes(55)||this.spec.includes(58)||this.spec.includes(59)
+                this.cost=cost
+                if(cost==undefined&&this.type<types.card.length&&this.type>=0){
+                    if(types.card[this.type].levels[0].spec.includes(53)){
+                        this.cost=types.card[this.type].levels[0].cost
+                    }else{
+                        this.cost=types.card[this.type].levels[this.level].cost
+                    }
+                }
             }
             this.levels=types.card[this.type].levels.length
             this.limit=limit
@@ -191,7 +207,11 @@ class card{
             }
             this.base={cost:baseCost}
             if(this.base.cost==undefined){
-                this.base.cost=types.card[this.type].levels[constrain(this.level,0,types.card[this.type].levels.length-1)].cost
+                if(variants.mtg&&!this.specialCost&&types.card[this.type].mtg!=undefined){
+                    this.base.cost=sortNumbers(copyArray(types.card[this.type].mtg.levels[constrain(this.level,0,types.card[this.type].mtg.levels.length-1)].cost))
+                }else{
+                    this.base.cost=types.card[this.type].levels[constrain(this.level,0,types.card[this.type].levels.length-1)].cost
+                }
             }
             this.edited={cost:editedCost,costComplete:editedCostComplete}
             if(this.edited.cost==undefined){
@@ -200,7 +220,7 @@ class card{
             if(this.edited.costComplete==undefined){
                 this.edited.costComplete=false
             }
-            if(this.edited.cost!=0&&!this.edited.costComplete){
+            if(!(variants.mtg&&!this.specialCost)&&this.edited.cost!=0&&!this.edited.costComplete){
                 this.cost=max(min(0,this.cost),this.cost+this.edited.cost)
                 this.base.cost=max(min(0,this.base.cost),this.base.cost+this.edited.cost)
                 this.edited.costComplete=true
@@ -261,9 +281,6 @@ class card{
                 for(let a=0,la=this.mtgCardColor.length;a<la;a++){
                     this.colorDetail.push(types.color.mtg[this.mtgCardColor[a]])
                 }
-            }
-            if(this.basic&&this.mtgCardColor.length==2){
-                this.colorDetail=types.color.mtg[0]
             }
         }else{
             this.colorDetail=types.color.card[this.color]
@@ -4396,6 +4413,11 @@ class card{
             //3407
             case 3942: string+=`Gain ${effect[0]} Strength\nGives Double if Last\nCard Remaining in Hand`; break
 
+            //MTG GROUP, LIKELY DONE
+
+            case 3943: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nCosts (N) More When\na Card is Played`; break
+            //56
+
 
 
 
@@ -4954,6 +4976,7 @@ class card{
             case 1881:
                 userCombatant.statusEffect('Regeneration',this.effect[0])
             break
+            //update addinitial to invalidate these
         }
     }
     callEndEffect(encounterCLass){
@@ -5494,6 +5517,9 @@ class card{
                     if(card.basic){
                         this.target[2]=min(this.target[2]+this.effect[1],6)
                     }
+                break
+                case 3943:
+                    this.cost=sortNumbers(this.cost.concat(-1))
                 break
                 
             }
@@ -7121,7 +7147,22 @@ class card{
                     }
                     this.layer.translate(this.width/2-10,this.height/2-12-(this.colorful?3:0))
                 }else if(!spec.includes(5)&&!spec.includes(41)){
-                    if(this.colorful){
+                    if(variants.mtg){
+                        let totalNeutral=0
+                        let total=0
+                        for(let a=0,la=this.cost.length;a<la;a++){
+                            if(this.cost[a]==-1){
+                                totalNeutral++
+                            }else{
+                                displayMtgManaSymbol(this.layer,this.width/2-6-total*15,-this.height/2+6,this.cost[a],0,0.7,this.fade,0,[this.anim.afford])
+                                total++
+                            }
+                        }
+                        if(totalNeutral>0||total==0){
+                            displayMtgManaSymbol(this.layer,this.width/2-6-total*15,-this.height/2+6,-2,0,0.7,this.fade,0,[this.anim.afford,totalNeutral])
+                            total++
+                        }
+                    }else if(this.colorful){
                         this.layer.translate(-this.width/2+10,-this.height/2+15)
                         this.gradient=[new p5.ConicGradient(0,0,0)]
                         this.layer.colorMode(HSB,360,1,1,1)
@@ -7139,8 +7180,6 @@ class card{
                         this.layer.translate(this.width/2-10,this.height/2-15)
                         this.layer.colorMode(RGB,255,255,255,1)
                         this.layer.text('',0,0)
-                    }else if(variants.mtg){
-                        displayMtgManaSymbol(this.layer,-this.width/2+10,-this.height/2+13,this.mtgManaColor,0,1,this.fade,0)
                     }else{
                         this.layer.fill(225,255,255,this.fade)
                         this.layer.stroke(200,255,255,this.fade)
@@ -7172,7 +7211,7 @@ class card{
                     }
                 }
                 this.layer.noStroke()
-                if(!spec.includes(5)&&!spec.includes(41)){
+                if(!spec.includes(5)&&!spec.includes(41)&&!variants.mtg){
                     if(this.colorful){
                         let merge=mergeColor([255,0,0],[240,240,240],this.anim.afford)
                         this.layer.fill(...merge,this.fade)
@@ -7226,7 +7265,7 @@ class card{
                     this.layer.fill(0,this.fade)
                 }
                 if(name.substr(0,2)!='-h'){
-                    let effectiveName=name.replace('$colorcharacter',types.combatant[this.color].name).replace('$colormtg',variants.mtg?(this.mtgCardColor.length==2?`${['Neutral','White','Blue','Black','Green','Red','Rainbow'][this.mtgCardColor[0]]}-${['Neutral','White','Blue','Black','Green','Red','Rainbow'][this.mtgCardColor[1]]}`:['Neutral','White','Blue','Black','Green','Red','Rainbow'][this.mtgCardColor[0]]):'Standard')
+                    let effectiveName=name.replace('$colorcharacter',types.combatant[this.color].name)
                     if(spec.includes(34)){
                         this.layer.rotate(90)
                         this.layer.textSize(12)
@@ -7239,9 +7278,9 @@ class card{
                     }else{
                         this.layer.textSize(variants.blind?12:10-((name.length>=24&&name.includes('Discus')||name.length>=23&&this.class==9)&&!name.includes('$colorcharacter')||name=='Cauchy-Riemann\nEquations'||name=='Temptation of\nthe Next World'?3:0))
                         if(spec.includes(37)){
-                            this.layer.text(effectiveName+":",0,variants.blind?0:-this.height/2+15)
+                            this.layer.text(effectiveName+":",0,variants.blind?0:-this.height/2+15+(variants.mtg?10:0))
                         }else{
-                            this.layer.text(effectiveName+(this.level>=3?`+[${this.level}]`:multiplyString('+',this.level)),0,variants.blind?0:-this.height/2+15)
+                            this.layer.text(effectiveName+(this.level>=3?`+[${this.level}]`:multiplyString('+',this.level)),0,variants.blind?0:-this.height/2+15+(variants.mtg?10:0))
                         }
                         if(!variants.blind){
                             if(this.edition==5){
@@ -7265,7 +7304,7 @@ class card{
                                 this.layer.text(this.description(attack[0],effect[0],reality[0],target),0,-15)
                                 this.layer.text(this.description(attack[1],effect[1],reality[1],target),0,this.height/2-25)
                             }else{
-                                this.layer.text(this.desc,0,10)
+                                this.layer.text(this.desc,0,variants.mtg?16:10)
                             }
                             this.layer.textSize(6)
                             if(options.id){
@@ -7313,42 +7352,43 @@ class card{
                                     }
                                 }
                             }else{
+                                let classPos=variants.mtg?[-this.width/2+18,-this.height/2+6]:[0,this.height/2-6]
                                 switch(classT){
                                     case 1:
-                                        this.layer.text('Attack',0,this.height/2-6)
+                                        this.layer.text('Attack',...classPos)
                                     break
                                     case 2:
-                                        this.layer.text('Defense',0,this.height/2-6)
+                                        this.layer.text('Defense',...classPos)
                                     break
                                     case 3:
-                                        this.layer.text('Movement',0,this.height/2-6)
+                                        this.layer.text('Movement',...classPos)
                                     break
                                     case 4:
-                                        this.layer.text('Power',0,this.height/2-6)
+                                        this.layer.text('Power',...classPos)
                                     break
                                     case 5:
-                                        this.layer.text('Status',0,this.height/2-6)
+                                        this.layer.text('Status',...classPos)
                                     break
                                     case 6:
-                                        this.layer.text('Curse',0,this.height/2-6)
+                                        this.layer.text('Curse',...classPos)
                                     break
                                     case 7:
-                                        this.layer.text('Blueprint',0,this.height/2-6)
+                                        this.layer.text('Blueprint',...classPos)
                                     break
                                     case 8:
-                                        this.layer.text('Condition',0,this.height/2-6)
+                                        this.layer.text('Condition',...classPos)
                                     break
                                     case 9:
-                                        this.layer.text('Ally',0,this.height/2-6)
+                                        this.layer.text('Ally',...classPos)
                                     break
                                     case 10:
-                                        this.layer.text('Classless',0,this.height/2-6)
+                                        this.layer.text('Classless',...classPos)
                                     break
                                     case 11:
-                                        this.layer.text('Skill',0,this.height/2-6)
+                                        this.layer.text('Skill',...classPos)
                                     break
                                     case 12:
-                                        this.layer.text('Wish',0,this.height/2-6)
+                                        this.layer.text('Wish',...classPos)
                                     break
                                 }
                             }
@@ -7508,25 +7548,32 @@ class card{
         if(this.player>=0&&this.player<this.battle.players){
             let cost=this.falsed.trigger?this.falsed.cost:this.cost
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-            let effectiveEnergy=(variants.mtg?this.battle.getSpecificEnergy(this.player,this.mtgManaColor):this.battle.getEnergy(this.player))*(this.spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0?2:1)
-            
-            if(cost>=0&&userCombatant.getStatus('Temporary All Cost Up')>0){
-                cost+=userCombatant.getStatus('Temporary All Cost Up')
+            if(!variants.mtg){
+                if(cost>=0&&userCombatant.getStatus('Temporary All Cost Up')>0){
+                    cost+=userCombatant.getStatus('Temporary All Cost Up')
+                }
+                if(cost>0&&userCombatant.getStatus('Skill Cost Down')>0&&(this.class==11||this.spec.includes(12)&&this.class[0]==11&&this.class[1]==11)){
+                    cost=max(cost-userCombatant.getStatus('Skill Cost Down'),0)
+                }
+                if(cost>0&&userCombatant.getStatus('Combo Cost Down')>0&&(this.spec.includes(11)||this.spec.includes(12)&&this.spec[0].includes(11)&&this.spec[1].includes(11))){
+                    cost=max(cost-userCombatant.getStatus('Combo Cost Down'),0)
+                }
+                if(cost>0&&userCombatant.getStatus('All Cost Down')>0){
+                    cost=max(cost-userCombatant.getStatus('All Cost Down'),0)
+                }
+                if(cost>0&&userCombatant.getStatus('Defense Cost Down')>0&&(this.class==2||this.spec.includes(12)&&this.class[0]==2&&this.class[1]==2)){
+                    cost=max(cost-userCombatant.getStatus('Defense Cost Down'),0)
+                }
+                if(cost>=0&&userCombatant.getStatus('Colorless Cost Up')>0&&this.colorless()){
+                    cost+=userCombatant.getStatus('Colorless Cost Up')
+                }
             }
-            if(cost>0&&userCombatant.getStatus('Skill Cost Down')>0&&(this.class==11||this.spec.includes(12)&&this.class[0]==11&&this.class[1]==11)){
-                cost=max(cost-userCombatant.getStatus('Skill Cost Down'),0)
-            }
-            if(cost>0&&userCombatant.getStatus('Combo Cost Down')>0&&(this.spec.includes(11)||this.spec.includes(12)&&this.spec[0].includes(11)&&this.spec[1].includes(11))){
-                cost=max(cost-userCombatant.getStatus('Combo Cost Down'),0)
-            }
-            if(cost>0&&userCombatant.getStatus('All Cost Down')>0){
-                cost=max(cost-userCombatant.getStatus('All Cost Down'),0)
-            }
-            if(cost>0&&userCombatant.getStatus('Defense Cost Down')>0&&(this.class==2||this.spec.includes(12)&&this.class[0]==2&&this.class[1]==2)){
-                cost=max(cost-userCombatant.getStatus('Defense Cost Down'),0)
-            }
-            if(cost>=0&&userCombatant.getStatus('Colorless Cost Up')>0&&this.colorless()){
-                cost+=userCombatant.getStatus('Colorless Cost Up')
+            let energyPay=false
+            if(!(variants.mtg&&!this.specialCost)){
+                let effectiveEnergy=this.battle.getEnergy(this.player)*(this.spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0?2:1)
+                energyPay=effectiveEnergy>=cost
+            }else{
+                energyPay=mtgAutoCost(this.battle.getSplitEnergy(this.player),cost,0,[],false)!=-1
             }
 
             this.energyAfford=(
@@ -7539,7 +7586,7 @@ class card{
                 userCombatant.getStatus('Temporary Free Non-Rare Colorless')>0&&this.colorless()&&this.rarity!=2||
                 userCombatant.getStatus('Free Defenses')>0&&(this.class==2||this.spec.includes(12)&&this.class[0]==2&&this.class[1]==2)||
                 userCombatant.getStatus('Free Cables')>0&&this.name.includes('Cable')&&this.class==1||
-                effectiveEnergy>=cost&&!this.spec.includes(11)&&!this.spec.includes(21)&&!this.spec.includes(40)&&!this.spec.includes(59)||
+                energyPay&&!this.spec.includes(11)&&!this.spec.includes(21)&&!this.spec.includes(40)&&!this.spec.includes(59)||
                 this.battle.combatantManager.combatants[this.player].combo>=cost&&this.spec.includes(11)||
                 this.battle.combatantManager.combatants[this.player].metal>=cost&&this.spec.includes(21)||
                 this.battle.combatantManager.combatants[this.player].getStatus('Twos')>=cost&&this.spec.includes(40)||

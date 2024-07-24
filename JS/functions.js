@@ -1529,22 +1529,48 @@ function directionCombatant(combatant1,combatant2){
 	return atan2(combatant1.relativePosition.x-combatant2.relativePosition.x,combatant1.relativePosition.y-combatant2.relativePosition.y)
 }
 function sortNumbers(numbers){
-	if(numbers.length==0){
+	let numbersLeft=copyArray(numbers)
+	if(numbersLeft.length==0){
 		return []
 	}
 	let result=[]
-	for(let a=0,la=numbers.length;a<la;a++){
-		if(numbers.length==0){
+	for(let a=0,la=numbersLeft.length;a<la;a++){
+		if(numbersLeft.length==0){
 			break
 		}
-		let minimum=numbers[0]
-		for(let b=0,lb=numbers.length;b<lb;b++){
-			minimum=min(minimum,numbers[b])
+		let minimum=numbersLeft[0]
+		for(let b=0,lb=numbersLeft.length;b<lb;b++){
+			minimum=min(minimum,numbersLeft[b])
 		}
-		for(let b=0,lb=numbers.length;b<lb;b++){
-			if(numbers[b]==minimum){
-				result.push(numbers[b])
-				numbers.splice(b,1)
+		for(let b=0,lb=numbersLeft.length;b<lb;b++){
+			if(numbersLeft[b]==minimum){
+				result.push(numbersLeft[b])
+				numbersLeft.splice(b,1)
+				b--
+				lb--
+			}
+		}
+	}
+	return result
+}
+function sortNumbersUnique(numbers){
+	let numbersLeft=copyArray(numbers)
+	if(numbersLeft.length==0){
+		return []
+	}
+	let result=[]
+	for(let a=0,la=numbersLeft.length;a<la;a++){
+		if(numbersLeft.length==0){
+			break
+		}
+		let minimum=numbersLeft[0]
+		for(let b=0,lb=numbersLeft.length;b<lb;b++){
+			minimum=min(minimum,numbersLeft[b])
+		}
+		result.push(minimum)
+		for(let b=0,lb=numbersLeft.length;b<lb;b++){
+			if(numbersLeft[b]==minimum){
+				numbersLeft.splice(b,1)
 				b--
 				lb--
 			}
@@ -2141,6 +2167,221 @@ function mtgCombineColor(base1,base2){
 					return 6
 			}
 		default: return 6
+	}
+}
+function mtgSplitColor(base){
+	switch(base){
+        case 7:
+            return [1,2]
+        case 8:
+            return [1,3]
+        case 9:
+            return [1,4]
+        case 10:
+            return [1,5]
+        case 11:
+            return [2,3]
+        case 12:
+            return [2,4]
+        case 13:
+            return [2,5]
+        case 14:
+            return [3,4]
+        case 15:
+            return [3,5]
+        case 16:
+            return [4,5]
+		default:
+			return [base]
+	}
+}
+function mtgAutoCost(mana,cost,variant,args,bypass){
+	let spend=[]
+	let manaLeft=copyArray(mana)
+	let costLeft=[]
+	try{
+		costLeft=copyArray(cost)
+	}catch(error){
+		print(`Cannot Parse Card Costing ${cost}`)
+		noLoop()
+	}
+	for(let a=0,la=costLeft.length;a<la;a++){
+		if(costLeft[a]==6){
+			if(manaLeft[6]>0){
+				manaLeft[6]--
+				costLeft.splice(a,1)
+				a--
+				la--
+				spend.push(6)
+			}else if(!bypass){
+				return -1
+			}
+		}
+	}
+	for(let a=0,la=costLeft.length;a<la;a++){
+		if(costLeft[a]>=0&&costLeft[a]<=5){
+			if(manaLeft[costLeft[a]]>0){
+				manaLeft[costLeft[a]]--
+				spend.push(costLeft[a])
+				costLeft.splice(a,1)
+				a--
+				la--
+			}else if(manaLeft[6]>0){
+				manaLeft[6]--
+				costLeft.splice(a,1)
+				a--
+				la--
+				spend.push(6)
+			}else if(!bypass){
+				return -1
+			}
+		}
+	}
+	let effectiveManaLeft=copyArray(manaLeft)
+	let totals=sortNumbersUnique(manaLeft)
+	let priority=[]
+	for(let a=0,la=totals.length;a<la;a++){
+		for(let b=0,lb=totals.length;b<lb;b++){
+			if(manaLeft[b]==totals[a]){
+				priority.push(b)
+			}
+		}
+	}
+	switch(variant){
+		case 1:
+			for(let a=0,la=args[0].length;a<la;a++){
+				for(let b=0,lb=args[0][a].cost.length;b<lb;b++){
+					if(args[0][a].cost[b]>=0&&args[0][a].cost[b]<=6){
+						effectiveManaLeft[args[0][a].cost[b]]--
+					}
+				}
+			}
+			for(let a=0,la=args[0].length;a<la;a++){
+				for(let b=0,lb=args[0][a].cost.length;b<lb;b++){
+					if(args[0][a].cost[b]>=7&&args[0][a].cost[b]<=16){
+						let split=mtgSplitColor(args[0][a].cost[b])
+						if(effectiveManaLeft[split[0]]>effectiveManaLeft[split[1]]){
+							effectiveManaLeft[split[0]]--
+						}else if(effectiveManaLeft[split[0]]<effectiveManaLeft[split[1]]){
+							effectiveManaLeft[split[1]]--
+						}else if(manaLeft[split[0]]>manaLeft[split[1]]&&manaLeft[split[0]]>0){
+							effectiveManaLeft[split[0]]--
+						}else if(manaLeft[split[0]]<manaLeft[split[1]]&&manaLeft[split[1]]>0){
+							effectiveManaLeft[split[1]]--
+						}else{
+							effectiveManaLeft[split[0]]-=0.5
+							effectiveManaLeft[split[1]]-=0.5
+						}
+					}
+				}
+			}
+		break
+	}
+	let hybridTotal=[]
+	for(let a=0,la=costLeft.length;a<la;a++){
+		if(costLeft[a]>=7&&costLeft[a]<=16){
+			hybridTotal.push(costLeft[a])
+			costLeft.splice(a,1)
+			a--
+			la--
+		}
+	}
+	if(hybridTotal.length>0){
+		let hybridSpend=hybridRecurse(effectiveManaLeft,hybridTotal,[],bypass,priority)
+		if(hybridSpend==-1){
+			let hybridSpend=hybridRecurse(manaLeft,hybridTotal,[],bypass,priority)
+			if(hybridSpend==-1&&!bypass){
+				return -1
+			}
+		}
+		for(let a=0,la=hybridSpend.length;a<la;a++){
+			effectiveManaLeft[hybridSpend[a]]--
+			manaLeft[hybridSpend[a]]--
+			spend.push(hybridSpend[a])
+		}
+	}
+	totals=sortNumbersUnique(manaLeft)
+	priority=[]
+	for(let a=0,la=totals.length;a<la;a++){
+		for(let b=0,lb=manaLeft.length;b<lb;b++){
+			if(manaLeft[b]==totals[a]){
+				priority.push(b)
+			}
+		}
+	}
+	for(let a=0,la=costLeft.length;a<la;a++){
+		if(costLeft[a]==-1){
+			let effectiveTotals=sortNumbers(manaLeft)
+			for(let b=0,lb=effectiveTotals.length;b<lb;b++){
+				for(let c=0,lc=priority.length;c<lc;c++){
+					if(priority[lc-1-c]!=6&&manaLeft[priority[lc-1-c]]==effectiveTotals[lb-1-b]&&manaLeft[priority[lc-1-c]]>0){
+						manaLeft[priority[lc-1-c]]--
+						costLeft.splice(a,1)
+						a--
+						la--
+						spend.push(priority[lc-1-c])
+						b=lb
+						c=lc
+					}
+				}
+			}
+		}
+	}
+	for(let a=0,la=costLeft.length;a<la;a++){
+		if(costLeft[a]==-1){
+			if(manaLeft[6]>0){
+				manaLeft[6]--
+				costLeft.splice(a,1)
+				a--
+				la--
+				spend.push(6)
+			}else if(!bypass){
+				return -1
+			}
+		}
+	}
+	if(costLeft.length>0&&!bypass){
+		print(costLeft,'Failed MTG Spending Calculation')
+		return -1
+	}
+	switch(variant){
+		case 0: case 1:
+			return spend
+		case 2:
+			return [spend,costLeft]
+	}
+}
+function hybridRecurse(mana,cost,spent,bypass,priority){
+	if(cost.length==0){
+		return spent
+	}else{
+		let possible=mtgSplitColor(cost[0])
+		let higher=mana[possible[0]]==mana[possible[1]]?(priority.indexOf(possible[0])>priority.indexOf(possible[1])?0:1):(mana[possible[0]]>mana[possible[1]]?0:1)
+		if(mana[possible[higher]]>0){
+			let resultMana=copyArray(mana)
+			resultMana[possible[higher]]--
+			let attempt=hybridRecurse(resultMana,cost.slice(1,cost.length),spent.concat(possible[higher]),priority)
+			if(attempt!=-1){
+				return attempt
+			}
+		}
+		if(mana[possible[1-higher]]>0){
+			let resultMana=copyArray(mana)
+			resultMana[possible[1-higher]]--
+			let attempt=hybridRecurse(resultMana,cost.slice(1,cost.length),spent.concat(possible[1-higher]),priority)
+			if(attempt!=-1){
+				return attempt
+			}
+		}
+		if(mana[6]>0){
+			let resultMana=copyArray(mana)
+			resultMana[6]--
+			let attempt=hybridRecurse(resultMana,cost.slice(1,cost.length),spent.concat(6),priority)
+			if(attempt!=-1){
+				return attempt
+			}
+		}
+		return bypass?spent:-1
 	}
 }
 function total7(list){

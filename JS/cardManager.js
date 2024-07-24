@@ -115,15 +115,6 @@ class cardManager{
                 }
             }
         }
-        if(variants.mtg){
-            let list=['Artifice','Soft\nRadiance','Sure\nGamble','Lily of\nthe Valley','Clean\nEnergy','Recycling','Summer\nStar','Silver\nWatch','Red\nPennant','Black\nLotus','Wavelength','Vivid\nDownpour']
-            for(let a=0,la=list.length;a<la;a++){
-                if(findName(list[a],types.card)>=0){
-                    this.listing.card[0][types.card[findName(list[a],types.card)].rarity].push(findName(list[a],types.card))
-                    this.listing.card[0][3].push(findName(list[a],types.card))
-                }
-            }
-        }
         let list=[]
         for(let a=0,la=game.playerNumber+1;a<la;a++){
             list=[]
@@ -158,7 +149,7 @@ class cardManager{
         for(let a=0,la=this.battle.energy.base[this.player].length;a<la;a++){
             effectiveMana[this.battle.energy.base[this.player][a]]++
         }
-        for(let a=0,la=types.card.length;a<la;a++){
+        /*for(let a=0,la=types.card.length;a<la;a++){
             let cardColor=mtgPlayerColor(types.card[a].list)
             let manaColor=cardColor[a%cardColor.length]
             if(types.card[a].rarity>=0&&(types.card[a].list>0||effectiveMana[0]>0&&types.card[a].list==0)&&types.card[a].list<=game.playerNumber&&
@@ -174,7 +165,17 @@ class cardManager{
                 this.listing.mtg[1][types.card[a].rarity].push(a)
                 this.listing.mtg[1][3].push(a)
             }
-        }
+        }*/
+        /*
+        if(variants.mtg){
+            let list=['Artifice','Soft\nRadiance','Sure\nGamble','Lily of\nthe Valley','Clean\nEnergy','Recycling','Summer\nStar','Silver\nWatch','Red\nPennant','Black\nLotus','Wavelength','Vivid\nDownpour']
+            for(let a=0,la=list.length;a<la;a++){
+                if(findName(list[a],types.card)>=0){
+                    this.listing.card[0][types.card[findName(list[a],types.card)].rarity].push(findName(list[a],types.card))
+                    this.listing.card[0][3].push(findName(list[a],types.card))
+                }
+            }
+        }*/
     }
     initialDeck(){
         this.deck.initialCards(this.battle.deck[this.player],this.battle.player[this.player])

@@ -4797,6 +4797,9 @@ class combatant{
                 this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)
             }
         }
+        if(this.id<this.battle.players&&this.id==this.battle.turn.main&&variants.hungry){
+            this.heal(5)
+        }
     }
     playCard(){
         if(this.spec.includes(8)){

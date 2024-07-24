@@ -4811,7 +4811,7 @@ function displayMtgManaIcon(layer,x,y,type,direction,size,fade){
     layer.strokeCap(ROUND)
     layer.pop()
 }
-function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=0,args=[]){
+function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args=[]){
     layer.push()
     layer.translate(x,y)
     layer.rotate(direction)
@@ -4819,6 +4819,7 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=0,args=
     layer.strokeCap(SQUARE)
     let fill=[0,0,0]
     let stroke=[0,0,0]
+    let map=[]
     switch(type){
         case 0: case -2:
             fill=[180,180,180]
@@ -4886,46 +4887,17 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=0,args=
             }
             layer.colorMode(RGB,255,255,255,1)
         break
-        case 7:
-            fill=[[240,240,120],[60,150,240]]
-            stroke=[[200,200,100],[50,125,200]]
+        case 7: case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15: case 16:
+            map=mtgSplitColor(type)
         break
-        case 8:
-            fill=[[240,240,120],[120,30,120]]
-            stroke=[[200,200,100],[100,25,100]]
-        break
-        case 9:
-            fill=[[240,240,120],[60,240,60]]
-            stroke=[[200,200,100],[50,200,50]]
-        break
-        case 10:
-            fill=[[240,240,120],[240,60,60]]
-            stroke=[[200,200,100],[200,50,50]]
-        break
-        case 11:
-            fill=[[60,150,240],[120,30,120]]
-            stroke=[[50,125,200],[100,25,100]]
-        break
-        case 12:
-            fill=[[60,150,240],[60,240,60]]
-            stroke=[[50,125,200],[50,200,50]]
-        break
-        case 13:
-            fill=[[60,150,240],[240,60,60]]
-            stroke=[[50,125,200],[200,50,50]]
-        break
-        case 14:
-            fill=[[120,30,120],[60,240,60]]
-            stroke=[[100,25,100],[50,200,50]]
-        break
-        case 15:
-            fill=[[120,30,120],[240,60,60]]
-            stroke=[[100,25,100],[200,50,50]]
-        break
-        case 16:
-            fill=[[60,240,60],[240,60,60]]
-            stroke=[[50,200,50],[200,50,50]]
-        break
+    }
+    if(map.length>0){
+        fill=[]
+        stroke=[]
+        for(let a=0,la=map.length;a<la;a++){
+            fill.push([[180,180,180],[240,240,120],[60,150,240],[120,30,120],[60,240,60],[240,60,60]][map[a]])
+            stroke.push([[140,140,140],[200,200,100],[50,125,200],[100,25,100],[50,200,50],[200,50,50]][map[a]])
+        }
     }
     layer.strokeWeight(1.5)
     switch(type){
@@ -4933,68 +4905,87 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=0,args=
             layer.fill(...fill,this.fade)
             layer.stroke(...stroke,this.fade)
             switch(variant){
-                case 0:
-                    layer.ellipse(0,0,20)
-                break
                 case 1:
                     layer.rect(-4.5,-4.5,9)
                     layer.arc(0,0,18,18,-90,180)
                     layer.noStroke()
                     layer.ellipse(0,0,16)
                 break
+                default:
+                    layer.ellipse(0,0,20)
+                break
             }
             layer.fill(0,this.fade)
             layer.noStroke()
-            layer.textSize(10)
-            layer.text(args[0],0,0)
+            layer.textSize(15)
+            layer.text(args[1],0,1)
         break
         case -1: case 0: case 1: case 2: case 3: case 4: case 5:
             layer.fill(...fill,this.fade)
             layer.stroke(...stroke,this.fade)
             switch(variant){
-                case 0:
-                    layer.ellipse(0,0,20)
-                break
                 case 1:
                     layer.rect(-4.5,-4.5,9)
                     layer.arc(0,0,18,18,-90,180)
                     layer.noStroke()
                     layer.ellipse(0,0,16)
                 break
+                default:
+                    layer.ellipse(0,0,20)
+                break
             }
-            displayMtgManaIcon(layer,x,y,type,direction,size,fade)
+            displayMtgManaIcon(layer,0,0,type,0,1,fade)
         break
         case 6:
-            displayMtgManaIcon(layer,x,y,type,direction,size,fade)
+            displayMtgManaIcon(layer,0,0,type,0,1,fade)
         break
         case 7: case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15: case 16:
             layer.fill(...fill[0],this.fade)
             layer.stroke(...stroke[0],this.fade)
             switch(variant){
-                case 0:
-                    layer.arc(0,0,20,20,-45,135)
-                break
                 case 1:
-                    layer.rect(-4.5,-4.5,9)
-                    layer.arc(0,0,18,18,-90,180)
+                    layer.arc(0,0,18,18,-225,-45)
                     layer.noStroke()
-                    layer.ellipse(0,0,16)
+                    layer.arc(0,0,16,16,-225,-45)
+                break
+                default:
+                    layer.arc(0,0,20,20,-225,-45)
                 break
             }
             layer.fill(...fill[1],this.fade)
             layer.stroke(...stroke[1],this.fade)
             switch(variant){
-                case 0:
-                    layer.arc(0,0,20,20,-225,-45)
-                break
                 case 1:
                     layer.rect(-4.5,-4.5,9)
-                    layer.arc(0,0,18,18,-90,180)
+                    layer.arc(0,0,18,18,-90,45)
+                    layer.arc(0,0,18,18,135,180)
                     layer.noStroke()
-                    layer.ellipse(0,0,16)
+                    layer.arc(0,0,16,16,-45,135)
+                break
+                default:
+                    layer.arc(0,0,20,20,-45,135)
                 break
             }
+            displayMtgManaIcon(layer,-3.2,-3.2,map[0],0,0.5,1)
+            displayMtgManaIcon(layer,3.2,3.2,map[1],0,0.5,1)
         break
+    }
+    if(variant==0){
+        if(args[0]<1){
+            layer.stroke(255,0,0,1-args[0])
+            layer.strokeWeight(1)
+            layer.noFill()
+            switch(variant){
+                case 1:
+                    layer.line(0,-9,-9,-9)
+                    layer.line(-9,0,-9,-9)
+                    layer.arc(0,0,18,18,-90,180)
+                break
+                default:
+                    layer.ellipse(0,0,20)
+                break
+            }
+        }
     }
     layer.strokeCap(ROUND)
     layer.pop()

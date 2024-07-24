@@ -22,6 +22,7 @@ class group{
         this.exhausts=0
         this.rewinds=0
         this.turnRewinds=0
+        this.lastMouseOver=-1
         this.lastSort=-1
         this.basicChange=[0,0]
         this.addEffect=[]
@@ -65,7 +66,7 @@ class group{
         switch(type){
             case -1:
                 for(let a=0,la=6;a<la;a++){
-                    this.addInitialBypass(findName('-h Riff-Raff',types.card)+1+a,level,types.card[findName('-h Riff-Raff',types.card)+1+a].list>=0?types.card[findName('-h Riff-Raff',types.card)+1+a].list:0)
+                    this.addInitialBypass(findName('-h Marker',types.card)+1+a,level,types.card[findName('-h Riff-Raff',types.card)+1+a].list>=0?types.card[findName('-h Riff-Raff',types.card)+1+a].list:0)
                 }
             break
             case 0:
@@ -207,6 +208,7 @@ class group{
                 this.lastTurnPlayed=copyArray(this.turnPlayed)
                 this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
                 this.turnRewinds=0
+                this.lastMouseOver=-1
             break
         }
     }
@@ -294,7 +296,6 @@ class group{
                     if(types.card[type].rarity>=0||types.card[type].list>=0){
                         this.battle.stats.card[this.player]++
                     }
-                    i
                 }
                 return true
             }
@@ -2572,7 +2573,7 @@ class group{
                     switch(spec){
                         case 2:
                             if(!list[list.length-1].additionalSpec.includes(-2)&&!list[list.length-1].spec.includes(55)){
-                                list[list.length-1].cost=list[list.length-1].base.cost
+                                list[list.length-1].cost=variants.mtg&&!list[list.length-1].specialCost?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
                             }
                         break
                         case 3:
@@ -2641,7 +2642,7 @@ class group{
                         break
                     }
                 }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
-                    list[list.length-1].cost=list[list.length-1].base.cost
+                    list[list.length-1].cost=variants.mtg&&!list[list.length-1].specialCost?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
                 }
                 delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
@@ -2670,7 +2671,7 @@ class group{
                     switch(spec){
                         case 2:
                             if(!list[list.length-1].additionalSpec.includes(-2)&&!list[list.length-1].spec.includes(55)){
-                                list[list.length-1].cost=list[list.length-1].base.cost
+                                list[list.length-1].cost=variants.mtg&&!list[list.length-1].specialCost?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
                             }
                         break
                         case 3:
@@ -2740,7 +2741,7 @@ class group{
                         break
                     }
                 }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
-                    list[list.length-1].cost=list[list.length-1].base.cost
+                    list[list.length-1].cost=variants.mtg&&!list[list.length-1].specialCost?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
                 }
                 delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
@@ -3058,23 +3059,25 @@ class group{
             if(spec.includes(25)&&userCombatant.ammo>0&&!(target[0]==46&&this.battle.attackManager.targetDistance<=1)){
                 userCombatant.ammo--
             }
-            if(effectiveCost>=0&&userCombatant.getStatus('Temporary All Cost Down')>0){
-                effectiveCost+=userCombatant.getStatus('Temporary All Cost Down')
-            }
-            if(effectiveCost>0&&userCombatant.getStatus('Skill Cost Down')>0&&cardClass==11){
-                effectiveCost=max(effectiveCost-userCombatant.getStatus('Skill Cost Down'),0)
-            }
-            if(effectiveCost>0&&userCombatant.getStatus('Combo Cost Down')>0&&spec.includes(11)){
-                effectiveCost=max(effectiveCost-userCombatant.getStatus('Combo Cost Down'),0)
-            }
-            if(effectiveCost>0&&userCombatant.getStatus('All Cost Down')>0){
-                effectiveCost=max(effectiveCost-userCombatant.getStatus('All Cost Down'),0)
-            }
-            if(effectiveCost>0&&userCombatant.getStatus('Defense Cost Down')>0&&cardClass==2){
-                effectiveCost=max(effectiveCost-userCombatant.getStatus('Defense Cost Down'),0)
-            }
-            if(effectiveCost>=0&&userCombatant.getStatus('Colorless Cost Up')>0&&card.colorless()){
-                effectiveCost+=userCombatant.getStatus('Colorless Cost Up')
+            if(!variants.mtg){
+                if(effectiveCost>=0&&userCombatant.getStatus('Temporary All Cost Down')>0){
+                    effectiveCost+=userCombatant.getStatus('Temporary All Cost Down')
+                }
+                if(effectiveCost>0&&userCombatant.getStatus('Skill Cost Down')>0&&cardClass==11){
+                    effectiveCost=max(effectiveCost-userCombatant.getStatus('Skill Cost Down'),0)
+                }
+                if(effectiveCost>0&&userCombatant.getStatus('Combo Cost Down')>0&&spec.includes(11)){
+                    effectiveCost=max(effectiveCost-userCombatant.getStatus('Combo Cost Down'),0)
+                }
+                if(effectiveCost>0&&userCombatant.getStatus('All Cost Down')>0){
+                    effectiveCost=max(effectiveCost-userCombatant.getStatus('All Cost Down'),0)
+                }
+                if(effectiveCost>0&&userCombatant.getStatus('Defense Cost Down')>0&&cardClass==2){
+                    effectiveCost=max(effectiveCost-userCombatant.getStatus('Defense Cost Down'),0)
+                }
+                if(effectiveCost>=0&&userCombatant.getStatus('Colorless Cost Up')>0&&card.colorless()){
+                    effectiveCost+=userCombatant.getStatus('Colorless Cost Up')
+                }
             }
             if(
                 !(userCombatant.getStatus('Free Defenses')>0&&cardClass==2)&&
@@ -3103,23 +3106,17 @@ class group{
                 }else if(effectiveCost!=0&&spec.includes(40)){
                     userCombatant.status.main[findList('Twos',userCombatant.status.name)]-=effectiveCost
                 }else{
-                    if(effectiveCost==-1){
-                        if(variants.mtg){
-                            this.battle.attackManager.energy=this.battle.getSpecificEnergy(this.player,card.mtgManaColor)
-                            for(let a=0,la=this.battle.attackManager.attacks.length;a<la;a++){
-                                this.battle.attackManager.attacks[a].energy=this.battle.getSpecificEnergy(this.player,card.mtgManaColor)
+                    if(variants.mtg){
+                        let effectiveCards=[]
+                        for(let a=0,la=this.cards.length;a<la;a++){
+                            if(this.cards[a].usable){
+                                effectiveCards.push(this.cards[a])
                             }
-                            this.battle.setSpecificEnergy(0,this.player,card.mtgManaColor)
-                        }else{
-                            this.battle.setEnergy(0,this.player)
                         }
+                        this.battle.mtgCost(effectiveCost,this.player,effectiveCards)
                     }else{
-                        if(variants.mtg){
-                            if(spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0){
-                                this.battle.loseSpecificEnergy(round(effectiveCost/2),this.player,mtgManaColor)
-                            }else{
-                                this.battle.loseSpecificEnergy(effectiveCost,this.player,mtgManaColor)
-                            }
+                        if(effectiveCost==-1){
+                            this.battle.setEnergy(0,this.player)
                         }else{
                             if(spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0){
                                 this.battle.loseEnergy(round(effectiveCost/2),this.player)
@@ -3622,6 +3619,7 @@ class group{
                         this.cards[b].played()
                         this.cards.forEach(card=>card.anotherPlayed(this.cards[b]))
                         this.cardInUse=this.cards[b]
+                        this.lastMouseOver=-1
                         if(variants.polar){
                             this.pole=1-this.pole
                         }
@@ -3784,6 +3782,7 @@ class group{
                             this.cards[b].played()
                             this.cards.forEach(card=>card.anotherPlayed(this.cards[b]))
                             this.cardInUse=this.cards[b]
+                            this.lastMouseOver=-1
                             if(variants.polar){
                                 this.pole=1-this.pole
                             }
@@ -4107,6 +4106,7 @@ class group{
                 if(a.class!=0){
                     this.lastPlayed[a.class]=[a.type,a.level,a.color,a.edition,copyArray(a.spec)]
                 }
+                this.lastMouseOver=-1
                 if(variants.polar){
                     this.pole=1-this.pole
                 }
@@ -4249,8 +4249,21 @@ class group{
                     )
                     cap+=length
                     for(let b=0,lb=variants.speedmove?2:1;b<lb;b++){
+                        let mouseover=pointInsideBox({position:inputs.rel},this.cards[a])
+                        if(variants.mtg&&mouseover&&this.cards[a].afford&&this.lastMouseOver!=this.cards[a].id){
+                            this.lastMouseOver=this.cards[a].id
+                            this.battle.mtgUnmark(this.player)
+                            let effectiveCost=this.cards[a].cost
+                            let effectiveCards=[]
+                            for(let b=0,lb=this.cards.length;b<lb;b++){
+                                if(this.cards[b].usable&&a!=b){
+                                    effectiveCards.push(this.cards[b])
+                                }
+                            }
+                            this.battle.mtgMark(effectiveCost,this.player,effectiveCards)
+                        }
                         this.cards[a].update(1,'hand',this.battle.relicManager.hasRelic(170,this.player))
-                        this.cards[a].upSize=pointInsideBox({position:inputs.rel},this.cards[a])&&!this.battle.overlayManager.anyActive&&!selected
+                        this.cards[a].upSize=mouseover&&!this.battle.overlayManager.anyActive&&!selected
                         if(this.cards[a].position.x>cap&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+length||a==0||this.cards.swapped)){
                             this.cards[a].position.x=max(this.cards[a].position.x-25*this.compact,cap)
                             if(this.cards[a].position.x==cap&&this.cards[a].swapped){
