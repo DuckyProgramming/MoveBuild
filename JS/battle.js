@@ -28,7 +28,7 @@ class battle{
         for(let a=0,la=variants.names.length;a<la;a++){
             this.menu.anim.variants.push(0)
         }
-        for(let a=-2,la=game.playerNumber+6;a<la;a++){
+        for(let a=-8,la=game.playerNumber+6;a<la;a++){
             this.menu.anim.prismrule.push(0)
             variants.prismrule.push(a)
         }
@@ -1815,16 +1815,16 @@ class battle{
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(this.menu.anim.variants[a]>0){
                         this.layer.fill(255,this.menu.anim.variants[a])
-                        this.layer.ellipse(this.layer.width/2-12.5+a%3*190,this.layer.height/2-floor(la/3)*22.5+22.5+floor(a/3)*45,10)
+                        this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/2-225+floor(a/4)*40,10)
                     }
                 }
             break
             case 'custom':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=24;a<la;a++){
+                for(let a=0,la=32;a<la;a++){
                     if(this.menu.anim.prismrule[a]>0){
                         this.layer.fill(255,this.menu.anim.prismrule[a])
-                        this.layer.ellipse(this.layer.width/2-217.5+a%4*190,this.layer.height/2-135+floor(a/4)*45,10)
+                        this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/2-185+floor(a/4)*40,10)
                     }
                 }
             break
@@ -2263,9 +2263,9 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-2,-1]
-                for(let a=0,la=24;a<la;a++){
-                    this.menu.anim.prismrule[a]=smoothAnim(this.menu.anim.prismrule[a],variants.prismrule.includes(a<8?prismrules[a]:a-7),0,1,5)
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8]
+                for(let a=0,la=32;a<la;a++){
+                    this.menu.anim.prismrule[a]=smoothAnim(this.menu.anim.prismrule[a],variants.prismrule.includes(a<14?prismrules[a]:a-13),0,1,5)
                 }
             break
             case 'battle':
@@ -2743,32 +2743,32 @@ class battle{
             break
             case 'variants':
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-12.5+a%3*190,y:this.layer.height/2-floor(la/3)*22.5+22.5+floor(a/3)*45},width:27.5,height:27.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-225+floor(a/4)*40},width:22.5,height:22.5})){
                         variants[variants.map[a]]=toggle(variants[variants.map[a]])
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-300,y:this.layer.height*0.4},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='title'
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-300,y:this.layer.height*0.6},width:137.5,height:37.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='custom'
                     variants.ultraprism=true
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-300,y:this.layer.height*0.6+42.5},width:137.5,height:37.5})){
-                    let keys=[floor(random(0,15)),floor(random(0,5)),floor(random(0,5)),floor(random(0,13))]
+                    let keys=[floor(random(0,20)),floor(random(0,8)),floor(random(0,8)),floor(random(0,13))]
                     let subkeys=[
-                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
-                        keys[3]==6,keys[0]==4,keys[0]==5,
-                        keys[0]==6,keys[0]==7,keys[0]==8,
-                        keys[0]==9,keys[0]==10,keys[0]==11,
-                        keys[0]==12,keys[0]==13,keys[0]==14,
-                        keys[1]==2,keys[1]==3,keys[1]==4,
-                        keys[2]==2,keys[2]==3,keys[2]==4,
-                        keys[3]==7,keys[3]==8,keys[3]==9,
-                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
-                        floor(random(0,20))==0,floor(random(0,20))==0&&keys[3]<=5,floor(random(0,20))==0
+                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
+                        keys[0]==8,keys[0]==9,keys[0]==10,keys[0]==11,
+                        keys[0]==12,keys[0]==13,keys[0]==14,keys[0]==15,
+                        keys[0]==16,keys[0]==17,keys[0]==18,keys[0]==19,
+                        keys[1]==4,keys[1]==5,keys[1]==6,keys[1]==7,
+                        keys[2]==4,keys[2]==5,keys[2]==6,keys[2]==7,
+                        keys[3]==6,keys[3]==7,keys[3]==8,keys[3]==9,
+                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
+                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
+                        false,false,false,false,
                     ]
                     for(let a=0,la=variants.map.length;a<la;a++){
                         variants[variants.map[a]]=subkeys[a]
@@ -2776,24 +2776,28 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-2,-1]
-                for(let a=0,la=24;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-217.5+a%4*190,y:this.layer.height/2-135+floor(a/4)*45},width:27.5,height:27.5})){
-                        if(variants.prismrule.includes(a<8?prismrules[a]:a-7)){
-                            variants.prismrule.splice(variants.prismrule.indexOf(a<8?prismrules[a]:a-7),1)
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8]
+                for(let a=0,la=32;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-185+floor(a/4)*40},width:22.5,height:22.5})){
+                        let value=a<14?prismrules[a]:a-13
+                        if(variants.prismrule.includes(value)){
+                            variants.prismrule.splice(variants.prismrule.indexOf(value),1)
                         }else{
-                            variants.prismrule.push(a<8?prismrules[a]:a-7)
+                            variants.prismrule.push(value)
                         }
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+50},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7+50},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='variants'
                 }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7+50},width:62.5,height:62.5})){
+                    variants.prismrule=[]
+                }
             break
             case 'tutorial':
-                for(let a=0,la=24;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-217.5+a%4*190,y:this.layer.height/2-165+(a>=8?30:0)+floor(a/4)*45},width:27.5,height:27.5})){
+                for(let a=0,la=26;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190+(a>=24?190:0),y:this.layer.height/2-165+(a>=8?30:0)+floor(a/4)*40},width:22.5,height:22.5})){
                         this.tutorialManager.setupTutorial(a)
                     }
                 }
@@ -3120,10 +3124,9 @@ class battle{
                 }
             break
             case 'variants':
-                for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
-                    if(key==inputs.hexadec[a]){
-                        variants[variants.map[a]]=toggle(variants[variants.map[a]])
-                    }
+                if(key==' '&&int(inputs.lastKey[0])>=0&&int(inputs.lastKey[0])<=9&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
+                    let index=(int(inputs.lastKey[0])+9)%10*4+int(inputs.lastKey[1])-1
+                    variants[variants.map[index]]=toggle(variants[variants.map[index]])
                 }
                 if(code==ENTER){
                     transition.trigger=true
@@ -3135,18 +3138,18 @@ class battle{
                     variants.ultraprism=true
                 }
                 if(key=='R'){
-                    let keys=[floor(random(0,15)),floor(random(0,5)),floor(random(0,5)),floor(random(0,10))]
+                    let keys=[floor(random(0,20)),floor(random(0,8)),floor(random(0,8)),floor(random(0,10))]
                     let subkeys=[
-                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
-                        keys[3]==6,keys[0]==4,keys[0]==5,
-                        keys[0]==6,keys[0]==7,keys[0]==8,
-                        keys[0]==9,keys[0]==10,keys[0]==11,
-                        keys[0]==12,keys[0]==13,keys[0]==14,
-                        keys[1]==2,keys[1]==3,keys[1]==4,
-                        keys[2]==2,keys[2]==3,keys[2]==4,
-                        keys[3]==7,keys[3]==8,keys[3]==9,
-                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
-                        floor(random(0,20))==0,floor(random(0,20))==0&&keys[3]<=5,floor(random(0,20))==0
+                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
+                        keys[0]==8,keys[0]==9,keys[0]==10,keys[0]==11,
+                        keys[0]==12,keys[0]==13,keys[0]==14,keys[0]==15,
+                        keys[0]==16,keys[0]==17,keys[0]==18,keys[0]==19,
+                        keys[1]==4,keys[1]==5,keys[1]==6,keys[1]==7,
+                        keys[2]==4,keys[2]==5,keys[2]==6,keys[2]==7,
+                        keys[3]==6,keys[3]==7,keys[3]==8,keys[3]==9,
+                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
+                        floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
+                        false,false,false,false,
                     ]
                     for(let a=0,la=variants.map.length;a<la;a++){
                         variants[variants.map[a]]=subkeys[a]
@@ -3154,26 +3157,28 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-2,-1]
-                for(let a=0,la=24;a<la;a++){
-                    if(key==inputs.hexadec[a]){
-                        if(variants.prismrule.includes(a<8?prismrules[a]:a-7)){
-                            variants.prismrule.splice(variants.prismrule.indexOf(a<8?prismrules[a]:a-7),1)
-                        }else{
-                            variants.prismrule.push(a<8?prismrules[a]:a-7)
-                        }
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8]
+                if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=8&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
+                    let index=(int(inputs.lastKey[0])+9)%10*4+int(inputs.lastKey[1])-1
+                    let value=index<14?prismrules[index]:index-13
+                    if(variants.prismrule.includes(value)){
+                        variants.prismrule.splice(variants.prismrule.indexOf(value),1)
+                    }else{
+                        variants.prismrule.push(value)
                     }
                 }
                 if(code==ENTER){
                     transition.trigger=true
                     transition.scene='variants'
                 }
+                if(code==BACKSPACE){
+                    variants.prismrule=[]
+                }
             break
             case 'tutorial':
-                for(let a=0,la=24;a<la;a++){
-                    if(key==inputs.hexadec[a]){
-                        this.tutorialManager.setupTutorial(a)
-                    }
+                if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=7&&int(inputs.lastKey[1])>=(int(inputs.lastKey[0])==7?2:1)&&int(inputs.lastKey[1])<=(int(inputs.lastKey[0])==7?3:4)){
+                    let index=(int(inputs.lastKey[0])+9)%10*4+int(inputs.lastKey[1])-1+(int(inputs.lastKey[0])==7?-1:0)
+                    this.tutorialManager.setupTutorial(index)
                 }
                 if(code==ENTER){
                     transition.trigger=true

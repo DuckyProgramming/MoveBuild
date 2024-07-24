@@ -5227,81 +5227,129 @@ function setupBackground(type,layer){
 		case 11:
 			menuBackground(layer)
 			layer.fill(120)
-			layer.rect(layer.width/2,layer.height*0.7+190,125,125)
-			layer.rect(layer.width/2,layer.height*0.7+290,125,55)
+			layer.rect(layer.width/2-105,layer.height*0.7+190,125,125)
+			layer.rect(layer.width/2-105,layer.height*0.7+290,200,55)
+			layer.rect(layer.width/2+105,layer.height*0.7+190,125,125)
+			layer.rect(layer.width/2+105,layer.height*0.7+290,200,55)
 			for(let a=0,la=variants.names.length;a<la;a++){
-				layer.rect(layer.width/2-570+a%4*380,layer.height/2-360+floor(a/4)*90,350,80)
+				layer.rect(layer.width/2-570+a%4*380,layer.height/2-450+floor(a/4)*80,350,70)
 			}
 			layer.fill(0)
-			layer.rect(layer.width/2,layer.height*0.7+190,100,100)
-			layer.rect(layer.width/2,layer.height*0.7+290,100,30)
+			layer.rect(layer.width/2-105,layer.height*0.7+190,100,100)
+			layer.rect(layer.width/2-105,layer.height*0.7+290,175,30)
+			layer.rect(layer.width/2+105,layer.height*0.7+190,100,100)
+			layer.rect(layer.width/2+105,layer.height*0.7+290,175,30)
 			for(let a=0,la=variants.names.length;a<la;a++){
-				layer.rect(layer.width/2-602.5+a%4*380,layer.height/2-360+floor(a/4)*90,260,55)
-				layer.rect(layer.width/2-435+a%4*380,layer.height/2-360+floor(a/4)*90,55,55)
+				layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-450+floor(a/4)*80,270,45)
+				layer.rect(layer.width/2-430+a%4*380,layer.height/2-450+floor(a/4)*80,45,45)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-5,layer.height*0.7+190,40,40,-30)
+			regTriangle(layer,layer.width/2-110,layer.height*0.7+190,40,40,-30)
+			layer.rect(layer.width/2+105,layer.height*0.7+190,36,36)
 			layer.fill(255)
 			layer.textSize(20)
-			layer.text('BACK',layer.width/2,layer.height*0.7+290)
+			layer.text('BACK',layer.width/2-105,layer.height*0.7+290)
 			for(let a=0,la=variants.names.length;a<la;a++){
-				layer.text(variants.names[a].toUpperCase(),layer.width/2-602.5+a%4*380,layer.height/2-360+floor(a/4)*90)
+				layer.textSize(a==13?18:20)
+				layer.text(variants.names[a].toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-450+floor(a/4)*80)
 			}
+			for(let a=0,la=10;a<la;a++){
+				layer.text(a+1,layer.width/2-770,layer.height/2-450+a*80)
+			}
+			for(let a=0,la=4;a<la;a++){
+				layer.text(a+1,layer.width/2-590+a%4*380,layer.height/2-500)
+			}
+			layer.textSize(15)
+			layer.text('CUSTOM ULTRAPRISM',layer.width/2+105,layer.height*0.7+290)
 		break
 		case 12:
 			menuBackground(layer)
 			layer.fill(120)
-			layer.rect(layer.width/2,layer.height*0.7+100,125,125)
-			layer.rect(layer.width/2,layer.height*0.7+200,125,55)
-			for(let a=0,la=24;a<la;a++){
-				layer.rect(layer.width/2-570+a%4*380,layer.height/2-270+floor(a/4)*90,350,80)
+			layer.rect(layer.width/2-105,layer.height*0.7+110,125,125)
+			layer.rect(layer.width/2-105,layer.height*0.7+210,200,55)
+			layer.rect(layer.width/2+105,layer.height*0.7+110,125,125)
+			layer.rect(layer.width/2+105,layer.height*0.7+210,200,55)
+			for(let a=0,la=32;a<la;a++){
+				layer.rect(layer.width/2-570+a%4*380,layer.height/2-370+floor(a/4)*80,350,70)
 			}
 			layer.fill(0)
-			layer.rect(layer.width/2,layer.height*0.7+100,100,100)
-			layer.rect(layer.width/2,layer.height*0.7+200,100,30)
-			for(let a=0,la=24;a<la;a++){
-				layer.rect(layer.width/2-602.5+a%4*380,layer.height/2-270+floor(a/4)*90,260,55)
-				layer.rect(layer.width/2-435+a%4*380,layer.height/2-270+floor(a/4)*90,55,55)
+			layer.rect(layer.width/2-105,layer.height*0.7+110,100,100)
+			layer.rect(layer.width/2-105,layer.height*0.7+210,175,30)
+			layer.rect(layer.width/2+105,layer.height*0.7+110,100,100)
+			layer.rect(layer.width/2+105,layer.height*0.7+210,175,30)
+			for(let a=0,la=32;a<la;a++){
+				layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-370+floor(a/4)*80,270,45)
+				layer.rect(layer.width/2-430+a%4*380,layer.height/2-370+floor(a/4)*80,45,45)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-5,layer.height*0.7+100,40,40,-30)
+			regTriangle(layer,layer.width/2-110,layer.height*0.7+110,40,40,-30)
+			layer.beginShape()
+			layer.vertex(layer.width/2+85,layer.height*0.7+80)
+			layer.vertex(layer.width/2+75,layer.height*0.7+80)
+			layer.vertex(layer.width/2+75,layer.height*0.7+90)
+			layer.vertex(layer.width/2+125,layer.height*0.7+140)
+			layer.vertex(layer.width/2+135,layer.height*0.7+140)
+			layer.vertex(layer.width/2+135,layer.height*0.7+130)
+			layer.endShape()
+			layer.beginShape()
+			layer.vertex(layer.width/2+85,layer.height*0.7+140)
+			layer.vertex(layer.width/2+75,layer.height*0.7+140)
+			layer.vertex(layer.width/2+75,layer.height*0.7+130)
+			layer.vertex(layer.width/2+125,layer.height*0.7+80)
+			layer.vertex(layer.width/2+135,layer.height*0.7+80)
+			layer.vertex(layer.width/2+135,layer.height*0.7+90)
+			layer.endShape()
 			layer.fill(255)
 			layer.textSize(20)
-			layer.text('BACK',layer.width/2,layer.height*0.7+200)
-			let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','JUNKYARD','UNLISTED']
-			for(let a=0,la=24;a<la;a++){
-				layer.text(a<8?names2[a]:types.combatant[a-7].name.toUpperCase(),layer.width/2-602.5+a%4*380,layer.height/2-270+floor(a/4)*90)
+			layer.text('BACK',layer.width/2-105,layer.height*0.7+210)
+			let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBSPECTRAL','JUNKYARD','SUBCARD','EVENT','VARIANT','DEVELOPER','REMOVED','MISC']
+			for(let a=0,la=32;a<la;a++){
+				layer.text(a<14?names2[a]:types.combatant[a-13].name.toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-370+floor(a/4)*80)
 			}
+			for(let a=0,la=8;a<la;a++){
+				layer.text(a+1,layer.width/2-770,layer.height/2-370+a*80)
+			}
+			for(let a=0,la=4;a<la;a++){
+				layer.text(a+1,layer.width/2-590+a%4*380,layer.height/2-420)
+			}
+			layer.textSize(15)
+			layer.text('DISABLE ALL',layer.width/2+105,layer.height*0.7+210)
 		break
 		case 13:
 			menuBackground(layer)
 			layer.fill(120)
-			layer.rect(layer.width/2,layer.height*0.7+100,125,125)
-			layer.rect(layer.width/2,layer.height*0.7+200,125,55)
-			for(let a=0,la=24;a<la;a++){
-				layer.rect(layer.width/2-570+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*90,350,80)
+			layer.rect(layer.width/2,layer.height*0.7+130,125,125)
+			layer.rect(layer.width/2,layer.height*0.7+230,125,55)
+			for(let a=0,la=26;a<la;a++){
+				layer.rect(layer.width/2-570+a%4*380+(a>=24?380:0),layer.height/2-330+(a>=8?60:0)+floor(a/4)*80,350,70)
 			}
 			layer.fill(0)
-			layer.rect(layer.width/2,layer.height*0.7+100,100,100)
-			layer.rect(layer.width/2,layer.height*0.7+200,100,30)
-			for(let a=0,la=24;a<la;a++){
-				layer.rect(layer.width/2-602.5+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*90,260,55)
-				layer.rect(layer.width/2-435+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*90,55,55)
+			layer.rect(layer.width/2,layer.height*0.7+130,100,100)
+			layer.rect(layer.width/2,layer.height*0.7+230,100,30)
+			for(let a=0,la=26;a<la;a++){
+				layer.rect(layer.width/2-597.5+a%4*380+(a>=24?380:0),layer.height/2-330+(a>=8?60:0)+floor(a/4)*80,270,45)
+				layer.rect(layer.width/2-430+a%4*380+(a>=24?380:0),layer.height/2-330+(a>=8?60:0)+floor(a/4)*80,45,45)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-5,layer.height*0.7+100,40,40,-30)
+			regTriangle(layer,layer.width/2-5,layer.height*0.7+130,40,40,-30)
 			layer.fill(255)
 			layer.textSize(20)
-			layer.text('BACK',layer.width/2,layer.height*0.7+200)
+			layer.text('BACK',layer.width/2,layer.height*0.7+230)
 			let names3=['BASIC','LOCATIONS','KEYWORDS','HOTKEYS','STATUSES','ENEMIES','TACTICS','CHARACTER OVERVIEW']
-			for(let a=0,la=24;a<la;a++){
-				layer.text(a<8?names3[a]:types.combatant[a-7].name.toUpperCase(),layer.width/2-602.5+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*90)
+			for(let a=0,la=26;a<la;a++){
+				layer.text(a<8?names3[a]:types.combatant[a-7].name.toUpperCase(),layer.width/2-597.5+a%4*380+(a>=24?380:0),layer.height/2-330+(a>=8?60:0)+floor(a/4)*80)
+			}
+			for(let a=0,la=7;a<la;a++){
+				layer.text(a+1,layer.width/2-770+(a==6?380:0),layer.height/2-330+(a>=2?60:0)+a*80)
+			}
+			for(let a=0,la=4;a<la;a++){
+				layer.text(a+1,layer.width/2-590+a%4*380,layer.height/2-380)
 			}
 			layer.textSize(50)
 			for(let a=0,la=10;a<la;a++){
 				layer.fill(50-50*a/la,255-105*a/la,100-100*a/la)
-				layer.text('Mechanics',layer.width/2+a*0.5,layer.height/2-405+a*0.5)
-				layer.text('Characters',layer.width/2+a*0.5,layer.height/2-165+a*0.5)
+				layer.text('Mechanics',layer.width/2+a*0.5,layer.height/2-400+a*0.5)
+				layer.text('Characters',layer.width/2+a*0.5,layer.height/2-180+a*0.5)
 			}
 		break
 

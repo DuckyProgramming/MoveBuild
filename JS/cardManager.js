@@ -37,6 +37,14 @@ class cardManager{
 
         this.initialListing()
     }
+    subAllList(a){
+        if(types.card[a].rarity<0){
+            this.listing.all[floor(random(0,3))].push(a)
+        }else{
+            this.listing.all[types.card[a].rarity].push(a)
+        }
+        this.listing.all[3].push(a)
+    }
     initialListing(){
         for(let a=0;a<game.playerNumber+6;a++){
             this.listing.card.push([[],[],[],[]])
@@ -63,14 +71,44 @@ class cardManager{
             if(types.card[a].rarity==-1&&types.card[a].list==-8){
                 this.listing.disband.push(a)
             }
-            if(variants.prismrule.includes(types.card[a].list)&&types.card[a].rarity>-10||variants.prismrule.includes(-1)&&types.card[a].list<0||variants.prismrule.includes(-2)&&types.card[a].rarity==-10){
-                if(types.card[a].rarity<0){
-                    this.listing.all[floor(random(0,3))].push(a)
-                }else{
-                    this.listing.all[types.card[a].rarity].push(a)
+            if(types.card[a].rarity>=0&&types.card[a].list>=0&&types.card[a].list<=game.playerNumber+5){
+                if(variants.prismrule.includes(types.card[a].list)){
+                    this.subAllList(a)
                 }
-                this.listing.all[3].push(a)
+            }else if(types.card[a].rarity<0&&types.card[a].list==game.playerNumber+5){
+                if(variants.prismrule.includes(-1)){
+                    this.subAllList(a)
+                }
+            }else if(types.card[a].rarity==-10){
+                if(variants.prismrule.includes(-2)){
+                    this.subAllList(a)
+                }
+            }else if(types.card[a].rarity==-6){
+                if(variants.prismrule.includes(-3)){
+                    this.subAllList(a)
+                }
+            }else if(types.card[a].rarity==-8){
+                if(variants.prismrule.includes(-4)){
+                    this.subAllList(a)
+                }
+            }else if(types.card[a].list==-9){
+                if(variants.prismrule.includes(-5)){
+                    this.subAllList(a)
+                }
+            }else if(types.card[a].rarity==-5&&types.card[a].list==-1){
+                if(variants.prismrule.includes(-6)){
+                    this.subAllList(a)
+                }
+            }else if(types.card[a].rarity==-1&&types.card[a].list==-8){
+                if(variants.prismrule.includes(-7)){
+                    this.subAllList(a)
+                }
+            }else{
+                if(variants.prismrule.includes(-8)){
+                    this.subAllList(a)
+                }
             }
+            //variants.prismrule.includes(types.card[a].list)&&types.card[a].rarity>-10||variants.prismrule.includes(-1)&&types.card[a].list<0||variants.prismrule.includes(-2)&&types.card[a].rarity==-10
             if(types.card[a].rarity>=0&&types.card[a].list>=0){
                 this.listing.card[types.card[a].list][types.card[a].rarity].push(a)
                 this.listing.card[types.card[a].list][3].push(a)

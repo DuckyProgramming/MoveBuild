@@ -6908,6 +6908,17 @@ class card{
                         this.layer.triangle(-this.width/2+5,this.height/2-17,-this.width/2+10,this.height/2-17,-this.width/2+7.5,this.height/2-22)
                         this.layer.triangle(-this.width/2+5,this.height/2-7,-this.width/2+10,this.height/2-7,-this.width/2+7.5,this.height/2-2)
                     break
+                    case -8:
+                        this.layer.strokeWeight(2)
+                        this.layer.line(-this.width/2+7,this.height/2-7,-this.width/2,this.height/2-9)
+                        this.layer.line(-this.width/2+7,this.height/2-7,-this.width/2,this.height/2-5)
+                        this.layer.line(-this.width/2+7,this.height/2-7,-this.width/2+5,this.height/2)
+                        this.layer.line(-this.width/2+7,this.height/2-7,-this.width/2+9,this.height/2)
+                        this.layer.line(-this.width/2+7,this.height/2-7,-this.width/2+8,this.height/2-11)
+                        this.layer.line(-this.width/2+7,this.height/2-7,-this.width/2+11,this.height/2-8)
+                        this.layer.line(-this.width/2+12,this.height/2-12,-this.width/2+8,this.height/2-11)
+                        this.layer.line(-this.width/2+12,this.height/2-12,-this.width/2+11,this.height/2-8)
+                    break
                     case -10:
                         this.layer.strokeWeight(2)
                         this.layer.triangle(-this.width/2+2,this.height/2,-this.width/2+8,this.height/2,-this.width/2+5,this.height/2-12)

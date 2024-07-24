@@ -998,6 +998,12 @@ End your turn to allow him to hit you.`,
 `END OF TUTORIAL`,
                 ]
             break
+            case 24:
+                print('t24')
+            break
+            case 25:
+                print('t25')
+            break
         }
         this.anim.pages=[]
         for(let a=0,la=this.pages.length;a<la;a++){

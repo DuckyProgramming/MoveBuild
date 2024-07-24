@@ -1,6 +1,6 @@
-update variants pages
-
 finish the cards in mark p
+
+change mtg cards
 
 
 
@@ -216,10 +216,13 @@ autoshield - gain block, but only if you have no block
 
 
 
+move - freeze ahead
+
+
+
 SUKUNA MECHANICS
 
 strike and defend
-common cards?
 dodge
 lock on
 wish cards
@@ -233,13 +236,23 @@ DEVELOPMENT
 
 model
 icon
+tutorial
 
 
 
-CHARACTER 18
+CHARACTER 18 MECHANICS
+name
 
 countdowns
-poison????
+freeze
+
+MOTIFS
+
+DEVELOPMENT
+
+model
+icon
+tutorial
 
 
 

@@ -10093,6 +10093,7 @@ variants={
         'prism','ultraprism','junk','colorshift',
         'vanish','blind','transcend','overheat',
         'cliff','assault','unary','running',
+        '','','','',
     ],names:[
         'MTG Mana','Bonus Mods','Choose Combats','Chaos',
         '-1 Draw','Cyclic Draw','Balanced Draw','Blackjack Draw',
@@ -10103,6 +10104,7 @@ variants={
         'Prism','Ultraprism','Junkyard','Colorshift',
         'All Vanishing','Silent Cards','Transcend','Overheat',
         'Cliffs','Assault','Unary','Running Loop',
+        '','','','',
     ]
 }
 constants={collisionDamage:4,
