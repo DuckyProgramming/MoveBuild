@@ -548,6 +548,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			let block=effect
 			let bonusB=0
 			let totalDex=0
+			if(variant&&args[4]&&user.status.main[402]>0){
+				bonusB+=user.status.main[402]
+			}
 			if(user.status.main[168]>0){
 				bonusB+=user.status.main[168]
 			}
@@ -878,7 +881,7 @@ function intentDescription(attack,user,info){
 			case 231: return `Builder Draws ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}`
 			case 232: return `Builder Gains ${info?attack.effect[0]:`?`}\nTemporary Strength`
 			case 233: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTo All Targets`
-			case 234: return `Builder Adds ${info?attack.effect[0]:`?`}\nGun Rack${attack.effect[0]!=1||info?`s`:``} to Hand`
+			case 234: return `Builder Adds ${info?attack.effect[0]:`?`}\nRevolver${attack.effect[0]!=1||info?`s`:``} to Hand`
 			case 237: return `Builder Gains ${info?attack.effect[0]:`?`}\nMetal`
 			case 238: return `Builder Upgrades ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}`
 			case 239: return `Builder Transforms ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}`
@@ -2340,7 +2343,7 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 			}
 		}
 	}
-	if(costLeft.length>0&&!bypass){
+	if(costLeft.length>0&&variant!=1){
 		print(costLeft,'Failed MTG Spending Calculation')
 		return -1
 	}

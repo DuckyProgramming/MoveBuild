@@ -109,7 +109,7 @@ types={
         {name:'Bolt',life:12,behavior:0,spec:[],move:{type:0,speed:2},attack:[{type:132,effect:[1,'Electrocuted']},{type:133,effect:[3]},{type:131,effect:[6]}],description:`Literally electricity`},
         {name:'Jet',life:192,behavior:0,spec:[0],move:{type:1,speed:2},attack:[{type:134,effect:[18,1]},{type:135,effect:[8,2,'Burn']}],description:`Technology difference`},
         {name:'Armored Ninja',life:72,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:137,effect:[9]},{type:138,effect:[6]},{type:139,effect:[6]},{type:10,effect:[6]}],description:`Not a spike slime?`},
-        {name:'Destructor Bot',life:81,behavior:0,spec:[],move:{type:0,speed:3},attack:[{type:136,effect:[32]}],description:`Has no regard for its nonexistent life`},
+        {name:'Destructor Bot',life:81,behavior:0,spec:[19],move:{type:0,speed:3},attack:[{type:136,effect:[32]}],description:`Has no regard for its nonexistent life`},
         {name:'Assistant Fitness Officer',life:164,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:142,effect:[3,10]},{type:28,effect:[5]},{type:143,effect:[10]}],description:`Probably uses steroids`},
         {name:'Corrupt Detective',life:96,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:141,effect:[12,1]},{type:140,effect:[10,2]},{type:12,effect:[15]}],description:`Received tax benefits`},
         {name:'Elf Archer',life:55,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:148,effect:[3,5]},{type:149,effect:[3,3]},{type:4,effect:[8]}],description:`Not actually projectile spammer`},
@@ -209,10 +209,10 @@ types={
         {name:'Daughter of Heaven',life:300,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:348,effect:[12,2,2]},{type:349,effect:[1,2]},{type:296,effect:[22]},{type:39,effect:[1,'Keystone']}],description:`Cut character POV`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Dizzy']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
-        {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
+        {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2,19],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
         {name:'Chief Engineering Officer',life:480,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:144,effect:[19,2]},{type:145,effect:[14,2,'Electrocuted']},{type:146,effect:[24]},{type:147,effect:[9]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
         {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:177,effect:[5]},{type:178,effect:[12,1,'Convulsive']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,1,'Napalm']}],description:`Classic warcriminal`},
-        {name:'Purge X02',life:500,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
+        {name:'Purge X02',life:500,behavior:0,spec:[1,2,19],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
         {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[3]}],description:`From the sky~`},
         {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[17,2]},{type:354,effect:[9,2]},{type:355,effect:[7,2]}],description:`Doxxed literally everybody`},
 
@@ -9712,6 +9712,8 @@ Does not spend the orb.`,
 `Draw a Card When Discarded`,
         },{name:'Quickdraw',desc:
 `Draw 1 Card`,
+        },{name:'Replenish',desc:
+`When Drawn, Draw 1 Card`,
         },{name:'Metal',desc:
 `Resource gained through cards. Used to play Blueprints.`,
         },{name:'Construct',desc:

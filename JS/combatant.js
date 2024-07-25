@@ -4854,12 +4854,9 @@ class combatant{
                 this.battle.turnManager.loadEnemyMoveBack(this.id)
                 this.battle.turnManager.loadEnemyRotateBack(this.id,id)
             }
-            if(this.spec.includes(7)&&id<this.battle.players&&type==1&&this.battle.turn.main<this.battle.players&&!this.aggressor&&this.getStatus('Stun')<=0){
-                this.target=id
-                this.battle.turnManager.loadEnemyAttackRepeat(this.id)
-                this.aggressor=true
-            }
             let target=this.getTarget()
+            this.activated=true
+            let targetted=false
             this.targetTile=this.convertTile(target)
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                 if((this.battle.combatantManager.combatants[a].team!=this.team&&type==0||this.battle.combatantManager.combatants[a].id==id&&(type==1||type==2))&&!(this.construct&&this.battle.combatantManager.combatants[a].team>0)){
@@ -4876,12 +4873,14 @@ class combatant{
                                         this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[b].tilePosition.y&&
                                         !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
                                             this.activated=true
+                                            targetted=true
                                     }
                                 }
                             }else if(
                                 this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[0].tilePosition.x&&
                                 this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[0].tilePosition.y){
-                                    this.activated=true
+                                this.activated=true
+                                targetted=true
                             }
                         break
                         case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
@@ -4896,6 +4895,7 @@ class combatant{
                                     this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[b].tilePosition.y&&
                                     !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
                                         this.activated=true
+                                        targetted=true
                                 }
                             }
                         break
@@ -4908,6 +4908,7 @@ class combatant{
                                     !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
                                     !(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0))){
                                         this.activated=true
+                                        targetted=true
                                 }
                             }
                         break
@@ -4920,6 +4921,7 @@ class combatant{
                                     !(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0))&&
                                     !(b>=3&&(this.targetTile[2].tilePosition.x<0||this.targetTile[2].occupied>0))){
                                         this.activated=true
+                                        targetted=true
                                 }
                             }
                         break
@@ -4935,6 +4937,7 @@ class combatant{
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
                                     this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[b].tilePosition.y){
                                         this.activated=true
+                                        targetted=true
                                 }
                             }
                         break
@@ -4957,6 +4960,7 @@ class combatant{
                                     !(b>=4&&(this.targetTile[3].tilePosition.x<0||this.targetTile[3].occupied>0))&&
                                     !(b>=5&&(this.targetTile[4].tilePosition.x<0||this.targetTile[4].occupied>0))){
                                         this.activated=true
+                                        targetted=true
                                 }
                             }
                         break
@@ -4971,6 +4975,7 @@ class combatant{
                                     !(b%6>=4&&(this.targetTile[floor(b/6)*6+3].tilePosition.x<0||this.targetTile[floor(b/6)*6+3].occupied>0))&&
                                     !(b%6>=5&&(this.targetTile[floor(b/6)*6+4].tilePosition.x<0||this.targetTile[floor(b/6)*6+4].occupied>0))){
                                         this.activated=true
+                                        targetted=true
                                 }
                             }
                         break
@@ -4981,6 +4986,7 @@ class combatant{
                                     this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[b].tilePosition.y&&
                                     !(b%2==1&&(this.targetTile[floor(b/2)*2].tilePosition.x<0||this.targetTile[floor(b/2)*2].occupied>0))){
                                         this.activated=true
+                                        targetted=true
                                 }
                             }
                         break
@@ -4991,6 +4997,7 @@ class combatant{
                                     this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[b].tilePosition.y&&
                                     !(b==3&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
                                         this.activated=true
+                                        targetted=true
                                 }
                             }
                         break
@@ -5002,6 +5009,7 @@ class combatant{
                                     !(b>=18&&(this.targetTile[b-18].tilePosition.x<0||this.targetTile[b-18].occupied>0))&&
                                     !(b>=36&&(this.targetTile[b-36].tilePosition.x<0||this.targetTile[b-36].occupied>0))){
                                             this.activated=true
+                                        targetted=true
                                 }
                             }
                         break
@@ -5013,11 +5021,17 @@ class combatant{
                                     !(b>=3&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
                                     !(b>=6&&(this.targetTile[3].tilePosition.x<0||this.targetTile[3].occupied>0))){
                                         this.activated=true
+                                        targetted=true
                                 }
                             }
                         break
                     }
                 }
+            }
+            if(this.spec.includes(7)&&id<this.battle.players&&type==1&&this.battle.turn.main<this.battle.players&&targetted&&!this.aggressor&&this.getStatus('Stun')<=0){
+                this.target=id
+                this.battle.turnManager.loadEnemyAttackRepeat(this.id)
+                this.aggressor=true
             }
         }
     }
@@ -6433,7 +6447,7 @@ class combatant{
                 }
             }
             if(!success){
-                this.evoke(0,this.status.main[375]>0?this.battle.combatantManager.getRandom(1)[0]:this.id,[1])
+                this.evoke(0,this.status.main[375]>0?this.battle.combatantManager.getRandom(1,[])[0]:this.id,[1])
                 this.holdOrb(type)
             }
             this.checkAnyOrb()

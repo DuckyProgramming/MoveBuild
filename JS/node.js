@@ -216,7 +216,7 @@ class node{
                     this.position.x*(0.3+b*0.01)+this.battle.nodeManager.nodes[this.connections[a]].position.x*(0.7-b*0.01),this.position.y*(0.3+b*0.01)+this.battle.nodeManager.nodes[this.connections[a]].position.y*(0.7-b*0.01))
             }
         }
-        if(this.battle.relicManager.hasRelic(341,0)){
+        if(this.battle.relicManager.hasRelic(341,-1)){
             this.layer.stroke(125,200,225,this.fade*0.1)
             for(let a=0,la=this.extraConnections.length;a<la;a++){
                 for(let b=0;b<10;b++){
@@ -228,7 +228,7 @@ class node{
         }
     }
     getConnections(){
-        return this.battle.relicManager.hasRelic(341,0)?this.connections.concat(this.extraConnections):this.connections
+        return this.battle.relicManager.hasRelic(341,-1)?this.connections.concat(this.extraConnections):this.connections
     }
     update(active,past){
         this.size=smoothAnim(this.size,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<25,1,1.5,5)

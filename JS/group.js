@@ -1704,6 +1704,7 @@ class group{
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
                         this.battle.addEnergy(args[1],this.player)
+                        this.battle.cardManagers[this.player].draw(args[2])
                     }
                 break
                 case 37:

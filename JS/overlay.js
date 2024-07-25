@@ -725,7 +725,7 @@ class overlay{
                 this.battle.combatantManager.combatants[this.player].infoAnim.life=0
             break
             case 8:
-                if(this.cards.length==0){
+                if(this.cards.length==0||args[0]!=this.cards[0].level){
                     this.cards=[]
                     this.marks=[]
                     this.taken=0
@@ -2537,7 +2537,7 @@ class overlay{
                                         !((this.args[0]==50||this.args[0]==66)&&!this.battle.cardManagers[this.player].deck.cards[a].basic)&&
                                         !(this.args[0]==51&&this.battle.cardManagers[this.player].deck.cards[a].color==0)&&
                                         !(this.args[0]==67&&this.battle.cardManagers[this.player].deck.cards[a].basic)&&
-                                        !(this.args[0]==68&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(4)||this.battle.cardManagers[this.player].deck.cards.spec.includes(12)))&&
+                                        !(this.args[0]==68&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(4)||this.battle.cardManagers[this.player].deck.cards[a].spec.includes(12)))&&
                                         !(this.args[0]==69&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(1)||this.battle.cardManagers[this.player].deck.cards[a].spec.includes(12)||this.battle.cardManagers[this.player].deck.cards[a].class==4))&&
                                         !(this.args[0]==70&&specialCost(this.battle.cardManagers[this.player].deck.cards[a]))&&
                                         !(this.args[0]==83&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(63)||this.battle.cardManagers[this.player].deck.cards[a].spec.includes(12)))

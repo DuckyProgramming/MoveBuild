@@ -1,5 +1,8 @@
 change mtg cards
 
+what was the step cooking
+some costs just don't work supposedly
+
 
 
 
@@ -19,6 +22,12 @@ character bosses
 some relics will be unavailable
 corn cob item
 energized jade event gotta be changed
+
+
+
+
+
+
 
 
 
@@ -48,8 +57,6 @@ LISTING GROUP 45
 [sky veil - variant of raiment]
 
 [second wind]
-
-[eyelet stab]
 
 [mallet's love]
 
@@ -99,6 +106,8 @@ canopy vista - tappable waste that gives 0 energy, increases by 1 when played, e
 
 
 
+wishes need to do damage!!!
+
 [giant rotation - wish]
 
 [wheat promise - wish]
@@ -144,9 +153,9 @@ broken parts - 1 cost add a random blueprint, draw 2 cards
 
 [how many allies are active?]
 
-pulp - 0 cost, gain 1 energy if you have block
+pulp - 0 cost, gain 1 energy and draw 1 card if you have block
 
-black glow - dark orbs scale by 2 more per turn
+hold a dark orb and increase all dark orbs
 
 new moonlit lotus
 rename old moonlit lotus
@@ -171,14 +180,14 @@ city tax - all enemies lose 1 health, you heal 1 each
 
 
 
-gold pan - gain 5 currency, draw a acrd next turn
+pan for gold - gain 5 currency, draw a card next turn
+
+golden pan - frying pan but gain 1 currency when used
 
 new maiden's waltz
 rename old maiden's waltz
 
 dimensional point rift - create a bunch of glowing yellow squares (composed of particles) that get large and then shrink on the target
-
-hold a dark orb and increase all dark orbs
 
 mayhem - every turn, draw a card it costs 0
 
@@ -214,7 +223,37 @@ autoshield - gain block, but only if you have no block
 
 
 
-move - freeze ahead
+move, freeze ahead
+
+trickle - damage, conditionally enter calm
+
+tempest but gain wish power
+
+[more lock on cards]
+
+[more lock on cards]
+
+swap and add block
+
+
+
+[raikou]
+
+[hand size manipulation]
+
+[hand size manipulation]
+
+[more strike + defend synergy]
+
+[more strike + defend synergy]
+
+[more strike + defend synergy]
+
+
+
+
+
+
 
 
 
@@ -251,6 +290,16 @@ DEVELOPMENT
 model
 icon
 tutorial
+
+
+
+update azis tutorial with orb moving
+
+
+
+
+
+
 
 
 
@@ -292,7 +341,7 @@ enemies:
 
 infinite spirit - lose 1 energy when you hit this enemy
 [permanent intangible]
-[]
+management robot commander - like a normal robot but can buff other robots and stronger generally
 
 bosses:
 
@@ -311,6 +360,12 @@ sukuna boss needs 2 attacks and setup code
 
 
 
+
+
+
+
+
+
 new variants:
 
 []
@@ -320,14 +375,11 @@ new variants:
 
 
 
+
+
 decide on character #18
 conduct a purge and mass renaming
 
 
 
-SUBGROUP 17
-
-go make glory v2, celestite, for logo purposes
-
-maybe another new background
 

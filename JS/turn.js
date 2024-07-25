@@ -980,7 +980,6 @@ class turn{
                                 }
                             break
                             case 2:
-                                this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
                                 this.possible=[]
                                 for(let a=0,la=6;a<la;a++){
                                     let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,360*(a+0.5)/la)[0],this.userCombatant.tilePosition.y+transformDirection(0,360*(a+0.5)/la)[1])
@@ -1414,7 +1413,7 @@ class turn{
                         this.userCombatant.statusEffect('Metallicize',this.effect[0])
                     break
                     case 230:
-                        if(this.userCombatant.builder.id==this.battle.turn.main){
+                        if(this.userCombatant.builder==this.battle.turn.main){
                             this.battle.combatantManager.combatants[this.userCombatant.builder].addBlock(this.effect[0])
                         }else{
                             this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Block Next Turn',this.effect[0])
@@ -1424,10 +1423,10 @@ class turn{
                         this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].draw(this.effect[0])
                     break
                     case 232:
-                        if(this.battle.turnManager.auxiliary){
-                            this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffectNext('Temporary Strength',this.effect[0])
+                        if(this.userCombatant.builder==this.battle.turn.main){
+                            this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Temporary Strength',this.effect[0])
                         }else{
-                            this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffectNext('Temporary Strength',this.effect[0])
+                            this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Temporary Strength Next Turn',this.effect[0])
                         }
                     break
                     case 234:

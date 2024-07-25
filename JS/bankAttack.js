@@ -108,6 +108,7 @@ attack.prototype.update=function(){
         case 3754: case 3778: case 3787: case 3792: case 3815: case 3816: case 3847: case 3851: case 3853: case 3855:
         case 3861: case 3876: case 3879: case 3885: case 3886: case 3893: case 3902: case 3904: case 3905: case 3907:
         case 3912: case 3917: case 3921: case 3923: case 3924: case 3928: case 3929: case 3935: case 3940: case 3941:
+        case 3948: case 3950: case 3951: case 3953:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false
@@ -252,7 +253,7 @@ attack.prototype.update=function(){
         case 3672: case 3677: case 3691: case 3713: case 3716: case 3719: case 3720: case 3732: case 3737: case 3738:
         case 3739: case 3740: case 3742: case 3745: case 3747: case 3749: case 3752: case 3758: case 3763: case 3772:
         case 3774: case 3775: case 3793: case 3794: case 3805: case 3806: case 3817: case 3819: case 3838: case 3854:
-        case 3883: case 3862: case 3877: case 3880: case 3894: case 3910:
+        case 3883: case 3862: case 3877: case 3880: case 3894: case 3910: case 3947: case 3952:
             //mark 2
             if(this.type==2616&&this.timer==1&&this.userManager.hand.numberAbstract(15,[[2]])>1){
                 this.remove=true
@@ -692,7 +693,7 @@ attack.prototype.update=function(){
         case 3567: case 3570: case 3578: case 3592: case 3607: case 3609: case 3612: case 3660: case 3666: case 3675:
         case 3684: case 3686: case 3687: case 3708: case 3712: case 3731: case 3768: case 3784: case 3791: case 3839:
         case 3842: case 3849: case 3850: case 3852: case 3869: case 3890: case 3891: case 3918: case 3919: case 3932:
-        case 3936: case 3937: case 3938: case 3939:
+        case 3936: case 3937: case 3938: case 3939: case 3949:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -1271,7 +1272,7 @@ attack.prototype.update=function(){
             }
         break
         case 25: case 1246: case 1274: case 1367: case 1524: case 1610: case 2048: case 2142: case 2143: case 2496:
-        case 2505: case 2943: case 3270: case 3605: case 3701: case 3944:
+        case 2505: case 2943: case 3270: case 3605: case 3701: case 3844: case 3944:
             if(this.type==1524&&this.userCombatant.life<this.userCombatant.base.life/2){
                 this.remove=true
             }else{
@@ -1762,6 +1763,7 @@ attack.prototype.update=function(){
                 }
                 if(this.timer==15){
                     this.userCombatant.moveTilePosition(this.userCombatant.tilePosition.x/2+this.targetCombatant.tilePosition.x/2,this.userCombatant.tilePosition.y/2+this.targetCombatant.tilePosition.y/2)
+                    this.battle.activateTile(1,this.userCombatant.id)
                     this.battle.updateTargetting()
                 }
                 if(this.procedure[0]==2){
@@ -2135,6 +2137,7 @@ attack.prototype.update=function(){
         case 80: case 590: case 594: case 609: case 632: case 633: case 634: case 915: case 1002: case 1009:
         case 1034: case 1036: case 1047: case 1052: case 1126: case 1149: case 1171: case 1319: case 1640: case 1801:
         case 1900: case 2127: case 2308: case 2398: case 3175: case 3373: case 3452: case 3594: case 3786: case 3901:
+        case 3946:
             //mark 10
             if(this.type==1640&&this.energy!=this.effect[0]){
                 this.remove=true
@@ -7801,7 +7804,7 @@ attack.prototype.update=function(){
         case 3294:
             if(this.timer==1){
                 this.userCombatant.startAnimation(0)
-                this.procedure=[[],[]]
+                this.procedure=[[],[],[]]
                 this.offset=[this.targetTile.tilePosition.x-this.userCombatant.tilePosition.x,this.targetTile.tilePosition.y-this.userCombatant.tilePosition.y]
                 this.targetCombatant=[]
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
@@ -7810,9 +7813,14 @@ attack.prototype.update=function(){
                     }
                 }
                 for(let a=0,la=this.targetCombatant.length;a<la;a++){
-                    let index=this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x+this.offset[0],this.targetCombatant[a].tilePosition.y+this.offset[1])
-                    this.procedure[0][a]=index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                    let index=this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x+this.offset[0]/this.targetDistance,this.targetCombatant[a].tilePosition.y+this.offset[1]/this.targetDistance)
+                    let fakeOccupied=false
+                    if(this.userCombatant.tilePosition.x==this.targetCombatant[a].tilePosition.x+this.offset[0]/this.targetDistance&&this.userCombatant.tilePosition.y==this.targetCombatant[a].tilePosition.y+this.offset[1]/this.targetDistance){
+                        fakeOccupied=true
+                    }
+                    this.procedure[0][a]=index>=0&&(this.battle.tileManager.tiles[index].occupied==0||fakeOccupied)?0:1
                     this.procedure[1][a]=10
+                    this.procedure[2][a]=this.targetDistance
                 }
             }
             if(this.timer<=15*this.targetDistance){
@@ -7827,26 +7835,26 @@ attack.prototype.update=function(){
             let allDone3294=true
             for(let a=0,la=this.targetCombatant.length;a<la;a++){
                 if(this.procedure[0][a]==2){
-                    if(this.procedure[1][a]>10&&this.procedure[1][a]<=18){
-                        this.targetCombatant[a].moveTile(this.direction,this.distance/40)
-                        this.targetCombatant[a].moveRelativeTile(this.relativeDirection,this.relativeDistance/40)
-                    }else if(this.procedure[1][a]>18&&this.procedure[1][a]<=26){
-                        this.targetCombatant[a].moveTile(this.direction,-this.distance/40)
-                        this.targetCombatant[a].moveRelativeTile(this.relativeDirection,-this.relativeDistance/40)
+                    if(this.procedure[1][a]>10&&this.procedure[1][a]<=22){
+                        this.targetCombatant[a].moveTile(this.direction,this.distance/60/this.targetDistance)
+                        this.targetCombatant[a].moveRelativeTile(this.relativeDirection,this.relativeDistance/60/this.targetDistance)
+                    }else if(this.procedure[1][a]>22&&this.procedure[1][a]<=34){
+                        this.targetCombatant[a].moveTile(this.direction,-this.distance/60/this.targetDistance)
+                        this.targetCombatant[a].moveRelativeTile(this.relativeDirection,-this.relativeDistance/60/this.targetDistance)
                     }
-                    if(this.procedure[1][a]>=26){
+                    if(this.procedure[1][a]>=34){
                         this.procedure[0][a]=3
                     }
                     allDone3294=false
                 }else if(this.procedure[0][a]==1){
-                    if(this.procedure[1][a]>10&&this.procedure[1][a]<=18){
-                        this.targetCombatant[a].moveTile(this.direction,this.distance/10)
-                        this.targetCombatant[a].moveRelativeTile(this.relativeDirection,this.relativeDistance/10)
-                    }else if(this.procedure[1][a]>18&&this.procedure[1][a]<=26){
-                        this.targetCombatant[a].moveTile(this.direction,-this.distance/10)
-                        this.targetCombatant[a].moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
+                    if(this.procedure[1][a]>10&&this.procedure[1][a]<=22){
+                        this.targetCombatant[a].moveTile(this.direction,this.distance/15/this.targetDistance)
+                        this.targetCombatant[a].moveRelativeTile(this.relativeDirection,this.relativeDistance/15/this.targetDistance)
+                    }else if(this.procedure[1][a]>22&&this.procedure[1][a]<=34){
+                        this.targetCombatant[a].moveTile(this.direction,-this.distance/15/this.targetDistance)
+                        this.targetCombatant[a].moveRelativeTile(this.relativeDirection,-this.relativeDistance/15/this.targetDistance)
                     }
-                    if(this.procedure[1][a]==18){
+                    if(this.procedure[1][a]==22){
                         this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x+this.offset[0],this.targetCombatant[a].tilePosition.y+this.offset[1])
                         if(index>=0){
@@ -7858,13 +7866,24 @@ attack.prototype.update=function(){
                     allDone3294=false
                 }else if(this.procedure[0][a]==0){
                     if(this.procedure[1][a]>10){
-                        this.targetCombatant[a].moveTile(this.direction,this.distance/10)
-                        this.targetCombatant[a].moveRelativeTile(this.relativeDirection,this.relativeDistance/10)
+                        this.targetCombatant[a].moveTile(this.direction,this.distance/15/this.targetDistance)
+                        this.targetCombatant[a].moveRelativeTile(this.relativeDirection,this.relativeDistance/15/this.targetDistance)
                     }
-                    if(this.procedure[1][a]>=20){
-                        this.targetCombatant[a].moveTilePosition(this.targetCombatant[a].tilePosition.x+this.offset[0],this.targetCombatant[a].tilePosition.y+this.offset[1])
+                    if(this.procedure[1][a]>=25){
+                        this.targetCombatant[a].moveTilePosition(this.targetCombatant[a].tilePosition.x+this.offset[0]/this.targetDistance,this.targetCombatant[a].tilePosition.y+this.offset[1]/this.targetDistance)
                         this.battle.activate(1,this.targetCombatant[a].id)
-                        this.procedure[0][a]=-1
+                        this.procedure[2][a]--
+                        if(this.procedure[2][a]>0){
+                            let index=this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x+this.offset[0]/this.targetDistance,this.targetCombatant[a].tilePosition.y+this.offset[1]/this.targetDistance)
+                            let fakeOccupied=false
+                            if(this.userCombatant.tilePosition.x==this.targetCombatant[a].tilePosition.x+this.offset[0]/this.targetDistance&&this.userCombatant.tilePosition.y==this.targetCombatant[a].tilePosition.y+this.offset[1]/this.targetDistance){
+                                fakeOccupied=true
+                            }
+                            this.procedure[0][a]=index>=0&&(this.battle.tileManager.tiles[index].occupied==0||fakeOccupied)?0:1
+                            this.procedure[1][a]=10
+                        }else{
+                            this.procedure[0][a]=3
+                        }
                     }
                     allDone3294=false
                 }

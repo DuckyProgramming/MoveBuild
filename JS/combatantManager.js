@@ -1037,6 +1037,8 @@ class combatantManager{
         this.combatants[this.combatants.length-1].builder=builder
         if(this.combatants[this.combatants.length-1].spec.includes(17)){
             this.combatants[this.combatants.length-1].autoAim()
+        }else{
+            this.combatants[this.combatants.length-1].activated=true
         }
         if(!options.oldUnbuild&&this.combatants[this.combatants.length-1].move.speed==0&&this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players){
             if(this.battle.cardManagers[this.battle.turn.main].hand.numberAbstract(0,[['Unbuild']])==0){

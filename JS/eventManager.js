@@ -148,6 +148,13 @@ class eventManager{
             this.firstEvent=this.name
         }
         switch(this.id){
+            case 30:
+                if(this.battle.relicManager.hasRelic(259,this.player)){
+                    for(let a=0,la=this.pages[0].optionDesc.length;a<la;a++){
+                        this.pages[0].optionDesc[a]+=' (Non-Bypassable)'
+                    }
+                }
+            break
             case 63:
                 let correct=floor(random(0,5))
                 this.pages[0].option[correct]=types.event[this.listing.complete[0]].name
@@ -1358,7 +1365,7 @@ class eventManager{
                     case 123:
                         if(this.page==0&&a==0){
                             this.selection=[floor(random(2,5)),floor(random(0,8))]
-                            this.pages[1].optionDesc[0]=`Lose ${this.selection[0]} Health, ${[
+                            this.pages[1].optionDesc[0]=`Lose ${this.selection[0]} Health${this.battle.relicManager.hasRelic(259,this.player)?` (Non-Bypassable)`:``}, ${[
                                 `Gain 5 Currency`,
                                 `Gain 10 Currency`,
                                 `Gain 25 Currency`,
@@ -1369,43 +1376,47 @@ class eventManager{
                                 `Get Nothing`
                             ][this.selection[1]]}`
                         }else if((this.page==1||this.page==2||this.page==3)&&a==0){
-                            this.harm(userCombatant,this.selection[0])
-                            switch(this.selection[1]){
-                                case 0:
-                                    this.battle.addCurrency(5,this.player)
-                                break
-                                case 1:
-                                    this.battle.addCurrency(10,this.player)
-                                break
-                                case 2:
-                                    this.battle.addCurrency(25,this.player)
-                                break
-                                case 3:
-                                    this.battle.itemManager.addRandomItem(this.player)
-                                break
-                                case 4:
-                                    this.battle.overlayManager.overlays[3][this.player].active=true
-                                    this.battle.overlayManager.overlays[3][this.player].activate([0,floor(random(0,2)),0])
-                                break
-                                case 5:
-                                    this.battle.relicManager.addSetRelic(this.player,0)
-                                break
-                                case 6:
-                                    this.battle.overlayManager.overlays[5][this.player].active=true
-                                    this.battle.overlayManager.overlays[5][this.player].activate()
-                                break
+                            if(userCombatant.life<=0){
+                                tempPage=this.page-this.pages[this.page].link[a]
+                            }else{
+                                userCombatant.loseHealth(this.selection[0])
+                                switch(this.selection[1]){
+                                    case 0:
+                                        this.battle.addCurrency(5,this.player)
+                                    break
+                                    case 1:
+                                        this.battle.addCurrency(10,this.player)
+                                    break
+                                    case 2:
+                                        this.battle.addCurrency(25,this.player)
+                                    break
+                                    case 3:
+                                        this.battle.itemManager.addRandomItem(this.player)
+                                    break
+                                    case 4:
+                                        this.battle.overlayManager.overlays[3][this.player].active=true
+                                        this.battle.overlayManager.overlays[3][this.player].activate([0,floor(random(0,2)),0])
+                                    break
+                                    case 5:
+                                        this.battle.relicManager.addSetRelic(this.player,0)
+                                    break
+                                    case 6:
+                                        this.battle.overlayManager.overlays[5][this.player].active=true
+                                        this.battle.overlayManager.overlays[5][this.player].activate()
+                                    break
+                                }
+                                this.selection=[this.selection[0]+floor(random(0,3)),floor(random(0,8))]
+                                this.pages[this.page==2?3:2].optionDesc[0]=`Lose ${this.selection[0]} Health, ${[
+                                    `Gain 5 Currency`,
+                                    `Gain 10 Currency`,
+                                    `Gain 25 Currency`,
+                                    `Gain an Item`,
+                                    `Gain a Card Reward`,
+                                    `Gain a Common Relic`,
+                                    `Upgrade a Card`,
+                                    `Get Nothing`
+                                ][this.selection[1]]}`
                             }
-                            this.selection=[this.selection[0]+floor(random(0,3)),floor(random(0,8))]
-                            this.pages[this.page==2?3:2].optionDesc[0]=`Lose ${this.selection[0]} Health, ${[
-                                `Gain 5 Currency`,
-                                `Gain 10 Currency`,
-                                `Gain 25 Currency`,
-                                `Gain an Item`,
-                                `Gain a Card Reward`,
-                                `Gain a Common Relic`,
-                                `Upgrade a Card`,
-                                `Get Nothing`
-                            ][this.selection[1]]}`
                         }
                     break
                     case 124:

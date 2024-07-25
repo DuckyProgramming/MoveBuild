@@ -180,7 +180,7 @@ class attack{
             case 3767: case 3770: case 3771: case 3778: case 3781: case 3782: case 3786: case 3787: case 3792: case 3809: case 3810: case 3811: case 3812: case 3813: case 3815: case 3821: case 3823: case 3824: case 3825: case 3826:
             case 3843: case 3844: case 3847: case 3848: case 3851: case 3853: case 3855: case 3857: case 3861: case 3863: case 3868: case 3870: case 3871: case 3876: case 3879: case 3881: case 3885: case 3886: case 3892: case 3893:
             case 3895: case 3901: case 3902: case 3904: case 3905: case 3906: case 3907: case 3912: case 3915: case 3917: case 3920: case 3921: case 3923: case 3924: case 3927: case 3928: case 3929: case 3933: case 3935: case 3940:
-            case 3941: case 3944: case 3945:
+            case 3941: case 3944: case 3945: case 3946: case 3948: case 3950: case 3951: case 3953:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -1925,6 +1925,12 @@ class attack{
                     break
                     case 3924:
                         this.targetCombatant.takeDamage(this.effect[0]*this.userManager.deck.numberAbstract(8),this.user)
+                    break
+                    case 3950:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.block>0?2:1),this.user)
+                    break
+                    case 3951:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.block>0?3:1),this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -3984,6 +3990,19 @@ class attack{
                             }
                         }
                     break
+                    case 3948:
+                        this.targetCombatant.statusEffect('Lock On',this.effect[1])
+                        let adjacent3948=this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,1)
+                        if(adjacent3948.includes(this.targetCombatant)){
+                            adjacent3948.splice(adjacent3948.indexOf(this.targetCombatant),1)
+                        }
+                        this.userCombatant.addBlock(this.effect[2]*adjacent3948.length)
+                    break
+                    case 3953:
+                        if(this.energy%3==0){
+                            this.targetCombatant.statusEffect('Lock On',this.effect[1])
+                        }
+                    break
 
                 }
                 //mark 1s
@@ -4326,6 +4345,9 @@ class attack{
                     break
                     case 3880:
                         this.userCombatant.addBlock(this.effect[0]*(this.userManager.hand.numberAbstract(9,[[2]])>=1?2:1))
+                    break
+                    case 3947:
+                        this.userCombatant.addBlock(this.effect[0]*(this.edition>0?2:1))
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
@@ -5371,6 +5393,9 @@ class attack{
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.hand.add(findName('Defend',types.card),this.level,this.color)
                         }
+                    break
+                    case 3952:
+                        this.userCombatant.vision+=this.effect[1]*this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,1).length
                     break
 
                 }
@@ -9544,13 +9569,21 @@ class attack{
                     break
                     case 3548:
                         for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.addRandomAbstract(2,0,0,0,1,[0],[3,1,0])
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.addRandomAbstract(2,0,0,0,1,[0],[3,11,0])
                         }
+                        this.userManager.draw(this.effect[2])
                     break
                     case 3549:
                         for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.addRandomAbstract(2,0,0,0,1,[0],[3,1,1])
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.addRandomAbstract(2,0,0,0,1,[0],[3,11,1])
                         }
+                        this.userManager.draw(this.effect[2])
                     break
                     case 3552:
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,5))==0){
@@ -9751,6 +9784,14 @@ class attack{
                     case 3939:
                         this.userCombatant.statusEffect('Elemental Energy',this.effect[0])
                         this.userCombatant.statusEffect('Elemental Draw',this.effect[1])
+                    break
+                    case 3949:
+                        let total3949=this.userManager.hand.numberAbstract(4,[[7]])
+                        if(total3949>0){
+                            this.battle.addEnergy(this.effect[0]*total3949,this.player)
+                            this.userManager.draw(this.effect[1]*total3949)
+                        }
+                        this.userManager.allEffectArgs(2,37,[7])
                     break
 
                 }
@@ -12902,7 +12943,7 @@ class attack{
                         }
                     break
                     case 3594:
-                        this.userCombatant.ammo++
+                        this.userCombatant.ammo+=this.effect[2]
                     break
                     case 3786:
                         this.targetCombatant.statusEffect('Take Double Damage Turn',1)
@@ -12911,6 +12952,9 @@ class attack{
                         if(abs(this.relPos[0]-this.relPos[1]/2)<=0.5){
                             this.userCombatant.addBlock(this.effect[1])
                         }
+                    break
+                    case 3946:
+                        this.userCombatant.ammo+=this.effect[1]
                     break
 
                 }
