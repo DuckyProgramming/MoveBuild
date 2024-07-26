@@ -1,7 +1,96 @@
-change mtg cards
+    {
+        name:'Strike',rarity:-2,list:-1,
+        levels:[
+            {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[11],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-2,list:-1,color:[0],
+            levels:[
+                {effect:[4],attack:1,cost:[-1],target:[2,1,1],spec:[],class:1},
+                {effect:[6],attack:1,cost:[-1],target:[2,1,1],spec:[],class:1},
+                {effect:[8],attack:1,cost:[-1],target:[2,1,1],spec:[],class:1},
+            ],
+        },
+    },{
+        name:'Defend',rarity:-2,list:-1,
+        levels:[
+            {effect:[8],attack:2,cost:1,target:[0],spec:[],class:2},
+            {effect:[12],attack:2,cost:1,target:[0],spec:[],class:2},
+            {effect:[15],attack:2,cost:1,target:[0],spec:[],class:2},
+        ],mtg:{
+            rarity:-2,list:-1,color:[0],
+            levels:[
+                {effect:[5],attack:2,cost:[-1],target:[0],spec:[],class:2},
+                {effect:[8],attack:2,cost:[-1],target:[0],spec:[],class:2},
+                {effect:[10],attack:2,cost:[-1],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Step',rarity:-2,list:-1,
+        levels:[
+            {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[],class:3},
+            {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[],class:3},
+        ],mtg:{
+            rarity:-2,list:-1,color:[-2],
+            levels:[
+                {effect:[1],attack:3,cost:[-1,-2],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:3,cost:[-1,-1],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:3,cost:[-1],target:[1,1,1],spec:[0],class:3},
+            ],
+        },
+    },
 
-what was the step cooking
-some costs just don't work supposedly
+METAS
+
+1 mana = 8 damage
+1 mana = 12 block
+
+case 7:
+    return [1,2]
+case 8:
+    return [1,3]
+case 9:
+    return [1,4]
+case 10:
+    return [1,5]
+case 11:
+    return [2,3]
+case 12:
+    return [2,4]
+case 13:
+    return [2,5]
+case 14:
+    return [3,4]
+case 15:
+    return [3,5]
+case 16:
+    return [4,5]
+default:
+    return [base]
+
+
+
+
+
+
+
+
+
+setsuna's hair is messed up in the win screen
+
+a lot is wrong with sakura in the boss stash screen
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -166,7 +255,7 @@ md's notebook - 10% chance to gain an item slot, 10% chance to make a card glitc
 
 
 
-asteroid belt that spams red stars that create more stars with holes in them
+asteroid belt that spams red stars that create more stars with holes in them and streaks
 
 crystal glare but with a cool animation
 
@@ -248,6 +337,16 @@ swap and add block
 [more strike + defend synergy]
 
 [more strike + defend synergy]
+
+
+
+caltrops - create tiles that inflict bleed
+
+pistol and advance 1 tile
+
+move all celestial cards,
+celestine,
+diamond of sky
 
 
 

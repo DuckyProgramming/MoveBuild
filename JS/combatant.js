@@ -1278,7 +1278,7 @@ class combatant{
                     sleeve:{decoration:[]},
                     sandal:[10,-10],eye:[-18,18],blush:[-17,17],button:0,sword:75,mouth:216}
 
-                this.color=graphics.combatant[10].color
+                this.color=graphics.combatant[20].color
 
                 this.parts={eyeLevel:-72,mouth:-65,blush:-68.5,
                     under:{top:-51,bottom:-31,bow:{top:[-1.8,-1.8],bottom:[-5.8,-5.8],extra:2.5}},
@@ -8530,29 +8530,29 @@ class combatant{
                         this.layer.strokeWeight(0.5)
                         if(this.trigger.display.extra.damage){
                             this.layer.line(
-                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.1*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.1*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.1*lsin(dir+90),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.1*lcos(dir+90),
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.925*lsin(dir+90),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.925*lcos(dir+90))
                             this.layer.line(
-                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.1*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.1*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.925*lsin(dir+90),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.925*lcos(dir+90),
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.1*lsin(dir+90),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.1*lcos(dir+90))
                         }else{
                             this.layer.line(
-                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.925*lsin(dir+90),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.925*lcos(dir+90),
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.925*lsin(dir+90),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.925*lcos(dir+90))
                         }
                         this.layer.stroke(this.color.band[2][0],this.color.band[2][1],this.color.band[2][2],this.fade*this.fades.band[0])
                         this.layer.strokeWeight(0.6)
                         for(let g=0;g<4;g++){
                             if(!this.trigger.display.extra.damage||g<1||g>3){
                                 this.layer.point(
-                                    this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+(-1.8+g*1.2)*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                    this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+(-1.8+g*1.2)*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                                    this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+(-1.8+g*1.2)*lsin(dir+90),
+                                    this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+(-1.8+g*1.2)*lcos(dir+90))
                             }
                         }
                     break
@@ -8654,51 +8654,62 @@ class combatant{
                     case 1:
                         this.layer.stroke(this.color.band[1][0],this.color.band[1][1],this.color.band[1][2],this.fade*this.fades.band[0])
                         this.layer.strokeWeight(0.3)
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         if(this.trigger.display.extra.damage){
                             this.layer.line(
-                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.1*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.1*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.1*lsin(dir+90),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.1*lcos(dir+90),
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.925*lsin(dir+90),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.925*lcos(dir+90))
                             this.layer.line(
-                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.1*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.1*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.925*lsin(dir+90),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.925*lcos(dir+90),
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.1*lsin(dir+90),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.1*lcos(dir+90))
                         }else{
                             this.layer.line(
-                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.925*lsin(dir+90),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.925*lcos(dir+90),
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.925*lsin(dir+90),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.925*lcos(dir+90))
                         }
                         this.layer.stroke(this.color.band[2][0],this.color.band[2][1],this.color.band[2][2],this.fade*this.fades.band[0])
                         this.layer.strokeWeight(0.55)
                         this.layer.line(
-                            this.graphics.arms[key].middle.x*0.065+this.graphics.arms[key].bottom.x*0.935+0.6*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.065+this.graphics.arms[key].bottom.y*0.935+0.6*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.x*0.135+this.graphics.arms[key].bottom.x*0.865-0.6*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.135+this.graphics.arms[key].bottom.y*0.865-0.6*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+0.8*lsin(dir+60),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+0.8*lcos(dir+60),
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-0.8*lsin(dir+60),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-0.8*lcos(dir+60))
+                        this.layer.line(
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+0.8*lsin(dir),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+0.8*lcos(dir),
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-0.8*lsin(dir),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-0.8*lcos(dir))
                         if(!this.trigger.display.extra.damage){
                             this.layer.line(
-                                this.graphics.arms[key].middle.x*0.135+this.graphics.arms[key].bottom.x*0.865+0.6*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.135+this.graphics.arms[key].bottom.y*0.865+0.6*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.x*0.065+this.graphics.arms[key].bottom.x*0.935-0.6*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.065+this.graphics.arms[key].bottom.y*0.935-0.6*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+0.8*lsin(dir-60),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+0.8*lcos(dir-60),
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-0.8*lsin(dir-60),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-0.8*lcos(dir-60))
                         }
                         this.layer.stroke(this.color.band[3][0],this.color.band[3][1],this.color.band[3][2],this.fade*this.fades.band[0])
                         this.layer.strokeWeight(0.25)
                         this.layer.line(
-                            this.graphics.arms[key].middle.x*0.065+this.graphics.arms[key].bottom.x*0.935+0.6*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.065+this.graphics.arms[key].bottom.y*0.935+0.6*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.x*0.135+this.graphics.arms[key].bottom.x*0.865-0.6*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.135+this.graphics.arms[key].bottom.y*0.865-0.6*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+0.8*lsin(dir+60),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+0.8*lcos(dir+60),
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-0.8*lsin(dir+60),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-0.8*lcos(dir+60))
+                        this.layer.line(
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+0.8*lsin(dir),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+0.8*lcos(dir),
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-0.8*lsin(dir),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-0.8*lcos(dir))
                         if(!this.trigger.display.extra.damage){
                             this.layer.line(
-                                this.graphics.arms[key].middle.x*0.135+this.graphics.arms[key].bottom.x*0.865+0.6*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.135+this.graphics.arms[key].bottom.y*0.865+0.6*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.x*0.065+this.graphics.arms[key].bottom.x*0.935-0.6*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                                this.graphics.arms[key].middle.y*0.065+this.graphics.arms[key].bottom.y*0.935-0.6*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+0.8*lsin(dir-60),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+0.8*lcos(dir-60),
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-0.8*lsin(dir-60),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-0.8*lcos(dir-60))
                         }
                     break
                 }
@@ -8724,7 +8735,7 @@ class combatant{
             case 'Shiru':
                 switch(type){
                     case 0:
-                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                        let dir=dir
                         this.layer.noStroke()
                         this.layer.fill(this.color.dress.sleeve[0],this.color.dress.sleeve[1],this.color.dress.sleeve[2],this.fade*this.fades.dress.sleeve)
                         this.layer.beginShape()
@@ -8774,7 +8785,7 @@ class combatant{
                             this.graphics.arms[key].top.x-2.1*sin(dir+90),
                             this.graphics.arms[key].top.y-2.1*cos(dir+90)
                         )
-                        dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                        dir=dir
                         this.layer.stroke(this.color.dress.tie[0],this.color.dress.tie[1],this.color.dress.tie[2],this.fade*this.fades.dress.sleeve)
                         this.layer.strokeWeight(0.5)
                         this.layer.line(
@@ -8791,10 +8802,10 @@ class combatant{
                         this.layer.stroke(this.flashColor(this.color.ring)[0],this.flashColor(this.color.ring)[1],this.flashColor(this.color.ring)[2],this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(0.75)
                         this.layer.line(
-                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.9*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.9*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.9*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.9*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.9*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.9*lcos(dir+90),
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.9*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.9*lcos(dir+90))
                         this.layer.line(
                             this.graphics.arms[key].middle.x*0.04+this.graphics.arms[key].bottom.x*0.96,
                             this.graphics.arms[key].middle.y*0.04+this.graphics.arms[key].bottom.y*0.96,
@@ -8830,7 +8841,7 @@ class combatant{
             case 'Daiyousei':
                 switch(type){
                     case 0:
-                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                        let dir=dir
                         this.layer.noStroke()
                         this.layer.fill(this.flashColor(this.color.dress.under)[0],this.flashColor(this.color.dress.under)[1],this.flashColor(this.color.dress.under)[2],this.fade*this.fades.dress.sleeve)
                         dir=atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
@@ -8940,7 +8951,7 @@ class combatant{
                         this.layer.pop()
 
                         this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4.4)
-                        dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                        dir=dir
                         this.layer.fill(colors[0][0],colors[0][1],colors[0][2],this.fade*this.fades.dress.sleeve)
                         this.layer.quad(
                             this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25+6*sin(dir+90),
@@ -8992,7 +9003,7 @@ class combatant{
                     break
                     case 2:
                         colors=[this.flashColor(this.color.dress.sleeveHighlight),this.flashColor(this.color.dress.sleeve),this.flashColor(this.color.dress.dot)]
-                        dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                        dir=dir
                         this.layer.noStroke()
                         this.layer.fill(...colors[0],this.fade*this.fades.dress.sleeve)
                         this.layer.quad(
@@ -9143,10 +9154,10 @@ class combatant{
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1)
                         this.layer.line(
-                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.925*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.925*lcos(dir+90),
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.925*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.925*lcos(dir+90))
                     break
                 }
             break
@@ -9156,10 +9167,10 @@ class combatant{
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(2)
                         this.layer.line(
-                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.85*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.85*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.85*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.85*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.85*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.85*lcos(dir+90),
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.85*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.85*lcos(dir+90))
                     break
                 }
             break
@@ -9169,10 +9180,10 @@ class combatant{
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1.5)
                         this.layer.line(
-                            this.graphics.arms[key].middle.x*0.2+this.graphics.arms[key].bottom.x*0.8+1.8875*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.2+this.graphics.arms[key].bottom.y*0.8+1.8875*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.x*0.2+this.graphics.arms[key].bottom.x*0.8-1.8875*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.2+this.graphics.arms[key].bottom.y*0.8-1.8875*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                            this.graphics.arms[key].middle.x*0.2+this.graphics.arms[key].bottom.x*0.8+1.8875*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.2+this.graphics.arms[key].bottom.y*0.8+1.8875*lcos(dir+90),
+                            this.graphics.arms[key].middle.x*0.2+this.graphics.arms[key].bottom.x*0.8-1.8875*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.2+this.graphics.arms[key].bottom.y*0.8-1.8875*lcos(dir+90))
                     break
                 }
             break
@@ -9242,7 +9253,7 @@ class combatant{
                             this.graphics.arms[key].top.x*0.5+this.graphics.arms[key].middle.x*0.5-2*lcos(dir),
                             this.graphics.arms[key].top.y*0.5+this.graphics.arms[key].middle.y*0.5+2*lsin(dir)
                         )
-                        dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                        dir=dir
                         this.layer.quad(
                             this.graphics.arms[key].middle.x*0.5+this.graphics.arms[key].bottom.x*0.5+2*lsin(dir),
                             this.graphics.arms[key].middle.y*0.5+this.graphics.arms[key].bottom.y*0.5+2*lcos(dir),
@@ -9296,10 +9307,10 @@ class combatant{
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1.5)
                         this.layer.line(
-                            this.graphics.arms[key].middle.x*0.35+this.graphics.arms[key].bottom.x*0.65+1.9*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.35+this.graphics.arms[key].bottom.y*0.65+1.9*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.x*0.35+this.graphics.arms[key].bottom.x*0.65-1.9*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.35+this.graphics.arms[key].bottom.y*0.65-1.9*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                            this.graphics.arms[key].middle.x*0.35+this.graphics.arms[key].bottom.x*0.65+1.9*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.35+this.graphics.arms[key].bottom.y*0.65+1.9*lcos(dir+90),
+                            this.graphics.arms[key].middle.x*0.35+this.graphics.arms[key].bottom.x*0.65-1.9*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.35+this.graphics.arms[key].bottom.y*0.65-1.9*lcos(dir+90))
                     break
                 }
             break
@@ -9380,10 +9391,10 @@ class combatant{
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1.5)
                         this.layer.line(
-                            this.graphics.arms[key].middle.x*0.35+this.graphics.arms[key].bottom.x*0.65+1.8875*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.35+this.graphics.arms[key].bottom.y*0.65+1.8875*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.x*0.35+this.graphics.arms[key].bottom.x*0.65-1.8875*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.35+this.graphics.arms[key].bottom.y*0.65-1.8875*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                            this.graphics.arms[key].middle.x*0.35+this.graphics.arms[key].bottom.x*0.65+1.8875*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.35+this.graphics.arms[key].bottom.y*0.65+1.8875*lcos(dir+90),
+                            this.graphics.arms[key].middle.x*0.35+this.graphics.arms[key].bottom.x*0.65-1.8875*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.35+this.graphics.arms[key].bottom.y*0.65-1.8875*lcos(dir+90))
                     break
                 }
             break
@@ -9413,15 +9424,15 @@ class combatant{
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1)
                         this.layer.line(
-                            this.graphics.arms[key].middle.x*0.275+this.graphics.arms[key].bottom.x*0.725+1.9*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.275+this.graphics.arms[key].bottom.y*0.725+1.9*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.x*0.275+this.graphics.arms[key].bottom.x*0.725-1.9*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.275+this.graphics.arms[key].bottom.y*0.725-1.9*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                            this.graphics.arms[key].middle.x*0.275+this.graphics.arms[key].bottom.x*0.725+1.9*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.275+this.graphics.arms[key].bottom.y*0.725+1.9*lcos(dir+90),
+                            this.graphics.arms[key].middle.x*0.275+this.graphics.arms[key].bottom.x*0.725-1.9*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.275+this.graphics.arms[key].bottom.y*0.725-1.9*lcos(dir+90))
                         this.layer.line(
-                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+1.9*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+1.9*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85-1.9*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85-1.9*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+1.9*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+1.9*lcos(dir+90),
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85-1.9*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85-1.9*lcos(dir+90))
                     break
                 }
             break
@@ -9469,10 +9480,10 @@ class combatant{
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1.2)
                         this.layer.line(
-                            this.graphics.arms[key].middle.x*0.375+this.graphics.arms[key].bottom.x*0.625+1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.375+this.graphics.arms[key].bottom.y*0.625+1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.x*0.375+this.graphics.arms[key].bottom.x*0.625-1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.375+this.graphics.arms[key].bottom.y*0.625-1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                            this.graphics.arms[key].middle.x*0.375+this.graphics.arms[key].bottom.x*0.625+1.925*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.375+this.graphics.arms[key].bottom.y*0.625+1.925*lcos(dir+90),
+                            this.graphics.arms[key].middle.x*0.375+this.graphics.arms[key].bottom.x*0.625-1.925*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.375+this.graphics.arms[key].bottom.y*0.625-1.925*lcos(dir+90))
                     break
                 }
             break
@@ -9514,12 +9525,12 @@ class combatant{
                         this.layer.noStroke()
                         this.layer.fill(this.color.diamond[0],this.color.diamond[1],this.color.diamond[2],this.fade*this.fades.diamond)
                         this.layer.quad(
-                            this.graphics.arms[key].middle.x*0.5+this.graphics.arms[key].bottom.x*0.5-3.5*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.5+this.graphics.arms[key].bottom.y*0.5-3.5*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
+                            this.graphics.arms[key].middle.x*0.5+this.graphics.arms[key].bottom.x*0.5-3.5*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.5+this.graphics.arms[key].bottom.y*0.5-3.5*lcos(dir+90),
                             this.graphics.arms[key].middle.x*0.3+this.graphics.arms[key].bottom.x*0.7,
                             this.graphics.arms[key].middle.y*0.3+this.graphics.arms[key].bottom.y*0.7,
-                            this.graphics.arms[key].middle.x*0.5+this.graphics.arms[key].bottom.x*0.5+3.5*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.5+this.graphics.arms[key].bottom.y*0.5+3.5*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
+                            this.graphics.arms[key].middle.x*0.5+this.graphics.arms[key].bottom.x*0.5+3.5*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.5+this.graphics.arms[key].bottom.y*0.5+3.5*lcos(dir+90),
                             this.graphics.arms[key].middle.x*0.7+this.graphics.arms[key].bottom.x*0.3,
                             this.graphics.arms[key].middle.y*0.7+this.graphics.arms[key].bottom.y*0.3
                         )
@@ -9532,15 +9543,15 @@ class combatant{
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1)
                         this.layer.line(
-                            this.graphics.arms[key].middle.x*0.3+this.graphics.arms[key].bottom.x*0.7+1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.3+this.graphics.arms[key].bottom.y*0.7+1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.x*0.3+this.graphics.arms[key].bottom.x*0.7-1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.3+this.graphics.arms[key].bottom.y*0.7-1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                            this.graphics.arms[key].middle.x*0.3+this.graphics.arms[key].bottom.x*0.7+1.925*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.3+this.graphics.arms[key].bottom.y*0.7+1.925*lcos(dir+90),
+                            this.graphics.arms[key].middle.x*0.3+this.graphics.arms[key].bottom.x*0.7-1.925*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.3+this.graphics.arms[key].bottom.y*0.7-1.925*lcos(dir+90))
                         this.layer.line(
-                            this.graphics.arms[key].middle.x*0.4+this.graphics.arms[key].bottom.x*0.6+1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.4+this.graphics.arms[key].bottom.y*0.6+1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.x*0.4+this.graphics.arms[key].bottom.x*0.6-1.925*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
-                            this.graphics.arms[key].middle.y*0.4+this.graphics.arms[key].bottom.y*0.6-1.925*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                            this.graphics.arms[key].middle.x*0.4+this.graphics.arms[key].bottom.x*0.6+1.925*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.4+this.graphics.arms[key].bottom.y*0.6+1.925*lcos(dir+90),
+                            this.graphics.arms[key].middle.x*0.4+this.graphics.arms[key].bottom.x*0.6-1.925*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*0.4+this.graphics.arms[key].bottom.y*0.6-1.925*lcos(dir+90))
                     break
                 }
             break

@@ -122,7 +122,69 @@ function displayTrianglesBack(layer,parts,direction,base,width,weight,slant,colo
 	layer.strokeWeight(weight)
 	layer.strokeJoin(ROUND)
 	for(let part of parts){
-		if(lcos(part.spin[1]+direction)<=0&&lcos(part.spin[0]+direction)>0){
+		let reality=[
+			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
+			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
+			part.spin[2]+direction
+		]
+		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
+		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
+		if(c[0]<0){
+			if(c[1]<0){
+				if(c[2]<0){
+					layer.triangle(
+						s[0]*width/2,base,
+						s[1]*width/2,base,
+						s[2]*(width/2+part.height*slant),base+part.height
+					)
+				}
+			}else{
+				if(c[2]<0){
+					let inter=reality[1]<90?
+						abs(-90-reality[1])/abs(reality[2]-reality[1]):
+						abs(270-reality[1])/abs(reality[2]-reality[1])
+					layer.quad(
+						s[0]*width/2,base,
+						-width/2,base,
+						-width/2-part.height*inter*slant,base+part.height*inter,
+						s[2]*(width/2+part.height*slant),base+part.height
+					)
+				}else{
+					let inter=reality[0]<90?
+						abs(-90-reality[0])/abs(reality[2]-reality[0]):
+						abs(270-reality[0])/abs(reality[2]-reality[0])
+					layer.triangle(
+						s[0]*width/2,base,
+						-width/2,base,
+						-width/2-part.height*inter*slant,base+part.height*inter
+					)
+				}
+			}
+		}else{
+			if(c[1]<0){
+				if(c[2]<0){
+					let inter=reality[1]<-90?
+						abs(-270-reality[0])/abs(reality[2]-reality[0]):
+						abs(90-reality[0])/abs(reality[2]-reality[0])
+					layer.quad(
+						s[1]*width/2,base,
+						width/2,base,
+						width/2+part.height*inter*slant,base+part.height*inter,
+						s[2]*(width/2+part.height*slant),base+part.height
+					)
+				}else{
+					let inter=reality[0]<-90?
+						abs(-270-reality[1])/abs(reality[2]-reality[1]):
+						abs(90-reality[1])/abs(reality[2]-reality[1])
+					layer.triangle(
+						s[1]*width/2,base,
+						width/2,base,
+						width/2+part.height*inter*slant,base+part.height*inter
+					)
+				}
+			}
+		}
+		/*if(lcos(part.spin[1]+direction)<=0&&lcos(part.spin[0]+direction)>0){
 			if(lcos(part.spin[2]+direction)>0){
 				layer.triangle(lsin(part.spin[1]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,base+part.height*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2])))
 			}else{
@@ -136,7 +198,7 @@ function displayTrianglesBack(layer,parts,direction,base,width,weight,slant,colo
 			}
 		}else if(lcos(part.spin[0]+direction)<=0&&lcos(part.spin[1]+direction)<=0&&lcos(part.spin[2]+direction)<=0){
 			layer.triangle(lsin(part.spin[0]+direction)*width/2,base,lsin(part.spin[1]+direction)*width/2,base,lsin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
-		}
+		}*/
 	}
 	layer.strokeJoin(MITER)
 }
@@ -155,7 +217,69 @@ function displayTrianglesFront(layer,parts,direction,base,width,weight,slant,col
 	layer.strokeWeight(weight)
 	layer.strokeJoin(ROUND)
 	for(let part of parts){
-		if(lcos(part.spin[1]+direction)<=0&&lcos(part.spin[0]+direction)>0){
+		let reality=[
+			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
+			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
+			part.spin[2]+direction
+		]
+		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
+		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
+		if(c[0]>=0){
+			if(c[1]>=0){
+				if(c[2]>=0){
+					layer.triangle(
+						s[0]*width/2,base,
+						s[1]*width/2,base,
+						s[2]*(width/2+part.height*slant),base+part.height
+					)
+				}
+			}else{
+				if(c[2]>=0){
+					let inter=reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[2]-reality[1]):
+						abs(90-reality[1])/abs(reality[2]-reality[1])
+					layer.quad(
+						s[0]*width/2,base,
+						width/2,base,
+						width/2+part.height*inter*slant,base+part.height*inter,
+						s[2]*(width/2+part.height*slant),base+part.height
+					)
+				}else{
+					let inter=reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[2]-reality[0]):
+						abs(90-reality[0])/abs(reality[2]-reality[0])
+					layer.triangle(
+						s[0]*width/2,base,
+						width/2,base,
+						width/2+part.height*inter*slant,base+part.height*inter
+					)
+				}
+			}
+		}else{
+			if(c[1]>=0){
+				if(c[2]>=0){
+					let inter=reality[1]<90?
+						abs(-90-reality[0])/abs(reality[2]-reality[0]):
+						abs(270-reality[0])/abs(reality[2]-reality[0])
+					layer.quad(
+						s[1]*width/2,base,
+						-width/2,base,
+						-width/2-part.height*inter*slant,base+part.height*inter,
+						s[2]*(width/2+part.height*slant),base+part.height
+					)
+				}else{
+					let inter=reality[0]<90?
+						abs(-90-reality[1])/abs(reality[2]-reality[1]):
+						abs(270-reality[1])/abs(reality[2]-reality[1])
+					layer.triangle(
+						s[1]*width/2,base,
+						-width/2,base,
+						-width/2-part.height*inter*slant,base+part.height*inter
+					)
+				}
+			}
+		}
+		/*if(lcos(part.spin[1]+direction)<=0&&lcos(part.spin[0]+direction)>0){
 			if(lcos(part.spin[2]+direction)<=0){
 				if(90-part.spin[2]-direction>180){
 					layer.triangle(lsin(part.spin[0]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(-270-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,base+part.height*(1-(-270-part.spin[2]-direction)/(part.spin[0]-part.spin[2])))
@@ -177,7 +301,7 @@ function displayTrianglesFront(layer,parts,direction,base,width,weight,slant,col
 			}
 		}else if(lcos(part.spin[0]+direction)>0&&lcos(part.spin[1]+direction)>0&&lcos(part.spin[2]+direction)>0){
 			layer.triangle(lsin(part.spin[0]+direction)*width/2,base,lsin(part.spin[1]+direction)*width/2,base,lsin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
-		}
+		}*/
 	}
 	layer.strokeJoin(MITER)
 }
@@ -196,7 +320,105 @@ function displayTrianglesBackMerge(layer,parts,direction,base,width,weight,slant
 			layer.fill(color1[0]*g/lg+color2[0]*(1-g/lg),color1[1]*g/lg+color2[1]*(1-g/lg),color1[2]*g/lg+color2[2]*(1-g/lg),fade)
 			layer.stroke(color1[0]*g/lg+color2[0]*(1-g/lg),color1[1]*g/lg+color2[1]*(1-g/lg),color1[2]*g/lg+color2[2]*(1-g/lg),fade)
 		}
-		if(lcos(part.spin[1]+direction)<=0&&lcos(part.spin[0]+direction)>0){
+		let reality=[
+			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
+			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
+			part.spin[2]+direction
+		]
+		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
+		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
+		if(c[0]<0){
+			if(c[1]<0){
+				if(c[2]<0){
+					layer.triangle(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0],
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]
+					)
+				}
+			}else{
+				if(c[2]<0){
+					let inter=[
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[0]-reality[1]):
+						abs(270-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[1]-reality[2]):
+						abs(270-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.quad(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0],
+						-width/2-cut[0]*slant,base+cut[0],
+						-width/2-cut[1]*slant,base+cut[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]
+					)
+				}else{
+					let inter=[
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[1]):
+						abs(270-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[2]):
+						abs(270-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.triangle(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0],
+						-width/2-cut[0]*slant,base+cut[0],
+						-width/2-cut[1]*slant,base+cut[1]
+					)
+				}
+			}
+		}else{
+			if(c[1]<0){
+				if(c[2]<0){
+					let inter=[
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[1]):
+						abs(90-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[2]):
+						abs(90-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.quad(
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1],
+						width/2+cut[0]*slant,base+cut[0],
+						width/2+cut[1]*slant,base+cut[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]
+					)
+				}else{
+					let inter=[
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[0]-reality[1]):
+						abs(90-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[1]-reality[2]):
+						abs(90-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.triangle(
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1],
+						width/2+cut[0]*slant,base+cut[0],
+						width/2+cut[1]*slant,base+cut[1]
+					)
+				}
+			}
+		}
+		/*if(lcos(part.spin[1]+direction)<=0&&lcos(part.spin[0]+direction)>0){
 			if(lcos(part.spin[2]+direction)>0){
 				layer.triangle(lsin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],
 				width/2+(part.y[1]*(1-abs(90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]))+part.y[0]*abs(90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]))*slant,
@@ -228,7 +450,7 @@ function displayTrianglesBackMerge(layer,parts,direction,base,width,weight,slant
 			}
 		}else if(lcos(part.spin[0]+direction)<=0&&lcos(part.spin[1]+direction)<=0&&lcos(part.spin[2]+direction)<=0){
 			layer.triangle(lsin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],lsin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],lsin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2])
-		}
+		}*/
 	}
 	layer.strokeJoin(MITER)
 }
@@ -247,7 +469,105 @@ function displayTrianglesFrontMerge(layer,parts,direction,base,width,weight,slan
 			layer.fill(color1[0]*g/lg+color2[0]*(1-g/lg),color1[1]*g/lg+color2[1]*(1-g/lg),color1[2]*g/lg+color2[2]*(1-g/lg),fade)
 			layer.stroke(color1[0]*g/lg+color2[0]*(1-g/lg),color1[1]*g/lg+color2[1]*(1-g/lg),color1[2]*g/lg+color2[2]*(1-g/lg),fade)
 		}
-		if(lcos(part.spin[1]+direction)<=0&&lcos(part.spin[0]+direction)>0){
+		let reality=[
+			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
+			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
+			part.spin[2]+direction
+		]
+		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
+		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
+		if(c[0]>=0){
+			if(c[1]>=0){
+				if(c[2]>=0){
+					layer.triangle(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0],
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]
+					)
+				}
+			}else{
+				if(c[2]>=0){
+					let inter=[
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[0]-reality[1]):
+						abs(90-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[1]-reality[2]):
+						abs(90-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.quad(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0],
+						width/2+cut[0]*slant,base+cut[0],
+						width/2+cut[1]*slant,base+cut[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]
+					)
+				}else{
+					let inter=[
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[1]):
+						abs(90-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[2]):
+						abs(90-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.triangle(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0],
+						width/2+cut[0]*slant,base+cut[0],
+						width/2+cut[1]*slant,base+cut[1]
+					)
+				}
+			}
+		}else{
+			if(c[1]>=0){
+				if(c[2]>=0){
+					let inter=[
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[1]):
+						abs(270-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[2]):
+						abs(270-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.quad(
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1],
+						-width/2-cut[0]*slant,base+cut[0],
+						-width/2-cut[1]*slant,base+cut[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]
+					)
+				}else{
+					let inter=[
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[0]-reality[1]):
+						abs(270-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[1]-reality[2]):
+						abs(270-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.triangle(
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1],
+						-width/2-cut[0]*slant,base+cut[0],
+						-width/2-cut[1]*slant,base+cut[1]
+					)
+				}
+			}
+		}
+		/*if(lcos(part.spin[1]+direction)<=0&&lcos(part.spin[0]+direction)>0){
 			if(lcos(part.spin[2]+direction)<=0){
 				layer.triangle(lsin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],
 				width/2+(part.y[0]*(1-abs(90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]))+part.y[1]*abs(90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]))*slant,
@@ -279,7 +599,7 @@ function displayTrianglesFrontMerge(layer,parts,direction,base,width,weight,slan
 			}
 		}else if(lcos(part.spin[0]+direction)>0&&lcos(part.spin[1]+direction)>0&&lcos(part.spin[2]+direction)>0){
 			layer.triangle(lsin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],lsin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],lsin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2])
-		}
+		}*/
 	}
 	layer.strokeJoin(MITER)
 }
@@ -289,7 +609,7 @@ function controlSpin(set,direction,spec){
 			set[g].spin[1]=set[g].spin[0]+set[g].spin[1]
 			set[g].spin[0]=set[g].spin[1]-set[g].spin[0]
 			set[g].spin[1]=set[g].spin[1]-set[g].spin[0]
-			set[g].y[1]=set[g].y[0]+set[g].y[1]
+			set[g].y[1]=set[g].y[0	]+set[g].y[1]
 			set[g].y[0]=set[g].y[1]-set[g].y[0]
 			set[g].y[1]=set[g].y[1]-set[g].y[0]
 		}
@@ -1328,6 +1648,7 @@ function generateSprite(layer,type,direction){
 	}
 }
 function setupCombatantGraphics(type){
+	let data
 	switch(type){
 		case 0:
 			graphics.combatant.push({
@@ -1345,7 +1666,9 @@ function setupCombatantGraphics(type){
 				}
 			})
 
-			graphics.combatant[graphics.combatant.length-1].parts.hair={
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={
 				main:[
 					{spin:[0,45,45],height:3},
 					{spin:[-45,0,-45],height:3},
@@ -1370,188 +1693,188 @@ function setupCombatantGraphics(type){
 				],
 			}
 		
-			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
+			data.sprites.genAmount=360/data.sprites.detail
 
 			for(let g=0;g<5;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,13.5+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[13.5+g*4.5,0,14+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,16+g*4.5,14+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,16+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[16+g*4.5,0,15.5+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,18+g*4.5,15.5+g*4.5]})
+				data.parts.kimono.main.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,13.5+g*4.5]})
+				data.parts.kimono.main.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[13.5+g*4.5,0,14+g*4.5]})
+				data.parts.kimono.main.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,16+g*4.5,14+g*4.5]})
+				data.parts.kimono.main.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,16+g*4.5]})
+				data.parts.kimono.main.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[16+g*4.5,0,15.5+g*4.5]})
+				data.parts.kimono.main.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,18+g*4.5,15.5+g*4.5]})
 			}
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[117,132,132],y:[0,0,36]})
+			data.parts.kimono.main.push({spin:[117,132,132],y:[0,0,36]})
 			for(let g=0;g<2;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,34,36+g*0.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,34]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[146+g*48,156+g*48,156+g*48],y:[34,0,35]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,34,35]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,34]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[166+g*48,180+g*48,180+g*48],y:[34,0,36.5-g*0.5]})
+				data.parts.kimono.main.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,34,36+g*0.5]})
+				data.parts.kimono.main.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,34]})
+				data.parts.kimono.main.push({spin:[146+g*48,156+g*48,156+g*48],y:[34,0,35]})
+				data.parts.kimono.main.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,34,35]})
+				data.parts.kimono.main.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,34]})
+				data.parts.kimono.main.push({spin:[166+g*48,180+g*48,180+g*48],y:[34,0,36.5-g*0.5]})
 			}
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[228,243,228],y:[0,0,36]})
+			data.parts.kimono.main.push({spin:[228,243,228],y:[0,0,36]})
 			for(let g=4;g>=-3;g--){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,18+g*4.5,15.5+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[84-g*48,75-g*48,72-g*48],y:[16+g*4.5,0,15.5+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,16+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,16+g*4.5,14+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[108-g*48,92-g*48,87-g*48],y:[13.5+g*4.5,0,14+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,13.5+g*4.5]})
+				data.parts.kimono.main.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,18+g*4.5,15.5+g*4.5]})
+				data.parts.kimono.main.push({spin:[84-g*48,75-g*48,72-g*48],y:[16+g*4.5,0,15.5+g*4.5]})
+				data.parts.kimono.main.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,16+g*4.5]})
+				data.parts.kimono.main.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,16+g*4.5,14+g*4.5]})
+				data.parts.kimono.main.push({spin:[108-g*48,92-g*48,87-g*48],y:[13.5+g*4.5,0,14+g*4.5]})
+				data.parts.kimono.main.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,13.5+g*4.5]})
 			}
 			for(let g=1;g<5;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-90+g*48,-36+g*48,-48+g*48],y:[0,0,16+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-48+g*48,-32+g*48,-27+g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-32+g*48,-24+g*48,-27+g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-32+g*48,-8+g*48,-24+g*48],y:[0,0,17.5+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-24+g*48,-15+g*48,-12+g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-15+g*48,g*48,-12+g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
+				data.parts.kimono.outside.push({spin:[-90+g*48,-36+g*48,-48+g*48],y:[0,0,16+g*5.5-15]})
+				data.parts.kimono.outside.push({spin:[-48+g*48,-32+g*48,-27+g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
+				data.parts.kimono.outside.push({spin:[-32+g*48,-24+g*48,-27+g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
+				data.parts.kimono.outside.push({spin:[-32+g*48,-8+g*48,-24+g*48],y:[0,0,17.5+g*5.5-15]})
+				data.parts.kimono.outside.push({spin:[-24+g*48,-15+g*48,-12+g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
+				data.parts.kimono.outside.push({spin:[-15+g*48,g*48,-12+g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
 			}
 			for(let g=4;g>=0;g--){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[15-g*48,-g*48,12-g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[24-g*48,15-g*48,12-g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[32-g*48,8-g*48,24-g*48],y:[0,0,17.5+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[32-g*48,24-g*48,27-g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[48-g*48,32-g*48,27-g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[60-g*48,36-g*48,48-g*48],y:[0,0,16+g*5.5-15]})
+				data.parts.kimono.outside.push({spin:[15-g*48,-g*48,12-g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
+				data.parts.kimono.outside.push({spin:[24-g*48,15-g*48,12-g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
+				data.parts.kimono.outside.push({spin:[32-g*48,8-g*48,24-g*48],y:[0,0,17.5+g*5.5-15]})
+				data.parts.kimono.outside.push({spin:[32-g*48,24-g*48,27-g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
+				data.parts.kimono.outside.push({spin:[48-g*48,32-g*48,27-g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
+				data.parts.kimono.outside.push({spin:[60-g*48,36-g*48,48-g*48],y:[0,0,16+g*5.5-15]})
 			}
 			for(let g=0;g<12;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop.push({spin:[-90-g*30,-60-g*30,-75-g*30],y:[0,0,-0.5]})
+				data.parts.kimono.outsideTop.push({spin:[-90-g*30,-60-g*30,-75-g*30],y:[0,0,-0.5]})
 			}
 			if(options.damage){
 				for(let g=0;g<5;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,13.5+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[13.5+g*4.5,0,14+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,16+g*4.5,14+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,16+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[16+g*4.5,0,15.5+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,18+g*4.5,15.5+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,13.5+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[13.5+g*4.5,0,14+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,16+g*4.5,14+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,16+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[16+g*4.5,0,15.5+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,18+g*4.5,15.5+g*4.5]})
 				}
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[117,132,132],y:[0,0,36]})
+				data.parts.kimono.mainDamage.push({spin:[117,132,132],y:[0,0,36]})
 				for(let g=0;g<2;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,34,36+g*0.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,34]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[146+g*48,156+g*48,156+g*48],y:[34,0,35]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,34,35]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,34]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[166+g*48,180+g*48,180+g*48],y:[34,0,36.5-g*0.5]})
+					data.parts.kimono.mainDamage.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,34,36+g*0.5]})
+					data.parts.kimono.mainDamage.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,34]})
+					data.parts.kimono.mainDamage.push({spin:[146+g*48,156+g*48,156+g*48],y:[34,0,35]})
+					data.parts.kimono.mainDamage.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,34,35]})
+					data.parts.kimono.mainDamage.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,34]})
+					data.parts.kimono.mainDamage.push({spin:[166+g*48,180+g*48,180+g*48],y:[34,0,36.5-g*0.5]})
 				}
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[228,243,228],y:[0,0,36]})
+				data.parts.kimono.mainDamage.push({spin:[228,243,228],y:[0,0,36]})
 				for(let g=4;g>=-3;g--){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,18+g*4.5,15.5+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[84-g*48,75-g*48,72-g*48],y:[16+g*4.5,0,15.5+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,16+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,16+g*4.5,14+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[108-g*48,92-g*48,87-g*48],y:[13.5+g*4.5,0,14+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,13.5+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,18+g*4.5,15.5+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[84-g*48,75-g*48,72-g*48],y:[16+g*4.5,0,15.5+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,16+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,16+g*4.5,14+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[108-g*48,92-g*48,87-g*48],y:[13.5+g*4.5,0,14+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,13.5+g*4.5]})
 				}
 				for(let g=1;g<5;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-90+g*48,-36+g*48,-48+g*48],y:[0,0,16+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-48+g*48,-32+g*48,-27+g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-32+g*48,-24+g*48,-27+g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-32+g*48,-8+g*48,-24+g*48],y:[0,0,17.5+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-24+g*48,-15+g*48,-12+g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-15+g*48,g*48,-12+g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[-90+g*48,-36+g*48,-48+g*48],y:[0,0,16+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[-48+g*48,-32+g*48,-27+g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[-32+g*48,-24+g*48,-27+g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[-32+g*48,-8+g*48,-24+g*48],y:[0,0,17.5+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[-24+g*48,-15+g*48,-12+g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[-15+g*48,g*48,-12+g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
 				}
 				for(let g=4;g>=0;g--){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[15-g*48,-g*48,12-g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[24-g*48,15-g*48,12-g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[32-g*48,8-g*48,24-g*48],y:[0,0,17.5+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[32-g*48,24-g*48,27-g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[48-g*48,32-g*48,27-g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[60-g*48,36-g*48,48-g*48],y:[0,0,16+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[15-g*48,-g*48,12-g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[24-g*48,15-g*48,12-g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[32-g*48,8-g*48,24-g*48],y:[0,0,17.5+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[32-g*48,24-g*48,27-g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[48-g*48,32-g*48,27-g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[60-g*48,36-g*48,48-g*48],y:[0,0,16+g*5.5-15]})
 				}
-				for(let g=0,lg=graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.length;g<lg;g++){
-					for(let h=0,lh=graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage[g].y.length;h<lh;h++){
-						graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage[g].y[h]=max(0,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage[g].y[h]-(g*4+h*1.5)**1.25%6)
+				for(let g=0,lg=data.parts.kimono.mainDamage.length;g<lg;g++){
+					for(let h=0,lh=data.parts.kimono.mainDamage[g].y.length;h<lh;h++){
+						data.parts.kimono.mainDamage[g].y[h]=max(0,data.parts.kimono.mainDamage[g].y[h]-(g*4+h*1.5)**1.25%6)
 					}
 				}
-				for(let g=0,lg=graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.length;g<lg;g++){
-					for(let h=0,lh=graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage[g].y.length;h<lh;h++){
-						graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage[g].y[h]=max(0,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage[g].y[h]-(g*4+h*1.5)**1.5%6)
+				for(let g=0,lg=data.parts.kimono.outsideDamage.length;g<lg;g++){
+					for(let h=0,lh=data.parts.kimono.outsideDamage[g].y.length;h<lh;h++){
+						data.parts.kimono.outsideDamage[g].y[h]=max(0,data.parts.kimono.outsideDamage[g].y[h]-(g*4+h*1.5)**1.5%6)
 					}
 				}
 				for(let g=0;g<18;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti.push({spin:[-96-g*20,-64-g*20,-80-g*20],y:[-1,-1,6+((g+2)**3%6)/2-lcos(-80-g*20)*5]})
+					data.parts.kimono.mainAnti.push({spin:[-96-g*20,-64-g*20,-80-g*20],y:[-1,-1,6+((g+2)**3%6)/2-lcos(-80-g*20)*5]})
 				}
 				for(let g=0;g<12;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti.push({spin:[-84-g*30,-36-g*30,-60-g*30],y:[-1,-1,6+((g+1)**2%6)/2-lcos(-60-g*30)*5]})
+					data.parts.kimono.outsideAnti.push({spin:[-84-g*30,-36-g*30,-60-g*30],y:[-1,-1,6+((g+1)**2%6)/2-lcos(-60-g*30)*5]})
 				}
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti.push({spin:[-36,36,0],y:[-1,-1,11]})
+				data.parts.kimono.outsideAnti.push({spin:[-36,36,0],y:[-1,-1,11]})
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.hair={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front.push(createGraphics(250,500))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(125,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],0,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.hair={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.front.push(createGraphics(250,500))
+				setupLayer(data.sprites.hair.front[g])
+				data.sprites.hair.front[g].translate(125,100)
+				data.sprites.hair.front[g].scale(5)
+				generateSprite(data.sprites.hair.front[g],0,g*data.sprites.detail)
 				//print('Generated L-HF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(250,500))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(125,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],1,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.hair.back.push(createGraphics(250,500))
+				setupLayer(data.sprites.hair.back[g])
+				data.sprites.hair.back[g].translate(125,100)
+				data.sprites.hair.back[g].scale(5)
+				generateSprite(data.sprites.hair.back[g],1,g*data.sprites.detail)
 				//print('Generated L-HB-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.kimono.main={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front.push(createGraphics(150,330))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g],2,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.kimono.main={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.kimono.main.front.push(createGraphics(150,330))
+				setupLayer(data.sprites.kimono.main.front[g])
+				data.sprites.kimono.main.front[g].translate(75,0)
+				data.sprites.kimono.main.front[g].scale(5)
+				generateSprite(data.sprites.kimono.main.front[g],2,g*data.sprites.detail)
 				//print('Generated L-KMF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back.push(createGraphics(150,330))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g],3,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.kimono.main.back.push(createGraphics(150,330))
+				setupLayer(data.sprites.kimono.main.back[g])
+				data.sprites.kimono.main.back[g].translate(75,0)
+				data.sprites.kimono.main.back[g].scale(5)
+				generateSprite(data.sprites.kimono.main.back[g],3,g*data.sprites.detail)
 				//print('Generated L-KMB-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front.push(createGraphics(150,330))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g],4,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.kimono.outside={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.kimono.outside.front.push(createGraphics(150,330))
+				setupLayer(data.sprites.kimono.outside.front[g])
+				data.sprites.kimono.outside.front[g].translate(75,0)
+				data.sprites.kimono.outside.front[g].scale(5)
+				generateSprite(data.sprites.kimono.outside.front[g],4,g*data.sprites.detail)
 				//print('Generated L-KOF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back.push(createGraphics(150,330))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g],5,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.kimono.outside.back.push(createGraphics(150,330))
+				setupLayer(data.sprites.kimono.outside.back[g])
+				data.sprites.kimono.outside.back[g].translate(75,0)
+				data.sprites.kimono.outside.back[g].scale(5)
+				generateSprite(data.sprites.kimono.outside.back[g],5,g*data.sprites.detail)
 				//print('Generated L-KOB-'+(g+1))
 			}
 			if(options.damage){
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage={front:[],back:[]}
-				for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front.push(createGraphics(150,330))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].translate(75,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g],6,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.kimono.mainDamage={front:[],back:[]}
+				for(let g=0;g<data.sprites.genAmount;g++){
+					data.sprites.kimono.mainDamage.front.push(createGraphics(150,330))
+					setupLayer(data.sprites.kimono.mainDamage.front[g])
+					data.sprites.kimono.mainDamage.front[g].translate(75,0)
+					data.sprites.kimono.mainDamage.front[g].scale(5)
+					generateSprite(data.sprites.kimono.mainDamage.front[g],6,g*data.sprites.detail)
 					//print('Generated L-DMF-'+(g+1))
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back.push(createGraphics(150,330))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].translate(75,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g],7,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					data.sprites.kimono.mainDamage.back.push(createGraphics(150,330))
+					setupLayer(data.sprites.kimono.mainDamage.back[g])
+					data.sprites.kimono.mainDamage.back[g].translate(75,0)
+					data.sprites.kimono.mainDamage.back[g].scale(5)
+					generateSprite(data.sprites.kimono.mainDamage.back[g],7,g*data.sprites.detail)
 					//print('Generated L-DMB-'+(g+1))
 				}
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage={front:[],back:[]}
-				for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front.push(createGraphics(150,330))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].translate(75,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g],8,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.kimono.outsideDamage={front:[],back:[]}
+				for(let g=0;g<data.sprites.genAmount;g++){
+					data.sprites.kimono.outsideDamage.front.push(createGraphics(150,330))
+					setupLayer(data.sprites.kimono.outsideDamage.front[g])
+					data.sprites.kimono.outsideDamage.front[g].translate(75,0)
+					data.sprites.kimono.outsideDamage.front[g].scale(5)
+					generateSprite(data.sprites.kimono.outsideDamage.front[g],8,g*data.sprites.detail)
 					//print('Generated L-DOF-'+(g+1))
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back.push(createGraphics(150,330))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].translate(75,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g],9,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					data.sprites.kimono.outsideDamage.back.push(createGraphics(150,330))
+					setupLayer(data.sprites.kimono.outsideDamage.back[g])
+					data.sprites.kimono.outsideDamage.back[g].translate(75,0)
+					data.sprites.kimono.outsideDamage.back[g].scale(5)
+					generateSprite(data.sprites.kimono.outsideDamage.back[g],9,g*data.sprites.detail)
 					//print('Generated L-DOB-'+(g+1))
 				}
 			}
@@ -1575,7 +1898,9 @@ function setupCombatantGraphics(type){
                 }
 			})
 
-			graphics.combatant[graphics.combatant.length-1].parts.hair={
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={
 				main:[
                     {spin:[5,60,20],height:2},{spin:[-80,-10,-25],height:4},{spin:[-110,-40,-75],height:8},{spin:[-110,-25,-45],height:6},{spin:[0,90,60],height:3},{spin:[25,105,55],height:7},
                     {spin:[-160,-100,-125],height:14},{spin:[-160,-70,-105],height:10},{spin:[-15,5,-5],height:1},{spin:[150,-120,-180],height:21},{spin:[120,-120,-180],height:23},{spin:[160,-120,-160],height:17},
@@ -1584,274 +1909,274 @@ function setupCombatantGraphics(type){
                 ],strand:[-66,66],top:15
 			}
 			
-			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
+			data.sprites.genAmount=360/data.sprites.detail
 			
 			for(let g=0;g<16;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.hair.inside.push({spin:[-graphics.combatant[graphics.combatant.length-1].parts.hair.main[g].spin[1],-graphics.combatant[graphics.combatant.length-1].parts.hair.main[g].spin[0],-graphics.combatant[graphics.combatant.length-1].parts.hair.main[g].spin[2]],height:graphics.combatant[graphics.combatant.length-1].parts.hair.main[g].height*0.75})
+				data.parts.hair.inside.push({spin:[-data.parts.hair.main[g].spin[1],-data.parts.hair.main[g].spin[0],-data.parts.hair.main[g].spin[2]],height:data.parts.hair.main[g].height*0.75})
 			}
 			for(let g=0;g<5;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,16+g*5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[16+g*5,0,15.5+g*5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,17.5+g*5,15.5+g*5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,17.5+g*5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[17.5+g*5,0,17+g*5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,21+g*5,17+g*5]})
+				data.parts.kimono.main.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,16+g*5]})
+				data.parts.kimono.main.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[16+g*5,0,15.5+g*5]})
+				data.parts.kimono.main.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,17.5+g*5,15.5+g*5]})
+				data.parts.kimono.main.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,17.5+g*5]})
+				data.parts.kimono.main.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[17.5+g*5,0,17+g*5]})
+				data.parts.kimono.main.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,21+g*5,17+g*5]})
 			}
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[117,132,132],y:[0,0,41]})
+			data.parts.kimono.main.push({spin:[117,132,132],y:[0,0,41]})
 			for(let g=0;g<2;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,39,41+g]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,39]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[146+g*48,156+g*48,156+g*48],y:[39,0,40]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,39,40]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,39]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[166+g*48,180+g*48,180+g*48],y:[39,0,42-g]})
+				data.parts.kimono.main.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,39,41+g]})
+				data.parts.kimono.main.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,39]})
+				data.parts.kimono.main.push({spin:[146+g*48,156+g*48,156+g*48],y:[39,0,40]})
+				data.parts.kimono.main.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,39,40]})
+				data.parts.kimono.main.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,39]})
+				data.parts.kimono.main.push({spin:[166+g*48,180+g*48,180+g*48],y:[39,0,42-g]})
 			}
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[228,243,228],y:[0,0,41]})
+			data.parts.kimono.main.push({spin:[228,243,228],y:[0,0,41]})
 			for(let g=4;g>=-3;g--){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,21+g*5,17+g*5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[84-g*48,75-g*48,72-g*48],y:[17.5+g*5,0,17+g*5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,17.5+g*5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,17.5+g*5,15.5+g*5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[108-g*48,92-g*48,87-g*48],y:[16+g*5,0,15.5+g*5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,16+g*5]})
+				data.parts.kimono.main.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,21+g*5,17+g*5]})
+				data.parts.kimono.main.push({spin:[84-g*48,75-g*48,72-g*48],y:[17.5+g*5,0,17+g*5]})
+				data.parts.kimono.main.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,17.5+g*5]})
+				data.parts.kimono.main.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,17.5+g*5,15.5+g*5]})
+				data.parts.kimono.main.push({spin:[108-g*48,92-g*48,87-g*48],y:[16+g*5,0,15.5+g*5]})
+				data.parts.kimono.main.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,16+g*5]})
 			}
 			for(let g=0;g<15;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-177+g*24,-159+g*24,-168+g*24],height:3})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-187+g*24,-173+g*24,-180+g*24],height:1.5})
+				data.parts.kimono.outside.push({spin:[-177+g*24,-159+g*24,-168+g*24],height:3})
+				data.parts.kimono.outside.push({spin:[-187+g*24,-173+g*24,-180+g*24],height:1.5})
 			}
 			for(let g=0;g<9;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop.push({spin:[-195+g*40,-165+g*40,-180+g*40],height:-1.5})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop.push({spin:[-172+g*40,-148+g*40,-160+g*40],height:-0.75})
+				data.parts.kimono.outsideTop.push({spin:[-195+g*40,-165+g*40,-180+g*40],height:-1.5})
+				data.parts.kimono.outsideTop.push({spin:[-172+g*40,-148+g*40,-160+g*40],height:-0.75})
 			}
 			for(let g=0;g<30;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.fringe.push({spin:[-186+g*12,-174+g*12,-180+g*12],height:-2})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.fringe.push({spin:[-186+g*12,-174+g*12,-180+g*12],height:2})
+				data.parts.kimono.fringe.push({spin:[-186+g*12,-174+g*12,-180+g*12],height:-2})
+				data.parts.kimono.fringe.push({spin:[-186+g*12,-174+g*12,-180+g*12],height:2})
 			}
 			for(let g=0;g<30;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideFringe.push({spin:[-180+g*12,-168+g*12,-174+g*12],height:-1.5})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideFringe.push({spin:[-180+g*12,-168+g*12,-174+g*12],height:1.5})
+				data.parts.kimono.outsideFringe.push({spin:[-180+g*12,-168+g*12,-174+g*12],height:-1.5})
+				data.parts.kimono.outsideFringe.push({spin:[-180+g*12,-168+g*12,-174+g*12],height:1.5})
 			}
 			for(let g=0;g<6;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.tail.push([[],[]])
+				data.parts.tail.push([[],[]])
 				for(let h=0;h<12;h++){
-					graphics.combatant[graphics.combatant.length-1].parts.tail[g][0].push({spin:[g*15+h*30-15,g*15+h*30+15,g*15+h*30],y:[0,0,-5]})
-					graphics.combatant[graphics.combatant.length-1].parts.tail[g][1].push({spin:[g*15+h*30-15,g*15+h*30+15,g*15+h*30],y:[0,0,5]})
+					data.parts.tail[g][0].push({spin:[g*15+h*30-15,g*15+h*30+15,g*15+h*30],y:[0,0,-5]})
+					data.parts.tail[g][1].push({spin:[g*15+h*30-15,g*15+h*30+15,g*15+h*30],y:[0,0,5]})
 				}
 			}
 			for(let g=0;g<12;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.under.dress.push({spin:[-171+g*30,-159+g*30,-165+g*30],height:5})
-				graphics.combatant[graphics.combatant.length-1].parts.under.dress.push({spin:[-189+g*30,-171+g*30,-180+g*30],height:7})
+				data.parts.under.dress.push({spin:[-171+g*30,-159+g*30,-165+g*30],height:5})
+				data.parts.under.dress.push({spin:[-189+g*30,-171+g*30,-180+g*30],height:7})
 			}
 			for(let g=0;g<15;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.shadow.push({spin:[-177+g*24,-159+g*24,-168+g*24],height:3})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.shadow.push({spin:[-187+g*24,-173+g*24,-180+g*24],height:1.5})
+				data.parts.kimono.shadow.push({spin:[-177+g*24,-159+g*24,-168+g*24],height:3})
+				data.parts.kimono.shadow.push({spin:[-187+g*24,-173+g*24,-180+g*24],height:1.5})
 			}
 			if(options.damage){
 				for(let g=0;g<5;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,16+g*5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[16+g*5,0,15.5+g*5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,17.5+g*5,15.5+g*5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,17.5+g*5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[17.5+g*5,0,17+g*5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,21+g*5,17+g*5]})
+					data.parts.kimono.mainDamage.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,16+g*5]})
+					data.parts.kimono.mainDamage.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[16+g*5,0,15.5+g*5]})
+					data.parts.kimono.mainDamage.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,17.5+g*5,15.5+g*5]})
+					data.parts.kimono.mainDamage.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,17.5+g*5]})
+					data.parts.kimono.mainDamage.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[17.5+g*5,0,17+g*5]})
+					data.parts.kimono.mainDamage.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,21+g*5,17+g*5]})
 				}
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[117,132,132],y:[0,0,41]})
+				data.parts.kimono.mainDamage.push({spin:[117,132,132],y:[0,0,41]})
 				for(let g=0;g<2;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,39,41+g]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,39]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[146+g*48,156+g*48,156+g*48],y:[39,0,40]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,39,40]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,39]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[166+g*48,180+g*48,180+g*48],y:[39,0,42-g]})
+					data.parts.kimono.mainDamage.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,39,41+g]})
+					data.parts.kimono.mainDamage.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,39]})
+					data.parts.kimono.mainDamage.push({spin:[146+g*48,156+g*48,156+g*48],y:[39,0,40]})
+					data.parts.kimono.mainDamage.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,39,40]})
+					data.parts.kimono.mainDamage.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,39]})
+					data.parts.kimono.mainDamage.push({spin:[166+g*48,180+g*48,180+g*48],y:[39,0,42-g]})
 				}
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[228,243,228],y:[0,0,41]})
+				data.parts.kimono.mainDamage.push({spin:[228,243,228],y:[0,0,41]})
 				for(let g=4;g>=-3;g--){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,21+g*5,17+g*5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[84-g*48,75-g*48,72-g*48],y:[17.5+g*5,0,17+g*5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,17.5+g*5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,17.5+g*5,15.5+g*5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[108-g*48,92-g*48,87-g*48],y:[16+g*5,0,15.5+g*5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,16+g*5]})
+					data.parts.kimono.mainDamage.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,21+g*5,17+g*5]})
+					data.parts.kimono.mainDamage.push({spin:[84-g*48,75-g*48,72-g*48],y:[17.5+g*5,0,17+g*5]})
+					data.parts.kimono.mainDamage.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,17.5+g*5]})
+					data.parts.kimono.mainDamage.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,17.5+g*5,15.5+g*5]})
+					data.parts.kimono.mainDamage.push({spin:[108-g*48,92-g*48,87-g*48],y:[16+g*5,0,15.5+g*5]})
+					data.parts.kimono.mainDamage.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,16+g*5]})
 				}
 				for(let g=0;g<15;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-177+g*24,-159+g*24,-168+g*24],height:3-(g*4)**1.5%4})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-187+g*24,-173+g*24,-180+g*24],height:1.5-(g*4+2)**1.5%4})
+					data.parts.kimono.outsideDamage.push({spin:[-177+g*24,-159+g*24,-168+g*24],height:3-(g*4)**1.5%4})
+					data.parts.kimono.outsideDamage.push({spin:[-187+g*24,-173+g*24,-180+g*24],height:1.5-(g*4+2)**1.5%4})
 				}
 				for(let g=0;g<30;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.fringeDamage.push({spin:[-186+g*12+(g*3)**1.75%5,-174+g*12-(g*3)**1.75%5,-180+g*12],height:-2+(g*3)**1.5%1.5})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.fringeDamage.push({spin:[-186+g*12+(g*3)**1.75%5,-174+g*12-(g*3)**1.75%5,-180+g*12],height:2-(g*3+2)**1.5%1.5})
+					data.parts.kimono.fringeDamage.push({spin:[-186+g*12+(g*3)**1.75%5,-174+g*12-(g*3)**1.75%5,-180+g*12],height:-2+(g*3)**1.5%1.5})
+					data.parts.kimono.fringeDamage.push({spin:[-186+g*12+(g*3)**1.75%5,-174+g*12-(g*3)**1.75%5,-180+g*12],height:2-(g*3+2)**1.5%1.5})
 				}
 				for(let g=0;g<30;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideFringeDamage.push({spin:[-180+g*12+(g*2.25+1)**1.75%6,-168+g*12-(g*2.25*1)**1.75%6,-174+g*12],height:-1.5+(g*2.5)**1.5%1.25})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideFringeDamage.push({spin:[-180+g*12+(g*2.25+1)**1.75%6,-168+g*12-(g*2.25*1)**1.75%6,-174+g*12],height:1.5-(g*2.5+1.5)**1.5%1.25})
+					data.parts.kimono.outsideFringeDamage.push({spin:[-180+g*12+(g*2.25+1)**1.75%6,-168+g*12-(g*2.25*1)**1.75%6,-174+g*12],height:-1.5+(g*2.5)**1.5%1.25})
+					data.parts.kimono.outsideFringeDamage.push({spin:[-180+g*12+(g*2.25+1)**1.75%6,-168+g*12-(g*2.25*1)**1.75%6,-174+g*12],height:1.5-(g*2.5+1.5)**1.5%1.25})
 				}
 				for(let g=0;g<15;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.shadowDamage.push({spin:[-177+g*24,-159+g*24,-168+g*24],height:3-(g*4)**1.5%4})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.shadowDamage.push({spin:[-187+g*24,-173+g*24,-180+g*24],height:1.5-(g*4+2)**1.5%4})
+					data.parts.kimono.shadowDamage.push({spin:[-177+g*24,-159+g*24,-168+g*24],height:3-(g*4)**1.5%4})
+					data.parts.kimono.shadowDamage.push({spin:[-187+g*24,-173+g*24,-180+g*24],height:1.5-(g*4+2)**1.5%4})
 				}
-				for(let g=0,lg=graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.length;g<lg;g++){
-					for(let h=0,lh=graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage[g].y.length;h<lh;h++){
-						graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage[g].y[h]=max(0,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage[g].y[h]-(g*4+h*1.5)**1.25%12)
+				for(let g=0,lg=data.parts.kimono.mainDamage.length;g<lg;g++){
+					for(let h=0,lh=data.parts.kimono.mainDamage[g].y.length;h<lh;h++){
+						data.parts.kimono.mainDamage[g].y[h]=max(0,data.parts.kimono.mainDamage[g].y[h]-(g*4+h*1.5)**1.25%12)
 					}
 				}
 				for(let g=0;g<18;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti.push({spin:[-96-g*20,-64-g*20,-80-g*20],y:[-1,-1,5+((g+2)**3%6)/2-lcos(-80-g*20)*5]})
+					data.parts.kimono.mainAnti.push({spin:[-96-g*20,-64-g*20,-80-g*20],y:[-1,-1,5+((g+2)**3%6)/2-lcos(-80-g*20)*5]})
 				}
 				for(let g=0;g<12;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti.push({spin:[-84-g*30,-36-g*30,-60-g*30],height:-3-((g+2)**2.5%6)/2})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.shadowAnti.push({spin:[-84-g*30,-36-g*30,-60-g*30],height:-3-((g+2)**2.5%6)/2})
+					data.parts.kimono.outsideAnti.push({spin:[-84-g*30,-36-g*30,-60-g*30],height:-3-((g+2)**2.5%6)/2})
+					data.parts.kimono.shadowAnti.push({spin:[-84-g*30,-36-g*30,-60-g*30],height:-3-((g+2)**2.5%6)/2})
 				}
 				for(let g=0;g<15;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTopAnti.push({spin:[-90-g*24,-48-g*24,-69-g*24],height:3+((g+1)**2.7%7)/2})
+					data.parts.kimono.outsideTopAnti.push({spin:[-90-g*24,-48-g*24,-69-g*24],height:3+((g+1)**2.7%7)/2})
 				}
 			}
 
-			graphics.combatant[graphics.combatant.length-1].sprites.hair={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front.push(createGraphics(200,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(100,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],10,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.hair={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.front.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.front[g])
+				data.sprites.hair.front[g].translate(100,100)
+				data.sprites.hair.front[g].scale(5)
+				generateSprite(data.sprites.hair.front[g],10,g*data.sprites.detail)
 				//print('Generated S-HF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(200,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(100,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],11,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.hair.back.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.back[g])
+				data.sprites.hair.back[g].translate(100,100)
+				data.sprites.hair.back[g].scale(5)
+				generateSprite(data.sprites.hair.back[g],11,g*data.sprites.detail)
 				//print('Generated S-HB-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.kimono.main={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front.push(createGraphics(200,330))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].translate(100,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g],12,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.kimono.main={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.kimono.main.front.push(createGraphics(200,330))
+				setupLayer(data.sprites.kimono.main.front[g])
+				data.sprites.kimono.main.front[g].translate(100,0)
+				data.sprites.kimono.main.front[g].scale(5)
+				generateSprite(data.sprites.kimono.main.front[g],12,g*data.sprites.detail)
 				//print('Generated S-KMF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back.push(createGraphics(200,330))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].translate(100,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g],13,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.kimono.main.back.push(createGraphics(200,330))
+				setupLayer(data.sprites.kimono.main.back[g])
+				data.sprites.kimono.main.back[g].translate(100,0)
+				data.sprites.kimono.main.back[g].scale(5)
+				generateSprite(data.sprites.kimono.main.back[g],13,g*data.sprites.detail)
 				//print('Generated S-KMB-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside={front:[],back:[]}
+			data.sprites.kimono.outside={front:[],back:[]}
 			for(let g=0;g<24;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front.push(createGraphics(150,200))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g],14,g)
+				data.sprites.kimono.outside.front.push(createGraphics(150,200))
+				setupLayer(data.sprites.kimono.outside.front[g])
+				data.sprites.kimono.outside.front[g].translate(75,0)
+				data.sprites.kimono.outside.front[g].scale(5)
+				generateSprite(data.sprites.kimono.outside.front[g],14,g)
 				//print('Generated S-KOF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back.push(createGraphics(150,200))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g],15,g)
+				data.sprites.kimono.outside.back.push(createGraphics(150,200))
+				setupLayer(data.sprites.kimono.outside.back[g])
+				data.sprites.kimono.outside.back[g].translate(75,0)
+				data.sprites.kimono.outside.back[g].scale(5)
+				generateSprite(data.sprites.kimono.outside.back[g],15,g)
 				//print('Generated S-KOB-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe={front:[],back:[]}
+			data.sprites.kimono.fringe={front:[],back:[]}
 			for(let g=0;g<12;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.front.push(createGraphics(150,50))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.front[g].translate(75,25)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.front[g],16,g)
+				data.sprites.kimono.fringe.front.push(createGraphics(150,50))
+				setupLayer(data.sprites.kimono.fringe.front[g])
+				data.sprites.kimono.fringe.front[g].translate(75,25)
+				data.sprites.kimono.fringe.front[g].scale(5)
+				generateSprite(data.sprites.kimono.fringe.front[g],16,g)
 				//print('Generated S-KFF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back.push(createGraphics(150,50))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back[g].translate(75,25)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back[g],17,g)
+				data.sprites.kimono.fringe.back.push(createGraphics(150,50))
+				setupLayer(data.sprites.kimono.fringe.back[g])
+				data.sprites.kimono.fringe.back[g].translate(75,25)
+				data.sprites.kimono.fringe.back[g].scale(5)
+				generateSprite(data.sprites.kimono.fringe.back[g],17,g)
 				//print('Generated S-KFB-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.hair.tail=[]
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.tail.push(createGraphics(120,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g].translate(60,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g],18,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.hair.tail=[]
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.tail.push(createGraphics(120,300))
+				setupLayer(data.sprites.hair.tail[g])
+				data.sprites.hair.tail[g].translate(60,0)
+				data.sprites.hair.tail[g].scale(5)
+				generateSprite(data.sprites.hair.tail[g],18,g*data.sprites.detail)
 				//print('Generated S-HT-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.under.dress={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front.push(createGraphics(150,250))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g],19,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.under.dress={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.under.dress.front.push(createGraphics(150,250))
+				setupLayer(data.sprites.under.dress.front[g])
+				data.sprites.under.dress.front[g].translate(75,0)
+				data.sprites.under.dress.front[g].scale(5)
+				generateSprite(data.sprites.under.dress.front[g],19,g*data.sprites.detail)
 				//print('Generated S-UDF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back.push(createGraphics(150,250))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g],20,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.under.dress.back.push(createGraphics(150,250))
+				setupLayer(data.sprites.under.dress.back[g])
+				data.sprites.under.dress.back[g].translate(75,0)
+				data.sprites.under.dress.back[g].scale(5)
+				generateSprite(data.sprites.under.dress.back[g],20,g*data.sprites.detail)
 				//print('Generated S-UDB-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow=[]
+			data.sprites.kimono.shadow=[]
 			for(let g=0;g<24;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow.push(createGraphics(150,50))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow[g],21,g)
+				data.sprites.kimono.shadow.push(createGraphics(150,50))
+				setupLayer(data.sprites.kimono.shadow[g])
+				data.sprites.kimono.shadow[g].translate(75,0)
+				data.sprites.kimono.shadow[g].scale(5)
+				generateSprite(data.sprites.kimono.shadow[g],21,g)
 				//print('Generated S-KS-'+(g+1))
 			}
 			if(options.damage){
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage={front:[],back:[]}
-				for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front.push(createGraphics(200,330))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].translate(100,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g],22,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.kimono.mainDamage={front:[],back:[]}
+				for(let g=0;g<data.sprites.genAmount;g++){
+					data.sprites.kimono.mainDamage.front.push(createGraphics(200,330))
+					setupLayer(data.sprites.kimono.mainDamage.front[g])
+					data.sprites.kimono.mainDamage.front[g].translate(100,0)
+					data.sprites.kimono.mainDamage.front[g].scale(5)
+					generateSprite(data.sprites.kimono.mainDamage.front[g],22,g*data.sprites.detail)
 					//print('Generated S-DMF-'+(g+1))
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back.push(createGraphics(200,330))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].translate(100,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g],23,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					data.sprites.kimono.mainDamage.back.push(createGraphics(200,330))
+					setupLayer(data.sprites.kimono.mainDamage.back[g])
+					data.sprites.kimono.mainDamage.back[g].translate(100,0)
+					data.sprites.kimono.mainDamage.back[g].scale(5)
+					generateSprite(data.sprites.kimono.mainDamage.back[g],23,g*data.sprites.detail)
 					//print('Generated S-DMB-'+(g+1))
 				}
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage={front:[],back:[]}
+				data.sprites.kimono.outsideDamage={front:[],back:[]}
 				for(let g=0;g<24;g++){
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front.push(createGraphics(150,200))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].translate(75,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g],24,g)
+					data.sprites.kimono.outsideDamage.front.push(createGraphics(150,200))
+					setupLayer(data.sprites.kimono.outsideDamage.front[g])
+					data.sprites.kimono.outsideDamage.front[g].translate(75,0)
+					data.sprites.kimono.outsideDamage.front[g].scale(5)
+					generateSprite(data.sprites.kimono.outsideDamage.front[g],24,g)
 					//print('Generated S-DOF-'+(g+1))
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back.push(createGraphics(150,200))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].translate(75,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g],25,g)
+					data.sprites.kimono.outsideDamage.back.push(createGraphics(150,200))
+					setupLayer(data.sprites.kimono.outsideDamage.back[g])
+					data.sprites.kimono.outsideDamage.back[g].translate(75,0)
+					data.sprites.kimono.outsideDamage.back[g].scale(5)
+					generateSprite(data.sprites.kimono.outsideDamage.back[g],25,g)
 					//print('Generated S-DOB-'+(g+1))
 				}
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage={front:[],back:[]}
+				data.sprites.kimono.fringeDamage={front:[],back:[]}
 				for(let g=0;g<12;g++){
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.front.push(createGraphics(150,50))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.front[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.front[g].translate(75,25)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.front[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.front[g],26,g)
+					data.sprites.kimono.fringeDamage.front.push(createGraphics(150,50))
+					setupLayer(data.sprites.kimono.fringeDamage.front[g])
+					data.sprites.kimono.fringeDamage.front[g].translate(75,25)
+					data.sprites.kimono.fringeDamage.front[g].scale(5)
+					generateSprite(data.sprites.kimono.fringeDamage.front[g],26,g)
 					//print('Generated S-DFF-'+(g+1))
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back.push(createGraphics(150,50))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back[g].translate(75,25)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back[g],27,g)
+					data.sprites.kimono.fringeDamage.back.push(createGraphics(150,50))
+					setupLayer(data.sprites.kimono.fringeDamage.back[g])
+					data.sprites.kimono.fringeDamage.back[g].translate(75,25)
+					data.sprites.kimono.fringeDamage.back[g].scale(5)
+					generateSprite(data.sprites.kimono.fringeDamage.back[g],27,g)
 					//print('Generated S-DFB-'+(g+1))
 				}
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage=[]
+				data.sprites.kimono.shadowDamage=[]
 				for(let g=0;g<24;g++){
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage.push(createGraphics(150,50))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage[g].translate(75,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage[g],28,g)
+					data.sprites.kimono.shadowDamage.push(createGraphics(150,50))
+					setupLayer(data.sprites.kimono.shadowDamage[g])
+					data.sprites.kimono.shadowDamage[g].translate(75,0)
+					data.sprites.kimono.shadowDamage[g].scale(5)
+					generateSprite(data.sprites.kimono.shadowDamage[g],28,g)
 					//print('Generated S-DS-'+(g+1))
 				}
 			}
@@ -1870,7 +2195,9 @@ function setupCombatantGraphics(type){
                 }
 			})
 
-			graphics.combatant[graphics.combatant.length-1].parts.hair={
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={
 				main:[
 					{spin:[165,195,180],height:72},
                     {spin:[135,225,180],height:36},
@@ -1883,65 +2210,65 @@ function setupCombatantGraphics(type){
                 ],
 			}
 			
-			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
+			data.sprites.genAmount=360/data.sprites.detail
 			
 			for(let g=0;g<12;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.under.dress.push({spin:[-171+g*30,-159+g*30,-165+g*30],height:5})
-				graphics.combatant[graphics.combatant.length-1].parts.under.dress.push({spin:[-189+g*30,-171+g*30,-180+g*30],height:7})
+				data.parts.under.dress.push({spin:[-171+g*30,-159+g*30,-165+g*30],height:5})
+				data.parts.under.dress.push({spin:[-189+g*30,-171+g*30,-180+g*30],height:7})
 			}
 			if(options.damage){
 				for(let g=0;g<12;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.under.dressDamage.push({spin:[-171+g*30,-159+g*30,-165+g*30],height:5-random(0,3)})
-					graphics.combatant[graphics.combatant.length-1].parts.under.dressDamage.push({spin:[-189+g*30,-171+g*30,-180+g*30],height:7-random(0,5)})
+					data.parts.under.dressDamage.push({spin:[-171+g*30,-159+g*30,-165+g*30],height:5-random(0,3)})
+					data.parts.under.dressDamage.push({spin:[-189+g*30,-171+g*30,-180+g*30],height:7-random(0,5)})
 				}
 				for(let g=0;g<10;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.under.dressAnti.push({spin:[-96-g*36,-52-g*36,-74-g*36],y:[-1,-1,3+((g+2)**3%5)/2-lcos(-80-g*20)*2]})
+					data.parts.under.dressAnti.push({spin:[-96-g*36,-52-g*36,-74-g*36],y:[-1,-1,3+((g+2)**3%5)/2-lcos(-80-g*20)*2]})
 				}
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.hair={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front.push(createGraphics(200,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(100,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],35,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.hair={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.front.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.front[g])
+				data.sprites.hair.front[g].translate(100,100)
+				data.sprites.hair.front[g].scale(5)
+				generateSprite(data.sprites.hair.front[g],35,g*data.sprites.detail)
 				//print('Generated S-HF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(200,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(100,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],36,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.hair.back.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.back[g])
+				data.sprites.hair.back[g].translate(100,100)
+				data.sprites.hair.back[g].scale(5)
+				generateSprite(data.sprites.hair.back[g],36,g*data.sprites.detail)
 				//print('Generated S-HB-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.under.dress={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front.push(createGraphics(150,250))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g],37,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.under.dress={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.under.dress.front.push(createGraphics(150,250))
+				setupLayer(data.sprites.under.dress.front[g])
+				data.sprites.under.dress.front[g].translate(75,0)
+				data.sprites.under.dress.front[g].scale(5)
+				generateSprite(data.sprites.under.dress.front[g],37,g*data.sprites.detail)
 				//print('Generated S-UDF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back.push(createGraphics(150,250))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g],38,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.under.dress.back.push(createGraphics(150,250))
+				setupLayer(data.sprites.under.dress.back[g])
+				data.sprites.under.dress.back[g].translate(75,0)
+				data.sprites.under.dress.back[g].scale(5)
+				generateSprite(data.sprites.under.dress.back[g],38,g*data.sprites.detail)
 				//print('Generated S-UDB-'+(g+1))
 			}
 			if(options.damage){
-				graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage={front:[],back:[]}
-				for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-					graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.front.push(createGraphics(150,250))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.front[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.front[g].translate(75,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.front[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.front[g],39,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.under.dressDamage={front:[],back:[]}
+				for(let g=0;g<data.sprites.genAmount;g++){
+					data.sprites.under.dressDamage.front.push(createGraphics(150,250))
+					setupLayer(data.sprites.under.dressDamage.front[g])
+					data.sprites.under.dressDamage.front[g].translate(75,0)
+					data.sprites.under.dressDamage.front[g].scale(5)
+					generateSprite(data.sprites.under.dressDamage.front[g],39,g*data.sprites.detail)
 					//print('Generated S-UDF-'+(g+1))
-					graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.back.push(createGraphics(150,250))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.back[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.back[g].translate(75,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.back[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.back[g],40,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					data.sprites.under.dressDamage.back.push(createGraphics(150,250))
+					setupLayer(data.sprites.under.dressDamage.back[g])
+					data.sprites.under.dressDamage.back[g].translate(75,0)
+					data.sprites.under.dressDamage.back[g].scale(5)
+					generateSprite(data.sprites.under.dressDamage.back[g],40,g*data.sprites.detail)
 					//print('Generated S-UDB-'+(g+1))
 				}
 			}
@@ -1962,7 +2289,9 @@ function setupCombatantGraphics(type){
 				}
 			})
 
-			graphics.combatant[graphics.combatant.length-1].parts.hair={
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={
 				main:[
 					{spin:[66,87,75],height:13},
                     {spin:[-87,-66,-75],height:13},
@@ -1987,188 +2316,188 @@ function setupCombatantGraphics(type){
 				]
 			}
 		
-			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
+			data.sprites.genAmount=360/data.sprites.detail
 
 			for(let g=0;g<5;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,11.5+g*6.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[11.5+g*6.5,0,13+g*6.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,15+g*6.5,13+g*6.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,15+g*6.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[15+g*6.5,0,14.5+g*6.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,18+g*6.5,14.5+g*6.5]})
+				data.parts.kimono.main.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,11.5+g*6.5]})
+				data.parts.kimono.main.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[11.5+g*6.5,0,13+g*6.5]})
+				data.parts.kimono.main.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,15+g*6.5,13+g*6.5]})
+				data.parts.kimono.main.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,15+g*6.5]})
+				data.parts.kimono.main.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[15+g*6.5,0,14.5+g*6.5]})
+				data.parts.kimono.main.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,18+g*6.5,14.5+g*6.5]})
 			}
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[117,132,132],y:[0,0,36]})
+			data.parts.kimono.main.push({spin:[117,132,132],y:[0,0,36]})
 			for(let g=0;g<2;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,44,45.5+g*0.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,44]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[146+g*48,156+g*48,156+g*48],y:[44,0,45]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,44,45]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,44]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[166+g*48,180+g*48,180+g*48],y:[44,0,46-g*0.5]})
+				data.parts.kimono.main.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,44,45.5+g*0.5]})
+				data.parts.kimono.main.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,44]})
+				data.parts.kimono.main.push({spin:[146+g*48,156+g*48,156+g*48],y:[44,0,45]})
+				data.parts.kimono.main.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,44,45]})
+				data.parts.kimono.main.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,44]})
+				data.parts.kimono.main.push({spin:[166+g*48,180+g*48,180+g*48],y:[44,0,46-g*0.5]})
 			}
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[228,243,228],y:[0,0,36]})
+			data.parts.kimono.main.push({spin:[228,243,228],y:[0,0,36]})
 			for(let g=4;g>=-2;g--){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,18+g*6.5,14.5+g*6.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[84-g*48,75-g*48,72-g*48],y:[15+g*6.5,0,14.5+g*6.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,15+g*6.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,15+g*6.5,13+g*6.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[108-g*48,92-g*48,87-g*48],y:[11.5+g*6.5,0,13+g*6.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,11.5+g*6.5]})
+				data.parts.kimono.main.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,18+g*6.5,14.5+g*6.5]})
+				data.parts.kimono.main.push({spin:[84-g*48,75-g*48,72-g*48],y:[15+g*6.5,0,14.5+g*6.5]})
+				data.parts.kimono.main.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,15+g*6.5]})
+				data.parts.kimono.main.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,15+g*6.5,13+g*6.5]})
+				data.parts.kimono.main.push({spin:[108-g*48,92-g*48,87-g*48],y:[11.5+g*6.5,0,13+g*6.5]})
+				data.parts.kimono.main.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,11.5+g*6.5]})
 			}
 			for(let g=1;g<5;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-90+g*48,-36+g*48,-48+g*48],y:[0,0,16+g*8.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-48+g*48,-32+g*48,-27+g*48],y:[16+g*8.5-15,0,18+g*8.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-32+g*48,-24+g*48,-27+g*48],y:[0,19+g*8.5-15,18+g*8.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-32+g*48,-8+g*48,-24+g*48],y:[0,0,19+g*8.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-24+g*48,-15+g*48,-12+g*48],y:[19+g*8.5-15,0,19.5+g*8.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-15+g*48,g*48,-12+g*48],y:[0,24.5+g*8.5-15,19.5+g*8.5-15]})
+				data.parts.kimono.outside.push({spin:[-90+g*48,-36+g*48,-48+g*48],y:[0,0,16+g*8.5-15]})
+				data.parts.kimono.outside.push({spin:[-48+g*48,-32+g*48,-27+g*48],y:[16+g*8.5-15,0,18+g*8.5-15]})
+				data.parts.kimono.outside.push({spin:[-32+g*48,-24+g*48,-27+g*48],y:[0,19+g*8.5-15,18+g*8.5-15]})
+				data.parts.kimono.outside.push({spin:[-32+g*48,-8+g*48,-24+g*48],y:[0,0,19+g*8.5-15]})
+				data.parts.kimono.outside.push({spin:[-24+g*48,-15+g*48,-12+g*48],y:[19+g*8.5-15,0,19.5+g*8.5-15]})
+				data.parts.kimono.outside.push({spin:[-15+g*48,g*48,-12+g*48],y:[0,24.5+g*8.5-15,19.5+g*8.5-15]})
 			}
 			for(let g=4;g>=0;g--){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[15-g*48,-g*48,12-g*48],y:[0,24.5+g*8.5-15,19.5+g*8.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[24-g*48,15-g*48,12-g*48],y:[19+g*8.5-15,0,19.5+g*8.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[32-g*48,8-g*48,24-g*48],y:[0,0,19+g*8.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[32-g*48,24-g*48,27-g*48],y:[0,19+g*8.5-15,18+g*8.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[48-g*48,32-g*48,27-g*48],y:[16+g*8.5-15,0,18+g*8.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[60-g*48,36-g*48,48-g*48],y:[0,0,16+g*8.5-15]})
+				data.parts.kimono.outside.push({spin:[15-g*48,-g*48,12-g*48],y:[0,24.5+g*8.5-15,19.5+g*8.5-15]})
+				data.parts.kimono.outside.push({spin:[24-g*48,15-g*48,12-g*48],y:[19+g*8.5-15,0,19.5+g*8.5-15]})
+				data.parts.kimono.outside.push({spin:[32-g*48,8-g*48,24-g*48],y:[0,0,19+g*8.5-15]})
+				data.parts.kimono.outside.push({spin:[32-g*48,24-g*48,27-g*48],y:[0,19+g*8.5-15,18+g*8.5-15]})
+				data.parts.kimono.outside.push({spin:[48-g*48,32-g*48,27-g*48],y:[16+g*8.5-15,0,18+g*8.5-15]})
+				data.parts.kimono.outside.push({spin:[60-g*48,36-g*48,48-g*48],y:[0,0,16+g*8.5-15]})
 			}
 			for(let g=0;g<18;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop.push({spin:[-90-g*20,-70-g*20,-80-g*20],y:[0,0,-1]})
+				data.parts.kimono.outsideTop.push({spin:[-90-g*20,-70-g*20,-80-g*20],y:[0,0,-1]})
 			}
 			if(options.damage){
 				for(let g=0;g<5;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,13.5+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[13.5+g*4.5,0,14+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,16+g*4.5,14+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,16+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[16+g*4.5,0,15.5+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,18+g*4.5,15.5+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,13.5+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[13.5+g*4.5,0,14+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,16+g*4.5,14+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,16+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[16+g*4.5,0,15.5+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,18+g*4.5,15.5+g*4.5]})
 				}
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[117,132,132],y:[0,0,36]})
+				data.parts.kimono.mainDamage.push({spin:[117,132,132],y:[0,0,36]})
 				for(let g=0;g<2;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,34,36+g*0.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,34]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[146+g*48,156+g*48,156+g*48],y:[34,0,35]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,34,35]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,34]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[166+g*48,180+g*48,180+g*48],y:[34,0,36.5-g*0.5]})
+					data.parts.kimono.mainDamage.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,34,36+g*0.5]})
+					data.parts.kimono.mainDamage.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,34]})
+					data.parts.kimono.mainDamage.push({spin:[146+g*48,156+g*48,156+g*48],y:[34,0,35]})
+					data.parts.kimono.mainDamage.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,34,35]})
+					data.parts.kimono.mainDamage.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,34]})
+					data.parts.kimono.mainDamage.push({spin:[166+g*48,180+g*48,180+g*48],y:[34,0,36.5-g*0.5]})
 				}
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[228,243,228],y:[0,0,36]})
+				data.parts.kimono.mainDamage.push({spin:[228,243,228],y:[0,0,36]})
 				for(let g=4;g>=-3;g--){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,18+g*4.5,15.5+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[84-g*48,75-g*48,72-g*48],y:[16+g*4.5,0,15.5+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,16+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,16+g*4.5,14+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[108-g*48,92-g*48,87-g*48],y:[13.5+g*4.5,0,14+g*4.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,13.5+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,18+g*4.5,15.5+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[84-g*48,75-g*48,72-g*48],y:[16+g*4.5,0,15.5+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,16+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,16+g*4.5,14+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[108-g*48,92-g*48,87-g*48],y:[13.5+g*4.5,0,14+g*4.5]})
+					data.parts.kimono.mainDamage.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,13.5+g*4.5]})
 				}
 				for(let g=1;g<5;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-90+g*48,-36+g*48,-48+g*48],y:[0,0,16+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-48+g*48,-32+g*48,-27+g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-32+g*48,-24+g*48,-27+g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-32+g*48,-8+g*48,-24+g*48],y:[0,0,17.5+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-24+g*48,-15+g*48,-12+g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[-15+g*48,g*48,-12+g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[-90+g*48,-36+g*48,-48+g*48],y:[0,0,16+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[-48+g*48,-32+g*48,-27+g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[-32+g*48,-24+g*48,-27+g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[-32+g*48,-8+g*48,-24+g*48],y:[0,0,17.5+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[-24+g*48,-15+g*48,-12+g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[-15+g*48,g*48,-12+g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
 				}
 				for(let g=4;g>=0;g--){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[15-g*48,-g*48,12-g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[24-g*48,15-g*48,12-g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[32-g*48,8-g*48,24-g*48],y:[0,0,17.5+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[32-g*48,24-g*48,27-g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[48-g*48,32-g*48,27-g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.push({spin:[60-g*48,36-g*48,48-g*48],y:[0,0,16+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[15-g*48,-g*48,12-g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[24-g*48,15-g*48,12-g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[32-g*48,8-g*48,24-g*48],y:[0,0,17.5+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[32-g*48,24-g*48,27-g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[48-g*48,32-g*48,27-g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
+					data.parts.kimono.outsideDamage.push({spin:[60-g*48,36-g*48,48-g*48],y:[0,0,16+g*5.5-15]})
 				}
-				for(let g=0,lg=graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.length;g<lg;g++){
-					for(let h=0,lh=graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage[g].y.length;h<lh;h++){
-						graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage[g].y[h]=max(0,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage[g].y[h]-(g*4+h*1.5)**1.25%6)
+				for(let g=0,lg=data.parts.kimono.mainDamage.length;g<lg;g++){
+					for(let h=0,lh=data.parts.kimono.mainDamage[g].y.length;h<lh;h++){
+						data.parts.kimono.mainDamage[g].y[h]=max(0,data.parts.kimono.mainDamage[g].y[h]-(g*4+h*1.5)**1.25%6)
 					}
 				}
-				for(let g=0,lg=graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage.length;g<lg;g++){
-					for(let h=0,lh=graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage[g].y.length;h<lh;h++){
-						graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage[g].y[h]=max(0,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage[g].y[h]-(g*4+h*1.5)**1.5%6)
+				for(let g=0,lg=data.parts.kimono.outsideDamage.length;g<lg;g++){
+					for(let h=0,lh=data.parts.kimono.outsideDamage[g].y.length;h<lh;h++){
+						data.parts.kimono.outsideDamage[g].y[h]=max(0,data.parts.kimono.outsideDamage[g].y[h]-(g*4+h*1.5)**1.5%6)
 					}
 				}
 				for(let g=0;g<18;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti.push({spin:[-96-g*20,-64-g*20,-80-g*20],y:[-1,-1,6+((g+2)**3%6)/2-lcos(-80-g*20)*5]})
+					data.parts.kimono.mainAnti.push({spin:[-96-g*20,-64-g*20,-80-g*20],y:[-1,-1,6+((g+2)**3%6)/2-lcos(-80-g*20)*5]})
 				}
 				for(let g=0;g<12;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti.push({spin:[-84-g*30,-36-g*30,-60-g*30],y:[-1,-1,6+((g+1)**2%6)/2-lcos(-60-g*30)*5]})
+					data.parts.kimono.outsideAnti.push({spin:[-84-g*30,-36-g*30,-60-g*30],y:[-1,-1,6+((g+1)**2%6)/2-lcos(-60-g*30)*5]})
 				}
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti.push({spin:[-36,36,0],y:[-1,-1,11]})
+				data.parts.kimono.outsideAnti.push({spin:[-36,36,0],y:[-1,-1,11]})
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.hair={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front.push(createGraphics(250,500))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(125,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],49,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.hair={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.front.push(createGraphics(250,500))
+				setupLayer(data.sprites.hair.front[g])
+				data.sprites.hair.front[g].translate(125,100)
+				data.sprites.hair.front[g].scale(5)
+				generateSprite(data.sprites.hair.front[g],49,g*data.sprites.detail)
 				//print('Generated L-HF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(250,500))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(125,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],50,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.hair.back.push(createGraphics(250,500))
+				setupLayer(data.sprites.hair.back[g])
+				data.sprites.hair.back[g].translate(125,100)
+				data.sprites.hair.back[g].scale(5)
+				generateSprite(data.sprites.hair.back[g],50,g*data.sprites.detail)
 				//print('Generated L-HB-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.kimono.main={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front.push(createGraphics(150,330))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g],41,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.kimono.main={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.kimono.main.front.push(createGraphics(150,330))
+				setupLayer(data.sprites.kimono.main.front[g])
+				data.sprites.kimono.main.front[g].translate(75,0)
+				data.sprites.kimono.main.front[g].scale(5)
+				generateSprite(data.sprites.kimono.main.front[g],41,g*data.sprites.detail)
 				//print('Generated L-KMF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back.push(createGraphics(150,330))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g],42,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.kimono.main.back.push(createGraphics(150,330))
+				setupLayer(data.sprites.kimono.main.back[g])
+				data.sprites.kimono.main.back[g].translate(75,0)
+				data.sprites.kimono.main.back[g].scale(5)
+				generateSprite(data.sprites.kimono.main.back[g],42,g*data.sprites.detail)
 				//print('Generated L-KMB-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front.push(createGraphics(150,330))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g],43,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.kimono.outside={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.kimono.outside.front.push(createGraphics(150,330))
+				setupLayer(data.sprites.kimono.outside.front[g])
+				data.sprites.kimono.outside.front[g].translate(75,0)
+				data.sprites.kimono.outside.front[g].scale(5)
+				generateSprite(data.sprites.kimono.outside.front[g],43,g*data.sprites.detail)
 				//print('Generated L-KOF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back.push(createGraphics(150,330))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].translate(75,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g],44,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.kimono.outside.back.push(createGraphics(150,330))
+				setupLayer(data.sprites.kimono.outside.back[g])
+				data.sprites.kimono.outside.back[g].translate(75,0)
+				data.sprites.kimono.outside.back[g].scale(5)
+				generateSprite(data.sprites.kimono.outside.back[g],44,g*data.sprites.detail)
 				//print('Generated L-KOB-'+(g+1))
 			}
 			if(options.damage){
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage={front:[],back:[]}
-				for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front.push(createGraphics(150,330))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].translate(75,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g],45,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.kimono.mainDamage={front:[],back:[]}
+				for(let g=0;g<data.sprites.genAmount;g++){
+					data.sprites.kimono.mainDamage.front.push(createGraphics(150,330))
+					setupLayer(data.sprites.kimono.mainDamage.front[g])
+					data.sprites.kimono.mainDamage.front[g].translate(75,0)
+					data.sprites.kimono.mainDamage.front[g].scale(5)
+					generateSprite(data.sprites.kimono.mainDamage.front[g],45,g*data.sprites.detail)
 					//print('Generated L-DMF-'+(g+1))
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back.push(createGraphics(150,330))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].translate(75,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g],46,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					data.sprites.kimono.mainDamage.back.push(createGraphics(150,330))
+					setupLayer(data.sprites.kimono.mainDamage.back[g])
+					data.sprites.kimono.mainDamage.back[g].translate(75,0)
+					data.sprites.kimono.mainDamage.back[g].scale(5)
+					generateSprite(data.sprites.kimono.mainDamage.back[g],46,g*data.sprites.detail)
 					//print('Generated L-DMB-'+(g+1))
 				}
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage={front:[],back:[]}
-				for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front.push(createGraphics(150,330))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].translate(75,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g],47,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.kimono.outsideDamage={front:[],back:[]}
+				for(let g=0;g<data.sprites.genAmount;g++){
+					data.sprites.kimono.outsideDamage.front.push(createGraphics(150,330))
+					setupLayer(data.sprites.kimono.outsideDamage.front[g])
+					data.sprites.kimono.outsideDamage.front[g].translate(75,0)
+					data.sprites.kimono.outsideDamage.front[g].scale(5)
+					generateSprite(data.sprites.kimono.outsideDamage.front[g],47,g*data.sprites.detail)
 					//print('Generated L-DOF-'+(g+1))
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back.push(createGraphics(150,330))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].translate(75,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g],48,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					data.sprites.kimono.outsideDamage.back.push(createGraphics(150,330))
+					setupLayer(data.sprites.kimono.outsideDamage.back[g])
+					data.sprites.kimono.outsideDamage.back[g].translate(75,0)
+					data.sprites.kimono.outsideDamage.back[g].scale(5)
+					generateSprite(data.sprites.kimono.outsideDamage.back[g],48,g*data.sprites.detail)
 					//print('Generated L-DOB-'+(g+1))
 				}
 			}
@@ -2187,7 +2516,9 @@ function setupCombatantGraphics(type){
 				}
 			})
 
-			graphics.combatant[graphics.combatant.length-1].parts.hair={
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={
 				main:[
 					{spin:[30,54,42],height:12},
                     {spin:[-54,-30,-42],height:12},
@@ -2227,21 +2558,21 @@ function setupCombatantGraphics(type){
 				]
 			}
 		
-			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
+			data.sprites.genAmount=360/data.sprites.detail
 
-			graphics.combatant[graphics.combatant.length-1].sprites.hair={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front.push(createGraphics(200,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(100,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],51,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.hair={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.front.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.front[g])
+				data.sprites.hair.front[g].translate(100,100)
+				data.sprites.hair.front[g].scale(5)
+				generateSprite(data.sprites.hair.front[g],51,g*data.sprites.detail)
 				//print('Generated L-HF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(200,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(100,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],52,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.hair.back.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.back[g])
+				data.sprites.hair.back[g].translate(100,100)
+				data.sprites.hair.back[g].scale(5)
+				generateSprite(data.sprites.hair.back[g],52,g*data.sprites.detail)
 				//print('Generated L-HB-'+(g+1))
 			}
 		break
@@ -2259,7 +2590,9 @@ function setupCombatantGraphics(type){
 				spin:{tail:[-114,114]}
 			})
 
-			graphics.combatant[graphics.combatant.length-1].parts.hair={main:[
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={main:[
 				{spin:[-9,-3,-6],height:1},
 				{spin:[-3,9,6],height:1},
 
@@ -2314,44 +2647,44 @@ function setupCombatantGraphics(type){
 				{spin:[165,-105,-165],height:12.5},
 			]}
 
-			graphics.combatant[graphics.combatant.length-1].parts.tail=[[],[]]
+			data.parts.tail=[[],[]]
 
 			for(let g=0;g<2;g++){
 				for(let h=0;h<4;h++){
-					graphics.combatant[graphics.combatant.length-1].parts.tail[g].push([[],[]])
+					data.parts.tail[g].push([[],[]])
 					for(let i=0;i<12;i++){
-						graphics.combatant[graphics.combatant.length-1].parts.tail[g][h][0].push({spin:[h*15+i*30-15,h*15+i*30+15,h*15+i*30],y:[0,0,-4]})
-						graphics.combatant[graphics.combatant.length-1].parts.tail[g][h][1].push({spin:[h*15+i*30-15,h*15+i*30+15,h*15+i*30],y:[0,0,4]})
+						data.parts.tail[g][h][0].push({spin:[h*15+i*30-15,h*15+i*30+15,h*15+i*30],y:[0,0,-4]})
+						data.parts.tail[g][h][1].push({spin:[h*15+i*30-15,h*15+i*30+15,h*15+i*30],y:[0,0,4]})
 					}
 				}
 			}
 		
-			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
+			data.sprites.genAmount=360/data.sprites.detail
 
-			graphics.combatant[graphics.combatant.length-1].sprites.hair={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front.push(createGraphics(200,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(100,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],53,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.hair={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.front.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.front[g])
+				data.sprites.hair.front[g].translate(100,100)
+				data.sprites.hair.front[g].scale(5)
+				generateSprite(data.sprites.hair.front[g],53,g*data.sprites.detail)
 				//print('Generated HF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(200,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(100,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],54,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.hair.back.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.back[g])
+				data.sprites.hair.back[g].translate(100,100)
+				data.sprites.hair.back[g].scale(5)
+				generateSprite(data.sprites.hair.back[g],54,g*data.sprites.detail)
 				//print('Generated HB-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.hair.tail=[[],[]]
+			data.sprites.hair.tail=[[],[]]
 			for(let g=0;g<2;g++){
-				for(let h=0;h<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;h++){
-					graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g].push(createGraphics(120,360))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][h])
-					graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][h].translate(60,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][h].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][h],55+g,h*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-					//print('Generated HT-'+(g*graphics.combatant[graphics.combatant.length-1].sprites.genAmount+h+1))
+				for(let h=0;h<data.sprites.genAmount;h++){
+					data.sprites.hair.tail[g].push(createGraphics(120,360))
+					setupLayer(data.sprites.hair.tail[g][h])
+					data.sprites.hair.tail[g][h].translate(60,0)
+					data.sprites.hair.tail[g][h].scale(5)
+					generateSprite(data.sprites.hair.tail[g][h],55+g,h*data.sprites.detail)
+					//print('Generated HT-'+(g*data.sprites.genAmount+h+1))
 				}
 			}
 		break
@@ -2369,7 +2702,9 @@ function setupCombatantGraphics(type){
 				},
 			})
 
-			graphics.combatant[graphics.combatant.length-1].parts.hair={main:[
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={main:[
 				{spin:[-6,6,0],height:4},
 				{spin:[-9,0,-4.5],height:3},
 				{spin:[-0,9,4.5],height:3},
@@ -2415,21 +2750,21 @@ function setupCombatantGraphics(type){
 				{spin:[84,108,99],height:17},
 			]}
 		
-			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
+			data.sprites.genAmount=360/data.sprites.detail
 
-			graphics.combatant[graphics.combatant.length-1].sprites.hair={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front.push(createGraphics(200,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(100,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],57,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.hair={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.front.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.front[g])
+				data.sprites.hair.front[g].translate(100,100)
+				data.sprites.hair.front[g].scale(5)
+				generateSprite(data.sprites.hair.front[g],57,g*data.sprites.detail)
 				//print('Generated HF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(200,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(100,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],58,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.hair.back.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.back[g])
+				data.sprites.hair.back[g].translate(100,100)
+				data.sprites.hair.back[g].scale(5)
+				generateSprite(data.sprites.hair.back[g],58,g*data.sprites.detail)
 				//print('Generated HB-'+(g+1))
 			}
 		break
@@ -2448,7 +2783,9 @@ function setupCombatantGraphics(type){
 				},
 			})
 
-			graphics.combatant[graphics.combatant.length-1].parts.hair={main:[
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={main:[
 				{spin:[-36,-22.5,-33],height:2},
 				{spin:[22.5,36,33],height:2},
 				{spin:[-51,-39,-48],height:5},
@@ -2495,55 +2832,55 @@ function setupCombatantGraphics(type){
 				{spin:[-21,-12,-15],height:-1.5},
 				{spin:[9,21,18],height:-1},
 			]}
-			for(let a=0,la=graphics.combatant[graphics.combatant.length-1].parts.hair.main.length;a<la;a++){
+			for(let a=0,la=data.parts.hair.main.length;a<la;a++){
 				if(a>2){
-					graphics.combatant[graphics.combatant.length-1].parts.hair.main[a].spin[0]-=random(0,3)
-					graphics.combatant[graphics.combatant.length-1].parts.hair.main[a].spin[1]+=random(0,3)
+					data.parts.hair.main[a].spin[0]-=random(0,3)
+					data.parts.hair.main[a].spin[1]+=random(0,3)
 				}
-				graphics.combatant[graphics.combatant.length-1].parts.hair.main[a].spin[2]+=random(-3,3)
+				data.parts.hair.main[a].spin[2]+=random(-3,3)
 			}
-			for(let a=0,la=graphics.combatant[graphics.combatant.length-1].parts.hair.inside.length;a<la;a++){
-				graphics.combatant[graphics.combatant.length-1].parts.hair.inside[a].spin[0]-=random(0,1)
-				graphics.combatant[graphics.combatant.length-1].parts.hair.inside[a].spin[1]+=random(0,1)
-				graphics.combatant[graphics.combatant.length-1].parts.hair.inside[a].spin[2]+=random(-1,1)
+			for(let a=0,la=data.parts.hair.inside.length;a<la;a++){
+				data.parts.hair.inside[a].spin[0]-=random(0,1)
+				data.parts.hair.inside[a].spin[1]+=random(0,1)
+				data.parts.hair.inside[a].spin[2]+=random(-1,1)
 			}
 
 			for(let g=0;g<5;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.tail.push([[],[]])
+				data.parts.tail.push([[],[]])
 				for(let h=0;h<12;h++){
-					graphics.combatant[graphics.combatant.length-1].parts.tail[g][0].push({spin:[g*15+h*30-15,g*15+h*30+15,g*15+h*30],y:[0,0,-5]})
-					graphics.combatant[graphics.combatant.length-1].parts.tail[g][1].push({spin:[g*15+h*30-15,g*15+h*30+15,g*15+h*30],y:[0,0,5]})
+					data.parts.tail[g][0].push({spin:[g*15+h*30-15,g*15+h*30+15,g*15+h*30],y:[0,0,-5]})
+					data.parts.tail[g][1].push({spin:[g*15+h*30-15,g*15+h*30+15,g*15+h*30],y:[0,0,5]})
 				}
 			}
 		
-			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
+			data.sprites.genAmount=360/data.sprites.detail
 
-			graphics.combatant[graphics.combatant.length-1].sprites.hair={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front.push(createGraphics(250,500))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(125,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],59,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.hair={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.front.push(createGraphics(250,500))
+				setupLayer(data.sprites.hair.front[g])
+				data.sprites.hair.front[g].translate(125,100)
+				data.sprites.hair.front[g].scale(5)
+				generateSprite(data.sprites.hair.front[g],59,g*data.sprites.detail)
 				//print('Generated HF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(250,500))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(125,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],60,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.hair.back.push(createGraphics(250,500))
+				setupLayer(data.sprites.hair.back[g])
+				data.sprites.hair.back[g].translate(125,100)
+				data.sprites.hair.back[g].scale(5)
+				generateSprite(data.sprites.hair.back[g],60,g*data.sprites.detail)
 				//print('Generated HB-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.hair.tail=[]
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.tail.push(createGraphics(120,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g].translate(60,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g],61,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.hair.tail=[]
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.tail.push(createGraphics(120,300))
+				setupLayer(data.sprites.hair.tail[g])
+				data.sprites.hair.tail[g].translate(60,0)
+				data.sprites.hair.tail[g].scale(5)
+				generateSprite(data.sprites.hair.tail[g],61,g*data.sprites.detail)
 				//print('Generated S-HT-'+(g+1))
 			}
 		break
-		case 10:
+		case 20:
 			graphics.combatant.push({
 				spin:{tail:[-96,96]},
 				sprites:{detail:15,genAmount:0,animDirection:0,temp:0,hair:{back:[],front:[],tail:[[],[]]},kimono:{main:{back:[],front:[]},mainDamage:{back:[],front:[]}}},
@@ -2560,7 +2897,9 @@ function setupCombatantGraphics(type){
 				}
 			})
 
-			graphics.combatant[graphics.combatant.length-1].parts.hair={
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={
 				main:[
                     {spin:[-48,-18,-30],height:2},
                     {spin:[18,48,30],height:2},
@@ -2600,156 +2939,156 @@ function setupCombatantGraphics(type){
 				]
 			}
 			
-			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
+			data.sprites.genAmount=360/data.sprites.detail
 
 			for(let g=0;g<9;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-108+g*24,-84+g*24,-96+g*24],y:[0,0,10.5+g*1.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-96+g*24,-84+g*24,-84+g*24],y:[10.5+g*1.5,0,12.5+g*1.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-84+g*24,-72+g*24,-84+g*24],y:[12.5+g*1.5,12+g*1.5,0]})
+				data.parts.kimono.main.push({spin:[-108+g*24,-84+g*24,-96+g*24],y:[0,0,10.5+g*1.5]})
+				data.parts.kimono.main.push({spin:[-96+g*24,-84+g*24,-84+g*24],y:[10.5+g*1.5,0,12.5+g*1.5]})
+				data.parts.kimono.main.push({spin:[-84+g*24,-72+g*24,-84+g*24],y:[12.5+g*1.5,12+g*1.5,0]})
 			}
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[96,120,120],y:[0,0,24]})
+			data.parts.kimono.main.push({spin:[96,120,120],y:[0,0,24]})
 			for(let g=0;g<5;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[120+g*24,132+g*24,120+g*24],y:[0,26,24+min(g,1)]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[114+g*24,150+g*24,132+g*24],y:[0,0,26]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[132+g*24,144+g*24,144+g*24],y:[26,0,28-max(g,3)]})
+				data.parts.kimono.main.push({spin:[120+g*24,132+g*24,120+g*24],y:[0,26,24+min(g,1)]})
+				data.parts.kimono.main.push({spin:[114+g*24,150+g*24,132+g*24],y:[0,0,26]})
+				data.parts.kimono.main.push({spin:[132+g*24,144+g*24,144+g*24],y:[26,0,28-max(g,3)]})
 			}
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[240,264,240],y:[0,0,24]})
+			data.parts.kimono.main.push({spin:[240,264,240],y:[0,0,24]})
 			for(let g=8;g>=-7;g--){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[84-g*24,72-g*24,84-g*24],y:[12.5+g*1.5,12+g*1.5,0]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[96-g*24,84-g*24,84-g*24],y:[max(0,10.5+g*1.5),0,12.5+g*1.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[108-g*24,84-g*24,96-g*24],y:[0,0,max(0,10.5+g*1.5)]})
+				data.parts.kimono.main.push({spin:[84-g*24,72-g*24,84-g*24],y:[12.5+g*1.5,12+g*1.5,0]})
+				data.parts.kimono.main.push({spin:[96-g*24,84-g*24,84-g*24],y:[max(0,10.5+g*1.5),0,12.5+g*1.5]})
+				data.parts.kimono.main.push({spin:[108-g*24,84-g*24,96-g*24],y:[0,0,max(0,10.5+g*1.5)]})
 			}
 			for(let g=-15;g<15;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.mainTop.push(g>=0?{spin:[-84+g*24,-66+g*24,-75+g*24],y:[0,0,-0.75]}:{spin:[0,0,0],y:[-999,-999,-999]})
+				data.parts.kimono.mainTop.push(g>=0?{spin:[-84+g*24,-66+g*24,-75+g*24],y:[0,0,-0.75]}:{spin:[0,0,0],y:[-999,-999,-999]})
 			}
 			for(let g=0;g<2;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:100-g*40,rotate:random(0,360),y:40.5-g*2.5,type:floor(random(0,15))})
+				data.parts.kimono.decoration.large.push({spin:100-g*40,rotate:random(0,360),y:40.5-g*2.5,type:floor(random(0,15))})
 			}
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:140,rotate:random(0,360),y:43,type:floor(random(0,15))})
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:180,rotate:random(0,360),y:43.5,type:floor(random(0,15))})
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:220,rotate:random(0,360),y:43,type:floor(random(0,15))})
+			data.parts.kimono.decoration.large.push({spin:140,rotate:random(0,360),y:43,type:floor(random(0,15))})
+			data.parts.kimono.decoration.large.push({spin:180,rotate:random(0,360),y:43.5,type:floor(random(0,15))})
+			data.parts.kimono.decoration.large.push({spin:220,rotate:random(0,360),y:43,type:floor(random(0,15))})
 			for(let g=0;g<7;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:260+g*40,rotate:random(0,360),y:40.5-g*2.5,type:floor(random(0,15))})
+				data.parts.kimono.decoration.large.push({spin:260+g*40,rotate:random(0,360),y:40.5-g*2.5,type:floor(random(0,15))})
 			}
 
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:108,rotate:random(0,360),y:34,type:floor(random(0,15))})
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:156,rotate:random(0,360),y:37,type:floor(random(0,15))})
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:204,rotate:random(0,360),y:37,type:floor(random(0,15))})
+			data.parts.kimono.decoration.large.push({spin:108,rotate:random(0,360),y:34,type:floor(random(0,15))})
+			data.parts.kimono.decoration.large.push({spin:156,rotate:random(0,360),y:37,type:floor(random(0,15))})
+			data.parts.kimono.decoration.large.push({spin:204,rotate:random(0,360),y:37,type:floor(random(0,15))})
 			for(let g=0;g<5;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:252+g*48,rotate:random(0,360),y:34-g*3,type:floor(random(0,15))})
+				data.parts.kimono.decoration.large.push({spin:252+g*48,rotate:random(0,360),y:34-g*3,type:floor(random(0,15))})
 			}
 
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:124,rotate:random(0,360),y:27.5,type:floor(random(0,15))})
-			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:180,rotate:random(0,360),y:31,type:floor(random(0,15))})
+			data.parts.kimono.decoration.large.push({spin:124,rotate:random(0,360),y:27.5,type:floor(random(0,15))})
+			data.parts.kimono.decoration.large.push({spin:180,rotate:random(0,360),y:31,type:floor(random(0,15))})
 			for(let g=0;g<2;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:234+g*56,rotate:random(0,360),y:27.5-g*3.5,type:floor(random(0,15))})
+				data.parts.kimono.decoration.large.push({spin:234+g*56,rotate:random(0,360),y:27.5-g*3.5,type:floor(random(0,15))})
 			}
 			if(options.damage){
 				for(let g=0;g<9;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-108+g*24,-84+g*24,-96+g*24],y:[0,0,10.5+g*1.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-96+g*24,-84+g*24,-84+g*24],y:[10.5+g*1.5,0,12.5+g*1.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[-84+g*24,-72+g*24,-84+g*24],y:[12.5+g*1.5,12+g*1.5,0]})
+					data.parts.kimono.mainDamage.push({spin:[-108+g*24,-84+g*24,-96+g*24],y:[0,0,10.5+g*1.5]})
+					data.parts.kimono.mainDamage.push({spin:[-96+g*24,-84+g*24,-84+g*24],y:[10.5+g*1.5,0,12.5+g*1.5]})
+					data.parts.kimono.mainDamage.push({spin:[-84+g*24,-72+g*24,-84+g*24],y:[12.5+g*1.5,12+g*1.5,0]})
 				}
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[96,120,120],y:[0,0,24]})
+				data.parts.kimono.mainDamage.push({spin:[96,120,120],y:[0,0,24]})
 				for(let g=0;g<5;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[120+g*24,132+g*24,120+g*24],y:[0,26,24+min(g,1)]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[114+g*24,150+g*24,132+g*24],y:[0,0,26]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[132+g*24,144+g*24,144+g*24],y:[26,0,28-max(g,3)]})
+					data.parts.kimono.mainDamage.push({spin:[120+g*24,132+g*24,120+g*24],y:[0,26,24+min(g,1)]})
+					data.parts.kimono.mainDamage.push({spin:[114+g*24,150+g*24,132+g*24],y:[0,0,26]})
+					data.parts.kimono.mainDamage.push({spin:[132+g*24,144+g*24,144+g*24],y:[26,0,28-max(g,3)]})
 				}
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[240,264,240],y:[0,0,24]})
+				data.parts.kimono.mainDamage.push({spin:[240,264,240],y:[0,0,24]})
 				for(let g=8;g>=-7;g--){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[84-g*24,72-g*24,84-g*24],y:[12.5+g*1.5,12+g*1.5,0]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[96-g*24,84-g*24,84-g*24],y:[max(0,10.5+g*1.5),0,12.5+g*1.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.push({spin:[108-g*24,84-g*24,96-g*24],y:[0,0,max(0,10.5+g*1.5)]})
+					data.parts.kimono.mainDamage.push({spin:[84-g*24,72-g*24,84-g*24],y:[12.5+g*1.5,12+g*1.5,0]})
+					data.parts.kimono.mainDamage.push({spin:[96-g*24,84-g*24,84-g*24],y:[max(0,10.5+g*1.5),0,12.5+g*1.5]})
+					data.parts.kimono.mainDamage.push({spin:[108-g*24,84-g*24,96-g*24],y:[0,0,max(0,10.5+g*1.5)]})
 				}
 				for(let g=0;g<9;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage.push({spin:[-108+g*24,-84+g*24,-96+g*24],y:[0,0,10.5+g*1.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage.push({spin:[-96+g*24,-84+g*24,-84+g*24],y:[10.5+g*1.5,0,12.5+g*1.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage.push({spin:[-84+g*24,-72+g*24,-84+g*24],y:[12.5+g*1.5,12+g*1.5,0]})
+					data.parts.kimono.underDamage.push({spin:[-108+g*24,-84+g*24,-96+g*24],y:[0,0,10.5+g*1.5]})
+					data.parts.kimono.underDamage.push({spin:[-96+g*24,-84+g*24,-84+g*24],y:[10.5+g*1.5,0,12.5+g*1.5]})
+					data.parts.kimono.underDamage.push({spin:[-84+g*24,-72+g*24,-84+g*24],y:[12.5+g*1.5,12+g*1.5,0]})
 				}
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage.push({spin:[96,120,120],y:[0,0,24]})
+				data.parts.kimono.underDamage.push({spin:[96,120,120],y:[0,0,24]})
 				for(let g=0;g<5;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage.push({spin:[120+g*24,132+g*24,120+g*24],y:[0,26,24+min(g,1)]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage.push({spin:[114+g*24,150+g*24,132+g*24],y:[0,0,26]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage.push({spin:[132+g*24,144+g*24,144+g*24],y:[26,0,28-max(g,3)]})
+					data.parts.kimono.underDamage.push({spin:[120+g*24,132+g*24,120+g*24],y:[0,26,24+min(g,1)]})
+					data.parts.kimono.underDamage.push({spin:[114+g*24,150+g*24,132+g*24],y:[0,0,26]})
+					data.parts.kimono.underDamage.push({spin:[132+g*24,144+g*24,144+g*24],y:[26,0,28-max(g,3)]})
 				}
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage.push({spin:[240,264,240],y:[0,0,24]})
+				data.parts.kimono.underDamage.push({spin:[240,264,240],y:[0,0,24]})
 				for(let g=8;g>=-7;g--){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage.push({spin:[84-g*24,72-g*24,84-g*24],y:[12.5+g*1.5,12+g*1.5,0]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage.push({spin:[96-g*24,84-g*24,84-g*24],y:[max(0,10.5+g*1.5),0,12.5+g*1.5]})
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage.push({spin:[108-g*24,84-g*24,96-g*24],y:[0,0,max(0,10.5+g*1.5)]})
+					data.parts.kimono.underDamage.push({spin:[84-g*24,72-g*24,84-g*24],y:[12.5+g*1.5,12+g*1.5,0]})
+					data.parts.kimono.underDamage.push({spin:[96-g*24,84-g*24,84-g*24],y:[max(0,10.5+g*1.5),0,12.5+g*1.5]})
+					data.parts.kimono.underDamage.push({spin:[108-g*24,84-g*24,96-g*24],y:[0,0,max(0,10.5+g*1.5)]})
 				}
-				for(let g=0,lg=graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage.length;g<lg;g++){
-					for(let h=0,lh=graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage[g].y.length;h<lh;h++){
-						graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage[g].y[h]=max(0,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage[g].y[h]-(2+g*4+h*1.5)**1.2%3)
+				for(let g=0,lg=data.parts.kimono.mainDamage.length;g<lg;g++){
+					for(let h=0,lh=data.parts.kimono.mainDamage[g].y.length;h<lh;h++){
+						data.parts.kimono.mainDamage[g].y[h]=max(0,data.parts.kimono.mainDamage[g].y[h]-(2+g*4+h*1.5)**1.2%3)
 					}
 				}
-				for(let g=0,lg=graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage.length;g<lg;g++){
-					for(let h=0,lh=graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage[g].y.length;h<lh;h++){
-						graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage[g].y[h]=max(0,graphics.combatant[graphics.combatant.length-1].parts.kimono.underDamage[g].y[h]-(3+g*4.75+h*1.75)**1.2%3)
+				for(let g=0,lg=data.parts.kimono.underDamage.length;g<lg;g++){
+					for(let h=0,lh=data.parts.kimono.underDamage[g].y.length;h<lh;h++){
+						data.parts.kimono.underDamage[g].y[h]=max(0,data.parts.kimono.underDamage[g].y[h]-(3+g*4.75+h*1.75)**1.2%3)
 					}
 				}
 				for(let g=0;g<12;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti.push({spin:[-93-g*30,-57-g*30,-75-g*30],y:[-1,-1,((g+1.5)**1.5%3)/2]})
+					data.parts.kimono.mainAnti.push({spin:[-93-g*30,-57-g*30,-75-g*30],y:[-1,-1,((g+1.5)**1.5%3)/2]})
 				}
 				for(let g=0;g<24;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.underAnti.push({spin:[-90-g*15,-72-g*15,-81-g*15],y:[-1,-1,((g+1)**1.75%3)/2]})
+					data.parts.kimono.underAnti.push({spin:[-90-g*15,-72-g*15,-81-g*15],y:[-1,-1,((g+1)**1.75%3)/2]})
 				}
 			}
 			for(let g=0;g<2;g++){
 				for(let h=0;h<5;h++){
-					graphics.combatant[graphics.combatant.length-1].parts.tail[g].push([[],[]])
+					data.parts.tail[g].push([[],[]])
 					for(let i=0;i<6;i++){
-						graphics.combatant[graphics.combatant.length-1].parts.tail[g][h][0].push({spin:[h*30+i*60-30,h*30+i*60+30,h*30+i*60],y:[0,0,-3]})
-						graphics.combatant[graphics.combatant.length-1].parts.tail[g][h][1].push({spin:[h*30+i*60-30,h*30+i*60+30,h*30+i*60],y:[0,0,3]})
+						data.parts.tail[g][h][0].push({spin:[h*30+i*60-30,h*30+i*60+30,h*30+i*60],y:[0,0,-3]})
+						data.parts.tail[g][h][1].push({spin:[h*30+i*60-30,h*30+i*60+30,h*30+i*60],y:[0,0,3]})
 					}
 				}
 			}
 
-			graphics.combatant[graphics.combatant.length-1].sprites.hair={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front.push(createGraphics(200,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(100,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],29,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.hair={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.front.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.front[g])
+				data.sprites.hair.front[g].translate(100,100)
+				data.sprites.hair.front[g].scale(5)
+				generateSprite(data.sprites.hair.front[g],29,g*data.sprites.detail)
 				//print('Generated U-HF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(200,300))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(100,100)
-				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],30,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.hair.back.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.back[g])
+				data.sprites.hair.back[g].translate(100,100)
+				data.sprites.hair.back[g].scale(5)
+				generateSprite(data.sprites.hair.back[g],30,g*data.sprites.detail)
 				//print('Generated U-HB-'+(g+1))
 			}
-			graphics.combatant[graphics.combatant.length-1].sprites.kimono.main={front:[],back:[]}
-			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front.push(createGraphics(200,330))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].translate(100,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g],31,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+			data.sprites.kimono.main={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.kimono.main.front.push(createGraphics(200,330))
+				setupLayer(data.sprites.kimono.main.front[g])
+				data.sprites.kimono.main.front[g].translate(100,0)
+				data.sprites.kimono.main.front[g].scale(5)
+				generateSprite(data.sprites.kimono.main.front[g],31,g*data.sprites.detail)
 				//print('Generated U-KMF-'+(g+1))
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back.push(createGraphics(200,330))
-				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g])
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].translate(100,0)
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g],32,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.kimono.main.back.push(createGraphics(200,330))
+				setupLayer(data.sprites.kimono.main.back[g])
+				data.sprites.kimono.main.back[g].translate(100,0)
+				data.sprites.kimono.main.back[g].scale(5)
+				generateSprite(data.sprites.kimono.main.back[g],32,g*data.sprites.detail)
 				//print('Generated U-KMB-'+(g+1))
 			}
 			if(options.damage){
-				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage={front:[],back:[]}
-				for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front.push(createGraphics(200,330))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].translate(100,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g],33,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				data.sprites.kimono.mainDamage={front:[],back:[]}
+				for(let g=0;g<data.sprites.genAmount;g++){
+					data.sprites.kimono.mainDamage.front.push(createGraphics(200,330))
+					setupLayer(data.sprites.kimono.mainDamage.front[g])
+					data.sprites.kimono.mainDamage.front[g].translate(100,0)
+					data.sprites.kimono.mainDamage.front[g].scale(5)
+					generateSprite(data.sprites.kimono.mainDamage.front[g],33,g*data.sprites.detail)
 					//print('Generated U-KMF-'+(g+1))
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back.push(createGraphics(200,330))
-					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g])
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].translate(100,0)
-					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g],34,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					data.sprites.kimono.mainDamage.back.push(createGraphics(200,330))
+					setupLayer(data.sprites.kimono.mainDamage.back[g])
+					data.sprites.kimono.mainDamage.back[g].translate(100,0)
+					data.sprites.kimono.mainDamage.back[g].scale(5)
+					generateSprite(data.sprites.kimono.mainDamage.back[g],34,g*data.sprites.detail)
 					//print('Generated U-KMB-'+(g+1))
 				}
 			}
@@ -5728,10 +6067,16 @@ function setupTrig(){
 	for(let a=0,la=180;a<la;a++){
 		game.trig[0].push(sin(a))
 		game.trig[1].push(cos(a))
+		if(abs(game.trig[0][a])<0.001){
+			game.trig[0][a]=0
+		}
+		if(abs(game.trig[1][a])<0.001){
+			game.trig[1][a]=0
+		}
 	}
 	for(let a=0,la=180;a<la;a++){
 		game.trig[0].push(-game.trig[0][a])
-		game.trig[1].push(game.trig[1][179-a])
+		game.trig[1].push(game.trig[1][(180-a)%180]*(a==0?-1:1))
 	}
 }
 function lsin(direction){

@@ -4255,14 +4255,16 @@ class group{
                         if(variants.mtg&&mouseover&&this.cards[a].afford&&this.lastMouseOver!=this.cards[a].id){
                             this.lastMouseOver=this.cards[a].id
                             this.battle.mtgUnmark(this.player)
-                            let effectiveCost=this.cards[a].cost
-                            let effectiveCards=[]
-                            for(let b=0,lb=this.cards.length;b<lb;b++){
-                                if(this.cards[b].usable&&a!=b){
-                                    effectiveCards.push(this.cards[b])
+                            if(!this.cards[a].specialCost){
+                                let effectiveCost=this.cards[a].cost
+                                let effectiveCards=[]
+                                for(let b=0,lb=this.cards.length;b<lb;b++){
+                                    if(this.cards[b].usable&&a!=b){
+                                        effectiveCards.push(this.cards[b])
+                                    }
                                 }
+                                this.battle.mtgMark(effectiveCost,this.player,effectiveCards)
                             }
-                            this.battle.mtgMark(effectiveCost,this.player,effectiveCards)
                         }
                         this.cards[a].update(1,'hand',this.battle.relicManager.hasRelic(170,this.player))
                         this.cards[a].upSize=mouseover&&!this.battle.overlayManager.anyActive&&!selected
@@ -5319,6 +5321,20 @@ class group{
                                 }
                                 if(a!=la&&this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                     if(this.cards[a].afford){
+                                        if(variants.mtg&&this.lastMouseOver!=this.cards[a].id){
+                                            this.lastMouseOver=this.cards[a].id
+                                            this.battle.mtgUnmark(this.player)
+                                            if(!this.cards[a].specialCost){
+                                                let effectiveCost=this.cards[a].cost
+                                                let effectiveCards=[]
+                                                for(let b=0,lb=this.cards.length;b<lb;b++){
+                                                    if(this.cards[b].usable&&a!=b){
+                                                        effectiveCards.push(this.cards[b])
+                                                    }
+                                                }
+                                                this.battle.mtgMark(effectiveCost,this.player,effectiveCards)
+                                            }
+                                        }
                                         this.callInput(0,a)
                                         break
                                     }else if(this.cards[a].spec.includes(35)&&(variants.mtg&&this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)>0||!variants.mtg&&this.battle.getEnergy(this.player)>0)&&this.cards[a].cost>0){

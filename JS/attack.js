@@ -2195,7 +2195,7 @@ class attack{
                     break
                     case 582:
                         if(this.targetCombatant.life<=0){
-                            for(let a=0,la=this.effect[2];a<la;a++){
+                            for(let a=0,la=this.effect[1];a<la;a++){
                                 this.userCombatant.holdOrb(11)
                             }
                         }
@@ -10522,6 +10522,10 @@ class attack{
                     case 3840:
                         this.userCombatant.heal(this.effect[0])
                         this.userCombatant.statusEffect('Bleed',this.effect[1])
+                    break
+                    case 3954:
+                        this.userCombatant.statusEffect('Cancel Exhaust',this.effect[0])
+                        this.battle.addSpecificEnergy(1,this.user,0)
                     break
 
                 }

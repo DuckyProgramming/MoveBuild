@@ -104,23 +104,15 @@ class card{
                     this.target=this.target==undefined?copyArray(types.card[this.type].mtg.levels[this.level].target):copyArray(this.target)
                     this.class=cardClass||types.card[this.type].mtg.levels[this.level].class
                 }
-                this.specialCost=this.spec.includes(5)||this.spec.includes(11)||this.spec.includes(35)||this.spec.includes(40)||this.spec.includes(41)||this.spec.includes(55)||this.spec.includes(58)||this.spec.includes(59)
+                this.specialCost=this.spec.includes(11)||this.spec.includes(35)||this.spec.includes(40)||this.spec.includes(55)||this.spec.includes(58)||this.spec.includes(59)
                 this.cost=cost
                 if(cost==undefined&&this.type<types.card.length&&this.type>=0){
-                    if(this.specialCost){
-                        if(types.card[this.type].levels[0].spec.includes(53)){
-                            this.cost=types.card[this.type].levels[0].cost
-                        }else{
-                            this.cost=types.card[this.type].levels[this.level].cost
-                        }
+                    if(types.card[this.type].levels[0].spec.includes(53)){
+                        this.cost=sortNumbers(copyArray(types.card[this.type].mtg.levels[0].cost))
                     }else{
-                        if(types.card[this.type].levels[0].spec.includes(53)){
-                            this.cost=sortNumbers(copyArray(types.card[this.type].mtg.levels[0].cost))
-                        }else{
-                            this.cost=sortNumbers(copyArray(types.card[this.type].mtg.levels[this.level].cost))
-                        }
+                        this.cost=sortNumbers(copyArray(types.card[this.type].mtg.levels[this.level].cost))
                     }
-                }else if(variants.mtg&&!this.specialCost){
+                }else if(variants.mtg){
                     if(typeof this.cost=='number'){
                         this.cost=[this.cost]
                     }else{
@@ -4420,6 +4412,9 @@ class card{
             case 3951: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Triple Damage\nIf Target Has Block`; break
             case 3952: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Vision\nPer Adjacent Enemy`; break
             case 3953: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnergy Divisible by 3:\nApply ${effect[1]} Lock On`; break
+            case 3954: string+=`Your Next ${effect[0]} Exhaust${pl(effect[0])}\nDiscard the Card Instead\nGain (N)`; break
+
+
 
             //mark p
 
@@ -7049,18 +7044,20 @@ class card{
                     this.layer.ellipse(-this.width/2+10,-this.height/2+(this.colorful?15:12),20)
                 }
                 if(spec.includes(11)){
+                    this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+(this.colorful?15:12))
                     this.layer.noFill()
                     this.layer.stroke(240,240,40,this.fade)
-                    this.layer.strokeWeight(3)
+                    this.layer.strokeWeight(variants.mtg?2.4:3)
                     this.layer.strokeCap(SQUARE)
-                    if(this.colorful){
-                        this.layer.arc(-this.width/2+10.5,-this.height/2+14.5,15,15,-135,45)
-                        this.layer.arc(-this.width/2+9.5,-this.height/2+15.5,15,15,45,225)
+                    if(variants.mtg){
+                        this.layer.arc(0.4,-0.4,12,12,-135,45)
+                        this.layer.arc(-0.4,0.4,12,12,45,225)
                     }else{
-                        this.layer.arc(-this.width/2+10.5,-this.height/2+11.5,15,15,-135,45)
-                        this.layer.arc(-this.width/2+9.5,-this.height/2+12.5,15,15,45,225)
+                        this.layer.arc(0.5,-0.5,15,15,-135,45)
+                        this.layer.arc(-0.5,0.5,15,15,45,225)
                     }
                     this.layer.strokeCap(ROUND)
+                    this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-(this.colorful?15:12))
                 }else if(spec.includes(21)){
                     this.layer.fill(140,120,160,this.fade)
                     this.layer.stroke(120,100,140,this.fade)
@@ -7219,7 +7216,7 @@ class card{
                     }
                 }
                 this.layer.noStroke()
-                if(!spec.includes(5)&&!spec.includes(41)&&!variants.mtg){
+                if(!spec.includes(5)&&!spec.includes(41)&&(!variants.mtg||this.specialCost)){
                     if(this.colorful){
                         let merge=mergeColor([255,0,0],[240,240,240],this.anim.afford)
                         this.layer.fill(...merge,this.fade)
@@ -7233,8 +7230,8 @@ class card{
                         let merge=mergeColor([255,0,0],[0,0,0],this.anim.afford)
                         this.layer.fill(...merge,this.fade)
                     }
-                    this.layer.textSize(14)
-                    let effectiveCost=cost
+                    this.layer.textSize(variants.mtg?10:14)
+                    let effectiveCost=variants.mtg?cost[0]:cost
                     if(effectiveCost>=0&&userCombatant.getStatus('Temporary All Cost Up')>0){
                         effectiveCost+=userCombatant.getStatus('Temporary All Cost Up')
                     }
@@ -7260,9 +7257,9 @@ class card{
                         effectiveCost=0
                     }
                     if(this.colorful){
-                        this.layer.text(effectiveCost==-1?`X`:effectiveCost,-this.width/2+10,-this.height/2+16)
+                        this.layer.text(effectiveCost==-1?`X`:effectiveCost,variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+8:-this.height/2+16)
                     }else{
-                        this.layer.text(effectiveCost==-1?`X`:effectiveCost,-this.width/2+10,-this.height/2+13)
+                        this.layer.text(effectiveCost==-1?`X`:effectiveCost,variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+8:-this.height/2+13)
                     }
                 }
                 if(this.edition==5){

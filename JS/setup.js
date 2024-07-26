@@ -19,10 +19,11 @@ function setup(){
             //transition.scene='menu'
 
         current.menu.combatant=[1]
-        current.menu.deck=[0]
+        current.menu.deck=[-1]
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){
                 current.setupMtgManaChoice(a)
+                current.menu.mtg.manaChoice[a]=1
             }
         }
         current.startGame()
@@ -42,6 +43,12 @@ function setup(){
         game.dev=true
         stage.scene='battle'
         current.setupBattle(types.encounter[1])
+
+            /*quickNode(3)
+            transition.trigger=true
+            transition.scene='bossstash'
+            player(0).size=5
+            player(0).offset.position.y=250*/
 
             /*transition.trigger=true
             transition.scene='event'

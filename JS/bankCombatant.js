@@ -4823,7 +4823,7 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.trigger.display.hair.back){
-                    this.layer.image(graphics.combatant[10].sprites.hair.back[this.sprites.spinDetailHead],-20*this.fade,-75-20*this.fade,40*this.fade,60*this.fade)
+                    this.layer.image(graphics.combatant[20].sprites.hair.back[this.sprites.spinDetailHead],-20*this.fade,-75-20*this.fade,40*this.fade,60*this.fade)
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<=0.6&&g==0){
@@ -4960,9 +4960,9 @@ combatant.prototype.display=function(){
                 }
                 if(this.trigger.display.kimono.main.back){
                     if(this.trigger.display.extra.damage){
-                        this.layer.image(graphics.combatant[10].sprites.kimono.mainDamage.back[this.sprites.spinDetail],-20*this.fade*this.fades.kimono.main.front.x,this.parts.kimono.main-15*this.fades.kimono.main.front.y,40*this.fade*this.fades.kimono.main.front.x,66*this.fade*this.fades.kimono.main.front.y)
+                        this.layer.image(graphics.combatant[20].sprites.kimono.mainDamage.back[this.sprites.spinDetail],-20*this.fade*this.fades.kimono.main.front.x,this.parts.kimono.main-15*this.fades.kimono.main.front.y,40*this.fade*this.fades.kimono.main.front.x,66*this.fade*this.fades.kimono.main.front.y)
                     }else{
-                        this.layer.image(graphics.combatant[10].sprites.kimono.main.back[this.sprites.spinDetail],-20*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-15*this.fades.kimono.main.back.y,40*this.fade*this.fades.kimono.main.back.x,66*this.fade*this.fades.kimono.main.back.y)
+                        this.layer.image(graphics.combatant[20].sprites.kimono.main.back[this.sprites.spinDetail],-20*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-15*this.fades.kimono.main.back.y,40*this.fade*this.fades.kimono.main.back.x,66*this.fade*this.fades.kimono.main.back.y)
                     }
                 }
                 if(this.trigger.display.under.under.button&&lcos(this.spin.under.under.button[0]+this.anim.direction)<=0){
@@ -5450,9 +5450,9 @@ combatant.prototype.display=function(){
                 }
                 if(this.trigger.display.kimono.main.front){
                     if(this.trigger.display.extra.damage){
-                        this.layer.image(graphics.combatant[10].sprites.kimono.mainDamage.front[this.sprites.spinDetail],-20*this.fade*this.fades.kimono.main.front.x,this.parts.kimono.main-15*this.fades.kimono.main.front.y,40*this.fade*this.fades.kimono.main.front.x,66*this.fade*this.fades.kimono.main.front.y)
+                        this.layer.image(graphics.combatant[20].sprites.kimono.mainDamage.front[this.sprites.spinDetail],-20*this.fade*this.fades.kimono.main.front.x,this.parts.kimono.main-15*this.fades.kimono.main.front.y,40*this.fade*this.fades.kimono.main.front.x,66*this.fade*this.fades.kimono.main.front.y)
                     }else{
-                        this.layer.image(graphics.combatant[10].sprites.kimono.main.front[this.sprites.spinDetail],-20*this.fade*this.fades.kimono.main.front.x,this.parts.kimono.main-15*this.fades.kimono.main.front.y,40*this.fade*this.fades.kimono.main.front.x,66*this.fade*this.fades.kimono.main.front.y)
+                        this.layer.image(graphics.combatant[20].sprites.kimono.main.front[this.sprites.spinDetail],-20*this.fade*this.fades.kimono.main.front.x,this.parts.kimono.main-15*this.fades.kimono.main.front.y,40*this.fade*this.fades.kimono.main.front.x,66*this.fade*this.fades.kimono.main.front.y)
                     }
                 }
                 if(this.trigger.display.wrap.round){
@@ -5731,7 +5731,7 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.trigger.display.hair.front){
-                    this.layer.image(graphics.combatant[10].sprites.hair.front[this.sprites.spinDetailHead],-20*this.fade,-75-20*this.fade,40*this.fade,60*this.fade)
+                    this.layer.image(graphics.combatant[20].sprites.hair.front[this.sprites.spinDetailHead],-20*this.fade,-75-20*this.fade,40*this.fade,60*this.fade)
                 }
                 if(this.trigger.display.hair.glow){
                     this.layer.noFill()

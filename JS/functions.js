@@ -1806,6 +1806,43 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/150				${current.cardManagers[0].listing.junk[game.playerNumber+1].length-150}
 			`)
 }
+function outMtg(){
+	let count=[]
+	for(let a=0,la=game.playerNumber+2;a<la;a++){
+		count.push([])
+		for(let b=0,lb=4;b<lb;b++){
+			count[a].push([])
+			for(let c=0,lc=16;c<lc;c++){
+				count[a][b].push(0)
+			}
+		}
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(types.card[a].mtg!=undefined){
+			if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1){
+				let list=types.card[a].mtg.list==-1?game.playerNumber+1:types.card[a].mtg.list
+				let color=types.card[a].mtg.color.length==1?types.card[a].mtg.color[0]:mtgCombineColor(types.card[a].mtg.color[0],types.card[a].mtg.color[1])
+				count[list][types.card[a].rarity][color]++
+			}
+		}
+	}
+	let box=``
+	for(let a=0,la=game.playerNumber;a<la;a++){
+		box+=`\n		${a==0?`Colorless`:a==game.playerNumber+1?`Neutral`:types.combatant[a].name}:
+	Common: ${subMtg(count[a][0])}
+	Uncommon: ${subMtg(count[a][1])}
+	Rare: ${subMtg(count[a][2])}
+	Total: ${subMtg(count[a][3])}\n`
+	}
+	print(box)
+}
+function subMtg(base){
+	return ''+
+	`Colorless: ${base[0]}, White: ${base[1]}, Blue: ${base[2]}, Black: ${base[3]}, `+
+	`Green: ${base[4]}, Red: ${base[5]}, White-Blue: ${base[6]}, White-Black: ${base[7]}, `+
+	`White-Green: ${base[8]}, White-Red: ${base[9]}, Blue-Black: ${base[10]}, Blue-Green: ${base[11]}, `+
+	`Blue-Red: ${base[12]}, Black-Green: ${base[13]}, Black-Red: ${base[14]}, Green-Red: ${base[15]}`
+}
 function outDupes(){
 	for(let a=0,la=types.card.length;a<la;a++){
 		for(let b=0,lb=types.card.length;b<lb;b++){
@@ -2251,7 +2288,7 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 		}
 	}
 	switch(variant){
-		case 1:
+		case 1: case 3:
 			for(let a=0,la=args[0].length;a<la;a++){
 				for(let b=0,lb=args[0][a].cost.length;b<lb;b++){
 					if(args[0][a].cost[b]>=0&&args[0][a].cost[b]<=6){
@@ -2290,17 +2327,23 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 		}
 	}
 	if(hybridTotal.length>0){
-		let hybridSpend=hybridRecurse(effectiveManaLeft,hybridTotal,[],bypass,priority)
-		if(hybridSpend==-1){
-			let hybridSpend=hybridRecurse(manaLeft,hybridTotal,[],bypass,priority)
-			if(hybridSpend==-1&&!bypass){
-				return -1
+		let hybridSpend=hybridRecurse(0,effectiveManaLeft,hybridTotal,[],bypass,priority,variant)
+		if(hybridSpend[0]==-1){
+			hybridSpend=hybridRecurse(0,manaLeft,hybridTotal,[],bypass,priority,variant)
+			if(hybridSpend[0]==-1){
+				hybridSpend=[[],[hybridTotal]]
+				if(!bypass){
+					return -1
+				}
 			}
 		}
-		for(let a=0,la=hybridSpend.length;a<la;a++){
-			effectiveManaLeft[hybridSpend[a]]--
-			manaLeft[hybridSpend[a]]--
-			spend.push(hybridSpend[a])
+		for(let a=0,la=hybridSpend[0].length;a<la;a++){
+			effectiveManaLeft[hybridSpend[0][a]]--
+			manaLeft[hybridSpend[0][a]]--
+			spend.push(hybridSpend[0][a])
+		}
+		for(let a=0,la=hybridSpend[1].length;a<la;a++){
+			costLeft.push(hybridSpend[1][a])
 		}
 	}
 	totals=sortNumbersUnique(manaLeft)
@@ -2343,27 +2386,27 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 			}
 		}
 	}
-	if(costLeft.length>0&&variant!=1){
+	if(costLeft.length>0&&(variant==0||variant==3)){
 		print(costLeft,'Failed MTG Spending Calculation')
 		return -1
 	}
 	switch(variant){
-		case 0: case 1:
+		case 0: case 1: case 3:
 			return spend
 		case 2:
 			return [spend,costLeft]
 	}
 }
-function hybridRecurse(mana,cost,spent,bypass,priority){
+function hybridRecurse(depth,mana,cost,spent,bypass,priority,variant){
 	if(cost.length==0){
-		return spent
+		return [spent,[]]
 	}else{
 		let possible=mtgSplitColor(cost[0])
 		let higher=mana[possible[0]]==mana[possible[1]]?(priority.indexOf(possible[0])>priority.indexOf(possible[1])?0:1):(mana[possible[0]]>mana[possible[1]]?0:1)
 		if(mana[possible[higher]]>0){
 			let resultMana=copyArray(mana)
 			resultMana[possible[higher]]--
-			let attempt=hybridRecurse(resultMana,cost.slice(1,cost.length),spent.concat(possible[higher]),priority)
+			let attempt=hybridRecurse(depth+1,resultMana,cost.slice(1,cost.length),spent.concat(possible[higher]),priority,variant)
 			if(attempt!=-1){
 				return attempt
 			}
@@ -2371,7 +2414,7 @@ function hybridRecurse(mana,cost,spent,bypass,priority){
 		if(mana[possible[1-higher]]>0){
 			let resultMana=copyArray(mana)
 			resultMana[possible[1-higher]]--
-			let attempt=hybridRecurse(resultMana,cost.slice(1,cost.length),spent.concat(possible[1-higher]),priority)
+			let attempt=hybridRecurse(depth+1,resultMana,cost.slice(1,cost.length),spent.concat(possible[1-higher]),priority,variant)
 			if(attempt!=-1){
 				return attempt
 			}
@@ -2379,12 +2422,12 @@ function hybridRecurse(mana,cost,spent,bypass,priority){
 		if(mana[6]>0){
 			let resultMana=copyArray(mana)
 			resultMana[6]--
-			let attempt=hybridRecurse(resultMana,cost.slice(1,cost.length),spent.concat(6),priority)
+			let attempt=hybridRecurse(depth+1,resultMana,cost.slice(1,cost.length),spent.concat(6),priority,variant)
 			if(attempt!=-1){
 				return attempt
 			}
 		}
-		return bypass?spent:-1
+		return [variant==2?spent:-1,[cost]]
 	}
 }
 function total7(list){

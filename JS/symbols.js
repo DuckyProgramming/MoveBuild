@@ -5036,7 +5036,7 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
     }
     if(variant==0){
         if(args[0]<1){
-            layer.stroke(255,0,0,1-args[0])
+            layer.stroke(0,1-args[0])
             layer.strokeWeight(1)
             layer.noFill()
             switch(variant){
@@ -5044,9 +5044,11 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
                     layer.line(0,-9,-9,-9)
                     layer.line(-9,0,-9,-9)
                     layer.arc(0,0,18,18,-90,180)
+                    layer.line(6,6,-9,-9)
                 break
                 default:
                     layer.ellipse(0,0,20)
+                    layer.line(7,7,-7,-7)
                 break
             }
         }

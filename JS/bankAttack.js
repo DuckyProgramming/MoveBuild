@@ -817,7 +817,7 @@ attack.prototype.update=function(){
         case 2642: case 2688: case 2695: case 2727: case 2738: case 2805: case 2820: case 2895: case 2958: case 2965:
         case 2990: case 3005: case 3008: case 3171: case 3223: case 3259: case 3267: case 3268: case 3282: case 3283:
         case 3285: case 3291: case 3483: case 3490: case 3515: case 3521: case 3522: case 3562: case 3597: case 3601:
-        case 3603: case 3604: case 3685: case 3734: case 3764: case 3776: case 3840:
+        case 3603: case 3604: case 3685: case 3734: case 3764: case 3776: case 3840: case 3954:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||

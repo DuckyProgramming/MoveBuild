@@ -1363,6 +1363,7 @@ class battle{
         }
     }
     mtgCost(cost,player,cards){
+        this.energy.lastSpend[player]=[]
         let costLeft=copyArray(cost)
         let effectiveEnergy=[0,0,0,0,0,0,0]
         for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
@@ -1376,12 +1377,14 @@ class battle{
         for(let a=0,la=energyPay.length;a<la;a++){
             if(this.energy.main[player][energyPay[a]]>0){
                 this.energy.main[player][energyPay[a]]--
+                this.energy.lastSpend[player].push(energyPay[a])
             }
         }
-        energyPay=mtgAutoCost(this.energy.main[player],costLeft,1,[cards],true)
+        energyPay=mtgAutoCost(this.energy.main[player],costLeft,3,[cards],true)
         for(let a=0,la=energyPay.length;a<la;a++){
             if(this.energy.main[player][energyPay[a]]>0){
                 this.energy.main[player][energyPay[a]]--
+                this.energy.lastSpend[player].push(energyPay[a])
             }
         }
     }
@@ -2340,9 +2343,6 @@ class battle{
                 }else if(this.counter.killed>=this.counter.enemy&&!this.result.defeat&&!this.overlayManager.anyActive&&!this.tutorialManager.active){
                     this.result.victory=true
                     this.overlayManager.closeAll()
-                    for(let a=0,la=this.players;a<la;a++){
-                        this.itemManager.activateEndBattle(a,this.encounter.class)
-                    }
                     let prefered=floor(random(0,this.overlayManager.overlays[0].length))
                     this.cardManagers.forEach(cardManager=>cardManager.allEffectArgs(0,33,[this.encounter.class]))
                     this.combatantManager.fullAllEffect(10)
@@ -2385,6 +2385,7 @@ class battle{
                         }
                         if(!(this.encounter.class==2&&this.nodeManager.world==3)){
                             this.relicManager.activate(15,[a,-1,reward,this.turn.total])
+                            this.itemManager.activateEndBattle(a,this.encounter.class,reward)
                         }
                         switch(this.encounter.class){
                             case 0: case 3: case 4:
@@ -2813,6 +2814,7 @@ class battle{
                         this.overlayManager.overlays[24][this.turn.main].activate()
                     }
                     if(variants.mtg){
+                        let anyClicked=false
                         for(let a=0,la=this.players;a<la;a++){
                             for(let b=0,lb=this.energy.crystal[a].length;b<lb;b++){
                                 if(dist(inputs.rel.x,inputs.rel.y,-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1])<12){
@@ -2821,7 +2823,19 @@ class battle{
                                     this.energy.crystal[a].splice(b,1)
                                     this.energy.crystal[a].push(temp)
                                     b=lb
+                                    anyClicked=true
                                 }
+                            }
+                        }
+                        if(anyClicked&&this.turn.main>=0&&this.turn.main<this.players){
+                            let anyActive=false
+                            for(let a=0,la=this.energy.crystal[this.turn.main].length;a<la;a++){
+                                if(this.energy.crystal[this.turn.main][a][4]){
+                                    anyActive=true
+                                }
+                            }
+                            if(!anyActive){
+                                this.cardManagers[this.turn.main].hand.lastMouseOver=-1
                             }
                         }
                     }
@@ -3241,7 +3255,11 @@ class battle{
                                 this.cardManagers[this.turn.main].allEffect(2,1)
                             break
                             case 'A':
-                                this.setEnergy(99,this.turn.main)
+                                if(variants.mtg){
+                                    this.addSpecificEnergy(5,this.turn.main,6)
+                                }else{
+                                    this.setEnergy(99,this.turn.main)
+                                }
                             break
                             case 'Z':
                                 this.endTurn()

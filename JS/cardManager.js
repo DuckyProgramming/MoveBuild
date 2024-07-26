@@ -187,33 +187,36 @@ class cardManager{
         for(let a=0,la=this.battle.energy.base[this.player].length;a<la;a++){
             effectiveMana[this.battle.energy.base[this.player][a]]++
         }
-        /*for(let a=0,la=types.card.length;a<la;a++){
-            let cardColor=mtgPlayerColor(types.card[a].list)
-            let manaColor=cardColor[a%cardColor.length]
-            if(types.card[a].rarity>=0&&(types.card[a].list>0||effectiveMana[0]>0&&types.card[a].list==0)&&types.card[a].list<=game.playerNumber&&
-                (cardColor.length==1&&effectiveMana[cardColor[0]]>0||cardColor.length==2&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0||cardColor.length==3&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0&&effectiveMana[cardColor[2]]>0||effectiveMana[6]>0)&&
-                (manaColor==6||effectiveMana[manaColor]+effectiveMana[6]>=types.card[a].levels[0].cost||types.card[a].levels[0].spec.includes(11)||types.card[a].levels[0].spec.includes(21)||types.card[a].levels[0].spec.includes(35))&&!(manaColor==0&&types.card[a].levels[0].cost==0)
-            ){
-                this.listing.mtg[0][types.card[a].rarity].push(a)
-                this.listing.mtg[0][3].push(a)
-            }
-            if(types.card[a].rarity>=0&&types.card[a].list==0&&
-                (types.card[a].levels[0].cost<=effectiveMana[0]+1&&this.battle.players==1||types.card[a].levels[0].spec.includes(11)||types.card[a].levels[0].spec.includes(21)||types.card[a].levels[0].spec.includes(35))
-            ){
-                this.listing.mtg[1][types.card[a].rarity].push(a)
-                this.listing.mtg[1][3].push(a)
-            }
-        }*/
-        /*
-        if(variants.mtg){
-            let list=['Artifice','Soft\nRadiance','Sure\nGamble','Lily of\nthe Valley','Clean\nEnergy','Recycling','Summer\nStar','Silver\nWatch','Red\nPennant','Black\nLotus','Wavelength','Vivid\nDownpour']
-            for(let a=0,la=list.length;a<la;a++){
-                if(findName(list[a],types.card)>=0){
-                    this.listing.card[0][types.card[findName(list[a],types.card)].rarity].push(findName(list[a],types.card))
-                    this.listing.card[0][3].push(findName(list[a],types.card))
+        for(let a=0,la=types.card.length;a<la;a++){
+            if(types.card[a].mtg!=undefined){
+                if(
+                    types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list==this.battle.player[this.player]||types.card[a].mtg.list==-1)&&
+                    (
+                        types.card[a].mtg.color.length==1&&effectiveMana[types.card[a].mtg.color[0]]>0||
+                        types.card[a].mtg.color.length==2&&effectiveMana[types.card[a].mtg.color[0]]>0&&effectiveMana[types.card[a].mtg.color[1]]>0
+                    )&&(
+                        (
+                            types.card[a].mtg.levels[0].spec.includes(11)||
+                            types.card[a].mtg.levels[0].spec.includes(21)||
+                            types.card[a].mtg.levels[0].spec.includes(35)
+                        )||
+                        !types.card[a].mtg.levels[0].spec.includes(11)&&
+                        !types.card[a].mtg.levels[0].spec.includes(21)&&
+                        !types.card[a].mtg.levels[0].spec.includes(35)&&
+                        mtgAutoCost(effectiveMana,types.card[a].mtg.levels[0].cost,0,[],false)!=-1
+                    )
+                ){
+                    this.listing.mtg[0][types.card[a].rarity].push(a)
+                    this.listing.mtg[0][3].push(a)
+                }
+                if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list==0&&
+                    (types.card[a].levels[0].cost<=effectiveMana[0]+1&&this.battle.players==1||types.card[a].mtg.levels[0].spec.includes(11)||types.card[a].mtg.levels[0].spec.includes(21)||types.card[a].mtg.levels[0].spec.includes(35))
+                ){
+                    this.listing.mtg[1][types.card[a].rarity].push(a)
+                    this.listing.mtg[1][3].push(a)
                 }
             }
-        }*/
+        }
     }
     initialDeck(){
         this.deck.initialCards(this.battle.deck[this.player],this.battle.player[this.player])
