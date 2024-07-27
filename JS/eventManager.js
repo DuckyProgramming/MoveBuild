@@ -125,6 +125,7 @@ class eventManager{
                 sublist.push(this.listing.event[a])
             }
         }
+        print(sublist)
         let index=floor(random(0,sublist.length))
         this.event=sublist[index]
         this.listing.complete.push(sublist[index])

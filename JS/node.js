@@ -22,9 +22,11 @@ class node{
         let color=mergeColor(
             mergeColor(
             mergeColor(
+            mergeColor(
                 [110,115,120],[50,255,50],this.anim.complete),
                 [210,195,180],this.anim.active),
-                [125,200,225],this.anim.active*this.anim.past)
+                [125,200,225],this.anim.active*this.anim.past),
+                [100,255,200],this.anim.complete*this.anim.active*this.anim.past)
         let cap=max(this.anim.complete,this.anim.active,this.anim.description)
         this.layer.push()
         this.layer.translate(this.position.x,this.position.y)

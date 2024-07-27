@@ -78,38 +78,16 @@ default:
 
 
 
-setsuna's hair is messed up in the win screen
-
-a lot is wrong with sakura in the boss stash screen
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 MAJOR MTG CHANGES
 
 every card changed lol
 split cards into character and non-character
-character bosses
 
 
 
 
 some relics will be unavailable
-corn cob item
 energized jade event gotta be changed
 
 
@@ -183,8 +161,6 @@ name a card after an enemy from space war
 
 coolheaded - get a shield orb, []
 
-[lucent]
-
 rain of filth - 2 cost azis, exhaust any number of cards, gain 1 energy back per card exhausted
 
 canopy vista - tappable waste that gives 0 energy, increases by 1 when played, exhausts on 2
@@ -192,6 +168,8 @@ canopy vista - tappable waste that gives 0 energy, increases by 1 when played, e
 [cannonball variant for #18]
 
 [split card like deliberation]
+
+[gain 1 strength or gain 1 dexterity]
 
 
 
@@ -348,6 +326,19 @@ move all celestial cards,
 celestine,
 diamond of sky
 
+smooth action - gain 2 temporary strength when you switch stance
+
+arsenal - draw 3 guns
+
+tough it out - gain double block this turn
+
+
+
+buff dazzling dash
+
+blunderbuss - 3 direction shotgun
+
+add strikes / defends to draw pile and they get replenish
 
 
 
@@ -467,8 +458,8 @@ sukuna boss needs 2 attacks and setup code
 
 new variants:
 
-[]
-[]
+[mediocre - all card rewards decrease in rarity]
+[business - all prices increased, get only money from fights]
 []
 []
 

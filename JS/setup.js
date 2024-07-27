@@ -19,11 +19,11 @@ function setup(){
             //transition.scene='menu'
 
         current.menu.combatant=[1]
-        current.menu.deck=[-1]
+        current.menu.deck=[0]
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){
                 current.setupMtgManaChoice(a)
-                current.menu.mtg.manaChoice[a]=1
+                current.menu.mtg.manaChoice[a]=0
             }
         }
         current.startGame()
@@ -44,10 +44,12 @@ function setup(){
         stage.scene='battle'
         current.setupBattle(types.encounter[1])
 
-            /*quickNode(3)
-            transition.trigger=true
-            transition.scene='bossstash'
-            player(0).size=5
+            //quickNode(3)
+            
+            /*transition.trigger=true
+            transition.scene='bossstash'*/
+            
+            /*player(0).size=5
             player(0).offset.position.y=250*/
 
             /*transition.trigger=true
@@ -65,7 +67,7 @@ function setup(){
 
             /*for(let a=0,la=5;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(355+a,0)
+                quickRelic(368+a,0)
             }*/
 
             /*current.itemManager.addItemSlots(2,0)

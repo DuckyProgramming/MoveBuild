@@ -318,12 +318,14 @@ class nodeManager{
                     this.scrollDown(this.nodes[a].base.position.y)
                     this.tilePosition.x=this.nodes[a].tilePosition.x
                     this.tilePosition.y=this.nodes[a].tilePosition.y
-                    this.nodes[a].complete=true
                     if(this.freeMove>0){
                         this.freeMove--
                     }
-                    transition.trigger=true
-                    this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false)
+                    if(!this.nodes[a].complete){
+                        this.nodes[a].complete=true
+                        transition.trigger=true
+                        this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false)
+                    }
                 }
                 break
             }
@@ -357,12 +359,14 @@ class nodeManager{
                     this.scrollDown(this.nodes[a].base.position.y)
                     this.tilePosition.x=this.nodes[a].tilePosition.x
                     this.tilePosition.y=this.nodes[a].tilePosition.y
-                    this.nodes[a].complete=true
                     if(this.freeMove>0){
                         this.freeMove--
                     }
-                    transition.trigger=true
-                    this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false)
+                    if(!this.nodes[a].complete){
+                        this.nodes[a].complete=true
+                        transition.trigger=true
+                        this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false)
+                    }
                 }
                 break
             }

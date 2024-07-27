@@ -1022,13 +1022,7 @@ class attack{
                         this.targetCombatant.statusEffect('Ethereal',this.effect[0])
                     break
                     case 718:
-                        let total2=1
-                        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                            if(this.battle.combatantManager.combatants[a].construct&&this.battle.combatantManager.combatants[a].life<=0){
-                                total2++
-                            }
-                        }
-                        this.targetCombatant.takeDamage(this.effect[0]*total2,this.user,1)
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.battle.combatantManager.numberAbstract(0,[])+this.effect[1]),this.user,1)
                     break
                     case 734:
                         this.number=0
@@ -5397,6 +5391,9 @@ class attack{
                     case 3952:
                         this.userCombatant.vision+=this.effect[1]*this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,1).length
                     break
+                    case 3955:
+                        this.userCombatant.statusEffect('(E) on Hit',this.effect[1])
+                    break
 
                 }
                 //mark 2s
@@ -7914,6 +7911,34 @@ class attack{
                     case 3942:
                         this.userCombatant.statusEffect('Strength',this.effect[0]*(this.handSize==1?2:1))
                     break
+                    case 3956:
+                        this.battle.addEnergyGen(1,this.player,6)
+                    break
+                    case 3957: case 3958: case 3959:
+                        this.battle.addSpecificEnergy(this.type-3955,this.player,0)
+                    break
+                    case 3960: case 3961: case 3962:
+                        this.battle.addSpecificEnergy(this.type-3958,this.player,1)
+                    break
+                    case 3963: case 3964: case 3965:
+                        this.battle.addSpecificEnergy(this.type-3961,this.player,2)
+                    break
+                    case 3966: case 3967: case 3968:
+                        this.battle.addSpecificEnergy(this.type-3964,this.player,3)
+                    break
+                    case 3969: case 3970: case 3971:
+                        this.battle.addSpecificEnergy(this.type-3967,this.player,4)
+                    break
+                    case 3972: case 3973: case 3974:
+                        this.battle.addSpecificEnergy(this.type-3970,this.player,5)
+                    break
+                    case 3975: case 3976: case 3977:
+                        this.battle.addSpecificEnergy(this.type-3973,this.player,6)
+                    break
+                    case 3978:
+                        this.userCombatant.combo+=this.effect[0]
+                        this.userCombatant.statusEffect('(G) Next Turn',1)
+                    break
 
                 }
                 //mark 4
@@ -9792,6 +9817,9 @@ class attack{
                             this.userManager.draw(this.effect[1]*total3949)
                         }
                         this.userManager.allEffectArgs(2,37,[7])
+                    break
+                    case 3979: case 3980: case 3981:
+                        this.userCombatant.statusEffect('(E) Next Turn',this.type-3977)
                     break
 
                 }
@@ -12286,7 +12314,7 @@ class attack{
                         }
                     break
                     case 2648:
-                        this.targetCombatant.takeDamage(this.effect[0]*(this.userManager.hand.numberAbstract(0,[['Shiv','Frozen\nShiv','Deluxe\nShiv']])+1),this.user)
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.userManager.hand.numberAbstract(0,[['Shiv','Frozen\nShiv','Deluxe\nShiv']])+this.effect[1]),this.user)
                     break
                     case 2713:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)

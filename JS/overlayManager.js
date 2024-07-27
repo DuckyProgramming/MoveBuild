@@ -125,10 +125,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,16,[1])],//mtg any energy
                     [new overlay(this.layer,this.battle,0,8,[1,-1,1])],//new card to hand, all disbanded card
                     [new overlay(this.layer,this.battle,0,2,[83])],//make card replenish, no return
-
                     [new overlay(this.layer,this.battle,0,2,[84,0,[]])],//scry, drawabstract, no return
                     [new overlay(this.layer,this.battle,0,2,[85,0,0,0])],//scry, vulnerable target
-                    //41,47
 
                 )
                 if(this.battle.players==2){

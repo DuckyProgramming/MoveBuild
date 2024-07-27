@@ -4814,6 +4814,36 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(3)
             layer.point(0,0)
         break
+        case 501:
+            displayMtgManaSymbol(layer,0,0,0,0,0.4,fade,-1,[])
+        break
+        case 502:
+            displayMtgManaSymbol(layer,0,0,1,0,0.4,fade,-1,[])
+        break
+        case 503:
+            displayMtgManaSymbol(layer,0,0,2,0,0.4,fade,-1,[])
+        break
+        case 504:
+            displayMtgManaSymbol(layer,0,0,3,0,0.4,fade,-1,[])
+        break
+        case 505:
+            displayMtgManaSymbol(layer,0,0,4,0,0.4,fade,-1,[])
+        break
+        case 506:
+            displayMtgManaSymbol(layer,0,0,5,0,0.4,fade,-1,[])
+        break
+        case 507:
+            displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
+        break
+        case 508:
+            layer.fill(150,0,0,fade)
+            layer.beginShape()
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(lsin(360*a/la)*(6-a%2*3),lcos(360*a/la)*(6-a%2*3))
+            }
+            layer.endShape()
+            displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
+        break
 
     }
     //mark s
@@ -4881,6 +4911,21 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
     layer.rotate(direction)
     layer.scale(size)
     layer.strokeCap(SQUARE)
+    if(variant==0){
+        layer.noStroke()
+        if(args[1]>0){
+            layer.fill(100,255,255,args[1]*fade*0.5)
+            layer.arc(0,0,20,25,45,135)
+            layer.arc(0,0,20,25,55,125)
+            layer.arc(0,0,20,25,65,115)
+        }
+        if(args[2]>0){
+            layer.fill(100,255,255,args[2]*fade*0.5)
+            layer.arc(0,0,20,25,-135,-45)
+            layer.arc(0,0,20,25,-125,-55)
+            layer.arc(0,0,20,25,-115,-65)
+        }
+    }
     let fill=[0,0,0]
     let stroke=[0,0,0]
     let map=[]
@@ -4941,6 +4986,7 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
                 layer.color(300,1,0.8,fade),1.0,
                 layer.color(360,1,0.8,fade))
             layer.noStroke()
+            layer.fill(0,fade)
             layer.fillGradient(gradient[0])
             layer.ellipse(0,0,21.5)
             layer.fillGradient(gradient[1])
@@ -4982,7 +5028,7 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
             layer.fill(0,this.fade)
             layer.noStroke()
             layer.textSize(15)
-            layer.text(args[1],0,1)
+            layer.text(args[3],0,1)
         break
         case -1: case 0: case 1: case 2: case 3: case 4: case 5:
             layer.fill(...fill,this.fade)
@@ -5004,8 +5050,8 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
             displayMtgManaIcon(layer,0,0,type,0,1,fade)
         break
         case 7: case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15: case 16:
-            layer.fill(...fill[0],this.fade)
-            layer.stroke(...stroke[0],this.fade)
+            layer.fill(...fill[0],fade)
+            layer.stroke(...stroke[0],fade)
             switch(variant){
                 case 1:
                     layer.arc(0,0,18,18,-225,-45)
@@ -5016,8 +5062,8 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
                     layer.arc(0,0,20,20,-225,-45)
                 break
             }
-            layer.fill(...fill[1],this.fade)
-            layer.stroke(...stroke[1],this.fade)
+            layer.fill(...fill[1],fade)
+            layer.stroke(...stroke[1],fade)
             switch(variant){
                 case 1:
                     layer.rect(-4.5,-4.5,9)
@@ -5036,7 +5082,7 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
     }
     if(variant==0){
         if(args[0]<1){
-            layer.stroke(0,1-args[0])
+            layer.stroke(0,(1-args[0])*fade)
             layer.strokeWeight(1)
             layer.noFill()
             switch(variant){

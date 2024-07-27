@@ -335,7 +335,10 @@ class relic{
                 break
                 case 'Damage Taken Draw':
                     displaySymbol(this.layer,-8,0,33,0,1,this.fade)
-                    displaySymbol(this.layer,8,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,0,8,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',10,0)
                 break
                 case 'Card Add Currency':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
@@ -1305,7 +1308,7 @@ class relic{
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('2+',-9,0)
-                    this.layer.text('+2',7,0)
+                    this.layer.text('+3',7,0)
                 break
                 case 'Boss Remove':
                     displaySymbol(this.layer,-9,0,35,0,0.25,this.fade)
@@ -2377,7 +2380,7 @@ class relic{
                     displaySymbol(this.layer,10,0,120,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('6',-6,0)
+                    this.layer.text('15',-6,0)
                 break
                 case 'Click For Energy':
                     displaySymbol(this.layer,-6,0,9,0,1,this.fade)
@@ -2630,6 +2633,72 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('1',8,0)
                 break
+                case 'First Turn Mana':
+                    displayMtgManaSymbol(this.layer,-8,0,3,0,0.8,this.fade,-1,[])
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case '5 Turn Mana':
+                    displayMtgManaSymbol(this.layer,-8,0,4,0,0.8,this.fade,-1,[])
+                    displaySymbol(this.layer,7,10,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-10,5,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('5',7,1)
+                break
+                case 'Death Boost (M)':
+                    displaySymbol(this.layer,-8,0,22,0,0.5,this.fade)
+                    displaySymbol(this.layer,6,-8,8,0,0.7,this.fade)
+                    displayMtgManaSymbol(this.layer,6,8,5,0,0.56,this.fade,-1,[])
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',6,8)
+                break
+                case 'Retain Mana':
+                    displayMtgManaSymbol(this.layer,-10,-4,0,0,0.64,this.fade,-1,[])
+                    displayMtgManaSymbol(this.layer,10,-4,0,0,0.64,this.fade,-1,[])
+                    displaySymbol(this.layer,0,8,4,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,-4)
+                break
+                case 'No Attack Mana':
+                    displaySymbol(this.layer,-8,0,18,0,0.75,this.fade)
+                    displaySymbol(this.layer,-8,0,16,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    displayMtgManaSymbol(this.layer,10,-3,2,0,0.56,this.fade,-1,[])
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',10,-3)
+                break
+                case 'Rest Mana':
+                    displayMtgManaSymbol(this.layer,-11,-2,1,0,0.48,this.fade,-1,[])
+                    displayMtgManaSymbol(this.layer,-6,-6,2,0,0.48,this.fade,-1,[])
+                    displayMtgManaSymbol(this.layer,0,-8,3,0,0.48,this.fade,-1,[])
+                    displayMtgManaSymbol(this.layer,6,-6,4,0,0.48,this.fade,-1,[])
+                    displayMtgManaSymbol(this.layer,11,-2,5,0,0.48,this.fade,-1,[])
+                    displaySymbol(this.layer,0,10,32,0,1,this.fade)
+                break
+                case 'Damage Taken Energy':
+                    displaySymbol(this.layer,-8,0,33,0,1,this.fade)
+                    displaySymbol(this.layer,11,0,9,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',11,0)
+                break
+                case 'Damage Taken Mana':
+                    displaySymbol(this.layer,-8,0,33,0,1,this.fade)
+                    displayMtgManaSymbol(this.layer,11,0,1,0,0.64,this.fade,-1,[])
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',11,0)
+                break
 
                 //mark p
             }
@@ -2645,7 +2714,7 @@ class relic{
             }
             if(detail!=-1){
                 switch(this.internal){
-                    case '5 Turn Energy':
+                    case '5 Turn Energy': case '5 Turn Mana':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%5+1}/5`,0,-16)
@@ -2775,7 +2844,7 @@ class relic{
                                 battle.cardManagers[this.player].hand.discard(1)
                             break
                             case 'Click to Block':
-                                battle.combatantManager.combatants[battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(6)
+                                battle.combatantManager.combatants[battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(15)
                             break
                             case 'Click For Energy':
                                 battle.addEnergy(2,this.player)

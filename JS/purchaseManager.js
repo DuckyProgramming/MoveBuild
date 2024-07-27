@@ -51,7 +51,7 @@ class purchaseManager{
                     for(let a=0,la=3;a<la;a++){
                         this.purchases.push(new purchase(this.layer,this.battle,0,1040,160+a*140,5,[150],[3]))
                     }
-                    group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,2,2,3,3]
+                    group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,2,2,3,3]
                     cost=[[160,200],[240,300],[400,500],[200,250]]
                     let list=findInternal('Placeholder',types.relic)
                     let index=floor(random(0,group.length))
@@ -123,7 +123,7 @@ class purchaseManager{
                                 type+9
                             ))
                         }
-                        group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,2,2,3,3]
+                        group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,2,2,3,3]
                         cost=[[160,200],[240,300],[400,500],[200,250]]
                         list=this.battle.relicManager.makeRelicSelection(group)
                         let index=floor(random(0,group.length))
@@ -207,7 +207,7 @@ class purchaseManager{
                             ))
                             list[group[a]].splice(index,1)
                         }
-                        group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,2,2,3,3]
+                        group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,2,2,3,3]
                         cost=[[160,200],[240,300],[400,500],[200,250]]
                         list=this.battle.relicManager.makeRelicSelection(group)
                         let index=floor(random(0,group.length))
@@ -292,7 +292,7 @@ class purchaseManager{
             break
             case 1:
                 if(this.battle.players==1){
-                    let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,3,3]
+                    let group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,3,3]
                     let cost=[[128,160],[192,240],[320,400],[160,200]]
                     let list=this.battle.relicManager.makeRelicSelection(group)
                     let index=floor(random(0,group.length))
@@ -305,7 +305,7 @@ class purchaseManager{
                         ))
                     }
                 }else{
-                    let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,3,3]
+                    let group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,3,3]
                     let cost=[[128,160],[192,240],[320,400],[160,200]]
                     let list=this.battle.relicManager.makeRelicSelection(group)
                     let index=floor(random(0,group.length))

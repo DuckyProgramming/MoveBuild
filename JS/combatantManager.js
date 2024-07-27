@@ -724,6 +724,17 @@ class combatantManager{
             }
         }
     }
+    numberAbstract(type,args){
+        let total=0
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(
+                type==0&&this.battle.combatantManager.combatants[a].construct&&this.battle.combatantManager.combatants[a].life<=0
+            ){
+                total++
+            }
+        }
+        return total
+    }
     allEffect(effect,args){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0){

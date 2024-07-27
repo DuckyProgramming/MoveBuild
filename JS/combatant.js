@@ -168,7 +168,7 @@ class combatant{
             'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Energy',
             '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
             '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
-            'Elemental Draw',
+            'Elemental Draw','(N) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(E) Next Turn','(E) on Hit',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -221,7 +221,7 @@ class combatant{
                 0,0,0,0,0,0,0,2,1,0,//48
                 0,0,0,2,0,2,0,2,0,0,//49
                 0,2,0,0,0,0,0,2,2,0,//50
-                0,
+                0,2,2,2,2,2,2,2,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -274,7 +274,7 @@ class combatant{
                 0,0,0,2,0,2,2,0,2,2,//48
                 2,2,2,0,2,0,3,3,2,2,//49
                 2,1,2,2,2,2,2,2,2,2,//50
-                2,
+                2,2,2,2,2,2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -4855,7 +4855,6 @@ class combatant{
                 this.battle.turnManager.loadEnemyRotateBack(this.id,id)
             }
             let target=this.getTarget()
-            this.activated=true
             let targetted=false
             this.targetTile=this.convertTile(target)
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
@@ -5352,7 +5351,7 @@ class combatant{
                     damage+=4
                 }
                 if(distTargetCombatant(0,this,userCombatant)>=2&&this.battle.relicManager.hasRelic(175,userCombatant.id)){
-                    damage+=2
+                    damage+=3*this.battle.relicManager.active[175][userCombatant.id+1]
                 }
             }
             if(userCombatant.status.main[49]>0&&userCombatant.status.main[204]<=0){
@@ -5574,6 +5573,13 @@ class combatant{
             }
             if(this.status.main[284]>0){
                 this.statusEffect('Regeneration',this.status.main[284])
+            }
+            if(this.status.main[508]>0){
+                if(this.battle.turn.main<=this.id){
+                    this.battle.addSpecificEnergy(this.status.main[508],this.id,6)
+                }else{
+                    this.statusEffect('(E) Next Turn',this.status.main[508])
+                }
             }
             if(spec!=3){
                 if(this.status.main[63]>0){
@@ -7259,6 +7265,13 @@ class combatant{
                     case 496: this.vision+=this.status.main[a]; break
                     case 497: this.status.main[findList('Knowledge',this.status.name)]+=this.status.main[a]; break
                     case 498: this.status.main[findList('Knowledge Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 501: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,0)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,0)} break
+                    case 502: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,1)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,1)} break
+                    case 503: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,2)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,2)} break
+                    case 504: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,3)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,3)} break
+                    case 505: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,4)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,4)} break
+                    case 506: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,5)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,5)} break
+                    case 507: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,6)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,6)} break
                     
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
@@ -8526,6 +8539,7 @@ class combatant{
                         this.layer.pop()
                     break
                     case 1:
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.stroke(this.color.band[1][0],this.color.band[1][1],this.color.band[1][2],this.fade*this.fades.band[0])
                         this.layer.strokeWeight(0.5)
                         if(this.trigger.display.extra.damage){
@@ -8735,7 +8749,7 @@ class combatant{
             case 'Shiru':
                 switch(type){
                     case 0:
-                        let dir=dir
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.noStroke()
                         this.layer.fill(this.color.dress.sleeve[0],this.color.dress.sleeve[1],this.color.dress.sleeve[2],this.fade*this.fades.dress.sleeve)
                         this.layer.beginShape()
@@ -8785,7 +8799,7 @@ class combatant{
                             this.graphics.arms[key].top.x-2.1*sin(dir+90),
                             this.graphics.arms[key].top.y-2.1*cos(dir+90)
                         )
-                        dir=dir
+                        dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.stroke(this.color.dress.tie[0],this.color.dress.tie[1],this.color.dress.tie[2],this.fade*this.fades.dress.sleeve)
                         this.layer.strokeWeight(0.5)
                         this.layer.line(
@@ -8799,6 +8813,7 @@ class combatant{
             case 'DD-610':
                 switch(type){
                     case 0:
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.stroke(this.flashColor(this.color.ring)[0],this.flashColor(this.color.ring)[1],this.flashColor(this.color.ring)[2],this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(0.75)
                         this.layer.line(
@@ -8841,10 +8856,9 @@ class combatant{
             case 'Daiyousei':
                 switch(type){
                     case 0:
-                        let dir=dir
+                        let dir=atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
                         this.layer.noStroke()
                         this.layer.fill(this.flashColor(this.color.dress.under)[0],this.flashColor(this.color.dress.under)[1],this.flashColor(this.color.dress.under)[2],this.fade*this.fades.dress.sleeve)
-                        dir=atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
                         this.layer.beginShape()
                         this.layer.vertex(
                             this.graphics.arms[key].middle.x*0.5+this.graphics.arms[key].top.x*0.5-3.9*sin(dir+90),

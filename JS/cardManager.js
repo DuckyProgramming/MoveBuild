@@ -210,7 +210,7 @@ class cardManager{
                     this.listing.mtg[0][3].push(a)
                 }
                 if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list==0&&
-                    (types.card[a].levels[0].cost<=effectiveMana[0]+1&&this.battle.players==1||types.card[a].mtg.levels[0].spec.includes(11)||types.card[a].mtg.levels[0].spec.includes(21)||types.card[a].mtg.levels[0].spec.includes(35))
+                    (types.card[a].levels[0].cost.length<=effectiveMana[0]+1&&this.battle.players==1||types.card[a].mtg.levels[0].spec.includes(11)||types.card[a].mtg.levels[0].spec.includes(21)||types.card[a].mtg.levels[0].spec.includes(35))
                 ){
                     this.listing.mtg[1][types.card[a].rarity].push(a)
                     this.listing.mtg[1][3].push(a)
@@ -273,7 +273,7 @@ class cardManager{
         let ticker=0
         switch(cardList){
             case 0:
-                list=copyArray(this.listing.card[this.battle.player[this.player]][args[ticker++]])
+                list=variants.mtg?copyArray(this.listing.mtg[0][args[ticker++]]):copyArray(this.listing.card[this.battle.player[this.player]][args[ticker++]])
             break
             case 1:
                 list=copyArray(this.listing.card[args[ticker++]][args[ticker++]])

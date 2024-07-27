@@ -59,6 +59,9 @@ class optionManager{
     removeAfter(){
         for(let a=0,la=this.removePost.length;a<la;a++){
             switch(this.removePost[a]){
+                case 6:
+                    this.battle.relicManager.loseRelic(60,this.player)
+                break
                 case 9:
                     this.battle.relicManager.loseRelic(244,this.player)
                 break

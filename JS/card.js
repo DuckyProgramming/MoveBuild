@@ -57,6 +57,8 @@ class card{
         this.select=false
         this.afford=false
         this.energyAfford=false
+        this.costDownTrigger=false
+        this.costUpTrigger=false
         this.cancelDesc=false
         this.originated=false
         this.swapped=false
@@ -67,7 +69,7 @@ class card{
         this.characteristic=0
         this.time=0
 
-        this.anim={select:0,afford:0}
+        this.anim={select:0,afford:0,costDown:0,costUp:0}
         
         try{
             this.name=name||types.card[this.type].name
@@ -291,6 +293,59 @@ class card{
         if(change){
             this.type=findName(this.name,types.card)
         }
+    }
+    getCost(type){
+        switch(type){
+            case 0:
+                return variants.mtg?(this.specialCost?this.cost[0]:this.cost.length):this.cost
+            case 1:
+                let totalNeutral=0
+                if(variants.mtg&&!this.specialCost){
+                    for(let a=0,la=this.cost.length;a<la;a++){
+                        if(this.cost[a]==-1){
+                            totalNeutral++
+                        }
+                    }
+                }
+                return variants.mtg?(this.specialCost?this.cost[0]:totalNeutral):this.cost
+        }
+    }
+    costDown(type,args){
+        this.costDownTrigger=true
+        switch(type){
+            case 0:
+                if(variants.mtg){
+                    if(this.specialCost){
+                        this.cost[0]=max(0,this.cost[0]-args[0])
+                    }else{
+                        for(let a=0,la=args[0];a<la;a++){
+                            if(this.cost.includes(-1)){
+                                this.cost.splice(this.cost.indexOf(-1),1)
+                            }
+                        }
+                    }
+                }else if(this.cost>0){
+                    this.cost=max(0,this.cost-args[0])
+                }
+            break
+        }
+    }
+    setCost(type,args){
+        switch(type){
+            case 0:
+                this.cost=variants.mtg?(this.specialCost?[args[0]]:elementArray(-1,args[0])):args[0]
+            break
+            case 1:
+                this.base.cost=variants.mtg?(this.specialCost?[args[0]]:elementArray(-1,args[0])):args[0]
+            break
+            case 2:
+                this.cost=variants.mtg?(this.specialCost?[0]:[]):0
+                this.base.cost=variants.mtg?(this.specialCost?[args[0]]:elementArray(-1,args[0])):args[0]
+            break
+        }
+    }
+    updateSpecialCost(){
+        this.specialCost=this.spec.includes(11)||this.spec.includes(35)||this.spec.includes(40)||this.spec.includes(55)||this.spec.includes(58)||this.spec.includes(59)
     }
     calculateEffect(effect,type){
         if(stage.scene=='battle'&&!this.nonCalc&&!this.cancelDesc){
@@ -576,7 +631,7 @@ class card{
             case 138: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide`; break
             case 139: string+=`Deal ${this.calculateEffect(effect[0],0)}+${effect[1]!=1?`${effect[1]}*`:``}Combo\nDamage 3 Tiles Wide\nEnd Combo`; break
             case 140: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIgnore Block`; break
-            case 141: string+=`Convert ${this.calculateEffect(effect[0],6)}\nto Block`; break
+            case 141: string+=`Gain ${this.calculateEffect(effect[0],6)} Block\nEnd Combo`; break
             case 142: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Temporary\nStrength When Hit\nThis Turn`; break
             case 143: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\n`:`\n`}Push 1 Tile`; break
             case 144: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nCards in Discard\n(Including This Card)`; break
@@ -1150,7 +1205,7 @@ class card{
             case 715: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nSwap Attack Intents`; break
             case 716: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nSwap Defense Intents`; break
             case 717: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${effect[1]} Random\nBlueprint${pl(effect[1])} to Hand`; break
-            case 718: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nDestroyed Constructs +1`; break
+            case 718: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Destroyed\nConstructs${effect[1]!=0?` +${effect[1]}`:``}${this.player>=0&&this.player<this.battle.players?` (${this.battle.combatantManager.numberAbstract(0,[])+this.effect[1]})`:``}`; break
             case 719: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nApply ${effect[1]}X Weak\nApply ${effect[2]}X Vulnerable`; break
             case 720: string+=`Apply ${effect[0]} Weak\nNext Turn`; break
             case 721: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnter Wrath`; break
@@ -3065,7 +3120,7 @@ class card{
             case 2645: string+=`When You Can't\nMove on Your Turn,\nAdd ${effect[0]} Shiv${pl(effect[0])}\nto Hand`; break
             case 2646: string+=`2nd Card in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Shiv${pl(effect[1])}\nto Hand`; break
             case 2647: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExactly 2 Energy:\nApply ${effect[1]} Burn\nExactly 3 Energy:\nApply ${effect[2]} Freeze`; break
-            case 2648: string+=`Deal ${effect[0]!=1?effect[0]:``}X Damage\nWhere X = Number of\nShivs in Hand +1`; break
+            case 2648: string+=`Deal ${effect[0]!=1?effect[0]:``}X Damage\nWhere X = Number of\nShivs in Hand${effect[1]!=0?` +${effect[1]}`:``}`; break
             case 2649: string+=`Apply ${effect[0]!=1?effect[0]:``}X Bleed`; break
             case 2650: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double if\nYou Have Bleed`; break
             case 2651: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIgnore Target Block\nIf Target Has Block,\nApply ${effect[1]} Bleed`; break
@@ -3278,7 +3333,7 @@ class card{
             case 2858: string+=`Damage Dealt to\nTarget Above 20\nApplies a Random Debuff`; break
             case 2859: string+=`Damage Dealt to\nTarget Above 20\nApplies a Random Debuff\nTargets Any Enemy`; break
             case 2860: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nNext Item Used\nHas Double Effect`; break
-            case 2861: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage\nGain ${effect[0]} Random\nTemporary Item${pl(effect[0])}`; break
+            case 2861: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage\nGain ${effect[1]} Random\nTemporary Item${pl(effect[1])}`; break
             case 2862: string+=`All Damage Taken\nis Repeated on\na Random Enemy`; break
             case 2863: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nIf You Have\nFull Item Slots`; break
             case 2864: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nIf You Have No Items`; break
@@ -3881,7 +3936,7 @@ class card{
             case 3434: string+=`When You Build a\nConstruct, It Takes\nAn Extra Turn`; break
             case 3435: string+=`When You Build a\nConstruct, Add ${this.calculateEffect(effect[0],1)} Block\nto Construct and Self`; break
             case 3436: string+=`Gain ${effect[0]} Metal\nPer Turn`; break
-            case 3437: string+=`All Constructs Built\nMoves ${effect[0]} More\nTile${pl(effect[0])} Per Turn`; break
+            case 3437: string+=`All Constructs Built\nMove ${effect[0]} More\nTile${pl(effect[0])} Per Turn`; break
             case 3438: string+=`When You Build a\nConstruct, It Gains ${effect[0]}\nStrength and ${effect[1]} Dexterity`; break
             case 3439: string+=`Guns Give ${effect[0]}\nTemporary Strength`; break
             case 3440: string+=`Guns Add ${this.calculateEffect(effect[0],1)} Block`; break
@@ -4413,7 +4468,38 @@ class card{
             case 3952: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Vision\nPer Adjacent Enemy`; break
             case 3953: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnergy Divisible by 3:\nApply ${effect[1]} Lock On`; break
             case 3954: string+=`Your Next ${effect[0]} Exhaust${pl(effect[0])}\nDiscard the Card Instead\nGain (N)`; break
+            case 3955: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain (E) When\nHit This Turn`; break
+            case 3956: string+=`Gain (E) at the\nStart of Your Turn`; break
+            case 3957: string+=`Gain (N) (N)`; break
+            case 3958: string+=`Gain (N) (N) (N)`; break
+            case 3959: string+=`Gain (N) (N) (N) (N)`; break
+            case 3960: string+=`Gain (W) (W)`; break
+            case 3961: string+=`Gain (W) (W) (W)`; break
+            case 3962: string+=`Gain (W) (W) (W) (W)`; break
+            case 3963: string+=`Gain (B) (B)`; break
+            case 3964: string+=`Gain (B) (B) (B)`; break
+            case 3965: string+=`Gain (B) (B) (B) (B)`; break
+            case 3966: string+=`Gain (K) (K)`; break
+            case 3967: string+=`Gain (K) (K) (K)`; break
+            case 3968: string+=`Gain (K) (K) (K) (K)`; break
+            case 3969: string+=`Gain (G) (G)`; break
+            case 3970: string+=`Gain (G) (G) (G)`; break
+            case 3971: string+=`Gain (G) (G) (G) (G)`; break
+            case 3972: string+=`Gain (R) (R)`; break
+            case 3973: string+=`Gain (R) (R) (R)`; break
+            case 3974: string+=`Gain (R) (R) (R) (R)`; break
+            case 3975: string+=`Gain (E) (E)`; break
+            case 3976: string+=`Gain (E) (E) (E)`; break
+            case 3977: string+=`Gain (E) (E) (E) (E)`; break
+            case 3978: string+=`Gain ${effect[0]} Combo\nGain (G) Next Turn`; break
+            case 3979: string+=`Gain (E) (E)\nNext Turn`; break
+            case 3980: string+=`Gain (E) (E) (E)\nNext Turn`; break
+            case 3981: string+=`Gain (E) (E) (E) (E)\nNext Turn`; break
 
+
+
+
+            
 
 
             //mark p
@@ -7159,12 +7245,12 @@ class card{
                             if(this.cost[a]==-1){
                                 totalNeutral++
                             }else{
-                                displayMtgManaSymbol(this.layer,this.width/2-6-total*15,-this.height/2+6,this.cost[a],0,0.7,this.fade,0,[this.anim.afford])
+                                displayMtgManaSymbol(this.layer,this.width/2-6-total*15,-this.height/2+6,this.cost[a],0,0.7,this.fade,0,[this.anim.afford,this.anim.costDown,this.anim.costUp])
                                 total++
                             }
                         }
                         if(totalNeutral>0||total==0){
-                            displayMtgManaSymbol(this.layer,this.width/2-6-total*15,-this.height/2+6,-2,0,0.7,this.fade,0,[this.anim.afford,totalNeutral])
+                            displayMtgManaSymbol(this.layer,this.width/2-6-total*15,-this.height/2+6,-2,0,0.7,this.fade,0,[this.anim.afford,this.anim.costDown,this.anim.costUp,totalNeutral])
                             total++
                         }
                     }else if(this.colorful){
@@ -7190,6 +7276,16 @@ class card{
                         this.layer.stroke(200,255,255,this.fade)
                         this.layer.strokeWeight(2)
                         this.layer.quad(-this.width/2+2,-this.height/2+12,-this.width/2+10,-this.height/2+2,-this.width/2+18,-this.height/2+12,-this.width/2+10,-this.height/2+22)
+                        if(this.anim.costDown>0){
+                            this.layer.noStroke()
+                            this.layer.fill(100,200,200,this.fade*this.anim.costDown)
+                            this.layer.triangle(-this.width/2+6,-this.height/2+10,-this.width/2+10,-this.height/2+5,-this.width/2+14,-this.height/2+10)
+                        }
+                        if(this.anim.costUp>0){
+                            this.layer.noStroke()
+                            this.layer.fill(100,200,200,this.fade*this.anim.costUp)
+                            this.layer.triangle(-this.width/2+6,-this.height/2+14,-this.width/2+10,-this.height/2+19,-this.width/2+14,-this.height/2+14)
+                        }
                     }
                 }
                 if(variants.polar&&this.player>=0){
@@ -7271,6 +7367,9 @@ class card{
                 }
                 if(name.substr(0,2)!='-h'){
                     let effectiveName=name.replace('$colorcharacter',types.combatant[this.color].name)
+                    if(this.battle.modded(186)){
+                        effectiveName=effectiveName.toLowerCase()
+                    }
                     if(spec.includes(34)){
                         this.layer.rotate(90)
                         this.layer.textSize(12)
@@ -7621,6 +7720,8 @@ class card{
         this.fade=smoothAnim(this.fade,!this.deFade,0,1,5)
         this.anim.select=smoothAnim(this.anim.select,this.select,0,1,5)
         this.anim.afford=smoothAnim(this.anim.afford,this.afford,0,1,5)
+        this.anim.costDown=smoothAnim(this.anim.costDown,this.costDownTrigger,0,1,5)
+        this.anim.costUp=smoothAnim(this.anim.costUp,this.costUpTrigger,0,1,5)
         this.width=90
         if(this.spec.includes(33)){
             this.width+=diff=='hand'?100:0

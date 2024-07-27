@@ -1178,6 +1178,13 @@ function getIndicesOf(searchString,string,caseSensitive){
 function quadroArray(base){
 	return [base,base,base,base]
 }
+function elementArray(base,number){
+	let result=[]
+	for(let a=0,la=number;a<la;a++){
+		result.push(base)
+	}
+	return result
+}
 function multiplyArray(base,number){
 	let result=[]
 	for(let a=0,la=number;a<la;a++){
@@ -1820,7 +1827,7 @@ function outMtg(){
 	for(let a=0,la=types.card.length;a<la;a++){
 		if(types.card[a].mtg!=undefined){
 			if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1){
-				let list=types.card[a].mtg.list==-1?game.playerNumber+1:types.card[a].mtg.list
+				let list=types.card[a].mtg.list==-1?1:types.card[a].mtg.list==0?0:types.card[a].mtg.list+1
 				let color=types.card[a].mtg.color.length==1?types.card[a].mtg.color[0]:mtgCombineColor(types.card[a].mtg.color[0],types.card[a].mtg.color[1])
 				count[list][types.card[a].rarity][color]++
 			}
@@ -1828,7 +1835,7 @@ function outMtg(){
 	}
 	let box=``
 	for(let a=0,la=game.playerNumber;a<la;a++){
-		box+=`\n		${a==0?`Colorless`:a==game.playerNumber+1?`Neutral`:types.combatant[a].name}:
+		box+=`\n		${a==0?`Neutral`:a==1?`Colorless`:types.combatant[a-1].name}:
 	Common: ${subMtg(count[a][0])}
 	Uncommon: ${subMtg(count[a][1])}
 	Rare: ${subMtg(count[a][2])}
@@ -2327,9 +2334,9 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 		}
 	}
 	if(hybridTotal.length>0){
-		let hybridSpend=hybridRecurse(0,effectiveManaLeft,hybridTotal,[],bypass,priority,variant)
+		let hybridSpend=hybridRecurse(0,effectiveManaLeft,hybridTotal,[],priority,variant)
 		if(hybridSpend[0]==-1){
-			hybridSpend=hybridRecurse(0,manaLeft,hybridTotal,[],bypass,priority,variant)
+			hybridSpend=hybridRecurse(0,manaLeft,hybridTotal,[],priority,variant)
 			if(hybridSpend[0]==-1){
 				hybridSpend=[[],[hybridTotal]]
 				if(!bypass){
@@ -2397,7 +2404,7 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 			return [spend,costLeft]
 	}
 }
-function hybridRecurse(depth,mana,cost,spent,bypass,priority,variant){
+function hybridRecurse(depth,mana,cost,spent,priority,variant){
 	if(cost.length==0){
 		return [spent,[]]
 	}else{

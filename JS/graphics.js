@@ -4218,15 +4218,12 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:105-a*30,lock:0}]
 				break
-				case 'Lira': case 'Sakura': case 'Ume':
+				case 'Lira': case 'Ume':
 					switch(p1.name){
 						case 'Lira':
 							p1.parts.mouth-=3
 							p1.spin.mouth-=180
 							p1.anim.mouth.y-=2
-						break
-						case 'Sakura':
-							p1.anim.mouth.y--
 						break
 						case 'Ume':
 							p1.parts.mouth-=2
@@ -4245,6 +4242,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-90+a*60,bottom:-75+a*60,lock:0},{top:30+a*60,bottom:15+a*60,lock:0}]
+				break
+				case 'Sakura':
+					p1.anim.direction+=10-a*10
+					p1.anim.mouth.y--
+					p1.trigger.display.extra.sword=false
+					p1.anim.legs=[
+						{top:6,bottom:12,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+						{top:6,bottom:12,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+					]
+					p1.anim.arms=[
+						{top:30-a*15,bottom:27-a*6,length:{top:16,bottom:16}},
+						{top:21+a*3,bottom:18-a*3,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90-a*15,bottom:-78-a*9,lock:0},{top:135-a*48,bottom:108-a*36,lock:0}]
 				break
 				case 'Certes':
 					p1.anim.mouth.y+=1.5

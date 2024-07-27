@@ -760,7 +760,15 @@ class battle{
         this.updateTargetting()
     }
     baselineEnergy(player,gen){
+        let effectiveGen=variants.mtg?copyArray(gen):gen
         if(variants.mtg){
+            if(this.relicManager.hasRelic(363,player)){
+                for(let a=0,la=this.relicManager.active[363][player+1];a<la;a++){
+                    let index=floor(random(0,this.energy.crystal[player].length))
+                    effectiveGen.splice(0,0,this.energy.crystal[player][index][0])
+                    this.energy.crystal[player].splice(index,1)
+                }
+            }
             this.resetEnergyCrystal(player)
             this.energy.main[player]=[0,0,0,0,0,0,0]
             let cap=484
@@ -768,11 +776,11 @@ class battle{
                 let goal=a==0?459:this.energy.crystal[player][a-1][1]-25
                 cap=min(goal,cap)
             }
-            for(let a=0,la=gen.length;a<la;a++){
-                this.energy.main[player][gen[a]]++
-                this.energy.crystalTotal[player][gen[a]]++
+            for(let a=0,la=effectiveGen.length;a<la;a++){
+                this.energy.main[player][effectiveGen[a]]++
+                this.energy.crystalTotal[player][effectiveGen[a]]++
                 cap-=25
-                this.energy.crystal[player].push([gen[a],cap,0,true,false])
+                this.energy.crystal[player].push([effectiveGen[a],cap,0,true,false])
             }
         }else{
             this.energy.main[player]=gen
@@ -1237,13 +1245,15 @@ class battle{
             this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount)
             if(variants.mtg){
                 this.energy.main[player][type]+=amount
-                let cap=484
-                for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
-                    cap=min(a==0?459:this.energy.crystal[player][a-1][1]-25,cap)
+                for(let a=0,la=amount;a<la;a++){
+                    let cap=484
+                    for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+                        cap=min(a==0?459:this.energy.crystal[player][a-1][1]-25,cap)
+                    }
+                    cap-=25
+                    this.energy.crystal[player].push([type,cap,0,true,false])
+                    this.energy.crystalTotal[player][type]++
                 }
-                cap-=25
-                this.energy.crystal[player].push([type,cap,0,true,false])
-                this.energy.crystalTotal[player][type]++
             }else{
                 this.energy.main[player]+=amount
             }
@@ -1257,6 +1267,20 @@ class battle{
             if(variants.mtg){
                 for(let a=0,la=amount;a<la;a++){
                     this.energy.gen[player].push(6)
+                }
+            }else{
+                this.energy.gen[player]+=amount
+            }
+        }
+    }
+    addSpecificEnergyGen(amount,player,type){
+        if(player<this.players){
+            if(amount!=0){
+                this.anim[amount>0?'energyUp':'energyDown']=1
+            }
+            if(variants.mtg){
+                for(let a=0,la=amount;a<la;a++){
+                    this.energy.gen[player].push(type)
                 }
             }else{
                 this.energy.gen[player]+=amount

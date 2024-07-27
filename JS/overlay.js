@@ -95,7 +95,10 @@ class overlay{
                 for(let a=0,la=args[1].length;a<la;a++){
                     this.rewards.push({type:args[1][a].type,value:args[1][a].value,fade:1,position:this.rewards.length*50,usable:true})
                     if(this.rewards[this.rewards.length-1].type==2){
-                        this.rewards[this.rewards.length-1].relic=new relic(this.layer,this.battle,0,0,0,this.battle.relicManager.makeRelicSelection([[0,0,0,1,1,2][floor(random(0,6))]])[0],0.8)
+                        let list=this.battle.relicManager.listing.relic[[0,0,0,1,1,2][floor(random(0,6))]]
+                        let index=floor(random(0,list.length))
+                        this.rewards[this.rewards.length-1].relic=new relic(this.layer,this.battle,0,0,0,list[index],0.8)
+                        list.splice(index,1)
                     }else if(this.rewards[this.rewards.length-1].type==3){
                         this.rewards[this.rewards.length-1].item=new item(this.layer,this.battle,0,0,0,0,0,this.battle.itemManager.makeRandom(),0.8)
                     }
@@ -743,7 +746,7 @@ class overlay{
                                 break
                             }
                             for(let a=0,la=list.length;a<la;a++){
-                                if(types.card[list[a]].rarity==this.args[1]||this.args[1]==-1){
+                                if((types.card[list[a]].rarity==this.args[1]||this.args[1]==-1)&&!(variants.mtg&&types.card[list[a]].mtg==undefined)){
                                     this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-350+tick%8*100,this.layer.height/2-130+floor(tick/8)%3*130,list[a],args[0],types.card[list[a]].list,-1))
                                     this.cards[tick].upSize=true
                                     tick++
@@ -2223,8 +2226,13 @@ class overlay{
                         this.battle.combatantManager.clearBlockCombatants()
                         this.battle.combatantManager.clearStatusCombatants()
                         for(let a=0,la=this.rewards.length;a<la;a++){
-                            if(this.rewards[a].type==1){
-                                this.battle.relicManager.activate(8,[this.player])
+                            switch(this.rewards[a].type){
+                                case 1:
+                                    this.battle.relicManager.activate(8,[this.player])
+                                break
+                                case 2:
+                                    this.battle.relicManager.listing.relic[this.rewards[a].relic.rarity].push(this.rewards[a].relic.type)
+                                break
                             }
                         }
                     }
@@ -2475,6 +2483,7 @@ class overlay{
                                             }else{
                                                 this.battle.cardManagers[this.player].deck.cards[a].spec.push(58)
                                                 this.battle.cardManagers[this.player].deck.cards[a].additionalSpec.push(58)
+                                                this.battle.cardManagers[this.player].deck.cards[a].updateSpecialCost()
                                             }
                                         break
                                         case 72:
@@ -2573,8 +2582,8 @@ class overlay{
                         case 52: case 77: case 79:
                             for(let a=0,la=this.battle.cardManagers[this.player].discard.cards.length;a<la;a++){
                                 if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].discard.cards[a])&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5&&this.battle.cardManagers[this.player].discard.cards[a].select&&
-                                    !(this.args[0]==77&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(37))&&
-                                    !(this.args[0]==77&&this.battle.cardManagers[this.player].deck.cards[a].level>=1&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))
+                                    !(this.args[0]==77&&this.battle.cardManagers[this.player].discard.cards[a].spec.includes(37))&&
+                                    !(this.args[0]==77&&this.battle.cardManagers[this.player].discard.cards[a].level>=2&&!this.battle.cardManagers[this.player].discard.cards[a].spec.includes(53))
                                 ){
                                     this.battle.cardManagers[this.player].discard.cards[a].select=false
                                     let complete=true
@@ -2677,7 +2686,10 @@ class overlay{
                                 }
                                 if(a>=0&&a<la&&this.activeTimer<=0){
                                     this.battle.cardManagers[this.player].discard.cards[a].select=false
-                                    if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].discard.cards[a])&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5){
+                                    if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].discard.cards[a])&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5&&
+                                        !(this.args[0]==77&&this.battle.cardManagers[this.player].discard.cards[a].spec.includes(37))&&
+                                        !(this.args[0]==77&&this.battle.cardManagers[this.player].discard.cards[a].level>=2&&!this.battle.cardManagers[this.player].discard.cards[a].spec.includes(53))
+                                    ){
                                         this.battle.cardManagers[this.player].discard.cards[a].select=true
                                         switch(this.args[0]){
                                             case 77:
@@ -3202,8 +3214,13 @@ class overlay{
                         this.battle.combatantManager.clearBlockCombatants()
                         this.battle.combatantManager.clearStatusCombatants()
                         for(let a=0,la=this.rewards.length;a<la;a++){
-                            if(this.rewards[a].type==1){
-                                this.battle.relicManager.activate(8,[this.player])
+                            switch(this.rewards[a].type){
+                                case 1:
+                                    this.battle.relicManager.activate(8,[this.player])
+                                break
+                                case 2:
+                                    this.battle.relicManager.listing.relic[this.rewards[a].relic.rarity].push(this.rewards[a].relic.type)
+                                break
                             }
                         }
                     }
@@ -3454,6 +3471,7 @@ class overlay{
                                             }else{
                                                 this.battle.cardManagers[this.player].deck.cards[a].spec.push(58)
                                                 this.battle.cardManagers[this.player].deck.cards[a].additionalSpec.push(58)
+                                                this.battle.cardManagers[this.player].deck.cards[a].updateSpecialCost()
                                             }
                                         break
                                         case 72:
@@ -3552,8 +3570,8 @@ class overlay{
                         case 52: case 77: case 79:
                             for(let a=0,la=this.battle.cardManagers[this.player].discard.cards.length;a<la;a++){
                                 if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5&&this.battle.cardManagers[this.player].discard.cards[a].select&&
-                                    !((this.args[0]==3||this.args[0]==17||this.args[0]==26)&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(37))&&
-                                    !(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))
+                                    !(this.args[0]==77&&this.battle.cardManagers[this.player].discard.cards[a].spec.includes(37))&&
+                                    !(this.args[0]==77&&this.battle.cardManagers[this.player].discard.cards[a].level>=2&&!this.battle.cardManagers[this.player].discard.cards[a].spec.includes(53))
                                 ){
                                     this.battle.cardManagers[this.player].discard.cards[a].select=false
                                     let complete=true
@@ -3654,7 +3672,10 @@ class overlay{
                                 }
                                 if(a>=0&&a<la&&this.activeTimer<=0){
                                     this.battle.cardManagers[this.player].discard.cards[a].select=false
-                                    if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5){
+                                    if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5&&
+                                            !(this.args[0]==77&&this.battle.cardManagers[this.player].discard.cards[a].spec.includes(37))&&
+                                            !(this.args[0]==77&&this.battle.cardManagers[this.player].discard.cards[a].level>=2&&!this.battle.cardManagers[this.player].discard.cards[a].spec.includes(53))
+                                        ){
                                         this.battle.cardManagers[this.player].discard.cards[a].select=true
                                         switch(this.args[0]){
                                             case 77:

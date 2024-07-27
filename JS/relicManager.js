@@ -26,7 +26,11 @@ class relicManager{
     }
     initialListing(){
         for(let a=0,la=types.relic.length;a<la;a++){
-            if(types.relic[a].rarity>=0&&(types.relic[a].list==0||this.battle.player.includes(types.relic[a].list))){
+            if(
+                types.relic[a].rarity>=0&&
+                (types.relic[a].list==0||this.battle.player.includes(types.relic[a].list))&&
+                types.relic[a].mtg==0||types.relic[a].mtg==1&&!variants.mtg||types.relic[a].mtg==2&&variants.mtg
+            ){
                 this.listing.relic[types.relic[a].rarity].push(a)
             }
             this.active.push([])
@@ -37,7 +41,8 @@ class relicManager{
                 case 4: case 18: case 37: case 38: case 39: case 42: case 43: case 44: case 59: case 60:
                 case 63: case 64: case 70: case 73: case 78: case 90: case 93: case 108: case 111: case 118:
                 case 139: case 201: case 204: case 205: case 244: case 254: case 293: case 298: case 308: case 317:
-                case 321: case 323: case 324: case 336: case 343: case 352:
+                case 321: case 323: case 324: case 336: case 343: case 352: case 361: case 364: case 365: case 366:
+                case 367:
                     this.detail.push([])
                     for(let b=0,lb=this.battle.players;b<lb;b++){
                         this.detail[this.detail.length-1].push(0)
@@ -122,7 +127,7 @@ class relicManager{
         this.active[types.relic[type].id][player+1]+=1
         stop=false
         for(let a=0,la=this.relics.length;a<la;a++){
-            if(this.relics[a].player==player&&this.relics[a].name==types.relic[type].name){
+            if(this.relics[a].player==player&&this.relics[a].type==types.relic[type].type){
                 stop=true
             }
         }
@@ -1043,12 +1048,25 @@ class relicManager{
                             if(this.active[358][a+1]>0){
                                 this.getPlayer(a).statusEffect('Colorless Cost Up',this.active[358][a+1])
                             }
+                            if(this.active[360][a+1]>0){
+                                this.battle.addSpecificEnergy(this.active[360][a+1]*2,a,3)
+                            }
+                            if(this.active[365][a+1]>0&&this.detail[365][a]==1){
+                                this.detail[365][a]=0
+                                this.battle.addSpecificEnergy(this.active[365][a+1],a,1)
+                                this.battle.addSpecificEnergy(this.active[365][a+1],a,2)
+                                this.battle.addSpecificEnergy(this.active[365][a+1],a,3)
+                                this.battle.addSpecificEnergy(this.active[365][a+1],a,4)
+                                this.battle.addSpecificEnergy(this.active[365][a+1],a,5)
+                            }
                             if(this.active[39][a+1]>0){this.detail[39][a]=0}
                             if(this.active[108][a+1]>0){this.detail[108][a]=0}
                             if(this.active[206][a+1]>0){this.detail[206][a][0]=0}
                             if(this.active[317][a+1]>0){this.detail[317][a]=0}
                             if(this.active[323][a+1]>0){this.detail[323][a]=0}
                             if(this.active[324][a+1]>0){this.detail[324][a]=0}
+                            if(this.active[366][a+1]>0){this.detail[366][a]=0}
+                            if(this.active[367][a+1]>0){this.detail[367][a]=0}
                         }
                         if(this.active[96][0]>0&&args[1]==1){
                             this.battle.combatantManager.allEffect(1,[1-this.active[96][0]*0.2])
@@ -1262,6 +1280,18 @@ class relicManager{
                     if(this.active[308][a+1]>0&&this.detail[308][a]<10){
                         this.detail[308][a]++
                         this.getPlayer(a).addBlock(10*this.active[308][a+1])
+                    }
+                    if(this.active[361][a+1]>0){
+                        this.detail[361][a]++
+                        if(this.detail[361][a]%5==4){
+                            this.battle.addSpecificEnergy(this.active[361][a+1]*2,a,4)
+                        }
+                    }
+                    if(this.active[364][a+1]>0){
+                        if(args[0]>1&&this.detail[364][a]==0){
+                            this.battle.addSpecificEnergy(this.active[364][a+1]*2,a,2)
+                        }
+                        this.detail[364][a]=0
                     }
                 }
                 if(args[0]%3==0&&this.battle.modded(23)){
@@ -1502,6 +1532,10 @@ class relicManager{
                     if(this.active[116][a+1]>0){
                         this.battle.addCurrency(10*this.active[116][a+1],a)
                     }
+                    if(this.active[362][a+1]>0){
+                        this.battle.cardManagers[a].draw(this.active[362][a+1])
+                        this.battle.addSpecificEnergy(this.active[362][a+1]*2,a,5)
+                    }
                 }
                 if(this.battle.modded(15)){
                     for(let a=0,la=this.battle.players;a<la;a++){
@@ -1626,6 +1660,9 @@ class relicManager{
                         if(this.active[331][args[1]+1]>0&&args[7]){
                             this.getPlayer(args[1]).heal(this.active[331][args[1]+1])
                         }
+                        if(this.active[364][args[1]+1]>0&&this.detail[364][args[1]]==0){
+                            this.detail[364][args[1]]=1
+                        }
                     break
                     case 2:
                         if(this.active[73][args[1]+1]>0){
@@ -1689,12 +1726,28 @@ class relicManager{
                 }
             break
             case 6://taking damage [player]
-                if(this.active[38][args[0]+1]>0&&this.detail[38][args[1]]==0){
-                    this.detail[38]=1
-                    this.battle.cardManagers[args[0]].draw(3*this.active[38][args[0]+1])
+                if(this.active[39][args[0]+1]>0&&this.detail[39][args[0]]==0){
+                    this.detail[39][args[0]]=1
+                    this.battle.cardManagers[args[0]].draw(3*this.active[39][args[0]+1])
+                }
+                if(this.active[366][args[0]+1]>0&&this.detail[366][args[0]]==0){
+                    this.detail[366][args[0]]=1
+                    if(this.battle.turn.main<=args[0]){
+                        this.battle.addSpecificEnergy(this.active[366][args[0]+1],args[0],6)
+                    }else{
+                        this.getPlayer(args[0]).statusEffect('Energy Next Turn',this.active[366][args[0]+1])
+                    }
+                }
+                if(this.active[367][args[0]+1]>0&&this.detail[367][args[0]]==0){
+                    this.detail[367][args[0]]=1
+                    if(this.battle.turn.main<=args[0]){
+                        this.battle.addSpecificEnergy(this.active[367][args[0]+1]*2,args[0],1)
+                    }else{
+                        this.getPlayer(args[0]).statusEffect('(W) Next Turn',this.active[367][args[0]+1])
+                    }
                 }
                 if(this.active[48][args[0]+1]>0){
-                    this.getPlayer(args[0]).statusEffect('Block Next Turn',3)
+                    this.getPlayer(args[0]).statusEffect('Block Next Turn',3*this.active[48][args[0]+1])
                 }
             break
             case 7://entering node [node]
@@ -1748,6 +1801,9 @@ class relicManager{
                             }
                             if(this.active[325][a+1]>0){
                                 this.getPlayer(a).gainMaxHP(2*this.active[325][a+1])
+                            }
+                            if(this.active[365][a+1]>0&&this.detail[365][a]==0){
+                                this.detail[365][a]=1
                             }
                             if(this.battle.modded(183)){
                                 this.getPlayer(a).loseHealth(10)
