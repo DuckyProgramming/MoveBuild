@@ -21,9 +21,9 @@ class pack{
                 let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
                 if(list[group[a]].length>0){
                     let index=floor(random(0,list[group[a]].length))
+                    let type=a==0&&this.battle.player[this.player]==1&&!variants.mtg&&!variants.junk&&!variants.ultraprism&&!variants.prism?findName(['Security\nPack','Sapper\nPack','Infantry\nPack'][this.id],types.card):list[group[a]][index]
                     this.cards.push(new card(this.layer,this.battle,this.player,this.position.x-60+a*40,this.position.y-5+a%2*10,
-                        a==0&&this.battle.player[this.player]==1&&!variants.mtg&&!variants.junk&&!variants.ultraprism&&!variants.prism?findName(['Security\nPack','Sapper\nPack','Infantry\nPack'][this.id],types.card):list[group[a]][index],
-                        variants.cursed?1:0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[group[a]][index]].list<0?0:types.card[list[group[a]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:this.battle.player[this.player],a+this.id*4+this.player*12))
+                        type,variants.cursed?1:0,this.battle.standardColorize(type),a+this.id*4+this.player*12))
                     let roll=floor(random(0,180))
                     this.cards[this.cards.length-1].edition=roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
                 }

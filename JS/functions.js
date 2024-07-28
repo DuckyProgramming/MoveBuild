@@ -375,6 +375,17 @@ function arrayIncludes(array,includes){
 	}
 	return false
 }
+function arrayCompare(array1,array2){
+	if(array1.length!=array2.length){
+		return false
+	}
+	for(let a=0,la=array1.length;a<la;a++){
+		if(array1[a]!=array2[a]){
+			return false
+		}
+	}
+	return true
+}
 function calculateEffect(effect,user,type,player,relicManager,variant,args){
 	switch(type){
 		case 0: case 2: case 5: case 7: case 8: case 10: case 11: case 12: case 13: case 20:
@@ -2072,13 +2083,6 @@ function mtgPlayerColor(player){
 		default: return [6]
 	}
 }
-function mtgCardColor(color){
-	if(color>=1&&color<=game.playerNumber){
-		return mtgPlayerColor(color)
-	}else{
-		return [color]
-	}
-}
 function mtgManaBase(player){
 	let playerColor=mtgPlayerColor(player)
 	let missing=[]
@@ -2364,10 +2368,11 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 	}
 	for(let a=0,la=costLeft.length;a<la;a++){
 		if(costLeft[a]==-1){
-			let effectiveTotals=sortNumbers(manaLeft)
+			let spent=false
+			let effectiveTotals=sortNumbers(effectiveManaLeft)
 			for(let b=0,lb=effectiveTotals.length;b<lb;b++){
 				for(let c=0,lc=priority.length;c<lc;c++){
-					if(priority[lc-1-c]!=6&&manaLeft[priority[lc-1-c]]==effectiveTotals[lb-1-b]&&manaLeft[priority[lc-1-c]]>0){
+					if(priority[lc-1-c]!=6&&manaLeft[priority[lc-1-c]]==effectiveTotals[lb-1-b]&&effectiveManaLeft[priority[lc-1-c]]>0){
 						manaLeft[priority[lc-1-c]]--
 						costLeft.splice(a,1)
 						a--
@@ -2375,6 +2380,23 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 						spend.push(priority[lc-1-c])
 						b=lb
 						c=lc
+						spent=true
+					}
+				}
+			}
+			if(!spent){
+				effectiveTotals=sortNumbers(manaLeft)
+				for(let b=0,lb=effectiveTotals.length;b<lb;b++){
+					for(let c=0,lc=priority.length;c<lc;c++){
+						if(priority[lc-1-c]!=6&&manaLeft[priority[lc-1-c]]==effectiveTotals[lb-1-b]&&manaLeft[priority[lc-1-c]]>0){
+							manaLeft[priority[lc-1-c]]--
+							costLeft.splice(a,1)
+							a--
+							la--
+							spend.push(priority[lc-1-c])
+							b=lb
+							c=lc
+						}
 					}
 				}
 			}
@@ -2391,6 +2413,23 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 			}else if(!bypass){
 				return -1
 			}
+		}
+	}
+	for(let a=0,la=costLeft.length;a<la;a++){
+		if(costLeft[a]==-3){
+			if(variant==2){
+				for(let b=0,lb=manaLeft.length;b<lb;b++){
+					if(manaLeft[b]>0){
+						for(let c=0,lc=manaLeft[b];c<lc;c++){
+							spend.push(b)
+						}
+						manaLeft[b]=0
+					}
+				}
+			}
+			costLeft.splice(a,1)
+			a--
+			la--
 		}
 	}
 	if(costLeft.length>0&&(variant==0||variant==3)){
@@ -2434,7 +2473,7 @@ function hybridRecurse(depth,mana,cost,spent,priority,variant){
 				return attempt
 			}
 		}
-		return [variant==2?spent:-1,[cost]]
+		return [variant==2?spent:-1,cost]
 	}
 }
 function total7(list){

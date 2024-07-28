@@ -71,6 +71,19 @@ class attackManager{
             break
         }
     }
+    spendCard(spend,card,player){
+        if(this.battle.relicManager.hasRelic(393,player)&&card.basic){
+            let mult=1
+            for(let a=0,la=spend.length;a<la;a++){
+                if(spend[a]==0){
+                    mult+=this.battle.relicManager.active[393][player+1]
+                }
+            }
+            for(let a=0,la=this.effect.length;a<la;a++){
+                this.effect[a]*=mult
+            }
+        }
+    }
     after(){
         if(this.battle.combatantManager.summons.length>0){
             this.battle.combatantManager.outSummons()

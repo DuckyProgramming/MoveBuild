@@ -6088,7 +6088,7 @@ function setupTrig(){
 	}
 	for(let a=0,la=180;a<la;a++){
 		game.trig[0].push(-game.trig[0][a])
-		game.trig[1].push(game.trig[1][(180-a)%180]*(a==0?-1:1))
+		game.trig[1].push(-game.trig[1][a])
 	}
 }
 function lsin(direction){

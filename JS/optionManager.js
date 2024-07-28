@@ -73,6 +73,7 @@ class optionManager{
         this.removePost=[]
     }
     triggerOption(type){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         switch(type){
             case 0:
                 this.selections+=10
@@ -81,7 +82,11 @@ class optionManager{
             break
             case 1:
                 this.finishSelection()
-                this.battle.combatantManager.combatants[this.player].healLifable(this.battle.relicManager.hasRelic(65,this.id)?round(this.battle.combatantManager.combatants[this.player].base.life)*0.4+10:round(this.battle.combatantManager.combatants[this.player].base.life)*0.4)
+                userCombatant.healLifable(
+                    this.battle.relicManager.hasRelic(406,this.player)?round(userCombatant.base.life):
+                    this.battle.relicManager.active[65][this.player+1]*10+
+                    round(userCombatant.base.life)*0.4
+                )
             break
             case 2:
                 this.battle.overlayManager.overlays[5][this.player].active=true
@@ -89,7 +94,7 @@ class optionManager{
             break
             case 3:
                 this.finishSelection()
-                this.battle.combatantManager.combatants[this.player].gainMaxHP(4)
+                userCombatant.gainMaxHP(4)
             break
             case 4:
                 this.finishSelection()

@@ -2508,16 +2508,6 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if(!this.graphic&&this.team>0){
-                    this.layer.fill(140,120,160,this.fade)
-                    this.layer.stroke(120,100,140,this.fade)
-                    this.layer.strokeWeight(2)
-                    regPoly(this.layer,0,10-this.offset.position.y,8,7,7,0)
-                    this.layer.noStroke()
-                    this.layer.fill(50,40,60,this.fade)
-                    this.layer.textSize(12)
-                    this.layer.text(this.metal,0,10-this.offset.position.y)
-                }
             break
             case 'Setsuna':
                 if(this.trigger.display.hair.back){
@@ -3437,18 +3427,6 @@ combatant.prototype.display=function(){
                     this.layer.stroke(this.color.monocle[1][0],this.color.monocle[1][1],this.color.monocle[1][2],this.fade*this.fades.monocle)
                     this.layer.strokeWeight(1)
                     this.layer.ellipse(lsin(this.anim.direction-18)*16,-78,6*lcos(this.anim.direction-16),6)
-                }
-                if(!this.graphic&&this.team>0){
-                    this.layer.noStroke()
-                    this.layer.fill(60,75,90,this.fade)
-                    this.layer.rect(-2,10-this.offset.position.y,12,12)
-                    this.layer.arc(4,10-this.offset.position.y,12,12,-90,90)
-                    this.layer.fill(80,100,120,this.fade)
-                    this.layer.rect(-1,10-this.offset.position.y,10,8)
-                    this.layer.arc(4,10-this.offset.position.y,8,8,-90,90)
-                    this.layer.fill(20,25,30,this.fade)
-                    this.layer.textSize(12)
-                    this.layer.text(this.ammo,0,10-this.offset.position.y)
                 }
             break
             case 'Chip':
@@ -4767,26 +4745,6 @@ combatant.prototype.display=function(){
                     if(this.trigger.display.eye[g]){
                         this.minorDisplayGeneral(0,g)
                     }
-                }
-                if(!this.graphic&&this.team>0){
-                    this.layer.translate(0,11-this.offset.position.y)
-                    this.layer.fill(255,100,150,this.fade)
-                    this.layer.stroke(255,125,175,this.fade)
-                    this.layer.strokeWeight(1.2)
-                    this.layer.strokeJoin(ROUND)
-                    regStarGear(this.layer,0,0,6,2,5.6,5.6,7.2,7.2,30)  
-                    this.layer.strokeJoin(MITER)
-                    this.layer.noStroke()
-                    this.layer.fill(255,150,200,this.fade)
-                    this.layer.ellipse(0,0,4.8)
-                    for(let a=0,la=3;a<la;a++){
-                        this.layer.quad(-1.2,-3.4,1.2,-3.4,0.4,-4.8,-0.4,-4.8)
-                        this.layer.rotate(120)
-                    }
-                    this.layer.translate(0,-11+this.offset.position.y)
-                    this.layer.fill(15,5,10,this.fade)
-                    this.layer.textSize(12)
-                    this.layer.text(this.wish,0,11-this.offset.position.y)
                 }
             break
             case 'Ume':

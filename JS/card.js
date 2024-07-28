@@ -35,7 +35,7 @@ class card{
             this.type=0
         }
         this.level=level
-        this.color=constrain(color,0,types.color.card.length-1)
+        this.color=variants.mtg?(typeof color=='number'?[color]:copyArray(color)):constrain(color,0,types.color.card.length-1)
         this.id=id
 
         this.width=90
@@ -74,8 +74,8 @@ class card{
         try{
             this.name=name||types.card[this.type].name
             this.checkReplacement()
-            this.list=list||types.card[this.type].list
-            this.rarity=types.card[this.type].rarity
+            this.list=list||(variants.mtg?types.card[this.type].mtg.list:types.card[this.type].list)
+            this.rarity=variants.mtg?types.card[this.type].mtg.rarity:types.card[this.type].rarity
             this.spec=spec
             this.additionalSpec=additionalSpec
             this.additionalSpec=this.additionalSpec==undefined?[]:copyArray(additionalSpec)
@@ -121,45 +121,7 @@ class card{
                         this.cost=sortNumbers(copyArray(this.cost))
                     }
                 }
-                this.mtgCardColor=copyArray(types.card[this.type].mtg.color)
-                if(this.mtgCardColor[0]==-2){
-                    let totals=[0,0,0,0,0,0,0]
-                    for(let a=0,la=this.battle.energy.base[this.player].length;a<la;a++){
-                        totals[this.battle.energy.base[this.player][a]]++
-                    }
-                    let above=[]
-                    for(let a=0,la=5;a<la;a++){
-                        for(let b=0,lb=totals.length;b<lb;b++){
-                            if(totals[b]==5-a){
-                                above.push(b)
-                            }
-                        }
-                    }
-                    let resolve=0
-                    switch(this.class){
-                        case 1:
-                            this.mtgCardColor=[above[0]]
-                            resolve=above[0]
-                        break
-                        case 2:
-                            this.mtgCardColor=[above[min(above.length-1,1)]]
-                            resolve=above[min(above.length-1,1)]
-                        break
-                        default:
-                            this.mtgCardColor=above.length==3?[above[2]]:above.length==2?sortNumbers([above[0],above[1]]):[above[0]]
-                            resolve=above.length==3?above[2]:above.length==2?mtgCombineColor(above[0],above[1]):above[0]
-                        break
-                    }
-                    for(let a=0,la=this.cost.length;a<la;a++){
-                        if(this.cost[a]==-2){
-                            this.cost[a]=resolve
-                        }
-                    }
-                }
             }else{
-                if(variants.mtg){
-                    this.mtgCardColor=[0]
-                }
                 if(types.card[this.type].levels[0].spec.includes(53)){
                     this.spec=this.spec==undefined?copyArray(types.card[this.type].levels[0].spec.concat(this.additionalSpec)):copyArray(this.spec)
                     this.effect=effect
@@ -196,7 +158,7 @@ class card{
             this.drawn=this.drawn==undefined?0:this.drawn
             this.nonCalc=nonCalc
             this.nonCalc=this.nonCalc==undefined?false:this.nonCalc
-            if(this.list==-1){
+            if(!variants.mtg&&this.list==-1){
                 this.list=this.color
             }
             this.base={cost:baseCost}
@@ -215,8 +177,11 @@ class card{
                 this.edited.costComplete=false
             }
             if(!(variants.mtg&&!this.specialCost)&&this.edited.cost!=0&&!this.edited.costComplete){
-                this.cost=max(min(0,this.cost),this.cost+this.edited.cost)
-                this.base.cost=max(min(0,this.base.cost),this.base.cost+this.edited.cost)
+                if(this.edited.cost>0){
+                    this.costUp(2,[this.edited.cost])
+                }else{
+                    this.costDown(2,[-this.edited.cost])
+                }
                 this.edited.costComplete=true
             }
             if(this.base.cost==-2){
@@ -226,6 +191,47 @@ class card{
                 this.reality=copyArrayStack(types.card[this.type].levels[this.level].reality)
             }else{
                 this.reality=[]
+            }
+            if(variants.mtg){
+                if(this.color[0]==-2){
+                    let totals=[0,0,0,0,0,0,0]
+                    for(let a=0,la=this.battle.energy.originalBase[this.player].length;a<la;a++){
+                        totals[this.battle.energy.originalBase[this.player][a]]++
+                    }
+                    let above=[]
+                    for(let a=0,la=5;a<la;a++){
+                        for(let b=0,lb=totals.length;b<lb;b++){
+                            if(totals[b]==5-a){
+                                above.push(b)
+                            }
+                        }
+                    }
+                    let resolve=0
+                    switch(this.class){
+                        case 1:
+                            this.color=[above[0]]
+                            resolve=above[0]
+                        break
+                        case 2:
+                            this.color=[above[min(above.length-1,1)]]
+                            resolve=above[min(above.length-1,1)]
+                        break
+                        default:
+                            this.color=above.length==3?[above[2]]:above.length==2?sortNumbers([above[0],above[1]]):[above[0]]
+                            resolve=above.length==3?above[2]:above.length==2?mtgCombineColor(above[0],above[1]):above[0]
+                        break
+                    }
+                    for(let a=0,la=this.cost.length;a<la;a++){
+                        if(this.cost[a]==-2){
+                            this.cost[a]=resolve
+                        }
+                    }
+                    for(let a=0,la=this.base.cost.length;a<la;a++){
+                        if(this.base.cost[a]==-2){
+                            this.base.cost[a]=resolve
+                        }
+                    }
+                }
             }
 
             this.colorful=this.rarity==-5&&this.attack!=1754||colorful
@@ -251,8 +257,7 @@ class card{
                 }
             }
             if(this.additionalSpec.includes(-1)){
-                this.cost=0
-                this.base.cost=0
+                this.setCost(2,[0])
             }
             if(doubles>0){
                 for(let a=0,la=doubles;a<la;a++){
@@ -268,12 +273,12 @@ class card{
     }
     setColorDetail(){
         if(variants.mtg){
-            if(this.mtgCardColor.length==1){
-                this.colorDetail=types.color.mtg[this.mtgCardColor[0]]
+            if(this.color.length==1){
+                this.colorDetail=types.color.mtg[this.color[0]]
             }else{
                 this.colorDetail=[]
-                for(let a=0,la=this.mtgCardColor.length;a<la;a++){
-                    this.colorDetail.push(types.color.mtg[this.mtgCardColor[a]])
+                for(let a=0,la=this.color.length;a<la;a++){
+                    this.colorDetail.push(types.color.mtg[this.color[a]])
                 }
             }
         }else{
@@ -310,26 +315,6 @@ class card{
                 return variants.mtg?(this.specialCost?this.cost[0]:totalNeutral):this.cost
         }
     }
-    costDown(type,args){
-        this.costDownTrigger=true
-        switch(type){
-            case 0:
-                if(variants.mtg){
-                    if(this.specialCost){
-                        this.cost[0]=max(0,this.cost[0]-args[0])
-                    }else{
-                        for(let a=0,la=args[0];a<la;a++){
-                            if(this.cost.includes(-1)){
-                                this.cost.splice(this.cost.indexOf(-1),1)
-                            }
-                        }
-                    }
-                }else if(this.cost>0){
-                    this.cost=max(0,this.cost-args[0])
-                }
-            break
-        }
-    }
     setCost(type,args){
         switch(type){
             case 0:
@@ -341,6 +326,188 @@ class card{
             case 2:
                 this.cost=variants.mtg?(this.specialCost?[0]:[]):0
                 this.base.cost=variants.mtg?(this.specialCost?[args[0]]:elementArray(-1,args[0])):args[0]
+            break
+        }
+    }
+    costUp(type,args){
+        this.cosUpTrigger=true
+        switch(type){
+            case 0:
+                if(variants.mtg){
+                    if(this.specialCost){
+                        if(this.cost[0]>=0){
+                            this.cost[0]+=args[0]
+                        }
+                    }else{
+                        for(let a=0,la=args[0];a<la;a++){
+                            this.cost.push(-1)
+                        }
+                    }
+                }else if(this.cost>=0){
+                    this.cost+=args[0]
+                }
+            break
+            case 1:
+                if(variants.mtg){
+                    if(this.specialCost){
+                        if(this.base.cost[0]>=0){
+                            this.base.cost[0]+=args[0]
+                        }
+                    }else{
+                        for(let a=0,la=args[0];a<la;a++){
+                            this.base.cost.push(-1)
+                        }
+                    }
+                }else if(this.base.cost>=0){
+                    this.base.cost+=args[0]
+                }
+            break
+            case 2:
+                if(variants.mtg){
+                    if(this.specialCost){
+                        if(this.cost[0]>=0){
+                            this.cost[0]+=args[0]
+                        }
+                        if(this.base.cost[0]>=0){
+                            this.base.cost[0]+=args[0]
+                        }
+                    }else{
+                        for(let a=0,la=args[0];a<la;a++){
+                            this.cost.push(-1)
+                            this.base.cost.push(-1)
+                        }
+                    }
+                }else{
+                    if(this.cost>=0){
+                        this.cost+=args[0]
+                    }
+                    if(this.base.cost>=0){
+                        this.base.cost+=args[0]
+                    }
+                }
+            break
+            case 3:
+                if(variants.mtg){
+                    if(this.specialCost){
+                        if(this.cost[0]>=0){
+                            this.cost[0]+=args[0]
+                        }
+                        if(this.base.cost[0]>=0){
+                            this.base.cost[0]+=args[0]
+                        }
+                    }else{
+                        for(let a=0,la=args[0];a<la;a++){
+                            this.cost.push(-1)
+                            this.base.cost.push(-1)
+                        }
+                    }
+                }else{
+                    if(this.cost>=0){
+                        this.cost+=args[0]
+                    }
+                    if(this.base.cost>=0){
+                        this.base.cost+=args[0]
+                    }
+                }
+                this.edited.cost+=args[0]
+                this.edited.costComplete=true
+            break
+        }
+    }
+    costDown(type,args){
+        this.costDownTrigger=true
+        switch(type){
+            case 0:
+                if(variants.mtg){
+                    if(this.specialCost){
+                        if(this.cost[0]>0){
+                            this.cost[0]=max(0,this.cost[0]-args[0])
+                        }
+                    }else{
+                        for(let a=0,la=args[0];a<la;a++){
+                            if(this.cost.includes(-1)){
+                                this.cost.splice(this.cost.indexOf(-1),1)
+                            }
+                        }
+                    }
+                }else if(this.cost>0){
+                    this.cost=max(0,this.cost-args[0])
+                }
+            break
+            case 1:
+                if(variants.mtg){
+                    if(this.specialCost){
+                        if(this.base.cost[0]>0){
+                            this.base.cost[0]=max(0,this.base.cost[0]-args[0])
+                        }
+                    }else{
+                        for(let a=0,la=args[0];a<la;a++){
+                            if(this.base.cost.includes(-1)){
+                                this.base.cost.splice(this.base.cost.indexOf(-1),1)
+                            }
+                        }
+                    }
+                }else if(this.base.cost>0){
+                    this.base.cost=max(0,this.base.cost-args[0])
+                }
+            break
+            case 2:
+                if(variants.mtg){
+                    if(this.specialCost){
+                        if(this.cost[0]>0){
+                            this.cost[0]=max(0,this.cost[0]-args[0])
+                        }
+                        if(this.base.cost[0]>0){
+                            this.base.cost[0]=max(0,this.base.cost[0]-args[0])
+                        }
+                    }else{
+                        for(let a=0,la=args[0];a<la;a++){
+                            if(this.cost.includes(-1)){
+                                this.cost.splice(this.cost.indexOf(-1),1)
+                            }
+                            if(this.base.cost.includes(-1)){
+                                this.base.cost.splice(this.base.cost.indexOf(-1),1)
+                            }
+                        }
+                    }
+                }else{
+                    if(this.cost>0){
+                        this.cost=max(0,this.cost-args[0])
+                    }
+                    if(this.base.cost>0){
+                        this.base.cost=max(0,this.base.cost-args[0])
+                    }
+                }
+            break
+            case 3:
+                if(variants.mtg){
+                    if(this.specialCost){
+                        if(this.cost[0]>0){
+                            this.cost[0]=max(0,this.cost[0]-args[0])
+                        }
+                        if(this.base.cost[0]>0){
+                            this.base.cost[0]=max(0,this.base.cost[0]-args[0])
+                        }
+                    }else{
+                        for(let a=0,la=args[0];a<la;a++){
+                            if(this.cost.includes(-1)){
+                                this.cost.splice(this.cost.indexOf(-1),1)
+                            }
+                            if(this.base.cost.includes(-1)){
+                                this.base.cost.splice(this.base.cost.indexOf(-1),1)
+                            }
+                        }
+                    }
+                }else{
+                    if(this.cost>0){
+                        this.cost=max(0,this.cost-args[0])
+                    }
+                    if(this.base.cost>0){
+                        this.base.cost=max(0,this.base.cost-args[0])
+                    }
+                }
+                this.edited.cost-=args[0]
+                this.edited.costComplete=true
             break
         }
     }
@@ -417,7 +584,7 @@ class card{
             case -22: string+=`When Drawn,\nStop Drawing`; break
             case -23: string+=`When Drawn,\nExhaust ${effect[0]}\nRandom Card${pl(effect[0])}`; break
             case -24: string+=`When Drawn,\nAdd a Burn to Hand`; break
-            case -25: string+=`When Drawn,\nA Random Card\nWill Exhaust`; break
+            case -25: string+=`When Drawn,\nA Random Card\nGains Exhaust`; break
             case -26: string+=`When Drawn,\nHalve Card Effects`; break
             case -27: string+=`When Drawn,\nLose ${effect[0]} Temporary\nStrength`; break
             case -28: string+=`When Drawn,\nGain ${effect[0]} Strength`; break
@@ -1356,8 +1523,8 @@ class card{
             case 867: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRemove a\nRandom Debuff`; break
             case 868: string+=`Put a Card in Draw\nPile in Your Hand\nUpgrade It`; break
             case 869: string+=`Gain ${effect[0]} Energy\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
-            case 870: string+=`Add X Random\nAttacks to Hand\nThey Cost 0\nand Exhaust`; break
-            case 871: string+=`Add X Random Upgraded\nAttacks to Hand\nThey Cost 0\nand Exhaust`; break
+            case 870: string+=`Add X Random\nAttacks to Hand\nThey Cost 0 and\nHave Exhaust`; break
+            case 871: string+=`Add X Random Upgraded\nAttacks to Hand\nThey Cost 0 and\nHave Exhaust`; break
             case 872: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify: Deal ${this.calculateEffect(effect[1],10)} More`; break
             case 873: string+=`Convert Charge to Energy`; break
             case 874: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${effect[1]} Time${pl(effect[1])}\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
@@ -1522,7 +1689,7 @@ class card{
             case 1033: string+=`Gain ${effect[0]} Temporary\nDexterity`; break
             case 1034: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 Temporarily\nat Center of Hand`; break
             case 1035: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCenter of Hand:\nGain ${effect[1]} Armor`; break
-            case 1036: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}Hand\nSize Damage\nCenter of Hand:\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 1036: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}Hand\nSize Damage\nCenter of Hand:\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 1037: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCosts 0 Temporarily\nat Center of Hand`; break
             case 1038: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Strike${pl(effect[1])}\nto Draw`; break
             case 1039: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Defend${pl(effect[1])}\nto Draw`; break
@@ -1952,7 +2119,7 @@ class card{
             case 1462: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nCards That Retain`; break
             case 1463: string+=`Heal Target For ${effect[0]}\nApply ${effect[1]} Poison`; break
             case 1464: string+=`6 Cards in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
-            case 1465: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Exactly 1 Energy,\nReduce All\nCountdowns by ${effect[1]}`; break
+            case 1465: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExactly 1 Energy:\nReduce All\nCountdowns by ${effect[1]}`; break
             case 1466: string+=`Take Another Turn`; break
             case 1467: string+=`Set Energy to Gen\nGain ${effect[0]} Shock`; break
             case 1468: string+=`Have ${effect[0]} Energy\nDiscard ${effect[1]} Random Card${pl(effect[1])}`; break
@@ -2046,7 +2213,7 @@ class card{
             case 1561: string+=`At Least 3 Cards:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 1562: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Played First,\nGain ${effect[1]} Charge`; break
             case 1563: string+=`Counter ${effect[0]} All\nThis Combat\nLose ${effect[1]} Currency`; break
-            case 1564: string+=`When Retained,\nAdd ${this.calculateEffect(effect[0],1)} Block\nOn Hit, Exhaust`; break
+            case 1564: string+=`When Retained,\nAdd ${this.calculateEffect(effect[0],1)} Block\nWhen You Are Hit,\nExhausts`; break
             case 1565: string+=`When Drawn,\n${effect[0]} Balance\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
             case 1566: string+=`Apply ${effect[0]} Burn\nApply ${effect[1]} Stun`; break
             case 1567: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Currency\nIf Played First,\nApply ${effect[2]} Freeze`; break
@@ -2900,7 +3067,7 @@ class card{
             case 2423: string+=`Even Turn:\nAdd ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]}`; break
             case 2424: string+=`When Removed,\nGain a Relic`; break
             case 2425: string+=`Turn 6 Or Later:\nAdd ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-            case 2426: string+=`Powers Cost 1 Less\nand Exhaust`; break
+            case 2426: string+=`Powers Cost 1 Less\nand Have Exhaust`; break
             case 2427: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Strength if\nTarget Has More\nHealth Than You`; break
             case 2428: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nChoose a Rare Card\nto Add to Hand`; break
             case 2429: string+=`Gain ${effect[0]} Strength\nUnupgrade Your Hand`; break
@@ -3875,10 +4042,10 @@ class card{
                 case -1018: string+=`-3: Draw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 0`; break
                 case -1019: string+=`-6: Next Card Reward\nHas ${effect[2]} More Choice${pl(effect[2])}`; break
             case 3382: string+=`+1: Strikes and Defends\nDrawn Cost 0 Temporarily\n-3: Add ${effect[0]} Strike${pl(effect[0])} and\n${effect[1]} Defend${pl(effect[1])} to Hand\nThey Cost 0 and Exhaust\n-12: Edition a\nBasic Card`; break
-                case -1020: string+=`-3: Add ${effect[0]} Strike${pl(effect[0])} and\n${effect[1]} Defend${pl(effect[1])} to Hand\nThey Cost 0 and Exhaust`; break
+                case -1020: string+=`-3: Add ${effect[0]} Strike${pl(effect[0])} and\n${effect[1]} Defend${pl(effect[1])} to Hand\nThey Cost 0 and\nHave Exhaust`; break
                 case -1021: string+=`-12: Edition a\nBasic Card`; break
             case 3383: string+=`+1: Strikes and Defends\nDrawn Cost 0 Temporarily\nand Gain ${effect[0]} Effect\n-3: Add ${effect[1]} Strike${pl(effect[1])} and\n${effect[2]} Defend${pl(effect[2])} to Hand\nThey Cost 0 and Exhaust\n-12: Edition a\nBasic Card`; break
-                case -1022: string+=`-3: Add ${effect[1]} Strike${pl(effect[1])} and\n${effect[2]} Defend${pl(effect[2])} to Hand\nThey Cost 0 and Exhaust`; break
+                case -1022: string+=`-3: Add ${effect[1]} Strike${pl(effect[1])} and\n${effect[2]} Defend${pl(effect[2])} to Hand\nThey Cost 0 and\nHave Exhaust`; break
             case 3384: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nTarget Takes ${effect[1]}\nDamage Per Card\nPlayed This Turn`; break
             case 3385: string+=`${effect[0]} Random Card${pl(effect[0])} in\nDraw Pile Cost${effect[0]==1?`s`:``} 0`; break
             case 3386: string+=`Apply ${effect[0]} Vulnerable\nAdd ${effect[1]} Shiv${pl(effect[1])} to Hand\nShuffle ${effect[2]} Shiv${pl(effect[2])} into Draw\nAdd ${effect[3]} Shiv${pl(effect[3])} to Discard`; break
@@ -4495,6 +4662,19 @@ class card{
             case 3979: string+=`Gain (E) (E)\nNext Turn`; break
             case 3980: string+=`Gain (E) (E) (E)\nNext Turn`; break
             case 3981: string+=`Gain (E) (E) (E) (E)\nNext Turn`; break
+            case 3982: string+=`Apply ${effect[0]} Weak\nAdd a Void\nto Discard Pile`; break
+            case 3983: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nShuffle ${effect[1]} Shiv${pl(effect[1])}\ninto Draw Pile\n${effect[1]!=1?`They Have`:`It Has`} Replenish`; break
+            case 3984: string+=`Apply ${effect[0]} Vulnerable\nShuffle ${effect[1]} Shiv${pl(effect[1])} into Draw\nAdd ${effect[2]} Shiv${pl(effect[2])} to Discard\n${effect[1]+effect[2]!=1?`They Have`:`It Has`} Replenish`; break
+            case 3985: string+=`Apply ${effect[0]} Buffer\nWhen Used on an Enemy,\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 3986: string+=`Apply ${effect[0]} Strength\nWhen Used on an Enemy,\nGain ${effect[1]} Currency`; break
+            case 3987: string+=`Gain ${effect[0]} Strength\n${effect[1]} or Less\nCards in Hand:\nGives Double Strength`; break
+            case 3988: string+=`Destroy a Construct\nReturn Blueprint\nGain ${effect[0]} Metal`; break
+            case 3989: string+=`Destroy a Construct\nReturn Used Metal\nGain ${effect[0]} Energy`; break
+            case 3990: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCenter of Hand:\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 3991: string+=`Gain (E) at the\nStart of Your Turn\nGain (E)`; break
+            case 3992: string+=`Gain (E) at the\nStart of Your Turn\nGain (E) (E)`; break
+            case 3993: string+=`Gain (E) at the\nStart of Your Turn\nGain (E) (E) (N)`; break
+
 
 
 
@@ -7366,7 +7546,7 @@ class card{
                     this.layer.fill(0,this.fade)
                 }
                 if(name.substr(0,2)!='-h'){
-                    let effectiveName=name.replace('$colorcharacter',types.combatant[this.color].name)
+                    let effectiveName=name.replace('$colorcharacter',variants.mtg?'?':types.combatant[this.color].name)
                     if(this.battle.modded(186)){
                         effectiveName=effectiveName.toLowerCase()
                     }
@@ -7519,6 +7699,8 @@ class card{
                                     case 4:
                                         if(this.battle.relicManager.hasRelic(249,this.player)){
                                             this.layer.text('Polychrome (and Erratic)',0,this.height/2)
+                                        }else if(variants.mtg){
+                                            this.layer.text(`Polychrome: -1 Random Mana`,0,this.height/2)
                                         }else{
                                             this.layer.text(`Polychrome: -1 Energy`,0,this.height/2)
                                         }
@@ -7562,6 +7744,8 @@ class card{
                                     case 4:
                                         if(this.battle.relicManager.hasRelic(249,this.player)){
                                             this.layer.text('Polychrome (and Erratic)',0,this.height/2)
+                                        }else if(variants.mtg){
+                                            this.layer.text(`Polychrome: (E)`,0,this.height/2)
                                         }else{
                                             this.layer.text(`Polychrome: 1 Energy`,0,this.height/2)
                                         }
@@ -7642,6 +7826,21 @@ class card{
     }
     colorless(){
         return this.color==0&&!this.colorful&&this.attack!=1328&&this.attack!=1330&&this.attack!=1393&&this.attack!=1615&&this.attack!=2064&&this.attack!=-131&&this.attack!=-132&&this.attack!=3454&&this.attack!=3459&&this.attack!=3460&&this.attack!=3629&&this.attack!=3630&&this.attack!=3631&&!(this.attack>=3694&&this.attack<=3699)&&this.attack!=3753&&this.attack!=3754&&this.list!=-8&&!(this.list==-9&&variants.ultraprism)
+    }
+    free(){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        return userCombatant.getStatus('Free Card')>0||
+            userCombatant.getStatus('Free 1 Cost Card')>0&&cost==1||
+            userCombatant.getStatus('Free Attack')>0&&this.class==1||
+            userCombatant.getStatus('Free Defense')>0&&this.class==2||
+            userCombatant.getStatus('Free Movement')>0&&this.class==3||
+            userCombatant.getStatus('Free Skill')>0&&this.class==11||
+            userCombatant.getStatus('Temporary Free Non-Rare Colorless')>0&&this.colorless()&&this.rarity!=2||
+            userCombatant.getStatus('Free Defenses')>0&&(this.class==2||this.spec.includes(12)&&this.class[0]==2&&this.class[1]==2)||
+            userCombatant.getStatus('Free Cables')>0&&this.name.includes('Cable')&&this.class==1||
+            this.spec.includes(55)||
+            this.spec.includes(58)||
+            this.spec.includes(60)
     }
     update(sizeCap=1,diff='nonhand',fattened=false){
         this.time++

@@ -180,7 +180,7 @@ class attack{
             case 3767: case 3770: case 3771: case 3778: case 3781: case 3782: case 3786: case 3787: case 3792: case 3809: case 3810: case 3811: case 3812: case 3813: case 3815: case 3821: case 3823: case 3824: case 3825: case 3826:
             case 3843: case 3844: case 3847: case 3848: case 3851: case 3853: case 3855: case 3857: case 3861: case 3863: case 3868: case 3870: case 3871: case 3876: case 3879: case 3881: case 3885: case 3886: case 3892: case 3893:
             case 3895: case 3901: case 3902: case 3904: case 3905: case 3906: case 3907: case 3912: case 3915: case 3917: case 3920: case 3921: case 3923: case 3924: case 3927: case 3928: case 3929: case 3933: case 3935: case 3940:
-            case 3941: case 3944: case 3945: case 3946: case 3948: case 3950: case 3951: case 3953:
+            case 3941: case 3944: case 3945: case 3946: case 3948: case 3950: case 3951: case 3953: case 3982: case 3984: case 3985: case 3986: case 3988: case 3989: case 3990:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -1183,7 +1183,7 @@ class attack{
                     case 1295:
                         if(this.userCombatant.energyParity(this.energy)==0&&this.energy>0){
                             this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
-                            this.battle.dropDrawShuffleEffect(this.player,findName('Snip',types.card),0,0,0,round(this.energy/2))
+                            this.battle.dropDrawShuffleAbstract(this.player,findName('Snip',types.card),0,0,[6],[0,round(this.energy/2)])
                         }
                     break
                     case 1307: case 1501:
@@ -1237,7 +1237,7 @@ class attack{
                         if(this.userCombatant.energyParity(this.energy)==0&&this.energy>0){
                             this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
                             this.userCombatant.heal(this.effect[1]*this.energy)
-                            this.battle.dropDrawShuffleEffect(this.player,findName('Snip',types.card),0,0,0,floor(random(1,this.energy)))
+                            this.battle.dropDrawShuffleAbstract(this.player,findName('Snip',types.card),0,0,[6],[0,floor(random(1,this.energy))])
                         }
                     break
                     case 1424:
@@ -7912,7 +7912,7 @@ class attack{
                         this.userCombatant.statusEffect('Strength',this.effect[0]*(this.handSize==1?2:1))
                     break
                     case 3956:
-                        this.battle.addEnergyGen(1,this.player,6)
+                        this.battle.addSpecificEnergyGen(1,this.player,6)
                     break
                     case 3957: case 3958: case 3959:
                         this.battle.addSpecificEnergy(this.type-3955,this.player,0)
@@ -7938,6 +7938,21 @@ class attack{
                     case 3978:
                         this.userCombatant.combo+=this.effect[0]
                         this.userCombatant.statusEffect('(G) Next Turn',1)
+                    break
+                    case 3987:
+                        this.userCombatant.statusEffect('Strength',this.effect[0]*(this.handSize<=this.effect[1]?2:1))
+                    break
+                    case 3991:
+                        this.battle.addSpecificEnergyGen(1,this.player,6)
+                        this.battle.addSpecificEnergy(1,this.player,6)
+                    break
+                    case 3992:
+                        this.battle.addSpecificEnergyGen(1,this.player,6)
+                        this.battle.addSpecificEnergy(2,this.player,6)
+                    break
+                    case 3993:
+                        this.battle.addSpecificEnergyGen(1,this.player,6)
+                        this.battle.addSpecificEnergy(3,this.player,6)
                     break
 
                 }
@@ -12697,6 +12712,22 @@ class attack{
                             this.targetCombatant.takeDamage(this.effect[0],this.user,2)
                         }
                     break
+                    case 3984:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.dropAbstract(this.player,findName('Shiv',types.card),0,0,[4],[[62]])
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.battle.dropDrawShuffleAbstract(this.player,findName('Shiv',types.card),0,0,[4],[[62]])
+                        }
+                    break
+                    case 3985:
+                        this.targetCombatant.statusEffect('Buffer',this.effect[0])
+                        if(this.targetCombatant.team==0){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                            this.userManager.draw(this.effect[2])
+                        }
+                    break
 
                 }
                 //mark 8
@@ -12864,9 +12895,9 @@ class attack{
                         }
                     break
                     case 1036:
-                        this.targetCombatant.takeDamage(this.effect[0]+this.userManager.hand.cards.length,this.user,1)
+                        this.targetCombatant.takeDamage(this.effect[0]+this.handSize*this.effect[1],this.user,1)
                         if(abs(this.relPos[0]-this.relPos[1]/2)<=0.5){
-                            this.userManager.draw(this.effect[1])
+                            this.userManager.draw(this.effect[2])
                         }
                     break
                     case 1054:
@@ -12988,6 +13019,11 @@ class attack{
                     case 3946:
                         this.userCombatant.ammo+=this.effect[1]
                     break
+                    case 3990:
+                        if(abs(this.relPos[0]-this.relPos[1]/2)<=0.5){
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
 
                 }
                 //mark 10
@@ -13085,7 +13121,7 @@ class attack{
                         this.targetCombatant.life=0
                         let index=findName(`Build\n${this.targetCombatant.name}`,types.card)
                         if(index>=0){
-                            this.userCombatant.metal+=types.card[index].levels[0].cost
+                            this.userCombatant.metal+=types.card[index].levels[this.level].cost
                         }
                     break
                     case 710:
@@ -13096,7 +13132,7 @@ class attack{
                         }
                     break
                     case 792:
-                        this.battle.dropDrawShuffleEffect(this.player,findName('Expunger',types.card),0,0,1,this.energy+this.effect[0])
+                        this.battle.dropDrawShuffleAbstract(this.player,findName('Expunger',types.card),0,0,[6],[1,this.energy+this.effect[0]])
                     break
                     case 845:
                         for(let a=0,la=this.effect[0];a<la;a++){
@@ -13944,6 +13980,32 @@ class attack{
                     break
                     case 3922:
                         this.userCombatant.statusEffect('Dice Roll Block',this.effect[0])
+                    break
+                    case 3982:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                    break
+                    case 3986:
+                        this.targetCombatant.statusEffect('Strength',this.effect[0])
+                        if(this.targetCombatant.team==0){
+                            this.battle.addCurrency(this.effect[1],this.player)
+                        }
+                    break
+                    case 3988:
+                        this.targetCombatant.life=0
+                        let index3988=findName(`Build\n${this.targetCombatant.name}`,types.card)
+                        if(index3988>=0){
+                            this.userManager.hand.add(index3988,0,types.card[index3988].list)
+                            this.userCombatant.metal+=this.effect[0]
+                        }
+                    break
+                    case 3989:
+                        this.targetCombatant.life=0
+                        let index3989=findName(`Build\n${this.targetCombatant.name}`,types.card)
+                        if(index3989>=0){
+                            this.userCombatant.metal+=types.card[index3989].levels[this.level].cost
+                            this.battle.addEnergy(this.effect[0],this.player)
+                        }
                     break
 
                 }
@@ -15761,6 +15823,11 @@ class attack{
                     case 3846:
                         this.battle.addEnergy(this.effect[1],this.player)
                         this.userManager.draw(this.effect[2])
+                    break
+                    case 3983:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.dropDrawShuffleAbstract(this.player,findName('Shiv',types.card),0,0,[4],[[62]])
+                        }
                     break
 
                 }

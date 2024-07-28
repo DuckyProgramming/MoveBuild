@@ -4860,16 +4860,13 @@ function displayMtgManaIcon(layer,x,y,type,direction,size,fade){
     switch(type){
         case -1:
             layer.stroke(160,150,130,this.fade)
-            layer.quad(-this.width/2+10-5,-this.height/2+13,-this.width/2+10,-this.height/2+13-5,-this.width/2+10+5,-this.height/2+13,-this.width/2+10,-this.height/2+13+5)
+            layer.quad(-5,0,0,-5,5,0,0,5)
         break
         case 0:
             layer.stroke(120,fade)
             layer.rect(-1.5,1.5,7)
-            layer.line(-5,-2,-2,-5)
-            layer.line(2,-2,5,-5)
-            layer.line(2,5,5,2)
-            layer.line(5,-5,5,2)
-            layer.line(-2,-5,5,-5)
+            layer.quad(-5,-2,-2,-5,5,-5,2,-2)
+            layer.quad(2,5,5,2,5,-5,2,-2)
         break
         case 1:
             layer.stroke(160,160,80,fade)
@@ -4930,7 +4927,7 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
     let stroke=[0,0,0]
     let map=[]
     switch(type){
-        case 0: case -2:
+        case 0: case -2: case -3:
             fill=[180,180,180]
             stroke=[140,140,140]
         break
@@ -5011,7 +5008,7 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
     }
     layer.strokeWeight(1.5)
     switch(type){
-        case -2:
+        case -2: case -3:
             layer.fill(...fill,this.fade)
             layer.stroke(...stroke,this.fade)
             switch(variant){
@@ -5028,7 +5025,7 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
             layer.fill(0,this.fade)
             layer.noStroke()
             layer.textSize(15)
-            layer.text(args[3],0,1)
+            layer.text(type==-3?'X':args[3],0,1)
         break
         case -1: case 0: case 1: case 2: case 3: case 4: case 5:
             layer.fill(...fill,this.fade)
@@ -9255,6 +9252,8 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.line(-4,8,4,8)
             layer.arc(-4,6,4,4,90,180)
             layer.line(-6,-4,-6,6)
+            layer.line(3,3,-3,-3)
+            layer.line(-3,3,3,-3)
         break
         case 55:
             layer.fill(75,150,75,fade)
@@ -10073,6 +10072,49 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(16,6,2)
             layer.ellipse(22,6,2)
         break
+        case 156:
+            layer.fill(220,20,20,fade)
+            layer.quad(-6,3,6,-3,6,-6,-6,0)
+            layer.fill(20,20,220,fade)
+            layer.quad(-6,3,6,-3,6,0,-6,6)
+            layer.noFill()
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,12,16,2)
+        break
+        case 157:
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,-6,-2,3,2,3)
+            layer.triangle(-5,-6,-7,3,-3,3)
+            layer.triangle(5,-6,7,3,3,3)
+        break
+        case 158:
+            layer.fill(150,25,200,fade)
+            layer.ellipse(0,0,10)
+            layer.fill(125,25,175,fade)
+            layer.ellipse(0,0,9)
+            layer.fill(100,25,150,fade)
+            layer.ellipse(0,0,8)
+            layer.noFill()
+            layer.stroke(200,150,225,fade)
+            layer.strokeJoin(ROUND)
+            layer.strokeWeight(0.5)
+            regPolyStellate(layer,0,0,5,2,4,4,15)
+            for(let a=0,la=5;a<la;a++){
+                layer.arc(0,0,8,8,41+a*72,61+a*72)
+            }
+            layer.strokeJoin(MITER)
+        break
+        case 159:
+            layer.fill(225,75,75,fade)
+            regTriangle(layer,-5,0,4,4,0)
+            layer.fill(225,75,225,fade)
+            regTriangle(layer,0,-5,4,4,30)
+            layer.fill(225,150,75,fade)
+            regTriangle(layer,5,0,4,4,60)
+            layer.fill(225,225,75,fade)
+            regTriangle(layer,0,5,4,4,90)
+        break
 
     }
     layer.pop()
@@ -10128,7 +10170,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 51-Status Card
 52-Stash
 53-Assort
-54-Exhaust
+54-Exhausting Card
 55-Movement (Card Symbol) (Reverse)
 56-Control
 57-Colorless
@@ -10230,4 +10272,8 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 153-Free Defense
 154-Replenish
 155-Delayed Energy
+156-Colored Card
+157-Triple Damage
+158-Astrology
+159-Transform
 */

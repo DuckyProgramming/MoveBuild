@@ -1,46 +1,7 @@
-    {
-        name:'Strike',rarity:-2,list:-1,
-        levels:[
-            {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[11],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
-        ],mtg:{
-            rarity:-2,list:-1,color:[0],
-            levels:[
-                {effect:[4],attack:1,cost:[-1],target:[2,1,1],spec:[],class:1},
-                {effect:[6],attack:1,cost:[-1],target:[2,1,1],spec:[],class:1},
-                {effect:[8],attack:1,cost:[-1],target:[2,1,1],spec:[],class:1},
-            ],
-        },
-    },{
-        name:'Defend',rarity:-2,list:-1,
-        levels:[
-            {effect:[8],attack:2,cost:1,target:[0],spec:[],class:2},
-            {effect:[12],attack:2,cost:1,target:[0],spec:[],class:2},
-            {effect:[15],attack:2,cost:1,target:[0],spec:[],class:2},
-        ],mtg:{
-            rarity:-2,list:-1,color:[0],
-            levels:[
-                {effect:[5],attack:2,cost:[-1],target:[0],spec:[],class:2},
-                {effect:[8],attack:2,cost:[-1],target:[0],spec:[],class:2},
-                {effect:[10],attack:2,cost:[-1],target:[0],spec:[],class:2},
-            ],
-        },
-    },{
-        name:'Step',rarity:-2,list:-1,
-        levels:[
-            {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[],class:3},
-            {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[],class:3},
-        ],mtg:{
-            rarity:-2,list:-1,color:[-2],
-            levels:[
-                {effect:[1],attack:3,cost:[-1,-2],target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:3,cost:[-1,-1],target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:3,cost:[-1],target:[1,1,1],spec:[0],class:3},
-            ],
-        },
-    },
+MAJOR MTG CHANGES
+
+every card changed lol
+split cards into character and non-character
 
 METAS
 
@@ -75,19 +36,7 @@ default:
 
 
 
-
-
-
-
-MAJOR MTG CHANGES
-
-every card changed lol
-split cards into character and non-character
-
-
-
-
-some relics will be unavailable
+change items
 energized jade event gotta be changed
 
 
@@ -237,7 +186,7 @@ asteroid belt that spams red stars that create more stars with holes in them and
 
 crystal glare but with a cool animation
 
-heart except slash
+heart excerpt slash
 
 [dark pristine]
 
@@ -284,7 +233,7 @@ empty mask - reverse of sadism
 
 reverse conveyor belt
 
-variant of Toffee
+variant of toffee
 
 autoshield - gain block, but only if you have no block
 
@@ -334,12 +283,32 @@ tough it out - gain double block this turn
 
 
 
-buff dazzling dash
-
 blunderbuss - 3 direction shotgun
 
 add strikes / defends to draw pile and they get replenish
 
+take cover - add 12 block for each direction that does not have an adjacent tile
+
+leap - move 1 tile, or cross an empty gap between 2 tiles
+
+sapphire facet - fires blue stars everywher e and lighter ones in set directions that create more particles
+
+disarm - damage, if enemy has a gun take his gun
+
+
+
+aggregate border - get a bunch of barrier, deal splash damage next turn equal to barrier
+
+original strike - 2 cost deal 12 damage, add a random free attack to your hand
+
+wide push - push in 3 directions
+
+sanae, push and gain 1 dex
+
+give and get - gain 4 temp strength and 4 temp dex
+
+astrology sphere
+and new astrology animation
 
 
 
@@ -462,6 +431,29 @@ new variants:
 [business - all prices increased, get only money from fights]
 []
 []
+
+
+
+new events:
+
+laser defense grid - choice
+sneak through - 50% lose health, 50% gain currency
+mess with the electricity - 25% gain currency, 75% nothing
+punch the wall - guaranteed lose health and gain currency
+
+purify the energy
+
+relic collector - offers to buy 2 of your relics for very good prices
+
+card collector - offers to trade one of your cards (random) for a rare card of your choice
+
+[]
+
+
+
+gangster rifleman informant
+
+management informant
 
 
 

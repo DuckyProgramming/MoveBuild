@@ -5613,7 +5613,7 @@ class combatant{
                     damage=1
                 }
                 if(this.status.main[10]>0){
-                    damage*=1.5
+                    damage*=this.team==0&&this.battle.relicManager.hasRelic(407,0)?2:1.5
                 }
                 if(this.status.main[24]>0){
                     damage*=0.5
@@ -6308,9 +6308,7 @@ class combatant{
                 }
                 if(this.id<this.battle.players){
                     this.battle.stats.block[this.id]+=block
-                }
-                if(this.battle.relicManager.hasRelic(353,this.id)&&block>=25){
-                    this.battle.cardManagers[this.id].draw(this.battle.relicManager.active[353][this.id+1])
+                    this.battle.relicManager.activate(18,[block,this.id])
                 }
             }
         }
@@ -6831,9 +6829,9 @@ class combatant{
     }
     statusEffect(name,value){
         if(!(
-            this.battle.relicManager.hasRelic(23,this.id)&&name=='Weak'||
-            this.battle.relicManager.hasRelic(24,this.id)&&name=='Frail'||
-            this.battle.relicManager.hasRelic(25,this.id)&&name=='Vulnerable')&&
+            (this.battle.relicManager.hasRelic(23,this.id)||this.battle.relicManager.hasRelic(398,this.id))&&name=='Weak'||
+            (this.battle.relicManager.hasRelic(24,this.id)||this.battle.relicManager.hasRelic(398,this.id))&&name=='Frail'||
+            (this.battle.relicManager.hasRelic(25,this.id)||this.battle.relicManager.hasRelic(398,this.id))&&name=='Vulnerable')&&
             value!=0
         ){
             let status=findList(name,this.status.name)
@@ -7097,8 +7095,8 @@ class combatant{
         if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[438]>0){
             this.battle.combatantManager.areaAbstract(0,[this.status.main[438],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
         }
-        if(this.battle.relicManager.hasRelic(253,this.id)){
-            this.battle.addCurrency(amount*3*this.battle.relicManager.active[253][this.id+1],this.id)
+        if(this.id<this.battle.players){
+            this.battle.relicManager.activate(20,[amount,this.id])
         }
     }
     tick(sub){
@@ -9165,6 +9163,7 @@ class combatant{
             case 'Billy Beatup':
                 switch(type){
                     case 1:
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1)
                         this.layer.line(
@@ -9178,6 +9177,7 @@ class combatant{
             case 'Lunar Shard': case 'Solar Shard':
                 switch(type){
                     case 1:
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(2)
                         this.layer.line(
@@ -9191,6 +9191,7 @@ class combatant{
             case 'Coffee Commander':
                 switch(type){
                     case 1:
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1.5)
                         this.layer.line(
@@ -9267,7 +9268,7 @@ class combatant{
                             this.graphics.arms[key].top.x*0.5+this.graphics.arms[key].middle.x*0.5-2*lcos(dir),
                             this.graphics.arms[key].top.y*0.5+this.graphics.arms[key].middle.y*0.5+2*lsin(dir)
                         )
-                        dir=dir
+                        dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.quad(
                             this.graphics.arms[key].middle.x*0.5+this.graphics.arms[key].bottom.x*0.5+2*lsin(dir),
                             this.graphics.arms[key].middle.y*0.5+this.graphics.arms[key].bottom.y*0.5+2*lcos(dir),
@@ -9318,6 +9319,7 @@ class combatant{
             case 'Billy Beatup':
                 switch(type){
                     case 1:
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1.5)
                         this.layer.line(
@@ -9402,6 +9404,7 @@ class combatant{
                         this.layer.pop()
                     break
                     case 1:
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1.5)
                         this.layer.line(
@@ -9435,6 +9438,7 @@ class combatant{
                         this.layer.pop()
                     break
                     case 1:
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1)
                         this.layer.line(
@@ -9491,6 +9495,7 @@ class combatant{
             case 'Boss1':
                 switch(type){
                     case 1:
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1.2)
                         this.layer.line(
@@ -9536,6 +9541,7 @@ class combatant{
                         this.layer.pop()
                     break
                     case 1:
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.noStroke()
                         this.layer.fill(this.color.diamond[0],this.color.diamond[1],this.color.diamond[2],this.fade*this.fades.diamond)
                         this.layer.quad(
@@ -9554,6 +9560,7 @@ class combatant{
             case 'Crusader':
                 switch(type){
                     case 1:
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.stroke(...this.color.band,this.fade*this.fades.band)
                         this.layer.strokeWeight(1)
                         this.layer.line(
@@ -9863,30 +9870,52 @@ class combatant{
                 this.layer.text(this.status.main[this.status.display[a]],this.status.position[this.status.display[a]],12)
             }
         }
-        if(this.infoAnim.balance>0){
+        if(this.name=='Sakura'&&!this.graphic&&this.team>0&&this.infoAnim.balance>0){
             this.layer.noStroke()
             for(let a=0,la=10;a<la;a++){
                 this.layer.fill(255,200*a/la,200*a/la,this.fade*this.infoAnim.balance)
                 if(a==0){
-                    this.layer.rect(-17+a*4,-8.5,2,6)
-                    this.layer.rect(-18+a*4,-8.5,4,6,2)
+                    this.layer.rect(-17+a*4,8.5,2,6)
+                    this.layer.rect(-18+a*4,8.5,4,6,2)
                 }else if(a==9){
-                    this.layer.rect(-19+a*4,-8.5,2,6)
-                    this.layer.rect(-18+a*4,-8.5,4,6,2)
+                    this.layer.rect(-19+a*4,8.5,2,6)
+                    this.layer.rect(-18+a*4,8.5,4,6,2)
                 }else{
-                    this.layer.rect(-18+a*4,-8.5,4,6)
+                    this.layer.rect(-18+a*4,8.5,4,6)
                 }
             }
             this.layer.stroke(0,this.fade*this.infoAnim.balance)
             this.layer.strokeWeight(1)
             this.layer.noFill()
-            this.layer.rect(0,-8.5,40,6,3)
+            this.layer.rect(0,8.5,40,6,3)
             this.layer.stroke(255,this.fade*this.infoAnim.balance)
-            this.layer.line(-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),-12,-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),-5)
+            this.layer.line(-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),12,-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),5)
             this.layer.fill(0,this.fade*this.infoAnim.balance)
             this.layer.noStroke()
             this.layer.textSize(5)
-            this.layer.text(this.balance,0,-8.5)
+            this.layer.text(this.balance,0,8.5)
+        }
+        if(this.name=='Donakho'&&!this.graphic&&this.team>0){
+            this.layer.fill(140,120,160,this.fade)
+            this.layer.stroke(120,100,140,this.fade)
+            this.layer.strokeWeight(2)
+            regPoly(this.layer,0,-12,8,7,7,0)
+            this.layer.noStroke()
+            this.layer.fill(50,40,60,this.fade)
+            this.layer.textSize(12)
+            this.layer.text(this.metal,0,-11.5)
+        }
+        if(this.name=='Edgar'&&!this.graphic&&this.team>0){
+            this.layer.noStroke()
+            this.layer.fill(60,75,90,this.fade)
+            this.layer.rect(-2,-12,12,12)
+            this.layer.arc(4,-12,12,12,-90,90)
+            this.layer.fill(80,100,120,this.fade)
+            this.layer.rect(-1,-12,10,8)
+            this.layer.arc(4,-12,8,8,-90,90)
+            this.layer.fill(20,25,30,this.fade)
+            this.layer.textSize(12)
+            this.layer.text(this.ammo,0,-12)
         }
         if(this.name=='Daiyousei'&&!this.graphic&&this.team>0){
             this.layer.noFill()
@@ -9901,6 +9930,26 @@ class combatant{
             this.layer.strokeWeight(1)
             this.layer.textSize(8)
             this.layer.text(this.vision,0,-9.25-this.infoAnim.balance*6)
+        }
+        if(this.name=='Shinmyoumaru'&&!this.graphic&&this.team>0){
+            this.layer.translate(0,-14)
+            this.layer.fill(255,100,150,this.fade)
+            this.layer.stroke(255,125,175,this.fade)
+            this.layer.strokeWeight(1.2)
+            this.layer.strokeJoin(ROUND)
+            regStarGear(this.layer,0,0,6,2,5.6,5.6,7.2,7.2,30)  
+            this.layer.strokeJoin(MITER)
+            this.layer.noStroke()
+            this.layer.fill(255,150,200,this.fade)
+            this.layer.ellipse(0,0,4.8)
+            for(let a=0,la=3;a<la;a++){
+                this.layer.quad(-1.2,-3.4,1.2,-3.4,0.4,-4.8,-0.4,-4.8)
+                this.layer.rotate(120)
+            }
+            this.layer.translate(0,14)
+            this.layer.fill(15,5,10,this.fade)
+            this.layer.textSize(12)
+            this.layer.text(this.wish,0,-14)
         }
     }
     displayInfo(scene){

@@ -74,7 +74,7 @@ class purchaseManager{
                                 let index=floor(random(0,list[group[a]].length))
                                 this.purchases.push(new purchase(this.layer,this.battle,0,95+a%6*130,130+floor(a/6)*170,1,
                                     [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?0.5:1))],
-                                    [list[group[a]][index],0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg||variants.colorshift?(types.card[list[group[a]][index]].list<0?0:types.card[list[group[a]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:this.battle.player[0],sale==a],
+                                    [list[group[a]][index],0,this.battle.standardColorize(list[group[a]][index]),sale==a],
                                     group[a]+1
                                 ))
                                 list[group[a]].splice(index,1)
@@ -102,13 +102,15 @@ class purchaseManager{
                         group=[0,0,bar,1,2]
                         cost=[[120,150],[200,250],[320,400]]
                         for(let a=0,la=group.length;a<la;a++){
-                            let index=floor(random(0,list[group[a]].length))
-                            this.purchases.push(new purchase(this.layer,this.battle,0,95+a*130,470,1,
-                                [round((this.battle.relicManager.hasRelic([269,300,301][group[a]],0)?0.5:1)*random(cost[group[a]][0],cost[group[a]][1]))],
-                                [list[group[a]][index],0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg||variants.colorshift?(types.card[list[group[a]][index]].list<0?0:types.card[list[group[a]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:0],
-                                group[a]+4
-                            ))
-                            list[group[a]].splice(index,1)
+                            if(list[group[a]].length>0){
+                                let index=floor(random(0,list[group[a]].length))
+                                this.purchases.push(new purchase(this.layer,this.battle,0,95+a*130,470,1,
+                                    [round((this.battle.relicManager.hasRelic([269,300,301][group[a]],0)?0.5:1)*random(cost[group[a]][0],cost[group[a]][1]))],
+                                    [list[group[a]][index],0,this.battle.standardColorize(list[group[a]][index])],
+                                    group[a]+4
+                                ))
+                                list[group[a]].splice(index,1)
+                            }
                         }
                         this.purchases.push(new purchase(this.layer,this.battle,0,745,470,2,
                             [this.battle.relicManager.hasRelic(97,0)?100:200],
@@ -149,7 +151,7 @@ class purchaseManager{
                                 let index2=floor(random(0,valid.length))
                                 this.purchases.push(new purchase(this.layer,this.battle,0,450,210+a*240,4,
                                     [0],
-                                    [list[3][index],0,variants.junk?types.card[list[3][index]].list:variants.ultraprism||variants.mtg?(types.card[list[3][index]].list<0?0:types.card[list[3][index]].list>=types.color.card.length?0:types.card[list[3][index]].list):variants.prism?types.card[list[3][index]].list:this.battle.player[0],valid[index2]],
+                                    [list[3][index],0,this.battle.standardColorize(list[3][index])],
                                     19
                                 ))
                                 list[3].splice(index,1)
@@ -170,7 +172,7 @@ class purchaseManager{
                                     let price=round(random(cost[group[b]][0],cost[group[b]][1])*(sale==b?0.5:1))
                                     this.purchases.push(new purchase(this.layer,this.battle,a,450+(905-b%4*130)*(a*2-1),130+floor(b/4)*170,1,
                                         [this.battle.relicManager.hasRelic([216,267,268][group[b]],0)?0:price,group[b]==0&&this.battle.relicManager.hasRelic(216,1)?0:price],
-                                        [list[group[b]][index],0,variants.junk?types.card[list[group[b]][index]].list:variants.ultraprism||variants.mtg||variants.colorshift?(types.card[list[group[b]][index]].list<0?0:types.card[list[group[b]][index]].list>=types.color.card.length?0:types.card[list[group[b]][index]].list):variants.prism?types.card[list[group[b]][index]].list:this.battle.player[a],sale==b],
+                                        [list[group[b]][index],0,this.battle.standardColorize(list[group[b]][index]),sale==b],
                                         group[b]+1
                                     ))
                                     list[group[b]].splice(index,1)
@@ -202,7 +204,7 @@ class purchaseManager{
                             let price=random(cost[group[a]][0],cost[group[a]][1])
                             this.purchases.push(new purchase(this.layer,this.battle,-1,[65,195,705,835][a%4],130+floor(a/4)*170,1,
                                 [round((this.battle.relicManager.hasRelic([269,300,301][group[a]],0)?0.5:1)*price),round((this.battle.relicManager.hasRelic([269,300,301][group[a]],1)?0.5:1)*price)],
-                                [list[group[a]][index],0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg||variants.colorshift?(types.card[list[group[a]][index]].list<0?0:types.card[list[group[a]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:0],
+                                [list[group[a]][index],0,this.battle.standardColorize(list[group[a]][index])],
                                 group[a]+4
                             ))
                             list[group[a]].splice(index,1)
@@ -266,7 +268,7 @@ class purchaseManager{
                                     let index2=floor(random(0,valid.length))
                                     this.purchases.push(new purchase(this.layer,this.battle,a,270+a*360,210+b*240,4,
                                         [0,0],
-                                        [list[3][index],0,variants.junk?types.card[list[3][index]].list:variants.ultraprism||variants.mtg?(types.card[list[3][index]].list<0?0:types.card[list[3][index]].list>=types.color.card.length?0:types.card[list[3][index]].list):variants.prism?types.card[list[3][index]].list:this.battle.player[a],valid[index2]],
+                                        [list[3][index],0,this.battle.standardColorize(list[3][index])],
                                         19
                                     ))
                                     list[3].splice(index,1)
@@ -337,7 +339,7 @@ class purchaseManager{
                             let index2=floor(random(0,valid.length))
                             this.purchases.push(new purchase(this.layer,this.battle,0,450,210+a*240,4,
                                 [0],
-                                [list[3][index],0,variants.junk?types.card[list[3][index]].list:variants.ultraprism||variants.mtg?(types.card[list[3][index]].list<0?0:types.card[list[3][index]].list>=types.color.card.length?0:types.card[list[3][index]].list):variants.prism?types.card[list[3][index]].list:this.battle.player[0],valid[index2]],
+                                [list[3][index],0,this.battle.standardColorize(list[3][index])],
                                 19
                             ))
                             list[3].splice(index,1)
@@ -359,7 +361,7 @@ class purchaseManager{
                                 let index2=floor(random(0,valid.length))
                                 this.purchases.push(new purchase(this.layer,this.battle,a,270+a*360,210+b*240,4,
                                     [0,0],
-                                    [list[3][index],0,variants.junk?types.card[list[3][index]].list:variants.ultraprism||variants.mtg?(types.card[list[3][index]].list<0?0:types.card[list[3][index]].list>=types.color.card.length?0:types.card[list[3][index]].list):variants.prism?types.card[list[3][index]].list:this.battle.player[a],valid[index2]],
+                                    [list[3][index],0,this.battle.standardColorize(list[3][index])],
                                     19
                                 ))
                                 list[3].splice(index,1)

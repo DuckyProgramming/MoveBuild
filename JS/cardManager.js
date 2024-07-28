@@ -209,8 +209,19 @@ class cardManager{
                     this.listing.mtg[0][types.card[a].rarity].push(a)
                     this.listing.mtg[0][3].push(a)
                 }
-                if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list==0&&
-                    (types.card[a].levels[0].cost.length<=effectiveMana[0]+1&&this.battle.players==1||types.card[a].mtg.levels[0].spec.includes(11)||types.card[a].mtg.levels[0].spec.includes(21)||types.card[a].mtg.levels[0].spec.includes(35))
+                if(
+                    types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list==0||types.card[a].mtg.list==-1)&&
+                    types.card[a].mtg.color.length==1&&types.card[a].mtg.color[0]==0&&(
+                        (
+                            types.card[a].mtg.levels[0].spec.includes(11)||
+                            types.card[a].mtg.levels[0].spec.includes(21)||
+                            types.card[a].mtg.levels[0].spec.includes(35)
+                        )||
+                        !types.card[a].mtg.levels[0].spec.includes(11)&&
+                        !types.card[a].mtg.levels[0].spec.includes(21)&&
+                        !types.card[a].mtg.levels[0].spec.includes(35)&&
+                        mtgAutoCost(effectiveMana,types.card[a].mtg.levels[0].cost,0,[],false)!=-1
+                    )
                 ){
                     this.listing.mtg[1][types.card[a].rarity].push(a)
                     this.listing.mtg[1][3].push(a)
@@ -764,7 +775,8 @@ class cardManager{
     }
     subFatigue(name,bypass){
         this.interval++
-        if(this.numberAbstract(3,[43])<10||this.interval%2==0&&false||bypass){
+        let override=true
+        if(this.numberAbstract(3,[43])<10||this.interval%2==0||bypass||override){
             if(this.battle.relicManager.hasRelic(286,this.player)){
                 this.reserve.add(findName(name,types.card),0,game.playerNumber+1)
                 this.reserve.cards[this.reserve.cards.length-1].spec.push(43)
@@ -783,14 +795,12 @@ class cardManager{
                 this.drop.cards[this.drop.cards.length-1].attack=-35
             }
             if(this.battle.relicManager.hasRelic(142,this.player)){
-                this.discard.cards[this.discard.cards.length-1].cost++
-                this.discard.cards[this.discard.cards.length-1].base.cost++
-                this.drop.cards[this.drop.cards.length-1].cost++
+                this.discard.cards[this.discard.cards.length-1].costUp(2,[1])
+                this.drop.cards[this.drop.cards.length-1].costUp(2,[1])
             }
-            if(this.battle.relicManager.hasRelic(167,this.player)&&floor(random(0,4))==0){
-                this.discard.cards[this.discard.cards.length-1].cost--
-                this.discard.cards[this.discard.cards.length-1].base.cost--
-                this.drop.cards[this.drop.cards.length-1].cost--
+            if(this.battle.relicManager.hasRelic(167,this.player)&&floor(random(0,4))<this.battle.relicManager.active[167][this.player+1]){
+                this.discard.cards[this.discard.cards.length-1].costDown(2,[1])
+                this.drop.cards[this.drop.cards.length-1].costDown(2,[1])
             }
         }
     }
@@ -823,7 +833,7 @@ class cardManager{
                 this.discard.cards[this.discard.cards.length-1].base.cost++
                 this.drop.cards[this.drop.cards.length-1].cost++
             }
-            if(this.battle.relicManager.hasRelic(167,this.player)&&floor(random(0,4))==0){
+            if(this.battle.relicManager.hasRelic(167,this.player)&&floor(random(0,4))<this.battle.relicManager.active[167][this.player+1]){
                 this.discard.cards[this.discard.cards.length-1].cost--
                 this.discard.cards[this.discard.cards.length-1].base.cost--
                 this.drop.cards[this.drop.cards.length-1].cost--
@@ -856,20 +866,32 @@ class cardManager{
         return this.reserve.numberAbstract(type,args)+this.hand.numberAbstract(type,args)+this.discard.numberAbstract(type,args)
     }
     transformCard(base){
-        if(base.list>=0&&base.rarity>=0){
-            let index=floor(random(0,this.listing.card[base.list][3].length))
-            while(this.listing.card[base.list][3][index]==base.type){
-                index=floor(random(0,this.listing.card[base.list][3].length))
+        if(variants.mtg){
+            if(base.list>=-1&&base.rarity>=0||base.basic){
+                let index=floor(random(0,this.listing.mtg[0][3].length))
+                while(this.listing.mtg[0][3][index]==base.type){
+                    index=floor(random(0,this.listing.mtg[0][3].length))
+                }
+                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.mtg[0][3][index],base.level,types.card[this.listing.mtg[0][3][index]].mtg.color,base.id)
+            }else{
+                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,[game.playerNumber+1],base.id)
             }
-            return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][index],base.level,base.color,base.id)
-        }else if(base.basic){
-            let index=floor(random(0,this.listing.card[base.color][3].length))
-            while(this.listing.card[base.color][3][index]==base.type){
-                index=floor(random(0,this.listing.card[base.color][3].length))
-            }
-            return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.color][3][index],base.level,base.color,base.id)
         }else{
-            return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,game.playerNumber+1,base.id)
+            if(base.list>=0&&base.rarity>=0){
+                let index=floor(random(0,this.listing.card[base.list][3].length))
+                while(this.listing.card[base.list][3][index]==base.type){
+                    index=floor(random(0,this.listing.card[base.list][3].length))
+                }
+                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][index],base.level,base.color,base.id)
+            }else if(base.basic){
+                let index=floor(random(0,this.listing.card[base.color][3].length))
+                while(this.listing.card[base.color][3][index]==base.type){
+                    index=floor(random(0,this.listing.card[base.color][3].length))
+                }
+                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.color][3][index],base.level,base.color,base.id)
+            }else{
+                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,game.playerNumber+1,base.id)
+            }
         }
     }
     transformCardPrism(base){

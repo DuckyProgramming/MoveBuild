@@ -66,7 +66,7 @@ class battle{
 
         this.encounter={class:0,world:0,name:'',custom:[0,0]}
         this.currency={money:[],ss:[]}
-        this.energy={main:[],gen:[],base:[],temp:[],lastSpend:[],crystal:[],crystalTotal:[]}
+        this.energy={main:[],gen:[],base:[],originalBase:[],temp:[],lastSpend:[],crystal:[],crystalTotal:[]}
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],barrier:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
         this.lastEncounter=types.encounter[0]
         
@@ -127,7 +127,8 @@ class battle{
 
             this.energy.main.push(variants.mtg?[]:0)
             this.energy.gen.push(variants.mtg?[]:0)
-            this.energy.base.push(variants.mtg?this.menu.mtg.manaBase[a][this.menu.mtg.manaChoice[a]]:game.startEnergy)
+            this.energy.base.push(variants.mtg?copyArray(this.menu.mtg.manaBase[a][this.menu.mtg.manaChoice[a]]):game.startEnergy)
+            this.energy.originalBase.push(variants.mtg?copyArray(this.menu.mtg.manaBase[a][this.menu.mtg.manaChoice[a]]):game.startEnergy)
             this.energy.temp.push(0)
             this.energy.lastSpend.push(variants.mtg?[]:0)
             if(variants.mtg){
@@ -637,21 +638,21 @@ class battle{
             this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
-    dropDraw(player,type,level,color){
+    dropAbstract(player,type,level,color,variant,args){
         if(player<this.cardManagers.length){
-            if(this.cardManagers[player].reserve.add(type,level,color)){
-                if(this.modded(70)&&!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.includes(5)){
-                    this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.push(5)
+            if(this.cardManagers[player].discard.addAbstract(type,level,color,0,variant,args)){
+                if(this.modded(70)&&!this.cardManagers[player].discard.cards[this.cardManagers[player].discard.cards.length-1].spec.includes(5)){
+                    this.cardManagers[player].discard.cards[this.cardManagers[player].discard.cards.length-1].spec.push(5)
                 }
             }
             this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
-    dropHand(player,type,level,color){
+    dropDraw(player,type,level,color){
         if(player<this.cardManagers.length){
-            if(this.cardManagers[player].hand.add(type,level,color)){
-                if(this.modded(70)&&!this.cardManagers[player].hand.cards[this.cardManagers[player].hand.cards.length-1].spec.includes(5)){
-                    this.cardManagers[player].hand.cards[this.cardManagers[player].hand.cards.length-1].spec.push(5)
+            if(this.cardManagers[player].reserve.add(type,level,color)){
+                if(this.modded(70)&&!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.includes(5)){
+                    this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.push(5)
                 }
             }
             this.cardManagers[player].drop.addDrop(type,level,color)
@@ -667,11 +668,21 @@ class battle{
             this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
-    dropDrawShuffleEffect(player,type,level,color,index,effect){
+    dropDrawShuffleAbstract(player,type,level,color,variant,args){
         if(player<this.cardManagers.length){
-            if(this.cardManagers[player].reserve.addAbstract(type,level,color,0,[6,5],[index,effect])){
+            if(this.cardManagers[player].reserve.addAbstract(type,level,color,0,variant.concat(5),args)){
                 if(this.modded(70)&&!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cardShuffledIndex].spec.includes(5)){
                     this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cardShuffledIndex].spec.push(5)
+                }
+            }
+            this.cardManagers[player].drop.addDrop(type,level,color)
+        }
+    }
+    dropHand(player,type,level,color){
+        if(player<this.cardManagers.length){
+            if(this.cardManagers[player].hand.add(type,level,color)){
+                if(this.modded(70)&&!this.cardManagers[player].hand.cards[this.cardManagers[player].hand.cards.length-1].spec.includes(5)){
+                    this.cardManagers[player].hand.cards[this.cardManagers[player].hand.cards.length-1].spec.push(5)
                 }
             }
             this.cardManagers[player].drop.addDrop(type,level,color)
@@ -762,11 +773,28 @@ class battle{
     baselineEnergy(player,gen){
         let effectiveGen=variants.mtg?copyArray(gen):gen
         if(variants.mtg){
+            if(this.relicManager.hasRelic(424,player)){
+                for(let a=0,la=this.relicManager.active[424][player+1];a<la;a++){
+                    let index=-1
+                    for(let b=0,lb=this.energy.crystal[player].length;b<lb;b++){
+                        if(this.energy.crystal[player][b][0]==6){
+                            index=b
+                            b=lb
+                        }
+                    }
+                    if(index>=0){
+                        effectiveGen.splice(0,0,this.energy.crystal[player][index][0])
+                        this.energy.crystal[player].splice(index,1)
+                    }
+                }
+            }
             if(this.relicManager.hasRelic(363,player)){
                 for(let a=0,la=this.relicManager.active[363][player+1];a<la;a++){
-                    let index=floor(random(0,this.energy.crystal[player].length))
-                    effectiveGen.splice(0,0,this.energy.crystal[player][index][0])
-                    this.energy.crystal[player].splice(index,1)
+                    if(this.energy.crystal[player].length>0){
+                        let index=floor(random(0,this.energy.crystal[player].length))
+                        effectiveGen.splice(0,0,this.energy.crystal[player][index][0])
+                        this.energy.crystal[player].splice(index,1)
+                    }
                 }
             }
             this.resetEnergyCrystal(player)
@@ -891,6 +919,9 @@ class battle{
     getXBoost(player){
         let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
         return this.relicManager.active[121][player+1]*2+userCombatant.getStatus('X Cost Boost')
+    }
+    standardColorize(card){
+        return variants.mtg?(types.card[card].mtg!=undefined?copyArray(types.card[card].mtg.color):[0]):types.card[card].list
     }
     playCard(card,player,mode){
         let cardClass=card.spec.includes(12)?card.class[mode]:card.class
@@ -1047,7 +1078,7 @@ class battle{
                     userCombatant.statusEffect('Strength',1)
                 break
                 case 4:
-                    this.addEnergy(1,player)
+                    this.addSpecificEnergy(1,player,6)
                     if(this.relicManager.hasRelic(249,player)){
                         this.attackManager.editionCard(6)
                     }
@@ -1058,7 +1089,7 @@ class battle{
                 case 6:
                     this.attackManager.editionCard(6)
                     if(this.relicManager.hasRelic(249,player)){
-                        this.addEnergy(1,player)
+                        this.addSpecificEnergy(1,player,6)
                     }
                 break
                 case 7:
@@ -1183,7 +1214,7 @@ class battle{
             }
         }
         this.combatantManager.playCardFront(cardClass,card)
-        this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition,this.cardManagers[player].hand.turnPlayed,card.basic,card.list])
+        this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])
     }
     displayCurrency(){
         this.layer.stroke(0)
@@ -1411,9 +1442,32 @@ class battle{
                 this.energy.lastSpend[player].push(energyPay[a])
             }
         }
+        let boost=this.getXBoost(player)
+        this.attackManager.energy=this.energy.lastSpend[player].length+boost
+        for(let a=0,la=boost;a<la;a++){
+            this.energy.lastSpend[player].push(-1)
+        }
+        if(variants.mtg){
+            this.attackManager.spendCard(this.energy.lastSpend[player],this.cardManagers[player].hand.cardInUse,player)
+        }
     }
     mtgMark(cost,player,cards){
-        let energyPay=mtgAutoCost(this.energy.main[player],cost,1,[cards],true)
+        let costLeft=copyArray(cost)
+        if(cost.includes(-3)){
+            let effectiveEnergy=[0,0,0,0,0,0,0]
+            for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+                if(this.energy.crystal[player][a][4]){
+                    effectiveEnergy[this.energy.crystal[player][a][0]]++
+                }
+            }
+            let result=mtgAutoCost(effectiveEnergy,costLeft,2,[cards],true)
+            costLeft=result[1]
+        }else{
+            for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+                this.energy.crystal[player][a][4]=false
+            }
+        }
+        let energyPay=mtgAutoCost(this.energy.main[player],costLeft,1,[cards],true)
         let replace=[]
         for(let a=0,la=energyPay.length;a<la;a++){
             for(let b=0,lb=this.energy.crystal[player].length;b<lb;b++){
@@ -1431,11 +1485,6 @@ class battle{
             this.energy.crystal[player].splice(replace[a]-totalMoved,1)
             this.energy.crystal[player].push(temp)
             totalMoved++
-        }
-    }
-    mtgUnmark(player){
-        for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
-            this.energy.crystal[player][a][4]=false
         }
     }
     loseEnergyGen(amount,player){
@@ -1538,7 +1587,7 @@ class battle{
     getEnergyBase(player){
         return variants.mtg?this.energy.base[player].length:this.energy.base[player]
     }
-    energyBaseUp(player){
+    addEnergyBase(player){
         if(variants.mtg){
             this.overlayManager.overlays[64][player].active=true
             this.overlayManager.overlays[64][player].activate([])
@@ -1546,9 +1595,28 @@ class battle{
             this.energy.base[player]++
         }
     }
-    energyBaseDown(player){
+    loseEnergyBase(player){
         if(variants.mtg){
             this.energy.base[player].splice(this.energy.base[player].length-1,1)
+            this.cardManagers[player].mtgListing()
+        }else{
+            this.energy.base[player]--
+        }
+    }
+    addSpecificEnergyBase(player,type){
+        if(variants.mtg){
+            this.energy.base[player].push(type)
+        }else{
+            this.energy.base[player]++
+        }
+    }
+    loseSpecificEnergyBase(player,type){
+        if(variants.mtg){
+            if(this.energy.base[player].includes(type)){
+                this.energy.base[player].splice(this.energy.base[player].indexOf(type),1)
+            }else{
+                this.energy.base[player].splice(this.energy.base[player].length-1,1)
+            }
             this.cardManagers[player].mtgListing()
         }else{
             this.energy.base[player]--
@@ -1658,7 +1726,7 @@ class battle{
     }
     addCurrency(amount,player){
         if(player>=0&&player<this.players&&this.initialized){
-            let multi=this.relicManager.hasRelic(135,player)?0.5:1*this.relicManager.hasRelic(165,player)?1.25:1
+            let multi=(this.relicManager.hasRelic(135,player)?max(0,1-0.5*this.relicManager.active[135][player+1]):1)*(this.relicManager.hasRelic(165,player)?1+0.25*this.relicManager.active[165][player+1]:1)*(this.relicManager.hasRelic(415,player)?1+0.25*this.relicManager.active[415][player+1]:1)
             let bonus=this.relicManager.hasRelic(119,player)?20:0
             this.stats.earned[player]+=round((amount+bonus)*multi)
             if(this.cardManagers[player].deck.hasCard(findName('Social\nSecurity Card',types.card))){
@@ -3227,8 +3295,14 @@ class battle{
                 if(!this.result.defeat){
                     this.itemManager.onKey(stage.scene,key,code)
                     if(variants.mtg&&this.turn.main>=0&&this.turn.main<this.players){
+                        let positions=[]
                         for(let a=0,la=this.energy.crystal[this.turn.main].length;a<la;a++){
-                            if(key==inputs.above[a]){
+                            positions.push(this.energy.crystal[this.turn.main][a][1])
+                        }
+                        positions=sortNumbers(positions)
+                        for(let a=0,la=this.energy.crystal[this.turn.main].length;a<la;a++){
+                            let index=positions.length-1-positions.indexOf(this.energy.crystal[this.turn.main][a][1])
+                            if(key==inputs.above[index]){
                                 let temp=this.energy.crystal[this.turn.main][a]
                                 this.energy.crystal[this.turn.main][a][4]=!this.energy.crystal[this.turn.main][a][4]
                                 this.energy.crystal[this.turn.main].splice(a,1)

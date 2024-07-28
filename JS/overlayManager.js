@@ -17,7 +17,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[4,1,0])],//remove card, no return
                     [new overlay(this.layer,this.battle,0,2,[5])],//bring in discard card, no return
                     [new overlay(this.layer,this.battle,0,2,[6])],//bring in draw card, no return
-                    [new overlay(this.layer,this.battle,0,2,[7,0])],//transform card, no return
+                    [new overlay(this.layer,this.battle,0,2,[7,0,0])],//transform card, no return
                     [new overlay(this.layer,this.battle,0,3,[1])],//new card to hand,10
                     [new overlay(this.layer,this.battle,0,4,[])],//end stats
                     [new overlay(this.layer,this.battle,0,2,[8])],//duplicate card, no return
@@ -97,7 +97,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[63])],//bring in copy of draw card, no return
                     [new overlay(this.layer,this.battle,0,2,[64])],//foil edition, no return
                     [new overlay(this.layer,this.battle,0,2,[65])],//erratic edition, no return
-                    [new overlay(this.layer,this.battle,0,2,[66])],//transform basic card, no return
+                    [new overlay(this.layer,this.battle,0,2,[66,0])],//transform basic card, no return
                     [new overlay(this.layer,this.battle,0,2,[67,1,0])],//remove non-basic card, no return,90
                     [new overlay(this.layer,this.battle,0,2,[68])],//make card ethereal, no return
                     [new overlay(this.layer,this.battle,0,2,[69])],//make card exhaust, no return
@@ -107,7 +107,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[72])],//negative edition smush, no return
                     [new overlay(this.layer,this.battle,0,2,[73,0,0,0])],//scry, block on defense
                     [new overlay(this.layer,this.battle,0,2,[4,1,3])],//remove, edition transfer
-                    [new overlay(this.layer,this.battle,0,2,[7,1])],//transform card, no return
+                    [new overlay(this.layer,this.battle,0,2,[7,0,1])],//transform and upgrade card, no return
                     [new overlay(this.layer,this.battle,0,2,[74])],//bring in discard card as free, no return,100
                     [new overlay(this.layer,this.battle,0,2,[75,0])],//double cost and effect of attack, no return
                     [new overlay(this.layer,this.battle,0,2,[75,1])],//double cost and effect of defense, no return
@@ -121,12 +121,13 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[80,0])],//exhaust from first cards of draw, no return,110
                     [new overlay(this.layer,this.battle,0,17,[0,3])],//triple card choice
                     [new overlay(this.layer,this.battle,0,2,[81,1,0])],//remove curse, no return
-                    [new overlay(this.layer,this.battle,0,2,[82])],//transform curse, no return
+                    [new overlay(this.layer,this.battle,0,2,[82,0])],//transform curse, no return
                     [new overlay(this.layer,this.battle,0,16,[1])],//mtg any energy
                     [new overlay(this.layer,this.battle,0,8,[1,-1,1])],//new card to hand, all disbanded card
                     [new overlay(this.layer,this.battle,0,2,[83])],//make card replenish, no return
                     [new overlay(this.layer,this.battle,0,2,[84,0,[]])],//scry, drawabstract, no return
                     [new overlay(this.layer,this.battle,0,2,[85,0,0,0])],//scry, vulnerable target
+                    [new overlay(this.layer,this.battle,0,2,[7,1,0])],//transform number cards, no return
 
                 )
                 if(this.battle.players==2){

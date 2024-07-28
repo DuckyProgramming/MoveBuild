@@ -902,7 +902,7 @@ class eventManager{
                     break
                     case 70:
                         if(this.page==0&&a==0){
-                            this.battle.energyBaseDown(this.player)
+                            this.battle.loseEnergyBase(this.player)
                         }else if(this.page==1&&a==0){
                             this.battle.relicManager.addRelic(findInternal('2 Cost Down Per Turn',types.relic),this.player)
                         }
@@ -1492,7 +1492,7 @@ class eventManager{
                         }else if(this.page==4&&a==0){
                             this.harm(userCombatant,18)
                         }else if(this.page==5&&a==0){
-                            this.battle.relicManager.addRelic(findInternal('Click For Energy',types.relic),this.player)
+                            this.battle.relicManager.addRelic(findInternal(variants.mtg?'Click For Mana':'Click For Energy',types.relic),this.player)
                         }
                     break
                     case 131:

@@ -67,7 +67,7 @@ function setup(){
 
             /*for(let a=0,la=5;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(368+a,0)
+                quickRelic(430+a,0)
             }*/
 
             /*current.itemManager.addItemSlots(2,0)
