@@ -193,7 +193,7 @@ class overlay{
                 this.taken=0
                 this.setupArgs=args
                 let upKey=0
-                if(args[2]==7||args[2]==9||args[2]==10||args[2]==11||args[2]==17||args[2]==22||args[2]==27||args[2]==34||args[2]==33){
+                if(args[2]==7||args[2]==9||args[2]==10||args[2]==11||args[2]==17||args[2]==22||args[2]==27||args[2]==34||args[2]==33||args[2]==37){
                     this.options=args[3]
                 }else{
                     this.options=variants.unary?1:3
@@ -719,6 +719,12 @@ class overlay{
                     case 35:
                         for(let a=0,la=this.options;a<la;a++){
                             this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Spring-Colored\nPath','Lakeside\nPath','Ghostly\nPath'][a%3],types.card),0,0,-1))
+                            this.cards[a].upSize=true
+                        }
+                    break
+                    case 37:
+                        for(let a=0,la=this.options;a<la;a++){
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Pristine','Splash'][a%2],types.card),0,this.battle.standardColorize(findName(['Pristine','Splash'][a%2],types.card)),-1))
                             this.cards[a].upSize=true
                         }
                     break

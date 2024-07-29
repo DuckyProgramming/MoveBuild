@@ -6685,6 +6685,25 @@ class combatant{
                     this.subEvoke(this.orbs[0],this.orbDetail[0],target)
                 }
             break
+            case 9:
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    if(this.orbs[a]>=0){
+                        this.battle.addSpecificEnergy(args[0],this.id,6)
+                        this.battle.cardManagers[this.id].draw(args[1])
+                        this.orbs[a]=-1
+                    }
+                }
+            break
+            case 10:
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    if(this.orbs[a]>=0){
+                        this.battle.addSpecificEnergy(args[0],this.id,6)
+                        this.battle.cardManagers[this.id].draw(args[1])
+                        this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                        this.orbs[a]=-1
+                    }
+                }
+            break
         }
         this.checkAnyOrb()
     }
@@ -10592,12 +10611,12 @@ class combatant{
                 if(this.status.main[105]>0){
                     this.battle.addSpecificEnergy(1,this.id,6)
                 }else if(this.status.main[104]<=0){
-                    this.balance=0
+                    this.battle.cardManagers[this.id].hand.allEffect(94)
+                    if(this.battle.turn.main==this.id){
+                        this.battle.turn.endReady=true
+                    }
                 }
-                this.battle.cardManagers[this.id].hand.allEffect(94)
-                if(this.battle.turn.main==this.id){
-                    this.battle.turn.endReady=true
-                }
+                this.balance=0
             }else if(this.balance<0){
                 this.balance=0
             }

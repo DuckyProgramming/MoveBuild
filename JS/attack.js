@@ -180,7 +180,7 @@ class attack{
             case 3767: case 3770: case 3771: case 3778: case 3781: case 3782: case 3786: case 3787: case 3792: case 3809: case 3810: case 3811: case 3812: case 3813: case 3815: case 3821: case 3823: case 3824: case 3825: case 3826:
             case 3843: case 3844: case 3847: case 3848: case 3851: case 3853: case 3855: case 3857: case 3861: case 3863: case 3868: case 3870: case 3871: case 3876: case 3879: case 3881: case 3885: case 3886: case 3892: case 3893:
             case 3895: case 3901: case 3902: case 3904: case 3905: case 3906: case 3907: case 3912: case 3915: case 3917: case 3920: case 3921: case 3923: case 3924: case 3927: case 3928: case 3929: case 3933: case 3935: case 3940:
-            case 3941: case 3944: case 3945: case 3946: case 3948: case 3950: case 3951: case 3953: case 3982: case 3984: case 3985: case 3986: case 3988: case 3989: case 3990:
+            case 3941: case 3944: case 3945: case 3946: case 3948: case 3950: case 3951: case 3953: case 3982: case 3984: case 3985: case 3986: case 3988: case 3989: case 3990: case 3996: case 3999:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -222,7 +222,7 @@ class attack{
             case 3491: case 3493: case 3517: case 3613: case 3629: case 3630: case 3631: case 3641: case 3642: case 3659:
             case 3663: case 3681: case 3735: case 3743: case 3746: case 3780: case 3788: case 3789: case 3790: case 3795:
             case 3796: case 3797: case 3798: case 3799: case 3800: case 3801: case 3802: case 3803: case 3814: case 3884:
-            case 3930: case 3931: case 3943:
+            case 3930: case 3931: case 3943: case 4000:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -3997,13 +3997,18 @@ class attack{
                             this.targetCombatant.statusEffect('Lock On',this.effect[1])
                         }
                     break
+                    case 3999:
+                        if(this.relPos[0]==1){
+                            this.targetCombatant.statusEffect('Burn',this.effect[1])
+                        }
+                    break
 
                 }
                 //mark 1s
             break
             case 1:
                 switch(this.type){
-                    case 13: case 235: case 968: case 2289: case 2778: case 3278: case 3512:
+                    case 13: case 235: case 968: case 2289: case 2778: case 3278: case 3512: case 3998:
                         this.userCombatant.addBlock(this.effect[0]*this.energy)
                     break
                     case 141:
@@ -5228,7 +5233,7 @@ class attack{
                         this.userCombatant.statusEffect('Damage Half Block Convert',this.effect[1])
                     break
                     case 3512:
-                        this.userCombatant.statusEffect('Energy Next Turn',this.energy-1)
+                        this.userCombatant.statusEffect('Energy Next Turn',max(0,this.energy-1))
                     break
                     case 3531:
                         this.userCombatant.statusEffect('Extra Turn',1)
@@ -5393,6 +5398,13 @@ class attack{
                     break
                     case 3955:
                         this.userCombatant.statusEffect('(E) on Hit',this.effect[1])
+                    break
+                    case 3994:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([0,0,37,2])
+                    break
+                    case 3998:
+                        this.userCombatant.statusEffect('Energy Next Turn',max(0,this.energy-this.effect[1]))
                     break
 
                 }
@@ -6271,6 +6283,11 @@ class attack{
                     case 3931:
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userCombatant.holdOrb(3)
+                        }
+                    break
+                    case 4000:
+                        if(this.energy==5){
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
 
@@ -9835,6 +9852,9 @@ class attack{
                     break
                     case 3979: case 3980: case 3981:
                         this.userCombatant.statusEffect('(E) Next Turn',this.type-3977)
+                    break
+                    case 3997:
+                        this.userCombatant.statusEffect('Balance Energy',this.effect[0])
                     break
 
                 }
@@ -14202,10 +14222,10 @@ class attack{
                         }
                     break
                     case 531:
-                        this.userCombatant.evoke(2,this.targetCombatant.id,[this.effect[0]])
+                        this.userCombatant.evoke(2,this.userCombatant.id,[])
                     break
                     case 532:
-                        this.userCombatant.evoke(3,this.targetCombatant.id,[this.effect[0]])
+                        this.userCombatant.evoke(3,this.targetCombatant.id,[])
                     break
                     case 534:
                         this.targetCombatant.takeDamage(this.effect[0],this.player)
@@ -15706,6 +15726,12 @@ class attack{
                                 }
                             }
                         }
+                    break
+                    case 3995:
+                        this.userCombatant.evoke(9,this.userCombatant.id,[this.effect[0],this.effect[1]])
+                    break
+                    case 3996:
+                        this.userCombatant.evoke(10,this.targetCombatant.id,[this.effect[0],this.effect[1]])
                     break
 
                 }
