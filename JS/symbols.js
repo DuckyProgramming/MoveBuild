@@ -4859,7 +4859,7 @@ function displayMtgManaIcon(layer,x,y,type,direction,size,fade){
     layer.strokeWeight(2)
     switch(type){
         case -1:
-            layer.stroke(160,150,130,this.fade)
+            layer.stroke(160,150,130,fade)
             layer.quad(-5,0,0,-5,5,0,0,5)
         break
         case 0:
@@ -4877,8 +4877,11 @@ function displayMtgManaIcon(layer,x,y,type,direction,size,fade){
         case 2:
             layer.stroke(40,100,160,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.line(-2*sqrt(2),-2*sqrt(2),0,0-4*sqrt(2))
-            layer.line(+2*sqrt(2),-2*sqrt(2),0,0-4*sqrt(2))
+            layer.beginShape()
+            layer.vertex(-2*sqrt(2),-2*sqrt(2))
+            layer.vertex(0,-4*sqrt(2))
+            layer.vertex(2*sqrt(2),-2*sqrt(2))
+            layer.endShape()
         break
         case 3:
             layer.stroke(80,20,80,fade)
@@ -4908,20 +4911,29 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
     layer.rotate(direction)
     layer.scale(size)
     layer.strokeCap(SQUARE)
-    if(variant==0){
-        layer.noStroke()
-        if(args[1]>0){
-            layer.fill(100,255,255,args[1]*fade*0.5)
-            layer.arc(0,0,20,25,45,135)
-            layer.arc(0,0,20,25,55,125)
-            layer.arc(0,0,20,25,65,115)
-        }
-        if(args[2]>0){
-            layer.fill(100,255,255,args[2]*fade*0.5)
-            layer.arc(0,0,20,25,-135,-45)
-            layer.arc(0,0,20,25,-125,-55)
-            layer.arc(0,0,20,25,-115,-65)
-        }
+    switch(variant){
+        case 0:
+            layer.noStroke()
+            if(args[1]>0){
+                layer.fill(100,255,255,args[1]*fade*0.5)
+                layer.arc(0,0,20,25,45,135)
+                layer.arc(0,0,20,25,55,125)
+                layer.arc(0,0,20,25,65,115)
+            }
+            if(args[2]>0){
+                layer.fill(100,255,255,args[2]*fade*0.5)
+                layer.arc(0,0,20,25,-135,-45)
+                layer.arc(0,0,20,25,-125,-55)
+                layer.arc(0,0,20,25,-115,-65)
+            }
+        break
+        case 2:
+            layer.noStroke()
+            if(args[0]>0){
+                layer.fill(40,args[0]*fade)
+                layer.ellipse(0,0,23.6)
+            }
+        break
     }
     let fill=[0,0,0]
     let stroke=[0,0,0]
@@ -5009,8 +5021,8 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
     layer.strokeWeight(1.5)
     switch(type){
         case -2: case -3:
-            layer.fill(...fill,this.fade)
-            layer.stroke(...stroke,this.fade)
+            layer.fill(...fill,fade)
+            layer.stroke(...stroke,fade)
             switch(variant){
                 case 1:
                     layer.rect(-4.5,-4.5,9)
@@ -5022,14 +5034,14 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
                     layer.ellipse(0,0,20)
                 break
             }
-            layer.fill(0,this.fade)
+            layer.fill(0,fade)
             layer.noStroke()
             layer.textSize(15)
             layer.text(type==-3?'X':args[3],0,1)
         break
         case -1: case 0: case 1: case 2: case 3: case 4: case 5:
-            layer.fill(...fill,this.fade)
-            layer.stroke(...stroke,this.fade)
+            layer.fill(...fill,fade)
+            layer.stroke(...stroke,fade)
             switch(variant){
                 case 1:
                     layer.rect(-4.5,-4.5,9)
@@ -10115,6 +10127,11 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.fill(225,225,75,fade)
             regTriangle(layer,0,5,4,4,90)
         break
+        case 160:
+            layer.fill(125,fade)
+            layer.rect(-3.2,0,9.6,3.2)
+            layer.triangle(1.6,-4.8,1.6,4.8,8,0)
+        break
 
     }
     layer.pop()
@@ -10276,4 +10293,5 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 157-Triple Damage
 158-Astrology
 159-Transform
+160-Retain (Subpart)
 */

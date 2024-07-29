@@ -598,7 +598,7 @@ class relicManager{
                 this.battle.addSpecificEnergyBase(player,5)
                 this.battle.cardManagers[player].mtgListing()
             break
-            case 420: case 422: case 423: case 424:
+            case 420: case 422: case 423: case 424: case 431:
                 this.battle.addSpecificEnergyBase(player,6)
                 this.battle.cardManagers[player].mtgListing()
             break
@@ -997,7 +997,7 @@ class relicManager{
                 this.battle.loseSpecificEnergyBase(player,5)
                 this.battle.cardManagers[player].mtgListing()
             break
-            case 420: case 421: case 422: case 423: case 424:
+            case 420: case 421: case 422: case 423: case 424: case 431:
                 this.battle.loseSpecificEnergyBase(player,6)
                 this.battle.cardManagers[player].mtgListing()
             break
@@ -1554,19 +1554,15 @@ class relicManager{
                         }
                         if(this.active[365][args[1]+1]>0&&this.detail[365][args[1]]==1){
                             this.detail[365][args[1]]=0
-                            this.battle.addSpecificEnergy(this.active[365][args[1]+1],args[1],1)
-                            this.battle.addSpecificEnergy(this.active[365][args[1]+1],args[1],2)
-                            this.battle.addSpecificEnergy(this.active[365][args[1]+1],args[1],3)
-                            this.battle.addSpecificEnergy(this.active[365][args[1]+1],args[1],4)
-                            this.battle.addSpecificEnergy(this.active[365][args[1]+1],args[1],5)
+                            for(let a=0,la=5;a<la;a++){
+                                this.battle.addSpecificEnergy(this.active[365][args[1]+1],args[1],a+1)
+                            }
                         }
                         if(this.active[370][args[1]+1]>0&&this.detail[370][args[1]]==1){
                             this.detail[370][args[1]]=0
-                            this.battle.addSpecificEnergy(this.active[370][args[1]+1],args[1],1)
-                            this.battle.addSpecificEnergy(this.active[370][args[1]+1],args[1],2)
-                            this.battle.addSpecificEnergy(this.active[370][args[1]+1],args[1],3)
-                            this.battle.addSpecificEnergy(this.active[370][args[1]+1],args[1],4)
-                            this.battle.addSpecificEnergy(this.active[370][args[1]+1],args[1],5)
+                            for(let a=0,la=5;a<la;a++){
+                                this.battle.addSpecificEnergy(this.active[370][args[1]+1],args[1],a+1)
+                            }
                         }
                         if(this.active[380][args[1]+1]>0){
                             this.battle.addSpecificEnergy(this.active[380][a+1],args[1],6)
@@ -1823,7 +1819,7 @@ class relicManager{
                     }
                 }
             break
-            case 4://playing card[class,player,card,turnPlayed]
+            case 4://playing card [class,player,card,turnPlayed]
                 if(this.active[18][args[1]+1]>0){
                     this.detail[18][args[1]]++
                     if(this.detail[18][args[1]]%15==0){
@@ -1924,6 +1920,12 @@ class relicManager{
                 }
                 if(this.active[423][args[1]+1]>0&&args[2].getCost(0)>=5){
                     this.battle.addSpecificEnergy(this.active[423][args[1]+1],args[1],6)
+                }
+                if(this.active[430][args[1]+1]>0&&(variants.mtg&&args[2].cost.includes(-3)||!variants.mtg&&args[2].cost==-1)){
+                    this.battle.addSpecificEnergy(this.active[430][args[1]+1],args[1],6)
+                }
+                if(this.active[431][args[1]+1]>0&&(variants.mtg&&args[2].cost.includes(-3)||!variants.mtg&&args[2].cost==-1)){
+                    this.battle.addSpecificEnergy(this.active[431][args[1]+1],args[1],0)
                 }
                 switch(args[0]){
                     case 1:
@@ -2295,6 +2297,11 @@ class relicManager{
                                 args[2].push({type:2,value:[1]})
                             }
                         }
+                        if(this.active[432][args[0]+1]>0){
+                            for(let a=0,la=this.active[432][args[0]+1];a<la;a++){
+                                args[2].push({type:5,value:[1]})
+                            }
+                        }
                     break
                     case 2:
                         if(this.active[342][args[0]+1]>0){
@@ -2563,7 +2570,7 @@ class relicManager{
                 for(let a=0,la=this.relics.length;a<la;a++){
                     if(this.relics[a].player==args[0]&&this.relics[a].type!=0){
                         if(index>=args[1]*30&&index<args[1]*30+30){
-                            if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2-150+position%6*60,this.layer.height/2-120+floor(position/6)*60)<20&&this.active[this.relics[a].type][args[0]+1]>0){
+                            if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2-150+position%6*60,this.layer.height/2-120+floor(position/6)*60)<20&&this.active[this.relics[a].type][args[0]+1]>0&&!(variants.mtg&&this.relics[a].rarity==4)){
                                 this.battle.addCurrency(this.relics[a].value*(1+this.active[307][this.relics[a].player+1]*0.5),this.relics[a].player)
                                 this.loseRelic(this.relics[a].type,args[0])
                             }

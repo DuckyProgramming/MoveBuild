@@ -841,7 +841,7 @@ class overlay{
                 switch(this.args[0]){
                     case 0:
                         this.colors=[]
-                        let possible=[0,1,1,2,2,3,3,4,4,5,5,6]
+                        let possible=[0,1,1,2,2,3,3,4,4,5,5]
                         for(let a=0,la=3;a<la;a++){
                             let index=floor(random(0,possible.length))
                             let remove=possible[index]
@@ -857,6 +857,14 @@ class overlay{
                     break
                     case 1:
                         this.colors=[0,1,2,3,4,5]
+                    break
+                    case 2: case 3:
+                        this.colors=[]
+                        for(let a=0,la=this.battle.energy.base[this.player].length;a<la;a++){
+                            if(!this.colors.includes(this.battle.energy.base[this.player][a])&&this.battle.energy.base[this.player][a]!=0){
+                                this.colors.push(this.battle.energy.base[this.player][a])
+                            }
+                        }
                     break
                 }
             break
@@ -2003,20 +2011,25 @@ class overlay{
                 }
             break
             case 16:
+                let title=''
+                switch(this.args[0]){
+                    case 0:
+                        title='Select Base Mana to Add'
+                    break
+                    case 1:
+                        title='Select Mana to Add'
+                    break
+                    case 2: case 3:
+                        title='Select Base Mana to Remove'
+                    break
+                }
                 this.layer.fill(160,this.fade*0.8)
                 this.layer.rect(this.layer.width/2+225*(this.player*2-this.battle.players+1),this.layer.height/2,15+this.colors.length*55,70,10)
-                this.layer.rect(this.layer.width/2+225*(this.player*2-this.battle.players+1),this.layer.height/2-60,180,40,10)
+                this.layer.rect(this.layer.width/2+225*(this.player*2-this.battle.players+1),this.layer.height/2-60,title.length*9+60,40,10)
                 this.layer.rect(this.layer.width/2+225*(this.player*2-this.battle.players+1),this.layer.height/2+60,120,40,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(20)
-                switch(this.args[0]){
-                    case 0:
-                        this.layer.text('Select Base Mana',this.layer.width/2+225*(this.player*2-this.battle.players+1),this.layer.height/2-60)
-                    break
-                    case 1:
-                        this.layer.text('Select Mana',this.layer.width/2+225*(this.player*2-this.battle.players+1),this.layer.height/2-60)
-                    break
-                }
+                this.layer.text(title,this.layer.width/2+225*(this.player*2-this.battle.players+1),this.layer.height/2-60)
                 this.layer.text('Skip',this.layer.width/2+225*(this.player*2-this.battle.players+1),this.layer.height/2+60)
                 for(let a=0,la=this.colors.length;a<la;a++){
                     displayMtgManaSymbol(this.layer,this.layer.width/2+27.5-la*27.5+a*55+225*(this.player*2-this.battle.players+1),this.layer.height/2,this.colors[a],0,this.fade*2,1)
@@ -3174,11 +3187,22 @@ class overlay{
                         if(dist(this.layer.width/2+27.5-la*27.5+a*55+225*(this.player*2-this.battle.players+1),this.layer.height/2,inputs.rel.x,inputs.rel.y)<40){
                             switch(this.args[0]){
                                 case 0:
-                                    this.battle.energy.base[this.player].push(this.colors[a])
+                                    this.battle.addSpecificEnergyBase(this.player,this.colors[a])
                                     this.battle.cardManagers[this.player].mtgListing()
                                 break
                                 case 1:
                                     this.battle.addSpecificEnergy(this.setupArgs[0],this.player,this.colors[a])
+                                break
+                                case 2:
+                                    this.battle.loseSpecificEnergyBase(this.player,this.colors[a])
+                                    this.battle.addSpecificEnergyBase(this.player,0)
+                                    this.battle.addSpecificEnergyBase(this.player,0)
+                                    this.battle.cardManagers[this.player].mtgListing()
+                                break
+                                case 3:
+                                    this.battle.loseSpecificEnergyBase(this.player,this.colors[a])
+                                    this.battle.overlayManager.overlays[64][this.player].active=true
+                                    this.battle.overlayManager.overlays[64][this.player].activate()
                                 break
                             }
                             this.active=false
@@ -4176,6 +4200,17 @@ class overlay{
                                 break
                                 case 1:
                                     this.battle.addSpecificEnergy(this.setupArgs[0],this.player,this.colors[a])
+                                break
+                                case 2:
+                                    this.battle.loseSpecificEnergyBase(this.player,this.colors[a])
+                                    this.battle.addSpecificEnergyBase(this.player,0)
+                                    this.battle.addSpecificEnergyBase(this.player,0)
+                                    this.battle.cardManagers[this.player].mtgListing()
+                                break
+                                case 3:
+                                    this.battle.loseSpecificEnergyBase(this.player,this.colors[a])
+                                    this.battle.overlayManager.overlays[64][this.player].active=true
+                                    this.battle.overlayManager.overlays[64][this.player].activate()
                                 break
                             }
                             this.active=false

@@ -180,6 +180,12 @@ class eventManager{
                     }
                 }
             break
+            case 70:
+                if(variants.mtg){
+                    this.pages[0].optionDesc[0]='Replace a Base Mana With 2 Neutral Mana'
+                    this.pages[1].optionDesc[0]=''
+                }
+            break
             case 85:
                 let possible=[]
                 for(let a=1,la=game.playerNumber+1;a<la;a++){
@@ -903,7 +909,7 @@ class eventManager{
                     case 70:
                         if(this.page==0&&a==0){
                             this.battle.loseEnergyBase(this.player)
-                        }else if(this.page==1&&a==0){
+                        }else if(this.page==1&&a==0&&!variants.mtg){
                             this.battle.relicManager.addRelic(findInternal('2 Cost Down Per Turn',types.relic),this.player)
                         }
                     break

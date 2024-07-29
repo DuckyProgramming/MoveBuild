@@ -4675,6 +4675,8 @@ class card{
             case 3992: string+=`Gain (E) at the\nStart of Your Turn\nGain (E) (E)`; break
             case 3993: string+=`Gain (E) at the\nStart of Your Turn\nGain (E) (E) (N)`; break
 
+            case 3994: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd a Pristine or\na Splash to Hand`; break
+
 
 
 

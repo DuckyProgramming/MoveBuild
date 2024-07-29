@@ -128,6 +128,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[84,0,[]])],//scry, drawabstract, no return
                     [new overlay(this.layer,this.battle,0,2,[85,0,0,0])],//scry, vulnerable target
                     [new overlay(this.layer,this.battle,0,2,[7,1,0])],//transform number cards, no return
+                    [new overlay(this.layer,this.battle,0,16,[2])],//mtg mana removal choice,120
+                    [new overlay(this.layer,this.battle,0,16,[3])],//mtg mana swap
 
                 )
                 if(this.battle.players==2){

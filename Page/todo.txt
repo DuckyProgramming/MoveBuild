@@ -35,19 +35,6 @@ default:
 
 
 
-
-change items
-energized jade event gotta be changed
-
-
-
-
-
-
-
-
-
-
 LISTING GROUP 45
 
 
@@ -309,6 +296,24 @@ give and get - gain 4 temp strength and 4 temp dex
 
 astrology sphere
 and new astrology animation
+
+
+
+shadow ball - 28 damage, gain 1 energy per dark orb you have
+
+harder - gain 2 armor, add better to draw pile
+
+better - upgrade a card, add faster to draw pile
+
+faster - move 2 tiles, add stronger to draw pile
+
+stronger - gain 1 strength
+
+apply 99 lock on
+
+
+
+[error - remove all your statuses, []]
 
 
 

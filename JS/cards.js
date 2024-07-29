@@ -20824,13 +20824,6 @@ types.card=[
             {effect:[30,8,8],attack:2155,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
-        name:'Sea of\nTranquility',rarity:0,list:0,
-        levels:[
-            {effect:[16],attack:3086,cost:2,target:[0],spec:[],class:2},
-            {effect:[24],attack:3086,cost:2,target:[0],spec:[],class:2},
-            {effect:[30],attack:3086,cost:2,target:[0],spec:[],class:2},
-        ],
-    },{
         name:'Asterism',rarity:0,list:0,
         levels:[
             {effect:[18],attack:3093,cost:2,target:[5],spec:[0,1],class:1},
@@ -23424,6 +23417,20 @@ types.card=[
             {effect:[14],attack:1313,cost:2,target:[2,1,3],spec:[0],class:1},
             {effect:[18],attack:1313,cost:2,target:[2,1,3],spec:[0],class:1},
         ],
+    },{
+        name:'Sea of\nTranquility',rarity:0,list:0,
+        levels:[
+            {effect:[16],attack:3086,cost:2,target:[0],spec:[],class:2},
+            {effect:[24],attack:3086,cost:2,target:[0],spec:[],class:2},
+            {effect:[30],attack:3086,cost:2,target:[0],spec:[],class:2},
+        ],mtg:{
+            rarity:0,list:-1,color:[0],
+            levels:[
+                {effect:[18],attack:3086,cost:[0,-1,-1],target:[0],spec:[],class:2},
+                {effect:[25],attack:3994,cost:[0,-1,-1],target:[0],spec:[],class:2},
+                {effect:[32],attack:3994,cost:[0,-1,-1],target:[0],spec:[],class:2},
+            ],
+        },
     },
 
     //mark q

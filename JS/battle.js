@@ -732,8 +732,10 @@ class battle{
             combatant.status.main[findList('Extra Drawless Turn',combatant.status.name)]--
             let lastEnergy=this.getEnergy(this.turn.main)
             combatant.extraTurn()
-            this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
-            this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
+            this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main],combatant)
+            if(!variants.mtg){
+                this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
+            }
             this.energy.temp[this.turn.main]=0
             noDraw=true
             extra=true
@@ -741,8 +743,10 @@ class battle{
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
             let lastEnergy=this.getEnergy(this.turn.main)
             combatant.extraTurn()
-            this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
-            this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
+            this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main],combatant)
+            if(!variants.mtg){
+                this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
+            }
             this.energy.temp[this.turn.main]=0
             extra=true
         }else{
@@ -770,30 +774,40 @@ class battle{
         }
         this.updateTargetting()
     }
-    baselineEnergy(player,gen){
+    baselineEnergy(player,gen,combatant){
         let effectiveGen=variants.mtg?copyArray(gen):gen
         if(variants.mtg){
-            if(this.relicManager.hasRelic(424,player)){
-                for(let a=0,la=this.relicManager.active[424][player+1];a<la;a++){
-                    let index=-1
-                    for(let b=0,lb=this.energy.crystal[player].length;b<lb;b++){
-                        if(this.energy.crystal[player][b][0]==6){
-                            index=b
-                            b=lb
+            if(combatant.retainAllEnergy()){
+                for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+                    effectiveGen.splice(0,0,this.energy.crystal[player][la-1-a][0])
+                    this.energy.crystal[player].splice(la-1-a,1)
+                    a--
+                    la--
+                }
+                print(effectiveGen)
+            }else{
+                if(this.relicManager.hasRelic(424,player)){
+                    for(let a=0,la=this.relicManager.active[424][player+1];a<la;a++){
+                        let index=-1
+                        for(let b=0,lb=this.energy.crystal[player].length;b<lb;b++){
+                            if(this.energy.crystal[player][b][0]==6){
+                                index=b
+                                b=lb
+                            }
+                        }
+                        if(index>=0){
+                            effectiveGen.splice(0,0,this.energy.crystal[player][index][0])
+                            this.energy.crystal[player].splice(index,1)
                         }
                     }
-                    if(index>=0){
-                        effectiveGen.splice(0,0,this.energy.crystal[player][index][0])
-                        this.energy.crystal[player].splice(index,1)
-                    }
                 }
-            }
-            if(this.relicManager.hasRelic(363,player)){
-                for(let a=0,la=this.relicManager.active[363][player+1];a<la;a++){
-                    if(this.energy.crystal[player].length>0){
-                        let index=floor(random(0,this.energy.crystal[player].length))
-                        effectiveGen.splice(0,0,this.energy.crystal[player][index][0])
-                        this.energy.crystal[player].splice(index,1)
+                if(this.relicManager.hasRelic(363,player)){
+                    for(let a=0,la=this.relicManager.active[363][player+1];a<la;a++){
+                        if(this.energy.crystal[player].length>0){
+                            let index=floor(random(0,this.energy.crystal[player].length))
+                            effectiveGen.splice(0,0,this.energy.crystal[player][index][0])
+                            this.energy.crystal[player].splice(index,1)
+                        }
                     }
                 }
             }
@@ -889,8 +903,10 @@ class battle{
         let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
         for(let a=0,la=this.energy.gen.length;a<la;a++){
             let lastEnergy=this.getEnergy(this.turn.main)
-            this.baselineEnergy(a,this.energy.gen[a])
-            this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
+            this.baselineEnergy(a,this.energy.gen[a],combatant)
+            if(!variants.mtg){
+                this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
+            }
             this.energy.temp[a]=0
         }
         this.combatantManager.setupCombatants()
@@ -1597,8 +1613,8 @@ class battle{
     }
     loseEnergyBase(player){
         if(variants.mtg){
-            this.energy.base[player].splice(this.energy.base[player].length-1,1)
-            this.cardManagers[player].mtgListing()
+            this.overlayManager.overlays[120][player].active=true
+            this.overlayManager.overlays[120][player].activate([])
         }else{
             this.energy.base[player]--
         }
@@ -1613,7 +1629,12 @@ class battle{
     loseSpecificEnergyBase(player,type){
         if(variants.mtg){
             if(this.energy.base[player].includes(type)){
-                this.energy.base[player].splice(this.energy.base[player].indexOf(type),1)
+                for(let a=0,la=this.energy.base[player].length;a<la;a++){
+                    if(this.energy.base[player][la-1-a]==type){
+                        this.energy.base[player].splice(la-1-a,1)
+                        a=la
+                    }
+                }
             }else{
                 this.energy.base[player].splice(this.energy.base[player].length-1,1)
             }

@@ -54,7 +54,7 @@ function setup(){
 
             /*transition.trigger=true
             transition.scene='event'
-            current.setupSpecificEvent(136)*/
+            current.setupSpecificEvent(70)*/
 
             /*player(0).size=3
             player(0).goal.anim.direction=-30
@@ -65,14 +65,14 @@ function setup(){
                 current.modManager.addMod(186+a)
             }*/
 
-            /*for(let a=0,la=5;a<la;a++){
+            /*for(let a=0,la=1;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(430+a,0)
+                quickRelic(433+a,0)
             }*/
 
-            /*current.itemManager.addItemSlots(2,0)
-            for(let a=0,la=5;a<la;a++){
-                current.itemManager.addItem(98+a,0)
+            /*current.itemManager.addItemSlots(7,0)
+            for(let a=0,la=2;a<la;a++){
+                current.itemManager.addItem(129+a,0)
             }*/
 
             //stage.scene='tier'

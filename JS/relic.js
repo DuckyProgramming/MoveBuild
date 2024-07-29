@@ -3162,13 +3162,34 @@ class relic{
                     displaySymbol(this.layer,9,0,8,0,1,this.fade)
                     displaySymbol(this.layer,9,0,58,1,this.fade)
                 break
+                case 'X Cost Energy':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,9,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('X',-8,0)
+                    this.layer.text('1',9,0)
+                break
+                case 'X Cost Mana':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displayMtgManaSymbol(this.layer,9,0,-1,0,0.8,this.fade,-1,[])
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('X',-8,0)
+                    this.layer.text('1',9,0)
+                break
+                case 'Elite Upgrade':
+                    displaySymbol(this.layer,-9,0,34,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,7,0,0.5,this.fade)
+                break
 
                 //mark p
             }
             if(value){
                 this.layer.fill(230,230,210,this.fade)
                 this.layer.textSize(12)
-                this.layer.text(this.value,0,29)
+                this.layer.text(variants.mtg&&this.rarity==4?'X':this.value,0,29)
             }
             if(active>1){
                 this.layer.fill(0,this.fade)

@@ -5955,7 +5955,7 @@ class attack{
                     break
                     case 2600:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.player)
                         }
                     break
                     case 2602:
@@ -13551,12 +13551,12 @@ class attack{
                     break
                     case 2599:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.player)
                         }
                     break
                     case 2601:
                         for(let a=0,la=this.battle.itemManager.items[this.player].length;a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.player)
                         }
                     break
                     case 2645:
@@ -13597,7 +13597,7 @@ class attack{
                     break
                     case 2843:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.player)
                         }
                         this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
                     break
@@ -13625,7 +13625,7 @@ class attack{
                     case 2861:
                         this.userCombatant.statusEffect('Double Damage',this.effect[0])
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.player)
                         }
                     break
                     case 2871:
@@ -16045,7 +16045,7 @@ class attack{
                         this.userCombatant.statusEffect('Item Use Energy',this.effect[0])
                     break
                     case 2851:
-                        this.battle.itemManager.activateItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                        this.battle.itemManager.activateItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.player)
                     break
                     case 2852:
                         this.userCombatant.statusEffect('Item Use Draw',this.effect[0])

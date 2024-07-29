@@ -17,7 +17,11 @@ class itemManager{
     }
     initialListing(){
         for(let a=0,la=types.item.length;a<la;a++){
-            if(types.item[a].rarity>=0&&(types.item[a].list==0||this.battle.player.includes(types.item[a].list))){
+            if(
+                types.item[a].rarity>=0&&
+                (types.item[a].list==0||this.battle.player.includes(types.item[a].list))&&
+                (types.item[a].mtg==0||types.item[a].mtg==1&&!variants.mtg||types.item[a].mtg==2&&variants.mtg)
+            ){
                 this.listing.item[types.item[a].rarity].push(a)
             }
         }
@@ -367,12 +371,12 @@ class itemManager{
                 }
             break
             case 58:
-                this.battle.addSpecificEnergy(3*effectiveness,player,6)
+                this.battle.addEnergy(3*effectiveness,player)
                 this.battle.cardManagers[player].draw(5*effectiveness)
                 userCombatant.loseHealth(3*effectiveness)
             break
             case 59:
-                this.battle.addSpecificEnergy(5*effectiveness,player,6)
+                this.battle.addEnergy(5*effectiveness,player)
                 userCombatant.statusEffect('Retain Energy',5*effectiveness)
             break
             case 60:
@@ -531,6 +535,56 @@ class itemManager{
             case 101:
                 this.battle.cardManagers[player].hand.callInput(6,[3645,[25*effectiveness],1,[2,1,3]])
             break
+            case 102:
+                this.battle.cardManagers[player].draw(5*effectiveness-this.battle.cardManagers[player].hand.cards.length)
+            break
+            case 103:
+                this.battle.cardManagers[player].drawAbstract(5*effectiveness,4,0,[0])
+            break
+            case 104:
+                this.battle.cardManagers[player].drawAbstract(5*effectiveness,4,0,[1])
+            break
+            case 105:
+                for(let a=0,la=5;a<la;a++){
+                    this.battle.addSpecificEnergy(effectiveness,player,a+1)
+                }
+            break
+            case 106:
+                this.battle.addSpecificEnergy(3*effectiveness,player,6)
+                this.battle.cardManagers[player].draw(5*effectiveness)
+                userCombatant.loseHealth(3*effectiveness)
+            break
+            case 107:
+                this.battle.addSpecificEnergy(5*effectiveness,player,6)
+                userCombatant.statusEffect('Retain Energy',5*effectiveness)
+            break
+            case 108:
+                this.battle.overlayManager.overlays[121][player].active=true
+                this.battle.overlayManager.overlays[121][player].activate()
+            break
+            case 109:
+                this.battle.addSpecificEnergyGen(1,player,6)
+            break
+            case 110:
+                this.battle.addSpecificEnergy(2*effectiveness,player,5)
+                this.battle.cardManagers[player].draw(this.battle.cardManagers[player].hand.allEffectArgs(32,[1])*effectiveness)
+            break
+            case 111:
+                this.battle.addSpecificEnergy(2*effectiveness,player,4)
+                this.battle.cardManagers[player].draw(this.battle.cardManagers[player].hand.allEffectArgs(32,[2])*effectiveness)
+            break
+            case 112:
+                this.battle.addSpecificEnergy(2*effectiveness,player,2)
+                this.battle.cardManagers[player].draw(this.battle.cardManagers[player].hand.allEffectArgs(32,[3])*effectiveness)
+            break
+            case 113:
+                this.battle.addSpecificEnergy(2*effectiveness,player,3)
+                this.battle.cardManagers[player].draw(this.battle.cardManagers[player].hand.allEffectArgs(32,[4])*effectiveness)
+            break
+            case 114:
+                this.battle.addSpecificEnergy(2*effectiveness,player,1)
+                this.battle.cardManagers[player].draw(this.battle.cardManagers[player].hand.allEffectArgs(32,[11])*effectiveness)
+            break
 
             //mark p
 
@@ -581,7 +635,14 @@ class itemManager{
                 this.battle.overlayManager.overlays[3][player].activate([0,3,20,3])
             break
             case 1014:
-                this.battle.addSpecificEnergy(effectiveness,3*player,6)
+                this.battle.addSpecificEnergy(3*effectiveness,player,6)
+                this.battle.cardManagers[player].draw(3*effectiveness,1)
+            break
+            case 1015:
+                this.battle.addSpecificEnergy(3*effectiveness,player,6)
+            break
+            case 1016:
+                this.battle.addSpecificEnergy(4*effectiveness,player,6)
                 this.battle.cardManagers[player].draw(3*effectiveness,1)
             break
         }
