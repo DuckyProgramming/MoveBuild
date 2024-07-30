@@ -41,31 +41,23 @@ LISTING GROUP 45
 
 3 ally cards
 
-1 technical ally card
+rincoln lobster planeswalker
+
+
+
+figure out what the hell is going on with the music gimmicks
 
 
 
 [aluminum alloy]
 
-[pinpoint]
-
 [more evokes]
-
-[more evokes]
-
-cheap shot - evoke a basic orb instantly
-
-
 
 [why is onsen reimu a thing]
-
-[sky veil - variant of raiment]
 
 [second wind]
 
 [mallet's love]
-
-[skypunch]
 
 
 
@@ -73,39 +65,27 @@ cheap shot - evoke a basic orb instantly
 
 [miracle of simplicity - double the effects of all basic cards]
 
-[sunny's spellcard]
-
 [pincushion]
 
 [interlace]
 
-
-
-[#18 must be able to build around fire of ena]
-
-[primal vision]
-
 [nether trumpet]
-
-[fire 2 leaves, blue and yellow that repeatedly explodes into 4 more small leaves]
 
 [cannonball variant for #18]
 
 
 
-wishes need to do damage!!!
-
-[giant rotation - wish]
+giant rotation - wish, deal 12 damage in all directions
 
 [wheat promise - wish]
 
 [night seclusion - wish]
 
-[wish]
+primal vision - wish, gain 5 block + 5 per adjacent enemy
 
-[wish]
+[damage wish]
 
-[wish]
+[damage wish]
 
 
 
@@ -114,10 +94,6 @@ wishes need to do damage!!!
 [certes movement]
 
 [depth charge]
-
-drowning curse
-
-[is lira still in a defecit]
 
 new moonlit lotus
 rename old moonlit lotus
@@ -130,33 +106,25 @@ dimensional point rift - create a bunch of glowing yellow squares (composed of p
 
 floret fractal but rainbow
 
-
-
-[dark pristine]
-
-[error - remove all your statuses, []]
-
-[aozora]
-
-[seija card]
-
-[satellite slash - distant flowers]
-
-aura of poverty - apply weak and vulnerable in all directions, lose 5 currency
+twin leaf barrage - variant of floret fractal, fire 2 leaves, blue and yellow that repeatedly explodes into 4 more small leaves
 
 
 
-empty mask - reverse of sadism
+dark pristine - next 2 colorless cards are free, but lose 1 energy next turn
 
-[discus of [] and []]
+[seija card, but on chip]
 
-[discus of [] and []]
+[discus of sand and sea]
 
-[discus of [] and []]
+[discus of angels and taboos]
+
+field of growth - gain energy and draw a card for every 5 plant tiles
+
+seedling stab - damage, add a plant tile below target
+
+
 
 [moon rain - animate actual rain particles]
-
-
 
 move, freeze ahead
 
@@ -164,10 +132,7 @@ move, freeze ahead
 
 [more lock on cards]
 
-swap and add block
-
-replace the glitch with hammerspace - remove a card, put a removed card into your hand and deck
-
+[watermelon bomb]
 
 
 
@@ -187,11 +152,7 @@ replace the glitch with hammerspace - remove a card, put a removed card into you
 
 caltrops - create tiles that inflict bleed
 
-blunderbuss - 3 direction shotgun
-
-sapphire facet - fires blue stars everywher e and lighter ones in set directions that create more particles
-
-
+sapphire facet - fires blue stars everywhere and lighter ones in set directions that create more particles
 
 aggregate border - get a bunch of barrier, deal splash damage next turn equal to barrier
 
@@ -228,9 +189,8 @@ tutorial
 
 
 
+
 update azis tutorial with orb moving
-
-
 
 
 
@@ -241,15 +201,15 @@ world 1:
 
 easies:
 
-[]
+sick - when killed you get a bunch of debuffs
 []
 []
 
 enemies:
 
-sick - when killed you get a bunch of debuffs
 drowned - can randomly apply drowned to you
 pistol thug - a basic biker with a gun not really a threat
+[]
 
 bosses:
 
@@ -294,14 +254,8 @@ sukuna boss needs 2 attacks and setup code
 
 
 
-
-
-
-
 new variants:
 
-[mediocre - all card rewards decrease in rarity]
-[business - all prices increased, get only money from fights]
 []
 []
 
@@ -320,7 +274,9 @@ relic collector - offers to buy 2 of your relics for very good prices
 
 card collector - offers to trade one of your cards (random) for a rare card of your choice
 
-[]
+hotel room - choice
+sweep for bugs - lose 50$
+don't - 10% chance to lose health
 
 
 
@@ -376,7 +332,6 @@ management informant
 
 decide on character #18
 conduct a purge and mass renaming
-
 
 
 

@@ -131,6 +131,10 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,16,[2])],//mtg mana removal choice,120
                     [new overlay(this.layer,this.battle,0,16,[3])],//mtg mana swap
                     [new overlay(this.layer,this.battle,0,2,[86])],//glitched edition, no return
+                    [new overlay(this.layer,this.battle,0,2,[87,1,0])],//remove card, no return, unskippable
+                    [new overlay(this.layer,this.battle,0,2,[88])],//return removed to deck, unskippable
+                    //4-87
+                    //71-88
 
                 )
                 if(this.battle.players==2){

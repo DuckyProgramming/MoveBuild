@@ -2480,7 +2480,7 @@ class battle{
                             this.overlayManager.overlays[38][a].activate()
                         }
                         let reward=[]
-                        for(let b=0,lb=(variants.vanish||variants.inventor)?2:1;b<lb;b++){
+                        for(let b=0,lb=variants.business?0:(variants.vanish||variants.inventor||variants.commoners)?2:1;b<lb;b++){
                             if(floor(random(0,2))==0||!this.modded(50)){
                                 switch(this.encounter.class){
                                     case 0: case 3: case 4:
@@ -2504,6 +2504,9 @@ class battle{
                             }
                         }
                         let mult=1
+                        if(variants.business){
+                            mult*=3
+                        }
                         if(this.modded(82)){
                             mult*=0.5
                         }
@@ -2516,24 +2519,28 @@ class battle{
                                 if(!this.modded(177)||this.turn.total<=5){
                                     reward.push({type:0,value:[floor(random(40,81)*mult)]})
                                 }
-                                if((floor(random(0,3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
-                                    reward.push({type:3,value:[]})
-                                }
-                                if(floor(random(0,6))==0){
-                                    reward.push({type:5,value:[1]})
+                                if(!variants.business){
+                                    if((floor(random(0,3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
+                                        reward.push({type:3,value:[]})
+                                    }
+                                    if(floor(random(0,6))==0){
+                                        reward.push({type:5,value:[1]})
+                                    }
                                 }
                             break
                             case 1:
                                 reward.push({type:0,value:[floor(random(120,201)*mult)]})
-                                if(!this.modded(48)&&!this.relicManager.hasRelic(289,a)){
-                                    this.relicManager.activate(15,[a,1,reward,this.turn.total])
-                                    reward.push({type:2,value:[]})
-                                }
-                                if((floor(random(0,3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
-                                    reward.push({type:3,value:[]})
-                                }
-                                if(floor(random(0,6))==0){
-                                    reward.push({type:5,value:[1]})
+                                if(!variants.business){
+                                    if(!this.modded(48)&&!this.relicManager.hasRelic(289,a)){
+                                        this.relicManager.activate(15,[a,1,reward,this.turn.total])
+                                        reward.push({type:2,value:[]})
+                                    }
+                                    if((floor(random(0,3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
+                                        reward.push({type:3,value:[]})
+                                    }
+                                    if(floor(random(0,6))==0){
+                                        reward.push({type:5,value:[1]})
+                                    }
                                 }
                             break
                             case 2:
@@ -2541,7 +2548,9 @@ class battle{
                                     if(game.ascend<13){
                                         reward.push({type:0,value:[round(floor(random(240,401)*mult*(1+this.relicManager.active[232][a+1]*0.5)))]})
                                     }
-                                    this.relicManager.activate(15,[a,2,reward,this.turn.total])
+                                    if(!variants.business){
+                                        this.relicManager.activate(15,[a,2,reward,this.turn.total])
+                                    }
                                 }
                             break
                         }

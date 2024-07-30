@@ -10191,6 +10191,7 @@ variants={
     prism:false,ultraprism:false,junk:false,colorshift:false,prismrule:[],
     vanish:false,blind:false,transcend:false,overheat:false,
     cliff:false,assault:false,unary:false,running:false,
+    commoners:false,business:false,
 
     speedmove:false,speedcard:false,nobasicanim:false,deckbuild:false,
 
@@ -10204,7 +10205,7 @@ variants={
         'prism','ultraprism','junk','colorshift',
         'vanish','blind','transcend','overheat',
         'cliff','assault','unary','running',
-        '','','','',
+        'commoners','business','','',
     ],names:[
         'MTG Mana','Bonus Mods','Choose Combats','Chaos',
         '-1 Draw','Cyclic Draw','Balanced Draw','Blackjack Draw',
@@ -10215,7 +10216,7 @@ variants={
         'Prism','Ultraprism','Junkyard','Colorshift',
         'All Vanishing','Silent Cards','Transcend','Overheat',
         'Cliffs','Assault','Unary','Running Loop',
-        '','','','',
+        'Commoners','Business','','',
     ]
 }
 constants={collisionDamage:4,

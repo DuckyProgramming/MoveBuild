@@ -9,6 +9,16 @@ class purchaseManager{
         this.goalScroll=0
         this.anim={scroll:[0,0]}
     }
+    generalizedListing(type){
+        switch(type){
+            case 0:
+                return variants.business?[[80,100],[180,225],[400,500]]:[[80,100],[120,150],[200,250]]
+            case 1:
+                return variants.business?[[100,125],[240,360],[600,750]]:[[100,125],[160,240],[400,500]]
+            case 2:
+                return variants.business?[[160,200],[360,450],[600,750],[280,350]]:[[160,200],[240,300],[400,500],[200,250]]
+        }
+    }
     setup(type){
         this.scroll=0
         this.goalScroll=0
@@ -17,8 +27,8 @@ class purchaseManager{
             case 0:
                 if(this.battle.tutorialManager.active){
                     let sale=floor(random(0,8))
-                    let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,0,0,1,1,1,1,2,2]
-                    let cost=[[60,75],[100,125],[160,200]]
+                    let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,0,1,1,2]:[0,0,0,0,0,0,1,1,1,1,2,2]
+                    let cost=this.generalizedListing(0)
                     for(let a=0,la=group.length;a<la;a++){
                         this.purchases.push(new purchase(this.layer,this.battle,0,95+a%6*130,130+floor(a/6)*170,1,
                             [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?0.5:1))],
@@ -27,8 +37,8 @@ class purchaseManager{
                         ))
                     }
                     let bar=floor(random(0,2))
-                    group=[0,0,bar,1,2]
-                    cost=[[120,150],[200,250],[320,400]]
+                    group=this.battle.modded(153)?[0,0,0,0,0]:variants.commoners?[0,0,0,0,bar+1]:[0,0,bar,1,2]
+                    cost=this.generalizedListing(1)
                     for(let a=0,la=group.length;a<la;a++){
                         this.purchases.push(new purchase(this.layer,this.battle,0,95+a*130,470,1,
                             [round(random(cost[group[a]][0],cost[group[a]][1]))],
@@ -52,7 +62,7 @@ class purchaseManager{
                         this.purchases.push(new purchase(this.layer,this.battle,0,1040,160+a*140,5,[150],[3]))
                     }
                     group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,2,2,3,3]
-                    cost=[[160,200],[240,300],[400,500],[200,250]]
+                    cost=this.generalizedListing(2)
                     let list=findInternal('Placeholder',types.relic)
                     let index=floor(random(0,group.length))
                     for(let a=0,la=group.length;a<la;a++){
@@ -67,8 +77,8 @@ class purchaseManager{
                     if(this.battle.currency.money[0]>=100){
                         let sale=floor(random(0,8))
                         let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[0]])
-                        let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,0,0,1,1,1,1,2,2]
-                        let cost=[[60,75],[100,125],[160,200]]
+                        let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,0,1,1,2]:[0,0,0,0,0,0,1,1,1,1,2,2]
+                        let cost=this.generalizedListing(0)
                         for(let a=0,la=group.length;a<la;a++){
                             if(list[group[a]].length>0){
                                 let index=floor(random(0,list[group[a]].length))
@@ -99,8 +109,8 @@ class purchaseManager{
                         }
                         list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[0])
                         let bar=floor(random(0,2))
-                        group=[0,0,bar,1,2]
-                        cost=[[120,150],[200,250],[320,400]]
+                        group=this.battle.modded(153)?[0,0,0,0,0]:variants.commoners?[0,0,0,0,bar+1]:[0,0,bar,1,2]
+                        cost=this.generalizedListing(1)
                         for(let a=0,la=group.length;a<la;a++){
                             if(list[group[a]].length>0){
                                 let index=floor(random(0,list[group[a]].length))
@@ -126,7 +136,7 @@ class purchaseManager{
                             ))
                         }
                         group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,2,2,3,3]
-                        cost=[[160,200],[240,300],[400,500],[200,250]]
+                        cost=this.generalizedListing(2)
                         list=this.battle.relicManager.makeRelicSelection(group)
                         let index=floor(random(0,group.length))
                         for(let a=0,la=group.length;a<la;a++){
@@ -164,8 +174,8 @@ class purchaseManager{
                         for(let a=0,la=this.battle.players;a<la;a++){
                             let sale=floor(random(0,8))
                             let list=variants.mtg?copyArrayStack(this.battle.cardManagers[a].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[a].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[a].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[a].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
-                            let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,0,0,1,1,1,1,2,2]
-                            let cost=[[80,100],[120,150],[200,250]]
+                            let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,0,1,1,2]:[0,0,0,0,0,0,1,1,1,1,2,2]
+                            let cost=this.generalizedListing(0)
                             for(let b=0,lb=group.length;b<lb;b++){
                                 if(list[group[b]].length>0){
                                     let index=floor(random(0,list[group[b]].length))
@@ -197,8 +207,8 @@ class purchaseManager{
                             }
                         }
                         let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[0])
-                        let group=[0,0,0,0,1,2,2,1]
-                        let cost=[[120,150],[180,225],[300,375]]
+                        let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,1+bar,2-bar,0]:[0,0,0,0,1,2,2,1]
+                        let cost=this.generalizedListing(1)
                         for(let a=0,la=group.length;a<la;a++){
                             let index=floor(random(0,list[group[a]].length))
                             let price=random(cost[group[a]][0],cost[group[a]][1])
@@ -210,7 +220,7 @@ class purchaseManager{
                             list[group[a]].splice(index,1)
                         }
                         group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,2,2,3,3]
-                        cost=[[160,200],[240,300],[400,500],[200,250]]
+                        cost=this.generalizedListing(2)
                         list=this.battle.relicManager.makeRelicSelection(group)
                         let index=floor(random(0,group.length))
                         for(let a=0,la=group.length;a<la;a++){
@@ -241,7 +251,7 @@ class purchaseManager{
                         }
                         list=copyArrayStack(this.battle.cardManagers[0].listing.card[game.playerNumber+3])
                         let bar=floor(random(0,2))
-                        group=[bar,1-bar]
+                        group=this.battle.modded(153)?[0,0]:variants.commoners?[[0,bar],[bar,0]][floor(random(0,2))]:[bar,1-bar]
                         cost=[[100,125],[140,175],[260,325]]
                         for(let a=0,la=group.length;a<la;a++){
                             let index=floor(random(0,list[group[a]].length))

@@ -168,7 +168,8 @@ class combatant{
             'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Energy',
             '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
             '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
-            'Elemental Draw','(N) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(E) Next Turn','(E) on Hit','Free Draw Up','Stance Temporary Strength',
+            'Elemental Draw','(N) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(E) Next Turn','(E) on Hit','Free Draw Up',
+            'Stance Temporary Strength','Debuff Block',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -6888,10 +6889,15 @@ class combatant{
             if(status==32){
                 this.battle.updateTargetting()
             }
-            if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
-                let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
-                if((this.status.class[status]==1||this.status.class[status]==3)&&userCombatant.getStatus('Debuff Damage')>0){
-                    this.takeDamage(userCombatant.getStatus('Debuff Damage'),-1)
+            if((this.status.class[status]==1||this.status.class[status]==3)&&value>0||(this.status.class[status]==0||this.status.class[status]==2)){
+                if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
+                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
+                    if(userCombatant.getStatus('Debuff Damage')>0){
+                        this.takeDamage(userCombatant.getStatus('Debuff Damage'),userCombatant.id)
+                    }
+                }
+                if(this.status.main[511]>0){
+                    this.addBlock(this.status.main[511])
                 }
             }
             this.statusSignUpdate(status)
@@ -7013,7 +7019,7 @@ class combatant{
     }
     removeAllStatuses(classes){
         for(let a=0,la=this.status.class.length;a<la;a++){
-            if(classes.includes(this.status.class[a])&&this.status.main[a]>0||!classes.includes(this.status.class[a])&&this.status.main[a]<0){
+            if(classes.length==0||classes.includes(this.status.class[a])&&this.status.main[a]>0||!classes.includes(this.status.class[a])&&this.status.main[a]<0){
                 this.status.main[a]=0
             }
         }

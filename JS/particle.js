@@ -31,7 +31,7 @@ class particle{
             case 51: case 52: case 54: case 57: case 60: case 65: case 66: case 68: case 72: case 73:
             case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 88: case 90: case 95:
             case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120: case 121:
-            case 126: case 135: case 136: case 139: case 152: case 154: case 155: case 156:
+            case 126: case 135: case 136: case 139: case 152: case 154: case 155: case 156: case 163: case 164:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -293,7 +293,7 @@ class particle{
                 this.fade=1
                 this.scale=1
             break
-            case 132: case 134: case 153:
+            case 132: case 134: case 153: case 165:
                 this.size=args[0]
                 this.offset=args[1]
                 this.delay=args[2]
@@ -415,6 +415,28 @@ class particle{
                 this.size=1
                 this.scale=1
                 this.trigger=false
+            break
+            case 161:
+                this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=1
+                this.ticks=ceil(dist(0,0,this.position2.x,this.position2.y)/100)
+                this.direction=atan2(this.position2.x,this.position2.y)
+                this.sets=[[],[],[]]
+                for(let a=0,la=this.ticks;a<la;a++){
+                    this.sets[0].push([random(-10,10),random(-10,10)])
+                    this.sets[1].push([random(-20,20),random(-10,20)])
+                    this.sets[2].push([random(-20,20),random(-10,20)])
+                }
+            break
+            case 162:
+                this.size=args[0]
+                this.fade=0
+                this.scale=1
+                this.trigger=false
+                this.occlude=0
             break
 
         }
@@ -2424,6 +2446,84 @@ class particle{
                     this.layer.fill(50,0,50,this.fade*0.5)
                     regStar(this.layer,0,0,24,6,6,18,18,0)
                 break
+                case 161:
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.stroke(150+a*10,this.fade*0.1)
+                        for(let b=0,lb=this.sets.length;b<lb;b++){
+                            this.layer.strokeWeight(this.fade*(50-a*5)*(b==0?1:0.2))
+                            for(let c=0,lc=this.ticks;c<lc;c++){
+                                this.layer.line(
+                                    map(c/lc,0,1,0,this.position2.x)+(c==0?0:this.sets[b][c-1][0]*3),
+                                    map(c/lc,0,1,0,this.position2.y)+(c==0?0:this.sets[b][c-1][1]*3),
+                                    map((c+1)/lc,0,1,0,this.position2.x)+this.sets[b][c][0]*3,
+                                    map((c+1)/lc,0,1,0,this.position2.y)+this.sets[b][c][1]*3)
+                            }
+                        }
+                    }
+                break
+                case 162:
+                    for(let a=0,la=4;a<la;a++){
+                        this.layer.fill(255,160+a*30,255,this.fade*0.5)
+                        if(this.occlude<10){
+                            this.layer.triangle(-(60-a*10),(60-a*10),-(60-a*10)+(58-a*10)*this.occlude/10,(60-a*10)-(62-a*10)*this.occlude/10,-(60-a*10)+(62-a*10)*this.occlude/10,(60-a*10)-(58-a*10)*this.occlude/10)
+                        }else if(this.occlude<20){
+                            this.layer.triangle(-(60-a*10),(60-a*10),-2,-2,2,2)
+                            this.layer.quad(-2,-2,2,2,2+(58-a*10)*(this.occlude-10)/10,2-(62-a*10)*(this.occlude-10)/10,-2+(62-a*10)*(this.occlude-10)/10,-2-(58-a*10)*(this.occlude-10)/10)
+                        }else if(this.occlude<30){
+                            this.layer.triangle((60-a*10),-(60-a*10),-2,-2,2,2)
+                            this.layer.quad(-2,-2,2,2,-(60-a*10)+(62-a*10)*(this.occlude-20)/10,(60-a*10)-(58-a*10)*(this.occlude-20)/10,-(60-a*10)+(58-a*10)*(this.occlude-20)/10,(60-a*10)-(62-a*10)*(this.occlude-20)/10)
+                        }else if(this.occlude<40){
+                            this.layer.triangle((60-a*10),-(60-a*10),-2+(62-a*10)*(this.occlude-30)/10,-2-(58-a*10)*(this.occlude-30)/10,2+(58-a*10)*(this.occlude-30)/10,2-(62-a*10)*(this.occlude-30)/10)
+                        }
+                    }
+                break
+                case 163:
+                    this.layer.noFill()
+                    this.layer.strokeCap(SQUARE)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.stroke(150+a*20,225+a*5,255,this.fade*0.2)
+                        this.layer.strokeWeight(5-a)
+                        this.layer.arc(0,0,40,24,-180,0)
+                    }
+                    this.layer.strokeCap(ROUND)
+                    this.layer.noStroke()
+                    this.layer.fill(255,this.fade*0.1)
+                    for(let a=0,la=6;a<la;a++){
+                        for(let b=0,lb=5;b<lb;b++){
+                            this.layer.arc(0,0,60*(1-a*0.1),36*(1-a*0.1),constrain(-195+b*45+a*2+this.time*3%45,-180,0),constrain(-165+b*45-a*2+this.time*3%45,-180,0))
+                        }
+                    }
+                break
+                case 164:
+                    this.layer.noFill()
+                    this.layer.strokeCap(SQUARE)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.stroke(150+a*20,225+a*5,255,this.fade*0.2)
+                        this.layer.strokeWeight(5-a)
+                        this.layer.arc(0,0,40,24,0,180)
+                    }
+                    this.layer.strokeCap(ROUND)
+                    this.layer.noStroke()
+                    this.layer.fill(255,this.fade*0.1)
+                    for(let a=0,la=6;a<la;a++){
+                        for(let b=0,lb=5;b<lb;b++){
+                            this.layer.arc(0,0,60*(1-a*0.1),36*(1-a*0.1),constrain(-15+b*45+a*2+this.time*3%45,0,180),constrain(15+b*45-a*2+this.time*3%45,0,180))
+                        }
+                    }
+                break
+                case 165:
+                    this.layer.rotate(-this.time)
+                    this.layer.fill(0,0,150,this.fade*0.5)
+                    for(let a=0,la=7;a<la;a++){
+                        regStar(this.layer,lsin(360*(a+this.offset)/la)*5,lcos(360*(a+this.offset)/la)*5,7,1,1,1.5,1.5,360*(a+this.offset)/la)
+                    }
+                    this.layer.fill(100,0,100,this.fade*0.5)
+                    for(let a=0,la=7;a<la;a++){
+                        regStar(this.layer,lsin(360*(a+this.offset+0.5)/la)*4,lcos(360*(a+this.offset+0.5)/la)*4,7,1,1,1.5,1.5,360*(a+this.offset)/la)
+                    }
+                    this.layer.fill(50,0,125,this.fade*0.25)
+                    regStar(this.layer,0,0,7,2,2,3,3,this.time*3)
+                break
 
             }
             this.layer.pop()
@@ -2723,7 +2823,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 132: case 134: case 153:
+            case 132: case 134: case 153: case 165:
                 if(this.time>=this.delay){
                     this.fade-=0.05
                     this.scale+=0.05
@@ -2732,7 +2832,7 @@ class particle{
                     }
                 }
             break
-            case 135:
+            case 135: case 163: case 164:
                 this.fade-=0.05
                 this.scale+=0.1-this.time*0.005
                 if(this.fade<=0){
@@ -2864,6 +2964,33 @@ class particle{
                 if(!this.trigger){
                     this.fade+=0.1
                     if(this.fade>=2){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.1
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
+                }
+            break
+            case 161:
+                if(!this.trigger){
+                    this.fade+=0.1
+                    if(this.fade>=1){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.1
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
+                }
+            break
+            case 162:
+                this.occlude+=2
+                if(!this.trigger){
+                    this.fade+=0.1
+                    if(this.fade>=1){
                         this.trigger=true
                     }
                 }else{
