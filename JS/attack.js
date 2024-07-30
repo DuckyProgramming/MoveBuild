@@ -2078,7 +2078,7 @@ class attack{
                         this.userCombatant.statusEffect('Conditioning',this.effect[1])
                     break
                     case 228:
-                        this.userManager.draw(this.effect[1])
+                        this.userManager.draw(this.effect[2])
                     break
                     case 234:
                         if(this.targetCombatant.life<=0){

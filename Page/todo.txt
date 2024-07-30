@@ -59,6 +59,8 @@ figure out what the hell is going on with the music gimmicks
 
 [mallet's love]
 
+scrap note
+
 
 
 [big bullet branch]
@@ -97,6 +99,10 @@ primal vision - wish, gain 5 block + 5 per adjacent enemy
 
 new moonlit lotus
 rename old moonlit lotus
+
+lost in paradise - create 3 copies of a card in hand
+
+one-two punch - duplicate and next attack deals more damage
 
 
 

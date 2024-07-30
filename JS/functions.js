@@ -1252,7 +1252,7 @@ function copyArrayAttack(base){
 	return list
 }
 function copyFalsed(base){
-	return {trigger:base.trigger,name:base.name,attack:base.attack,effect:base.effect,spec:base.spec,rarity:base.rarity,class:base.class,reality:base.reality,colorDetail:base.colorDetail,target:base.target,cost:base.cost}
+	return {trigger:base.trigger,name:base.name,attack:base.attack,effect:base.effect,spec:base.spec,rarity:base.rarity,list:base.list,class:base.class,reality:base.reality,colorDetail:base.colorDetail,target:base.target,cost:base.cost}
 }
 function normalDistribution(){
 	let u=random(0,1),v=random(0,1),s=0.449871,t=-0.386595,a=0.19600,b=0.25472,r1=0.27597,r2=0.27846
@@ -1867,10 +1867,15 @@ function outMtg(){
 	}
 	for(let a=0,la=types.card.length;a<la;a++){
 		if(types.card[a].mtg!=undefined){
-			if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1){
+			if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber){
 				let list=types.card[a].mtg.list==-1?1:types.card[a].mtg.list==0?0:types.card[a].mtg.list+1
 				let color=types.card[a].mtg.color.length==1?types.card[a].mtg.color[0]:mtgCombineColor(types.card[a].mtg.color[0],types.card[a].mtg.color[1])
-				count[list][types.card[a].rarity][color]++
+				try{
+					count[list][types.card[a].mtg.rarity][color]++
+					count[list][3][color]++
+				}catch(error){
+					print(types.card[a].name)
+				}
 			}
 		}
 	}
@@ -1890,6 +1895,44 @@ function subMtg(base){
 	`Green: ${base[4]}, Red: ${base[5]}, White-Blue: ${base[6]}, White-Black: ${base[7]}, `+
 	`White-Green: ${base[8]}, White-Red: ${base[9]}, Blue-Black: ${base[10]}, Blue-Green: ${base[11]}, `+
 	`Blue-Red: ${base[12]}, Black-Green: ${base[13]}, Black-Red: ${base[14]}, Green-Red: ${base[15]}`
+}
+function outMtg2(){
+	let count=[]
+	for(let a=0,la=game.playerNumber+1;a<la;a++){
+		count.push([])
+		for(let b=0,lb=2;b<lb;b++){
+			count[a].push([0,0,0,0])
+		}
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(types.card[a].mtg!=undefined){
+			if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber){
+				let list=types.card[a].list
+				let sublist=types.card[a].list==types.card[a].mtg.list?0:1
+				try{
+					count[list][sublist][types.card[a].mtg.rarity]++
+					count[list][sublist][3]++
+				}catch(error){
+					print(types.card[a].name)
+				}
+			}
+		}
+	}
+	let box=``
+	for(let a=0,la=game.playerNumber;a<la;a++){
+		box+=`\n		${a==0?`Colorless`:types.combatant[a].name}:
+	Character:
+Common: ${count[a][0][0]}
+Uncommon: ${count[a][0][1]}
+Rare: ${count[a][0][2]}
+Total: ${count[a][0][3]}\n
+	Neutral:
+Common: ${count[a][1][0]}
+Uncommon: ${count[a][1][1]}
+Rare: ${count[a][1][2]}
+Total: ${count[a][1][3]}\n`
+	}
+	print(box)
 }
 function outDupes(){
 	for(let a=0,la=types.card.length;a<la;a++){

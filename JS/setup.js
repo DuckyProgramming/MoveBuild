@@ -19,7 +19,7 @@ function setup(){
             //transition.scene='menu'
 
         current.menu.combatant=[1]
-        current.menu.deck=[0]
+        current.menu.deck=[-1]
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){
                 current.setupMtgManaChoice(a)

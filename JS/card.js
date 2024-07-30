@@ -246,7 +246,7 @@ class card{
                 this.pole=this.type%2==0?1:0
             }
             this.falsed=falsed
-            this.falsed=this.falsed==undefined?{trigger:false,name:this.name,attack:this.attack,effect:this.effect,spec:this.spec,rarity:this.rarity,class:this.class,reality:this.reality,colorDetail:this.colorDetail,target:this.target,cost:this.cost}:copyFalsed(this.falsed)
+            this.falsed=this.falsed==undefined?{trigger:false,name:this.name,attack:this.attack,effect:this.effect,spec:this.spec,rarity:this.rarity,list:this.list,class:this.class,reality:this.reality,colorDetail:this.colorDetail,target:this.target,cost:this.cost}:copyFalsed(this.falsed)
             if(this.battle.initialized&&this.battle.modded(148)){
                 if(this.spec.includes(12)){
                     for(let a=0,la=this.class.length;a<la;a++){
@@ -889,7 +889,7 @@ class card{
             case 226: string+=`Gain ${effect[0]} Combo\nLose All Combo\nat End of Turn`; break
             case 227: case 3832:
                 string+=`Next ${effect[0]} Card${pl(effect[0])}\nPlayed ${effect[0]!=1?`are`:`is`} Duplicated`; break
-            case 228: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],7)}\nDamage\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 228: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],7)}\nDamage\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 229: string+=`Add ${effect[0]} Random\nAttack${pl(effect[0])} to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
             case 230: string+=`Add ${effect[0]} Random\nAttack${pl(effect[0])} to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
             case 231: string+=`Each Hit Gains\n${effect[0]} More Combo`; break
@@ -901,7 +901,7 @@ class card{
             case 237: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage`:``}\nPush 1 Tile Left Back`; break
             case 239: string+=`Gain ${effect[0]} Combo\nPer Turn`; break
             case 240: string+=`Gain ${effect[0]} Combo\nNext Turn`; break
-            case 241: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Damage\nWhen Up to Wall\nMove 1 Tile Away`; break
+            case 241: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Damage\nWhen There is an Empty\nTile Spot Behind You\nMove 1 Tile Away`; break
             case 242: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} at Range 1-2`; break
             case 243: string+=`Pull Target 1 Tile\nTarget Will Face User\nAdvance`; break
             case 244: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 2 Tiles\nAround Right`; break
@@ -3192,7 +3192,7 @@ class card{
             case 2549: string+=`Have Perfect\nLuck This Combat`; break
             case 2550: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Your Deck Has\n50+${this.player>=0&&this.player<this.battle.players?` (${this.battle.cardManagers[this.player].deck.cards.length})`:``} Cards`; break
             case 2551: string+=`When Drawn,\nAdd ${effect[0]} Shiv${pl(effect[0])} to Hand\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
-            case 2552: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Damage\nWhen Up to Wall\nPush 1 Tile`; break
+            case 2552: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Damage\nWhen There is an Empty\nTile Spot Behind You\nPush 1 Tile`; break
             case 2553: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n2 Times`; break
             case 2554: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]} When\nYou Use an Item`; break
             case 2555: string+=`Make a Card Foil\nand Duplicate it\n2 Times Permanently`; break
@@ -6235,6 +6235,7 @@ class card{
             let effect=0
             let spec=0
             let rarity=0
+            let list=0
             let classT=0
             let reality=0
             let colorDetail=0
@@ -6253,6 +6254,7 @@ class card{
                 effect=this.falsed.effect
                 spec=this.falsed.spec
                 rarity=this.falsed.rarity
+                list=this.falsed.list
                 classT=this.falsed.class
                 reality=this.falsed.reality
                 colorDetail=this.falsed.colorDetail
@@ -6264,6 +6266,7 @@ class card{
                 effect=this.effect
                 spec=this.spec
                 rarity=this.rarity
+                list=this.list
                 classT=this.class
                 reality=this.reality
                 colorDetail=this.colorDetail
@@ -6741,15 +6744,6 @@ class card{
                     this.layer.translate(this.width*0.2+2,0)
 
                     this.layer.stroke(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade)
-                    this.layer.noFill()
-                }else if(variants.mtg&&this.color==0&&this.mtgManaColor==6){
-                    this.layer.fill(colorDetail.active[0]*0.2+8,colorDetail.active[1]*0.6+6,colorDetail.active[2]*0.2+2,this.fade*this.anim.select)
-                    this.layer.noStroke()
-                    this.layer.rect(0,0,this.width+15,this.height+15,10)
-                    this.layer.fill(colorDetail.fill[0]*0.2+8,colorDetail.fill[1]*0.6+6,colorDetail.fill[2]*0.2+2,this.fade)
-                    this.layer.stroke(colorDetail.stroke[0]*0.2+8,colorDetail.stroke[1]*0.6+6,colorDetail.stroke[2]*0.2+2,this.fade)
-                    this.layer.strokeWeight(5)
-                    this.layer.rect(0,0,this.width,this.height,5)
                     this.layer.noFill()
                 }else{
                     this.layer.fill(colorDetail.active[0]*0.2,colorDetail.active[1]*0.2,colorDetail.active[2]*0.2,this.fade*this.anim.select)
@@ -7230,15 +7224,6 @@ class card{
 
                     this.layer.stroke(...colorDetail[0].stroke,this.fade)
                     this.layer.noFill()
-                }else if(variants.mtg&&this.color==0&&this.mtgManaColor==6){
-                    this.layer.fill(colorDetail.active[0]+40,colorDetail.active[1]+30,colorDetail.active[2]+10,this.fade*this.anim.select)
-                    this.layer.noStroke()
-                    this.layer.rect(0,0,this.width+15,this.height+15,10)
-                    this.layer.fill(colorDetail.fill[0]+40,colorDetail.fill[1]+30,colorDetail.fill[2]+10,this.fade)
-                    this.layer.stroke(colorDetail.stroke[0]+40,colorDetail.stroke[1]+30,colorDetail.stroke[2]+10,this.fade)
-                    this.layer.strokeWeight(5)
-                    this.layer.rect(0,0,this.width,this.height,5)
-                    this.layer.noFill()
                 }else{
                     this.layer.fill(...colorDetail.active,this.fade*this.anim.select)
                     this.layer.noStroke()
@@ -7324,6 +7309,13 @@ class card{
                         this.layer.line(-this.width/2,this.height/2-5,-this.width/2+15,this.height/2-15)
                         this.layer.line(-this.width/2+5,this.height/2,-this.width/2+15,this.height/2-15)
                     break
+                }
+                if(variants.mtg&&list>=0&&list<=game.playerNumber){
+                    if(colorDetail.length>=2){
+                        this.layer.stroke(...colorDetail[colorDetail.length-1].stroke,this.fade)
+                    }
+                    this.layer.strokeWeight(2)
+                    this.layer.ellipse(this.width/2-7.5,this.height/2-7.5,5)
                 }
             }
             if(spec.includes(12)){
@@ -7467,7 +7459,7 @@ class card{
                 }else if(spec.includes(35)){
                     this.layer.strokeJoin(ROUND)
                     if(variants.mtg){
-                        displayMtgManaSymbol(this.layer,-this.width/2+10,-this.height/2+13,this.mtgManaColor,0,1,this.fade,1)
+                        //displayMtgManaSymbol(this.layer,-this.width/2+10,-this.height/2+13,this.mtgManaColor,0,1,this.fade,1)
                     }else if(this.colorful){
                         this.layer.fill(200,175,50,this.fade)
                         this.layer.stroke(175,150,25,this.fade)
