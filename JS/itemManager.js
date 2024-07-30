@@ -3,7 +3,7 @@ class itemManager{
         this.layer=layer
         this.battle=battle
 
-        this.listing={item:[[],[],[]]}
+        this.listing={item:[[],[],[],[]]}
         
         this.items=[]
         this.position=[]
@@ -143,6 +143,15 @@ class itemManager{
                 this.items[player][a].type=1
                 this.items[player][a].refresh()
                 this.total[player]--
+            }
+        }
+    }
+    transformAll(player){
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            if(this.items[player][a].type>1){
+                let rarity=constrain(this.items[player][a].rarity,0,3)
+                this.items[player][a].type=this.listing.item[rarity][floor(random(0,this.listing.item[rarity].length))]
+                this.items[player][a].refresh()
             }
         }
     }

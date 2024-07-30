@@ -130,6 +130,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[7,1,0])],//transform number cards, no return
                     [new overlay(this.layer,this.battle,0,16,[2])],//mtg mana removal choice,120
                     [new overlay(this.layer,this.battle,0,16,[3])],//mtg mana swap
+                    [new overlay(this.layer,this.battle,0,2,[86])],//glitched edition, no return
 
                 )
                 if(this.battle.players==2){

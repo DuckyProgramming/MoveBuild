@@ -3260,7 +3260,7 @@ turn.prototype.update=function(){
                                 break
                                 case 326:
                                     for(let a=0,la=this.battle.players;a<la;a++){
-                                        this.battle.cardManagers[a].tempDraw-=this.effect[0]+this.effect[1]
+                                        this.battle.cardManagers[a].tempDraw.main-=this.effect[0]+this.effect[1]
                                         for(let b=0,lb=this.effect[0];b<lb;b++){
                                             this.battle.cardManagers[a].hand.add(findName('Strike',types.card),0,10)
                                         }

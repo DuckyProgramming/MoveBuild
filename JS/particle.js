@@ -57,7 +57,7 @@ class particle{
             break
             case 6: case 11: case 14: case 16: case 18: case 19: case 20: case 21: case 39: case 42:
             case 43: case 44: case 47: case 48: case 78: case 79: case 82: case 83: case 98: case 101:
-            case 111: case 123:
+            case 111: case 123: case 160:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=15
@@ -398,6 +398,23 @@ class particle{
                 this.fade=1
                 this.speed=8
                 this.clouds=[]
+            break
+            case 158:
+                this.direction=args[0]
+                this.curve=args[1]
+                this.curveSpeed=args[2]
+                this.size=1
+                this.scale=1
+                this.fade=1
+                this.speed=8
+                this.clouds=[]
+            break
+            case 159:
+                this.direction=args[0]
+                this.fade=0
+                this.size=1
+                this.scale=1
+                this.trigger=false
             break
 
         }
@@ -2275,7 +2292,7 @@ class particle{
                 case 151:
                     for(let a=0,la=this.clouds.length;a<la;a++){
                         for(let b=0,lb=3;b<lb;b++){
-                            let merge=mergeColor(mergeColor([110,64,165],[163,191,236],this.clouds[a][4]),[223,234,235],b*0.25)
+                            let merge=mergeColor(mergeColor([110,64,165],[163,191,236],this.clouds[a][4]),[223,234,235],this.fade*b*0.25)
                             this.layer.fill(...merge,this.fade*this.clouds[a][2]*0.5)
                             this.layer.ellipse(this.clouds[a][0]-this.position.x,this.clouds[a][1]-this.position.y,this.clouds[a][5]*(1-0.5*b/(lb-1)))
                         }
@@ -2371,6 +2388,42 @@ class particle{
                     regStar(this.layer,0,0,11,5.6,5.6,21,21,-this.time)
                     regStar(this.layer,0,0,11,4.8,4.8,18,18,-this.time)
                 break
+                case 158:
+                    for(let a=0,la=this.clouds.length;a<la;a++){
+                        for(let b=0,lb=3;b<lb;b++){
+                            let merge=mergeColor(mergeColor([68,155,206],[99,200,255],this.clouds[a][4]),[238,253,248],this.fade*b*0.25)
+                            this.layer.fill(...merge,this.fade*this.clouds[a][2]*0.5)
+                            this.layer.ellipse(this.clouds[a][0]-this.position.x,this.clouds[a][1]-this.position.y,this.clouds[a][5]*(1-0.5*b/(lb-1)))
+                        }
+                    }
+                    this.layer.fill(97,250,255,this.fade*0.2)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.ellipse(0,0,30-a*2)
+                    }
+                    this.layer.fill(222,242,244,this.fade)
+                    this.layer.ellipse(0,0,12,18)
+                    this.layer.fill(140,157,163,this.fade)
+                    this.layer.ellipse(1,-3,2)
+                    this.layer.ellipse(-3,-3,2)
+                    this.layer.stroke(140,157,163,this.fade)
+                    this.layer.strokeWeight(0.5)
+                    this.layer.noFill()
+                    this.layer.arc(-1,2,6,3,-150,-30)
+                break
+                case 159:
+                    this.layer.rotate(this.direction)
+                    for(let a=0,la=4;a<la;a++){
+                        this.layer.fill(255,125+a*125,-55+a*100,this.fade)
+                        this.layer.rect(0,-640,8-a*2,1200)
+                        this.layer.triangle(-4+a,-40,4-a,-40,0,-20)
+                    }
+                break
+                case 160:
+                    this.layer.fill(50,0,50,this.fade)
+                    this.layer.ellipse(0,0,12)
+                    this.layer.fill(50,0,50,this.fade*0.5)
+                    regStar(this.layer,0,0,24,6,6,18,18,0)
+                break
 
             }
             this.layer.pop()
@@ -2398,7 +2451,7 @@ class particle{
             case 1: case 4: case 5: case 6: case 7: case 8: case 11: case 14: case 16: case 18:
             case 19: case 20: case 21: case 32: case 35: case 39: case 42: case 43: case 44: case 47:
             case 48: case 49: case 50: case 78: case 79: case 82: case 83: case 89: case 98: case 105:
-            case 111: case 113: case 131:
+            case 111: case 113: case 131: case 160:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,5)
@@ -2769,7 +2822,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 151:
+            case 151: case 158:
                 this.direction+=lsin(this.time*this.curveSpeed)*this.curve/120*this.curveSpeed
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed
@@ -2805,6 +2858,19 @@ class particle{
                 this.scale=smoothAnim(this.scale,this.time<this.timer*2-5,0,1,10)
                 if(this.fade<=0){
                     this.remove=true
+                }
+            break
+            case 159:
+                if(!this.trigger){
+                    this.fade+=0.1
+                    if(this.fade>=2){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.1
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
                 }
             break
 

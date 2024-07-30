@@ -658,6 +658,17 @@ class battle{
             this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
+    dropDrawTop(player,type,level,color){
+        if(player<this.cardManagers.length){
+            if(this.cardManagers[player].reserve.add(type,level,color)){
+                if(this.modded(70)&&!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.includes(5)){
+                    this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.push(5)
+                }
+                this.cardManagers[player].reserve.slideTop()
+            }
+            this.cardManagers[player].drop.addDrop(type,level,color)
+        }
+    }
     dropDrawShuffle(player,type,level,color){
         if(player<this.cardManagers.length){
             if(this.cardManagers[player].reserve.addAbstract(type,level,color,0,[5],[])){
@@ -857,7 +868,7 @@ class battle{
                 }
                 if(this.encounter.name=='Duck Hunt'){
                     for(let a=0,la=3;a<la;a++){
-                        this.cardManagers[this.turn.main].hand.add(findName('Hunting\nRifle',types.card),0,0)
+                        this.dropDrawShuffle(this.turn.main,findName('Hunting\nRifle',types.card),0,0)
                     }
                 }
                 this.cardManagers[this.turn.main].switchCheck()
@@ -2399,7 +2410,7 @@ class battle{
                 for(let a=0,la=this.anim.turn.length;a<la;a++){
                     this.anim.turn[a]=smoothAnim(this.anim.turn[a],this.turn.main==a,0,1,5)
                     this.anim.extra[a]=smoothAnim(this.anim.extra[a],this.turn.main==a&&
-                        (this.cardManagers[a].hand.status[0]<0||this.cardManagers[a].hand.status[1]<0||this.cardManagers[a].hand.status[8]<0||this.cardManagers[a].hand.status[10]>0||this.cardManagers[a].hand.status[27]>0),0,1,5)
+                        (this.cardManagers[a].hand.status[0]<0||this.cardManagers[a].hand.status[1]<0||this.cardManagers[a].hand.status[8]<0||this.cardManagers[a].hand.status[10]>0||this.cardManagers[a].hand.status[27]>0)||this.cardManagers[a].hand.status[31]>0,0,1,5)
                     this.anim.drop[a]=smoothAnim(this.anim.drop[a],pointInsideBox({position:inputs.rel},{position:{x:66,y:680-this.anim.turn[a]*100},width:32,height:20})&&!this.overlayManager.anyActive&&(variants.cyclicDraw||variants.blackjack),1,1.5,5)
                 }
                 this.anim.reserve=smoothAnim(this.anim.reserve,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:494},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)

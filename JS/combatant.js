@@ -168,7 +168,7 @@ class combatant{
             'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Energy',
             '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
             '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
-            'Elemental Draw','(N) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(E) Next Turn','(E) on Hit',
+            'Elemental Draw','(N) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(E) Next Turn','(E) on Hit','Free Draw Up','Stance Temporary Strength',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -221,7 +221,8 @@ class combatant{
                 0,0,0,0,0,0,0,2,1,0,//48
                 0,0,0,2,0,2,0,2,0,0,//49
                 0,2,0,0,0,0,0,2,2,0,//50
-                0,2,2,2,2,2,2,2,2,
+                0,2,2,2,2,2,2,2,2,0,//51
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -274,7 +275,8 @@ class combatant{
                 0,0,0,2,0,2,2,0,2,2,//48
                 2,2,2,0,2,0,3,3,2,2,//49
                 2,1,2,2,2,2,2,2,2,2,//50
-                2,2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//51
+                2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -6464,7 +6466,7 @@ class combatant{
         }else if(this.status.main[111]<0){
             multi=max(0.2,1+this.status.main[111]*0.1)
         }
-        let playerMulti=target==this.id?0.1:1
+        let playerMulti=target==this.id?0.5:1
         switch(type){
             case 0:
                 this.battle.combatantManager.combatants[target].orbTake(round(12*multi*playerMulti),-1)
@@ -6776,6 +6778,9 @@ class combatant{
         }
         if(this.status.main[127]>0){
             this.battle.cardManagers[this.id].draw(this.status.main[127])
+        }
+        if(this.status.main[510]>0){
+            this.statusEffect('Temporary Strength',this.status.main[510])
         }
     }
     leaveStance(stance){
@@ -7129,7 +7134,7 @@ class combatant{
             }else{
                 if(this.status.main[499]>0){
                     if(this.id<this.battle.players){
-                        this.battle.cardManagers[this.id].tempDraw+=this.status.main[499]
+                        this.battle.cardManagers[this.id].tempDraw.main+=this.status.main[499]
                     }
                 }
                 if(this.status.main[500]>0){
@@ -7169,7 +7174,7 @@ class combatant{
                     case 33: case 209: this.heal(this.status.main[a]); break
                     case 34: case 146: this.status.main[findList('Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 37: this.status.main[findList('Cannot Add Block',this.status.name)]+=this.status.main[a]; break
-                    case 41: case 84: case 285: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw+=this.status.main[a]} break
+                    case 41: case 84: case 285: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.main+=this.status.main[a]} break
                     case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 66: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
                     case 67: this.combo=0; break
@@ -7208,14 +7213,14 @@ class combatant{
                     case 207: this.status.main[findList('Temporary Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 212: this.status.main[findList('Half Damage Turn',this.status.name)]+=this.status.main[a]; break
                     case 220: this.status.main[findList('Jinx',this.status.name)]+=this.status.main[a]; break
-                    case 222: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDrawBurn+=this.status.main[a]}; break
+                    case 222: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.burn+=this.status.main[a]}; break
                     case 232: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Peak',types.card),0,0)}}; break
                     case 237: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Hyperquill',types.card),0,0)}}; break
                     case 244: this.takeDamage(this.status.main[a],-1);this.status.next[findList('Damage Cycle 3 3',this.status.name)]+=this.status.main[a]; break
                     case 245: this.status.main[findList('Damage Cycle 3 1',this.status.name)]+=this.status.main[a]; break
                     case 246: this.status.main[findList('Damage Cycle 3 2',this.status.name)]+=this.status.main[a]; break
                     case 248: this.status.main[findList('No Damage',this.status.name)]+=this.status.main[a]; break
-                    case 249: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDrawFreeze+=this.status.main[a]}; break
+                    case 249: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.freeze+=this.status.main[a]}; break
                     case 259: this.status.main[findList('Vulnerable',this.status.name)]+=this.status.main[a]; break
                     case 262: this.status.main[findList('Luck Guarantee',this.status.name)]+=this.status.main[a]; break
                     case 265: this.status.main[findList('Temporary Damage Down',this.status.name)]+=this.status.main[a]; break
@@ -7230,7 +7235,7 @@ class combatant{
                     case 302: if(this.block<=0){this.status.main[findList('Bleed',this.status.name)]+=this.status.main[a]} break
                     case 303: this.status.main[findList('Bleed Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 304: if(this.status.main[findList('Cannot Move',this.status.name)]>0){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)}} break
-                    case 307: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw+=constrain(floor(this.status.main[a]/3),0,2+this.getStatus('Wisdom'))}; break
+                    case 307: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.main+=constrain(floor(this.status.main[a]/3),0,2+this.getStatus('Wisdom'))}; break
                     case 311: this.status.main[findList('History',this.status.name)]+=this.status.main[a]; break
                     case 316: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[a])}; break
                     case 328: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.id)}} break
@@ -7267,7 +7272,7 @@ class combatant{
                     case 423: this.battle.setTurn(this.battle.turn.total+this.status.main[a]); break
                     case 428: this.status.main[findList('No Damage Turn',this.status.name)]+=this.status.main[a]; break
                     case 435: if(this.id<this.battle.players){this.battle.overlayManager.overlays[46][this.id].active=true;this.battle.overlayManager.overlays[46][this.id].activate([this.status.main[a]])} break
-                    case 440: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDrawClass[1]+=this.status.main[a]} break
+                    case 440: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[1]+=this.status.main[a]} break
                     case 441: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,2,2,[0],[3,11,1,[[1]]])}} break
                     case 446: for(let b=0,lb=this.status.main[a];b<lb;b++){if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Astrology']])<=0){this.battle.cardManagers[this.id].hand.add(findName('Astrology',types.card),0,0)}} break
                     case 450: this.ammo+=this.status.main[a]; break
@@ -7289,6 +7294,7 @@ class combatant{
                     case 505: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,4)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,4)} break
                     case 506: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,5)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,5)} break
                     case 507: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,6)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,6)} break
+                    case 509: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.free+=this.status.main[a]} break
                     
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
@@ -7329,20 +7335,7 @@ class combatant{
         if(this.battle.modded(32)&&this.team==0){
             this.addBlock(3)
         }
-        for(let a=0,la=this.orbs.length;a<la;a++){
-            switch(this.orbs[a]){
-                case 4:
-                    this.orbDetail[a]+=6
-                break
-                case 5:
-                    if(this.team==0){
-                        this.battle.combatantManager.randomPlayerEffect(0,[4])
-                    }else{
-                        this.battle.combatantManager.randomEnemyEffect(0,[4])
-                    }
-                break
-            }
-        }
+        this.tickOrbs(-1)
         if(this.stance>0&&this.id<this.battle.players){
             switch(this.stance){
                 case 3:
@@ -7391,6 +7384,24 @@ class combatant{
             if(this.sins.includes(10)){
                 for(let a=0,la=this.battle.players;a<la;a++){
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].life=0
+                }
+            }
+        }
+    }
+    tickOrbs(type){
+        for(let a=0,la=this.orbs.length;a<la;a++){
+            if(this.orbs[a]==type||type==-1){
+                switch(this.orbs[a]){
+                    case 4:
+                        this.orbDetail[a]+=6
+                    break
+                    case 5:
+                        if(this.team==0){
+                            this.battle.combatantManager.randomPlayerEffect(0,[4])
+                        }else{
+                            this.battle.combatantManager.randomEnemyEffect(0,[4])
+                        }
+                    break
                 }
             }
         }
@@ -9809,7 +9820,7 @@ class combatant{
             break
         }
     }
-    displayInfoInternal(){
+    displayInfoInternal(scene){
         this.layer.noStroke()
         this.layer.fill(150,this.fade*this.infoAnim.life)
         this.layer.rect(0,0,50,6,3)
@@ -9889,7 +9900,7 @@ class combatant{
                 this.layer.text(this.status.main[this.status.display[a]],this.status.position[this.status.display[a]],12)
             }
         }
-        if(this.name=='Sakura'&&!this.graphic&&this.team>0&&this.infoAnim.balance>0){
+        if(this.name=='Sakura'&&!this.graphic&&this.team>0&&this.infoAnim.balance>0&&scene=='battle'){
             this.layer.noStroke()
             for(let a=0,la=10;a<la;a++){
                 this.layer.fill(255,200*a/la,200*a/la,this.fade*this.infoAnim.balance)
@@ -9914,7 +9925,7 @@ class combatant{
             this.layer.textSize(5)
             this.layer.text(this.balance,0,8.5)
         }
-        if(this.name=='Donakho'&&!this.graphic&&this.team>0){
+        if(this.name=='Donakho'&&!this.graphic&&this.team>0&&scene=='battle'){
             this.layer.fill(140,120,160,this.fade)
             this.layer.stroke(120,100,140,this.fade)
             this.layer.strokeWeight(2)
@@ -9924,7 +9935,7 @@ class combatant{
             this.layer.textSize(12)
             this.layer.text(this.metal,0,-11.5)
         }
-        if(this.name=='Edgar'&&!this.graphic&&this.team>0){
+        if(this.name=='Edgar'&&!this.graphic&&this.team>0&&scene=='battle'){
             this.layer.noStroke()
             this.layer.fill(60,75,90,this.fade)
             this.layer.rect(-2,-12,12,12)
@@ -9936,7 +9947,7 @@ class combatant{
             this.layer.textSize(12)
             this.layer.text(this.ammo,0,-12)
         }
-        if(this.name=='Daiyousei'&&!this.graphic&&this.team>0){
+        if(this.name=='Daiyousei'&&!this.graphic&&this.team>0&&scene=='battle'){
             this.layer.noFill()
             this.layer.stroke(150,255,100,this.fade)
             this.layer.strokeWeight(1)
@@ -9950,7 +9961,7 @@ class combatant{
             this.layer.textSize(8)
             this.layer.text(this.vision,0,-9.25-this.infoAnim.balance*6)
         }
-        if(this.name=='Shinmyoumaru'&&!this.graphic&&this.team>0){
+        if(this.name=='Shinmyoumaru'&&!this.graphic&&this.team>0&&scene=='battle'){
             this.layer.translate(0,-14)
             this.layer.fill(255,100,150,this.fade)
             this.layer.stroke(255,125,175,this.fade)
@@ -9978,7 +9989,7 @@ class combatant{
                     this.layer.push()
                     this.layer.translate(this.position.x+this.offset.life.x,this.position.y+this.offset.life.y)
                     this.layer.scale(this.infoAnim.size)
-                    this.displayInfoInternal()
+                    this.displayInfoInternal(scene)
                     this.layer.pop()
                 }
             break
@@ -10104,14 +10115,14 @@ class combatant{
                 this.layer.push()
                 this.layer.translate(350-this.id*100,495)
                 this.layer.scale(1.5)
-                this.displayInfoInternal()
+                this.displayInfoInternal(scene)
                 this.layer.pop()
             break
             case 'event':
                 this.layer.push()
                 this.layer.translate(100+this.id*700,510)
                 this.layer.scale(1.5)
-                this.displayInfoInternal()
+                this.displayInfoInternal(scene)
                 this.layer.pop()
             break
             case 'food':
@@ -10120,7 +10131,7 @@ class combatant{
                 this.layer.scale(1.5)
                 this.fade=1
                 this.infoAnim.life=1
-                this.displayInfoInternal()
+                this.displayInfoInternal(scene)
                 this.layer.pop()
             break
         }

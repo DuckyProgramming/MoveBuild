@@ -1109,20 +1109,28 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.endShape(CLOSE)
         break
         case 126:
-            layer.stroke(200,200,50,fade)
+            layer.stroke(175,fade)
             layer.strokeWeight(1)
-            layer.quad(0,-4*sqrt(2),-4*sqrt(2),0,0,4*sqrt(2),4*sqrt(2),0)
-            layer.rect(0,0,8,8)
+            layer.line(-4,-4,4,4)
+            layer.line(-4,4,4,-4)
+            layer.line(-4,-4,-4,4)
+            layer.line(4,4,4,-4)
+            layer.line(-4,-4,0,-4)
+            layer.line(4,4,0,4)
             layer.noStroke()
             layer.fill(150,175,200,fade)
 			layer.triangle(-5,-3,5,-3,0,-6)
 			layer.arc(0,-3,10,16,0,180)
         break
         case 127:
-            layer.stroke(200,200,50,fade)
+            layer.stroke(175,fade)
             layer.strokeWeight(1)
-            layer.quad(0,-4*sqrt(2),-4*sqrt(2),0,0,4*sqrt(2),4*sqrt(2),0)
-            layer.rect(0,0,8,8)
+            layer.line(-4,-4,4,4)
+            layer.line(-4,4,4,-4)
+            layer.line(-4,-4,-4,4)
+            layer.line(4,4,4,-4)
+            layer.line(-4,-4,0,-4)
+            layer.line(4,4,0,4)
             layer.fill(125,fade)
             layer.stroke(100,fade)
             layer.strokeWeight(1)
@@ -4843,6 +4851,29 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             }
             layer.endShape()
             displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
+        break
+        case 509:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.fill(200,255,255,fade)
+            layer.triangle(0,0,-2,-2,-2,2)
+            layer.triangle(0,0,2,-2,2,2)
+        break
+        case 510:
+            layer.stroke(175,fade)
+            layer.strokeWeight(1)
+            layer.line(-4,-4,4,4)
+            layer.line(-4,4,4,-4)
+            layer.line(-4,-4,-4,4)
+            layer.line(4,4,4,-4)
+            layer.line(-4,-4,0,-4)
+            layer.line(4,4,0,4)
+            layer.noStroke()
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
         break
 
     }

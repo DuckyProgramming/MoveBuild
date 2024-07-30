@@ -19,10 +19,7 @@ class cardManager{
 
         this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.cyclicDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0)-(variants.compress?1:0)-(variants.unexpected?1:0)+(variants.polar?1:0)-(variants.cardHold?1:0))
         this.drawBoost=0
-        this.tempDraw=0
-        this.tempDrawFreeze=0
-        this.tempDrawBurn=0
-        this.tempDrawClass=[0,0,0,0,0,0,0,0,0,0,0,0]
+        this.tempDraw={main:0,freeze:0,burn:0,free:0,class:[0,0,0,0,0,0,0,0,0,0,0,0]}
         this.tempCostDown=0
         this.baseDrops=variants.cyclicDraw?3:0
         this.drops=0
@@ -680,7 +677,7 @@ class cardManager{
         this.discard.allClaw(effect)
     }
     turnDraw(turn){
-        let tempDrawAmount=this.drawAmount+this.tempDraw-(this.battle.turn.total==1&&(variants.cyclicDraw||game.ascend>=21)?1:0)
+        let tempDrawAmount=this.drawAmount+this.tempDraw.main-(this.battle.turn.total==1&&(variants.cyclicDraw||game.ascend>=21)?1:0)
         if(turn==1){
             tempDrawAmount-=this.drawInnate()
         }
@@ -714,15 +711,18 @@ class cardManager{
         }else{
             this.draw(tempDrawAmount)
         }
-        if(this.tempDrawFreeze>0){
-            this.draw(this.tempDrawFreeze,3)
+        if(this.tempDraw.freeze>0){
+            this.draw(this.tempDraw.freeze,3)
         }
-        if(this.tempDrawBurn>0){
-            this.draw(this.tempDrawBurn,2)
+        if(this.tempDraw.burn>0){
+            this.draw(this.tempDraw.burn,2)
         }
-        for(let a=0,la=this.tempDrawClass.length;a<la;a++){
-            if(this.tempDrawClass[a]>0){
-                this.drawAbstract(this.tempDrawClass[a],0,0,[a])
+        if(this.tempDraw.free>0){
+            this.draw(this.tempDraw.free,5)
+        }
+        for(let a=0,la=this.tempDraw.class.length;a<la;a++){
+            if(this.tempDraw.class[a]>0){
+                this.drawAbstract(this.tempDraw.class[a],0,0,[a])
             }
         }
         if(this.tempCostDown>0){
@@ -730,10 +730,11 @@ class cardManager{
                 this.randomEffect(2,1,[1])
             }
         }
-        this.tempDraw=0
-        this.tempDrawFreeze=0
-        this.tempDrawBurn=0
-        this.tempDrawClass=[0,0,0,0,0,0,0,0,0,0,0,0]
+        this.tempDraw.main=0
+        this.tempDraw.freeze=0
+        this.tempDraw.burn=0
+        this.tempDraw.free=0
+        this.tempDraw.class=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.tempCostDown=0
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.getStatus('Random Card Cost Less Per Turn')>0){

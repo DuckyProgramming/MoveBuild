@@ -917,6 +917,9 @@ class combatantManager{
                             this.combatants[a].statusEffect(args[b*2],args[b*2+1])
                         }
                     break
+                    case 49:
+                        this.combatants[a].loseHealth(args[0])
+                    break
                 }
             }
         }

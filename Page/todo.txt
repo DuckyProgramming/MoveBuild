@@ -53,6 +53,8 @@ LISTING GROUP 45
 
 [more evokes]
 
+cheap shot - evoke a basic orb instantly
+
 
 
 [why is onsen reimu a thing]
@@ -77,35 +79,17 @@ LISTING GROUP 45
 
 [interlace]
 
-[gulliver's travel reference?]
-
 
 
 [#18 must be able to build around fire of ena]
 
 [primal vision]
 
-name a card after an enemy from space war
-
 [nether trumpet]
-
-[sakura-colored sea - when drawn, add vitality, ethereal]
 
 [fire 2 leaves, blue and yellow that repeatedly explodes into 4 more small leaves]
 
-
-
-coolheaded - get a shield orb, []
-
-rain of filth - 2 cost azis, exhaust any number of cards, gain 1 energy back per card exhausted
-
-canopy vista - tappable waste that gives 0 energy, increases by 1 when played, exhausts on 2
-
 [cannonball variant for #18]
-
-[split card like deliberation]
-
-[gain 1 strength or gain 1 dexterity]
 
 
 
@@ -127,86 +111,36 @@ wishes need to do damage!!!
 
 [multihit on shinmy]
 
-remembrance - get an instant stance with the current stance, exit stance
-DOES NOT WORK WITH DIVINITY
-
 [certes movement]
 
 [depth charge]
 
 drowning curse
 
-barter box - remove all items, replace with random other items
-
-
-
 [is lira still in a defecit]
-
-[diagonal evoke]
-
-[simple damage in all directions, and draw a card]
-
-[claustrophobia]
-
-[multitool]
-
-broken parts - 1 cost add a random blueprint, draw 2 cards
-
-
-
-[how many allies are active?]
-
-pulp - 0 cost, gain 1 energy and draw 1 card if you have block
-
-hold a dark orb and increase all dark orbs
 
 new moonlit lotus
 rename old moonlit lotus
-
-lapio - upgrade the 3 most expensive cards in deck, vanish 1
-
-md's notebook - 10% chance to gain an item slot, 10% chance to make a card glitched
 
 
 
 asteroid belt that spams red stars that create more stars with holes in them and streaks
 
-crystal glare but with a cool animation
-
-heart excerpt slash
-
-[dark pristine]
-
-overthink - 1 cost, draw 4 cards, lose 2 health
-
-city tax - all enemies lose 1 health, you heal 1 each
-
-
-
-pan for gold - gain 5 currency, draw a card next turn
-
-golden pan - frying pan but gain 1 currency when used
-
-new maiden's waltz
-rename old maiden's waltz
-
 dimensional point rift - create a bunch of glowing yellow squares (composed of particles) that get large and then shrink on the target
-
-mayhem - every turn, draw a card it costs 0
-
-ferrero rocher - paper ball but it heals you
-
-
 
 floret fractal but rainbow
 
+
+
+[dark pristine]
+
+[error - remove all your statuses, []]
+
 [aozora]
 
+[seija card]
+
 [satellite slash - distant flowers]
-
-split runaway seasons into one that only gives skills
-
-electrodynamics - hold lightning orbs and trigger them
 
 aura of poverty - apply weak and vulnerable in all directions, lose 5 currency
 
@@ -216,27 +150,24 @@ empty mask - reverse of sadism
 
 [discus of [] and []]
 
+[discus of [] and []]
+
+[discus of [] and []]
+
 [moon rain - animate actual rain particles]
-
-reverse conveyor belt
-
-variant of toffee
-
-autoshield - gain block, but only if you have no block
 
 
 
 move, freeze ahead
-
-trickle - damage, conditionally enter calm
-
-tempest but gain wish power
 
 [more lock on cards]
 
 [more lock on cards]
 
 swap and add block
+
+replace the glitch with hammerspace - remove a card, put a removed card into your hand and deck
+
 
 
 
@@ -256,84 +187,24 @@ swap and add block
 
 caltrops - create tiles that inflict bleed
 
-pistol and advance 1 tile
-
-move all celestial cards,
-celestine,
-diamond of sky
-
-smooth action - gain 2 temporary strength when you switch stance
-
-arsenal - draw 3 guns
-
-tough it out - gain double block this turn
-
-
-
 blunderbuss - 3 direction shotgun
 
-add strikes / defends to draw pile and they get replenish
-
-take cover - add 12 block for each direction that does not have an adjacent tile
-
-leap - move 1 tile, or cross an empty gap between 2 tiles
-
 sapphire facet - fires blue stars everywher e and lighter ones in set directions that create more particles
-
-disarm - damage, if enemy has a gun take his gun
 
 
 
 aggregate border - get a bunch of barrier, deal splash damage next turn equal to barrier
-
-original strike - 2 cost deal 12 damage, add a random free attack to your hand
-
-wide push - push in 3 directions
-
-sanae, push and gain 1 dex
-
-give and get - gain 4 temp strength and 4 temp dex
 
 astrology sphere
 and new astrology animation
 
 
 
-shadow ball - 28 damage, gain 1 energy per dark orb you have
-
-harder - gain 2 armor, add better to draw pile
-
-better - upgrade a card, add faster to draw pile
-
-faster - move 2 tiles, add stronger to draw pile
-
-stronger - gain 1 strength
-
-apply 99 lock on
-
-
-
-[error - remove all your statuses, []]
 
 
 
 
-
-
-
-SUKUNA MECHANICS
-
-strike and defend
-dodge
-lock on
-wish cards
-
-MOTIFS
-
-fishing for certain cards
-size of hand
-
-DEVELOPMENT
+SUKUNA DEVELOPMENT
 
 model
 icon
@@ -364,9 +235,6 @@ update azis tutorial with orb moving
 
 
 
-
-
-
 new enemies:
 
 world 1:
@@ -381,7 +249,7 @@ enemies:
 
 sick - when killed you get a bunch of debuffs
 drowned - can randomly apply drowned to you
-[]
+pistol thug - a basic biker with a gun not really a threat
 
 bosses:
 
@@ -459,6 +327,48 @@ card collector - offers to trade one of your cards (random) for a rare card of y
 gangster rifleman informant
 
 management informant
+
+[]
+
+[]
+
+[]
+
+
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
+
+
+
+[]
+
+[]
+
+[]
+
+[]
+
+[]
 
 
 

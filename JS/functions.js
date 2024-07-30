@@ -361,6 +361,15 @@ function sign(value){
 function pointInsideBox(point,box){
 	return point.position.x>box.position.x-box.width/2&&point.position.x<box.position.x+box.width/2&&point.position.y>box.position.y-box.height/2&&point.position.y<box.position.y+box.height/2
 }
+function occurences(array,item){
+	let total=0
+	for(let a=0,la=array.length;a<la;a++){
+		if(array[a]==item){
+			total++
+		}
+	}
+	return total
+}
 function arrayIncludes(array,includes){
 	for(let a=0,la=array.length;a<la;a++){
 		let lb=includes.length
@@ -1443,6 +1452,17 @@ function legalTargetCombatant(type,lengthStart,lengthEnd,combatant1,combatant2,t
 		break
 		case 2:
 			return legalTarget(0,lengthStart,lengthEnd,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)
+		case 3:
+			if(legalTarget(0,lengthStart,lengthEnd,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)){
+				let length=distTarget(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)-1
+				for(a=0,la=tiles.length;a<la;a++){
+					if(legalTarget(0,0,length,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)&&targetDirection(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)==targetDirection(0,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)){
+						return false
+					}
+				}
+				return true
+			}
+		break
 	}
 	return false
 }
@@ -1732,6 +1752,14 @@ function quickNode(type){
 	current.nodeManager.enterNode(type)
 	transition.trigger=true
 }
+function quickDraw(){
+	for(let a=0,la=4;a<la;a++){
+		quickAddFull('Strike',1,0,0)
+		quickAddFull('Defend',1,0,0)
+		quickAddFull('Step',1,0,0)
+		quickAddFull('Think',1,0,0)
+	}
+}
 function event(name){
 	stage.scene='event'
 	graphics.staticBackground.clear()
@@ -1817,11 +1845,13 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 		Spectral:
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+5][3].length}/15				${current.cardManagers[0].listing.card[game.playerNumber+5][3].length-15}
 		Subcard:
-	Total:${current.cardManagers[0].listing.sub.length}/100				${current.cardManagers[0].listing.sub.length-100}
+	Total:${current.cardManagers[0].listing.sub.length}/100			${current.cardManagers[0].listing.sub.length-100}
+		Ally:
+	Total:${current.cardManagers[0].listing.ally.length}/20				${current.cardManagers[0].listing.ally.length-20}
 		Disband:
-	Total:${current.cardManagers[0].listing.disband.length}/200				${current.cardManagers[0].listing.disband.length-200}
+	Total:${current.cardManagers[0].listing.disband.length}/200			${current.cardManagers[0].listing.disband.length-200}
 		Junkyard:
-	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/150				${current.cardManagers[0].listing.junk[game.playerNumber+1].length-150}
+	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/150			${current.cardManagers[0].listing.junk[game.playerNumber+1].length-150}
 			`)
 }
 function outMtg(){

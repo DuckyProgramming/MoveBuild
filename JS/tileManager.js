@@ -128,6 +128,15 @@ class tileManager{
         }
         return tiles
     }
+    getAreaAll(tilePosition,range1,range2){
+        let tiles=[]
+        for(let a=0,la=this.tiles.length;a<la;a++){
+            if(legalTargetCombatant(0,range1,range2,{tilePosition:tilePosition},this.tiles[a],this.tiles)){
+                tiles.push(this.tiles[a])
+            }
+        }
+        return tiles
+    }
     allEffect(type,args){
         for(let a=0,la=this.tiles.length;a<la;a++){
             switch(type){
@@ -252,10 +261,10 @@ class tileManager{
     }
     retargetTiles(){
         for(let a=0,la=this.tiles.length;a<la;a++){
-            if((this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==32||this.battle.attackManager.targetInfo[0]==31)&&this.tiles[a].occupied==0&&
+            if((this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==32||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==60)&&this.tiles[a].occupied==0&&
             (legalTargetCombatant(this.battle.relicManager.active[150][this.battle.attackManager.player+1]>0?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)||this.battle.attackManager.targetInfo[0]==6)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
-            }else if((this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==20)&&this.tiles[a].occupied==0&&legalTargetCombatant(1,this.battle.attackManager.targetInfo[1]+1,this.battle.attackManager.targetInfo[2]+1,this.tiles[a],this.battle.attackManager,this.tiles)){
+            }else if((this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==20)&&this.tiles[a].occupied==0&&legalTargetCombatant(1,1,2,this.tiles[a],this.battle.attackManager,this.tiles)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if((this.battle.attackManager.targetInfo[0]==7)&&this.tiles[a].occupied==0&&
             (legalTargetCombatant(0,1,this.battle.getEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+this.battle.getXBoost(this.battle.attackManager.player),this.tiles[a],this.battle.attackManager,this.tiles))){
@@ -338,6 +347,8 @@ class tileManager{
                 legalTargetCombatant(this.battle.relicManager.active[150][this.battle.attackManager.player+1]>0?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[3],this.tiles[a],this.battle.attackManager,this.tiles)&&
                 targetDirectionCombatant(0,this.battle.attackManager,this.tiles[a])%3==this.battle.attackManager.targetInfo[0]-56
             )){
+                this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
+            }else if((this.battle.attackManager.targetInfo[0]==60)&&this.tiles[a].occupied==0&&legalTargetCombatant(3,1,2,this.tiles[a],this.battle.attackManager,this.tiles)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }
         }
