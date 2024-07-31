@@ -1,3 +1,25 @@
+
+
+
+
+[damage wish]
+[4 wish power pull from discard pile]
+20 total wishes after these two
+
+flash of metal - apply 1 lock on to every enemy when drawn
+
+focus down - apply 3 lock on, draw 1 attack
+
+quick meditation - get a common card, it costs 0, get 2 wish power
+
+[counter and gain wish power]
+
+
+
+
+
+
+
 MAJOR MTG CHANGES
 
 every card changed lol
@@ -35,6 +57,7 @@ default:
 
 
 
+
 LISTING GROUP 45
 
 
@@ -47,66 +70,15 @@ rincoln lobster planeswalker
 
 figure out what the hell is going on with the music gimmicks
 
-
-
-[aluminum alloy]
-
-[more evokes]
-
-[why is onsen reimu a thing]
-
-[second wind]
-
-[mallet's love]
-
 scrap note
-
-
-
-[big bullet branch]
-
-[miracle of simplicity - double the effects of all basic cards]
-
-[pincushion]
-
-[interlace]
-
-[nether trumpet]
 
 [cannonball variant for #18]
 
 
 
-giant rotation - wish, deal 12 damage in all directions
+[discus of sand and sea]
 
-[wheat promise - wish]
-
-[night seclusion - wish]
-
-primal vision - wish, gain 5 block + 5 per adjacent enemy
-
-[damage wish]
-
-[damage wish]
-
-
-
-[multihit on shinmy]
-
-[certes movement]
-
-[depth charge]
-
-new moonlit lotus
-rename old moonlit lotus
-
-lost in paradise - create 3 copies of a card in hand
-
-one-two punch - duplicate and next attack deals more damage
-
-
-
-asteroid belt that spams red stars that create more stars with holes in them and streaks
+[discus of truth and taboo]
 
 dimensional point rift - create a bunch of glowing yellow squares (composed of particles) that get large and then shrink on the target
 
@@ -114,45 +86,7 @@ floret fractal but rainbow
 
 twin leaf barrage - variant of floret fractal, fire 2 leaves, blue and yellow that repeatedly explodes into 4 more small leaves
 
-
-
-dark pristine - next 2 colorless cards are free, but lose 1 energy next turn
-
-[seija card, but on chip]
-
-[discus of sand and sea]
-
-[discus of angels and taboos]
-
-field of growth - gain energy and draw a card for every 5 plant tiles
-
-seedling stab - damage, add a plant tile below target
-
-
-
 [moon rain - animate actual rain particles]
-
-move, freeze ahead
-
-[more lock on cards]
-
-[more lock on cards]
-
-[watermelon bomb]
-
-
-
-[raikou]
-
-[hand size manipulation]
-
-[hand size manipulation]
-
-[more strike + defend synergy]
-
-[more strike + defend synergy]
-
-[more strike + defend synergy]
 
 
 
@@ -160,11 +94,9 @@ caltrops - create tiles that inflict bleed
 
 sapphire facet - fires blue stars everywhere and lighter ones in set directions that create more particles
 
-aggregate border - get a bunch of barrier, deal splash damage next turn equal to barrier
+create a plant tile and add a sakura card to hand
 
 astrology sphere
-and new astrology animation
-
 
 
 
@@ -282,7 +214,7 @@ card collector - offers to trade one of your cards (random) for a rare card of y
 
 hotel room - choice
 sweep for bugs - lose 50$
-don't - 10% chance to lose health
+don't - 100% chance to lose a relic
 
 
 

@@ -119,6 +119,17 @@ class tileManager{
         }
         return list
     }
+    numberAbstract(type,args){
+        let total=0
+        for(let a=0,la=this.tiles.length;a<la;a++){
+            if(
+                type==0&&this.tiles[a].type.includes(args[0])
+            ){
+                total++
+            }
+        }
+        return total
+    }
     getArea(tilePosition,range1,range2){
         let tiles=[]
         for(let a=0,la=this.tiles.length;a<la;a++){

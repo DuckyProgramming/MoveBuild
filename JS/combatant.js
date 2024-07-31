@@ -117,6 +117,7 @@ class combatant{
         this.barrier=0
         this.lastBlock=0
         this.dodges=[]
+        this.turnDodges=0
         this.status={main:[],name:[
             'Double Damage','Counter','Cannot Be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
             'Vulnerable','Retain Block','Single Damage Up','Block Next Turn','Armor','Control','Cannot Add Block','Temporary Strength','Temporary Dexterity','Metallicize',
@@ -169,7 +170,7 @@ class combatant{
             '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
             '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
             'Elemental Draw','(N) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(E) Next Turn','(E) on Hit','Free Draw Up',
-            'Stance Temporary Strength','Debuff Block',
+            'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -223,7 +224,7 @@ class combatant{
                 0,0,0,2,0,2,0,2,0,0,//49
                 0,2,0,0,0,0,0,2,2,0,//50
                 0,2,2,2,2,2,2,2,2,0,//51
-                0,
+                0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -277,7 +278,7 @@ class combatant{
                 2,2,2,0,2,0,3,3,2,2,//49
                 2,1,2,2,2,2,2,2,2,2,//50
                 2,2,2,2,2,2,2,2,2,2,//51
-                2,
+                2,2,2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -5441,6 +5442,7 @@ class combatant{
                         dodged=true
                         this.blocked=0
                         this.dodges.push({timer:0,direction:atan2(userCombatant.relativePosition.x-this.relativePosition.x,userCombatant.relativePosition.y-this.relativePosition.y)-90+180*floor(random(0,2))})
+                        this.turnDodges++
                         if(this.status.main[458]>0){
                             this.statusEffect('Strength',this.status.main[458])
                         }
@@ -7128,6 +7130,9 @@ class combatant{
         if(this.id<this.battle.players){
             this.battle.relicManager.activate(20,[amount,this.id])
         }
+    }
+    endTurn(){
+        this.turnDodges=0
     }
     tick(sub){
         this.charge++

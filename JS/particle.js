@@ -32,6 +32,7 @@ class particle{
             case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 88: case 90: case 95:
             case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120: case 121:
             case 126: case 135: case 136: case 139: case 152: case 154: case 155: case 156: case 163: case 164:
+            case 168: case 169: case 170:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -437,6 +438,26 @@ class particle{
                 this.scale=1
                 this.trigger=false
                 this.occlude=0
+            break
+            case 166:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.gear=random(-4,4)
+                this.size=1
+                this.scale=1.5
+                this.fade=0
+                this.speed=10
+                this.trigger=false
+            break
+            case 167:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.gear=random(-4,4)
+                this.size=1
+                this.scale=1
+                this.fade=0
+                this.speed=8
+                this.trigger=false
             break
 
         }
@@ -2524,6 +2545,95 @@ class particle{
                     this.layer.fill(50,0,125,this.fade*0.25)
                     regStar(this.layer,0,0,7,2,2,3,3,this.time*3)
                 break
+                case 166:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(225,50,25,this.fade*0.2)
+                    for(let a=0,la=4;a<la;a++){
+                        this.layer.triangle(-5,3,5,3,0,(24+a*12)*min(this.time/20,1))
+                    }
+                    for(let a=0,la=4;a<la;a++){
+                        regStar(this.layer,0,0,5,12-a,12-a,4.8-a*0.4,4.8-a*0.4,this.time*this.gear)
+                    }
+                    this.layer.fill(255,this.fade*0.5)
+                    for(let a=0,la=5;a<la;a++){
+                        regStar(this.layer,0,0,5,8-a,8-a,3.2-a*0.4,3.2-a*0.4,this.time*this.gear)
+                    }
+                break
+                case 167:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(225,50,25,this.fade*0.2)
+                    for(let a=0,la=4;a<la;a++){
+                        this.layer.triangle(-4,3,4,3,0,(20+a*10)*min(this.time/20,1))
+                    }
+                    this.layer.noFill()
+                    this.layer.stroke(225,50,25,this.fade*0.2)
+                    for(let a=0,la=4;a<la;a++){
+                        this.layer.strokeWeight(4-a*2)
+                        regStar(this.layer,0,0,5,8,8,3.2,3.2,this.time*this.gear)
+                    }
+                    this.layer.stroke(255,this.fade*0.5)
+                    for(let a=0,la=4;a<la;a++){
+                        this.layer.strokeWeight(2-a)
+                        regStar(this.layer,0,0,5,6-a*0.5,6-a*0.5,2.4-a*0.2,2.4-a*0.2,this.time*this.gear)
+                    }
+                    this.layer.stroke(255,this.fade)
+                    this.layer.strokeWeight(1)
+                    regStar(this.layer,0,0,5,4,4,1.6,1.6,this.time*this.gear)
+                break
+                case 168:
+                    this.layer.rotate(this.time)
+                    this.layer.fill(150,25,200,this.fade)
+                    this.layer.ellipse(0,0,30)
+                    this.layer.fill(125,25,175,this.fade)
+                    this.layer.ellipse(0,0,27)
+                    this.layer.fill(100,25,150,this.fade)
+                    this.layer.ellipse(0,0,24)
+                    this.layer.noFill()
+                    this.layer.stroke(200,150,225,this.fade)
+                    this.layer.strokeJoin(ROUND)
+                    this.layer.strokeWeight(1.5)
+                    regPolyStellate(this.layer,0,0,5,2,12,12,15)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.arc(0,0,24,24,-12-90-15+a*72,12-90-15+a*72)
+                    }
+                    this.layer.strokeJoin(MITER)
+                    this.layer.strokeWeight(4.5)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.point(lsin(15+a*72)*12,lcos(15+a*72)*12)
+                    }
+                break
+                case 169:
+                    for(let a=0,la=12;a<la;a++){
+                        this.layer.rotate(180/la)
+                        this.layer.fill(100+a/(la-1)*150,150+a/(la-1)*150,200+a/(la-1)*150,this.fade)
+                        this.layer.beginShape()
+                        this.layer.vertex(-1,-12)
+                        this.layer.vertex(-1,-10)
+                        this.layer.vertex(-2.5,-10)
+                        this.layer.vertex(0,-7.5)
+                        this.layer.vertex(2.5,-10)
+                        this.layer.vertex(1,-10)
+                        this.layer.vertex(1,-11)
+                        this.layer.endShape()
+                        this.layer.rotate(180/la)
+                    }
+                break
+                case 170:
+                    for(let a=0,la=12;a<la;a++){
+                        this.layer.rotate(180/la)
+                        this.layer.fill(250,100+a/(la-1)*150,100+a/(la-1)*50,this.fade)
+                        this.layer.beginShape()
+                        this.layer.vertex(-1,-12)
+                        this.layer.vertex(-1,-10)
+                        this.layer.vertex(-2.5,-10)
+                        this.layer.vertex(0,-7.5)
+                        this.layer.vertex(2.5,-10)
+                        this.layer.vertex(1,-10)
+                        this.layer.vertex(1,-11)
+                        this.layer.endShape()
+                        this.layer.rotate(180/la)
+                    }
+                break
 
             }
             this.layer.pop()
@@ -2563,7 +2673,8 @@ class particle{
             case 46: case 51: case 52: case 54: case 56: case 57: case 60: case 65: case 66: case 72:
             case 73: case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 90: case 93:
             case 95: case 97: case 99: case 103: case 104: case 110: case 114: case 115: case 116: case 117:
-            case 118: case 119: case 120: case 121: case 126: case 152: case 154: case 155: case 156:
+            case 118: case 119: case 120: case 121: case 126: case 152: case 154: case 155: case 156: case 168:
+            case 169: case 170:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){
@@ -2991,6 +3102,43 @@ class particle{
                 if(!this.trigger){
                     this.fade+=0.1
                     if(this.fade>=1){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.1
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
+                }
+            break
+            case 166:
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed
+                if(!this.trigger){
+                    if(this.fade<1){
+                        this.fade+=0.1
+                    }
+                    if(this.time>this.timer){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.1
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
+                }
+                if(this.time%10==0&&floor(random(0,2))==0){
+                    parent.particles.push(new particle(this.layer,this.position.x,this.position.y,167,[this.direction+random(-20,20),60]))
+                }
+            break
+            case 167:
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed
+                if(!this.trigger){
+                    if(this.fade<1){
+                        this.fade+=0.1
+                    }
+                    if(this.time>this.timer){
                         this.trigger=true
                     }
                 }else{

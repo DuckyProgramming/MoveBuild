@@ -4881,6 +4881,51 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(150,175,200,fade)
             layer.triangle(-9,0,4.5,-3,4.5,3)
         break
+        case 512:
+            layer.fill(60,fade)
+            layer.rect(0,0,4,1.2)
+            layer.rect(0,-2,7,1.2)
+            layer.rect(0,2,7,1.2)
+            layer.rect(0,-4,4,1.2)
+            layer.rect(0,4,4,1.2)
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
+        case 513:
+            layer.fill(60,fade)
+            layer.rect(0,0,4,1.2)
+            layer.rect(0,-2,7,1.2)
+            layer.rect(0,2,7,1.2)
+            layer.rect(0,-4,4,1.2)
+            layer.rect(0,4,4,1.2)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+        break
+        case 514:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(200,fade)
+            layer.triangle(-3.5,0,-5,-1,-5,1)
+            layer.fill(50,255,255,fade)
+            layer.triangle(5,0,3.5,-1,3.5,1)
+        break
+        case 515:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(200,fade)
+            layer.triangle(-3.5,0,-5,-1,-5,1)
+            layer.fill(200,fade)
+            layer.triangle(5,0,3.5,-1,3.5,1)
+        break
 
     }
     //mark s
@@ -10150,9 +10195,13 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.5)
             regPolyStellate(layer,0,0,5,2,4,4,15)
             for(let a=0,la=5;a<la;a++){
-                layer.arc(0,0,8,8,41+a*72,61+a*72)
+                layer.arc(0,0,8,8,30+a*72,60+a*72)
             }
             layer.strokeJoin(MITER)
+            layer.strokeWeight(1.5)
+            for(let a=0,la=5;a<la;a++){
+                layer.point(lsin(15+a*72)*4,lcos(15+a*72)*4)
+            }
         break
         case 159:
             layer.fill(225,75,75,fade)

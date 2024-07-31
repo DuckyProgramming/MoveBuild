@@ -10182,7 +10182,7 @@ stage={scale:0,scene:'title',internal:{version:1}}
 game={player:[],deck:[],playerNumber:18,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
 variants={
-    mtg:true,mod:false,selectCombat:false,chaos:false,
+    mtg:false,mod:false,selectCombat:false,chaos:false,
     lowDraw:false,cyclicDraw:false,balance:false,blackjack:false,
     chooselose:false,compress:false,cardHold:false,polar:false,
     inventor:false,unexpected:false,cursed:false,witch:false,

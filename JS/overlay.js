@@ -2968,7 +2968,13 @@ class overlay{
                                 if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].remove.cards[a])&&this.battle.cardManagers[this.player].remove.cards[a].size>0.5&&this.battle.cardManagers[this.player].remove.cards[a].select){
                                     this.battle.cardManagers[this.player].remove.cards[a].select=false
                                     switch(this.args[0]){
-                                        case 71: case 88:
+                                        case 71:
+                                            this.battle.cardManagers[this.player].remove.send(this.battle.cardManagers[this.player].deck.cards,a,a+1,1)
+                                            a--
+                                            la--
+                                        break
+                                        case 88:
+                                            this.battle.cardManagers[this.player].remove.copy(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                                             this.battle.cardManagers[this.player].remove.send(this.battle.cardManagers[this.player].deck.cards,a,a+1,1)
                                             a--
                                             la--
@@ -3979,7 +3985,13 @@ class overlay{
                                 if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].remove.cards[a].size>0.5&&this.battle.cardManagers[this.player].remove.cards[a].select){
                                     this.battle.cardManagers[this.player].remove.cards[a].select=false
                                     switch(this.args[0]){
-                                        case 71: case 88:
+                                        case 71:
+                                            this.battle.cardManagers[this.player].remove.send(this.battle.cardManagers[this.player].deck.cards,a,a+1,1)
+                                            a--
+                                            la--
+                                        break
+                                        case 88:
+                                            this.battle.cardManagers[this.player].remove.copy(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                                             this.battle.cardManagers[this.player].remove.send(this.battle.cardManagers[this.player].deck.cards,a,a+1,1)
                                             a--
                                             la--

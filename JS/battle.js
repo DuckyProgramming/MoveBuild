@@ -722,6 +722,7 @@ class battle{
     }
     endTurn(){
         let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
+        combatant.endTurn()
         this.turn.endReady=false
         this.relicManager.activate(14,[this.turn.main,this.getEnergy(this.turn.main)])
         if(combatant.getStatus('Retain Hand')>0){
@@ -1239,6 +1240,18 @@ class battle{
             for(let a=0,la=userCombatant.getStatus('Wish Miracle');a<la;a++){
                 this.cardManagers[player].hand.add(findName('Miracle',types.card),0,0)
             }
+        }
+        if(card.basic&&userCombatant.getStatus('Basic Temporary Strength')>0){
+            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Basic Temporary Strength'))
+        }
+        if(card.basic&&userCombatant.getStatus('Basic Draw')>0){
+            this.cardManagers[player].draw(userCombatant.getStatus('Basic Draw'))
+        }
+        if(userCombatant.getStatus('Card Delay Exhaust')>0){
+            this.cardManagers[player].hand.exhaust(userCombatant.getStatus('Card Delay Exhaust'))
+        }
+        if(userCombatant.getStatus('Card Delay Draw')>0){
+            this.cardManagers[player].draw(userCombatant.getStatus('Card Delay Draw'))
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])
