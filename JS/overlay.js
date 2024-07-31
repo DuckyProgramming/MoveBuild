@@ -444,7 +444,7 @@ class overlay{
                         }
                     break
                     case 18: case 24: case 36:
-                        list=args[2]==36?list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                        list=args[2]==36?copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                         for(let a=0,la=list[args[1]].length;a<la;a++){
                             if(
                                 types.card[list[args[1]][a]].levels[args[0]].cost!=args[3]||
@@ -728,6 +728,18 @@ class overlay{
                         for(let a=0,la=this.options;a<la;a++){
                             this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Pristine','Splash'][a%2],types.card),0,this.battle.standardColorize(findName(['Pristine','Splash'][a%2],types.card)),-1))
                             this.cards[a].upSize=true
+                        }
+                    break
+                    case 38:
+                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                        for(let a=0,la=this.options;a<la;a++){
+                            if(list[args[1]].length>0){
+                                let index=floor(random(0,list[args[1]].length))
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],types.card[list[args[1]][index]].list,-1))
+                                this.cards[a].setCost(0,[0])
+                                this.cards[this.cards.length-1].upSize=true
+                                list[args[1]].splice(index,1)
+                            }
                         }
                     break
                 }
@@ -3022,7 +3034,7 @@ class overlay{
                                     }
                                 }else if(this.setupArgs[2]==27){
                                     this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player][lists[b]].cards,this.setupArgs[4][a],this.setupArgs[4][a]+1,4)
-                                }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29||this.setupArgs[2]==33||(this.setupArgs[2]==2||this.setupArgs[2]==12)&&this.setupArgs[3]==1){
+                                }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29||this.setupArgs[2]==33||(this.setupArgs[2]==2||this.setupArgs[2]==12)&&this.setupArgs[3]==1||this.setupArgs[2]==38){
                                     this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[1],[])
                                 }else if(this.setupArgs[2]!=22){
                                     this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
@@ -4039,7 +4051,7 @@ class overlay{
                                     }
                                 }else if(this.setupArgs[2]==27){
                                     this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player][lists[b]].cards,this.setupArgs[4][a],this.setupArgs[4][a]+1,4)
-                                }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29||this.setupArgs[2]==33||(this.setupArgs[2]==2||this.setupArgs[2]==12)&&this.setupArgs[3]==1){
+                                }else if(this.setupArgs[2]==2||this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29||this.setupArgs[2]==33||(this.setupArgs[2]==2||this.setupArgs[2]==12)&&this.setupArgs[3]==1||this.setupArgs[2]==38){
                                     this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[1],[])
                                 }else if(this.setupArgs[2]!=22){
                                     this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)

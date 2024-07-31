@@ -5009,6 +5009,21 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
                 layer.arc(0,0,20,25,-115,-65)
             }
         break
+        case 1:
+            layer.noStroke()
+            if(args[1]>0){
+                layer.fill(100,255,255,args[1]*fade*0.5)
+                layer.arc(0,0,17,22,45,135)
+                layer.arc(0,0,17,22,55,125)
+                layer.arc(0,0,17,22,65,115)
+            }
+            if(args[2]>0){
+                layer.fill(100,255,255,args[2]*fade*0.5)
+                layer.arc(0,0,17,22,-135,-45)
+                layer.arc(0,0,17,22,-125,-55)
+                layer.arc(0,0,17,22,-115,-65)
+            }
+        break
         case 2:
             layer.noStroke()
             if(args[0]>0){
@@ -5136,6 +5151,12 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
                 break
             }
             displayMtgManaIcon(layer,0,0,type,0,1,fade)
+            if(variant==1){
+                layer.fill(0,fade)
+                layer.noStroke()
+                layer.textSize(15)
+                layer.text(type==-3?'X':args[3],0,1)
+            }
         break
         case 6:
             displayMtgManaIcon(layer,0,0,type,0,1,fade)
@@ -5171,7 +5192,7 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
             displayMtgManaIcon(layer,3.2,3.2,map[1],0,0.5,1)
         break
     }
-    if(variant==0){
+    if(variant==0||variant==1){
         if(args[0]<1){
             layer.stroke(0,(1-args[0])*fade)
             layer.strokeWeight(1)

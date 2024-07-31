@@ -182,7 +182,7 @@ class attack{
             case 3895: case 3901: case 3902: case 3904: case 3905: case 3906: case 3907: case 3912: case 3915: case 3917: case 3920: case 3921: case 3923: case 3924: case 3927: case 3928: case 3929: case 3933: case 3935: case 3940:
             case 3941: case 3944: case 3945: case 3946: case 3948: case 3950: case 3951: case 3953: case 3982: case 3984: case 3985: case 3986: case 3988: case 3989: case 3990: case 3996: case 3999: case 4019: case 4021: case 4022:
             case 4023: case 4026: case 4029: case 4030: case 4034: case 4045: case 4050: case 4052: case 4053: case 4059: case 4061: case 4066: case 4067: case 4068: case 4069: case 4070: case 4072: case 4077: case 4078: case 4079:
-            case 4082: case 4083: case 4084: case 4085: case 4088: case 4091: case 4096: case 4097: case 4098: case 4102: case 4105: case 4107: case 4108: case 4109: case 4110: case 4117: case 4122: case 4131:
+            case 4082: case 4083: case 4084: case 4085: case 4088: case 4091: case 4096: case 4097: case 4098: case 4102: case 4105: case 4107: case 4108: case 4109: case 4110: case 4117: case 4122: case 4132: case 4137: case 4138:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -8035,7 +8035,7 @@ class attack{
                     break
                     case 3760:
                         this.battle.overlayManager.overlays[10][this.player].active=true
-                        this.battle.overlayManager.overlays[10][this.player].activate([0,0,12,1])
+                        this.battle.overlayManager.overlays[10][this.player].activate([0,0,38])
                         if(this.drawn==1){
                             this.battle.addEnergy(this.effect[0],this.player)
                         }
@@ -8236,6 +8236,30 @@ class attack{
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.hand.add(findName('Defend',types.card),this.level,this.color)
                         }
+                    break
+                    case 4131:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([0,0,38])
+                        this.userCombatant.wish+=this.effect[0]
+                        this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,132,[10,0,0]))
+                        this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,132,[10,0.5,10]))
+                    break
+                    case 4134:
+                        this.battle.addSpecificEnergy(1,this.player,5)
+                        this.battle.addSpecificEnergy(1,this.player,0)
+                        this.userManager.allEffectArgs(2,37,[4])
+                    break
+                    case 4135:
+                        this.battle.addSpecificEnergy(1,this.player,5)
+                        this.battle.addSpecificEnergy(1,this.player,0)
+                        this.userManager.draw(this.effect[0])
+                        this.userManager.allEffectArgs(2,37,[4])
+                    break
+                    case 4136:
+                        this.battle.addSpecificEnergy(2,this.player,5)
+                        this.battle.addSpecificEnergy(1,this.player,0)
+                        this.userManager.draw(this.effect[0])
+                        this.userManager.allEffectArgs(2,37,[4])
                     break
 
                 }
@@ -13090,6 +13114,23 @@ class attack{
                     case 4052:
                         this.targetCombatant.statusEffect('Node',999)
                     break
+                    case 4137:
+                        this.targetCombatant.statusEffect('Buffer',this.effect[0])
+                        if(this.targetCombatant.team==0){
+                            this.battle.addSpecificEnergy(1,this.player,1)
+                            this.battle.addSpecificEnergy(1,this.player,3)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 4138:
+                        this.targetCombatant.statusEffect('Buffer',this.effect[0])
+                        if(this.targetCombatant.team==0){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,1)
+                            this.battle.addSpecificEnergy(1,this.player,3)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
 
                 }
                 //mark 8
@@ -14433,6 +14474,10 @@ class attack{
                     case 4119:
                         this.userManager.hand.exhaust(this.effect[0])
                         this.userCombatant.statusEffect('Card Delay Draw',this.effect[1])
+                    break
+                    case 4132:
+                        this.targetCombatant.statusEffect('Lock On',this.effect[0])
+                        this.userManager.drawAbstract(this.effect[1],0,0,[1])
                     break
 
                 }

@@ -2151,7 +2151,7 @@ function mtgPlayerColor(player){
 		case 14: return [2]
 		case 15: return [1,2]
 		case 16: return [1,2,4]
-		case 17: return [3,5,4]
+		case 17: return [3,4,5]
 		case 18: return [1,2,5]
 		default: return [6]
 	}

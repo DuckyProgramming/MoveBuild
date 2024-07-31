@@ -2458,6 +2458,9 @@ class group{
             case 4038:
                 userCombatant.statusEffect('Armor',card.effect[1])
             break
+            case 4133:
+                this.battle.combatantManager.allEffect(48,['Lock On',card.effect[0]])
+            break
         }
     }
     deathEffect(){
@@ -5031,24 +5034,26 @@ class group{
                                     if(this.cards[a].afford){
                                         this.callInput(0,a)
                                         break
-                                    }else if(this.cards[a].spec.includes(35)&&(variants.mtg&&this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)>0||!variants.mtg&&this.battle.getEnergy(this.player)>0)&&this.cards[a].cost>0){
+                                    }else if(this.cards[a].spec.includes(35)&&variants.mtg){
+                                        let effectiveCards=[]
+                                        for(let a=0,la=this.cards.length;a<la;a++){
+                                            if(this.cards[a].usable){
+                                                effectiveCards.push(this.cards[a])
+                                            }
+                                        }
+                                        let result=this.battle.mtgSubCost(this.cards[a].cost,this.player,effectiveCards)
+                                        let energyPay=result[0]
+                                        let costLeft=result[1]
+                                        this.battle.mtgLose(this.player,energyPay)
+                                        this.cards[a].cost=copyArray(costLeft)
+                                    }else if(this.cards[a].spec.includes(35)&&!variants.mtg&&this.battle.getEnergy(this.player)>0&&this.cards[a].cost>0){
                                         let cost=this.cards[a].cost
-                                        if(variants.mtg){
-                                            if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
-                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)*2)
-                                                this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player,this.cards[a].mtgManaColor)
-                                            }else{
-                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor))
-                                                this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player,this.cards[a].mtgManaColor)
-                                            }
+                                        if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
+                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player)*2)
+                                            this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player)
                                         }else{
-                                            if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
-                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player)*2)
-                                                this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player)
-                                            }else{
-                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player))
-                                                this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player)
-                                            }
+                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player))
+                                            this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player)
                                         }
                                         this.cards[a].onIncrementCountdown()
                                     }else if(!this.cards[a].energyAfford){
@@ -5470,24 +5475,26 @@ class group{
                                         }
                                         this.callInput(0,a)
                                         break
-                                    }else if(this.cards[a].spec.includes(35)&&(variants.mtg&&this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)>0||!variants.mtg&&this.battle.getEnergy(this.player)>0)&&this.cards[a].cost>0){
+                                    }else if(this.cards[a].spec.includes(35)&&variants.mtg){
+                                        let effectiveCards=[]
+                                        for(let a=0,la=this.cards.length;a<la;a++){
+                                            if(this.cards[a].usable){
+                                                effectiveCards.push(this.cards[a])
+                                            }
+                                        }
+                                        let result=this.battle.mtgSubCost(this.cards[a].cost,this.player,effectiveCards)
+                                        let energyPay=result[0]
+                                        let costLeft=result[1]
+                                        this.battle.mtgLose(this.player,energyPay)
+                                        this.cards[a].cost=copyArray(costLeft)
+                                    }else if(this.cards[a].spec.includes(35)&&!variants.mtg&&this.battle.getEnergy(this.player)>0&&this.cards[a].cost>0){
                                         let cost=this.cards[a].cost
-                                        if(variants.mtg){
-                                            if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
-                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)*2)
-                                                this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player,this.cards[a].mtgManaColor)
-                                            }else{
-                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor))
-                                                this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player,this.cards[a].mtgManaColor)
-                                            }
+                                        if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
+                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player)*2)
+                                            this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player)
                                         }else{
-                                            if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
-                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player)*2)
-                                                this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player)
-                                            }else{
-                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player))
-                                                this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player)
-                                            }
+                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player))
+                                            this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player)
                                         }
                                         this.cards[a].onIncrementCountdown()
                                     }else{

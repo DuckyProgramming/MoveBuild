@@ -1457,6 +1457,25 @@ class battle{
             }
         }
     }
+    mtgSubCost(cost,player,cards){
+        this.energy.lastSpend[player]=[]
+        let costLeft=copyArray(cost)
+        let effectiveEnergy=[0,0,0,0,0,0,0]
+        for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+            if(this.energy.crystal[player][a][4]){
+                effectiveEnergy[this.energy.crystal[player][a][0]]++
+            }
+        }
+        return mtgAutoCost(effectiveEnergy,costLeft,2,[cards],true)
+    }
+    mtgLose(player,energyPay){
+        for(let a=0,la=energyPay.length;a<la;a++){
+            if(this.energy.main[player][energyPay[a]]>0){
+                this.energy.main[player][energyPay[a]]--
+                this.energy.lastSpend[player].push(energyPay[a])
+            }
+        }
+    }
     mtgCost(cost,player,cards){
         this.energy.lastSpend[player]=[]
         let costLeft=copyArray(cost)
@@ -1469,19 +1488,9 @@ class battle{
         let result=mtgAutoCost(effectiveEnergy,costLeft,2,[cards],true)
         let energyPay=result[0]
         costLeft=result[1]
-        for(let a=0,la=energyPay.length;a<la;a++){
-            if(this.energy.main[player][energyPay[a]]>0){
-                this.energy.main[player][energyPay[a]]--
-                this.energy.lastSpend[player].push(energyPay[a])
-            }
-        }
+        this.mtgLose(player,energyPay)
         energyPay=mtgAutoCost(this.energy.main[player],costLeft,3,[cards],true)
-        for(let a=0,la=energyPay.length;a<la;a++){
-            if(this.energy.main[player][energyPay[a]]>0){
-                this.energy.main[player][energyPay[a]]--
-                this.energy.lastSpend[player].push(energyPay[a])
-            }
-        }
+        this.mtgLose(player,energyPay)
         let boost=this.getXBoost(player)
         this.attackManager.energy=this.energy.lastSpend[player].length+boost
         for(let a=0,la=boost;a<la;a++){

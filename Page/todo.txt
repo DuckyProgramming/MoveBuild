@@ -6,12 +6,6 @@
 [4 wish power pull from discard pile]
 20 total wishes after these two
 
-flash of metal - apply 1 lock on to every enemy when drawn
-
-focus down - apply 3 lock on, draw 1 attack
-
-quick meditation - get a common card, it costs 0, get 2 wish power
-
 [counter and gain wish power]
 
 
@@ -19,11 +13,7 @@ quick meditation - get a common card, it costs 0, get 2 wish power
 
 
 
-
 MAJOR MTG CHANGES
-
-every card changed lol
-split cards into character and non-character
 
 METAS
 
@@ -76,9 +66,7 @@ scrap note
 
 
 
-[discus of sand and sea]
-
-[discus of truth and taboo]
+sapphire facet - fires blue stars everywhere and lighter ones in set directions that create more particles
 
 dimensional point rift - create a bunch of glowing yellow squares (composed of particles) that get large and then shrink on the target
 
@@ -88,15 +76,22 @@ twin leaf barrage - variant of floret fractal, fire 2 leaves, blue and yellow th
 
 [moon rain - animate actual rain particles]
 
+astrology sphere
+
+
 
 
 caltrops - create tiles that inflict bleed
 
-sapphire facet - fires blue stars everywhere and lighter ones in set directions that create more particles
-
 create a plant tile and add a sakura card to hand
 
-astrology sphere
+[discus of sand and sea]
+
+[discus of truth and lie]
+
+[]
+
+[]
 
 
 
