@@ -1,24 +1,13 @@
-
-
-
-
-[damage wish]
-[4 wish power pull from discard pile]
-20 total wishes after these two
-
-[counter and gain wish power]
-
-
-
-
-
-
 MAJOR MTG CHANGES
 
 METAS
 
 1 mana = 8 damage
 1 mana = 12 block
+1 mana = 4 heal
+
+all spells of wonder should cost 2 hybrid and 1 neutral mana
+22,32,40
 
 case 7:
     return [1,2]
@@ -56,6 +45,10 @@ LISTING GROUP 45
 
 rincoln lobster planeswalker
 
+[]
+
+[]
+
 
 
 figure out what the hell is going on with the music gimmicks
@@ -80,18 +73,31 @@ astrology sphere
 
 
 
+fantasy express?
+
+managerial blossoming
+
+trial of the first court
+
+[seija card]
 
 caltrops - create tiles that inflict bleed
 
+[sagume card]
+
+
+
 create a plant tile and add a sakura card to hand
 
-[discus of sand and sea]
+outmuscle - 10 damage, does double if target has strength
 
-[discus of truth and lie]
+[damage wish]
+[4 wish power pull from discard pile]
+20 total wishes after these two
 
-[]
+[counter and gain wish power]
 
-[]
+deal damage, upgrade a concoction
 
 
 
@@ -134,7 +140,7 @@ world 1:
 
 easies:
 
-sick - when killed you get a bunch of debuffs
+sick duck - when killed you get a bunch of debuffs
 []
 []
 
@@ -154,7 +160,7 @@ enemies:
 
 bar security - counter pushes
 bartender - annoying gangster
-[]
+brawler - gains 1 strength per turn
 
 bosses:
 
@@ -165,12 +171,15 @@ world 3:
 enemies:
 
 infinite spirit - lose 1 energy when you hit this enemy
-[permanent intangible]
+management quickdraw - a management soldier with a gun, but moves when you move, and always goes as far away as possible
 management robot commander - like a normal robot but can buff other robots and stronger generally
 
 bosses:
 
-[]
+lockdown - a strong robot
+every time you play 8 cards, attacks you and moves
+counters 12 at the start of every combatant
+otherwise pretty basic attacks
 
 world 4:
 
@@ -265,6 +274,7 @@ management informant
 
 decide on character #18
 conduct a purge and mass renaming
+
 
 
 

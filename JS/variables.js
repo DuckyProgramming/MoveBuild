@@ -160,7 +160,7 @@ types={
         {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[18]},{type:300,effect:[2]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
         {name:'Golden Duck',life:38,behavior:16,spec:[],move:{type:0,speed:3},attack:[{type:21,effect:[]},{type:68,effect:[]}],description:`Why is this thing alive?`},
         {name:'Management Shotgunner',life:146,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:364,effect:[24,3,1,'Electrocuted']},{type:365,effect:[7,3]}],description:`At least he doesn't OHKO`},
-        {name:'Bowler Duck',life:24,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:4,effect:[7]}],description:`He's broke, actually`},
+        {name:'Bowler Duck',life:48,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[4]},{type:4,effect:[14]}],description:`He's broke, actually`},
         {name:'Management Light Infantry',life:135,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:367,effect:[6]},{type:368,effect:[10,1]}],description:`How can he dodge with that armor?`},
         {name:'Gangster Assassin',life:72,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:369,effect:[22,4]}],description:`Good at stabbing`},
         {name:'Ducky Donka',life:48,behavior:2,spec:[0],move:{type:0,speed:1},attack:[{type:370,effect:[2,2]}],description:`Legit`},
@@ -5634,8 +5634,8 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 text:[50,50,50],
                 active:[255,255,255],
             },{
-                fill:[240,240,160],
-                stroke:[200,200,120],
+                fill:[240,240,180],
+                stroke:[200,200,140],
                 text:[80,80,0],
                 active:[255,255,200],
             },{
@@ -5644,8 +5644,8 @@ Besides, ghost objects aren't useful in the real world, right?`,
                 text:[0,50,100],
                 active:[200,225,225],
             },{
-                fill:[150,50,200],
-                stroke:[130,30,180],
+                fill:[125,50,150],
+                stroke:[110,35,135],
                 text:[50,25,75],
                 active:[225,200,255],
             },{
@@ -9842,7 +9842,7 @@ Does not spend the orb.`,
         },{name:'Sturdy',desc:
 `Stance. Deal 60% damage and take 40% damage. `,
         },{name:'Divinity',desc:
-`Stance. When entered, gain 3 energy and draw 3 cards. Deal triple damage.`,
+`Stance. When entered, gain 3 energy. Deal triple damage.`,
         },{name:'Depression',desc:
 `Stance. Lose 1 energy per turn.`,
         },{name:'Faith',desc:

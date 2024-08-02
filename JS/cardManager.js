@@ -27,6 +27,7 @@ class cardManager{
         this.greenDiff=0
         this.carry=[0,0,0,0,0]
         this.bufferedTurn=0
+        this.midDraw=false
         this.pack=[]
         if(variants.mtg){
             this.mtgLastColor=6
@@ -179,7 +180,7 @@ class cardManager{
         }
     }
     mtgListing(){
-        this.listing.mtg=[[[],[],[],[]],[[],[],[],[]]]
+        this.listing.mtg=[[[],[],[],[]],[[],[],[],[]],[[],[],[],[]]]
         let effectiveMana=[0,0,0,0,0,0,0]
         for(let a=0,la=this.battle.energy.base[this.player].length;a<la;a++){
             effectiveMana[this.battle.energy.base[this.player][a]]++
@@ -222,6 +223,10 @@ class cardManager{
                 ){
                     this.listing.mtg[1][types.card[a].rarity].push(a)
                     this.listing.mtg[1][3].push(a)
+                }
+                if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber){
+                    this.listing.mtg[2][types.card[a].rarity].push(a)
+                    this.listing.mtg[2][3].push(a)
                 }
             }
         }
@@ -287,7 +292,7 @@ class cardManager{
                 list=copyArray(this.listing.card[args[ticker++]][args[ticker++]])
             break
             case 2:
-                list=copyArray(this.listing.allPlayerCard[args[ticker++]])
+                list=variants.mtg?copyArray(this.listing.mtg[2][args[ticker++]]):copyArray(this.listing.allPlayerCard[args[ticker++]])
             break
             case 3:
                 list=copyArray(this.listing.allPlayerCard[args[ticker]])
@@ -309,21 +314,25 @@ class cardManager{
         for(let a=0,la=filter.length;a<la;a++){
             for(let b=0,lb=list.length;b<lb;b++){
                 let valid=false
+                let effectiveLevel=constrain(level,0,types.card[list[b]].levels.length-1)
                 switch(filter[a]){
                     case 0:
-                        if(types.card[list[b]].levels[level].class!=args[ticker]){
+                        if(types.card[list[b]].levels[effectiveLevel].class!=args[ticker]){
                             list.splice(b,1)
                             b--
                             lb--
                         }
                     break
                     case 1:
-                        if(types.card[list[b]].levels[level].cost!=args[ticker]||
-                            types.card[list[b]].levels[level].spec.includes(5)||
-                            types.card[list[b]].levels[level].spec.includes(11)||
-                            types.card[list[b]].levels[level].spec.includes(21)||
-                            types.card[list[b]].levels[level].spec.includes(35)||
-                            types.card[list[b]].levels[level].spec.includes(41)
+                        if((
+                                variants.mtg&&types.card[list[b]].mtg.levels[effectiveLevel].cost.length!=args[ticker]||
+                                !variants.mtg&&types.card[list[b]].levels[effectiveLevel].cost!=args[ticker]
+                            )||
+                            types.card[list[b]].levels[effectiveLevel].spec.includes(5)||
+                            types.card[list[b]].levels[effectiveLevel].spec.includes(11)||
+                            types.card[list[b]].levels[effectiveLevel].spec.includes(21)||
+                            types.card[list[b]].levels[effectiveLevel].spec.includes(35)||
+                            types.card[list[b]].levels[effectiveLevel].spec.includes(41)
                         ){
                             list.splice(b,1)
                             b--
@@ -355,14 +364,21 @@ class cardManager{
                         }
                     break
                     case 4:
-                        if(!types.card[list[b]].levels[level].spec.includes(args[ticker])){
+                        if(!types.card[list[b]].levels[effectiveLevel].spec.includes(args[ticker])){
                             list.splice(b,1)
                             b--
                             lb--
                         }
                     break
                     case 5:
-                        if(!args[ticker].includes(types.card[list[b]].levels[level].class)){
+                        if(!args[ticker].includes(types.card[list[b]].levels[effectiveLevel].class)){
+                            list.splice(b,1)
+                            b--
+                            lb--
+                        }
+                    break
+                    case 6:
+                        if(args[ticker].includes(types.card[list[b]].list)){
                             list.splice(b,1)
                             b--
                             lb--
@@ -371,7 +387,7 @@ class cardManager{
                 }
             }
             switch(filter[a]){
-                case 0: case 1: case 2: case 3: case 4: case 5:
+                case 0: case 1: case 2: case 3: case 4: case 5: case 6:
                     ticker++
                 break
             }
@@ -421,7 +437,9 @@ class cardManager{
         }
     }
     draw(amount,spec=0){
-        if(amount>0){
+        if(this.midDraw&&amount>0){
+            this.reserve.drawEffects.push([5,amount])
+        }else if(amount>0){
             this.hand.allEffectArgs(31,[amount])
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             if(userCombatant.getStatus('No Draw')<=0){

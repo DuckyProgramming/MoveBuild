@@ -161,7 +161,7 @@ class purchaseManager{
                                 let index2=floor(random(0,valid.length))
                                 this.purchases.push(new purchase(this.layer,this.battle,0,450,210+a*240,4,
                                     [0],
-                                    [list[3][index],0,this.battle.standardColorize(list[3][index])],
+                                    [list[3][index],0,this.battle.standardColorize(list[3][index]),valid[index2]],
                                     19
                                 ))
                                 list[3].splice(index,1)
@@ -210,14 +210,16 @@ class purchaseManager{
                         let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,1+bar,2-bar,0]:[0,0,0,0,1,2,2,1]
                         let cost=this.generalizedListing(1)
                         for(let a=0,la=group.length;a<la;a++){
-                            let index=floor(random(0,list[group[a]].length))
-                            let price=random(cost[group[a]][0],cost[group[a]][1])
-                            this.purchases.push(new purchase(this.layer,this.battle,-1,[65,195,705,835][a%4],130+floor(a/4)*170,1,
-                                [round((this.battle.relicManager.hasRelic([269,300,301][group[a]],0)?0.5:1)*price),round((this.battle.relicManager.hasRelic([269,300,301][group[a]],1)?0.5:1)*price)],
-                                [list[group[a]][index],0,this.battle.standardColorize(list[group[a]][index])],
-                                group[a]+4
-                            ))
-                            list[group[a]].splice(index,1)
+                            if(list[group[a]].length>0){
+                                let index=floor(random(0,list[group[a]].length))
+                                let price=random(cost[group[a]][0],cost[group[a]][1])
+                                this.purchases.push(new purchase(this.layer,this.battle,-1,[65,195,705,835][a%4],130+floor(a/4)*170,1,
+                                    [round((this.battle.relicManager.hasRelic([269,300,301][group[a]],0)?0.5:1)*price),round((this.battle.relicManager.hasRelic([269,300,301][group[a]],1)?0.5:1)*price)],
+                                    [list[group[a]][index],0,this.battle.standardColorize(list[group[a]][index])],
+                                    group[a]+4
+                                ))
+                                list[group[a]].splice(index,1)
+                            }
                         }
                         group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,2,2,3,3]
                         cost=this.generalizedListing(2)
@@ -278,7 +280,7 @@ class purchaseManager{
                                     let index2=floor(random(0,valid.length))
                                     this.purchases.push(new purchase(this.layer,this.battle,a,270+a*360,210+b*240,4,
                                         [0,0],
-                                        [list[3][index],0,this.battle.standardColorize(list[3][index])],
+                                        [list[3][index],0,this.battle.standardColorize(list[3][index]),valid[index2]],
                                         19
                                     ))
                                     list[3].splice(index,1)
@@ -349,7 +351,7 @@ class purchaseManager{
                             let index2=floor(random(0,valid.length))
                             this.purchases.push(new purchase(this.layer,this.battle,0,450,210+a*240,4,
                                 [0],
-                                [list[3][index],0,this.battle.standardColorize(list[3][index])],
+                                [list[3][index],0,this.battle.standardColorize(list[3][index]),valid[index2]],
                                 19
                             ))
                             list[3].splice(index,1)
@@ -371,7 +373,7 @@ class purchaseManager{
                                 let index2=floor(random(0,valid.length))
                                 this.purchases.push(new purchase(this.layer,this.battle,a,270+a*360,210+b*240,4,
                                     [0,0],
-                                    [list[3][index],0,this.battle.standardColorize(list[3][index])],
+                                    [list[3][index],0,this.battle.standardColorize(list[3][index]),valid[index2]],
                                     19
                                 ))
                                 list[3].splice(index,1)

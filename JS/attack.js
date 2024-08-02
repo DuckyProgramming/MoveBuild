@@ -167,22 +167,24 @@ class attack{
             case 2971: case 2976: case 2977: case 2978: case 2979: case 2981: case 2983: case 2986: case 2987: case 2994: case 2995: case 2997: case 2999: case 3000: case 3001: case 3006: case 3007: case 3009: case 3016: case 3019:
             case 3026: case 3031: case 3034: case 3036: case 3037: case 3041: case 3051: case 3053: case 3062: case 3063: case 3066: case 3067: case 3068: case 3069: case 3079: case 3080: case 3093: case 3095: case 3096: case 3098:
             case 3100: case 3103: case 3106: case 3108: case 3110: case 3111: case 3112: case 3118: case 3120: case 3124: case 3125: case 3128: case 3129: case 3136: case 3137: case 3139: case 3140: case 3143: case 3145: case 3146:
-            case 3149: case 3150: case 3151: case 3152: case 3155: case 3156: case 3158: case 3169: case 3170: case 3175: case 3178: case 3179: case 3182: case 3183: case 3187: case 3191: case 3193: case 3195: case 3198: case 3212:
-            case 3214: case 3215: case 3216: case 3220: case 3222: case 3224: case 3225: case 3226: case 3227: case 3228: case 3231: case 3232: case 3233: case 3239: case 3241: case 3242: case 3244: case 3245: case 3247: case 3249:
-            case 3251: case 3256: case 3257: case 3258: case 3260: case 3261: case 3262: case 3263: case 3264: case 3265: case 3266: case 3270: case 3275: case 3279: case 3284: case 3295: case 3298: case 3300: case 3304: case 3310:
-            case 3316: case 3319: case 3321: case 3322: case 3323: case 3326: case 3327: case 3329: case 3331: case 3333: case 3336: case 3337: case 3340: case 3344: case 3345: case 3349: case 3350: case 3352: case 3356: case 3360:
-            case 3363: case 3364: case 3365: case 3368: case 3372: case 3373: case 3375: case 3376: case 3384: case 3386: case 3392: case 3393: case 3394: case 3398: case 3401: case 3405: case 3407: case 3411: case 3431: case 3433:
-            case 3449: case 3452: case 3453: case 3455: case 3456: case 3459: case 3461: case 3463: case 3464: case 3465: case 3467: case 3469: case 3470: case 3475: case 3479: case 3485: case 3488: case 3503: case 3504: case 3505:
-            case 3506: case 3509: case 3511: case 3513: case 3516: case 3519: case 3520: case 3527: case 3530: case 3532: case 3535: case 3545: case 3554: case 3558: case 3560: case 3562: case 3577: case 3579: case 3581: case 3594:
-            case 3605: case 3614: case 3615: case 3616: case 3617: case 3619: case 3620: case 3621: case 3622: case 3623: case 3632: case 3633: case 3634: case 3635: case 3636: case 3637: case 3638: case 3643: case 3644: case 3645:
-            case 3646: case 3647: case 3651: case 3656: case 3658: case 3661: case 3662: case 3667: case 3669: case 3670: case 3671: case 3674: case 3680: case 3682: case 3688: case 3692: case 3693: case 3694: case 3695: case 3696:
-            case 3697: case 3698: case 3699: case 3700: case 3701: case 3702: case 3704: case 3706: case 3707: case 3709: case 3711: case 3715: case 3717: case 3733: case 3741: case 3744: case 3753: case 3754: case 3762: case 3765:
-            case 3767: case 3770: case 3771: case 3778: case 3781: case 3782: case 3786: case 3787: case 3792: case 3809: case 3810: case 3811: case 3812: case 3813: case 3815: case 3821: case 3823: case 3824: case 3825: case 3826:
-            case 3843: case 3844: case 3847: case 3848: case 3851: case 3853: case 3855: case 3857: case 3861: case 3863: case 3868: case 3870: case 3871: case 3876: case 3879: case 3881: case 3885: case 3886: case 3892: case 3893:
-            case 3895: case 3901: case 3902: case 3904: case 3905: case 3906: case 3907: case 3912: case 3915: case 3917: case 3920: case 3921: case 3923: case 3924: case 3927: case 3928: case 3929: case 3933: case 3935: case 3940:
-            case 3941: case 3944: case 3945: case 3946: case 3948: case 3950: case 3951: case 3953: case 3982: case 3984: case 3985: case 3986: case 3988: case 3989: case 3990: case 3996: case 3999: case 4019: case 4021: case 4022:
-            case 4023: case 4026: case 4029: case 4030: case 4034: case 4045: case 4050: case 4052: case 4053: case 4059: case 4061: case 4066: case 4067: case 4068: case 4069: case 4070: case 4072: case 4077: case 4078: case 4079:
-            case 4082: case 4083: case 4084: case 4085: case 4088: case 4091: case 4096: case 4097: case 4098: case 4102: case 4105: case 4107: case 4108: case 4109: case 4110: case 4117: case 4122: case 4132: case 4137: case 4138:
+            case 3149: case 3150: case 3151: case 3152: case 3155: case 3156: case 3158: case 3169: case 3170: case 3175: case 3178: case 3179: case 3182: case 3183: case 3187: case 3191: case 3193: case 3195: case 3198: case 3210:
+            case 3212: case 3214: case 3215: case 3216: case 3220: case 3222: case 3224: case 3225: case 3226: case 3227: case 3228: case 3231: case 3232: case 3233: case 3239: case 3241: case 3242: case 3244: case 3245: case 3247:
+            case 3249: case 3251: case 3256: case 3257: case 3258: case 3260: case 3261: case 3262: case 3263: case 3264: case 3265: case 3266: case 3270: case 3275: case 3279: case 3284: case 3295: case 3298: case 3300: case 3304:
+            case 3310: case 3316: case 3319: case 3321: case 3322: case 3323: case 3326: case 3327: case 3329: case 3331: case 3333: case 3336: case 3337: case 3340: case 3344: case 3345: case 3349: case 3350: case 3352: case 3356:
+            case 3360: case 3363: case 3364: case 3365: case 3368: case 3372: case 3373: case 3375: case 3376: case 3384: case 3386: case 3392: case 3393: case 3394: case 3398: case 3401: case 3405: case 3407: case 3411: case 3431:
+            case 3433: case 3449: case 3452: case 3453: case 3455: case 3456: case 3459: case 3461: case 3463: case 3464: case 3465: case 3467: case 3469: case 3470: case 3475: case 3479: case 3485: case 3488: case 3503: case 3504:
+            case 3505: case 3506: case 3509: case 3511: case 3513: case 3516: case 3519: case 3520: case 3527: case 3530: case 3532: case 3535: case 3545: case 3554: case 3558: case 3560: case 3562: case 3577: case 3579: case 3581:
+            case 3594: case 3605: case 3614: case 3615: case 3616: case 3617: case 3619: case 3620: case 3621: case 3622: case 3623: case 3632: case 3633: case 3634: case 3635: case 3636: case 3637: case 3638: case 3643: case 3644:
+            case 3645: case 3646: case 3647: case 3651: case 3656: case 3658: case 3661: case 3662: case 3667: case 3669: case 3670: case 3671: case 3674: case 3680: case 3682: case 3688: case 3692: case 3693: case 3694: case 3695:
+            case 3696: case 3697: case 3698: case 3699: case 3700: case 3701: case 3702: case 3704: case 3706: case 3707: case 3709: case 3711: case 3715: case 3717: case 3733: case 3741: case 3744: case 3753: case 3754: case 3762:
+            case 3765: case 3767: case 3770: case 3771: case 3778: case 3781: case 3782: case 3786: case 3787: case 3792: case 3809: case 3810: case 3811: case 3812: case 3813: case 3815: case 3821: case 3823: case 3824: case 3825:
+            case 3826: case 3843: case 3844: case 3847: case 3848: case 3851: case 3853: case 3855: case 3857: case 3861: case 3863: case 3868: case 3870: case 3871: case 3876: case 3879: case 3881: case 3885: case 3886: case 3892:
+            case 3893: case 3895: case 3901: case 3902: case 3904: case 3905: case 3906: case 3907: case 3912: case 3915: case 3917: case 3920: case 3921: case 3923: case 3924: case 3927: case 3928: case 3929: case 3933: case 3935:
+            case 3940: case 3941: case 3944: case 3945: case 3946: case 3948: case 3950: case 3951: case 3953: case 3982: case 3984: case 3985: case 3986: case 3988: case 3989: case 3990: case 3996: case 3999: case 4019: case 4021:
+            case 4022: case 4023: case 4026: case 4029: case 4030: case 4034: case 4045: case 4050: case 4052: case 4053: case 4059: case 4061: case 4066: case 4067: case 4068: case 4069: case 4070: case 4072: case 4077: case 4078:
+            case 4079: case 4082: case 4083: case 4084: case 4085: case 4088: case 4091: case 4096: case 4097: case 4098: case 4102: case 4105: case 4107: case 4108: case 4109: case 4110: case 4117: case 4122: case 4132: case 4137:
+            case 4138: case 4139: case 4140: case 4142: case 4143: case 4145: case 4149: case 4150: case 4151: case 4152: case 4153: case 4154: case 4155: case 4156: case 4161: case 4162: case 4163: case 4167: case 4168: case 4169:
+            case 4170: case 4172:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -224,7 +226,7 @@ class attack{
             case 3491: case 3493: case 3517: case 3613: case 3629: case 3630: case 3631: case 3641: case 3642: case 3659:
             case 3663: case 3681: case 3735: case 3743: case 3746: case 3780: case 3788: case 3789: case 3790: case 3795:
             case 3796: case 3797: case 3798: case 3799: case 3800: case 3801: case 3802: case 3803: case 3814: case 3884:
-            case 3930: case 3931: case 3943: case 4000: case 4056: case 4076: case 4101: case 4104: case 4113:
+            case 3930: case 3931: case 3943: case 4000: case 4056: case 4076: case 4101: case 4104: case 4113: case 4141:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -1883,6 +1885,12 @@ class attack{
                     case 2919:
                         this.targetCombatant.takeDamage(this.userManager.deck.uniqueNumber(),this.user)
                     break
+                    case 2920:
+                        if(this.targetCombatant.life>this.userCombatant.life){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    break
                     case 2976:
                         this.targetCombatant.takeDamage(this.effect[0]*this.userCombatant.barrier,this.user)
                     break
@@ -1989,6 +1997,24 @@ class attack{
                     break
                     case 4109:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.turnDodges>0?2:1),this.user)
+                    break
+                    case 4143:
+                        this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.userCombatant.getStatus('Strength'),this.user)
+                    break
+                    case 4152:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.getStatus('Strength')>0?2:1)*(this.targetCombatant.getStatus('Strength')>0?2:1),this.user)
+                    break
+                    case 4167:
+                        if(this.targetCombatant.life==this.targetCombatant.base.life){
+                            this.battle.addSpecificEnergy(1,this.player,1)
+                        }
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    break
+                    case 4168:
+                        if(this.targetCombatant.life==this.targetCombatant.base.life){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                        }
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -3610,11 +3636,6 @@ class attack{
                             this.battle.addEnergy(this.effect[2],this.player)
                         }
                     break
-                    case 2920:
-                        if(this.targetCombatant.life>this.userCombatant.life){
-                            this.battle.addEnergy(this.effect[1],this.player)
-                        }
-                    break
                     case 2937:
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
                             this.userCombatant.highRoll()
@@ -4148,6 +4169,71 @@ class attack{
                     break
                     case 4110:
                         this.userManager.drawAbstract(this.effect[1],15,0,[[1],1])
+                    break
+                    case 4139:
+                        if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&this.userCombatant.check10()){
+                            this.userManager.hand.add(findName('Miracle',types.card),0,0)
+                            this.userCombatant.highRoll()
+                        }else{
+                            this.userCombatant.lowRoll()
+                        }
+                    break
+                    case 4145:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.hand.add(findName('Scrap\nMetal',types.card),0,0)
+                        }
+                    break
+                    case 4151:
+                        if(this.targetCombatant.life>0){
+                            this.userCombatant.statusEffect('Vulnerable',this.effect[1])
+                        }
+                    break
+                    case 4153:
+                        if(this.targetCombatant.life<=0){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                            this.userManager.draw(this.effect[2])
+                        }
+                    break
+                    case 4154:
+                        if(this.targetCombatant.life<=0){
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 4155:
+                        if(this.targetCombatant.life<=0){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                        }
+                    break
+                    case 4156:
+                        if(this.targetCombatant.life<=0){
+                            this.battle.addSpecificEnergy(2,this.player,6)
+                        }
+                    break
+                    case 4161:
+                        this.userCombatant.statusEffect('(B) Next Turn',1)
+                        this.userCombatant.statusEffect('(R) Next Turn',1)
+                    break
+                    case 4162:
+                        this.userCombatant.statusEffect('(E) Next Turn',1)
+                        this.userCombatant.statusEffect('(B) Next Turn',1)
+                        this.userCombatant.statusEffect('(R) Next Turn',1)
+                    break
+                    case 4163:
+                        this.userCombatant.statusEffect('(E) Next Turn',3)
+                    break
+                    case 4169:
+                        this.battle.addSpecificEnergy(1,this.player,3)
+                    break
+                    case 4170:
+                        this.battle.addSpecificEnergy(1,this.player,3)
+                        this.battle.addSpecificEnergy(1,this.player,0)
+                    break
+                    case 4172:
+                        this.userManager.draw(this.effect[0])
+                        this.battle.addSpecificEnergy(2,this.user,1)
                     break
 
                 }
@@ -5316,7 +5402,7 @@ class attack{
                         this.battle.overlayManager.overlays[47][this.player].active=true
                         this.battle.overlayManager.overlays[47][this.player].activate([1])
                     break
-                    case 3278:
+                    case 3278: case 4160:
                         this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
                     break
                     case 3296:
@@ -5604,6 +5690,18 @@ class attack{
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.addRandomAbstract(2,0,0,0,1,[0],[3,2,0])
                         }
+                    break
+                    case 4164:
+                        this.userCombatant.statusEffect('(W) Next Turn',1)
+                        this.userCombatant.statusEffect('(B) Next Turn',1)
+                    break
+                    case 4165:
+                        this.userCombatant.statusEffect('(E) Next Turn',1)
+                        this.userCombatant.statusEffect('(W) Next Turn',1)
+                        this.userCombatant.statusEffect('(B) Next Turn',1)
+                    break
+                    case 4166:
+                        this.userCombatant.statusEffect('(E) Next Turn',3)
                     break
 
                 }
@@ -6505,6 +6603,13 @@ class attack{
                         this.userCombatant.takeDamage(this.effect[1],-1)
                         this.userCombatant.statusEffect('Strength',this.effect[2])
                     break
+                    case 4141:
+                        if(this.targetTile.tilePosition.y<this.userCombatant.tilePosition.y){
+                            this.userCombatant.statusEffect('Temporary Strength',this.effect[1])
+                        }else if(this.targetTile.tilePosition.y>this.userCombatant.tilePosition.y){
+                            this.userCombatant.statusEffect('Temporary Dexterity',this.effect[2])
+                        }
+                    break
 
                 }
                 //mark 3
@@ -7073,7 +7178,7 @@ class attack{
                         this.userCombatant.statusEffect('Extra Turn',1)
                         this.battle.attackManager.endAfter=true
                     break
-                    case 1466:
+                    case 1466: case 4144:
                         this.userCombatant.statusEffect('Extra Turn',1)
                     break
                     case 1467:
@@ -8260,6 +8365,33 @@ class attack{
                         this.battle.addSpecificEnergy(1,this.player,0)
                         this.userManager.draw(this.effect[0])
                         this.userManager.allEffectArgs(2,37,[4])
+                    break
+                    case 4147:
+                        this.userManager.addRandomAbstract(2,0,0,2,1,[4,6],[3,64,[this.color],1])
+                    break
+                    case 4148:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                        this.userCombatant.loseHealth(this.effect[1])
+                    break
+                    case 4171:
+                        this.battle.addSpecificEnergyGen(1,this.player,4)
+                        this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)].addType(19)
+                        this.battle.tileManager.typeArea(19,this.userCombatant.tilePosition)
+                    break
+                    case 4173:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.addRandomAbstract(2,this.level,0,0,0,[1],[3,1])
+                        }
+                        this.userCombatant.statusEffect('(N) Next Turn',1)
+                    break
+                    case 4174:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.addRandomAbstract(2,this.level,0,0,0,[1],[3,1])
+                        }
+                        this.userCombatant.statusEffect('(E) Next Turn',1)
+                    break
+                    case 4178:
+                        this.battle.addSpecificEnergy(this.effect[0],this.player,4)
                     break
 
                 }
@@ -9469,9 +9601,7 @@ class attack{
                         }
                     break
                     case 2517:
-                        for(let a=0,la=this.effect[0];a<la;a++){
-                            this.userManager.allEffect(2,78)
-                        }
+                        this.userManager.allEffectArgs(2,41,[this.effect[0]])
                     break
                     case 2563:
                         this.userManager.hand.discardTriple(this.effect[0])
@@ -10213,6 +10343,25 @@ class attack{
                         this.userManager.draw(this.effect[0])
                         this.userManager.hand.allEffectArgs(30,[this.effect[1],[11]])
                     break
+                    case 4175:
+                        this.userCombatant.statusEffect('(E) Next Turn',1)
+                        this.userCombatant.statusEffect('(K) Next Turn',2)
+                        this.userCombatant.statusEffect('(W) Next Turn',2)
+                        this.userCombatant.loseHealth(this.effect[0])
+                    break
+                    case 4176:
+                        this.userCombatant.statusEffect('(E) Next Turn',2)
+                        this.userCombatant.statusEffect('(K) Next Turn',2)
+                        this.userCombatant.statusEffect('(W) Next Turn',2)
+                        this.userCombatant.loseHealth(this.effect[0])
+                    break
+                    case 4177:
+                        this.userCombatant.statusEffect('(E) Next Turn',2)
+                        this.userCombatant.statusEffect('(K) Next Turn',2)
+                        this.userCombatant.statusEffect('(W) Next Turn',2)
+                        this.userCombatant.statusEffect('(N) Next Turn',1)
+                        this.userCombatant.loseHealth(this.effect[0])
+                    break
 
                 }
                 //mark 5
@@ -10779,7 +10928,7 @@ class attack{
                     case 2642:
                         let total2642=0
                         for(let a=0,la=this.battle.itemManager.items[this.player].length;a<la;a++){
-                            if(this.battle.itemManager.items[this.player][a].type>1&&!this.battle.itemManager.items[this.player][a].temp){
+                            if(this.battle.itemManager.items[this.player][a].type>1){
                                 this.battle.itemManager.total[this.player]--
                                 this.battle.itemManager.items[this.player][a].type=1
                                 this.battle.itemManager.items[this.player][a].refresh()
@@ -13130,6 +13279,19 @@ class attack{
                             this.battle.addSpecificEnergy(1,this.player,3)
                             this.userManager.draw(this.effect[1])
                         }
+                    break
+                    case 4140:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&this.userCombatant.check10()){
+                            this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                            this.userCombatant.highRoll()
+                        }else{
+                            this.userCombatant.lowRoll()
+                        }
+                    break
+                    case 4142:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.userCombatant.statusEffect('Focus',this.effect[1])
                     break
 
                 }
@@ -16247,7 +16409,12 @@ class attack{
                     case 4103:
                         let mult4103=floor(this.battle.tileManager.numberAbstract(0,[19])/this.effect[2])
                         this.battle.addEnergy(this.effect[0]*mult4103,this.player)
-                        this.userManager.draw(this.effect[0]*mult4103)
+                        this.userManager.draw(this.effect[1]*mult4103)
+                    break
+                    case 4179:
+                        let mult4179=floor(this.battle.tileManager.numberAbstract(0,[19])/this.effect[1])
+                        this.battle.addSpecificEnergy(mult4179,this.player,6)
+                        this.userManager.draw(this.effect[0]*mult4179)
                     break
 
                     //mark 12
@@ -16628,6 +16795,10 @@ class attack{
                             this.battle.itemManager.addItem(findName('Mundane Dust',types.item),this.player)
                         }
                     break
+                    case 4146:
+                        this.userManager.addRandomAbstract(2,this.effect[0],0,2,8,[4],[3,53])
+                    break
+
                 }
             break
             case 18:

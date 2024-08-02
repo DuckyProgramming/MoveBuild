@@ -64,7 +64,7 @@ combatant.prototype.display=function(){
                         case 5:
                             this.layer.fill(255,200,255,this.fade*this.infoAnim.stance[a]*0.5)
                             for(let b=0,lb=12;b<lb;b++){
-                                this.layer.rotate(30)
+                                this.layer.rotate(360/lb)
                                 this.layer.triangle(-6,-45,6,-45,0,0)
                             }
                         break
@@ -86,7 +86,7 @@ combatant.prototype.display=function(){
             this.layer.fill(255,200,255,this.fade*0.5)
             for(let a=0,la=this.infoAnim.faith.length;a<la;a++){
                 if(this.infoAnim.faith[a]>0){
-                    this.layer.ellipse(lsin(a*36+18)*60,lcos(a*36+18)*-60,12)
+                    this.layer.ellipse(lsin(360*(a+0.5)/la)*60,lcos(360*(a+0.5)/la)*-60,12)
                 }
             }
             if(this.infoAnim.elemental>0){

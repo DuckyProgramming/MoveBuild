@@ -2036,7 +2036,7 @@ turn.prototype.update=function(){
                             this.battle.turnManager.unMoveTurn(this.user)
                             this.remove=true
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y,23,[20]))
-                            this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                            this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[0],[0,1],false,0)
                         }else{
                             this.targetTile=this.battle.tileManager.tiles[this.target[0]]
                             this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)

@@ -142,9 +142,9 @@ class item{
                     displaySymbol(this.layer,0,0,67,0,1,this.fade)
                     this.layer.fill(0)
                     this.layer.textSize(10)
-                    this.layer.text('10',0,0)
+                    this.layer.text('20',0,0)
                 break
-                case 'Upgrade hand':
+                case 'Upgrade Hand':
                     displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
                     displaySymbol(this.layer,0,0,7,0,0.9,this.fade)
                 break

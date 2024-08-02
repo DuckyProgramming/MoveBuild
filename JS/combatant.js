@@ -112,7 +112,7 @@ class combatant{
             life:1,block:0,blockSize:1,barrier:0,barrierSize:1,blockBarrier:0,
             size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],
             flash:[0,0,0,0],upFlash:[false,false,false,false],
-            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0],elemental:0}
+            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],elemental:0}
         this.block=0
         this.barrier=0
         this.lastBlock=0
@@ -3774,7 +3774,7 @@ class combatant{
             life:1,block:0,blockSize:1,barrier:0,barrierSize:1,blockBarrier:0,
             size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],
             flash:[0,0,0,0],upFlash:[false,false,false,false],
-            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0],elemental:0}
+            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],elemental:0}
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.infoAnim.orbSpec.push([])
             for(let b=0,lb=game.orbNumber;b<lb;b++){
@@ -6773,7 +6773,6 @@ class combatant{
             break
             case 5:
                 this.battle.addSpecificEnergy(3,this.id,6)
-                this.battle.cardManagers[this.id].draw(3)
             break
         }
         if(this.status.main[126]>0){
@@ -9004,7 +9003,7 @@ class combatant{
                         this.layer.pop()
 
                         this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4.4)
-                        dir=dir
+                        dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.fill(colors[0][0],colors[0][1],colors[0][2],this.fade*this.fades.dress.sleeve)
                         this.layer.quad(
                             this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25+6*sin(dir+90),
@@ -9056,7 +9055,7 @@ class combatant{
                     break
                     case 2:
                         colors=[this.flashColor(this.color.dress.sleeveHighlight),this.flashColor(this.color.dress.sleeve),this.flashColor(this.color.dress.dot)]
-                        dir=dir
+                        dir=atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
                         this.layer.noStroke()
                         this.layer.fill(...colors[0],this.fade*this.fades.dress.sleeve)
                         this.layer.quad(
@@ -10169,8 +10168,8 @@ class combatant{
                 this.infoAnim.faith[a]=smoothAnim(this.infoAnim.faith[a],this.faith>a,0,1,5)
             }
             this.infoAnim.elemental=smoothAnim(this.infoAnim.elemental,this.elemental,0,1,5)
-            if(this.faith>=10&&this.infoAnim.faith[9]>=1){
-                this.faith-=10
+            if(this.faith>=12&&this.infoAnim.faith[9]>=1){
+                this.faith-=12
                 this.enterStance(5)
             }
             if(this.vision>=12){

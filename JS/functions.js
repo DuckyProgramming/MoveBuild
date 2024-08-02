@@ -1868,7 +1868,7 @@ function outMtg(){
 	for(let a=0,la=types.card.length;a<la;a++){
 		if(types.card[a].mtg!=undefined){
 			if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber){
-				let list=types.card[a].mtg.list==-1?1:types.card[a].mtg.list==0?0:types.card[a].mtg.list+1
+				let list=types.card[a].mtg.list==-1?0:types.card[a].mtg.list==0?1:types.card[a].mtg.list+1
 				let color=types.card[a].mtg.color.length==1?types.card[a].mtg.color[0]:mtgCombineColor(types.card[a].mtg.color[0],types.card[a].mtg.color[1])
 				try{
 					count[list][types.card[a].mtg.rarity][color]++
@@ -1890,11 +1890,17 @@ function outMtg(){
 	print(box)
 }
 function subMtg(base){
-	return ''+
+	return `[
+${base[0]},
+${base[1]},${base[2]},${base[3]},${base[4]},${base[5]},
+${base[7]},${base[8]},${base[9]},${base[10]},${base[11]},
+${base[12]},${base[13]},${base[14]},${base[15]},${base[16]},
+]`
+	/*return ''+
 	`Colorless: ${base[0]}, White: ${base[1]}, Blue: ${base[2]}, Black: ${base[3]}, `+
-	`Green: ${base[4]}, Red: ${base[5]}, White-Blue: ${base[6]}, White-Black: ${base[7]}, `+
-	`White-Green: ${base[8]}, White-Red: ${base[9]}, Blue-Black: ${base[10]}, Blue-Green: ${base[11]}, `+
-	`Blue-Red: ${base[12]}, Black-Green: ${base[13]}, Black-Red: ${base[14]}, Green-Red: ${base[15]}`
+	`Green: ${base[4]}, Red: ${base[5]}, White-Blue: ${base[7]}, White-Black: ${base[8]}, `+
+	`White-Green: ${base[9]}, White-Red: ${base[10]}, Blue-Black: ${base[11]}, Blue-Green: ${base[12]}, `+
+	`Blue-Red: ${base[13]}, Black-Green: ${base[14]}, Black-Red: ${base[15]}, Green-Red: ${base[16]}`*/
 }
 function outMtg2(){
 	let count=[]
@@ -2445,8 +2451,9 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 			let effectiveTotals=sortNumbers(effectiveManaLeft)
 			for(let b=0,lb=effectiveTotals.length;b<lb;b++){
 				for(let c=0,lc=priority.length;c<lc;c++){
-					if(priority[lc-1-c]!=6&&manaLeft[priority[lc-1-c]]==effectiveTotals[lb-1-b]&&effectiveManaLeft[priority[lc-1-c]]>0){
+					if(priority[lc-1-c]!=6&&manaLeft[priority[lc-1-c]]==effectiveTotals[lb-1-b]&&effectiveManaLeft[priority[lc-1-c]]>0&&manaLeft[priority[lc-1-c]]>0){
 						manaLeft[priority[lc-1-c]]--
+						effectiveManaLeft[priority[lc-1-c]]--
 						costLeft.splice(a,1)
 						a--
 						la--
@@ -2469,22 +2476,21 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 							spend.push(priority[lc-1-c])
 							b=lb
 							c=lc
+							spent=true
 						}
 					}
 				}
-			}
-		}
-	}
-	for(let a=0,la=costLeft.length;a<la;a++){
-		if(costLeft[a]==-1){
-			if(manaLeft[6]>0){
-				manaLeft[6]--
-				costLeft.splice(a,1)
-				a--
-				la--
-				spend.push(6)
-			}else if(!bypass){
-				return -1
+				if(!spent){
+					if(manaLeft[6]>0){
+						manaLeft[6]--
+						costLeft.splice(a,1)
+						a--
+						la--
+						spend.push(6)
+					}else if(!bypass){
+						return -1
+					}
+				}
 			}
 		}
 	}

@@ -771,17 +771,18 @@ class battle{
             this.turnManager.loadEnemyTurns()
             this.combatantManager.enableCombatants()
         }else if(!noDraw){
-            if(extra){
-                this.cardManagers[this.turn.main].bufferedTurn=30
-            }else{
-                this.newTurn()
-            }
             combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             if(combatant.life<=0&&this.turn.main<this.players){
                 this.endTurn()
             }else if(combatant.getStatus('Distracted')>0){
                 combatant.statusEffect('Distracted',-1)
                 this.endTurn()
+            }else{
+                if(extra){
+                    this.cardManagers[this.turn.main].bufferedTurn=30
+                }else{
+                    this.newTurn()
+                }
             }
         }
         this.updateTargetting()
@@ -796,7 +797,6 @@ class battle{
                     a--
                     la--
                 }
-                print(effectiveGen)
             }else{
                 if(this.relicManager.hasRelic(424,player)){
                     for(let a=0,la=this.relicManager.active[424][player+1];a<la;a++){

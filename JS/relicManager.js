@@ -115,6 +115,7 @@ class relicManager{
                 }
             }
         }else{
+            let rarity=4
             for(let a=0,la=3;a<la;a++){
                 let index=floor(random(0,this.listing.relic[rarity].length))
                 this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2+50-la*50+a*100,this.layer.height/2-45,this.listing.relic[rarity][index],2))
@@ -2056,7 +2057,7 @@ class relicManager{
                 if(this.active[274][args[0]+1]>0){
                     this.getPlayer(args[0]).gainMaxHP(this.active[274][args[0]+1],args[0])
                 }
-                if(this.active[338][args[0]+1]>0){
+                if(this.active[337][args[0]+1]>0){
                     this.battle.cardManagers[args[0]].deck.removeDupes()
                 }
             break

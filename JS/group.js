@@ -1770,6 +1770,10 @@ class group{
                         this.cards[a].setCost(2,[args[1]])
                     }
                 break
+                case 41:
+                    this.cards[a].costDown(0,[args[0]])
+                    this.cards[a].spec.push(4)
+                break
             }
         }
         if(effect==9){
@@ -1782,7 +1786,7 @@ class group{
         if(this.cards.length>0){
             let list=[]
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(this.cards[a].usable&&(!this.cards[a].deSize||effect==41)
+                if((this.cards[a].usable||this.id!=2)&&(!this.cards[a].deSize||effect==41)
                 &&!((effect==0||effect==25||effect==28)&&this.cards[a].deSize)
                 &&!((effect==1||effect==5||effect==33||effect==40||effect==48)&&(this.cards[a].getCost(1)<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)))
                 &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)))
@@ -2182,7 +2186,7 @@ class group{
             case -46:
                 this.drawEffects.push([5,card.effect[0]])
                 return 'break'
-            case -51: case -89: case 2720: case 2804:
+            case -51: case -89: case 2720: case 2804: case 4144:
                 card.costDown(2,[1])
             break
             case -55:
@@ -2621,6 +2625,7 @@ class group{
     }
     send(list,firstIndex,lastIndex,spec){
         this.lastSort=-1
+        this.battle.cardManagers[this.player].midDraw=true
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 if(spec==17){
@@ -2815,6 +2820,7 @@ class group{
                 this.cards.splice(firstIndex,1)
             }
         }
+        this.battle.cardManagers[this.player].midDraw=false
     }
     copy(list,firstIndex,lastIndex,spec){
         if(lastIndex==-1){
