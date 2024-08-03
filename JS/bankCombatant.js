@@ -13,7 +13,6 @@ combatant.prototype.display=function(){
             }
         }
         if(this.team>0&!this.construct&&!this.support||this.name=='Setsuna'){
-            let randomColor=0
             this.layer.translate(0,-48)
             for(let a=0,la=this.infoAnim.stance.length;a<la;a++){
                 if(this.infoAnim.stance[a]>0){
@@ -8615,7 +8614,7 @@ combatant.prototype.display=function(){
             case 'Inconsistent':
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
-                        randomColor=floor(random(160,200))
+                        let randomColor=floor(random(160,200))
                         this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],this.flashColor([randomColor,randomColor,randomColor])[1],this.flashColor([randomColor,randomColor,randomColor])[2],this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].top.x+random(-2,2),this.graphics.arms[g].top.y+random(-2,2),this.graphics.arms[g].middle.x+random(-2,2),this.graphics.arms[g].middle.y+random(-2,2))
@@ -8624,13 +8623,13 @@ combatant.prototype.display=function(){
                 }
                 if(this.trigger.display.skin.body){
                     this.layer.noStroke()
-                    randomColor=floor(random(160,200))
+                    let randomColor=floor(random(160,200))
                     this.layer.fill(this.flashColor([randomColor,randomColor,randomColor])[0],this.flashColor([randomColor,randomColor,randomColor])[1],this.flashColor([randomColor,randomColor,randomColor])[2],this.fade*this.fades.skin.arms)
                     this.layer.ellipse(random(-3,3),-48+random(-3,3),13+random(-3,3),39+random(-3,3))
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
-                        randomColor=floor(random(160,200))
+                        let randomColor=floor(random(160,200))
                         this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],this.flashColor([randomColor,randomColor,randomColor])[1],this.flashColor([randomColor,randomColor,randomColor])[2],this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].top.x+random(-2,2),this.graphics.arms[g].top.y+random(-2,2),this.graphics.arms[g].middle.x+random(-2,2),this.graphics.arms[g].middle.y+random(-2,2))
@@ -8639,7 +8638,7 @@ combatant.prototype.display=function(){
                     for(let h=0;h<2;h++){
                         if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
                             if(this.trigger.display.skin.legs){
-                                randomColor=floor(random(160,200))
+                                let randomColor=floor(random(160,200))
                                 this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],this.flashColor([randomColor,randomColor,randomColor])[1],this.flashColor([randomColor,randomColor,randomColor])[2],this.fade*this.fades.skin.arms)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(this.graphics.legs[h].top.x+random(-2,2),this.graphics.legs[h].top.y+random(-2,2),this.graphics.legs[h].middle.x+random(-2,2),this.graphics.legs[h].middle.y+random(-2,2))
@@ -8650,7 +8649,7 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
-                        randomColor=floor(random(160,200))
+                        let randomColor=floor(random(160,200))
                         this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],this.flashColor([randomColor,randomColor,randomColor])[1],this.flashColor([randomColor,randomColor,randomColor])[2],this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                         this.layer.line(this.graphics.arms[g].topStack.x+random(-2,2),this.graphics.arms[g].topStack.y+random(-2,2),this.graphics.arms[g].middleStack.x+random(-2,2),this.graphics.arms[g].middleStack.y+random(-2,2))
@@ -8658,7 +8657,7 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.trigger.display.skin.head){
-                    randomColor=floor(random(160,200))
+                    let randomColor=floor(random(160,200))
                     this.layer.fill(this.flashColor([randomColor,randomColor,randomColor])[0],this.flashColor([randomColor,randomColor,randomColor])[1],this.flashColor([randomColor,randomColor,randomColor])[2],this.fade*this.fades.skin.arms)
                     this.layer.noStroke()
                     this.layer.ellipse(random(-3,3),-81+random(-3,3),30+random(-3,3),30+random(-3,3))
@@ -8671,7 +8670,7 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
-                        randomColor=floor(random(160,200))
+                        let randomColor=floor(random(160,200))
                         this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],this.flashColor([randomColor,randomColor,randomColor])[1],this.flashColor([randomColor,randomColor,randomColor])[2],this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                         this.layer.line(this.graphics.arms[g].topStack.x+random(-2,2),this.graphics.arms[g].topStack.y+random(-2,2),this.graphics.arms[g].middleStack.x+random(-2,2),this.graphics.arms[g].middleStack.y+random(-2,2))
@@ -8688,7 +8687,7 @@ combatant.prototype.display=function(){
             case 'Latency':
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
-                        randomColor=floor(random(160,200))
+                        let randomColor=floor(random(160,200))
                         this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].top.x+random(-1,1),this.graphics.arms[g].top.y+random(-1,1),this.graphics.arms[g].middle.x+random(-1,1),this.graphics.arms[g].middle.y+random(-1,1))
@@ -8697,13 +8696,13 @@ combatant.prototype.display=function(){
                 }
                 if(this.trigger.display.skin.body){
                     this.layer.noStroke()
-                    randomColor=floor(random(160,200))
+                    let randomColor=floor(random(160,200))
                     this.layer.fill(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
                     this.layer.ellipse(random(-1,1),-43.5+random(-1,1),11+random(-1,1),29+random(-1,1))
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
-                        randomColor=floor(random(160,200))
+                        let randomColor=floor(random(160,200))
                         this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].top.x+random(-1,1),this.graphics.arms[g].top.y+random(-1,1),this.graphics.arms[g].middle.x+random(-1,1),this.graphics.arms[g].middle.y+random(-1,1))
@@ -8712,7 +8711,7 @@ combatant.prototype.display=function(){
                     for(let h=0;h<2;h++){
                         if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
                             if(this.trigger.display.skin.legs){
-                                randomColor=floor(random(160,200))
+                                let randomColor=floor(random(160,200))
                                 this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(this.graphics.legs[h].top.x+random(-1,1),this.graphics.legs[h].top.y+random(-1,1),this.graphics.legs[h].middle.x+random(-1,1),this.graphics.legs[h].middle.y+random(-1,1))
@@ -8723,7 +8722,7 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
-                        randomColor=floor(random(160,200))
+                        let randomColor=floor(random(160,200))
                         this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                         this.layer.line(this.graphics.arms[g].topStack.x+random(-1,1),this.graphics.arms[g].topStack.y+random(-1,1),this.graphics.arms[g].middleStack.x+random(-1,1),this.graphics.arms[g].middleStack.y+random(-1,1))
@@ -8731,7 +8730,7 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.trigger.display.skin.head){
-                    randomColor=floor(random(160,200))
+                    let randomColor=floor(random(160,200))
                     this.layer.fill(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
                     this.layer.noStroke()
                     this.layer.ellipse(random(-1,1),-72+random(-1,1),30+random(-1,1),30+random(-1,1))
@@ -8744,7 +8743,7 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
-                        randomColor=floor(random(160,200))
+                        let randomColor=floor(random(160,200))
                         this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                         this.layer.line(this.graphics.arms[g].topStack.x+random(-1,1),this.graphics.arms[g].topStack.y+random(-1,1),this.graphics.arms[g].middleStack.x+random(-1,1),this.graphics.arms[g].middleStack.y+random(-1,1))

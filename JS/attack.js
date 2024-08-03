@@ -184,7 +184,7 @@ class attack{
             case 4022: case 4023: case 4026: case 4029: case 4030: case 4034: case 4045: case 4050: case 4052: case 4053: case 4059: case 4061: case 4066: case 4067: case 4068: case 4069: case 4070: case 4072: case 4077: case 4078:
             case 4079: case 4082: case 4083: case 4084: case 4085: case 4088: case 4091: case 4096: case 4097: case 4098: case 4102: case 4105: case 4107: case 4108: case 4109: case 4110: case 4117: case 4122: case 4132: case 4137:
             case 4138: case 4139: case 4140: case 4142: case 4143: case 4145: case 4149: case 4150: case 4151: case 4152: case 4153: case 4154: case 4155: case 4156: case 4161: case 4162: case 4163: case 4167: case 4168: case 4169:
-            case 4170: case 4172:
+            case 4170: case 4172: case 4183:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -4235,6 +4235,12 @@ class attack{
                         this.userManager.draw(this.effect[0])
                         this.battle.addSpecificEnergy(2,this.user,1)
                     break
+                    case 4184:
+                        this.userManager.hand.add(findName('Miracle',types.card),0,0)
+                    break
+                    case 4185:
+                        this.userManager.hand.add(findName('Splash',types.card),0,0)
+                    break
 
                 }
                 //mark 1s
@@ -4566,7 +4572,7 @@ class attack{
                     case 3534:
                         this.userCombatant.statusEffect('Buff Loss Barrier',this.effect[0])
                     break
-                    case 3657:
+                    case 3657: case 4184: case 4185:
                         this.userCombatant.addBlock(this.effect[0]*this.handSize)
                     break
                     case 3763:
@@ -6763,6 +6769,7 @@ class attack{
                     case 393:
                         this.userCombatant.statusEffect('Dexterity',this.effect[0])
                         this.userManager.draw(this.effect[1])
+                        this.userCombatant.balance+=this.effect[2]
                     break
                     case 406:
                         if(this.userCombatant.block<=0){
@@ -8392,6 +8399,18 @@ class attack{
                     break
                     case 4178:
                         this.battle.addSpecificEnergy(this.effect[0],this.player,4)
+                    break
+                    case 4187:
+                        this.battle.addSpecificEnergy(2,this.player,5)
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 4188:
+                        this.battle.addSpecificEnergy(3,this.player,5)
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 4189:
+                        this.battle.addSpecificEnergy(3,this.player,6)
+                        this.userManager.draw(this.effect[0])
                     break
 
                 }
@@ -10361,6 +10380,17 @@ class attack{
                         this.userCombatant.statusEffect('(W) Next Turn',2)
                         this.userCombatant.statusEffect('(N) Next Turn',1)
                         this.userCombatant.loseHealth(this.effect[0])
+                    break
+                    case 4180:
+                        this.userCombatant.statusEffect('(W) Next Turn',this.effect[0]+this.energy)
+                        this.battle.attackManager.endAfter=true
+                    break
+                    case 4181:
+                        this.userCombatant.statusEffect('(E) Next Turn',this.effect[0]+this.energy)
+                        this.battle.attackManager.endAfter=true
+                    break
+                    case 4186:
+                        this.userCombatant.statusEffect('Balance (E)',1)
                     break
 
                 }
@@ -14640,6 +14670,21 @@ class attack{
                     case 4132:
                         this.targetCombatant.statusEffect('Lock On',this.effect[0])
                         this.userManager.drawAbstract(this.effect[1],0,0,[1])
+                    break
+                    case 4182:
+                        let spent4182=[0,0]
+                        for(let a=0,la=this.battle.energy.lastSpend[this.player].length;a<la;a++){
+                            if(this.battle.energy.lastSpend[this.player][a]==1||this.battle.energy.lastSpend[this.player][a]==6){
+                                spent4182[0]++
+                                this.userManager.hand.exhaust(this.effect[0])
+                            }
+                            if(this.battle.energy.lastSpend[this.player][a]==4||this.battle.energy.lastSpend[this.player][a]==6){
+                                spent4182[1]++
+                                if(spent4182[1]%2==0){
+                                    this.userCombatant.statusEffect('Dodge',this.effect[1])
+                                }
+                            }
+                        }
                     break
 
                 }

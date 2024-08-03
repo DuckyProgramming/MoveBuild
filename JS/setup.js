@@ -18,7 +18,7 @@ function setup(){
             //transition.trigger=true
             //transition.scene='menu'
 
-        current.menu.combatant=[3]
+        current.menu.combatant=[4]
         current.menu.deck=[-1]
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){

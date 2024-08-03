@@ -97,7 +97,33 @@ outmuscle - 10 damage, does double if target has strength
 
 [counter and gain wish power]
 
+
+
 deal damage, upgrade a concoction
+
+expensive watch - 9 damage, retain unspent energy this turn
+
+elbow - 2 cost damage and push, costs 1 less when you move
+
+noctilucae's nest
+
+coldsteel heart - add 1 of any mana into the base (other then rainbow)
+
+dumpster dive - add any junkyard card to your hand
+
+
+
+perfect servant - for each 2 (W) spent, all cards cost 1 less, for each (B) spent, gain (E) next turn
+
+innate "setup" move
+
+forcefield - 3 cost 16 block, decreases by 1 per power played this combat
+
+cool rose - 3 damage 3 block, 0 cost, double both if target has freeze
+
+starry sword dance
+
+[sakura meme card]
 
 
 
@@ -158,13 +184,17 @@ world 2:
 
 enemies:
 
-bar security - counter pushes
-bartender - annoying gangster
-brawler - gains 1 strength per turn
+bar security - counter pushes once per turn, but doesn't do much damage
+bartender - the management custodian but a gangster, applies debuffs to you from across the map
+brawler - gains 1 strength per turn, has a mid-range punch
 
 bosses:
 
 renegade agent - switches abilities every turn on a 4 turn cycle
+turn 1: 25 damage, and starts turn with 15 block
+turn 2: push everybody on the map, and gets 1 dodge
+turn 3: spawn a guy, counter 25 once
+turn 4: 5x4 damage, moves when you move
 
 world 3:
 
@@ -176,9 +206,9 @@ management robot commander - like a normal robot but can buff other robots and s
 
 bosses:
 
-lockdown - a strong robot
+lockdown - a strong robot, 8 metallicize
 every time you play 8 cards, attacks you and moves
-counters 12 at the start of every combatant
+counters 8 at the start of every turn
 otherwise pretty basic attacks
 
 world 4:
@@ -191,6 +221,7 @@ azis boss needs another attack
 chip boss needs another attack
 sukuna boss needs 2 attacks and setup code
 #18 boss needs 2 attacks and setup code
+
 
 
 
@@ -226,7 +257,12 @@ gangster rifleman informant
 
 management informant
 
-[]
+prison van - choices
+bribe the guard to escape
+fight the guard
+during the fight, you have a card called handcuffed - 10 cost countdown, exhaust,
+while in hand all attacks and defenses cost 1 more
+enemy is a prison guard with a riot shotgun that pushes 1 space
 
 []
 

@@ -773,7 +773,7 @@ class overlay{
                             }
                             for(let a=0,la=list.length;a<la;a++){
                                 if((types.card[list[a]].rarity==this.args[1]||this.args[1]==-1)&&!(variants.mtg&&types.card[list[a]].mtg==undefined)){
-                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-350+tick%8*100,this.layer.height/2-130+floor(tick/8)%3*130,list[a],args[0],types.card[list[a]].list,-1))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-350+tick%8*100,this.layer.height/2-130+floor(tick/8)%3*130,list[a],args[0],this.battle.standardColorize(list[a]),-1))
                                     this.cards[tick].upSize=true
                                     tick++
                                     if(types.card[list[a]].list!=mark){

@@ -152,10 +152,21 @@ class cardManager{
             }
         }
         let list=[]
-        for(let a=0,la=game.playerNumber+1;a<la;a++){
+        let colorlisting=[]
+        if(variants.mtg){
+            colorlisting.push(-1)
+        }
+        for(let a=0,la=game.playerNumber;a<la;a++){
+            colorlisting.push(a+1)
+        }
+        colorlisting.push(0)
+        for(let a=0,la=colorlisting.length;a<la;a++){
             list=[]
             for(let b=0,lb=types.card.length;b<lb;b++){
-                if(types.card[b].rarity>=0&&types.card[b].list==(a+1)%(game.playerNumber+1)){
+                if(types.card[b].rarity>=0&&(
+                    variants.mtg&&types.card[b].mtg!=undefined&&types.card[b].mtg.list==colorlisting[a]||
+                    !variants.mtg&&types.card[b].list==colorlisting[a]
+                )){
                     list.push(b)
                 }
             }
@@ -166,9 +177,9 @@ class cardManager{
                 }
             }
             let sorted=names.sort()
-            for(let b=0,lb=names.length;b<lb;b++){
+            for(let b=0,lb=sorted.length;b<lb;b++){
                 for(let c=0,lc=list.length;c<lc;c++){
-                    if(types.card[list[c]].name==names[b]){
+                    if(types.card[list[c]].name==sorted[b]){
                         this.listing.coc[types.card[list[c]].rarity].push(list[c])
                         this.listing.coc[3].push(list[c])
                         list.splice(c,1)
@@ -225,7 +236,7 @@ class cardManager{
                     this.listing.mtg[1][3].push(a)
                 }
                 if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber){
-                    this.listing.mtg[2][types.card[a].rarity].push(a)
+                    this.listing.mtg[2][types.card[a].mtg.rarity].push(a)
                     this.listing.mtg[2][3].push(a)
                 }
             }

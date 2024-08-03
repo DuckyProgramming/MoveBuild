@@ -4926,6 +4926,13 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(200,fade)
             layer.triangle(5,0,3.5,-1,3.5,1)
         break
+        case 516:
+            for(let a=0,la=10;a<la;a++){
+                layer.fill(255,200*a/la,200*a/la,fade)
+                layer.arc(0,0,10,10,a*36,a*36+36)
+            }
+            displayMtgManaSymbol(layer,0,0,6,0,0.3,fade,-1,[])
+        break
 
     }
     //mark s
@@ -5195,7 +5202,7 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
     if(variant==0||variant==1){
         if(args[0]<1){
             layer.stroke(0,(1-args[0])*fade)
-            layer.strokeWeight(1)
+            layer.strokeWeight(1.2)
             layer.noFill()
             switch(variant){
                 case 1:
@@ -8846,6 +8853,13 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(9,0,-4.5,-3,-4.5,3)
             layer.rect(-5.5,0,1,6)
         break
+        case 376:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(150,175,200,fade)
+            layer.triangle(0,-6,-3,3,3,3)
+        break
 
     }
     //mark i
@@ -8903,7 +8917,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 278: case 279: case 280: case 281: case 282: case 284: case 285: case 287: case 288: case 290:
             case 294: case 303: case 310: case 316: case 328: case 329: case 331: case 333: case 337: case 338:
             case 342: case 343: case 346: case 349: case 353: case 364: case 365: case 368: case 369: case 374:
-            case 375:
+            case 375: case 376:
                 layer.text(`${effect[0]}|${effect[1]}`,0,0)
             break
             case 21:

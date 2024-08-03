@@ -170,7 +170,7 @@ class combatant{
             '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
             '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
             'Elemental Draw','(N) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(E) Next Turn','(E) on Hit','Free Draw Up',
-            'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw',
+            'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw','Balance (E)',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -224,7 +224,7 @@ class combatant{
                 0,0,0,2,0,2,0,2,0,0,//49
                 0,2,0,0,0,0,0,2,2,0,//50
                 0,2,2,2,2,2,2,2,2,0,//51
-                0,0,0,0,0,0,
+                0,0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -278,7 +278,7 @@ class combatant{
                 2,2,2,0,2,0,3,3,2,2,//49
                 2,1,2,2,2,2,2,2,2,2,//50
                 2,2,2,2,2,2,2,2,2,2,//51
-                2,2,2,2,2,2,
+                2,2,2,2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -597,7 +597,7 @@ class combatant{
                     sandal:{edge:0},
                 }
 
-                this.trigger.display.extra={sword:true,sword2:true,damage:false}
+                this.trigger.display.extra={sword:true,sword2:false,damage:false}
 
                 this.calc={int:[0,0,0,0]}
 
@@ -4003,7 +4003,7 @@ class combatant{
                 this.base.life*=3
                 this.collect.life*=3
             }
-            if(game.ascend>=2&&this.battle.encounter.class==0||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2){
+            if(game.ascend>=2&&(this.battle.encounter.class==0||this.battle.encounter.class==4)||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2){
                 for(let a=0,la=this.attack.length;a<la;a++){
                     if((types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==5)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
                         for(let b=0,lb=this.attack[a].effect.length;b<lb;b++){
@@ -4014,7 +4014,7 @@ class combatant{
                     }
                 }
             }
-            if(game.ascend>=7&&this.battle.encounter.class==0||game.ascend>=8&&this.battle.encounter.class==1||game.ascend>=9&&this.battle.encounter.class==2){
+            if(game.ascend>=7&&(this.battle.encounter.class==0||this.battle.encounter.class==4)||game.ascend>=8&&this.battle.encounter.class==1||game.ascend>=9&&this.battle.encounter.class==2){
                 this.life=round(this.life*1.2)
                 this.base.life=round(this.base.life*1.2)
                 this.collect.life=round(this.collect.life*1.2)
@@ -4028,7 +4028,7 @@ class combatant{
                     }
                 }
             }
-            if(game.ascend>=17&&this.battle.encounter.class==0||game.ascend>=18&&this.battle.encounter.class==1||game.ascend>=19&&this.battle.encounter.class==2){
+            if(game.ascend>=17&&(this.battle.encounter.class==0||this.battle.encounter.class==4)||game.ascend>=18&&this.battle.encounter.class==1||game.ascend>=19&&this.battle.encounter.class==2){
                 for(let a=0,la=this.attack.length;a<la;a++){
                     if((types.attack[this.attack[a].type].class==4)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1&&this.attack[a].effect[0]<0){
                         for(let b=0,lb=this.attack[a].effect.length;b<lb;b++){
@@ -4039,7 +4039,7 @@ class combatant{
                     }
                 }
             }
-            if(game.ascend>=27&&this.battle.encounter.class==0||game.ascend>=28&&this.battle.encounter.class==1){
+            if(game.ascend>=27&&(this.battle.encounter.class==0||this.battle.encounter.class==4)||game.ascend>=28&&this.battle.encounter.class==1){
                 let randombuffs=[
                     ['Double Damage',1],['Dodge',2],['Strength',2],['Dexterity',2],['Single Damage Up',6],
                     ['Retain Block',10],['Block Next Turn',10],['Armor',4],['Control',1],['Metallicize',2],
@@ -4770,6 +4770,7 @@ class combatant{
                 a=la
             }
         }
+        this.battle.updateTargetting()
     }
     randomIntent(){
         this.intent=floor(random(0,this.attack.length))
@@ -5031,9 +5032,8 @@ class combatant{
                     }
                 }
             }
-            if(this.spec.includes(7)&&id<this.battle.players&&type==1&&this.battle.turn.main<this.battle.players&&targetted&&!this.aggressor&&this.getStatus('Stun')<=0){
-                this.target=id
-                this.battle.turnManager.loadEnemyAttackRepeat(this.id)
+            if(this.spec.includes(7)&&type==1&&this.battle.turn.main<this.battle.players&&targetted&&!this.aggressor&&this.getStatus('Stun')<=0){
+                this.battle.turnManager.loadEnemyAttackRepeatBack(this.id)
                 this.aggressor=true
             }
         }
@@ -6396,11 +6396,19 @@ class combatant{
         }
         this.tilePosition.x=x
         this.tilePosition.y=y
-        if(this.spec.includes(5)){
-            let tile=this.battle.tileManager.getTileIndex(this.tilePosition.x,this.tilePosition.y)
-            if(tile>=0){
-                this.battle.tileManager.tiles[tile].addType(6)
+        let index=this.battle.tileManager.getTileIndex(this.tilePosition.x,this.tilePosition.y)
+        if(index>=0){
+            let tile=this.battle.tileManager.tiles[index]
+            this.position.x=tile.position.x
+            this.position.y=tile.position.y
+            this.relativePosition.x=tile.relativePosition.x
+            this.relativePosition.y=tile.relativePosition.y
+            if(this.spec.includes(5)){
+                if(tile>=0){
+                    tile.addType(6)
+                }
             }
+            this.battle.combatantManager.sort()
         }
         if(this.battle.modded(89)&&this.team>0){
             this.statusEffect('Poison',1)
@@ -9915,25 +9923,25 @@ class combatant{
             for(let a=0,la=10;a<la;a++){
                 this.layer.fill(255,200*a/la,200*a/la,this.fade*this.infoAnim.balance)
                 if(a==0){
-                    this.layer.rect(-17+a*4,8.5,2,6)
-                    this.layer.rect(-18+a*4,8.5,4,6,2)
+                    this.layer.rect(-17+a*4,-8.5,2,6)
+                    this.layer.rect(-18+a*4,-8.5,4,6,2)
                 }else if(a==9){
-                    this.layer.rect(-19+a*4,8.5,2,6)
-                    this.layer.rect(-18+a*4,8.5,4,6,2)
+                    this.layer.rect(-19+a*4,-8.5,2,6)
+                    this.layer.rect(-18+a*4,-8.5,4,6,2)
                 }else{
-                    this.layer.rect(-18+a*4,8.5,4,6)
+                    this.layer.rect(-18+a*4,-8.5,4,6)
                 }
             }
             this.layer.stroke(0,this.fade*this.infoAnim.balance)
             this.layer.strokeWeight(1)
             this.layer.noFill()
-            this.layer.rect(0,8.5,40,6,3)
+            this.layer.rect(0,-8.5,40,6,3)
             this.layer.stroke(255,this.fade*this.infoAnim.balance)
-            this.layer.line(-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),12,-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),5)
+            this.layer.line(-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),-12,-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),-5)
             this.layer.fill(0,this.fade*this.infoAnim.balance)
             this.layer.noStroke()
             this.layer.textSize(5)
-            this.layer.text(this.balance,0,8.5)
+            this.layer.text(this.balance,0,-8.25)
         }
         if(this.name=='Donakho'&&!this.graphic&&this.team>0&&scene=='battle'){
             this.layer.fill(140,120,160,this.fade)
@@ -10630,6 +10638,8 @@ class combatant{
             this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
             if(this.balance>this.balanceCap){
                 if(this.status.main[105]>0){
+                    this.battle.addSpecificEnergy(1,this.id,0)
+                }else if(this.status.main[516]>0){
                     this.battle.addSpecificEnergy(1,this.id,6)
                 }else if(this.status.main[104]<=0){
                     this.battle.cardManagers[this.id].hand.allEffect(94)

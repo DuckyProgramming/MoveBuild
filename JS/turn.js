@@ -1520,6 +1520,10 @@ class turn{
                                 this.userCombatant.statusEffect('Retain Block',3)
                                 this.userCombatant.removeAllStatuses([1,3])
                             break
+                            case 376:
+                                this.userCombatant.statusEffect('Dexterity',this.effect[1])
+                            break
+
                         }
                     break
                 }

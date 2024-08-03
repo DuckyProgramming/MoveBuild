@@ -103,10 +103,6 @@ class group{
                     {type:1,value:[0,0,0]},
                     {type:1,value:[0,0,0]},
                     {type:1,value:[0,0,0]},
-                    {type:1,value:[0,0,0]},
-                    {type:1,value:[0,0,0]},
-                    {type:1,value:[0,1,0]},
-                    {type:1,value:[0,1,0]},
                     {type:1,value:[0,1,0]},
                     {type:1,value:[0,1,0]},
                     ]])
@@ -2464,6 +2460,9 @@ class group{
             break
             case 4133:
                 this.battle.combatantManager.allEffect(48,['Lock On',card.effect[0]])
+            break
+            case 4183:
+                userCombatant.statusEffect('Bleed',card.effect[1])
             break
         }
     }

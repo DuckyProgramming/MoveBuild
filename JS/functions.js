@@ -1036,6 +1036,7 @@ function intentDescription(attack,user,info){
 			case 373: return `Remove ${info?attack.effect[0]:`?`} Dexterity\nRange 1-1`
 			case 374: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Shock\nRange 1-2`
 			case 375: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Burn\nRange 1-2`
+			case 376: return `Add ${info?attack.effect[0]:`?`} Block\nGain ${info?attack.effect[1]:`?`} Dexterity`
 
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
@@ -1854,13 +1855,40 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/150			${current.cardManagers[0].listing.junk[game.playerNumber+1].length-150}
 			`)
 }
+function outCosts(){
+	let box=``
+	let count=[]
+	for(let a=0,la=game.playerNumber+1;a<la;a++){
+		count.push([[0,0],[0,0],[0,0],[0,0],[0,0]])
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(types.card[a].list>=0&&types.card[a].list<=game.playerNumber&&types.card[a].rarity>=0){
+			for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+				if(!specialCost(types.card[a].levels[b])&&types.card[a].levels[b].cost>=0&&[1,2,3,4,11].includes(types.card[a].levels[b].class)){
+					count[types.card[a].list][[1,2,3,4,11].indexOf(types.card[a].levels[b].class)][0]++
+					count[types.card[a].list][[1,2,3,4,11].indexOf(types.card[a].levels[b].class)][1]+=types.card[a].levels[b].cost
+				}
+			}
+		}
+	}
+	for(let a=0,la=count.length;a<la;a++){
+		if(a!=0){
+			box+=`\n\n`
+		}
+		box+=`		${a==0?`Colorless`:types.combatant[a].name}:`
+		for(let b=0,lb=count[a].length;b<lb;b++){
+			box+=`\n	${[`Attack`,`Defense`,`Movement`,`Power`,`Skill`][b]}: ${round(count[a][b][1]/count[a][b][0]*1000)/1000}`
+		}
+	}
+	print(box)
+}
 function outMtg(){
 	let count=[]
 	for(let a=0,la=game.playerNumber+2;a<la;a++){
 		count.push([])
 		for(let b=0,lb=4;b<lb;b++){
 			count[a].push([])
-			for(let c=0,lc=16;c<lc;c++){
+			for(let c=0,lc=17;c<lc;c++){
 				count[a][b].push(0)
 			}
 		}
@@ -1903,6 +1931,7 @@ ${base[12]},${base[13]},${base[14]},${base[15]},${base[16]},
 	`Blue-Red: ${base[13]}, Black-Green: ${base[14]}, Black-Red: ${base[15]}, Green-Red: ${base[16]}`*/
 }
 function outMtg2(){
+	let mtgd=0
 	let count=[]
 	for(let a=0,la=game.playerNumber+1;a<la;a++){
 		count.push([])
@@ -1912,6 +1941,7 @@ function outMtg2(){
 	}
 	for(let a=0,la=types.card.length;a<la;a++){
 		if(types.card[a].mtg!=undefined){
+			mtgd++
 			if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber){
 				let list=types.card[a].list
 				let sublist=types.card[a].list==types.card[a].mtg.list?0:1
@@ -1939,6 +1969,7 @@ Rare: ${count[a][1][2]}
 Total: ${count[a][1][3]}\n`
 	}
 	print(box)
+	print(`${mtgd}/${types.card.length} (${round(mtgd/types.card.length*1000/10)}%) Converted`)
 }
 function outDupes(){
 	for(let a=0,la=types.card.length;a<la;a++){
@@ -2145,7 +2176,7 @@ function mtgPlayerColor(player){
 		case 2: return [1]
 		case 3: return [3,5]
 		case 4: return [5]
-		case 5: return [2,4]
+		case 5: return [2,5]
 		case 6: return [3,4]
 		case 7: return [5,4]
 		case 8: return [1,5]
@@ -2153,7 +2184,7 @@ function mtgPlayerColor(player){
 		case 10: return [3]
 		case 11: return [2,3]
 		case 12: return [1,3]
-		case 13: return [2,5]
+		case 13: return [2,4]
 		case 14: return [2]
 		case 15: return [1,2]
 		case 16: return [1,2,4]
