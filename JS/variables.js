@@ -701,7 +701,7 @@ types={
 
         {name:'Matchbox',internal:'Strike Damage',id:50,rarity:-1,list:0,mtg:0,description:`Cards Containing 'Strike'\nDeal 2 More Damage`},
         {name:'Chaff Strip',internal:'Unplayed Card Block',id:51,rarity:2,list:0,mtg:0,description:'At the End of Your Turn,\nGain 1 Block Per Unplayed Card'},
-        {name:'Pocket of Knives',internal:'Shivs',id:52,rarity:3,list:0,mtg:0,description:'Add 4 Shivs at the\nStart of Combat'},
+        {name:'Pocket of Knives',internal:'Shivs',id:52,rarity:-1,list:0,mtg:0,description:'Add 4 Shivs at the\nStart of Combat'},
         {name:'Salted Pepper',internal:'Healing Boost',id:53,rarity:2,list:0,mtg:0,description:'All Healing is\n50% More Effective'},
         {name:'Psuedograph',internal:'No Card Draw',id:54,rarity:2,list:0,mtg:0,description:'If You Have No Cards in\nYour Hand, Draw 1 Card'},
         {name:'Origami Paper',internal:'Damage Decrease',id:55,rarity:2,list:0,mtg:0,description:'Reduce All Damage\nAbove 1 By 1'},
@@ -1168,7 +1168,7 @@ types={
         {name:'Buggy Horn',internal:'Push All Directions',id:39,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Push 1 Tile\nin All Directions\nRange 1-2'},
 
         {name:'Orange Juice',internal:'Remove Fatigues',id:40,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Remove All Fatigues'},
-        {name:'Bag of Knives',internal:'5 Shivs',id:41,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Add 5 Shivs\nto Your Hand'},
+        {name:'Bag of Knives',internal:'5 Shivs',id:41,rarity:-1,list:0,menu:false,temp:false,mtg:0,description:'Add 5 Shivs\nto Your Hand'},
         {name:'Time Crystal',internal:'Extra Turn',id:42,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Take an Extra Turn'},
         {name:'Trash Can',internal:'Remove Card',id:43,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Remove a Card\nFrom Your Deck'},
         {name:'Duck Soup',internal:'5 Max HP',id:44,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Gain 5 Max HP'},
@@ -10183,7 +10183,7 @@ stage={scale:0,scene:'title',internal:{version:1}}
 game={player:[],deck:[],playerNumber:18,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
 variants={
-    mtg:false,mod:false,selectCombat:false,chaos:false,
+    mtg:true,mod:false,selectCombat:false,chaos:false,
     lowDraw:false,cyclicDraw:false,balance:false,blackjack:false,
     chooselose:false,compress:false,cardHold:false,polar:false,
     inventor:false,unexpected:false,cursed:false,witch:false,

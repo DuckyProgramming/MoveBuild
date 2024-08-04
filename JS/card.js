@@ -412,6 +412,30 @@ class card{
                 this.edited.cost+=args[0]
                 this.edited.costComplete=true
             break
+            case 4:
+                if(variants.mtg){
+                    if(this.specialCost){
+                        if(this.cost[0]>=0){
+                            this.cost[0]+=args[0]
+                        }
+                        if(this.base.cost[0]>=0){
+                            this.base.cost[0]+=args[0]
+                        }
+                    }else{
+                        for(let a=0,la=args[0];a<la;a++){
+                            this.cost.push(args[1])
+                            this.base.cost.push(args[1])
+                        }
+                    }
+                }else{
+                    if(this.cost>=0){
+                        this.cost+=args[0]
+                    }
+                    if(this.base.cost>=0){
+                        this.base.cost+=args[0]
+                    }
+                }
+            break
         }
     }
     costDown(type,args){
@@ -921,7 +945,7 @@ class card{
             case 257: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nWhen Selectively\nDiscarded`; break
             case 258: string+=`Gain ${effect[0]} Energy\nWhen Selectively\nDiscarded`; break
             case 259: string+=`Gain ${effect[0]} Energy\nDiscard ${effect[1]} Card${pl(effect[1])}`; break
-            case 260: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Temporary\nDamage Down`; break
+            case 260: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget's Attacks Deal ${effect[1]}\nLess Damage This Turn`; break
             case 261: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 1 Less\nTemporarily`; break
             case 262: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Block\nNext Turn`; break
             case 263: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 This\nTurn When a Card\nis Selectively Discarded`; break
@@ -982,7 +1006,7 @@ class card{
             case 317: string+=`Gain ${effect[0]} Intangible\nand ${effect[1]} Energy\nNext Turn`; break
             case 318: string+=`When a Card is Exhausted,\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 319: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeal ${this.calculateEffect(effect[0],0)} Damage\nto a Random\nOther Enemy`; break
-            case 320: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nFor 3 Turns`; break
+            case 320: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nThis Turn and\nNext 2 Turns`; break
             case 321: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext Attack Deals\n${effect[1]} More Damage`; break
             case 322: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf You Have No Block,\nGain ${effect[1]} Energy`; break
             case 323: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nAdd ${effect[1]} Shiv${pl(effect[1])}\nto Hand`; break
@@ -4872,9 +4896,15 @@ class card{
             case 4187: string+=`Gain (R) (R)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 4188: string+=`Gain (R) (R) (R)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 4189: string+=`Gain (E) (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
-            //113
+            case 4190: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts (R) More\nWhen You Take Damage`; break
+            case 4191: string+=`Gain (B) (B)\nLose ${effect[0]} Health`; break
+            case 4192: string+=`Gain (B) (B) (N)\nLose ${effect[0]} Health`; break
+            case 4193: string+=`Gain (E) (B) (B)\nLose ${effect[0]} Health`; break
 
 
+
+
+            
 
 
 
@@ -5621,16 +5651,10 @@ class card{
                 this.effect[0]=max(0,this.effect[0]-this.effect[2])
             break
             case 266:
-                this.base.cost++
-                this.cost++
+                this.costUp(2,[1])
             break
             case 282: case 1834:
-                if(this.base.cost>0){
-                    this.base.cost--
-                }
-                if(this.cost>0){
-                    this.cost--
-                }
+                this.costDown(2,[1])
             break
             case 1072:
                 this.effect[0]=0
@@ -5644,6 +5668,9 @@ class card{
             break
             case 2145: case 3360:
                 this.effect[0]=this.effect[1]
+            break
+            case 4190:
+                this.costUp(4,[1,5])
             break
         }
     }

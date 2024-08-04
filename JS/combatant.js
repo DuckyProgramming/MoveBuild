@@ -5851,7 +5851,6 @@ class combatant{
                     }
                     if(userCombatant.status.main[99]>0&&this.block==0){
                         this.statusEffect('Bleed',userCombatant.status.main[99])
-                        userCombatant.status.main[99]=0
                     }
                     if(userCombatant.status.main[100]>0&&this.block==0){
                         this.statusEffect('Bleed',userCombatant.status.main[100])

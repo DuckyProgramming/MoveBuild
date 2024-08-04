@@ -3398,7 +3398,7 @@ class overlay{
                                     !(this.args[0]==67&&this.battle.cardManagers[this.player].deck.cards[a].basic)&&
                                     !(this.args[0]==68&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(4)||this.battle.cardManagers[this.player].deck.cards[a].spec.includes(12)))&&
                                     !(this.args[0]==69&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(1)||this.battle.cardManagers[this.player].deck.cards[a].spec.includes(12)||this.battle.cardManagers[this.player].deck.cards[a].class==4))&&
-                                    !(this.args[0]==70&&this.battle.cardManagers[this.player].deck.cards[a].specialCost())&&
+                                    !(this.args[0]==70&&this.battle.cardManagers[this.player].deck.cards[a].specialCost)&&
                                     !(this.args[0]==83&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(63)||this.battle.cardManagers[this.player].deck.cards[a].spec.includes(12)))&&
                                     !(this.args[0]==32&&this.battle.cardManagers[this.player].deck.cards[a].edition==1)&&
                                     !(this.args[0]==33&&this.battle.cardManagers[this.player].deck.cards[a].edition==4)&&
@@ -3639,7 +3639,7 @@ class overlay{
                                         !(this.args[0]==67&&this.battle.cardManagers[this.player].deck.cards[a].basic)&&
                                         !(this.args[0]==68&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(4)||this.battle.cardManagers[this.player].deck.cards[a].spec.includes(12)))&&
                                         !(this.args[0]==69&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(1)||this.battle.cardManagers[this.player].deck.cards[a].spec.includes(12)||this.battle.cardManagers[this.player].deck.cards[a].class==4))&&
-                                        !(this.args[0]==70&&this.battle.cardManagers[this.player].deck.cards[a].specialCost())&&
+                                        !(this.args[0]==70&&this.battle.cardManagers[this.player].deck.cards[a].specialCost)&&
                                         !(this.args[0]==83&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(63)||this.battle.cardManagers[this.player].deck.cards[a].spec.includes(12)))&&
                                         !(this.args[0]==32&&this.battle.cardManagers[this.player].deck.cards[a].edition==1)&&
                                         !(this.args[0]==33&&this.battle.cardManagers[this.player].deck.cards[a].edition==4)&&

@@ -3600,6 +3600,9 @@ turn.prototype.update=function(){
                         if(this.userCombatant.getStatus('Damage Repeat in 2 Turns')>0&&this.clearAttack[12]){
                             this.userCombatant.status.main[findList('Damage Repeat in 2 Turns',this.userCombatant.status.name)]--
                         }
+                        if(this.userCombatant.getStatus('Single Attack Bleed')>0&&this.clearAttack[13]){
+                            this.userCombatant.status.main[findList('Single Attack Bleed',this.userCombatant.status.name)]--
+                        }
                     break
                 }
             }

@@ -44,7 +44,7 @@ class attack{
 
         switch(this.attackClass){
             case 1:
-                this.clearAttack=[false,false,false,false,false,false,false,false,false,false,false,false,false]
+                this.clearAttack=[false,false,false,false,false,false,false,false,false,false,false,false,false,false]
                 if(this.userCombatant.getStatus('Double Damage')>0){
                     this.clearAttack[0]=true
                 }
@@ -84,6 +84,9 @@ class attack{
                 }
                 if(this.userCombatant.getStatus('Damage Repeat in 2 Turns')>0){
                     this.clearAttack[12]=true
+                }
+                if(this.userCombatant.getStatus('Single Attack Bleed')>0){
+                    this.clearAttack[13]=true
                 }
             break
         }
@@ -184,7 +187,7 @@ class attack{
             case 4022: case 4023: case 4026: case 4029: case 4030: case 4034: case 4045: case 4050: case 4052: case 4053: case 4059: case 4061: case 4066: case 4067: case 4068: case 4069: case 4070: case 4072: case 4077: case 4078:
             case 4079: case 4082: case 4083: case 4084: case 4085: case 4088: case 4091: case 4096: case 4097: case 4098: case 4102: case 4105: case 4107: case 4108: case 4109: case 4110: case 4117: case 4122: case 4132: case 4137:
             case 4138: case 4139: case 4140: case 4142: case 4143: case 4145: case 4149: case 4150: case 4151: case 4152: case 4153: case 4154: case 4155: case 4156: case 4161: case 4162: case 4163: case 4167: case 4168: case 4169:
-            case 4170: case 4172: case 4183:
+            case 4170: case 4172: case 4183: case 4190:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -11125,6 +11128,20 @@ class attack{
                     case 3954:
                         this.userCombatant.statusEffect('Cancel Exhaust',this.effect[0])
                         this.battle.addSpecificEnergy(1,this.user,0)
+                    break
+                    case 4191:
+                        this.battle.addSpecificEnergy(2,this.player,3)
+                        this.userCombatant.loseHealth(this.effect[0])
+                    break
+                    case 4192:
+                        this.battle.addSpecificEnergy(2,this.player,3)
+                        this.battle.addSpecificEnergy(1,this.player,0)
+                        this.userCombatant.loseHealth(this.effect[0])
+                    break
+                    case 4193:
+                        this.battle.addSpecificEnergy(1,this.player,6)
+                        this.battle.addSpecificEnergy(2,this.player,3)
+                        this.userCombatant.loseHealth(this.effect[0])
                     break
 
                 }

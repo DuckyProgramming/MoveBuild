@@ -1859,14 +1859,16 @@ function outCosts(){
 	let box=``
 	let count=[]
 	for(let a=0,la=game.playerNumber+1;a<la;a++){
-		count.push([[0,0],[0,0],[0,0],[0,0],[0,0]])
+		count.push([[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]])
 	}
 	for(let a=0,la=types.card.length;a<la;a++){
 		if(types.card[a].list>=0&&types.card[a].list<=game.playerNumber&&types.card[a].rarity>=0){
 			for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
-				if(!specialCost(types.card[a].levels[b])&&types.card[a].levels[b].cost>=0&&[1,2,3,4,11].includes(types.card[a].levels[b].class)){
-					count[types.card[a].list][[1,2,3,4,11].indexOf(types.card[a].levels[b].class)][0]++
-					count[types.card[a].list][[1,2,3,4,11].indexOf(types.card[a].levels[b].class)][1]+=types.card[a].levels[b].cost
+				if(!specialCost(types.card[a].levels[b])&&types.card[a].levels[b].cost>=0&&[0,1,2,3,4,11].includes(types.card[a].levels[b].class)){
+					count[types.card[a].list][[0,1,2,3,4,11].indexOf(types.card[a].levels[b].class)][0]++
+					count[types.card[a].list][[0,1,2,3,4,11].indexOf(types.card[a].levels[b].class)][1]+=types.card[a].levels[b].cost
+					count[types.card[a].list][0][0]++
+					count[types.card[a].list][0][1]+=types.card[a].levels[b].cost
 				}
 			}
 		}
@@ -1877,7 +1879,7 @@ function outCosts(){
 		}
 		box+=`		${a==0?`Colorless`:types.combatant[a].name}:`
 		for(let b=0,lb=count[a].length;b<lb;b++){
-			box+=`\n	${[`Attack`,`Defense`,`Movement`,`Power`,`Skill`][b]}: ${round(count[a][b][1]/count[a][b][0]*1000)/1000}`
+			box+=`\n	${[`Total`,`Attack`,`Defense`,`Movement`,`Power`,`Skill`][b]}: ${round(count[a][b][1]/count[a][b][0]*1000)/1000}`
 		}
 	}
 	print(box)

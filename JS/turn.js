@@ -62,6 +62,9 @@ class turn{
                 if(this.userCombatant.getStatus('Damage Repeat in 2 Turns')>0){
                     this.clearAttack[12]=true
                 }
+                if(this.userCombatant.getStatus('Single Attack Bleed')>0){
+                    this.clearAttack[13]=true
+                }
             break
         }
     }
