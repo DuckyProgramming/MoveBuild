@@ -4823,25 +4823,25 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.point(0,0)
         break
         case 501:
-            displayMtgManaSymbol(layer,0,0,0,0,0.4,fade,-1,[])
+            displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
         break
         case 502:
-            displayMtgManaSymbol(layer,0,0,1,0,0.4,fade,-1,[])
+            displayMtgManaSymbol(layer,0,0,5,0,0.4,fade,-1,[])
         break
         case 503:
-            displayMtgManaSymbol(layer,0,0,2,0,0.4,fade,-1,[])
+            displayMtgManaSymbol(layer,0,0,4,0,0.4,fade,-1,[])
         break
         case 504:
             displayMtgManaSymbol(layer,0,0,3,0,0.4,fade,-1,[])
         break
         case 505:
-            displayMtgManaSymbol(layer,0,0,4,0,0.4,fade,-1,[])
+            displayMtgManaSymbol(layer,0,0,2,0,0.4,fade,-1,[])
         break
         case 506:
-            displayMtgManaSymbol(layer,0,0,5,0,0.4,fade,-1,[])
+            displayMtgManaSymbol(layer,0,0,1,0,0.4,fade,-1,[])
         break
         case 507:
-            displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
+            displayMtgManaSymbol(layer,0,0,0,0,0.4,fade,-1,[])
         break
         case 508:
             layer.fill(150,0,0,fade)

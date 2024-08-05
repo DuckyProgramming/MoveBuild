@@ -3056,7 +3056,7 @@ turn.prototype.update=function(){
                         if(this.timer==25){
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,6,[atan2(this.targetCombatant[0].position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant[0].position.y+30),2.5*this.targetDistance[0]-1]))
                         }else if(this.timer==5*this.targetDistance[0]+25){
-                            this.targetCombatant[0].takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant[0].takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=max(40,5*this.targetDistance[0]+35)){
                             this.targetCombatant.splice(0,1)
                             this.targetDistance.splice(0,1)

@@ -1944,14 +1944,14 @@ function outMtg2(){
 	for(let a=0,la=types.card.length;a<la;a++){
 		if(types.card[a].mtg!=undefined){
 			mtgd++
-			if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber){
+			if(types.card[a].rarity>=0&&types.card[a].list>=0&&types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber){
 				let list=types.card[a].list
 				let sublist=types.card[a].list==types.card[a].mtg.list?0:1
 				try{
 					count[list][sublist][types.card[a].mtg.rarity]++
 					count[list][sublist][3]++
 				}catch(error){
-					print(types.card[a].name)
+					print(types.card[a].name,'Failed!')
 				}
 			}
 		}

@@ -187,7 +187,7 @@ class attack{
             case 4022: case 4023: case 4026: case 4029: case 4030: case 4034: case 4045: case 4050: case 4052: case 4053: case 4059: case 4061: case 4066: case 4067: case 4068: case 4069: case 4070: case 4072: case 4077: case 4078:
             case 4079: case 4082: case 4083: case 4084: case 4085: case 4088: case 4091: case 4096: case 4097: case 4098: case 4102: case 4105: case 4107: case 4108: case 4109: case 4110: case 4117: case 4122: case 4132: case 4137:
             case 4138: case 4139: case 4140: case 4142: case 4143: case 4145: case 4149: case 4150: case 4151: case 4152: case 4153: case 4154: case 4155: case 4156: case 4161: case 4162: case 4163: case 4167: case 4168: case 4169:
-            case 4170: case 4172: case 4183: case 4190:
+            case 4170: case 4172: case 4183: case 4190: case 4200: case 4201:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -230,6 +230,7 @@ class attack{
             case 3663: case 3681: case 3735: case 3743: case 3746: case 3780: case 3788: case 3789: case 3790: case 3795:
             case 3796: case 3797: case 3798: case 3799: case 3800: case 3801: case 3802: case 3803: case 3814: case 3884:
             case 3930: case 3931: case 3943: case 4000: case 4056: case 4076: case 4101: case 4104: case 4113: case 4141:
+            case 4197: case 4198:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -4623,6 +4624,12 @@ class attack{
                     case 4112:
                         this.userCombatant.addBlock(this.effect[0]+this.effect[1]*this.userCombatant.wish)
                     break
+                    case 4197:
+                        if(this.userCombatant.block==0){
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                        this.userCombatant.addBlock(this.effect[0])
+                    break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
                     break
@@ -6618,6 +6625,12 @@ class attack{
                         }else if(this.targetTile.tilePosition.y>this.userCombatant.tilePosition.y){
                             this.userCombatant.statusEffect('Temporary Dexterity',this.effect[2])
                         }
+                    break
+                    case 4198:
+                        this.userCombatant.statusEffect('(N) Next Turn',1)
+                    break
+                    case 4199:
+                        this.userCombatant.statusEffect('(N) Next Turn',2)
                     break
 
                 }
@@ -10395,6 +10408,18 @@ class attack{
                     case 4186:
                         this.userCombatant.statusEffect('Balance (E)',1)
                     break
+                    case 4194:
+                        this.userCombatant.statusEffect('(W) Next Turn',2)
+                        this.userCombatant.statusEffect('(N) Next Turn',2)
+                    break
+                    case 4195:
+                        this.userCombatant.statusEffect('(W) Next Turn',3)
+                        this.userCombatant.statusEffect('(N) Next Turn',2)
+                    break
+                    case 4196:
+                        this.userCombatant.statusEffect('(E) Next Turn',3)
+                        this.userCombatant.statusEffect('(N) Next Turn',2)
+                    break
 
                 }
                 //mark 5
@@ -13339,6 +13364,17 @@ class attack{
                     case 4142:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.userCombatant.statusEffect('Focus',this.effect[1])
+                    break
+                    case 4200:
+                        this.targetCombatant.randomStatusInstant(this.effect[0],[1])
+                        this.userCombatant.statusEffect('(N) Next Turn',1)
+                        this.userCombatant.statusEffect('Temporary Draw',this.effect[1])
+                    break
+                    case 4201:
+                        this.targetCombatant.randomStatusInstant(this.effect[0],[1])
+                        this.targetCombatant.randomStatusInstant(this.effect[1],[1])
+                        this.userCombatant.statusEffect('(N) Next Turn',1)
+                        this.userCombatant.statusEffect('Temporary Draw',this.effect[2])
                     break
 
                 }

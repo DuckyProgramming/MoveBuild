@@ -1,3 +1,14 @@
+cards from attack box aren't free?
+
+3 temp strength from holographics instead of 1 strength
+
+make it literally impossible to tell where shadow trooper is
+
+ace of gold is broken
+
+
+
+
 MAJOR MTG CHANGES
 
 METAS
@@ -125,9 +136,9 @@ cool rose - 3 damage 3 block, 0 cost, double both if target has freeze
 
 [starry sword dance]
 
-[sakura meme card]
-
 suplex - combo card, damage an enemy and move him behind yourself (or hits a wall)
+
+counter grapple like suplex
 
 
 
@@ -139,6 +150,19 @@ wall smash - deal 9 damage, double if target is adjacent to an empty tile spot
 
 long con - 2 cost, gain 25 block, gain 2 energy if 2 turns
 
+[adzuki]
+
+[haniwa front]
+
+
+
+[sakura meme cards]
+
+privacy - shiru, gain 1 dodge, discard a card
+
+minor injury - injury but it becomes playable after a boss combat, and vanishes 1
+
+candy cane - 10 damage, if fatal drop a health pack
 
 
 
@@ -191,7 +215,7 @@ enemies:
 
 drowned - can randomly apply drowned to you
 pistol thug - a basic biker with a gun not really a threat
-[]
+brawler - gains 1 strength per turn, has a mid-range punch
 
 bosses:
 
@@ -203,7 +227,7 @@ enemies:
 
 bar security - counter pushes once per turn, but doesn't do much damage
 bartender - the management custodian but a gangster, applies debuffs to you from across the map
-brawler - gains 1 strength per turn, has a mid-range punch
+cutthroat - stab guy who applies bleed, and all other enemies have buffs while he is alive
 
 bosses:
 
@@ -224,7 +248,7 @@ management robot commander - like a normal robot but can buff other robots and s
 bosses:
 
 lockdown - a strong robot, 8 metallicize
-every time you play 8 cards, attacks you and moves
+every time you play 8 cards you take 4 damage
 counters 8 at the start of every turn
 otherwise pretty basic attacks
 
@@ -266,7 +290,7 @@ card collector - offers to trade one of your cards (random) for a rare card of y
 
 hotel room - choice
 sweep for bugs - lose 50$
-don't - 100% chance to lose a relic
+don't - 10% chance to lose a relic
 
 
 
