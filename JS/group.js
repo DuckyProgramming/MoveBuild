@@ -3848,28 +3848,6 @@ class group{
                                     }
                                 }
                             }
-                            if(this.cards[b].attack==1133){
-                                this.cards[b].effect[0]--
-                                for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
-                                    if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
-                                        this.battle.cardManagers[this.player].deck.cards[c].effect[0]--
-                                    }
-                                }
-                                if(this.cards[b].effect[0]<=0){
-                                    this.cards[b].exhaust=true
-                                    for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
-                                        if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
-                                            this.battle.cardManagers[this.player].deck.cards.splice(c,1)
-                                            this.battle.cardManagers[this.player].deck.cards[c].callVanishEffect()
-                                            c--
-                                            lc--
-                                        }
-                                    }
-                                    this.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
-                                    this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[b].level,this.cards[b].color)
-                                    this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
-                                }
-                            }
                             this.battle.cardManagers[this.player].greenDiff++
                             if(this.spec.includes(12)){
                                 this.battle.attackManager.type=this.battle.attackManager.type[mode]

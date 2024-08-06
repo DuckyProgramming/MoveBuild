@@ -295,7 +295,7 @@ class overlay{
                         }
                     break
                     case 2: case 12:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                         for(let a=0,la=this.options;a<la;a++){
                             if(list[args[1]].length>0){
                                 let index=floor(random(0,list[args[1]].length))
@@ -4121,7 +4121,10 @@ class overlay{
                         this.text+=key
                         this.suggestions=[]
                         for(let a=0,la=types.dictionary.length;a<la;a++){
-                            if(types.dictionary[a].name.substr(0,this.text.length).toUpperCase()==this.text.toUpperCase()){
+                            if(
+                                (types.dictionary[a].mtg==0||types.dictionary[a].mtg==1&&!variants.mtg||types.dictionary[a].mtg==2&&variants.mtg)&&
+                                types.dictionary[a].name.substr(0,this.text.length).toUpperCase()==this.text.toUpperCase()
+                            ){
                                 this.suggestions.push(a)
                             }
                         }
@@ -4130,7 +4133,10 @@ class overlay{
                         this.suggestions=[]
                         if(this.text.length>0){
                             for(let a=0,la=types.dictionary.length;a<la;a++){
-                                if(types.dictionary[a].name.substr(0,this.text.length).toUpperCase()==this.text.toUpperCase()){
+                                if(
+                                    (types.dictionary[a].mtg==0||types.dictionary[a].mtg==1&&!variants.mtg||types.dictionary[a].mtg==2&&variants.mtg)&&
+                                    types.dictionary[a].name.substr(0,this.text.length).toUpperCase()==this.text.toUpperCase()
+                                ){
                                     this.suggestions.push(a)
                                 }
                             }

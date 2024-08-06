@@ -6779,7 +6779,7 @@ class combatant{
                 this.battle.cardManagers[this.id].hand.add(findName('Speed',types.card),0,0)
             break
             case 5:
-                this.battle.addSpecificEnergy(3,this.id,6)
+                this.battle.addSpecificEnergy(variants.mtg?5:3,this.id,6)
             break
         }
         if(this.status.main[126]>0){
@@ -6795,7 +6795,7 @@ class combatant{
     leaveStance(stance){
         switch(stance){
             case 2:
-                this.battle.addSpecificEnergy(2,this.id,6)
+                this.battle.addSpecificEnergy(variants.mtg?3:2,this.id,6)
             break
         }
     }
@@ -7338,13 +7338,18 @@ class combatant{
                 this.status.next[a]=0
             }
         }
-        switch(this.stance){
-            case 5:
-                this.stance=0
-            break
-            case 6:
-                this.battle.loseEnergy(1,this.id)
-            break
+        if(this.stance>0&&this.id<this.battle.players){
+            switch(this.stance){
+                case 3:
+                    this.battle.cardManagers[this.id].hand.add(findName('Speed',types.card),0,0)
+                break
+                case 5:
+                    this.stance=0
+                break
+                case 6:
+                    this.battle.loseEnergy(1,this.id)
+                break
+            }
         }
         if(this.battle.modded(28)&&this.team==0&&floor(random(0,4))==0){
             this.addBlock(20)
@@ -7353,13 +7358,6 @@ class combatant{
             this.addBlock(3)
         }
         this.tickOrbs(-1)
-        if(this.stance>0&&this.id<this.battle.players){
-            switch(this.stance){
-                case 3:
-                    this.battle.cardManagers[this.id].hand.add(findName('Speed',types.card),0,0)
-                break
-            }
-        }
         if(this.name=='Eternal Judge'){
             if(this.sins.includes(0)&&this.turnsAlive%2==0){
                 for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
@@ -7410,7 +7408,7 @@ class combatant{
             if(this.orbs[a]==type||type==-1){
                 switch(this.orbs[a]){
                     case 4:
-                        this.orbDetail[a]+=6
+                        this.orbDetail[a]+=3
                     break
                     case 5:
                         if(this.team==0){

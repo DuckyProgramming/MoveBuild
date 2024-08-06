@@ -1477,6 +1477,11 @@ class battle{
         }
     }
     mtgCost(cost,player,cards){
+        let chainedEnergy=[]
+        for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+            chainedEnergy.push(this.energy.crystal[player][a][0])
+        }
+        this.attackManager.mtgEnergy=chainedEnergy
         this.energy.lastSpend[player]=[]
         let costLeft=copyArray(cost)
         let effectiveEnergy=[0,0,0,0,0,0,0]

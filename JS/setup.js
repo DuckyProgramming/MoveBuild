@@ -10,7 +10,7 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    if(false){
+    if(true){
 
             //stage.scene='tier'
             //current.overlayManager=new overlayManager(current.layer,current,1)
@@ -18,7 +18,7 @@ function setup(){
             //transition.trigger=true
             //transition.scene='menu'
 
-        current.menu.combatant=[4]
+        current.menu.combatant=[5]
         current.menu.deck=[-1]
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){

@@ -6,6 +6,12 @@ make it literally impossible to tell where shadow trooper is
 
 ace of gold is broken
 
+reject bonfire spirits gives you no options
+
+shadow trooper pulls you to a weird place
+
+
+
 
 
 
@@ -19,6 +25,9 @@ METAS
 
 all spells of wonder should cost 2 hybrid and 1 neutral mana
 22,32,40
+
+all flame wars cost 1 hybrid mana
+24,30,40
 
 case 7:
     return [1,2]
@@ -163,6 +172,19 @@ privacy - shiru, gain 1 dodge, discard a card
 minor injury - injury but it becomes playable after a boss combat, and vanishes 1
 
 candy cane - 10 damage, if fatal drop a health pack
+
+propelling silver - 9x damage, all excess damage is dealt to random enemies
+
+metallic loom - 3 cost, 18 splash damage, gain 5 block per shiv in hand
+
+
+
+reverent thought - draw 3 cards, gain 1 energy if in divinity
+
+yellow giant - 8 damage 2 times, 2 range, spend 2 charge: 1 more time
+
+mushroom stew - heal 3 health, next charge spend is free
+
 
 
 
