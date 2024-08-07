@@ -5249,7 +5249,7 @@ class combatant{
         this.life=max(min(1,this.life),this.life-value)
     }
     orbTake(value,user,spec){
-        this.takeDamage(value*(this.status.main[117]>0?2:1),user,spec)
+        this.takeDamage(value*(this.status.main[117]>0?1.5:1),user,spec)
     }
     energyChange(amount){
         if(amount>0&&this.status.main[439]>0){
@@ -6417,9 +6417,11 @@ class combatant{
     }
     getOrbNumber(type){
         let count=0
+        let checked=[]
         for(let a=0,la=this.orbs.length;a<la;a++){
-            if(type!=-1&&this.orbs[a]==type||type==-1&&this.orbs[a]>=0){
+            if(type>=0&&this.orbs[a]==type||type==-1&&this.orbs[a]>=0||type==-2&&this.orbs[a]>=0&&!checked.includes(this.orbs[a])){
                 count++
+                checked.push(this.orbs[a])
             }
         }
         return count

@@ -215,7 +215,7 @@ class cardManager{
                         mtgAutoCost(effectiveMana,types.card[a].mtg.levels[0].cost,0,[],false)!=-1
                     )
                 ){
-                    this.listing.mtg[0][types.card[a].rarity].push(a)
+                    this.listing.mtg[0][types.card[a].mtg.rarity].push(a)
                     this.listing.mtg[0][3].push(a)
                 }
                 if(
@@ -232,7 +232,7 @@ class cardManager{
                         mtgAutoCost(effectiveMana,types.card[a].mtg.levels[0].cost,0,[],false)!=-1
                     )
                 ){
-                    this.listing.mtg[1][types.card[a].rarity].push(a)
+                    this.listing.mtg[1][types.card[a].mtg.rarity].push(a)
                     this.listing.mtg[1][3].push(a)
                 }
                 if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber){

@@ -188,7 +188,7 @@ class attack{
             case 4022: case 4023: case 4026: case 4029: case 4030: case 4034: case 4045: case 4050: case 4052: case 4053: case 4059: case 4061: case 4066: case 4067: case 4068: case 4069: case 4070: case 4072: case 4077: case 4078:
             case 4079: case 4082: case 4083: case 4084: case 4085: case 4088: case 4091: case 4096: case 4097: case 4098: case 4102: case 4105: case 4107: case 4108: case 4109: case 4110: case 4117: case 4122: case 4132: case 4137:
             case 4138: case 4139: case 4140: case 4142: case 4143: case 4145: case 4149: case 4150: case 4151: case 4152: case 4153: case 4154: case 4155: case 4156: case 4161: case 4162: case 4163: case 4167: case 4168: case 4169:
-            case 4170: case 4172: case 4183: case 4190: case 4200: case 4201: case 4203: case 4204: case 4206: case 4211: case 4212:
+            case 4170: case 4172: case 4183: case 4190: case 4200: case 4201: case 4203: case 4204: case 4206: case 4211: case 4212: case 4218: case 4219:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -2253,7 +2253,7 @@ class attack{
                         }
                     break
                     case 511:
-                        this.userManager.draw(this.effect[1]*this.userCombatant.getOrbNumber(-1))
+                        this.userManager.draw(this.effect[1]*this.userCombatant.getOrbNumber(-2))
                     break
                     case 514:
                         this.userManager.hand.rebound(1)
@@ -4663,6 +4663,9 @@ class attack{
                             this.battle.addSpecificEnergy(1,this.player,0)
                         }
                         this.userCombatant.addBlock(this.effect[0])
+                    break
+                    case 4216:
+                        this.battle.addSpecificEnergy(floor(this.userManager.reserve.cards.length/max(1,this.effect[0])),this.player,6)
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
@@ -8476,6 +8479,18 @@ class attack{
                     case 4189:
                         this.battle.addSpecificEnergy(3,this.player,6)
                         this.userManager.draw(this.effect[0])
+                    break
+                    case 4213:
+                        this.battle.addSpecificEnergy(3,this.player,6)
+                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                    break
+                    case 4214:
+                        this.battle.addSpecificEnergy(4,this.player,6)
+                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                    break
+                    case 4215:
+                        this.battle.addSpecificEnergy(5,this.player,6)
+                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
                     break
 
                 }
@@ -16568,6 +16583,37 @@ class attack{
                         let mult4179=floor(this.battle.tileManager.numberAbstract(0,[19])/this.effect[1])
                         this.battle.addSpecificEnergy(mult4179,this.player,6)
                         this.userManager.draw(this.effect[0]*mult4179)
+                    break
+                    case 4217:
+                        let spent4217=[0]
+                        for(let a=0,la=this.battle.energy.lastSpend[this.player].length;a<la;a++){
+                            spent4217[0]++
+                            if(spent4217[0]%2==0){
+                                this.userCombatant.holdOrb(0)
+                            }
+                        }
+                    break
+                    case 4218:
+                        let total4218=0
+                        let spent4218=[0]
+                        for(let a=0,la=this.battle.energy.lastSpend[this.player].length;a<la;a++){
+                            spent4218[0]++
+                            if(spent4218[0]%2==0){
+                                total4218+=this.effect[0]
+                            }
+                        }
+                        this.userCombatant.evoke(0,this.targetCombatant.id,[total4218])
+                    break
+                    case 4219:
+                        let total4219=0
+                        let spent4219=[0]
+                        for(let a=0,la=this.battle.energy.lastSpend[this.player].length;a<la;a++){
+                            spent4219[0]++
+                            if(spent4219[0]%2==0){
+                                total4219+=this.effect[0]
+                            }
+                        }
+                        this.userCombatant.evoke(0,this.targetCombatant.id,[total4219+this.effect[1]])
                     break
 
                     //mark 12

@@ -1855,7 +1855,7 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/150			${current.cardManagers[0].listing.junk[game.playerNumber+1].length-150}
 			`)
 }
-function outCosts(){
+function outClassCosts(){
 	let box=``
 	let count=[]
 	for(let a=0,la=game.playerNumber+1;a<la;a++){
@@ -2035,7 +2035,7 @@ function outClass(){
 	}
 	print(build)
 }
-function outCost(){
+function outCosts(){
 	let averages=[]
 	let totals=[]
 	let build=``

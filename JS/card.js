@@ -601,7 +601,7 @@ class card{
             case -15: string+=`When Drawn,\nYou Cannot Move\nFor ${effect[0]} Turn${pl(effect[0])}\nWhen Played, Cancels\nPrevious Effect`; break
             case -16: string+=`When Drawn,\nAdd a Fatigue to Hand`; break
             case -17: string+=`When Drawn,\nA Random Card\nCosts ${effect[0]} More`; break
-            case -18: string+=`When Drawn,\nLose ${effect[0]} Energy`; break
+            case -18: string+=`When Drawn,\nLose ${effect[0]} ${variants.mtg?`Random Mana`:`Energy`}`; break
             case -19: string+=`When Drawn,\nYou Cannot Move\nFor ${effect[0]} Turn${pl(effect[0])}`; break
             case -20: string+=`When Drawn,\nMovement Cards in Hand\nCost ${effect[0]} More`; break
             case -21: string+=`Take ${effect[0]} Damage\nDraw ${effect[1]} Card${pl(effect[1])}`; break
@@ -1195,17 +1195,17 @@ class card{
             case 508: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Basic Orb${pl(effect[1])}`; break
             case 509: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Shield Orb${pl(effect[1])}`; break
             case 510: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Orbs`; break
-            case 511: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]!=1?effect[1]:``}X Cards\nWhere X = Number\nof Orbs`; break
+            case 511: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]!=1?effect[1]:``}X Cards\nWhere X = Number\nof Unique Orbs`; break
             case 512: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nHold ${effect[1]} Shield Orb${pl(effect[1])}`; break
             case 513: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPut a Card in Discard\nPile in Your Hand`; break
             case 514: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext Card Played\nReturns to Draw`; break
             case 515: string+=`Add Block Equal\nto Number of Cards\nin Discard ${effect[0]>0?`+${effect[0]}`:``}`; break
             case 516: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 517: string+=`Gain ${effect[0]} Energy\nAdd a Void\nto Discard Pile`; break
-            case 518: string+=`Gain ${effect[0]} Energy\nFor Every ${effect[1]} Cards\nin Draw`; break
+            case 518: string+=`Gain ${effect[0]} Energy\nFor Every ${effect[1]} Cards\nin Draw Pile`; break
             case 519: string+=`Gain ${effect[0]} Focus`; break
             case 520: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nHold ${effect[1]} Dark Orb${pl(effect[1])}`; break
-            case 521: string+=`Double Your Energy`; break
+            case 521: string+=`Double ${variants.mtg?`Existing Mana`:`Your Energy`}`; break
             case 522: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain Your Hand\nThis Turn`; break
             case 523: string+=`When You Play a Power,\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 524: string+=`Each Turn,\nAdd ${effect[0]} Random Power${pl(effect[0])}\nto Hand`; break
@@ -1224,7 +1224,7 @@ class card{
             case 537: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Orbs Held\nThis Combat`; break
             case 538: string+=`Apply ${effect[0]} Node`; break
             case 539: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Node`; break
-            case 540: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReturn 0 Cost\nCards to Hand`; break
+            case 540: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReturn All 0${variants.mtg?` Total`:``} Cost\nCards to Hand`; break
             case 541: string+=`Gain ${effect[0]} Focus\nLose ${effect[1]} Focus\nEvery Turn`; break
             case 542: string+=`Discard Your Hand\nShuffle Discard Pile\nInto Draw Pile\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 543: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
@@ -4919,7 +4919,13 @@ class card{
             case 4210: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nShiv in Hand:\nGain (E) (E)`; break
             case 4211: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMana Total Divisible by 3:\nHold ${effect[1]} Dark Orb${pl(effect[1])}`; break
             case 4212: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMana Total Divisible by 3:\nAdd ${effect[1]} Shiv${pl(effect[1])}\nto Hand`; break
-
+            case 4213: string+=`Gain (E) (E) (E)\nAdd a Void\nto Discard Pile`; break
+            case 4214: string+=`Gain (E) (E) (E) (E)\nAdd a Void\nto Discard Pile`; break
+            case 4215: string+=`Gain (E) (E) (E) (E) (E)\nAdd a Void\nto Discard Pile`; break
+            case 4216: string+=`Gain (E) For Every\n${effect[0]} Cards in Draw Pile`; break
+            case 4217: string+=`For Every (2) Spent:\nHold ${effect[0]} Basic Orb${pl(effect[0])}`; break
+            case 4218: string+=`For Every (2) Spent:\nEvoke First Orb ${effect[0]} Time${pl(effect[0])}`; break
+            case 4219: string+=`For Every (2) Spent:\nEvoke First Orb ${effect[0]} Time${pl(effect[0])}\nEvoke First Orb ${effect[1]}\nAdditional Time${effect[1]!=1?`s`:``}`; break
 
 
 

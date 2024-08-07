@@ -251,7 +251,7 @@ attack.prototype.update=function(){
         case 3883: case 3862: case 3877: case 3880: case 3894: case 3910: case 3947: case 3952: case 3955: case 3994:
         case 3998: case 4016: case 4017: case 4018: case 4025: case 4027: case 4038: case 4054: case 4060: case 4062:
         case 4064: case 4080: case 4081: case 4090: case 4112: case 4160: case 4164: case 4165: case 4166: case 4184:
-        case 4185: case 4197: case 4207:
+        case 4185: case 4197: case 4207: case 4216:
             //mark 2
             if(this.timer==1&&(
                 this.type==2616&&this.userManager.hand.numberAbstract(15,[[2]])>1||
@@ -633,7 +633,7 @@ attack.prototype.update=function(){
         case 3987: case 3991: case 3992: case 3993: case 4013: case 4032: case 4041: case 4042: case 4043: case 4044:
         case 4055: case 4057: case 4065: case 4074: case 4092: case 4111: case 4115: case 4116: case 4131: case 4134:
         case 4135: case 4136: case 4144: case 4147: case 4148: case 4171: case 4173: case 4174: case 4178: case 4187:
-        case 4184: case 4189:
+        case 4184: case 4189: case 4213: case 4214: case 4215:
             //mark 4
             if(
                 this.type==799&&this.battle.turn.total<4||
@@ -4039,7 +4039,8 @@ attack.prototype.update=function(){
         case 3568: case 3569: case 3584: case 3585: case 3586: case 3608: case 3615: case 3643: case 3689: case 3721:
         case 3724: case 3725: case 3726: case 3727: case 3781: case 3843: case 3864: case 3892: case 3895: case 3896:
         case 3908: case 3909: case 3933: case 3995: case 3996: case 4020: case 4033: case 4035: case 4039: case 4049:
-        case 4051: case 4070: case 4075: case 4078: case 4079: case 4097: case 4103: case 4171: case 4179:
+        case 4051: case 4070: case 4075: case 4078: case 4079: case 4097: case 4103: case 4171: case 4179: case 4217:
+        case 4218: case 4219:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true

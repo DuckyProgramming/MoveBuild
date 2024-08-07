@@ -1616,8 +1616,12 @@ class battle{
             if(variants.mtg){
                 this.cardManagers[player].allEffectArgs(2,25,[(amount-1)*total7(this.energy.main[player])])
                 this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange((amount-1)*total7(this.energy.main[player]))
-                for(let a=0,la=this.energy.main[player].length;a<la;a++){
-                    this.energy.main[player][a]*=amount
+                for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+                    if(this.energy.crystal[player][a][1]){
+                        this.energy.crystal[player].splice(a,0,copyArray(this.energy.crystal[player][a]))
+                        a++
+                        la++
+                    }
                 }
             }else{
                 this.cardManagers[player].allEffectArgs(2,25,[(amount-1)*this.energy.main[player]])
