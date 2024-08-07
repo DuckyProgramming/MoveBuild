@@ -313,8 +313,8 @@ attack.prototype.update=function(){
         case 3491: case 3493: case 3629: case 3630: case 3631: case 3641: case 3642: case 3659: case 3663: case 3681:
         case 3735: case 3743: case 3746: case 3780: case 3788: case 3789: case 3790: case 3795: case 3796: case 3797:
         case 3798: case 3799: case 3800: case 3801: case 3802: case 3803: case 3814: case 3884: case 3930: case 3931:
-        case 3943: case 4000: case 4056: case 4101: case 4104: case 4113: case 4141: case 4197: case 4198: case 4208:
-        case 4209: case 4210:
+        case 3943: case 4000: case 4056: case 4101: case 4104: case 4113: case 4141: case 4197: case 4198: case 4199:
+        case 4208: case 4209: case 4210: case 4223: case 4224:
             //mark 3
             if(this.type==3797&&this.timer==1&&this.userManager.hand.numberAbstract(15,[[3]])>1){
                 this.remove=true
@@ -2362,7 +2362,8 @@ attack.prototype.update=function(){
         case 3714: case 3722: case 3728: case 3729: case 3730: case 3755: case 3756: case 3773: case 3782: case 3818:
         case 3866: case 3867: case 3881: case 3882: case 3888: case 3889: case 3903: case 3922: case 3982: case 3986:
         case 3988: case 3989: case 4007: case 4008: case 4021: case 4022: case 4023: case 4036: case 4040: case 4073:
-        case 4086: case 4094: case 4095: case 4118: case 4119: case 4132: case 4182: case 4202: case 4205:
+        case 4086: case 4094: case 4095: case 4118: case 4119: case 4132: case 4182: case 4202: case 4205: case 4220:
+        case 4221: case 4222:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -8253,7 +8254,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 3460:
+        case 3460: case 4225:
             if(this.timer==1){
                 this.userCombatant.startAnimation(32)
             }
@@ -8276,11 +8277,23 @@ attack.prototype.update=function(){
                         this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
                         101,[360*a/la,30]))
                 }
-                if(this.userCombatant.getStatus('Temporary Strength')>0){
-                    this.battle.addEnergy(this.effect[1],this.player)
-                }
-                if(this.userCombatant.getStatus('Temporary Dexterity')>0){
-                    this.battle.addEnergy(this.effect[2],this.player)
+                switch(this.type){
+                    case 3460:
+                        if(this.userCombatant.getStatus('Temporary Strength')>0){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                        if(this.userCombatant.getStatus('Temporary Dexterity')>0){
+                            this.battle.addEnergy(this.effect[2],this.player)
+                        }
+                    break
+                    case 4225:
+                        if(this.userCombatant.getStatus('Temporary Strength')>0){
+                            this.battle.addSpecificEnergy(2,this.player,5)
+                        }
+                        if(this.userCombatant.getStatus('Temporary Dexterity')>0){
+                            this.battle.addSpecificEnergy(2,this.player,1)
+                        }
+                    break
                 }
             }else if(this.timer>=30){
                 this.remove=true

@@ -211,7 +211,7 @@ types={
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Dizzy']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2,19],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
         {name:'Chief Engineering Officer',life:480,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:144,effect:[19,2]},{type:145,effect:[14,2,'Electrocuted']},{type:146,effect:[24]},{type:147,effect:[9]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
-        {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:177,effect:[5]},{type:178,effect:[12,1,'Convulsive']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,1,'Napalm']}],description:`Classic warcriminal`},
+        {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:2},attack:[{type:178,effect:[12,1,'Convulsive']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,1,'Napalm']}],description:`Classic warcriminal`},
         {name:'Purge X02',life:500,behavior:0,spec:[1,2,19],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
         {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[3]}],description:`From the sky~`},
         {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[17,2]},{type:354,effect:[9,2]},{type:355,effect:[7,2]}],description:`Doxxed literally everybody`},
@@ -813,7 +813,7 @@ types={
         {name:'Rejector 300',internal:'Remove 6',id:151,rarity:4,list:0,mtg:1,description:'When Taken, Remove 6 Cards'},
         {name:'Shattered Chains',internal:'Difficulty Energy',id:152,rarity:4,list:0,mtg:1,description:'Gain 2 Energy Every Turn\non Elite and Boss Combats'},
         {name:'Meal Plan',internal:'Large Quick Heal',id:153,rarity:4,list:0,mtg:1,description:'Heal 10 HP at\nthe End of Combat'},
-        {name:'?! Block',internal:'Transform Basic',id:154,rarity:-1,list:0,mtg:1,description:'When Taken, Transform All Strikes and\nDefends, and Upgrade All Steps'},
+        {name:'?! Block',internal:'Transform Basic',id:154,rarity:-1,list:0,mtg:1,description:'When Taken, Transform All\nBasic Attacks and Defenses,\nand Upgrade All Basic Movements'},
         {name:'Lightbulb',internal:'Basic Draw',id:155,rarity:4,list:0,mtg:1,description:'Draw 2 More\nCards Every Turn'},
         {name:'Golden Eye',internal:'Confused Draw',id:156,rarity:-1,list:0,mtg:1,description:'Draw 3 More Cards Every Turn,\nStart Combat Confused'},
         {name:'Platinum Spoon',internal:'Much Better Items',id:157,rarity:4,list:0,mtg:1,description:'Items are 5x\nMore Effective'},
@@ -934,7 +934,7 @@ types={
         {name:'Abandoned Rose',internal:'Starting Upgrade',id:261,rarity:2,list:0,mtg:0,description:'Temporarily Upgrade All Non-Innate\nUnupgraded Cards in Your Turn 1 Hand'},
         {name:'Tea Set',internal:'Poor Rest Heal',id:262,rarity:0,list:0,mtg:0,description:'Heal 20 HP When Entering a Rest Site\nWith 500 Currency or Less'},
         {name:'Roll of Pennies',internal:'Shop Currency',id:263,rarity:0,list:0,mtg:0,description:'Gain 50 Currency\nWhen You Enter a Shop'},
-        {name:'Rice Bowl',internal:'Cheap Basics',id:264,rarity:1,list:0,mtg:0,description:'Strikes and Defends Have a\n25% Chance to Cost 1 Less\nTemporarily When Drawn'},
+        {name:'Rice Bowl',internal:'Cheap Basics',id:264,rarity:1,list:0,mtg:0,description:'Basic Attacks and Defenses\nHave a 25% Chance to Cost 1 Less\nTemporarily When Drawn'},
         {name:'Donation Box',internal:'Currency Rest',id:265,rarity:1,list:0,mtg:0,description:'You Can Collect 300 Currency\nat Rest Sites'},
         {name:'NAND Gate',internal:'Energy/Draw Toggle',id:266,rarity:4,list:0,mtg:1,description:'Gain 1 Energy on Even Turns\nDraw 2 More Cards on Odd Turns'},
         {name:'Uncommon Voucher',internal:'Free Uncommon',id:267,rarity:3,list:0,mtg:0,description:'Uncommon Cards in the\nShop are Free'},
@@ -1901,7 +1901,7 @@ Of course.`,
                 },{
                     desc:`The truth is always simple.`,
                     option:[`That's what it meant`],
-                    optionDesc:['Upgrade All Strikes, Defends, and Steps'],
+                    optionDesc:['Upgrade All Basic Cards'],
                     link:[-1],
                 },
             ],
@@ -2242,7 +2242,7 @@ As you approach, they turn to you in unison.
 The largest smiles and extends a hand toward you.
 "Join us, |0|, and feel the power."`,
                     option:['Accept','Refuse'],
-                    optionDesc:['Lose 25% Max Health, Remove All Strikes',''],
+                    optionDesc:['Lose 25% Max Health, Remove All Basic Attacks',''],
                     link:[1,2],
                 },{
                     desc:
@@ -2250,7 +2250,7 @@ The largest smiles and extends a hand toward you.
 You feel a dark force moving through your body from the bite.\n
 You wake up some time later, alone and hungry.`,
                     option:['You Must Feed'],
-                    optionDesc:['Add 5 Bites to Deck'],
+                    optionDesc:['Add 4 Bites to Deck'],
                     link:[-1],
                 },{
                     desc:
@@ -2538,7 +2538,7 @@ enough that they don't notice you following them.
 But before you get a chance to strike, 
 they call it quits and leave for the town.`,
                     option:['Leave'],
-                    optionDesc:['Upgrade 1 Card'],
+                    optionDesc:['Upgrade a Card'],
                     link:[-1],
                 },{
                     desc:
@@ -2639,9 +2639,9 @@ As you approach, the spirits all turn to you, expectantly...`,
                     link:[-1],
                 },{
                     desc:`They wait, ready for you to make your offering.`,
-                    option:[],
-                    optionDesc:[],
-                    link:[],
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
                 },{
                     desc:
 `You throw it in, but nothing happens.
@@ -3135,7 +3135,7 @@ where it ceases to exist.`,
 You've forgotten everything, but,
 The Cycle Must Repeat.`,
                     option:['Leave'],
-                    optionDesc:[''],
+                    optionDesc:['Add Ouroboros and Ourostep to Deck'],
                     link:[-1],
                 },
             ],
@@ -10017,7 +10017,7 @@ Stacks degrade by 1 each turn.`,
         {name:'Enemy Tactics',desc:'Normal Enemies Are More Dangerous'},
         {name:'Elite Tactics',desc:'Elites Are More Dangerous'},
         {name:'Boss Tactics',desc:'Bosses Are More Dangerous'},
-        {name:'Bad Cards',desc:'Strikes and Defends are Worse'},//20
+        {name:'Bad Cards',desc:'Basic Cards are Worse'},//20
         {name:'Slow Start',desc:'Draw 1 Less Card at the Start of Combat'},
         {name:'Broke',desc:'Start With No Currency'},
         {name:'Mimic',desc:'The Second Prize is an Elite'},

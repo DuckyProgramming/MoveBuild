@@ -26,8 +26,13 @@ class eventManager{
     pickEvent(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         let sublist=[]
-        for(let a=0,la=this.listing.event.length;a<la;a++){
-            if(
+        let effectiveEnergy=variants.mtg?[0,0,0,0,0,0,0]:this.battle.energy.base[this.player]
+        if(variants.mtg){
+            for(let a=0,la=this.battle.energy.base[this.player].length;a<la;a++){
+                effectiveEnergy[this.battle.energy.base[this.player][a]]++
+            }
+        }
+        for(let a=0,la=this.listing.event.length;a<la;a++){if(
                 !(this.listing.event[a]==1&&userCombatant.life<5)&&
                 !(this.listing.event[a]==2&&(userCombatant.life<21||userCombatant.life>=userCombatant.base.life))&&
                 !(this.listing.event[a]==3&&(userCombatant.life<14||this.battle.relicManager.total[this.player]<1))&&
@@ -48,7 +53,7 @@ class eventManager{
                 !(this.listing.event[a]==28&&this.battle.nodeManager.world!=0)&&
                 !(this.listing.event[a]==30&&userCombatant.life<25)&&
                 !(this.listing.event[a]==31&&this.battle.currency.money[this.player]<50)&&
-                !(this.listing.event[a]==32&&this.battle.cardManagers[this.player].deck.numberAbstract(9,[[1]])<=4)&&
+                !(this.listing.event[a]==32&&this.battle.cardManagers[this.player].deck.numberAbstract(9,[[1]])<4)&&
                 !(this.listing.event[a]==33&&this.battle.nodeManager.world!=2)&&
                 !(this.listing.event[a]==35&&userCombatant.base.life<11)&&
                 !(this.listing.event[a]==36&&userCombatant.life<7)&&
@@ -119,12 +124,27 @@ class eventManager{
                 !(this.listing.event[a]==131&&userCombatant.life<28)&&
                 !(this.listing.event[a]==132&&this.battle.currency.money[this.player]<100)&&
                 !(this.listing.event[a]==134&&this.battle.nodeManager.world!=2)&&
-                !(this.listing.event[a]==136&&userCombatant.life<6)
+                !(this.listing.event[a]==136&&userCombatant.life<6)&&
+                !(variants.mtg&&(
+                    (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
+                    (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
+                    (this.listing.event[a]==35&&effectiveEnergy[0]<1)||
+                    (this.listing.event[a]==57&&effectiveEnergy[2]<2)||
+                    (this.listing.event[a]==78&&effectiveEnergy[3]<2)||
+                    (this.listing.event[a]==99&&effectiveEnergy[4]<1)||
+                    (this.listing.event[a]==102&&effectiveEnergy[3]<1)||
+                    (this.listing.event[a]==103&&(effectiveEnergy[1]<1||effectiveEnergy[4]<1))||
+                    (this.listing.event[a]==106&&(effectiveEnergy[1]<1||effectiveEnergy[4]<1||effectiveEnergy[5]<1))||
+                    (this.listing.event[a]==131&&(effectiveEnergy[2]<1||effectiveEnergy[4]<1))||
+                    (this.listing.event[a]==136&&effectiveEnergy[3]<1)
+
+                ))
 
             ){
                 sublist.push(this.listing.event[a])
             }
         }
+        print(sublist)
         let index=floor(random(0,sublist.length))
         this.event=sublist[index]
         this.listing.complete.push(sublist[index])
@@ -562,7 +582,7 @@ class eventManager{
                             this.harmMax(userCombatant,userCombatant.base.life/4)
                             this.battle.cardManagers[this.player].deck.removeAbstract(7,[[1]])
                         }else if(this.page==1&&a==0){
-                            for(let b=0,lb=5;b<lb;b++){
+                            for(let b=0,lb=4;b<lb;b++){
                                 this.battle.cardManagers[this.player].deck.add(findName('Bite',types.card),0,0)
                             }
                         }
@@ -805,6 +825,7 @@ class eventManager{
                             this.battle.overlayManager.overlays[6][this.player].activate()
                         }else if(this.page==0&&a==1){
                             this.battle.cardManagers[this.player].deck.cards=[]
+                        }else if(this.page==2&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Ouroboros',types.card),0,0)
                             this.battle.cardManagers[this.player].deck.add(findName('Ourostep',types.card),0,0)
                         }

@@ -1,35 +1,5 @@
-cards from attack box aren't free?
-
-3 temp strength from holographics instead of 1 strength
-
-make it literally impossible to tell where shadow trooper is
-
-ace of gold is broken
-
-reject bonfire spirits gives you no options
-
-shadow trooper pulls you to a weird place
-
-streoids is the same card as mixture a
-
-transform curse doesn't make a cruse in mtg
-
-stepgap mtg didn't do anything
-maybe only upgraded doesn't work
-
-back pocket suggests using unnecessary mana
-mana mouseover issues in general
-
-half-phantom upgrade weird in mtg
-
-what does counterfeiter event do on mtg
-
-archivist breaks on mtg
-
-hakurei orb subcards don't look good
-
-
-
+mtg convert event cards
+and restrict events by color
 
 
 
@@ -48,7 +18,7 @@ all flame wars cost 1 hybrid mana
 24,30,40
 
 case 7:
-    return [1,2]
+    return [1,2]T
 case 8:
     return [1,3]
 case 9:
@@ -203,6 +173,8 @@ yellow giant - 8 damage 2 times, 2 range, spend 2 charge: 1 more time
 
 mushroom stew - heal 3 health, next charge spend is free
 
+[hardtek]
+
 
 
 
@@ -322,7 +294,7 @@ sneak through - 50% lose health, 50% gain currency
 mess with the electricity - 25% gain currency, 75% nothing
 punch the wall - guaranteed lose health and gain currency
 
-purify the energy
+purify the energy - refine the energy
 
 relic collector - offers to buy 2 of your relics for very good prices
 

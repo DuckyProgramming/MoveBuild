@@ -191,7 +191,10 @@ class cardManager{
         }
     }
     mtgListing(){
-        this.listing.mtg=[[[],[],[],[]],[[],[],[],[]],[[],[],[],[]]]
+        this.listing.mtg=[[[],[],[],[]],[],[[],[],[],[]]]
+        for(let a=0,la=game.playerNumber+7;a<la;a++){
+            this.listing.mtg[1].push([[],[],[],[]])
+        }
         let effectiveMana=[0,0,0,0,0,0,0]
         for(let a=0,la=this.battle.energy.base[this.player].length;a<la;a++){
             effectiveMana[this.battle.energy.base[this.player][a]]++
@@ -219,8 +222,8 @@ class cardManager{
                     this.listing.mtg[0][3].push(a)
                 }
                 if(
-                    types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list==0||types.card[a].mtg.list==-1)&&
-                    types.card[a].mtg.color.length==1&&types.card[a].mtg.color[0]==0&&(
+                    types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber+5)&&
+                    types.card[a].mtg.color.length==1&&(
                         (
                             types.card[a].mtg.levels[0].spec.includes(11)||
                             types.card[a].mtg.levels[0].spec.includes(21)||
@@ -232,10 +235,10 @@ class cardManager{
                         mtgAutoCost(effectiveMana,types.card[a].mtg.levels[0].cost,0,[],false)!=-1
                     )
                 ){
-                    this.listing.mtg[1][types.card[a].mtg.rarity].push(a)
-                    this.listing.mtg[1][3].push(a)
+                    this.listing.mtg[1][types.card[a].mtg.list==-1?game.playerNumber+6:types.card[a].mtg.list][types.card[a].mtg.rarity].push(a)
+                    this.listing.mtg[1][types.card[a].mtg.list==-1?game.playerNumber+6:types.card[a].mtg.list][3].push(a)
                 }
-                if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber){
+                if(types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list==this.battle.player[this.player]||types.card[a].mtg.list==-1)){
                     this.listing.mtg[2][types.card[a].mtg.rarity].push(a)
                     this.listing.mtg[2][3].push(a)
                 }
@@ -300,7 +303,7 @@ class cardManager{
                 list=variants.mtg?copyArray(this.listing.mtg[0][args[ticker++]]):copyArray(this.listing.card[this.battle.player[this.player]][args[ticker++]])
             break
             case 1:
-                list=copyArray(this.listing.card[args[ticker++]][args[ticker++]])
+                list=variants.mtg?copyArray(this.listing.mtg[1][args[ticker++]][args[ticker++]]):copyArray(this.listing.card[args[ticker++]][args[ticker++]])
             break
             case 2:
                 list=variants.mtg?copyArray(this.listing.mtg[2][args[ticker++]]):copyArray(this.listing.allPlayerCard[args[ticker++]])
@@ -897,7 +900,13 @@ class cardManager{
     }
     transformCard(base){
         if(variants.mtg){
-            if(base.list>=-1&&base.rarity>=0||base.basic){
+            if(base.list>game.playerNumber&&base.rarity>=0||base.basic){
+                let index=floor(random(0,this.listing.mtg[3][base.list][3].length))
+                while(this.listing.mtg[0][3][index]==base.type){
+                    index=floor(random(0,this.listing.mtg[3][base.list][3].length))
+                }
+                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.mtg[base.list][3][index],base.level,types.card[this.listing.mtg[0][3][index]].mtg.color,base.id)
+            }else if(base.list>=-1&&base.rarity>=0||base.basic){
                 let index=floor(random(0,this.listing.mtg[0][3].length))
                 while(this.listing.mtg[0][3][index]==base.type){
                     index=floor(random(0,this.listing.mtg[0][3].length))

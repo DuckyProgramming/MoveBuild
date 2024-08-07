@@ -107,7 +107,7 @@ class purchaseManager{
                                 }
                             }
                         }
-                        list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[0])
+                        list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1][0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[0])
                         let bar=floor(random(0,2))
                         group=this.battle.modded(153)?[0,0,0,0,0]:variants.commoners?[0,0,0,0,bar+1]:[0,0,bar,1,2]
                         cost=this.generalizedListing(1)
@@ -206,7 +206,7 @@ class purchaseManager{
                                 }
                             }
                         }
-                        let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[0])
+                        let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1][0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[0])
                         let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,1+bar,2-bar,0]:[0,0,0,0,1,2,2,1]
                         let cost=this.generalizedListing(1)
                         for(let a=0,la=group.length;a<la;a++){

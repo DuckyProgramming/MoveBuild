@@ -4933,6 +4933,21 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             }
             displayMtgManaSymbol(layer,0,0,6,0,0.3,fade,-1,[])
         break
+        case 517:
+            layer.fill(225,fade)
+            layer.ellipse(0,0,8)
+            layer.rotate(-22.5)
+            for(let a=0,la=8;a<la;a++){
+                layer.triangle(-1,3,1,3,0,8)
+                layer.rotate(45)
+            }
+            layer.rotate(22.5)
+            layer.fill(200,fade)
+            layer.triangle(0,-1.5,0,1.5,6,0)
+        break
+        case 518:
+            displayMtgManaSymbol(layer,0,0,-1,0,0.4,fade,-1,[])
+        break
 
     }
     //mark s
@@ -5140,7 +5155,7 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
             }
             layer.fill(0,fade)
             layer.noStroke()
-            layer.textSize(15)
+            layer.textSize(args[3]>=10?12:15)
             layer.text(type==-3?'X':args[3],0,1)
         break
         case -1: case 0: case 1: case 2: case 3: case 4: case 5:
@@ -5161,7 +5176,7 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
             if(variant==1){
                 layer.fill(0,fade)
                 layer.noStroke()
-                layer.textSize(15)
+                layer.textSize(args[3]>=10?12:15)
                 layer.text(type==-3?'X':args[3],0,1)
             }
         break
@@ -5199,24 +5214,34 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
             displayMtgManaIcon(layer,3.2,3.2,map[1],0,0.5,1)
         break
     }
-    if(variant==0||variant==1){
-        if(args[0]<1){
-            layer.stroke(0,(1-args[0])*fade)
-            layer.strokeWeight(1.2)
-            layer.noFill()
-            switch(variant){
-                case 1:
-                    layer.line(0,-9,-9,-9)
-                    layer.line(-9,0,-9,-9)
-                    layer.arc(0,0,18,18,-90,180)
-                    layer.line(6,6,-9,-9)
-                break
-                default:
-                    layer.ellipse(0,0,20)
-                    layer.line(7,7,-7,-7)
-                break
+    switch(variant){
+        case 0: case 1:
+            if(args[0]<1){
+                layer.stroke(0,(1-args[0])*fade)
+                layer.strokeWeight(1.2)
+                layer.noFill()
+                switch(variant){
+                    case 1:
+                        layer.line(0,-9,-9,-9)
+                        layer.line(-9,0,-9,-9)
+                        layer.arc(0,0,18.3,18.3,-90,180)
+                        layer.line(-6,-6,-9,-9)
+                    break
+                    default:
+                        layer.ellipse(0,0,20.3)
+                        layer.line(7,7,-7,-7)
+                    break
+                }
             }
-        }
+        break
+        case 3:
+            if(args[0]>0){
+                layer.stroke(200,255,200,args[0]*fade)
+                layer.strokeWeight(1)
+                layer.noFill()
+                layer.ellipse(0,0,20.5)
+            }
+        break
     }
     layer.strokeCap(ROUND)
     layer.pop()

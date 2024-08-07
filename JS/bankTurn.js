@@ -2191,7 +2191,7 @@ turn.prototype.update=function(){
                         }else if(this.timer==15*this.targetDistance-19){
                             this.userCombatant.startAnimation(3)
                         }
-                        if(this.timer<=15*this.targetDistance-20||this.timer>15*this.targetDistance-10&&this.timer<=30*this.targetDistance-30){
+                        if(this.timer<=15*this.targetDistance-20||this.timer>15*this.targetDistance-5&&this.timer<=30*this.targetDistance-25){
                             this.userCombatant.runAnimation(1/10,0)
                         }else if(this.timer<=15*this.targetDistance+10){
                             this.userCombatant.runAnimation(1/10,3)
@@ -2207,20 +2207,20 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveTile(this.direction,-this.distance/15/this.targetDistance)
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/15/this.targetDistance)
                         }
-                        if(this.timer==30*this.targetDistance-29){
+                        if(this.timer==30*this.targetDistance-19){
                             this.targetCombatant.moveTilePosition(round(this.userCombatant.tilePosition.x*(1-1/this.targetDistance)+this.targetCombatant.tilePosition.x/this.targetDistance),round(this.userCombatant.tilePosition.y*(1-1/this.targetDistance)+this.targetCombatant.tilePosition.y/this.targetDistance))
                             this.battle.activate(1,this.targetCombatant.id)
                             this.userCombatant.startAnimation(0)
                             this.userCombatant.runAnimation(1/10,0)
                             this.userCombatant.startAnimation(2)
                         }
-                        if(this.timer>=30*this.targetDistance-30&&this.timer<=30*this.targetDistance){
+                        if(this.timer>=30*this.targetDistance-20&&this.timer<=30*this.targetDistance+10){
                             this.userCombatant.runAnimation(1/30,2)
                         }
-                        if(this.timer==30*this.targetDistance-15){
+                        if(this.timer==30*this.targetDistance-5){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             this.battle.activate(1,this.userCombatant.id)
-                        }else if(this.timer>=30*this.targetDistance){
+                        }else if(this.timer>=30*this.targetDistance+10){
                             this.remove=true
                         }
                     }

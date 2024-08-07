@@ -1778,6 +1778,9 @@ function upgrade(){
 function quickRelic(type,player){
 	current.relicManager.addRelic(type,player)
 }
+function quickItem(type,player){
+	current.itemManager.addItem(type,player)
+}
 function outEncounter(){
 	print(`
 Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length+current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length+current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length+current.nodeManager.listing.encounter[3][1].length+current.nodeManager.listing.encounter[3][2].length}/130
@@ -1957,7 +1960,7 @@ function outMtg2(){
 		}
 	}
 	let box=``
-	for(let a=0,la=game.playerNumber;a<la;a++){
+	for(let a=0,la=game.playerNumber+1;a<la;a++){
 		box+=`\n		${a==0?`Colorless`:types.combatant[a].name}:
 	Character:
 Common: ${count[a][0][0]}

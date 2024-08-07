@@ -804,24 +804,28 @@ class group{
             list.splice(index,1)
             index=floor(random(0,list.length))
             let index1=list[index]
+            
             this.cards[index0].falsed.trigger=true
             this.cards[index0].falsed.name=this.cards[index1].name
             this.cards[index0].falsed.attack=this.cards[index1].attack
             this.cards[index0].falsed.effect=this.cards[index1].effect
             this.cards[index0].falsed.spec=this.cards[index1].spec
             this.cards[index0].falsed.rarity=this.cards[index1].rarity
-            this.cards[index0].falsed.classT=this.cards[index1].class
+            this.cards[index0].falsed.list=this.cards[index1].list
+            this.cards[index0].falsed.class=this.cards[index1].class
             this.cards[index0].falsed.reality=this.cards[index1].reality
             this.cards[index0].falsed.colorDetail=this.cards[index1].colorDetail
             this.cards[index0].falsed.target=this.cards[index1].target
             this.cards[index0].falsed.cost=this.cards[index1].cost
+            
             this.cards[index1].falsed.trigger=true
             this.cards[index1].falsed.name=this.cards[index0].name
             this.cards[index1].falsed.attack=this.cards[index0].attack
             this.cards[index1].falsed.effect=this.cards[index0].effect
             this.cards[index1].falsed.spec=this.cards[index0].spec
             this.cards[index1].falsed.rarity=this.cards[index0].rarity
-            this.cards[index1].falsed.classT=this.cards[index0].class
+            this.cards[index1].falsed.list=this.cards[index0].list
+            this.cards[index1].falsed.class=this.cards[index0].class
             this.cards[index1].falsed.reality=this.cards[index0].reality
             this.cards[index1].falsed.colorDetail=this.cards[index0].colorDetail
             this.cards[index1].falsed.target=this.cards[index0].target
@@ -4342,7 +4346,7 @@ class group{
                     cap+=length
                     for(let b=0,lb=variants.speedmove?2:1;b<lb;b++){
                         let mouseover=pointInsideBox({position:inputs.rel},this.cards[a])
-                        if(variants.mtg&&mouseover&&this.cards[a].afford&&this.lastMouseOver!=this.cards[a].id){
+                        if(variants.mtg&&mouseover&&this.cards[a].afford&&this.lastMouseOver!=this.cards[a].id&&this.battle.attackManager.targetInfo[0]==0){
                             this.lastMouseOver=this.cards[a].id
                             if(!this.cards[a].specialCost){
                                 let effectiveCost=this.cards[a].cost
@@ -5441,7 +5445,7 @@ class group{
                                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Burn',1)
                                 }else if(this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                     if(this.cards[a].afford){
-                                        if(variants.mtg&&this.lastMouseOver!=this.cards[a].id){
+                                        if(variants.mtg&&this.lastMouseOver!=this.cards[a].id&&this.battle.attackManager.targetInfo[0]==0){
                                             this.lastMouseOver=this.cards[a].id
                                             if(!this.cards[a].specialCost){
                                                 let effectiveCost=this.cards[a].cost

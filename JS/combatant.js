@@ -170,7 +170,7 @@ class combatant{
             '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
             '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
             'Elemental Draw','(E) Next Turn','(R) Next Turn','(G) Next Turn','(K) Next Turn','(B) Next Turn','(W) Next Turn','(N) Next Turn','(E) on Hit','Free Draw Up',
-            'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw','Balance (E)',
+            'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw','Balance (E)','Invisible Per Turn','Random Mana Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -224,7 +224,7 @@ class combatant{
                 0,0,0,2,0,2,0,2,0,0,//49
                 0,2,0,0,0,0,0,2,2,0,//50
                 0,2,2,2,2,2,2,2,2,0,//51
-                0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -278,7 +278,7 @@ class combatant{
                 2,2,2,0,2,0,3,3,2,2,//49
                 2,1,2,2,2,2,2,2,2,2,//50
                 2,2,2,2,2,2,2,2,2,2,//51
-                2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -3937,6 +3937,9 @@ class combatant{
             case 'Louse':
                 this.statusEffect('Single Counter Block',floor(random(3,8)))
             break
+            case 'Shadow Trooper':
+                this.statusEffect('Invisible Per Turn',1)
+            break
             case 'Soul':
                 this.statusEffect('Dissipating',5)
             break
@@ -3966,7 +3969,7 @@ class combatant{
                 this.statusEffect('Regeneration',9)
             break
             case 'Precision':
-                this.statusEffect('Dodge',2)
+                this.statusEffect('Dodge',1)
                 this.statusEffect('Lasting Counter Once',4)
             break
             case 'Legacy':
@@ -7314,6 +7317,8 @@ class combatant{
                     case 506: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,1)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,1)} break
                     case 507: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,0)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,0)} break
                     case 509: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.free+=this.status.main[a]} break
+                    case 517: this.status.main[findList('Invisible',this.status.name)]+=this.status.main[a]; break
+                    case 518: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id,6)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,-1)} break
                     
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
