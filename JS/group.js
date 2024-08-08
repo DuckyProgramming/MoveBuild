@@ -26,7 +26,8 @@ class group{
         this.lastSort=-1
         this.basicChange=[0,0]
         this.addEffect=[]
-        this.listKey=34
+        this.finalPosition=0
+        this.listKey=35
         this.listInput=[
             [0,4],
             [1,8],
@@ -58,6 +59,7 @@ class group{
             [30,36],
             [31,37],
             [33,38],
+            [34,39],
         ]
 
         this.reset()
@@ -388,114 +390,160 @@ class group{
             this.cards[a].select=false
             this.cards[a].anim.select=0
         }
+        this.generalSelfStatus()
     }
     discard(amount){
         this.status[0]+=amount
+        this.generalSelfStatus()
     }
     exhaust(amount){
         this.status[1]+=amount
+        this.generalSelfStatus()
     }
     exhaustAny(){
         this.status[1]=-1
+        this.generalSelfStatus()
     }
     reserve(amount){
         this.status[2]+=amount
+        this.generalSelfStatus()
     }
     duplicate(amount){
         this.status[3]+=amount
+        this.generalSelfStatus()
     }
     nightmare(amount){
         this.status[4]+=amount
+        this.generalSelfStatus()
     }
     rebound(amount){
         this.status[5]+=amount
+        this.generalSelfStatus()
     }
     upgrade(amount){
         this.status[6]+=amount
+        this.generalSelfStatus()
     }
     transform(amount){
         this.status[7]+=amount
+        this.generalSelfStatus()
     }
     rewind(amount){
         this.status[8]+=amount
+        this.generalSelfStatus()
     }
     rewindAny(){
         this.status[8]=-1
+        this.generalSelfStatus()
     }
     retain2(amount){
         this.status[9]+=amount
+        this.generalSelfStatus()
     }
     discardBlock(amount){
         this.status[10]+=amount
+        this.generalSelfStatus()
     }
     free2(amount){
         this.status[11]+=amount
+        this.generalSelfStatus()
     }
     exhaustBlock(amount){
         this.status[12]+=amount
+        this.generalSelfStatus()
     }
     exhaustSlot(amount){
         this.status[13]+=amount
+        this.generalSelfStatus()
     }
     retain(amount){
         this.status[14]+=amount
+        this.generalSelfStatus()
     }
     exhaustDamage(amount){
         this.status[15]+=amount
+        this.generalSelfStatus()
     }
     exhaustEnergy(amount){
         this.status[16]+=amount
+        this.generalSelfStatus()
     }
     unupgrade(amount){
         this.status[17]+=amount
+        this.generalSelfStatus()
     }
     reserveRetain(amount){
         this.status[18]+=amount
+        this.generalSelfStatus()
     }
     discardFree(amount){
         this.status[19]+=amount
+        this.generalSelfStatus()
     }
     costDown(amount){
         this.status[20]+=amount
+        this.generalSelfStatus()
     }
     costUp(amount){
         this.status[21]+=amount
+        this.generalSelfStatus()
     }
     discardTriple(amount){
         this.status[22]+=amount
+        this.generalSelfStatus()
     }
     reserveFree(amount){
         this.status[23]+=amount
+        this.generalSelfStatus()
     }
     rewindTop(amount){
         this.status[24]+=amount
+        this.generalSelfStatus()
     }
     duplicateNonRareColorless(amount){
         this.status[25]+=amount
+        this.generalSelfStatus()
     }
     exhaustDrawSame(amount){
         this.status[26]+=amount
+        this.generalSelfStatus()
     }
     discardViable(amount){
         this.status[27]+=amount
+        this.generalSelfStatus()
     }
     exhaustViable(amount){
         this.status[28]+=amount
+        this.generalSelfStatus()
     }
     exhaustHeal(amount){
         this.status[29]+=amount
+        this.generalSelfStatus()
     }
     exhaustDrawKey(amount){
         this.status[30]+=amount
+        this.generalSelfStatus()
     }
     exhaustEachEnergy(amount){
         this.status[31]+=amount
+        this.generalSelfStatus()
     }
     duplicateAttack(amount){
         this.status[32]+=amount
+        this.generalSelfStatus()
     }
     duplicateSelect(amount){
         this.status[33]+=amount
+        this.generalSelfStatus()
+    }
+    exhaustEachEnergyMtg(amount){
+        this.status[34]+=amount
+        this.generalSelfStatus()
+    }
+    generalSelfStatus(){
+        if(variants.mtg){
+            this.battle.mtgUnmark(this.player)
+        }
     }
     shuffle(){
         let cards=[]
@@ -736,12 +784,12 @@ class group{
             if(
                 type==0&&args[0].includes(this.cards[a].name)||
                 type==1&&args[0]==this.cards[a].cost&&!this.cards[a].spec.includes(5)&&!this.cards[a].spec.includes(41)||
-                type==2&&args[0]>=this.cards[a].cost&&!this.cards[a].spec.includes(5)&&!this.cards[a].spec.includes(41)||
+                type==2&&args[0]<=this.cards[a].cost&&!this.cards[a].spec.includes(5)&&!this.cards[a].spec.includes(41)||
                 type==3&&this.cards[a].spec.includes(args[0])||
                 type==4&&args[0].includes(this.cards[a].class)||
                 type==5&&args[0]==this.cards[a].color&&!this.cards[a].colorful||
                 type==6&&args[0]==this.cards[a].color&&args[1]==this.cards[a].rarity&&!this.cards[a].colorful||
-                type==7&&(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(60)||this.battle.relicManager.hasRelic(128,this.player))||
+                type==7&&(this.cards[a].retain||this.cards[a].retain2||this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(60)||this.battle.relicManager.hasRelic(128,this.player))||
                 type==8&&this.cards[a].basic||
                 type==9&&this.cards[a].basic&&args[0].includes(this.cards[a].class)||
                 type==10&&args[0].includes(this.cards[a].class)&&!args[1].includes(this.cards[a].name)||
@@ -3290,7 +3338,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[26],this.anim[29],this.anim[30]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],this.anim[31],this.anim[32],this.anim[33]]
+                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[26],this.anim[29],this.anim[30]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -3376,6 +3424,22 @@ class group{
                                 this.cards[a].anim.afford=1
                                 this.cards[a].display(this.id==0)
                                 position++
+                                this.finalPosition=position
+                            }
+                        }
+                    break
+                    case 10:
+                        for(let a=0,la=this.cards.length;a<la;a++){
+                            if(this.cards[a].rarity==args[2]){
+                                this.cards[a].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
+                                this.cards[a].fade=1
+                                this.cards[a].relIndex=position
+                                this.cards[a].position.x=this.layer.width/2-200+position%5*100
+                                this.cards[a].position.y=this.layer.height/2-130+floor(position/5)%3*130
+                                this.cards[a].anim.afford=1
+                                this.cards[a].display(this.id==0)
+                                position++
+                                this.finalPosition=position
                             }
                         }
                     break
@@ -4265,6 +4329,17 @@ class group{
                     }
                 }
             break
+            case 39:
+                if(this.cards[a].attack!=-3){
+                    if(variants.mtg){
+                        this.battle.addSpecificEnergy(1,this.player,this.status[34])
+                    }else{
+                        this.battle.addEnergy(this.status[34],this.player)
+                    }
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                }
+            break
         }
     }
     generalExhaust(a){
@@ -4347,17 +4422,25 @@ class group{
                     for(let b=0,lb=variants.speedmove?2:1;b<lb;b++){
                         let mouseover=pointInsideBox({position:inputs.rel},this.cards[a])
                         if(variants.mtg&&mouseover&&this.cards[a].afford&&this.lastMouseOver!=this.cards[a].id&&this.battle.attackManager.targetInfo[0]==0){
-                            this.lastMouseOver=this.cards[a].id
-                            if(!this.cards[a].specialCost){
-                                let effectiveCost=this.cards[a].cost
-                                let effectiveCards=[]
-                                for(let b=0,lb=this.cards.length;b<lb;b++){
-                                    if(this.cards[b].usable&&a!=b){
-                                        effectiveCards.push(this.cards[b])
-                                    }
+                            let cancel=false
+                            for(let b=0,lb=this.listInput.length;b<lb;b++){
+                                if(this.status[this.listInput[b][0]]!=0){
+                                    cancel=true
                                 }
-                                if(!this.cards[a].free()){
-                                    this.battle.mtgMark(effectiveCost,this.player,effectiveCards)
+                            }
+                            if(!cancel){
+                                this.lastMouseOver=this.cards[a].id
+                                if(!this.cards[a].specialCost){
+                                    let effectiveCost=this.cards[a].cost
+                                    let effectiveCards=[]
+                                    for(let b=0,lb=this.cards.length;b<lb;b++){
+                                        if(this.cards[b].usable&&a!=b){
+                                            effectiveCards.push(this.cards[b])
+                                        }
+                                    }
+                                    if(!this.cards[a].free()){
+                                        this.battle.mtgMark(effectiveCost,this.player,effectiveCards)
+                                    }
                                 }
                             }
                         }

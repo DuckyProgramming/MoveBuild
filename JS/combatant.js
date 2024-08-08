@@ -169,7 +169,7 @@ class combatant{
             'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Energy',
             '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
             '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
-            'Elemental Draw','(E) Next Turn','(R) Next Turn','(G) Next Turn','(K) Next Turn','(B) Next Turn','(W) Next Turn','(N) Next Turn','(E) on Hit','Free Draw Up',
+            'Elemental Draw','(E) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(N) Next Turn','(E) on Hit','Free Draw Up',
             'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw','Balance (E)','Invisible Per Turn','Random Mana Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
@@ -4786,6 +4786,9 @@ class combatant{
         }
         return targetTile
     }
+    manaEquate(type,equal){
+        return type==equal||type==6
+    }
     pareidolia(){
         if(!this.spec.includes(2)){
             this.battle.combatantManager.holdSummonCombatant(this.tilePosition,this.type,this.direction)
@@ -6513,10 +6516,10 @@ class combatant{
                 }
             break
             case 7:
-                this.battle.combatantManager.combatants[target].statusEffect('Burn',3)
+                this.battle.combatantManager.combatants[target].statusEffect('Burn',round(5*multi))
             break
             case 8:
-                this.battle.combatantManager.combatants[target].statusEffect('Freeze',3)
+                this.battle.combatantManager.combatants[target].statusEffect('Freeze',round(5*multi))
             break
             case 9:
                 this.battle.combatantManager.combatants[target].statusEffect('Strength',round(3*multi))
@@ -6525,7 +6528,7 @@ class combatant{
                 this.battle.combatantManager.combatants[target].statusEffect('Weak',round(3*multi))
             break
             case 11:
-                this.battle.combatantManager.combatants[target].statusEffect('Poison',round(4*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Poison',round(5*multi))
             break
             case 12:
                 this.battle.combatantManager.combatants[target].orbTake(round(4*multi*playerMulti),-1)
@@ -6567,10 +6570,10 @@ class combatant{
                 this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(2*multi))
             break
             case 7:
-                this.battle.combatantManager.combatants[target].statusEffect('Burn',2)
+                this.battle.combatantManager.combatants[target].statusEffect('Burn',round(2.5*multi))
             break
             case 8:
-                this.battle.combatantManager.combatants[target].statusEffect('Freeze',2)
+                this.battle.combatantManager.combatants[target].statusEffect('Freeze',round(2.5*multi))
             break
             case 9:
                 this.battle.combatantManager.combatants[target].statusEffect('Strength',round(1.5*multi))
@@ -6579,7 +6582,7 @@ class combatant{
                 this.battle.combatantManager.combatants[target].statusEffect('Weak',round(1.5*multi))
             break
             case 11:
-                this.battle.combatantManager.combatants[target].statusEffect('Poison',round(2*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Poison',round(2.5*multi))
             break
             case 12:
                 this.battle.combatantManager.combatants[target].orbTake(round(2*multi*playerMulti),-1)
@@ -6715,6 +6718,29 @@ class combatant{
                 for(let a=0,la=this.orbs.length;a<la;a++){
                     if(this.orbs[a]>=0){
                         this.battle.addSpecificEnergy(args[0],this.id,6)
+                        this.battle.cardManagers[this.id].draw(args[1])
+                        this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                        this.orbs[a]=-1
+                    }
+                }
+            break
+            case 11:
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    if(this.orbs[a]>=0){
+                        for(let b=0,lb=args[0].length;b<lb;b++){
+                            this.battle.addSpecificEnergy(1,this.id,args[0][b])
+                        }
+                        this.battle.cardManagers[this.id].draw(args[1])
+                        this.orbs[a]=-1
+                    }
+                }
+            break
+            case 12:
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    if(this.orbs[a]>=0){
+                        for(let b=0,lb=args[0].length;b<lb;b++){
+                            this.battle.addSpecificEnergy(1,this.id,args[0][b])
+                        }
                         this.battle.cardManagers[this.id].draw(args[1])
                         this.subEvoke(this.orbs[a],this.orbDetail[a],target)
                         this.orbs[a]=-1
@@ -7310,11 +7336,11 @@ class combatant{
                     case 497: this.status.main[findList('Knowledge',this.status.name)]+=this.status.main[a]; break
                     case 498: this.status.main[findList('Knowledge Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 501: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,6)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,6)} break
-                    case 502: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,5)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,5)} break
-                    case 503: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,4)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,4)} break
+                    case 502: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,1)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,1)} break
+                    case 503: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,2)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,2)} break
                     case 504: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,3)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,3)} break
-                    case 505: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,2)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,2)} break
-                    case 506: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,1)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,1)} break
+                    case 505: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,4)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,4)} break
+                    case 506: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,5)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,5)} break
                     case 507: if(this.status.main[a]<0){this.battle.loseSpecificEnergy(-this.status.main[a],this.id,0)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,0)} break
                     case 509: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.free+=this.status.main[a]} break
                     case 517: this.status.main[findList('Invisible',this.status.name)]+=this.status.main[a]; break

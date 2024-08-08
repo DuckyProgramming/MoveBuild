@@ -136,7 +136,7 @@ class purchase{
         this.layer.push()
         this.layer.translate(this.position.x,this.position.y)
         this.layer.scale(this.midSize)
-        if(this.size>0){
+        if(this.size>0&&this.position.x>-150&&this.position.x<this.layer.width+150){
             this.layer.scale(this.size)
             switch(this.type){
                 case 1:

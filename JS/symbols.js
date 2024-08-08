@@ -4826,19 +4826,19 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
         break
         case 502:
-            displayMtgManaSymbol(layer,0,0,5,0,0.4,fade,-1,[])
+            displayMtgManaSymbol(layer,0,0,1,0,0.4,fade,-1,[])
         break
         case 503:
-            displayMtgManaSymbol(layer,0,0,4,0,0.4,fade,-1,[])
+            displayMtgManaSymbol(layer,0,0,2,0,0.4,fade,-1,[])
         break
         case 504:
             displayMtgManaSymbol(layer,0,0,3,0,0.4,fade,-1,[])
         break
         case 505:
-            displayMtgManaSymbol(layer,0,0,2,0,0.4,fade,-1,[])
+            displayMtgManaSymbol(layer,0,0,4,0,0.4,fade,-1,[])
         break
         case 506:
-            displayMtgManaSymbol(layer,0,0,1,0,0.4,fade,-1,[])
+            displayMtgManaSymbol(layer,0,0,5,0,0.4,fade,-1,[])
         break
         case 507:
             displayMtgManaSymbol(layer,0,0,0,0,0.4,fade,-1,[])
@@ -4990,11 +4990,12 @@ function displayMtgManaIcon(layer,x,y,type,direction,size,fade){
         case 3:
             layer.stroke(80,20,80,fade)
             layer.arc(0,0,10,10,-270,45)
-            layer.line(0,0,0,5)
+            layer.line(0,0,0,5.8)
         break
         case 4:
             layer.stroke(40,160,40,fade)
             regPoly(layer,0,0,6,5,5,30)
+            layer.line(2.5,-2.5*sqrt(3),-2.5,2.5*sqrt(3))
         break
         case 5:
             layer.stroke(160,40,40,fade)

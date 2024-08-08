@@ -1,5 +1,5 @@
-mtg convert event cards
-and restrict events by color
+change enemy (and construct attacks) that might be involved with mtg
+
 
 
 
@@ -17,8 +17,10 @@ all spells of wonder should cost 2 hybrid and 1 neutral mana
 all flame wars cost 1 hybrid mana
 24,30,40
 
+silver cards instead only activate when (K) is spent
+
 case 7:
-    return [1,2]T
+    return [1,2]
 case 8:
     return [1,3]
 case 9:
@@ -117,8 +119,6 @@ expensive watch - 9 damage, retain unspent energy this turn
 
 elbow - 2 cost damage and push, costs 1 less when you move
 
-noctilucae's nest
-
 coldsteel heart - add 1 of any mana into the base (other then rainbow)
 
 dumpster dive - add any junkyard card to your hand
@@ -173,12 +173,34 @@ yellow giant - 8 damage 2 times, 2 range, spend 2 charge: 1 more time
 
 mushroom stew - heal 3 health, next charge spend is free
 
-[hardtek]
+[scarlet majesty]
+
+animated refracted sunlight with sparkly particles that fall
+
+[wall of moonlight]
+
+
+
+ice wing - draw a blue card, gain (B)
+
+frost refraction - gain 10 block, gain 3 decrementing armor
+
+sharp palm
+
+[1 new construct]
+
+pure white world - apply freeze to every enemy for the next 3 turns
 
 
 
 
-free move boss relic?
+[5 common partnership cards]
+
+[1 new tarot
+
+
+
+free move boss relic?]
 
 
 
@@ -246,7 +268,7 @@ bosses:
 renegade agent - switches abilities every turn on a 4 turn cycle
 turn 1: 25 damage, and starts turn with 15 block
 turn 2: push everybody on the map, and gets 1 dodge
-turn 3: spawn a guy, counter 25 once
+turn 3: spawn a paramilitary, counter 25 once
 turn 4: 5x4 damage, moves when you move
 
 world 3:
@@ -327,7 +349,9 @@ but can be pushed off a cliff and die instantly
 
 
 
-[]
+sharks - you're on a boat towards a management outpost on a island
+swim away - nothing happens
+punch a shark - 90% lose 10 health, 10% gain a relic
 
 []
 

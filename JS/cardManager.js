@@ -900,12 +900,12 @@ class cardManager{
     }
     transformCard(base){
         if(variants.mtg){
-            if(base.list>game.playerNumber&&base.rarity>=0||base.basic){
-                let index=floor(random(0,this.listing.mtg[3][base.list][3].length))
+            if((base.list==0||base.list>game.playerNumber)&&base.rarity>=0||base.basic){
+                let index=floor(random(0,this.listing.mtg[1][base.list][3].length))
                 while(this.listing.mtg[0][3][index]==base.type){
-                    index=floor(random(0,this.listing.mtg[3][base.list][3].length))
+                    index=floor(random(0,this.listing.mtg[1][base.list][3].length))
                 }
-                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.mtg[base.list][3][index],base.level,types.card[this.listing.mtg[0][3][index]].mtg.color,base.id)
+                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.mtg[1][base.list][3][index],base.level,types.card[this.listing.mtg[1][base.list][3][index]].mtg.color,base.id)
             }else if(base.list>=-1&&base.rarity>=0||base.basic){
                 let index=floor(random(0,this.listing.mtg[0][3].length))
                 while(this.listing.mtg[0][3][index]==base.type){

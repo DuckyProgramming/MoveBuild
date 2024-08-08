@@ -1519,6 +1519,12 @@ class battle{
             this.attackManager.spendCard(this.energy.lastSpend[player],this.cardManagers[player].hand.cardInUse,player)
         }
     }
+    mtgUnmark(player){
+        for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+            this.energy.crystal[player][a][4]=false
+            this.energy.crystal[player][a][5]=false
+        }
+    }
     mtgMark(cost,player,cards){
         let costLeft=copyArray(cost)
         let effectiveEnergy=[0,0,0,0,0,0,0]
@@ -2016,7 +2022,7 @@ class battle{
                     this.layer.strokeWeight(3*this.anim.endTurn)
                     this.layer.rect(-74+this.anim.turn[a]*100,578,32*this.anim.endTurn,20*this.anim.endTurn,5*this.anim.endTurn)
                     this.layer.strokeWeight(3*this.anim.cancel)
-                    this.layer.rect(-74+this.anim.extra[a]*100,414,32*this.anim.cancel,20*this.anim.cancel,5*this.anim.endTurn)
+                    this.layer.rect(-74+this.anim.extra[a]*(variants.mtg?150:100),414,32*this.anim.cancel,20*this.anim.cancel,5*this.anim.endTurn)
                     if(game.turnTime>0){
                         if(variants.cyclicDraw||variants.blackjack){
                             this.layer.strokeWeight(3*this.anim.drop[a])
@@ -2082,7 +2088,7 @@ class battle{
                     this.layer.text('End Turn',-74+this.anim.turn[a]*100,578-4*this.anim.endTurn)
                     this.layer.text(`(Turn ${this.turn.total})`,-74+this.anim.turn[a]*100,578+4*this.anim.endTurn)
                     this.layer.textSize(8*this.anim.cancel)
-                    this.layer.text('Stop',-74+this.anim.extra[a]*100,414)
+                    this.layer.text('Stop',-74+this.anim.extra[a]*(variants.mtg?150:100),414)
                     if(variants.cyclicDraw){
                         this.layer.textSize(7*this.anim.drop[a])
                         this.layer.text('Drop First',66,680-this.anim.turn[a]*100-4*this.anim.drop[a])
@@ -2451,14 +2457,14 @@ class battle{
                 for(let a=0,la=this.anim.turn.length;a<la;a++){
                     this.anim.turn[a]=smoothAnim(this.anim.turn[a],this.turn.main==a,0,1,5)
                     this.anim.extra[a]=smoothAnim(this.anim.extra[a],this.turn.main==a&&
-                        (this.cardManagers[a].hand.status[0]<0||this.cardManagers[a].hand.status[1]<0||this.cardManagers[a].hand.status[8]<0||this.cardManagers[a].hand.status[10]>0||this.cardManagers[a].hand.status[27]>0)||this.cardManagers[a].hand.status[31]>0,0,1,5)
+                        (this.cardManagers[a].hand.status[0]<0||this.cardManagers[a].hand.status[1]<0||this.cardManagers[a].hand.status[8]<0||this.cardManagers[a].hand.status[10]>0||this.cardManagers[a].hand.status[27]>0||this.cardManagers[a].hand.status[31]>0||this.cardManagers[a].hand.status[34]>0),0,1,5)
                     this.anim.drop[a]=smoothAnim(this.anim.drop[a],pointInsideBox({position:inputs.rel},{position:{x:66,y:680-this.anim.turn[a]*100},width:32,height:20})&&!this.overlayManager.anyActive&&(variants.cyclicDraw||variants.blackjack),1,1.5,5)
                 }
                 this.anim.reserve=smoothAnim(this.anim.reserve,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:494},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                 this.anim.discard=smoothAnim(this.anim.discard,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:522},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                 this.anim.dictionary=smoothAnim(this.anim.dictionary,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:550},width:32,height:20}),1,1.5,5)
                 this.anim.endTurn=smoothAnim(this.anim.endTurn,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:578},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
-                this.anim.cancel=smoothAnim(this.anim.cancel,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.extra[this.turn.main]*100,y:414},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
+                this.anim.cancel=smoothAnim(this.anim.cancel,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.extra[this.turn.main]*(variants.mtg?150:100),y:414},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                 this.anim.defeat=smoothAnim(this.anim.defeat,this.result.defeat,0,1,240)
                 this.anim.afford=smoothAnim(this.anim.afford,this.anim.upAfford,0,1,10)
                 this.anim.energyUp=smoothAnim(this.anim.energyUp,false,0,1,15)
@@ -3038,7 +3044,7 @@ class battle{
                             this.overlayManager.overlays[2][this.turn.main].activate()
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:578},width:32,height:20})&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0){
                             this.endTurn()
-                        }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.extra[this.turn.main]*100,y:414},width:32,height:20})){
+                        }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.extra[this.turn.main]*(variants.mtg?150:100),y:414},width:32,height:20})){
                             this.cardManagers[this.turn.main].hand.cancel()
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:66,y:680-this.anim.turn[this.turn.main]*100},width:32,height:20})&&variants.cyclicDraw){
                             this.cardManagers[this.turn.main].dropFirst()

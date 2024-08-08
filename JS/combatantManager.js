@@ -1197,6 +1197,10 @@ class combatantManager{
                     targetter[0]==5&&this.combatants[a].id!=targetter[1]&&this.combatants[a].block<=0||
                     targetter[0]==6&&this.combatants[a].id==targetter[1]&&this.combatants[a].block<=0
                 )&&distance>=range[0]&&distance<=range[1]
+                &&!(effect==0&&!(
+                    diagonal&&legalTargetDiagonalCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)||
+                    !diagonal&&legalTargetCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)
+                ))
                 ||this.battle.modded(121))
             ){
                 switch(effect){
@@ -1252,6 +1256,18 @@ class combatantManager{
         let combatants=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].life>0&&(this.combatants[a].team!=team&&legalTargetCombatant(0,0,range,{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)||this.battle.modded(121))){
+                combatants.push(this.combatants[a])
+            }
+        }
+        return combatants
+    }
+    getAreaAbstract(type,args,team,tilePosition,range){
+        let combatants=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(
+                this.combatants[a].life>0&&(this.combatants[a].team!=team&&legalTargetCombatant(0,0,range,{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)||this.battle.modded(121))&&
+                !(type==0&&tilePosition.y!=this.combatants[a].tilePosition.y)
+            ){
                 combatants.push(this.combatants[a])
             }
         }

@@ -9875,15 +9875,15 @@ Does not spend the orb.`,
         },{name:'Light Orb',mtg:0,desc:
 `On evoke, draw 4 cards.`,
         },{name:'Flame Orb',mtg:0,desc:
-`On evoke, applies 3 Burn.`,
+`On evoke, applies 5 Burn.`,
         },{name:'Ice Orb',mtg:0,desc:
-`On evoke, applies 3 Freeze.`,
+`On evoke, applies 5 Freeze.`,
         },{name:'Buff Orb',mtg:0,desc:
 `On evoke, applies 3 Strength.`,
         },{name:'Nerf Orb',mtg:0,desc:
 `On evoke, applies 3 Weak.`,
         },{name:'Poison Orb',mtg:0,desc:
-`On evoke, applies 4 Poison.`,
+`On evoke, applies 5 Poison.`,
         },{name:'Glass Orb',mtg:0,desc:
 `On evoke, deals 4 damage.`,
         },{name:'Holding',mtg:0,desc:

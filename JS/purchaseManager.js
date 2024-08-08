@@ -206,7 +206,7 @@ class purchaseManager{
                                 }
                             }
                         }
-                        let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1][0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[0])
+                        let list=variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1][0]):variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[0])
                         let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,1+bar,2-bar,0]:[0,0,0,0,1,2,2,1]
                         let cost=this.generalizedListing(1)
                         for(let a=0,la=group.length;a<la;a++){
@@ -251,19 +251,21 @@ class purchaseManager{
                                 type+9
                             ))
                         }
-                        list=copyArrayStack(this.battle.cardManagers[0].listing.card[game.playerNumber+3])
+                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[a].listing.mtg[1][game.playerNumber+3]):copyArrayStack(this.battle.cardManagers[0].listing.card[game.playerNumber+3])
                         let bar=floor(random(0,2))
                         group=this.battle.modded(153)?[0,0]:variants.commoners?[[0,bar],[bar,0]][floor(random(0,2))]:[bar,1-bar]
                         cost=[[100,125],[140,175],[260,325]]
                         for(let a=0,la=group.length;a<la;a++){
-                            let index=floor(random(0,list[group[a]].length))
-                            let price=round(random(cost[group[a]][0],cost[group[a]][1]))
-                            this.purchases.push(new purchase(this.layer,this.battle,-1,195+a*510,470,1,
-                                [price,price],
-                                [list[group[a]][index],0,game.playerNumber+3],
-                                group[a]+7
-                            ))
-                            list[group[a]].splice(index,1)
+                            if(list[group[a]].length>0){
+                                let index=floor(random(0,list[group[a]].length))
+                                let price=round(random(cost[group[a]][0],cost[group[a]][1]))
+                                this.purchases.push(new purchase(this.layer,this.battle,-1,195+a*510,470,1,
+                                    [price,price],
+                                    [list[group[a]][index],0,game.playerNumber+3],
+                                    group[a]+7
+                                ))
+                                list[group[a]].splice(index,1)
+                            }
                         }
                     }else{
                         for(let a=0,la=this.battle.players;a<la;a++){
