@@ -29,9 +29,6 @@ class cardManager{
         this.bufferedTurn=0
         this.midDraw=false
         this.pack=[]
-        if(variants.mtg){
-            this.mtgLastColor=6
-        }
 
         this.initialListing()
     }
@@ -222,8 +219,7 @@ class cardManager{
                     this.listing.mtg[0][3].push(a)
                 }
                 if(
-                    types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber+5)&&
-                    types.card[a].mtg.color.length==1&&(
+                    types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber+5)&&(
                         (
                             types.card[a].mtg.levels[0].spec.includes(11)||
                             types.card[a].mtg.levels[0].spec.includes(21)||
@@ -900,7 +896,7 @@ class cardManager{
     }
     transformCard(base){
         if(variants.mtg){
-            if((base.list==0||base.list>game.playerNumber)&&base.rarity>=0||base.basic){
+            if((base.list==0||base.list>game.playerNumber)&&base.rarity>=0){
                 let index=floor(random(0,this.listing.mtg[1][base.list][3].length))
                 while(this.listing.mtg[0][3][index]==base.type){
                     index=floor(random(0,this.listing.mtg[1][base.list][3].length))

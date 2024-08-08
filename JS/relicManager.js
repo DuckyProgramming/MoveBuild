@@ -382,7 +382,7 @@ class relicManager{
                 this.battle.cardManagers[player].randomEffect(0,2,[0])
             break
             case 160:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(30)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(40)
             break
             case 168:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(0.5)
@@ -773,7 +773,7 @@ class relicManager{
                 this.battle.cardManagers[player].randomEffect(0,3,[0])
             break
             case 160:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(30)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(40)
             break
             case 168:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(0.5)
@@ -1207,6 +1207,9 @@ class relicManager{
                             if(this.active[418][a+1]>0){
                                 this.getPlayer(a).statusEffect('Strength',2*this.active[418][a+1])
                             }
+                            if(this.active[382][a+1]>0){
+                                this.getPlayer(a).statusEffect('Skill Cost Down',this.active[382][a+1])
+                            }
                             if(this.active[39][a+1]>0){this.detail[39][a]=0}
                             if(this.active[108][a+1]>0){this.detail[108][a]=0}
                             if(this.active[206][a+1]>0){this.detail[206][a][0]=0}
@@ -1635,17 +1638,16 @@ class relicManager{
                     break
                 }
                 if(args[0]>1){
-                    if(this.active[82][args[1]+1]>0&&args[2][0]<3){
+                    if(this.active[82][args[1]+1]>0&&args[2][0]<4){
                         this.battle.cardManagers[args[1]].draw(2*this.active[82][args[1]+1])
                     }
-                    if(this.active[332][args[1]+1]>0&&args[2][0]<3){
+                    if(this.active[332][args[1]+1]>0&&args[2][0]<4){
                         this.battle.addEnergy(this.active[332][args[1]+1],args[1])
                     }
-                    if(this.active[379][args[1]+1]>0&&args[2][0]<3){
+                    if(this.active[379][args[1]+1]>0&&args[2][0]<4){
                         this.battle.addSpecificEnergy(this.active[379][args[1]+1],args[1],5)
                     }
                 }
-                
                 if(this.active[4][args[1]+1]>0){
                     this.detail[4][args[1]]++
                     if(this.detail[4][args[1]]%5==4){
@@ -2252,7 +2254,7 @@ class relicManager{
                         this.getPlayer(args[0]).statusEffect('Double Damage',this.active[252][args[0]+1])
                     }
                     if(this.active[347][args[0]+1]>0){
-                        this.getPlayer(args[0]).loseHealth(2*this.active[347][args[0]+1]*args[1])
+                        this.getPlayer(args[0]).loseHealth(4*this.active[347][args[0]+1]*args[1])
                     }
                     if(this.active[372][args[0]+1]>0){
                         this.getPlayer(args[0]).statusEffect('Temporary Strength Next Turn',this.active[372][args[0]+1]*args[1])
@@ -2397,10 +2399,7 @@ class relicManager{
                         }
                     break
                     case 11:
-                        if(this.active[357][args[1]+1]>0&&floor(random(0,10))<this.battle.relicManager.active[357][a+1]){
-                            args[0].costDown(0,[1])
-                        }
-                        if(this.active[382][args[1]+1]>0&&floor(random(0,4))<this.battle.relicManager.active[382][a+1]){
+                        if(this.active[357][args[1]+1]>0&&floor(random(0,2))<this.battle.relicManager.active[357][a+1]){
                             args[0].costDown(0,[1])
                         }
                     break

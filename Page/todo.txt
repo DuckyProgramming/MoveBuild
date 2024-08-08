@@ -1,5 +1,8 @@
 change enemy (and construct attacks) that might be involved with mtg
 
+builds are impossible?
+
+
 
 
 
@@ -103,8 +106,6 @@ caltrops - create tiles that inflict bleed
 
 create a plant tile and add a sakura card to hand
 
-outmuscle - 10 damage, does double if target has strength
-
 [damage wish]
 [4 wish power pull from discard pile]
 20 total wishes after these two
@@ -191,16 +192,25 @@ sharp palm
 
 pure white world - apply freeze to every enemy for the next 3 turns
 
+flank punch - punch forward for 8, but also if there's an enemy behind you it takes 20 damage
+
+
+
+animate sunny
+
+take out - exhaust a card, retain, 1 cost, gain 1 energy if it was not a status or curse
+
+
 
 
 
 [5 common partnership cards]
 
-[1 new tarot
+[1 new tarot]
 
 
 
-free move boss relic?]
+button to gift remaining battle rewards to otherp layer
 
 
 

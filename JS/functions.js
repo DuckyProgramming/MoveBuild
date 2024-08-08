@@ -1333,7 +1333,7 @@ function arcMid3(layer,keypoints,side){
 	}
 }
 function specialCost(card){
-	return card.spec.includes(5)||card.spec.includes(11)||card.spec.includes(35)||card.spec.includes(40)||card.spec.includes(41)||card.spec.includes(55)||card.spec.includes(58)||card.spec.includes(59)
+	return card.spec.includes(5)||card.spec.includes(11)||card.spec.includes(21)||card.spec.includes(35)||card.spec.includes(40)||card.spec.includes(41)||card.spec.includes(55)||card.spec.includes(58)||card.spec.includes(59)
 }
 function legalTarget(type,lengthStart,lengthEnd,x,y){
 	switch(type){
@@ -1755,10 +1755,10 @@ function quickNode(type){
 }
 function quickDraw(){
 	for(let a=0,la=4;a<la;a++){
-		quickAddFull('Strike',1,0,0)
-		quickAddFull('Defend',1,0,0)
-		quickAddFull('Step',1,0,0)
-		quickAddFull('Think',1,0,0)
+		quickAddFull('Strike',1,1,0)
+		quickAddFull('Defend',1,1,0)
+		quickAddFull('Step',1,1,0)
+		quickAddFull('Think',1,1,0)
 	}
 }
 function event(name){

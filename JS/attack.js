@@ -189,7 +189,7 @@ class attack{
             case 4079: case 4082: case 4083: case 4084: case 4085: case 4088: case 4091: case 4096: case 4097: case 4098: case 4102: case 4105: case 4107: case 4108: case 4109: case 4110: case 4117: case 4122: case 4132: case 4137:
             case 4138: case 4139: case 4140: case 4142: case 4143: case 4145: case 4149: case 4150: case 4151: case 4152: case 4153: case 4154: case 4155: case 4156: case 4161: case 4162: case 4163: case 4167: case 4168: case 4169:
             case 4170: case 4172: case 4183: case 4190: case 4200: case 4201: case 4203: case 4204: case 4206: case 4211: case 4212: case 4218: case 4219: case 4228: case 4229: case 4230: case 4233: case 4234: case 4235: case 4236:
-            case 4237: case 4238: case 4242: case 4243: case 4244: case 4248: case 4249: case 4250:
+            case 4237: case 4238: case 4242: case 4243: case 4244: case 4248: case 4249: case 4250: case 4256: case 4257: case 4258: case 4259:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -736,7 +736,6 @@ class attack{
                     this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
                     this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
                     this.targetDistance=distTargetCombatant(0,this,this.targetCombatant)
-                    this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
                 }
             break
             case 2837:
@@ -4315,6 +4314,30 @@ class attack{
                         }
                         this.targetCombatant.statusEffect('Freeze',total4248[0])
                         this.targetCombatant.statusEffect('Burn',total4248[1])
+                    break
+                    case 4256:
+                        if(this.targetCombatant.getStatus('Weak')>0){
+                            this.battle.addSpecificEnergy(2,this.player,3)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 4257:
+                        if(this.targetCombatant.getStatus('Weak')>0){
+                            this.battle.addSpecificEnergy(2,this.player,6)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 4258:
+                        if(this.targetCombatant.getStatus('Vulnerable')>0){
+                            this.battle.addSpecificEnergy(2,this.player,3)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 4259:
+                        if(this.targetCombatant.getStatus('Vulnerable')>0){
+                            this.battle.addSpecificEnergy(2,this.player,6)
+                            this.userManager.draw(this.effect[1])
+                        }
                     break
 
                 }

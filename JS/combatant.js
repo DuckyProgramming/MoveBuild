@@ -6512,7 +6512,7 @@ class combatant{
             break
             case 6:
                 if(target<this.battle.players||this.id<this.battle.players){
-                    this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(4*multi))
+                    this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(3*multi))
                 }
             break
             case 7:
@@ -6567,7 +6567,7 @@ class combatant{
                 this.battle.combatantManager.combatants[target].orbTake(round(4*multi*playerMulti),-1)
             break
             case 6:
-                this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(2*multi))
+                this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(1.5*multi))
             break
             case 7:
                 this.battle.combatantManager.combatants[target].statusEffect('Burn',round(2.5*multi))

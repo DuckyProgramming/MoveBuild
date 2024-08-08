@@ -316,21 +316,74 @@ class card{
         }
     }
     setCost(type,args){
+        let remain=[]
+        let preCost=variants.mtg?copyArray(this.cost):this.cost
         switch(type){
             case 0:
-                this.cost=variants.mtg?(this.specialCost?[args[0]]:elementArray(-1,args[0])):args[0]
+                if(variants.mtg){
+                    for(let a=0,la=this.cost.length;a<la;a++){
+                        if(this.cost[a]==-3){
+                            remain.push(this.cost[a])
+                        }
+                    }
+                    this.cost=this.specialCost?[args[0]]:elementArray(-1,args[0])
+                    for(let a=0,la=remain.length;a<la;a++){
+                        this.cost.push(remain[a])
+                    }
+                }else{
+                    this.cost=args[0]
+                }
             break
             case 1:
-                this.base.cost=variants.mtg?(this.specialCost?[args[0]]:elementArray(-1,args[0])):args[0]
+                if(variants.mtg){
+                    for(let a=0,la=this.base.cost.length;a<la;a++){
+                        if(this.base.cost[a]==-3){
+                            remain.push(this.base.cost[a])
+                        }
+                    }
+                    this.base.cost=this.specialCost?[args[0]]:elementArray(-1,args[0])
+                    for(let a=0,la=remain.length;a<la;a++){
+                        this.base.cost.push(remain[a])
+                    }
+                }else{
+                    this.base.cost=args[0]
+                }
             break
             case 2:
-                this.cost=variants.mtg?(this.specialCost?[0]:[]):0
-                this.base.cost=variants.mtg?(this.specialCost?[args[0]]:elementArray(-1,args[0])):args[0]
+                if(variants.mtg){
+                    remain=[[],[]]
+                    for(let a=0,la=this.cost.length;a<la;a++){
+                        if(this.cost[a]==-3){
+                            remain[0].push(this.cost[a])
+                        }
+                    }
+                    for(let a=0,la=this.base.cost.length;a<la;a++){
+                        if(this.base.cost[a]==-3){
+                            remain[1].push(this.base.cost[a])
+                        }
+                    }
+                    this.cost=this.specialCost?[args[0]]:elementArray(-1,args[0])
+                    this.base.cost=this.specialCost?[args[0]]:elementArray(-1,args[0])
+                    for(let a=0,la=remain[0].length;a<la;a++){
+                        this.cost.push(remain[0][a])
+                    }
+                    for(let a=0,la=remain[1].length;a<la;a++){
+                        this.base.cost.push(remain[1][a])
+                    }
+                }else{
+                    this.cost=args[0]
+                    this.base.cost=args[0]
+                }
             break
+        }
+        if(variants.mtg?(this.specialCost?this.cost[0]<preCost[0]:this.cost.length<preCost.length):this.cost<preCost){
+            this.costDownTrigger=true
+        }else if(variants.mtg?(this.specialCost?this.cost[0]>preCost[0]:this.cost.length>preCost.length):this.cost>preCost){
+            this.costUpTrigger=true
         }
     }
     costUp(type,args){
-        this.cosUpTrigger=true
+        this.costUpTrigger=true
         switch(type){
             case 0:
                 if(variants.mtg){
@@ -536,7 +589,7 @@ class card{
         }
     }
     updateSpecialCost(){
-        this.specialCost=this.spec.includes(11)||this.spec.includes(35)||this.spec.includes(40)||this.spec.includes(55)||this.spec.includes(58)||this.spec.includes(59)
+        this.specialCost=this.spec.includes(11)||this.spec.includes(21)||this.spec.includes(35)||this.spec.includes(40)||this.spec.includes(55)||this.spec.includes(58)||this.spec.includes(59)
         if(this.specialCost){
             if(typeof this.cost!='number'){
                 this.cost=[this.cost.length]
@@ -961,8 +1014,8 @@ class card{
             case 265: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nAttacks Played\nThis Turn\n(Including This Card)`; break
             case 266: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 More\nWhen You Take Damage`; break
             case 267: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nDefenses in Hand`; break
-            case 268: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has Weak:\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
-            case 269: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has Vulnerable:\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 268: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Has Weak:\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 269: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Has Vulnerable:\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 270: string+=`Add ${effect[0]} Shiv${pl(effect[0])}\nto Hand\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 271: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCounter ${effect[1]}`; break
             case 272: string+=`Apply ${effect[0]} Random Debuff`; break
@@ -1408,7 +1461,7 @@ class card{
             case 716: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nSwap Defense Intents`; break
             case 717: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${effect[1]} Random\nBlueprint${pl(effect[1])} to Hand`; break
             case 718: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Destroyed\nConstructs${effect[1]!=0?` +${effect[1]}`:``}${this.player>=0&&this.player<this.battle.players?` (${this.battle.combatantManager.numberAbstract(0,[])+this.effect[1]})`:``}`; break
-            case 719: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nApply ${effect[1]}X Weak\nApply ${effect[2]}X Vulnerable`; break
+            case 719: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nApply ${effect[1]!=1?`${effect[1]}`:``}X Weak\nApply ${effect[2]!=1?`${effect[2]}`:``}X Vulnerable`; break
             case 720: string+=`Apply ${effect[0]} Weak\nNext Turn`; break
             case 721: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnter Wrath`; break
             case 722: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEnter Calm`; break
@@ -1913,7 +1966,7 @@ class card{
             case 1224: string+=`Put a Card in Draw\nPile in Your Hand\nIt is Reusable Each Turn`; break
             case 1225: string+=`Exhaust ${effect[0]} Card${pl(effect[0])},\nEither a Card Slot\nor Made by One\nAdd to Hand:\nCard Slot\nSlot Shift`; break
             case 1226: string+=`50%: Put a Card in Draw\nPile in Your Hand`; break
-            case 1227: string+=`Get a Random Card\nFrom Draw`; break
+            case 1227: string+=`Get a Random Card\nFrom Draw Pile`; break
             case 1228: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nPer Other Medley`; break
             case 1229: string+=`Exhaust ${effect[0]} Card${pl(effect[0])}\nIf You Have No Energy,\nGain ${effect[1]} Energy`; break
             case 1230: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAt Max, Deal ${this.calculateEffect(effect[1],0)}\nSplash Damage`; break
@@ -4970,8 +5023,10 @@ class card{
             case 4253: string+=`Ally Gains (E) (E) (E)\non Their Turn`; break
             case 4254: string+=`Ally Gains (E) (E) (E) (E)\non Their Turn`; break
             case 4255: string+=`Add a Random Common\nColorless Card to Deck\nRemove a Card\nPermanently\nLose ${effect[0]} Health`; break
-
-
+            case 4256: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Has Weak:\nGain (B) (B)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 4257: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Has Weak:\nGain (E) (E)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 4258: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Has Vulnerable:\nGain (B) (B)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 4259: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Has Vulnerable:\nGain (E) (E)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
 
 
 
@@ -7579,7 +7634,11 @@ class card{
                 }
                 if(variants.mtg&&list>=0&&list<=game.playerNumber){
                     if(colorDetail.length>=2){
-                        this.layer.stroke(...colorDetail[colorDetail.length-1].stroke,this.fade)
+                        if(this.edition==5){
+                            this.layer.stroke(colorDetail[colorDetail.length-1].stroke[0]*0.2,colorDetail[colorDetail.length-1].stroke[1]*0.2,colorDetail[colorDetail.length-1].stroke[2]*0.2,this.fade)
+                        }else{
+                            this.layer.stroke(...colorDetail[colorDetail.length-1].stroke,this.fade)
+                        }
                     }
                     this.layer.strokeWeight(2)
                     this.layer.ellipse(this.width/2-7.5,this.height/2-7.5,5)
@@ -7761,10 +7820,11 @@ class card{
                     }
                 }else if(spec.includes(35)){
                     if(variants.mtg){
+                        let finalCost=this.editCost(cost,1)
                         let totals=[0,0,0,0,0,0,0,0]
                         let pos=0
-                        for(let a=0,la=this.cost.length;a<la;a++){
-                            totals[this.cost[a]+1]++
+                        for(let a=0,la=finalCost.length;a<la;a++){
+                            totals[finalCost[a]+1]++
                         }
                         for(let a=1,la=totals.length;a<la;a++){
                             if(totals[a]>0){
@@ -7874,11 +7934,12 @@ class card{
                     this.layer.translate(this.width/2-10,this.height/2-12-(this.colorful?3:0))
                 }else if(!spec.includes(5)&&!spec.includes(41)){
                     if(variants.mtg){
+                        let finalCost=this.editCost(cost,1)
                         if(spec.includes(6)){
                             let preTotalNeutral=0
                             let preTotal=0
                             for(let a=0,la=this.cost.length;a<la;a++){
-                                if(this.cost[a]==-1){
+                                if(finalCost[a]==-1){
                                     preTotalNeutral++
                                 }else{
                                     preTotal++
@@ -7894,11 +7955,11 @@ class card{
                         }
                         let totalNeutral=0
                         let total=0
-                        for(let a=0,la=this.cost.length;a<la;a++){
-                            if(this.cost[a]==-1){
+                        for(let a=0,la=finalCost.length;a<la;a++){
+                            if(finalCost[a]==-1){
                                 totalNeutral++
                             }else{
-                                displayMtgManaSymbol(this.layer,this.width/2-6-total*12.5,-this.height/2+6,this.cost[a],0,0.6,this.fade,0,[this.anim.afford,this.anim.costDown,this.anim.costUp])
+                                displayMtgManaSymbol(this.layer,this.width/2-6-total*12.5,-this.height/2+6,finalCost[a],0,0.6,this.fade,0,[this.anim.afford,this.anim.costDown,this.anim.costUp])
                                 total++
                             }
                         }
@@ -7980,31 +8041,7 @@ class card{
                         this.layer.fill(...merge,this.fade)
                     }
                     this.layer.textSize(variants.mtg?10:14)
-                    let effectiveCost=variants.mtg?cost[0]:cost
-                    if(effectiveCost>=0&&userCombatant.getStatus('Temporary All Cost Up')>0){
-                        effectiveCost+=userCombatant.getStatus('Temporary All Cost Up')
-                    }
-                    if(effectiveCost>0&&userCombatant.getStatus('Skill Cost Down')>0&&(this.class==11||this.spec.includes(12)&&this.class[0]==11&&this.class[1]==11)){
-                        effectiveCost=max(cost-userCombatant.getStatus('Skill Cost Down'),0)
-                    }
-                    if(effectiveCost>0&&userCombatant.getStatus('Combo Cost Down')>0&&(this.spec.includes(11)||this.spec.includes(12)&&this.spec[0].includes(11)&&this.spec[1].includes(11))){
-                        effectiveCost=max(cost-userCombatant.getStatus('Combo Cost Down'),0)
-                    }
-                    if(effectiveCost>0&&userCombatant.getStatus('All Cost Down')>0){
-                        effectiveCost=max(cost-userCombatant.getStatus('All Cost Down'),0)
-                    }
-                    if(effectiveCost>0&&userCombatant.getStatus('Defense Cost Down')>0&&(this.class==2||this.spec.includes(12)&&this.class[0]==2&&this.class[1]==2)){
-                        effectiveCost=max(cost-userCombatant.getStatus('Defense Cost Down'),0)
-                    }
-                    if(cost>=0&&userCombatant.getStatus('Colorless Cost Up')>0&&this.colorless()){
-                        effectiveCost+=userCombatant.getStatus('Colorless Cost Up')
-                    }
-                    if(
-                        userCombatant.getStatus('Free Defenses')>0&&(this.class==2||this.spec.includes(12)&&this.class[0]==2&&this.class[1]==2)||
-                        userCombatant.getStatus('Free Cables')>0&&this.name.includes('Cable')&&this.class==1
-                    ){
-                        effectiveCost=0
-                    }
+                    let effectiveCost=this.editCost(cost,1)
                     if(this.colorful){
                         this.layer.text(effectiveCost==-1?`X`:effectiveCost,variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+8:-this.height/2+16)
                     }else{
@@ -8309,6 +8346,62 @@ class card{
             this.layer.pop()
         }
     }
+    editCost(cost,type,args){
+        let effectiveCost=variants.mtg?copyArray(cost):cost
+        if(this.player<0){
+            return effectiveCost
+        }
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        let costChange=0
+        if(userCombatant.getStatus('Colorless Cost Up')>0&&card.colorless()){
+            costChange+=userCombatant.getStatus('Colorless Cost Up')
+        }
+        if(userCombatant.getStatus('Temporary All Cost Down')>0){
+            costChange-=userCombatant.getStatus('Temporary All Cost Down')
+        }
+        if(userCombatant.getStatus('Skill Cost Down')>0&&(type==2?args[0]:this.class)==11){
+            costChange-=userCombatant.getStatus('Skill Cost Down')
+        }
+        if(userCombatant.getStatus('Combo Cost Down')>0&&spec.includes(11)){
+            costChange-=userCombatant.getStatus('Combo Cost Down')
+        }
+        if(userCombatant.getStatus('All Cost Down')>0){
+            costChange-=userCombatant.getStatus('All Cost Down')
+        }
+        if(userCombatant.getStatus('Defense Cost Down')>0&&(type==2?args[0]:this.class)==2){
+            costChange-=userCombatant.getStatus('Defense Cost Down')
+        }
+        if(costChange!=0){
+            if(variants.mtg){
+                if(card.specialCost){
+                    effectiveCost[0]=max(min(0,effectiveCost[0]),effectiveCost[0]+costChange)
+                }else{
+                    if(costChange<0){
+                        for(let a=0,la=-costChange;a<la;a++){
+                            if(effectiveCost.includes(-1)){
+                                effectiveCost.splice(effectiveCost.indexOf(-1),1)
+                            }
+                        }
+                    }else{
+                        for(let a=0,la=costChange;a<la;a++){
+                            effectiveCost.push(-1)
+                        }
+                    }
+                }
+            }else{
+                effectiveCost=max(min(0,effectiveCost),effectiveCost+costChange)
+            }
+        }
+        if(type==1){
+            if(
+                userCombatant.getStatus('Free Defenses')>0&&(this.class==2||this.spec.includes(12)&&this.class[0]==2&&this.class[1]==2)||
+                userCombatant.getStatus('Free Cables')>0&&this.name.includes('Cable')&&this.class==1
+            ){
+                effectiveCost=variants.mtg?[]:0
+            }
+        }
+        return effectiveCost
+    }
     colorless(){
         return this.color==0&&!this.colorful&&this.attack!=1328&&this.attack!=1330&&this.attack!=1393&&this.attack!=1615&&this.attack!=2064&&this.attack!=-131&&this.attack!=-132&&this.attack!=3454&&this.attack!=3459&&this.attack!=3460&&this.attack!=-1031&&this.attack!=-1032&&this.attack!=4225&&this.attack!=3629&&this.attack!=3630&&this.attack!=3631&&!(this.attack>=3694&&this.attack<=3699)&&this.attack!=3753&&this.attack!=3754&&this.attack!=4048&&this.list!=-8&&!(this.list==-9&&variants.ultraprism)
     }
@@ -8334,28 +8427,8 @@ class card{
             this.upSize=true
         }
         if(this.player>=0&&this.player<this.battle.players){
-            let cost=this.falsed.trigger?this.falsed.cost:this.cost
+            let cost=this.editCost(this.falsed.trigger?this.falsed.cost:this.cost,0)
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-            if(!variants.mtg){
-                if(cost>=0&&userCombatant.getStatus('Temporary All Cost Up')>0){
-                    cost+=userCombatant.getStatus('Temporary All Cost Up')
-                }
-                if(cost>0&&userCombatant.getStatus('Skill Cost Down')>0&&(this.class==11||this.spec.includes(12)&&this.class[0]==11&&this.class[1]==11)){
-                    cost=max(cost-userCombatant.getStatus('Skill Cost Down'),0)
-                }
-                if(cost>0&&userCombatant.getStatus('Combo Cost Down')>0&&(this.spec.includes(11)||this.spec.includes(12)&&this.spec[0].includes(11)&&this.spec[1].includes(11))){
-                    cost=max(cost-userCombatant.getStatus('Combo Cost Down'),0)
-                }
-                if(cost>0&&userCombatant.getStatus('All Cost Down')>0){
-                    cost=max(cost-userCombatant.getStatus('All Cost Down'),0)
-                }
-                if(cost>0&&userCombatant.getStatus('Defense Cost Down')>0&&(this.class==2||this.spec.includes(12)&&this.class[0]==2&&this.class[1]==2)){
-                    cost=max(cost-userCombatant.getStatus('Defense Cost Down'),0)
-                }
-                if(cost>=0&&userCombatant.getStatus('Colorless Cost Up')>0&&this.colorless()){
-                    cost+=userCombatant.getStatus('Colorless Cost Up')
-                }
-            }
             let energyPay=false
             if(!(variants.mtg&&!this.specialCost)){
                 let effectiveEnergy=this.battle.getEnergy(this.player)*(this.spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0?2:1)
@@ -8365,23 +8438,12 @@ class card{
             }
 
             this.energyAfford=(
-                userCombatant.getStatus('Free Card')>0||
-                userCombatant.getStatus('Free 1 Cost Card')>0&&cost==1||
-                userCombatant.getStatus('Free Attack')>0&&this.class==1||
-                userCombatant.getStatus('Free Defense')>0&&this.class==2||
-                userCombatant.getStatus('Free Movement')>0&&this.class==3||
-                userCombatant.getStatus('Free Skill')>0&&this.class==11||
-                userCombatant.getStatus('Temporary Free Non-Rare Colorless')>0&&this.colorless()&&this.rarity!=2||
-                userCombatant.getStatus('Free Defenses')>0&&(this.class==2||this.spec.includes(12)&&this.class[0]==2&&this.class[1]==2)||
-                userCombatant.getStatus('Free Cables')>0&&this.name.includes('Cable')&&this.class==1||
+                this.free()||
                 energyPay&&!this.spec.includes(11)&&!this.spec.includes(21)&&!this.spec.includes(40)&&!this.spec.includes(59)||
                 this.battle.combatantManager.combatants[this.player].combo>=cost&&this.spec.includes(11)||
                 this.battle.combatantManager.combatants[this.player].metal>=cost&&this.spec.includes(21)||
                 this.battle.combatantManager.combatants[this.player].getStatus('Twos')>=cost&&this.spec.includes(40)||
                 this.battle.combatantManager.combatants[this.player].wish>=cost&&this.spec.includes(59)||
-                this.spec.includes(55)||
-                this.spec.includes(58)||
-                this.spec.includes(60)||
                 variants.overheat
             )
             

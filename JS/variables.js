@@ -652,7 +652,7 @@ types={
         {name:'Tomato',internal:'6 Max HP',id:5,rarity:0,list:0,mtg:0,description:'When Taken,\nGain 6 Max HP'},
         {name:'Red Marble',internal:'Starting Strength',id:6,rarity:0,list:0,mtg:0,description:'Gain 1 Strength\nat the Start of Combat'},
         {name:'Blue Marble',internal:'Starting Dexterity',id:7,rarity:0,list:0,mtg:0,description:'Gain 1 Dexterity\nat the Start of Combat'},
-        {name:'Alarm Clock',internal:'Emergency Move',id:8,rarity:0,list:0,mtg:0,description:'Add 1 Emergency Move at\nthe Start of Combat'},
+        {name:'Alarm Clock',internal:'Emergency Move',id:8,rarity:2,list:0,mtg:0,description:'Add 1 Emergency Move at\nthe Start of Combat'},
         {name:'Double Blank Card',internal:'Redraw',id:9,rarity:0,list:0,mtg:0,description:'Add 1 Redraw at\nthe Start of Combat'},
 
         {name:'Clean Water',internal:'Miracle',id:10,rarity:0,list:0,mtg:0,description:'Add a Miracle at\nthe Start of Combat'},
@@ -734,11 +734,11 @@ types={
 
         {name:'Rummaging Rum',internal:'Item Reuse',id:80,rarity:1,list:0,mtg:0,description:'When an Item is Used,\n50% Chance to Get Another'},
         {name:'Helix Fossil',internal:'Revive',id:81,rarity:2,list:0,mtg:0,description:'When You Die, Heal to 50% HP\nRemoves Self Afterward'},
-        {name:'Waterwheel',internal:'Low Play Draw',id:82,rarity:2,list:0,mtg:0,description:'When You Play Less Than 3 Cards,\nDraw 2 More Cards Next Turn'},
+        {name:'Waterwheel',internal:'Low Play Draw',id:82,rarity:2,list:0,mtg:0,description:'When You Play Less Than 4 Cards,\nDraw 2 More Cards Next Turn'},
         {name:'Dolphin Figurine',internal:'Item Collector',id:83,rarity:2,list:0,mtg:0,description:'Fights Always\nDrop Items'},
         {name:'Entrenching Tool',internal:'Block Collection',id:84,rarity:2,list:0,mtg:0,description:'Gain 4 Block Each\nTurn After Turn 2'},
         {name:'Coupon',internal:'Free Shop Relic',id:85,rarity:3,list:0,mtg:0,description:'A Random Relic in\nthe Shop is Free'},
-        {name:'Art of War',internal:'First Attack Free',id:86,rarity:2,list:0,mtg:0,description:'The First Attack\nEach Combat is Free'},
+        {name:'Art of War',internal:'First Attack Free',id:86,rarity:1,list:0,mtg:0,description:'The First Attack\nEach Combat is Free'},
         {name:'DVD Player',internal:'First Card Double Play',id:87,rarity:-1,list:0,mtg:0,description:'The First Card Per Combat\nMay be Played Twice'},
         {name:'Hexachoron',internal:'Per Enemy Block',id:88,rarity:2,list:0,mtg:0,description:'Gain 1 Block Per Enemy\nat the Start of Your Turn'},
         {name:'Hummingbird Wing',internal:'2 Turn Half Damage',id:89,rarity:2,list:0,mtg:0,description:'Take Half Damage in\nthe First 2 Turns'},
@@ -820,7 +820,7 @@ types={
         {name:'Holy Water',internal:'3 Starting Miracles',id:158,rarity:4,list:0,mtg:1,description:'Add 3 Miracles\nat the Start of Combat'},
         {name:'Pentaxon',internal:'Random',id:159,rarity:4,list:0,mtg:1,description:'When Taken, Gain a Rare Item,\n300 Currency, 10 Max HP, a Rare Card,\nand Upgrade a Random Card'},
 
-        {name:'Watermelon',internal:'30 Max HP',id:160,rarity:4,list:0,mtg:1,description:'When Taken,\nGain 30 Max HP'},
+        {name:'Watermelon',internal:'40 Max HP',id:160,rarity:4,list:0,mtg:1,description:'When Taken,\nGain 40 Max HP'},
         {name:'Bent Pliers',internal:'Upgrade Random Turn',id:161,rarity:-1,list:0,mtg:0,description:'Every Turn, Upgrade a Random\nCard in Your Hand'},
         {name:'Audric Codex',internal:'Duplicate Random Turn',id:162,rarity:-1,list:0,mtg:0,description:'Every Turn, Duplicate a Random\nCard in Your Hand'},
         {name:'Mark of Infinition',internal:'No Heal',id:163,rarity:-1,list:0,mtg:0,description:'You Can No Longer Heal'},
@@ -1009,9 +1009,9 @@ types={
 
         {name:'Asagian Charm',internal:'Low Health Permanent Strength',id:330,rarity:-1,list:0,mtg:0,description:'When You Start Your Turn Below 5 Health,\nGain 1 Strength Permanently\nDestroys Self Afterward'},
         {name:'Rice Grains',internal:'Basic Heal',id:331,rarity:-1,list:0,mtg:0,description:'Heal 1 Health When You\nPlay a Strike or Defend'},
-        {name:'Kinetic Converter',internal:'Low Play Energy',id:332,rarity:2,list:0,mtg:1,description:'When You Play Less Than 3 Cards,\nGain 1 Energy Next Turn'},
+        {name:'Kinetic Converter',internal:'Low Play Energy',id:332,rarity:2,list:0,mtg:1,description:'When You Play Less Than 4 Cards,\nGain 1 Energy Next Turn'},
         {name:'Double Decker',internal:'Booster Pack Upgrade',id:333,rarity:1,list:0,mtg:0,description:'Cards in Booster Packs are\nMore Likely to be Upgraded'},
-        {name:'Questions and Replies',internal:'First Defense Free',id:334,rarity:2,list:0,mtg:0,description:'The First Defense\nEach Combat is Free'},
+        {name:'Questions and Replies',internal:'First Defense Free',id:334,rarity:1,list:0,mtg:0,description:'The First Defense\nEach Combat is Free'},
         {name:'Lævateinn',internal:'Energy/Power Vulnerable',id:335,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nGain 1 Vulnerable When\nYou Play a Power'},
         {name:'5D Multiverse Time Travel',internal:'Backwards Move',id:336,rarity:2,list:0,mtg:0,description:'You Can Move Backwards on the Map\n3 Uses'},
         {name:'The Solo',internal:'Energy/Duplicate Cards',id:337,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy, Remove\nAll Duplicate Non-Basic Cards in Deck\nRemove All Future Added Duplicate Cards'},
@@ -1021,11 +1021,11 @@ types={
         {name:'Horizon Diamond',internal:'Energy/Invisible',id:340,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nAll Enemies are Invisible Until Hit'},
         {name:'Old Key',internal:'Extra Map Path',id:341,rarity:1,list:0,mtg:0,description:'Extra Paths are Available in the Map'},
         {name:'Beanstalk',internal:'Boss Extra Relic',id:342,rarity:1,list:0,mtg:0,description:'Gain a Normal Relic Reward\nAfter Every Boss'},
-        {name:'Ladle',internal:'8 Skill Draw',id:343,rarity:2,list:0,mtg:0,description:'Every 8 Skills Played,\nDraw 2 Cards'},
+        {name:'Ladle',internal:'8 Skill Draw',id:343,rarity:1,list:0,mtg:0,description:'Every 8 Skills Played,\nDraw 2 Cards'},
         {name:'Rainbow Lotus',internal:'1 Cost Down Per Turn/Energy Gain Block',id:344,rarity:-1,list:0,mtg:1,description:'Each Turn, a Random Card Costs 1 Less\nAdd 6 Block When You Gain Energy'},
         {name:'Corrugated Fiberboard',internal:'Energy/Shop Relics',id:345,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nAll Relics in the Shop Cost 2x More'},
         {name:'Item Canister',internal:'No Shop Items',id:346,rarity:0,list:0,mtg:0,description:'Gain an Item Every Node\nUntil You Enter a Shop'},
-        {name:'Sugar Cube',internal:'Energy/Leftover Energy',id:347,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nLose 2 Health at End of Turn\nFor Each Extra Energy'},
+        {name:'Sugar Cube',internal:'Energy/Leftover Energy',id:347,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nLose 4 Health at End of Turn\nFor Each Extra Energy'},
         {name:'Medicine Cabinet',internal:'Turn 1 Energy/Turn 2 Heal/Turn 3 Temporary Strength',id:348,rarity:2,list:0,mtg:1,description:'Gain 1 Energy on Turn 1\nHeal 2 Health on Turn 2\nGain 3 Temporary Strength on Turn 3'},
         {name:'Chondrule',internal:'Double Foil',id:349,rarity:0,list:0,mtg:0,description:'Foil Editions Add Double Block'},
 
@@ -1036,7 +1036,7 @@ types={
         {name:'Breccia',internal:'Double Silver',id:354,rarity:0,list:0,mtg:0,description:'Silver Editions Heal Double Health'},
         {name:'Virtuous Duck',internal:'Double First Attack',id:355,rarity:2,list:0,mtg:0,description:'The First Attack Each Combat\nDeals Double Damage'},
         {name:'Congestion Control',internal:'Protocol',id:356,rarity:4,list:0,mtg:1,description:'Shuffle 1 Protocol Into\nDraw at the Start of Combat'},
-        {name:'Tactical Conductor',internal:'Cheap Skills',id:357,rarity:2,list:0,mtg:1,description:'Skills Have a 10%\nChance to Cost 1 Less\nTemporarily When Drawn'},
+        {name:'Tactical Conductor',internal:'Cheap Skills',id:357,rarity:2,list:0,mtg:1,description:'Skills Have a 50%\nChance to Cost 1 Less\nTemporarily When Drawn'},
         {name:'Blackened Nebula',internal:'Energy/Colorless',id:358,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nAll Colorless Cards Cost 1 More'},
         {name:'Malicious Flame',internal:'Power Draw',id:359,rarity:2,list:0,mtg:0,description:'When a Power is Played,\nDraw a Card'},
 
@@ -1060,11 +1060,11 @@ types={
         {name:'The Trail',internal:'3 Cost Mana',id:376,rarity:2,list:0,mtg:2,description:'Cards Costing 3 or More\nGive (N) When Played'},
         {name:'Frozen Frog',internal:'Extra Mana Double Damage',id:377,rarity:2,list:0,mtg:2,description:'When You End Your Turn With\n3 or More Mana, Your Next\nAttack Played Deals Double Damage'},
         {name:'Managerial History',internal:'Click For Mana',id:378,rarity:-1,list:0,mtg:2,description:'Click to Gain (E) (E) (E)\n1 Use Per Encounter'},
-        {name:'Kinetic Converter',internal:'Low Play Mana',id:379,rarity:2,list:0,mtg:2,description:'When You Play Less Than 3 Cards,\nGain (R) Next Turn'},
+        {name:'Kinetic Converter',internal:'Low Play Mana',id:379,rarity:2,list:0,mtg:2,description:'When You Play Less Than 4 Cards,\nGain (R) Next Turn'},
         
         {name:'Medicine Cabinet',internal:'Turn 1 Mana/Turn 2 Heal/Turn 3 Temporary Strength',id:380,rarity:2,list:0,mtg:2,description:'Gain (E) on Turn 1\nHeal 2 Health on Turn 2\nGain 3 Temporary Strength on Turn 3'},
         {name:'Exponentia',internal:'Mana Gain Draw',id:381,rarity:2,list:0,mtg:2,description:'Draw 1 Card When You Gain Mana'},
-        {name:'Tactical Conductor',internal:'Cheap Skills (M)',id:382,rarity:2,list:0,mtg:2,description:'Skills Have a 25%\nChance to Cost 1 Less\nTemporarily When Drawn'},
+        {name:'Tactical Conductor',internal:'Cheap Skills (M)',id:382,rarity:2,list:0,mtg:2,description:'Skills Cost 1 Less'},
         {name:'Ice Cube',internal:'First Block Energy',id:383,rarity:0,list:0,mtg:1,description:'Gain 1 Energy the First Time\nYou Gain Block Each Combat'},
         {name:'Ice Cube',internal:'First Block Mana',id:384,rarity:0,list:0,mtg:2,description:'Gain (B) the First Time\nYou Gain Block Each Combat'},
         {name:'Vinyl',internal:'Status Draw Energy',id:385,rarity:2,list:0,mtg:1,description:'Gain 1 Energy When You Draw a\nStatus Card Other Than Fatigue'},
@@ -1120,6 +1120,21 @@ types={
         {name:'Pasta Bowl',internal:'X Cost Energy',id:430,rarity:3,list:0,mtg:1,description:'When You Play an X Cost Card,\nGain 1 Energy'},
         {name:'Pasta Bowl',internal:'X Cost Mana',id:431,rarity:3,list:0,mtg:2,description:'When You Play an X Cost Card,\nGain (N)'},
         {name:'Gas Oven',internal:'Elite Upgrade',id:432,rarity:2,list:0,mtg:0,description:'Upgrade a Card After Each Elite'},
+
+        /*
+        {name:'Radio Receiver',internal:'Emergency Push',id:433,rarity:0,list:0,mtg:0,description:'Add 1 Emergency Push at\nthe Start of Combat'},
+        {name:'Optimal Sneakers',internal:'Free Move',id:434,rarity:4,list:0,mtg:0,description:'Add a Free Move\nto Hand Every Turn'},
+
+        {name:'',internal:'',id:435,rarity:4,list:0,mtg:0,description:'Add (N) to Base Mana,\n'},
+        {name:'',internal:'',id:436,rarity:4,list:0,mtg:0,description:'Add (W) to Base Mana,\n'},
+        {name:'',internal:'',id:437,rarity:4,list:0,mtg:0,description:'Add (B) to Base Mana,\n'},
+        {name:'',internal:'',id:438,rarity:4,list:0,mtg:0,description:'Add (K) to Base Mana,\n'},
+        {name:'',internal:'',id:439,rarity:4,list:0,mtg:0,description:'Add (G) to Base Mana,\n'},
+
+        {name:'Containment Shell',internal:'Red Mana/Red Spent Temporary Strength',id:440,rarity:4,list:0,mtg:2,description:'Add (R) to Base Mana,\nGain 2 Temporary Strength\nWhen You Spend (R) on an Attack'},
+        {name:'',internal:'',id:441,rarity:4,list:0,mtg:2,description:'Add (E) to Base Mana,\n'},
+        {name:'',internal:'',id:442,rarity:4,list:0,mtg:2,description:'Gain a Random Mana Each Turn,\n'},
+        */
 
         //mark mtg mark r
     ],item:[
@@ -9873,7 +9888,7 @@ Does not spend the orb.`,
         },{name:'Lightning Orb',mtg:0,desc:
 `On evoke, deals 8 damage. Also deals 4 damage to a random enemy every turn.`,
         },{name:'Light Orb',mtg:0,desc:
-`On evoke, draw 4 cards.`,
+`On evoke, draw 3 cards.`,
         },{name:'Flame Orb',mtg:0,desc:
 `On evoke, applies 5 Burn.`,
         },{name:'Ice Orb',mtg:0,desc:
@@ -10266,7 +10281,7 @@ variants={
         'Choose or Lose','Compression Draw','Five-Card Hold','Card Slot Draw',
         'Card Techify','Expect the Unexpected','Cursed Mode','Polar',
         '20% HP','50% HP','Terminal','Hungry',
-        'Short Map','Shorter Map','Straight Map','Enemy Initiative',
+        'Short Map','Shorter Map','Straight Map','No Initiative',
         'Prism','Ultraprism','Junkyard','Colorshift',
         'All Vanishing','Silent Cards','Transcend','Overheat',
         'Cliffs','Assault','Unary','Running Loop',

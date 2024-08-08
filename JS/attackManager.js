@@ -15,7 +15,6 @@ class attackManager{
         this.energy=0
         this.mtgEnergy=0
         this.target=[0]
-        this.mtgManaColor=0
 
         this.cost=0
         this.targetInfo=[0,0,0]

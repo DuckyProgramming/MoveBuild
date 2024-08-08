@@ -1195,11 +1195,11 @@ class relic{
                     displaySymbol(this.layer,0,0,7,0,0.4,this.fade)
                     displaySymbol(this.layer,8,8,17,0,0.3,this.fade)
                 break
-                case '30 Max HP':
+                case '40 Max HP':
                     displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('30',0,12)
+                    this.layer.text('40',0,12)
                 break
                 case 'Upgrade Random Turn':
                     displaySymbol(this.layer,0,-4,8,0,1,this.fade)
@@ -2542,7 +2542,7 @@ class relic{
                     displaySymbol(this.layer,0,-12,4,0,0.4,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(8)
-                    this.layer.text('-2',8,-6)
+                    this.layer.text('-4',8,-6)
                 break
                 case 'Turn 1 Energy/Turn 2 Heal/Turn 3 Temporary Strength':
                     displaySymbol(this.layer,-12,-5,9,0,0.6,this.fade)
@@ -2620,7 +2620,7 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('-1',9,0)
                     this.layer.textSize(6)
-                    this.layer.text('10%',-9,0)
+                    this.layer.text('50%',-9,0)
                 break
                 case 'Energy/Colorless':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
@@ -2831,8 +2831,6 @@ class relic{
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('-1',9,0)
-                    this.layer.textSize(6)
-                    this.layer.text('25%',-9,0)
                 break
                 case 'First Block Energy':
                     displaySymbol(this.layer,-9,0,27,0,1,this.fade)

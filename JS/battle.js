@@ -416,19 +416,17 @@ class battle{
             }
         }
         this.combatantManager.reID()
+        this.tileManager.activate()
         if(this.modded(63)&&floor(random(0,2))==0){
-            this.tileManager.activate()
             this.sendReinforce()
             this.tileManager.fire()
             this.turnManager.loadEnemyTurns()
             this.replayManager.list.push(new attack(-1005,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
             this.combatantManager.enableCombatants()
             this.turn.main=this.players
-        }else if(variants.initiative){
+        }else{
             this.turnManager.loadEnemyTurnsMove()
             this.turn.main=this.players
-        }else{
-            this.startTurn()
         }
         if(this.encounter.class==2&&this.nodeManager.harmBoss>0){
             this.nodeManager.harmBoss=0
@@ -953,9 +951,6 @@ class battle{
     }
     playCard(card,player,mode){
         let cardClass=card.spec.includes(12)?card.class[mode]:card.class
-        if(variants.mtg){
-            this.cardManagers[player].mtgLastColor=card.mtgManaColor
-        }
         if(card.spec.includes(0)||card.spec.includes(12)&&card.reality[mode].includes(0)){
             this.cardManagers[player].fatigue()
         }

@@ -647,10 +647,12 @@ class overlay{
                         }
                     break
                     case 31:
-                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
                         for(let a=0,la=list[args[1]].length;a<la;a++){
                             if(
-                                types.card[list[args[1]][a]].levels[args[0]].cost!=args[3]&&args[3]!=-99||
+                                (variants.mtg?(types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(11)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(21)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(40)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(55)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(58)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(59)?
+                                types.card[list[args[1]][a]].mtg.levels[args[0]].cost[0]:types.card[list[args[1]][a]].mtg.levels[args[0]].cost.length
+                                ):types.card[list[args[1]][a]].mtg.levels[args[0]].cost)!=args[3]&&args[3]!=-99||
                                 types.card[list[args[1]][a]].levels[args[0]].class!=args[4]||
                                 specialCost(types.card[list[args[1]][a]].levels[args[0]])
                             ){
@@ -662,7 +664,7 @@ class overlay{
                         for(let a=0,la=this.options;a<la;a++){
                             if(list[args[1]].length>0){
                                 let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],types.card[list[args[1]][index]].list,-1))
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
                                 this.cards[this.cards.length-1].upSize=true
                                 list[args[1]].splice(index,1)
                             }

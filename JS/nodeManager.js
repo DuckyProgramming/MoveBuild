@@ -95,11 +95,11 @@ class nodeManager{
                         this.nodes[a].connections.push(b)
                     }else if(floor(random(0,5))==0&&posA.y==posB.y-1&&(
                         posA.y==0||
-                        posA.y==1&&posA.x==1&&posA.x==1-side[0]||
+                        posA.y==1&&posB.x==1&&posA.x==1-side[0]||
                         posA.y==2&&(posA.x==posB.x||posA.x==posB.x-1)&&![[0,2],[1,2],[1,3]][side[1]].includes(posA.x+posB.x-1)||
                         posA.y>=3&&posA.y<=length-5&&abs(posB.x-posA.x)==1&&!this.nodes[a].connections.includes(b)||
                         posA.y==length-4&&(posA.x==posB.x||posA.x==posB.x+1)&&![[0,2],[1,2],[1,3]][side[3]].includes(posB.x+posA.x-1)||
-                        posA.y==length-3&&posA.x==1&&posB.x==1-side[3]||
+                        posA.y==length-3&&posB.x==1&&posB.x==1-side[3]||
                         posA.y==length-2
                     )){
                         this.nodes[a].extraConnections.push(b)
