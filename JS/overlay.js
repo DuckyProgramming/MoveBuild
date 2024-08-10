@@ -232,6 +232,15 @@ class overlay{
                         if(this.args[0]==0&&this.battle.relicManager.hasRelic(315,this.player)){
                             list2=copyArrayStack(this.battle.cardManagers[this.player].listing.card[game.playerNumber+5])
                         }
+                        if(variants.mtg){
+                            for(let a=0,la=list[effectiveRarity].length;a<la;a++){
+                                if(types.card[list[effectiveRarity][a]].mtg.list==-1&&types.card[list[effectiveRarity][a]].mtg.color[0]!=0&&floor(random(0,3))!=0){
+                                    list[effectiveRarity].splice(a,1)
+                                    a--
+                                    la--
+                                }
+                            }
+                        }
                         for(let a=0,la=this.options;a<la;a++){
                             if(list[effectiveRarity].length>0){
                                 let index=0
@@ -1888,7 +1897,7 @@ class overlay{
                 this.layer.rect(this.layer.width/2,this.layer.height/2+40,120,40,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(20)
-                this.layer.text('Heal 10 HP',this.layer.width/2,this.layer.height/2-40)
+                this.layer.text(`Heal ${10+this.battle.relicManager.active[449][this.player+1]*5} HP`,this.layer.width/2,this.layer.height/2-40)
                 this.layer.text('Close',this.layer.width/2,this.layer.height/2+40)
                 this.layer.textSize(8)
                 this.layer.text('60 Currency',this.layer.width/2,this.layer.height/2-25)
@@ -2032,7 +2041,9 @@ class overlay{
                     this.layer.fill(0,this.fade)
                     this.layer.noStroke()
                     this.layer.textSize(18)
-                    this.layer.text(types.attack[this.combatant.attack[a].type].name,this.layer.width/2,this.layer.height/2-105+a*50)
+                    this.layer.text(
+                        variants.mtg?types.attack[this.combatant.attack[a].type].name.replace('Energy','Mana'):types.attack[this.combatant.attack[a].type].name
+                        ,this.layer.width/2,this.layer.height/2-105+a*50)
                 }
             break
             case 15:
@@ -3121,7 +3132,7 @@ class overlay{
                 case 7:
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-40},width:120,height:40})&&this.battle.currency.money[this.player]>=60){
                         this.battle.currency.money[this.player]-=60
-                        this.battle.combatantManager.combatants[this.player].heal(10)
+                        this.battle.combatantManager.combatants[this.player].heal(10+this.battle.relicManager.active[449][this.player+1]*5)
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+40},width:120,height:40})){
                         this.active=false
                     }
@@ -4158,7 +4169,7 @@ class overlay{
                 case 7:
                     if(key==UP_ARROW&&this.battle.currency.money[this.player]>=60){
                         this.battle.currency.money[this.player]-=60
-                        this.battle.combatantManager.combatants[this.player].heal(10)
+                        this.battle.combatantManager.combatants[this.player].heal(10+this.battle.relicManager.relic[449][this.player+1]*5)
                     }else if(code==ENTER){
                         this.active=false
                     }

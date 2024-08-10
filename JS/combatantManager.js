@@ -249,10 +249,13 @@ class combatantManager{
         }
     }
     subTarget(index){
-        if(this.combatants[index].tilePosition.x==this.battle.attackManager.tilePosition.x&&this.combatants[index].tilePosition.y==this.battle.attackManager.tilePosition.y){
-            this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[index].tilePosition.x,this.combatants[index].tilePosition.y)].indescriptTarget(0,numeralizeDirection(0))
-        }else{
-            this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[index].tilePosition.x,this.combatants[index].tilePosition.y)].target(0,numeralizeDirection(0,directionCombatant(this.combatants[index],this.combatants[this.battle.attackManager.user])))
+        let tile=this.battle.tileManager.getTileIndex(this.combatants[index].tilePosition.x,this.combatants[index].tilePosition.y)
+        if(tile>=0){
+            if(this.combatants[index].tilePosition.x==this.battle.attackManager.tilePosition.x&&this.combatants[index].tilePosition.y==this.battle.attackManager.tilePosition.y){
+                this.battle.tileManager.tiles[tile].indescriptTarget(0,numeralizeDirection(0))
+            }else{
+                this.battle.tileManager.tiles[tile].target(0,numeralizeDirection(0,directionCombatant(this.combatants[index],this.combatants[this.battle.attackManager.user])))
+            }
         }
     }
     targetCombatants(){
@@ -1197,7 +1200,7 @@ class combatantManager{
                     targetter[0]==5&&this.combatants[a].id!=targetter[1]&&this.combatants[a].block<=0||
                     targetter[0]==6&&this.combatants[a].id==targetter[1]&&this.combatants[a].block<=0
                 )&&distance>=range[0]&&distance<=range[1]
-                &&!(effect==0&&!(
+                &&!(effect==0&&distance>0&&!(
                     diagonal&&legalTargetDiagonalCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)||
                     !diagonal&&legalTargetCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)
                 ))
@@ -1223,7 +1226,7 @@ class combatantManager{
                     break
                     case 5:
                         if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
-                            this.battle.energy.temp[this.combatants[a].id]-=values[0]
+                            this.combatants[a].statusEffect(variants.mtg?'Random Mana Next Turn':'Energy Next Turn',values[0])
                         }
                     break
                     case 6:

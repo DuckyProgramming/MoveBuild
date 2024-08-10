@@ -170,7 +170,8 @@ class combatant{
             '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
             '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
             'Elemental Draw','(E) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(N) Next Turn','(E) on Hit','Free Draw Up',
-            'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw','Balance (E)','Invisible Per Turn','Random Mana Next Turn',
+            'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw','Balance (E)','Invisible Per Turn','Random Mana Next Turn','Colorless Cost Down',
+            'Colorless Neutral Convert','Single Attack Weak',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -224,7 +225,8 @@ class combatant{
                 0,0,0,2,0,2,0,2,0,0,//49
                 0,2,0,0,0,0,0,2,2,0,//50
                 0,2,2,2,2,2,2,2,2,0,//51
-                0,0,0,0,0,0,0,0,2,
+                0,0,0,0,0,0,0,0,2,0,//52
+                1,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -278,7 +280,8 @@ class combatant{
                 2,2,2,0,2,0,3,3,2,2,//49
                 2,1,2,2,2,2,2,2,2,2,//50
                 2,2,2,2,2,2,2,2,2,2,//51
-                2,2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//52
+                2,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -299,6 +302,7 @@ class combatant{
         this.size=1
 
         this.combo=0
+        this.comboCap=10
         this.armed=true
         this.balance=0
         this.balanceCap=10
@@ -3720,6 +3724,7 @@ class combatant{
         this.lastTake=0
 
         this.combo=0
+        this.comboCap=10
         this.armed=true
         this.balance=0
         this.balanceCap=10
@@ -5509,6 +5514,10 @@ class combatant{
                 if(userCombatant.status.main[476]>0){
                     this.statusEffect('Poison',userCombatant.status.main[476])
                 }
+                if(userCombatant.status.main[521]>0){
+                    this.statusEffect('Weak',userCombatant.status.main[521])
+                    userCombatant.status.main[521]=0
+                }
                 if(this.team==0&&userCombatant.team==0){
                     if(this.battle.modded(12)){
                         hit=false
@@ -5837,7 +5846,7 @@ class combatant{
                     this.battle.stats.damage[this.battle.turn.main]+=damage
                     if(user>=0&&user<this.battle.combatantManager.combatants.length){
                         let userCombatant=this.battle.combatantManager.combatants[user]
-                        userCombatant.combo+=1+userCombatant.status.main[68]
+                        userCombatant.combo=min(userCombatant.combo+1+userCombatant.status.main[68],userCombatant.comboCap)
                     }
                 }
                 if(this.battle.modded(9)&&this.team>0&&this.team<=this.battle.players&&damage>10){
@@ -6273,7 +6282,7 @@ class combatant{
             }
             block=round(block*10)/10
             if(this.status.main[70]>0){
-                this.combo+=this.status.main[70]
+                this.combo=min(this.combo+this.status.main[70],this.comboCap)
             }
             if(this.status.main[140]>0){
                 for(let a=0,la=this.status.main[140];a<la;a++){
@@ -6357,7 +6366,11 @@ class combatant{
         if(this.status.main[11]>0){
             this.status.main[11]--
         }else if(!(this.team==0&&this.battle.modded(26))){
-            this.block=this.battle.relicManager.hasRelic(26,this.id)?max(0,this.block-20):0
+            this.block=this.battle.relicManager.hasRelic(444,this.id)?
+            round(this.block*(1-0.5**this.battle.relicManager.active[444][this.id+1])):
+            this.battle.relicManager.hasRelic(37,this.id)?
+            max(this.block-20,0):
+            0
         }
     }
     addSin(sin){
@@ -6512,7 +6525,7 @@ class combatant{
             break
             case 6:
                 if(target<this.battle.players||this.id<this.battle.players){
-                    this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(3*multi))
+                    this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(2*multi))
                 }
             break
             case 7:
@@ -6567,7 +6580,7 @@ class combatant{
                 this.battle.combatantManager.combatants[target].orbTake(round(4*multi*playerMulti),-1)
             break
             case 6:
-                this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(1.5*multi))
+                this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(multi))
             break
             case 7:
                 this.battle.combatantManager.combatants[target].statusEffect('Burn',round(2.5*multi))
@@ -6810,7 +6823,7 @@ class combatant{
                 this.battle.cardManagers[this.id].hand.add(findName('Speed',types.card),0,0)
             break
             case 5:
-                this.battle.addSpecificEnergy(variants.mtg?5:3,this.id,6)
+                this.battle.addSpecificEnergy(3,this.id,6)
             break
         }
         if(this.status.main[126]>0){
@@ -6826,7 +6839,7 @@ class combatant{
     leaveStance(stance){
         switch(stance){
             case 2:
-                this.battle.addSpecificEnergy(variants.mtg?3:2,this.id,6)
+                this.battle.addSpecificEnergy(2,this.id,6)
             break
         }
     }
@@ -7226,7 +7239,7 @@ class combatant{
                     case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 66: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
                     case 67: this.combo=0; break
-                    case 71: case 72: this.combo=max(0,this.combo+this.status.main[a]); break
+                    case 71: case 72: this.combo=constrain(this.combo+this.status.main[a],0,this.comboCap); break
                     case 81: this.status.main[findList('Energy Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 83: this.status.main[findList('Double Damage Turn',this.status.name)]+=this.status.main[a]; break
                     case 85: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.discard(this.status.main[a])}; break
@@ -7561,8 +7574,8 @@ class combatant{
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
                     break
-                    case 1: case 2: case 4: case 6: case 7: case 16: case 17: case 19: case 25: case 26:
-                    case 32: case 41:
+                    case 1: case 2: case 3: case 4: case 6: case 7: case 16: case 17: case 19: case 25:
+                    case 26: case 32: case 41:
                         this.animSet.loop=0
                     break
                     case 5:
@@ -8054,6 +8067,13 @@ class combatant{
                         for(let g=0;g<2;g++){
                             this.spin.arms[g].top=(90-abs(lsin(this.animSet.loop*180)*84))*(g*2-1)
                             this.anim.arms[g].top=54+abs(lsin(this.animSet.loop*180))*30
+                        }
+                    break
+                    case 3:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.spin.arms[g].top=(90-abs(lsin(this.animSet.loop*180)*30))*(g*2-1)
+                            this.anim.arms[g].top=54+abs(lsin(this.animSet.loop*180))*24
                         }
                     break
                     case 4:

@@ -765,7 +765,7 @@ function intentDescription(attack,user,info){
 				return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nRange 1-6\nNo Movement`
 			case 91: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6\nNo Movement`
 			case 92: return `Draw ${info?attack.effect[0]:`?`} Less\nCard${attack.effect[0]!=1||info?`s`:``} Next Turn`
-			case 93: return `Target Loses ${info?attack.effect[0]:`?`} Energy`
+			case 93: return `Target Loses ${info?attack.effect[0]:`?`} ${variants.mtg?`Random Mana`:`Energy`}`
 			case 94: return `Apply ${info?attack.effect[0]:`?`} Anti-Control`
 			case 95: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 4 Times\n3 Tiles Wide\nRange 1-1`
 			case 96: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPulls at Range 2\nRange 1-2`
@@ -796,7 +796,7 @@ function intentDescription(attack,user,info){
 			case 121: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Right\nRange 1-1`
 			case 122: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Left\nRange 1-1`
 			case 123: return `Apply ${info?attack.effect[0]:`?`} Bleed\nRange 1-6\nNo Movement`
-			case 124: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} Energy\n3 Tiles Wide\nRange 1-1`
+			case 124: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} ${variants.mtg?`Random Mana`:`Energy`}\n3 Tiles Wide\nRange 1-1`
 			case 125: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nSwap With Target\nRange 1-6`
 			case 126: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block to All Enemies\nAll Enemies Retain Block\nFor 2 Turns`
 			case 127: case 363:
@@ -814,7 +814,7 @@ function intentDescription(attack,user,info){
 			case 138: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Back Left\nRange 1-2`
 			case 139: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Back Right\nRange 1-2`
 			case 140: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Move\nFor ${info?attack.effect[1]:`?`} Turn${attack.effect[1]!=1?`s`:``}\nRange 1-6\nNo Movement`
-			case 141: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} Energy\nRange 1-6\nNo Movement`
+			case 141: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} ${variants.mtg?`Random Mana`:`Energy`}\nRange 1-6\nNo Movement`
 			case 142: return `Gain ${info?attack.effect[0]:`?`} Strength\nDeal ${info?calculateIntent(attack.effect[1],user,0):`?`} Damage\nPush 1 Tile\nto All Adjacent Tiles\nRange 1-1`
 			case 143: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 2 Tiles\nRange 1-3`
 			case 144: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nStaple ${info?attack.effect[1]:`?`} Cards\nRange 1-6\nNo Movement`
@@ -867,7 +867,7 @@ function intentDescription(attack,user,info){
 			case 195: return `Move to End of Board,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap\nUsable in 3 Directions`
 			case 196: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6`
 			case 197: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Armor`
-			case 198: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nTargets Lose ${info?attack.effect[1]:`?`} Energy\nRange 1-1`
+			case 198: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nTargets Lose ${info?attack.effect[1]:`?`} ${variants.mtg?`Random Mana`:`Energy`}\nRange 1-1`
 			case 199: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTransform ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:``}\nRange 1-6`
 			case 200: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nHeal ${info?calculateIntent(attack.effect[0],user,4):`?`} Health\nRange 1-6`
 			case 201: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nSet Values of ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:``} to 1\nRange 1-6`
@@ -935,7 +935,7 @@ function intentDescription(attack,user,info){
 			case 268: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nMove ${info?attack.effect[1]:`?`} More Time${attack.effect[1]>0?`s`:``} Per Turn\nRange 1-6`
 			case 269: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nGain ${info?attack.effect[1]:`?`} Strength\nMove ${info?attack.effect[2]:`?`} More Time${attack.effect[2]>0?`s`:``} Per Turn`
 			case 270: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDraw ${info?attack.effect[1]:`?`} Less\nCard${attack.effect[1]!=1||info?`s`:``} Next Turn\nRange 1-1`
-			case 271: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} Energy\nRange 1-1`
+			case 271: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} ${variants.mtg?`Random Mana`:`Energy`}\nRange 1-1`
 			case 272: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-2`
 			case 273: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nRange 1-2`
 			case 274: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDiscard ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1||info?`s`:``} Next Turn\nRange 1-1`
@@ -992,9 +992,9 @@ function intentDescription(attack,user,info){
 			case 326: return `Replace ${info?attack.effect[0]:`?`} Cards\nWith${attack.effect[0]!=1?``:` a`} Strikes${attack.effect[0]!=1?`s`:``}\nReplace ${info?attack.effect[1]:`?`} Cards\nWith${attack.effect[1]!=1?``:` a`} Defend${attack.effect[1]!=1?`s`:``}`
 			case 327: return `Apply ${info?attack.effect[0]:`?`} Jinx\nRange 1-6`
 			case 328: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDiscard ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:``}\nRange 1-6`
-			case 329: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} Energy\nRange 1-2`
+			case 329: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} ${variants.mtg?`Random Mana`:`Energy`}\nRange 1-2`
 			case 330: return `Apply ${info?attack.effect[0]:`?`} Shock\n3 Tiles Wide\nRange 1-1`
-			case 331: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Splash Damage\nTargets Lose ${info?attack.effect[1]:`?`} Energy\nRange 2-2`
+			case 331: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Splash Damage\nTargets Lose ${info?attack.effect[1]:`?`} ${variants.mtg?`Random Mana`:`Energy`}\nRange 2-2`
 			case 332: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1\nIncreases by ${info?attack.effect[1]:`?`}`
 			case 333: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Strength\nAnd ${info?attack.effect[1]:`?`} Dexterity`
 			case 334: return `All Enemies Deal Double Damage\nFor Their Next ${info?attack.effect[0]:`?`} Attack${attack.effect[0]!=1?`s`:``}`
@@ -1153,6 +1153,21 @@ function multiplyString(base,multiply){
 }
 function copyCard(base){
 	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost)
+}
+function copyCardNew(base){
+	game.id++
+	return new card(base.layer,base.battle,base.player,1200,500,base.type,base.level,base.color,game.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost)
+}
+function copyCardNewAbstract(base,type,args){
+	game.id++
+	let result=new card(base.layer,base.battle,base.player,1200,500,base.type,base.level,base.color,game.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost)
+	switch(type){
+		case 0:
+			result.cost=copyArray(args[0])
+			result.base.cost=copyArray(args[0])
+		break
+	}
+	return result
 }
 function copyCardFree(base){
 	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost)
@@ -1755,10 +1770,10 @@ function quickNode(type){
 }
 function quickDraw(){
 	for(let a=0,la=4;a<la;a++){
-		quickAddFull('Strike',1,1,0)
-		quickAddFull('Defend',1,1,0)
-		quickAddFull('Step',1,1,0)
-		quickAddFull('Think',1,1,0)
+		quickAddFull('Strike',1,0,0)
+		quickAddFull('Defend',1,0,0)
+		quickAddFull('Step',1,0,0)
+		quickAddFull('Think',1,0,0)
 	}
 }
 function event(name){
@@ -2183,7 +2198,7 @@ function mtgPlayerColor(player){
 		case 4: return [5]
 		case 5: return [2,5]
 		case 6: return [3,4]
-		case 7: return [5,4]
+		case 7: return [4,5]
 		case 8: return [1,5]
 		case 9: return [1,4]
 		case 10: return [3]

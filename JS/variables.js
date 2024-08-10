@@ -153,7 +153,7 @@ types={
         {name:'Precision',life:8,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:274,effect:[4,1]},{type:38,effect:[6]}],description:`It works the first time at least`},
         {name:'Relic',life:108,behavior:0,spec:[0,18],move:{type:0,speed:1},attack:[{type:275,effect:[14]},{type:276,effect:[12]},{type:277,effect:[16]}],description:`Why do enemies award you now?`},
         {name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:278,effect:[14,2]},{type:279,effect:[17,2]},{type:280,effect:[30,2]}],description:`Just you wait...`},
-        {name:'Anomaly',life:124,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:281,effect:[7,1]},{type:2,effect:[8]},{type:282,effect:[6,8]}],description:`Actually kinda fragile`},
+        {name:'Anomaly',life:93,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:281,effect:[5,1]},{type:2,effect:[6]},{type:282,effect:[6,8]}],description:`Actually kinda fragile`},
         {name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
         {name:'Concentric',life:177,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunaria in never spawning`},
         {name:'Embodimental Destabilization',life:202,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[1,1,1,1]}],description:`This is getting out of hand!`},
@@ -206,7 +206,7 @@ types={
         {name:'Comrade',life:280,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:171,effect:[6,4]},{type:39,effect:[1,'Red']},{type:169,effect:[5]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
         {name:'Councilman',life:270,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:174,effect:[3]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
         {name:'Gangmaster',life:305,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Gangster']},{type:205,effect:[12]},{type:206,effect:[8]},{type:39,effect:[1,'Gangster Gunner']},{type:207,effect:[1]}],description:`Legitimate businessman`},
-        {name:'Daughter of Heaven',life:300,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:348,effect:[12,2,2]},{type:349,effect:[1,2]},{type:296,effect:[22]},{type:39,effect:[1,'Keystone']}],description:`Cut character POV`},
+        {name:'Daughter of Heaven',life:300,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:348,effect:[12,2,2]},{type:19,effect:[8]},{type:349,effect:[1,2]},{type:296,effect:[11]},{type:39,effect:[1,'Keystone']}],description:`Cut character POV`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Dizzy']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2,19],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
@@ -655,7 +655,7 @@ types={
         {name:'Alarm Clock',internal:'Emergency Move',id:8,rarity:2,list:0,mtg:0,description:'Add 1 Emergency Move at\nthe Start of Combat'},
         {name:'Double Blank Card',internal:'Redraw',id:9,rarity:0,list:0,mtg:0,description:'Add 1 Redraw at\nthe Start of Combat'},
 
-        {name:'Clean Water',internal:'Miracle',id:10,rarity:0,list:0,mtg:0,description:'Add a Miracle at\nthe Start of Combat'},
+        {name:'Clean Water',internal:'Miracle',id:10,rarity:1,list:0,mtg:0,description:'Add a Miracle at\nthe Start of Combat'},
         {name:'Bypass Code',internal:'Play Unplayable',id:11,rarity:1,list:0,mtg:0,description:'You Can Play and\nExhaust Unplayable Cards'},
         {name:'Red Ribbon',internal:'Upgrade All Attacks',id:12,rarity:1,list:0,mtg:0,description:'Upgrade All Attacks Added'},
         {name:'Blue Ribbon',internal:'Upgrade All Defense',id:13,rarity:1,list:0,mtg:0,description:'Upgrade All Defenses Added'},
@@ -672,7 +672,7 @@ types={
         {name:'Red Pepper',internal:'No Weak',id:23,rarity:-1,list:0,mtg:0,description:'You Cannot Become Weak'},
         {name:'Green Pepper',internal:'No Frail',id:24,rarity:-1,list:0,mtg:0,description:'You Cannot Become Frail'},
         {name:'Blue Pepper',internal:'No Vulnerable',id:25,rarity:-1,list:0,mtg:0,description:'You Cannot Become Vulnerable'},
-        {name:'Malachite',internal:'Retain Block',id:26,rarity:2,list:0,mtg:0,description:'Lose Only 20 Block\nat End of Turn'},
+        {name:'Malachite',internal:'Retain Block',id:26,rarity:-1,list:0,mtg:0,description:'Lose Only 20 Block\nat End of Turn'},
         {name:'Reforming Peas',internal:'Power Heal',id:27,rarity:2,list:0,mtg:0,description:'When You Play a\nPower, Heal 2 HP'},
         {name:'Glass Sphere',internal:'Retain Energy',id:28,rarity:2,list:0,mtg:1,description:'1 Energy Can be\nRetained Between Turns'},
         {name:'Pomegranite',internal:'14 Max HP',id:29,rarity:2,list:0,mtg:0,description:'When Taken,\nGain 14 Max HP'},
@@ -745,7 +745,7 @@ types={
 
         {name:'Cracked Urn',internal:'8 Turn Intangible',id:90,rarity:2,list:0,mtg:0,description:'Every 8 Turns,\nGain 1 Intangible'},
         {name:'Swear Jar',internal:'No Shop Currency',id:91,rarity:0,list:0,mtg:0,description:'Gain 20 Currency Every Node\nUntil Your Enter a Shop'},
-        {name:'Meatball Ticket',internal:'Shop Heal',id:92,rarity:0,list:0,mtg:0,description:'Heal 15 HP When\nYou Enter a Shop'},
+        {name:'Meatball Ticket',internal:'Shop Heal',id:92,rarity:0,list:0,mtg:0,description:'Heal 10 HP When\nYou Enter a Shop'},
         {name:'Top Hat',internal:'Shop Energy',id:93,rarity:0,list:0,mtg:1,description:'Gain 2 Energy After\nEntering a Shop'},
         {name:'Coal Ball',internal:'Death Strength',id:94,rarity:0,list:0,mtg:0,description:'When an Enemy Dies,\nGain 1 Strength'},
         {name:'Snowball',internal:'Death Dexterity',id:95,rarity:0,list:0,mtg:0,description:'When an Enemy Dies,\nGain 1 Dexterity'},
@@ -1120,21 +1120,24 @@ types={
         {name:'Pasta Bowl',internal:'X Cost Energy',id:430,rarity:3,list:0,mtg:1,description:'When You Play an X Cost Card,\nGain 1 Energy'},
         {name:'Pasta Bowl',internal:'X Cost Mana',id:431,rarity:3,list:0,mtg:2,description:'When You Play an X Cost Card,\nGain (N)'},
         {name:'Gas Oven',internal:'Elite Upgrade',id:432,rarity:2,list:0,mtg:0,description:'Upgrade a Card After Each Elite'},
-
-        /*
         {name:'Radio Receiver',internal:'Emergency Push',id:433,rarity:0,list:0,mtg:0,description:'Add 1 Emergency Push at\nthe Start of Combat'},
         {name:'Optimal Sneakers',internal:'Free Move',id:434,rarity:4,list:0,mtg:0,description:'Add a Free Move\nto Hand Every Turn'},
-
-        {name:'',internal:'',id:435,rarity:4,list:0,mtg:0,description:'Add (N) to Base Mana,\n'},
-        {name:'',internal:'',id:436,rarity:4,list:0,mtg:0,description:'Add (W) to Base Mana,\n'},
-        {name:'',internal:'',id:437,rarity:4,list:0,mtg:0,description:'Add (B) to Base Mana,\n'},
-        {name:'',internal:'',id:438,rarity:4,list:0,mtg:0,description:'Add (K) to Base Mana,\n'},
-        {name:'',internal:'',id:439,rarity:4,list:0,mtg:0,description:'Add (G) to Base Mana,\n'},
+        {name:'Purified Nebula',internal:'Neutral Mana/Colorless Cost Clear',id:435,rarity:4,list:0,mtg:2,description:'Add (N) to Base Mana,\nReplace (N) Costs With (1) Costs'},
+        {name:'Ivory Beads',internal:'White Mana/Block Up',id:436,rarity:4,list:0,mtg:2,description:'Add (W) to Base Mana,\nIncrease All Block Added by 2'},
+        {name:'Ice Crystal Wing',internal:'Blue Mana/Ice Wing',id:437,rarity:4,list:0,mtg:2,description:'Add (B) to Base Mana,\nAdd an Ice Wing at the Start of Combat'},
+        {name:'Unholy Water',internal:'Black Mana/Occult',id:438,rarity:4,list:0,mtg:2,description:'Add (K) to Base Mana,\nAdd 2 Occults at the Start of Combat'},
+        {name:'Toned Physique',internal:'Green Mana/3 Turn Strength',id:439,rarity:4,list:0,mtg:2,description:'Add (G) to Base Mana,\nGain 1 Strength Every 5 Turns'},
 
         {name:'Containment Shell',internal:'Red Mana/Red Spent Temporary Strength',id:440,rarity:4,list:0,mtg:2,description:'Add (R) to Base Mana,\nGain 2 Temporary Strength\nWhen You Spend (R) on an Attack'},
-        {name:'',internal:'',id:441,rarity:4,list:0,mtg:2,description:'Add (E) to Base Mana,\n'},
-        {name:'',internal:'',id:442,rarity:4,list:0,mtg:2,description:'Gain a Random Mana Each Turn,\n'},
-        */
+        {name:'Optic Spectra',internal:'Rainbow Mana/Mana Dump',id:441,rarity:4,list:0,mtg:2,description:'Add (E) to Base Mana,\nGain (W) (B) (K) (G) (R) Every 12 Turns'},
+        {name:'Left Fan',internal:'Random Mana/Duplicate Power',id:442,rarity:4,list:0,mtg:2,description:'Gain a Random Mana Each Turn,\nCreate a (1) Cost Copy of the\nFirst Power Played Each Combat'},
+        {name:'Expensive Bag',internal:'Double Stash',id:443,rarity:2,list:0,mtg:0,description:'You May Take an Extra\nRelic at Stashes'},
+        {name:'Azurite',internal:'Retain Block (B)',id:444,rarity:2,list:0,mtg:0,description:'Lose Only Half of Your Block\nat End of Turn'},
+        {name:'Periwinkle Veil',internal:'First Enemy Weak',id:445,rarity:2,list:0,mtg:0,description:'Apply 2 Weak to The First\nEnemy You Attack Each Combat'},
+        {name:'Sword of Hisou',internal:'Turn Splash Damage',id:446,rarity:2,list:0,mtg:0,description:'Deal 5 Splash Damage at\nthe Start of Your Turn'},
+        {name:'Preserved Insect',internal:'Boss Debuff',id:447,rarity:1,list:0,mtg:0,description:'Enemies in Boss Combats Start Combat\nWith 2 Weak, Vulnerable, and Frail'},
+        {name:'Nimble Fabric',internal:'Extended Initiative',id:448,rarity:0,list:0,mtg:0,description:'You Can Add Initiatives\nto Hand on Turn 2'},
+        {name:'Enhanced Facilities',internal:'Better Shop Heal',id:449,rarity:0,list:0,mtg:0,description:'Heal 50% More at Shops'},
 
         //mark mtg mark r
     ],item:[
@@ -5305,7 +5308,7 @@ thought it wasn't worth the expenditures.`,
 to the Management's desires, but only for a few decades before
 it was infiltrated by rebel operatives. The fatal weakness of
 the Diploid was its weak manpower commitment, resulting in a
-frail defense that collapsed quickly, with the rebelks managing
+frail defense that collapsed quickly, with the rebels managing
 to enter the control rooms and disable the device entirely.
 It was never repaired. The Admiral-Manager fired those involved
 and advised his successors never to repeat their mistakes.`,
@@ -8838,7 +8841,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             ],ally:[
             ],
         },{
-            level:['Induction 4'],class:0,world:1,
+            level:['Induction 4'],class:0,world:0,
             name:'Looter',
             player:{position:[[{x:2,y:1}],[{x:2,y:0},{x:3,y:2}]]},
             enemy:[
@@ -9233,7 +9236,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
             ],ally:[
             ],
         },{
-            level:['Hallway 5'],class:0,world:0,
+            level:['Hallway 5'],class:0,world:1,
             name:'Biker',
             player:{position:[[{x:2,y:2}],[{x:1,y:0},{x:0,y:1}]]},
             enemy:[
@@ -9888,7 +9891,7 @@ Does not spend the orb.`,
         },{name:'Lightning Orb',mtg:0,desc:
 `On evoke, deals 8 damage. Also deals 4 damage to a random enemy every turn.`,
         },{name:'Light Orb',mtg:0,desc:
-`On evoke, draw 3 cards.`,
+`On evoke, draw 2 cards.`,
         },{name:'Flame Orb',mtg:0,desc:
 `On evoke, applies 5 Burn.`,
         },{name:'Ice Orb',mtg:0,desc:
@@ -10281,7 +10284,7 @@ variants={
         'Choose or Lose','Compression Draw','Five-Card Hold','Card Slot Draw',
         'Card Techify','Expect the Unexpected','Cursed Mode','Polar',
         '20% HP','50% HP','Terminal','Hungry',
-        'Short Map','Shorter Map','Straight Map','No Initiative',
+        'Short Map','Shorter Map','Straight Map','Enemy Initiative',
         'Prism','Ultraprism','Junkyard','Colorshift',
         'All Vanishing','Silent Cards','Transcend','Overheat',
         'Cliffs','Assault','Unary','Running Loop',

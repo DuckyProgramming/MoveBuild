@@ -7,6 +7,7 @@ class purchaseManager{
         this.free=[0,0]
         this.scroll=0
         this.goalScroll=0
+        this.setupKey=0
         this.anim={scroll:[0,0]}
     }
     generalizedListing(type){
@@ -79,6 +80,17 @@ class purchaseManager{
                         let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[0]])
                         let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,0,1,1,2]:[0,0,0,0,0,0,1,1,1,1,2,2]
                         let cost=this.generalizedListing(0)
+                        if(variants.mtg){
+                            for(let a=0,la=list.length;a<la;a++){
+                                for(let b=0,lb=list[a].length;b<lb;b++){
+                                    if(types.card[list[a][b]].mtg.list==-1&&types.card[list[a][b]].mtg.color[0]!=0&&floor(random(0,3))!=0){
+                                        list[a].splice(b,1)
+                                        b--
+                                        lb--
+                                    }
+                                }
+                            }
+                        }
                         for(let a=0,la=group.length;a<la;a++){
                             if(list[group[a]].length>0){
                                 let index=floor(random(0,list[group[a]].length))
@@ -176,6 +188,17 @@ class purchaseManager{
                             let list=variants.mtg?copyArrayStack(this.battle.cardManagers[a].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[a].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[a].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[a].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
                             let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,0,1,1,2]:[0,0,0,0,0,0,1,1,1,1,2,2]
                             let cost=this.generalizedListing(0)
+                            if(variants.mtg){
+                                for(let b=0,lb=list.length;b<lb;b++){
+                                    for(let c=0,lc=list[b].length;c<lc;c++){
+                                        if(types.card[list[b][c]].mtg.list==-1&&types.card[list[b][c]].mtg.color[0]!=0&&floor(random(0,3))!=0){
+                                            list[a].splice(c,1)
+                                            c--
+                                            lc--
+                                        }
+                                    }
+                                }
+                            }
                             for(let b=0,lb=group.length;b<lb;b++){
                                 if(list[group[b]].length>0){
                                     let index=floor(random(0,list[group[b]].length))
@@ -414,6 +437,12 @@ class purchaseManager{
             break
         }
     }
+    reroll(){
+        this.setupKey=15
+        for(let a=0,la=this.purchases.length;a<la;a++){
+            this.purchases[a].deSize=true
+        }
+    }
     costChange(player,tag,value){
         for(let a=0,la=this.purchases.length;a<la;a++){
             if(this.purchases[a].tag==tag&&(this.purchases[a].player==player||this.purchases[a].player==-1)){
@@ -455,6 +484,13 @@ class purchaseManager{
         19 trade offer
         20-22 item
         */
+    }
+    editSelf(player,tag,type){
+        for(let a=0,la=this.purchases.length;a<la;a++){
+            if(this.purchases[a].tag==tag&&this.purchases[a].player==player){
+                this.purchases[a].editSelf(type)
+            }
+        }
     }
     bogo(player,type){
         let list=[]
@@ -501,6 +537,12 @@ class purchaseManager{
     }
     update(){
         this.purchases.forEach(purchase=>purchase.update())
+        if(this.setupKey>0){
+            this.setupKey--
+            if(this.setupKey==0){
+                this.setup(0)
+            }
+        }
         if(this.scroll<this.goalScroll-5){
             this.scroll+=25
             this.purchases.forEach(purchase=>purchase.position.x-=25)

@@ -197,7 +197,7 @@ class cardManager{
             effectiveMana[this.battle.energy.base[this.player][a]]++
         }
         for(let a=0,la=types.card.length;a<la;a++){
-            if(types.card[a].mtg!=undefined){
+            if(types.card[a].mtg!=undefined&&typeof types.card[a].mtg.levels[0].cost!='number'){
                 if(
                     types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list==this.battle.player[this.player]||types.card[a].mtg.list==-1)&&
                     (

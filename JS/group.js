@@ -2246,7 +2246,7 @@ class group{
             break
             case -61:
                 for(let a=0,la=card.effect[0];a<la;a++){
-                    this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)
+                    this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
             break
             case -63:
@@ -2270,7 +2270,7 @@ class group{
                 this.battle.addSpecificEnergy(card.effect[0],this.player,6)
                 this.drawEffects.push([5,card.effect[1]])
                 for(let a=0,la=card.effect[2];a<la;a++){
-                    this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)
+                    this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
             break
             case -71:
@@ -2311,7 +2311,7 @@ class group{
             
             case 288: case 374: case 2217: case 2776: case 4078:
                 for(let a=0,la=card.effect[1];a<la;a++){
-                    this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)
+                    this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
             break
             case 327:
@@ -2382,7 +2382,7 @@ class group{
             break
             case 1745: case 1943: case 2096: case 2128: case 2200: case 2465:
                 for(let a=0,la=card.effect[2];a<la;a++){
-                    this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)
+                    this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
             break
             case 2244:
@@ -2620,7 +2620,8 @@ class group{
                 variant==12&&this.cards[a].rarity==this.sorted[0]||
                 variant==13&&this.cards[a].rarity==this.sorted[this.sorted.length-1]||
                 variant==14&&this.cards[a].basic||
-                variant==15&&args[0].includes(this.cards[a].class)&&args[1]==this.cards[a].cost&&!this.cards[a].specialCost
+                variant==15&&args[0].includes(this.cards[a].class)&&args[1]==this.cards[a].cost&&!this.cards[a].specialCost||
+                variant==16&&this.cards[a].color.includes(args[0])
             ){
                 list.push(copyCard(this.cards[a]))
                 list[list.length-1].size=0
@@ -2686,89 +2687,93 @@ class group{
                     list.splice(floor(random(0,list.length)),0,copyCard(this.cards[firstIndex]))
                 }else if(spec==11){
                     list.splice(0,0,copyCard(this.cards[firstIndex]))
+                }else if(spec==22){
+                    this.cards[firstIndex].cost=variants.mtg&&!this.cards[firstIndex].specialCost?copyArray(this.cards[firstIndex].base.cost):this.cards[firstIndex].base.cost
+                    list.splice(0,0,copyCard(this.cards[firstIndex]))
                 }else{
                     list.push(copyCard(this.cards[firstIndex]))
                 }
-                list[list.length-1].size=0
+                let card=list[list.length-1]
+                card.size=0
                 if(
                     spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
                     spec==13||spec==14||spec==16||spec==18||spec==19||spec==20||spec==21
                 ){
-                    list[list.length-1].position.x=1200
-                    list[list.length-1].position.y=500
+                    card.position.x=1200
+                    card.position.y=500
                     switch(spec){
                         case 2:
-                            if(!list[list.length-1].additionalSpec.includes(-2)&&!list[list.length-1].spec.includes(55)){
-                                list[list.length-1].cost=variants.mtg&&!list[list.length-1].specialCost?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
+                            if(!card.additionalSpec.includes(-2)&&!card.spec.includes(55)){
+                                card.cost=variants.mtg&&!card.specialCost?copyArray(card.base.cost):card.base.cost
                             }
                         break
                         case 3:
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 4:
-                            list[list.length-1].setCost(0,[0])
+                            card.setCost(0,[0])
                         break
                         case 5:
-                            if(this.drawEffect(list[list.length-1])){la=0}
-                            list[list.length-1].setCost(0,[0])
+                            if(this.drawEffect(card)){la=0}
+                            card.setCost(0,[0])
                         break
                         case 6:
-                            list[list.length-1].costDown(0,[1])
+                            card.costDown(0,[1])
                         break
                         case 8:
-                            if(list[list.length-1].level==0){
-                                list[list.length-1]=upgradeCard(list[list.length-1])
+                            if(card.level==0){
+                                card=upgradeCard(card)
                             }
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 9:
-                            list[list.length-1].retain=true
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            card.retain=true
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 10:
-                            if(list[list.length-1].level<=1){
-                                list[list.length-1]=upgradeCard(list[list.length-1])
+                            if(card.level<=1){
+                                card=upgradeCard(card)
                             }
                         break
                         case 12:
-                            list[list.length-1].retain2=true
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            card.retain2=true
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 13:
-                            if(!list[list.length-1].spec.includes(39)){
-                                list[list.length-1].spec.push(39)
+                            if(!card.spec.includes(39)){
+                                card.spec.push(39)
                             }
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 14:
-                            if(!list[list.length-1].spec.includes(48)){
-                                list[list.length-1].spec.push(48)
+                            if(!card.spec.includes(48)){
+                                card.spec.push(48)
                             }
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 16:
-                            list[list.length-1].cost=floor(random(0,4))
+                            card.cost=floor(random(0,4))
                         break
                         case 18:
-                            if(!list[list.length-1].spec.includes(9)){
-                                list[list.length-1].spec.push(9)
+                            if(!card.spec.includes(9)){
+                                card.spec.push(9)
                             }
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 19:
-                            if(this.drawEffect(list[list.length-1])){la=0}
-                            list[list.length-1].costUp(0,[1])
+                            if(this.drawEffect(card)){la=0}
+                            card.costUp(0,[1])
                         break
                         case 20:
-                            list[list.length-1].spec.push(57)
+                            card.spec.push(57)
                         break
                         case 21:
-                            list[list.length-1].costDown(0,[1])
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            card.costDown(0,[1])
+                            if(this.drawEffect(card)){la=0}
                         break
                     }
-                }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
-                    list[list.length-1].cost=variants.mtg&&!list[list.length-1].specialCost?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
+                }else if(spec==7&&!card.additionalSpec.includes(-2)){
+                    card.cost=variants.mtg&&!card.specialCost?copyArray(card.base.cost):card.base.cost
                 }
                 delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
@@ -2782,86 +2787,90 @@ class group{
                     list.splice(floor(random(0,list.length)),0,copyCard(this.cards[firstIndex]))
                 }else if(spec==11){
                     list.splice(0,0,copyCard(this.cards[firstIndex]))
+                }else if(spec==22){
+                    this.cards[firstIndex].cost=variants.mtg&&!this.cards[firstIndex].specialCost?copyArray(this.cards[firstIndex].base.cost):this.cards[firstIndex].base.cost
+                    list.splice(0,0,copyCard(this.cards[firstIndex]))
                 }else{
                     list.push(copyCard(this.cards[firstIndex]))
                 }
-                list[list.length-1].size=0
+                let card=list[list.length-1]
+                card.size=0
                 if(
                     spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
                     spec==13||spec==14||spec==16||spec==18||spec==19||spec==20||spec==21
                 ){
-                    list[list.length-1].position.x=1200
-                    list[list.length-1].position.y=500
+                    card.position.x=1200
+                    card.position.y=500
                     switch(spec){
                         case 2:
-                            if(!list[list.length-1].additionalSpec.includes(-2)&&!list[list.length-1].spec.includes(55)){
-                                list[list.length-1].cost=variants.mtg&&!list[list.length-1].specialCost?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
+                            if(!card.additionalSpec.includes(-2)&&!card.spec.includes(55)){
+                                card.cost=variants.mtg&&!card.specialCost?copyArray(card.base.cost):card.base.cost
                             }
                         break
                         case 3:
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 4:
-                            list[list.length-1].setCost(0,[0])
+                            card.setCost(0,[0])
                         break
                         case 5:
-                            if(this.drawEffect(list[list.length-1])){la=0}
-                            list[list.length-1].setCost(0,[0])
+                            if(this.drawEffect(card)){la=0}
+                            card.setCost(0,[0])
                         break
                         case 6:
-                            if(this.drawEffect(list[list.length-1])){la=0}
-                            list[list.length-1].costDown(0,[1])
+                            if(this.drawEffect(card)){la=0}
+                            card.costDown(0,[1])
                         break
                         case 8:
-                            if(list[list.length-1].level==0){
-                                list[list.length-1]=upgradeCard(list[list.length-1])
+                            if(card.level==0){
+                                card=upgradeCard(card)
                             }
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 9:
-                            list[list.length-1].retain=true
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            card.retain=true
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 10:
-                            if(list[list.length-1].level<=1){
-                                list[list.length-1]=upgradeCard(list[list.length-1])
+                            if(card.level<=1){
+                                card=upgradeCard(card)
                             }
                         break
                         case 12:
-                            list[list.length-1].retain2=true
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            card.retain2=true
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 13:
-                            if(!list[list.length-1].spec.includes(39)){
-                                list[list.length-1].spec.push(39)
+                            if(!card.spec.includes(39)){
+                                card.spec.push(39)
                             }
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 14:
-                            if(!list[list.length-1].spec.includes(48)){
-                                list[list.length-1].spec.push(48)
+                            if(!card.spec.includes(48)){
+                                card.spec.push(48)
                             }
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 16:
-                            list[list.length-1].cost=floor(random(0,4))
+                            card.cost=floor(random(0,4))
                         break
                         case 18:
-                            if(!list[list.length-1].spec.includes(9)){
-                                list[list.length-1].spec.push(9)
+                            if(!card.spec.includes(9)){
+                                card.spec.push(9)
                             }
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            if(this.drawEffect(card)){la=0}
                         break
                         case 19:
-                            if(this.drawEffect(list[list.length-1])){la=0}
-                            list[list.length-1].costUp(0,[1])
+                            if(this.drawEffect(card)){la=0}
+                            card.costUp(0,[1])
                         break
                         case 20:
-                            list[list.length-1].spec.push(57)
+                            card.spec.push(57)
                         break
                         case 21:
-                            list[list.length-1].costDown(0,[1])
-                            if(this.drawEffect(list[list.length-1])){la=0}
+                            card.costDown(0,[1])
+                            if(this.drawEffect(card)){la=0}
                         break
                     }
                 }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
@@ -4623,7 +4632,7 @@ class group{
                             la--
                         }else if(this.status[5]>0){
                             this.cards[a].discardEffect=[]
-                            this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
+                            this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,22)
                             a--
                             la--
                             this.status[5]--

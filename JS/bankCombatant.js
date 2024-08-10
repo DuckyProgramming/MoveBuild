@@ -329,8 +329,8 @@ combatant.prototype.display=function(){
                     this.layer.arc(-0.5,-120.5,15,15,45,225)
                     this.layer.strokeCap(ROUND)
                     this.layer.noStroke()
-                    this.layer.fill(255,this.fade)
-                    this.layer.textSize(12)
+                    this.layer.fill(255,255,this.combo==this.comboCap?100:255,this.fade)
+                    this.layer.textSize(this.combo>=10?10:12)
                     this.layer.text(this.combo,0,-120.5)
                 }
             break
@@ -9064,7 +9064,9 @@ combatant.prototype.display=function(){
             break
             case 'Daughter of Heaven':
                 if(this.trigger.display.hair.back){
+                    controlSpin(this.hair.main,this.anim.direction,0)
                     displayTrianglesBack(this.layer,this.hair.main,this.anim.direction,-81,34,1,0.02,this.color.hair.back,1)
+                    controlSpin(this.hair.inside,this.anim.direction,0)
                     displayTrianglesBack(this.layer,this.hair.inside,this.anim.direction,-81,33,1,0.01,this.color.hair.insideBack,1)
                 }
                 for(let g=0;g<2;g++){
@@ -9173,7 +9175,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
                     }
                 }
-                if(this.trigger.display.dress){
+                if(this.trigger.display.dress&&lcos(this.anim.direction)>0){
                     this.layer.push()
                     this.layer.translate(lsin(this.anim.direction)*5,-63)
                     this.layer.rotate(lsin(this.anim.direction)*-15)
@@ -9233,9 +9235,7 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.trigger.display.hair.front){
-                    controlSpin(this.hair.inside,this.anim.direction,0)
                     displayTrianglesFront(this.layer,this.hair.inside,this.anim.direction,-81,33,1,0.02,this.color.hair.insideFront,1)
-                    controlSpin(this.hair.main,this.anim.direction,0)
                     displayTrianglesFront(this.layer,this.hair.main,this.anim.direction,-81,34,1,0.01,this.color.hair.front,1)
                     this.layer.noStroke()
                     this.layer.arc(0,-81,35,34,-180,0)

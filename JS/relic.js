@@ -107,7 +107,7 @@ class relic{
                     this.layer.text('1',8,-3)
                 break
                 case 'Emergency Move':
-                    displaySymbol(this.layer,-8,0,13,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,13,0,0.8,this.fade)
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
                     displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
@@ -392,8 +392,10 @@ class relic{
                     this.layer.text('100%',10,0)
                 break
                 case 'Extra Card Option':
-                    displaySymbol(this.layer,-8,0,17,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,0,17,0,0.5,this.fade)
                     displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
                     this.layer.text('1',8,0)
                 break
                 case 'Max HP Rest':
@@ -653,7 +655,7 @@ class relic{
                     displaySymbol(this.layer,9,0,8,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('3',-9,0)
+                    this.layer.text('4',-9,0)
                     this.layer.text('2',9,0)
                 break
                 case 'Item Collector':
@@ -728,7 +730,7 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('$',-10,0)
                     this.layer.textSize(10)
-                    this.layer.text('15',6,0)
+                    this.layer.text('10',6,0)
                 break
                 case 'Shop Energy':
                     displaySymbol(this.layer,6,0,9,0,1,this.fade)
@@ -2450,7 +2452,7 @@ class relic{
                     displaySymbol(this.layer,10,0,9,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('3',-9,0)
+                    this.layer.text('4',-9,0)
                     this.layer.text('1',10,0)
                 break
                 case 'Booster Pack Upgrade':
@@ -2507,7 +2509,7 @@ class relic{
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('8',-8,0)
-                    this.layer.text('1',9,0)
+                    this.layer.text('2',9,0)
                 break
                 case '1 Cost Down Per Turn/Energy Gain Block':
                     displaySymbol(this.layer,-8,-4,9,0,0.6,this.fade)
@@ -2799,7 +2801,7 @@ class relic{
                     displayMtgManaSymbol(this.layer,10,0,5,0,0.75,this.fade,-1,[])
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('3',-9,0)
+                    this.layer.text('4',-9,0)
                     this.layer.text('1',10,0)
                 break
                 case 'Turn 1 Mana/Turn 2 Heal/Turn 3 Temporary Strength':
@@ -3181,6 +3183,122 @@ class relic{
                     displaySymbol(this.layer,8,0,8,0,1,this.fade)
                     displaySymbol(this.layer,8,0,7,0,0.5,this.fade)
                 break
+                case 'Emergency Push':
+                    displaySymbol(this.layer,-8.25,0,20,0,0.4,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Free Move':
+                    displaySymbol(this.layer,-8,0,13,0,0.8,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,4,0,0.6,this.fade)
+                break
+                case 'Neutral Mana/Colorless Cost Clear':
+                    displayMtgManaSymbol(this.layer,-9,0,0,0,0.8,this.fade,-1,[])
+                    displayMtgManaSymbol(this.layer,7,-10,0,0,0.48,this.fade,-1,[])
+                    displayMtgManaSymbol(this.layer,7,10,-1,0,0.48,this.fade,-1,[])
+                    displaySymbol(this.layer,7,0,6,0,0.4,this.fade)
+                break
+                case 'White Mana/Block Up':
+                    displayMtgManaSymbol(this.layer,-9,0,1,0,0.8,this.fade,-1,[])
+                    displaySymbol(this.layer,9,0,161,0,1.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',9,0)
+                break
+                case 'Blue Mana/Ice Wing':
+                    displayMtgManaSymbol(this.layer,-9,0,2,0,0.8,this.fade,-1,[])
+                    displaySymbol(this.layer,9,0,162,0,1,this.fade)
+                break
+                case 'Black Mana/Occult':
+                    displayMtgManaSymbol(this.layer,-9,0,3,0,0.8,this.fade,-1,[])
+                    displaySymbol(this.layer,9,0,163,0,1,this.fade)
+                break
+                case 'Green Mana/3 Turn Strength':
+                    displayMtgManaSymbol(this.layer,-9,0,4,0,0.8,this.fade,-1,[])
+                    displaySymbol(this.layer,7,-8,11,0,0.7,this.fade)
+                    displaySymbol(this.layer,7,13.5,4,0,0.4,this.fade)
+                    displaySymbol(this.layer,7,2,5,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',7,-8)
+                    this.layer.textSize(8)
+                    this.layer.text('3',7,8.5)
+                break
+                case 'Red Mana/Red Spent Temporary Strength':
+                    displayMtgManaSymbol(this.layer,-9,0,5,0,0.8,this.fade,-1,[])
+                    displaySymbol(this.layer,8,-6,8,0,0.8,this.fade)
+                    displayMtgManaSymbol(this.layer,8,-6,5,0,0.4,this.fade,-1,[])
+                    displaySymbol(this.layer,8,8,41,0,0.5,this.fade)
+                break
+                case 'Rainbow Mana/Mana Dump':
+                    displayMtgManaSymbol(this.layer,-9,0,6,0,0.8,this.fade,-1,[])
+                    displayMtgManaSymbol(this.layer,6,-9.5,1,0,0.48,this.fade,-1,[])
+                    displayMtgManaSymbol(this.layer,8,-5,2,0,0.48,this.fade,-1,[])
+                    displayMtgManaSymbol(this.layer,9,0,3,0,0.48,this.fade,-1,[])
+                    displayMtgManaSymbol(this.layer,8,5,4,0,0.48,this.fade,-1,[])
+                    displayMtgManaSymbol(this.layer,6,9.5,5,0,0.48,this.fade,-1,[])
+                break
+                case 'Random Mana/Duplicate Power':
+                    displayMtgManaSymbol(this.layer,-9,0,-1,0,0.8,this.fade,-1,[])
+                    displaySymbol(this.layer,9,0,89,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,21,0,0.6,this.fade)
+                break
+                case 'Double Stash':
+                    displaySymbol(this.layer,-8,0,52,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,0,52,0,0.4,this.fade)
+                break
+                case 'Retain Block (B)':
+                    displaySymbol(this.layer,0,-4,27,0,1,this.fade)
+                    displaySymbol(this.layer,0,10,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',0,-4)
+                break
+                case 'First Enemy Weak':
+                    displaySymbol(this.layer,-8,-4,3,0,0.5,this.fade)
+                    displaySymbol(this.layer,-8,10,120,0,1,this.fade)
+                    displaySymbol(this.layer,8,2,24,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',8,2)
+                break
+                case 'Turn Splash Damage':
+                    displaySymbol(this.layer,0,0,164,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',0,0)
+                break
+                case 'Boss Debuff':
+                    displaySymbol(this.layer,-10,0,35,0,0.2,this.fade)
+                    displaySymbol(this.layer,3,0,24,0,0.4,this.fade)
+                    displaySymbol(this.layer,9,0,26,0,0.4,this.fade)
+                    displaySymbol(this.layer,15,0,25,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',9,0)
+                break
+                case 'Extended Initiative':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,13,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                    this.layer.textSize(8)
+                    this.layer.text('+1',-8,0)
+                break
+                case 'Better Shop Heal':
+                    displaySymbol(this.layer,6,0,2,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('$',-10,0)
+                    this.layer.textSize(8)
+                    this.layer.text('+50%',6,0)
+                break
 
                 //mark p
             }
@@ -3226,7 +3344,7 @@ class relic{
                         this.layer.textSize(6)
                         this.layer.text(`${detail%12}/12`,0,-16)
                     break
-                    case '3 Turn Draw': case '3 Turn Duplicate': case 'Green Mana/3 Turn Dodge':
+                    case '3 Turn Draw': case '3 Turn Duplicate': case 'Green Mana/3 Turn Dodge': case 'Green Mana/3 Turn Strength':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%3+1}/3`,0,-16)
@@ -3270,6 +3388,11 @@ class relic{
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%8+1}/8`,0,-16)
+                    break
+                    case 'Rainbow Mana/Mana Dump':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail%12+1}/12`,0,-16)
                     break
                 }
             }

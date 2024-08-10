@@ -1342,7 +1342,7 @@ class turn{
                         }
                     break
                     case 271: case 329:
-                        this.targetCombatant.statusEffect('Energy Next Turn',-this.effect[1])
+                        this.targetCombatant.statusEffect(variants.mtg?'Random Mana Next Turn':'Energy Next Turn',-this.effect[1])
                     break
                     case 274:
                         if(this.targetCombatant.id<this.battle.cardManagers.length){
@@ -1362,7 +1362,7 @@ class turn{
                         this.userCombatant.statusEffect('Decrementing Armor',this.effect[1])
                     break
                     case 287:
-                        this.userCombatant.statusEffect('Intangible',this.effect[1])
+                        this.userCombatant.statusEffect('Intangible Next Turn',this.effect[1])
                     break
                     case 290:
                         this.userCombatant.statusEffect('Regeneration',this.effect[1])
@@ -1598,7 +1598,7 @@ class turn{
                         this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Temporary Draw',-this.effect[0])
                     break
                     case 93:
-                        this.battle.energy.temp[this.userCombatant.target]-=this.effect[0]
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect(variants.mtg?'Random Mana Next Turn':'Energy Next Turn',this.effect[0])
                     break
                     case 94:
                         this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Anti-Control',this.effect[0])
@@ -1699,7 +1699,7 @@ class turn{
                             this.targetCombatant[a].statusEffect('Frail',this.effect[1])
                         break
                         case 124:
-                            this.targetCombatant[a].statusEffect('Energy Next Turn',-this.effect[1])
+                            this.targetCombatant[a].statusEffect(variants.mtg?'Random Mana Next Turn':'Energy Next Turn',-this.effect[1])
                         break
                         case 264:
                             this.targetCombatant[a].statusEffect('Shock',this.effect[1])
@@ -1744,7 +1744,7 @@ class turn{
                     break
                     case 141:
                         if(this.targetCombatant.id<this.battle.players){
-                            this.targetCombatant.statusEffect('Energy Next Turn',-this.effect[1])
+                            this.targetCombatant.statusEffect(variants.mtg?'Random Mana Next Turn':'Energy Next Turn',-this.effect[1])
                         }
                     break
                     case 151:
@@ -1857,7 +1857,7 @@ class turn{
                         this.userCombatant.removeAllStatuses([1,3])
                     break
                     case 349:
-                        this.userCombatant.statusEffect('Intangible',this.effect[0])
+                        this.userCombatant.statusEffect('Intangible Next Turn',this.effect[0])
                         this.userCombatant.statusEffect('Strength',this.effect[1])
                     break
                     case 356:

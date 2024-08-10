@@ -424,9 +424,11 @@ class battle{
             this.replayManager.list.push(new attack(-1005,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
             this.combatantManager.enableCombatants()
             this.turn.main=this.players
-        }else{
+        }else if(variants.initiative){
             this.turnManager.loadEnemyTurnsMove()
             this.turn.main=this.players
+        }else{
+            this.startTurn()
         }
         if(this.encounter.class==2&&this.nodeManager.harmBoss>0){
             this.nodeManager.harmBoss=0
@@ -744,7 +746,12 @@ class battle{
             combatant.extraTurn()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main],combatant)
             if(!variants.mtg){
-                this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
+                this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0),this.turn.main)
+            }
+            if(this.energy.temp[this.turn.main]>0){
+                this.addEnergy(this.energy.temp[this.turn.main],this.turn.main)
+            }else if(this.energy.temp[this.turn.main]<0){
+                this.loseEnergy(-this.energy.temp[this.turn.main],this.turn.main)
             }
             this.energy.temp[this.turn.main]=0
             noDraw=true
@@ -755,7 +762,12 @@ class battle{
             combatant.extraTurn()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main],combatant)
             if(!variants.mtg){
-                this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
+                this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0),this.turn.main)
+            }
+            if(this.energy.temp[this.turn.main]>0){
+                this.addEnergy(this.energy.temp[this.turn.main],this.turn.main)
+            }else if(this.energy.temp[this.turn.main]<0){
+                this.loseEnergy(-this.energy.temp[this.turn.main],this.turn.main)
             }
             this.energy.temp[this.turn.main]=0
             extra=true
@@ -856,12 +868,14 @@ class battle{
         let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
         combatant.tick()
         if(!this.tutorialManager.active){
-            if(this.turn.total==1){
+            if(this.turn.total<=1+this.relicManager.active[448][this.turn.main+1]){
                 if(!variants.initiative){
                     for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
                         this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
                     }
                 }
+            }
+            if(this.turn.total==1){
                 if(this.encounter.name=='Rewriter'){
                     this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
                 }
@@ -3104,7 +3118,7 @@ class battle{
                             this.overlayManager.overlays[27][a].active=true
                             this.overlayManager.overlays[27][a].activate()
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:194+a*(this.layer.width-388),y:628-50*this.anim.rerollActive[a]},width:32,height:20})&&this.relicManager.hasRelic(191,a)&&!this.purchaseManager.rerollActive[a]&&this.currency.money[a]>=50-(this.relicManager.hasRelic(187,a)?200:0)){
-                            this.purchaseManager.setup(0)
+                            this.purchaseManager.reroll()
                             this.purchaseManager.rerollActive[a]=true
                             this.currency.money[a]-=50
                         }
@@ -3523,7 +3537,7 @@ class battle{
                             this.overlayManager.overlays[27][a].active=true
                             this.overlayManager.overlays[27][a].activate()
                         }else if(((key=='c'||key=='C')&&this.players==1||key=='c'&&a==0&&this.players==2||key=='C'&&a==1&&this.players==2)&&this.relicManager.hasRelic(191,a)&&!this.purchaseManager.rerollActive[a]&&this.currency.money[a]>=50-(this.relicManager.hasRelic(187,a)?200:0)){
-                            this.purchaseManager.setup(0)
+                            this.purchaseManager.reroll()
                             this.purchaseManager.rerollActive[a]=true
                             this.currency.money[a]-=50
                         }

@@ -17,7 +17,7 @@ function setup(){
             //transition.trigger=true
             //transition.scene='menu'
 
-        current.menu.combatant=[6]
+        current.menu.combatant=[7]
         current.menu.deck=[-1]
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){
@@ -64,9 +64,9 @@ function setup(){
                 current.modManager.addMod(186+a)
             }*/
 
-            /*for(let a=0,la=1;a<la;a++){
+            /*for(let a=0,la=4;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(433+a,0)
+                quickRelic(446+a,0)
             }*/
 
             /*current.itemManager.addItemSlots(7,0)

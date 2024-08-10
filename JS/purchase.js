@@ -24,6 +24,11 @@ class purchase{
                 this.card=new card(this.layer,this.battle,this.player,0,0,this.args[0],this.args[1],this.args[2],0)
                 roll=floor(random(0,360*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
                 this.card.edition=this.battle.relicManager.hasRelic(213,player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:this.battle.relicManager.hasRelic(322,this.player)&&roll>=12&&roll<=11+this.battle.relicManager.active[322][this.player+1]*12?8:0
+                if(this.player>=0&&this.battle.relicManager.active[110][this.player+1]){
+                    for(let a=0,la=this.battle.relicManager.active[110][this.player+1];a<la;a++){
+                        this.card=upgradeCard(this.card)
+                    }
+                }
             break
             case 3:
                 this.relic=new relic(this.layer,this.battle,this.player,0,0,this.args[0],1.5)
@@ -70,6 +75,16 @@ class purchase{
             }
         }
     }
+    editSelf(type){
+        switch(type){
+            case 0:
+                this.card=upgradeCard(this.card)
+            break
+            case 1:
+                this.card=unupgradeCard(this.card)
+            break
+        }
+    }
     buy(){
         if((this.player==-1&&(this.battle.currency.money[0]>=round(this.cost[0])-(this.battle.relicManager.hasRelic(187,0)?200:0)&&inputs.rel.x<this.position.x||this.battle.currency.money[1]>=round(this.cost[1])-(this.battle.relicManager.hasRelic(187,1)?200:0)&&inputs.rel.x>this.position.x)||this.player!=-1&&this.battle.currency.money[this.player]>=round(this.cost[this.player])-(this.battle.relicManager.hasRelic(187,this.player)?200:0))&&this.usable){
             let purchaser=0
@@ -89,11 +104,7 @@ class purchase{
                 this.battle.relicManager.activate(13,[purchaser])
                 switch(this.type){
                     case 1:
-                        if(this.battle.relicManager.hasRelic(110,purchaser)){
-                            this.battle.cardManagers[purchaser].deck.add(this.card.type,1,this.card.color,this.card.edition)
-                        }else{
-                            this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color,this.card.edition)
-                        }
+                        this.battle.cardManagers[purchaser].deck.add(this.card.type,constrain(this.battle.relicManager.active[110][purchaser+1],0,types.card[this.card.type].levels.length-1),this.card.color,this.card.edition)
                         if(this.battle.relicManager.hasRelic(118,purchaser)&&this.cost[purchaser]>0){
                             this.battle.purchaseManager.bogo(purchaser,1)
                         }
@@ -110,12 +121,7 @@ class purchase{
                         }
                     break
                     case 4:
-                        this.battle.cardManagers[purchaser].deck.cards.splice(this.baseID,1)
-                        if(this.battle.relicManager.hasRelic(110,purchaser)){
-                            this.battle.cardManagers[purchaser].deck.add(this.card.type,1,this.card.color,this.card.edition)
-                        }else{
-                            this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color,this.card.edition)
-                        }
+                        this.battle.cardManagers[purchaser].deck.add(this.card.type,constrain(this.battle.relicManager.active[110][purchaser+1],0,types.card[this.card.type].levels.length-1),this.card.color,this.card.edition)
                     break
                     case 5:
                         this.battle.overlayManager.overlays[3][purchaser].active=true

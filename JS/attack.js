@@ -42,7 +42,6 @@ class attack{
         this.position={x:this.userCombatant.position.x,y:this.userCombatant.position.y}
         this.relativePosition={x:this.userCombatant.relativePosition.x,y:this.userCombatant.relativePosition.y}
         this.tilePosition={x:this.userCombatant.tilePosition.x,y:this.userCombatant.tilePosition.y}
-
         switch(this.attackClass){
             case 1:
                 this.clearAttack=[false,false,false,false,false,false,false,false,false,false,false,false,false,false]
@@ -189,7 +188,7 @@ class attack{
             case 4079: case 4082: case 4083: case 4084: case 4085: case 4088: case 4091: case 4096: case 4097: case 4098: case 4102: case 4105: case 4107: case 4108: case 4109: case 4110: case 4117: case 4122: case 4132: case 4137:
             case 4138: case 4139: case 4140: case 4142: case 4143: case 4145: case 4149: case 4150: case 4151: case 4152: case 4153: case 4154: case 4155: case 4156: case 4161: case 4162: case 4163: case 4167: case 4168: case 4169:
             case 4170: case 4172: case 4183: case 4190: case 4200: case 4201: case 4203: case 4204: case 4206: case 4211: case 4212: case 4218: case 4219: case 4228: case 4229: case 4230: case 4233: case 4234: case 4235: case 4236:
-            case 4237: case 4238: case 4242: case 4243: case 4244: case 4248: case 4249: case 4250: case 4256: case 4257: case 4258: case 4259:
+            case 4237: case 4238: case 4242: case 4243: case 4244: case 4248: case 4249: case 4250: case 4256: case 4257: case 4258: case 4259: case 4261: case 4266:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -232,7 +231,7 @@ class attack{
             case 3663: case 3681: case 3735: case 3743: case 3746: case 3780: case 3788: case 3789: case 3790: case 3795:
             case 3796: case 3797: case 3798: case 3799: case 3800: case 3801: case 3802: case 3803: case 3814: case 3884:
             case 3930: case 3931: case 3943: case 4000: case 4056: case 4076: case 4101: case 4104: case 4113: case 4141:
-            case 4197: case 4198: case 4199: case 4208: case 4209: case 4210: case 4223:
+            case 4197: case 4198: case 4199: case 4208: case 4209: case 4210: case 4223: case 4262:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -4733,6 +4732,9 @@ class attack{
                     case 4216:
                         this.battle.addSpecificEnergy(floor(this.userManager.reserve.cards.length/max(1,this.effect[0])),this.player,6)
                     break
+                    case 4268:
+                        this.userCombatant.addBlock(this.effect[0]*(this.userCombatant.stance==1?3:1))
+                    break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
                     break
@@ -8599,6 +8601,9 @@ class attack{
                         this.battle.addSpecificEnergy(2,this.player,3)
                         this.userCombatant.statusEffect('Take Per Card Played Combat',this.effect[0])
                     break
+                    case 4260:
+                        this.userCombatant.comboCap+=this.effect[0]
+                    break
 
                 }
                 //mark 4
@@ -10602,6 +10607,14 @@ class attack{
                         this.battle.overlayManager.overlays[6][this.player].active=true
                         this.battle.overlayManager.overlays[6][this.player].activate([0,3,1])
                         this.userCombatant.loseHealth(this.effect[0])
+                    break
+                    case 4267:
+                        let total4267=this.userManager.hand.numberAbstract(4,[[7]])
+                        if(total4267>0){
+                            this.battle.addSpecificEnergy(total4267,this.player,6)
+                            this.userManager.draw(this.effect[0]*total4267)
+                        }
+                        this.userManager.allEffectArgs(2,37,[7])
                     break
 
                 }
@@ -14948,6 +14961,9 @@ class attack{
                         }
                         this.userManager.draw(this.effect[1])
                     break
+                    case 4266:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
+                    break
 
                 }
                 //mark 11
@@ -16809,6 +16825,10 @@ class attack{
                     case 4249:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect(['Burn','Freeze'][this.userCombatant.energyParity(this.mtgEnergy.length)],this.effect[1])
+                    break
+                    case 4261:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.userCombatant.charge+=this.effect[1]
                     break
 
                     //mark 12

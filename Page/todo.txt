@@ -1,11 +1,3 @@
-change enemy (and construct attacks) that might be involved with mtg
-
-builds are impossible?
-
-
-
-
-
 MAJOR MTG CHANGES
 
 METAS
@@ -19,6 +11,9 @@ all spells of wonder should cost 2 hybrid and 1 neutral mana
 
 all flame wars cost 1 hybrid mana
 24,30,40
+
+all tridents cost 2 hybrid mana
+16,26,35
 
 silver cards instead only activate when (K) is spent
 
@@ -200,6 +195,11 @@ animate sunny
 
 take out - exhaust a card, retain, 1 cost, gain 1 energy if it was not a status or curse
 
+autokill - make an existing construct attack when anything moves into its line of sight
+
+ascension spin - draw a card, gain 3 temp strength
+
+dragon-slaying circle - 17 damage, conditionally 1 weak and 1 vulnerable
 
 
 
@@ -285,8 +285,8 @@ world 3:
 
 enemies:
 
-infinite spirit - lose 1 energy when you hit this enemy
-management quickdraw - a management soldier with a gun, but moves when you move, and always goes as far away as possible
+[]
+[]
 management robot commander - like a normal robot but can buff other robots and stronger generally
 
 bosses:
@@ -363,7 +363,10 @@ sharks - you're on a boat towards a management outpost on a island
 swim away - nothing happens
 punch a shark - 90% lose 10 health, 10% gain a relic
 
-[]
+tax collector - choice
+pay taxes - lose 250 currency
+evade taxes - lose 3 random cards
+declare bankruptcy - lose 100 currency, lose 20 health
 
 []
 

@@ -4948,6 +4948,37 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 518:
             displayMtgManaSymbol(layer,0,0,-1,0,0.4,fade,-1,[])
         break
+        case 519:
+            layer.fill(150,fade)
+            layer.triangle(0,0,-6,0,0,-6)
+            layer.triangle(0,0,6,0,0,6)
+            layer.fill(125,fade)
+            layer.triangle(0,0,-6,0,0,6)
+            layer.triangle(0,0,6,0,0,-6)
+            layer.fill(200,255,255,fade)
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            layer.triangle(-4,-1,-5,-1,-4.5,1)
+            layer.triangle(4,-1,5,-1,4.5,1)
+        break
+        case 520:
+            layer.fill(150,fade)
+            layer.triangle(0,0,-4,0,0,-4)
+            layer.triangle(0,0,4,0,0,4)
+            layer.fill(125,fade)
+            layer.triangle(0,0,-4,0,0,4)
+            layer.triangle(0,0,4,0,0,-4)
+            layer.stroke(200,fade)
+            layer.strokeWeight(1)
+            layer.noFill()
+            layer.rect(0,0,10)
+        break
+        case 521:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+            layer.ellipse(0,-6,4,4)
+        break
 
     }
     //mark s
@@ -6353,10 +6384,14 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.rect(0,0,6,8,1)
         break
         case 93:
-            layer.fill(200,255,255,fade)
-            layer.quad(-6,0,0,-7.5,6,0,0,7.5)
-            layer.fill(225,255,255,fade)
-            layer.quad(-4.8,0,0,-6,4.8,0,0,6)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,-1,0,0.5,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-6,0,0,-7.5,6,0,0,7.5)
+                layer.fill(225,255,255,fade)
+                layer.quad(-4.8,0,0,-6,4.8,0,0,6)
+            }
         break
         case 94:
             layer.stroke(200,180,120,fade)
@@ -6597,10 +6632,14 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.quad(-8,0,0,-2,8,0,0,2)
         break
         case 124:
-            layer.fill(200,255,255,fade)
-            layer.quad(-4,0,0,-5,4,0,0,5)
-            layer.fill(225,255,255,fade)
-            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,-1,0,0.35,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-4,0,0,-5,4,0,0,5)
+                layer.fill(225,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            }
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-2,-4.5,2)
             layer.triangle(9,-4,-4.5,-2,-4.5,2)
@@ -6744,10 +6783,14 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.arc(1.5,0,9,6,-90,90)
         break
         case 141:
-            layer.fill(200,255,255,fade)
-            layer.quad(-4,0,0,-5,4,0,0,5)
-            layer.fill(225,255,255,fade)
-            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,-1,0,0.35,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-4,0,0,-5,4,0,0,5)
+                layer.fill(225,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            }
             layer.fill(255,50,50,fade)
             layer.rect(-1.5,0,6,6)
             layer.arc(1.5,0,9,6,-90,90)
@@ -7269,10 +7312,14 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.ellipse(0,9,3,3)
         break
         case 198:
-            layer.fill(200,255,255,fade)
-            layer.quad(-4,0,0,-5,4,0,0,5)
-            layer.fill(225,255,255,fade)
-            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,-1,0,0.35,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-4,0,0,-5,4,0,0,5)
+                layer.fill(225,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            }
             layer.fill(255,50,50,fade)
             for(let a=0,la=6;a<la;a++){
                 layer.rotate(60)
@@ -7860,10 +7907,14 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(9,0,-4.5,-3,-4.5,3)
         break
         case 271:
-            layer.fill(200,255,255,fade)
-            layer.quad(-6,0,0,-7.5,6,0,0,7.5)
-            layer.fill(225,255,255,fade)
-            layer.quad(-4.8,0,0,-6,4.8,0,0,6)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,-1,0,0.5,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-6,0,0,-7.5,6,0,0,7.5)
+                layer.fill(225,255,255,fade)
+                layer.quad(-4.8,0,0,-6,4.8,0,0,6)
+            }
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-3,-4.5,3)
         break
@@ -8434,10 +8485,14 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.rect(0,0,6,8,1)
         break
         case 329:
-            layer.fill(200,255,255,fade)
-            layer.quad(-6,0,0,-7.5,6,0,0,7.5)
-            layer.fill(225,255,255,fade)
-            layer.quad(-4.8,0,0,-6,4.8,0,0,6)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,-1,0,0.5,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-6,0,0,-7.5,6,0,0,7.5)
+                layer.fill(225,255,255,fade)
+                layer.quad(-4.8,0,0,-6,4.8,0,0,6)
+            }
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-3,-4.5,3)
             layer.rect(-5.5,0,1,6)
@@ -8457,10 +8512,14 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(9,4,4.5,-2,4.5,2)
         break
         case 331:
-            layer.fill(200,255,255,fade)
-            layer.quad(-6,0,0,-7.5,6,0,0,7.5)
-            layer.fill(225,255,255,fade)
-            layer.quad(-4.8,0,0,-6,4.8,0,0,6)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,-1,0,0.5,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-6,0,0,-7.5,6,0,0,7.5)
+                layer.fill(225,255,255,fade)
+                layer.quad(-4.8,0,0,-6,4.8,0,0,6)
+            }
             layer.fill(60,fade)
             layer.ellipse(0,0,10,10)
             layer.fill(255,50,50,fade)
@@ -10279,6 +10338,43 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.rect(-3.2,0,9.6,3.2)
             layer.triangle(1.6,-4.8,1.6,4.8,8,0)
         break
+        case 161:
+            layer.fill(150,175,200,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.quad(-4.5,0,-3,-1.5,-1.5,0,-3,1.5)
+        break
+        case 162:
+            for(let a=0,la=6;a<la;a++){
+                layer.rotate(a==3?90:45)
+                layer.fill(100,200,225,fade)
+                layer.quad(0,3,-1,5,0,8,1,5)
+            }
+        break
+        case 163:
+            layer.stroke(100,50,100,fade)
+            layer.strokeWeight(0.5)
+            for(let a=0,la=10;a<la;a++){
+                layer.line(lsin(a*36)*3,lcos(a*36)*3,lsin(a*36)*8,lcos(a*36)*8)
+                layer.line(lsin(a*36)*7+lcos(a*36)*1.5,lcos(a*36)*7-lsin(a*36)*1.5,lsin(a*36)*7-lcos(a*36)*1.5,lcos(a*36)*7+lsin(a*36)*1.5)
+            }
+        break
+        case 164:
+            layer.stroke(227,128,43,fade*0.5)
+            layer.strokeWeight(1.5)
+            for(let a=0,la=12;a<la;a++){
+                layer.line(lsin(a/la*360)*8,lcos(a/la*360)*8,lsin(a/la*360)*16,lcos(a/la*360)*16)
+            }
+            layer.stroke(255,206,121,fade*0.5)
+            layer.strokeWeight(1)
+            for(let a=0,la=12;a<la;a++){
+                layer.line(lsin(a/la*360)*8,lcos(a/la*360)*8,lsin(a/la*360)*16,lcos(a/la*360)*16)
+            }
+            layer.stroke(255,236,200,fade*0.5)
+            layer.strokeWeight(0.5)
+            for(let a=0,la=12;a<la;a++){
+                layer.line(lsin(a/la*360)*8,lcos(a/la*360)*8,lsin(a/la*360)*16,lcos(a/la*360)*16)
+            }
+        break
 
     }
     layer.pop()
@@ -10441,4 +10537,8 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 158-Astrology
 159-Transform
 160-Retain (Subpart)
+161-Block Up
+162-Ice Wing
+163-Occult
+164-Sword of Hisou
 */
