@@ -538,7 +538,7 @@ class overlay{
                     case 23: case 30:
                         list=[]
                         for(let a=0,la=args[3].length;a<la;a++){
-                            list.push(copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[3][a]]))
+                            list.push(variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][args[3][a]]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[3][a]]))
                         }
                         let preColors=[]
                         for(let a=0,la=args[3].length;a<la;a++){
@@ -557,7 +557,7 @@ class overlay{
                             let listIndex=colors[a]
                             if(list[listIndex][args[1]].length>0){
                                 let index=floor(random(0,list[listIndex][args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[listIndex][args[1]][index],args[0],types.card[list[listIndex][args[1]][index]].list,-1))
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[listIndex][args[1]][index],args[0],this.battle.standardColorize(list[listIndex][args[1]][index]),-1))
                                 if(args[2]==23){
                                     this.cards[a].setCost(0,[0])
                                 }
@@ -790,9 +790,17 @@ class overlay{
                                     this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-350+tick%8*100,this.layer.height/2-130+floor(tick/8)%3*130,list[a],args[0],this.battle.standardColorize(list[a]),-1))
                                     this.cards[tick].upSize=true
                                     tick++
-                                    if(types.card[list[a]].list!=mark){
-                                        mark=types.card[list[a]].list
-                                        this.marks.push(floor(total/24))
+                                    if(variants.mtg){
+                                        if(types.card[list[a]].mtg.list!=mark){
+                                            mark=types.card[list[a]].mtg.list
+                                            this.marks.push(floor(total/24))
+                                        }
+                                    }else{
+                                        
+                                        if(types.card[list[a]].list!=mark){
+                                            mark=types.card[list[a]].list
+                                            this.marks.push(floor(total/24))
+                                        }
                                     }
                                     total++
                                 }

@@ -201,6 +201,8 @@ ascension spin - draw a card, gain 3 temp strength
 
 dragon-slaying circle - 17 damage, conditionally 1 weak and 1 vulnerable
 
+[setsuna movement]
+
 
 
 
@@ -210,7 +212,17 @@ dragon-slaying circle - 17 damage, conditionally 1 weak and 1 vulnerable
 
 
 
-button to gift remaining battle rewards to otherp layer
+set of cards, cost 0 when you change stance
+[]
+[]
+
+azure seal - randomly remove card or double upgrade it
+
+
+
+
+
+button to gift remaining battle rewards to other player
 
 
 

@@ -963,11 +963,11 @@ class group{
                     this.cards[a].callDiscardEffect()
                     if(this.cards[a].retain2){
                         this.cards[a].retained()
-                        this.cards.forEach(card=>card.anotherRetained())
+                        this.cards.forEach(card=>card.anotherRetained(this.cards[a]))
                         total++
                     }else if(this.cards[a].retain||this.battle.relicManager.hasRelic(192,this.player)&&la==1){
                         this.cards[a].retained()
-                        this.cards.forEach(card=>card.anotherRetained())
+                        this.cards.forEach(card=>card.anotherRetained(this.cards[a]))
                         this.cards[a].retain=false
                         total++
                     }else if(this.cards[a].spec.includes(4)){
@@ -976,7 +976,7 @@ class group{
                         this.cards[a].exhaust=true
                     }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(60)||this.battle.relicManager.hasRelic(128,this.player)||variants.cardHold){
                         this.cards[a].retained()
-                        this.cards.forEach(card=>card.anotherRetained())
+                        this.cards.forEach(card=>card.anotherRetained(this.cards[a]))
                         total++
                     }else{
                         this.cards[a].deSize=true
@@ -2662,6 +2662,9 @@ class group{
                             args[1].addBarrier(args[2])
                         }
                     break
+                    case 9:
+                        list[list.length-1].costUp(0,[1])
+                    break
                 }
                 delete this.cards[a]
                 this.cards.splice(a,1)
@@ -4064,7 +4067,7 @@ class group{
             break
             case 17:
                 if(this.cards[a].attack!=-3){
-                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.status[12]*max(0,this.cards[a].cost))
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.status[12]*max(0,variants.mtg?(this.cards[a].specialCost?this.cards[a].cost[0]:this.cards[a].cost.length):this.cards[a].cost))
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
                     if(this.status[12]>0){
@@ -4092,7 +4095,7 @@ class group{
             break
             case 20:
                 if(this.cards[a].attack!=-3){
-                    this.battle.combatantManager.randomEnemyEffect(0,[this.status[15]*max(0,this.cards[a].cost)])
+                    this.battle.combatantManager.randomEnemyEffect(3,[this.status[15]*max(0,variants.mtg?(this.cards[a].specialCost?this.cards[a].cost[0]:this.cards[a].cost.length):this.cards[a].cost),this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
                     if(this.status[15]>0){
@@ -4103,7 +4106,23 @@ class group{
             case 21:
                 if(this.cards[a].attack!=-3){
                     if(variants.mtg){
-                        this.battle.addSpecificEnergy(max(0,this.cards[a].cost),this.player,6)
+                        if(this.cards[a].specialCost){
+                            this.battle.addSpecificEnergy(max(0,this.cards[a].cost),this.player,0)
+                        }else{
+                            for(let b=0,lb=this.cards[a].cost.length;b<lb;b++){
+                                switch(this.cards[a].cost[b]){
+                                    case -1:
+                                        this.battle.addSpecificEnergy(1,this.player,0)
+                                    break
+                                    case 0: case 1: case 2: case 3: case 4: case 5: case 6:
+                                        this.battle.addSpecificEnergy(1,this.player,this.cards[a].cost[b])
+                                    break
+                                    case 7: case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15: case 16:
+                                        this.battle.addSpecificEnergy(1,this.player,6)
+                                    break
+                                }
+                            }
+                        }
                     }else{
                         this.battle.addEnergy(max(0,this.cards[a].cost),this.player)
                     }
@@ -4275,7 +4294,7 @@ class group{
             break
             case 35:
                 if(this.cards[a].attack!=-3){
-                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(this.status[29]*max(0,this.cards[a].cost))
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(this.status[29]*max(0,variants.mtg?(this.cards[a].specialCost?this.cards[a].cost[0]:this.cards[a].cost.length):this.cards[a].cost))
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
                     this.battle.cardManagers[this.player].draw(1)
@@ -4288,7 +4307,7 @@ class group{
                 if(this.cards[a].attack!=-3){
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
-                    this.battle.cardManagers[this.player].draw(max(0,this.cards[a].cost)+this.status[30]-1)
+                    this.battle.cardManagers[this.player].draw(max(0,variants.mtg?(this.cards[a].specialCost?this.cards[a].cost[0]:this.cards[a].cost.length):this.cards[a].cost)+this.status[30]-1)
                     if(this.status[30]>0){
                         this.status[30]=0
                     }

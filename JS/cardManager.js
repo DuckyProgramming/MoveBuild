@@ -160,10 +160,15 @@ class cardManager{
         for(let a=0,la=colorlisting.length;a<la;a++){
             list=[]
             for(let b=0,lb=types.card.length;b<lb;b++){
-                if(types.card[b].rarity>=0&&(
-                    variants.mtg&&types.card[b].mtg!=undefined&&types.card[b].mtg.list==colorlisting[a]||
-                    !variants.mtg&&types.card[b].list==colorlisting[a]
-                )){
+                if(
+                    (
+                        variants.mtg&&types.card[b].mtg!=undefined&&types.card[b].mtg.rarity>=0||
+                        !variants.mtg&&types.card[b].rarity>=0
+                    )&&(
+                        variants.mtg&&types.card[b].mtg!=undefined&&types.card[b].mtg.list==colorlisting[a]||
+                        !variants.mtg&&types.card[b].list==colorlisting[a]
+                    )
+                ){
                     list.push(b)
                 }
             }
@@ -177,7 +182,7 @@ class cardManager{
             for(let b=0,lb=sorted.length;b<lb;b++){
                 for(let c=0,lc=list.length;c<lc;c++){
                     if(types.card[list[c]].name==sorted[b]){
-                        this.listing.coc[types.card[list[c]].rarity].push(list[c])
+                        this.listing.coc[variants.mtg?types.card[list[c]].mtg.rarity:types.card[list[c]].rarity].push(list[c])
                         this.listing.coc[3].push(list[c])
                         list.splice(c,1)
                         c--

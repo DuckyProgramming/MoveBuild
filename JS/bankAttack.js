@@ -116,7 +116,8 @@ attack.prototype.update=function(){
         case 4107: case 4108: case 4109: case 4110: case 4122: case 4139: case 4143: case 4145: case 4151: case 4152:
         case 4153: case 4154: case 4155: case 4156: case 4161: case 4162: case 4163: case 4167: case 4168: case 4169:
         case 4170: case 4172: case 4183: case 4190: case 4203: case 4204: case 4206: case 4211: case 4212: case 4235:
-        case 4236: case 4242: case 4243: case 4244: case 4248: case 4256: case 4257: case 4258: case 4259:
+        case 4236: case 4242: case 4243: case 4244: case 4248: case 4256: case 4257: case 4258: case 4259: case 4271:
+        case 4272: case 4273:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -250,7 +251,7 @@ attack.prototype.update=function(){
         case 3883: case 3862: case 3877: case 3880: case 3894: case 3910: case 3947: case 3952: case 3955: case 3994:
         case 3998: case 4016: case 4017: case 4018: case 4025: case 4027: case 4038: case 4054: case 4060: case 4062:
         case 4064: case 4080: case 4081: case 4090: case 4112: case 4160: case 4164: case 4165: case 4166: case 4184:
-        case 4185: case 4197: case 4207: case 4216: case 4245: case 4246: case 4247: case 4268:
+        case 4185: case 4197: case 4207: case 4216: case 4245: case 4246: case 4247: case 4268: case 4270:
             //mark 2
             if(
                 this.timer==1&&(
@@ -4042,7 +4043,7 @@ attack.prototype.update=function(){
         case 3908: case 3909: case 3933: case 3995: case 3996: case 4020: case 4033: case 4035: case 4039: case 4049:
         case 4051: case 4070: case 4075: case 4078: case 4079: case 4097: case 4103: case 4171: case 4179: case 4217:
         case 4218: case 4219: case 4226: case 4227: case 4228: case 4229: case 4230: case 4232: case 4233: case 4234:
-        case 4249: case 4261:
+        case 4249: case 4261: case 4274:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
@@ -6779,7 +6780,7 @@ attack.prototype.update=function(){
             }
         break
         case 2740: case 2901: case 2917: case 2974: case 3002: case 3023: case 3038: case 3046: case 3056: case 3274:
-        case 3529: case 3611: case 3807:
+        case 3529: case 3611: case 3807: case 4275:
             if(variants.nobasicanim){
                 this.selfCall(4)
                 this.remove=true
@@ -9647,7 +9648,7 @@ attack.prototype.update=function(){
                 if(this.procedure[0]==1){
                     this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
                 }else{
-                    this.userCombatant.enterStance(1)
+                    this.userCombatant.enterStance(4)
                 }
             }else if(this.procedure[0]==1){
                 if(this.timer==1){
@@ -9665,7 +9666,7 @@ attack.prototype.update=function(){
                 }
                 this.userCombatant.runAnimation(1/10,5)
                 if(this.timer==10){
-                    this.userCombatant.enterStance(1)
+                    this.userCombatant.enterStance(4)
                 }else if(this.timer>=20){
                     this.remove=true
                 }
