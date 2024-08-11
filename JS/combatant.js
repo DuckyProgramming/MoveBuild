@@ -171,7 +171,7 @@ class combatant{
             '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
             'Elemental Draw','(E) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(N) Next Turn','(E) on Hit','Free Draw Up',
             'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw','Balance (E)','Invisible Per Turn','Random Mana Next Turn','Colorless Cost Down',
-            'Colorless Neutral Convert','Single Attack Weak',
+            'Colorless Neutral Convert','Single Attack Weak','Amplify Draw',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -226,7 +226,7 @@ class combatant{
                 0,2,0,0,0,0,0,2,2,0,//50
                 0,2,2,2,2,2,2,2,2,0,//51
                 0,0,0,0,0,0,0,0,2,0,//52
-                1,0,
+                1,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -281,7 +281,7 @@ class combatant{
                 2,1,2,2,2,2,2,2,2,2,//50
                 2,2,2,2,2,2,2,2,2,2,//51
                 2,2,2,2,2,2,2,2,2,2,//52
-                2,0,
+                2,0,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -3989,6 +3989,9 @@ class combatant{
             case 'Daughter of Heaven':
                 this.statusEffect('Heal on Hit Taken',3)
             break
+            case 'Keystone':
+                this.statusEffect('Damage Taken Down',3)
+            break
             case 'Eternal Judge':
                 this.sins=[]
                 this.infoAnim.sins=[]
@@ -4818,6 +4821,17 @@ class combatant{
         }
         if(this.id<this.battle.players&&variants.hungry){
             this.heal(5)
+        }
+    }
+    amplified(){
+        if(this.id<this.battle.players){
+            if(this.status.main[144]>0){
+                this.battle.overlayManager.overlays[7][this.id].active=true
+                this.battle.overlayManager.overlays[7][this.id].activate()
+            }
+            if(this.status.main[522]>0){
+                this.battle.cardManagers[this.id].draw(this.status.main[522])
+            }
         }
     }
     playCard(){

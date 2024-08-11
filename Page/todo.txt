@@ -41,8 +41,6 @@ default:
     return [base]
 
 
-
-
 title screen 5th button - collection
 lists all cards, if you've seen them
 
@@ -71,6 +69,15 @@ scrap note
 
 
 
+exhaust
+exhaust
+wisp
+wisp
+amplify
+damage, amplify: weak and vulnerable
+
+
+
 sapphire facet - fires blue stars everywhere and lighter ones in set directions that create more particles
 
 dimensional point rift - create a bunch of glowing yellow squares (composed of particles) that get large and then shrink on the target
@@ -82,6 +89,9 @@ twin leaf barrage - variant of floret fractal, fire 2 leaves, blue and yellow th
 [moon rain - animate actual rain particles]
 
 astrology sphere
+
+whirling tomb - water particles, spawn from circular points around target, fire first toward center and then toward the sides
+it'll look cool trust
 
 
 
@@ -118,6 +128,8 @@ elbow - 2 cost damage and push, costs 1 less when you move
 coldsteel heart - add 1 of any mana into the base (other then rainbow)
 
 dumpster dive - add any junkyard card to your hand
+
+(new) strefend - card that counts as a strike or defend
 
 
 
@@ -175,9 +187,9 @@ animated refracted sunlight with sparkly particles that fall
 
 [wall of moonlight]
 
+timantti - reverse of lapio
 
 
-ice wing - draw a blue card, gain (B)
 
 frost refraction - gain 10 block, gain 3 decrementing armor
 
@@ -217,6 +229,16 @@ set of cards, cost 0 when you change stance
 []
 
 azure seal - randomly remove card or double upgrade it
+
+saltflat - add block, draw a movement if you have none in hand
+
+[polar vortex]
+
+
+
+wrench of water - throw a wrench that creates particles that explode in a cyclic way (like gyroguns)
+
+cyan meteor - leaves behind trial of lines  star outlines
 
 
 
@@ -298,7 +320,7 @@ world 3:
 enemies:
 
 []
-[]
+reactive weaponry - gains 1 strength when you defend and 1 dex when you attack, alternates attack and defense
 management robot commander - like a normal robot but can buff other robots and stronger generally
 
 bosses:

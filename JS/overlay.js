@@ -514,7 +514,8 @@ class overlay{
                     break
                     case 21:
                         for(let a=0,la=this.options;a<la;a++){
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Discus of Fire\nand Water','Discus of Mountain\nand Rain','Discus of Wind\nand Thunder'][a%3],types.card),args[0],0,-1))
+                            let type=findName(['Discus of Fire\nand Water','Discus of Mountain\nand Rain','Discus of Wind\nand Thunder'][a%3],types.card)
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,args[0],this.battle.standardColorize(type),-1))
                             this.cards[a].upSize=true
                         }
                     break

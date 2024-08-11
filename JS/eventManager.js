@@ -592,7 +592,7 @@ class eventManager{
                         }else if(this.page==0&&a==1){
                             this.battle.addCurrency(999,this.player)
                         }else if(this.page==0&&a==2){
-                            userCombatant.gainMaxHP(userCombatant.base.life/2)
+                            userCombatant.gainMaxHP(20)
                         }else if(this.page==1&&a==0){
                             this.battle.relicManager.addRelic(findInternal('No Heal',types.relic),this.player)
                         }else if(this.page==2&&a==0){

@@ -1928,7 +1928,7 @@ function outMtg(){
 		}
 	}
 	let box=``
-	for(let a=0,la=game.playerNumber;a<la;a++){
+	for(let a=0,la=game.playerNumber+2;a<la;a++){
 		box+=`\n		${a==0?`Neutral`:a==1?`Colorless`:types.combatant[a-1].name}:
 	Common: ${subMtg(count[a][0])}
 	Uncommon: ${subMtg(count[a][1])}
@@ -2204,11 +2204,11 @@ function mtgPlayerColor(player){
 		case 10: return [3]
 		case 11: return [2,3]
 		case 12: return [1,3]
-		case 13: return [2,4]
+		case 13: return [1,2]
 		case 14: return [2]
-		case 15: return [1,2]
+		case 15: return [2,4]
 		case 16: return [1,2,4]
-		case 17: return [3,4,5]
+		case 17: return [1,4,5]
 		case 18: return [1,2,5]
 		default: return [6]
 	}

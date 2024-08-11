@@ -185,7 +185,7 @@ types={
         {name:'Glitched Giant',life:125,behavior:5,spec:[],move:{type:4,speed:1},attack:[{type:79,effect:[12]},{type:28,effect:[18]}],description:`Not intended`},
         {name:'Nil',life:91,behavior:5,spec:[0],move:{type:1,speed:1},attack:[{type:196,effect:[12,1,'Empty']},{type:198,effect:[11,1]},{type:197,effect:[3]},{type:146,effect:[5]}],description:`My iq`},
         {name:'Buried',life:34,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[11]},{type:2,effect:[3]},{type:3,effect:[16]},{type:4,effect:[6]},{type:225,effect:[]}],description:`Stuck in the ground`},
-        {name:'Keystone',life:82,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:350,effect:[12,1,'Dazed']},{type:351,effect:[12,1,'Dazed']}],description:`100% casualty rate`},
+        {name:'Keystone',life:62,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:350,effect:[12,1,'Dazed']},{type:351,effect:[12,1,'Dazed']}],description:`100% casualty rate`},
         
         {name:'Inconsistent',life:69,behavior:0,spec:[],move:{type:5,speed:1},attack:[{type:245,effect:[6]},{type:245,effect:[9]}],description:`Nice!`},
         {name:'Latency',life:13,behavior:0,spec:[],move:{type:1,speed:5},attack:[{type:1,effect:[5]}],description:`...`},
@@ -2292,7 +2292,7 @@ Images of occurrences began to flow between your mind
 and reality, manifesting themselves in real forms.
 The sensation is quickly fleeting. What do you do?`,
                     option:['I am Smart','I am Rich','I am Strong'],
-                    optionDesc:['Upgrade All Cards','Gain 999 Currency','Gain 50% Max Health'],
+                    optionDesc:['Upgrade All Cards','Gain 999 Currency','Gain 20 Max Health'],
                     link:[1,2,3],
                 },{
                     desc:`Can it really be this easy?`,

@@ -149,7 +149,7 @@ class particle{
                 this.scale=0
                 this.direction=[random(0,360),random(0,360),random(0,360),random(0,360)]
             break
-            case 53: case 55: case 58: case 69: case 70: case 71: case 87:
+            case 53: case 55: case 58: case 69: case 70: case 71: case 87: case 175:
                 this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
                 this.fade=1
                 this.size=1
@@ -2714,6 +2714,22 @@ class particle{
                         this.layer.line(lsin(a/la*360+this.offset)*8,lcos(a/la*360+this.offset)*8,lsin(a/la*360+this.offset)*20,lcos(a/la*360+this.offset)*20)
                     }
                 break
+                case 175:
+                    for(let a=0,la=3;a<la;a++){
+                        this.layer.stroke(50+a*25,200+a*25,100+a*25,this.fade)
+                        this.layer.strokeWeight(9-a*3)
+                        this.layer.line(0,0,this.position2.x,this.position2.y)
+                    }
+                    this.layer.stroke(150,255,200,this.fade)
+                    this.layer.strokeWeight(2)
+                    for(let a=0,la=this.ticks;a<la;a++){
+                        this.layer.line(
+                            map(a/la,0,1,0,this.position2.x)+(a==0?0:this.sets[a-1][0]),
+                            map(a/la,0,1,0,this.position2.y)+(a==0?0:this.sets[a-1][1]),
+                            map((a+1)/la,0,1,0,this.position2.x)+this.sets[a][0],
+                            map((a+1)/la,0,1,0,this.position2.y)+this.sets[a][1])
+                    }
+                break
 
             }
             this.layer.pop()
@@ -2814,7 +2830,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 53: case 70: case 71:
+            case 53: case 70: case 71: case 175:
                 this.fade-=1/45
                 if(this.fade<=0){
                     this.remove=true

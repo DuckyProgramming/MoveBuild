@@ -1692,8 +1692,8 @@ class card{
             case 947: string+=`Exactly 0 Energy:\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 948: string+=`50%: Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Triple Damage`; break
             case 949: string+=`Remove a Card\nPermanently`; break
-            case 950: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nCards in Discard\n(Including This Card)\nAdd ${effect[1]} Burn${pl(effect[1])} to Hand`; break
-            case 951: string+=`Discard Any\nNumber of Cards\nAdd ${this.calculateEffect(effect[0],3)} Block Each`; break
+            case 950: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nCards in Discard\nAdd ${effect[1]} Burn${pl(effect[1])} to Hand`; break
+            case 951: string+=`Discard Any\nNumber of Cards\nAdd ${this.calculateEffect(effect[0],1)} Block Each`; break
             case 952: string+=`Choose to\nAdd to Hand:\nWhite Dwarf\nBlack Dwarf\nof Equivalent Level`; break
             case 953: string+=`Add to Hand:\nWhite Dwarf\nBlack Dwarf\nUpgrade Them`; break
             case 954: string+=`Add to Hand:\nWhite Dwarf\nBlack Dwarf\nUpgrade Them Twice`; break
@@ -2068,7 +2068,7 @@ class card{
             case 1323: string+=`75%: Gain ${effect[0]} Currency\n25%: Gain ${effect[1]} Relic${pl(effect[1])}`; break
             case 1324: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nA Random Card\nGets +1 to Numeric Values`; break
             case 1325: string+=`Convert Energy to\na Die Face and Turn\nit on its Side`; break
-            case 1326: string+=`Put a Card\nFrom Your Deck\nInto Hand`; break
+            case 1326: string+=`Put a Card in\nDeck in Your Hand`; break
             case 1327: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nand Retain ${effect[0]!=1?`Them`:`It`}\nUntil Played`; break
             case 1328: string+=`While in Your Deck,\nGain ${effect[0]} Strength on\nElite and Boss Combats`; break
             case 1329: string+=`Gain ${effect[0]} Currency\nShuffle ${effect[1]} McDucknolds\nAdvertisement${pl(effect[1])} Into\n${this.battle.players==2?`Ally's`:`Your`} Draw`; break
@@ -3660,9 +3660,9 @@ class card{
             case 2928: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}\nFor Each Other\nMovement in Hand`; break
             case 2929: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],17)} Barrier`; break
             case 2930: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nScry ${effect[1]}`; break
-            case 2931: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIncreases by ${effect[1]}\nWhen an Attack is Played\n(Max 3)`; break
-            case 2932: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIncreases by ${effect[1]}\nWhen a Defense is Played\n(Max 3)`; break
-            case 2933: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIncreases by ${effect[1]}\nWhen a Movement is Played\n(Max 3)`; break
+            case 2931: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIncreases by ${effect[1]}\nWhen an Attack\nis Played\n(Max 3)`; break
+            case 2932: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIncreases by ${effect[1]}\nWhen a Defense\nis Played\n(Max 3)`; break
+            case 2933: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIncreases by ${effect[1]}\nWhen a Movement\nis Played\n(Max 3)`; break
             case 2934: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIncreases by ${effect[1]}\nWhen a Power is Played\n(Max 3)`; break
             case 2935: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdjacent Combatants\nTake ${effect[1]} Damage Per\nCard Played This Turn`; break
             case 2936: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}\nIf it is a Movement,\nGain ${effect[2]} Energy`; break
@@ -3679,7 +3679,7 @@ class card{
             case 2947: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier\n${effect[1]} or Less Currency:\nAdds Double Barrier`; break
             case 2948: string+=`Move ${effect[0]} Tile${pl(effect[0])}\n${effect[1]} or Less Currency:\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 2949: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Exhausted,\nGain ${effect[1]} Currency`; break
-            case 2950: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain Energy Equal\nto its Cost`; break
+            case 2950: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain Energy Equal\nto ${effect[0]==1?`its`:`Their`} Cost${pl(effect[0])}`; break
             case 2951: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nIf Fatal,\nGain ${effect[1]} Intangible`; break
             case 2952: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n2 Cost Defenses\nin Hand Cost 1`; break
             case 2953: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 Until Played\nWhen Discarded by Scry`; break
@@ -3696,7 +3696,7 @@ class card{
             case 2964: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier\nAdd ${effect[1]} Miracle${pl(effect[1])} to Hand`; break
             case 2965: string+=`Add ${effect[0]} Dual Discus${effect[0]!=1?`es`:``}\nof Equivalent Level\nto Hand\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
             case 2966: string+=`Discuses Deal\nMore ${effect[0]} Damage`; break
-            case 2967: string+=`Add a Dual Discus\nto Hand That Costs 0\nWhen a Cost 3+\nCard is Played`; break
+            case 2967: string+=`Add a Dual Discus\nto Hand That Costs 0\nWhen a ${variants.mtg?`Total `:``}Cost 3+\nCard is Played`; break
             case 2968: string+=`All Discuses in Hand\nBecome Foil`; break
             case 2969: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nAdd a Dual Discus\nof Equivalent Level\nto Hand`; break
             case 2970: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier\nCosts 1 Less\nWhen Discus Played`; break
@@ -3713,7 +3713,7 @@ class card{
             case 2981: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDeal ${this.calculateEffect(effect[1],0)} Damage\nIf it is an Attack\nDeal ${this.calculateEffect(effect[2],0)} Block\nIf it is a Defense`; break
             case 2982: string+=`Gain ${effect[0]} Currency\nScry ${effect[1]}`; break
             case 2983: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nDraw ${effect[1]} Card${pl(effect[1])}\nIf it is an Attack,\nDeal ${this.calculateEffect(effect[2],10)} More`; break
-            case 2984: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Strength\nIf it is An Attack\nGain ${effect[2]} Dexterity\nIf it is An Defense`; break
+            case 2984: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Strength\nIf it is An Attack\nGain ${effect[2]} Dexterity\nIf it is a Defense`; break
             case 2985: string+=`Exhaust ${effect[0]} Card${pl(effect[1])}\nFrom Draw\nExhaust ${effect[1]} Card${pl(effect[1])}\nFrom Discard\nExhaust ${effect[2]} Card${pl(effect[2])}\nFrom Hand`; break
             case 2986: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\nIf You Have Barrier`; break
             case 2987: string+=`Remove All\nBlock of Target\nIf You Have Barrier\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
@@ -3751,7 +3751,7 @@ class card{
             case 3019: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Gain\na Card Reward\nFrom Any Color`; break
             case 3020: string+=`Tick Statuses\nan Additional Time\nEvery Turn`; break
             case 3021: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nAdd ${this.calculateEffect(effect[1],17)} Barrier\nAdd ${effect[2]} Dual Discus${effect[2]!=1?`es`:``}\nto Hand`; break
-            case 3022: string+=`Even X: Add ${this.calculateEffect(effect[0],3)} Barrier\nOdd X: Deal ${this.calculateEffect(effect[1],2)} Damage\nin All Directions`; break
+            case 3022: string+=`Even X: Add ${this.calculateEffect(effect[0],18)} Barrier\nOdd X: Deal ${this.calculateEffect(effect[1],2)} Damage\nin All Directions`; break
             case 3023: string+=`Scry ${effect[0]}\nDraw ${effect[1]} Card${pl(effect[1])}\nLose ${effect[2]} Energy\nNext Turn`; break
             case 3024: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${this.calculateEffect(effect[1],17)} Barrier\nNext Turn`; break
             case 3025: string+=`Exhaust ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Random\nAttack${pl(effect[1])} to Hand\n${effect[1]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
@@ -3759,7 +3759,7 @@ class card{
             case 3027: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nNext Card Reward\nHas ${effect[1]} More Choice${pl(effect[1])}`; break
             case 3028: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd a Pure\nEnergy to Hand`; break
             case 3029: string+=`Gain ${effect[0]} Energy\nA Random Card\nCosts ${effect[1]} Less`; break
-            case 3030: string+=`Add an Upgraded\nDual Discus to Hand\nThat Costs 0\nWhen a Cost 3+\nCard is Played`; break
+            case 3030: string+=`Add an Upgraded\nDual Discus to Hand\nThat Costs 0\nWhen a ${variants.mtg?`Total `:``}Cost 3+\nCard is Played`; break
             case 3031: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less\nTemporarily\nTarget Takes ${effect[1]}\nDamage Per Card\nPlayed This Turn`; break
             case 3032: string+=`Add ${this.calculateEffect(effect[0],18)} Barrier\nGain ${effect[1]} Energy\nIf X is 1 or More`; break
             case 3033: string+=`Add ${this.calculateEffect(effect[0],18)} Barrier\nGain ${effect[1]} Energy`; break
@@ -4096,7 +4096,7 @@ class card{
             case 3345: string+=`Exactly Turn 420:\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 3346: string+=`Triplicate Non-Movement\nCards Gain +${effect[0]} on\nFirst Effect\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 3347: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier\nCards Currently in Hand\nDo Not Fatigue\nThis Combat`; break
-            case 3348: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nWhen a Fatigue is Played\nShuffle All Fatigues in\nDiscard into Draw`; break
+            case 3348: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nWhen a Fatigue is Played\nShuffle All Fatigues\nin Discard Pile\ninto Draw Pile`; break
             case 3349: string+=`Apply ${effect[0]} Burn\nApply ${effect[1]} Bruise\nIncreases by ${effect[2]}\nand ${effect[3]} When You\nPlay a Movement`; break
             case 3350: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Poison\nIf Target is on\na Plant Tile`; break
             case 3351: string+=`Gain ${effect[0]} Base\nEnergy This Combat\nGain ${effect[1]} Strength\nGain ${effect[2]} Dexterity\nSpawn a Management\nRobot Enemy`; break
@@ -4171,7 +4171,7 @@ class card{
             case 3407: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnergy Divisible by 3:\nDraw ${effect[1]} Skill${pl(effect[1])}`; break
             case 3408: string+=`Odd Turn:\nDraw ${effect[0]} Attack${pl(effect[0])}\nDraw ${effect[1]} Defense${pl(effect[1])}\nDraw ${effect[2]} Movement${pl(effect[2])}\nDraw ${effect[3]} Skill${pl(effect[3])}\nDraw ${effect[4]} Power${pl(effect[4])}\nThey Cost 0`; break
             case 3409: string+=`Choose a Skill\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
-            case 3410: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIncreases by ${effect[1]}\nWhen Skill Played\n(Max 3)`; break
+            case 3410: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIncreases by ${effect[1]}\nWhen a Skill is Played\n(Max 3)`; break
             case 3411: string+=`Target Takes ${effect[0]}\nDamage Per Card\nPlayed This Turn\nDraw ${effect[1]} Card${pl(effect[1])}\nIf it is a Skill,\nTarget Takes ${effect[2]} More`; break
             case 3412: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Triple Block If\nYou Have Played ${effect[1]}\nSkill${pl(effect[1])} This Turn`; break
             case 3413: string+=`When Drawn,\nDraw ${effect[0]} Defense${pl(effect[0])}\nDraw ${effect[1]} Movement${pl(effect[1])}\nDraw ${effect[2]} Skill${pl(effect[2])}`; break
@@ -5044,8 +5044,51 @@ class card{
             case 4273: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Does\nNot Lose Health,\nGain (E) (E) (N)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 4274: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nShuffle an Insight\nInto Draw`; break
             case 4275: string+=`Scry ${effect[0]}\nDraw ${effect[1]} Card${pl(effect[1])}\nLose ${effect[2]} Random Mana\nNext Turn`; break
-
-
+            case 4276: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nCards in Discard\n(Including This Card)\nAdd ${effect[1]} Wisp${pl(effect[1])} to Hand`; break
+            case 4277: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRemove ${effect[1]} Wisp${pl(effect[1])}`; break
+            case 4278: string+=`Move to Any\nEmpty Tile\nAdd ${effect[0]} Wisp${pl(effect[0])} to Hand`; break
+            case 4279: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Wisp${pl(effect[1])} to Hand`; break
+            case 4280: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage Where\nX = Number of Wisps\nExhaust All Wisps`; break
+            case 4281: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Wisp${pl(effect[1])} to Hand`; break
+            case 4282: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nAdd ${effect[1]} Wisp${pl(effect[1])} to Hand`; break
+            case 4283: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAdd ${effect[1]} Wisp${pl(effect[1])} to Hand`; break
+            case 4284: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${effect[1]} Wisp${pl(effect[1])} to Hand`; break
+            case 4285: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAmplify:\nDraw ${effect[1]} Card${pl(effect[1])}\nRetain ${effect[2]} Card${pl(effect[2])} Once`; break
+            case 4286: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAt Max, Draw ${effect[1]} Card${pl(effect[1])}\nand Exhaust ${effect[2]} Card${pl(effect[2])}`; break
+            case 4287: string+=`Exhaust ${effect[0]} Card${pl(effect[0])}\nChoose ${effect[0]==1?`a `:``}Card${pl(effect[0])} of\nthe Same Class\nto Add to Hand`; break
+            case 4288: string+=`Exhaust ${effect[0]} Card${pl(effect[0])}\nChoose ${effect[0]==1?`a `:``}Card${pl(effect[0])} of\nthe Same Class\nand Level to\nAdd to Hand`; break
+            case 4289: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Number\nof Burns in Hand\nAmplify:\nDeal Double Damage`; break
+            case 4290: string+=`When Drawn,\nGain ${effect[0]} Energy\nWhen Exhausted,\nPut a Copy of\na Card in Draw\nPile in Your Hand`; break
+            case 4291: string+=`When Drawn,\nGain ${effect[0]} Energy\nWhen Exhausted,\nPut a Copy of\na Card in Draw\nPile in Your Hand\nand Add ${this.calculateEffect(effect[1],1)} Block`; break
+            case 4292: string+=`Gain ${effect[0]} Temporary\nStrength\nSpend ${effect[1]} Charge:\nGain ${effect[2]} Energy`; break
+            case 4293: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify:\nDraw ${effect[1]} More Card${pl(effect[1])}\nNext Turn`; break
+            case 4294: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAt Range 3,\nGain ${effect[1]} Charge`; break
+            case 4295: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Wisp${pl(effect[1])} to Hand`; break
+            case 4296: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nAmplify:\nPut a Card in Discard\nPile in Your Hand`; break
+            case 4297: string+=`When You Amplify,\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 4298: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExhaust ${effect[1]} Card${pl(effect[1])}\nAdd ${effect[2]} Wisp${pl(effect[2])} to Hand`; break
+            case 4299: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCosts 0 When\na Card is Amplified`; break
+            case 4300: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMove All Wisps to Hand\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
+            case 4301: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporary\nAmplify:\nRetain ${effect[0]==1?`it`:`Them`} Until Played\nGain ${effect[1]} Energy Next Turn`; break
+            case 4302: string+=`Even Turn:\nPut a Card in Draw\nPile in Your Hand`; break
+            case 4303: string+=`Even Turn:\nPut a Card in Draw\nPile in Your Hand\nGain ${effect[1]} Energy\nNext Turn`; break
+            case 4304: string+=`For Each (B) Spent:\nDeal ${this.calculateEffect(effect[0],2)} Damage\nFor Each (W) Spent:\nAdd ${this.calculateEffect(effect[1],3)} Block`; break
+            case 4305: string+=`For Each (B) Spent:\nGain ${effect[0]} Strength\nFor Each (W) Spent:\nGain ${effect[1]} Dexterity`; break
+            case 4306: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nGain (E) Per\nDiscus in Hand`; break
+            case 4307: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}\nIf it is a Movement,\nGain (B) (B)`; break
+            case 4308: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}\nIf it is a Movement,\nGain (E) (E)`; break
+            case 4309: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}\nIf it is a Movement,\nGain (E) (E) (E)`; break
+            case 4310: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (G) (B) If You Have\na Discus in Hand`; break
+            case 4311: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (E) (E) If You Have\na Discus in Hand`; break
+            case 4312: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (E) (E) (E) If You Have\na Discus in Hand`; break
+            case 4313: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Temporary\nStrength If it\nis An Attack\nGain ${effect[2]} Temporary\nDexterity If it\nis a Defense`; break
+            case 4314: string+=`Scry ${effect[0]}\nGain (R) (K) Next Turn`; break
+            case 4315: string+=`For Each (W) Spent:\nAdd ${this.calculateEffect(effect[0],1)} Barrier\nFor Each (W) Spent:\nDeal ${this.calculateEffect(effect[1],0)} Damage\nin All Directions`; break
+            case 4316: string+=`Shuffle Discard Pile And\nHand Into Draw Pile\nShuffle Draw Pile\nDraw ${effect[0]} Card${pl(effect[0])}\nGain (E) (E) (E)`; break
+            case 4317: string+=`Shuffle Discard Pile And\nHand Into Draw Pile\nShuffle Draw Pile\nDraw ${effect[0]} Card${pl(effect[0])}\nGain (E) (E) (E)\nPut a Card in Draw\nPile in Your Hand`; break
+            case 4318: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain (W) (W)\nIf You Have Barrier`; break
+            case 4319: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMana Total Divisible by 3:\nAdd ${this.calculateEffect(effect[1],17)} Barrier\nCounter ${effect[2]} All`; break
+            case 4320: string+=`Gain (E) Per\nMiracle in Hand`; break
 
 
 
@@ -5543,6 +5586,15 @@ class card{
             case 4112:
                 userCombatant.statusEffect('Dodge',this.effect[2])
             break
+            case 4290:
+                this.battle.overlayManager.overlays[86][this.player].active=true
+                this.battle.overlayManager.overlays[86][this.player].activate()
+            break
+            case 4291:
+                this.battle.overlayManager.overlays[86][this.player].active=true
+                this.battle.overlayManager.overlays[86][this.player].activate()
+                userCombatant.addBlock(this.effect[1])
+            break
         }
     }
     callVanishEffect(){
@@ -5918,8 +5970,7 @@ class card{
                 }
             break
             case 3132: case 3851: case 3852:
-                this.cost=max(this.cost-this.effect[2],0)
-                this.base.cost=max(this.base.cost-this.effect[2],0)
+                this.costDown(2,[this.effect[2]])
             break
             case 3365:
                 this.effect[1]=0
@@ -6225,7 +6276,7 @@ class card{
     }
     anotherAmplified(){
         switch(this.attack){
-            case 862:
+            case 862: case 4299:
                 if(this.cost>0){
                     this.cost=0
                 }
@@ -7038,19 +7089,19 @@ class card{
                     if(colorDetail.length==3){
                         this.gradient[0].colors(0.0,
                             color(colorDetail[0].active[0]*0.2,colorDetail[0].active[1]*0.2,colorDetail[0].active[2]*0.2,this.fade*this.anim.select),0.3,
-                            color(colorDetail[2].active[0]*0.2,colorDetail[2].active[1]*0.2,colorDetail[2].active[2]*0.2,this.fade*this.anim.select),0.7,
-                            color(colorDetail[2].active[0]*0.2,colorDetail[2].active[1]*0.2,colorDetail[2].active[2]*0.2,this.fade*this.anim.select),1.0,
-                            color(colorDetail[1].active[0]*0.2,colorDetail[1].active[1]*0.2,colorDetail[1].active[2]*0.2,this.fade*this.anim.select))
+                            color(colorDetail[2].active[0]*0.2,colorDetail[1].active[1]*0.2,colorDetail[1].active[2]*0.2,this.fade*this.anim.select),0.7,
+                            color(colorDetail[2].active[0]*0.2,colorDetail[1].active[1]*0.2,colorDetail[1].active[2]*0.2,this.fade*this.anim.select),1.0,
+                            color(colorDetail[1].active[0]*0.2,colorDetail[2].active[1]*0.2,colorDetail[2].active[2]*0.2,this.fade*this.anim.select))
                         this.gradient[1].colors(0.0,
                             color(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade),0.3,
-                            color(colorDetail[2].stroke[0]*0.2,colorDetail[2].stroke[1]*0.2,colorDetail[2].stroke[2]*0.2,this.fade),0.7,
-                            color(colorDetail[2].stroke[0]*0.2,colorDetail[2].stroke[1]*0.2,colorDetail[2].stroke[2]*0.2,this.fade),1.0,
-                            color(colorDetail[1].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade))
+                            color(colorDetail[2].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade),0.7,
+                            color(colorDetail[2].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade),1.0,
+                            color(colorDetail[1].stroke[0]*0.2,colorDetail[2].stroke[1]*0.2,colorDetail[2].stroke[2]*0.2,this.fade))
                         this.gradient[2].colors(0.0,
                             color(colorDetail[0].fill[0]*0.2,colorDetail[0].fill[1]*0.2,colorDetail[0].fill[2]*0.2,this.fade),0.3,
-                            color(colorDetail[2].fill[0]*0.2,colorDetail[2].fill[1]*0.2,colorDetail[2].fill[2]*0.2,this.fade),0.7,
-                            color(colorDetail[2].fill[0]*0.2,colorDetail[2].fill[1]*0.2,colorDetail[2].fill[2]*0.2,this.fade),1.0,
-                            color(colorDetail[1].fill[0]*0.2,colorDetail[1].fill[1]*0.2,colorDetail[1].fill[2]*0.2,this.fade))
+                            color(colorDetail[2].fill[0]*0.2,colorDetail[1].fill[1]*0.2,colorDetail[2].fill[2]*0.2,this.fade),0.7,
+                            color(colorDetail[2].fill[0]*0.2,colorDetail[1].fill[1]*0.2,colorDetail[2].fill[2]*0.2,this.fade),1.0,
+                            color(colorDetail[1].fill[0]*0.2,colorDetail[2].fill[1]*0.2,colorDetail[1].fill[2]*0.2,this.fade))
                     }else{
                         this.gradient[0].colors(0.0,
                             color(colorDetail[0].active[0]*0.2,colorDetail[0].active[1]*0.2,colorDetail[0].active[2]*0.2,this.fade*this.anim.select),1.0,
@@ -7066,7 +7117,7 @@ class card{
                     this.layer.noStroke()
                     this.layer.fill(colorDetail[0].active[0]*0.2,colorDetail[0].active[1]*0.2,colorDetail[0].active[2]*0.2,this.fade*this.anim.select)
                     this.layer.rect(-20,0,this.width-25,this.height+15,10)
-                    this.layer.fill(colorDetail[1].active[0]*0.2,colorDetail[1].active[1]*0.2,colorDetail[1].active[2]*0.2,this.fade*this.anim.select)
+                    this.layer.fill(colorDetail[colorDetail.length-1].active[0]*0.2,colorDetail[colorDetail.length-1].active[1]*0.2,colorDetail[colorDetail.length-1].active[2]*0.2,this.fade*this.anim.select)
                     this.layer.rect(20,0,this.width-25,this.height+15,10)
 
                     this.layer.translate(-this.width*0.2-2,0)
@@ -7078,8 +7129,8 @@ class card{
                     this.layer.fill(colorDetail[0].fill[0]*0.2,colorDetail[0].fill[1]*0.2,colorDetail[0].fill[2]*0.2,this.fade)
                     this.layer.stroke(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade)
                     this.layer.rect(-20,0,this.width-40,this.height,5)
-                    this.layer.fill(colorDetail[1].fill[0]*0.2,colorDetail[1].fill[1]*0.2,colorDetail[1].fill[2]*0.2,this.fade)
-                    this.layer.stroke(colorDetail[1].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade)
+                    this.layer.fill(colorDetail[colorDetail.length-1].fill[0]*0.2,colorDetail[colorDetail.length-1].fill[1]*0.2,colorDetail[colorDetail.length-1].fill[2]*0.2,this.fade)
+                    this.layer.stroke(colorDetail[colorDetail.length-1].stroke[0]*0.2,colorDetail[colorDetail.length-1].stroke[1]*0.2,colorDetail[colorDetail.length-1].stroke[2]*0.2,this.fade)
                     this.layer.rect(20,0,this.width-40,this.height,5)
 
                     this.layer.translate(-this.width*0.2-2,0)
@@ -7517,19 +7568,19 @@ class card{
                     if(colorDetail.length==3){
                         this.gradient[0].colors(0.0,
                             color(...colorDetail[0].active,this.fade*this.anim.select),0.3,
-                            color(...colorDetail[2].active,this.fade*this.anim.select),0.7,
-                            color(...colorDetail[2].active,this.fade*this.anim.select),1.0,
-                            color(...colorDetail[1].active,this.fade*this.anim.select))
+                            color(...colorDetail[1].active,this.fade*this.anim.select),0.7,
+                            color(...colorDetail[1].active,this.fade*this.anim.select),1.0,
+                            color(...colorDetail[2].active,this.fade*this.anim.select))
                         this.gradient[1].colors(0.0,
                             color(...colorDetail[0].stroke,this.fade),0.3,
-                            color(...colorDetail[2].stroke,this.fade),0.7,
-                            color(...colorDetail[2].stroke,this.fade),1.0,
-                            color(...colorDetail[1].stroke,this.fade))
+                            color(...colorDetail[1].stroke,this.fade),0.7,
+                            color(...colorDetail[1].stroke,this.fade),1.0,
+                            color(...colorDetail[2].stroke,this.fade))
                         this.gradient[2].colors(0.0,
                             color(...colorDetail[0].fill,this.fade),0.3,
-                            color(...colorDetail[2].fill,this.fade),0.7,
-                            color(...colorDetail[2].fill,this.fade),1.0,
-                            color(...colorDetail[1].fill,this.fade))
+                            color(...colorDetail[1].fill,this.fade),0.7,
+                            color(...colorDetail[1].fill,this.fade),1.0,
+                            color(...colorDetail[2].fill,this.fade))
                     }else{
                         this.gradient[0].colors(0.0,
                             color(...colorDetail[0].active,this.fade*this.anim.select),1.0,
@@ -7545,7 +7596,7 @@ class card{
                     this.layer.noStroke()
                     this.layer.fill(...colorDetail[0].active,this.fade*this.anim.select)
                     this.layer.rect(-20,0,this.width-25,this.height+15,10)
-                    this.layer.fill(...colorDetail[1].active,this.fade*this.anim.select)
+                    this.layer.fill(...colorDetail[colorDetail.length-1].active,this.fade*this.anim.select)
                     this.layer.rect(20,0,this.width-25,this.height+15,10)
 
                     this.layer.translate(-this.width*0.2-2,0)
@@ -7557,8 +7608,8 @@ class card{
                     this.layer.fill(...colorDetail[0].fill,this.fade)
                     this.layer.stroke(...colorDetail[0].stroke,this.fade)
                     this.layer.rect(-20,0,this.width-40,this.height,5)
-                    this.layer.fill(...colorDetail[1].fill,this.fade)
-                    this.layer.stroke(...colorDetail[1].stroke,this.fade)
+                    this.layer.fill(...colorDetail[colorDetail.length-1].fill,this.fade)
+                    this.layer.stroke(...colorDetail[colorDetail.length-1].stroke,this.fade)
                     this.layer.rect(20,0,this.width-40,this.height,5)
 
                     this.layer.translate(-this.width*0.2-2,0)
@@ -8327,7 +8378,7 @@ class card{
                 if(anim[a]>0){
                     switch(a){
                         case 0: case 23: this.layer.stroke(255,0,0,this.fade*anim[a]); break
-                        case 1: case 24: this.layer.stroke(100,255,255,this.fade*anim[a]); break
+                        case 1: case 24: case 28: case 29: this.layer.stroke(100,255,255,this.fade*anim[a]); break
                         case 2: this.layer.stroke(255,225,0,this.fade*anim[a]); break
                         case 3: this.layer.stroke(255,100,255,this.fade*anim[a]); break
                         case 4: case 21: case 26: case 27: this.layer.stroke(255,200,200,this.fade*anim[a]); break
@@ -8351,18 +8402,24 @@ class card{
                     }
                     this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
                     switch(a){
-                        case 21: case 23: case 24:
-                            this.layer.stroke(220,this.fade*anim[a])
-                            this.layer.strokeWeight(1)
-                            this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
-                        break
-                        case 25: case 26:
-                            this.layer.stroke(255,255,100,this.fade*anim[a])
-                            this.layer.strokeWeight(1)
-                            this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
-                        break
-                        case 27:
-                            this.layer.stroke(0,0,100,this.fade*anim[a])
+                        case 21: case 23: case 24: case 25: case 26: case 27: case 28: case 29:
+                            switch(a){
+                                case 21: case 23: case 24:
+                                    this.layer.stroke(220,this.fade*anim[a])
+                                break
+                                case 25: case 26:
+                                    this.layer.stroke(255,255,100,this.fade*anim[a])
+                                break
+                                case 27:
+                                    this.layer.stroke(0,0,100,this.fade*anim[a])
+                                break
+                                case 28:
+                                    this.layer.stroke(50,255,50,this.fade*anim[a])
+                                break
+                                case 29:
+                                    this.layer.stroke(150,255,50,this.fade*anim[a])
+                                break
+                            }
                             this.layer.strokeWeight(1)
                             this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
                         break

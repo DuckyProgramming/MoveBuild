@@ -207,7 +207,8 @@ class cardManager{
                     types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list==this.battle.player[this.player]||types.card[a].mtg.list==-1)&&
                     (
                         types.card[a].mtg.color.length==1&&effectiveMana[types.card[a].mtg.color[0]]>0||
-                        types.card[a].mtg.color.length==2&&effectiveMana[types.card[a].mtg.color[0]]>0&&effectiveMana[types.card[a].mtg.color[1]]>0
+                        types.card[a].mtg.color.length==2&&effectiveMana[types.card[a].mtg.color[0]]>0&&effectiveMana[types.card[a].mtg.color[1]]>0||
+                        types.card[a].mtg.color.length==3&&effectiveMana[types.card[a].mtg.color[0]]>0&&effectiveMana[types.card[a].mtg.color[1]]>0&&effectiveMana[types.card[a].mtg.color[2]]>0
                     )&&(
                         (
                             types.card[a].mtg.levels[0].spec.includes(11)||
@@ -882,6 +883,16 @@ class cardManager{
         }
         if(left>0){
             left-=this.hand.deAbstract(type,left,args)
+        }
+    }
+    deAbstractSecondary(type,value,args){
+        let left=value
+        left-=this.hand.deAbstract(type,left,args)
+        if(left>0){
+            left-=this.reserve.deAbstract(type,left,args)
+        }
+        if(left>0){
+            left-=this.discard.deAbstract(type,left,args)
         }
     }
     deAbstractAll(type,args){

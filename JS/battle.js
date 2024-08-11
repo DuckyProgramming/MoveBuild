@@ -1140,6 +1140,7 @@ class battle{
         if(userCombatant.name=='Daiyousei'){
             userCombatant.vision++
         }
+        let effectiveCost=variants.mtg?(card.specialCost?card.cost[0]:card.cost.length):card.cost
         switch(cardClass){
             case 1:
                 if(userCombatant.getStatus('Must Attack or Take Damage')>0){
@@ -1174,27 +1175,27 @@ class battle{
         if(userCombatant.getStatus('Card Play Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Card Play Block'))
         }
-        if(card.cost==2&&userCombatant.getStatus('2 Cost Block')>0){
+        if(effectiveCost==2&&userCombatant.getStatus('2 Cost Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('2 Cost Block'))
         }
         if((card.name=='Strike'||card.name=='Strike-')&&userCombatant.getStatus('Strike Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Strike Block'))
         }
-        if(card.cost==0&&userCombatant.getStatus('0 Cost Single Damage Up')>0){
+        if(effectiveCost==0&&userCombatant.getStatus('0 Cost Single Damage Up')>0){
             userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('0 Cost Single Damage Up'))
         }
-        if(card.cost>=2&&userCombatant.getStatus('2+ Cost Energy')>0){
+        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Energy')>0){
             this.addEnergy(userCombatant.getStatus('2+ Cost Energy'),player)
         }
-        if(card.cost>=2&&userCombatant.getStatus('2+ Cost Draw')>0){
+        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('2+ Cost Draw'))
         }
-        if(card.cost>=3&&userCombatant.getStatus('3+ Cost Free Discus')>0){
+        if(effectiveCost>=3&&userCombatant.getStatus('3+ Cost Free Discus')>0){
             for(let a=0,la=userCombatant.getStatus('3+ Cost Free Discus');a<la;a++){
                 this.cardManagers[player].hand.addAbstract(findName('Dual\nDiscus',types.card),0,0,0,[0])
             }
         }
-        if(card.cost>=3&&userCombatant.getStatus('3+ Cost Free Upgraded Discus')>0){
+        if(effectiveCost>=3&&userCombatant.getStatus('3+ Cost Free Upgraded Discus')>0){
             for(let a=0,la=userCombatant.getStatus('3+ Cost Free Upgraded Discus');a<la;a++){
                 this.cardManagers[player].hand.addAbstract(findName('Dual\nDiscus',types.card),1,0,0,[0])
             }
@@ -1215,13 +1216,13 @@ class battle{
         if(card.spec.includes(25)&&userCombatant.getStatus('Gun Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Gun Block'))
         }
-        if(card.cost>=2&&userCombatant.getStatus('2+ Cost Single Damage Up')>0){
+        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Single Damage Up')>0){
             userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('2+ Cost Single Damage Up'))
         }
-        if(card.cost>=2&&userCombatant.getStatus('2+ Cost Block')>0){
+        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('2+ Cost Block'))
         }
-        if(card.cost==-1&&userCombatant.getStatus('X Cost Boost')>0){
+        if(effectiveCost==-1&&userCombatant.getStatus('X Cost Boost')>0){
             userCombatant.status.main[findList('X Cost Boost',userCombatant.status.name)]=0
         }
         if(userCombatant.getStatus('Play Limit')>0&&this.cardManagers[player].hand.turnPlayed[0]>=userCombatant.getStatus('Play Limit')){

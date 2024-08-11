@@ -27,7 +27,7 @@ class group{
         this.basicChange=[0,0]
         this.addEffect=[]
         this.finalPosition=0
-        this.listKey=35
+        this.listKey=37
         this.listInput=[
             [0,4],
             [1,8],
@@ -60,6 +60,8 @@ class group{
             [31,37],
             [33,38],
             [34,39],
+            [35,40],
+            [36,41],
         ]
 
         this.reset()
@@ -540,6 +542,14 @@ class group{
         this.status[34]+=amount
         this.generalSelfStatus()
     }
+    exhaustChooseSame(amount){
+        this.status[35]+=amount
+        this.generalSelfStatus()
+    }
+    exhaustChooseSameLevel(amount){
+        this.status[36]+=amount
+        this.generalSelfStatus()
+    }
     generalSelfStatus(){
         if(variants.mtg){
             this.battle.mtgUnmark(this.player)
@@ -757,6 +767,9 @@ class group{
                 done++
                 if(done>=value&&value>=0){
                     a=la
+                }else if(this.id!=2){
+                    a--
+                    la--
                 }
             }
         }
@@ -2319,7 +2332,7 @@ class group{
                     this.drawEffects.push([5,this.drawEffects.push([5,userCombatant.getStatus('Drawn Shiv Draw')])])
                 }
             break
-            case 933: case 4010:
+            case 933: case 4010: case 4290: case 4291:
                 if(variants.mtg){
                     this.battle.addSpecificEnergy(card.effect[0],this.player,6)
                 }else{
@@ -2664,6 +2677,10 @@ class group{
                     break
                     case 9:
                         list[list.length-1].costUp(0,[1])
+                    break
+                    case 10:
+                        list[list.length-1].setCost(0,[0])
+                        list[list.length-1].retain2=true
                     break
                 }
                 delete this.cards[a]
@@ -3260,10 +3277,7 @@ class group{
                     }
                     this.battle.attackManager.amplify=true
                     this.cards.forEach(card=>card.anotherAmplified())
-                    if(userCombatant.status.main[144]>0){
-                        this.battle.overlayManager.overlays[7][this.player].active=true
-                        this.battle.overlayManager.overlays[7][this.player].activate()
-                    }
+                    userCombatant.amplified()
                 }
                 if(this.battle.getEnergy(this.player)>=2&&spec.includes(28)){
                     if(variants.mtg){
@@ -3273,10 +3287,7 @@ class group{
                     }
                     this.battle.attackManager.amplify=true
                     this.cards.forEach(card=>card.anotherAmplified())
-                    if(userCombatant.status.main[144]>0){
-                        this.battle.overlayManager.overlays[7][this.player].active=true
-                        this.battle.overlayManager.overlays[7][this.player].activate()
-                    }
+                    userCombatant.amplified()
                 }
             }
             if(this.battle.getEnergy(this.player)<0&&variants.overheat){
@@ -3329,7 +3340,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[26],this.anim[29],this.anim[30]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33]]
+                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[29],this.anim[30]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36])]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -4107,7 +4118,7 @@ class group{
                 if(this.cards[a].attack!=-3){
                     if(variants.mtg){
                         if(this.cards[a].specialCost){
-                            this.battle.addSpecificEnergy(max(0,this.cards[a].cost),this.player,0)
+                            this.battle.addSpecificEnergy(max(0,this.cards[a].cost[0]),this.player,0)
                         }else{
                             for(let b=0,lb=this.cards[a].cost.length;b<lb;b++){
                                 switch(this.cards[a].cost[b]){
@@ -4343,6 +4354,28 @@ class group{
                     }
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
+                }
+            break
+            case 40:
+                if(this.cards[a].attack!=-3){
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    if(this.status[35]>0){
+                        this.status[35]--
+                    }
+                    this.battle.overlayManager.overlays[10][this.player].active=true
+                    this.battle.overlayManager.overlays[10][this.player].activate([0,this.cards[a].class,28])
+                }
+            break
+            case 41:
+                if(this.cards[a].attack!=-3){
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    if(this.status[35]>0){
+                        this.status[35]--
+                    }
+                    this.battle.overlayManager.overlays[10][this.player].active=true
+                    this.battle.overlayManager.overlays[10][this.player].activate([this.cards[a].level,this.cards[a].class,28])
                 }
             break
         }
