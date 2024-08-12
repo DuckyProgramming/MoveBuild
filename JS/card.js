@@ -1773,7 +1773,7 @@ class card{
             case 1028: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nShuffle ${effect[2]} Card${pl(effect[2])} From\nHand Into Draw`; break
             case 1029: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nNext 3 Turns`; break
             case 1030: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} More\nCard${pl(effect[1])} Next Turn`; break
-            case 1031: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscards to\nDraw`; break
+            case 1031: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscards to Draw Pile`; break
             case 1032: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}\nNext Turn`; break
             case 1033: string+=`Gain ${effect[0]} Temporary\nDexterity`; break
             case 1034: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 Temporarily\nat Center of Hand`; break
@@ -1921,7 +1921,7 @@ class card{
             case 1177: string+=`Return Exhaust\nto Hand`; break
             case 1178: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGet Rickrolled`; break
             case 1179: string+=`Even Energy:\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
-            case 1180: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n25%: Apply ${effect[1]} Bleed\n25%: Add ${this.calculateEffect(effect[1],1)} Block\n25%: Heal ${this.calculateEffect(effect[1],4)} Health\n25%: Gain ${effect[1]} Currency`; break
+            case 1180: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n25%: Apply ${effect[1]} Bleed\n25%: Add ${this.calculateEffect(effect[2],1)} Block\n25%: Heal ${this.calculateEffect(effect[3],4)} Health\n25%: Gain ${effect[4]} Currency`; break
             case 1181: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTranssubstantiate Enemy`; break
             case 1182: string+=`Heal Target For ${effect[0]}\nGain ${effect[1]} Energy\nIf Healed to Full, Lose\n${effect[0]} Currency`; break
             case 1183: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nView the First 3\nCards in Draw Pile`; break
@@ -1951,7 +1951,7 @@ class card{
             case 1208: string+=`Lower Hitscore by ${effect[0]}`; break
             case 1209: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDecreases by ${effect[1]}\nWhen You Hit`; break
             case 1210: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage to Self\nDisarm on Own Tile`; break
-            case 1211: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Gain ${effect[1]} Energy\n50%: Lose ${effect[1]} Energy`; break
+            case 1211: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Gain ${effect[1]} Energy\n50%: Lose ${effect[2]} Energy`; break
             case 1212: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nBlackjack:\nDeals Triple`; break
             case 1213: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nSurvives Bust`; break
             case 1214: string+=`Increase Your Bust\nLimit by ${effect[0]}`; break
@@ -5095,6 +5095,18 @@ class card{
             case 4324: string+=`Gain (G) (N)`; break
             case 4325: string+=`Gain (G) (G) (N)`; break
             case 4326: string+=`Gain (E) (E) (G)`; break
+            case 4327: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain (N) Next 3 Turns`; break
+            case 4328: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain (E) Next 3 Turns`; break
+            case 4329: string+=`Swap Draw and Discard\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 4330: string+=`Gain (E) Per Enemy`; break
+            case 4331: string+=`Move ${effect[0]} Tile${pl(effect[0])}\n50%: Gain (K) (K)`; break
+            case 4332: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Gain (K) (K)`; break
+            case 4333: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Gain (W) (K)\n50%: Lose ${effect[1]} Random\nMana`; break
+            case 4334: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n25%: Gain (E) (E)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 4335: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n25%: Gain (E) (E) (E)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 4336: string+=`Even Mana Total:\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
+
+
 
 
 

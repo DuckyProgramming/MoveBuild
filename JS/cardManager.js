@@ -193,7 +193,7 @@ class cardManager{
         }
     }
     mtgListing(){
-        this.listing.mtg=[[[],[],[],[]],[],[[],[],[],[]]]
+        this.listing.mtg=[[[],[],[],[]],[],[[],[],[],[]],[[],[],[],[]]]
         for(let a=0,la=game.playerNumber+7;a<la;a++){
             this.listing.mtg[1].push([[],[],[],[]])
         }
@@ -243,6 +243,10 @@ class cardManager{
                 if(types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list==this.battle.player[this.player]||types.card[a].mtg.list==-1)){
                     this.listing.mtg[2][types.card[a].mtg.rarity].push(a)
                     this.listing.mtg[2][3].push(a)
+                }
+                if(types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber+5&&types.card[a].mtg.rarity>=0){
+                    this.listing.mtg[3][types.card[a].mtg.rarity].push(a)
+                    this.listing.mtg[3][3].push(a)
                 }
             }
         }
@@ -318,7 +322,7 @@ class cardManager{
                 ticker++
             break
             case 4:
-                list=copyArray(this.listing.allListableCard[args[ticker++]])
+                list=variants.mtg?copyArray(this.listing.mtg[3][args[ticker++]]):copyArray(this.listing.allListableCard[args[ticker++]])
             break
             case 5:
                 list=copyArray(this.listing.sub)

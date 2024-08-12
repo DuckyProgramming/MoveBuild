@@ -171,7 +171,8 @@ class combatant{
             '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
             'Elemental Draw','(E) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(N) Next Turn','(E) on Hit','Free Draw Up',
             'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw','Balance (E)','Invisible Per Turn','Random Mana Next Turn','Colorless Cost Down',
-            'Colorless Neutral Convert','Single Attack Weak','Amplify Draw',
+            'Colorless Neutral Convert','Single Attack Weak','Amplify Draw','(E) in 2 Turns','(W) in 2 Turns','(B) in 2 Turns','(K) in 2 Turns','(G) in 2 Turns','(R) in 2 Turns','(N) in 2 Turns',
+            '(E) in 3 Turns','(W) in 3 Turns','(B) in 3 Turns','(K) in 3 Turns','(G) in 3 Turns','(R) in 3 Turns','(N) in 3 Turns',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -226,7 +227,8 @@ class combatant{
                 0,2,0,0,0,0,0,2,2,0,//50
                 0,2,2,2,2,2,2,2,2,0,//51
                 0,0,0,0,0,0,0,0,2,0,//52
-                1,0,0,
+                1,0,0,2,2,2,2,2,2,2,//53
+                2,2,2,2,2,2,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -281,7 +283,8 @@ class combatant{
                 2,1,2,2,2,2,2,2,2,2,//50
                 2,2,2,2,2,2,2,2,2,2,//51
                 2,2,2,2,2,2,2,2,2,2,//52
-                2,0,2,
+                2,0,2,2,2,2,2,2,2,2,//53
+                2,2,2,2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -7372,7 +7375,20 @@ class combatant{
                     case 509: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.free+=this.status.main[a]} break
                     case 517: this.status.main[findList('Invisible',this.status.name)]+=this.status.main[a]; break
                     case 518: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id,6)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,-1)} break
-                    
+                    case 523: this.status.main[findList('(E) Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 524: this.status.main[findList('(W) Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 525: this.status.main[findList('(B) Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 526: this.status.main[findList('(K) Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 527: this.status.main[findList('(G) Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 528: this.status.main[findList('(R) Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 529: this.status.main[findList('(N) Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 530: this.status.main[findList('(E) in 2 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 531: this.status.main[findList('(W) in 2 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 532: this.status.main[findList('(B) in 2 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 533: this.status.main[findList('(K) in 2 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 534: this.status.main[findList('(G) in 2 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 535: this.status.main[findList('(R) in 2 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 536: this.status.main[findList('(N) in 2 Turns',this.status.name)]+=this.status.main[a]; break
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
                     if(this.status.main[a]>0){

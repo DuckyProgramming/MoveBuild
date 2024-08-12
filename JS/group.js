@@ -3993,7 +3993,7 @@ class group{
                 }else{
                     this.battle.attackManager.targetInfo=copyArray(a[3])
                     this.battle.attackManager.targetDistance=0
-                    this.battle.attackManager.cost=0
+                    this.battle.attackManager.cost=variants.mtg?[]:0
                     this.callInput(5,0)
                 }
             break

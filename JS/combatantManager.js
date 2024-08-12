@@ -731,7 +731,8 @@ class combatantManager{
         let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(
-                type==0&&this.battle.combatantManager.combatants[a].construct&&this.battle.combatantManager.combatants[a].life<=0
+                type==0&&this.combatants[a].construct&&this.combatants[a].life<=0||
+                type==1&&this.combatants[a].team==0&&this.combatants[a].life>0
             ){
                 total++
             }
