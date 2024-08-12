@@ -117,7 +117,7 @@ attack.prototype.update=function(){
         case 4153: case 4154: case 4155: case 4156: case 4161: case 4162: case 4163: case 4167: case 4168: case 4169:
         case 4170: case 4172: case 4183: case 4190: case 4203: case 4204: case 4206: case 4211: case 4212: case 4235:
         case 4236: case 4242: case 4243: case 4244: case 4248: case 4256: case 4257: case 4258: case 4259: case 4271:
-        case 4272: case 4273: case 4276: case 4281: case 4304: case 4319:
+        case 4272: case 4273: case 4276: case 4281: case 4304: case 4319: case 4321: case 4322: case 4323:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -632,7 +632,7 @@ attack.prototype.update=function(){
         case 4055: case 4057: case 4065: case 4074: case 4092: case 4111: case 4115: case 4116: case 4131: case 4134:
         case 4135: case 4136: case 4144: case 4147: case 4148: case 4171: case 4173: case 4174: case 4178: case 4187:
         case 4188: case 4189: case 4213: case 4214: case 4215: case 4239: case 4240: case 4241: case 4260: case 4292:
-        case 4305: case 4313: case 4320:
+        case 4305: case 4313: case 4320: case 4324: case 4325: case 4326:
             //mark 4
             if(
                 this.timer==1&&(

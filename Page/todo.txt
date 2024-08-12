@@ -67,6 +67,8 @@ scrap note
 
 [cannonball variant for #18]
 
+[annotation]
+
 
 
 exhaust
@@ -238,7 +240,7 @@ saltflat - add block, draw a movement if you have none in hand
 
 wrench of water - throw a wrench that creates particles that explode in a cyclic way (like gyroguns)
 
-cyan meteor - leaves behind trial of lines  star outlines
+cyan meteor - leaves behind trial of lines and star outlines
 
 
 

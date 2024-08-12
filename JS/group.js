@@ -785,8 +785,8 @@ class group{
     totalCost(){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].usable&&this.cards[a].cost>0){
-                total+=this.cards[a].cost
+            if(this.cards[a].usable&&this.cards[a].getCost(0)>0){
+                total+=this.cards[a].getCost(0)
             }
         }
         return total
@@ -2708,7 +2708,7 @@ class group{
                 }else if(spec==11){
                     list.splice(0,0,copyCard(this.cards[firstIndex]))
                 }else if(spec==22){
-                    this.cards[firstIndex].cost=variants.mtg&&!this.cards[firstIndex].specialCost?copyArray(this.cards[firstIndex].base.cost):this.cards[firstIndex].base.cost
+                    this.cards[firstIndex].cost=variants.mtg?copyArray(this.cards[firstIndex].base.cost):this.cards[firstIndex].base.cost
                     list.splice(0,0,copyCard(this.cards[firstIndex]))
                 }else{
                     list.push(copyCard(this.cards[firstIndex]))
@@ -2724,7 +2724,7 @@ class group{
                     switch(spec){
                         case 2:
                             if(!card.additionalSpec.includes(-2)&&!card.spec.includes(55)){
-                                card.cost=variants.mtg&&!card.specialCost?copyArray(card.base.cost):card.base.cost
+                                card.cost=variants.mtg?copyArray(card.base.cost):card.base.cost
                             }
                         break
                         case 3:
@@ -2793,7 +2793,7 @@ class group{
                         break
                     }
                 }else if(spec==7&&!card.additionalSpec.includes(-2)){
-                    card.cost=variants.mtg&&!card.specialCost?copyArray(card.base.cost):card.base.cost
+                    card.cost=variants.mtg?copyArray(card.base.cost):card.base.cost
                 }
                 delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
@@ -2808,7 +2808,7 @@ class group{
                 }else if(spec==11){
                     list.splice(0,0,copyCard(this.cards[firstIndex]))
                 }else if(spec==22){
-                    this.cards[firstIndex].cost=variants.mtg&&!this.cards[firstIndex].specialCost?copyArray(this.cards[firstIndex].base.cost):this.cards[firstIndex].base.cost
+                    this.cards[firstIndex].cost=variants.mtg?copyArray(this.cards[firstIndex].base.cost):this.cards[firstIndex].base.cost
                     list.splice(0,0,copyCard(this.cards[firstIndex]))
                 }else{
                     list.push(copyCard(this.cards[firstIndex]))
@@ -2824,7 +2824,7 @@ class group{
                     switch(spec){
                         case 2:
                             if(!card.additionalSpec.includes(-2)&&!card.spec.includes(55)){
-                                card.cost=variants.mtg&&!card.specialCost?copyArray(card.base.cost):card.base.cost
+                                card.cost=variants.mtg?copyArray(card.base.cost):card.base.cost
                             }
                         break
                         case 3:
@@ -2894,7 +2894,7 @@ class group{
                         break
                     }
                 }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
-                    list[list.length-1].cost=variants.mtg&&!list[list.length-1].specialCost?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
+                    list[list.length-1].cost=variants.mtg?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
                 }
                 delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
@@ -4078,7 +4078,7 @@ class group{
             break
             case 17:
                 if(this.cards[a].attack!=-3){
-                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.status[12]*max(0,variants.mtg?(this.cards[a].specialCost?this.cards[a].cost[0]:this.cards[a].cost.length):this.cards[a].cost))
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.status[12]*max(0,this.cards[a].getCost(0)))
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
                     if(this.status[12]>0){
@@ -4106,7 +4106,7 @@ class group{
             break
             case 20:
                 if(this.cards[a].attack!=-3){
-                    this.battle.combatantManager.randomEnemyEffect(3,[this.status[15]*max(0,variants.mtg?(this.cards[a].specialCost?this.cards[a].cost[0]:this.cards[a].cost.length):this.cards[a].cost),this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
+                    this.battle.combatantManager.randomEnemyEffect(3,[this.status[15]*max(0,this.cards[a].getCost(0)),this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
                     if(this.status[15]>0){
@@ -4305,7 +4305,7 @@ class group{
             break
             case 35:
                 if(this.cards[a].attack!=-3){
-                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(this.status[29]*max(0,variants.mtg?(this.cards[a].specialCost?this.cards[a].cost[0]:this.cards[a].cost.length):this.cards[a].cost))
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(this.status[29]*max(0,this.cards[a].getCost(0)))
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
                     this.battle.cardManagers[this.player].draw(1)
@@ -4318,7 +4318,7 @@ class group{
                 if(this.cards[a].attack!=-3){
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
-                    this.battle.cardManagers[this.player].draw(max(0,variants.mtg?(this.cards[a].specialCost?this.cards[a].cost[0]:this.cards[a].cost.length):this.cards[a].cost)+this.status[30]-1)
+                    this.battle.cardManagers[this.player].draw(max(0,this.cards[a].getCost(0))+this.status[30]-1)
                     if(this.status[30]>0){
                         this.status[30]=0
                     }

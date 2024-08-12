@@ -1721,6 +1721,16 @@ class battle{
             this.energy.main[player]=this.energy.gen[player]
         }
     }
+    resetEnergyGeneral(player){
+        if(variants.mtg){
+            for(let a=0,la=this.energy.main[player].length;a<la;a++){
+                this.energy.main[player][a]=0
+            }
+            this.resetEnergyCrystal(player)
+        }else{
+            this.energy.main[player]=0
+        }
+    }
     resetEnergyCrystal(player){
         this.energy.crystal[player]=[]
         this.energy.crystalTotal[player]=[0,0,0,0,0,0,0]
