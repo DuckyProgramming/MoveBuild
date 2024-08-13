@@ -1011,7 +1011,7 @@ class card{
             case 260: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget's Attacks Deal ${effect[1]}\nLess Damage This Turn`; break
             case 261: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 1 Less\nTemporarily`; break
             case 262: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Block\nNext Turn`; break
-            case 263: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 This\nTurn When a Card\nis Selectively Discarded`; break
+            case 263: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 Temporarily\nWhen a Card is\nSelectively Discarded`; break
             case 264: string+=`Shivs Deal ${effect[0]}\nMore Damage`; break
             case 265: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nAttacks Played\nThis Turn\n(Including This Card)`; break
             case 266: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 More\nWhen You Take Damage`; break
@@ -1038,7 +1038,7 @@ class card{
             case 287: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Takes ${effect[1]}\nDamage Per Card\nPlayed This Turn`; break
             case 288: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Drawn,\nMake ${effect[1]} Cop${effect[1]!=1?`ies`:`y`}`; break
             case 289: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nIf Last Card\nis a Defense,\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
-            case 290: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Times\nCosts 1 Less This\nTurn When a Card\nis Selectively Discarded`; break
+            case 290: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Times\nCosts 1 Less Temporarily\nWhen a Card is\nSelectively Discarded`; break
             case 291: string+=`Draw to ${effect[0]} Card${pl(effect[0])}`; break
             case 292: string+=`Apply ${effect[0]} Weak\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
             case 293: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} More\nCard${pl(effect[1])} Next Turn`; break
@@ -1913,8 +1913,8 @@ class card{
             case 1166: string+=`For 4 Turns,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
             case 1167: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Exhausted,\nDeal ${effect[1]} Splash Damage`; break
             case 1168: string+=`Target Moves\nApply ${effect[0]} Poison`; break
-            case 1169: string+=`When in Discard,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy\nEach Turn`; break
-            case 1170: string+=`When in Discard,\nAdd ${this.calculateEffect(effect[0],1)} Block\nEach Turn`; break
+            case 1169: string+=`When This Card is\nin the Discard Pile,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy\nEach Turn`; break
+            case 1170: string+=`When This Card is\nin the Discard Pile,\nAdd ${this.calculateEffect(effect[0],1)} Block\nEach Turn`; break
             case 1172: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nShuffle a Heavy Metal\nof Equivalent Level\nInto Draw`; break
             case 1173: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nGain ${effect[1]} Metal`; break
             case 1174: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Random Common\nCard of Equivalent\nLevel to Hand`; break
@@ -2080,7 +2080,7 @@ class card{
             case 1333: let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]; string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDiscards to Hand\nCosts 5 Taken Damage\n(Currently ${userCombatant.compression})`; break
             case 1334: string+=`Apply ${effect[0]}X Jinx`; break
             case 1335: string+=`Apply ${effect[0]} Jinx`; break
-            case 1336: string+=`Deal Damage Equal to\n${this.calculateEffect(effect[0]*10,0)}% of Target's Jinx`; break
+            case 1336: string+=`Deal Damage Equal to\n${this.calculateEffect(effect[0]*10,2).replace('X','%')} of Target's Jinx`; break
             case 1337: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nApply ${effect[1]} Miss`; break
             case 1338: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Triple if\nTarget Has Miss`; break
             case 1339: string+=`Exactly 0 Energy:\nApply ${effect[0]} Burn\nand Draw ${effect[1]} Card${pl(effect[1])}`; break
@@ -5128,12 +5128,12 @@ class card{
             case 4355: string+=`Gain (E) (B)\nWhen Selectively\nDiscarded`; break
             case 4356: string+=`Gain (E) (E) (B)\nWhen Selectively\nDiscarded`; break
             case 4357: string+=`Gain (E) (E) (B) (B)\nWhen Selectively\nDiscarded`; break
-            
             case 4358: string+=`Gain (B) (B) (B) (B)\nDiscard ${effect[0]} Card${pl(effect[0])}`; break
             case 4359: string+=`Gain (E) (E) (B) (B)\nDiscard ${effect[0]} Card${pl(effect[0])}`; break
             case 4360: string+=`Gain (E) (E) (E) (E) (E)\nDiscard ${effect[0]} Card${pl(effect[0])}`; break
-            //259
 
+            case 4361: string+=`Discard ${effect[0]} Card${pl(effect[0])}\nExhaust ${effect[1]} Card${pl(effect[1])}\nGain (W) (B)`; break
+            //2061
 
 
 
@@ -5835,9 +5835,7 @@ class card{
                 this.effect[0]+=this.effect[1]
             break
             case 2101:
-                if(this.cost>0){
-                    this.cost--
-                }
+                this.costDown(0,[1])
             break
         }
     }
@@ -5877,7 +5875,7 @@ class card{
     onItem(){
         switch(this.attack){
             case 2261:
-                this.cost=0
+                this.setCost(0,[0])
             break
             case 2554:
                 this.effect[0]+=this.effect[1]
@@ -5890,12 +5888,10 @@ class card{
     otherDiscard(){
         switch(this.attack){
             case 263:
-                this.cost=0
+                this.setCost(0,[0])
             break
             case 290:
-                if(this.cost>0){
-                    this.cost--
-                }
+                this.costDown(0,[1])
             break
             case 1667: case 2092:
                 this.effect[0]+=this.effect[1]

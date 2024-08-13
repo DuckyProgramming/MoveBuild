@@ -10974,6 +10974,12 @@ class attack{
                         this.battle.addSpecificEnergy(5,this.player,6)
                         this.userManager.hand.discard(this.effect[0])
                     break
+                    case 4361:
+                        this.userManager.hand.discard(this.effect[0])
+                        this.userManager.hand.exhaust(this.effect[1])
+                        this.battle.addSpecificEnergy(1,this.player,1)
+                        this.battle.addSpecificEnergy(1,this.player,2)
+                    break
 
                 }
                 //mark 5
@@ -17468,7 +17474,7 @@ class attack{
                     break
                     case 2444:
                         this.targetCombatant.takeDamage(this.targetCombatant.getStatus('Jinx'),-1)
-                        this.targetCombatant.status.main[findList('Jinx',this.targetCombatant.status.name)]=0
+                        this.targetCombatant.status.main[findList('Jinx',this.targetCombatant.status.name)]=floor(this.targetCombatant.status.main[findList('Jinx',this.targetCombatant.status.name)]/2)
                     break
                     case 2139:
                         this.targetCombatant.statusEffect('Jinx',this.effect[0])
