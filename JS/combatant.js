@@ -5706,12 +5706,8 @@ class combatant{
                 if(this.battle.modded(119)&&this.team>0&&floor(random(0,4))==0){
                     damage*=2
                 }
-                if(this.battle.modded(128)&&this.team==0&&this.spec.includes(2)){
-                    for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                        if(this.battle.combatantManager.combatants[a].team==0&&!this.battle.combatantManager.combatants[a].spec.includes(2)){
-                            damage=0
-                        }
-                    }
+                if(this.battle.modded(128)&&this.team==0&&this.spec.includes(2)&&this.battle.combatantManager.numberAbstract(2,[2])){
+                    damage=0
                 }
                 if(this.stance==1){
                     damage*=this.status.main[478]>0?3:2
@@ -7416,9 +7412,6 @@ class combatant{
         }
         if(this.stance>0&&this.id<this.battle.players){
             switch(this.stance){
-                case 3:
-                    this.battle.cardManagers[this.id].hand.add(findName('Speed',types.card),0,0)
-                break
                 case 5:
                     this.stance=0
                 break

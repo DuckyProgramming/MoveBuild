@@ -1897,6 +1897,7 @@ class group{
                 switch(effect){
                     case 0: case 17: case 57: case 58:
                         this.cards[index].deSize=true
+                        this.cards[index].callSpecDiscardEffect()
                     break
                     case 1: case 35:
                         this.cards[index].costDown(0,[args[0]])
@@ -2619,15 +2620,15 @@ class group{
             if(
                 variant==-1||
                 variant==0&&this.cards[a].class==args[0]||
-                variant==1&&this.cards[a].cost==args[0]&&!this.cards[a].specialCost||
+                variant==1&&this.cards[a].getCost(0)==args[0]&&!this.cards[a].specialCost||
                 variant==2&&this.cards[a].attack==args[0]||
                 variant==3&&this.cards[a].name==args[0]||
                 variant==4&&this.cards[a].rarity==args[0]||
-                variant==5&&this.cards[a].cost==this.sorted[0]||
-                variant==6&&this.cards[a].cost==this.sorted[this.sorted.length-1]||
+                variant==5&&this.cards[a].getCost(0)==this.sorted[0]||
+                variant==6&&this.cards[a].getCost(0)==this.sorted[this.sorted.length-1]||
                 variant==7&&this.cards[a].spec.length==this.sorted[0]||
                 variant==8&&this.cards[a].spec.length==this.sorted[this.sorted.length-1]||
-                variant==9&&this.cards[a].cost%[args[0]]==args[1]||
+                variant==9&&this.cards[a].getCost(0)%[args[0]]==args[1]||
                 variant==10&&this.cards[a].spec.includes(args[0])||
                 variant==11&&this.cards[a].colorless()||
                 variant==12&&this.cards[a].rarity==this.sorted[0]||
@@ -3079,8 +3080,8 @@ class group{
         this.lastSort=1
         let costs=[]
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(!costs.includes(this.cards[a].cost)){
-                costs.push(this.cards[a].cost)
+            if(!costs.includes(this.cards[a].getCost(0))){
+                costs.push(this.cards[a].getCost(0))
             }
         }
         this.sorted=sortNumbers(costs)

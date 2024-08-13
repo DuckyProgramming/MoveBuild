@@ -192,7 +192,7 @@ class purchaseManager{
                                 for(let b=0,lb=list.length;b<lb;b++){
                                     for(let c=0,lc=list[b].length;c<lc;c++){
                                         if(types.card[list[b][c]].mtg.list==-1&&types.card[list[b][c]].mtg.color[0]!=0&&floor(random(0,3))!=0){
-                                            list[a].splice(c,1)
+                                            list[b].splice(c,1)
                                             c--
                                             lc--
                                         }
@@ -274,7 +274,7 @@ class purchaseManager{
                                 type+9
                             ))
                         }
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[a].listing.mtg[1][game.playerNumber+3]):copyArrayStack(this.battle.cardManagers[0].listing.card[game.playerNumber+3])
+                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1][game.playerNumber+3]):copyArrayStack(this.battle.cardManagers[0].listing.card[game.playerNumber+3])
                         let bar=floor(random(0,2))
                         group=this.battle.modded(153)?[0,0]:variants.commoners?[[0,bar],[bar,0]][floor(random(0,2))]:[bar,1-bar]
                         cost=[[100,125],[140,175],[260,325]]

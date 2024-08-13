@@ -732,7 +732,8 @@ class combatantManager{
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(
                 type==0&&this.combatants[a].construct&&this.combatants[a].life<=0||
-                type==1&&this.combatants[a].team==0&&this.combatants[a].life>0
+                type==1&&this.combatants[a].team==0&&this.combatants[a].life>0||
+                type==2&&this.combatants[a].team==0&&this.combatants[a].life>0&&!this.combatants[a].spec.includes(args[0])
             ){
                 total++
             }
@@ -869,7 +870,9 @@ class combatantManager{
                         this.combatants[a].statusEffect('Freeze',args[0])
                     break
                     case 35:
-                        this.combatants[a].statusEffect(['Burn','Freeze','Shock'][floor(random(0,3))],args[0])
+                        this.combatants[a].statusEffect('Burn',args[0])
+                        this.combatants[a].statusEffect('Freeze',args[0])
+                        this.combatants[a].statusEffect('Shock',args[0])
                     break
                     case 36:
                         this.combatants[a].statusEffect('Dodge',args[0])

@@ -1152,15 +1152,15 @@ function multiplyString(base,multiply){
 	}
 }
 function copyCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost,base.costDownTrigger,base.costUpTrigger)
 }
 function copyCardNew(base){
 	game.id++
-	return new card(base.layer,base.battle,base.player,1200,500,base.type,base.level,base.color,game.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost)
+	return new card(base.layer,base.battle,base.player,1200,500,base.type,base.level,base.color,game.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost,base.costDownTrigger,base.costUpTrigger)
 }
 function copyCardNewAbstract(base,type,args){
 	game.id++
-	let result=new card(base.layer,base.battle,base.player,1200,500,base.type,base.level,base.color,game.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost)
+	let result=new card(base.layer,base.battle,base.player,1200,500,base.type,base.level,base.color,game.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost,base.costDownTrigger,base.costUpTrigger)
 	switch(type){
 		case 0:
 			result.cost=copyArray(args[0])
@@ -1170,13 +1170,13 @@ function copyCardNewAbstract(base,type,args){
 	return result
 }
 function copyCardFree(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.wishCost,base.costDownTrigger,base.costUpTrigger)
 }
 function upgradeCard(base,nonlimiting=false){
 	if(base.spec.includes(37)){
 		return copyCard(base)
 	}else{
-		let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.edited.cost,false,base.nonCalc)
+		let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.edited.cost,false,base.nonCalc,undefined,base.costDownTrigger,base.costUpTrigger)
 		if(base.attack==1352||nonlimiting){
 			result.limit=base.limit
 		}
@@ -1187,7 +1187,7 @@ function unupgradeCard(base,nonlimiting=false){
 	if(base.spec.includes(37)){
 		return copyCard(base)
 	}else{
-		let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.edited.cost,false,base.nonCalc)
+		let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.edited.cost,false,base.nonCalc,undefined,base.costDownTrigger,base.costUpTrigger)
 		if(base.attack==1352||nonlimiting){
 			result.limit=base.limit
 		}

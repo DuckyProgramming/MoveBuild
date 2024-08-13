@@ -2847,6 +2847,9 @@ class battle{
                         }
                     }
                     this.menu.combatant[0]=remaining[floor(random(0,remaining.length))]
+                    if(variants.mtg){
+                        this.setupMtgManaChoice(0)
+                    }
                 }
                 for(let a=0,la=types.ascend.length;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5})){
@@ -2908,6 +2911,9 @@ class battle{
                             }
                         }
                         this.menu.combatant[a]=remaining[floor(random(0,remaining.length))]
+                        if(variants.mtg){
+                            this.setupMtgManaChoice(a)
+                        }
                     }
                     if(variants.mtg){
                         if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+140+(this.layer.width/2-280)*a,y:this.layer.height*0.5-100},width:37.5,height:37.5})){
@@ -3274,6 +3280,9 @@ class battle{
                         }
                     }
                     this.menu.combatant[0]=remaining[floor(random(0,remaining.length))]
+                    if(variants.mtg){
+                        this.setupMtgManaChoice(0)
+                    }
                 }
                 if(code==UP_ARROW&&game.ascend<types.ascend.length-1){
                     game.ascend++
@@ -3322,6 +3331,9 @@ class battle{
                             }
                         }
                         this.menu.combatant[a]=remaining[floor(random(0,remaining.length))]
+                        if(variants.mtg){
+                            this.setupMtgManaChoice(a)
+                        }
                     }
                 }
                 if(code==UP_ARROW&&game.ascend<types.ascend.length-1){

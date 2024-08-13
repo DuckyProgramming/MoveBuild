@@ -1560,8 +1560,8 @@ class relicManager{
                             }
                         }
                         if(this.active[261][args[1]+1]>0){
-                            for(let a=0,la=this.active[261][args[1]+1];a<la;a++){
-                                this.battle.cardManagers[args[1]].hand.allEffect(97)
+                            for(let a=0,la=4*this.active[261][args[1]+1];a<la;a++){
+                                this.battle.cardManagers[args[1]].hand.randomEffect(2,[0])
                             }
                         }
                         if(this.active[285][args[1]+1]>0){
@@ -1632,7 +1632,7 @@ class relicManager{
                             }
                         }
                         if(this.active[438][args[1]+1]>0){
-                            for(let a=0,la=this.active[438][args[1]+1];a<la;a++){
+                            for(let a=0,la=2*this.active[438][args[1]+1];a<la;a++){
                                 this.battle.cardManagers[args[1]].hand.add(findName('Occult',types.card),0,0)
                             }
                         }
@@ -2633,7 +2633,7 @@ class relicManager{
             case 'bossstash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
                     if(dist(inputs.rel.x,inputs.rel.y,this.displayRelics[a].position.x,this.displayRelics[a].position.y)<20*this.displayRelics[a].size&&!this.displayRelics[a].deFade){
-                        this.callInput(1,[a,this.battle.players==1?0:inputs.rel.x<this.displayRelics[a].position.x&&this.complete[0]>0||this.complete[1]<=0?0:1,true])
+                        this.callInput(0,[a,this.battle.players==1?0:inputs.rel.x<this.displayRelics[a].position.x&&this.complete[0]>0||this.complete[1]<=0?0:1,true])
                     }
                 }
                 if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2,this.layer.height/2+45)<30){

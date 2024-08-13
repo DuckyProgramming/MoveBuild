@@ -898,7 +898,7 @@ types={
         {name:'Dragon Fish',internal:'Defensive Metallicize',id:229,rarity:1,list:0,mtg:0,description:'When You Fully Block Damage,\nGain 1 Metallicize'},
 
         {name:'Painted Deck',internal:'Compact/Lose First Relic',id:230,rarity:-1,list:0,mtg:0,description:'Compact Cards in Your Hand\nWhen Taken, Lose Your First Relic'},
-        {name:'Bad Legal Defense',internal:'Medic Death Remove',id:231,rarity:2,list:0,mtg:0,description:'Remove a Card When a Medic Dies'},
+        {name:'Bad Legal Defense',internal:'Medic Death Remove',id:231,rarity:1,list:0,mtg:0,description:'Remove a Card When a Medic Dies'},
         {name:'Mining Light',internal:'More Boss Rewards',id:232,rarity:1,list:0,mtg:0,description:'Boss Rewards Give 50% More Currency\nand 1 More Rare Card'},
         {name:'Card Buffer Advanced',internal:'Edition Deluxe Upgrades',id:233,rarity:2,list:0,mtg:0,description:'Cards You Choose to Deluxe\nUpgrade Gain Editions'},
         {name:'CSS',internal:'Energy/Visible Energy',id:234,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nYou Cannot See Your Energy'},
@@ -909,14 +909,14 @@ types={
         {name:'Loaded Disk',internal:'Paper Items',id:239,rarity:2,list:0,mtg:0,description:'Gain a Cream Paper or Pink\nPaper Item at the Start of Combat'},
 
         {name:'Enlightened Duck',internal:'Boss Spectral Pack',id:240,rarity:2,list:0,mtg:0,description:'Open a Spectral Pack After Every Boss'},
-        {name:'Jester Duck',internal:'Random Enemy Statuses',id:241,rarity:0,list:0,mtg:0,description:'All Enemies Start Combat With\nRandomly 1 Burn, Freeze, or Shock'},
+        {name:'Jester Duck',internal:'Random Enemy Statuses',id:241,rarity:0,list:0,mtg:0,description:'All Enemies Start Combat\nWith 1 Burn, Freeze, or Shock'},
         {name:'Asphalt Block',internal:'Energy/Miss',id:242,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nGain 2 Miss at the Start of Combat'},
         {name:'Radioscope',internal:'Energy/View',id:243,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nCannot See Draw and Discard Piles'},
         {name:'Blue Raspberry',internal:'Spectral Rest',id:244,rarity:2,list:0,mtg:0,description:'You Can Open Spectral\nPacks When Resting, 3 Uses'},
         {name:'The Trail',internal:'3 Cost Energy Next Turn',id:245,rarity:2,list:0,mtg:1,description:'Cards Costing 3 or More\nGive 1 Energy Next Turn'},
         {name:'Spearmint',internal:'25 Damage Draw',id:246,rarity:0,list:0,mtg:0,description:'Draw a Card When You\nDeal 25 or More Damage'},
         {name:'Chameleon',internal:'Random Polychrome Colorless',id:247,rarity:-1,list:0,mtg:0,description:'When Taken, Add a Random Polychrome\nCommon Colorless Card to Deck'},
-        {name:'Funny Numbers',internal:'69',id:248,rarity:2,list:0,mtg:0,description:'On Turns 6 and 9, Gain 4 Temporary\nStrength and Add 20 Block'},
+        {name:'Funny Numbers',internal:'69',id:248,rarity:-1,list:0,mtg:0,description:'On Turns 6 and 9, Gain 4 Temporary\nStrength and Add 20 Block'},
         {name:'Legos',internal:'Polychrome Erratics',id:249,rarity:2,list:0,mtg:0,description:'Polychrome and Erratic Cards\nHave Both Edition Effects'},
 
         {name:'Starfish',internal:'2 Tile Move Draw',id:250,rarity:0,list:0,mtg:0,description:'After Moving 2 or More\nTiles, Draw 1 Card'},
@@ -931,8 +931,8 @@ types={
         {name:'10 Foot Pole',internal:'Event Immunity',id:259,rarity:1,list:0,mtg:0,description:'Events Cannot Cause You to\nLose Health or Max HP'},
 
         {name:'Block Toys',internal:'Standard Card Reward',id:260,rarity:2,list:0,mtg:0,description:'Gain an Extra Card Reward\nFrom Normal Combats'},
-        {name:'Abandoned Rose',internal:'Starting Upgrade',id:261,rarity:2,list:0,mtg:0,description:'Temporarily Upgrade All Non-Innate\nUnupgraded Cards in Your Turn 1 Hand'},
-        {name:'Tea Set',internal:'Poor Rest Heal',id:262,rarity:0,list:0,mtg:0,description:'Heal 20 HP When Entering a Rest Site\nWith 500 Currency or Less'},
+        {name:'Abandoned Rose',internal:'Starting Upgrade',id:261,rarity:2,list:0,mtg:0,description:'Temporarily Upgrade 4 Random\nCards in Your Turn 1 Hand'},
+        {name:'Tea Set',internal:'Poor Rest Heal',id:262,rarity:-1,list:0,mtg:0,description:'Heal 20 HP When Entering a Rest Site\nWith 500 Currency or Less'},
         {name:'Roll of Pennies',internal:'Shop Currency',id:263,rarity:0,list:0,mtg:0,description:'Gain 50 Currency\nWhen You Enter a Shop'},
         {name:'Rice Bowl',internal:'Cheap Basics',id:264,rarity:1,list:0,mtg:0,description:'Basic Attacks and Defenses\nHave a 25% Chance to Cost 1 Less\nTemporarily When Drawn'},
         {name:'Donation Box',internal:'Currency Rest',id:265,rarity:1,list:0,mtg:0,description:'You Can Collect 300 Currency\nat Rest Sites'},
@@ -1131,12 +1131,12 @@ types={
         {name:'Containment Shell',internal:'Red Mana/Red Spent Temporary Strength',id:440,rarity:4,list:0,mtg:2,description:'Add (R) to Base Mana,\nGain 2 Temporary Strength\nWhen You Spend (R) on an Attack'},
         {name:'Optic Spectra',internal:'Rainbow Mana/Mana Dump',id:441,rarity:4,list:0,mtg:2,description:'Add (E) to Base Mana,\nGain (W) (B) (K) (G) (R) Every 12 Turns'},
         {name:'Left Fan',internal:'Random Mana/Duplicate Power',id:442,rarity:4,list:0,mtg:2,description:'Gain a Random Mana Each Turn,\nCreate a (1) Cost Copy of the\nFirst Power Played Each Combat'},
-        {name:'Expensive Bag',internal:'Double Stash',id:443,rarity:2,list:0,mtg:0,description:'You May Take an Extra\nRelic at Stashes'},
+        {name:'Expensive Bag',internal:'Double Stash',id:443,rarity:3,list:0,mtg:0,description:'You May Take an Extra\nRelic at Stashes'},
         {name:'Azurite',internal:'Retain Block (B)',id:444,rarity:2,list:0,mtg:0,description:'Lose Only Half of Your Block\nat End of Turn'},
-        {name:'Periwinkle Veil',internal:'First Enemy Weak',id:445,rarity:2,list:0,mtg:0,description:'Apply 2 Weak to The First\nEnemy You Attack Each Combat'},
+        {name:'Periwinkle Veil',internal:'First Enemy Weak',id:445,rarity:0,list:0,mtg:0,description:'Apply 2 Weak to The First\nEnemy You Attack Each Combat'},
         {name:'Sword of Hisou',internal:'Turn Splash Damage',id:446,rarity:2,list:0,mtg:0,description:'Deal 5 Splash Damage at\nthe Start of Your Turn'},
         {name:'Preserved Insect',internal:'Boss Debuff',id:447,rarity:1,list:0,mtg:0,description:'Enemies in Boss Combats Start Combat\nWith 2 Weak, Vulnerable, and Frail'},
-        {name:'Nimble Fabric',internal:'Extended Initiative',id:448,rarity:0,list:0,mtg:0,description:'You Can Add Initiatives\nto Hand on Turn 2'},
+        {name:'Nimble Fabric',internal:'Extended Initiative',id:448,rarity:1,list:0,mtg:0,description:'You Can Add Initiatives\nto Hand on Turn 2'},
         {name:'Enhanced Facilities',internal:'Better Shop Heal',id:449,rarity:0,list:0,mtg:0,description:'Heal 50% More at Shops'},
 
         //mark mtg mark r
@@ -9923,7 +9923,7 @@ Does not spend the orb.`,
         },{name:'Wrath',mtg:0,desc:
 `Stance. Deal double damage and take double damage.`,
         },{name:'Haste',mtg:0,desc:
-`Stance. Gives you more movement options, but you cannot attack.`,
+`Stance. Add a Speed card that moves 1 tile when entered, but you cannot attack.`,
         },{name:'Sturdy',mtg:0,desc:
 `Stance. Deal 60% damage and take 40% damage. `,
         },{name:'Faith',mtg:0,desc:

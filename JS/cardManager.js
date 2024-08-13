@@ -194,7 +194,7 @@ class cardManager{
     }
     mtgListing(){
         this.listing.mtg=[[[],[],[],[]],[],[[],[],[],[]],[[],[],[],[]]]
-        for(let a=0,la=game.playerNumber+7;a<la;a++){
+        for(let a=0,la=game.playerNumber+8;a<la;a++){
             this.listing.mtg[1].push([[],[],[],[]])
         }
         let effectiveMana=[0,0,0,0,0,0,0]
@@ -239,6 +239,10 @@ class cardManager{
                 ){
                     this.listing.mtg[1][types.card[a].mtg.list==-1?game.playerNumber+6:types.card[a].mtg.list][types.card[a].mtg.rarity].push(a)
                     this.listing.mtg[1][types.card[a].mtg.list==-1?game.playerNumber+6:types.card[a].mtg.list][3].push(a)
+                    if(types.card[a].mtg.list==-1||types.card[a].mtg.list>0&&types.card[a].mtg.list<=game.playerNumber){
+                        this.listing.mtg[1][game.playerNumber+7][types.card[a].mtg.rarity].push(a)
+                        this.listing.mtg[1][game.playerNumber+7][3].push(a)
+                    }
                 }
                 if(types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list==this.battle.player[this.player]||types.card[a].mtg.list==-1)){
                     this.listing.mtg[2][types.card[a].mtg.rarity].push(a)
@@ -950,11 +954,19 @@ class cardManager{
         }
     }
     transformCardPrism(base){
-        let index=floor(random(0,this.listing.allPlayerCard[3].length))
-        while(this.listing.allPlayerCard[3][index]==base.type){
-            index=floor(random(0,this.listing.card[base.list][3].length))
+        if(variants.mtg){
+            let index=floor(random(0,this.listing.mtg[1][game.playerNumber+7][3].length))
+            while(this.listing.mtg[1][game.playerNumber+7][3][index]==base.type){
+                index=floor(random(0,this.listing.mtg[1][game.playerNumber+7][3].length))
+            }
+            return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.mtg[1][game.playerNumber+7][3][index],base.level,this.battle.standardColorize(this.listing.mtg[1][game.playerNumber+7][3][index]),base.id)
+        }else{
+            let index=floor(random(0,this.listing.allPlayerCard[3].length))
+            while(this.listing.allPlayerCard[3][index]==base.type){
+                index=floor(random(0,this.listing.allPlayerCard[3].length))
+            }
+            return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.allPlayerCard[3][index],base.level,types.card[this.listing.allPlayerCard[3][index]].list,base.id)
         }
-        return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.allPlayerCard[3][index],base.level,types.card[this.listing.allPlayerCard[3][index]].list,base.id)
     }
     transformCardToBasic(base){
         return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName(['Strike','Defend','Step'][floor(random(0,3))],types.card),base.level,base.color,base.id)
