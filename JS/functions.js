@@ -2181,6 +2181,17 @@ function cursed(){
 		current.combatantManager.combatants[a].goal.anim.direction=0
 	}
 }
+function generalizedSearch(test){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let card=current.overlayManager.overlays[35][0].cards[a]
+		card.desc=card.description(card.attack,card.effect,card.spec,card.target)
+		if(card.desc.includes(test)){
+			print(card.name.replace('\n',' '),'\n',card.desc)
+		}
+	}
+}
 function mtgPlayerColor(player){
 	/*
 	0-colorless
@@ -2468,7 +2479,9 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 		}
 	}
 	if(hybridTotal.length>0){
-		let hybridSpend=hybridRecurse(0,effectiveManaLeft,hybridTotal,[],priority,variant)
+		let parsingMana=copyArray(effectiveManaLeft)
+		parsingMana[6]=0
+		let hybridSpend=hybridRecurse(0,parsingMana,hybridTotal,[],priority,variant)
 		if(hybridSpend[0]==-1){
 			hybridSpend=hybridRecurse(0,manaLeft,hybridTotal,[],priority,variant)
 			if(hybridSpend[0]==-1){

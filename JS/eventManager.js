@@ -20,6 +20,10 @@ class eventManager{
         for(let a=0,la=types.event.length;a<la;a++){
             if(types.event[a].list==0){
                 this.listing.event.push(a)
+                if(variants.mtg&&types.event[a].id==70){
+                    this.listing.event.push(a)
+                    this.listing.event.push(a)
+                }
             }
         }
     }
@@ -147,7 +151,13 @@ class eventManager{
         let index=floor(random(0,sublist.length))
         this.event=sublist[index]
         this.listing.complete.push(sublist[index])
-        this.listing.event.splice(this.listing.event.indexOf(sublist[index]),1)
+        for(let a=0,la=this.listing.event.length;a<la;a++){
+            if(this.listing.event[a]==sublist[index]){
+                this.listing.event.splice(a,1)
+                a--
+                la--
+            }
+        }
     }
     setup(){
         this.complete=false

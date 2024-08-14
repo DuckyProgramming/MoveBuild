@@ -172,7 +172,8 @@ class combatant{
             'Elemental Draw','(E) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(N) Next Turn','(E) on Hit','Free Draw Up',
             'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw','Balance (E)','Invisible Per Turn','Random Mana Next Turn','Colorless Cost Down',
             'Colorless Neutral Convert','Single Attack Weak','Amplify Draw','(E) in 2 Turns','(W) in 2 Turns','(B) in 2 Turns','(K) in 2 Turns','(G) in 2 Turns','(R) in 2 Turns','(N) in 2 Turns',
-            '(E) in 3 Turns','(W) in 3 Turns','(B) in 3 Turns','(K) in 3 Turns','(G) in 3 Turns','(R) in 3 Turns','(N) in 3 Turns',
+            '(E) in 3 Turns','(W) in 3 Turns','(B) in 3 Turns','(K) in 3 Turns','(G) in 3 Turns','(R) in 3 Turns','(N) in 3 Turns','Lowroll (E)','Highroll (E)','All Mana (W)',
+            'All Mana (B)','All Mana (K)','All Mana (G)','All Mana (R)',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -228,7 +229,8 @@ class combatant{
                 0,2,2,2,2,2,2,2,2,0,//51
                 0,0,0,0,0,0,0,0,2,0,//52
                 1,0,0,2,2,2,2,2,2,2,//53
-                2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,0,0,0,//54
+                0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -284,7 +286,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//51
                 2,2,2,2,2,2,2,2,2,2,//52
                 2,0,2,2,2,2,2,2,2,2,//53
-                2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//54
+                2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -4798,7 +4801,12 @@ class combatant{
         return targetTile
     }
     manaEquate(type,equal){
-        return type==equal||type==6
+        return type==equal||type==6||
+        equal==1&&this.status.main[539]>0||
+        equal==2&&this.status.main[540]>0||
+        equal==3&&this.status.main[541]>0||
+        equal==4&&this.status.main[542]>0||
+        equal==5&&this.status.main[543]>0
     }
     pareidolia(){
         if(!this.spec.includes(2)){
@@ -5295,7 +5303,10 @@ class combatant{
             this.statusEffect('Dexterity',this.status.main[253])
         }
         if(this.status.main[254]>0){
-            this.battle.addSpecificEnergy(this.status.main[254],this.id,6)
+            this.battle.addSpecificEnergy(this.status.main[254],this.id,0)
+        }
+        if(this.status.main[537]>0){
+            this.battle.addSpecificEnergy(this.status.main[537],this.id,6)
         }
     }
     highRoll(){
@@ -5309,7 +5320,10 @@ class combatant{
             this.statusEffect('Dexterity',this.status.main[257])
         }
         if(this.status.main[258]>0){
-            this.battle.addSpecificEnergy(this.status.main[258],this.id,6)
+            this.battle.addSpecificEnergy(this.status.main[258],this.id,0)
+        }
+        if(this.status.main[538]>0){
+            this.battle.addSpecificEnergy(this.status.main[538],this.id,6)
         }
     }
     takeDamage(value,user,spec=0){

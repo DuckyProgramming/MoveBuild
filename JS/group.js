@@ -2140,6 +2140,9 @@ class group{
                         this.cards[index].deSize=true
                         this.cards[index].discardEffect.push(0)
                         return true
+                    case 61:
+                        this.send(args[0],index,index+1,4)
+                    break
 
                 }
             }
@@ -2367,7 +2370,7 @@ class group{
             case 1241:
                 userCombatant.statusEffect('Counter All',card.effect[0])
             break
-            case 1242:
+            case 1242: case 4393:
                 userCombatant.addBlock(card.effect[0])
             break
             case 1243:

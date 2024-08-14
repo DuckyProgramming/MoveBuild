@@ -844,7 +844,7 @@ class battle{
                 this.energy.main[player][effectiveGen[a]]++
                 this.energy.crystalTotal[player][effectiveGen[a]]++
                 cap-=25
-                this.energy.crystal[player].push([effectiveGen[a],cap,0,true,false,false])
+                this.energy.crystal[player].push([effectiveGen[a],cap,0,true,false,false,true])
             }
         }else{
             this.energy.main[player]=gen
@@ -1334,7 +1334,7 @@ class battle{
                             cap=min(a==0?459:this.energy.crystal[player][a-1][1]-25,cap)
                         }
                         cap-=25
-                        this.energy.crystal[player].push([this.setupMtgManaChoice,cap,0,true,false,false])
+                        this.energy.crystal[player].push([this.setupMtgManaChoice,cap,0,true,false,false,true])
                         this.energy.crystalTotal[player][this.setupMtgManaChoice]++
                     }
                 }else{
@@ -1345,7 +1345,7 @@ class battle{
                             cap=min(a==0?459:this.energy.crystal[player][a-1][1]-25,cap)
                         }
                         cap-=25
-                        this.energy.crystal[player].push([type,cap,0,true,false,false])
+                        this.energy.crystal[player].push([type,cap,0,true,false,false,true])
                         this.energy.crystalTotal[player][type]++
                     }
                 }
@@ -1379,6 +1379,45 @@ class battle{
                 }
             }else{
                 this.energy.gen[player]+=amount
+            }
+        }
+    }
+    purify(amount,player){
+        if(variants.mtg){
+            for(let a=0,la=amount;a<la;a++){
+                let cap=0
+                for(let b=0,lb=this.energy.main[player].length;b<lb;b++){
+                    if(b!=0&&b!=6){
+                        cap=max(this.energy.main[player][b],cap)
+                    }
+                }
+                if(cap>0){
+                    let top=[]
+                    for(let b=0,lb=this.energy.main[player].length;b<lb;b++){
+                        if(b!=0&&b!=6&&cap==this.energy.main[player][b]){
+                            top.push(b)
+                        }
+                    }
+                    if(top.length>0){
+                        let choice=top[floor(random(0,top.length))]
+                        this.energy.main[player][choice]--
+                        this.energy.main[player][0]++
+                        this.energy.crystalTotal[player][choice]--
+                        this.energy.crystalTotal[player][0]++
+                        let crystals=[]
+                        for(let b=0,lb=this.energy.crystal[player].length;b<lb;b++){
+                            if(this.energy.crystal[player][b][0]==choice&&this.energy.crystal[player][b][3]){
+                                crystals.push(b)
+                            }
+                        }
+                        if(crystals.length>0){
+                            let index=crystals[floor(random(0,crystals.length))]
+                            this.energy.crystal[player][index][3]=false
+                            this.energy.crystal[player][index][6]=false
+                            this.energy.crystal[player].splice(index,0,[0,this.energy.crystal[player][index][1],0,true,this.energy.crystal[player][index][4],this.energy.crystal[player][index][5],true])
+                        }
+                    }
+                }
             }
         }
     }
@@ -1575,6 +1614,22 @@ class battle{
             if(variants.mtg){
                 for(let a=0,la=amount;a<la;a++){
                     if(this.energy.gen[player].length>0){
+                        this.energy.gen[player].splice(this.energy.gen[player].length-1,1)
+                    }
+                }
+            }else{
+                this.energy.gen[player]+=amount
+            }
+        }
+    }
+    loseRandomEnergyGen(amount,player){
+        if(player<this.players){
+            if(amount!=0){
+                this.anim[amount>0?'energyDown':'energyUp']=1
+            }
+            if(variants.mtg){
+                for(let a=0,la=amount;a<la;a++){
+                    if(this.energy.gen[player].length>0){
                         this.energy.gen[player].splice(floor(random(0,this.energy.gen[player].length)),1)
                     }
                 }
@@ -1743,7 +1798,7 @@ class battle{
                     let goal=459
                     for(let c=1,lc=b+1;c<lc;c++){
                         if(this.energy.crystal[a][b-c][1]>this.energy.crystal[a][b][1]-25&&!this.energy.crystal[a][b-c][4]){
-                            goal=this.energy.crystal[a][b-c][1]-25-(this.energy.crystal[a][b][4]&&!this.energy.crystal[a][b-c][4]?50:0)
+                            goal=this.energy.crystal[a][b-c][1]-(this.energy.crystal[a][b][6]?25:0)-(this.energy.crystal[a][b][4]&&!this.energy.crystal[a][b-c][4]?50:0)
                             c=lc
                         }
                     }
@@ -1767,7 +1822,7 @@ class battle{
                     let goal=midcap-75
                     for(let c=1,lc=b+1;c<lc;c++){
                         if(this.energy.crystal[a][b-c][1]>this.energy.crystal[a][b][1]-25&&this.energy.crystal[a][b-c][4]){
-                            goal=this.energy.crystal[a][b-c][1]-25-(this.energy.crystal[a][b][4]&&!this.energy.crystal[a][b-c][4]?50:0)
+                            goal=this.energy.crystal[a][b-c][1]-(this.energy.crystal[a][b][6]?25:0)-(this.energy.crystal[a][b][4]&&!this.energy.crystal[a][b-c][4]?50:0)
                             c=lc
                         }
                     }
@@ -1788,7 +1843,7 @@ class battle{
             for(let b=0,lb=this.energy.crystalTotal[a].length;b<lb;b++){
                 while(this.energy.crystalTotal[a][b]<this.energy.main[a][b]){
                     cap-=25
-                    this.energy.crystal[a].push([b,cap,0,true,false,false])
+                    this.energy.crystal[a].push([b,cap,0,true,false,false,true])
                     this.energy.crystalTotal[a][b]++
                 }
                 while(this.energy.crystalTotal[a][b]>this.energy.main[a][b]){

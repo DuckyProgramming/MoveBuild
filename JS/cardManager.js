@@ -316,7 +316,7 @@ class cardManager{
                 list=variants.mtg?copyArray(this.listing.mtg[1][args[ticker++]][args[ticker++]]):copyArray(this.listing.card[args[ticker++]][args[ticker++]])
             break
             case 2:
-                list=variants.mtg?copyArray(this.listing.mtg[2][args[ticker++]]):copyArray(this.listing.allPlayerCard[args[ticker++]])
+                list=variants.mtg?copyArray((output==0||output==8?this.listing.mtg[1][game.playerNumber+7]:this.listing.mtg[2])[args[ticker++]]):copyArray(this.listing.allPlayerCard[args[ticker++]])
             break
             case 3:
                 list=copyArray(this.listing.allPlayerCard[args[ticker]])
@@ -437,7 +437,7 @@ class cardManager{
                 break
                 case 5:
                     let card5=this.getList(group).addReturn(type,level,color,edition)
-                    card5.cost=max(min(card.cost,0),card.cost-args[ticker++])
+                    card5.costDown(0,[2])
                 break
                 case 6:
                     this.getList(group).addAbstract(type,level,color,edition,0,[5],[])

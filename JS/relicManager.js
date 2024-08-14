@@ -104,6 +104,7 @@ class relicManager{
         }else if(variants.mtg){
             let groups=[[],[],[],[],[],[],[],[]]
             for(let a=0,la=this.listing.relic[4].length;a<la;a++){
+                print(types.relic[this.listing.relic[4][a]].manaColor,types.relic[this.listing.relic[4][a]].name)
                 groups[types.relic[this.listing.relic[4][a]].manaColor].push(this.listing.relic[4][a])
             }
             for(let a=0,la=3;a<la;a++){
@@ -1240,7 +1241,6 @@ class relicManager{
                             if(this.active[367][a+1]>0){this.detail[367][a]=0}
                             if(this.active[378][a+1]>0){this.detail[378][a]=0}
                             if(this.active[383][a+1]>0){this.detail[383][a]=0}
-                            if(this.active[384][a+1]>0){this.detail[384][a]=0}
                             if(this.active[442][a+1]>0){this.detail[442][a]=0}
                         }
                         if(this.active[96][0]>0&&args[1]==1){
@@ -1460,6 +1460,7 @@ class relicManager{
                 if(args[0]%5==0&&this.battle.modded(151)){
                     this.battle.quickReinforce('Duck')
                 }
+                if(this.active[384][a+1]>0){this.detail[384][a]=0}
             break
             case 1://end of combat [encounterclass]
                 for(let a=0,la=this.battle.players;a<la;a++){
@@ -2447,7 +2448,7 @@ class relicManager{
                 }
                 if(this.active[383][args[1]+1]&&this.detail[383][args[1]]==0){
                     this.detail[383][args[1]]=1
-                    this.battle.addSpecificEnergy(this.active[383][args[1]],args[1],6)
+                    this.battle.addSpecificEnergy(this.active[383][args[1]]*2,args[1],6)
                 }
                 if(this.active[384][args[1]+1]&&this.detail[384][args[1]]==0){
                     this.detail[384][args[1]]=1

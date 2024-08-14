@@ -2841,15 +2841,16 @@ class relic{
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('1',-9,-2)
-                    this.layer.text('1',9,0)
+                    this.layer.text('2',9,0)
                 break
                 case 'First Block Mana':
                     displaySymbol(this.layer,-9,0,27,0,1,this.fade)
-                    displaySymbol(this.layer,-9,4,4,0,0.4,this.fade)
+                    displaySymbol(this.layer,-9,-6,5,0,0.4,this.fade)
+                    displaySymbol(this.layer,-9,6,4,0,0.4,this.fade)
                     displayMtgManaSymbol(this.layer,9,0,2,0,0.8,this.fade,-1,[])
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('1',-9,-2)
+                    this.layer.text('1',-9,0)
                     this.layer.text('1',9,0)
                 break
                 case 'Status Draw Energy':

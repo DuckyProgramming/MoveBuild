@@ -1065,8 +1065,8 @@ types={
         {name:'Medicine Cabinet',internal:'Turn 1 Mana/Turn 2 Heal/Turn 3 Temporary Strength',id:380,rarity:2,list:0,mtg:2,description:'Gain (E) on Turn 1\nHeal 2 Health on Turn 2\nGain 3 Temporary Strength on Turn 3'},
         {name:'Exponentia',internal:'Mana Gain Draw',id:381,rarity:2,list:0,mtg:2,description:'Draw 1 Card When You Gain Mana'},
         {name:'Tactical Conductor',internal:'Cheap Skills (M)',id:382,rarity:2,list:0,mtg:2,description:'Skills Cost 1 Less'},
-        {name:'Ice Cube',internal:'First Block Energy',id:383,rarity:0,list:0,mtg:1,description:'Gain 1 Energy the First Time\nYou Gain Block Each Combat'},
-        {name:'Ice Cube',internal:'First Block Mana',id:384,rarity:0,list:0,mtg:2,description:'Gain (B) the First Time\nYou Gain Block Each Combat'},
+        {name:'Ice Cube',internal:'First Block Energy',id:383,rarity:1,list:0,mtg:1,description:'Gain 2 Energy the First Time\nYou Gain Block Each Combat'},
+        {name:'Ice Cube',internal:'First Block Mana',id:384,rarity:1,list:0,mtg:2,description:'Gain (B) the First Time\nYou Gain Block Each Turn'},
         {name:'Vinyl',internal:'Status Draw Energy',id:385,rarity:2,list:0,mtg:1,description:'Gain 1 Energy When You Draw a\nStatus Card Other Than Fatigue'},
         {name:'Vinyl',internal:'Status Draw Mana',id:386,rarity:2,list:0,mtg:2,description:'Gain (K) When You Draw a\nStatus Card Other Than Fatigue'},
         {name:'Ticket to Hell',internal:'Health Loss Draw',id:387,rarity:2,list:0,mtg:0,description:'When You Lose Health,\nDraw 1 Card'},
@@ -1121,16 +1121,16 @@ types={
         {name:'Pasta Bowl',internal:'X Cost Mana',id:431,rarity:3,list:0,mtg:2,description:'When You Play an X Cost Card,\nGain (N)'},
         {name:'Gas Oven',internal:'Elite Upgrade',id:432,rarity:2,list:0,mtg:0,description:'Upgrade a Card After Each Elite'},
         {name:'Radio Receiver',internal:'Emergency Push',id:433,rarity:0,list:0,mtg:0,description:'Add 1 Emergency Push at\nthe Start of Combat'},
-        {name:'Optimal Sneakers',internal:'Free Move',id:434,rarity:4,list:0,mtg:0,description:'Add a Free Move\nto Hand Every Turn'},
-        {name:'Purified Nebula',internal:'Neutral Mana/Colorless Cost Clear',id:435,rarity:4,list:0,mtg:2,description:'Add (N) to Base Mana,\nReplace (N) Costs With (1) Costs'},
-        {name:'Ivory Beads',internal:'White Mana/Block Up',id:436,rarity:4,list:0,mtg:2,description:'Add (W) to Base Mana,\nIncrease All Block Added by 2'},
-        {name:'Ice Crystal Wing',internal:'Blue Mana/Ice Wing',id:437,rarity:4,list:0,mtg:2,description:'Add (B) to Base Mana,\nAdd an Ice Wing at the Start of Combat'},
-        {name:'Unholy Water',internal:'Black Mana/Occult',id:438,rarity:4,list:0,mtg:2,description:'Add (K) to Base Mana,\nAdd 2 Occults at the Start of Combat'},
-        {name:'Toned Physique',internal:'Green Mana/3 Turn Strength',id:439,rarity:4,list:0,mtg:2,description:'Add (G) to Base Mana,\nGain 1 Strength Every 5 Turns'},
+        {name:'Optimal Sneakers',internal:'Free Move',id:434,rarity:4,list:0,mtg:1,description:'Add a Free Move\nto Hand Every Turn'},
+        {name:'Purified Nebula',internal:'Neutral Mana/Colorless Cost Clear',id:435,rarity:4,list:0,mtg:2,description:'Add (N) to Base Mana,\nReplace (N) Costs With (1) Costs',manaColor:0},
+        {name:'Ivory Beads',internal:'White Mana/Block Up',id:436,rarity:4,list:0,mtg:2,description:'Add (W) to Base Mana,\nIncrease All Block Added by 2',manaColor:1},
+        {name:'Ice Crystal Wing',internal:'Blue Mana/Ice Wing',id:437,rarity:4,list:0,mtg:2,description:'Add (B) to Base Mana,\nAdd an Ice Wing at the Start of Combat',manaColor:2},
+        {name:'Unholy Water',internal:'Black Mana/Occult',id:438,rarity:4,list:0,mtg:2,description:'Add (K) to Base Mana,\nAdd 2 Occults at the Start of Combat',manaColor:3},
+        {name:'Toned Physique',internal:'Green Mana/3 Turn Strength',id:439,rarity:4,list:0,mtg:2,description:'Add (G) to Base Mana,\nGain 1 Strength Every 5 Turns',manaColor:4},
 
-        {name:'Containment Shell',internal:'Red Mana/Red Spent Temporary Strength',id:440,rarity:4,list:0,mtg:2,description:'Add (R) to Base Mana,\nGain 2 Temporary Strength\nWhen You Spend (R) on an Attack'},
-        {name:'Optic Spectra',internal:'Rainbow Mana/Mana Dump',id:441,rarity:4,list:0,mtg:2,description:'Add (E) to Base Mana,\nGain (W) (B) (K) (G) (R) Every 12 Turns'},
-        {name:'Left Fan',internal:'Random Mana/Duplicate Power',id:442,rarity:4,list:0,mtg:2,description:'Gain a Random Mana Each Turn,\nCreate a (1) Cost Copy of the\nFirst Power Played Each Combat'},
+        {name:'Containment Shell',internal:'Red Mana/Red Spent Temporary Strength',id:440,rarity:4,list:0,mtg:2,description:'Add (R) to Base Mana,\nGain 2 Temporary Strength\nWhen You Spend (R) on an Attack',manaColor:5},
+        {name:'Optic Spectra',internal:'Rainbow Mana/Mana Dump',id:441,rarity:4,list:0,mtg:2,description:'Add (E) to Base Mana,\nGain (W) (B) (K) (G) (R) Every 12 Turns',manaColor:6},
+        {name:'Left Fan',internal:'Random Mana/Duplicate Power',id:442,rarity:4,list:0,mtg:2,description:'Gain a Random Mana Each Turn,\nCreate a (1) Cost Copy of the\nFirst Power Played Each Combat',manaColor:7},
         {name:'Expensive Bag',internal:'Double Stash',id:443,rarity:3,list:0,mtg:0,description:'You May Take an Extra\nRelic at Stashes'},
         {name:'Azurite',internal:'Retain Block (B)',id:444,rarity:2,list:0,mtg:0,description:'Lose Only Half of Your Block\nat End of Turn'},
         {name:'Periwinkle Veil',internal:'First Enemy Weak',id:445,rarity:0,list:0,mtg:0,description:'Apply 2 Weak to The First\nEnemy You Attack Each Combat'},
@@ -9641,10 +9641,10 @@ Typically gives 2, but there are other versions that give more.`,
         },{name:'Miracle',mtg:2,desc:
 `Card that gives rainbow mana, exhausts and retains.
 Typically gives 2, but there are other versions that give more.`,
-        },/*{name:'Amplify',mtg:2,desc:
-`Spend 1 Energy if possible to get a bonus effect on card.
-Amplify 2 means that 2 Energy will be spent instead.`,
-        },*/
+        },{name:'Amplify',mtg:2,desc:
+`Spend additional mana if possible to get a bonus effect on card.
+If it cannot be paid, the bonus effect is not triggered.`,
+        },
         
         {name:'Draw',mtg:0,desc:
 `Moves cards from draw pile to hand.
