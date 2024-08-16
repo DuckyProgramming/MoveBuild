@@ -316,7 +316,7 @@ class cardManager{
                 list=variants.mtg?copyArray(this.listing.mtg[1][args[ticker++]][args[ticker++]]):copyArray(this.listing.card[args[ticker++]][args[ticker++]])
             break
             case 2:
-                list=variants.mtg?copyArray((output==0||output==8?this.listing.mtg[1][game.playerNumber+7]:this.listing.mtg[2])[args[ticker++]]):copyArray(this.listing.allPlayerCard[args[ticker++]])
+                list=variants.mtg?copyArray((output==0||output==5||output==8?this.listing.mtg[1][game.playerNumber+7]:this.listing.mtg[2])[args[ticker++]]):copyArray(this.listing.allPlayerCard[args[ticker++]])
             break
             case 3:
                 list=copyArray(this.listing.allPlayerCard[args[ticker]])
@@ -712,11 +712,6 @@ class cardManager{
         this.reserve.allEffectArgs(effect,args)
         this.hand.allEffectArgs(effect,args)
         this.discard.allEffectArgs(effect,args)
-    }
-    allGroupClaw(effect){
-        this.reserve.allClaw(effect)
-        this.hand.allClaw(effect)
-        this.discard.allClaw(effect)
     }
     turnDraw(turn){
         let tempDrawAmount=this.drawAmount+this.tempDraw.main-(this.battle.turn.total==1&&(variants.cyclicDraw||game.ascend>=21)?1:0)

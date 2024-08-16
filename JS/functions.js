@@ -425,6 +425,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[7]&&user.status.main[413]>0){
 				bonus+=user.status.main[413]
 			}
+			if(variant&&args[8]&&user.status.main[544]>0){
+				bonus+=user.status.main[544]
+			}
 			if(user.status.main[12]>0){
 				bonus+=user.status.main[12]
 			}
@@ -900,7 +903,7 @@ function intentDescription(attack,user,info){
 			case 230: return `Add ${info?attack.effect[0]:`?`} Block\nto Builder`
 			case 231: return `Builder Draws ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}`
 			case 232: return `Builder Gains ${info?attack.effect[0]:`?`}\nTemporary Strength`
-			case 233: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTo All Targets`
+			case 233: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTo Targets in\nAll Directions`
 			case 234: return `Builder Adds ${info?attack.effect[0]:`?`}\nRevolver${attack.effect[0]!=1||info?`s`:``} to Hand`
 			case 237: return `Builder Gains ${info?attack.effect[0]:`?`}\nMetal`
 			case 238: return `Builder Upgrades ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}`
@@ -2185,10 +2188,10 @@ function generalizedSearch(test){
 	current.overlayManager.overlays[35][0].active=true
     current.overlayManager.overlays[35][0].activate([0])
 	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
-		let card=current.overlayManager.overlays[35][0].cards[a]
-		card.desc=card.description(card.attack,card.effect,card.spec,card.target)
-		if(card.desc.includes(test)){
-			print(card.name.replace('\n',' '),'\n',card.desc)
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+		if(cardData.desc.includes(test)){
+			print(cardData.name.replace('\n',' '),'\n',cardData.desc)
 		}
 	}
 }

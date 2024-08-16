@@ -836,13 +836,6 @@ class group{
         }
         return types.length
     }
-    allClaw(effect){
-        for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].spec.includes(20)){
-                this.cards[a].effect[0]+=effect
-            }
-        }
-    }
     classLimit(cardClass,limit){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -1847,7 +1840,7 @@ class group{
         if(this.cards.length>0){
             let list=[]
             for(let a=0,la=this.cards.length;a<la;a++){
-                if((this.cards[a].usable||this.id!=2)&&(!this.cards[a].deSize||effect==41)
+                if((this.cards[a].usable||this.id!=2)&&(!this.cards[a].deSize||this.id!=2||effect==41)
                 &&!((effect==0||effect==25||effect==28)&&this.cards[a].deSize)
                 &&!((effect==1||effect==5||effect==33||effect==40||effect==48)&&(this.cards[a].getCost(1)<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)))
                 &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)))
@@ -2450,7 +2443,7 @@ class group{
             case 2822:
                 userCombatant.vision+=card.effect[0]
             break
-            case 2873:
+            case 2873: case 4450: case 4451:
                 this.battle.combatantManager.randomNumberEffect(
                     1+userCombatant.getStatus('Prismatic Bomb Targets'),
                     0,
@@ -2461,8 +2454,14 @@ class group{
                         userCombatant.getStatus('Prismatic Bomb Poison')
                     ]
                 )
-                this.battle.addSpecificEnergy(card.effect[1],this.player,6)
-                this.drawEffects.push([5,card.effect[2]])
+                if(card.attack==4451){
+                    this.battle.addSpecificEnergy(1,this.player,6)
+                }else{
+                    this.battle.addSpecificEnergy(card.effect[1],this.player,6)
+                }
+                if(card.attack==2873){
+                    this.drawEffects.push([5,card.effect[2]])
+                }
                 this.drawEffects.push([3,106])
             break
             case 2904:
@@ -2717,87 +2716,14 @@ class group{
                 }else{
                     list.push(copyCard(this.cards[firstIndex]))
                 }
-                let card=list[list.length-1]
-                card.size=0
+                list[list.length-1].size=0
                 if(
                     spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
                     spec==13||spec==14||spec==16||spec==18||spec==19||spec==20||spec==21
                 ){
-                    card.position.x=1200
-                    card.position.y=500
-                    switch(spec){
-                        case 2:
-                            if(!card.additionalSpec.includes(-2)&&!card.spec.includes(55)){
-                                card.cost=variants.mtg?copyArray(card.base.cost):card.base.cost
-                            }
-                        break
-                        case 3:
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 4:
-                            card.setCost(0,[0])
-                        break
-                        case 5:
-                            if(this.drawEffect(card)){la=0}
-                            card.setCost(0,[0])
-                        break
-                        case 6:
-                            card.costDown(0,[1])
-                        break
-                        case 8:
-                            if(card.level==0){
-                                card=upgradeCard(card)
-                            }
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 9:
-                            card.retain=true
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 10:
-                            if(card.level<=1){
-                                card=upgradeCard(card)
-                            }
-                        break
-                        case 12:
-                            card.retain2=true
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 13:
-                            if(!card.spec.includes(39)){
-                                card.spec.push(39)
-                            }
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 14:
-                            if(!card.spec.includes(48)){
-                                card.spec.push(48)
-                            }
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 16:
-                            card.cost=floor(random(0,4))
-                        break
-                        case 18:
-                            if(!card.spec.includes(9)){
-                                card.spec.push(9)
-                            }
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 19:
-                            if(this.drawEffect(card)){la=0}
-                            card.costUp(0,[1])
-                        break
-                        case 20:
-                            card.spec.push(57)
-                        break
-                        case 21:
-                            card.costDown(0,[1])
-                            if(this.drawEffect(card)){la=0}
-                        break
-                    }
-                }else if(spec==7&&!card.additionalSpec.includes(-2)){
-                    card.cost=variants.mtg?copyArray(card.base.cost):card.base.cost
+                    list[list.length-1]=this.sendSpec(list[list.length-1],spec)
+                }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
+                    list[list.length-1].cost=variants.mtg?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
                 }
                 delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
@@ -2817,86 +2743,12 @@ class group{
                 }else{
                     list.push(copyCard(this.cards[firstIndex]))
                 }
-                let card=list[list.length-1]
-                card.size=0
+                list[list.length-1].size=0
                 if(
                     spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
                     spec==13||spec==14||spec==16||spec==18||spec==19||spec==20||spec==21
                 ){
-                    card.position.x=1200
-                    card.position.y=500
-                    switch(spec){
-                        case 2:
-                            if(!card.additionalSpec.includes(-2)&&!card.spec.includes(55)){
-                                card.cost=variants.mtg?copyArray(card.base.cost):card.base.cost
-                            }
-                        break
-                        case 3:
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 4:
-                            card.setCost(0,[0])
-                        break
-                        case 5:
-                            if(this.drawEffect(card)){la=0}
-                            card.setCost(0,[0])
-                        break
-                        case 6:
-                            if(this.drawEffect(card)){la=0}
-                            card.costDown(0,[1])
-                        break
-                        case 8:
-                            if(card.level==0){
-                                card=upgradeCard(card)
-                            }
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 9:
-                            card.retain=true
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 10:
-                            if(card.level<=1){
-                                card=upgradeCard(card)
-                            }
-                        break
-                        case 12:
-                            card.retain2=true
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 13:
-                            if(!card.spec.includes(39)){
-                                card.spec.push(39)
-                            }
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 14:
-                            if(!card.spec.includes(48)){
-                                card.spec.push(48)
-                            }
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 16:
-                            card.cost=floor(random(0,4))
-                        break
-                        case 18:
-                            if(!card.spec.includes(9)){
-                                card.spec.push(9)
-                            }
-                            if(this.drawEffect(card)){la=0}
-                        break
-                        case 19:
-                            if(this.drawEffect(card)){la=0}
-                            card.costUp(0,[1])
-                        break
-                        case 20:
-                            card.spec.push(57)
-                        break
-                        case 21:
-                            card.costDown(0,[1])
-                            if(this.drawEffect(card)){la=0}
-                        break
-                    }
+                    list[list.length-1]=this.sendSpec(list[list.length-1],spec)
                 }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
                     list[list.length-1].cost=variants.mtg?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
                 }
@@ -2905,6 +2757,81 @@ class group{
             }
         }
         this.battle.cardManagers[this.player].midDraw=false
+    }
+    sendSpec(cardData,spec){
+        cardData.position.x=1200
+        cardData.position.y=500
+        switch(spec){
+            case 2:
+                if(!cardData.additionalSpec.includes(-2)&&!cardData.spec.includes(55)){
+                    cardData.cost=variants.mtg?copyArray(cardData.base.cost):cardData.base.cost
+                }
+            break
+            case 3:
+                if(this.drawEffect(cardData)){la=0}
+            break
+            case 4:
+                cardData.setCost(0,[0])
+            break
+            case 5:
+                if(this.drawEffect(cardData)){la=0}
+                cardData.setCost(0,[0])
+            break
+            case 6:
+                if(this.drawEffect(cardData)){la=0}
+                cardData.costDown(0,[1])
+            break
+            case 8:
+                cardData=upgradeCard(cardData)
+                if(this.drawEffect(cardData)){la=0}
+            break
+            case 9:
+                cardData.retain=true
+                if(this.drawEffect(cardData)){la=0}
+            break
+            case 10:
+                if(cardData.level<=1){
+                    cardData=upgradeCard(cardData)
+                }
+            break
+            case 12:
+                cardData.retain2=true
+                if(this.drawEffect(cardData)){la=0}
+            break
+            case 13:
+                if(!cardData.spec.includes(39)){
+                    cardData.spec.push(39)
+                }
+                if(this.drawEffect(cardData)){la=0}
+            break
+            case 14:
+                if(!cardData.spec.includes(48)){
+                    cardData.spec.push(48)
+                }
+                if(this.drawEffect(cardData)){la=0}
+            break
+            case 16:
+                cardData.cost=floor(random(0,4))
+            break
+            case 18:
+                if(!cardData.spec.includes(9)){
+                    cardData.spec.push(9)
+                }
+                if(this.drawEffect(cardData)){la=0}
+            break
+            case 19:
+                if(this.drawEffect(cardData)){la=0}
+                cardData.costUp(0,[1])
+            break
+            case 20:
+                cardData.spec.push(57)
+            break
+            case 21:
+                cardData.costDown(0,[1])
+                if(this.drawEffect(cardData)){la=0}
+            break
+        }
+        return cardData
     }
     copy(list,firstIndex,lastIndex,spec){
         if(lastIndex==-1){
@@ -4302,6 +4229,9 @@ class group{
                 }
                 if(a.name.includes('Cable')&&a.class==1&&userCombatant.status.main[404]>0){
                     this.battle.attackManager.effect[0]+=userCombatant.status.main[404]
+                }
+                if(a.spec.includes(20)&&userCombatant.status.main[544]>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.status.main[544]
                 }
                 if(a.rarity==0&&a.class==1&&userCombatant.status.main[413]>0){
                     this.battle.attackManager.effect[0]+=userCombatant.status.main[413]

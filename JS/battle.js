@@ -1057,9 +1057,9 @@ class battle{
             switch(card.edition){
                 case 1:
                     if(this.relicManager.hasRelic(354,player)){
-                        userCombatant.loseHealth(2+2*this.relicManager.active[354][player+1])
+                        userCombatant.loseHealth(1+1*this.relicManager.active[354][player+1])
                     }else{
-                        userCombatant.loseHealth(2)
+                        userCombatant.loseHealth(1)
                     }
                 break
                 case 2:
@@ -1099,9 +1099,9 @@ class battle{
             switch(card.edition){
                 case 1:
                     if(this.relicManager.hasRelic(354,player)){
-                        userCombatant.heal(2+2*this.relicManager.active[354][player+1])
+                        userCombatant.heal(1+1*this.relicManager.active[354][player+1])
                     }else{
-                        userCombatant.heal(2)
+                        userCombatant.heal(1)
                     }
                 break
                 case 2:
@@ -2679,7 +2679,7 @@ class battle{
                         for(let b=0,lb=this.combatantManager.combatants.length;b<lb;b++){
                             if(this.combatantManager.combatants[b].life>0){
                                 if(this.combatantManager.combatants[b].spec.includes(13)){
-                                    reward.push({type:4,value:[20]})
+                                    reward.push({type:4,value:[10]})
                                 }
                                 if(this.combatantManager.combatants[b].spec.includes(14)){
                                     reward.push({type:7,value:[1]})
@@ -2691,7 +2691,7 @@ class battle{
                                     reward.push({type:0,value:[25]})
                                 }
                                 if(this.combatantManager.combatants[b].spec.includes(21)){
-                                    reward.push({type:4,value:[10]})
+                                    reward.push({type:4,value:[15]})
                                     reward.push({type:0,value:[250]})
                                 }
                                 if(this.combatantManager.combatants[b].spec.includes(22)){

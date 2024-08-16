@@ -3578,8 +3578,8 @@ turn.prototype.update=function(){
                         if(this.userCombatant.getStatus('No Damage')>0&&this.clearAttack[5]){
                             this.userCombatant.status.main[findList('No Damage',this.userCombatant.status.name)]--
                         }
-                        if(this.userCombatant.getStatus('Temporary Single Damage')>0&&this.clearAttack[6]){
-                            this.userCombatant.status.main[findList('Temporary Single Damage',this.userCombatant.status.name)]--
+                        if(this.userCombatant.getStatus('Temporary Single Damage Up')>0&&this.clearAttack[6]){
+                            this.userCombatant.status.main[findList('Temporary Single Damage Up',this.userCombatant.status.name)]--
                         }
                         if(this.userCombatant.getStatus('Double Curse')>0&&this.clearAttack[7]){
                             this.userCombatant.status.main[findList('Double Curse',this.userCombatant.status.name)]--
@@ -3603,6 +3603,10 @@ turn.prototype.update=function(){
                         if(this.userCombatant.getStatus('Single Attack Bleed')>0&&this.clearAttack[13]){
                             this.userCombatant.status.main[findList('Single Attack Bleed',this.userCombatant.status.name)]--
                         }
+                        if(this.userCombatant.getStatus('1.5x Damage+1')>0&&this.clearAttack[14]){
+                            this.userCombatant.status.main[findList('1.5x Damage+1',this.userCombatant.status.name)]--
+                        }
+                        this.userCombatant.tempStatus=[1,0,0,0,0]
                     break
                 }
             }

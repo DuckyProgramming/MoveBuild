@@ -96,7 +96,6 @@ class combatant{
         this.construct=false
         this.support=false
         this.programmedDeath=false
-        this.doubling=false
         this.ally=-1
         this.blocked=0
         this.taken=0
@@ -142,7 +141,7 @@ class combatant{
             'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Chained','Fragile Heal',
             'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
             'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
-            'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
+            'Hook','Temporary Single Damage Up','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
             'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
             'Single Damage Convert','2 Exhaust Draw','Dice Boost','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
             '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
@@ -173,7 +172,7 @@ class combatant{
             'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw','Balance (E)','Invisible Per Turn','Random Mana Next Turn','Colorless Cost Down',
             'Colorless Neutral Convert','Single Attack Weak','Amplify Draw','(E) in 2 Turns','(W) in 2 Turns','(B) in 2 Turns','(K) in 2 Turns','(G) in 2 Turns','(R) in 2 Turns','(N) in 2 Turns',
             '(E) in 3 Turns','(W) in 3 Turns','(B) in 3 Turns','(K) in 3 Turns','(G) in 3 Turns','(R) in 3 Turns','(N) in 3 Turns','Lowroll (E)','Highroll (E)','All Mana (W)',
-            'All Mana (B)','All Mana (K)','All Mana (G)','All Mana (R)',
+            'All Mana (B)','All Mana (K)','All Mana (G)','All Mana (R)','Claw Up',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -230,7 +229,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,2,0,//52
                 1,0,0,2,2,2,2,2,2,2,//53
                 2,2,2,2,2,2,2,0,0,0,//54
-                0,0,0,0,
+                0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -287,10 +286,12 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//52
                 2,0,2,2,2,2,2,2,2,2,//53
                 2,2,2,2,2,2,2,2,2,2,//54
-                2,2,2,2,
+                2,2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
+        this.tempStatus=[1,0,0,0,0]
+        //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed
         for(let a=0;a<this.status.name.length;a++){
             this.status.main.push(0)
             this.status.next.push(0)
@@ -319,7 +320,7 @@ class combatant{
         this.totalOrb=0
         this.totalOrbClass=[]
         this.lastOrb=0
-        this.metal=0
+        this.metal=3
         this.stance=0
         this.faith=0
         this.charge=0
@@ -3740,7 +3741,7 @@ class combatant{
         this.totalOrb=0
         this.totalOrbClass=[]
         this.lastOrb=0
-        this.metal=0
+        this.metal=3
         this.stance=0
         this.faith=0
         this.charge=0
@@ -5343,8 +5344,8 @@ class combatant{
                 if(userCombatant.status.main[240]>0&&floor(random(0,2))==0){
                     userCombatant.status.main[240]--
                 }
-                if(userCombatant.status.main[12]>0){
-                    damage+=userCombatant.status.main[12]
+                if(userCombatant.tempStatus[1]>0){
+                    damage+=userCombatant.tempStatus[1]
                 }
                 if(userCombatant.status.main[40]>0){
                     damage+=userCombatant.status.main[40]
@@ -5358,14 +5359,8 @@ class combatant{
                 if(userCombatant.status.main[175]>0){
                     damage-=userCombatant.status.main[175]
                 }
-                if(userCombatant.status.main[231]>0){
-                    damage+=userCombatant.status.main[231]
-                }
                 if(userCombatant.status.main[236]>0&&value<=10){
                     damage+=userCombatant.status.main[236]
-                }
-                if(userCombatant.status.main[264]>0){
-                    damage-=userCombatant.status.main[264]
                 }
                 if(userCombatant.status.main[353]>0){
                     damage+=userCombatant.status.main[353]
@@ -5421,8 +5416,8 @@ class combatant{
             if(user>=0&&user<this.battle.combatantManager.combatants.length){
                 let userCombatant=this.battle.combatantManager.combatants[user]
                 if(spec!=3){
-                    if(userCombatant.status.main[0]>0){
-                        damage*=2
+                    if(userCombatant.tempStatus[0]!=1){
+                        damage*=userCombatant.tempStatus[0]
                     }
                     if(userCombatant.status.main[8]>0){
                         damage*=this.status.main[426]>0?0.5:userCombatant.status.main[381]>0?1.25:0.75
@@ -5430,23 +5425,8 @@ class combatant{
                     if(userCombatant.status.main[82]>0){
                         damage*=2
                     }
-                    if(userCombatant.status.main[154]>0){
-                        damage*=3
-                    }
-                    if(userCombatant.status.main[159]>0){
-                        damage*=1.5
-                    }
                     if(userCombatant.status.main[198]>0){
                         damage/=2
-                    }
-                    if(userCombatant.doubling){
-                        damage*=2
-                    }
-                    if(userCombatant.status.main[201]>0){
-                        damage=damage*2-1
-                    }
-                    if(userCombatant.status.main[216]>0){
-                        damage=damage*1.5+1
                     }
                     if(userCombatant.status.main[238]>0&&value%2==1){
                         damage*=2
@@ -5471,9 +5451,6 @@ class combatant{
                     }
                     if(userCombatant.status.main[363]>0){
                         damage*=2
-                    }
-                    if(userCombatant.status.main[215]>0){
-                        damage=0
                     }
                     if(userCombatant.status.main[357]>0){
                         damage=0
@@ -5514,6 +5491,9 @@ class combatant{
                     }
                 }
                 
+                if(userCombatant.tempStatus[3]>0){
+                    this.statusEffect('Take Damage Next Turn',round(damage)*userCombatant.tempStatus[3])
+                }
                 if(userCombatant.status.main[171]>0){
                     this.statusEffect('Regeneration',userCombatant.status.main[171])
                 }
@@ -5529,10 +5509,6 @@ class combatant{
                 }
                 if(userCombatant.status.main[449]>0){
                     this.statusEffect('Shock',userCombatant.status.main[449])
-                }
-                if(userCombatant.status.main[460]>0){
-                    this.statusEffect('Take Damage Next Turn',round(damage))
-                    userCombatant.status.main[460]--
                 }
                 if(userCombatant.status.main[470]>0){
                     this.statusEffect('Lose Per Turn',userCombatant.status.main[470])
@@ -5888,11 +5864,11 @@ class combatant{
                 if(user>=0&&user<this.battle.combatantManager.combatants.length){
                     let userCombatant=this.battle.combatantManager.combatants[user]
                     userCombatant.lastDeal=damage
+                    if(userCombatant.tempStatus[4]!=0&&this.block==0){
+                        this.statusEffect('Bleed',userCombatant.status.main[99]*userCombatant.tempStatus[4])
+                    }
                     if(userCombatant.status.main[98]>0&&this.block==0){
                         this.statusEffect('Bleed',userCombatant.status.main[98])
-                    }
-                    if(userCombatant.status.main[99]>0&&this.block==0){
-                        this.statusEffect('Bleed',userCombatant.status.main[99])
                     }
                     if(userCombatant.status.main[100]>0&&this.block==0){
                         this.statusEffect('Bleed',userCombatant.status.main[100])
@@ -5931,11 +5907,8 @@ class combatant{
                         userCombatant.addBlock(damage)
                         userCombatant.status.main[139]--
                     }
-                    if(userCombatant.status.main[432]>0){
-                        userCombatant.addBlock(damage)
-                    }
-                    if(userCombatant.status.main[433]>0){
-                        userCombatant.addBlock(damage/2)
+                    if(userCombatant.tempStatus[2]>0){
+                        userCombatant.addBlock(damage*userCombatant.tempStatus[2])
                     }
                     if(userCombatant.status.main[170]>0&&userCombatant.id<this.battle.players){
                         this.battle.addCurrency(round(damage),userCombatant.id)
@@ -6520,7 +6493,7 @@ class combatant{
     subEvoke(type,detail,target){
         let multi=1
         if(this.status.main[111]>0){
-            multi=1+this.status.main[111]*0.2
+            multi=1+this.status.main[111]*0.1
         }else if(this.status.main[111]<0){
             multi=max(0.2,1+this.status.main[111]*0.1)
         }
@@ -10151,7 +10124,7 @@ class combatant{
                                 case 10: this.layer.text('Attacks When Injured',40,305+a*10); break
                                 case 11: this.layer.text('Immune to Poison Tiles',40,305+a*10); break
                                 case 12: this.layer.text('Co-Boss',40,305+a*10); break
-                                case 13: this.layer.text('On Survival, Heal 20 HP',40,305+a*10); break
+                                case 13: this.layer.text('On Survival, Heal 10 HP',40,305+a*10); break
                                 case 14: this.layer.text('On Survival, Deluxe Upgrade a Card',40,305+a*10); break
                                 case 15: this.layer.text('On Survival, Move Freely',40,305+a*10); break
                                 case 16: this.layer.text('On Survival, Gain 25 Currency\nIf Killed by Player, Gain 5 Currency',40,305+a*10); break
@@ -10159,7 +10132,7 @@ class combatant{
                                 case 18: this.layer.text('On Defeat, Gain a Relic',40,305+a*10); break
                                 case 19: this.layer.text('Robot',40,305+a*10); break
                                 case 20: this.layer.text('Attacks When You Play the First Card Each Turn',40,305+a*10); break
-                                case 21: this.layer.text('On Survival, Heal 10 HP\nand Gain 250 Currency',40,305+a*10); break
+                                case 21: this.layer.text('On Survival, Heal 15 HP\nand Gain 250 Currency',40,305+a*10); break
                                 case 22: this.layer.text('On Survival, Gain 100 Currency',40,305+a*10); break
 
                             }

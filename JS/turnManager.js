@@ -135,6 +135,9 @@ class turnManager{
                             this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
                     }
                 }
+                if(this.battle.combatantManager.combatants[a].getStatus('Extra Turn')>0){
+                    this.battle.combatantManager.combatants[a].status.main[findList('Extra Turn',combatant.status.name)]=0
+                }
             }else{
                 if(this.battle.modded(66)&&!this.battle.combatantManager.combatants[a].activated&&this.battle.combatantManager.combatants[a].team==0){
                     this.battle.combatantManager.combatants[a].statusEffect('Strength',2)

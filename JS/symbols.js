@@ -5107,6 +5107,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             displayMtgManaSymbol(layer,0,-3,-1,0,0.4,fade,-1,[])
             displayMtgManaSymbol(layer,0,3,5,0,0.4,fade,-1,[])
         break
+        case 544:
+            layer.fill(180,0,0,fade)
+            layer.quad(0,5,-0.8,0,0,-5,0.8,0)
+            layer.quad(-1,5,-2,0.4,-4,-4,-3,0.6)
+            layer.quad(1,5,2,0.4,4,-4,3,0.6)
+        break
 
     }
     //mark s

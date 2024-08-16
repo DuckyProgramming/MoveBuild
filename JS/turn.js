@@ -21,49 +21,67 @@ class turn{
     base(){
         switch(this.attackClass){
             case 1:
-                this.clearAttack=[false,false,false,false,false,false,false,false,false,false,false,false,false]
+                this.clearAttack=[false,false,false,false,false,false,false,false,false,false,false,false,false,false]
                 if(this.userCombatant.getStatus('Double Damage')>0){
                     this.clearAttack[0]=true
+                    this.userCombatant.tempStatus[0]*=2
                 }
                 if(this.userCombatant.getStatus('Single Damage Up')>0){
                     this.clearAttack[1]=true
+                    this.userCombatant.tempStatus[1]+=this.userCombatant.getStatus('Single Damage Up')
                 }
                 if(this.userCombatant.getStatus('Triple Damage')>0){
                     this.clearAttack[2]=true
+                    this.userCombatant.tempStatus[0]*=3
                 }
                 if(this.userCombatant.getStatus('1.5x Damage')>0){
                     this.clearAttack[3]=true
+                    this.userCombatant.tempStatus[0]*=1.5
                 }
                 if(this.userCombatant.getStatus('Double Damage-1')>0){
                     this.clearAttack[4]=true
+                    this.userCombatant.tempStatus[0]*=2
+                    this.userCombatant.tempStatus[1]-=1
                 }
                 if(this.userCombatant.getStatus('No Damage')>0){
                     this.clearAttack[5]=true
+                    this.userCombatant.tempStatus[0]*=0
                 }
-                if(this.userCombatant.getStatus('Temporary Single Damage')>0){
+                if(this.userCombatant.getStatus('Temporary Single Damage Up')>0){
                     this.clearAttack[6]=true
+                    this.userCombatant.tempStatus[1]+=this.userCombatant.getStatus('Temporary Single Damage Up')
                 }
                 if(this.userCombatant.getStatus('Double Curse')>0&&floor(random(0,2))==0){
                     this.clearAttack[7]=true
-                    this.userCombatant.doubling=true
+                    this.userCombatant.tempStatus[0]*=2
                 }
                 if(this.userCombatant.getStatus('Single Damage Down')>0){
                     this.clearAttack[8]=true
+                    this.userCombatant.tempStatus[1]-=this.userCombatant.getStatus('Single Damage Down')
                 }
                 if(this.userCombatant.getStatus('Double Damage Next')>0){
                     this.clearAttack[9]=true
                 }
                 if(this.userCombatant.getStatus('Damage Block Convert')>0){
                     this.clearAttack[10]=true
+                    this.userCombatant.tempStatus[2]++
                 }
                 if(this.userCombatant.getStatus('Damage Half Block Convert')>0){
                     this.clearAttack[11]=true
+                    this.userCombatant.tempStatus[2]+=0.5
                 }
                 if(this.userCombatant.getStatus('Damage Repeat in 2 Turns')>0){
                     this.clearAttack[12]=true
+                    this.userCombatant.tempStatus[3]++
                 }
                 if(this.userCombatant.getStatus('Single Attack Bleed')>0){
                     this.clearAttack[13]=true
+                    this.userCombatant.tempStatus[4]+=this.userCombatant.getStatus('Single Attack Bleed')
+                }
+                if(this.userCombatant.getStatus('1.5x Damage+1')>0){
+                    this.clearAttack[14]=true
+                    this.userCombatant.tempStatus[0]*=1.5
+                    this.userCombatant.tempStatus[1]++
                 }
             break
         }
@@ -97,13 +115,6 @@ class turn{
                         }else{
                             this.target=[]
                             this.targetIndex=[]
-                            switch(this.attackClass){
-                                case 1:
-                                    if(this.userCombatant.getStatus('Double Curse')>0&&floor(random(0,2))==0){
-                                        this.userCombatant.doubling=true
-                                    }
-                                break
-                            }
                             let transformBase=transformDirection(0,this.userCombatant.goal.anim.direction)
                             switch(this.type){
                                 case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:

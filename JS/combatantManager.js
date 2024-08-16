@@ -665,7 +665,9 @@ class combatantManager{
                 this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Low Health Construct',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]--
             }
             if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Turn')>0){
-                this.battle.turnManager.loadEnemyAttackRepeatBack(this.combatants.length-1)
+                for(let a=0,la=this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Turn');a<la;a++){
+                    this.battle.turnManager.loadEnemyAttackRepeatBack(this.combatants.length-1)
+                }
             }
             if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block')>0){
                 this.combatants[this.getPlayerCombatantIndex(builder)].addBlock(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block'))
@@ -707,7 +709,9 @@ class combatantManager{
                 this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Low Health Construct',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]--
             }
             if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Turn')>0){
-                this.battle.turnManager.loadEnemyAttackRepeatBack(this.combatants.length-1)
+                for(let a=0,la=this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Turn');a<la;a++){
+                    this.battle.turnManager.loadEnemyAttackRepeatBack(this.combatants.length-1)
+                }
             }
             if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block')>0){
                 this.combatants[this.getPlayerCombatantIndex(builder)].addBlock(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block'))
@@ -1202,7 +1206,8 @@ class combatantManager{
                     targetter[0]==3&&this.combatants[a].id!=targetter[1]||
                     targetter[0]==4&&this.combatants[a].id==targetter[1]||
                     targetter[0]==5&&this.combatants[a].id!=targetter[1]&&this.combatants[a].block<=0||
-                    targetter[0]==6&&this.combatants[a].id==targetter[1]&&this.combatants[a].block<=0
+                    targetter[0]==6&&this.combatants[a].id==targetter[1]&&this.combatants[a].block<=0||
+                    targetter[0]==7&&(this.combatants[a].team<=0||this.combatants[a].team>this.battle.players)
                 )&&distance>=range[0]&&distance<=range[1]
                 &&!(effect==0&&distance>0&&!(
                     diagonal&&legalTargetDiagonalCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)||

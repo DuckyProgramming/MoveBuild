@@ -87,7 +87,7 @@ class eventManager{
                 !(this.listing.event[a]==74&&userCombatant.life<9)&&
                 !(this.listing.event[a]==75&&(userCombatant.life>=userCombatant.base.life-20||this.battle.currency.money[this.player]<35))&&
                 !(this.listing.event[a]==77&&this.battle.currency.money[this.player]<50)&&
-                !(this.listing.event[a]==78&&(userCombatant.life<21||this.battle.cardManagers[this.player].deck.numberAbstract(9,[[2]])<=4))&&
+                !(this.listing.event[a]==78&&(userCombatant.life<21||this.battle.cardManagers[this.player].deck.numberAbstract(9,[[2]])<4))&&
                 !(this.listing.event[a]==79&&userCombatant.life<27)&&
                 !(this.listing.event[a]==81&&(this.battle.cardManagers[this.player].deck.numberAbstract(4,[[1]])<=4||this.battle.cardManagers[this.player].deck.numberAbstract(4,[[2]])<=4))&&
                 !(this.listing.event[a]==84&&(userCombatant.base.life<11||this.battle.currency.money[this.player]<25))&&
