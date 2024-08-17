@@ -310,12 +310,12 @@ class particle{
                     this.notes.push([floor(random(0,2)),floor(random(0,3)),-1+floor(random(0,2))*2])
                 }
             break
-            case 137:
+            case 137: case 176:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.color=args[2]
                 this.distance=0
-                this.speed=4
+                this.speed=this.type==176?8:4
                 this.fade=0
                 this.trigger=false
                 this.size=1
@@ -2730,6 +2730,21 @@ class particle{
                             map((a+1)/la,0,1,0,this.position2.y)+this.sets[a][1])
                     }
                 break
+                case 176:
+                    this.layer.rotate(this.direction)
+                    this.layer.stroke(200,255,255,this.fade*0.5)
+                    this.layer.noFill()
+                    this.layer.strokeJoin(ROUND)
+                    for(let a=0,la=2;a<la;a++){
+                        this.layer.strokeWeight(a*2+2)
+                        this.layer.beginShape()
+                        for(let b=0,lb=min(60,2+this.time*2);b<lb;b++){
+                            this.layer.vertex(-15*lcos(b*30+this.distance*5)+random(-2,2),10*lsin(b*30+this.distance*5)-this.distance+b*2+random(-2,2))
+                        }
+                        this.layer.endShape()
+                    }
+                    this.layer.strokeJoin(MITER)
+                break
 
             }
             this.layer.pop()
@@ -3046,7 +3061,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 137: case 138:
+            case 137: case 138: case 176:
                 this.distance+=this.speed
                 this.fade=smoothAnim(this.fade,this.time<this.timer,0,1,5)
                 if(this.fade<=0){

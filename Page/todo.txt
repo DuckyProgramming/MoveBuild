@@ -41,21 +41,11 @@ default:
     return [base]
 
 
+if you play a monocolor character you get a perk choice of boss relic swap
 
 
 
 unfair mode
-
-
-wrath + anaglyph glasses does double the damage it should
-nerf anaglyph glasses
-
-trade offer gave him both
-
-check hidden blade
-
-and collection
-
 
 
 
@@ -92,6 +82,8 @@ status - when drawn, purify 2
 
 
 figure out what the hell is going on with the music gimmicks
+
+new scrap card for prehex
 
 scrap note
 
@@ -135,6 +127,8 @@ it'll look cool trust
 the final 3 cables - based on burn, freeze, ?
 
 trapezius - 10 damage, draw a fatigue
+
+accoutrement - 14 block, when discarded get 2 silver daggers
 
 
 
@@ -198,7 +192,7 @@ pick a card with cost x+1, it costs 0
 
 wall smash - deal 9 damage, double if target is adjacent to an empty tile spot
 
-long con - 2 cost, gain 25 block, gain 2 energy if 2 turns
+long con - 2 cost, gain 25 block, gain 1 energy in 2 turns and 2 energy in 3 turns
 
 [adzuki]
 
@@ -246,6 +240,8 @@ pure white world - apply freeze to every enemy for the next 3 turns
 
 flank punch - punch forward for 8, but also if there's an enemy behind you it takes 20 damage
 
+intercept - 7 damage, double if target will attack
+
 
 
 animate sunny
@@ -259,6 +255,8 @@ ascension spin - draw a card, gain 3 temp strength
 dragon-slaying circle - 17 damage, conditionally 1 weak and 1 vulnerable
 
 [setsuna movement]
+
+[prehex movement]
 
 
 

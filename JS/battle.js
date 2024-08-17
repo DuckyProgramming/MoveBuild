@@ -860,9 +860,7 @@ class battle{
         }else{
             this.turn.total=value
         }
-        for(let a=0,la=this.players;a<la;a++){
-            this.cardManagers[a].allGroupEffect(63)
-        }
+        this.cardManagers.forEach(cardManager=>cardManager.allEffect(2,63))
     }
     subTurn(){
         let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]

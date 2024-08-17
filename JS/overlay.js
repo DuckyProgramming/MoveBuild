@@ -1360,7 +1360,7 @@ class overlay{
                 }
                 this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-205,120,40,10)
                 if(this.args[0]==0){
-                    this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-250,120,40,10)
+                    //this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-250,120,40,10)
                 }
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
@@ -1368,7 +1368,7 @@ class overlay{
                 this.layer.textSize(20)
                 this.layer.text('Close',this.layer.width/2+225*this.posKey,this.layer.height/2-205)
                 if(this.args[0]==0){
-                    this.layer.text('Replay',this.layer.width/2+225*this.posKey,this.layer.height/2-250)
+                    //this.layer.text('Replay',this.layer.width/2+225*this.posKey,this.layer.height/2-250)
                 }
                 for(let a=0,la=this.rewards.length;a<la;a++){
                     this.layer.noStroke()
@@ -2330,9 +2330,9 @@ class overlay{
                             }
                         }
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2-250},width:120,height:40})&&this.args[0]==0){
+                    /*if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2-250},width:120,height:40})&&this.args[0]==0){
                         this.battle.replay()
-                    }
+                    }*/
                 break
                 case 2:
                     if(this.args[0]==24){
@@ -3349,9 +3349,9 @@ class overlay{
                             }
                         }
                     }
-                    if((key=='r'||key=='R')&&this.args[0]==0){
+                    /*if((key=='r'||key=='R')&&this.args[0]==0){
                         this.battle.replay()
-                    }
+                    }*/
                 break
                 case 2:
                     if(this.args[0]==24){

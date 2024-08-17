@@ -1328,7 +1328,9 @@ class group{
                 break
                 case 64:
                     if((this.cards[a].spec.includes(3)||this.cards[a].spec.includes(47))&&this.id!=2){
-                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,0)
+                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                        a--
+                        la--
                     }
                 break
                 case 65:
@@ -3084,9 +3086,10 @@ class group{
                 type==5&&args[0]==this.cards[a].list&&args[1]==this.cards[a].edition||
                 type==6&&args[0].includes(this.cards[a].class)||
                 type==7&&args[0].includes(this.cards[a].class)&&this.cards[a].basic||
-                type==8&&args[0]==this.cards[a].rarity&&args[1]==this.cards[a].level
+                type==8&&args[0]==this.cards[a].rarity&&args[1]==this.cards[a].level||
+                type==9&&args[0]==this.cards[a].id
             ){
-                if(this.id==0){
+                if(this.id==0&&type!=9){
                     if(this.remove(a)){
                         a--
                         la--
@@ -3422,7 +3425,7 @@ class group{
                     }
                     this.copySelfInput(a)
                 }
-                if(this.cards[a].target[0]==0){
+                if(this.cards[a].target[0]==0||this.cards[a].target[0]==62&&this.battle.turn.total%2==1){
                     if(this.cards[a].spec.includes(57)&&this.cards[a].attack!=1491&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
                         this.cards[a].spec.splice(this.cards[a].spec.indexOf(57))
                         this.cards[a].usable=true
@@ -4709,7 +4712,7 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53){
+        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                 if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team||this.battle.attackManager.targetInfo[0]==45)&&
                     (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==45)&&
@@ -5131,7 +5134,7 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53){
+        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                     if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team||this.battle.attackManager.targetInfo[0]==45)&&

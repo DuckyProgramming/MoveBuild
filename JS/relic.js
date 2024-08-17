@@ -3300,6 +3300,15 @@ class relic{
                     this.layer.textSize(8)
                     this.layer.text('+50%',6,0)
                 break
+                case 'No Attack Temporary Strength':
+                    displaySymbol(this.layer,-8,0,18,0,0.75,this.fade)
+                    displaySymbol(this.layer,-8,0,16,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,-3,41,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',8,-3)
+                break
 
                 //mark p
             }

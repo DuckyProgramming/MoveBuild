@@ -35,8 +35,9 @@ class purchase{
                 this.relic.fade=1
             break
             case 4:
-                this.baseID=this.args[3]
-                this.base=copyCard(this.battle.cardManagers[this.player].deck.cards[this.baseID])
+                this.baseIndex=this.args[3]
+                this.base=copyCard(this.battle.cardManagers[this.player].deck.cards[this.baseIndex])
+                this.baseID=this.battle.cardManagers[this.player].deck.cards[this.baseIndex].id
                 this.base.position={x:-80,y:0}
                 this.card=this.battle.cardManagers[this.player].transformCard(this.base)
                 if(this.card.name=='Garbled'){
@@ -122,6 +123,7 @@ class purchase{
                     break
                     case 4:
                         this.battle.cardManagers[purchaser].deck.add(this.card.type,constrain(this.battle.relicManager.active[110][purchaser+1],0,types.card[this.card.type].levels.length-1),this.card.color,this.card.edition)
+                        this.battle.cardManagers[purchaser].deck.removeAbstract(9,[this.baseID])
                     break
                     case 5:
                         this.battle.overlayManager.overlays[3][purchaser].active=true

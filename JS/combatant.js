@@ -6081,7 +6081,7 @@ class combatant{
                     let userCombatant=this.battle.combatantManager.combatants[user]
                     userCombatant.lastDeal=damage
                     if(userCombatant.tempStatus[4]!=0&&this.block==0){
-                        this.statusEffect('Bleed',userCombatant.status.main[99]*userCombatant.tempStatus[4])
+                        this.statusEffect('Bleed',userCombatant.tempStatus[4])
                     }
                     if(userCombatant.status.main[98]>0&&this.block==0){
                         this.statusEffect('Bleed',userCombatant.status.main[98])

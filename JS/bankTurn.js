@@ -3603,7 +3603,7 @@ turn.prototype.update=function(){
                             this.userCombatant.status.main[findList('Damage Repeat in 2 Turns',this.userCombatant.status.name)]--
                         }
                         if(this.userCombatant.getStatus('Single Attack Bleed')>0&&this.clearAttack[13]){
-                            this.userCombatant.status.main[findList('Single Attack Bleed',this.userCombatant.status.name)]--
+                            this.userCombatant.status.main[findList('Single Attack Bleed',this.userCombatant.status.name)]=0
                         }
                         if(this.userCombatant.getStatus('1.5x Damage+1')>0&&this.clearAttack[14]){
                             this.userCombatant.status.main[findList('1.5x Damage+1',this.userCombatant.status.name)]--

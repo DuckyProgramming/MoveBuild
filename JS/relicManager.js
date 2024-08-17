@@ -43,7 +43,7 @@ class relicManager{
                 case 139: case 201: case 204: case 205: case 244: case 254: case 293: case 298: case 308: case 317:
                 case 321: case 323: case 324: case 336: case 343: case 352: case 361: case 364: case 365: case 366:
                 case 367: case 368: case 370: case 374: case 378: case 383: case 384: case 389: case 399: case 414:
-                case 439: case 441: case 442:
+                case 439: case 441: case 442: case 450:
                     this.detail.push([])
                     for(let b=0,lb=this.battle.players;b<lb;b++){
                         this.detail[this.detail.length-1].push(0)
@@ -1443,6 +1443,12 @@ class relicManager{
                         this.getPlayer(a).addBlock(10*this.active[308][a+1])
                     }
                 }
+                if(this.active[450][a+1]>0){
+                    if(args[0]>1&&this.detail[450][a]==0){
+                        this.getPlayer(a).statusEffect('Temporary Strength',5*this.active[450][a+1])
+                    }
+                    this.detail[450][a]=0
+                }
                 if(args[0]%3==0&&this.battle.modded(23)){
                     this.battle.combatantManager.allEffect(3,[1])
                 }
@@ -2067,6 +2073,9 @@ class relicManager{
                             if(this.detail[399]%3==2){
                                 this.battle.cardManagers[args[1]].deAbstract(1,this.active[399][args[1]+1],[])
                             }
+                        }
+                        if(this.active[450][args[1]+1]>0&&this.detail[450][args[1]]==0){
+                            this.detail[450][args[1]]=1
                         }
                     break
                     case 2:

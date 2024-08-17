@@ -872,9 +872,9 @@ types={
         {name:'Popcorn',internal:'Deprecating Damage',id:201,rarity:1,list:0,mtg:0,description:'First Attack Deals\n16 More Damage\nDecreases by 1 Each Battle'},
         {name:'Certificate of Authenticity',internal:'Boss Edition',id:202,rarity:1,list:0,mtg:0,description:'Edition a Card\nAfter Every Boss'},
         {name:'Triple Helix',internal:'Boss Duplicate',id:203,rarity:2,list:0,mtg:0,description:'Duplicate a Card\nAfter Every Boss'},
-        {name:'Anaglyph Glasses',internal:'No Attack Double',id:204,rarity:2,list:0,mtg:0,description:'When You Do Not Attack,\nFirst Attack Next Turn\nDeals Double Damage'},
+        {name:'3D Glasses',internal:'No Attack Double',id:204,rarity:-1,list:0,mtg:0,description:'When You Do Not Attack,\nFirst Attack Next Turn\nDeals Double Damage'},
         {name:'The Duo',internal:'Same Card Energy',id:205,rarity:2,list:0,mtg:1,description:'Gain 1 Energy When You Play\n2 of the Same Card in a Row\nThat Costs 1 or More'},
-        {name:'The Order',internal:'Ascending Cost Energy',id:206,rarity:2,list:0,mtg:1,description:'Gain 1 Energy When You Play\n3 Cards With Ascending Cost'},
+        {name:'The Order',internal:'Ascending Cost Energy',id:206,rarity:-1,list:0,mtg:1,description:'Gain 1 Energy When You Play\n3 Cards With Ascending Cost'},
         {name:'Dusk Sphere',internal:'Turn 4 Duplicate',id:207,rarity:-1,list:0,mtg:0,description:'On Turn 4, Duplicate 3 Cards'},
         {name:'Timed Contract',internal:'Speedrunner',id:208,rarity:1,list:0,mtg:0,description:'Gain 50 Currency if Combat\nEnds Before or on Turn 5'},
         {name:'Bootstraps',internal:'Currency Strength',id:209,rarity:3,list:0,mtg:0,description:'Gain 2 Strength Per\n500 Currency You Have\nat the Start of Combat'},
@@ -1060,7 +1060,7 @@ types={
         {name:'Ataraxia',internal:'Extra Mana Temporary Strength',id:372,rarity:2,list:0,mtg:2,description:'Extra Mana is Converted\nto Temporary Strength'},
         {name:'Rough Gem',internal:'Extra Mana Block',id:373,rarity:1,list:0,mtg:2,description:'Extra Eana is Converted\nto 2 Block Per Mana'},
         {name:'The Duo',internal:'Same Card Mana',id:374,rarity:2,list:0,mtg:2,description:'Gain (N) When You Play\n2 of the Same Card in a Row\nThat Costs 1 or More'},
-        {name:'The Order',internal:'Ascending Cost Mana',id:375,rarity:2,list:0,mtg:2,description:'Gain (N) When You Play\n3 Cards With Ascending Cost'},
+        {name:'The Order',internal:'Ascending Cost Mana',id:375,rarity:-1,list:0,mtg:2,description:'Gain (N) When You Play\n3 Cards With Ascending Cost'},
         {name:'The Trail',internal:'3 Cost Mana',id:376,rarity:2,list:0,mtg:2,description:'Cards Costing 3 or More\nGive (N) When Played'},
         {name:'Frozen Frog',internal:'Extra Mana Double Damage',id:377,rarity:2,list:0,mtg:2,description:'When You End Your Turn With\n3 or More Mana, Your Next\nAttack Played Deals Double Damage'},
         {name:'Managerial History',internal:'Click For Mana',id:378,rarity:-1,list:0,mtg:2,description:'Click to Gain (E) (E) (E)\n1 Use Per Encounter'},
@@ -1142,6 +1142,8 @@ types={
         {name:'Preserved Insect',internal:'Boss Debuff',id:447,rarity:1,list:0,mtg:0,description:'Enemies in Boss Combats Start Combat\nWith 2 Weak, Vulnerable, and Frail'},
         {name:'Nimble Fabric',internal:'Extended Initiative',id:448,rarity:1,list:0,mtg:0,description:'You Can Add Initiatives\nto Hand on Turn 2'},
         {name:'Enhanced Facilities',internal:'Better Shop Heal',id:449,rarity:0,list:0,mtg:0,description:'Heal 50% More at Shops'},
+
+        {name:'Anaglyph Glasses',internal:'No Attack Temporary Strength',id:450,rarity:2,list:0,mtg:0,description:'When You Do Not Attack,\nFirst Attack Next Turn\nDeals Double Damage'},
 
         //mark mtg mark r
     ],item:[
