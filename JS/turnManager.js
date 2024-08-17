@@ -253,7 +253,7 @@ class turnManager{
                         this.battle.updateTargetting()
                     }
                 }
-            }else if(this.battle.turn.main>=this.battle.players){
+            }else if(this.battle.turn.main>=this.battle.players&&this.turnsBack.length<=0){
                 if(this.auxiliary){
                     this.battle.turn.main=0
                 }else if(this.phase){

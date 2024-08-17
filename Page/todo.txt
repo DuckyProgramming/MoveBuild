@@ -46,8 +46,15 @@ default:
 
 unfair mode
 
-brutal mode
 
+wrath + anaglyph glasses does double the damage it should
+nerf anaglyph glasses
+
+trade offer gave him both
+
+check hidden blade
+
+and collection
 
 
 
@@ -122,6 +129,12 @@ astrology sphere
 
 whirling tomb - water particles, spawn from circular points around target, fire first toward center and then toward the sides
 it'll look cool trust
+
+
+
+the final 3 cables - based on burn, freeze, ?
+
+trapezius - 10 damage, draw a fatigue
 
 
 

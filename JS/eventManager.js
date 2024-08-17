@@ -369,7 +369,7 @@ class eventManager{
                     case 8:
                         if(this.page==0&&a==0){
                             transition.scene='battle'
-                            this.battle.setupBattle(types.encounter[findName('Monkey Attack',types.encounter)])
+                            this.battle.setupBattle(types.encounter[findName('Monkey',types.encounter)])
                         }else if(this.page==1&&a==0){
                             this.battle.relicManager.loseRandomRelic(this.player)
                         }
@@ -377,7 +377,7 @@ class eventManager{
                     case 9:
                         if(this.page==0&&a==0){
                             transition.scene='battle'
-                            this.battle.setupBattle(types.encounter[findName('Bus Surprise',types.encounter)])
+                            this.battle.setupBattle(types.encounter[findName('Trenchcoat',types.encounter)])
                         }else if(this.page==0&&a==2&&floor(random(0,3))==0){
                             tempPage=1
                         }else if(this.page==1&&a==0){
@@ -385,13 +385,13 @@ class eventManager{
                         }else if(this.page==3&&a==0){
                             this.harm(userCombatant,5)
                             transition.scene='battle'
-                            this.battle.setupBattle(types.encounter[findName('Bus Surprise',types.encounter)])
+                            this.battle.setupBattle(types.encounter[findName('Trenchcoat',types.encounter)])
                         }
                     break
                     case 10:
                         if(this.page==1&&a==0){
                             transition.scene='battle'
-                            this.battle.setupBattle(types.encounter[findName('The Alley',types.encounter)])
+                            this.battle.setupBattle(types.encounter[findName('Goon',types.encounter)])
                         }
                     break
                     case 11:
@@ -651,7 +651,7 @@ class eventManager{
                     case 38:
                         if(this.page==1&&a==0){
                             transition.scene='battle'
-                            this.battle.setupBattle(types.encounter[findName('Fungal Ducks',types.encounter)])
+                            this.battle.setupBattle(types.encounter[findName('Fungal Duck',types.encounter)])
                         }else if(this.page==2&&a==0){
                             userCombatant.heal(25)
                             this.battle.cardManagers[this.player].deck.add(findName('Parasite',types.card),0,game.playerNumber+2)
@@ -664,7 +664,7 @@ class eventManager{
                             this.battle.relicManager.addRandomRelic(this.player)
                         }else if(this.page==1&&a==0){
                             transition.scene='battle'
-                            this.battle.setupBattle(types.encounter[findName('Automata',types.encounter)])
+                            this.battle.setupBattle(types.encounter[findName('Orb Walker',types.encounter)])
                         }
                     break
                     case 40:
@@ -746,7 +746,7 @@ class eventManager{
                     case 48:
                         if(this.page==0&&a==0){
                             transition.scene='battle'
-                            this.battle.setupBattle(types.encounter[findName('Fight Club',types.encounter)])
+                            this.battle.setupBattle(types.encounter[findName('Billy Beatup',types.encounter)])
                         }else if(this.page==0&&a==1&&floor(random(0,2))==0){
                             tempPage++
                         }else if(this.page==1&&a==0){
@@ -823,7 +823,7 @@ class eventManager{
                     case 56:
                         if(this.page>=0&&this.page<=1&&a==1){
                             transition.scene='battle'
-                            this.battle.setupBattle(types.encounter[findName('Monkey Gang',types.encounter)])
+                            this.battle.setupBattle(types.encounter[findName('Monkey Gangster',types.encounter)])
                         }else if(this.page==1&&a==0){
                             this.battle.loseCurrency(40,this.player)
                         }

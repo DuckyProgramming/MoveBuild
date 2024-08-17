@@ -11,14 +11,19 @@ function setup(){
     current=new battle(graphics.main,game.player)
 
     if(false){
+            //game.ascend=32
+
             //stage.scene='tier'
             //current.overlayManager=new overlayManager(current.layer,current,1)
 
             //transition.trigger=true
             //transition.scene='menu'
 
-        current.menu.combatant=[14]
+        current.menu.combatant=[12]
         current.menu.deck=[-1]
+
+            variants.mtg=true
+
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){
                 current.setupMtgManaChoice(a)
@@ -28,6 +33,10 @@ function setup(){
         current.startGame()
 
         //game.animRate=4
+
+            //current.packManagers[0].packs[0].take()
+            //current.packManagers[0].packs[1].take()
+            //current.packManagers[0].packs[2].take()
 
             //current.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
             //current.create()

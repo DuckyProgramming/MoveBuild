@@ -1040,6 +1040,9 @@ function intentDescription(attack,user,info){
 			case 374: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Shock\nRange 1-2`
 			case 375: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Burn\nRange 1-2`
 			case 376: return `Add ${info?attack.effect[0]:`?`} Block\nGain ${info?attack.effect[1]:`?`} Dexterity`
+			case 377: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
+			case 378: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Block\nRange 1-1`
+			case 379: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nApply ${info?attack.effect[2]:`?`} Vulnerable\n5 Tiles Wide\nRange 2-2`
 
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
@@ -1262,9 +1265,12 @@ function copyArrayLastPlayed(base){
 function copyArrayAttack(base){
 	let list=[]
 	for(let a=0,la=base.length;a<la;a++){
-		let proxy={type:base[a].type,effect:[]}
+		let proxy={type:base[a].type,effect:[],baseEffect:[]}
 		for(let b=0,lb=base[a].effect.length;b<lb;b++){
 			proxy.effect.push(base[a].effect[b])
+		}
+		for(let b=0,lb=base[a].effect.length;b<lb;b++){
+			proxy.baseEffect.push(base[a].effect[b])
 		}
 		list.push(proxy)
 	}
@@ -2223,7 +2229,7 @@ function mtgPlayerColor(player){
 		case 15: return [2,4]
 		case 16: return [1,2,4]
 		case 17: return [1,4,5]
-		case 18: return [1,2,5]
+		case 18: return [1,2,3]
 		default: return [6]
 	}
 }

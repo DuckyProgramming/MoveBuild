@@ -17,8 +17,19 @@ class pack{
     create(){
         if(this.battle.player[this.player]>0){
             let group=[0,0,0,1]
+            let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+            if(variants.mtg){
+                for(let a=0,la=list.length;a<la;a++){
+                    for(let b=0,lb=list[a].length;b<lb;b++){
+                        if(types.card[list[a][b]].mtg.list==-1&&types.card[list[a][b]].mtg.color[0]!=0&&floor(random(0,3))!=0){
+                            list[a].splice(b,1)
+                            b--
+                            lb--
+                        }
+                    }
+                }
+            }
             for(let a=0,la=4;a<la;a++){
-                let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
                 if(list[group[a]].length>0){
                     let index=floor(random(0,list[group[a]].length))
                     let type=a==0&&this.battle.player[this.player]==1&&!variants.mtg&&!variants.junk&&!variants.ultraprism&&!variants.prism?findName(['Security\nPack','Sapper\nPack','Infantry\nPack'][this.id],types.card):list[group[a]][index]
@@ -26,6 +37,7 @@ class pack{
                         type,variants.cursed?1:0,this.battle.standardColorize(type),a+this.id*4+this.player*12))
                     let roll=floor(random(0,180))
                     this.cards[this.cards.length-1].edition=roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                    list[group[a]].splice(index,1)
                 }
             }
         }

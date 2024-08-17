@@ -1358,7 +1358,7 @@ class group{
                     this.cards[a].onItem()
                 break
                 case 71:
-                    this.cards[a].cost=floor(random(0,2))
+                    this.cards[a].setCost(0,[floor(random(0,2))])
                 break
                 case 72:
                     if(this.cards[a].name.includes('Cable')&&this.cards[a].class==1){
@@ -1384,7 +1384,7 @@ class group{
                     }
                 break
                 case 76:
-                    if(this.cards[a].cost>=0){
+                    if(this.cards[a].getCost(0)>=0){
                         this.cards[a].costUp(0,[1])
                     }
                 break
@@ -2630,13 +2630,13 @@ class group{
                 variant==6&&this.cards[a].getCost(0)==this.sorted[this.sorted.length-1]||
                 variant==7&&this.cards[a].spec.length==this.sorted[0]||
                 variant==8&&this.cards[a].spec.length==this.sorted[this.sorted.length-1]||
-                variant==9&&this.cards[a].getCost(0)%[args[0]]==args[1]||
+                variant==9&&this.cards[a].getCost(0)%args[0]==args[1]||
                 variant==10&&this.cards[a].spec.includes(args[0])||
                 variant==11&&this.cards[a].colorless()||
                 variant==12&&this.cards[a].rarity==this.sorted[0]||
                 variant==13&&this.cards[a].rarity==this.sorted[this.sorted.length-1]||
                 variant==14&&this.cards[a].basic||
-                variant==15&&args[0].includes(this.cards[a].class)&&args[1]==this.cards[a].cost&&!this.cards[a].specialCost||
+                variant==15&&args[0].includes(this.cards[a].class)&&args[1]==this.cards[a].getCost(0)||
                 variant==16&&this.cards[a].color.includes(args[0])
             ){
                 list.push(copyCard(this.cards[a]))
@@ -4104,15 +4104,19 @@ class group{
                 }
             break
             case 25:
-                this.cards[a].costDown(0,[1])
-                if(this.status[20]>0){
-                    this.status[20]--
+                if(!this.cards[a].spec.includes(5)&&!this.cards[a].spec.includes(41)){
+                    this.cards[a].costDown(0,[1])
+                    if(this.status[20]>0){
+                        this.status[20]--
+                    }
                 }
             break
             case 26:
-                this.cards[a].costUp(0,[1])
-                if(this.status[21]>0){
-                    this.status[21]--
+                if(!this.cards[a].spec.includes(5)&&!this.cards[a].spec.includes(41)){
+                    this.cards[a].costUp(0,[1])
+                    if(this.status[21]>0){
+                        this.status[21]--
+                    }
                 }
             break
             case 27:

@@ -2760,7 +2760,7 @@ class particle{
             case 111: case 113: case 131: case 160:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
-                this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,5)
+                this.fade=smoothAnim(this.fade,this.time<this.timer*2,0,1,5)
                 if(this.fade<=0){
                     this.remove=true
                 }

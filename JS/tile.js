@@ -19,9 +19,16 @@ class tile{
         ]
         this.reinforce=false
         this.fire=[0,0]
+        this.submark=[0]
         this.combatant=0
 
-        this.anim={target:[[0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0]],reinforce:0,fire:[0,0],part:[],upPart:[]}
+        this.anim={target:[
+            [0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ],reinforce:0,fire:[0,0],submark:[0],part:[],upPart:[]}
         for(let a=0,la=this.type.length;a<la;a++){
             this.anim.part.push(0)
             this.anim.upPart.push(true)
@@ -304,7 +311,7 @@ class tile{
         }
     }
     fireAttack(){
-        for(let a=0,la=2;a<la;a++){
+        for(let a=0,la=this.fire.length;a<la;a++){
             if(this.fire[a]>0){
                 this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                 if(this.combatant>=0){
@@ -315,9 +322,12 @@ class tile{
             }
         }
     }
-    target(type,direction){
+    target(type,direction,origin){
         this.targetted[type][direction]=true
         this.targetted[type][12]=true
+        if(origin!=undefined&&origin.spec.includes(7)){
+            this.submark[0]=true
+        }
     }
     indescriptTarget(type){
         this.targetted[type][12]=true
@@ -328,6 +338,7 @@ class tile{
                 this.targetted[a][b]=false
             }
         }
+        this.submark[0]=false
     }
     removeType(index){
         this.type.splice(index,1)
@@ -615,6 +626,15 @@ class tile{
             this.layer.line(-game.targetRadius/4,-game.targetRadius/4,game.targetRadius/4,game.targetRadius/4)
             this.layer.line(-game.targetRadius/4,game.targetRadius/4,game.targetRadius/4,-game.targetRadius/4)
         }
+        if(this.anim.submark[0]>0){
+            this.layer.stroke(255,50,50,this.fade*this.anim.submark[0])
+            this.layer.strokeWeight(2)
+            this.layer.noFill()
+            regTriangle(this.layer,0,0,game.targetRadius/2,game.targetRadius/2,60)
+            this.layer.line(0,-game.targetRadius/24,0,-game.targetRadius/6)
+            this.layer.strokeWeight(3)
+            this.layer.point(0,game.targetRadius/12)
+        }
         if(this.anim.fire[0]>0){
             this.layer.stroke(255,50,50,this.fade*this.anim.fire[0])
             this.layer.strokeWeight(2)
@@ -717,6 +737,9 @@ class tile{
         this.anim.reinforce=smoothAnim(this.anim.reinforce,this.reinforce,0,1,5)
         for(let a=0,la=this.anim.fire.length;a<la;a++){
             this.anim.fire[a]=smoothAnim(this.anim.fire[a],this.fire[a]>0,0,1,5)
+        }
+        for(let a=0,la=this.anim.submark.length;a<la;a++){
+            this.anim.submark[a]=smoothAnim(this.anim.submark[a],this.submark[a]>0,0,1,5)
         }
         for(let a=0,la=this.anim.part.length;a<la;a++){
             this.anim.part[a]=smoothAnim(this.anim.part[a],this.anim.upPart[a],0,1,5)
