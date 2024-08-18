@@ -8030,15 +8030,15 @@ types.card=[
     },{
         name:'Dream\nEater',rarity:1,list:4,
         levels:[
-            {effect:[9],attack:2434,cost:1,target:[2,1,3],spec:[],class:11},
-            {effect:[14],attack:2434,cost:1,target:[2,1,3],spec:[],class:11},
+            {effect:[12],attack:2434,cost:1,target:[2,1,3],spec:[],class:11},
             {effect:[18],attack:2434,cost:1,target:[2,1,3],spec:[],class:11},
+            {effect:[22],attack:2434,cost:1,target:[2,1,3],spec:[],class:11},
         ],mtg:{
             rarity:1,list:4,color:[1,3],
             levels:[
-                {effect:[14],attack:2434,cost:[1,3],target:[2,1,3],spec:[],class:11},
-                {effect:[21],attack:2434,cost:[1,3],target:[2,1,3],spec:[],class:11},
+                {effect:[19],attack:2434,cost:[1,3],target:[2,1,3],spec:[],class:11},
                 {effect:[27],attack:2434,cost:[1,3],target:[2,1,3],spec:[],class:11},
+                {effect:[33],attack:2434,cost:[1,3],target:[2,1,3],spec:[],class:11},
             ],
         },
     },{
@@ -19617,15 +19617,15 @@ types.card=[
     },{
         name:'Witch\nHunt',rarity:0,list:11,
         levels:[
-            {effect:[7],attack:2270,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[11],attack:2270,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[9],attack:2270,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[14],attack:2270,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[18],attack:2270,cost:1,target:[2,1,1],spec:[0],class:1},
         ],mtg:{
             rarity:0,list:-1,color:[3],
             levels:[
-                {effect:[7],attack:2270,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[11],attack:2270,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[14],attack:2270,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[7],attack:2270,cost:[3],target:[2,1,1],spec:[0],class:1},
+                {effect:[11],attack:2270,cost:[3],target:[2,1,1],spec:[0],class:1},
+                {effect:[14],attack:2270,cost:[3],target:[2,1,1],spec:[0],class:1},
             ],
         },
     },{
@@ -35932,14 +35932,14 @@ types.card=[
                 {effect:[33],attack:3207,cost:[1,3,-1,-1,-1,-1,-1,-1],target:[0],spec:[1,2],class:1},
             ],
         },
-    },{
+    },*/{
         name:'Sunny, Glowing\nSunlight',rarity:-7,list:game.playerNumber+5,
         levels:[
             {effect:[6,1,4],attack:3074,cost:3,target:[0],spec:[],class:9},
             {effect:[9,1,5],attack:3074,cost:3,target:[0],spec:[],class:9},
             {effect:[12,1,6],attack:3074,cost:3,target:[0],spec:[],class:9},
         ],
-    },{
+    },/*{
         name:'Star, Showering\nStarlight',rarity:-7,list:game.playerNumber+5,
         levels:[
             {effect:[10,1,20,2],attack:3075,cost:3,target:[0],spec:[],class:9},
@@ -38034,6 +38034,13 @@ types.card=[
             {effect:[],attack:3517,cost:3,target:[1,1,1],spec:[1],class:11},
             {effect:[],attack:3517,cost:2,target:[1,1,1],spec:[1],class:11},
             {effect:[],attack:3517,cost:2,target:[1,1,1],spec:[],class:11},
+        ],
+    },{
+        name:'Subroutine',rarity:-5,list:-1,
+        levels:[
+            {effect:[],attack:1475,cost:1,target:[0],spec:[1,64],class:11},
+            {effect:[],attack:1475,cost:0,target:[0],spec:[1,64],class:11},
+            {effect:[],attack:1475,cost:0,target:[0],spec:[1,2,64],class:11},
         ],
     },
 
@@ -40719,13 +40726,6 @@ types.card=[
             {effect:[1],attack:2587,cost:2,target:[0],spec:[1],class:11},
             {effect:[1],attack:2587,cost:1,target:[0],spec:[1],class:11},
             {effect:[1],attack:2587,cost:1,target:[0],spec:[1,22],class:11},
-        ],
-    },{
-        name:'Subroutine',rarity:-1,list:-8,
-        levels:[
-            {effect:[],attack:1475,cost:1,target:[0],spec:[1,64],class:11},
-            {effect:[],attack:1475,cost:0,target:[0],spec:[1,64],class:11},
-            {effect:[],attack:1475,cost:0,target:[0],spec:[1,2,64],class:11},
         ],
     },{
         name:'Stalldown',rarity:-1,list:-8,

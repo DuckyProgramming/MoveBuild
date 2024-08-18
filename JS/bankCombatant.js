@@ -7922,7 +7922,7 @@ combatant.prototype.display=function(){
                     }
                 }
             break
-            case 'Glimerrer':
+            case 'Glimmerrer':
                 if(this.trigger.display.crystal){
                     for(let a=0,la=3;a<la;a++){
                         this.layer.fill(this.flashColor(this.color.crystal[a])[0],this.flashColor(this.color.crystal[a])[1],this.flashColor(this.color.crystal[a])[2],this.fade*this.fades.crystal)
@@ -9713,7 +9713,7 @@ combatant.prototype.display=function(){
                         this.layer.arc(0,-48,14,40,-180,0)
                     }else if(this.name=='Assistant Hiring Officer'||this.name=='Assistant Fitness Officer'||this.name=='PhD'){
                         this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
-                        this.layer.arc(0,-42,14,52,-180,0)
+                        this.layer.arc(0,-42,15,52,-180,0)
                     }else if(this.name=='Corrupt Detective'){
                         this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
                         this.layer.arc(0,-47,14,42,-180,0)

@@ -1191,11 +1191,11 @@ attack.prototype.update=function(){
                 this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
             }
             if(this.timer<=15){
-                this.userCombatant.moveTile(this.direction,this.distance/(15))
-                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15))
+                this.userCombatant.moveTile(this.direction,this.distance/15)
+                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/15)
                 this.userCombatant.runAnimation(1/15,0)
-                this.targetCombatant.moveTile(this.direction,-this.distance/(15))
-                this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/(15))
+                this.targetCombatant.moveTile(this.direction,-this.distance/15)
+                this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/15)
             }
             if(this.timer==15){
                 this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
@@ -2225,7 +2225,7 @@ attack.prototype.update=function(){
                     this.userCombatant.runAnimation(1/10,25)
                 }
                 if(this.timer==15){
-                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
                 }else if(this.timer==5*this.targetDistance+15){
                     this.selfCall(9)
                 }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -2265,7 +2265,7 @@ attack.prototype.update=function(){
                         this.battle.addSpecificEnergy(this.selfCall(26),this.player,0)
                     break
                 }
-                this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.targetTile.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.targetTile.tilePosition,[0],[0,1],false,0)
             }else if(this.timer>=10*this.targetDistance+25){
                 this.remove=true
             }
@@ -2893,7 +2893,7 @@ attack.prototype.update=function(){
                 this.userCombatant.runAnimation(1/10,25)
             }
             if(this.timer==15||this.timer==20||this.timer==25||this.timer==30){
-                this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
             }
             if(this.timer==5*this.targetDistance+15){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -4649,7 +4649,7 @@ attack.prototype.update=function(){
             }
             if(this.timer>=14&&this.timer<=16){
                 for(let a=0,la=3;a<la;a++){
-                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30)+random(-12,12),this.relativeDistance/30]))
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30)+random(-12,12),this.distance/30-2]))
                 }
             }else if(this.timer==5*this.targetDistance+15&&!(this.type==1598&&(floor(random(0,4))!=0&&!this.userCombatant.luckCheck()||this.userCombatant.luckCheckFail()))){
                 this.targetCombatant.takeDamage(this.effect[0]-this.effect[1]*(this.targetDistance-1),this.user)
@@ -5105,7 +5105,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                    42,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                    42,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
             }else if(this.timer==5*this.targetDistance+15){
                 this.targetCombatant.takeDamage((this.userCombatant.charge>=3?2:1)*this.effect[0],this.user)
             }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -5123,7 +5123,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                    43,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                    43,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
             }else if(this.timer==5*this.targetDistance+15){
                 this.targetCombatant.takeDamage((this.userCombatant.charge<3?2:1)*this.effect[0],this.user)
             }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -5141,7 +5141,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                    44,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                    44,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
             }else if(this.timer==5*this.targetDistance+15){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 if(this.userCombatant.charge>=3){
@@ -5382,7 +5382,7 @@ attack.prototype.update=function(){
                     this.userCombatant.runAnimation(1/10,25)
                 }
                 if(this.timer==15||this.timer==20||this.timer==25){
-                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
                 }
                 if(this.timer==5*this.targetDistance+15||this.timer==5*this.targetDistance+20||this.timer==5*this.targetDistance+25){
                     this.selfCall(9)
@@ -5579,7 +5579,7 @@ attack.prototype.update=function(){
                         this.userCombatant.runAnimation(1/10,25)
                     }
                     if(this.timer==15){
-                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
                     }else if(this.timer==5*this.targetDistance+15){
                         this.selfCall(9)
                     }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -5855,7 +5855,7 @@ attack.prototype.update=function(){
                     this.userCombatant.runAnimation(1/10,25)
                 }
                 if(this.timer==15){
-                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
                 }else if(this.timer==5*this.targetDistance+15){
                     this.selfCall(9)
                 }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -6047,7 +6047,7 @@ attack.prototype.update=function(){
                     this.userCombatant.runAnimation(1/10,25)
                 }
                 if(this.timer==15){
-                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,47,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,47,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
                 }else if(this.timer==5*this.targetDistance+15){
                     this.selfCall(9)
                 }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -6117,7 +6117,7 @@ attack.prototype.update=function(){
                     this.userCombatant.runAnimation(1/10,25)
                 }
                 if(this.timer==15){
-                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,48,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,48,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
                 }else if(this.timer==8*this.targetDistance+15){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
                     this.targetCombatant.goal.animDirection+=floor(random(1,6))*60
@@ -7322,7 +7322,7 @@ attack.prototype.update=function(){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,
                         this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,
                         this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,
-                        78,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                        78,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
                 }
                 if(this.timer==5*this.targetDistance+15||this.timer==5*this.targetDistance+25){
                     this.selfCall(9)
@@ -7414,7 +7414,7 @@ attack.prototype.update=function(){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,
                         this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,
                         this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,
-                        82,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                        82,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
                 }
                 if(this.timer==5*this.targetDistance+15||this.timer==5*this.targetDistance+25){
                     this.selfCall(9)
@@ -7537,7 +7537,7 @@ attack.prototype.update=function(){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,
                         this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,
                         this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,
-                        83,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                        83,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
                 }
                 if(this.timer==5*this.targetDistance+15){
                     this.selfCall(9)
@@ -8266,7 +8266,7 @@ attack.prototype.update=function(){
                 this.userCombatant.runAnimation(1/10,25)
             }
             if(this.timer==15){
-                this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,98,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,98,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
             }else if(this.timer==5*this.targetDistance+15){
                 this.selfCall(9)
             }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -9294,7 +9294,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
-                    160,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                    160,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
             }else if(this.timer==5*this.targetDistance+15){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 switch(this.type){
@@ -9338,7 +9338,7 @@ attack.prototype.update=function(){
                 this.userCombatant.runAnimation(1/10,25)
             }
             if(this.timer==15){
-                this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
             }else if(this.timer==5*this.targetDistance+15){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
             }
@@ -9391,7 +9391,7 @@ attack.prototype.update=function(){
                     this.userCombatant.runAnimation(1/10,25)
                 }
                 if(this.timer==15){
-                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
                 }else if(this.timer==5*this.targetDistance+15){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
                 }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -9408,7 +9408,7 @@ attack.prototype.update=function(){
                     this.userCombatant.runAnimation(1/10,25)
                 }
                 if(this.timer==15){
-                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.relativeDistance/30]))
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
                 }else if(this.timer==5*this.targetDistance+15){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
                 }

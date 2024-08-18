@@ -642,10 +642,12 @@ class combatantManager{
         let index=this.battle.tileManager.getTileIndex(tilePosition.x,tilePosition.y)
         if(index>=0){
             let tile=this.battle.tileManager.tiles[index]
-            this.addCombatant(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,0,direction,false)
-            this.battle.updateTargetting()
-            this.battle.tileManager.activate()
-            this.battle.counter.enemy++
+            if(tile.occupied==0){
+                this.addCombatant(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,0,direction,false)
+                this.battle.updateTargetting()
+                this.battle.tileManager.activate()
+                this.battle.counter.enemy++
+            }
         }
     }
     summonConstruct(tilePosition,type,team,direction,builder){

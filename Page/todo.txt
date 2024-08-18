@@ -1,3 +1,26 @@
+UNCOMING:
+
+mtg updates
+
+new cards
+
+deploy existing queue
+
+deploy new enemies
+
+deploy new events
+
+give shinmy a model
+
+gift rewards button
+
+collection screen
+
+
+
+
+
+
 MAJOR MTG CHANGES
 
 METAS
@@ -53,15 +76,19 @@ unfair mode
 
 button to gift remaining battle rewards to other player
 
-
-
-
 title screen 5th button - collection
 lists all cards, if you've seen them
 
 it may be time to add tooltips
 
+project constructed save?
 
+
+
+
+
+change riot shield
+animate sunny
 
 LISTING GROUP 45
 
@@ -390,11 +417,11 @@ easies:
 
 sick duck - when killed you get a bunch of debuffs
 spirit of wealth - when killed gain $25
-[]
+kedama - kinda like louse
 
 enemies:
 
-drowned - can randomly apply drowned to you
+[]
 pistol thug - a basic biker with a gun not really a threat
 brawler - gains 1 strength per turn, has a mid-range punch
 
@@ -424,7 +451,7 @@ world 3:
 
 enemies:
 
-[]
+speedrunner - every time you play 10 cards, he gets an extra turn
 reactive weaponry - gains 1 strength when you defend and 1 dex when you attack, alternates attack and defense
 management robot commander - like a normal robot but can buff other robots and stronger generally
 

@@ -134,7 +134,7 @@ class tile{
                 case 10:
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(11)){
                         if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
-                            this.battle.combatantManager.combatants[this.combatant].statusEffect('Poison',3)
+                            this.battle.combatantManager.combatants[this.combatant].statusEffect('Poison',2)
                             this.anim.upPart[a]=false
                         }
                     }
