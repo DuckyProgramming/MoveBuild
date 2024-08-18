@@ -935,6 +935,22 @@ class combatantManager{
             }
         }
     }
+    allConstructEffect(builder,effect,args){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].construct&&this.combatants[a].builder==builder){
+                switch(effect){
+                    case 0:
+                        for(let b=0,lb=floor(args.length/2);b<lb;b++){
+                            this.combatants[a].statusEffect(args[b*2],args[b*2+1])
+                        }
+                    break
+                    case 1:
+                        this.combatants[a].addBlock(this.args[0])
+                    break
+                }
+            }
+        }
+    }
     fullAllEffect(effect,args){
         for(let a=0,la=this.combatants.length;a<la;a++){
             switch(effect){
@@ -1332,7 +1348,7 @@ class combatantManager{
     }
     tickEarly(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team>0){
+            if(this.combatants[a].team==0||this.combatants[a].construct||this.combatants[a].support){
                 this.combatants[a].tickEarly()
             }
         }

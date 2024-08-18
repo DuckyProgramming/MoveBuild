@@ -294,7 +294,7 @@ class eventManager{
             combatant.loseMaxHP(amount)
         }
     }
-    callInput(type,a){
+    selfCall(type,a){
         switch(type){
             case 0:
                 let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
@@ -1610,7 +1610,7 @@ class eventManager{
         if(this.page>=0){
             for(let a=0,la=this.pages[this.page].option.length;a<la;a++){
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.posKey,y:300+a*50},width:220,height:30})&&!(a>0&&this.battle.relicManager.hasRelic(339,this.player))){
-                    this.callInput(0,a)
+                    this.selfCall(0,a)
                 }
             }
             if(this.battle.relicManager.hasRelic(103,this.player)&&pointInsideBox({position:inputs.rel},{position:{x:this.posKey,y:35},width:120,height:40})){
@@ -1622,7 +1622,7 @@ class eventManager{
         if(this.page>=0){
             for(let a=0,la=this.pages[this.page].option.length;a<la;a++){
                 if(int(key)-1==a&&!(a>0&&this.battle.relicManager.hasRelic(339,this.player))){
-                    this.callInput(0,a)
+                    this.selfCall(0,a)
                 }
             }
             if(this.battle.relicManager.hasRelic(103,this.player)&&code==ENTER){

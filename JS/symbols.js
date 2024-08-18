@@ -2462,7 +2462,6 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(255,50,50,fade)
             layer.triangle(-5,-4,-5,-0.5,6,-2.25)
             layer.triangle(5,4,5,-0.5,-6,2.25)
-            layer.ellipse(0,6,3,3)
             layer.ellipse(-8,0,3,3)
         break
         case 273:
@@ -9187,6 +9186,29 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(3,-6,-4.5,-2,-4.5,2)
             layer.triangle(3,6,-4.5,-2,-4.5,2)
         break
+        case 380:
+            layer.fill(255,50,50,fade)
+            layer.triangle(7,-3,-3.5,-5,-3.5,-1)
+            layer.triangle(7,3,-3.5,1,-3.5,5)
+            layer.rect(-4.5,0,1,6)
+            layer.rect(-6,0,1,6)
+            layer.rect(-7.5,0,1,6)
+        break
+        case 381:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-3,0,-6,-1.5,-6,1.5)
+            layer.triangle(-3,-4,-6,-1.5,-6,1.5)
+            layer.triangle(-3,4,-6,-1.5,-6,1.5)
+            layer.triangle(2,0,-1,-1.5,-1,1.5)
+            layer.triangle(2,-4,-1,-1.5,-1,1.5)
+            layer.triangle(2,4,-1,-1.5,-1,1.5)
+            layer.triangle(7,0,4,-1.5,4,1.5)
+            layer.triangle(7,-4,4,-1.5,4,1.5)
+            layer.triangle(7,4,4,-1.5,4,1.5)
+            layer.rect(-7,0,1,6)
+            layer.rect(-2,0,1,6)
+            layer.rect(3,0,1,6)
+        break
 
     }
     //mark i
@@ -9220,11 +9242,11 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
                 layer.text(effect[0],0,0)
             break
             case 20: case 31: case 47: case 59: case 66: case 69: case 97: case 99: case 103: case 133:
-            case 156: case 168: case 173: case 179: case 194: case 206: case 273: case 292: case 358:
+            case 156: case 168: case 173: case 179: case 194: case 206: case 273: case 292: case 358: case 380:
                 layer.text(`${effect[0]}x2`,0,0)
             break
             case 2: case 19: case 34: case 45: case 76: case 86: case 104: case 118: case 147: case 236:
-            case 367: case 377:
+            case 367: case 377: case 381:
                 layer.text(`${effect[0]}x3`,0,0)
             break
             case 77: case 95: case 101:

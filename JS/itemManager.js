@@ -178,7 +178,7 @@ class itemManager{
         }
         switch(types.item[type].id){
             case 2:
-                this.battle.cardManagers[player].hand.callInput(6,[57,[10*effectiveness],1,[2,1,6]])
+                this.battle.cardManagers[player].hand.selfCall(6,[57,[10*effectiveness],1,[2,1,6]])
             break
             case 3:
                 for(let a=0,la=3*effectiveness;a<la;a++){
@@ -204,10 +204,10 @@ class itemManager{
                 userCombatant.heal(15*effectiveness)
             break
             case 8:
-                this.battle.cardManagers[player].hand.callInput(6,[81,[10*effectiveness],1,[2,1,2]])
+                this.battle.cardManagers[player].hand.selfCall(6,[81,[10*effectiveness],1,[2,1,2]])
             break
             case 9:
-                this.battle.cardManagers[player].hand.callInput(6,[54,[],3,[6]])
+                this.battle.cardManagers[player].hand.selfCall(6,[54,[],3,[6]])
             break
             case 10:
                 userCombatant.statusEffect('Counter All',10*effectiveness)
@@ -216,7 +216,7 @@ class itemManager{
                 userCombatant.addBlock(20*effectiveness)
             break
             case 12:
-                this.battle.cardManagers[player].hand.callInput(6,[3595,[20*effectiveness],1,[2,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[3595,[20*effectiveness],1,[2,1,3]])
             break
             case 13:
                 this.battle.cardManagers[player].allEffect(2,4)
@@ -237,7 +237,7 @@ class itemManager{
                 userCombatant.statusEffect('Temporary Dexterity',5*effectiveness)
             break
             case 19:
-                this.battle.cardManagers[player].hand.callInput(6,[83,[effectiveness],11,[2,1,6]])
+                this.battle.cardManagers[player].hand.selfCall(6,[83,[effectiveness],11,[2,1,6]])
             break
             case 20:
                 this.addItemSlots(1,player)
@@ -247,13 +247,13 @@ class itemManager{
                 this.battle.overlayManager.overlays[10][player].activate([0,3,1])
             break
             case 22:
-                this.battle.cardManagers[player].hand.callInput(6,[84,[3*effectiveness],11,[2,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[84,[3*effectiveness],11,[2,1,3]])
             break
             case 23:
-                this.battle.cardManagers[player].hand.callInput(6,[85,[3*effectiveness],11,[2,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[85,[3*effectiveness],11,[2,1,3]])
             break
             case 24:
-                this.battle.cardManagers[player].hand.callInput(6,[86,[3*effectiveness],11,[2,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[86,[3*effectiveness],11,[2,1,3]])
             break
             case 25:
                 this.battle.cardManagers[player].draw(3*effectiveness)
@@ -303,7 +303,7 @@ class itemManager{
                 this.battle.combatantManager.randomizeCombatants()
             break
             case 39:
-                this.battle.cardManagers[player].hand.callInput(6,[489,[3*effectiveness],1,[0]])
+                this.battle.cardManagers[player].hand.selfCall(6,[489,[3*effectiveness],1,[0]])
             break
             case 40:
                 this.battle.cardManagers[player].reserve.removeAbstract(0,[findName('Fatigue',types.card)])
@@ -429,10 +429,10 @@ class itemManager{
                 this.battle.overlayManager.overlays[35][player].activate([0,3,0])
             break
             case 71:
-                this.battle.cardManagers[player].hand.callInput(6,[3632,[24*effectiveness,1],1,[2,1,6]])
+                this.battle.cardManagers[player].hand.selfCall(6,[3632,[24*effectiveness,1],1,[2,1,6]])
             break
             case 72:
-                this.battle.cardManagers[player].hand.callInput(6,[3633,[35*effectiveness,2*effectiveness],1,[2,1,6]])
+                this.battle.cardManagers[player].hand.selfCall(6,[3633,[35*effectiveness,2*effectiveness],1,[2,1,6]])
             break
             case 73:
                 this.battle.overlayManager.overlays[43][player].active=true
@@ -514,13 +514,13 @@ class itemManager{
                 this.battle.overlayManager.overlays[46][player].activate([5*effectiveness])
             break
             case 93:
-                this.battle.cardManagers[player].hand.callInput(6,[342,[8*effectiveness],1,[5]])
+                this.battle.cardManagers[player].hand.selfCall(6,[342,[8*effectiveness],1,[5]])
             break
             case 94:
                 this.battle.cardManagers[player].allEffect(2,35)
             break
             case 95:
-                this.battle.cardManagers[player].hand.callInput(6,[250,[],1,[2,1,1]])
+                this.battle.cardManagers[player].hand.selfCall(6,[250,[],1,[2,1,1]])
             break
             case 96:
                 userCombatant.statusEffect('Strength in 3 Turns',3*effectiveness)
@@ -542,7 +542,7 @@ class itemManager{
                 this.battle.cardManagers[player].hand.allEffect(107)
             break
             case 101:
-                this.battle.cardManagers[player].hand.callInput(6,[3645,[25*effectiveness],1,[2,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[3645,[25*effectiveness],1,[2,1,3]])
             break
             case 102:
                 this.battle.cardManagers[player].draw(5*effectiveness-this.battle.cardManagers[player].hand.cards.length)
@@ -616,7 +616,7 @@ class itemManager{
                 this.battle.addSpecificEnergy(2*effectiveness,player,6)
             break
             case 1005:
-                this.battle.cardManagers[player].hand.callInput(6,[57,[5*effectiveness],1,[2,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[57,[5*effectiveness],1,[2,1,3]])
             break
             case 1006:
                 userCombatant.addBlock(10*effectiveness)
@@ -772,7 +772,7 @@ class itemManager{
                             this.items[a][b].type=1
                             this.items[a][b].refresh()
                             this.activateItem(type,a)
-                            this.battle.cardManagers[a].hand.callInput(7,0)
+                            this.battle.cardManagers[a].hand.selfCall(7,0)
                         }
                     }
                 }
@@ -789,7 +789,7 @@ class itemManager{
                             if(menu){
                                 this.activateItem(type,a)
                             }
-                            this.battle.cardManagers[a].hand.callInput(7,0)
+                            this.battle.cardManagers[a].hand.selfCall(7,0)
                         }
                     }
                 }
@@ -803,7 +803,7 @@ class itemManager{
                             this.items[a][b].type=1
                             this.items[a][b].refresh()
                             this.activateItem(type,a)
-                            this.battle.cardManagers[a].hand.callInput(7,0)
+                            this.battle.cardManagers[a].hand.selfCall(7,0)
                         }
                     }
                 }

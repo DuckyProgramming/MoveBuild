@@ -1616,7 +1616,7 @@ class battle{
                     }
                 }
             }else{
-                this.energy.gen[player]+=amount
+                this.energy.gen[player]-=amount
             }
         }
     }
@@ -1632,7 +1632,7 @@ class battle{
                     }
                 }
             }else{
-                this.energy.gen[player]+=amount
+                this.energy.gen[player]-=amount
             }
         }
     }

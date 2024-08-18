@@ -130,25 +130,25 @@ class turn{
                                     [[this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]]]
                                 break
                                 case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
-                                case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99:
-                                case 107: case 112: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223:
-                                case 224: case 248: case 250: case 253: case 258: case 260: case 272: case 273: case 275: case 276:
-                                case 277: case 297: case 298: case 299: case 310: case 317: case 325: case 329: case 332: case 342:
-                                case 343: case 354: case 374: case 375:
+                                case 32:case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 107:
+                                case 112: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223: case 224:
+                                case 248: case 250: case 253: case 258: case 260: case 272: case 273: case 275: case 276: case 277:
+                                case 297: case 298: case 299: case 310: case 317: case 325: case 329: case 332: case 342: case 343:
+                                case 354: case 374: case 375:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2]
                                     ]
                                 break
-                                case 71: case 73: case 79: case 143: case 172: case 175: case 312: case 319: case 322: case 339:
-                                case 348: case 367:
+                                case 71: case 73: case 79: case 99: case 143: case 172: case 175: case 312: case 319: case 322:
+                                case 339: case 348: case 367:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*3,this.userCombatant.tilePosition.y+transformBase[1]*3]
                                     ]
                                 break
-                                case 100: case 347:
+                                case 100: case 347: case 380:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -194,6 +194,7 @@ class turn{
                                     ]
                                 break
                                 case 28: case 44: case 53: case 105: case 146: case 168: case 171: case 288: case 357: case 360:
+                                case 381:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -591,7 +592,7 @@ class turn{
                                 this.type==86||this.type==87||this.type==95||this.type==104||this.type==105||this.type==114||this.type==120||this.type==124||this.type==142||this.type==146||
                                 this.type==153||this.type==157||this.type==166||this.type==168||this.type==171||this.type==176||this.type==192||this.type==204||this.type==213||this.type==222||
                                 this.type==223||this.type==224||this.type==259||this.type==264||this.type==265||this.type==278||this.type==288||this.type==291||this.type==292||this.type==308||
-                                this.type==330||this.type==350||this.type==351||this.type==357||this.type==360||this.type==368||this.type==379
+                                this.type==330||this.type==350||this.type==351||this.type==357||this.type==360||this.type==368||this.type==379||this.type==381
                             ){
                                 this.targetCombatant=[]
                                 this.direction=[]
@@ -658,23 +659,23 @@ class turn{
                                     }
                                     switch(this.type){
                                         case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
-                                        case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99:
-                                        case 107: case 112: case 140: case 156: case 183: case 203: case 211: case 248: case 253: case 258:
-                                        case 260: case 272: case 273: case 275: case 276: case 277: case 297: case 298: case 299: case 310:
-                                        case 317: case 325: case 329: case 342: case 343: case 354: case 374: case 375: case 378:
+                                        case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 107:
+                                        case 112: case 140: case 156: case 183: case 203: case 211: case 248: case 253: case 258: case 260:
+                                        case 272: case 273: case 275: case 276: case 277: case 297: case 298: case 299: case 310: case 317:
+                                        case 325: case 329: case 342: case 343: case 354: case 374: case 375: case 378:
                                             if(a==1&&this.targetTile[0]<0){
                                                 fail=true
                                             }
                                         break
                                         case 71: case 73: case 79: case 172: case 312: case 322: case 339: case 348:
-                                        case 367:
+                                        case 367: case 99:
                                             if(
                                                 (a>=1&&this.targetTile[0]<0)||
                                                 (a>=2&&this.targetTile[1]<0)){
                                                     fail=true
                                             }
                                         break
-                                        case 100:
+                                        case 100: case 380:
                                             if(
                                                 (a>=1&&this.targetTile[0]<0)||
                                                 (a>=2&&this.targetTile[1]<0)||
@@ -1468,8 +1469,10 @@ class turn{
                     case 230:
                         if(this.userCombatant.builder==this.battle.turn.main){
                             this.battle.combatantManager.combatants[this.userCombatant.builder].addBlock(this.effect[0])
+                            this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,1,[this.effect[0]])
                         }else{
                             this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Block Next Turn',this.effect[0])
+                            this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,0,['Block Next Turn',this.effect[0]])
                         }
                     break
                     case 231:
@@ -1478,8 +1481,10 @@ class turn{
                     case 232:
                         if(this.userCombatant.builder==this.battle.turn.main){
                             this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Temporary Strength',this.effect[0])
+                            this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,0,['Temporary Strength',this.effect[0]])
                         }else{
                             this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Temporary Strength Next Turn',this.effect[0])
+                            this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,0,['Temporary Strength Next Turn',this.effect[0]])
                         }
                     break
                     case 234:
@@ -1529,11 +1534,11 @@ class turn{
                                 this.userCombatant.statusEffect('Retain Block',3)
                             break
                             case 108:
-                                this.userCombatant.statusEffect('Counter Combat Turn',this.effect[1])
+                                this.userCombatant.statusEffectNext('Counter',this.effect[1])
                             break
                             case 110:
                                 this.userCombatant.statusEffect('Retain Block',1)
-                                this.userCombatant.statusEffect('Counter Combat Turn',this.effect[1])
+                                this.userCombatant.statusEffectNext('Counter',this.effect[1])
                             break
                             case 182:
                                 this.userCombatant.statusEffect('Retain Block',6)
@@ -1559,7 +1564,7 @@ class turn{
                                 this.userCombatant.statusEffect('Decrementing Armor',this.effect[1])
                             break
                             case 293:
-                                this.userCombatant.statusEffect('Counter 2 Times Combat Turn',this.effect[1])
+                                this.userCombatant.statusEffectNext('Counter 2 Times',this.effect[1])
                             break
                             case 318:
                                 this.userCombatant.statusEffect('Retain Block',2)

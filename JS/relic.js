@@ -2897,10 +2897,10 @@ class relic{
                 case 'Neutral Mana/Upgrade':
                     displayMtgManaSymbol(this.layer,-9,0,0,0,0.8,this.fade,-1,[])
                     displaySymbol(this.layer,9,0,8,0,1,this.fade)
-                    displaySymbol(this.layer,9,0,7,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-1,7,0,0.4,this.fade)
                     this.layer.fill(0,this.fade)
-                    this.layer.textSize(10)
-                    this.layer.text('5',9,0)
+                    this.layer.textSize(8)
+                    this.layer.text('5',11.5,0.5)
                 break
                 case 'Neutral Mana/Colorless Cards':
                     displayMtgManaSymbol(this.layer,-9,0,0,0,0.8,this.fade,-1,[])

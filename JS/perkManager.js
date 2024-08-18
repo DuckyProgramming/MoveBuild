@@ -13,6 +13,9 @@ class perkManager{
         this.addPerk([0,1,2,3,13][floor(random(0,5))])
         this.addPerk([4,5,6,7,12][floor(random(0,5))])
         this.addPerk([8,9,10,11,14][floor(random(0,5))])
+        if(variants.mtg&&mtgPlayerColor(this.battle.player[this.player]).length==1){
+            this.addPerk(15)
+        }
     }
     getPosKey(){
         this.posKey=0.5-this.battle.players*0.5+this.player*2
@@ -89,6 +92,11 @@ class perkManager{
                 this.battle.combatantManager.combatants[this.player].loseMaxHP(5)
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([0,3,16])
+            break
+            case 15:
+                this.complete=true
+                this.battle.energy.base[this.player].splice(this.battle.energy.base[this.player].indexOf(mtgPlayerColor(this.battle.player[this.player])[0]),1)
+                this.battle.relicManager.addSetRelic(4,this.player)
             break
         }
     }

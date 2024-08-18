@@ -6635,7 +6635,7 @@ attack.prototype.update=function(){
             }
         break
         case 1334: case 1335: case 1336: case 1613: case 1614: case 2139: case 2444: case 2445: case 2465:
-        case 4419:
+        case 4419: case 4488:
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
             }

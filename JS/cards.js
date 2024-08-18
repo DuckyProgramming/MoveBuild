@@ -8126,20 +8126,6 @@ types.card=[
             ],
         },
     },{
-        name:'Aonach',rarity:2,list:4,
-        levels:[
-            {effect:[],attack:3277,cost:1,target:[0],spec:[1],class:11},
-            {effect:[],attack:3277,cost:0,target:[0],spec:[1],class:11},
-            {effect:[],attack:3277,cost:0,target:[0],spec:[1,22],class:11},
-        ],mtg:{
-            rarity:2,list:4,color:[2,3],
-            levels:[
-                {effect:[],attack:3277,cost:[2,3],target:[0],spec:[1],class:11},
-                {effect:[],attack:3277,cost:[11],target:[0],spec:[1],class:11},
-                {effect:[],attack:3277,cost:[],target:[0],spec:[1],class:11},
-            ],
-        },
-    },{
         name:'Recursive\nKnife',rarity:2,list:4,
         levels:[
             {effect:[4],attack:3287,cost:3,target:[0],spec:[1],class:11},
@@ -8212,9 +8198,9 @@ types.card=[
     },{
         name:'Quantum\nTunnel',rarity:1,list:4,
         levels:[
-            {effect:[8,1,1],attack:3581,cost:0,target:[2,1,1],spec:[1],class:1},
-            {effect:[12,1,1],attack:3581,cost:0,target:[2,1,1],spec:[1],class:1},
-            {effect:[15,1,1],attack:3581,cost:0,target:[2,1,1],spec:[1],class:1},
+            {effect:[9,1,1],attack:3581,cost:0,target:[2,1,1],spec:[1],class:1},
+            {effect:[14,1,1],attack:3581,cost:0,target:[2,1,1],spec:[1],class:1},
+            {effect:[18,1,1],attack:3581,cost:0,target:[2,1,1],spec:[1],class:1},
         ],mtg:{
             rarity:1,list:-1,color:[5],
             levels:[
@@ -12830,15 +12816,15 @@ types.card=[
     },{
         name:'Talk to\nthe Hand',rarity:1,list:7,
         levels:[
-            {effect:[6,1],attack:784,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[8,2],attack:784,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[9,3],attack:784,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[6,1],attack:784,cost:1,target:[2,1,1],spec:[0,1],class:1},
+            {effect:[8,2],attack:784,cost:1,target:[2,1,1],spec:[0,1],class:1},
+            {effect:[9,3],attack:784,cost:1,target:[2,1,1],spec:[0,1],class:1},
         ],mtg:{
             rarity:1,list:-1,color:[1,2],
             levels:[
-                {effect:[12,3],attack:784,cost:[1,2,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[20,4],attack:784,cost:[1,2,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[25,5],attack:784,cost:[1,2,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[12,3],attack:784,cost:[1,2,-1],target:[2,1,1],spec:[0,1],class:1},
+                {effect:[20,4],attack:784,cost:[1,2,-1],target:[2,1,1],spec:[0,1],class:1},
+                {effect:[25,5],attack:784,cost:[1,2,-1],target:[2,1,1],spec:[0,1],class:1},
             ],
         },
     },{
@@ -17345,9 +17331,9 @@ types.card=[
     },{
         name:'Tin',rarity:0,list:10,
         levels:[
-            {effect:[6,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
-            {effect:[10,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
-            {effect:[13,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[6,1,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[10,1,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[13,1,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
         ],mtg:{
             rarity:0,list:10,color:[1,3],
             levels:[
@@ -18918,8 +18904,8 @@ types.card=[
         name:'Nocebo',rarity:0,list:11,
         levels:[
             {effect:[],attack:2444,cost:1,target:[2,1,3],spec:[],class:11},
-            {effect:[],attack:2444,cost:1,target:[2,1,3],spec:[],class:11},
-            {effect:[],attack:2444,cost:0,target:[2,1,3],spec:[],class:11},
+            {effect:[1],attack:4488,cost:1,target:[2,1,3],spec:[],class:11},
+            {effect:[1],attack:4488,cost:0,target:[2,1,3],spec:[],class:11},
         ],mtg:{
             rarity:0,list:11,color:[3],
             levels:[
@@ -18946,7 +18932,7 @@ types.card=[
         name:'Sort\nOut',rarity:0,list:11,
         levels:[
             {effect:[1,1],attack:2060,cost:0,target:[0],spec:[],class:11},
-            {effect:[2,1],attack:2061,cost:0,target:[0],spec:[],class:11},
+            {effect:[2,1],attack:2060,cost:0,target:[0],spec:[],class:11},
             {effect:[2,1,1],attack:2061,cost:0,target:[0],spec:[],class:11},
         ],mtg:{
             rarity:0,list:11,color:[1,2],
@@ -31471,13 +31457,6 @@ types.card=[
             {effect:[],attack:2513,cost:1,target:[0],spec:[1],class:11},
         ],
     },{
-        name:'XI - Strength',rarity:2,list:game.playerNumber+4,
-        levels:[
-            {effect:[6,2],attack:1108,cost:0,target:[0],spec:[1],class:11},
-            {effect:[8,2],attack:1108,cost:0,target:[0],spec:[1],class:11},
-            {effect:[10,2],attack:1108,cost:0,target:[0],spec:[1],class:11},
-        ],
-    },{
         name:'XII - The\nHanged Man',rarity:2,list:game.playerNumber+4,
         levels:[
             {effect:[1],attack:1109,cost:3,target:[0],spec:[1],class:11},
@@ -36023,6 +36002,13 @@ types.card=[
                 {effect:[15,1],attack:3669,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },
+    },{
+        name:'XI - Strength',rarity:2,list:game.playerNumber+4,
+        levels:[
+            {effect:[6,2],attack:1108,cost:0,target:[0],spec:[1],class:11},
+            {effect:[8,2],attack:1108,cost:0,target:[0],spec:[1],class:11},
+            {effect:[10,2],attack:1108,cost:0,target:[0],spec:[1],class:11},
+        ],
     },{
         name:'XVII - The\nStar',rarity:2,list:game.playerNumber+4,
         levels:[
@@ -41987,6 +41973,20 @@ types.card=[
             {effect:[5,3,1],attack:2282,cost:1,target:[2,1,3],spec:[0],class:1},
             {effect:[6,3,2],attack:2282,cost:1,target:[2,1,3],spec:[0],class:1},
         ],
+    },{
+        name:'Aonach',rarity:-1,list:-8,
+        levels:[
+            {effect:[],attack:3277,cost:1,target:[0],spec:[1],class:11},
+            {effect:[],attack:3277,cost:0,target:[0],spec:[1],class:11},
+            {effect:[],attack:3277,cost:0,target:[0],spec:[1,22],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2,3],
+            levels:[
+                {effect:[],attack:3277,cost:[2,3],target:[0],spec:[1],class:11},
+                {effect:[],attack:3277,cost:[11],target:[0],spec:[1],class:11},
+                {effect:[],attack:3277,cost:[],target:[0],spec:[1],class:11},
+            ],
+        },
     },
 
     //mark di

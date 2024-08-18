@@ -41,11 +41,9 @@ default:
     return [base]
 
 
-if you play a monocolor character you get a perk choice of boss relic swap
-
-
-
 unfair mode
+
+
 
 
 
@@ -60,6 +58,8 @@ button to gift remaining battle rewards to other player
 
 title screen 5th button - collection
 lists all cards, if you've seen them
+
+it may be time to add tooltips
 
 
 
@@ -93,6 +93,10 @@ scrap note
 
 
 
+several new cards to prehex for the extra turn gimmick
+
+
+
 exhaust
 exhaust
 wisp
@@ -121,6 +125,10 @@ astrology sphere
 
 whirling tomb - water particles, spawn from circular points around target, fire first toward center and then toward the sides
 it'll look cool trust
+
+colliding puff - red ball that explodes
+
+red star explosion?
 
 
 
@@ -154,6 +162,8 @@ create a plant tile and add a sakura card to hand
 
 [counter and gain wish power]
 
+daggerlock - get hit by a falling shiv
+
 
 
 deal damage, upgrade a concoction
@@ -183,6 +193,10 @@ cool rose - 3 damage 3 block, 0 cost, double both if target has freeze
 suplex - combo card, damage an enemy and move him behind yourself (or hits a wall)
 
 counter grapple like suplex
+
+
+
+great tengu decree looks cool
 
 
 
@@ -358,6 +372,8 @@ model
 icon
 tutorial
 
+can have a little blue star rotating around
+
 
 
 
@@ -373,7 +389,7 @@ world 1:
 easies:
 
 sick duck - when killed you get a bunch of debuffs
-[]
+spirit of wealth - when killed gain $25
 []
 
 enemies:

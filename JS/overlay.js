@@ -568,11 +568,11 @@ class overlay{
                         }
                     break
                     case 25:
-                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                         for(let a=0,la=this.options;a<la;a++){
                             if(list[args[1]].length>0){
                                 let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0]+upKey,2.5+upKey)),types.card[list[args[1]][index]].list,-1))
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0]+upKey,2.5+upKey)),this.battle.standardColorize(list[args[1]][index]),-1))
                                 let roll=floor(random(0,90*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
                                 this.cards[this.cards.length-1].edition=this.rollEdition(roll)
                                 this.cards[this.cards.length-1].upSize=true
@@ -1089,7 +1089,7 @@ class overlay{
                             break
                             case -1003:
                                 this.card.cost-=7
-                                this.battle.cardManagers[this.player].hand.callInput(6,[3080,[args[0].effect[2],args[0].effect[3]],1,[5]])
+                                this.battle.cardManagers[this.player].hand.selfCall(6,[3080,[args[0].effect[2],args[0].effect[3]],1,[5]])
                             break
                             case -1004:
                                 this.card.cost-=3
@@ -1254,7 +1254,7 @@ class overlay{
                             break
                             case -1036:
                                 this.card.cost-=6
-                                this.battle.cardManagers[this.player].hand.callInput(6,[2951,[args[0].effect[4],args[0].effect[5]],1,[5]])
+                                this.battle.cardManagers[this.player].hand.selfCall(6,[2951,[args[0].effect[4],args[0].effect[5]],1,[5]])
                             break
                             case -1037:
                                 this.card.cost-=2
@@ -1280,7 +1280,7 @@ class overlay{
                             break
                             case -1041:
                                 this.card.cost-=2
-                                this.battle.cardManagers[this.player].hand.callInput(6,[3881,[args[0].effect[1],args[0].effect[2]],11,[5]])
+                                this.battle.cardManagers[this.player].hand.selfCall(6,[3881,[args[0].effect[1],args[0].effect[2]],11,[5]])
                             break
                             case -1042:
                                 this.card.cost-=10
@@ -1292,7 +1292,7 @@ class overlay{
                             break
                             case -1044:
                                 this.card.cost-=8
-                                this.battle.cardManagers[this.player].hand.callInput(6,[3635,[args[0].effect[2],args[0].effect[3],args[0].effect[4]],1,[2,1,3]])
+                                this.battle.cardManagers[this.player].hand.selfCall(6,[3635,[args[0].effect[2],args[0].effect[3],args[0].effect[4]],1,[2,1,3]])
                             break
                             case -1045:
                                 this.card.cost-=4
@@ -1341,8 +1341,8 @@ class overlay{
                         }
                     break
                     case 1:
-                        this.battle.cardManagers[this.player].hand.callInput(34,args[0])
-                        this.battle.cardManagers[this.player].hand.callInput(33,args[0])
+                        this.battle.cardManagers[this.player].hand.selfCall(34,args[0])
+                        this.battle.cardManagers[this.player].hand.selfCall(33,args[0])
                     break
                 }
             break

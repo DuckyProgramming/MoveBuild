@@ -165,8 +165,12 @@ class card{
             }
             this.base={cost:baseCost}
             if(this.base.cost==undefined){
-                if(variants.mtg&&!this.specialCost&&types.card[this.type].mtg!=undefined){
-                    this.base.cost=sortNumbers(copyArray(types.card[this.type].mtg.levels[constrain(this.level,0,types.card[this.type].mtg.levels.length-1)].cost))
+                if(variants.mtg&&types.card[this.type].mtg!=undefined){
+                    if(this.specialCost){
+                        this.base.cost=copyArray(types.card[this.type].mtg.levels[constrain(this.level,0,types.card[this.type].mtg.levels.length-1)].cost)
+                    }else{
+                        this.base.cost=sortNumbers(copyArray(types.card[this.type].mtg.levels[constrain(this.level,0,types.card[this.type].mtg.levels.length-1)].cost))
+                    }
                 }else{
                     this.base.cost=types.card[this.type].levels[constrain(this.level,0,types.card[this.type].levels.length-1)].cost
                 }
@@ -895,7 +899,7 @@ class card{
             case 145: string+=`Heal ${effect[0]} Health\nto Ally`; break
             case 146: string+=`Add ${effect[0]} Block\nto Ally`; break
             case 147: string+=`Swap Places\nWith Ally`; break
-            case 148: string+=`Heal ${this.calculateEffectAlly(effect[0],4)} Health\nRemove ${effect[1]} Health\nfrom Ally`; break
+            case 148: string+=`Heal ${this.calculateEffectAlly(effect[0],4)} Health\nAlly Loses ${effect[1]} Health`; break
             case 149: string+=`Take 25% Less\nDamage For ${effect[0]} Turn${pl(effect[0])}`; break
             case 150: string+=`Gain ${effect[0]} Strength\nFor 2 Turns`; break
             case 151: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Etherealed, Add\nan Operational Defend\nof Equivalent Level`; break
@@ -930,7 +934,7 @@ class card{
             case 180: string+=`Your Next ${effect[0]} Exhaust${pl(effect[0])}\nDiscard the Card Instead`; break
             case 181: string+=`Gain ${effect[0]} Dodge\nCounter ${effect[1]}`; break
             case 182: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Combo\nTake ${effect[2]} Damage\nIf You Do Not\nAttack This Turn`; break
-            case 183: string+=`Draw ${effect[0]!=1?`effect[0]`:``}X${effect[1]>0?`+${effect[1]}`:``} Cards`; break
+            case 183: string+=`Draw ${effect[0]!=1?`${effect[0]}`:``}X${effect[1]>0?`+${effect[1]}`:``} Cards`; break
             case 184: string+=`Collisions Do ${effect[0]}\nMore Damage`; break
             case 185: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card\n${effect[1]!=1?`They Cost`:`It Costs`} 0`; break
             case 186: string+=`All Cards in Hand\nCost ${effect[0]} Less\nTemporarily`; break
@@ -4231,7 +4235,7 @@ class card{
             case 3464: string+=`Advance\nApply ${effect[0]} Vulnerable`; break
             case 3465: string+=`Advance\nTarget Cannot Move\nFor ${effect[0]} Turn${pl(effect[0])}`; break
             case 3466: string+=`Choose and Add\nAny Common Character\nor Colorless Card\nof Equivalent Level\nto Hand`; break
-            case 3467: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Starlight${effect[1]!=1?`s`:``}\nto Discard Pile`; break
+            case 3467: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Glamorous\nStarlight${effect[1]!=1?`s`:``} to Discard Pile`; break
             case 3468: string+=`Shuffle ${effect[0]} Prismatic\nBomb${pl(effect[0])} Into Draw Pile\nPrismatic Bombs\nDeal ${this.calculateEffect(effect[1],14)} More Damage`; break
             case 3469: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nSwaps When You\nAre Below 50% Health`; break
             case 3470: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nSwaps When You\nAre Above 50% Health`; break
@@ -5258,6 +5262,7 @@ class card{
             case 4484: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTurn 7:\nGain (E) (E) (E)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 4485: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEven Mana Total:\nApply ${effect[1]} Weak`; break
             case 4487: string+=`Add Any Random\n${effect[0]} 3 ${variants.mtg?`Total `:``}Cost Card${effect[0]!=1?`s`:``}\nof Equivalent Level\nto Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
+            case 4488: string+=`Trigger Target's Jinx\nDraw ${effect[0]} Card${pl(effect[0])}`; break
 
 
 
@@ -6174,7 +6179,7 @@ class card{
             break
             case 4130:
                 if(this.spec.includes(60)){
-                    this.battle.cardManagers[this.player].hand.callInput(6,[1,[this.effect[0]],1,[2,1,1]])
+                    this.battle.cardManagers[this.player].hand.selfCall(6,[1,[this.effect[0]],1,[2,1,1]])
                     this.discardEffectBuffered.push(1)
                 }else{
                     this.discardEffect.push(15)
@@ -8285,7 +8290,7 @@ class card{
                     if(this.colorful){
                         let merge=mergeColor([255,0,0],[240,240,240],this.anim.afford)
                         this.layer.fill(...merge,this.fade)
-                    }else if(spec.includes(11)){
+                    }else if(spec.includes(11)&&!variants.mtg){
                         let merge=mergeColor([255,0,0],[255,255,255],this.anim.afford)
                         this.layer.fill(...merge,this.fade)
                     }else if(spec.includes(21)){
@@ -8630,7 +8635,7 @@ class card{
             if(userCombatant.getStatus('Skill Cost Down')>0&&(type==2?args[0]:this.class)==11){
                 costChange-=userCombatant.getStatus('Skill Cost Down')
             }
-            if(userCombatant.getStatus('Combo Cost Down')>0&&spec.includes(11)){
+            if(userCombatant.getStatus('Combo Cost Down')>0&&this.spec.includes(11)){
                 costChange-=userCombatant.getStatus('Combo Cost Down')
             }
             if(userCombatant.getStatus('All Cost Down')>0){

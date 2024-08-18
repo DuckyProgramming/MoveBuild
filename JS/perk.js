@@ -288,6 +288,31 @@ class perk{
                 this.layer.textSize(16)
                 this.layer.text('Lose Max HP\nSpectral Pack',0,60-this.player*120)
             break
+            case 15:
+                this.layer.stroke(mergeColor([25,25,25],[50,255,50],this.anim.complete)[0],mergeColor([25,25,25],[50,255,50],this.anim.complete)[1],mergeColor([25,25,25],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.push()
+                this.layer.scale(0.5)
+                this.layer.line(30,-30,-30,30)
+                this.layer.translate(-40,-40)
+                this.layer.ellipse(0,0,56,56)
+                this.layer.ellipse(0,0,84,84)
+                plus(this.layer,5)
+                this.layer.translate(80,80)
+                this.layer.ellipse(0,0,72,72)
+                this.layer.ellipse(0,0,84,84)
+                this.layer.strokeJoin(ROUND)
+                this.layer.rect(-6,6,28)
+                this.layer.quad(-20,-8,-8,-20,20,-20,8,-8)
+                this.layer.quad(8,20,20,8,20,-20,8,-8)
+                this.layer.strokeJoin(MITER)
+                this.layer.pop()
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([25,25,25],[50,255,50],this.anim.complete)[0],mergeColor([25,25,25],[50,255,50],this.anim.complete)[1],mergeColor([25,25,25],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(16)
+                this.layer.text('Lose Base Mana\nBoss Relic',0,60-this.player*120)
+            break
         }
         this.layer.pop()
     }

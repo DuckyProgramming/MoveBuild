@@ -2474,11 +2474,13 @@ class relicManager{
                         }
                     break
                     case 5:
-                        if(this.active[385][args[1]+1]>0){
-                            this.battle.addSpecificEnergy(this.active[385][args[1]+1],args[1],6)
-                        }
-                        if(this.active[386][args[1]+1]>0){
-                            this.battle.addSpecificEnergy(this.active[386][args[1]+1],args[1],3)
+                        if(args[0].name!='Fatigue'){
+                            if(this.active[385][args[1]+1]>0){
+                                this.battle.addSpecificEnergy(this.active[385][args[1]+1],args[1],6)
+                            }
+                            if(this.active[386][args[1]+1]>0){
+                                this.battle.addSpecificEnergy(this.active[386][args[1]+1],args[1],3)
+                            }
                         }
                     break
                     case 11:
@@ -2565,7 +2567,7 @@ class relicManager{
             break
         }
     }
-    callInput(type,args){
+    selfCall(type,args){
         switch(type){
             case 0:
                 if(this.complete[args[1]]>0){
@@ -2632,7 +2634,7 @@ class relicManager{
             case 'stash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
                     if(dist(inputs.rel.x,inputs.rel.y,this.displayRelics[a].position.x,this.displayRelics[a].position.y)<20*this.displayRelics[a].size&&!this.displayRelics[a].deFade){
-                        this.callInput(0,[a,this.battle.players==1?0:inputs.rel.x<this.displayRelics[a].position.x&&this.complete[0]>0||this.complete[1]<=0?0:1,false])
+                        this.selfCall(0,[a,this.battle.players==1?0:inputs.rel.x<this.displayRelics[a].position.x&&this.complete[0]>0||this.complete[1]<=0?0:1,false])
                     }
                 }
                 if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2,this.layer.height/2+40+this.displayRelics.length*50)<30){
@@ -2643,7 +2645,7 @@ class relicManager{
             case 'bossstash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
                     if(dist(inputs.rel.x,inputs.rel.y,this.displayRelics[a].position.x,this.displayRelics[a].position.y)<20*this.displayRelics[a].size&&!this.displayRelics[a].deFade){
-                        this.callInput(0,[a,this.battle.players==1?0:inputs.rel.x<this.displayRelics[a].position.x&&this.complete[0]>0||this.complete[1]<=0?0:1,true])
+                        this.selfCall(0,[a,this.battle.players==1?0:inputs.rel.x<this.displayRelics[a].position.x&&this.complete[0]>0||this.complete[1]<=0?0:1,true])
                     }
                 }
                 if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2,this.layer.height/2+45)<30){
@@ -2683,7 +2685,7 @@ class relicManager{
             case 'stash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
                     if((int(key)+9)%10==a&&!this.displayRelics[a].deFade){
-                        this.callInput(0,[a,this.complete[0]<=0?1:0,false])
+                        this.selfCall(0,[a,this.complete[0]<=0?1:0,false])
                     }
                 }
                 if(code==ENTER){
@@ -2694,7 +2696,7 @@ class relicManager{
             case 'bossstash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
                     if((int(key)+9)%10==a&&!this.displayRelics[a].deFade){
-                        this.callInput(0,[a,this.complete[0]<=0?1:0,true])
+                        this.selfCall(0,[a,this.complete[0]<=0?1:0,true])
                     }
                 }
                 if(code==ENTER){

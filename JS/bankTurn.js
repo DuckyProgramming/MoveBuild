@@ -53,7 +53,7 @@ turn.prototype.update=function(){
                     }
                 break
                 case 20: case 31: case 59: case 66: case 99: case 103: case 107: case 194: case 258: case 292:
-                case 305: case 317: case 348: case 354: case 358:
+                case 305: case 317: case 348: case 354: case 358: case 380:
                     if(variants.nobasicanim){
                         if(this.targetDistance>1){
                             this.userCombatant.moveTile(this.direction,this.distance*(this.targetDistance-1)/this.targetDistacne)
@@ -946,7 +946,7 @@ turn.prototype.update=function(){
                         }
                     }
                 break
-                case 104:
+                case 104: case 381:
                     if(this.timer==1){
                         this.userCombatant.startAnimation(4)
                     }

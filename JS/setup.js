@@ -11,7 +11,7 @@ function setup(){
     current=new battle(graphics.main,game.player)
 
     if(false){
-            //game.ascend=32
+            game.ascend=32
 
             //stage.scene='tier'
             //current.overlayManager=new overlayManager(current.layer,current,1)
@@ -19,10 +19,10 @@ function setup(){
             //transition.trigger=true
             //transition.scene='menu'
 
-        current.menu.combatant=[13]
-        current.menu.deck=[-1]
+        current.menu.combatant=[1]
+        current.menu.deck=[0]
 
-            variants.mtg=true
+            //variants.mtg=true
 
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){
@@ -32,7 +32,7 @@ function setup(){
         }
         current.startGame()
 
-        //game.animRate=4
+        game.animRate=4
 
             //current.packManagers[0].packs[0].take()
             //current.packManagers[0].packs[1].take()

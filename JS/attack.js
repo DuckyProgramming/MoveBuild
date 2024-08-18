@@ -211,7 +211,7 @@ class attack{
             case 4289: case 4293: case 4294: case 4298: case 4300: case 4304: case 4318: case 4319: case 4321: case 4322: case 4323: case 4327: case 4328: case 4332: case 4333: case 4334: case 4335: case 4336: case 4340: case 4341:
             case 4345: case 4350: case 4372: case 4373: case 4374: case 4375: case 4376: case 4377: case 4379: case 4380: case 4381: case 4382: case 4383: case 4384: case 4385: case 4386: case 4387: case 4388: case 4389: case 4390:
             case 4396: case 4407: case 4408: case 4409: case 4410: case 4413: case 4414: case 4419: case 4425: case 4426: case 4428: case 4438: case 4439: case 4440: case 4441: case 4442: case 4443: case 4444: case 4445: case 4446:
-            case 4449: case 4454: case 4456: case 4457: case 4466: case 4472: case 4477: case 4478: case 4479: case 4484: case 4485:
+            case 4449: case 4454: case 4456: case 4457: case 4466: case 4472: case 4477: case 4478: case 4479: case 4484: case 4485: case 4488:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -256,9 +256,10 @@ class attack{
             case 3930: case 3931: case 3943: case 4000: case 4056: case 4076: case 4101: case 4104: case 4113: case 4141:
             case 4197: case 4198: case 4199: case 4208: case 4209: case 4210: case 4223: case 4262: case 4278: case 4284:
             case 4307: case 4308: case 4309: case 4310: case 4311: case 4312: case 4331: case 4337: case 4338: case 4339:
-            case 4347: case 4348: case 4349: case 4362: case 4363: case 4364: case 4365: case 4366: case 4367: case 4369:
-            case 4370: case 4371: case 4394: case 4427: case 4429: case 4430: case 4431: case 4432: case 4433: case 4434:
-            case 4447: case 4448: case 4463: case 4464: case 4465: case 4473: case 4474: case 4475: case 4476: case 4483:
+            case 4346: case 4347: case 4348: case 4349: case 4362: case 4363: case 4364: case 4365: case 4366: case 4367:
+            case 4369: case 4370: case 4371: case 4394: case 4427: case 4429: case 4430: case 4431: case 4432: case 4433:
+            case 4434: case 4447: case 4448: case 4463: case 4464: case 4465: case 4473: case 4474: case 4475: case 4476:
+            case 4483:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -12507,7 +12508,7 @@ class attack{
                     break
                     case 148:
                         this.userCombatant.heal(this.effect[0])
-                        this.targetCombatant.safeDamage(this.effect[1])
+                        this.targetCombatant.loseHealth(this.effect[1])
                     break
                     case 158:
                         this.battle.cardManagers[this.targetCombatant.id].tempDraw.main+=this.effect[0]
@@ -17484,7 +17485,7 @@ class attack{
                         if(this.cost>=10){
                             this.selfCall(20)
                         }else if(this.cost>=2){
-                            this.userManager.hand.callInput(6,[3881,[this.effect[1],this.effect[2]],11,[5]])
+                            this.userManager.hand.selfCall(6,[3881,[this.effect[1],this.effect[2]],11,[5]])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
@@ -18078,6 +18079,11 @@ class attack{
                             this.battle.addSpecificEnergy(1,this.player,3)
                             this.battle.addSpecificEnergy(1,this.player,5)
                         }
+                    break
+                    case 4488:
+                        this.targetCombatant.takeDamage(this.targetCombatant.getStatus('Jinx'),-1)
+                        this.targetCombatant.status.main[findList('Jinx',this.targetCombatant.status.name)]=floor(this.targetCombatant.status.main[findList('Jinx',this.targetCombatant.status.name)]/2)
+                        this.userManager.draw(this.effect[0])
                     break
                 }
             break
