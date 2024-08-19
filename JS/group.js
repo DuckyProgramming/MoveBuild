@@ -967,7 +967,6 @@ class group{
                 case 1:
                     this.selfCall(1,a)
                     this.cards[a].callDiscardEffect()
-                    this.cards[a].usable=false
                     if(this.cards[a].retain2){
                         this.cards[a].retained()
                         this.cards.forEach(card=>card.anotherRetained(this.cards[a]))
@@ -979,6 +978,7 @@ class group{
                         total++
                     }else if(this.cards[a].spec.includes(4)){
                         this.cards[a].etherealed()
+                        this.cards[a].usable=false
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
                     }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(60)||this.battle.relicManager.hasRelic(128,this.player)||variants.cardHold){
@@ -986,6 +986,7 @@ class group{
                         this.cards.forEach(card=>card.anotherRetained(this.cards[a]))
                         total++
                     }else{
+                        this.cards[a].usable=false
                         this.cards[a].deSize=true
                         if(this.cards[a].spec.includes(10)){
                             this.cards[a].spec.splice(this.cards[a].spec.indexOf(10),1)

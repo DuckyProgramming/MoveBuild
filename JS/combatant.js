@@ -1042,7 +1042,7 @@ class combatant{
                     break
                     case 'Lalex':
                         this.removeAttack(251)
-                        this.addAttack(367,[10])
+                        this.addAttack(367,[8])
                     break
                     case 'Boss1':
                         this.subAttackTypeSwitch([[2,254,254,[1,2]]])
