@@ -796,8 +796,8 @@ class group{
         for(let a=0,la=this.cards.length;a<la;a++){
             if(
                 type==0&&args[0].includes(this.cards[a].name)||
-                type==1&&args[0]==this.cards[a].cost&&!this.cards[a].spec.includes(5)&&!this.cards[a].spec.includes(41)||
-                type==2&&args[0]<=this.cards[a].cost&&!this.cards[a].spec.includes(5)&&!this.cards[a].spec.includes(41)||
+                type==1&&args[0]==this.cards[a].getCost(0)&&!this.cards[a].spec.includes(5)&&!this.cards[a].spec.includes(41)||
+                type==2&&args[0]<=this.cards[a].getCost(0)&&!this.cards[a].spec.includes(5)&&!this.cards[a].spec.includes(41)||
                 type==3&&this.cards[a].spec.includes(args[0])||
                 type==4&&args[0].includes(this.cards[a].class)||
                 type==5&&args[0]==this.cards[a].color&&!this.cards[a].colorful||
@@ -1456,7 +1456,7 @@ class group{
                     }
                 break
                 case 89:
-                    if(this.cards[a].cost==2&&this.cards[a].class==2){
+                    if(this.cards[a].getCost(0)==2&&this.cards[a].class==2){
                         this.cards[a].setCost(0,[1])
                     }
                 break

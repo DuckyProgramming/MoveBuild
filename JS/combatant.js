@@ -166,7 +166,7 @@ class combatant{
             '(E) in 3 Turns','(W) in 3 Turns','(B) in 3 Turns','(K) in 3 Turns','(G) in 3 Turns','(R) in 3 Turns','(N) in 3 Turns','Lowroll (E)','Highroll (E)','All Mana (W)',
             'All Mana (B)','All Mana (K)','All Mana (G)','All Mana (R)','Claw Up','Metallicize All','Frail Next Turn','Retain Dodge','Counter Once Per Turn','Counter Bleed Once',
             'Counter Bleed Once Per Turn','Counter Gun Once','Counter Gun Once Per Turn','Counter Push Combat','Attack Burn Combat','All Strength Cycle 4 1','All Strength Cycle 4 2','All Strength Cycle 4 3','All Strength Cycle 4 4','Counter Weak All Combat',
-            'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength',
+            'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength','3+ Cost Single Damage Up','3+ Cost Block',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -225,7 +225,7 @@ class combatant{
                 2,2,2,2,2,2,2,0,0,0,//54
                 0,0,0,0,0,0,2,1,0,2,//55
                 0,2,0,0,0,2,2,2,2,0,//56
-                0,2,0,
+                0,2,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -284,7 +284,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//54
                 2,2,2,2,2,2,1,2,2,2,//55
                 2,2,2,2,0,2,2,2,2,2,//56
-                2,2,2,
+                2,2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband

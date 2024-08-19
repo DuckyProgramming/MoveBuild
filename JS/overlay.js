@@ -304,7 +304,10 @@ class overlay{
                         }
                     break
                     case 2: case 12:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                        list=variants.mtg?(args[2]==12?
+                            copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][game.playerNumber+7]):
+                            copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2])
+                        ):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                         for(let a=0,la=this.options;a<la;a++){
                             if(list[args[1]].length>0){
                                 let index=floor(random(0,list[args[1]].length))
@@ -456,11 +459,17 @@ class overlay{
                         }
                     break
                     case 18: case 24: case 36:
-                        list=args[2]==24&&variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):args[2]==36?copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                        list=variants.mtg?(args[2]==18?
+                                copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][game.playerNumber+7]):
+                                copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2])
+                            ):
+                            args[2]==36?
+                            copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]):
+                            copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                         for(let a=0,la=list[args[1]].length;a<la;a++){
                             if(
                                 (
-                                    variants.mtg&&types.card[list[args[1]][a]].mtg.levels[args[0]].cost.length!=args[3]||
+                                    variants.mtg&&arrayPurge(types.card[list[args[1]][a]].mtg.levels[args[0]].cost,[-3]).length!=args[3]||
                                     !variants.mtg&&types.card[list[args[1]][a]].levels[args[0]].cost!=args[3]
                                 )||specialCost(types.card[list[args[1]][a]].levels[args[0]])
                             ){
@@ -661,7 +670,7 @@ class overlay{
                         for(let a=0,la=list[args[1]].length;a<la;a++){
                             if(
                                 (variants.mtg?(types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(11)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(21)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(40)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(55)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(58)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(59)?
-                                types.card[list[args[1]][a]].mtg.levels[args[0]].cost[0]:types.card[list[args[1]][a]].mtg.levels[args[0]].cost.length
+                                types.card[list[args[1]][a]].mtg.levels[args[0]].cost[0]:arrayPurge(types.card[list[args[1]][a]].mtg.levels[args[0]].cost,[-3]).length
                                 ):types.card[list[args[1]][a]].mtg.levels[args[0]].cost)!=args[3]&&args[3]!=-99||
                                 types.card[list[args[1]][a]].levels[args[0]].class!=args[4]||
                                 specialCost(types.card[list[args[1]][a]].levels[args[0]])

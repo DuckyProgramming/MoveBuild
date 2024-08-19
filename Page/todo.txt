@@ -19,6 +19,16 @@ collection screen
 
 
 
+MIDPOINT
+
+does managerial banner give the right preview?
+
+change how fleeting thought works
+
+
+
+
+
 
 
 MAJOR MTG CHANGES
@@ -297,7 +307,7 @@ dragon-slaying circle - 17 damage, conditionally 1 weak and 1 vulnerable
 
 [setsuna movement]
 
-[prehex movement]
+supremum and infimum move
 
 
 
@@ -359,6 +369,8 @@ twisted time - take another turn, all enemies take another turn
 waste utilization - exhaust a card, add a prismatic bomb to discard pile
 
 impact surge - impact movement
+
+pulsating time - 1 cost, 6 damage, 3 damage in all directions at the end of this turn
 
 
 

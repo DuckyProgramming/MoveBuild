@@ -1220,6 +1220,12 @@ class battle{
         if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('2+ Cost Block'))
         }
+        if(effectiveCost>=3&&userCombatant.getStatus('3+ Cost Single Damage Up')>0){
+            userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('3+ Cost Single Damage Up'))
+        }
+        if(effectiveCost>=3&&userCombatant.getStatus('3+ Cost Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('3+ Cost Block'))
+        }
         if(effectiveCost==-1&&userCombatant.getStatus('X Cost Boost')>0){
             userCombatant.status.main[findList('X Cost Boost',userCombatant.status.name)]=0
         }

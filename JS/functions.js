@@ -361,6 +361,20 @@ function sign(value){
 function pointInsideBox(point,box){
 	return point.position.x>box.position.x-box.width/2&&point.position.x<box.position.x+box.width/2&&point.position.y>box.position.y-box.height/2&&point.position.y<box.position.y+box.height/2
 }
+function arrayPurge(array,purge){
+	let base=copyArray(array)
+	for(let a=0,la=array.length;a<la;a++){
+		for(let b=0,lb=purge.length;b<lb;b++){
+			if(array[a]==purge[b]){
+				array.splice(a,1)
+				a--
+				la--
+				b=lb
+			}
+		}
+	}
+	return base
+}
 function occurences(array,item){
 	let total=0
 	for(let a=0,la=array.length;a<la;a++){
