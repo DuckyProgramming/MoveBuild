@@ -1008,7 +1008,7 @@ class group{
                     this.cards[a]=upgradeCard(this.cards[a])
                 break
                 case 5:
-                    this.cards[a].cost=floor(random(0,4))
+                    this.cards[a].setCost(0,[floor(random(0,variants.mtg?6:4))])
                 break
                 case 6:
                     if(this.cards[a].basic&&this.cards[a].level==0){
@@ -2093,7 +2093,7 @@ class group{
                         }
                     break
                     case 43:
-                        this.cards[index].cost=floor(random(0,4))
+                        this.cards[index].setCost(0,[floor(random(0,variants.mtg?6:4))])
                     break
                     case 44:
                         this.cards[index].effect[1]*=2
@@ -2826,7 +2826,7 @@ class group{
                 if(this.drawEffect(cardData)){result=true}
             break
             case 16:
-                cardData.cost=floor(random(0,4))
+                cardData.setCost(0,[floor(random(0,variants.mtg?6:4))])
             break
             case 18:
                 if(!cardData.spec.includes(9)){

@@ -684,7 +684,7 @@ types={
 
         {name:'Magic Consuming Duck',internal:'Power Cost Reduce',id:20,rarity:2,list:0,mtg:0,description:'When You Play a Power,\na Random Card Costs 1 Less'},
         {name:'Bauxite',internal:'Starting Buffer',id:21,rarity:2,list:0,mtg:0,description:'Gain 1 Buffer at\nthe Start of Combat'},
-        {name:'Poker Chip',internal:'Selective Redraw',id:22,rarity:2,list:0,mtg:0,description:'Add 1 Selective Redraw at\nthe Start of Combat'},
+        {name:'Poker Chip',internal:'Selective Redraw',id:22,rarity:1,list:0,mtg:0,description:'Add 1 Selective Redraw at\nthe Start of Combat'},
         {name:'Red Pepper',internal:'No Weak',id:23,rarity:-1,list:0,mtg:0,description:'You Cannot Become Weak'},
         {name:'Green Pepper',internal:'No Frail',id:24,rarity:-1,list:0,mtg:0,description:'You Cannot Become Frail'},
         {name:'Blue Pepper',internal:'No Vulnerable',id:25,rarity:-1,list:0,mtg:0,description:'You Cannot Become Vulnerable'},

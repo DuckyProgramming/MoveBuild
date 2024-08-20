@@ -176,6 +176,9 @@ class itemManager{
         if(userCombatant.getStatus('Item Use Draw')>0){
             this.battle.cardManagers[player].draw(userCombatant.getStatus('Item Use Draw'))
         }
+        if(userCombatant.getStatus('Item Use (N)')>0){
+            this.battle.addSpecificEnergy(userCombatant.getStatus('Item Use (N)'),player,0)
+        }
         switch(types.item[type].id){
             case 2:
                 this.battle.cardManagers[player].hand.selfCall(6,[57,[10*effectiveness],1,[2,1,6]])

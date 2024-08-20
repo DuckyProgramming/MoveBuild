@@ -2613,7 +2613,7 @@ class card{
             case 1868: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nWhen Retained\nDiscards to Hand`; break
             case 1869: string+=`Exactly 0 Energy:\nApply ${effect[0]} Chained\nand Draw ${effect[1]} Card${pl(effect[1])}`; break
             case 1870: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage If:\nTarget Has No Block\nTarget Health Isn't Full\nYou Have 100 Currency`; break
-            case 1871: string+=`Put the Last Card\nFrom Exhaust\nInto Hand`; break
+            case 1871: string+=`Put the Last Card\nFrom Exhaust Pile\nInto Hand`; break
             case 1872: string+=`Draw a Card\nFor Every Exhausted\nCard${effect[0]!=0?` +${effect[0]}`:``}${stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players?` (${this.battle.cardManagers[this.player].exhaust.cards.length+effect[0]})`:``}`; break
             case 1873: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nDraw ${effect[1]} More\nCard${pl(effect[1])} Next Turn`; break
             case 1874: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Total\nStatuses on Self`; break
@@ -5295,8 +5295,22 @@ class card{
             case 4518: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile\nHas an Effect,\nGain (B) (G)`; break
             case 4519: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile\nHas an Effect,\nGain (E) (B) (G)`; break
             case 4520: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile\nHas an Effect,\nGain (E) (B) (G) (N)`; break
-            //2602
+            case 4521: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAbove 75% Health:\nGain (G) (N)`; break
+            case 4522: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAbove 75% Health:\nGain (E) (G)`; break
+            case 4523: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAbove 75% Health:\nGain (E) (G) (N)`; break
+            case 4524: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf (B) (B) is Spent,\nGain (B)`; break
+            case 4525: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nWhen Exhausted,\nGain (E)`; break
+            case 4526: string+=`Add ${effect[0]} Radiance${pl(effect[0])}\nto Hand\nEnd Your Turn`; break
+            case 4527: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Exhausted,\nGain (E) (E)`; break
+            case 4528: string+=`All Items Used\nThis Combat\nGive (N)`; break
+            case 4529: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMana Total Divisible by 3:\nNext Item Used\nHas Double Effect`; break
+            case 4530: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (B) (B)\nIf You Have\n2 or More Items`; break
+            case 4531: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (B) (B)\nIf You Have\nFull Item Slots`; break
+            case 4532: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (B) (B)\nIf You Have No Items`; break
+            case 4533: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nIf its Name\nContains 'Strike',\nGain (E) (E) (E) (E) (E)`; break
+            //2909
 
+            
 
 
 
@@ -5789,7 +5803,7 @@ class card{
             case 2580:
                 userCombatant.addBlock(this.effect[1])
             break
-            case 2770: 
+            case 2770:
                 this.battle.addSpecificEnergy(this.effect[2],this.player,6)
             break
             case 2791:
@@ -5830,6 +5844,12 @@ class card{
                 this.battle.overlayManager.overlays[86][this.player].active=true
                 this.battle.overlayManager.overlays[86][this.player].activate()
                 userCombatant.addBlock(this.effect[1])
+            break
+            case 4525:
+                this.battle.addSpecificEnergy(1,this.player,6)
+            break
+            case 4527: 
+                this.battle.addSpecificEnergy(2,this.player,6)
             break
         }
     }
