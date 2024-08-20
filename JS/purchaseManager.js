@@ -142,7 +142,7 @@ class purchaseManager{
                         for(let a=0,la=3;a<la;a++){
                             let type=[0,0,1,2,3][floor(random(0,5))]
                             this.purchases.push(new purchase(this.layer,this.battle,0,1040,160+a*140,5,
-                                [(this.battle.relicManager.hasRelic([270,271,272,273][type],0)?0.5:1)*[100,160,200,120][type]],
+                                [(this.battle.relicManager.hasRelic([270,271,272,273][type],0)?0.5:1)*[100,160,200,80][type]],
                                 [type],
                                 type+9
                             ))
@@ -269,7 +269,7 @@ class purchaseManager{
                         for(let a=0,la=6;a<la;a++){
                             let type=[0,0,1,2,3][floor(random(0,5))]
                             this.purchases.push(new purchase(this.layer,this.battle,-1,400+a%2*100,160+floor(a/2)*140,5,
-                                [(this.battle.relicManager.hasRelic([270,271,272,273][type],0)?0.5:1)*[100,160,200,120][type],(this.battle.relicManager.hasRelic([270,271,272,273][type],1)?0.5:1)*[100,160,200,120][type]],
+                                [(this.battle.relicManager.hasRelic([270,271,272,273][type],0)?0.5:1)*[100,160,200,80][type],(this.battle.relicManager.hasRelic([270,271,272,273][type],1)?0.5:1)*[100,160,200,80][type]],
                                 [type],
                                 type+9
                             ))
@@ -327,6 +327,7 @@ class purchaseManager{
                             this.purchases[list[floor(random(list.length))]].cost[a]=0
                         }
                     }
+                    this.free[a]=0
                 }
             break
             case 1:

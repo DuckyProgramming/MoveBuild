@@ -207,12 +207,12 @@ class attack{
             case 4082: case 4083: case 4084: case 4085: case 4088: case 4091: case 4096: case 4097: case 4098: case 4102: case 4105: case 4107: case 4108: case 4109: case 4110: case 4117: case 4122: case 4132: case 4137: case 4138:
             case 4139: case 4140: case 4142: case 4143: case 4145: case 4149: case 4150: case 4151: case 4152: case 4153: case 4154: case 4155: case 4156: case 4161: case 4162: case 4163: case 4167: case 4168: case 4169: case 4170:
             case 4172: case 4183: case 4190: case 4200: case 4201: case 4203: case 4204: case 4206: case 4211: case 4212: case 4218: case 4219: case 4228: case 4229: case 4230: case 4233: case 4234: case 4235: case 4236: case 4237:
-            case 4238: case 4242: case 4243: case 4244: case 4248: case 4249: case 4250: case 4256: case 4257: case 4258: case 4259: case 4261: case 4266: case 4271: case 4272: case 4273: case 4274: case 4276: case 4280: case 4281:
-            case 4289: case 4293: case 4294: case 4298: case 4300: case 4304: case 4318: case 4319: case 4321: case 4322: case 4323: case 4327: case 4328: case 4332: case 4333: case 4334: case 4335: case 4336: case 4340: case 4341:
-            case 4345: case 4350: case 4372: case 4373: case 4374: case 4375: case 4376: case 4377: case 4379: case 4380: case 4381: case 4382: case 4383: case 4384: case 4385: case 4386: case 4387: case 4388: case 4389: case 4390:
-            case 4396: case 4407: case 4408: case 4409: case 4410: case 4413: case 4414: case 4419: case 4425: case 4426: case 4428: case 4438: case 4439: case 4440: case 4441: case 4442: case 4443: case 4444: case 4445: case 4446:
-            case 4449: case 4454: case 4456: case 4457: case 4466: case 4472: case 4477: case 4478: case 4479: case 4484: case 4485: case 4488: case 4498: case 4500: case 4501: case 4502: case 4510: case 4511: case 4512: case 4515:
-            case 4516:
+            case 4238: case 4242: case 4243: case 4244: case 4248: case 4249: case 4250: case 4256: case 4257: case 4258: case 4259: case 4261: case 4266: case 4269: case 4271: case 4272: case 4273: case 4274: case 4276: case 4280:
+            case 4281: case 4289: case 4293: case 4294: case 4298: case 4300: case 4304: case 4318: case 4319: case 4321: case 4322: case 4323: case 4327: case 4328: case 4332: case 4333: case 4334: case 4335: case 4336: case 4340:
+            case 4341: case 4345: case 4350: case 4372: case 4373: case 4374: case 4375: case 4376: case 4377: case 4379: case 4380: case 4381: case 4382: case 4383: case 4384: case 4385: case 4386: case 4387: case 4388: case 4389:
+            case 4390: case 4396: case 4407: case 4408: case 4409: case 4410: case 4413: case 4414: case 4419: case 4425: case 4426: case 4428: case 4438: case 4439: case 4440: case 4441: case 4442: case 4443: case 4444: case 4445:
+            case 4446: case 4449: case 4454: case 4456: case 4457: case 4466: case 4472: case 4477: case 4478: case 4479: case 4484: case 4485: case 4488: case 4498: case 4500: case 4501: case 4502: case 4510: case 4511: case 4512:
+            case 4515: case 4516:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -260,7 +260,7 @@ class attack{
             case 4346: case 4347: case 4348: case 4349: case 4362: case 4363: case 4364: case 4365: case 4366: case 4367:
             case 4369: case 4370: case 4371: case 4394: case 4427: case 4429: case 4430: case 4431: case 4432: case 4433:
             case 4434: case 4447: case 4448: case 4463: case 4464: case 4465: case 4473: case 4474: case 4475: case 4476:
-            case 4483: case 4495: case 4496: case 4497: case 4514:
+            case 4483: case 4495: case 4496: case 4497: case 4514: case 4518: case 4519: case 4520:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -1897,7 +1897,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.getStatus('Cannot Move')>0?2:1),this.user)
                     break
                     case 2636:
-                        if(this.userManager.hand.numberAbstract(4,[53])){
+                        if(this.userManager.hand.numberAbstract(3,[53])){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }
                     break
@@ -7415,6 +7415,27 @@ class attack{
                             this.userManager.hand.add(findName('Radiance',types.card),0,0)
                         }
                     break
+                    case 4518:
+                        if(this.targetTile.type.length>0){
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,4)
+                        }
+                    break
+                    case 4519:
+                        if(this.targetTile.type.length>0){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,4)
+                        }
+                    break
+                    case 4520:
+                        if(this.targetTile.type.length>0){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,4)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
 
                 }
                 //mark 3
@@ -7685,13 +7706,7 @@ class attack{
                         }
                     break
                     case 684:
-                        let finalvalue=this.effect[0]
-                        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                            if(this.battle.combatantManager.combatants[a].construct&&this.battle.combatantManager.combatants[a].life>0){
-                                finalvalue-=this.effect[1]
-                            }
-                        }
-                        this.userCombatant.metal+=max(0,finalvalue)
+                        this.userCombatant.metal+=max(0,this.effect[0]-this.battle.combatantManager.numberAbstract(3,[]))
                     break
                     case 711:
                         this.userCombatant.metal+=this.effect[0]
@@ -7764,7 +7779,7 @@ class attack{
                     break
                     case 864:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.userManager.this.userManager.addRandomAbstract(2,0,0,3,0,[],[3])
+                            this.userManager.addRandomAbstract(2,0,0,3,0,[],[3])
                         }
                         this.userManager.hand.rewind(this.effect[1])
                     break
@@ -14094,8 +14109,9 @@ class attack{
                     case 2561:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.targetCombatant.life>0){
-                            this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
-                            this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                            }
                         }
                     break
                     case 2569:
@@ -15446,7 +15462,7 @@ class attack{
                     break
                     case 2572:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.itemManager.addItem(findName('Energy Drink',types.item),this.player)
+                            this.battle.itemManager.addItem(findInternal(variants.mtg?'3 Mana':'2 Energy',types.item),this.player)
                         }
                     break
                     case 2587:
@@ -17650,7 +17666,7 @@ class attack{
                     break
                     case 3727:
                         if(this.cost>=9){
-                            this.selfCall(23)
+                            this.selfCall(30)
                         }else if(this.cost>=5){
                             this.selfCall(20)
                         }else if(this.cost>=3){
@@ -18450,18 +18466,7 @@ class attack{
                     break
                 }
             break
-            case 23:
-                let list23=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
-                for(let a=0,la=list23.length;a<la;a++){
-                    for(let b=0,lb=list23[a].length;b<lb;b++){
-                        if(list23[a][b].id==this.id){
-                            this.battle.overlayManager.overlays[111][this.player].active=true
-                            this.battle.overlayManager.overlays[111][this.player].activate([list23[a][b]])
-                        }
-                    }
-                }
-            break
-            case 24: case 25: case 26: case 27: case 28:
+            case 23: case 24: case 25: case 26: case 27: case 28: case 29:
                 let spentM=[0]
                 let totalM=[0]
                 for(let a=0,la=this.battle.energy.lastSpend[this.player].length;a<la;a++){
@@ -18471,6 +18476,17 @@ class attack{
                     }
                 }
                 return totalM[0]
+            case 30:
+                let list30=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
+                for(let a=0,la=list30.length;a<la;a++){
+                    for(let b=0,lb=list30[a].length;b<lb;b++){
+                        if(list30[a][b].id==this.id){
+                            this.battle.overlayManager.overlays[111][this.player].active=true
+                            this.battle.overlayManager.overlays[111][this.player].activate([list30[a][b]])
+                        }
+                    }
+                }
+            break
 
         }
     }

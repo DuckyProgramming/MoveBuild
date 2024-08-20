@@ -223,7 +223,7 @@ class combatantManager{
     }
     bossHeal(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team>0){
+            if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
                 this.combatants[a].healLifable(game.ascend>=5?(this.combatants[a].base.life-this.combatants[a].life)*0.75:(this.combatants[a].base.life-this.combatants[a].life))
             }
         }
@@ -739,7 +739,8 @@ class combatantManager{
             if(
                 type==0&&this.combatants[a].construct&&this.combatants[a].life<=0||
                 type==1&&this.combatants[a].team==0&&this.combatants[a].life>0||
-                type==2&&this.combatants[a].team==0&&this.combatants[a].life>0&&!this.combatants[a].spec.includes(args[0])
+                type==2&&this.combatants[a].team==0&&this.combatants[a].life>0&&!this.combatants[a].spec.includes(args[0])||
+                type==3&&this.combatants[a].construct&&this.combatants[a].life>0
             ){
                 total++
             }

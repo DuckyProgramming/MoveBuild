@@ -19,16 +19,6 @@ collection screen
 
 
 
-MIDPOINT
-
-does managerial banner give the right preview?
-
-change how fleeting thought works
-
-
-
-
-
 
 
 MAJOR MTG CHANGES
@@ -74,9 +64,10 @@ default:
     return [base]
 
 
-unfair mode
 
 
+
+[is scaling on builder a problem (lack thereof)]
 
 
 
@@ -92,6 +83,7 @@ lists all cards, if you've seen them
 it may be time to add tooltips
 
 project constructed save?
+
 
 
 
@@ -170,6 +162,8 @@ red star explosion?
 
 
 the final 3 cables - based on burn, freeze, ?
+
+the sixth concoction
 
 trapezius - 10 damage, draw a fatigue
 
@@ -371,6 +365,12 @@ waste utilization - exhaust a card, add a prismatic bomb to discard pile
 impact surge - impact movement
 
 pulsating time - 1 cost, 6 damage, 3 damage in all directions at the end of this turn
+
+canned spam - canned tuna but bad
+
+
+
+magnum - choke, but splash damage instead
 
 
 

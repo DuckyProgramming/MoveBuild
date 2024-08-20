@@ -3866,8 +3866,9 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 415:
             layer.fill(140,120,160,fade)
             layer.stroke(120,100,140,fade)
-            layer.strokeWeight(1)
-            regPoly(layer,0,0,8,3.5,3.5,0)
+            layer.strokeWeight(0.8)
+            regPoly(layer,0,0,6.4,2.8,2.8,0)
+            layer.noFill()
             layer.stroke(40,fade)
             layer.strokeWeight(1.5)
             layer.ellipse(0,0,10,10)
@@ -9493,10 +9494,10 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 150: case 151: case 158: case 163: case 187: case 193: case 198: case 199: case 201: case 215:
             case 217: case 241: case 250: case 253: case 254: case 255: case 256: case 257: case 260: case 261:
             case 262: case 263: case 264: case 265: case 266: case 267: case 268: case 270: case 271: case 274:
-            case 278: case 279: case 280: case 281: case 282: case 284: case 285: case 287: case 288: case 290:
-            case 294: case 303: case 310: case 316: case 328: case 329: case 331: case 333: case 337: case 338:
-            case 342: case 343: case 346: case 349: case 353: case 364: case 365: case 368: case 369: case 374:
-            case 375: case 376: case 378: case 386: case 387: case 388: case 389: case 390: case 392:
+            case 278: case 279: case 280: case 281: case 284: case 285: case 287: case 288: case 290: case 294:
+            case 303: case 310: case 316: case 328: case 329: case 331: case 333: case 337: case 338: case 342:
+            case 343: case 346: case 349: case 353: case 364: case 365: case 368: case 369: case 374: case 375:
+            case 376: case 378: case 386: case 387: case 388: case 389: case 390: case 392:
                 layer.text(`${effect[0]}|${effect[1]}`,0,0)
             break
             case 21:
@@ -9512,7 +9513,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 107: case 171: case 258: case 305: case 339: case 354:
                 layer.text(`${effect[0]}x2|${effect[1]}`,0,0)
             break
-            case 149: case 297: case 298: case 299: case 355: case 370: case 371:
+            case 149: case 282: case 297: case 298: case 299: case 355: case 370: case 371:
                 layer.text(`${effect[0]}x3|${effect[1]}`,0,0)
             break
             case 172:

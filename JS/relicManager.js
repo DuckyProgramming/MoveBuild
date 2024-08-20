@@ -15,6 +15,7 @@ class relicManager{
         this.displayRelics=[]
         this.position=[]
         this.total=[]
+        this.overTotal=[]
         this.up=[]
         this.complete=[]
         this.lost=[]
@@ -64,6 +65,7 @@ class relicManager{
             this.complete.push(0)
             this.position.push(0)
             this.total.push(0)
+            this.overTotal.push(0)
             this.up.push(false)
             this.lost.push([])
         }
@@ -147,6 +149,7 @@ class relicManager{
             }
         }
         if(!cancel){
+            this.overTotal[player]++
             if(this.battle.players==2){
                 this.relics.push(new relic(this.layer,this.battle,player,this.layer.width*player+(25+(this.position[player]%8)*50)*(1-2*player),100+floor(this.position[player]/8)*50,types.relic[type].id,1))
             }else{
@@ -2484,7 +2487,7 @@ class relicManager{
                         }
                     break
                     case 11:
-                        if(this.active[357][args[1]+1]>0&&floor(random(0,2))<this.battle.relicManager.active[357][a+1]){
+                        if(this.active[357][args[1]+1]>0&&floor(random(0,2))<this.battle.relicManager.active[357][args[1]+1]){
                             args[0].costDown(0,[1])
                         }
                     break

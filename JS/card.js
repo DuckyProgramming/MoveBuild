@@ -696,7 +696,7 @@ class card{
             case -43: string+=`When Drawn,\nHidden Swap Draw\nPile ${effect[0]} Times`; break
             case -44: string+=`When Drawn,\nA Random Card\nis Stapled`; break
             case -45: string+=`When Added,\na Random Card\nGets Vanishing 3`; break
-            case -46: string+=`When Drawn,\nDraw ${effect[0]} More and\nStop Drawing`; break
+            case -46: string+=`When Drawn,\nDraw ${effect[0]} More Card${pl(effect[0])}\nand Stop Drawing`; break
             case -47: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTake ${effect[1]} Damage\nWhen You Take Damage,\nDamage Decreases by ${effect[2]}`; break
             case -48: string+=`When Drawn,\nLose ${effect[0]} Energy\nWhen Discarded\nFrom Your Hand,\nNext ${effect[1]!=1?`${effect[1]} `:``}Attack${pl(effect[1])}\nDeal${effect[1]==1?`s`:``} Double Damage`; break
             case -49: string+=`At the End of Your Turn\nLose ${effect[0]} Block`; break
@@ -2700,7 +2700,7 @@ class card{
             case 1955: string+=`Remove All\nEnemy Strength\nApply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable`; break
             case 1956: string+=`Shuffle Into Draw\nand Upgrade Your Hand\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 1957: string+=`Transform Your Hand\nDraw ${effect[0]} Card${pl(effect[0])}`; break
-            case 1958: string+=`Constructs Face Target\nTargets Any Enemy\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 1958: string+=`Constructs Face Target\nand Activate\nTargets Any Enemy\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 1959: string+=`Deal ${this.diceEffect(1,6,2,effect[0])} Damage`; break
             case 1960: string+=`Construct Takes\nan Extra Turn\nConstruct Gains\n${effect[0]} Max Health`; break
             case 1961: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Removed, Gain\n1 Trash Can Item`; break
@@ -3001,7 +3001,7 @@ class card{
             case 2259: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nGain ${effect[1]} Metallicize`; break
             case 2260: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReturn ${effect[1]} 0 Cost Card${pl(effect[1])}\nFrom Discard`; break
             case 2261: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 When\nYou Use an Item`; break
-            case 2262: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Cost Cards\nin Hand Cost 1`; break
+            case 2262: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 ${variants.mtg?`Total `:``}Cost Cards\nin Hand Cost 1`; break
             case 2263: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDraw ${effect[1]} More if You\nHave Played At Least\n${effect[2]} Cards This Turn`; break
             case 2264: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nD3 Times`; break
             case 2265: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have At Least\n5 Exhausted Cards${stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players?` (${this.battle.cardManagers[this.player].exhaust.cards.length})`:``}`; break
@@ -3298,7 +3298,7 @@ class card{
             case 2558: string+=`Even X:\nNext ${effect[0]!=1?effect[0]:``}X${effect[2]!=0?`${effect[2]>0?`+`:``}${effect[2]}`:``} Attacks\nDeal Double Damage\nOdd X:\nGain ${effect[1]!=1?effect[1]:``}X${effect[3]!=0?`${effect[3]>0?`+`:``}${effect[3]}`:``} Conditioning`; break
             case 2559: string+=`Even Turn:\nNext ${effect[0]!=1?effect[0]:``}X${effect[2]!=0?`${effect[2]>0?`+`:``}${effect[2]}`:``} Attacks\nDeal Double Damage\nOdd Turn:\nGain ${effect[1]!=1?effect[1]:``}X${effect[3]!=0?`${effect[3]>0?`+`:``}${effect[3]}`:``} Conditioning`; break
             case 2560: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nApply ${effect[1]} Weak\nin All Directions`; break
-            case 2561: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Not Fatal,\nAdd 2 Dazed\nto Draw`; break
+            case 2561: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Not Fatal,\nAdd ${effect[1]} Dazed${pl(effect[1])}\nto Draw`; break
             case 2562: string+=`Add ${effect[0]} Random\nCard${pl(effect[0])} of Any Group\nto Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
             case 2563: string+=`Discard ${effect[0]} Card${pl(effect[0])}\nCreate 2 Copies of ${effect[0]!=1?`Them`:`it`}`; break
             case 2564: string+=`Deal Double Damage\nUntil You Get Hit`; break
@@ -5291,6 +5291,11 @@ class card{
             case 4514: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${effect[1]} Radiance${pl(effect[1])}\nto Hand`; break
             case 4515: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Discarded\nFrom Your Hand,\nAdd ${effect[1]} Occult${pl(effect[1])} to Hand`; break
             case 4516: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nLose ${effect[1]} Random Mana\nNext Turn`; break
+            case 4517: string+=`When Drawn,\nAdd ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Knowledge`; break
+            case 4518: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile\nHas an Effect,\nGain (B) (G)`; break
+            case 4519: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile\nHas an Effect,\nGain (E) (B) (G)`; break
+            case 4520: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile\nHas an Effect,\nGain (E) (B) (G) (N)`; break
+            //2602
 
 
 
@@ -8729,7 +8734,7 @@ class card{
     free(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         return userCombatant.getStatus('Free Card')>0||
-            userCombatant.getStatus('Free 1 Cost Card')>0&&cost==1||
+            userCombatant.getStatus('Free 1 Cost Card')>0&&this.getCost([0])==1||
             userCombatant.getStatus('Free Attack')>0&&this.class==1||
             userCombatant.getStatus('Free Defense')>0&&this.class==2||
             userCombatant.getStatus('Free Movement')>0&&this.class==3||

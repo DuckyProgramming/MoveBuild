@@ -919,7 +919,7 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('0',variants.mtg?9:8,0)
                 break
-                case 'Mothing':
+                case 'Nothing':
                     this.layer.fill(0)
                     this.layer.textSize(20)
                     this.layer.text('?',0,0)

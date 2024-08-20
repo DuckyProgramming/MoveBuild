@@ -1954,8 +1954,6 @@ class relic{
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('-1',9,0)
-                    this.layer.textSize(6)
-                    this.layer.text('25%',-9,0)
                 break
                 case 'Currency Rest':
                     displaySymbol(this.layer,0,-6,28,0,0.8,this.fade)

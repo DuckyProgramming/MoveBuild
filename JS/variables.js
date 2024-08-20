@@ -134,7 +134,7 @@ types={
         {name:'Rusty',life:23,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:203,effect:[8]},{type:204,effect:[6]},{type:21,effect:[]}],description:`Pretty bad`},
         {name:'Thornvine',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:228,effect:[1]},{type:229,effect:[2]}],description:`Back and worse`},
         {name:'Vengeful',life:70,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:212,effect:[7]},{type:213,effect:[6]},{type:214,effect:[9]},{type:210,effect:[1]}],description:`Remember last time?`},
-        {name:'Coffee Commander',life:335,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:164,effect:[8,1,'Paralyzed']},{type:163,effect:[5,1]},{type:129,effect:[4]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
+        {name:'Coffee Commander',life:335,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:164,effect:[8,1,'Electrocuted']},{type:163,effect:[5,1]},{type:129,effect:[4]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
         {name:'Tech Support',life:166,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:208,effect:[14]},{type:209,effect:[10]},{type:29,effect:[9]}],description:`Won't fix problems`},
         {name:'Jester',life:28,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:247,effect:[3]},{type:248,effect:[1,7]}],description:`Real funny guy, you are`},
         {name:'Lalex',life:84,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:249,effect:[2]},{type:250,effect:[13,1]},{type:251,effect:[6,3]}],description:`Why is he here?`},
@@ -911,7 +911,7 @@ types={
         {name:'Red Paperclip',internal:'Energy/Relics',id:226,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy\nLose 3 Random Relics'},
         {name:'Twin Pearls',internal:'Odd Turn Single Damage Up',id:227,rarity:1,list:0,mtg:0,description:'Gain 4 Single Damage Up\non Even Turns'},
         {name:'Writ of Mandamus',internal:'Energy/Anti-Control',id:228,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nGain 1 Anti-Control\non Turn 1'},
-        {name:'Dragon Fish',internal:'Defensive Metallicize',id:229,rarity:1,list:0,mtg:0,description:'When You Fully Block Damage,\nGain 1 Metallicize'},
+        {name:'Dragon Fish',internal:'Defensive Metallicize',id:229,rarity:-1,list:0,mtg:0,description:'When You Fully Block Damage,\nGain 1 Metallicize'},
 
         {name:'Painted Deck',internal:'Compact/Lose First Relic',id:230,rarity:-1,list:0,mtg:0,description:'Compact Cards in Your Hand\nWhen Taken, Lose Your First Relic'},
         {name:'Bad Legal Defense',internal:'Medic Death Remove',id:231,rarity:1,list:0,mtg:0,description:'Remove a Card When a Medic Dies'},
@@ -1183,9 +1183,9 @@ types={
 
         {name:'Extra Bag',internal:'Item Slot',id:20,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Gain an Item Slot'},
         {name:'Blank Paper',internal:'Colorless Card',id:21,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Choose a Colorless\nCard to Add to Hand'},
-        {name:'Sand',internal:'3 Weak',id:22,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Apply 3 Weak'},
-        {name:'Dirt',internal:'3 Vulnerable',id:23,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Apply 3 Vulnerable'},
-        {name:'Ash',internal:'3 Frail',id:24,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Apply 3 Frail'},
+        {name:'Sand',internal:'3 Weak',id:22,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Apply 3 Weak\nRange 1-3'},
+        {name:'Dirt',internal:'3 Vulnerable',id:23,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Apply 3 Vulnerable\nRange 1-3'},
+        {name:'Ash',internal:'3 Frail',id:24,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Apply 3 Frail\nRange 1-3'},
         {name:'Decaf',internal:'Draw 3',id:25,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Draw 3 Cards'},
         {name:'Rusted Gear',internal:'1 Control',id:26,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Gain 1 Control'},
         {name:'Spike Pads',internal:'Spike Tiles',id:27,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Place Spikes on\nAll Adjacent Tiles'},
@@ -9821,7 +9821,7 @@ Stacks degrade by 1 each turn.`,
 `Lowers damage taken to 1.
 Stacks degrade by 1 each turn.`,
         },{name:'Buffer',mtg:0,desc:
-`Completely cancels any damage taken.
+`Completely cancels any life loss.
 Lasts until used.`,
         },{name:'Colorless',mtg:0,desc:
 `Colorless cards are special cards with generic effects.

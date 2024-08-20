@@ -934,6 +934,7 @@ class battle{
         this.combatantManager.setupCombatants()
         this.combatantManager.unmoveCombatants()
         this.combatantManager.resetCombatantsAnim()
+        this.tileManager.tick()
         this.tileManager.activate()
         this.combatantManager.setTargets()
         this.combatantManager.activateCombatants(0,0)

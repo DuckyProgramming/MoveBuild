@@ -210,6 +210,7 @@ class turnManager{
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].construct){
                 this.battle.combatantManager.combatants[a].goal.anim.direction=round(atan2(target.relativePosition.x-this.battle.combatantManager.combatants[a].relativePosition.x,target.relativePosition.y-this.battle.combatantManager.combatants[a].relativePosition.y)/60-1/2)*60+30
+                this.battle.combatantManager.combatants[a].activate(0)
             }
         }
         this.battle.updateTargetting()

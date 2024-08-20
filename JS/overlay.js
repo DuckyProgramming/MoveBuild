@@ -1638,7 +1638,7 @@ class overlay{
                     case 31: case 46: this.title='Exhaust a Card From Discard Pile'; break
                     case 32: this.title='Make a Card Silver'; break
                     case 33: this.title='Make a Card Polychrome'; break
-                    case 34: this.title='Put a Card From Draw Pile in Hand and Become Confuse'; break
+                    case 34: this.title='Put a Card From Draw Pile in Hand and Become Confused'; break
                     case 35: this.title='Make a Card Negative'; break
                     case 36: this.title='Duplicate a Common Card 2 Times'; break
                     case 37: this.title='Make a Card Anti-Innate'; break
@@ -2681,7 +2681,8 @@ class overlay{
                                                 this.card.nonCalc=true
                                                 this.card.page=this.page
                                                 this.card.size=1
-                                                this.card.costDown(2,[0])
+                                                this.card.costDown(3,[1])
+                                                this.card.anim.costDown=1
                                             break
                                             case 75:
                                                 this.card=copyCard(this.battle.cardManagers[this.player].deck.cards[a])
@@ -3135,7 +3136,7 @@ class overlay{
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215,y:this.layer.height/2},width:40,height:40})&&this.page>0){
                         this.page--
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+215,y:this.layer.height/2},width:40,height:40})&&
-                    this.page<ceil(this.battle.relicManager.total[this.player]/30)-1){
+                    this.page<ceil((this.battle.relicManager.overTotal[this.player]-1)/30)-1){
                         this.page++
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+180},width:120,height:40})){
                         this.active=false
@@ -3700,7 +3701,8 @@ class overlay{
                                                 this.card.nonCalc=true
                                                 this.card.page=this.page
                                                 this.card.size=1
-                                                this.card.costDown(2,[1])
+                                                this.card.costDown(3,[1])
+                                                this.card.anim.costDown=1
                                             break
                                             case 75:
                                                 this.card=copyCard(this.battle.cardManagers[this.player].deck.cards[a])
@@ -4149,7 +4151,7 @@ class overlay{
                     if(code==LEFT_ARROW&&this.page>0){
                         this.page--
                     }else if(code==RIGHT_ARROW&&
-                        this.page<ceil(this.battle.relicManager.total[this.player]/30)-1){
+                        this.page<ceil((this.battle.relicManager.overTotal[this.player]-1)/30)-1){
                         this.page++
                     }else if(code==ENTER){
                         this.active=false

@@ -16,9 +16,9 @@ class attackManager{
         this.mtgEnergy=0
         this.target=[0]
 
-        this.cost=0
         this.targetInfo=[0,0,0]
         this.targetClass=0
+        this.spec=[]
         this.combo=0
         this.amplify=false
         this.relPos=[0,0]
@@ -90,7 +90,9 @@ class attackManager{
         }
         if(this.endAfter){
             this.endAfter=false
-            this.battle.endTurn()
+            if(this.battle.turn.main<this.battle.players){
+                this.battle.endTurn()
+            }
         }else if(this.nodeAfter){
             this.nodeAfter=false
             this.battle.nodeManager.enterNode(this.battle.encounter.class>2||this.battle.encounter.class<0?0:this.battle.encounter.class,this.battle.nodeManager.tilePosition.y,false)
