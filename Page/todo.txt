@@ -383,6 +383,8 @@ tremble - 5 damage, every 3 times played apply 1 stun, exhaust
 
 newsflash - deal 6 damage, duplicate a random card in hand
 
+[guiding star]
+
 
 
 

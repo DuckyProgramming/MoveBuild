@@ -698,7 +698,7 @@ class card{
             case -45: string+=`When Added,\na Random Card\nGets Vanishing 3`; break
             case -46: string+=`When Drawn,\nDraw ${effect[0]} More Card${pl(effect[0])}\nand Stop Drawing`; break
             case -47: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTake ${effect[1]} Damage\nWhen You Take Damage,\nDamage Decreases by ${effect[2]}`; break
-            case -48: string+=`When Drawn,\nLose ${effect[0]} Energy\nWhen Discarded\nFrom Your Hand,\nNext ${effect[1]!=1?`${effect[1]} `:``}Attack${pl(effect[1])}\nDeal${effect[1]==1?`s`:``} Double Damage`; break
+            case -48: string+=`When Drawn,\nLose ${effect[0]} ${variants.mtg?`Random Mana`:`Energy`}\nWhen Discarded\nFrom Your Hand,\nNext ${effect[1]!=1?`${effect[1]} `:``}Attack${pl(effect[1])}\nDeal${effect[1]==1?`s`:``} Double Damage`; break
             case -49: string+=`At the End of Your Turn\nLose ${effect[0]} Block`; break
             case -50: string+=`When Etherealed,\nDraw ${effect[0]} More Card${pl(effect[0])}\nNext Turn`; break
             case -51: string+=`When Drawn,\nCosts 1 Less`; break
@@ -721,12 +721,12 @@ class card{
             case -69: string+=`If Enemy Dies,\nYou Die`; break
             case -70: string+=`When Drawn,\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}\nMake ${effect[2]} Cop${effect[2]!=1?`ies`:`y`}`; break
             case -71: string+=`When Drawn,\nNext Luck-Based Card\nis Guaranteed to Fail`; break
-            case -72: string+=`When Drawn,\nLose ${effect[0]} Energy\nAdd a Pristine to Hand`; break
+            case -72: string+=`When Drawn,\nLose ${effect[0]} ${variants.mtg?`Rnadom Mana`:`Energy`}\nAdd a Pristine to Hand`; break
             case -73: string+=`When Drawn,\nLose ${effect[0]} Temporary\nStrength\nLose ${effect[1]} Temporary\nDexterity`; break
             case -74: string+=`When Drawn,\nNext Luck-Based Card\nis Guaranteed\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case -75: string+=`When Drawn,\nDiscard All Defenses`; break
             case -76: string+=`When Drawn,\nDiscard All Skills`; break
-            case -77: string+=`At the End of Your Turn\nTake ${effect[0]} Damage\nWhen Played,\nLose ${effect[1]} Energy Next Turn`; break
+            case -77: string+=`At the End of Your Turn,\nTake ${effect[0]} Damage\nWhen Played,\nLose ${effect[1]} ${variants.mtg?`Random\nMana`:`Energy`} Next Turn`; break
             case -78: string+=`When Drawn,\nAdd a Refracted\nSunlight to Discard`; break
             case -79: string+=`At the End of Your Turn,\nAdd a Refracted\nSunlight to Discard`; break
             case -80: string+=`When Drawn,\nFreeze ${effect[0]} Card${pl(effect[0])}`; break
@@ -741,6 +741,7 @@ class card{
             case -89: string+=`Gain ${effect[0]} Energy\nWhen Drawn,\nCosts 1 Less`; break
             case -90: string+=`At the End of Your Turn,\nLose ${effect[0]} Charge`; break
             case -91: string+=`When Drawn,\nPurify ${effect[0]}`; break
+            case -92: string+=`Gain (G) (G) (G)\nWhen Drawn,\nCosts 1 Less`; break
             
             //mark n
 
@@ -5330,6 +5331,11 @@ class card{
             case 4552: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd a Pristine or\na Radiance to Hand`; break
             case 4553: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage\nAdd a Pristine or\na Vibrant to Hand`; break
             case 4554: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nAdd a Pristine or\nan Occult to Hand`; break
+            case 4555: string+=`Gain (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 4556: string+=`Gain (N) (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 4557: string+=`Gain (N) (N) (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 4558: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (N) Next Turn\nWhen Discarded\nat End of Turn`; break
+
 
 
 
@@ -5556,6 +5562,9 @@ class card{
             break
             case 3717:
                 this.battle.combatantManager.randomEnemyEffect(3,[this.effect[1],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
+            break
+            case 4558:
+                userCombatant.statusEffect('(N) Next Turn',1)
             break
         }
     }
@@ -6300,7 +6309,7 @@ class card{
                     this.deSize=true
                 break
                 case 56:
-                    if(this.cost>=0){
+                    if(this.getCost(0)>=0){
                         this.costUp(0,[1])
                     }
                 break
@@ -6423,7 +6432,7 @@ class card{
                 break
                 case 3052:
                     if(this.battle.cardManagers[this.player].hand.turnPlayed[0]>=this.effect[2]){
-                        this.cost=0
+                        this.setCost(0,[1])
                     }
                 break
                 case 3067:
@@ -6433,12 +6442,12 @@ class card{
                 break
                 case 3073:
                     if(card.edition==5){
-                        this.cost=0
+                        this.setCost(0,[1])
                     }
                 break
                 case 3100: case 3101: case 3102:
                     if(card.colorless()){
-                        this.cost=0
+                        this.setCost(0,[1])
                     }
                 break
                 case 3112: case 3221:
@@ -6452,7 +6461,7 @@ class card{
                 break
                 case 3177:
                     if(card.name=='Pristine'){
-                        this.cost=0
+                        this.setCost(0,[0])
                     }
                 break
                 case 3349:

@@ -261,7 +261,7 @@ class attack{
             case 4369: case 4370: case 4371: case 4394: case 4427: case 4429: case 4430: case 4431: case 4432: case 4433:
             case 4434: case 4447: case 4448: case 4463: case 4464: case 4465: case 4473: case 4474: case 4475: case 4476:
             case 4483: case 4495: case 4496: case 4497: case 4514: case 4518: case 4519: case 4520: case 4521: case 4522:
-            case 4523: case 4530: case 4531: case 4532: case 4552:
+            case 4523: case 4530: case 4531: case 4532: case 4552: case 4558:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -7511,6 +7511,9 @@ class attack{
                     case -40:
                         this.userManager.hand.unupgrade(this.effect[0])
                     break
+                    case -92:
+                        this.battle.addSpecificEnergy(3,this.player,4)
+                    break
                     case -89:
                     case 41: case 807: case 820: case 821: case 822: case 2827: case 3253: case 4013:
                         this.battle.addEnergy(this.effect[0],this.player)
@@ -9592,6 +9595,18 @@ class attack{
                         this.userCombatant.statusEffect('Double Damage',this.effect[0])
                         this.battle.overlayManager.overlays[10][this.player].active=true
                         this.battle.overlayManager.overlays[10][this.player].activate([0,0,41,2])
+                    break
+                    case 4555:
+                        this.battle.addSpecificEnergy(2,this.player,0)
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 4556:
+                        this.battle.addSpecificEnergy(3,this.player,0)
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 4557:
+                        this.battle.addSpecificEnergy(4,this.player,0)
+                        this.userManager.draw(this.effect[0])
                     break
 
                 }

@@ -17,6 +17,7 @@ class group{
         this.cardInUse=0
         this.cardSelectIndex=0
         this.cardShuffledIndex=0
+        this.sendResultCancel=false
         this.pole=0
         this.exhausts=0
         this.rewinds=0
@@ -1032,7 +1033,7 @@ class group{
                     }
                 break
                 case 10:
-                    if(this.cards[a].class==3&&this.cards[a].cost>=0){
+                    if(this.cards[a].class==3&&this.cards[a].getCost(0)>=0){
                         this.cards[a].costUp(0,[1])
                     }
                 break
@@ -2735,9 +2736,8 @@ class group{
                     spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
                     spec==13||spec==14||spec==16||spec==18||spec==19||spec==20||spec==21
                 ){
-                    let result=this.sendSpec(list[list.length-1],spec)
-                    list[list.length-1]=result[0]
-                    if(result[1]){
+                    list[list.length-1]=this.sendSpec(list[list.length-1],spec)
+                    if(this.sendResultCancel){
                         la=0
                     }
                 }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
@@ -2766,9 +2766,8 @@ class group{
                     spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
                     spec==13||spec==14||spec==16||spec==18||spec==19||spec==20||spec==21
                 ){
-                    let result=this.sendSpec(list[list.length-1],spec)
-                    list[list.length-1]=result[0]
-                    if(result[1]){
+                    list[list.length-1]=this.sendSpec(list[list.length-1],spec)
+                    if(this.sendResultCancel){
                         la=0
                     }
                 }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
@@ -2783,7 +2782,7 @@ class group{
     sendSpec(cardData,spec){
         cardData.position.x=1200
         cardData.position.y=500
-        let result=false
+        this.sendResultCancel=false
         switch(spec){
             case 2:
                 if(!cardData.additionalSpec.includes(-2)&&!cardData.spec.includes(55)){
@@ -2791,26 +2790,26 @@ class group{
                 }
             break
             case 3:
-                if(this.drawEffect(cardData)){result=true}
+                if(this.drawEffect(cardData)){this.sendResultCancel=true}
             break
             case 4:
                 cardData.setCost(0,[0])
             break
             case 5:
-                if(this.drawEffect(cardData)){result=true}
+                if(this.drawEffect(cardData)){this.sendResultCancel=true}
                 cardData.setCost(0,[0])
             break
             case 6:
-                if(this.drawEffect(cardData)){result=true}
+                if(this.drawEffect(cardData)){this.sendResultCancel=true}
                 cardData.costDown(0,[1])
             break
             case 8:
                 cardData=upgradeCard(cardData)
-                if(this.drawEffect(cardData)){result=true}
+                if(this.drawEffect(cardData)){this.sendResultCancel=true}
             break
             case 9:
                 cardData.retain=true
-                if(this.drawEffect(cardData)){result=true}
+                if(this.drawEffect(cardData)){this.sendResultCancel=true}
             break
             case 10:
                 if(cardData.level<=1){
@@ -2819,19 +2818,19 @@ class group{
             break
             case 12:
                 cardData.retain2=true
-                if(this.drawEffect(cardData)){result=true}
+                if(this.drawEffect(cardData)){this.sendResultCancel=true}
             break
             case 13:
                 if(!cardData.spec.includes(39)){
                     cardData.spec.push(39)
                 }
-                if(this.drawEffect(cardData)){result=true}
+                if(this.drawEffect(cardData)){this.sendResultCancel=true}
             break
             case 14:
                 if(!cardData.spec.includes(48)){
                     cardData.spec.push(48)
                 }
-                if(this.drawEffect(cardData)){result=true}
+                if(this.drawEffect(cardData)){this.sendResultCancel=true}
             break
             case 16:
                 cardData.setCost(0,[floor(random(0,variants.mtg?6:4))])
@@ -2840,10 +2839,10 @@ class group{
                 if(!cardData.spec.includes(9)){
                     cardData.spec.push(9)
                 }
-                if(this.drawEffect(cardData)){result=true}
+                if(this.drawEffect(cardData)){this.sendResultCancel=true}
             break
             case 19:
-                if(this.drawEffect(cardData)){result=true}
+                if(this.drawEffect(cardData)){this.sendResultCancel=true}
                 cardData.costUp(0,[1])
             break
             case 20:
@@ -2854,7 +2853,7 @@ class group{
                 if(this.drawEffect(cardData)){la=0}
             break
         }
-        return [cardData,result]
+        return cardData
     }
     copy(list,firstIndex,lastIndex,spec){
         if(lastIndex==-1){
