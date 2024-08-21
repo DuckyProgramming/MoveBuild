@@ -5304,6 +5304,97 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,0,9,9)
             displayMtgManaSymbol(layer,0,0,0,0,0.4,fade,-1,[])
         break
+        case 566:
+            layer.fill(60,fade)
+            layer.triangle(-0.25,-4,-5.25,0,-0.25,4)
+            layer.triangle(0.25,-4,5.25,0,0.25,4)
+            displayMtgManaSymbol(layer,0,0,6,0,0.3,fade,-1,[])
+        break
+        case 567:
+            layer.fill(60,fade)
+            layer.rect(0,0,1,8)
+            layer.triangle(-1,-4,-6,0,-1,4)
+            layer.triangle(1,-4,6,0,1,4)
+            displayMtgManaSymbol(layer,0,0,6,0,0.3,fade,-1,[])
+        break
+        case 568:
+            layer.fill(60,fade)
+            layer.triangle(-0.25,-4,-5.25,0,-0.25,4)
+            layer.triangle(0.25,-4,5.25,0,0.25,4)
+            displayMtgManaSymbol(layer,0,0,1,0,0.3,fade,-1,[])
+        break
+        case 569:
+            layer.fill(60,fade)
+            layer.rect(0,0,1,8)
+            layer.triangle(-1,-4,-6,0,-1,4)
+            layer.triangle(1,-4,6,0,1,4)
+            displayMtgManaSymbol(layer,0,0,1,0,0.3,fade,-1,[])
+        break
+        case 570:
+            layer.fill(60,fade)
+            layer.triangle(-0.25,-4,-5.25,0,-0.25,4)
+            layer.triangle(0.25,-4,5.25,0,0.25,4)
+            displayMtgManaSymbol(layer,0,0,2,0,0.3,fade,-1,[])
+        break
+        case 571:
+            layer.fill(60,fade)
+            layer.rect(0,0,1,8)
+            layer.triangle(-1,-4,-6,0,-1,4)
+            layer.triangle(1,-4,6,0,1,4)
+            displayMtgManaSymbol(layer,0,0,2,0,0.3,fade,-1,[])
+        break
+        case 572:
+            layer.fill(60,fade)
+            layer.triangle(-0.25,-4,-5.25,0,-0.25,4)
+            layer.triangle(0.25,-4,5.25,0,0.25,4)
+            displayMtgManaSymbol(layer,0,0,3,0,0.3,fade,-1,[])
+        break
+        case 573:
+            layer.fill(60,fade)
+            layer.rect(0,0,1,8)
+            layer.triangle(-1,-4,-6,0,-1,4)
+            layer.triangle(1,-4,6,0,1,4)
+            displayMtgManaSymbol(layer,0,0,3,0,0.3,fade,-1,[])
+        break
+        case 574:
+            layer.fill(60,fade)
+            layer.triangle(-0.25,-4,-5.25,0,-0.25,4)
+            layer.triangle(0.25,-4,5.25,0,0.25,4)
+            displayMtgManaSymbol(layer,0,0,4,0,0.3,fade,-1,[])
+        break
+        case 575:
+            layer.fill(60,fade)
+            layer.rect(0,0,1,8)
+            layer.triangle(-1,-4,-6,0,-1,4)
+            layer.triangle(1,-4,6,0,1,4)
+            displayMtgManaSymbol(layer,0,0,4,0,0.3,fade,-1,[])
+        break
+        case 576:
+            layer.fill(60,fade)
+            layer.triangle(-0.25,-4,-5.25,0,-0.25,4)
+            layer.triangle(0.25,-4,5.25,0,0.25,4)
+            displayMtgManaSymbol(layer,0,0,5,0,0.3,fade,-1,[])
+        break
+        case 577:
+            layer.fill(60,fade)
+            layer.rect(0,0,1,8)
+            layer.triangle(-1,-4,-6,0,-1,4)
+            layer.triangle(1,-4,6,0,1,4)
+            displayMtgManaSymbol(layer,0,0,5,0,0.3,fade,-1,[])
+        break
+        case 578:
+            layer.fill(60,fade)
+            layer.triangle(-0.25,-4,-5.25,0,-0.25,4)
+            layer.triangle(0.25,-4,5.25,0,0.25,4)
+            displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+        break
+        case 579:
+            layer.fill(60,fade)
+            layer.rect(0,0,1,8)
+            layer.triangle(-1,-4,-6,0,-1,4)
+            layer.triangle(1,-4,6,0,1,4)
+            displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+        break
 
     }
     //mark s

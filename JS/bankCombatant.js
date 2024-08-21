@@ -3307,7 +3307,7 @@ combatant.prototype.display=function(){
                 }
                 if(!this.graphic){
                     if(this.team==0){
-                        this.layer.translate(0,30)
+                        this.layer.translate(20,0)
                     }
                     this.layer.stroke(240,255,250,this.fade)
                     this.layer.strokeWeight(1)

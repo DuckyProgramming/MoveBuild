@@ -740,6 +740,7 @@ class card{
             case -88: string+=`At the End of Your Turn,\nTake ${effect[0]} Damage\nIncreases by ${effect[1]}`; break
             case -89: string+=`Gain ${effect[0]} Energy\nWhen Drawn,\nCosts 1 Less`; break
             case -90: string+=`At the End of Your Turn,\nLose ${effect[0]} Charge`; break
+            case -91: string+=`When Drawn,\nPurify ${effect[0]}`; break
             
             //mark n
 
@@ -3260,8 +3261,8 @@ class card{
             case 2520: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Random\nCable${pl(effect[1])} to Hand`; break
             case 2521: string+=`25%: Deal ${this.calculateEffect(effect[0],0)} Damage\n25%: Add ${this.calculateEffect(effect[1],1)} Block`; break
             case 2522: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Weak if\nTarget Has More\nHealth Than You`; break
-            case 2523: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Armor\n2 Cost Attacks in Hand\nCost 0 Temporarily`; break
-            case 2524: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nExhaust ${effect[1]} Card${pl(effect[1])}\n2 Cost Defenses in Hand\nCost 0 Temporarily`; break
+            case 2523: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Armor\n2 ${variants.mtg?`Total Cost\n`:`Cost `}Attacks in Hand\nCost 0 Temporarily`; break
+            case 2524: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nExhaust ${effect[1]} Card${pl(effect[1])}\n2 ${variants.mtg?`Total Cost\n`:`Cost `}Defenses in Hand\nCost 0 Temporarily`; break
             case 2525: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Removed, Double\nUpgrade a Random\nUpgraded Card in Deck`; break
             case 2526: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Removed, a\nRandom Card in Deck\nBecomes Polychrome`; break
             case 2527: string+=`Remove a Random\nCard From Deck\nAdd ${effect[0]} Random Common\nCard${pl(effect[0])} With Random\nEditions to Deck`; break
@@ -3303,7 +3304,7 @@ class card{
             case 2563: string+=`Discard ${effect[0]} Card${pl(effect[0])}\nCreate 2 Copies of ${effect[0]!=1?`Them`:`it`}`; break
             case 2564: string+=`Deal Double Damage\nUntil You Get Hit`; break
             case 2565: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nRemove a Random\nDebuff`; break
-            case 2566: string+=`Choose a Card That\nCosts Your Energy\nto Add to Hand`; break
+            case 2566: string+=`Choose a Card of\nEquivalent Level That\nCosts Your Energy\nto Add to Hand`; break
             case 2567: string+=`If You Have 20+ Block,\nNext ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage`; break
             case 2568: string+=`Increase All Damage\nDealt By ${effect[0]}\nIncrease All Damage\nTaken by ${effect[1]}`; break
             case 2569: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Below 25% Health:\nGain ${effect[1]} Energy`; break
@@ -3445,9 +3446,9 @@ class card{
             case 2705: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\nElemental Form:\nApply ${effect[2]} Vulnerable`; break
             case 2706: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nFor Every 3\nCards Rewound`; break
             case 2707: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nFor Every 2\nCards Rewound`; break
-            case 2708: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Card Rewound`; break
+            case 2708: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen a Card is Rewound`; break
             case 2709: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRewind ${effect[1]} Card${pl(effect[1])}`; break
-            case 2710: string+=`Gain ${effect[0]} Knowledge\nDraw ${effect[1]} Card${pl(effect[1])} and\nRewind ${effect[2]} Card${pl(effect[2])}\nEvery Turn`; break
+            case 2710: string+=`Gain ${effect[0]} Knowledge\nEvery Turn,\nDraw ${effect[1]} Card${pl(effect[1])} and\nRewind ${effect[2]} Card${pl(effect[2])}`; break
             case 2711: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nElemental Form:\nGain ${effect[1]} Strength`; break
             case 2712: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Gain ${effect[1]} Energy\nand Add a Copy of This\nCard to Your Hand`; break
             case 2713: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAt Least ${effect[1]} History:\nDraw ${effect[2]} Card${pl(effect[2])}`; break
@@ -3857,7 +3858,7 @@ class card{
             case 3107: string+=`Next Turn,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nto the Enemy With\nthe Highest Health`; break
             case 3108: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nUpgrade ${effect[1]} Random\nAttack${pl(effect[1])} in Hand`; break
             case 3109: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nUpgrade ${effect[1]} Random\nDefense${pl(effect[1])} in Hand`; break
-            case 3110: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double if You\nHave a Pristine in Hand`; break
+            case 3110: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nif You Have a\nPristine in Hand`; break
             case 3111: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Temporary\nDexterity\nLose ${effect[2]} Temporary\nDexterity Next Turn`; break
             case 3112: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]} When\na Pristine is Played`; break
             case 3113: string+=`Gain ${effect[0]} Intangible\nWhen Drawn,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
@@ -4126,7 +4127,7 @@ class card{
             case 3366: string+=`Add Any ${effect[0]} Random\nCard${pl(effect[0])} to Hand Each Turn\n${effect[0]!=1?`They Become`:`It Becomes`} Negative`; break
             case 3367: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAlly Cards in Hand\nGain ${effect[1]} Unity`; break
             case 3368: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nin a Random Direction`; break
-            case 3369: string+=`Shuffle ${effect[0]} Vitalit${effect[0]!=1?`ies`:``} into Draw\nGain ${effect[1]} Knowledge\nGain ${effect[2]} Wisdom`; break
+            case 3369: string+=`Shuffle ${effect[0]} Vitalit${effect[0]!=1?`ies`:``}\ninto Draw Pile\nGain ${effect[1]} Knowledge\nGain ${effect[2]} Wisdom`; break
             case 3370: string+=`Spawn ${effect[0]} Gangster\nEnem${effect[0]!=1?`ies`:``}\nThey Attack You`; break
             case 3371: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDiscards to Draw\nWhen Played`; break
             case 3372: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReturn ${effect[1]} Random\n0 Cost Cards From\nDiscard to Hand`; break
@@ -5308,9 +5309,33 @@ class card{
             case 4531: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (B) (B)\nIf You Have\nFull Item Slots`; break
             case 4532: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (B) (B)\nIf You Have No Items`; break
             case 4533: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nIf its Name\nContains 'Strike',\nGain (E) (E) (E) (E) (E)`; break
-            //2909
+            case 4534: string+=`Gain (B) (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Defocus\nto Discard Pile`; break
+            case 4535: string+=`Gain (B) (N) (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Defocus\nto Discard Pile`; break
+            case 4536: string+=`Gain (B) (N) (N) (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Defocus\nto Discard Pile`; break
+            case 4537: string+=`Gain ${effect[0]} Random Mana\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 4538: string+=`Gain (K)\nEvery 2 Turns`; break
+            case 4539: string+=`Gain (K) at the\nStart of Your Turn\nAll Enemies Gain\n${effect[0]} Strength And\n${effect[1]} Dexterity`; break
+            case 4540: string+=`Gain (B) (B)\nLose a Random Item\nIf You Have One`; break
+            case 4541: string+=`Gain (B) (B) (B)\nLose a Random Item\nIf You Have One`; break
+            case 4542: string+=`Gain (E) (E) (E)\nLose a Random Item\nIf You Have One`; break
+            case 4543: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAll Cards in Hand\nCost ${effect[1]} Less Temporarily\nLose ${effect[2]} Random\nMana Next Turn`; break
+            case 4544: string+=`Gain (E) (W) (W)\nIf You Have Less\nTotal Mana Than Base`; break
+            case 4545: string+=`Gain (E) (E) (W) (W)\nIf You Have Less\nTotal Mana Than Base`; break
+            case 4546: string+=`Gain (E) (E) (E) (E)\nIf You Have Less\nTotal Mana Than Base`; break
+            case 4547: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Armor\n3 ${variants.mtg?`Total Cost\n`:`Cost `}Attacks in Hand\nCost 0 Temporarily`; break
+            case 4548: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nExhaust ${effect[1]} Card${pl(effect[1])}\n3 ${variants.mtg?`Total Cost\n`:`Cost `}Defenses in Hand\nCost 0 Temporarily`; break
+            case 4549: string+=`Choose a Card of\nEquivalent Level With\na Total Cost Equal\nto Your Total Mana`; break
+            case 4550: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nAdd a Pristine to Hand`; break
+            case 4551: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nAdd a Pristine or\na Torch to Hand`; break
+            case 4552: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd a Pristine or\na Radiance to Hand`; break
+            case 4553: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage\nAdd a Pristine or\na Vibrant to Hand`; break
+            case 4554: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nAdd a Pristine or\nan Occult to Hand`; break
 
-            
+
+
+
+
+
 
 
 

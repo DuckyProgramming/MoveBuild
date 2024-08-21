@@ -7542,7 +7542,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
         },{
             level:['Deslice 6'],class:0,world:2,
             name:'Disorder Energy',
-            player:{position:[[{x:3,y:1}],[{x:2,y:0},{x:3,y:2}]]},
+            player:{position:[[{x:3,y:1}],[{x:3,y:0},{x:3,y:2}]]},
             enemy:[
                 {position:{x:5,y:1},name:'Disorder Energy'},
                 {position:{x:0,y:1},name:'Disorder Energy'},

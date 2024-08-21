@@ -106,10 +106,6 @@ rincoln lobster planeswalker
 
 
 
-status - when drawn, purify 2
-
-
-
 figure out what the hell is going on with the music gimmicks
 
 new scrap card for prehex
@@ -372,6 +368,20 @@ canned spam - canned tuna but bad
 
 
 magnum - choke, but splash damage instead
+
+sharp eye - draw 1 card, center of hand: gain 1 energy, exhaust
+
+vantage - 10 block, upgrade 2 random cards if played first
+
+trigger itch - 3 cost gun, a random card in hand costs 0 temporarily
+
+maple dance - gain 3 temp strength, increases by 1 when drawn
+
+tremble - 5 damage, every 3 times played apply 1 stun, exhaust
+
+
+
+newsflash - deal 6 damage, duplicate a random card in hand
 
 
 

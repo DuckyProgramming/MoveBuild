@@ -1830,6 +1830,11 @@ class group{
                     this.cards[a].costDown(0,[args[0]])
                     this.cards[a].spec.push(4)
                 break
+                case 42:
+                    if(this.cards[a].getCost(0)==args[0]&&this.cards[a].class==args[1]){
+                        this.cards[a].setCost(0,[0])
+                    }
+                break
             }
         }
         if(effect==9){
@@ -2316,6 +2321,9 @@ class group{
             break
             case -85:
                 userCombatant.statusEffect('Must Attack or Take Damage',card.effect[0])
+            break
+            case -91:
+                this.battle.purify(card.effect[0],this.player)
             break
 
             //mark n

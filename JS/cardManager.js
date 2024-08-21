@@ -228,12 +228,10 @@ class cardManager{
                     types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber+5)&&(
                         (
                             types.card[a].mtg.levels[0].spec.includes(11)||
-                            types.card[a].mtg.levels[0].spec.includes(21)||
-                            types.card[a].mtg.levels[0].spec.includes(35)
+                            types.card[a].mtg.levels[0].spec.includes(21)
                         )||
                         !types.card[a].mtg.levels[0].spec.includes(11)&&
                         !types.card[a].mtg.levels[0].spec.includes(21)&&
-                        !types.card[a].mtg.levels[0].spec.includes(35)&&
                         mtgAutoCost(effectiveMana,types.card[a].mtg.levels[0].cost,0,[],false)!=-1
                     )
                 ){

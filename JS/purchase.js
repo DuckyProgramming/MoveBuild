@@ -87,7 +87,16 @@ class purchase{
         }
     }
     buy(){
-        if((this.player==-1&&(this.battle.currency.money[0]>=round(this.cost[0])-(this.battle.relicManager.hasRelic(187,0)?200:0)&&inputs.rel.x<this.position.x||this.battle.currency.money[1]>=round(this.cost[1])-(this.battle.relicManager.hasRelic(187,1)?200:0)&&inputs.rel.x>this.position.x)||this.player!=-1&&this.battle.currency.money[this.player]>=round(this.cost[this.player])-(this.battle.relicManager.hasRelic(187,this.player)?200:0))&&this.usable){
+        if(
+            (
+                this.player==-1&&(
+                    this.battle.currency.money[0]>=round(this.cost[0])-(this.battle.relicManager.hasRelic(187,0)?200:0)&&inputs.rel.x<this.position.x||
+                    this.battle.currency.money[1]>=round(this.cost[1])-(this.battle.relicManager.hasRelic(187,1)?200:0)&&inputs.rel.x>this.position.x
+                )||
+                this.player!=-1&&this.battle.currency.money[this.player]>=round(this.cost[this.player])-(this.battle.relicManager.hasRelic(187,this.player)?200:0)||
+                this.type==4
+            )&&this.usable
+        ){
             let purchaser=0
             if(this.player==-1){
                 purchaser=inputs.rel.x<this.position.x?0:1
@@ -122,7 +131,7 @@ class purchase{
                         }
                     break
                     case 4:
-                        this.battle.cardManagers[purchaser].deck.add(this.card.type,constrain(this.battle.relicManager.active[110][purchaser+1],0,types.card[this.card.type].levels.length-1),this.card.color,this.card.edition)
+                        this.battle.cardManagers[purchaser].deck.add(this.card.type,constrain(this.battle.relicManager.active[110][purchaser+1]+this.card.level,0,types.card[this.card.type].levels.length-1),this.card.color,this.card.edition)
                         this.battle.cardManagers[purchaser].deck.removeAbstract(9,[this.baseID])
                     break
                     case 5:

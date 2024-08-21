@@ -750,9 +750,28 @@ class overlay{
                             this.cards[a].upSize=true
                         }
                     break
-                    case 37:
+                    case 37: case 39: case 40: case 41: case 42:
+                        let second=''
+                        switch(args[2]){
+                            case 37:
+                                second='Splash'
+                            break
+                            case 39:
+                                second='Radiance'
+                            break
+                            case 40:
+                                second='Occult'
+                            break
+                            case 41:
+                                second='Vibrant'
+                            break
+                            case 42:
+                                second='Torch'
+                            break
+                        }
                         for(let a=0,la=this.options;a<la;a++){
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Pristine','Splash'][a%2],types.card),0,this.battle.standardColorize(findName(['Pristine','Splash'][a%2],types.card)),-1))
+                            let type=findName(['Pristine',second][a%2],types.card)
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,0,this.battle.standardColorize(type),-1))
                             this.cards[a].upSize=true
                         }
                     break
