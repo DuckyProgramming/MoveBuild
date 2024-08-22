@@ -212,7 +212,7 @@ class attack{
             case 4341: case 4345: case 4350: case 4372: case 4373: case 4374: case 4375: case 4376: case 4377: case 4379: case 4380: case 4381: case 4382: case 4383: case 4384: case 4385: case 4386: case 4387: case 4388: case 4389:
             case 4390: case 4396: case 4407: case 4408: case 4409: case 4410: case 4413: case 4414: case 4419: case 4425: case 4426: case 4428: case 4438: case 4439: case 4440: case 4441: case 4442: case 4443: case 4444: case 4445:
             case 4446: case 4449: case 4454: case 4456: case 4457: case 4466: case 4472: case 4477: case 4478: case 4479: case 4484: case 4485: case 4488: case 4498: case 4500: case 4501: case 4502: case 4510: case 4511: case 4512:
-            case 4515: case 4516: case 4525: case 4529: case 4533: case 4548: case 4550: case 4551: case 4554: case 4559: case 4562: case 4563: case 4585: case 4594:
+            case 4515: case 4516: case 4525: case 4529: case 4533: case 4548: case 4550: case 4551: case 4554: case 4559: case 4562: case 4563: case 4585: case 4594: case 4596: case 4597: case 4598: case 4599:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -458,7 +458,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 674: case 2673:
+            case 674:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -4687,6 +4687,24 @@ class attack{
                             this.targetCombatant.statusEffect('Shock',this.effect[1])
                         }else{
                             this.userCombatant.lowRoll()
+                        }
+                    break
+                    case 4597:
+                        this.userManager.hand.rewind(this.effect[1])
+                        if(this.userCombatant.elemental){
+                            this.battle.addSpecificEnergy(4,this.player,6)
+                        }
+                    break
+                    case 4598:
+                        this.userManager.hand.rewind(this.effect[1])
+                        if(this.userCombatant.elemental){
+                            this.battle.addSpecificEnergy(5,this.player,6)
+                        }
+                    break
+                    case 4599:
+                        this.userManager.hand.rewind(this.effect[1])
+                        if(this.userCombatant.elemental){
+                            this.battle.addSpecificEnergy(6,this.player,6)
                         }
                     break
 
@@ -9680,6 +9698,11 @@ class attack{
                         this.battle.addSpecificEnergy(4,this.player,0)
                         this.userManager.draw(this.effect[0])
                         this.battle.drop(this.player,findName('Moonscape',types.card),0,game.playerNumber+1)
+                    break
+                    case 4595:
+                        this.battle.addSpecificEnergy(1,this.player,2)
+                        this.battle.addSpecificEnergy(1,this.player,4)
+                        this.userManager.draw(this.effect[0])
                     break
 
                 }
@@ -17230,7 +17253,7 @@ class attack{
                     case 2693:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
-                        this.userCombatant.statusEffect('Wisdom',this.effect[2])
+                        this.userCombatant.statusEffect('Knowledge',this.effect[2])
                     break
                     case 2696:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -18250,6 +18273,13 @@ class attack{
                     break
                     case 4594:
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.selfCall(23),this.user)
+                    break
+                    case 4596:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.userCombatant.elemental){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
                     break
 
                     //mark 12

@@ -3433,7 +3433,7 @@ class card{
             case 2690: string+=`Rewind Your Hand\nGain ${effect[0]} Vision Each\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 2691: string+=`Gain ${effect[0]} Knowledge\nElemental Form:\nGain ${effect[1]} Wisdom`; break
             case 2692: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nRewound:\nIncreases by ${effect[1]}`; break
-            case 2693: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nGain ${effect[2]} Wisdom`; break
+            case 2693: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nGain ${effect[2]} Knowledge`; break
             case 2694: string+=`When Drawn,\nAdd ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} History`; break
             case 2695: string+=`Gain ${effect[0]} Wisdom if\nYou Have 1 or Less\nRewind ${effect[1]} Card${pl(effect[1])} to\nthe Top of Draw Pile\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 2696: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nElemental Form:\nApply ${effect[1]} Stun`; break
@@ -5371,10 +5371,12 @@ class card{
             case 4591: string+=`Gain (E) (E) (E)\nBoss Combat:\nGain a Relic`; break
             case 4592: string+=`Gain (E) (E) (E) (E)\nBoss Combat:\nGain a Relic`; break
             case 4593: string+=`Gain (E) (E) (E) (E) (E)\nBoss Combat:\nGain a Relic`; break
-
             case 4594: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor Each (N) Spent:\nDeals ${this.calculateEffect(this.effect[1],10)} More\nto Any Enemy`; break
-            //4082
-
+            case 4595: string+=`Gain (B) (G)\nDraw ${effect[0]} Card${pl(effect[0])}\nRewound:\nTrigger Effect And Exhaust`; break
+            case 4596: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nElemental Form:\nGain (E) (N)`; break
+            case 4597: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRewind ${effect[1]} Card${pl(effect[1])}\nElemental Form:\nGain (E) (E) (E) (E)`; break
+            case 4598: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRewind ${effect[1]} Card${pl(effect[1])}\nElemental Form:\nGain (E) (E) (E) (E) (E)`; break
+            case 4599: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRewind ${effect[1]} Card${pl(effect[1])}\nElemental Form:\nGain (E) (E) (E)\n(E) (E) (E)`; break
 
 
 
@@ -5845,6 +5847,11 @@ class card{
             case 2834:
                 userCombatant.vision+=this.effect[1]
             break
+            case 4595:
+                this.battle.addSpecificEnergy(1,this.player,2)
+                this.battle.addSpecificEnergy(1,this.player,4)
+                this.battle.cardManagers[this.player].draw(this.effect[0])
+                return true
         }
         if(userCombatant.getStatus('Rewind Cost Down')>0&&this.cost>0){
             this.cost=max(this.cost-1,0)
