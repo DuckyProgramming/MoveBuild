@@ -21,6 +21,10 @@ collection screen
 
 
 
+
+
+
+
 MAJOR MTG CHANGES
 
 METAS
@@ -97,6 +101,7 @@ LISTING GROUP 45
 
 
 3 ally cards
+actually probably more
 
 rincoln lobster planeswalker
 
@@ -384,6 +389,18 @@ tremble - 5 damage, every 3 times played apply 1 stun, exhaust
 newsflash - deal 6 damage, duplicate a random card in hand
 
 [guiding star]
+
+LSD - curse, when you play 3 cards, lose 5 health
+
+split talons into one for bleed
+
+even fight - everybody on the map gains 1 strength, draw a card, exhaust, 0 cost
+
+maple dance - gain [] temp dexterity, increases by 1 when drawn
+
+
+
+HAARP - createa lightning orb, all lightning orbs are more effective
 
 
 

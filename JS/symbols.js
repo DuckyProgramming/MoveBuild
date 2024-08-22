@@ -2221,10 +2221,10 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 247:
             layer.fill(255,255,150,fade)
             layer.beginShape()
-            layer.vertex(0.5,-12)
+            layer.vertex(0.5,-6)
             layer.vertex(-3,1)
             layer.vertex(0.5,1)
-            layer.vertex(-0.5,12)
+            layer.vertex(-0.5,6)
             layer.vertex(3,-1)
             layer.vertex(-0.5,-1)
             layer.endShape()

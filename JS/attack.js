@@ -212,7 +212,7 @@ class attack{
             case 4341: case 4345: case 4350: case 4372: case 4373: case 4374: case 4375: case 4376: case 4377: case 4379: case 4380: case 4381: case 4382: case 4383: case 4384: case 4385: case 4386: case 4387: case 4388: case 4389:
             case 4390: case 4396: case 4407: case 4408: case 4409: case 4410: case 4413: case 4414: case 4419: case 4425: case 4426: case 4428: case 4438: case 4439: case 4440: case 4441: case 4442: case 4443: case 4444: case 4445:
             case 4446: case 4449: case 4454: case 4456: case 4457: case 4466: case 4472: case 4477: case 4478: case 4479: case 4484: case 4485: case 4488: case 4498: case 4500: case 4501: case 4502: case 4510: case 4511: case 4512:
-            case 4515: case 4516: case 4525: case 4529: case 4533: case 4548: case 4550: case 4551: case 4554:
+            case 4515: case 4516: case 4525: case 4529: case 4533: case 4548: case 4550: case 4551: case 4554: case 4559: case 4562: case 4563:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -1154,7 +1154,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.amplify?this.effect[0]+this.effect[1]:this.effect[0],this.user)
                     break
                     case 895:
-                        let roll=this.userCombatant.luckCheck()?2:this.userCombatant.luckCheckFail?1:floor(random(1,3))
+                        let roll=this.userCombatant.luckCheck()?2:this.userCombatant.luckCheckFail()?1:floor(random(1,3))
                         this.targetCombatant.takeDamage(this.effect[0]*roll,this.user)
                         if(roll==1){
                             this.userCombatant.lowRoll()
@@ -4674,6 +4674,19 @@ class attack{
                         let result4533=this.userManager.drawReturn(this.effect[1])
                         if(result4533.length>0&&result4533[0].name.includes('Strike')){
                             this.battle.addSpecificEnergy(5,this.player,6)
+                        }
+                    break
+                    case 4562:
+                        if(this.mtgEnergy.length==1){
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 4563:
+                        if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
+                            this.userCombatant.highRoll()
+                            this.targetCombatant.statusEffect('Shock',this.effect[1])
+                        }else{
+                            this.userCombatant.lowRoll()
                         }
                     break
 
@@ -9608,6 +9621,33 @@ class attack{
                         this.battle.addSpecificEnergy(4,this.player,0)
                         this.userManager.draw(this.effect[0])
                     break
+                    case 4560:
+                        this.battle.addSpecificEnergy(this.effect[0],this.player,6)
+                    break
+                    case 4561:
+                        this.battle.addSpecificEnergy(this.effect[0],this.player,6)
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 4564:
+                        this.battle.addSpecificEnergy(1,this.player,6)
+                        this.userManager.randomEffect(2,1,[this.effect[0]])
+                    break
+                    case 4565:
+                        this.battle.addSpecificEnergy(2,this.player,6)
+                        this.userManager.randomEffect(2,1,[this.effect[0]])
+                    break
+                    case 4569: case 4570: case 4571: case 4572: case 4573: case 4574:
+                        this.battle.addSpecificEnergy((this.type-4566)*2,this.player,6)
+                    break
+                    case 4575: case 4576: case 4577:
+                        if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
+                            this.battle.addSpecificEnergy(this.type-4573,this.player,6)
+                            this.userCombatant.highRoll()
+                        }else{
+                            this.battle.addSpecificEnergy(this.type-4573,this.player,0)
+                            this.userCombatant.lowRoll()
+                        }
+                    break
 
                 }
                 //mark 4
@@ -10317,7 +10357,7 @@ class attack{
                         if(variants.blackjack){
                             for(let a=0,la=this.effect[0];a<la;a++){
                                 this.cardManagers[this.turn.main].draw(1)
-                                this.cardManagers[this.turn.main].drops+=this.userCombatant.luckCheck()?6:this.userCombatant.luckCheckFail?1:floor(random(1,7))
+                                this.cardManagers[this.turn.main].drops+=this.userCombatant.luckCheck()?6:this.userCombatant.luckCheckFail()?1:floor(random(1,7))
                                 this.cardManagers[this.turn.main].allEffect(2,40)
                             }
                             if(this.cardManagers[this.turn.main].drops>this.cardManagers[this.turn.main].baseDrops){
@@ -15098,6 +15138,9 @@ class attack{
                         if(abs(this.relPos[0]-this.relPos[1]/2)<=0.5){
                             this.userManager.draw(this.effect[1])
                         }
+                    break
+                    case 4559:
+                        this.battle.dropDrawShuffle(this.player,findName('1-Shooter',types.card),0,0)
                     break
 
                 }

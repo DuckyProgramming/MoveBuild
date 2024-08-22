@@ -2546,6 +2546,18 @@ class group{
                 userCombatant.addBlock(card.effect[0])
                 userCombatant.statusEffect('Knowledge',card.effect[1])
             break
+            case 4566:
+                this.battle.addSpecificEnergy(1,this.player,6)
+                this.battle.addSpecificEnergy(2,this.player,4)
+            break
+            case 4567:
+                this.battle.addSpecificEnergy(2,this.player,6)
+                this.battle.addSpecificEnergy(2,this.player,4)
+            break
+            case 4568:
+                this.battle.addSpecificEnergy(2,this.player,6)
+                this.battle.addSpecificEnergy(3,this.player,4)
+            break
         }
         return false
     }
@@ -4303,7 +4315,7 @@ class group{
                 this.battle.cardManagers[this.player].greenDiff++
                 let cardInUse=a[0]
                 cardInUse.played()
-                this.cards.forEach(card=>card.anotherPlayed(cardInUse))
+                this.cards.forEach(card=>card.anotherPlayed(cardInUse,this.battle.attackManager.attackClass))
                 this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.battle.attackManager.spec,this.target,cardInUse)
                 if(!cardInUse.discardEffect.includes(13)&&!cardInUse.discardEffectBuffered.includes(1)){
                     this.battle.attackManager.execute()

@@ -1913,7 +1913,7 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 		Ally:
 	Total:${current.cardManagers[0].listing.ally.length}/20				${current.cardManagers[0].listing.ally.length-20}
 		Disband:
-	Total:${current.cardManagers[0].listing.disband.length}/200			${current.cardManagers[0].listing.disband.length-200}
+	Total:${current.cardManagers[0].listing.disband.length}/400			${current.cardManagers[0].listing.disband.length-400}
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/150			${current.cardManagers[0].listing.junk[game.playerNumber+1].length-150}
 			`)
@@ -2506,13 +2506,16 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 	if(hybridTotal.length>0){
 		let parsingMana=copyArray(effectiveManaLeft)
 		parsingMana[6]=0
-		let hybridSpend=hybridRecurse(0,parsingMana,hybridTotal,[],priority,variant)
+		let hybridSpend=hybridRecurse(0,parsingMana,hybridTotal,[],priority,variant==2?1:variant)
 		if(hybridSpend[0]==-1){
-			hybridSpend=hybridRecurse(0,manaLeft,hybridTotal,[],priority,variant)
+			hybridSpend=hybridRecurse(0,effectiveManaLeft,hybridTotal,[],priority,variant==2?1:variant)
 			if(hybridSpend[0]==-1){
-				hybridSpend=[[],[hybridTotal]]
-				if(!bypass){
-					return -1
+				hybridSpend=hybridRecurse(0,manaLeft,hybridTotal,[],priority,variant)
+				if(hybridSpend[0]==-1){
+					hybridSpend=[[],[hybridTotal]]
+					if(!bypass){
+						return -1
+					}
 				}
 			}
 		}

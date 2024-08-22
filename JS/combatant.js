@@ -6049,7 +6049,7 @@ class combatant{
             this.layer.textSize(5)
             this.layer.text(this.balance,0,-8.25)
         }
-        if(this.name=='Donakho'&&!this.graphic&&this.team>0&&this.team>0&&scene=='battle'&&this.team==0){
+        if(this.name=='Donakho'&&!this.graphic&&this.team>0&&this.team>0&&scene=='battle'){
             this.layer.fill(140,120,160,this.fade)
             this.layer.stroke(120,100,140,this.fade)
             this.layer.strokeWeight(2)
@@ -6059,7 +6059,7 @@ class combatant{
             this.layer.textSize(12)
             this.layer.text(this.metal,0,-11.5)
         }
-        if(this.name=='Edgar'&&!this.graphic&&this.team>0&&this.team>0&&scene=='battle'&&this.team==0){
+        if(this.name=='Edgar'&&!this.graphic&&this.team>0&&this.team>0&&scene=='battle'){
             this.layer.noStroke()
             this.layer.fill(60,75,90,this.fade)
             this.layer.rect(-2,-12,12,12)
@@ -6071,7 +6071,7 @@ class combatant{
             this.layer.textSize(12)
             this.layer.text(this.ammo,0,-12)
         }
-        if(this.name=='Daiyousei'&&!this.graphic&&this.team>0&&this.team>0&&scene=='battle'&&this.team==0){
+        if(this.name=='Daiyousei'&&!this.graphic&&this.team>0&&this.team>0&&scene=='battle'){
             this.layer.noFill()
             this.layer.stroke(150,255,100,this.fade)
             this.layer.strokeWeight(1)
@@ -6085,7 +6085,7 @@ class combatant{
             this.layer.textSize(8)
             this.layer.text(this.vision,0,-9.25-this.infoAnim.balance*6)
         }
-        if(this.name=='Shinmyoumaru'&&!this.graphic&&this.team>0&&this.team>0&&scene=='battle'&&this.team==0){
+        if(this.name=='Shinmyoumaru'&&!this.graphic&&this.team>0&&this.team>0&&scene=='battle'){
             this.layer.translate(0,-14)
             this.layer.fill(255,100,150,this.fade)
             this.layer.stroke(255,125,175,this.fade)
