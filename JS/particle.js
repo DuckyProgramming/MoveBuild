@@ -1317,9 +1317,11 @@ class particle{
                     regStar(this.layer,0,0,5,2.5,2.5,5,5,0)
                 break
                 case 85:
-                    this.layer.fill(240,this.fade)
+                    this.layer.noFill()
+                    this.layer.strokeWeight(1)
+                    this.layer.stroke(240,this.fade)
                     regStar(this.layer,0,0,5,8,8,6,6,this.time*2)
-                    this.layer.fill(180,this.fade)
+                    this.layer.stroke(180,this.fade)
                     regStar(this.layer,0,0,5,6,6,4,4,-this.time*2)
                 break
                 case 86:

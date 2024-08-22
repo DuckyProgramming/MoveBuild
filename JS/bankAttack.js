@@ -262,6 +262,7 @@ attack.prototype.update=function(){
         case 4184: case 4185: case 4197: case 4207: case 4216: case 4245: case 4246: case 4247: case 4268: case 4270:
         case 4277: case 4279: case 4285: case 4296: case 4299: case 4368: case 4378: case 4392: case 4397: case 4467:
         case 4471: case 4480: case 4481: case 4482: case 4499: case 4503: case 4507: case 4524: case 4527: case 4547:
+        case 4586:
             //mark 2
             if(
                 this.timer==1&&(
@@ -659,7 +660,8 @@ attack.prototype.update=function(){
         case 4493: case 4494: case 4504: case 4505: case 4506: case 4534: case 4535: case 4536: case 4537: case 4538:
         case 4539: case 4540: case 4541: case 4542: case 4544: case 4545: case 4546: case 4549: case 4553: case 4555:
         case 4556: case 4557: case 4560: case 4561: case 4564: case 4565: case 4569: case 4570: case 4571: case 4572:
-        case 4573: case 4574: case 4575: case 4576: case 4577:
+        case 4573: case 4574: case 4575: case 4576: case 4577: case 4579: case 4580: case 4581: case 4582: case 4583:
+        case 4584:
             //mark 4
             if(
                 this.timer==1&&(
@@ -1695,7 +1697,7 @@ attack.prototype.update=function(){
         case 3813: case 3848: case 3863: case 3868: case 3870: case 3915: case 3984: case 3985: case 4052: case 4137:
         case 4138: case 4140: case 4142: case 4200: case 4201: case 4237: case 4238: case 4250: case 4252: case 4253:
         case 4254: case 4280: case 4289: case 4294: case 4298: case 4300: case 4318: case 4333: case 4372: case 4484:
-        case 4500: case 4511: case 4512:
+        case 4500: case 4511: case 4512: case 4585:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -2419,7 +2421,8 @@ attack.prototype.update=function(){
         case 3866: case 3867: case 3881: case 3882: case 3888: case 3889: case 3903: case 3922: case 3982: case 3986:
         case 3988: case 3989: case 4007: case 4008: case 4021: case 4022: case 4023: case 4036: case 4040: case 4073:
         case 4086: case 4094: case 4095: case 4118: case 4119: case 4132: case 4182: case 4202: case 4205: case 4220:
-        case 4221: case 4222: case 4266: case 4354: case 4424: case 4452: case 4487:
+        case 4221: case 4222: case 4266: case 4354: case 4424: case 4452: case 4487: case 4578: case 4591: case 4592:
+        case 4593:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -4107,7 +4110,7 @@ attack.prototype.update=function(){
         case 4051: case 4070: case 4075: case 4078: case 4079: case 4097: case 4103: case 4171: case 4179: case 4217:
         case 4218: case 4219: case 4226: case 4227: case 4228: case 4229: case 4230: case 4232: case 4233: case 4234:
         case 4249: case 4261: case 4274: case 4316: case 4317: case 4373: case 4375: case 4376: case 4377: case 4449:
-        case 4526: case 4548: case 4551:
+        case 4526: case 4548: case 4551: case 4590:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
@@ -7588,7 +7591,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 3165: case 3448:
+        case 3165: case 3448: case 4587: case 4588: case 4589:
             if(this.timer==1){
                 this.userCombatant.startAnimation(6)
             }
@@ -7606,6 +7609,24 @@ attack.prototype.update=function(){
                         this.userManager.draw(this.effect[1])
                         this.userManager.hand.add(findName('Pristine',types.card),0,0)
                         this.userCombatant.loseHealth(this.effect[2])
+                    break
+                    case 4587:
+                        this.battle.addSpecificEnergy(2,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        this.userCombatant.loseHealth(this.effect[1])
+                    break
+                    case 4588:
+                        this.battle.addSpecificEnergy(3,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        this.userCombatant.loseHealth(this.effect[1])
+                    break
+                    case 4589:
+                        this.battle.addSpecificEnergy(4,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        this.userCombatant.loseHealth(this.effect[1])
                     break
                 }
             }else if(this.timer>=20){
@@ -9459,7 +9480,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 4082:
+        case 4082: case 4594:
             if(variants.nobasicanim){
                 this.selfCall(12)
                 this.remove=true

@@ -2785,7 +2785,7 @@ class card{
             case 2040: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nNext Attack Deals\n${effect[1]} Less Damage`; break
             case 2041: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nIf You are on\na Special Tile`; break
             case 2042: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nApply ${effect[1]} Damage Down\n50%: Apply ${effect[2]} Burn\n50%: Apply ${effect[3]} Freeze`; break
-            case 2043: string+=`Add a Random Card\nof Every Color\nof Equivalent Level\nto Hand`; break
+            case 2043: string+=`Add a Random Card\nFrom Every Character\nof Equivalent Level\nto Hand`; break
             case 2044: string+=`Your Attacks Get\nDamage of Last Hit Taken\nDivided by ${effect[0]}`; break
             case 2045: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTake Damage Equal\nto Hand Size`; break
             case 2046: string+=`Deal ${this.diceEffect(1,20,2,effect[0])} Damage\nOn 1, Lose ${effect[1]} Health`; break
@@ -3760,7 +3760,7 @@ class card{
             case 3016: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${effect[1]} Times\nGain ${effect[2]} Intangible`; break
             case 3017: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier\nScry ${effect[1]}\nAdd a Void\nto Discard Pile`; break
             case 3018: string+=`${variants.mtg?`Gain ${effect[0]} Energy a\n Black White, and Green`:`Gain 1-${effect[0]} Energy`}\nGain ${effect[1]} Poison`; break
-            case 3019: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Gain\na Card Reward\nFrom Any Color`; break
+            case 3019: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Gain\na Card Reward\nFrom Any Character`; break
             case 3020: string+=`Tick Statuses\nan Additional Time\nEvery Turn`; break
             case 3021: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nAdd ${this.calculateEffect(effect[1],17)} Barrier\nAdd ${effect[2]} Dual Discus${effect[2]!=1?`es`:``}\nto Hand`; break
             case 3022: string+=`Even X: Add ${this.calculateEffect(effect[0],18)} Barrier\nOdd X: Deal ${this.calculateEffect(effect[1],2)} Damage\nin All Directions`; break
@@ -4032,7 +4032,7 @@ class card{
             case 3274: string+=`Scry ${effect[0]}\nDeal ${this.calculateEffect(effect[1],0)} Damage to\na Random Enemy For\nEach Card Discarded\nAdd ${this.calculateEffect(effect[1],1)} Block For Each\nCard Not Discarded`; break
             case 3275: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nApply ${effect[2]} Frail\nDiscard the Card\nto the Right`; break
             case 3276: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nExhaust a Card\nFrom Discard`; break
-            case 3277: string+=`Remove the Newest Card\nFrom Deck Permanently\nGain a Card Reward\nFrom Any Color`; break
+            case 3277: string+=`Remove the Newest Card\nFrom Deck Permanently\nGain a Card Reward\nFrom Any Charcacter`; break
             case 3278: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nGain ${effect[1]} Energy\nNext Turn`; break
             case 3279: string+=`Apply ${effect[0]} Weak\nA Random Card\nCosts ${effect[1]} Less`; break
             case 3280: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Something is Ahead,\nSwap With it`; break
@@ -5355,7 +5355,25 @@ class card{
             case 4575: string+=`50%: Gain (E) (E)\n50%: Gain (N) (N)`; break
             case 4576: string+=`50%: Gain (E) (E) (E)\n50%: Gain (N) (N) (N)`; break
             case 4577: string+=`50%: Gain (E) (E) (E) (E)\n50%: Gain (N) (N) (N) (N)`; break
-            //1758
+            case 4578: string+=`Add Any ${effect[0]} Card${pl(effect[0])} With\n${effect[0]>0?`Total Costs`:`a Total Cost`} Equal\nto Your Total Mana`; break
+            case 4579: string+=`Gain (E)${effect[1]>0?` and\nDraw ${effect[1]} Card${pl(effect[1])}`:``}\nPer Different Color\nCard in Hand`; break
+            case 4580: string+=`Gain (N)\nReturns to Hand\nAfter Each Turn`; break
+            case 4581: string+=`Gain (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Moonscape\nto Discard Pile`; break
+            case 4582: string+=`Gain (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Moonscape\nto Discard Pile`; break
+            case 4583: string+=`Gain (N) (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Moonscape\nto Discard Pile`; break
+            case 4584: string+=`Gain (N) (N) (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Moonscape\nto Discard Pile`; break
+            case 4585: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor Each (N) Spent:\nDeals ${this.calculateEffect(this.effect[1],10)} More`; break
+            case 4586: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nFor Each (N) Spent:\nAdds ${this.calculateEffect(this.effect[1],14)} More`; break
+            case 4587: string+=`Gain (E) (E)\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd a Pristine to Hand\nLose ${effect[1]} Health`; break
+            case 4588: string+=`Gain (E) (E) (E)\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd a Pristine to Hand\nLose ${effect[1]} Health`; break
+            case 4589: string+=`Gain (E) (E) (E) (E)\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd a Pristine to Hand\nLose ${effect[1]} Health`; break
+            case 4590: string+=`Gain (E) at the\nStart of Your Turn\nGain ${effect[0]} Strength\nGain ${effect[1]} Dexterity`; break
+            case 4591: string+=`Gain (E) (E) (E)\nBoss Combat:\nGain a Relic`; break
+            case 4592: string+=`Gain (E) (E) (E) (E)\nBoss Combat:\nGain a Relic`; break
+            case 4593: string+=`Gain (E) (E) (E) (E) (E)\nBoss Combat:\nGain a Relic`; break
+
+            case 4594: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor Each (N) Spent:\nDeals ${this.calculateEffect(this.effect[1],10)} More\nto Any Enemy`; break
+            //4082
 
 
 

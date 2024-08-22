@@ -402,6 +402,10 @@ maple dance - gain [] temp dexterity, increases by 1 when drawn
 
 HAARP - createa lightning orb, all lightning orbs are more effective
 
+new 4 mana 7 7
+
+convection - when you dodge an attack, all enemies take 3 damage
+
 
 
 
@@ -494,7 +498,7 @@ world 3:
 enemies:
 
 speedrunner - every time you play 10 cards, he gets an extra turn
-reactive weaponry - gains 1 strength when you defend and 1 dex when you attack, alternates attack and defense
+the subconcious - forces you to play the top card of your draw pile every turn, and fills your deck with pure garbage
 management robot commander - like a normal robot but can buff other robots and stronger generally
 
 bosses:

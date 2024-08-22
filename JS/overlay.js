@@ -2574,8 +2574,15 @@ class overlay{
                                             this.battle.cardManagers[this.player].deck.cards[a].costDown(3,[1])
                                         break
                                         case 51:
-                                            this.battle.cardManagers[this.player].deck.cards[a].color=0
+                                            this.battle.cardManagers[this.player].deck.cards[a].color=variants.mtg?[0]:0
                                             this.battle.cardManagers[this.player].deck.cards[a].setColorDetail()
+                                            if(variants.mtg&&!this.battle.cardManagers[this.player].deck.cards[a].specialCost){
+                                                for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards[a].cost.length;b<lb;b++){
+                                                    if(this.battle.cardManagers[this.player].deck.cards[a].cost[b]>=1){
+                                                        this.battle.cardManagers[this.player].deck.cards[a].cost[b]=0
+                                                    }
+                                                }
+                                            }
                                         break
                                         case 57:
                                             this.battle.cardManagers[this.player].deck.cards[a].edition=4
@@ -3594,8 +3601,15 @@ class overlay{
                                             this.battle.cardManagers[this.player].deck.cards[a].costDown(3,[1])
                                         break
                                         case 51:
-                                            this.battle.cardManagers[this.player].deck.cards[a].color=0
+                                            this.battle.cardManagers[this.player].deck.cards[a].color=variants.mtg?[0]:0
                                             this.battle.cardManagers[this.player].deck.cards[a].setColorDetail()
+                                            if(variants.mtg&&!this.battle.cardManagers[this.player].deck.cards[a].specialCost){
+                                                for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards[a].cost.length;b<lb;b++){
+                                                    if(this.battle.cardManagers[this.player].deck.cards[a].cost[b]>=1){
+                                                        this.battle.cardManagers[this.player].deck.cards[a].cost[b]=0
+                                                    }
+                                                }
+                                            }
                                         break
                                         case 57:
                                             this.battle.cardManagers[this.player].deck.cards[a].edition=4

@@ -821,8 +821,16 @@ class group{
     colorNumber(){
         let colors=[]
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(!colors.includes(this.cards[a].color)){
-                colors.push(this.cards[a].color)
+            if(variants.mtg){
+                for(let b=0,lb=this.cards[a].color.length;b<lb;b++){
+                    if(!colors.includes(this.cards[a].color[b])){
+                        colors.push(this.cards[a].color[b])
+                    }
+                }
+            }else{
+                if(!colors.includes(this.cards[a].color)){
+                    colors.push(this.cards[a].color)
+                }
             }
         }
         return colors.length
@@ -1236,7 +1244,7 @@ class group{
                     }
                 break
                 case 47:
-                    if(this.cards[a].attack==1305||this.cards[a].attack==2827||this.cards[a].attack==2828||this.cards[a].attack==2829||this.cards[a].attack==2830){
+                    if(this.cards[a].attack==1305||this.cards[a].attack==2827||this.cards[a].attack==2828||this.cards[a].attack==2829||this.cards[a].attack==2830||this.cards[a].attack==4580){
                         this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,2)
                         a--
                         la--
