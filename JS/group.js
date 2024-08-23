@@ -3234,25 +3234,58 @@ class group{
                 }else if(userCombatant.getStatus('Single Free Amplify')>0){
                     userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
                     this.battle.attackManager.amplify=true
-                }else if(this.battle.getEnergy(this.player)>=1&&spec.includes(27)){
-                    if(variants.mtg){
-                        this.battle.loseSpecificEnergy(1,this.player,6)
-                    }else{
-                        this.battle.loseEnergy(1,this.player)
+                }else{
+                    if(spec.includes(27)&&variants.mtg){
+                        let amplifyCost=[]
+                        switch(this.battle.attackManager.type){
+                            case 4636: case 4639: case 4640: case 4641: case 4643: case 4644: case 4646:
+                                amplifyCost=[1]
+                            break
+                            case 4637:
+                                amplifyCost=[3,-1]
+                            break
+                            case 4642: case 4645:
+                                amplifyCost=[1,5]
+                            break
+                            case 4650:
+                                amplifyCost=[5]
+                            break
+                            default:
+                                amplifyCost=[-1]
+                            break
+                        }
+                        if(mtgAutoCost(this.battle.getSplitEnergy(this.player),amplifyCost,0,[],false)!=-1){
+                            let effectiveCards=[]
+                            for(let a=0,la=this.cards.length;a<la;a++){
+                                if(this.cards[a].usable){
+                                    effectiveCards.push(this.cards[a])
+                                }
+                            }
+                            this.battle.updateEnergyCrystal()
+                            let result=this.battle.mtgCost(amplifyCost,this.player,effectiveCards)
+                            this.battle.attackManager.amplify=true
+                            this.cards.forEach(card=>card.anotherAmplified())
+                            userCombatant.amplified()
+                        }
+                    }else if(this.battle.getEnergy(this.player)>=1&&spec.includes(27)){
+                        if(variants.mtg){
+                            this.battle.loseSpecificEnergy(1,this.player,6)
+                        }else{
+                            this.battle.loseEnergy(1,this.player)
+                        }
+                        this.battle.attackManager.amplify=true
+                        this.cards.forEach(card=>card.anotherAmplified())
+                        userCombatant.amplified()
+                    }else if(this.battle.getEnergy(this.player)>=2&&spec.includes(28)){
+                        if(variants.mtg){
+                            this.battle.loseSpecificEnergy(2,this.player,6)
+                        }else{
+                            this.battle.loseEnergy(2,this.player)
+                        }
+                        this.battle.attackManager.amplify=true
+                        this.cards.forEach(card=>card.anotherAmplified())
+                        userCombatant.amplified()
                     }
-                    this.battle.attackManager.amplify=true
-                    this.cards.forEach(card=>card.anotherAmplified())
-                    userCombatant.amplified()
-                }
-                if(this.battle.getEnergy(this.player)>=2&&spec.includes(28)){
-                    if(variants.mtg){
-                        this.battle.loseSpecificEnergy(2,this.player,6)
-                    }else{
-                        this.battle.loseEnergy(2,this.player)
-                    }
-                    this.battle.attackManager.amplify=true
-                    this.cards.forEach(card=>card.anotherAmplified())
-                    userCombatant.amplified()
                 }
             }
             if(this.battle.getEnergy(this.player)<0&&variants.overheat){

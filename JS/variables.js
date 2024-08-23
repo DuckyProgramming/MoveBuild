@@ -10037,7 +10037,7 @@ When you end you turn without Awakening, exit Elemental Form. Degrades by 1 per 
         },{name:'Elemental Form',mtg:0,desc:
 `When you gain Awakening, enter Elemental Form.`,
         },{name:'History',mtg:0,desc:
-`Whenever you draw or Rewind a card, deal damage to a random enemy.
+`Whenever you draw or rewind a card, deal damage to a random enemy.
 Stacks degrade by half, rounded up, each turn.`,
         },{name:'Rewind',mtg:0,desc:
 `Send a card back to your draw pile. By default, shuffles it in.`,
@@ -10057,6 +10057,11 @@ Stacks degrade by 1 each turn.`,
         },{name:'Miss',mtg:0,desc:
 `Has a 50% chance to miss each attack.
 Decrements after each miss.`,
+        },{name:'Knowledge',mtg:0,desc:
+`For every 3 Knowledge you have, draw 1 more card each turn.
+Caps at +1, cap is raised by 1 for each Wisdom you have.`,
+        },{name:'Wisdom',mtg:0,desc:
+`Raises the cap on extra draw gained from Knowledge.`,
         },
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0

@@ -1555,7 +1555,7 @@ class battle{
         let costLeft=copyArray(cost)
         let effectiveEnergy=[0,0,0,0,0,0,0]
         for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
-            if(this.energy.crystal[player][a][4]){
+            if(this.energy.crystal[player][a][3]&&this.energy.crystal[player][a][4]){
                 effectiveEnergy[this.energy.crystal[player][a][0]]++
             }
         }
@@ -1796,6 +1796,39 @@ class battle{
         this.energy.crystal[player]=[]
         this.energy.crystalTotal[player]=[0,0,0,0,0,0,0]
     }
+    updateEnergyCrystal(){
+        for(let a=0,la=this.players;a<la;a++){
+            for(let b=0,lb=this.energy.crystalTotal[a].length;b<lb;b++){
+                while(this.energy.crystalTotal[a][b]<this.energy.main[a][b]){
+                    cap-=25
+                    this.energy.crystal[a].push([b,cap,0,true,false,false,true])
+                    this.energy.crystalTotal[a][b]++
+                }
+                while(this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
+                    let triggered=false
+                    for(let c=0,lc=this.energy.crystal[a].length;c<lc;c++){
+                        if(this.energy.crystal[a][lc-1-c][0]==b&&this.energy.crystal[a][lc-1-c][3]&&this.energy.crystal[a][lc-1-c][4]&&this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
+                            this.energy.crystal[a][lc-1-c][3]=false
+                            this.energy.crystalTotal[a][b]--
+                            triggered=true
+                        }
+                    }
+                    if(!triggered){
+                        for(let c=0,lc=this.energy.crystal[a].length;c<lc;c++){
+                            if(this.energy.crystal[a][lc-1-c][0]==b&&this.energy.crystal[a][lc-1-c][3]&&this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
+                                this.energy.crystal[a][lc-1-c][3]=false
+                                this.energy.crystalTotal[a][b]--
+                                triggered=true
+                            }
+                        }
+                        if(!triggered){
+                            this.energy.crystalTotal[a][b]--
+                        }
+                    }
+                }
+            }
+        }
+    }
     manageEnergyCrystal(){
         for(let a=0,la=this.players;a<la;a++){
             let cap=484
@@ -1846,36 +1879,8 @@ class battle{
                     }
                 }
             }
-            for(let b=0,lb=this.energy.crystalTotal[a].length;b<lb;b++){
-                while(this.energy.crystalTotal[a][b]<this.energy.main[a][b]){
-                    cap-=25
-                    this.energy.crystal[a].push([b,cap,0,true,false,false,true])
-                    this.energy.crystalTotal[a][b]++
-                }
-                while(this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
-                    let triggered=false
-                    for(let c=0,lc=this.energy.crystal[a].length;c<lc;c++){
-                        if(this.energy.crystal[a][lc-1-c][0]==b&&this.energy.crystal[a][lc-1-c][3]&&this.energy.crystal[a][lc-1-c][4]&&this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
-                            this.energy.crystal[a][lc-1-c][3]=false
-                            this.energy.crystalTotal[a][b]--
-                            triggered=true
-                        }
-                    }
-                    if(!triggered){
-                        for(let c=0,lc=this.energy.crystal[a].length;c<lc;c++){
-                            if(this.energy.crystal[a][lc-1-c][0]==b&&this.energy.crystal[a][lc-1-c][3]&&this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
-                                this.energy.crystal[a][lc-1-c][3]=false
-                                this.energy.crystalTotal[a][b]--
-                                triggered=true
-                            }
-                        }
-                        if(!triggered){
-                            this.energy.crystalTotal[a][b]--
-                        }
-                    }
-                }
-            }
         }
+        this.updateEnergyCrystal()
     }
     setupMtgManaChoice(player){
         this.menu.anim.mtg[player]=0

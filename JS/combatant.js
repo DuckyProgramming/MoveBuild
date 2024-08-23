@@ -4028,6 +4028,14 @@ class combatant{
         }
         this.checkAnyOrb()
     }
+    spendCharge(value){
+        if(this.charge>=value){
+            this.charge-=value
+            this.chargeConsumed()
+            return true
+        }
+        return false
+    }
     check10(){
         return this.status.main[260]>0?floor(random(0,4))==0:floor(random(0,10))==0
     }
@@ -4573,7 +4581,7 @@ class combatant{
                     case 302: if(this.block<=0){this.status.main[findList('Bleed',this.status.name)]+=this.status.main[a]} break
                     case 303: this.status.main[findList('Bleed Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 304: if(this.status.main[findList('Cannot Move',this.status.name)]>0){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)}} break
-                    case 307: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.main+=constrain(floor(this.status.main[a]/3),0,2+this.getStatus('Wisdom'))}; break
+                    case 307: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.main+=constrain(floor(this.status.main[a]/3),0,1+this.getStatus('Wisdom'))}; break
                     case 311: this.status.main[findList('History',this.status.name)]+=this.status.main[a]; break
                     case 316: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[a])}; break
                     case 328: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.id)}} break

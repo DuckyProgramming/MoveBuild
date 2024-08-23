@@ -1591,7 +1591,8 @@ class card{
             case 837: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Number\nof Burns in Hand\nAmplify:\nDeal Double Damage`; break
             case 838: string+=`When You Add Block,\nAdd ${effect[0]} Spark${pl(effect[0])} to Hand`; break
             case 839: string+=`When You Add Block,\nAdd ${effect[0]} Upgraded\nSpark${pl(effect[0])} to Hand`; break
-            case 840: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nSpend ${effect[1]} Charge:\nGain ${effect[2]} Energy\nDraw ${effect[3]} Card${pl(effect[3])}`; break
+            case 840: case 4649:
+                string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nSpend ${effect[1]} Charge:\nGain ${effect[2]} Energy\nDraw ${effect[3]} Card${pl(effect[3])}`; break
             case 841: string+=`Gain ${effect[0]} Charge`; break
             case 842: string+=`Gain ${effect[0]} Charge\nAmplify:\nGain ${effect[1]} More`; break
             case 843: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor Every ${effect[1]}\nRelics You Have`; break
@@ -2115,7 +2116,7 @@ class card{
             case 1360: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExactly 4 Energy:\nApply ${effect[1]} Freeze`; break
             case 1361: string+=`Add Any Random\nCard to Deck\nRemove a Card\nPermanently`; break
             case 1362: string+=`Even Energy:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nAt Range 3,\nGain ${effect[1]} Charge`; break
-            case 1363: string+=`Gain ${effect[0]} Energy\nNext Turn\nAmplify:\nGet ${effect[1]} Instead`; break
+            case 1363: string+=`Gain ${effect[0]} Energy\nNext Turn\nAmplify:\nGain ${effect[1]} Instead`; break
             case 1364: string+=`Add ${effect[0]} 6-Miracle${pl(effect[0])}\nto Hand\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 1365: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage\nGain ${effect[1]} Conditioning`; break
             case 1366: string+=`Double Self\nDiscards to Draw`; break
@@ -5068,7 +5069,7 @@ class card{
             case 4286: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAt Max, Draw ${effect[1]} Card${pl(effect[1])}\nand Exhaust ${effect[2]} Card${pl(effect[2])}`; break
             case 4287: string+=`Exhaust ${effect[0]} Card${pl(effect[0])}\nChoose ${effect[0]==1?`a `:``}Card${pl(effect[0])} of\nthe Same Class\nto Add to Hand`; break
             case 4288: string+=`Exhaust ${effect[0]} Card${pl(effect[0])}\nChoose ${effect[0]==1?`a `:``}Card${pl(effect[0])} of\nthe Same Class\nand Level to\nAdd to Hand`; break
-            case 4289: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Number\nof Burns in Hand\nAmplify:\nDeal Double Damage`; break
+            case 4289: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Number\nof Wisps in Hand\nAmplify:\nDeal Double Damage`; break
             case 4290: string+=`When Drawn,\nGain ${effect[0]} Energy\nWhen Exhausted,\nPut a Copy of\na Card in Draw\nPile in Your Hand`; break
             case 4291: string+=`When Drawn,\nGain ${effect[0]} Energy\nWhen Exhausted,\nPut a Copy of\na Card in Draw\nPile in Your Hand\nand Add ${this.calculateEffect(effect[1],1)} Block`; break
             case 4292: string+=`Gain ${effect[0]} Temporary\nStrength\nSpend ${effect[1]} Charge:\nGain ${effect[2]} Energy`; break
@@ -5418,11 +5419,31 @@ class card{
                 case -1059: string+=`-9: Discard Your Hand\nGain (E) (E) (E)\nDraw ${effect[2]} Card${pl(effect[2])}`; break
                 case -1060: string+=`-9: Discard Your Hand\nGain (E) (E) (E) (E)\nDraw ${effect[2]} Card${pl(effect[2])}`; break
                 case -1061: string+=`-9: Discard Your Hand\nGain (E) (E) (E) (E) (E)\nDraw ${effect[2]} Card${pl(effect[2])}`; break
-            //3909
+            case 4633: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify (N):\nDeal ${this.calculateEffect(effect[1],10)} More`; break
+            case 4634: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAmplify (N):\nAdd ${this.calculateEffect(effect[1],1)} Block\nNext Turn`; break
+            case 4635: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAmplify (N):\nDraw ${effect[1]} More`; break
+            case 4636: string+=`Gain ${effect[0]} Armor\nAmplify (W):\nGain ${effect[1]} More`; break
+            case 4637: string+=`Apply ${effect[0]} Vulnerable\nAmplify (K) (N):\nAffects All Enemies`; break
+            case 4638: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAmplify (N):\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 4639: string+=`Gain (E) (E)\n(E) Next Turn\nAmplify (W):\nGain (E) (E)\n(E) (E) Instead`; break
+            case 4640: string+=`Gain (E) (E)\n(E) (E) Next Turn\nAmplify (W):\nGain (E) (E) (E)\n(E) (E) Instead`; break
+            case 4641: string+=`Gain (E) (E) (E)\n(E) (E) Next Turn\nAmplify (W):\nGain (E) (E) (E)\n(E) (E) (E) Instead`; break
+            case 4642: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify: (W) (R)\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage\nAround Self`; break
+            case 4643: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAmplify (W):\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            case 4644: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\nto a Random Enemy\nAmplify (W):\nRepeat`; break
+            case 4645: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Number\nof Wisps in Hand\nAmplify (W) (R):\nDeal Double Damage`; break
+            case 4646: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify (W):\nDraw ${effect[1]} More Card${pl(effect[1])}\nNext Turn`; break
+            case 4647: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Charge`; break
+            case 4648: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nSpend ${effect[1]} Charge:\nGain (E)\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            //4649
+            case 4650: string+=`Gain ${effect[0]} Charge\nAmplify (R):\nGain ${effect[1]} More`; break
 
 
 
 
+
+
+            
 
 
 

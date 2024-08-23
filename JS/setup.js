@@ -22,7 +22,7 @@ function setup(){
         current.menu.combatant=[8]
         current.menu.deck=[-1]
 
-            //variants.mtg=true
+            variants.mtg=true
 
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){
