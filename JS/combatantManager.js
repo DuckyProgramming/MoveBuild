@@ -140,7 +140,14 @@ class combatantManager{
     }
     enableCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if((this.combatants[a].team==0||this.combatants[a].construct||this.combatants[a].support)&&this.combatants[a].life>0){
+            if(this.combatants[a].team==0&&this.combatants[a].life>0){
+                this.combatants[a].endBlock()
+            }
+        }
+    }
+    enableCombatantsAlt(){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if((this.combatants[a].construct||this.combatants[a].support)&&this.combatants[a].life>0){
                 this.combatants[a].endBlock()
             }
         }
@@ -948,7 +955,7 @@ class combatantManager{
                         }
                     break
                     case 1:
-                        this.combatants[a].addBlock(this.args[0])
+                        this.combatants[a].addBlock(args[0])
                     break
                 }
             }

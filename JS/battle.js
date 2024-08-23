@@ -933,6 +933,7 @@ class battle{
         }
         this.combatantManager.setupCombatants()
         this.combatantManager.unmoveCombatants()
+        this.combatantManager.enableCombatantsAlt()
         this.combatantManager.resetCombatantsAnim()
         this.tileManager.tick()
         this.tileManager.activate()
@@ -3122,10 +3123,10 @@ class battle{
                         this.relicManager.onClick(stage.scene)
                         this.itemManager.onClick(stage.scene)
                         this.modManager.onClick()
-                        if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:494},width:32,height:20})&&!this.relicManager.hasRelic(243,a)){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:494},width:32,height:20})&&!this.relicManager.hasRelic(243,this.turn.main)){
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].active=true
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].activate()
-                        }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:522},width:32,height:20})&&!this.relicManager.hasRelic(243,a)){
+                        }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:522},width:32,height:20})&&!this.relicManager.hasRelic(243,this.turn.main)){
                             this.overlayManager.overlays[2][this.turn.main].active=true
                             this.overlayManager.overlays[2][this.turn.main].activate()
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:578},width:32,height:20})&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0){
@@ -3509,10 +3510,10 @@ class battle{
                         this.cardManagers[this.turn.main].onKey(stage.scene,key,code)
                         this.relicManager.onKey(stage.scene,key,code)
                         this.modManager.onKey(key,code)
-                        if((key=='r'||key=='R')&&!this.relicManager.hasRelic(243,a)){
+                        if((key=='r'||key=='R')&&!this.relicManager.hasRelic(243,this.turn.main)){
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].active=true
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].activate()
-                        }else if((key=='d'||key=='D')&&!this.relicManager.hasRelic(243,a)){
+                        }else if((key=='d'||key=='D')&&!this.relicManager.hasRelic(243,this.turn.main)){
                             this.overlayManager.overlays[2][this.turn.main].active=true
                             this.overlayManager.overlays[2][this.turn.main].activate()
                         }else if(key=='s'||key=='S'){

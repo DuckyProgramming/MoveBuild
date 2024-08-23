@@ -81,6 +81,7 @@ class eventManager{
                 !(this.listing.event[a]==60&&userCombatant.life>=userCombatant.base.life-12)&&
                 !(this.listing.event[a]==63&&(this.listing.complete.length<=3||this.battle.nodeManager.world==0))&&
                 !(this.listing.event[a]==66&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==67&&this.battle.currency.money[this.player]<40)&&
                 !(this.listing.event[a]==68&&this.battle.cardManagers[this.player].deck.numberAbstract(8,[])<=0)&&
                 !(this.listing.event[a]==69&&userCombatant.life<7)&&
                 !(this.listing.event[a]==73&&this.battle.nodeManager.world==0)&&

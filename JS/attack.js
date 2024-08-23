@@ -212,7 +212,8 @@ class attack{
             case 4341: case 4345: case 4350: case 4372: case 4373: case 4374: case 4375: case 4376: case 4377: case 4379: case 4380: case 4381: case 4382: case 4383: case 4384: case 4385: case 4386: case 4387: case 4388: case 4389:
             case 4390: case 4396: case 4407: case 4408: case 4409: case 4410: case 4413: case 4414: case 4419: case 4425: case 4426: case 4428: case 4438: case 4439: case 4440: case 4441: case 4442: case 4443: case 4444: case 4445:
             case 4446: case 4449: case 4454: case 4456: case 4457: case 4466: case 4472: case 4477: case 4478: case 4479: case 4484: case 4485: case 4488: case 4498: case 4500: case 4501: case 4502: case 4510: case 4511: case 4512:
-            case 4515: case 4516: case 4525: case 4529: case 4533: case 4548: case 4550: case 4551: case 4554: case 4559: case 4562: case 4563: case 4585: case 4594: case 4596: case 4597: case 4598: case 4599:
+            case 4515: case 4516: case 4525: case 4529: case 4533: case 4548: case 4550: case 4551: case 4554: case 4559: case 4562: case 4563: case 4585: case 4594: case 4596: case 4597: case 4598: case 4599: case 4601: case 4609:
+            case 4610: case 4611: case 4612: case 4614: case 4618:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -261,7 +262,8 @@ class attack{
             case 4369: case 4370: case 4371: case 4394: case 4427: case 4429: case 4430: case 4431: case 4432: case 4433:
             case 4434: case 4447: case 4448: case 4463: case 4464: case 4465: case 4473: case 4474: case 4475: case 4476:
             case 4483: case 4495: case 4496: case 4497: case 4514: case 4518: case 4519: case 4520: case 4521: case 4522:
-            case 4523: case 4530: case 4531: case 4532: case 4552: case 4558:
+            case 4523: case 4530: case 4531: case 4532: case 4552: case 4558: case 4603: case 4604: case 4605: case 4606:
+            case 4607: case 4608: case 4613:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -458,7 +460,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 674:
+            case 674: case 2763:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -3668,11 +3670,6 @@ class attack{
                             this.userCombatant.addBlock(this.effect[2])
                         }
                     break
-                    case 2736:
-                        if(this.targetCombatant.life<=0){
-                            this.battle.addEnergy(this.effect[1],this.player)
-                        }
-                    break
                     case 2737:
                         if(this.targetCombatant.life<=0){
                             this.userCombatant.permanentStrength++
@@ -4707,13 +4704,26 @@ class attack{
                             this.battle.addSpecificEnergy(6,this.player,6)
                         }
                     break
+                    case 4601:
+                        if(this.targetCombatant.life<=0){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,1)
+                            this.userManager.hand.add(findName('Afterlife\nOdyssey',types.card),this.level,this.color,this.edition)
+                        }
+                    break
+                    case 4618:
+                        if(this.mtgEnergy.length%3==0){
+                            this.userCombatant.statusEffect('Knowledge',this.effect[1])
+                            this.userCombatant.statusEffect('History',this.effect[2])
+                        }
+                    break
 
                 }
                 //mark 1s
             break
             case 1:
                 switch(this.type){
-                    case 13: case 235: case 968: case 2289: case 2778: case 3278: case 3512: case 3998: case 4507:
+                    case 13: case 235: case 968: case 2289: case 2778: case 3278: case 3512: case 3998: case 4507: case 4624:
                         this.userCombatant.addBlock(this.effect[0]*this.energy)
                     break
                     case 141:
@@ -6314,6 +6324,14 @@ class attack{
                         this.userCombatant.statusEffect('Armor',this.effect[1])
                         this.userManager.hand.allEffectArgs(42,[3,1])
                     break
+                    case 4602:
+                        if(this.userManager.hand.deAbstract(3,1,[])==1){
+                            this.battle.addSpecificEnergy(2,this.player,6)
+                        }
+                    break
+                    case 4624:
+                        this.userCombatant.statusEffect('(E) Next Turn',1)
+                    break
 
                 }
                 //mark 2s
@@ -7528,6 +7546,45 @@ class attack{
                     case 4552:
                         this.battle.overlayManager.overlays[10][this.player].active=true
                         this.battle.overlayManager.overlays[10][this.player].activate([0,0,39,2])
+                    break
+                    case 4603:
+                        if(this.userCombatant.block>0){
+                            this.battle.addSpecificEnergy(1,this.player,1)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 4604:
+                        if(this.userCombatant.block>0){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,1)
+                        }
+                    break
+                    case 4605:
+                        if(this.userCombatant.block>0){
+                            this.battle.addSpecificEnergy(2,this.player,6)
+                        }
+                    break
+                    case 4606:
+                        if(this.userCombatant.elemental){
+                            this.battle.addSpecificEnergy(1,this.player,4)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 4607:
+                        if(this.userCombatant.elemental){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,4)
+                        }
+                    break
+                    case 4608:
+                        if(this.userCombatant.elemental){
+                            this.battle.addSpecificEnergy(2,this.player,6)
+                        }
+                    break
+                    case 4613:
+                        if(this.drawn>=2){
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                        }
                     break
 
                 }
@@ -9704,6 +9761,20 @@ class attack{
                         this.battle.addSpecificEnergy(1,this.player,4)
                         this.userManager.draw(this.effect[0])
                     break
+                    case 4620:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([0,0,38])
+                        if(this.drawn==1){
+                            this.battle.addSpecificEnergy(1,this.player,1)
+                        }
+                    break
+                    case 4621:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([0,0,38])
+                        if(this.drawn==1){
+                            this.battle.addSpecificEnergy(2,this.player,1)
+                        }
+                    break
 
                 }
                 //mark 4
@@ -11004,13 +11075,13 @@ class attack{
                         this.userCombatant.status.main[findList('History',this.userCombatant.status.name)]=max2718
                     break
                     case 2719:
-                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
                         if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
-                            this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                            this.targetCombatant.statusEffect('Weak',this.effect[1])
                         }
                     break
                     case 2736:
-                        this.userCombatant.statusEffect('Rewind Cost Down',999)
+                        this.userCombatant.statusEffect('Rewind Cost Down',this.effect[0])
                     break
                     case 2740: case 4123:
                         this.battle.overlayManager.overlays[58][this.player].active=true
@@ -11822,6 +11893,29 @@ class attack{
                         this.userManager.draw(this.effect[0])
                         this.userManager.allEffectArgs(2,21,[this.effect[1]])
                         this.userCombatant.statusEffect('Random Mana Next Turn',-this.effect[2])
+                    break
+                    case 4600:
+                        this.userManager.draw(this.effect[0]*this.energy+this.effect[1])
+                        this.userManager.hand.exhaust(this.effect[2]*this.energy+this.effect[3])
+                        this.userCombatant.heal(this.effect[2]*this.energy)
+                    break
+                    case 4615: case 4616: case 4617:
+                        this.userCombatant.vision+=this.effect[0]
+                        if(this.userCombatant.elemental){
+                            this.battle.addSpecificEnergy(this.type-4612,this.player,6)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 4622:
+                        this.userCombatant.statusEffect('Knowledge',this.effect[0])
+                        this.userCombatant.statusEffect('Knowledge Next Turn',this.effect[0])
+                        this.userCombatant.statusEffect('Knowledge in 2 Turns',this.effect[0])
+                        this.userCombatant.statusEffect('Wisdom',this.effect[1])
+                        this.userManagaer.draw(this.effect[2])
+                    break
+                    case 4623:
+                        this.userCombatant.statusEffect('Elemental (E)',1)
+                        this.userCombatant.statusEffect('Elemental Draw',this.effect[0])
                     break
 
                 }
@@ -14382,7 +14476,7 @@ class attack{
                     break
                     case 2713:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        if(this.userCombatant.getStatus('History')>this.effect[1]){
+                        if(this.userCombatant.getStatus('History')>=this.effect[1]){
                             this.userManager.draw(this.effect[2])
                         }
                     break
@@ -17374,9 +17468,16 @@ class attack{
                             }
                         }
                     break
-                    case 2838:
+                    case 2838: case 4614:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        this.battle.addEnergy(this.effect[1],this.player)
+                        switch(this.type){
+                            case 2838:
+                                this.battle.addEnergy(this.effect[1],this.player)
+                            break
+                            case 4614:
+                                this.battle.addSpecificEnergy(this.effect[1],this.player,6)
+                            break
+                        }
                         let list2838=[this.userManager.deck.cards,this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                         for(let a=0,la=list2838.length;a<la;a++){
                             for(let b=0,lb=list2838[a].length;b<lb;b++){
@@ -17446,45 +17547,45 @@ class attack{
                         this.battle.addEnergy(this.effect[1],this.player)
                     break
                     case 3074:
-                        if(this.cost>=7){
+                        if((variants.mtg?this.cost[0]:this.cost)>=7){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
                             this.userCombatant.statusEffect('Take 1/4 Damage',this.effect[1])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
                         }
                     break
                     case 3075:
-                        if(this.cost>=7){
+                        if((variants.mtg?this.cost[0]:this.cost)>=7){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
                             this.userCombatant.statusEffect('Dodge',this.effect[1])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
                         }
                     break
                     case 3076:
-                        if(this.cost>=7){
+                        if((variants.mtg?this.cost[0]:this.cost)>=7){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
                             this.battle.addEnergy(this.effect[1],this.player)
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
@@ -17499,31 +17600,31 @@ class attack{
                         this.battle.overlayManager.overlays[8][this.player].activate()
                     break
                     case 3078:
-                        if(this.cost>=9){
+                        if((variants.mtg?this.cost[0]:this.cost)>=9){
                             this.selfCall(20)
-                        }else if(this.cost>=4){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=4){
                             this.battle.overlayManager.overlays[19][this.player].active=true
                             this.battle.overlayManager.overlays[19][this.player].activate()
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=4
+                                        list[a][b].costDown(0,[4])
                                     }
                                 }
                             }
                         }
                     break
                     case 3082:
-                        if(this.cost>=6){
+                        if((variants.mtg?this.cost[0]:this.cost)>=6){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
-                            this.userManager.allEffectArgs(2,21,[this.effect[0]])
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
+                            this.userManager.allEffectArgs(2,21,[this.effect[1]])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
@@ -17541,31 +17642,31 @@ class attack{
                         this.userCombatant.heal(this.effect[1])
                     break
                     case 3134:
-                        if(this.cost>=7){
+                        if((variants.mtg?this.cost[0]:this.cost)>=7){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
                             this.userManager.allEffect(2,4)
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
                         }
                     break
                     case 3135:
-                        if(this.cost>=12){
+                        if((variants.mtg?this.cost[0]:this.cost)>=12){
                             this.selfCall(20)
-                        }else if(this.cost>=5){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=5){
                             this.userManager.hand.add(findName('17 of\nNothings',types.card),0,0)
                             this.userManager.draw(this.effect[1])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=5
+                                        list[a][b].costDown(0,[5])
                                     }
                                 }
                             }
@@ -17634,25 +17735,25 @@ class attack{
                         this.battle.combatantManager.fullAllEffect(11)
                     break
                     case 3334:
-                        if(this.cost>=8){
+                        if((variants.mtg?this.cost[0]:this.cost)>=8){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
                             this.battle.overlayManager.overlays[58][this.player].active=true
                             this.battle.overlayManager.overlays[58][this.player].activate([this.effect[1],this.effect[2]])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
                         }
                     break
                     case 3335:
-                        if(this.cost>=8){
+                        if((variants.mtg?this.cost[0]:this.cost)>=8){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
                             for(let a=0,la=this.effect[1];a<la;a++){
                                 this.userManager.hand.add(findName('Riptide',types.card),0,0)
                             }
@@ -17660,7 +17761,7 @@ class attack{
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
@@ -17679,24 +17780,24 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.targetCombatant.totalUniqueStatus(1),this.user,2)
                     break
                     case 3381:
-                        if(this.cost>=6){
+                        if((variants.mtg?this.cost[0]:this.cost)>=6){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
                             this.userManager.draw(this.effect[1],5)
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
                         }
                     break
                     case 3382:
-                        if(this.cost>=12){
+                        if((variants.mtg?this.cost[0]:this.cost)>=12){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
                             for(let a=0,la=this.effect[0];a<la;a++){
                                 this.userManager.hand.addAbstract(findName('Strike',types.card),0,this.color,0,[1,4],[[1]])
                             }
@@ -17707,16 +17808,16 @@ class attack{
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
                         }
                     break
                     case 3383:
-                        if(this.cost>=12){
+                        if((variants.mtg?this.cost[0]:this.cost)>=12){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
                             for(let a=0,la=this.effect[1];a<la;a++){
                                 this.userManager.hand.addAbstract(findName('Strike',types.card),0,this.color,0,[1,4],[[1]])
                             }
@@ -17727,46 +17828,46 @@ class attack{
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
                         }
                     break
                     case 3390:
-                        if(this.cost>=5){
+                        if((variants.mtg?this.cost[0]:this.cost)>=5){
                             this.selfCall(20)
-                        }else if(this.cost>=2){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=2){
                             this.battle.dropDrawShuffle(this.player,findName('Vitality',types.card),0,0)
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=2
+                                        list[a][b].costDown(0,[2])
                                     }
                                 }
                             }
                         }
                     break
                     case 3395: case 3689:
-                        if(this.cost>=9){
+                        if((variants.mtg?this.cost[0]:this.cost)>=9){
                             this.selfCall(20)
-                        }else if(this.cost>=4){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=4){
                             this.userCombatant.statusEffect('Reflect',1)
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=4
+                                        list[a][b].costDown(0,[4])
                                     }
                                 }
                             }
                         }
                     break
                     case 3396:
-                        if(this.cost>=6){
+                        if((variants.mtg?this.cost[0]:this.cost)>=6){
                             this.selfCall(20)
-                        }else if(this.cost>=2){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=2){
                             for(let a=0,la=this.effect[1];a<la;a++){
                                 this.userManager.hand.add(findName('Pristine',types.card),0,0)
                             }
@@ -17774,22 +17875,22 @@ class attack{
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=2
+                                        list[a][b].costDown(0,[2])
                                     }
                                 }
                             }
                         }
                     break
                     case 3397: case 3568:
-                        if(this.cost>=8){
+                        if((variants.mtg?this.cost[0]:this.cost)>=8){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
                             this.userCombatant.addBlock(this.userCombatant.lastBlock*this.effect[1])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
@@ -17806,63 +17907,63 @@ class attack{
                         this.userCombatant.statusEffect('Random Free Exhausting Skill Per Turn',this.effect[0])
                     break
                     case 3569:
-                        if(this.cost>=12){
+                        if((variants.mtg?this.cost[0]:this.cost)>=12){
                             this.selfCall(20)
-                        }else if(this.cost>=2){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=2){
                             this.battle.combatantManager.allEffect(47,[])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=2
+                                        list[a][b].costDown(0,[2])
                                     }
                                 }
                             }
                         }
                     break
                     case 3584:
-                        if(this.cost>=6){
+                        if((variants.mtg?this.cost[0]:this.cost)>=6){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
                             this.userCombatant.addBlock(this.effect[2])
                             this.userManager.hand.upgrade(this.effect[3])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
                         }
                     break
-                    case 3585:
-                        if(this.cost>=5){
+                    case 3585: case 4627: case 4628: case 4629:
+                        if((variants.mtg?this.cost[0]:this.cost)>=5){
                             this.selfCall(20)
-                        }else if(this.cost>=2){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=2){
                             this.userCombatant.statusEffect('Dodge',this.effect[2])
                             this.userCombatant.statusEffect('Temporary Strength',this.effect[3]*this.userCombatant.getStatus('Dodge'))
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=2
+                                        list[a][b].costDown(0,[2])
                                     }
                                 }
                             }
                         }
                     break
                     case 3586:
-                        if(this.cost>=4){
+                        if((variants.mtg?this.cost[0]:this.cost)>=4){
                             this.selfCall(20)
-                        }else if(this.cost>=2){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=2){
                             this.battle.overlayManager.overlays[10][this.player].active=true
                             this.battle.overlayManager.overlays[10][this.player].activate([0,1,33,4])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=2
+                                        list[a][b].costDown(0,[2])
                                     }
                                 }
                             }
@@ -17894,62 +17995,62 @@ class attack{
                         }
                     break
                     case 3724:
-                        if(this.cost>=10){
+                        if((variants.mtg?this.cost[0]:this.cost)>=10){
                             this.selfCall(20)
-                        }else if(this.cost>=2){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=2){
                             this.userManager.hand.selfCall(6,[3881,[this.effect[1],this.effect[2]],11,[5]])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=2
+                                        list[a][b].costDown(0,[2])
                                     }
                                 }
                             }
                         }
                     break
                     case 3725:
-                        if(this.cost>=8){
+                        if((variants.mtg?this.cost[0]:this.cost)>=8){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
                             this.userCombatant.statusEffect('Attack Lock On Turn',this.effect[1])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
                         }
                     break
                     case 3726:
-                        if(this.cost>=7){
+                        if((variants.mtg?this.cost[0]:this.cost)>=7){
                             this.selfCall(20)
-                        }else if(this.cost>=4){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=4){
                             this.userManager.hand.duplicate(this.effect[2])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=4
+                                        list[a][b].costDown(0,[4])
                                     }
                                 }
                             }
                         }
                     break
                     case 3727:
-                        if(this.cost>=9){
+                        if((variants.mtg?this.cost[0]:this.cost)>=9){
                             this.selfCall(30)
-                        }else if(this.cost>=5){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=5){
                             this.selfCall(20)
-                        }else if(this.cost>=3){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
                             this.userManager.addRandomAbstract(0,0,0,1,0,[],[game.playerNumber+2,3])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
@@ -17989,24 +18090,24 @@ class attack{
                         this.userCombatant.statusEffect('Wish Miracle',this.effect[0])
                     break
                     case 3908:
-                        if(this.cost>=6){
+                        if((variants.mtg?this.cost[0]:this.cost)>=6){
                             this.selfCall(20)
-                        }else if(this.cost>=2){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=2){
                             this.userManager.allEffectArgs(2,39,[1,this.effect[1]])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=3
+                                        list[a][b].costDown(0,[3])
                                     }
                                 }
                             }
                         }
                     break
                     case 3909:
-                        if(this.cost>=9){
+                        if((variants.mtg?this.cost[0]:this.cost)>=9){
                             this.selfCall(20)
-                        }else if(this.cost>=4){
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=4){
                             this.battle.overlayManager.overlays[7][this.player].active=true
                             this.battle.overlayManager.overlays[7][this.player].activate()
                             this.battle.overlayManager.overlays[8][this.player].active=true
@@ -18015,7 +18116,7 @@ class attack{
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        list[a][b].cost-=4
+                                        list[a][b].costDown(0,[4])
                                     }
                                 }
                             }
@@ -18279,6 +18380,42 @@ class attack{
                         if(this.userCombatant.elemental){
                             this.battle.addSpecificEnergy(1,this.player,6)
                             this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 4609:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.targetCombatant.life<=0){
+                            this.battle.addSpecificEnergy(2,this.player,1)
+                            this.battle.addSpecificEnergy(2,this.player,2)
+                        }
+                    break
+                    case 4610:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.targetCombatant.life<=0){
+                            this.battle.addSpecificEnergy(2,this.player,6)
+                            this.battle.addSpecificEnergy(2,this.player,1)
+                            this.battle.addSpecificEnergy(2,this.player,2)
+                        }
+                    break
+                    case 4611:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.targetCombatant.life<=0){
+                            this.battle.addSpecificEnergy(6,this.player,6)
+                        }
+                    break
+                    case 4626:
+                        if((variants.mtg?this.cost[0]:this.cost)>=6){
+                            this.selfCall(20)
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
+                            this.userManager.allEffectArgs(2,21,[this.effect[0]])
+                            let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
+                            for(let a=0,la=list.length;a<la;a++){
+                                for(let b=0,lb=list[a].length;b<lb;b++){
+                                    if(list[a][b].id==this.id){
+                                        list[a][b].costDown(0,[3])
+                                    }
+                                }
+                            }
                         }
                     break
 
@@ -18634,6 +18771,10 @@ class attack{
                     case 3673:
                         this.battle.overlayManager.overlays[107][this.player].active=true
                         this.battle.overlayManager.overlays[107][this.player].activate()
+                    break
+                    case 4625:
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        this.battle.overlayManager.overlays[3][this.player].activate([0,'ally',43])
                     break
                 }
             break

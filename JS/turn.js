@@ -1478,11 +1478,10 @@ class turn{
                     case 230:
                         if(this.userCombatant.builder==this.battle.turn.main){
                             this.battle.combatantManager.combatants[this.userCombatant.builder].addBlock(this.effect[0])
-                            this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,1,[this.effect[0]])
                         }else{
                             this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Block Next Turn',this.effect[0])
-                            this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,0,['Block Next Turn',this.effect[0]])
                         }
+                        this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,1,[this.effect[0]])
                     break
                     case 231:
                         this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].draw(this.effect[0])
@@ -1490,11 +1489,10 @@ class turn{
                     case 232:
                         if(this.userCombatant.builder==this.battle.turn.main){
                             this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Temporary Strength',this.effect[0])
-                            this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,0,['Temporary Strength',this.effect[0]])
                         }else{
                             this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Temporary Strength Next Turn',this.effect[0])
-                            this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,0,['Temporary Strength Next Turn',this.effect[0]])
                         }
+                        this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,0,['Temporary Strength',this.effect[0]])
                     break
                     case 234:
                         for(let a=0,la=this.effect[0];a<la;a++){

@@ -2554,17 +2554,8 @@ class group{
                 userCombatant.addBlock(card.effect[0])
                 userCombatant.statusEffect('Knowledge',card.effect[1])
             break
-            case 4566:
-                this.battle.addSpecificEnergy(1,this.player,6)
-                this.battle.addSpecificEnergy(2,this.player,4)
-            break
-            case 4567:
-                this.battle.addSpecificEnergy(2,this.player,6)
-                this.battle.addSpecificEnergy(2,this.player,4)
-            break
-            case 4568:
-                this.battle.addSpecificEnergy(2,this.player,6)
-                this.battle.addSpecificEnergy(3,this.player,4)
+            case 4566: case 4567: case 4568:
+                this.battle.addSpecificEnergy(card.attack-4564,this.player,4)
             break
         }
         return false
@@ -4499,6 +4490,7 @@ class group{
                                 this.cards[a].spec.push(55)
                                 this.cards[a].additionalSpec.push(55)
                                 this.cards[a].additionalSpec.push(-2)
+                                this.cards[a].updateSpecialCost()
                                 this.cards[a].usable=true
                                 this.cards[a].edited.cost-=this.cards[a].cost
                                 this.cards[a].edited.costComplete=true

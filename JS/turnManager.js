@@ -111,7 +111,19 @@ class turnManager{
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].activated&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&(
                 this.battle.combatantManager.combatants[a].support&&!this.battle.combatantManager.combatants[a].moved||
-                this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].moved
+                this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].moved&&
+                this.battle.combatantManager.combatants[a].name=='Strengthener'
+            )){
+                this.turns.push(new turn(0,this.battle,
+                    this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type,
+                    this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
+            }
+        }
+        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].activated&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&(
+                this.battle.combatantManager.combatants[a].support&&!this.battle.combatantManager.combatants[a].moved||
+                this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].moved&&
+                this.battle.combatantManager.combatants[a].name!='Strengthener'
             )){
                 this.turns.push(new turn(0,this.battle,
                     this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type,

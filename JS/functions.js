@@ -914,9 +914,9 @@ function intentDescription(attack,user,info){
 			case 225: return `Kill Self\nReturn Next Turn,\nHealed to Full`
 			case 228: return `Counter ${info?calculateIntent(attack.effect[0],user,0):`?`} All This Combat`
 			case 229: return `Apply ${info?calculateIntent(attack.effect[0],user,0):`?`} Take Per Turn`
-			case 230: return `Add ${info?attack.effect[0]:`?`} Block\nto Builder`
+			case 230: return `Add ${info?attack.effect[0]:`?`} Block\nto Builder and\nAllied Constructs`
 			case 231: return `Builder Draws ${info?attack.effect[0]:`?`}\nCard${pl(attack.effect[0])}`
-			case 232: return `Builder Gains ${info?attack.effect[0]:`?`}\nTemporary Strength`
+			case 232: return `Builder and Allied Constructs\nGain ${info?attack.effect[0]:`?`}\nTemporary Strength`
 			case 233: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTo Targets in\nAll Directions`
 			case 234: return `Builder Adds ${info?attack.effect[0]:`?`}\nRevolver${pl(attack.effect[0])} to Hand`
 			case 237: return `Builder Gains ${info?attack.effect[0]:`?`}\nMetal`
@@ -1820,6 +1820,12 @@ function quickDraw(){
 		quickAddFull('Step',1,0,0)
 		quickAddFull('Think',1,0,0)
 	}
+}
+function quickBuild(){
+	metal(100)
+	qa('Build\nTurret')
+	qa('Build\nProjector')
+	qa('Build\nStrengthener')
 }
 function event(name){
 	stage.scene='event'

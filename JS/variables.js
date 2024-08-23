@@ -744,7 +744,7 @@ types={
         {name:'Gluestick',internal:'Unblocked Weaken',id:74,rarity:1,list:0,mtg:0,description:'When an Enemy Deals Unblocked\nDamage to You, Apply 1 Weak'},
         {name:'Rapier',internal:'Blocked Weaken',id:75,rarity:1,list:0,mtg:0,description:'When an Enemy Deals Blocked\nDamage to You, Apply 1 Weak'},
         {name:'Bookmark',internal:'Retain Card Block',id:76,rarity:1,list:0,mtg:0,description:'Add 4 Block When\nYou Retain a Card'},
-        {name:'Seasoning',internal:'Better Items',id:77,rarity:1,list:0,mtg:0,description:'Items are 2x More Effective'},
+        {name:'Seasoning',internal:'Better Items',id:77,rarity:-1,list:0,mtg:0,description:'Items are 2x More Effective'},
         {name:'Pyrite Cube',internal:'12 Defense Buffer',id:78,rarity:1,list:0,mtg:0,description:'Every 12 Defenses Played,\nGain 1 Buffer'},
         {name:'Clip-On Tie',internal:'Important Enemies',id:79,rarity:1,list:0,mtg:0,description:'Enemies Can Give\nElite Rewards'},
 
@@ -832,7 +832,7 @@ types={
         {name:'?! Block',internal:'Transform Basic',id:154,rarity:-1,list:0,mtg:1,description:'When Taken, Transform All\nBasic Attacks and Defenses,\nand Upgrade All Basic Movements'},
         {name:'Lightbulb',internal:'Basic Draw',id:155,rarity:4,list:0,mtg:1,description:'Draw 2 More\nCards Every Turn'},
         {name:'Golden Eye',internal:'Confused Draw',id:156,rarity:-1,list:0,mtg:1,description:'Draw 3 More Cards Every Turn,\nStart Combat Confused'},
-        {name:'Platinum Spoon',internal:'Much Better Items',id:157,rarity:4,list:0,mtg:1,description:'Items are 5x\nMore Effective'},
+        {name:'Platinum Spoon',internal:'Much Better Items',id:157,rarity:-1,list:0,mtg:1,description:'Items are 5x\nMore Effective'},
         {name:'Holy Water',internal:'3 Starting Miracles',id:158,rarity:4,list:0,mtg:1,description:'Add 3 Miracles\non Turn 1'},
         {name:'Pentaxon',internal:'Random',id:159,rarity:4,list:0,mtg:1,description:'When Taken, Gain a Rare Item,\n300 Currency, 10 Max HP, a Rare Card,\nand Upgrade a Random Card'},
 

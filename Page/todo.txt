@@ -70,15 +70,6 @@ default:
 
 
 
-
-[is scaling on builder a problem (lack thereof)]
-
-
-
-
-
-
-
 button to gift remaining battle rewards to other player
 
 title screen 5th button - collection
@@ -405,6 +396,12 @@ HAARP - createa lightning orb, all lightning orbs are more effective
 new 4 mana 7 7
 
 convection - when you dodge an attack, all enemies take 3 damage
+
+[block + apis effect]
+
+fame or fortune - 2 cost, gain 25 block, or gain 25 currency
+
+infinite power - gain 1 energy, can be upgraded any number of times
 
 
 

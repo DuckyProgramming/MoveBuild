@@ -4793,10 +4793,10 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(0,6,-1,7.5,1,7.5)
         break
         case 499:
-            layer.fill(125,fade)
-            layer.stroke(100,fade)
-            layer.strokeWeight(1.5)
-            layer.rect(0,0,6,8,1.5)
+            layer.fill(200,255,255,fade)
+            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
             layer.noFill()
             layer.stroke(150,200,255,fade)
             layer.strokeWeight(1)
@@ -4806,10 +4806,10 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.point(0,0)
         break
         case 500:
-            layer.fill(200,255,255,fade)
-            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
-            layer.fill(225,255,255,fade)
-            layer.quad(-4,0,0,-5,4,0,0,5)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,6,8,1.5)
             layer.noFill()
             layer.stroke(150,200,255,fade)
             layer.strokeWeight(1)
@@ -5394,6 +5394,16 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-1,-4,-6,0,-1,4)
             layer.triangle(1,-4,6,0,1,4)
             displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+        break
+        case 580:
+            displayMtgManaSymbol(layer,0,0,6,0,0.3,fade,-1,[])
+            layer.noFill()
+            layer.stroke(150,200,255,fade)
+            layer.strokeWeight(1)
+            layer.bezier(-5,0,-3,-3.5,3,-3.5,5,0)
+            layer.bezier(-5,0,-3,3.5,3,3.5,5,0)
+            layer.strokeWeight(3)
+            layer.point(0,0)
         break
 
     }

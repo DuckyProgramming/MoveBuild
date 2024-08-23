@@ -169,7 +169,7 @@ class combatant{
                 'Counter Bleed Once Per Turn','Counter Gun Once','Counter Gun Once Per Turn','Counter Push Combat','Attack Burn Combat','All Strength Cycle 4 1','All Strength Cycle 4 2','All Strength Cycle 4 3','All Strength Cycle 4 4','Counter Weak All Combat',
                 'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength','3+ Cost Single Damage Up','3+ Cost Block','Item Use (N)','(E) Cycle 2 1','(E) Cycle 2 2','(W) Cycle 2 1','(W) Cycle 2 2',
                 '(B) Cycle 2 1','(B) Cycle 2 2','(K) Cycle 2 1','(K) Cycle 2 2','(G) Cycle 2 1','(G) Cycle 2 2','(R) Cycle 2 1','(R) Cycle 2 2','(N) Cycle 2 1','(N) Cycle 2 2',
-
+                'Elemental (E)',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -203,7 +203,7 @@ class combatant{
                 0,2,2,2,0,2,0,2,0,1,//29
                 0,0,0,0,0,0,0,1,0,1,//30
                 0,0,2,2,0,1,1,0,0,1,//31
-                1,0,0,0,0,0,0,1,2,1,//32
+                1,0,0,0,0,0,0,0,2,1,//32
                 0,1,0,0,0,0,0,0,0,1,//33
                 0,0,0,2,2,0,0,0,0,2,//34
                 0,0,0,2,2,0,2,0,2,2,//35
@@ -230,7 +230,7 @@ class combatant{
                 0,2,0,0,0,2,2,2,2,0,//56
                 0,2,0,0,0,0,2,2,2,2,//57
                 2,2,2,2,2,2,2,2,2,2,//58
-
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -291,7 +291,7 @@ class combatant{
                 2,2,2,2,0,2,2,2,2,2,//56
                 2,2,2,2,2,2,2,2,2,2,//57
                 2,2,2,2,2,2,2,2,2,2,//58
-
+                2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -4466,14 +4466,19 @@ class combatant{
                 this.elemental=false
             }else{
                 if(this.status.main[499]>0){
-                    if(this.id<this.battle.players){
-                        this.battle.cardManagers[this.id].tempDraw.main+=this.status.main[499]
-                    }
+                    this.battle.addEnergy(this.status.main[499],this.id)
+                }else if(this.status.main[499]<0){
+                    this.battle.loseEnergy(-this.status.main[499],this.id)
+                }
+                if(this.status.main[580]>0){
+                    this.battle.addSpecificEnergy(this.status.main[580],this.id,6)
+                }else if(this.status.main[580]<0){
+                    this.battle.loseEnergy(-this.status.main[580],this.id)
                 }
                 if(this.status.main[500]>0){
-                    this.battle.addSpecificEnergy(this.status.main[500],this.id,6)
-                }else if(this.status.main[500]<0){
-                    this.battle.loseEnergy(-this.status.main[500],this.id)
+                    if(this.id<this.battle.players){
+                        this.battle.cardManagers[this.id].tempDraw.main+=this.status.main[500]
+                    }
                 }
             }
         }
