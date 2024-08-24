@@ -20,6 +20,8 @@ collection screen
 
 
 
+not all shiru cards are created equal
+
 
 
 
@@ -402,6 +404,19 @@ convection - when you dodge an attack, all enemies take 3 damage
 fame or fortune - 2 cost, gain 25 block, or gain 25 currency
 
 infinite power - gain 1 energy, can be upgraded any number of times
+
+
+
+[dragon's thunderbolt]
+
+make a card like vaccuum collapse
+with more particles
+stars and little flashes
+
+radiance of wealth - damage, upgrade cards, gain 5 currency
+has little line lasers with golden centers and pink edges
+
+divine age - draw 3 cards, they become ethereal
 
 
 

@@ -234,7 +234,7 @@ class overlay{
                         }
                         if(variants.mtg){
                             for(let a=0,la=list[effectiveRarity].length;a<la;a++){
-                                if(types.card[list[effectiveRarity][a]].mtg.list==-1&&types.card[list[effectiveRarity][a]].mtg.color[0]!=0&&floor(random(0,3))!=0){
+                                if(types.card[list[effectiveRarity][a]].mtg.list==-1&&types.card[list[effectiveRarity][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
                                     list[effectiveRarity].splice(a,1)
                                     a--
                                     la--
@@ -403,6 +403,15 @@ class overlay{
                     break
                     case 14:
                         list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                        if(variants.mtg){
+                            for(let a=0,la=list[args[1]].length;a<la;a++){
+                                if(types.card[list[args[1]][a]].mtg.list==-1&&types.card[list[args[1]][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
+                                    list[args[1]].splice(a,1)
+                                    a--
+                                    la--
+                                }
+                            }
+                        }
                         for(let a=0,la=this.options;a<la;a++){
                             if(list[args[1]].length>0){
                                 let index=floor(random(0,list[args[1]].length))
@@ -631,7 +640,16 @@ class overlay{
                         }
                     break
                     case 28:
-                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                        if(variants.mtg){
+                            for(let a=0,la=list[args[1]].length;a<la;a++){
+                                if(types.card[list[args[1]][a]].mtg.list==-1&&types.card[list[args[1]][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
+                                    list[args[1]].splice(a,1)
+                                    a--
+                                    la--
+                                }
+                            }
+                        }
                         sublist=[]
                         for(let a=0,la=list[3].length;a<la;a++){
                             if(types.card[list[3][a]].levels[args[0]].class==args[1]){
@@ -641,7 +659,7 @@ class overlay{
                         for(let a=0,la=this.options;a<la;a++){
                             if(sublist.length>0){
                                 let index=floor(random(0,sublist.length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[index],args[0],types.card[sublist[index]].list,-1))
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[index],args[0],this.battle.standardColorize(sublist[index]),-1))
                                 this.cards[a].upSize=true
                                 sublist.splice(index,1)
                             }
@@ -649,6 +667,15 @@ class overlay{
                     break
                     case 29:
                         list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                        if(variants.mtg){
+                            for(let a=0,la=list[args[1]].length;a<la;a++){
+                                if(types.card[list[args[1]][a]].mtg.list==-1&&types.card[list[args[1]][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
+                                    list[args[1]].splice(a,1)
+                                    a--
+                                    la--
+                                }
+                            }
+                        }
                         sublist=[]
                         for(let a=0,la=list[args[1]].length;a<la;a++){
                             if(types.card[list[args[1]][a]].levels[args[0]].class==args[3]){
@@ -667,6 +694,15 @@ class overlay{
                     break
                     case 31:
                         list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                        if(variants.mtg){
+                            for(let a=0,la=list[args[1]].length;a<la;a++){
+                                if(types.card[list[args[1]][a]].mtg.list==-1&&types.card[list[args[1]][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
+                                    list[args[1]].splice(a,1)
+                                    a--
+                                    la--
+                                }
+                            }
+                        }
                         for(let a=0,la=list[args[1]].length;a<la;a++){
                             if(
                                 (variants.mtg?(types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(11)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(21)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(40)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(55)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(58)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(59)?

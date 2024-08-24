@@ -220,7 +220,7 @@ class particle{
                 this.direction=args[0]
                 this.timer=args[1]
                 this.color=floor(random(0,6))
-                this.speed=15*random(0.6,1.5)
+                this.speed=15*random(0.5,1.5)
                 this.fade=0
                 this.trigger=false
                 this.size=1
@@ -1437,10 +1437,13 @@ class particle{
                     }
                 break
                 case 94:
-                    this.layer.fill([255,255,255,100,100,200][this.color],[150,200,255,255,200,100][this.color],[100,100,100,150,255,225][this.color],this.fade*0.5)
-                    this.layer.stroke([255,255,255,100,100,200][this.color],[150,200,255,255,200,100][this.color],[100,100,100,150,255,225][this.color],this.fade)
-                    this.layer.strokeWeight(2)
-                    regStar(this.layer,0,0,5,12,12,5,5,this.position.y*3)
+                    this.layer.stroke([255,255,255,100,100,200][this.color],[150,200,255,255,200,100][this.color],[100,100,100,150,255,225][this.color],this.fade*0.5)
+                    this.layer.strokeWeight(1.2)
+                    regStar(this.layer,0,0,5,8,8,3.3,3.3,this.position.y*3)
+                    this.layer.strokeWeight(0.6)
+                    regStar(this.layer,0,0,5,8,8,3.3,3.3,this.position.y*3)
+                    this.layer.fill(255)
+                    regStar(this.layer,0,0,5,8,8,3.3,3.3,this.position.y*3)
                 break
                 case 95:
                     this.layer.rotate(this.position.x+this.position.y)

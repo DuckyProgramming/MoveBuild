@@ -716,7 +716,7 @@ types={
         {name:'Serrulata',internal:'Skip Card Max HP',id:49,rarity:1,list:0,mtg:0,description:'Gain 2 Max HP When\nYou Skip Adding a Card'},
 
         {name:'Matchbox',internal:'Strike Damage',id:50,rarity:-1,list:0,mtg:0,description:`Cards Containing 'Strike'\nDeal 2 More Damage`},
-        {name:'Chaff Strip',internal:'Unplayed Card Block',id:51,rarity:2,list:0,mtg:0,description:'At the End of Your Turn,\nGain 1 Block Per Unplayed Card'},
+        {name:'Chaff Strip',internal:'Unplayed Card Block',id:51,rarity:1,list:0,mtg:0,description:'At the End of Your Turn,\nAdd 1 Block Per Unplayed Card'},
         {name:'Pocket of Knives',internal:'Shivs',id:52,rarity:-1,list:0,mtg:0,description:'Add 4 Shivs at the\nStart of Combat'},
         {name:'Salted Pepper',internal:'Healing Boost',id:53,rarity:2,list:0,mtg:0,description:'All Healing is\n50% More Effective'},
         {name:'Psuedograph',internal:'No Card Draw',id:54,rarity:2,list:0,mtg:0,description:'If You Have No Cards in\nYour Hand, Draw 1 Card'},
@@ -961,7 +961,7 @@ types={
         {name:'Colorless Pack Voucher',internal:'Colorless Pack Discount',id:271,rarity:3,list:0,mtg:0,description:'Colorless Packs in the\nShop Cost 50% Less'},
         {name:'Spectral Pack Voucher',internal:'Spectral Pack Discount',id:272,rarity:3,list:0,mtg:0,description:'Spectral Packs in the\nShop Cost 50% Less'},
         {name:'Prism Pack Voucher',internal:'Prism Pack Discount',id:273,rarity:3,list:0,mtg:0,description:'Prism Packs in the\nShop Cost 50% Less'},
-        {name:'Harvest Basket',internal:'Add Card Max HP',id:274,rarity:1,list:0,mtg:0,description:'Gain 1 Max HP When You\nadd a Card to Deck'},
+        {name:'Harvest Basket',internal:'Add Card Max HP',id:274,rarity:1,list:0,mtg:0,description:'Gain 1 Max HP When You\nAdd a Card to Deck'},
         {name:'Bottled Poppy',internal:'Innate Attack',id:275,rarity:3,list:0,mtg:0,description:'When Taken, Make a Attack Innate'},
         {name:'Bottled Cyprus',internal:'Innate Defense',id:276,rarity:3,list:0,mtg:0,description:'When Taken, Make a Defense Innate'},
         {name:'Bottled Shamrock',internal:'Innate Movement',id:277,rarity:3,list:0,mtg:0,description:'When Taken, Make a Movement Innate'},

@@ -83,7 +83,7 @@ class purchaseManager{
                         if(variants.mtg){
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
-                                    if(types.card[list[a][b]].mtg.list==-1&&types.card[list[a][b]].mtg.color[0]!=0&&floor(random(0,3))!=0){
+                                    if(types.card[list[a][b]].mtg.list==-1&&types.card[list[a][b]].mtg.color[0]!=0&&floor(random(0,4))!=0){
                                         list[a].splice(b,1)
                                         b--
                                         lb--
@@ -191,7 +191,7 @@ class purchaseManager{
                             if(variants.mtg){
                                 for(let b=0,lb=list.length;b<lb;b++){
                                     for(let c=0,lc=list[b].length;c<lc;c++){
-                                        if(types.card[list[b][c]].mtg.list==-1&&types.card[list[b][c]].mtg.color[0]!=0&&floor(random(0,3))!=0){
+                                        if(types.card[list[b][c]].mtg.list==-1&&types.card[list[b][c]].mtg.color[0]!=0&&floor(random(0,4))!=0){
                                             list[b].splice(c,1)
                                             c--
                                             lc--

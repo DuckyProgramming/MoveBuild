@@ -2557,6 +2557,9 @@ class group{
             case 4566: case 4567: case 4568:
                 this.battle.addSpecificEnergy(card.attack-4564,this.player,4)
             break
+            case 4655: case 4656: case 4657:
+                this.battle.addSpecificEnergy(1,this.player,6)
+            break
         }
         return false
     }
@@ -3250,6 +3253,15 @@ class group{
                             case 4650:
                                 amplifyCost=[5]
                             break
+                            case 4659: case 4660: case 4661: case 4662: case 4671: case 4678:
+                                amplifyCost=[6]
+                            break
+                            case 4663:
+                                amplifyCost=[2]
+                            break
+                            case 4672:
+                                amplifyCost=[-1,-1]
+                            break
                             default:
                                 amplifyCost=[-1]
                             break
@@ -3262,7 +3274,7 @@ class group{
                                 }
                             }
                             this.battle.updateEnergyCrystal()
-                            let result=this.battle.mtgCost(amplifyCost,this.player,effectiveCards)
+                            this.battle.mtgCost(amplifyCost,this.player,effectiveCards)
                             this.battle.attackManager.amplify=true
                             this.cards.forEach(card=>card.anotherAmplified())
                             userCombatant.amplified()
@@ -3772,7 +3784,7 @@ class group{
                             this.battle.attackManager.type=this.battle.attackManager.type[mode]
                             this.battle.attackManager.effect=this.battle.attackManager.effect[mode]
                             this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[mode]
-                            this.battle.attackManager.spec=this.battle.attackManager.spec[mode]
+                            this.battle.attackManager.spec=this.cards[b].reality[mode]
                             this.cards[b].characteristic=mode
                         }
                         this.cardInUse=this.cards[b]
@@ -3786,9 +3798,9 @@ class group{
                 this.battle.updateTargetting()
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
-                        this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
+                        this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,variants.mtg?copyArray(this.cards[b].color):this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
                         if(this.cards[b].class!=0){
-                            this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
+                            this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,variants.mtg?copyArray(this.cards[b].color):this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
                         }
                     }
                 }
@@ -3908,7 +3920,7 @@ class group{
                                 this.battle.attackManager.type=this.battle.attackManager.type[mode]
                                 this.battle.attackManager.effect=this.battle.attackManager.effect[mode]
                                 this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[mode]
-                                this.battle.attackManager.spec=this.battle.attackManager.spec[mode]
+                                this.battle.attackManager.spec=this.cards[b].reality[mode]
                                 this.cards[b].characteristic=mode
                             }
                             this.cardInUse=this.cards[b]
@@ -3922,9 +3934,9 @@ class group{
                     this.battle.updateTargetting()
                     for(let b=0,lb=this.cards.length;b<lb;b++){
                         if(!this.cards[b].usable){
-                            this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
+                            this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,variants.mtg?copyArray(this.cards[b].color):this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
                             if(this.cards[b].class!=0){
-                                this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
+                                this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,variants.mtg?copyArray(this.cards[b].color):this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
                             }
                             if(this.cards[b].spec.includes(26)){
                                 this.battle.cardManagers[this.battle.players-1-this.player].callAmalgums(this.battle.attackManager)
@@ -4224,9 +4236,9 @@ class group{
                 this.cardInUse=a
                 this.selfCall(5,0)
                 this.selfCall(42,[a,0])
-                this.lastPlayed[0]=[a.type,a.level,a.color,a.edition,copyArray(a.spec)]
+                this.lastPlayed[0]=[a.type,a.level,variants.mtg?copyArray(a.color):a.color,a.edition,copyArray(a.spec)]
                 if(a.class!=0){
-                    this.lastPlayed[a.class]=[a.type,a.level,a.color,a.edition,copyArray(a.spec)]
+                    this.lastPlayed[a.class]=[a.type,a.level,variants.mtg?copyArray(a.color):a.color,a.edition,copyArray(a.spec)]
                 }
             break
             case 34:
@@ -4336,8 +4348,8 @@ class group{
                 if(this.cards[a].attack!=-3){
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
-                    if(this.status[35]>0){
-                        this.status[35]--
+                    if(this.status[36]>0){
+                        this.status[36]--
                     }
                     this.battle.overlayManager.overlays[10][this.player].active=true
                     this.battle.overlayManager.overlays[10][this.player].activate([this.cards[a].level,this.cards[a].class,28])

@@ -1314,16 +1314,20 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-2,1.5,2,1.5,0,-2.5)
         break
         case 145:
-            layer.fill(0,fade)
+            layer.fill(40,fade)
             layer.ellipse(0,0,9,9)
             for(let a=0,la=10;a<la;a++){
                 layer.rotate(36)
                 layer.triangle(-0.5,-4,0.5,-4,0,-6)
             }
-            layer.fill(200,255,255,fade)
-            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
-            layer.fill(225,255,255,fade)
-            layer.quad(-4,0,0,-5,4,0,0,5)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,-1,0,0.4,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+                layer.fill(225,255,255,fade)
+                layer.quad(-4,0,0,-5,4,0,0,5)
+            }
         break
         case 146:
             layer.fill(150,175,200,fade)
@@ -5404,6 +5408,14 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.bezier(-5,0,-3,3.5,3,3.5,5,0)
             layer.strokeWeight(3)
             layer.point(0,0)
+        break
+        case 581:
+            displayMtgManaSymbol(layer,0,0,6,0,0.5,fade,2,[1])
+        break
+        case 582:
+            displayMtgManaSymbol(layer,0,0,6,0,0.5,fade,2,[1])
+            layer.fill(40,fade)
+            layer.triangle(0,-7,-1,-9,1,-9)
         break
 
     }

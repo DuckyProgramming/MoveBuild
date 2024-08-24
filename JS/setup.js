@@ -19,7 +19,7 @@ function setup(){
             //transition.trigger=true
             //transition.scene='menu'
 
-        current.menu.combatant=[8]
+        current.menu.combatant=[17]
         current.menu.deck=[-1]
 
             variants.mtg=true

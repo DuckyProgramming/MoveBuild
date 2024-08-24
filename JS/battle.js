@@ -1798,6 +1798,32 @@ class battle{
     }
     updateEnergyCrystal(){
         for(let a=0,la=this.players;a<la;a++){
+            let cap=484
+            for(let b=0,lb=this.energy.crystal[a].length;b<lb;b++){
+                if(!this.energy.crystal[a][b][4]){
+                    let goal=459
+                    for(let c=1,lc=b+1;c<lc;c++){
+                        if(this.energy.crystal[a][b-c][1]>this.energy.crystal[a][b][1]-25&&!this.energy.crystal[a][b-c][4]){
+                            goal=this.energy.crystal[a][b-c][1]-(this.energy.crystal[a][b][6]?25:0)-(this.energy.crystal[a][b][4]&&!this.energy.crystal[a][b-c][4]?50:0)
+                            c=lc
+                        }
+                    }
+                    cap=min(goal,cap)
+                }
+            }
+            let midcap=cap
+            for(let b=0,lb=this.energy.crystal[a].length;b<lb;b++){
+                if(this.energy.crystal[a][b][4]){
+                    let goal=midcap-75
+                    for(let c=1,lc=b+1;c<lc;c++){
+                        if(this.energy.crystal[a][b-c][1]>this.energy.crystal[a][b][1]-25&&this.energy.crystal[a][b-c][4]){
+                            goal=this.energy.crystal[a][b-c][1]-(this.energy.crystal[a][b][6]?25:0)-(this.energy.crystal[a][b][4]&&!this.energy.crystal[a][b-c][4]?50:0)
+                            c=lc
+                        }
+                    }
+                    cap=min(goal,cap)
+                }
+            }
             for(let b=0,lb=this.energy.crystalTotal[a].length;b<lb;b++){
                 while(this.energy.crystalTotal[a][b]<this.energy.main[a][b]){
                     cap-=25
