@@ -163,11 +163,19 @@ class combatantManager{
     subSetTarget(a,list,priority){
         let minimum=1000
         for(let b=0,lb=list.length;b<lb;b++){
-            minimum=min(minimum,round(dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y)-(list[b]==priority?10:0)))
+            minimum=min(minimum,round(
+                dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y)-
+                (list[b]==priority?10:0)+
+                (distTargetCombatant(0,this.combatants[a],this.combatants[list[b]])<=0?100:0)
+            ))
         }
         let available=[]
         for(let b=0,lb=list.length;b<lb;b++){
-            if(round(dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y)-(list[b]==priority?10:0))<minimum+5&&this.combatants[list[b]].life>0){
+            if(round(
+                dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y)-
+                (list[b]==priority?10:0)+
+                (distTargetCombatant(0,this.combatants[a],this.combatants[list[b]])<=0?100:0)
+            )<minimum+5&&this.combatants[list[b]].life>0){
                 available.push(list[b])
             }
         }

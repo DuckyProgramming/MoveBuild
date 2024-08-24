@@ -1778,8 +1778,8 @@ class group{
                     this.cards[a].base.cost=min(this.cards[a].base.cost,args[1])
                 break
                 case 30:
-                    if(this.cards[a].cost>0&&args[1].includes(this.cards[a].class)){
-                        this.cards[a].cost=max(min(this.cards[a].cost,0),this.cards[a].cost-args[0])
+                    if(args[1].includes(this.cards[a].class)){
+                        this.cards[a].costDown(0,[args[0]])
                     }
                 break
                 case 31:

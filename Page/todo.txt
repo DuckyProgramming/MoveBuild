@@ -20,11 +20,6 @@ collection screen
 
 
 
-not all shiru cards are created equal
-
-
-
-
 
 
 MAJOR MTG CHANGES
@@ -185,6 +180,14 @@ create a plant tile and add a sakura card to hand
 [damage wish]
 [4 wish power pull from discard pile]
 20 total wishes after these two
+
+wish forged shield
+
+another wish-based storage
+
+
+
+dodge doubler
 
 [counter and gain wish power]
 
@@ -417,6 +420,8 @@ radiance of wealth - damage, upgrade cards, gain 5 currency
 has little line lasers with golden centers and pink edges
 
 divine age - draw 3 cards, they become ethereal
+
+counter jinx - 10 block, counter targets for 10 jinx
 
 
 

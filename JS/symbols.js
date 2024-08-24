@@ -5410,12 +5410,28 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.point(0,0)
         break
         case 581:
-            displayMtgManaSymbol(layer,0,0,6,0,0.5,fade,2,[1])
+            displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,2,[1])
         break
         case 582:
-            displayMtgManaSymbol(layer,0,0,6,0,0.5,fade,2,[1])
+            displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,2,[1])
             layer.fill(40,fade)
             layer.triangle(0,-7,-1,-9,1,-9)
+        break
+        case 583:
+            layer.fill(0,150,255,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,-2,3,3)
+            layer.quad(-4.5,0,-3,1.5,-1.5,0,-3,-1.5)
+        break
+        case 584:
+            displayMtgManaSymbol(layer,0,0,4,0,0.3,fade,-1,[])
+            layer.noFill()
+            layer.stroke(255,fade)
+            layer.strokeWeight(0.8)
+            layer.arc(0,0,10,10,-165,-105)
+            layer.arc(0,0,10,10,-75,-15)
+            layer.arc(0,0,10,10,15,75)
+            layer.arc(0,0,10,10,105,165)
         break
 
     }

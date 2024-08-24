@@ -169,7 +169,7 @@ class combatant{
                 'Counter Bleed Once Per Turn','Counter Gun Once','Counter Gun Once Per Turn','Counter Push Combat','Attack Burn Combat','All Strength Cycle 4 1','All Strength Cycle 4 2','All Strength Cycle 4 3','All Strength Cycle 4 4','Counter Weak All Combat',
                 'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength','3+ Cost Single Damage Up','3+ Cost Block','Item Use (N)','(E) Cycle 2 1','(E) Cycle 2 2','(W) Cycle 2 1','(W) Cycle 2 2',
                 '(B) Cycle 2 1','(B) Cycle 2 2','(K) Cycle 2 1','(K) Cycle 2 2','(G) Cycle 2 1','(G) Cycle 2 2','(R) Cycle 2 1','(R) Cycle 2 2','(N) Cycle 2 1','(N) Cycle 2 2',
-                'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns',
+                'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -230,7 +230,7 @@ class combatant{
                 0,2,0,0,0,2,2,2,2,0,//56
                 0,2,0,0,0,0,2,2,2,2,//57
                 2,2,2,2,2,2,2,2,2,2,//58
-                0,2,2,
+                0,2,2,2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -291,7 +291,7 @@ class combatant{
                 2,2,2,2,0,2,2,2,2,2,//56
                 2,2,2,2,2,2,2,2,2,2,//57
                 2,2,2,2,2,2,2,2,2,2,//58
-                2,2,2,
+                2,2,2,0,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
@@ -2664,6 +2664,13 @@ class combatant{
                                 this.statusEffect('Energy Next Turn',this.status.main[459])
                             }
                         }
+                        if(this.status.main[584]>0){
+                            if(this.battle.turn.main<=this.id){
+                                this.battle.addSpecificEnergy(this.status.main[584],this.id,4)
+                            }else{
+                                this.statusEffect('(G) Next Turn',this.status.main[584])
+                            }
+                        }
                     }
                     if(this.status.main[173]>0){
                         this.status.main[173]--
@@ -2807,6 +2814,9 @@ class combatant{
                 }
                 if(this.status.main[352]>0){
                     damage=max(min(1,damage),damage-this.status.main[352])
+                }
+                if(this.status.main[583]>0){
+                    damage=max(min(1,damage),damage-this.status.main[583])
                 }
                 if(this.status.main[123]>0){
                     damage*=2
