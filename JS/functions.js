@@ -2263,8 +2263,9 @@ function mtgManaBase(player){
 			missing.push(a+1)
 		}
 	}
+	let result=[]
 	if(playerColor.length==3){
-		return [
+		result=[
 			[playerColor[0],playerColor[0],playerColor[1],playerColor[1],playerColor[2]],
 			[playerColor[0],playerColor[0],playerColor[1],playerColor[2],playerColor[2]],
 			[playerColor[0],playerColor[1],playerColor[1],playerColor[2],playerColor[2]],
@@ -2276,7 +2277,7 @@ function mtgManaBase(player){
 			[playerColor[1],playerColor[1],playerColor[2],playerColor[2],playerColor[2]]
 		]
 	}else if(playerColor.length==2){
-		return [
+		result=[
 			[playerColor[0],playerColor[0],playerColor[0],playerColor[1],playerColor[1]],
 			[playerColor[0],playerColor[0],playerColor[1],playerColor[1],playerColor[1]],
 			[playerColor[0],playerColor[0],playerColor[1],playerColor[1],missing[0]],
@@ -2284,13 +2285,17 @@ function mtgManaBase(player){
 			[playerColor[0],playerColor[0],playerColor[1],playerColor[1],missing[2]]
 		]
 	}else{
-		return [
+		result=[
 			[playerColor[0],playerColor[0],playerColor[0],missing[0],missing[0]],
 			[playerColor[0],playerColor[0],playerColor[0],missing[1],missing[1]],
 			[playerColor[0],playerColor[0],playerColor[0],missing[2],missing[2]],
 			[playerColor[0],playerColor[0],playerColor[0],missing[3],missing[3]]
 		]
 	}
+	if(variants.prism||variants.ultraprism){
+		result.push([1,2,3,4,5])
+	}
+	return result
 }
 function mtgCombineColor(base1,base2){
 	/*

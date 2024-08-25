@@ -18,11 +18,11 @@ function setup(){
 
             //transition.trigger=true
             //transition.scene='menu'
-
+            
         current.menu.combatant=[17]
-        current.menu.deck=[0]
+        current.menu.deck=[-1]
 
-            //variants.mtg=true
+            variants.mtg=true
 
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){

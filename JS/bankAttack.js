@@ -667,7 +667,7 @@ attack.prototype.update=function(){
         case 4556: case 4557: case 4560: case 4561: case 4564: case 4565: case 4569: case 4570: case 4571: case 4572:
         case 4573: case 4574: case 4575: case 4576: case 4577: case 4579: case 4580: case 4581: case 4582: case 4583:
         case 4584: case 4595: case 4620: case 4621: case 4650: case 4654: case 4658: case 4659: case 4660: case 4661:
-        case 4662: case 4664: case 4665: case 4666: case 4669: case 4677: case 4698: case 4702:
+        case 4662: case 4664: case 4665: case 4666: case 4669: case 4677: case 4698: case 4702: case 4721:
             //mark 4
             if(
                 this.timer==1&&(
@@ -753,6 +753,7 @@ attack.prototype.update=function(){
         case 4288: case 4295: case 4297: case 4301: case 4302: case 4303: case 4329: case 4358: case 4359: case 4360:
         case 4361: case 4391: case 4415: case 4461: case 4462: case 4508: case 4509: case 4543: case 4600: case 4615:
         case 4616: case 4617: case 4622: case 4623: case 4635: case 4639: case 4640: case 4641: case 4652: case 4653:
+        case 4711: case 4712: case 4713: case 4714:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -883,7 +884,7 @@ attack.prototype.update=function(){
         case 3285: case 3291: case 3483: case 3490: case 3515: case 3521: case 3522: case 3562: case 3597: case 3601:
         case 3603: case 3604: case 3685: case 3734: case 3764: case 3776: case 3840: case 3954: case 4048: case 4191:
         case 4192: case 4193: case 4283: case 4286: case 4395: case 4416: case 4417: case 4418: case 4421: case 4422:
-        case 4423: case 4680: case 4681: case 4682:
+        case 4423: case 4680: case 4681: case 4682: case 4722: case 4723:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||
@@ -1706,7 +1707,7 @@ attack.prototype.update=function(){
         case 4138: case 4140: case 4142: case 4200: case 4201: case 4237: case 4238: case 4250: case 4252: case 4253:
         case 4254: case 4280: case 4289: case 4294: case 4298: case 4300: case 4318: case 4333: case 4372: case 4484:
         case 4500: case 4511: case 4512: case 4585: case 4637: case 4642: case 4645: case 4648: case 4649: case 4667:
-        case 4668: case 4672:
+        case 4668: case 4672: case 4724: case 4726:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -2431,7 +2432,7 @@ attack.prototype.update=function(){
         case 3988: case 3989: case 4007: case 4008: case 4021: case 4022: case 4023: case 4036: case 4040: case 4073:
         case 4086: case 4094: case 4095: case 4118: case 4119: case 4132: case 4182: case 4202: case 4205: case 4220:
         case 4221: case 4222: case 4266: case 4354: case 4424: case 4452: case 4487: case 4578: case 4591: case 4592:
-        case 4593: case 4704: case 4705: case 4706:
+        case 4593: case 4704: case 4705: case 4706: case 4715: case 4716: case 4717: case 4718: case 4719: case 4720:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -8954,7 +8955,7 @@ attack.prototype.update=function(){
             this.userCombatant.runAnimation(1/30,17)
             if(this.timer%30==15){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
-            }else if(this.timer>=30+this.procedure[0]*30){
+            }else if(this.timer>=(this.procedure[0]>=1?60:30)){
                 this.remove=true
             }
         break
@@ -9913,6 +9914,20 @@ attack.prototype.update=function(){
                 }else if(this.timer>=30){
                     this.remove=true
                 }
+            }
+        break
+        case 4725:
+            if(this.timer==1){
+                this.procedure[0]=this.selfCall(29)
+            }
+            if(this.timer%30==1){
+                this.userCombatant.startAnimation(17)
+            }
+            this.userCombatant.runAnimation(1/30,17)
+            if(this.timer%30==15){
+                this.targetCombatant.takeDamage(this.effect[0],this.user)
+            }else if(this.timer>=30+this.procedure[0]*30){
+                this.remove=true
             }
         break
 

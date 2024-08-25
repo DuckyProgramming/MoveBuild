@@ -130,7 +130,7 @@ class cardManager{
         }
         for(let a=0,la=game.playerNumber;a<la;a++){
             if(variants.cyclicDraw){
-                let list=['Buster','Multicard','sDropbox','DeDrop','Eye\nDropper','Dropout']
+                let list=['Buster','Multicard','Dropbox','DeDrop','Eye\nDropper','Dropout']
                 for(let b=0,lb=list.length;b<lb;b++){
                     if(findName(list[b],types.card)>=0){
                         this.listing.card[a+1][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))

@@ -1,5 +1,3 @@
-
-
 UNCOMING:
 
 new cards
@@ -87,6 +85,9 @@ variant of rainbow road/pothole/speed bump, etc, red mtg
 to complete the set of 5
 
 
+
+
+knife deflect - add 6 block, if your block is broken add a shiv
 
 sapphire facet - fires blue stars everywhere and lighter ones in set directions that create more particles
 

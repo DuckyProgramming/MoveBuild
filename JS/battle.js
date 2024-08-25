@@ -1240,8 +1240,8 @@ class battle{
         if(this.cardManagers[player].hand.totalPlayed[0]%5==0&&userCombatant.getStatus('5 Card Energy')>0){
             this.addEnergy(userCombatant.getStatus('5 Card Energy'),player)
         }
-        if(this.cardManagers[player].hand.totalPlayed[0]%5==0&&userCombatant.getStatus('5 Card Random Energy')>0){
-            this.addSpecificEnergy(userCombatant.getStatus('5 Card Random Energy'),player,floor(random(0,7)))
+        if(this.cardManagers[player].hand.totalPlayed[0]%5==0&&userCombatant.getStatus('5 Card Random Mana')>0){
+            this.addSpecificEnergy(userCombatant.getStatus('5 Card Random Mana'),player,floor(random(0,7)))
         }
         if(cardClass==11&&userCombatant.getStatus('Skill Temporary Strength')>0){
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Skill Temporary Strength'))

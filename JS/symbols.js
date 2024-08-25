@@ -4541,10 +4541,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(4.5,0,3)
         break
         case 479:
-            layer.fill(200,255,255,fade)
-            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
-            layer.fill(225,255,255,fade)
-            layer.quad(-4,0,0,-5,4,0,0,5)
+            displayMtgManaSymbol(layer,0,0,-1,0,0.4,fade,2,[1])
             layer.fill(125,fade)
             layer.stroke(100,fade)
             layer.strokeWeight(1)

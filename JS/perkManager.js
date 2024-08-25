@@ -13,8 +13,17 @@ class perkManager{
         this.addPerk([0,1,2,3,13][floor(random(0,5))])
         this.addPerk([4,5,6,7,12][floor(random(0,5))])
         this.addPerk([8,9,10,11,14][floor(random(0,5))])
-        if(variants.mtg&&mtgPlayerColor(this.battle.player[this.player]).length==1){
-            this.addPerk(15)
+        if(variants.mtg){
+            let base=this.battle.energy.base[this.player]
+            let active=[]
+            for(let a=0,la=base.length;a<la;a++){
+                if(!active.includes(base[a])){
+                    active.push(base[a])
+                }
+            }
+            if(active.length<=2){
+                this.addPerk(15)
+            }
         }
     }
     getPosKey(){
