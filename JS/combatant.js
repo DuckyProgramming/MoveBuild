@@ -202,7 +202,7 @@ class combatant{
                 2,0,2,0,0,0,1,2,1,0,//28
                 0,2,2,2,0,2,0,2,0,1,//29
                 0,0,0,0,0,0,0,1,0,1,//30
-                0,0,2,2,0,1,1,0,0,1,//31
+                0,0,2,2,0,1,6,0,0,1,//31
                 1,0,0,0,0,0,0,0,2,1,//32
                 0,1,0,0,0,0,0,0,0,1,//33
                 0,0,0,2,2,0,0,0,0,2,//34
@@ -293,7 +293,15 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//58
                 2,2,2,0,2,
             ]}
-        //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
+        /*
+        0-none
+        1-decrement
+        2-remove
+        3-early decrement, player
+        4-early decrement, enemy
+        5-early decrement, general
+        6-half decrement
+        */
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
         this.tempStatus=[1,0,0,0,0]
         //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed
@@ -593,7 +601,7 @@ class combatant{
                 this.statusEffect('Counter All Combat',6)
             break
             case 'Barbed Pillar':
-                this.statusEffect('Counter Bleed All Combat',3)
+                this.statusEffect('Counter Bleed All Combat',4)
             break
             case 'Glitch':
                 this.statusEffect('End Move',floor(random(1,3)))
@@ -3292,9 +3300,6 @@ class combatant{
                                     this.battle.turnManager.turnsBack.push(new turn(0,this.battle,3,[this.status.main[553]],this.id,false))
                                 }
                                 if(this.status.main[560]>0&&distance>=0&&distance<=1){
-                                    this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
-                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
-                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
                                     this.battle.turnManager.turnsBack.push(new turn(0,this.battle,87,[this.status.main[560]],this.id,false))
                                 }
                             }else{
@@ -3440,8 +3445,6 @@ class combatant{
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,3,[this.status.main[553]],this.id,false))
                                 }
                                 if(this.status.main[560]>0&&distance>=0&&distance<=1){
-                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
-                                    this.battle.turnManager.turns[1].target=[user]
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,87,[this.status.main[560]],this.id,false))
                                 }
                             }
@@ -3461,7 +3464,7 @@ class combatant{
                         if(this.status.main[78]>0){
                             userCombatant.takeDamage(this.status.main[78],-1)
                         }
-                        if(this.status.main[122]>0){
+                        if(this.status.main[122]>0&&userCombatant.block<=0){
                             userCombatant.statusEffect('Bleed',this.status.main[122])
                         }
                         if(this.status.main[176]>0){
@@ -4696,7 +4699,7 @@ class combatant{
                     
                 }
                 if(
-                    this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)
+                    this.status.behavior[a]==6&&!(a==306&&this.getStatus('Retain History')>0)
                 ){
                     if(this.status.main[a]>0){
                         this.status.main[a]=floor(this.status.main[a]/2)

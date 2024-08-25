@@ -161,6 +161,7 @@ class turnManager{
         }
     }
     loadEnemyTurnsMove(){
+        this.battle.combatantManager.setTargets()
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&this.battle.combatantManager.combatants[a].getStatus('Cannot Move')<=0){
                 for(let b=0,lb=this.battle.combatantManager.combatants[a].move.speed+this.battle.combatantManager.combatants[a].getStatus('Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Temporary Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Fragile Speed Up')+

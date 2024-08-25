@@ -5488,6 +5488,22 @@ class card{
             case 4700: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nIf Played First,\nGain (N) (N)`; break
             case 4701: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have No\nOther Attacks in Hand,\nGain (R) (R)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
 
+            case 4702: string+=`Gain (E) (E) (E) (N)\n(N) (N) (N) (N) (N)`; break
+            
+            case 4704: string+=`Gain ${effect[0]} Energy\nGain ${effect[1]} Poison`; break
+            case 4705: string+=`Gain (W) (K) (G)\nGain ${effect[0]} Poison`; break
+            case 4706: string+=`Gain (E) (W) (K) (G)\nGain ${effect[0]} Poison`; break
+            //3018
+
+            case 4707: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nA Random Card\nCosts ${effect[1]} Less`; break
+            case 4708: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nA Random Card\nCosts ${effect[1]} Less`; break
+            case 4709: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Random Mana`; break
+            case 4710: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Random Mana`; break
+            //3591,3662
+
+
+
+
 
 
 
@@ -7062,10 +7078,29 @@ class card{
         }
     }
     doubleBoth(){
-        if(!this.additionalSpec.includes(-3)){
-            this.additionalSpec.push(-3)
+        if(!this.additionalSpec.includes(61)){
+            this.additionalSpec.push(61)
         }
-        this.cost*=2
+        if(variants.mtg){
+            if(this.specialCost){
+                this.cost[0]*=2
+                this.base.cost[0]*=2
+            }else{
+                for(let a=0,la=this.cost.length;a<la;a++){
+                    this.cost.splice(a,0,this.cost[a])
+                    a++
+                    la++
+                }
+                for(let a=0,la=this.base.cost.length;a<la;a++){
+                    this.base.cost.splice(a,0,this.base.cost[a])
+                    a++
+                    la++
+                }
+            }
+        }else{
+            this.cost*=2
+            this.base.cost*=2
+        }
         if(this.spec.includes(12)){
             for(let a=0,la=this.effect.length;a<la;a++){
                 for(let b=0,lb=this.attack[a].length;b<lb;b++){

@@ -106,7 +106,6 @@ class relicManager{
         }else if(variants.mtg){
             let groups=[[],[],[],[],[],[],[],[]]
             for(let a=0,la=this.listing.relic[4].length;a<la;a++){
-                print(types.relic[this.listing.relic[4][a]].manaColor,types.relic[this.listing.relic[4][a]].name)
                 groups[types.relic[this.listing.relic[4][a]].manaColor].push(this.listing.relic[4][a])
             }
             for(let a=0,la=3;a<la;a++){

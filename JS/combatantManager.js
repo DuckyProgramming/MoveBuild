@@ -187,9 +187,10 @@ class combatantManager{
         let list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(
-                this.combatants[a].life>0&&
-                (this.combatants[index].team==0&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support||this.combatants[a].support&&this.combatants[a].life>0||
-                (this.combatants[index].construct||this.combatants[index].support)&&this.combatants[a].team==0)
+                this.combatants[a].life>0&&(
+                    this.combatants[index].team==0&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support||this.combatants[a].support&&this.combatants[a].life>0||
+                    (this.combatants[index].construct||this.combatants[index].support)&&this.combatants[a].team==0
+                )
             ){
                 list.push(a)
             }

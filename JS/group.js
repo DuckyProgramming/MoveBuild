@@ -3506,15 +3506,6 @@ class group{
                     if(this.cards[a].spec.includes(57)&&this.cards[a].attack!=1491&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
                         this.cards[a].spec.splice(this.cards[a].spec.indexOf(57))
                         this.cards[a].usable=true
-                    }else if((this.status[3]>0||this.status[25]>0&&this.cards[a].colorless()&&this.cards[a].rarity!=2||this.status[32]>0&&this.cards[a].class==1)&&this.cards[a].attack!=1491&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
-                        if(this.status[32]>0&&this.cards[a].class==1){
-                            this.status[32]--
-                        }else if(this.status[25]>0&&this.cards[a].colorless()&&this.cards[a].rarity!=2){
-                            this.status[25]--
-                        }else{
-                            this.status[3]--
-                        }
-                        this.cards[a].usable=true
                     }else if(userCombatant.getStatus('Double Play')>0){
                         userCombatant.status.main[findList('Double Play',userCombatant.status.name)]--
                         this.cards[a].usable=true
@@ -3538,6 +3529,16 @@ class group{
                             ){
                                 this.cards[a].purge=true
                             }
+                        }else if((this.status[3]>0||this.status[25]>0&&this.cards[a].colorless()&&this.cards[a].rarity!=2||this.status[32]>0&&this.cards[a].class==1)&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
+                            if(this.status[32]>0&&this.cards[a].class==1){
+                                this.status[32]--
+                            }else if(this.status[25]>0&&this.cards[a].colorless()&&this.cards[a].rarity!=2){
+                                this.status[25]--
+                            }else{
+                                this.status[3]--
+                            }
+                            this.cards[a].usable=true
+                            this.cards[a].deSize=false
                         }
                     }
                     if(this.battle.modded(108)&&floor(random(0,50))==0){
@@ -3669,16 +3670,6 @@ class group{
                             this.cards[b].spec.splice(this.cards[b].spec.indexOf(57))
                             this.cards[b].usable=true
                             this.cards[b].select=false
-                        }else if((this.status[3]>0||this.status[25]>0&&this.cards[b].colorless()&&this.cards[b].rarity!=2||this.status[32]>0&&this.cards[b].class==1)&&this.cards[b].attack!=1491&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
-                            if(this.status[32]>0&&this.cards[b].class==1){
-                                this.status[32]--
-                            }else if(this.status[25]>0&&this.cards[b].colorless()&&this.cards[b].rarity!=2){
-                                this.status[25]--
-                            }else{
-                                this.status[3]--
-                            }
-                            this.cards[b].usable=true
-                            this.cards[b].select=false
                         }else if(userCombatant.getStatus('Double Play')>0){
                             userCombatant.status.main[findList('Double Play',userCombatant.status.name)]--
                             this.cards[b].usable=true
@@ -3696,6 +3687,22 @@ class group{
                                 )&&this.battle.relicManager.hasRelic(11,this.player)
                             ){
                                 this.cards[b].exhaust=true
+                                if(
+                                    this.cards[a].class==4||
+                                    this.cards[a].spec.includes(56)
+                                ){
+                                    this.cards[a].purge=true
+                                }
+                            }else if((this.status[3]>0||this.status[25]>0&&this.cards[b].colorless()&&this.cards[b].rarity!=2||this.status[32]>0&&this.cards[b].class==1)&&this.cards[b].attack!=1491&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
+                                if(this.status[32]>0&&this.cards[b].class==1){
+                                    this.status[32]--
+                                }else if(this.status[25]>0&&this.cards[b].colorless()&&this.cards[b].rarity!=2){
+                                    this.status[25]--
+                                }else{
+                                    this.status[3]--
+                                }
+                                this.cards[b].usable=true
+                                this.cards[b].select=false
                             }
                         }
                         if(this.battle.modded(108)&&floor(random(0,50))==0){
@@ -3832,16 +3839,6 @@ class group{
                                 this.cards[b].spec.splice(this.cards[b].spec.indexOf(57))
                                 this.cards[b].usable=true
                                 this.cards[b].select=false
-                            }else if((this.status[3]>0||this.status[25]>0&&this.cards[b].colorless()&&this.cards[b].rarity!=2||this.status[32]>0&&this.cards[b].class==1)&&this.cards[b].attack!=1491&&!options.oldDuplicate){
-                                if(this.status[32]>0&&this.cards[b].class==1){
-                                    this.status[32]--
-                                }else if(this.status[25]>0&&this.cards[b].colorless()&&this.cards[b].rarity!=2){
-                                    this.status[25]--
-                                }else{
-                                    this.status[3]--
-                                }
-                                this.cards[b].usable=true
-                                this.cards[b].select=false
                             }else if(userCombatant.getStatus('Double Play')>0){
                                 userCombatant.status.main[findList('Double Play',userCombatant.status.name)]--
                                 this.cards[b].usable=true
@@ -3859,6 +3856,22 @@ class group{
                                     )&&this.battle.relicManager.hasRelic(11,this.player)
                                 ){
                                     this.cards[b].exhaust=true
+                                    if(
+                                        this.cards[a].class==4||
+                                        this.cards[a].spec.includes(56)
+                                    ){
+                                        this.cards[a].purge=true
+                                    }
+                                }else if((this.status[3]>0||this.status[25]>0&&this.cards[a].colorless()&&this.cards[a].rarity!=2||this.status[32]>0&&this.cards[a].class==1)&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
+                                    if(this.status[32]>0&&this.cards[a].class==1){
+                                        this.status[32]--
+                                    }else if(this.status[25]>0&&this.cards[a].colorless()&&this.cards[a].rarity!=2){
+                                        this.status[25]--
+                                    }else{
+                                        this.status[3]--
+                                    }
+                                    this.cards[a].usable=true
+                                    this.cards[a].deSize=false
                                 }
                             }
                             if(this.battle.modded(108)&&floor(random(0,50))==0){

@@ -1021,7 +1021,7 @@ class relic{
                 case 'Energy/Rest Upgrade':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
                     displaySymbol(this.layer,8,-4,8,0,0.75,this.fade)
-                    displaySymbol(this.layer,8,-4,17,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,-4,7,0,0.4,this.fade)
                     displaySymbol(this.layer,8,8,32,0,0.6,this.fade)
                 break
                 case 'Energy/Curses':

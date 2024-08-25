@@ -1,6 +1,6 @@
-UNCOMING:
 
-mtg updates
+
+UNCOMING:
 
 new cards
 
@@ -12,8 +12,6 @@ deploy new events
 
 give shinmy a model
 
-gift rewards button
-
 collection screen
 
 
@@ -21,53 +19,14 @@ collection screen
 
 
 
+MTG PRISM
 
-MAJOR MTG CHANGES
-
-METAS
-
-1 mana = 8 damage
-1 mana = 12 block
-1 mana = 4 heal
-
-all spells of wonder should cost 2 hybrid and 1 neutral mana
-22,32,40
-
-all flame wars cost 1 hybrid mana
-24,30,40
-
-all tridents cost 2 hybrid mana
-16,26,35
-
-silver cards instead only activate when (K) is spent
-
-case 7:
-    return [1,2]
-case 8:
-    return [1,3]
-case 9:
-    return [1,4]
-case 10:
-    return [1,5]
-case 11:
-    return [2,3]
-case 12:
-    return [2,4]
-case 13:
-    return [2,5]
-case 14:
-    return [3,4]
-case 15:
-    return [3,5]
-case 16:
-    return [4,5]
-default:
-    return [base]
+MTG ULTRAPRISM
 
 
 
 
-button to gift remaining battle rewards to other player
+
 
 title screen 5th button - collection
 lists all cards, if you've seen them
@@ -139,6 +98,8 @@ twin leaf barrage - variant of floret fractal, fire 2 leaves, blue and yellow th
 
 [moon rain - animate actual rain particles]
 
+
+
 astrology sphere
 
 whirling tomb - water particles, spawn from circular points around target, fire first toward center and then toward the sides
@@ -158,6 +119,13 @@ must be mono green
 trapezius - 10 damage, draw a fatigue
 
 accoutrement - 14 block, when discarded get 2 silver daggers
+
+stun dust - every 4 times played, apply 1 stun
+
+junkyard road to recovery - suicidal, lose health when removed
+
+10 damage and a glass orb
+
 
 
 
@@ -356,7 +324,7 @@ cracked clock - take another turn, can't draw extra during it
 
 shiv dimension - take another turn, on that turn get 5 shivs
 
-twisted time - take another turn, all enemies take another turn
+twisted time - 1 cost, take another turn, all enemies take another turn
 
 waste utilization - exhaust a card, add a prismatic bomb to discard pile
 
@@ -375,10 +343,6 @@ sharp eye - draw 1 card, center of hand: gain 1 energy, exhaust
 vantage - 10 block, upgrade 2 random cards if played first
 
 trigger itch - 3 cost gun, a random card in hand costs 0 temporarily
-
-maple dance - gain 3 temp strength, increases by 1 when drawn
-
-tremble - 5 damage, every 3 times played apply 1 stun, exhaust
 
 
 
@@ -422,6 +386,14 @@ has little line lasers with golden centers and pink edges
 divine age - draw 3 cards, they become ethereal
 
 counter jinx - 10 block, counter targets for 10 jinx
+
+
+
+anticlash - opposite of clash, add defense if you have only attacks
+
+reliable knife but a shield
+
+cashload - gain double currency from this combat
 
 
 
@@ -514,7 +486,7 @@ world 3:
 
 enemies:
 
-speedrunner - every time you play 10 cards, he gets an extra turn
+speedrunner - []
 the subconcious - forces you to play the top card of your draw pile every turn, and fills your deck with pure garbage
 management robot commander - like a normal robot but can buff other robots and stronger generally
 

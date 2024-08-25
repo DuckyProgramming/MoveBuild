@@ -925,7 +925,7 @@ types={
         {name:'Loaded Disk',internal:'Paper Items',id:239,rarity:2,list:0,mtg:0,description:'Gain a Cream Paper or Pink\nPaper Item on Turn 1'},
 
         {name:'Enlightened Duck',internal:'Boss Spectral Pack',id:240,rarity:2,list:0,mtg:0,description:'Open a Spectral Pack After Every Boss'},
-        {name:'Jester Duck',internal:'Random Enemy Statuses',id:241,rarity:0,list:0,mtg:0,description:'All Enemies Start Combat\nWith 1 Burn, Freeze, or Shock'},
+        {name:'Jester Duck',internal:'Random Enemy Statuses',id:241,rarity:0,list:0,mtg:0,description:'All Enemies Start Combat\nWith 1 Burn, Freeze, and Shock'},
         {name:'Asphalt Block',internal:'Energy/Miss',id:242,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nGain 2 Miss on Turn 1'},
         {name:'Radioscope',internal:'Energy/View',id:243,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nCannot See Draw and Discard Piles'},
         {name:'Blue Raspberry',internal:'Spectral Rest',id:244,rarity:2,list:0,mtg:0,description:'You Can Open Spectral\nPacks When Resting, 3 Uses'},
@@ -8113,7 +8113,7 @@ Besides, ghost objects aren't useful in the real world, right?`,
         },{
             level:['Gapped 7'],class:2,world:2,
             name:'Chief Engineering Officer',
-            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:1,y:1},name:'Chief Engineering Officer'},
             ],reinforce:[

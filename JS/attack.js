@@ -214,7 +214,7 @@ class attack{
             case 4446: case 4449: case 4454: case 4456: case 4457: case 4466: case 4472: case 4477: case 4478: case 4479: case 4484: case 4485: case 4488: case 4498: case 4500: case 4501: case 4502: case 4510: case 4511: case 4512:
             case 4515: case 4516: case 4525: case 4529: case 4533: case 4548: case 4550: case 4551: case 4554: case 4559: case 4562: case 4563: case 4585: case 4594: case 4596: case 4597: case 4598: case 4599: case 4601: case 4609:
             case 4610: case 4611: case 4612: case 4614: case 4618: case 4633: case 4637: case 4642: case 4645: case 4646: case 4648: case 4649: case 4651: case 4667: case 4668: case 4671: case 4672: case 4673: case 4674: case 4675:
-            case 4676: case 4679: case 4684: case 4685: case 4686: case 4687: case 4694: case 4695: case 4696: case 4701:
+            case 4676: case 4679: case 4684: case 4685: case 4686: case 4687: case 4694: case 4695: case 4696: case 4701: case 4708: case 4710:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -4782,6 +4782,14 @@ class attack{
                             this.userManager.draw(this.effect[1])
                         }
                     break
+                    case 4708:
+                        this.userManager.randomEffect(2,1,[this.effect[1]])
+                    break
+                    case 4710:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.addSpecificEnergy(1,this.player,floor(random(1,7)))
+                        }
+                    break
 
                 }
                 //mark 1s
@@ -6422,6 +6430,14 @@ class attack{
                     case 4699:
                         this.battle.addSpecificEnergy(1,this.player,6)
                         this.userCombatant.statusEffect('Random Mana Next Turn',-this.effect[1])
+                    break
+                    case 4707:
+                        this.userManager.randomEffect(2,1,[this.effect[1]])
+                    break
+                    case 4709:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.addSpecificEnergy(1,this.player,floor(random(1,7)))
+                        }
                     break
 
                 }
@@ -9909,6 +9925,10 @@ class attack{
                     break
                     case 4698:
                         this.userCombatant.statusEffect('Dodge (G)',this.effect[0])
+                    break
+                    case 4702:
+                        this.battle.addSpecificEnergy(3,this.player,6)
+                        this.battle.addSpecificEnergy(6,this.player,0)
                     break
 
                 }
@@ -16107,7 +16127,7 @@ class attack{
                     case 3018:
                         if(variants.mtg){
                             for(let a=0,la=this.effect[0];a<la;a++){
-                                this.battle.addSpecificEnergy(1,this.user,a>=3?6:[3,4,1][a])
+                                this.battle.addSpecificEnergy(1,this.player,a>=3?6:[3,4,1][a])
                             }
                         }else{
                             let roll3018=this.userCombatant.luckCheck()?this.effect[0]:this.userCombatant.luckCheckFail()?1:floor(random(1,this.effect[0]+1))
@@ -16583,6 +16603,23 @@ class attack{
                         if(this.battle.encounter.class==2){
                             this.battle.relicManager.addRandomRelic(this.player)
                         }
+                    break
+                    case 4704:
+                        this.battle.addEnergy(this.effect[0],this.player)
+                        this.userCombatant.statusEffect('Poison',this.effect[1])
+                    break
+                    case 4705:
+                        this.battle.addSpecificEnergy(1,this.player,1)
+                        this.battle.addSpecificEnergy(1,this.player,3)
+                        this.battle.addSpecificEnergy(1,this.player,4)
+                        this.userCombatant.statusEffect('Poison',this.effect[0])
+                    break
+                    case 4706:
+                        this.battle.addSpecificEnergy(1,this.player,6)
+                        this.battle.addSpecificEnergy(1,this.player,1)
+                        this.battle.addSpecificEnergy(1,this.player,3)
+                        this.battle.addSpecificEnergy(1,this.player,4)
+                        this.userCombatant.statusEffect('Poison',this.effect[0])
                     break
 
                 }
