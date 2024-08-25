@@ -2940,7 +2940,7 @@ class particle{
             break
             case 108: case 140: case 142:
                 this.position.x+=lsin(this.direction)*this.speed
-                this.position.y-=lcos(this.direction)*this.speed-10/this.timer
+                this.position.y-=lcos(this.direction)*this.speed
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,10)
                 this.scale=smoothAnim(this.scale,this.time<this.timer*2-5,0,1,10)
                 if(this.fade<=0){

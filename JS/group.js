@@ -1256,7 +1256,7 @@ class group{
                 case 49:
                     if(this.cards[a].spec.includes(35)&&this.cards[a].usable){
                         this.cards[a].cost=round(this.cards[a].cost/2)
-                        this.cards[a].onIncrementCountdown()
+                        this.cards[a].onIncrementCountdown([])
                     }
                 break
                 case 50:
@@ -1289,13 +1289,13 @@ class group{
                 case 54:
                     if(this.cards[a].spec.includes(35)&&this.cards[a].usable){
                         this.cards[a].setCost(0,[0])
-                        this.cards[a].onIncrementCountdown()
+                        this.cards[a].onIncrementCountdown([])
                     }
                 break
                 case 55:
                     if(this.cards[a].spec.includes(35)&&this.cards[a].usable){
                         this.cards[a].cost=floor(this.cards[a].cost/2)
-                        this.cards[a].onIncrementCountdown()
+                        this.cards[a].onIncrementCountdown([])
                     }
                 break
                 case 56:
@@ -1379,8 +1379,7 @@ class group{
                 break
                 case 73:
                     if(this.cards[a].class==4){
-                        this.cards[a].cost=max(this.cards[a].cost-1,min(0,this.cards[a].cost))
-                        this.cards[a].base.cost=max(this.cards[a].base.cost-1,min(0,this.cards[a].base.cost))
+                        this.cards[a].costDown(2,[1])
                         this.cards[a].spec.push(1)
                     }
                 break
@@ -1646,7 +1645,7 @@ class group{
                 case 8:
                     if(this.cards[a].spec.includes(35)&&this.cards[a].usable){
                         this.cards[a].cost=max(0,this.cards[a].cost-args[0])
-                        this.cards[a].onIncrementCountdown()
+                        this.cards[a].onIncrementCountdown([])
                     }
                 break
                 case 9:
@@ -1745,7 +1744,7 @@ class group{
                     }
                 break
                 case 24:
-                    if(this.cards[a].attack==args[0]){
+                    if(args.includes(this.cards[a].attack)){
                         this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                         a--
                         la--
@@ -1801,8 +1800,8 @@ class group{
                     }
                 break
                 case 35:
-                    if(this.cards[a].cost>0&&!this.cards[a].spec.includes(args[1])){
-                        this.cards[a].cost=max(min(this.cards[a].cost,0),this.cards[a].cost-args[0])
+                    if(this.cards[a].getCost(0)>0&&!this.cards[a].spec.includes(args[1])){
+                        this.cards[a].costDown(0,[args[0]])
                     }
                 break
                 case 36:
@@ -1820,14 +1819,13 @@ class group{
                     }
                 break
                 case 38:
-                    if(this.cards[a].cost>0&&this.cards[a].class==args[0]){
-                        this.cards[a].cost=max(min(this.cards[a].cost,0),this.cards[a].cost-args[1])
-                        this.cards[a].base.cost=max(min(this.cards[a].base.cost,0),this.cards[a].base.cost-args[1])
+                    if(this.cards[a].getCost(0)>0&&this.cards[a].class==args[0]){
+                        this.cards[a].costDown(2,[args[1]])
                     }
                 break
                 case 39:
-                    if(this.cards[a].cost>0&&(this.cards[a].class==args[0]||args[0]==0)){
-                        this.cards[a].cost=max(min(this.cards[a].cost,0),this.cards[a].cost-args[1])
+                    if(this.cards[a].getCost(0)>0&&(this.cards[a].class==args[0]||args[0]==0)){
+                        this.cards[a].costDown(0,[args[1]])
                     }
                 break
                 case 40:
@@ -2053,7 +2051,7 @@ class group{
                         this.battle.cardManagers[this.player].reserve.slideTop()
                     break
                     case 26:
-                        this.cards[index].cost=max(0,this.cards[index].cost-args[0])
+                        this.cards[index].costDown(0,[args[0]])
                     break
                     case 27: case 32:
                         this.cards[index].cost=args[0]
@@ -2120,7 +2118,7 @@ class group{
                         this.cards[index]=this.battle.cardManagers[this.player].transformCard(this.cards[index])
                     break
                     case 48:
-                        this.cards[index].cost=max(this.cards[index].cost-args[0],0)
+                        this.cards[index].costDown(0,[args[0]])
                         if(!this.cards[index].spec.includes(1)){
                             this.cards[index].spec.push(1)
                         }
@@ -2559,6 +2557,9 @@ class group{
             break
             case 4655: case 4656: case 4657:
                 this.battle.addSpecificEnergy(1,this.player,6)
+            break
+            case 4746:
+                this.battle.addSpecificEnergy(1,this.player,3)
             break
         }
         return false
@@ -4550,7 +4551,7 @@ class group{
                                 this.cards[a].additionalSpec.push(-2)
                                 this.cards[a].updateSpecialCost()
                                 this.cards[a].usable=true
-                                this.cards[a].edited.cost-=this.cards[a].cost
+                                this.cards[a].edited.cost-=this.cards[a].getCost(0)
                                 this.cards[a].edited.costComplete=true
                                 this.cards[a].setCost(0,[0])
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(13),1)
@@ -5164,6 +5165,7 @@ class group{
                                         let costLeft=result[1]
                                         this.battle.mtgLose(this.player,energyPay)
                                         this.cards[a].cost=copyArray(costLeft)
+                                        this.cards[a].onIncrementCountdown(energyPay)
                                     }else if(this.cards[a].spec.includes(35)&&!variants.mtg&&this.battle.getEnergy(this.player)>0&&this.cards[a].cost>0){
                                         let cost=this.cards[a].cost
                                         if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
@@ -5173,7 +5175,7 @@ class group{
                                             this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player))
                                             this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player)
                                         }
-                                        this.cards[a].onIncrementCountdown()
+                                        this.cards[a].onIncrementCountdown([])
                                     }else if(!this.cards[a].energyAfford){
                                         this.battle.anim.upAfford=true
                                     }
@@ -5605,6 +5607,7 @@ class group{
                                         let costLeft=result[1]
                                         this.battle.mtgLose(this.player,energyPay)
                                         this.cards[a].cost=copyArray(costLeft)
+                                        this.cards[a].onIncrementCountdown(energyPay)
                                     }else if(this.cards[a].spec.includes(35)&&!variants.mtg&&this.battle.getEnergy(this.player)>0&&this.cards[a].cost>0){
                                         let cost=this.cards[a].cost
                                         if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
@@ -5614,7 +5617,7 @@ class group{
                                             this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player))
                                             this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player)
                                         }
-                                        this.cards[a].onIncrementCountdown()
+                                        this.cards[a].onIncrementCountdown([])
                                     }else{
                                         this.battle.anim.upAfford=true
                                     }

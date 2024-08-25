@@ -347,7 +347,8 @@ class cardManager{
                     break
                     case 1:
                         if((
-                                variants.mtg&&arrayPurge(types.card[list[b]].mtg.levels[effectiveLevel].cost,[-3]).length!=args[ticker]||
+                                variants.mtg&&args[ticker]!=-1&&arrayPurge(types.card[list[b]].mtg.levels[effectiveLevel].cost,[-3]).length!=args[ticker]||
+                                variants.mtg&&args[ticker]==-1&&!types.card[list[b]].mtg.levels[effectiveLevel].cost.includes(-3)||
                                 !variants.mtg&&types.card[list[b]].levels[effectiveLevel].cost!=args[ticker]
                             )||
                             types.card[list[b]].levels[effectiveLevel].spec.includes(5)||

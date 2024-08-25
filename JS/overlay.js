@@ -208,7 +208,7 @@ class overlay{
                 this.taken=0
                 this.setupArgs=args
                 let upKey=0
-                if(args[2]==7||args[2]==9||args[2]==10||args[2]==11||args[2]==17||args[2]==22||args[2]==27||args[2]==34||args[2]==33||args[2]==37){
+                if(args[2]==7||args[2]==9||args[2]==10||args[2]==11||args[2]==17||args[2]==22||args[2]==26||args[2]==27||args[2]==34||args[2]==33||args[2]==37){
                     this.options=args[3]
                 }else{
                     this.options=variants.unary?1:3
@@ -614,10 +614,11 @@ class overlay{
                     break
                     case 26:
                         for(let a=0,la=this.options;a<la;a++){
-                            list=copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                             for(let b=0,lb=list[args[1]].length;b<lb;b++){
                                 if(
-                                    types.card[list[args[1]][b]].levels[args[0]].cost!=a+1||
+                                    variants.mtg&&types.card[list[args[1]][b]].mtg.levels[args[0]].cost.length!=a+1||
+                                    !variants.mtg&&types.card[list[args[1]][b]].levels[args[0]].cost!=a+1||
                                     specialCost(types.card[list[args[1]][b]].levels[args[0]])
                                 ){
                                     list[args[1]].splice(b,1)
@@ -627,7 +628,7 @@ class overlay{
                             }
                             if(list[args[1]].length>0){
                                 let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],types.card[list[args[1]][index]].list,-1))
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
                                 this.cards[this.cards.length-1].upSize=true
                                 list[args[1]].splice(index,1)
                             }
@@ -862,7 +863,7 @@ class overlay{
                     this.cards=[]
                     this.marks=[]
                     this.taken=0
-                    let mark=-1
+                    let mark=-2
                     let tick=0
                     let total=0
                     switch(this.args[2]){

@@ -4417,8 +4417,8 @@ class combatant{
                 this.battle.particleManager.createNumber(77,this.position.x,this.position.y,gain)
             }
             if(this.id<this.battle.players){
-                this.battle.cardManagers[this.id].discard.allEffectArgs(24,[3198])
-                this.battle.cardManagers[this.id].reserve.allEffectArgs(24,[3198])
+                this.battle.cardManagers[this.id].discard.allEffectArgs(24,[3198,4727])
+                this.battle.cardManagers[this.id].reserve.allEffectArgs(24,[3198,4727])
             }
             this.life=min(this.life+ceil(gain),this.base.life)
         }
@@ -4471,6 +4471,10 @@ class combatant{
             }
             if(this.id<this.battle.players){
                 this.battle.relicManager.activate(20,[amount,this.id])
+            }
+            if(this.id<this.battle.players){
+                this.battle.cardManagers[this.id].discard.allEffectArgs(24,[4727])
+                this.battle.cardManagers[this.id].reserve.allEffectArgs(24,[4727])
             }
         }
     }
