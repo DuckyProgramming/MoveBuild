@@ -44,8 +44,8 @@ class attack{
         this.tilePosition={x:this.userCombatant.tilePosition.x,y:this.userCombatant.tilePosition.y}
         switch(this.attackClass){
             case 1:
-                this.userCombatant.tempStatus=[1,0,0,0,0]
-                this.clearAttack=[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+                this.userCombatant.tempStatus=[1,0,0,0,0,0]
+                this.clearAttack=[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
                 if(this.userCombatant.getStatus('Double Damage')>0){
                     this.clearAttack[0]=true
                     this.userCombatant.tempStatus[0]*=2
@@ -106,6 +106,10 @@ class attack{
                     this.clearAttack[14]=true
                     this.userCombatant.tempStatus[0]*=1.5
                     this.userCombatant.tempStatus[1]++
+                }
+                if(this.userCombatant.getStatus('Single Attack Regeneration')>0){
+                    this.clearAttack[15]=true
+                    this.userCombatant.tempStatus[5]+=this.userCombatant.getStatus('Single Attack Regeneration')
                 }
             break
         }
@@ -215,7 +219,7 @@ class attack{
             case 4515: case 4516: case 4525: case 4529: case 4533: case 4548: case 4550: case 4551: case 4554: case 4559: case 4562: case 4563: case 4585: case 4594: case 4596: case 4597: case 4598: case 4599: case 4601: case 4609:
             case 4610: case 4611: case 4612: case 4614: case 4618: case 4633: case 4637: case 4642: case 4645: case 4646: case 4648: case 4649: case 4651: case 4667: case 4668: case 4671: case 4672: case 4673: case 4674: case 4675:
             case 4676: case 4679: case 4684: case 4685: case 4686: case 4687: case 4694: case 4695: case 4696: case 4701: case 4708: case 4710: case 4724: case 4725: case 4726: case 4727: case 4728: case 4729: case 4730: case 4736:
-            case 4738: case 4739: case 4740: case 4741: case 4743: case 4744: case 4745:
+            case 4738: case 4739: case 4740: case 4741: case 4743: case 4744: case 4745: case 4750: case 4752: case 4754: case 4755:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -610,7 +614,7 @@ class attack{
                 this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
                 this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
                 this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
-                if(this.userManager.hand.cards.length!=6){
+                if(this.handSize!=6){
                     this.remove=true
                 }
             break
@@ -620,7 +624,7 @@ class attack{
                 this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
                 this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
                 this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
-                if(this.userManager.hand.cards.length!=7){
+                if(this.handSize!=7){
                     this.remove=true
                 }
             break
@@ -2135,6 +2139,19 @@ class attack{
                     break
                     case 4466:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.mtgEnergy.length==7?3:1),this.user)
+                    break
+                    case 4750:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.handSize==1&&(variants.mtg?this.mtgEnergy.length:this.energy)==1?2:1),this.user)
+                    break
+                    case 4752:
+                        if(this.userCombatant.energyParity(this.mtgEnergy.length)==1){
+                            this.userCombatant.takeDamage(this.effect[0],this.user)
+                        }else{
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        }
+                    break
+                    case 4755:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.block>0?0.5:1),this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -7744,7 +7761,7 @@ class attack{
                     case 92:
                         this.userManager.deAbstract(1,this.effect[0],[])
                     break
-                    case 98: case 1802:
+                    case 98: case 1802: case 4753:
                         this.userCombatant.statusEffect('Temporary Damage Up',this.effect[0])
                     break
                     case 113: case 799: case 2306: case 2673: case 4032:
@@ -8374,27 +8391,7 @@ class attack{
                         }
                     break
                     case 1735:
-                        let total=0
-                        for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
-                            if(this.userManager.hand.cards[a].spec.includes(12)){
-                                for(let b=0,lb=this.userManager.hand.cards[a].effect.length;b<lb;b++){
-                                    for(let c=0,lc=this.userManager.hand.cards[a].effect[b].length;c<lc;c++){
-                                        if(this.userManager.hand.cards[a].effect[b][c]==1){
-                                            total++
-                                            b=lb
-                                        }
-                                    }
-                                }
-                            }else{
-                                for(let b=0,lb=this.userManager.hand.cards[a].effect.length;b<lb;b++){
-                                    if(this.userManager.hand.cards[a].effect[b]==1){
-                                        total++
-                                        b=lb
-                                    }
-                                }
-                            }
-                        }
-                        if(total>=2){
+                        if(this.userManager.hand.numberAbstract(17,[1])>=2){
                             this.battle.addEnergy(this.effect[0],this.player)
                             this.userManager.draw(this.effect[1])
                         }
@@ -9958,6 +9955,12 @@ class attack{
                         this.userManager.draw(this.effect[0])
                         this.battle.addCurrency(this.effect[1],this.player)
                     break
+                    case 4756: case 4757: case 4758:
+                        if(this.userManager.hand.numberAbstract(17,[1])>=2){
+                            this.battle.addSpecificEnergy(this.type-4754,this.player,6)
+                            this.userManager.draw(this.effect[0])
+                        }
+                    break
 
                 }
                 //mark 4
@@ -10897,8 +10900,8 @@ class attack{
                     break
                     case 1813:
                         if(this.battle.getEnergy(this.player)%3==0){
-                            this.userManager.hand.addAbstract(findName('Snip',types.card),0,0,0,[6],[0,ceil(this.battle.getEnergy(this.player/3))])
-                            this.battle.loseEnergy(ceil(this.battle.getEnergy(this.player/3)),this.player)
+                            this.userManager.hand.addAbstract(findName('Snip',types.card),0,0,0,[6],[0,ceil(this.battle.getEnergy(this.player)/3)])
+                            this.battle.loseEnergy(ceil(this.battle.getEnergy(this.player)/3),this.player)
                         }
                     break
                     case 1849:
@@ -12921,6 +12924,9 @@ class attack{
                     case 4723:
                         this.battle.addSpecificEnergy(this.effect[0]*this.energy+this.effect[1],this.player,6)
                     break
+                    case 4751:
+                        this.userCombatant.loseMaxHP(this.effect[0])
+                    break
 
                 }
                 //mark 6
@@ -13812,7 +13818,7 @@ class attack{
                         }
                         this.targetCombatant.takeDamage(this.effect[0]*total2,this.user)
                     break
-                    case 1279:
+                    case 1279: case 4754:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.userCombatant.randomStatusInstant(this.effect[1],[1])
                     break
@@ -14085,7 +14091,7 @@ class attack{
                         }
                     break
                     case 1512:
-                        this.targetCombatant.takeDamage(this.effect[0]*(this.handSize==1?2:1),this.user)
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.handSize==1&&this.energy==1?2:1),this.user)
                     break
                     case 1519:
                         if(this.targetCombatant.life<this.effect[0]){

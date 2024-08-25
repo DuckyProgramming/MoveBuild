@@ -125,7 +125,7 @@ attack.prototype.update=function(){
         case 4478: case 4479: case 4485: case 4498: case 4515: case 4525: case 4529: case 4533: case 4562: case 4563:
         case 4597: case 4598: case 4599: case 4601: case 4618: case 4633: case 4651: case 4673: case 4674: case 4675:
         case 4684: case 4685: case 4686: case 4687: case 4694: case 4695: case 4696: case 4701: case 4708: case 4710:
-        case 4738: case 4739: case 4740: case 4741: case 4743:
+        case 4738: case 4739: case 4740: case 4741: case 4743: case 4750: case 4752: case 4755:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -669,7 +669,8 @@ attack.prototype.update=function(){
         case 4573: case 4574: case 4575: case 4576: case 4577: case 4579: case 4580: case 4581: case 4582: case 4583:
         case 4584: case 4595: case 4620: case 4621: case 4650: case 4654: case 4658: case 4659: case 4660: case 4661:
         case 4662: case 4664: case 4665: case 4666: case 4669: case 4677: case 4698: case 4702: case 4721: case 4731:
-        case 4732: case 4733: case 4734: case 4735: case 4747: case 4748: case 4749:
+        case 4732: case 4733: case 4734: case 4735: case 4747: case 4748: case 4749: case 4753: case 4756: case 4757:
+        case 4758:
             //mark 4
             if(
                 this.timer==1&&(
@@ -689,7 +690,8 @@ attack.prototype.update=function(){
                 (this.type==2333||this.type==2335||this.type==2408)&&this.battle.turn.total%2==1||
                 (this.type==2336||this.type==2409||this.type==3408)&&this.battle.turn.total%2==0||
                 this.type==2567&&this.userCombatant.block<20||
-                (this.type==4032||this.type==4351||this.type==4352||this.type==4353)&&this.userCombatant.block==0
+                (this.type==4032||this.type==4351||this.type==4352||this.type==4353)&&this.userCombatant.block==0||
+                this.type==4753&&this.mtgEnergy.length!=1
             ){
                 this.remove=true
             }else if(variants.nobasicanim){
@@ -886,7 +888,7 @@ attack.prototype.update=function(){
         case 3285: case 3291: case 3483: case 3490: case 3515: case 3521: case 3522: case 3562: case 3597: case 3601:
         case 3603: case 3604: case 3685: case 3734: case 3764: case 3776: case 3840: case 3954: case 4048: case 4191:
         case 4192: case 4193: case 4283: case 4286: case 4395: case 4416: case 4417: case 4418: case 4421: case 4422:
-        case 4423: case 4680: case 4681: case 4682: case 4722: case 4723:
+        case 4423: case 4680: case 4681: case 4682: case 4722: case 4723: case 4751:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||
@@ -1709,7 +1711,7 @@ attack.prototype.update=function(){
         case 4138: case 4140: case 4142: case 4200: case 4201: case 4237: case 4238: case 4250: case 4252: case 4253:
         case 4254: case 4280: case 4289: case 4294: case 4298: case 4300: case 4318: case 4333: case 4372: case 4484:
         case 4500: case 4511: case 4512: case 4585: case 4637: case 4642: case 4645: case 4648: case 4649: case 4667:
-        case 4668: case 4672: case 4724: case 4726: case 4736:
+        case 4668: case 4672: case 4724: case 4726: case 4736: case 4754:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -5661,7 +5663,7 @@ attack.prototype.update=function(){
             if(this.timer==1){
                 for(let a=0,la=this.effect[0];a<la;a++){
                     let index=floor(random(0,types.card.length))
-                    this.userManager.hand.add(index,0,types.card[index].list<0?0:types.card[index].list>=types.color.card.list?0:types.card[index].list)
+                    this.userManager.hand.add(index,0,this.battle.standardColorize(index))
                 }
             }
             this.userCombatant.offset.position.x=random(-5,5)
@@ -10018,7 +10020,10 @@ attack.prototype.update=function(){
                 if(this.userCombatant.getStatus('1.5x Damage+1')>0&&this.clearAttack[14]){
                     this.userCombatant.status.main[findList('1.5x Damage+1',this.userCombatant.status.name)]--
                 }
-                this.userCombatant.tempStatus=[1,0,0,0,0]
+                if(this.userCombatant.getStatus('Single Attack Regeneration')>0&&this.clearAttack[15]){
+                    this.userCombatant.status.main[findList('Single Attack Regeneration',this.userCombatant.status.name)]=0
+                }
+                this.userCombatant.tempStatus=[1,0,0,0,0,0]
             break
         }
     }

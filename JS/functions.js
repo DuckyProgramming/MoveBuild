@@ -2292,7 +2292,7 @@ function mtgManaBase(player){
 			[playerColor[0],playerColor[0],playerColor[0],missing[3],missing[3]]
 		]
 	}
-	if(variants.prism||variants.ultraprism){
+	if(variants.prism||variants.ultraprism||variants.junk){
 		result.push([1,2,3,4,5])
 	}
 	return result

@@ -1720,6 +1720,19 @@ class battle{
     getEnergy(player){
         return variants.mtg?total7(this.energy.main[player]):this.energy.main[player]
     }
+    getActiveEnergy(player){
+        if(variants.mtg){
+            let total=0
+            for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+                if(this.energy.crystal[player][a][4]){
+                    total++
+                }
+            }
+            return total
+        }else{
+            return this.energy.main[player]
+        }
+    }
     getSpecificEnergy(player,type){
         return this.energy.main[player][type]+(type==6?this.energy.main[player][0]+this.energy.main[player][1]+this.energy.main[player][2]+this.energy.main[player][3]+this.energy.main[player][4]+this.energy.main[player][5]:this.energy.main[player][6])
     }

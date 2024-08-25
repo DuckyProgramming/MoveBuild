@@ -811,7 +811,8 @@ class group{
                 type==13&&!this.cards[a].usable||
                 type==14&&args[0].includes(this.cards[a].class)&&!this.cards[a].spec.includes(args[1])||
                 type==15&&!args[0].includes(this.cards[a].class)||
-                type==16&&args[0].includes(this.cards[a].class)&&this.cards[a].attack!=args[1]
+                type==16&&args[0].includes(this.cards[a].class)&&this.cards[a].attack!=args[1]||
+                type==17&&(this.cards[a].spec.includes(12)&&(this.cards[a].effect[0].includes(args[0])||this.cards[a].effect[1].includes(args[0]))||!this.cards[a].spec.includes(12)&&this.cards[a].effect.includes(args[0]))
             ){
                 total++
             }
@@ -1260,7 +1261,7 @@ class group{
                     }
                 break
                 case 50:
-                    if(this.cards[a].cost!=1){
+                    if(this.cards[a].getCost(0)!=1){
                         this.cards[a].deSize=true
                     }
                 break
@@ -4681,7 +4682,7 @@ class group{
                             this.cards[a].attack==1753||this.cards[a].attack==1777||this.cards[a].attack==1788||this.cards[a].attack==1806||this.cards[a].attack==1821||
                             this.cards[a].attack==1852||this.cards[a].attack==1856||this.cards[a].attack==1857||this.cards[a].attack==1868||this.cards[a].attack==1909||
                             this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||this.cards[a].attack==2470||this.cards[a].attack==2489||
-                            this.cards[a].attack==3196||
+                            this.cards[a].attack==3196||this.cards[a].attack==4754||
                             (this.cards[a].attack==587||this.cards[a].attack==676)&&this.battle.combatantManager.constructAlive(this.player+1)&&!options.oldUnbuild||
                             this.cards[a].attack==1642&&this.battle.attackManager.energy==4||
                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Hook')>0&&this.cards[a].cost>0&&this.battle.turn.main==this.player
@@ -4802,7 +4803,7 @@ class group{
         if(this.battle.attackManager.targetInfo[0]==7){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(this.battle.tileManager.tiles[a].occupied==0&&
-                    legalTargetCombatant(0,1,this.battle.getEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+this.battle.getXBoost(this.battle.attackManager.player),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&
+                    legalTargetCombatant(0,1,this.battle.getActiveEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+this.battle.getXBoost(this.battle.attackManager.player),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
                     this.selfCall(2,a)
                 }
@@ -5228,7 +5229,7 @@ class group{
         if(this.battle.attackManager.targetInfo[0]==7){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1+this.battle.tileManager.offset.x>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
                 let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
-                if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(0,1,this.battle.getEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+this.battle.getXBoost(this.battle.attackManager.player),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
+                if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(0,1,this.battle.getActiveEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+this.battle.getXBoost(this.battle.attackManager.player),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
                     this.selfCall(2,a)
                 }
             }

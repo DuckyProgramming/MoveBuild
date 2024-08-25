@@ -279,7 +279,7 @@ class tileManager{
             }else if((this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==20)&&this.tiles[a].occupied==0&&legalTargetCombatant(1,1,2,this.tiles[a],this.battle.attackManager,this.tiles)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if((this.battle.attackManager.targetInfo[0]==7)&&this.tiles[a].occupied==0&&
-            (legalTargetCombatant(0,1,this.battle.getEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+this.battle.getXBoost(this.battle.attackManager.player),this.tiles[a],this.battle.attackManager,this.tiles))){
+            (legalTargetCombatant(0,1,this.battle.getActiveEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+this.battle.getXBoost(this.battle.attackManager.player),this.tiles[a],this.battle.attackManager,this.tiles))){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if((this.battle.attackManager.targetInfo[0]==8)&&
             legalTargetCombatant(2,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)){

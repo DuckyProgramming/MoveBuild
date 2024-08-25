@@ -3618,7 +3618,10 @@ turn.prototype.update=function(){
                         if(this.userCombatant.getStatus('1.5x Damage+1')>0&&this.clearAttack[14]){
                             this.userCombatant.status.main[findList('1.5x Damage+1',this.userCombatant.status.name)]--
                         }
-                        this.userCombatant.tempStatus=[1,0,0,0,0]
+                        if(this.userCombatant.getStatus('Single Attack Regeneration')>0&&this.clearAttack[15]){
+                            this.userCombatant.status.main[findList('Single Attack Regeneration',this.userCombatant.status.name)]=0
+                        }
+                        this.userCombatant.tempStatus=[1,0,0,0,0,0]
                     break
                 }
             }

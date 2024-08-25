@@ -303,7 +303,7 @@ class combatant{
         6-half decrement
         */
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
-        this.tempStatus=[1,0,0,0,0]
+        this.tempStatus=[1,0,0,0,0,0]
         //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed
         for(let a=0;a<this.status.name.length;a++){
             this.status.main.push(0)
@@ -2704,10 +2704,6 @@ class combatant{
                 if(userCombatant.status.main[171]>0){
                     this.statusEffect('Regeneration',userCombatant.status.main[171])
                 }
-                if(userCombatant.status.main[224]>0){
-                    this.statusEffect('Regeneration',userCombatant.status.main[224])
-                    userCombatant.status.main[224]=0
-                }
                 if(userCombatant.status.main[318]>0){
                     this.statusEffect('Shock',userCombatant.status.main[318])
                 }
@@ -3071,6 +3067,9 @@ class combatant{
                     userCombatant.lastDeal=damage
                     if(userCombatant.tempStatus[4]!=0&&this.block==0){
                         this.statusEffect('Bleed',userCombatant.tempStatus[4])
+                    }
+                    if(userCombatant.tempStatus[5]!=0){
+                        this.statusEffect('Regeneration',userCombatant.tempStatus[5])
                     }
                     if(userCombatant.status.main[98]>0&&this.block==0){
                         this.statusEffect('Bleed',userCombatant.status.main[98])
