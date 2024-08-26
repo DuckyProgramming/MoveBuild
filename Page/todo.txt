@@ -23,6 +23,12 @@ MTG ULTRAPRISM
 
 
 
+a small shinmy purge
+
+a merlin purge
+
+
+
 
 
 
@@ -87,7 +93,11 @@ to complete the set of 5
 
 
 
+we gotta have a card that says gain block when you exhaust a card, but it's gotta be weak
+
 knife deflect - add 6 block, if your block is broken add a shiv
+
+
 
 sapphire facet - fires blue stars everywhere and lighter ones in set directions that create more particles
 
@@ -575,7 +585,7 @@ quality lawyer - become poor
 cheap lawyer - lose money lose hp
 public defense - get bbbusted
 
-[]
+linkup - choose 2 cards, when you draw 1 draw the other
 
 []
 
@@ -605,10 +615,6 @@ public defense - get bbbusted
 
 
 
-
-
-decide on character #18
-conduct a purge and mass renaming
 
 
 

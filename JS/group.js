@@ -1401,7 +1401,7 @@ class group{
                 break
                 case 77:
                     if(this.cards[a].getCost(0)==2){
-                        this.cards[a].cost=3
+                        this.cards[a].setCost(0,[3])
                     }
                 break
                 case 78:
@@ -4270,6 +4270,12 @@ class group{
                 if(a.basic&&a.class==1&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }
+                if(a.basic&&a.class==1&&userCombatant.status.main[402]!=0){
+                    this.battle.attackManager.effect[0]=max(0,this.battle.attackManager.effect[0]+userCombatant.status.main[402])
+                }
+                if(a.basic&&a.class==2&&userCombatant.status.main[585]!=0){
+                    this.battle.attackManager.effect[0]=max(0,this.battle.attackManager.effect[0]+userCombatant.status.main[585])
+                }
                 if((a.name=='Shiv'||a.name=='Broken\nShiv'||a.name=='Deluxe\nShiv')&&userCombatant.status.main[76]>0){
                     this.battle.attackManager.effect[0]+=userCombatant.status.main[76]
                 }
@@ -4278,9 +4284,6 @@ class group{
                 }
                 if(a.spec.includes(54)&&userCombatant.status.main[340]>0){
                     this.battle.attackManager.effect[0]+=userCombatant.status.main[340]
-                }
-                if(a.basic&&(a.class==1||a.class==2)&&userCombatant.status.main[402]>0){
-                    this.battle.attackManager.effect[0]+=userCombatant.status.main[402]
                 }
                 if(a.spec.includes(52)&&userCombatant.status.main[403]>0){
                     this.battle.attackManager.effect[0]+=userCombatant.status.main[403]

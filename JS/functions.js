@@ -427,19 +427,19 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[3]&&user.status.main[340]>0){
 				bonus+=user.status.main[340]
 			}
-			if(variant&&args[4]&&user.status.main[402]>0){
+			if(variant&&args[4]&&user.status.main[402]!=0){
 				bonus+=user.status.main[402]
 			}
-			if(variant&&args[5]&&user.status.main[403]>0){
+			if(variant&&args[6]&&user.status.main[403]>0){
 				bonus+=user.status.main[403]
 			}
-			if(variant&&args[6]&&user.status.main[404]>0){
+			if(variant&&args[7]&&user.status.main[404]>0){
 				bonus+=user.status.main[404]
 			}
-			if(variant&&args[7]&&user.status.main[413]>0){
+			if(variant&&args[8]&&user.status.main[413]>0){
 				bonus+=user.status.main[413]
 			}
-			if(variant&&args[8]&&user.status.main[544]>0){
+			if(variant&&args[9]&&user.status.main[544]>0){
 				bonus+=user.status.main[544]
 			}
 			if(user.status.main[12]>0){
@@ -585,8 +585,8 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			let block=effect
 			let bonusB=0
 			let totalDex=0
-			if(variant&&args[4]&&user.status.main[402]>0){
-				bonusB+=user.status.main[402]
+			if(variant&&args[5]&&user.status.main[585]!=0){
+				bonusB+=user.status.main[585]
 			}
 			if(user.status.main[168]>0){
 				bonusB+=user.status.main[168]
@@ -1672,6 +1672,9 @@ function sortNumbersUnique(numbers){
 	return result
 }
 function prime(value){
+	if(value==1){
+		return false
+	}
 	for(let a=2,la=sqrt(value);a<la;a++){
 		if(value%a==0){
 			return false

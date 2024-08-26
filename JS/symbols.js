@@ -3743,8 +3743,11 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 402:
             layer.fill(255,50,50,fade)
             layer.quad(-1,0,-3,-2,-1,-8,1,-2)
-            layer.fill(150,175,200,fade)
             layer.quad(1,0,3,2,1,8,-1,2)
+            layer.fill(60,fade)
+            layer.rect(0,0,6,2)
+            layer.rect(0,-2.5,4,2)
+            layer.rect(0,2.5,4,2)
         break
         case 403:
             layer.fill(255,50,50,fade)
@@ -5429,6 +5432,15 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.arc(0,0,10,10,-75,-15)
             layer.arc(0,0,10,10,15,75)
             layer.arc(0,0,10,10,105,165)
+        break
+        case 585:
+            layer.fill(150,175,200,fade)
+            layer.quad(-1,0,-3,-2,-1,-8,1,-2)
+            layer.quad(1,0,3,2,1,8,-1,2)
+            layer.fill(60,fade)
+            layer.rect(0,0,6,2)
+            layer.rect(0,-2.5,4,2)
+            layer.rect(0,2.5,4,2)
         break
 
     }
