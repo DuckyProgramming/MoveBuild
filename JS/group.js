@@ -3255,7 +3255,7 @@ class group{
                             case 4650:
                                 amplifyCost=[5]
                             break
-                            case 4659: case 4660: case 4661: case 4662: case 4671: case 4678:
+                            case 4659: case 4660: case 4661: case 4662: case 4671: case 4678: case 4800: case 4803:
                                 amplifyCost=[6]
                             break
                             case 4663:
@@ -3263,6 +3263,12 @@ class group{
                             break
                             case 4672:
                                 amplifyCost=[-1,-1]
+                            break
+                            case 4801:
+                                amplifyCost=[6,6,6]
+                            break
+                            case 4802:
+                                amplifyCost=[6,6]
                             break
                             default:
                                 amplifyCost=[-1]
@@ -4685,10 +4691,12 @@ class group{
                             this.cards[a].attack==1753||this.cards[a].attack==1777||this.cards[a].attack==1788||this.cards[a].attack==1806||this.cards[a].attack==1821||
                             this.cards[a].attack==1852||this.cards[a].attack==1856||this.cards[a].attack==1857||this.cards[a].attack==1868||this.cards[a].attack==1909||
                             this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||this.cards[a].attack==2470||this.cards[a].attack==2489||
-                            this.cards[a].attack==3196||this.cards[a].attack==4754||
+                            this.cards[a].attack==3196||this.cards[a].attack==4754||this.cards[a].attack==4805||this.cards[a].attack==4806||this.cards[a].attack==4807||
+                            this.cards[a].attack==4808||
                             (this.cards[a].attack==587||this.cards[a].attack==676)&&this.battle.combatantManager.constructAlive(this.player+1)&&!options.oldUnbuild||
                             this.cards[a].attack==1642&&this.battle.attackManager.energy==4||
-                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Hook')>0&&this.cards[a].cost>0&&this.battle.turn.main==this.player
+                            this.cards[a].attack==4772&&this.battle.attackManager.mtgEnergy.length==4||
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Hook')>0&&this.cards[a].getCost(0)>0&&this.battle.turn.main==this.player
                         )&&!this.cards[a].exhaust){
                             this.send(this.cards,a,a+1,2)
                             a--

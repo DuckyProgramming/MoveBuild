@@ -2225,6 +2225,15 @@ function generalizedSearch(test){
 			print(cardData.name.replace('\n',' '),'\n',cardData.desc)
 		}
 	}
+	current.overlayManager.overlays[115][0].active=true
+    current.overlayManager.overlays[115][0].activate([0])
+	for(let a=0,la=current.overlayManager.overlays[115][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[115][0].cards[a]
+		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+		if(cardData.desc.includes(test)){
+			print(cardData.name.replace('\n',' '),'\n',cardData.desc)
+		}
+	}
 }
 function mtgPlayerColor(player){
 	/*

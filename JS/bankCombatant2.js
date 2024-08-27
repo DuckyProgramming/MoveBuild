@@ -913,6 +913,32 @@ combatant.prototype.setupGraphics=function(direction){
             this.animSet={loop:0,flip:0,hand:0,foot:0}
             this.goal={anim:{direction:this.anim.direction,sword:true}}
         break
+        case 'Merlin':
+            this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
+                legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
+                arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
+            this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
+            this.parts={eyeLevel:-78,mouth:-70,minor:15,
+                legs:[{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                arms:[{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
+            this.graphics={
+                legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
+            this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
+            this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
+            this.trigger.display.extra={damage:false}
+            this.calc={int:[0,0,0,0]}
+            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.goal={anim:{direction:this.anim.direction}}
+            this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+
+
+
+
+            this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
+            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.goal={anim:{direction:this.anim.direction,sword:true}}
+        break
         case 'Ume':
             this.anim={direction:direction,head:direction,sword:1,mouth:{x:6,y:4,open:0},
                 eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{

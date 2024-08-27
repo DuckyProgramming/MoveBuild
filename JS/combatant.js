@@ -169,7 +169,7 @@ class combatant{
                 'Counter Bleed Once Per Turn','Counter Gun Once','Counter Gun Once Per Turn','Counter Push Combat','Attack Burn Combat','All Strength Cycle 4 1','All Strength Cycle 4 2','All Strength Cycle 4 3','All Strength Cycle 4 4','Counter Weak All Combat',
                 'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength','3+ Cost Single Damage Up','3+ Cost Block','Item Use (N)','(E) Cycle 2 1','(E) Cycle 2 2','(W) Cycle 2 1','(W) Cycle 2 2',
                 '(B) Cycle 2 1','(B) Cycle 2 2','(K) Cycle 2 1','(K) Cycle 2 2','(G) Cycle 2 1','(G) Cycle 2 2','(R) Cycle 2 1','(R) Cycle 2 2','(N) Cycle 2 1','(N) Cycle 2 2',
-                'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost',
+                'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -230,7 +230,7 @@ class combatant{
                 0,2,0,0,0,2,2,2,2,0,//56
                 0,2,0,0,0,0,2,2,2,2,//57
                 2,2,2,2,2,2,2,2,2,2,//58
-                0,2,2,2,0,0,
+                0,2,2,2,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -291,7 +291,7 @@ class combatant{
                 2,2,2,2,0,2,2,2,2,2,//56
                 2,2,2,2,2,2,2,2,2,2,//57
                 2,2,2,2,2,2,2,2,2,2,//58
-                2,2,2,0,2,2,
+                2,2,2,0,2,2,2,
             ]}
         /*
         0-none
@@ -1363,7 +1363,7 @@ class combatant{
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
-            case 'Certes': case 'Airi': case 'Shiru': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru':
+            case 'Certes': case 'Airi': case 'Shiru': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -4699,7 +4699,8 @@ class combatant{
                     case 579: this.status.main[findList('(N) Cycle 2 1',this.status.name)]+=this.status.main[a]; break
                     case 581: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id);this.battle.loseEnergyGen(-this.status.main[a],this.id)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,6);this.battle.addSpecificEnergyGen(this.status.main[a],this.id,6)} break
                     case 582: this.status.main[findList('Base (E) Next Turn',this.status.name)]+=this.status.main[a]; break
-                    
+                    case 586: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id);this.battle.loseEnergyGen(-this.status.main[a],this.id)}else{let roll=floor(random(0,7));this.battle.addSpecificEnergy(this.status.main[a],this.id,roll);this.battle.addSpecificEnergyGen(this.status.main[a],this.id,roll)} break
+
                 }
                 if(
                     this.status.behavior[a]==6&&!(a==306&&this.getStatus('Retain History')>0)
@@ -4858,7 +4859,8 @@ class combatant{
     startAnimation(type){
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
-            case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Ume':
+            case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin':
+            case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -4976,7 +4978,8 @@ class combatant{
     runAnimation(rate,type){
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
-            case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Ume':
+            case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin':
+            case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate

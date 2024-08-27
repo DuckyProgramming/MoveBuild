@@ -16,6 +16,14 @@ collection screen
 
 
 
+divine virtue is weird
+
+card folder event can be buggy sometimes
+
+intruder is broken
+
+
+
 
 MTG PRISM
 
@@ -96,6 +104,12 @@ to complete the set of 5
 we gotta have a card that says gain block when you exhaust a card, but it's gotta be weak
 
 knife deflect - add 6 block, if your block is broken add a shiv
+
+hypershield - add 1 buffer, 1 energy, if you have a shield orb
+
+ouroboros - 8 damage 2 range, increases by 4 when draw pile shuffled
+
+[suwa claer water]
 
 
 

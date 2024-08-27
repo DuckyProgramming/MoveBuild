@@ -4923,7 +4923,6 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.noStroke()
             layer.fill(200,fade)
             layer.triangle(-3.5,0,-5,-1,-5,1)
-            layer.fill(200,fade)
             layer.triangle(5,0,3.5,-1,3.5,1)
         break
         case 516:
@@ -5441,6 +5440,11 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,0,6,2)
             layer.rect(0,-2.5,4,2)
             layer.rect(0,2.5,4,2)
+        break
+        case 586:
+            displayMtgManaSymbol(layer,0,0,-1,0,0.4,fade,2,[1])
+            layer.fill(200,fade)
+            layer.triangle(0,-1.5,0,1.5,6,0)
         break
 
     }
