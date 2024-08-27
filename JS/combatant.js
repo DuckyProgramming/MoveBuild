@@ -1072,7 +1072,6 @@ class combatant{
                     break
                     case 'Intruder':
                         this.subAttackTypeSwitch([[2,270,270,[1,2]]])
-                        this.subAttackTypeSwitch([[2,271,271,[1,2]]])
                     break
                     case 'Relic':
                         this.statusEffect('Double Damage',1)

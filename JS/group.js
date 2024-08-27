@@ -1771,11 +1771,17 @@ class group{
                     }
                 break
                 case 28:
-                    this.cards[a].cost=min(this.cards[a].cost,args[0])
+                    if(this.cards[a].getCost(0)>=args[0]){
+                        this.cards[a].setCost(0,[args[0]])
+                    }
                 break
                 case 29:
-                    this.cards[a].cost=min(this.cards[a].cost,args[0])
-                    this.cards[a].base.cost=min(this.cards[a].base.cost,args[1])
+                    if(this.cards[a].getCost(0)>=args[0]){
+                        this.cards[a].setCost(0,[args[0]])
+                    }
+                    if(this.cards[a].getCost(2)>=args[1]){
+                        this.cards[a].setCost(1,[args[1]])
+                    }
                 break
                 case 30:
                     if(args[1].includes(this.cards[a].class)){
@@ -4030,7 +4036,7 @@ class group{
             break
             case 10:
                 for(let b=0,lb=this.status[4];b<lb;b++){
-                    this.battle.cardManagers[this.player].reserve.cards.push(copyCardFree(this.cards[a]))
+                    this.battle.cardManagers[this.player].reserve.cards.push(copyCardNewAbstract(this.cards[a],1,[]))
                 }
                 if(this.status[4]>0){
                     this.status[4]=0
@@ -4692,7 +4698,7 @@ class group{
                             this.cards[a].attack==1852||this.cards[a].attack==1856||this.cards[a].attack==1857||this.cards[a].attack==1868||this.cards[a].attack==1909||
                             this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||this.cards[a].attack==2470||this.cards[a].attack==2489||
                             this.cards[a].attack==3196||this.cards[a].attack==4754||this.cards[a].attack==4805||this.cards[a].attack==4806||this.cards[a].attack==4807||
-                            this.cards[a].attack==4808||
+                            this.cards[a].attack==4808||this.cards[a].attack==4833||this.cards[a].attack==4834||
                             (this.cards[a].attack==587||this.cards[a].attack==676)&&this.battle.combatantManager.constructAlive(this.player+1)&&!options.oldUnbuild||
                             this.cards[a].attack==1642&&this.battle.attackManager.energy==4||
                             this.cards[a].attack==4772&&this.battle.attackManager.mtgEnergy.length==4||

@@ -77,7 +77,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[46,0,0])],//exhaust discard card, then trigger hand discard, no return
                     [new overlay(this.layer,this.battle,0,2,[47,0,0,0])],//scry, freeze target
                     [new overlay(this.layer,this.battle,0,2,[48,0,0])],//scry, shuffle afterward
-                    [new overlay(this.layer,this.battle,0,2,[49,0,0,0])],//scry, draw into intangible
+                    [new overlay(this.layer,this.battle,0,2,[49,0,0,0,4])],//scry, draw power into intangible
                     [new overlay(this.layer,this.battle,0,17,[0,2])],//dual card choice,70
                     [new overlay(this.layer,this.battle,0,2,[50])],//random edition basic, no return
                     [new overlay(this.layer,this.battle,0,2,[51])],//become colorless, no return
@@ -133,8 +133,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[86])],//glitched edition, no return
                     [new overlay(this.layer,this.battle,0,2,[87,1,0])],//remove card, no return, unskippable
                     [new overlay(this.layer,this.battle,0,2,[88])],//return removed to deck, unskippable
-                    //4-87
-                    //71-88
+                    [new overlay(this.layer,this.battle,0,2,[49,0,0,0,11])],//scry, draw skill into intangible
 
                 )
                 if(this.battle.players==2){

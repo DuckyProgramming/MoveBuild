@@ -491,10 +491,14 @@ class overlay{
                             copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                         for(let a=0,la=list[args[1]].length;a<la;a++){
                             if(
-                                (
-                                    variants.mtg&&arrayPurge(types.card[list[args[1]][a]].mtg.levels[args[0]].cost,[-3]).length!=args[3]||
-                                    !variants.mtg&&types.card[list[args[1]][a]].levels[args[0]].cost!=args[3]
-                                )||specialCost(types.card[list[args[1]][a]].levels[args[0]])
+                                variants.mtg&&(
+                                    arrayPurge(types.card[list[args[1]][a]].mtg.levels[args[0]].cost,[-3]).length!=args[3]||
+                                    specialCost(types.card[list[args[1]][a]].mtg.levels[args[0]])
+                                )||
+                                !variants.mtg&&(
+                                    types.card[list[args[1]][a]].levels[args[0]].cost!=args[3]||
+                                    specialCost(types.card[list[args[1]][a]].levels[args[0]])
+                                )
                             ){
                                 list[args[1]].splice(a,1)
                                 a--
@@ -617,9 +621,14 @@ class overlay{
                             list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                             for(let b=0,lb=list[args[1]].length;b<lb;b++){
                                 if(
-                                    variants.mtg&&types.card[list[args[1]][b]].mtg.levels[args[0]].cost.length!=a+1||
-                                    !variants.mtg&&types.card[list[args[1]][b]].levels[args[0]].cost!=a+1||
-                                    specialCost(types.card[list[args[1]][b]].levels[args[0]])
+                                    variants.mtg&&(
+                                        types.card[list[args[1]][b]].levels[args[0]].mtg.cost.length!=a+1||
+                                        specialCost(types.card[list[args[1]][b]].mtglevels[args[0]])
+                                    )||
+                                    !variants.mtg&&(
+                                        types.card[list[args[1]][b]].levels[args[0]].cost!=a+1||
+                                        specialCost(types.card[list[args[1]][b]].levels[args[0]])
+                                    )
                                 ){
                                     list[args[1]].splice(b,1)
                                     b--
@@ -720,11 +729,11 @@ class overlay{
                         }
                         for(let a=0,la=list[args[1]].length;a<la;a++){
                             if(
-                                (variants.mtg?(types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(11)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(21)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(40)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(55)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(58)||types.card[list[args[1]][a]].mtg.levels[args[0]].spec.includes(59)?
+                                (variants.mtg?(specialCost(types.card[list[args[1]][a]].mtg.levels[args[0]])?
                                 types.card[list[args[1]][a]].mtg.levels[args[0]].cost[0]:arrayPurge(types.card[list[args[1]][a]].mtg.levels[args[0]].cost,[-3]).length
-                                ):types.card[list[args[1]][a]].mtg.levels[args[0]].cost)!=args[3]&&args[3]!=-99||
+                                ):types.card[list[args[1]][a]].levels[args[0]].cost)!=args[3]&&args[3]!=-99||
                                 types.card[list[args[1]][a]].levels[args[0]].class!=args[4]||
-                                specialCost(types.card[list[args[1]][a]].levels[args[0]])
+                                specialCost(variants.mtg?types.card[list[args[1]][a]].mtg.levels[args[0]]:types.card[list[args[1]][a]].levels[args[0]])
                             ){
                                 list[args[1]].splice(a,1)
                                 a--
@@ -1824,7 +1833,7 @@ class overlay{
                     case 44: this.title='Scry and Make Discarded Cards Cost 0'; break
                     case 47: this.title='Scry and Apply Freeze'; break
                     case 48: this.title='Scry and Shuffle Afterward'; break
-                    case 49: this.title='Scry, Draw Afterward, Gain Intangible if Power Drawn'; break
+                    case 49: this.title=`Scry, Draw Afterward, Gain Intangible if ${['','','','','Power','','','','','','','Skill'][this.args[4]]} Drawn`; break
                     case 50: this.title='Edition a Basic Card'; break
                     case 51: this.title='Make a Card Colorless'; break
                     case 52: this.title='Transform a Card From Discard Pile'; break
@@ -2585,7 +2594,7 @@ class overlay{
                                 break
                                 case 49:
                                     let result=this.battle.cardManagers[this.player].drawReturn(this.args[2])
-                                    if(result.length>0&&result[0].class==11){
+                                    if(result.length>0&&result[0].class==this.args[4]){
                                         this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Intangible',this.args[3])
                                     }
                                 break
@@ -3633,7 +3642,7 @@ class overlay{
                                 break
                                 case 49:
                                     let result=this.battle.cardManagers[this.player].drawReturn(this.args[2])
-                                    if(result.length>0&&result[0].class==11){
+                                    if(result.length>0&&result[0].class==this.args[4]){
                                         this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Intangible',this.args[3])
                                     }
                                 break

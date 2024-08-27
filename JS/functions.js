@@ -1199,11 +1199,11 @@ function copyCardNewAbstract(base,type,args){
 			result.cost=copyArray(args[0])
 			result.base.cost=copyArray(args[0])
 		break
+		case 1:
+			result.setCost(2,[0])
+		break
 	}
 	return result
-}
-function copyCardFree(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,base.costUpTrigger)
 }
 function upgradeCard(base,nonlimiting=false){
 	if(base.spec.includes(37)){
