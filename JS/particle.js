@@ -467,6 +467,17 @@ class particle{
                 this.trigger=false
                 this.scale=1
             break
+            case 177:
+                this.direction=args[0]
+                this.curve=args[1]
+                this.curveSpeed=args[2]
+                this.size=1
+                this.scale=1
+                this.fade=1
+                this.speed=8
+                this.timer=args[3]
+                this.clouds=[]
+            break
 
         }
     }
@@ -2750,6 +2761,19 @@ class particle{
                     }
                     this.layer.strokeJoin(MITER)
                 break
+                case 177:
+                    for(let a=0,la=this.clouds.length;a<la;a++){
+                        for(let b=0,lb=3;b<lb;b++){
+                            let merge=mergeColor(mergeColor([180,0,20],[60,0,140],this.clouds[a][4]),[160,40,120],this.fade*b*0.25)
+                            this.layer.fill(...merge,this.clouds[a][2]*0.5)
+                            this.layer.ellipse(this.clouds[a][0]-this.position.x,this.clouds[a][1]-this.position.y,this.clouds[a][5]*(1-0.5*b/(lb-1)))
+                        }
+                    }
+                    this.layer.fill(250,50,100,this.fade*0.2)
+                    for(let a=0,la=4;a<la;a++){
+                        this.layer.ellipse(0,0,24-a*4)
+                    }
+                break
 
             }
             this.layer.pop()
@@ -3149,7 +3173,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 151: case 158:
+            case 151: case 158: case 177:
                 this.direction+=lsin(this.time*this.curveSpeed)*this.curve/120*this.curveSpeed
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed
@@ -3176,7 +3200,17 @@ class particle{
                         }
                     }
                 }
-                this.clouds.push([this.position.x+random(-5,5),this.position.y+random(-5,5),0,false,random(0,1),random(10,15)])
+                if(this.type==177&&this.time>=this.timer-5){
+                    this.speed*=0.8
+                }
+                if(this.type==177&&this.time>=this.timer){
+                    this.fade-=0.1
+                    if(this.clouds.length==0){
+                        this.remove=true
+                    }
+                }else{
+                    this.clouds.push([this.position.x+random(-5,5),this.position.y+random(-5,5),0,false,random(0,1),random(10,15)])
+                }
             break
             case 157:
                 this.position.x+=lsin(this.direction)*this.speed

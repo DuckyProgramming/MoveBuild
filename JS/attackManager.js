@@ -72,6 +72,25 @@ class attackManager{
         }
     }
     spendCard(spend,card,player){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)]
+        if(userCombatant.getStatus('(E) Spend Splash')>0){
+            let total=0
+            for(let a=0,la=spend.length;a<la;a++){
+                if(spend[a]==6){
+                    total++
+                }
+            }
+            if(total>0){
+                this.battle.combatantManager.areaAbstract(0,[userCombatant.getStatus('(E) Spend Splash')*total,userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                let direction=random(0,360)
+                for(let a=0,la=7;a<la;a++){
+                    this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,
+                        userCombatant.position.x,
+                        userCombatant.position.y,
+                        177,[direction+360*a/la,random(10,20)*(floor(random(0,2))*2-1),random(3,5),15]))
+                }
+            }
+        }
         if(this.battle.relicManager.hasRelic(393,player)&&card.basic){
             let mult=1
             for(let a=0,la=spend.length;a<la;a++){

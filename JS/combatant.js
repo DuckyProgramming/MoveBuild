@@ -169,7 +169,7 @@ class combatant{
                 'Counter Bleed Once Per Turn','Counter Gun Once','Counter Gun Once Per Turn','Counter Push Combat','Attack Burn Combat','All Strength Cycle 4 1','All Strength Cycle 4 2','All Strength Cycle 4 3','All Strength Cycle 4 4','Counter Weak All Combat',
                 'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength','3+ Cost Single Damage Up','3+ Cost Block','Item Use (N)','(E) Cycle 2 1','(E) Cycle 2 2','(W) Cycle 2 1','(W) Cycle 2 2',
                 '(B) Cycle 2 1','(B) Cycle 2 2','(K) Cycle 2 1','(K) Cycle 2 2','(G) Cycle 2 1','(G) Cycle 2 2','(R) Cycle 2 1','(R) Cycle 2 2','(N) Cycle 2 1','(N) Cycle 2 2',
-                'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn','Shuffle (E)',
+                'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn','Shuffle (E)','(E) Spend Splash',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -230,7 +230,7 @@ class combatant{
                 0,2,0,0,0,2,2,2,2,0,//56
                 0,2,0,0,0,0,2,2,2,2,//57
                 2,2,2,2,2,2,2,2,2,2,//58
-                0,2,2,2,0,0,0,0,
+                0,2,2,2,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -291,7 +291,7 @@ class combatant{
                 2,2,2,2,0,2,2,2,2,2,//56
                 2,2,2,2,2,2,2,2,2,2,//57
                 2,2,2,2,2,2,2,2,2,2,//58
-                2,2,2,0,2,2,2,2,
+                2,2,2,0,2,2,2,2,2,
             ]}
         /*
         0-none

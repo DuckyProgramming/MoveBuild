@@ -548,6 +548,8 @@ class card{
                         for(let a=0,la=args[0];a<la;a++){
                             if(this.cost.includes(-1)){
                                 this.cost.splice(this.cost.indexOf(-1),1)
+                            }else if(this.spec.includes(35)){
+                                this.cost.splice(floor(random(0,this.cost.length)),1)
                             }
                         }
                     }
@@ -629,6 +631,48 @@ class card{
                 }
                 this.edited.cost-=args[0]
                 this.edited.costComplete=true
+            break
+            case 4:
+                if(variants.mtg){
+                    if(this.specialCost){
+                        this.cost[0]=round(this.cost[0]/2)
+                    }else{
+                        let last=-99
+                        for(let a=0,la=this.cost.length;a<la;a++){
+                            if(this.cost[a]==last){
+                                this.cost.splice(a,1)
+                                a--
+                                la--
+                                last=-99
+                            }else{
+                                last=this.cost[a]
+                            }
+                        }
+                    }
+                }else if(this.cost>0){
+                    this.cost=round(this.cost/2)
+                }
+            break
+            case 5:
+                if(variants.mtg){
+                    if(this.specialCost){
+                        this.cost[0]=floor(this.cost[0]/2)
+                    }else{
+                        let last=-99
+                        for(let a=0,la=this.cost.length;a<la;a++){
+                            if(this.cost[a]!=last){
+                                last=this.cost[a]
+                                this.cost.splice(a,1)
+                                a--
+                                la--
+                            }else{
+                                last=-99
+                            }
+                        }
+                    }
+                }else if(this.cost>0){
+                    this.cost=floor(this.cost/2)
+                }
             break
         }
     }
@@ -1246,7 +1290,7 @@ class card{
             case 449: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRearm From Target Tile`; break
             case 450: string+=`Double Balance`; break
             case 451: string+=`Draw ${effect[0]} More\nCard${pl(effect[0])} Next Turn`; break
-            case 452: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Dazed\nto Draw`; break
+            case 452: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Dazed\nto Draw Pile`; break
             case 453: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\n3 Tiles Wide`; break
             case 454: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen You Take Damage`; break
             case 455: string+=`When You Heal,\nGain ${effect[0]} Max Health`; break
@@ -2042,9 +2086,9 @@ class card{
             case 1247: string+=`Even Energy:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nExactly 4:\nGain ${effect[1]} Energy`; break
             case 1248: case 1630:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscards to Hand`; break
-            case 1249: string+=`Reduce All\nCountdowns by ${effect[0]}`; break
+            case 1249: string+=`${variants.mtg?`Remove ${effect[0]} Mana From\nEach Countdown's Cost`:`Reduce All\nCountdowns by ${effect[0]}`}`; break
             case 1250: string+=`Reduce All\nCountdowns by X${effect[0]!=0?`+${effect[0]}`:``}`; break
-            case 1251: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReduce All\nCountdowns by ${effect[1]}`; break
+            case 1251: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${variants.mtg?`Remove ${effect[1]} Mana From\nEach Countdown's Cost`:`Reduce All\nCountdowns by ${effect[1]}`}`; break
             case 1252: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n10%: Next ${effect[1]!=1?`${effect[1]} `:``}Attack${pl(effect[1])}\nDeal${effect[1]==1?`s`:``} Double Damage`; break
             case 1253: string+=`75%: Put a Card in Draw\nPile in Your Hand`; break
             case 1254: string+=`90%: Put a Card in Draw\nPile in Your Hand`; break
@@ -2259,7 +2303,7 @@ class card{
             case 1462: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nCards in Hand\nThat Retain`; break
             case 1463: string+=`Heal Target For ${effect[0]}\nApply ${effect[1]} Poison`; break
             case 1464: string+=`6 Cards in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
-            case 1465: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExactly 1 Energy:\nReduce All\nCountdowns by ${effect[1]}`; break
+            case 1465: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExactly 1 Energy:\n${variants.mtg?`Remove ${effect[1]} Mana From\nEach Countdown's Cost`:`Reduce All\nCountdowns by ${effect[1]}`}`; break
             case 1466: string+=`Take Another Turn`; break
             case 1467: string+=`Set Energy to Gen\nGain ${effect[0]} Shock`; break
             case 1468: string+=`Have ${effect[0]} Energy\nDiscard ${effect[1]} Random Card${pl(effect[1])}`; break
@@ -2363,7 +2407,7 @@ class card{
             case 1571: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nCreate a Plant Tile\non Target Tile`; break
             case 1572: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nReduce Balance\nLimit by ${effect[1]}`; break
             case 1573: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nEven Turn:\nGain ${effect[1]} Energy`; break
-            case 1574: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nReduce All\nCountdowns by ${effect[1]}`; break
+            case 1574: string+=`Move ${effect[0]} Tile${pl(effect[0])}\n${variants.mtg?`Remove ${effect[1]} Mana From\nEach Countdown's Cost`:`Reduce All\nCountdowns by ${effect[1]}`}`; break
             case 1575: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nMove Something\nBehind You`; break
             case 1576: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd a Random\nInstant Stance Card\nto Hand`; break
             case 1577: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${effect[1]} Burn${pl(effect[1])} to Hand`; break
@@ -2529,7 +2573,7 @@ class card{
             case 1740: string+=`Requires ${['Even','Odd'][this.limit%2]} Energy\nDeal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nDiscards to Hand`; break
             case 1741: string+=`Reduce Another\nCountdown by ${effect[0]}`; break
             case 1742: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nReduce Another\nCountdown by ${effect[1]}`; break
-            case 1743: string+=`Reduce All\nCountdowns by ${effect[0]}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 1743: string+=`${variants.mtg?`Remove ${effect[0]} Mana From\nEach Countdown's Cost`:`Reduce All\nCountdowns by ${effect[0]}`}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 1744: string+=`Apply ${effect[0]} Burn\nApply ${effect[1]} Poison`; break
             case 1745: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze\nWhen Drawn,\nMake ${effect[2]} Cop${effect[2]!=1?`ies`:`y`}`; break
             case 1746: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nApply ${effect[2]} Chained`; break
@@ -2592,7 +2636,7 @@ class card{
             case 1803: string+=`Exactly 3 Energy:\nHeal ${this.calculateEffect(effect[0],4)} Health`; break
             case 1804: string+=`Exactly 4 Energy:\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
             case 1805: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Shock\nPush 1 Tile`; break
-            case 1806: string+=`Reduce All\nCountdowns by ${effect[0]}\nDiscards to Hand`; break
+            case 1806: string+=`${variants.mtg?`Remove ${effect[0]} Mana From\nEach Countdown's Cost`:`Reduce All\nCountdowns by ${effect[0]}`}\nDiscards to Hand`; break
             case 1807: string+=`Your Hits That Deal\n10 Damage or Less\nDeal ${effect[0]} More Damage`; break
             case 1808: string+=`Place ${effect[0]} Card${pl(effect[0])} on Top\nof Draw Pile and Retain\n${effect[0]!=1?`Them`:`it`} Until Played`; break
             case 1809: string+=`Deal ${this.calculateEffect(1,2)}${effect[0]!=0?`+${this.calculateEffect(effect[0],0)}`:``} Damage\nWhere X = Number of\nBasic Cards in Deck`; break
@@ -2613,7 +2657,7 @@ class card{
             case 1824: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Freeze`; break
             case 1825: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nApply ${effect[1]} Weak`; break
             case 1826: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Poison`; break
-            case 1827: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nReduce All\nCountdowns by ${effect[1]}`; break
+            case 1827: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\n${variants.mtg?`Remove ${effect[1]} Mana From\nEach Countdown's Cost`:`Reduce All\nCountdowns by ${effect[1]}`}`; break
             case 1828: string+=`50%: Apply ${effect[0]} Burn\n50%: Apply ${effect[1]} Shock`; break
             case 1829: string+=`Heal Target For ${effect[0]}\nApply ${effect[1]} Shock`; break
             case 1830: string+=`Apply ${effect[0]} Shock\nFor Every ${effect[1]}\nHealth You Have`; break
@@ -2672,7 +2716,7 @@ class card{
             case 1883: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Does\nNot Lose Health,\nGain ${effect[2]} Energy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 1884: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nIf Unblocked,\nApply ${effect[1]} Burn\nApply ${effect[2]} Freeze\nApply ${effect[3]} Shock`; break
             case 1885: string+=`Set a Random\nCountdown to ${effect[0]}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-            case 1886: string+=`Reduce All\nCountdowns by ${effect[0]}\nNext ${effect[1]!=1?`${effect[1]} `:``}Attack${pl(effect[1])}\nDeal${effect[1]==1?`s`:``} Double Damage`; break
+            case 1886: string+=`${variants.mtg?`Remove ${effect[0]} Mana From\nEach Countdown's Cost`:`Reduce All\nCountdowns by ${effect[0]}`}\nNext ${effect[1]!=1?`${effect[1]} `:``}Attack${pl(effect[1])}\nDeal${effect[1]==1?`s`:``} Double Damage`; break
             case 1887: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Triple Turn 1\nDeals Double Turn 2`; break
             case 1888: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nSmoke ${effect[1]} Card${pl(effect[1])}`; break
             case 1889: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Dodge\nAdvance`; break
@@ -3562,7 +3606,7 @@ class card{
             case 2775: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 When You\nDraw a Card`; break
             case 2776: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nWhen Drawn,\nMake ${effect[1]} Cop${effect[1]!=1?`ies`:`y`}`; break
             case 2777: string+=`Add a Smite\nto Hand\nAdd a Safety\nto Hand`; break
-            case 2778: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nAdd ${effect[1]!=1?effect[1]:``}X Dazed\nto Draw`; break
+            case 2778: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nAdd ${effect[1]!=1?effect[1]:``}X Dazed\nto Draw Pile`; break
             case 2779: string+=`When Drawn,\nAttacks This Turn\nApply ${effect[0]} Shock`; break
             case 2780: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nUpgrade ${effect[1]} Random\nCard${pl(effect[1])} in Hand`; break
             case 2781: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nTargets a Random\nAdjacent Enemy`; break
@@ -3627,7 +3671,7 @@ class card{
             case 2840: string+=`Deal Double Damage\nUntil You Play a Power`; break
             case 2841: string+=`Damage Dealt to\nTarget is Rounded Up\nto the Nearest 5`; break
             case 2842: string+=`Damage Dealt to\nTarget is Rounded Up\nto the Nearest 5\nTargets Any Enemy`; break
-            case 2843: string+=`Gain ${effect[0]} Random\nTemporary Item${pl(effect[0])}\nAdd a Dazed\nto Draw`; break
+            case 2843: string+=`Gain ${effect[0]} Random\nTemporary Item${pl(effect[0])}\nAdd a Dazed\nto Draw Pile`; break
             case 2844: string+=`Next Item Used\nHas Double Effect\nLose ${effect[0]} Health`; break
             case 2845: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Caffeine\nPill Item${pl(effect[1])}`; break
             case 2846: string+=`All Items Used\nThis Combat\nGive ${effect[0]} Energy`; break
@@ -4051,7 +4095,7 @@ class card{
             case 3250: string+=`Add ${effect[0]} Spare\nStrike${pl(effect[0])} to Draw`; break
             case 3251: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Will Not Change\nIntents This Turn`; break
             case 3252: string+=`Gain ${effect[0]} Base\nEnergy This Combat\nCreate 7 Plant Tiles\nAround You`; break
-            case 3253: string+=`Gain ${effect[0]} Energy\nCosts 1 Less\nWhen You Gain Energy\nDuring Your Turn`; break
+            case 3253: string+=`Gain ${effect[0]} Energy\nCosts 1 Less Temporarily\nWhen You Gain Energy\nDuring Your Turn`; break
             case 3254: string+=`Gain ${effect[0]} Energy\nDiscard the Card\nto the Right`; break
             case 3255: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw Cards Equal to\nHalf the Number\nPlayed This Turn,\nRounded Up`; break
             case 3256: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nReduce X by the\nNumber of Other\nCards in Hand`; break
@@ -4677,7 +4721,7 @@ class card{
             case 3849: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less\nTemporarily`; break
             case 3850: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less\nTemporarily\nNext Attack Deals\n${effect[1]} More Damage`; break
             case 3851: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nCosts ${effect[2]} Less`; break
-            case 3852: string+=`Reduce All\nCountdowns by ${effect[0]}\nDraw ${effect[1]} Card${pl(effect[1])}\nCosts ${effect[1]} Less`; break
+            case 3852: string+=`${variants.mtg?`Remove ${effect[0]} Mana From\nEach Countdown's Cost`:`Reduce All\nCountdowns by ${effect[0]}`}\nDraw ${effect[1]} Card${pl(effect[1])}\nCosts ${effect[1]} Less`; break
             case 3853: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Are Debuffed,\nApply ${effect[1]} Vulnerable`; break
             case 3854: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain Block For ${effect[1]} Turn${pl(effect[1])}\nCounter ${effect[2]}`; break
             case 3855: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
@@ -5678,7 +5722,7 @@ class card{
             case 4853: string+=`Apply ${effect[0]} Random Debuff\nFor Each (K) Spent:\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 4854: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nDiscard ${effect[2]} Random Card${pl(effect[2])}\nOverdrive ${effect[3]}:\nGain (E) (E)`; break
             case 4855: string+=`Even Mana Total:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nExactly 4:\nGain (N) (N)`; break
-            case 4856: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExactly 2 Mana:\nReduce All\nCountdowns by ${effect[1]}`; break
+            case 4856: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExactly 2 Mana:\n${variants.mtg?`Remove ${effect[1]} Mana From\nEach Countdown's Cost`:`Reduce All\nCountdowns by ${effect[1]}`}`; break
             case 4857: string+=`Exactly 0 Mana:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Poison\n2 Times`; break
             case 4858: string+=`Odd Mana Total:\nHeal ${this.calculateEffect(effect[0],4)} Health\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 4859: string+=`Exactly 2 Mana:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nOtherwise: Heal ${this.calculateEffect(effect[1],4)} Health`; break
@@ -5721,6 +5765,19 @@ class card{
             case 4896: string+=`When Draw Shuffled,\nGain (E)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 4897: string+=`When Draw Shuffled,\nGain (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 4898: string+=`Add an Upgraded\nMiracle to Your\nHand For X Turns\nGain (E)`; break
+            case 4899: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor Each (W) Spent:\n${variants.mtg?`Remove ${effect[1]} Mana From\nEach Countdown's Cost`:`Reduce All\nCountdowns by ${effect[1]}`}`; break
+            case 4900: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMana Total Divisible by 3:\nReduce Another\nCountdown by ${effect[1]}`; break
+            case 4901: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nWhen You Spend (E)`; break
+            case 4902: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Armor`; break
+            case 4903: string+=`Gain (E) (E) (E) (E) (E)\nCosts 1 Less Temporarily\nWhen You Gain Mana\nDuring Your Turn`; break
+            case 4904: string+=`Gain (E) (E) (E)\n(E) (E) (E)\nCosts 1 Less Temporarily\nWhen You Gain Mana\nDuring Your Turn`; break
+            case 4905: string+=`Gain (E) (E) (E)\n(E) (E) (E) (E)\nCosts 1 Less Temporarily\nWhen You Gain Mana\nDuring Your Turn`; break
+            case 4906: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nGain (N)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 4907: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nGain (N) (N)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 4908: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Radiance${pl(effect[1])} to Hand`; break
+            case 4909: string+=`Apply ${effect[0]} Weak\nDraw ${effect[1]} Card${pl(effect[1])}\nGain (E) (E) (E) (E) (E)`; break
+            case 4910: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain (E) (E)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 4911: string+=`Gain (E) Per\nCountdown in Hand`; break
 
 
 
@@ -7016,9 +7073,9 @@ class card{
     }
     energyEffect(delta){
         switch(this.attack){
-            case 3253:
+            case 3253: case 4903:
                 if(delta>0){
-                    this.costDown(2,[1])
+                    this.costDown(0,[1])
                 }
             break
             case 3365:
@@ -8654,7 +8711,7 @@ class card{
                                 pos++
                             }
                         }
-                        if(totals[0]>0){
+                        if(totals[0]>0||pos==0){
                             displayMtgManaSymbol(this.layer,this.width/2-6-pos*12.5,-this.height/2+6,-2,0,0.6,this.fade,1,[this.anim.afford,this.anim.costDown,this.anim.costUp,totals[0]])
                         }
                     }else{
@@ -9293,7 +9350,13 @@ class card{
                 let effectiveEnergy=this.battle.getEnergy(this.player)*(this.spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0?2:1)
                 energyPay=effectiveEnergy>=cost
             }else{
-                energyPay=mtgAutoCost(this.battle.getSplitEnergy(this.player),cost,0,[],false)!=-1
+                let effectiveEnergy=copyArray(this.battle.getSplitEnergy(this.player))
+                if(this.spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0){
+                    for(let a=0,la=effectiveEnergy.length;a<la;a++){
+                        effectiveEnergy[a]*=2
+                    }
+                }
+                energyPay=mtgAutoCost(effectiveEnergy,cost,0,[],false)!=-1
             }
 
             this.energyAfford=(

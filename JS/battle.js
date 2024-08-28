@@ -1546,13 +1546,14 @@ class battle{
             }
         }
     }
-    mtgSubCost(cost,player,cards){
+    mtgCountCost(cost,player,cards){
+        let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
         this.energy.lastSpend[player]=[]
         let costLeft=copyArray(cost)
         let effectiveEnergy=[0,0,0,0,0,0,0]
         for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
             if(this.energy.crystal[player][a][4]){
-                effectiveEnergy[this.energy.crystal[player][a][0]]++
+                effectiveEnergy[this.energy.crystal[player][a][0]]+=(userCombatant.getStatus('Double Countdowns')>0?2:1)
             }
         }
         return mtgAutoCost(effectiveEnergy,costLeft,2,[cards],true)
@@ -1565,7 +1566,7 @@ class battle{
             }
         }
     }
-    mtgCost(cost,player,cards){
+    mtgCost(cost,player,cards,halving=false){
         let chainedEnergy=[]
         for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
             chainedEnergy.push(this.energy.crystal[player][a][0])
@@ -1582,8 +1583,34 @@ class battle{
         let result=mtgAutoCost(effectiveEnergy,costLeft,2,[cards],true)
         let energyPay=result[0]
         costLeft=result[1]
+        if(halving){
+            let last=-99
+            for(let a=0,la=energyPay.length;a<la;a++){
+                if(energyPay[a]==last){
+                    energyPay.splice(a,1)
+                    a--
+                    la--
+                    last=-99
+                }else{
+                    last=energyPay[a]
+                }
+            }
+        }
         this.mtgLose(player,energyPay)
         energyPay=mtgAutoCost(this.energy.main[player],costLeft,3,[cards],true)
+        if(halving){
+            let last=-99
+            for(let a=0,la=energyPay.length;a<la;a++){
+                if(energyPay[a]==last){
+                    energyPay.splice(a,1)
+                    a--
+                    la--
+                    last=-99
+                }else{
+                    last=energyPay[a]
+                }
+            }
+        }
         this.mtgLose(player,energyPay)
         let boost=this.getXBoost(player)
         this.attackManager.energy=this.energy.lastSpend[player].length+boost

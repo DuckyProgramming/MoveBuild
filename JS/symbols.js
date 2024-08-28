@@ -5460,6 +5460,11 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.noStroke()
             displayMtgManaSymbol(layer,0,0,6,0,0.3,fade,-1,[])
         break
+        case 588:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
+            displayMtgManaSymbol(layer,0,0,6,0,0.3,fade,-1,[])
+        break
 
     }
     //mark s
@@ -5727,6 +5732,7 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
             displayMtgManaIcon(layer,3.2,3.2,map[1],0,0.5,1)
         break
     }
+    layer.strokeCap(ROUND)
     switch(variant){
         case 0: case 1:
             if(args[0]<1){
@@ -5756,7 +5762,6 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
             }
         break
     }
-    layer.strokeCap(ROUND)
     layer.pop()
 }
 function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){

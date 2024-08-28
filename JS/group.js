@@ -1259,7 +1259,7 @@ class group{
                 break
                 case 49:
                     if(this.cards[a].spec.includes(35)&&this.cards[a].usable){
-                        this.cards[a].cost=round(this.cards[a].cost/2)
+                        this.cards[a].costDown(4,[])
                         this.cards[a].onIncrementCountdown([])
                     }
                 break
@@ -1298,7 +1298,7 @@ class group{
                 break
                 case 55:
                     if(this.cards[a].spec.includes(35)&&this.cards[a].usable){
-                        this.cards[a].cost=floor(this.cards[a].cost/2)
+                        this.cards[a].costDown(5,[])
                         this.cards[a].onIncrementCountdown([])
                     }
                 break
@@ -1877,14 +1877,14 @@ class group{
                 &&!((effect==20||effect==24)&&this.cards[a].effect.length<=0)
                 &&!(effect==21&&!this.removable(a))
                 &&!(effect==22&&(this.cards[a].spec.includes(39)||this.cards[a].attack==55))
-                &&!((effect==26||effect==27)&&!(this.cards[a].spec.includes(35)&&this.cards[a].cost>0))
+                &&!((effect==26||effect==27)&&!(this.cards[a].spec.includes(35)&&this.cards[a].getCost(0)>0))
                 &&!((effect==18||effect==29)&&(this.cards[a].spec.includes(15)||this.cards[a].spec.includes(30)||this.cards[a].spec.includes(36)||this.cards[a].spec.includes(38)||this.cards[a].limit!=[]))
                 &&!(effect==29&&(this.cards[a].limit!=[]||this.cards[a].spec.includes(15)||this.cards[a].spec.includes(38)))
                 &&!(effect==30&&this.cards[a].edition!=0)
                 &&!(effect==31&&this.cards[a].edition!=args[0])
                 &&!(effect==32&&!(this.cards[a].name==args[1]&&this.cards[a].cost>0))
                 &&!(effect==34&&(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)))
-                &&!(effect==35&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(41)||this.cards[a].class!=1))
+                &&!(effect==35&&(this.cards[a].getCost(0)<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(41)||this.cards[a].class!=1))
                 &&!(effect==36&&(this.cards[a].level>=2||this.cards[a].class!=args[0]&&args[0]!=0||this.cards[a].spec.includes(37)))
                 &&!(effect==38&&(this.cards[a].level!=1||this.cards[a].class!=args[0]&&args[0]!=0||this.cards[a].spec.includes(37)))
                 &&!(effect==39&&this.cards[a].spec.includes(7))
@@ -2061,7 +2061,7 @@ class group{
                         this.cards[index].costDown(0,[args[0]])
                     break
                     case 27: case 32:
-                        this.cards[index].cost=args[0]
+                        this.cards[index].setCost(0,[args[0]])
                     break
                     case 28:
                         this.cards[index].deSize=true
@@ -3222,7 +3222,7 @@ class group{
                                 effectiveCards.push(this.cards[a])
                             }
                         }
-                        this.battle.mtgCost(effectiveCost,this.player,effectiveCards)
+                        this.battle.mtgCost(effectiveCost,this.player,effectiveCards,spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0)
                     }else{
                         if(effectiveCost==-1){
                             this.battle.setEnergy(0,this.player)
@@ -5187,7 +5187,7 @@ class group{
                                                 effectiveCards.push(this.cards[a])
                                             }
                                         }
-                                        let result=this.battle.mtgSubCost(this.cards[a].cost,this.player,effectiveCards)
+                                        let result=this.battle.mtgCountCost(this.cards[a].cost,this.player,effectiveCards)
                                         let energyPay=result[0]
                                         let costLeft=result[1]
                                         this.battle.mtgLose(this.player,energyPay)
@@ -5629,9 +5629,23 @@ class group{
                                                 effectiveCards.push(this.cards[a])
                                             }
                                         }
-                                        let result=this.battle.mtgSubCost(this.cards[a].cost,this.player,effectiveCards)
+                                        let result=this.battle.mtgCountCost(this.cards[a].cost,this.player,effectiveCards)
                                         let energyPay=result[0]
                                         let costLeft=result[1]
+                                        let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
+                                        if(userCombatant.getStatus('Double Countdowns')>0){
+                                            let last=-99
+                                            for(let a=0,la=energyPay.length;a<la;a++){
+                                                if(energyPay[a]==last){
+                                                    energyPay.splice(a,1)
+                                                    a--
+                                                    la--
+                                                    last=-99
+                                                }else{
+                                                    last=energyPay[a]
+                                                }
+                                            }
+                                        }
                                         this.battle.mtgLose(this.player,energyPay)
                                         this.cards[a].cost=copyArray(costLeft)
                                         this.cards[a].onIncrementCountdown(energyPay)
