@@ -850,6 +850,26 @@ class battle{
             this.energy.main[player]=gen
         }
     }
+    singularBaselineEnergy(player){
+        let effectiveGen=variants.mtg?copyArray(this.energy.gen[player]):this.energy.gen[player]
+        if(variants.mtg){
+            this.resetEnergyCrystal(player)
+            this.energy.main[player]=[0,0,0,0,0,0,0]
+            let cap=484
+            for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+                let goal=a==0?459:this.energy.crystal[player][a-1][1]-25
+                cap=min(goal,cap)
+            }
+            for(let a=0,la=effectiveGen.length;a<la;a++){
+                this.energy.main[player][effectiveGen[a]]++
+                this.energy.crystalTotal[player][effectiveGen[a]]++
+                cap-=25
+                this.energy.crystal[player].push([effectiveGen[a],cap,0,true,false,false,true])
+            }
+        }else{
+            this.energy.main[player]=gen
+        }
+    }
     setTurn(value){
         let reverses=0
         for(let a=0,la=this.players;a<la;a++){

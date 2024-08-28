@@ -484,7 +484,7 @@ class cardManager{
                         }
                     }
                     this.reserve.parseDrawEffects(this.hand)
-                    if(this.battle.relicManager.hasRelic(106,this.player)){
+                    /*if(this.battle.relicManager.hasRelic(106,this.player)){
                         for(let a=0,la=this.hand.cards.length;a<la;a++){
                             if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
                                 this.hand.send(this.exhaust.cards,a,a+1,0)
@@ -492,7 +492,7 @@ class cardManager{
                                 la--
                             }
                         }
-                    }
+                    }*/
                 }
             }
         }
@@ -529,7 +529,7 @@ class cardManager{
                         }
                     }
                     this.reserve.parseDrawEffects(this.hand)
-                    if(this.battle.relicManager.hasRelic(106,this.player)){
+                    /*if(this.battle.relicManager.hasRelic(106,this.player)){
                         for(let a=0,la=this.hand.cards.length;a<la;a++){
                             if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
                                 this.hand.send(this.exhaust.cards,a,a+1,0)
@@ -537,7 +537,7 @@ class cardManager{
                                 la--
                             }
                         }
-                    }
+                    }*/
                 }
             }
         }
@@ -564,7 +564,7 @@ class cardManager{
                     }
                 }
                 this.reserve.parseDrawEffects(this.hand)
-                if(this.battle.relicManager.hasRelic(106,this.player)){
+                /*if(this.battle.relicManager.hasRelic(106,this.player)){
                     for(let a=0,la=this.hand.cards.length;a<la;a++){
                         if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
                             this.hand.send(this.exhaust.cards,a,a+1,0)
@@ -572,7 +572,7 @@ class cardManager{
                             la--
                         }
                     }
-                }
+                }*/
             }
         }
     }
@@ -594,8 +594,8 @@ class cardManager{
                             if(this.reserve.cards.length>0){
                                 let success=false
                                 for(let b=0,lb=this.reserve.cards.length;b<lb;b++){
-                                    if(this.reserve.cards[b].cost<=left&&this.reserve.cards[b].cost>=0){
-                                        left-=this.reserve.cards[b].cost
+                                    if(this.reserve.cards[b].getCost(0)<=left&&this.reserve.cards[b].getCost(0)>=0){
+                                        left-=this.reserve.cards[b].getCost(0)
                                         this.reserve.send(this.hand.cards,b,b+1)
                                         success=true
                                         break
@@ -620,7 +620,7 @@ class cardManager{
                         }
                     }
                     this.reserve.parseDrawEffects(this.hand)
-                    if(this.battle.relicManager.hasRelic(106,this.player)){
+                    /*if(this.battle.relicManager.hasRelic(106,this.player)){
                         for(let a=0,la=this.hand.cards.length;a<la;a++){
                             if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
                                 this.hand.send(this.exhaust.cards,a,a+1,0)
@@ -628,7 +628,7 @@ class cardManager{
                                 la--
                             }
                         }
-                    }
+                    }*/
                 }
             }
             this.hand.allEffectArgs(31,[total])
@@ -657,7 +657,7 @@ class cardManager{
                         }
                     }
                     this.reserve.parseDrawEffects(this.hand)
-                    if(this.battle.relicManager.hasRelic(106,this.player)){
+                    /*if(this.battle.relicManager.hasRelic(106,this.player)){
                         for(let a=0,la=this.hand.cards.length;a<la;a++){
                             if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
                                 this.hand.send(this.exhaust.cards,a,a+1,0)
@@ -665,7 +665,7 @@ class cardManager{
                                 la--
                             }
                         }
-                    }
+                    }*/
                 }
             }
         }

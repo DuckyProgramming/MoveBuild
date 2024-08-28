@@ -591,10 +591,13 @@ class group{
     shuffled(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.getStatus('Shuffle Energy')>0){
-            this.battle.addSpecificEnergy(userCombatant.getStatus('Shuffle Energy'),this.player,6)
+            this.battle.addSpecificEnergy(userCombatant.getStatus('Shuffle Energy'),this.player,0)
         }
         if(userCombatant.getStatus('Shuffle Draw')>0){
             this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Shuffle Draw'))
+        }
+        if(userCombatant.getStatus('Shuffle (E)')>0){
+            this.battle.addSpecificEnergy(userCombatant.getStatus('Shuffle (E)'),this.player,6)
         }
         this.battle.relicManager.activate(16,[this.id,this.player])
     }
@@ -1240,7 +1243,7 @@ class group{
                     this.cards[a].additionalSpec=[]
                 break
                 case 46:
-                    if(this.cards[a].cost>0&&floor(random(0,2))==0){
+                    if(this.cards[a].getCost(0)&&floor(random(0,2))==0){
                         this.cards[a].costDown(0,[1])
                     }
                 break
@@ -1645,7 +1648,7 @@ class group{
                 break
                 case 8:
                     if(this.cards[a].spec.includes(35)&&this.cards[a].usable){
-                        this.cards[a].cost=max(0,this.cards[a].cost-args[0])
+                        this.cards[a].costDown(0,[args[0]])
                         this.cards[a].onIncrementCountdown([])
                     }
                 break
@@ -1734,10 +1737,7 @@ class group{
                     this.cards[a].costDown(0,[args[0]])
                 break
                 case 22:
-                    if(this.cards[a].cost>0){
-                        this.cards[a].cost=max(min(this.cards[a].cost,0),this.cards[a].cost-args[0])
-                        this.cards[a].base.cost=max(min(this.cards[a].base.cost,0),this.cards[a].base.cost-args[0])
-                    }
+                    this.cards[a].costDown(2,args[0])
                 break
                 case 23:
                     if(this.cards[a].cost>=0&&!this.cards[a].colorless()){
@@ -3249,7 +3249,7 @@ class group{
                     if(spec.includes(27)&&variants.mtg){
                         let amplifyCost=[]
                         switch(this.battle.attackManager.type){
-                            case 4636: case 4639: case 4640: case 4641: case 4643: case 4644: case 4646:
+                            case 4636: case 4639: case 4640: case 4641: case 4643: case 4644: case 4646: case 4892:
                                 amplifyCost=[1]
                             break
                             case 4637:
@@ -3261,13 +3261,13 @@ class group{
                             case 4650:
                                 amplifyCost=[5]
                             break
-                            case 4659: case 4660: case 4661: case 4662: case 4671: case 4678: case 4800: case 4803:
+                            case 4659: case 4660: case 4661: case 4662: case 4671: case 4678: case 4800: case 4803: case 4862: case 4885:
                                 amplifyCost=[6]
                             break
                             case 4663:
                                 amplifyCost=[2]
                             break
-                            case 4672:
+                            case 4672: case 4866:
                                 amplifyCost=[-1,-1]
                             break
                             case 4801:
@@ -3275,6 +3275,15 @@ class group{
                             break
                             case 4802:
                                 amplifyCost=[6,6]
+                            break
+                            case 4860:
+                                amplifyCost=[4]
+                            break
+                            case 4868:
+                                amplifyCost=[1,1]
+                            break
+                            case 4869:
+                                amplifyCost=[1,1,1]
                             break
                             default:
                                 amplifyCost=[-1]

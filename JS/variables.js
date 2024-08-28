@@ -776,7 +776,7 @@ types={
         {name:'Exit Sign',internal:'Skip Events',id:103,rarity:2,list:0,mtg:0,description:'You Can Skip Events'},
         {name:'Fake Meat',internal:'Remove Max HP',id:104,rarity:-1,list:0,mtg:0,description:'When a Card is Removed,\nGain 7 Max HP'},
         {name:'Anger Insurance',internal:'Low Health Strength',id:105,rarity:-1,list:0,mtg:0,description:'Gain 1 Strength Every Turn\nWhen Health Below 50%'},
-        {name:'Clear Candle',internal:'Status Immunity',id:106,rarity:1,list:0,mtg:0,description:'Status Cards Other Than\nFatigue Exhaust When Drawn'},
+        {name:'Clear Candle',internal:'Status Immunity',id:106,rarity:-1,list:0,mtg:0,description:'Status Cards Other Than\nFatigue Exhaust When Drawn'},
         {name:'Oil Can',internal:'Early Initiative',id:107,rarity:1,list:0,mtg:0,description:'Start Each Combat With 2 Initiative'},
         {name:'Orange Peel',internal:'Less Fatigue',id:108,rarity:1,list:0,mtg:0,description:'Remove the First Fatigue\nAdded Each Combat'},
         {name:'Loot Glove',internal:'More Stashes',id:109,rarity:1,list:0,mtg:0,description:'Stashes Contain 2 More Relics'},
@@ -10009,8 +10009,8 @@ Vary greatly in effect.`,
 `Distracted enemies do not get a turn. Stacks degrade by 1 each turn.
 Is removed when damage taken.`,
         },{name:'Freeze',mtg:0,desc:
-`Being hit by a frozen combatant makes the target's
-attacks next turn deal 2*Freeze damage.`,
+`At the end of the global turn, combatants take damage equal to Freeze squared.
+Removed afterward.`,
         },{name:'Shock',mtg:0,desc:
 `Take damage after each movement step.`,
         },{name:'Jinx',mtg:0,desc:
