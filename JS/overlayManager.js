@@ -134,6 +134,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[87,1,0])],//remove card, no return, unskippable
                     [new overlay(this.layer,this.battle,0,2,[88])],//return removed to deck, unskippable
                     [new overlay(this.layer,this.battle,0,2,[49,0,0,0,11])],//scry, draw skill into intangible
+                    [new overlay(this.layer,this.battle,0,2,[49,0,0,0,11])],//scry, draw skill into intangible
+                    [new overlay(this.layer,this.battle,0,19,[])],//card service choice
 
                 )
                 if(this.battle.players==2){

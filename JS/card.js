@@ -1210,7 +1210,7 @@ class card{
             case 369: string+=`Gain ${effect[0]} Regeneration`; break
             case 370: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nWhen You Deal Damage`; break
             case 371: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nBelow 50% Health:\nDeals Double Damage`; break
-            case 372: string+=`Gain ${effect[0]} Energy\nPer Turn\nAll Cards Cost\n${effect[1]} Health to Play`; break
+            case 372: string+=`Gain ${effect[0]} Energy Per Turn\nAll Cards Cost\n${effect[1]} Health to Play`; break
             case 373: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Max Health`; break
             case 374: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nWhen Drawn,\nMake ${effect[1]} Cop${effect[1]!=1?`ies`:`y`}`; break
             case 375: string+=`Move Between ${effect[0]}\nand ${effect[1]} Tile${pl(effect[0])}`; break
@@ -5778,6 +5778,11 @@ class card{
             case 4909: string+=`Apply ${effect[0]} Weak\nDraw ${effect[1]} Card${pl(effect[1])}\nGain (E) (E) (E) (E) (E)`; break
             case 4910: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain (E) (E)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 4911: string+=`Gain (E) Per\nCountdown in Hand`; break
+
+            case 4912: string+=`${variants.mtg?`Gain ${effect[0]} Random Energy`:`A Random Card\nCosts ${effect[0]} Less`}`; break
+            //3551
+            case 4914: string+=`Gain ${variants.mtg?effect[1]:effect[0]} ${variants.mtg?`White `:``}Energy\n${variants.mtg?``:`Next Attack Deals\n${effect[2]} Less Damage`}`; break
+            //3589
 
 
 

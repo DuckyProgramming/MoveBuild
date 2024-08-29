@@ -9,7 +9,7 @@ class group{
         this.drawEffects=[]
         this.target=[]
         this.lastDuplicate=[]
-        this.lastPlayed=multiplyArray([0,0,0,0,[]],13)
+        this.lastPlayed=multiplyArray([0,0,variants.mtg?[]:0,0,[]],13)
         this.totalPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
@@ -217,7 +217,7 @@ class group{
         }
     }
     clear(){
-        this.lastPlayed=multiplyArray([0,0,0,0,[]],13)
+        this.lastPlayed=multiplyArray([0,0,variants.mtg?[]:0,0,[]],13)
         this.totalPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.exhausts=0
@@ -751,7 +751,7 @@ class group{
         for(let a=0,la=this.cards.length;a<la;a++){
             if(
                 type==0&&this.cards[a].class==5&&!(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
-                type==1&&this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue'||
+                type==1&&(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
                 type==2&&this.cards[a].name==args[0]||
                 type==3&&this.cards[a].class==5
             ){
@@ -763,16 +763,14 @@ class group{
                     a--
                     la--
                 }else{
-                    this.remove(a)
-                    a--
-                    la--
+                    if(this.remove(a)){
+                        a--
+                        la--
+                    }
                 }
                 done++
                 if(done>=value&&value>=0){
                     a=la
-                }else if(this.id!=2){
-                    a--
-                    la--
                 }
             }
         }
@@ -3725,6 +3723,7 @@ class group{
                                     this.status[3]--
                                 }
                                 this.cards[b].usable=true
+                                this.cards[b].deSize=false
                                 this.cards[b].select=false
                             }
                         }
@@ -3895,6 +3894,7 @@ class group{
                                     }
                                     this.cards[b].usable=true
                                     this.cards[b].deSize=false
+                                    this.cards[b].select=false
                                 }
                             }
                             if(this.battle.modded(108)&&floor(random(0,50))==0){

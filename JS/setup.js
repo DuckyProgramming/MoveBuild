@@ -20,7 +20,7 @@ function setup(){
             //transition.scene='menu'
             
         current.menu.combatant=[18]
-        current.menu.deck=[-1]
+        current.menu.deck=[0]
 
             variants.mtg=true
 
@@ -48,7 +48,7 @@ function setup(){
             //current.create()
 
         transition.trigger=false
-        
+
             /*stage.scene='graphic'
             graphics.test=5
             graphics.staticBackground.clear()

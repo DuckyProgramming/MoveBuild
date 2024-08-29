@@ -766,7 +766,7 @@ types={
         {name:'Coal Ball',internal:'Death Strength',id:94,rarity:0,list:0,mtg:0,description:'When an Enemy Dies,\nGain 1 Strength'},
         {name:'Snowball',internal:'Death Dexterity',id:95,rarity:0,list:0,mtg:0,description:'When an Enemy Dies,\nGain 1 Dexterity'},
         {name:'Tax Paperwork',internal:'Weak Elites',id:96,rarity:0,list:0,mtg:0,description:'Enemies in Elite\nCombats Lose 20% HP'},
-        {name:'Remove Voucher',internal:'Remove Discount',id:97,rarity:3,list:0,mtg:0,description:'Removing Cards\nCosts 50% Less'},
+        {name:'Card Service Voucher',internal:'Card Service Discount',id:97,rarity:3,list:0,mtg:0,description:'Card Service\nCosts 50% Less'},
         {name:'Four Leaf Clover',internal:'Better Unknown',id:98,rarity:0,list:0,mtg:0,description:'Unknowns are More Likely\nto be Beneficial'},
         {name:'Pink Dice',internal:'Unknown Heal',id:99,rarity:0,list:0,mtg:0,description:'Heal 5 HP When Entering an Unknown'},
 

@@ -703,7 +703,7 @@ class combatant{
                     case 'Human':
                         this.subAttackTypeSwitch([[0,1,38,[]]])
                     break
-                    case 'Duck': case 'Big Duck':
+                    case 'Duck': case 'Big Duck': case 'Blue Duck':
                         this.subAttackTypeSwitch([[1,2,377,[1,'Dazed']]])
                     break
                     case 'Bouncer':
@@ -826,9 +826,6 @@ class combatant{
                     case 'Little Guy':
                         this.subAttackTypeSwitch([[1,1,378,[8]]])
                         this.removeAttack(4)
-                    break
-                    case 'Blue Duck':
-                        this.spec.push(10)
                     break
                     case 'Management Prototype':
                         this.spec.push(7)
@@ -1239,6 +1236,7 @@ class combatant{
                         (this.attack[a].effect[b]<0||this.attack[a].effect[b]>0)
                         &&!(this.attack[a].type==67&&b==1)
                         &&!(this.attack[a].type==163&&b==1)
+                        &&!(this.attack[a].type==254&&b==1)
                         &&!(this.attack[a].type==281&&b==1)
                         &&this.attack[a].type!=39
                         &&this.attack[a].type!=40
@@ -6007,13 +6005,13 @@ class combatant{
             this.layer.fill(0,this.fade*this.infoAnim.block)
             this.layer.ellipse(-28-5.5*this.infoAnim.blockSize*this.infoAnim.blockBarrier-5.5*this.infoAnim.barrierSize*this.infoAnim.blockBarrier,0,11.5*this.infoAnim.blockSize,11.5*this.infoAnim.blockSize)
             this.layer.fill(150,175,200,this.fade*this.infoAnim.block)
-            this.layer.ellipse(-28-5.5*this.infoAnim.blockSize*this.infoAnim.blockBarrier-5.5*this.infoAnim.barrierSize*this.infoAnim.blockBarrier,0,10*this.infoAnim.blockSize,10*this.infoAnim.blockSize)
+            this.layer.ellipse(-28-5.5*this.infoAnim.blockSize*this.infoAnim.blockBarrier-5.5*this.infoAnim.barrierSize*this.infoAnim.blockBarrier,0,11.5*this.infoAnim.blockSize-1.5,11.5*this.infoAnim.blockSize-1.5)
         }
         if(this.infoAnim.barrier>0){
             this.layer.fill(0,this.fade*this.infoAnim.barrier)
             this.layer.ellipse(-28,0,11.5*this.infoAnim.barrierSize,11.5*this.infoAnim.barrierSize)
             this.layer.fill(225,225,200,this.fade*this.infoAnim.barrier)
-            this.layer.ellipse(-28,0,10*this.infoAnim.barrierSize,10*this.infoAnim.barrierSize)
+            this.layer.ellipse(-28,0,11.5*this.infoAnim.barrierSize-1.5,11.5*this.infoAnim.barrierSize-1.5)
         }
         if(this.team==0){
             this.layer.fill(0,this.fade*this.infoAnim.life)
@@ -6688,9 +6686,9 @@ class combatant{
         }
         this.time++
         this.infoAnim.block=smoothAnim(this.infoAnim.block,this.block>0,0,1,5)
-        this.infoAnim.blockSize=smoothAnim(this.infoAnim.block,this.block>100||this.block!=round(this.block)&&this.block>10,1,1.5,10)
+        this.infoAnim.blockSize=smoothAnim(this.infoAnim.blockSize,this.block>100||this.block!=round(this.block)&&this.block>10,1,this.block>100&&this.block!=round(this.block)?1.5:1.25,10)
         this.infoAnim.barrier=smoothAnim(this.infoAnim.barrier,this.barrier>0,0,1,5)
-        this.infoAnim.barrierSize=smoothAnim(this.infoAnim.barrier,this.barrier>100||this.barrier!=round(this.barrier)&&this.barrier>10,1,1.5,10)
+        this.infoAnim.barrierSize=smoothAnim(this.infoAnim.barrierSize,this.barrier>100||this.barrier!=round(this.barrier)&&this.barrier>10,1,this.barrier>100&&this.barrier!=round(this.barrier)?1.5:1.25,10)
         this.infoAnim.blockBarrier=smoothAnim(this.infoAnim.blockBarrier,this.block>0&&this.barrier>0,0,1,5)
         this.infoAnim.size=smoothAnim(this.infoAnim.size,this.infoAnim.upSize,1,1.5,5)
         this.infoAnim.description=smoothAnim(this.infoAnim.description,this.infoAnim.upSize,0,1,5)

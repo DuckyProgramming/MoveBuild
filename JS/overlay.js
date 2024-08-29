@@ -2293,7 +2293,7 @@ class overlay{
                 this.layer.rect(this.layer.width/2,this.layer.height/2,this.args[1]*120+40,200,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
-                this.layer.text('Select Ability',this.layer.width/2,this.layer.height/2-70)
+                this.layer.text(`Select Ability`,this.layer.width/2,this.layer.height/2-70)
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].fade=1
                     this.cards[a].anim={select:0,afford:1}
@@ -2315,6 +2315,25 @@ class overlay{
                     this.layer.textSize(18)
                     this.layer.text(['Enemy','Elite'][a],this.layer.width/2,this.layer.height/2-25+a*50)
                 }
+            break
+            case 19:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2,this.layer.height/2,280,200,10)
+                this.layer.fill(0,this.fade*0.8)
+                this.layer.textSize(30)
+                this.layer.text(`Select Service`,this.layer.width/2,this.layer.height/2-70)
+                this.layer.strokeWeight(5)
+                this.layer.fill(225,150,150)
+                this.layer.stroke(200,125,125)
+                this.layer.rect(this.layer.width/2-60,this.layer.height/2+20,90,120,5)
+                this.layer.fill(150,225,150)
+                this.layer.stroke(125,200,125)
+                this.layer.rect(this.layer.width/2+60,this.layer.height/2+20,90,120,5)
+                this.layer.noStroke()
+                this.layer.fill(0)
+                this.layer.textSize(10)
+                this.layer.text('Remove Card',this.layer.width/2-60,this.layer.height/2+20)
+                this.layer.text('Deluxe Upgrade',this.layer.width/2+60,this.layer.height/2+20)
             break
             
         }
@@ -3548,7 +3567,7 @@ class overlay{
                 break
                 case 17:
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].deSize){
+                        if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].deSize&&this.active){
                             this.execute([this.cards[a]])
                             for(let b=0,lb=this.cards.length;b<lb;b++){
                                 this.cards[b].deSize=true
@@ -3564,6 +3583,17 @@ class overlay{
                             this.active=false
                             this.battle.nodeManager.saveClass=a
                         }
+                    }
+                break
+                case 19:
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-60,y:this.layer.height/2+20},width:90,height:120})&&this.active){
+                        this.battle.overlayManager.overlays[6][this.player].active=true
+                        this.battle.overlayManager.overlays[6][this.player].activate()
+                        this.active=false
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+60,y:this.layer.height/2+20},width:90,height:120})&&this.active){
+                        this.battle.overlayManager.overlays[28][this.player].active=true
+                        this.battle.overlayManager.overlays[28][this.player].activate()
+                        this.active=false
                     }
                 break
             
@@ -4613,7 +4643,7 @@ class overlay{
                 break
                 case 17:
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if((int(key)+9)%10==a&&!this.cards[a].deSize){
+                        if((int(key)+9)%10==a&&!this.cards[a].deSize&&this.active){
                             this.execute([this.cards[a]])
                             for(let b=0,lb=this.cards.length;b<lb;b++){
                                 this.cards[b].deSize=true
@@ -4629,6 +4659,17 @@ class overlay{
                             this.active=false
                             this.battle.nodeManager.saveClass=a
                         }
+                    }
+                break
+                case 19:
+                    if((int(key)+9)%10==0&&this.active){
+                        this.battle.overlayManager.overlays[6][this.player].active=true
+                        this.battle.overlayManager.overlays[6][this.player].activate()
+                        this.active=false
+                    }else if((int(key)+9)%10==1&&this.active){
+                        this.battle.overlayManager.overlays[28][this.player].active=true
+                        this.battle.overlayManager.overlays[28][this.player].activate()
+                        this.active=false
                     }
                 break
             }

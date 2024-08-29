@@ -48,7 +48,7 @@ class purchaseManager{
                         ))
                     }
                     this.purchases.push(new purchase(this.layer,this.battle,0,745,470,2,
-                        [this.battle.relicManager.hasRelic(97,0)?100:200],
+                        [this.battle.relicManager.hasRelic(97,0)?125:250],
                         [],
                         0
                     ))
@@ -135,7 +135,7 @@ class purchaseManager{
                             }
                         }
                         this.purchases.push(new purchase(this.layer,this.battle,0,745,470,2,
-                            [this.battle.relicManager.hasRelic(97,0)?100:200],
+                            [this.battle.relicManager.hasRelic(97,0)?125:250],
                             [],
                             0
                         ))
@@ -261,7 +261,7 @@ class purchaseManager{
                         }
                         for(let a=0,la=this.battle.players;a<la;a++){
                             this.purchases.push(new purchase(this.layer,this.battle,-1,65+a*770,470,2,
-                                [this.battle.relicManager.hasRelic(97,0)?100:200,this.battle.relicManager.hasRelic(97,1)?100:200],
+                                [this.battle.relicManager.hasRelic(97,0)?125:250,this.battle.relicManager.hasRelic(97,1)?125:250],
                                 [],
                                 0
                             ))

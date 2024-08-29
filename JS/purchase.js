@@ -120,8 +120,10 @@ class purchase{
                         }
                     break
                     case 2:
-                        this.battle.overlayManager.overlays[6][purchaser].active=true
-                        this.battle.overlayManager.overlays[6][purchaser].activate()
+                        this.battle.overlayManager.overlays[127][purchaser].active=true
+                        this.battle.overlayManager.overlays[127][purchaser].activate()
+                        /*this.battle.overlayManager.overlays[6][purchaser].active=true
+                        this.battle.overlayManager.overlays[6][purchaser].activate()*/
                     break
                     case 3:
                         this.battle.relicManager.addRelic(this.relic.type,purchaser)
@@ -155,13 +157,14 @@ class purchase{
         this.layer.scale(this.midSize)
         if(this.size>0&&this.position.x>-150&&this.position.x<this.layer.width+150){
             this.layer.scale(this.size)
+            this.layer.noStroke()
             switch(this.type){
                 case 1:
                     this.card.size=1
                     this.card.display()
                 break
                 case 2:
-                    this.layer.fill(200,150,150)
+                    /*this.layer.fill(200,150,150)
                     this.layer.stroke(200,125,125)
                     this.layer.strokeWeight(5)
                     this.layer.rect(0,0,90,120,5)
@@ -169,17 +172,34 @@ class purchase{
                     if(this.player==-1){
                         this.layer.fill(200,100,100)
                         this.layer.rect(0,0,3,125)
-                    }
+                    }*/
+                    this.gradient=[new p5.LinearGradient(15,90),new p5.LinearGradient(15,90)]
+                    this.gradient[0].colors(
+                        0.0,color(200,125,125),
+                        1.0,color(125,200,125)
+                    )
+                    this.gradient[1].colors(
+                        0.0,color(225,150,150),
+                        1.0,color(150,225,150)
+                    )
+
+                    this.layer.translate(-50,0)
+                    this.layer.fill(255)
+                    this.layer.fillGradient(this.gradient[0])
+                    this.layer.rect(50,0,95,125,7.5)
+                    this.layer.fillGradient(this.gradient[1])
+                    this.layer.rect(50,0,85,115,2.5)
+                    this.layer.translate(50,0)
+
                     this.layer.fill(0)
                     this.layer.textSize(10)
-                    this.layer.text('Remove Card',0,0)
+                    this.layer.text('Card Service',0,0)
                 break
                 case 3:
                     this.relic.display(0)
                 break
                 case 4:
                     this.layer.fill(160)
-                    this.layer.noStroke()
                     this.layer.rect(0,-25,300,200,10)
                     this.layer.fill(0)
                     this.layer.textSize(30)

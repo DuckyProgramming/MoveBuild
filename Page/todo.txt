@@ -1,4 +1,4 @@
-mtg generalized search
+mtg generalized test
 
 
 
@@ -17,6 +17,10 @@ deploy new events
 give shinmy a model
 
 collection screen
+
+
+
+
 
 
 
@@ -108,11 +112,16 @@ hypershield - add 1 buffer, 1 energy, if you have a shield orb
 
 ouroboros - 8 damage 2 range, increases by 4 when draw pile shuffled
 
+
+
 3 damage 3 freeze scry 1
 
 [suwa clear water]
 
 heal + restructure
+
+claw rare
+
 
 
 

@@ -266,15 +266,15 @@ class attack{
             case 3663: case 3681: case 3735: case 3743: case 3746: case 3780: case 3788: case 3789: case 3790: case 3795:
             case 3796: case 3797: case 3798: case 3799: case 3800: case 3801: case 3802: case 3803: case 3814: case 3884:
             case 3930: case 3931: case 3943: case 4000: case 4056: case 4076: case 4101: case 4104: case 4113: case 4141:
-            case 4197: case 4198: case 4199: case 4208: case 4209: case 4210: case 4223: case 4262: case 4278: case 4284:
-            case 4307: case 4308: case 4309: case 4310: case 4311: case 4312: case 4331: case 4337: case 4338: case 4339:
-            case 4346: case 4347: case 4348: case 4349: case 4362: case 4363: case 4364: case 4365: case 4366: case 4367:
-            case 4369: case 4370: case 4371: case 4394: case 4427: case 4429: case 4430: case 4431: case 4432: case 4433:
-            case 4434: case 4447: case 4448: case 4463: case 4464: case 4465: case 4473: case 4474: case 4475: case 4476:
-            case 4483: case 4495: case 4496: case 4497: case 4514: case 4518: case 4519: case 4520: case 4521: case 4522:
-            case 4523: case 4530: case 4531: case 4532: case 4552: case 4558: case 4603: case 4604: case 4605: case 4606:
-            case 4607: case 4608: case 4613: case 4638: case 4643: case 4691: case 4692: case 4693: case 4878: case 4879:
-            case 4880:
+            case 4197: case 4198: case 4199: case 4208: case 4209: case 4210: case 4223: case 4224: case 4262: case 4278:
+            case 4284: case 4307: case 4308: case 4309: case 4310: case 4311: case 4312: case 4331: case 4337: case 4338:
+            case 4339: case 4346: case 4347: case 4348: case 4349: case 4362: case 4363: case 4364: case 4365: case 4366:
+            case 4367: case 4369: case 4370: case 4371: case 4394: case 4427: case 4429: case 4430: case 4431: case 4432:
+            case 4433: case 4434: case 4447: case 4448: case 4463: case 4464: case 4465: case 4473: case 4474: case 4475:
+            case 4476: case 4483: case 4495: case 4496: case 4497: case 4514: case 4518: case 4519: case 4520: case 4521:
+            case 4522: case 4523: case 4530: case 4531: case 4532: case 4552: case 4558: case 4603: case 4604: case 4605:
+            case 4606: case 4607: case 4608: case 4613: case 4638: case 4643: case 4691: case 4692: case 4693: case 4878:
+            case 4879: case 4880:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -6920,13 +6920,13 @@ class attack{
                                     this.battle.addEnergy(this.effect[1],this.player)
                                 break
                                 case 4337:
-                                    this.battle.addSpecialEnergy(3,this.player,6)
+                                    this.battle.addSpecificlEnergy(3,this.player,6)
                                 break
                                 case 4338:
-                                    this.battle.addSpecialEnergy(6,this.player,6)
+                                    this.battle.addSpeciificEnergy(6,this.player,6)
                                 break
                                 case 4339:
-                                    this.battle.addSpecialEnergy(8,this.player,6)
+                                    this.battle.addSpeciificEnergy(8,this.player,6)
                                 break
                             }
                             this.userCombatant.highRoll()

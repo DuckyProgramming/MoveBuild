@@ -588,6 +588,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[5]&&user.status.main[585]!=0){
 				bonusB+=user.status.main[585]
 			}
+			if(variant&&args[9]&&user.status.main[544]>0){
+				bonusB+=user.status.main[544]
+			}
 			if(user.status.main[168]>0){
 				bonusB+=user.status.main[168]
 			}
@@ -2171,35 +2174,70 @@ function colorTest(){
 function attackTest(type,target,startpoint){
 	switch(type){
 		case 0: case 1: case 2: case 3:
-			current.combatantManager.combatants[type==1?target[0]:target].setMaxHP(999999)
-			for(let a=startpoint,la=types.card.length;a<la;a++){
-				for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
-					if(
-						type==0&&types.card[a].levels[b].target[0]==2||
-						type==1&&types.card[a].levels[b].target[0]==1||
-						type==2&&types.card[a].levels[b].target[0]==5||
-						type==3&&types.card[a].levels[b].target[0]==0
-					){
-						current.attackManager.type=types.card[a].levels[b].attack
-						current.attackManager.player=0
-						current.attackManager.effect=types.card[a].levels[b].effect
-						current.attackManager.attackClass=types.card[a].levels[b].class
-						current.attackManager.user=0
-						current.attackManager.level=b
-						current.attackManager.color=types.card[a].list<0?0:types.card[a].list>=types.color.card.length?0:types.card[a].list
-						current.attackManager.energy=3
-						current.attackManager.target[0]=type==1?target[0]:target
-						current.attackManager.targetDistance=1
-						current.attackManager.targetClass=2
-						current.attackManager.combo=0
-						current.attackManager.amplify=true
-						current.attackManager.relPos=[0,0]
-						current.attackManager.limit=types.card[a].levels[b].limit
-						current.attackManager.id=-1
-						current.attackManager.edition=0
-						current.attackManager.drawn=0
-						current.attackManager.cost=types.card[a].levels[b].cost
-						current.attackManager.execute()
+			current.combatantManager.combatants[type==1?target[1]:target].setMaxHP(999999)
+			if(variants.mtg){
+				for(let a=startpoint,la=types.card.length;a<la;a++){
+					for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+						if((
+								type==0&&types.card[a].mtg.levels[b].target[0]==2||
+								type==1&&types.card[a].mtg.levels[b].target[0]==1||
+								type==2&&types.card[a].mtg.levels[b].target[0]==5||
+								type==3&&types.card[a].mtg.levels[b].target[0]==0
+							)&&types.card[a].mtg.levels[b].attack!=types.card[a].levels[b].attack
+						){
+							current.attackManager.type=types.card[a].mtg.levels[b].attack
+							current.attackManager.player=0
+							current.attackManager.effect=types.card[a].mtg.levels[b].effect
+							current.attackManager.attackClass=types.card[a].mtg.levels[b].class
+							current.attackManager.user=0
+							current.attackManager.level=b
+							current.attackManager.color=current.standardColorize(a)
+							current.attackManager.energy=3
+							current.attackManager.target[0]=type==1?target[0]:target
+							current.attackManager.targetDistance=1
+							current.attackManager.targetClass=2
+							current.attackManager.combo=0
+							current.attackManager.amplify=true
+							current.attackManager.relPos=[0,0]
+							current.attackManager.limit=types.card[a].mtg.levels[b].limit
+							current.attackManager.id=-1
+							current.attackManager.edition=0
+							current.attackManager.drawn=0
+							current.attackManager.cost=types.card[a].mtg.levels[b].cost
+							current.attackManager.execute()
+						}
+					}
+				}
+			}else{
+				for(let a=startpoint,la=types.card.length;a<la;a++){
+					for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+						if(
+							type==0&&types.card[a].levels[b].target[0]==2||
+							type==1&&types.card[a].levels[b].target[0]==1||
+							type==2&&types.card[a].levels[b].target[0]==5||
+							type==3&&types.card[a].levels[b].target[0]==0
+						){
+							current.attackManager.type=types.card[a].levels[b].attack
+							current.attackManager.player=0
+							current.attackManager.effect=types.card[a].levels[b].effect
+							current.attackManager.attackClass=types.card[a].levels[b].class
+							current.attackManager.user=0
+							current.attackManager.level=b
+							current.attackManager.color=current.standardColorize(a)
+							current.attackManager.energy=3
+							current.attackManager.target[0]=type==1?target[0]:target
+							current.attackManager.targetDistance=1
+							current.attackManager.targetClass=2
+							current.attackManager.combo=0
+							current.attackManager.amplify=true
+							current.attackManager.relPos=[0,0]
+							current.attackManager.limit=types.card[a].levels[b].limit
+							current.attackManager.id=-1
+							current.attackManager.edition=0
+							current.attackManager.drawn=0
+							current.attackManager.cost=types.card[a].levels[b].cost
+							current.attackManager.execute()
+						}
 					}
 				}
 			}
