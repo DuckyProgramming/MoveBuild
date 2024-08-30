@@ -1590,7 +1590,7 @@ class group{
     }
     allEffectArgs(effect,args){
         let total=0
-        if(effect==3||effect==10||effect==12||effect==18||effect==19||effect==32){
+        if(effect==3||effect==10||effect==12||effect==18||effect==19||effect==32||effect==43){
             total=0
         }else if(effect==9){
             total=args[1]
@@ -1847,11 +1847,18 @@ class group{
                         this.cards[a].setCost(0,[0])
                     }
                 break
+                case 43:
+                    if(this.cards[a].class!=args[0]){
+                        this.cards[a].deSize=true
+                        this.cards[a].exhaust=true
+                        total++
+                    }
+                break
             }
         }
         if(effect==9){
             return args[1]-total
-        }else if(effect==10||effect==12||effect==18||effect==19||effect==32){
+        }else if(effect==10||effect==12||effect==18||effect==19||effect==32||effect==43){
             return total
         }
     }
@@ -2504,7 +2511,7 @@ class group{
                 this.drawEffects.push([7,21,card.effect[0]])
                 this.drawEffects.push([5,card.effect[1]])
             break
-            case 3149:
+            case 3149: case 4928:
                 card.effect[0]+=card.effect[1]
             break
             case 3245:
@@ -3247,7 +3254,8 @@ class group{
                     if(spec.includes(27)&&variants.mtg){
                         let amplifyCost=[]
                         switch(this.battle.attackManager.type){
-                            case 4636: case 4639: case 4640: case 4641: case 4643: case 4644: case 4646: case 4892:
+                            case 4636: case 4639: case 4640: case 4641: case 4643: case 4644: case 4646: case 4892: case 4937: case 4938:
+                            case 4939:
                                 amplifyCost=[1]
                             break
                             case 4637:

@@ -659,7 +659,7 @@ class combatant{
                 this.statusEffect('Counter Bleed Once',game.ascend>=31?6:4)
             break
             case 'Crusader':
-                this.statusEffect('Armor',game.ascend>=31?30:18)
+                this.statusEffect('Armor',game.ascend>=31?20:10)
             break
         }
         if(this.team==0){
@@ -2923,9 +2923,6 @@ class combatant{
             if(this.status.main[353]>0){
                 this.status.main[353]=0
             }
-            if(this.status.main[301]>0){
-                this.status.main[301]--
-            }
             if(this.status.main[14]>0){
                 this.status.main[14]--
             }
@@ -4466,6 +4463,9 @@ class combatant{
             this.infoAnim.upFlash[2]=true
         }else{
             this.life-=amount
+            if(this.status.main[301]>0){
+                this.status.main[301]--
+            }
             if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[438]>0){
                 this.battle.combatantManager.areaAbstract(0,[this.status.main[438],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
             }

@@ -1809,6 +1809,9 @@ function faith(value){
 function elemental(){
 	current.combatantManager.combatants[0].vision+=12
 }
+function wish(value){
+	current.combatantManager.combatants[0].wish+=value
+}
 function edition(edition){
 	current.cardManagers[0].hand.cards[0].edition=edition
 }
@@ -2251,6 +2254,14 @@ function attackTest(type,target,startpoint){
 function cursed(){
 	for(let a=0,la=current.combatantManager.combatants.length;a<la;a++){
 		current.combatantManager.combatants[a].goal.anim.direction=0
+	}
+}
+function oracle(){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0,-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.display()
 	}
 }
 function generalizedSearch(test,type){

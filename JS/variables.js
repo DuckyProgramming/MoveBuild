@@ -136,7 +136,7 @@ types={
         {name:'Vengeful',life:70,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:212,effect:[7]},{type:213,effect:[6]},{type:214,effect:[9]},{type:210,effect:[1]}],description:`Remember last time?`},
         {name:'Coffee Commander',life:335,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:164,effect:[8,1,'Electrocuted']},{type:163,effect:[5,1]},{type:129,effect:[4]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
         {name:'Tech Support',life:166,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:208,effect:[14]},{type:209,effect:[10]},{type:29,effect:[9]}],description:`Won't fix problems`},
-        {name:'Jester',life:28,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:247,effect:[3]},{type:248,effect:[1,7]}],description:`Real funny guy, you are`},
+        {name:'Jester',life:28,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:247,effect:[2]},{type:248,effect:[1,7]}],description:`Real funny guy, you are`},
         {name:'Lalex',life:84,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:249,effect:[2]},{type:250,effect:[13,1]},{type:251,effect:[6,3]}],description:`Why is he here?`},
         {name:'Normal1',life:12,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:31,effect:[3]}],description:`Precursor to Normal2`},
         {name:'Boss1',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[12]},{type:254,effect:[10,1]},{type:253,effect:[10,6]}],description:`These numbers are a little arbitrary`},

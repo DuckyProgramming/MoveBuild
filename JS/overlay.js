@@ -885,20 +885,20 @@ class overlay{
                                     list=copyArray(this.battle.cardManagers[this.player].listing.disband)
                                 break
                             }
-                            for(let a=0,la=list.length;a<la;a++){
-                                if((types.card[list[a]].rarity==this.args[1]||this.args[1]==-1)&&!(variants.mtg&&types.card[list[a]].mtg==undefined)){
-                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-350+tick%8*100,this.layer.height/2-130+floor(tick/8)%3*130,list[a],args[0],this.battle.standardColorize(list[a]),-1))
+                            for(let a=0,la=args[1]==-99?types.card.length:list.length;a<la;a++){
+                                let selector=args[1]==-99?a:list[a]
+                                if((types.card[selector].rarity==this.args[1]||this.args[1]==-1)&&!(variants.mtg&&types.card[selector].mtg==undefined)){
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-350+tick%8*100,this.layer.height/2-130+floor(tick/8)%3*130,selector,args[0],this.battle.standardColorize(selector),-1))
                                     this.cards[tick].upSize=true
                                     tick++
                                     if(variants.mtg){
-                                        if(types.card[list[a]].mtg.list!=mark){
-                                            mark=types.card[list[a]].mtg.list
+                                        if(types.card[selector].mtg.list!=mark){
+                                            mark=types.card[selector].mtg.list
                                             this.marks.push(floor(total/24))
                                         }
                                     }else{
-                                        
-                                        if(types.card[list[a]].list!=mark){
-                                            mark=types.card[list[a]].list
+                                        if(types.card[selector].list!=mark){
+                                            mark=types.card[selector].list
                                             this.marks.push(floor(total/24))
                                         }
                                     }

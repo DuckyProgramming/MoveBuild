@@ -190,7 +190,10 @@ class purchase{
                     this.layer.fillGradient(this.gradient[1])
                     this.layer.rect(50,0,85,115,2.5)
                     this.layer.translate(50,0)
-
+                    if(this.player==-1){
+                        this.layer.fill(200)
+                        this.layer.rect(0,0,3,125)
+                    }
                     this.layer.fill(0)
                     this.layer.textSize(10)
                     this.layer.text('Card Service',0,0)

@@ -1,9 +1,3 @@
-mtg generalized test
-
-
-
-
-
 UNCOMING:
 
 new cards
@@ -21,16 +15,6 @@ collection screen
 
 
 
-
-
-
-
-
-
-
-
-
-MTG ULTRAPRISM
 
 
 
@@ -157,7 +141,7 @@ must be mono green
 
 trapezius - 10 damage, draw a fatigue
 
-accoutrement - 14 block, when discarded get 2 silver daggers
+accoutrement - 14 block, when rewound get a miracle or smth
 
 stun dust - every 4 times played, apply 1 stun
 
