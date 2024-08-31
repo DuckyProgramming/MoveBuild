@@ -1102,6 +1102,9 @@ function tennify(value){
 function pl(value){
 	return value!=1?`s`:``
 }
+function vceil(value){
+	return value%1<0.1?round(value):ceil(value)
+}
 function vectorAtan(point1,point2){
 	return atan2(point2.x-point1.x,point2.y-point1.y)
 }

@@ -5465,6 +5465,48 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             regStar(layer,0,0,8,6,6,3.6,3.6,0)
             displayMtgManaSymbol(layer,0,0,6,0,0.3,fade,-1,[])
         break
+        case 589:
+            displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
+            layer.fill(125,fade)
+            layer.stroke(100,fade)  
+            layer.strokeWeight(1)
+            layer.rect(0,-0.5,4.5,6,1)
+            layer.noStroke()
+            layer.fill(200,255,255,fade)
+            layer.quad(-1.5,-2,-2.5,0,-1.5,2,-0.5,0)
+            layer.quad(1.5,-2,2.5,0,1.5,2,0.5,0)
+            layer.ellipse(0,0,1)
+        break
+        case 590:
+            layer.fill(255,fade)
+            layer.arc(0,0,10,10,-180,0)
+            layer.fill(50,225,50,fade)
+            layer.arc(0,0,10,10,0,180)
+            layer.ellipse(2.5,0,5)
+            layer.fill(255,fade)
+            layer.ellipse(-2.5,0,5)
+            layer.ellipse(2.5,0,1.5)
+            layer.fill(50,225,50,fade)
+            layer.ellipse(-2.5,0,1.5)
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
+        case 591:
+            layer.fill(255,fade)
+            layer.arc(0,0,10,10,-180,0)
+            layer.fill(50,225,50,fade)
+            layer.arc(0,0,10,10,0,180)
+            layer.ellipse(2.5,0,5)
+            layer.fill(255,fade)
+            layer.ellipse(-2.5,0,5)
+            layer.ellipse(2.5,0,1.5)
+            layer.fill(50,225,50,fade)
+            layer.ellipse(-2.5,0,1.5)
+            layer.fill(150,175,200,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
 
     }
     //mark s

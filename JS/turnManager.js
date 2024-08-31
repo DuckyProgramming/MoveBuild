@@ -96,7 +96,6 @@ class turnManager{
         this.auxiliary=false
         this.phase=true
         this.loads=0
-        this.turns=[]
         if(this.battle.modded(125)){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                 if(floor(random(0,4))==0&&this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&this.battle.combatantManager.combatants[a].getStatus('Cannot Move')<=0){
@@ -196,6 +195,11 @@ class turnManager{
                 this.turns.push(new turn(this.battle.combatantManager.combatants[a].spec.includes(17)?5:2,this.battle,0,0,a))
             }
         }
+    }
+    loadSpecificAttack(user,type,effect){
+        this.loads++
+        this.auxiliary=true
+        this.turns.push(new turn(0,this.battle,type,effect,user))
     }
     loadEnemyPoint(point){
         this.auxiliary=true

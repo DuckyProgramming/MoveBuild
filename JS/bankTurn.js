@@ -3558,6 +3558,17 @@ turn.prototype.update=function(){
                         }
                     }
                 break
+                case 393:
+                    if(this.timer==1){
+                        for(let a=0,la=8;a<la;a++){
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.battle.combatantManager.combatants[this.effect[0]].position.x+150,this.battle.combatantManager.combatants[this.effect[0]].position.y-600,190,[random(193,197),50,a*6+random(0,4)]))
+                        }
+                    }else if(this.timer%10==0&&this.timer>=30&&this.timer<=30+this.effect[0]*15){
+                        this.battle.combatantManager.combatants[this.effect[0]].takeDamage(this.effect[1],this.effect[2])
+                    }else if(this.timer>=45+this.effect[0]*15){
+                        this.remove=true
+                    }
+                break
 
                 default:
                     this.remove=true

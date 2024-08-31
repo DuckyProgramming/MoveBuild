@@ -27,7 +27,7 @@ class group{
         this.basicChange=[0,0]
         this.addEffect=[]
         this.finalPosition=0
-        this.listKey=37
+        this.listKey=38
         this.listInput=[
             [0,4],
             [1,8],
@@ -62,6 +62,7 @@ class group{
             [34,39],
             [35,40],
             [36,41],
+            [37,43],
         ]
 
         this.reset()
@@ -548,6 +549,10 @@ class group{
     }
     exhaustChooseSameLevel(amount){
         this.status[36]+=amount
+        this.generalSelfStatus()
+    }
+    judge(amount){
+        this.status[37]+=amount
         this.generalSelfStatus()
     }
     generalSelfStatus(){
@@ -3379,7 +3384,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[29],this.anim[30]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36])]
+                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[29],this.anim[30]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36]),this.anim[37]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -4416,6 +4421,18 @@ class group{
                 this.lastMouseOver=-1
                 if(variants.polar){
                     this.pole=1-this.pole
+                }
+            break
+            case 43:
+                if(this.cards[a].class==5||this.cards[a].class==6){
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                }else{
+                    this.cards[a].costDown(0,[1])
+                    this.cards[a].retain=true
+                }
+                if(this.status[37]>0){
+                    this.status[37]--
                 }
             break
         }

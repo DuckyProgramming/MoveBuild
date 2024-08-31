@@ -658,6 +658,7 @@ types={
         {name:'3 Tile Strike / Burn',class:1},//390
         {name:'Double Absorb Shield Particles',class:4},
         {name:'All Enemy 2 Turn Block / Armor',class:2},
+        {name:'Sunny, Glowing Sunlight',class:4},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,description:''},
@@ -9623,7 +9624,8 @@ The card effects play out with X = the amount of energy.`,
         },{name:'Sludge Tile',mtg:1,desc:
 `Removes all energy when stepped on.`,
         },{name:'Energy Orb',mtg:1,desc:
-`On evoke, gain 3 energy.`,
+`On evoke, gain 3 energy.
+Unaffected by focus.`,
         },{name:'Miracle',mtg:1,desc:
 `Card that gives energy, exhausts and retains.
 Typically gives 1, but there are other versions that give more.`,
@@ -9660,7 +9662,8 @@ The card effects play out with X = the amount of mana spent.`,
         },{name:'Sludge Tile',mtg:2,desc:
 `Removes all mana when stepped on.`,
         },{name:'Energy Orb',mtg:2,desc:
-`On evoke, gain 3 rainbow mana.`,
+`On evoke, gain 3 rainbow mana.
+Unaffected by focus.`,
         },{name:'Pristine',mtg:2,desc:
 `Card that gives neutral mana, exhausts and retains.
 Typically gives 2, but there are other versions that give more.`,
@@ -9932,17 +9935,23 @@ Does not spend the orb.`,
         },{name:'Lightning Orb',mtg:0,desc:
 `On evoke, deals 8 damage. Also deals 4 damage to a random enemy every turn.`,
         },{name:'Light Orb',mtg:0,desc:
-`On evoke, draw 2 cards.`,
+`On evoke, draw 2 cards.
+Unaffected by focus.`,
         },{name:'Flame Orb',mtg:0,desc:
-`On evoke, applies 5 Burn.`,
+`On evoke, applies 3 Burn.
+Unaffected by focus.`,
         },{name:'Ice Orb',mtg:0,desc:
-`On evoke, applies 5 Freeze.`,
+`On evoke, applies 3 Freeze.
+Unaffected by focus.`,
         },{name:'Buff Orb',mtg:0,desc:
-`On evoke, applies 3 Strength.`,
+`On evoke, applies 3 Strength.
+Unaffected by focus.`,
         },{name:'Nerf Orb',mtg:0,desc:
-`On evoke, applies 3 Weak.`,
+`On evoke, applies 3 Weak.
+Unaffected by focus.`,
         },{name:'Poison Orb',mtg:0,desc:
-`On evoke, applies 5 Poison.`,
+`On evoke, applies 5 Poison.
+Unaffected by focus.`,
         },{name:'Glass Orb',mtg:0,desc:
 `On evoke, deals 4 damage.`,
         },{name:'Holding',mtg:0,desc:

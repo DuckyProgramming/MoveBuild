@@ -1207,6 +1207,9 @@ class battle{
         if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Energy')>0){
             this.addEnergy(userCombatant.getStatus('2+ Cost Energy'),player)
         }
+        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost (E)')>0){
+            this.addSpecificEnergy(userCombatant.getStatus('2+ Cost (E)'),player,6)
+        }
         if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('2+ Cost Draw'))
         }
@@ -1288,6 +1291,12 @@ class battle{
         }
         if(userCombatant.getStatus('Card Delay Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Card Delay Draw'))
+        }
+        if(card.spec.includes(54)&&userCombatant.getStatus('Discus Temporary Strength')>0){
+            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Discus Temporary Strength'))
+        }
+        if(card.spec.includes(54)&&userCombatant.getStatus('Discus Temporary Dexterity')>0){
+            userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Discus Temporary Dexterity'))
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])

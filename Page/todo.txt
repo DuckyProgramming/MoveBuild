@@ -2,8 +2,6 @@ UNCOMING:
 
 new cards
 
-deploy existing queue
-
 deploy new enemies
 
 deploy new events
@@ -11,6 +9,8 @@ deploy new events
 give shinmy a model
 
 collection screen
+
+
 
 
 
@@ -143,11 +143,19 @@ trapezius - 10 damage, draw a fatigue
 
 accoutrement - 14 block, when rewound get a miracle or smth
 
+
+
+bubble shield - add 7 block per orb you have
+
+lightning rod - hold a lightning orb every turn
+
 stun dust - every 4 times played, apply 1 stun
 
 junkyard road to recovery - suicidal, lose health when removed
 
 10 damage and a glass orb
+
+epiphany - deal 5 damage, when discarded by scry deal 10 splash damage
 
 
 
@@ -175,6 +183,8 @@ create a plant tile and add a sakura card to hand
 wish forged shield
 
 another wish-based storage
+
+lock on card
 
 
 

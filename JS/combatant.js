@@ -169,7 +169,8 @@ class combatant{
                 'Counter Bleed Once Per Turn','Counter Gun Once','Counter Gun Once Per Turn','Counter Push Combat','Attack Burn Combat','All Strength Cycle 4 1','All Strength Cycle 4 2','All Strength Cycle 4 3','All Strength Cycle 4 4','Counter Weak All Combat',
                 'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength','3+ Cost Single Damage Up','3+ Cost Block','Item Use (N)','(E) Cycle 2 1','(E) Cycle 2 2','(W) Cycle 2 1','(W) Cycle 2 2',
                 '(B) Cycle 2 1','(B) Cycle 2 2','(K) Cycle 2 1','(K) Cycle 2 2','(G) Cycle 2 1','(G) Cycle 2 2','(R) Cycle 2 1','(R) Cycle 2 2','(N) Cycle 2 1','(N) Cycle 2 2',
-                'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn','Shuffle (E)','(E) Spend Splash',
+                'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn','Shuffle (E)','(E) Spend Splash','2+ Cost (E)',
+                'Discus Temporary Strength','Discus Temporary Dexterity',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -3800,23 +3801,23 @@ class combatant{
             break
             case 6:
                 if(target<this.battle.players||this.id<this.battle.players){
-                    this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(2*multi))
+                    this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(2)
                 }
             break
             case 7:
-                this.battle.combatantManager.combatants[target].statusEffect('Burn',round(5*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Burn',3)
             break
             case 8:
-                this.battle.combatantManager.combatants[target].statusEffect('Freeze',round(5*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Freeze',3)
             break
             case 9:
-                this.battle.combatantManager.combatants[target].statusEffect('Strength',round(3*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Strength',3)
             break
             case 10:
-                this.battle.combatantManager.combatants[target].statusEffect('Weak',round(3*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Weak',3)
             break
             case 11:
-                this.battle.combatantManager.combatants[target].statusEffect('Poison',round(5*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Poison',5)
             break
             case 12:
                 this.battle.combatantManager.combatants[target].orbTake(round(4*multi*playerMulti),-1)
@@ -3855,22 +3856,22 @@ class combatant{
                 this.battle.combatantManager.combatants[target].orbTake(round(4*multi*playerMulti),-1)
             break
             case 6:
-                this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(multi))
+                this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(1)
             break
             case 7:
-                this.battle.combatantManager.combatants[target].statusEffect('Burn',round(2.5*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Burn',2)
             break
             case 8:
-                this.battle.combatantManager.combatants[target].statusEffect('Freeze',round(2.5*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Freeze',2)
             break
             case 9:
-                this.battle.combatantManager.combatants[target].statusEffect('Strength',round(1.5*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Strength',1)
             break
             case 10:
-                this.battle.combatantManager.combatants[target].statusEffect('Weak',round(1.5*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Weak',1)
             break
             case 11:
-                this.battle.combatantManager.combatants[target].statusEffect('Poison',round(2.5*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Poison',2)
             break
             case 12:
                 this.battle.combatantManager.combatants[target].orbTake(round(2*multi*playerMulti),-1)
@@ -3886,16 +3887,16 @@ class combatant{
         }
         switch(type){
             case 1:
-                this.battle.combatantManager.combatants[target].statusEffect('Buffer',round(2*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Buffer',round(2))
             break
             case 2:
                 this.battle.combatantManager.combatants[target].orbTake(round(50*multi),-1)
             break
             case 9:
-                this.battle.combatantManager.combatants[target].statusEffect('Double Damage',round(4*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Double Damage',round(4))
             break
             case 10:
-                this.battle.combatantManager.combatants[target].statusEffect('Strength',-round(3*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Strength',-round(3))
             break
         }
     }
@@ -6034,17 +6035,17 @@ class combatant{
         if(this.battle.modded(104)&&this.team==0){
             this.layer.text('?',0,0.5)
         }else if(this.battle.modded(8)&&this.team==0){
-            this.layer.text(max(0,ceil(this.life*10)/10),0,0.5)
+            this.layer.text(max(0,vceil(this.life*10)/10),0,0.5)
         }else{
-            this.layer.text(max(0,ceil(this.life*10)/10)+'/'+max(0,ceil(this.base.life*10)/10),0,0.5)
+            this.layer.text(max(0,vceil(this.life*10)/10)+'/'+max(0,vceil(this.base.life*10)/10),0,0.5)
         }
         if(this.infoAnim.block>0){
             this.layer.fill(0,this.fade*this.infoAnim.block)
-            this.layer.text(ceil(this.block*10)/10,-28-5.5*this.infoAnim.blockSize*this.infoAnim.blockBarrier-5.5*this.infoAnim.barrierSize*this.infoAnim.blockBarrier,0.5)
+            this.layer.text(vceil(this.block*10)/10,-28-5.5*this.infoAnim.blockSize*this.infoAnim.blockBarrier-5.5*this.infoAnim.barrierSize*this.infoAnim.blockBarrier,0.5)
         }
         if(this.infoAnim.barrier>0){
             this.layer.fill(0,this.fade*this.infoAnim.barrier)
-            this.layer.text(ceil(this.barrier*10)/10,-28,0.5)
+            this.layer.text(vceil(this.barrier*10)/10,-28,0.5)
         }
         this.layer.fill(0,this.fade*this.infoAnim.life)
         if(this.team==0){

@@ -486,6 +486,9 @@ class combatantManager{
                         this.combatants[index].statusEffect(args[b*2+1],args[b*2+2])
                     }
                 break
+                case 21:
+                    this.battle.turnManager.loadSpecificAttack(args[1],393,[index,args[0],args[1],args[2]],)
+                break
             }
         }
     }
