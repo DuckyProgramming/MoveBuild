@@ -1508,6 +1508,21 @@ class overlay{
                         }
                     break
                     case 1:
+                        if(args[0].spec.includes(1)){
+                            let list1=[this.battle.cardManagers[this.player].discard,this.battle.cardManagers[this.player].reserve,this.battle.cardManagers[this.player].hand]
+                            for(let a=0,la=list1.length;a<la;a++){
+                                for(let b=0,lb=list1[a].cards.length;b<lb;b++){
+                                    if(list1[a].cards[b].id==args[0].id){
+                                        if(a==2){
+                                            list1[a].cards[b].deSize=true
+                                            list1[a].cards[b].exhaust=true
+                                        }else{
+                                            list1[a].generalExhaust(b)
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         this.battle.cardManagers[this.player].hand.selfCall(34,args[0])
                         this.battle.cardManagers[this.player].hand.selfCall(33,args[0])
                     break

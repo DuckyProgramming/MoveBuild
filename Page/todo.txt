@@ -17,11 +17,7 @@ collection screen
 
 
 
-
 a small shinmy purge
-
-a merlin purge
-
 
 
 
@@ -33,7 +29,6 @@ lists all cards, if you've seen them
 it may be time to add tooltips
 
 project constructed save?
-
 
 
 
@@ -92,20 +87,13 @@ we gotta have a card that says gain block when you exhaust a card, but it's gott
 
 knife deflect - add 6 block, if your block is broken add a shiv
 
-hypershield - add 1 buffer, 1 energy, if you have a shield orb
-
 ouroboros - 8 damage 2 range, increases by 4 when draw pile shuffled
 
-
-
-3 damage 3 freeze scry 1
+3 damage 3 block scry 1
 
 [suwa clear water]
 
 heal + restructure
-
-claw rare
-
 
 
 
@@ -134,36 +122,6 @@ red star explosion?
 
 
 
-the final 3 cables - based on burn, freeze, ?
-
-the sixth concoction
-must be mono green
-
-trapezius - 10 damage, draw a fatigue
-
-accoutrement - 14 block, when rewound get a miracle or smth
-
-
-
-bubble shield - add 7 block per orb you have
-
-lightning rod - hold a lightning orb every turn
-
-stun dust - every 4 times played, apply 1 stun
-
-junkyard road to recovery - suicidal, lose health when removed
-
-10 damage and a glass orb
-
-epiphany - deal 5 damage, when discarded by scry deal 10 splash damage
-
-
-
-
-fantasy express?
-
-managerial blossoming
-
 trial of the first court
 
 [seija card]
@@ -174,172 +132,55 @@ caltrops - create tiles that inflict bleed
 
 
 
-create a plant tile and add a sakura card to hand
-
-[damage wish]
-[4 wish power pull from discard pile]
-20 total wishes after these two
-
-wish forged shield
-
-another wish-based storage
+accoutrement - 14 block, when rewound get a miracle or smth
 
 lock on card
 
-
-
 dodge doubler
-
-[counter and gain wish power]
 
 daggerlock - get hit by a falling shiv
 
 
 
-deal damage, upgrade a concoction
-
-expensive watch - 9 damage, retain unspent energy this turn
-
-elbow - 2 cost damage and push, costs 1 less when you move
-
-coldsteel heart - add 1 of any mana into the base (other then rainbow)
-
-dumpster dive - add any junkyard card to your hand
-
-(new) strefend - card that counts as a strike or defend
-
-instant shell - deal splash damage, take another turn (prehex)
-
-
-
-perfect servant - for each 2 (W) spent, all cards cost 1 less, for each (B) spent, gain (E) next turn
-
-forcefield - 3 cost 16 block, decreases by 1 per power played this combat
-
-cool rose - 3 damage 3 block, 0 cost, double both if target has freeze
-
-suplex - combo card, damage an enemy and move him behind yourself (or hits a wall)
-
-counter grapple like suplex
-
 [rainbow starfall]
 stars move in rough colored rows
 and hollow star particles
 
-
-
-great tengu decree looks cool
-
-
-
-double counter - block, counter incoming attacks with 2 hits
-
-pick a card with cost x+1, it costs 0
-
-wall smash - deal 9 damage, double if target is adjacent to an empty tile spot
-
-long con - 2 cost, gain 25 block, gain 1 energy in 2 turns and 2 energy in 3 turns
-
 [adzuki]
-
-[haniwa front]
-
-
-
-[sakura meme cards]
-
-privacy - shiru, gain 1 dodge, discard a card
-
-minor injury - injury but it becomes playable after a boss combat, and vanishes 1
-
-candy cane - 10 damage, if fatal drop a health pack
-
-propelling silver - 9x damage, all excess damage is dealt to random enemies
-
-metallic loom - 3 cost, 18 splash damage, gain 5 block per shiv in hand
-
-
-
-reverent thought - draw 3 cards, gain 1 energy if in divinity
 
 yellow giant - 8 damage 2 times, 2 range, spend 2 charge: 1 more time
 
-mushroom stew - heal 3 health, next charge spend is free
-
 [scarlet majesty]
-
-animated refracted sunlight with sparkly particles that fall
 
 [wall of moonlight]
 
-timantti - reverse of lapio
-
-
-
-frost refraction - gain 10 block, gain 3 decrementing armor
-
 sharp palm
 
-[1 new construct]
 
-pure white world - apply freeze to every enemy for the next 3 turns
-
-flank punch - punch forward for 8, but also if there's an enemy behind you it takes 20 damage
-
-intercept - 7 damage, double if target will attack
-
-
-
-animate sunny
-
-take out - exhaust a card, retain, 1 cost, gain 1 energy if it was not a status or curse
-
-autokill - make an existing construct attack when anything moves into its line of sight
-
-ascension spin - draw a card, gain 3 temp strength
 
 dragon-slaying circle - 17 damage, conditionally 1 weak and 1 vulnerable
 
 [setsuna movement]
 
-supremum and infimum move
-
-
 
 
 [5 common partnership cards]
 
-[are there new tarots?]
+[1 uncommon partnership card]
+
+
 
 [5 rare partnership cards]
 
+[2 new tarots]
 
 
-set of cards, cost 0 when you change stance
-[]
-[]
-
-azure seal - randomly remove card or double upgrade it
-
-saltflat - add block, draw a movement if you have none in hand
 
 [polar vortex]
 
-
-
 cyan meteor - leaves behind trial of lines and star outlines
 
-card that returns on extra turn:
-time detective - 1 vulnerable, 0 cost, returns on extra turn
-surgeshield - 6 block, 0 cost, return on extra turn
-
-we need more curved lasers [dreadful raging waves]
-
-luminous ricochet - 9 damage twice, 1 shiv with replenish to the discard pile
-
 give sakura a multihit
-
-garden gathering - gain 1 energy whenever you trigger a choice for an ally card
 
 
 
@@ -347,65 +188,27 @@ garden gathering - gain 1 energy whenever you trigger a choice for an ally card
 
 2 more pulls (2 range pull enemy i mean)
 
-junkyard, move 1 tile, create a mine where you end up
-
 backflip - gain 1 dodge, gain 1 temp strength
 
-[spinning back fist]
 
-cracked clock - take another turn, can't draw extra during it
-
-
-
-shiv dimension - take another turn, on that turn get 5 shivs
-
-twisted time - 1 cost, take another turn, all enemies take another turn
 
 waste utilization - exhaust a card, add a prismatic bomb to discard pile
 
-impact surge - impact movement
-
 pulsating time - 1 cost, 6 damage, 3 damage in all directions at the end of this turn
-
-canned spam - canned tuna but bad
-
-
 
 magnum - choke, but splash damage instead
 
-sharp eye - draw 1 card, center of hand: gain 1 energy, exhaust
-
 vantage - 10 block, upgrade 2 random cards if played first
 
-trigger itch - 3 cost gun, a random card in hand costs 0 temporarily
 
-
-
-newsflash - deal 6 damage, duplicate a random card in hand
 
 [guiding star]
 
 LSD - curse, when you play 3 cards, lose 5 health
 
-split talons into one for bleed
-
-even fight - everybody on the map gains 1 strength, draw a card, exhaust, 0 cost
-
-maple dance - gain [] temp dexterity, increases by 1 when drawn
-
-
-
-HAARP - createa lightning orb, all lightning orbs are more effective
-
 new 4 mana 7 7
 
 convection - when you dodge an attack, all enemies take 3 damage
-
-[block + apis effect]
-
-fame or fortune - 2 cost, gain 25 block, or gain 25 currency
-
-infinite power - gain 1 energy, can be upgraded any number of times
 
 
 
@@ -418,17 +221,15 @@ stars and little flashes
 radiance of wealth - damage, upgrade cards, gain 5 currency
 has little line lasers with golden centers and pink edges
 
-divine age - draw 3 cards, they become ethereal
-
 counter jinx - 10 block, counter targets for 10 jinx
 
 
 
 anticlash - opposite of clash, add defense if you have only attacks
 
-reliable knife but a shield
-
 cashload - gain double currency from this combat
+
+merlin's tricolor mtg card
 
 
 
@@ -439,9 +240,6 @@ koishi cards?
 [perfect crime]
 
 
-
-
-deploy the cards from folder CA
 
 
 
@@ -636,9 +434,6 @@ linkup - choose 2 cards, when you draw 1 draw the other
 []
 
 []
-
-
-
 
 
 

@@ -3081,7 +3081,7 @@ class combatant{
                     if(userCombatant.status.main[463]>0){
                         this.statusEffect('Lock On',userCombatant.status.main[463])
                     }
-                    if(userCombatant.status.main[554]>0&&this.block==0){
+                    if(userCombatant.status.main[554]>0){
                         this.statusEffect('Burn',userCombatant.status.main[554])
                     }
                     if(this.battle.relicManager.hasRelic(246,user)&&damage>=25){
