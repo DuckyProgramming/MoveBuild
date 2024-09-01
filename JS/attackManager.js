@@ -91,7 +91,7 @@ class attackManager{
                 }
             }
         }
-        if(this.battle.relicManager.hasRelic(393,player)&&card.basic){
+        if(this.battle.relicManager.hasRelic(393,player)&&card.getBasic(-1)){
             let mult=1
             for(let a=0,la=spend.length;a<la;a++){
                 if(spend[a]==0){

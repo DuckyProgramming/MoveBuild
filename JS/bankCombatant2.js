@@ -1964,14 +1964,21 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
             this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[255,225,15],legs:[255,210,0],arms:[255,215,5]}}
         break
-        case 'Wall':
+        case 'Wall': case 'Exploding Wall':
             this.anim={direction:direction}
             this.fades={body:1}
             this.trigger={display:{body:true}}
             this.calc={int:[0,0,0,0]}
             this.animSet={loop:0,flip:0}
             this.goal={anim:{direction:this.anim.direction}}
-            this.color={in:[120,120,120],out:[100,100,100]}
+            switch(this.name){
+                case 'Wall':
+                    this.color={in:[120,120,120],out:[100,100,100]}
+                break
+                case 'Exploding Wall':
+                    this.color={in:[120,120,120],out:[100,100,100],bomb:[[180,180,180],[180,0,0]]}
+                break
+            }
         break
         case 'Spike Pillar':
             this.anim={direction:direction}

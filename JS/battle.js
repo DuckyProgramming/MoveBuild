@@ -754,6 +754,8 @@ class battle{
                 this.loseEnergy(-this.energy.temp[this.turn.main],this.turn.main)
             }
             this.energy.temp[this.turn.main]=0
+            this.cardManagers[this.turn.main].discard.allEffectArgs(24,[5050,5051])
+            this.cardManagers[this.turn.main].reserve.allEffectArgs(24,[5050,5051])
             noDraw=true
             extra=true
         }else if(combatant.getStatus('Extra Turn')>0){
@@ -770,6 +772,8 @@ class battle{
                 this.loseEnergy(-this.energy.temp[this.turn.main],this.turn.main)
             }
             this.energy.temp[this.turn.main]=0
+            this.cardManagers[this.turn.main].discard.allEffectArgs(24,[5050,5051])
+            this.cardManagers[this.turn.main].reserve.allEffectArgs(24,[5050,5051])
             extra=true
         }else{
             this.turn.main++
@@ -1280,10 +1284,10 @@ class battle{
                 this.cardManagers[player].hand.add(findName('Miracle',types.card),0,0)
             }
         }
-        if(card.basic&&userCombatant.getStatus('Basic Temporary Strength')>0){
+        if(card.getBasic(-1)&&userCombatant.getStatus('Basic Temporary Strength')>0){
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Basic Temporary Strength'))
         }
-        if(card.basic&&userCombatant.getStatus('Basic Draw')>0){
+        if(card.getBasic(-1)&&userCombatant.getStatus('Basic Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Basic Draw'))
         }
         if(userCombatant.getStatus('Card Delay Exhaust')>0){

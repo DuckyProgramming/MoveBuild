@@ -170,7 +170,7 @@ class combatant{
                 'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength','3+ Cost Single Damage Up','3+ Cost Block','Item Use (N)','(E) Cycle 2 1','(E) Cycle 2 2','(W) Cycle 2 1','(W) Cycle 2 2',
                 '(B) Cycle 2 1','(B) Cycle 2 2','(K) Cycle 2 1','(K) Cycle 2 2','(G) Cycle 2 1','(G) Cycle 2 2','(R) Cycle 2 1','(R) Cycle 2 2','(N) Cycle 2 1','(N) Cycle 2 2',
                 'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn','Shuffle (E)','(E) Spend Splash','2+ Cost (E)',
-                'Discus Temporary Strength','Discus Temporary Dexterity',
+                'Discus Temporary Strength','Discus Temporary Dexterity','Lightning Orb Per Turn','Lightning Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -231,7 +231,8 @@ class combatant{
                 0,2,0,0,0,2,2,2,2,0,//56
                 0,2,0,0,0,0,2,2,2,2,//57
                 2,2,2,2,2,2,2,2,2,2,//58
-                0,2,2,2,0,0,0,0,0,
+                0,2,2,2,0,0,0,0,0,0,//59
+                0,0,0,0,0,0,0,0,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -292,7 +293,8 @@ class combatant{
                 2,2,2,2,0,2,2,2,2,2,//56
                 2,2,2,2,2,2,2,2,2,2,//57
                 2,2,2,2,2,2,2,2,2,2,//58
-                2,2,2,0,2,2,2,2,2,
+                2,2,2,0,2,2,2,2,2,2,//59
+                2,2,2,2,2,2,2,2,0,
             ]}
         /*
         0-none
@@ -661,6 +663,9 @@ class combatant{
             break
             case 'Crusader':
                 this.statusEffect('Armor',game.ascend>=31?20:10)
+            break
+            case 'Exploding Wall':
+                this.statusEffect('Numeric Explode on Death',20)
             break
         }
         if(this.team==0){
@@ -1467,7 +1472,7 @@ class combatant{
             break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine': case 'Keystone':
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': case 'Louse': case 'Hwurmp': case 'Glimmerrer': case 'Antihwurmp':
-            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield':
+            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall':
             break
             default:
                 for(let g=0;g<2;g++){
@@ -2255,7 +2260,7 @@ class combatant{
                     }
                 }
             }
-            if(this.spec.includes(7)&&type==1&&this.battle.turn.main<this.battle.players&&targetted&&!this.aggressor&&this.getStatus('Stun')<=0){
+            if(this.spec.includes(7)&&type==1&&(this.battle.turn.main<this.battle.players||this.construct)&&targetted&&!this.aggressor&&this.getStatus('Stun')<=0){
                 this.battle.turnManager.loadEnemyAttackRepeatBack(this.id)
                 this.aggressor=true
             }else{
@@ -4040,7 +4045,9 @@ class combatant{
         this.checkAnyOrb()
     }
     spendCharge(value){
-        if(this.charge>=value){
+        if(this.status.main[595]>0){
+            return true
+        }else if(this.charge>=value){
             this.charge-=value
             this.chargeConsumed()
             return true
@@ -4072,6 +4079,9 @@ class combatant{
         if(this.status.main[464]>0){
             this.status.main[464]--
             return true
+        }else if(this.status.main[594]>0){
+            this.status.main[594]--
+            return true
         }else{
             return false
         }
@@ -4098,6 +4108,7 @@ class combatant{
     enterStance(stance){
         this.leaveStance(this.stance)
         if(this.id<this.battle.players){
+            this.battle.cardManagers[this.id].hand.allEffect(110)
             this.battle.cardManagers[this.id].discard.allEffect(28)
             this.battle.cardManagers[this.id].reserve.allEffect(28)
         }
@@ -4540,7 +4551,7 @@ class combatant{
                     case 37: this.status.main[findList('Cannot Add Block',this.status.name)]+=this.status.main[a]; break
                     case 41: case 84: case 285: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.main+=this.status.main[a]} break
                     case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
-                    case 66: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
+                    case 66: case 598: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
                     case 67: this.combo=0; break
                     case 71: case 72: this.combo=constrain(this.combo+this.status.main[a],0,this.comboCap); break
                     case 81: this.status.main[findList('Energy Next Turn',this.status.name)]+=this.status.main[a]; break
@@ -4702,6 +4713,9 @@ class combatant{
                     case 581: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id);this.battle.loseEnergyGen(-this.status.main[a],this.id)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,6);this.battle.addSpecificEnergyGen(this.status.main[a],this.id,6)} break
                     case 582: this.status.main[findList('Base (E) Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 586: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id);this.battle.loseEnergyGen(-this.status.main[a],this.id)}else{let roll=floor(random(0,7));this.battle.addSpecificEnergy(this.status.main[a],this.id,roll);this.battle.addSpecificEnergyGen(this.status.main[a],this.id,roll)} break
+                    case 592: for(let b=0,lb=this.status.main[a];b<lb;b++){this.holdOrb(5)} break
+                    case 596: this.battle.combatantManager.allEffect(48,['Burn',this.status.main[a]]); break
+                    case 597: this.battle.combatantManager.allEffect(48,['Freeze',this.status.main[a]]); break
 
                 }
                 if(
@@ -4804,9 +4818,9 @@ class combatant{
                     break
                     case 5:
                         if(this.team==0){
-                            this.battle.combatantManager.randomPlayerEffect(0,[4])
+                            this.battle.combatantManager.randomPlayerEffect(0,[4+this.status.main[593]])
                         }else{
-                            this.battle.combatantManager.randomEnemyEffect(0,[4])
+                            this.battle.combatantManager.randomEnemyEffect(0,[4+this.status.main[593]])
                         }
                     break
                 }
@@ -4952,7 +4966,7 @@ class combatant{
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun':
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall':
                 switch(type){
                     case 19:
                         this.animSet.loop=0
@@ -5814,7 +5828,7 @@ class combatant{
                 }
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun':
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall':
                 switch(type){
                     case 19:
                         this.animSet.loop+=rate

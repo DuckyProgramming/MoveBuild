@@ -259,7 +259,7 @@ class combatantManager{
     }
     activateCombatants(type,id){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if((this.combatants[a].team==0||this.combatants[a].construct||this.combatants[a].support)&&this.combatants[a].life>0){
+            if((this.combatants[a].team==0&&this.battle.turnManager.phase!=2||this.combatants[a].construct||this.combatants[a].support)&&this.combatants[a].life>0){
                 this.combatants[a].activate(type,id)
             }
         }
@@ -487,7 +487,11 @@ class combatantManager{
                     }
                 break
                 case 21:
-                    this.battle.turnManager.loadSpecificAttack(args[1],393,[index,args[0],args[1],args[2]],)
+                    this.battle.turnManager.loadSpecificAttack(args[1],393,[index,args[0],args[1],args[2]])
+                break
+                case 22:
+                    this.combatants[index].takeDamage(args[0],args[1])
+                    this.combatants[index].statusEffect('Lock On',args[2])
                 break
             }
         }

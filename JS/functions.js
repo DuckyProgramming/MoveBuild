@@ -1898,7 +1898,7 @@ Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.l
 }
 function outListing(){
 	let box=``
-	let goal=125+125*game.playerNumber+30+20+15+30+15+100+150
+	let goal=125+125*game.playerNumber+30+20+15+30+15+60+150
 	let arbitrary=4000
 	for(let a=0,la=game.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
@@ -1927,11 +1927,11 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 		Spectral:
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+5][3].length}/15				${current.cardManagers[0].listing.card[game.playerNumber+5][3].length-15}
 		Subcard:
-	Total:${current.cardManagers[0].listing.sub.length}/100			${current.cardManagers[0].listing.sub.length-100}
+	Total:${current.cardManagers[0].listing.sub.length}/60			${current.cardManagers[0].listing.sub.length-60}
 		Ally:
 	Total:${current.cardManagers[0].listing.ally.length}/20				${current.cardManagers[0].listing.ally.length-20}
 		Disband:
-	Total:${current.cardManagers[0].listing.disband.length}/400			${current.cardManagers[0].listing.disband.length-400}
+	Total:${current.cardManagers[0].listing.disband.length}/600			${current.cardManagers[0].listing.disband.length-600}
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/150			${current.cardManagers[0].listing.junk[game.playerNumber+1].length-150}
 			`)

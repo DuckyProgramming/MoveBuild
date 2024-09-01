@@ -32,7 +32,7 @@ class particle{
             case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 88: case 90: case 95:
             case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120: case 121:
             case 126: case 135: case 136: case 139: case 152: case 154: case 155: case 156: case 163: case 164:
-            case 168: case 169: case 170: case 173:
+            case 168: case 169: case 170: case 173: case 192: case 193:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -302,7 +302,7 @@ class particle{
                 this.fade=1
                 this.scale=0
             break
-            case 133:
+            case 133: case 194:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -530,10 +530,10 @@ class particle{
                 this.trigger=false
                 this.size=1
                 this.scale=1
-                this.width=random(0.5,2)
+                this.width=random(0.5,1)
                 this.mult=random(0.05,0.2)
                 this.curve=0
-                this.curveAcc=random(0,-0.1)
+                this.curveAcc=random(-0.05,0.05)
             break
             case 188:
                 this.direction=args[0]
@@ -564,6 +564,18 @@ class particle{
                 for(let a=0,la=5;a<la;a++){
                     this.trail.push([random(-6,6),16+a*12+random(-4,4),random(0.5,1.5),random(0,360)])
                 }
+            break
+            case 191:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.fadeKey=args[2]
+                this.key=args[3]
+                this.distance=0
+                this.speed=0
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=0
             break
 
         }
@@ -2102,11 +2114,19 @@ class particle{
                     this.layer.fill(255,125,175,this.fade*0.1)
                     this.layer.ellipse(0,0,24)
                 break
-                case 133:
+                case 133: case 194:
                     for(let a=0,la=this.notes.length;a<la;a++){
                         this.layer.rotate(360/la)
-                        this.layer.fill(100,255,100+this.notes[a][0]*155,this.fade*2)
-                        this.layer.stroke(100,255,100+this.notes[a][0]*155,this.fade*2)
+                        switch(this.type){
+                            case 133:
+                                this.layer.fill(100,255,100+this.notes[a][0]*155,this.fade*2)
+                                this.layer.stroke(100,255,100+this.notes[a][0]*155,this.fade*2)
+                            break
+                            case 194:
+                                this.layer.fill(255-this.notes[a][0]*40,51+this.notes[a][0]*170,73+this.notes[a][0]*178,this.fade*2)
+                                this.layer.stroke(255-this.notes[a][0]*40,51+this.notes[a][0]*170,73+this.notes[a][0]*178,this.fade*2)
+                            break
+                        }
                         this.layer.strokeWeight(0.8)
                         switch(this.notes[a][1]){
                             case 0:
@@ -3085,6 +3105,46 @@ class particle{
                         this.layer.ellipse(this.trail[a][0],this.trail[a][1],1.5*this.trail[a][2])
                     }
                 break
+                case 191:
+                    this.layer.noFill()
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.stroke(20+220*this.key,240*this.key,40+80*this.key,this.fade*(a+1)/la*this.fadeKey)
+                        this.layer.strokeWeight(8*(1-a/la))
+                        regPolyStellate(this.layer,0,0,5,2,30,30,this.time*2)
+                    }
+                break
+                case 192:
+                    for(let a=0,la=12;a<la;a++){
+                        this.layer.rotate(180/la)
+                        this.layer.fill(150+a/(la-1)*100,150+a/(la-1)*100,150,this.fade)
+                        this.layer.beginShape()
+                        this.layer.vertex(-1,-8)
+                        this.layer.vertex(-1,-10)
+                        this.layer.vertex(-2.5,-10)
+                        this.layer.vertex(0,-12.5)
+                        this.layer.vertex(2.5,-10)
+                        this.layer.vertex(1,-10)
+                        this.layer.vertex(1,-8)
+                        this.layer.endShape()
+                        this.layer.rotate(180/la)
+                    }
+                break
+                case 193:
+                    for(let a=0,la=12;a<la;a++){
+                        this.layer.rotate(180/la)
+                        this.layer.fill(a/(la-1)*150,50-a/(la-1)*100,200,this.fade)
+                        this.layer.beginShape()
+                        this.layer.vertex(-2,-11)
+                        this.layer.vertex(0,-11)
+                        this.layer.vertex(0,-12.5)
+                        this.layer.vertex(2.5,-10)
+                        this.layer.vertex(0,-7.5)
+                        this.layer.vertex(0,-9)
+                        this.layer.vertex(-2,-9)
+                        this.layer.endShape()
+                        this.layer.rotate(180/la)
+                    }
+                break
 
             }
             this.layer.pop()
@@ -3125,7 +3185,7 @@ class particle{
             case 73: case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 90: case 93:
             case 95: case 97: case 99: case 103: case 104: case 110: case 114: case 115: case 116: case 117:
             case 118: case 119: case 120: case 121: case 126: case 152: case 154: case 155: case 156: case 168:
-            case 169: case 170: case 173:
+            case 169: case 170: case 173: case 192: case 193:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){
@@ -3263,7 +3323,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 88: case 133: case 136:
+            case 88: case 133: case 136: case 194:
                 this.fade-=0.05
                 this.scale+=0.05
                 if(this.fade<=0){
@@ -3725,6 +3785,13 @@ class particle{
                         this.remove=true
                     }
                 }
+            break
+            case 191:
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed
+                this.fade=smoothAnim(this.fade,this.time<this.timer,0,1,10)
+                this.scale=smoothAnim(this.scale,this.time<this.timer,0,1,10)
+                this.speed+=0.4
             break
 
         }

@@ -568,7 +568,7 @@ class itemManager{
             break
             case 107:
                 this.battle.addSpecificEnergy(5*effectiveness,player,6)
-                userCombatant.statusEffect('Retain Energy',5*effectiveness)
+                userCombatant.statusEffect('Retain Mana',5*effectiveness)
             break
             case 108:
                 this.battle.overlayManager.overlays[121][player].active=true

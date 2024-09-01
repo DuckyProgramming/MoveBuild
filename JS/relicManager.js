@@ -2467,14 +2467,12 @@ class relicManager{
                 }
             break
             case 19://draw card [card,player]
+                if(args[0].getBasicMultiple([1,2])){
+                    if(this.active[264][args[1]+1]>0&&floor(random(0,4))<this.battle.relicManager.active[264][args[1]+1]&&args[0].getCost(1)>0){
+                        args[0].costDown(0,[1])
+                    }
+                }
                 switch(args[0].class){
-                    case 1: case 2:
-                        if(args[0].basic){
-                            if(this.active[264][args[1]+1]>0&&floor(random(0,4))<this.battle.relicManager.active[264][args[1]+1]&&args[0].getCost(1)>0){
-                                args[0].costDown(0,[1])
-                            }
-                        }
-                    break
                     case 5:
                         if(args[0].name!='Fatigue'){
                             if(this.active[385][args[1]+1]>0){

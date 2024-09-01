@@ -130,6 +130,10 @@ caltrops - create tiles that inflict bleed
 
 [sagume card]
 
+take out - retain exhaust 1
+
+cold snap
+
 
 
 accoutrement - 14 block, when rewound get a miracle or smth
@@ -139,6 +143,8 @@ lock on card
 dodge doubler
 
 daggerlock - get hit by a falling shiv
+
+guardian angel - trade but its block
 
 
 
@@ -209,6 +215,8 @@ LSD - curse, when you play 3 cards, lose 5 health
 new 4 mana 7 7
 
 convection - when you dodge an attack, all enemies take 3 damage
+
+plan ahead - retain a random card once each turn
 
 
 

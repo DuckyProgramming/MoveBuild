@@ -836,7 +836,7 @@ class overlay{
                         }
                     break
                     case 38:
-                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
                         for(let a=0,la=this.options;a<la;a++){
                             if(list[args[1]].length>0){
                                 let index=floor(random(0,list[args[1]].length))
@@ -854,6 +854,18 @@ class overlay{
                                 let index=floor(random(0,list.length))
                                 this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
                                 this.cards[a].upSize=true
+                                list.splice(index,1)
+                            }
+                        }
+                    break
+                    case 44:
+                        list=copyArray(this.battle.cardManagers[this.player].listing.junk[args[1]])
+                        for(let a=0,la=this.options;a<la;a++){
+                            if(list.length>0){
+                                let index=floor(random(0,list.length))
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
+                                this.cards[a].setCost(0,[0])
+                                this.cards[this.cards.length-1].upSize=true
                                 list.splice(index,1)
                             }
                         }
@@ -3354,7 +3366,7 @@ class overlay{
                                     }
                                 }else if(this.setupArgs[2]==27){
                                     this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player][lists[b]].cards,this.setupArgs[4][a],this.setupArgs[4][a]+1,4)
-                                }else if(this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29||this.setupArgs[2]==33||(this.setupArgs[2]==2||this.setupArgs[2]==12)&&this.setupArgs[3]==1||this.setupArgs[2]==38){
+                                }else if(this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29||this.setupArgs[2]==33||(this.setupArgs[2]==2||this.setupArgs[2]==12)&&this.setupArgs[3]==1||this.setupArgs[2]==38||this.setupArgs[2]==44){
                                     this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[1],[])
                                 }else if(this.setupArgs[2]!=22){
                                     this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
@@ -4411,7 +4423,7 @@ class overlay{
                                     }
                                 }else if(this.setupArgs[2]==27){
                                     this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player][lists[b]].cards,this.setupArgs[4][a],this.setupArgs[4][a]+1,4)
-                                }else if(this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29||this.setupArgs[2]==33||(this.setupArgs[2]==2||this.setupArgs[2]==12)&&this.setupArgs[3]==1||this.setupArgs[2]==38){
+                                }else if(this.setupArgs[2]==4||this.setupArgs[2]==24||this.setupArgs[2]==29||this.setupArgs[2]==33||(this.setupArgs[2]==2||this.setupArgs[2]==12)&&this.setupArgs[3]==1||this.setupArgs[2]==38||this.setupArgs[2]==44){
                                     this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[1],[])
                                 }else if(this.setupArgs[2]!=22){
                                     this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)

@@ -243,6 +243,7 @@ types={
         {name:'Mirror Shield',life:36,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
         {name:'Armored Turret',life:60,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[10]}],description:`Sentry goin' up`},
         {name:'Shotgun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:303,effect:[30,5]}],description:`Shotgun duck game?`},
+        {name:'Exploding Wall',life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Pay to win`},
 
         {name:'MobMan',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`No brain?`},
         {name:'AllyMonkey',life:24,behavior:0,spec:[17],move:{type:0,speed:2},attack:[{type:11,effect:[2]}],description:`Your best friend`},
@@ -754,7 +755,7 @@ types={
         {name:'Waterwheel',internal:'Low Play Draw',id:82,rarity:2,list:0,mtg:0,description:'When You Play Less Than 4 Cards,\nDraw 2 More Cards Next Turn'},
         {name:'Dolphin Figurine',internal:'Item Collector',id:83,rarity:2,list:0,mtg:0,description:'Fights Always\nDrop Items'},
         {name:'Entrenching Tool',internal:'Block Collection',id:84,rarity:2,list:0,mtg:0,description:'Gain 4 Block Each\nTurn After Turn 2'},
-        {name:'Coupon',internal:'Free Shop Relic',id:85,rarity:3,list:0,mtg:0,description:'A Random Relic in\nthe Shop is Free'},
+        {name:'Coupon',internal:'Free Shop Relic',id:85,rarity:3,list:0,mtg:0,description:'Each Shop, A Random\nRelic Will be Free'},
         {name:'Art of War',internal:'First Attack Free',id:86,rarity:1,list:0,mtg:0,description:'The First Attack\nEach Combat is Free'},
         {name:'DVD Player',internal:'First Card Double Play',id:87,rarity:-1,list:0,mtg:0,description:'The First Card Per Combat\nMay be Played Twice'},
         {name:'Hexachoron',internal:'Per Enemy Block',id:88,rarity:2,list:0,mtg:0,description:'Gain 1 Block Per Enemy\nat the Start of Your Turn'},
@@ -868,7 +869,7 @@ types={
         {name:'Erratic Pack',internal:'1 Random Erratic',id:186,rarity:3,list:0,mtg:0,description:'When Taken, Make 1\nRandom Card Erratic'},
         {name:'Credit Card',internal:'Go Into Debt',id:187,rarity:0,list:0,mtg:0,description:'Go Into Up to 200\nCurrency of Debt\nWithout Debt Curse'},
         {name:'Tauball',internal:'Fragile Strength',id:188,rarity:0,list:0,mtg:0,description:'Gain 3 Strength on Turn 1\n10% Chance to Break Each Battle'},
-        {name:'Hallucinogen Pills',internal:'Purchase Item',id:189,rarity:0,list:0,mtg:0,description:'After Purchasing From the Shop,\nGain an Item'},
+        {name:'Hallucinogen Pills',internal:'Purchase Item',id:189,rarity:1,list:0,mtg:0,description:'After Purchasing From the Shop,\nGain an Item'},
         
         {name:'Half-Full Glass',internal:'Unplayed Card Damage',id:190,rarity:0,list:0,mtg:0,description:'At the End of Your Turn,\nNext Attack Deals 1 Extra Damage\nPer Unplayed Card'},
         {name:'Clown Bowtie',internal:'Shop Reroll',id:191,rarity:0,list:0,mtg:0,description:'You May Pay 50 Currency to\nReroll the Shop Once Per Visit'},

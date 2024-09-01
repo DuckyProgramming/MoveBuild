@@ -646,7 +646,7 @@ class group{
         for(let a=0,la=this.cards.length;a<la;a++){
             if(
                 names.includes(this.cards[a].name)&&numbers[names.indexOf(this.cards[a].name)]>=2&&
-                !(type==1&&this.cards[a].basic)
+                !(type==1&&this.cards[a].getBasic(-1))
             ){
                 total++
             }
@@ -656,7 +656,7 @@ class group{
     removeDupes(){
         for(let a=0,la=this.cards.length;a<la;a++){
             for(let b=0,lb=this.cards.length;b<lb;b++){
-                if(a!=b&&b>a&&this.cards[a].name==this.cards[b].name&&!this.cards[a].basic&&!this.cards[b].basic){
+                if(a!=b&&b>a&&this.cards[a].name==this.cards[b].name&&!this.cards[a].basic){
                     this.remove(b)
                     b--
                     lb--
@@ -809,8 +809,8 @@ class group{
                 type==5&&args[0]==this.cards[a].color&&!this.cards[a].colorful||
                 type==6&&args[0]==this.cards[a].color&&args[1]==this.cards[a].rarity&&!this.cards[a].colorful||
                 type==7&&(this.cards[a].retain||this.cards[a].retain2||this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(60)||this.battle.relicManager.hasRelic(128,this.player))||
-                type==8&&this.cards[a].basic||
-                type==9&&this.cards[a].basic&&args[0].includes(this.cards[a].class)||
+                type==8&&this.cards[a].getBasic(-1)||
+                type==9&&this.cards[a].getBasicMultiple(args[0])||
                 type==10&&args[0].includes(this.cards[a].class)&&!args[1].includes(this.cards[a].name)||
                 type==11&&this.cards[a].colorless()&&!this.cards[a].spec.includes(7)||
                 type==12&&args[0].includes(this.cards[a].attack)&&this.cards[a].name.includes(args[1])||
@@ -1199,7 +1199,7 @@ class group{
                     this.cards[a].discardEffect.push(4)
                 break
                 case 36:
-                    if(this.cards[a].basic&&this.cards[a].class==1&&this.cards[a].target.length>2&&this.cards[a].target[0]==2){
+                    if(this.cards[a].getBasic(1)&&this.cards[a].target.length>2&&this.cards[a].target[0]==2){
                         this.cards[a].target[2]++
                     }
                 break
@@ -1318,22 +1318,22 @@ class group{
                     this.cards[a].discardEffect.push(8)
                 break
                 case 58:
-                    if(this.cards[a].basic&&this.cards[a].class==1){
+                    if(this.cards[a].getBasic(1)){
                         this.cards[a].setCost(0,[0])
                     }
                 break
                 case 59:
-                    if(this.cards[a].basic&&this.cards[a].class==2){
+                    if(this.cards[a].getBasic(2)){
                         this.cards[a].setCost(0,[0])
                     }
                 break
                 case 60:
-                    if(this.cards[a].basic&&this.cards[a].class==1){
+                    if(this.cards[a].getBasic(1)){
                         this.cards[a].effect[0]*=2
                     }
                 break
                 case 61:
-                    if(this.cards[a].basic&&this.cards[a].class==2){
+                    if(this.cards[a].getBasic(2)){
                         this.cards[a].effect[0]*=2
                     }
                 break
@@ -1582,6 +1582,9 @@ class group{
                         }
                     }
                 break
+                case 110:
+                    this.cards[a].callStanceChangeEffect()
+                break
 
             }
         }
@@ -1615,7 +1618,7 @@ class group{
                     }
                 break
                 case 2:
-                    if(this.cards[a].basic&&this.cards[a].class!=3){
+                    if(this.cards[a].getBasicMultiple([1,2])){
                         this.cards[a].effect[0]+=args[0]
                     }
                 break
@@ -1635,12 +1638,12 @@ class group{
                     }
                 break
                 case 5:
-                    if(this.cards[a].basic&&this.cards[a].class==1){
+                    if(this.cards[a].getBasic(1)){
                         this.cards[a].effect[0]=max(this.cards[a].effect[0]+args[0],0)
                     }
                 break
                 case 6:
-                    if(this.cards[a].basic&&this.cards[a].class==2){
+                    if(this.cards[a].getBasic(2)){
                         this.cards[a].effect[0]=max(this.cards[a].effect[0]+args[0],0)
                     }
                 break
@@ -1672,7 +1675,7 @@ class group{
                     }
                 break
                 case 11:
-                    if(this.cards[a].basic&&this.cards[a].class==3){
+                    if(this.cards[a].getBasic(3)){
                         this.cards[a].effect[0]+=args[0]
                         this.cards[a].target[2]+=args[0]
                     }
@@ -2180,17 +2183,15 @@ class group{
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         userCombatant.activateDraw()
         this.battle.relicManager.activate(19,[card,this.player])
+        if(card.getBasicMultiple([1,2])){
+            if(this.basicChange[0]>0){
+                card.setCost(0,[0])
+            }
+            if(this.basicChange[1]>0){
+                card.effect[0]+=this.basicChange[1]
+            }
+        }
         switch(card.class){
-            case 1: case 2:
-                if(card.basic){
-                    if(this.basicChange[0]>0){
-                        card.setCost(0,[0])
-                    }
-                    if(this.basicChange[1]>0){
-                        card.effect[0]+=this.basicChange[1]
-                    }
-                }
-            break
             case 5:
                 if(userCombatant.getStatus('Drawn Status Draw')>0){
                     this.drawEffects.push([5,this.drawEffects.push([5,userCombatant.getStatus('Drawn Status Draw')])])
@@ -2516,7 +2517,7 @@ class group{
                 this.drawEffects.push([7,21,card.effect[0]])
                 this.drawEffects.push([5,card.effect[1]])
             break
-            case 3149: case 4928:
+            case 3149: case 4928: case 5073:
                 card.effect[0]+=card.effect[1]
             break
             case 3245:
@@ -2682,9 +2683,10 @@ class group{
                 variant==11&&this.cards[a].colorless()||
                 variant==12&&this.cards[a].rarity==this.sorted[0]||
                 variant==13&&this.cards[a].rarity==this.sorted[this.sorted.length-1]||
-                variant==14&&this.cards[a].basic||
+                variant==14&&this.cards[a].getBasic(-1)||
                 variant==15&&args[0].includes(this.cards[a].class)&&args[1]==this.cards[a].getCost(0)||
-                variant==16&&this.cards[a].color.includes(args[0])
+                variant==16&&this.cards[a].color.includes(args[0])||
+                variant==17&&args[0].includes(this.cards[a].name)
             ){
                 list.push(copyCard(this.cards[a]))
                 list[list.length-1].size=0
@@ -2731,6 +2733,11 @@ class group{
                     case 10:
                         list[list.length-1].setCost(0,[0])
                         list[list.length-1].retain2=true
+                    break
+                    case 11:
+                        if(!list[list.length-1].spec.includes(args[0])){
+                            list[list.length-1].spec.push(args[0])
+                        }
                     break
                 }
                 delete this.cards[a]
@@ -3137,7 +3144,7 @@ class group{
                 type==4&&args[0]==this.cards[a].list||
                 type==5&&args[0]==this.cards[a].list&&args[1]==this.cards[a].edition||
                 type==6&&args[0].includes(this.cards[a].class)||
-                type==7&&args[0].includes(this.cards[a].class)&&this.cards[a].basic||
+                type==7&&this.cards[a].getBasicMultiple(args[0])||
                 type==8&&args[0]==this.cards[a].rarity&&args[1]==this.cards[a].level||
                 type==9&&args[0]==this.cards[a].id
             ){
@@ -3662,7 +3669,7 @@ class group{
                     this.battle.attackManager.targetDistance=0
                     this.battle.attackManager.cost=this.cards[a].cost
                     this.cards[a].select=true
-                    if(userCombatant.getStatus('Strike Range')>0&&this.cards[a].basic&&this.cards[a].class==1){
+                    if(userCombatant.getStatus('Strike Range')>0&&this.cards[a].getBasic(1)){
                         this.battle.attackManager.targetInfo[2]+=userCombatant.getStatus('Strike Range')
                     }
                     if(userCombatant.getStatus('Cable Range')>0&&this.cards[a].name.includes('Cable')&&this.cards[a].class==1){
@@ -4301,35 +4308,35 @@ class group{
                 this.battle.attackManager.edition=a.edition
                 this.battle.attackManager.drawn=a.drawn
                 this.battle.attackManager.cost=a.cost
-                if(a.basic&&a.class==1&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
+                if(a.getBasic(1)&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }
-                if(a.basic&&a.class==1&&userCombatant.status.main[402]!=0){
-                    this.battle.attackManager.effect[0]=max(0,this.battle.attackManager.effect[0]+userCombatant.status.main[402])
+                if(a.getBasic(1)&&userCombatant.getStatus('Strike Boost')!=0){
+                    this.battle.attackManager.effect[0]=max(0,this.battle.attackManager.effect[0]+userCombatant.getStatus('Strike Boost'))
                 }
-                if(a.basic&&a.class==2&&userCombatant.status.main[585]!=0){
-                    this.battle.attackManager.effect[0]=max(0,this.battle.attackManager.effect[0]+userCombatant.status.main[585])
+                if(a.getBasic(2)&&userCombatant.getStatus('Defend Boost')!=0){
+                    this.battle.attackManager.effect[a.attack==5045?1:0]=max(0,this.battle.attackManager.effect[a.attack==5045?1:0]+userCombatant.getStatus('Defend Boost'))
                 }
-                if((a.name=='Shiv'||a.name=='Broken\nShiv'||a.name=='Deluxe\nShiv')&&userCombatant.status.main[76]>0){
-                    this.battle.attackManager.effect[0]+=userCombatant.status.main[76]
+                if((a.name=='Shiv'||a.name=='Broken\nShiv'||a.name=='Deluxe\nShiv')&&userCombatant.getStatus('Shiv')>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.getStatus('Shiv')
                 }
-                if(a.spec.includes(25)&&userCombatant.status.main[166]>0){
-                    this.battle.attackManager.effect[0]+=userCombatant.status.main[166]
+                if(a.spec.includes(25)&&userCombatant.getStatus('Gun Boost')>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.getStatus('Gun Boost')
                 }
-                if(a.spec.includes(54)&&userCombatant.status.main[340]>0){
-                    this.battle.attackManager.effect[0]+=userCombatant.status.main[340]
+                if(a.spec.includes(54)&&userCombatant.getStatus('Discus Boost')>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.getStatus('Discus Boost')
                 }
-                if(a.spec.includes(52)&&userCombatant.status.main[403]>0){
-                    this.battle.attackManager.effect[0]+=userCombatant.status.main[403]
+                if(a.spec.includes(52)&&userCombatant.getStatus('Mineral Boost')>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.getStatus('Mineral Boost')
                 }
-                if(a.name.includes('Cable')&&a.class==1&&userCombatant.status.main[404]>0){
-                    this.battle.attackManager.effect[0]+=userCombatant.status.main[404]
+                if(a.name.includes('Cable')&&a.class==1&&userCombatant.getStatus('Cable Boost')>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.getStatus('Cable Boost')
                 }
-                if(a.spec.includes(20)&&userCombatant.status.main[544]>0){
-                    this.battle.attackManager.effect[0]+=userCombatant.status.main[544]
+                if(a.spec.includes(20)&&userCombatant.getStatus('Claw Up')>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.getStatus('Claw Up')
                 }
-                if(a.rarity==0&&a.class==1&&userCombatant.status.main[413]>0){
-                    this.battle.attackManager.effect[0]+=userCombatant.status.main[413]
+                if(a.rarity==0&&a.class==1&&userCombatant.getStatus('Common Attack Boost')>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.getStatus('Common Attack Boost')
                 }
             break
             case 35:

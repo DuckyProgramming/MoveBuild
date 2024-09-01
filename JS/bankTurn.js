@@ -543,7 +543,7 @@ turn.prototype.update=function(){
                         }
                         if(this.timer==15&&!this.remove){
                             this.userCombatant.moveTilePosition(this.ztargetTile.tilePosition.x,this.ztargetTile.tilePosition.y)
-                            this.battle.activateTile(1,this.userCombatant.id)
+                            this.battle.activate(1,this.userCombatant.id)
                             this.direction=atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.targetCombatant.position.y-this.userCombatant.position.y)
                             this.distance=sqrt((this.targetCombatant.position.x-this.userCombatant.position.x)**2+(this.targetCombatant.position.y-this.userCombatant.position.y)**2)
                             this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)
@@ -1077,7 +1077,7 @@ turn.prototype.update=function(){
                         this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
                         if(this.target[0]<0){
                             if(this.procedure[0]>0){
-                                this.battle.activateTile(1,this.userCombatant.id)
+                                this.battle.activate(1,this.userCombatant.id)
                             }
                             this.battle.turnManager.unMoveTurn(this.user)
                             this.remove=true
@@ -1120,7 +1120,7 @@ turn.prototype.update=function(){
                                 break
                             }
                             this.targetCombatant.moveTilePosition(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)
-                            this.battle.activateTile(1,this.targetCombatant.id)
+                            this.battle.activate(1,this.targetCombatant.id)
                         }
                         if(this.type==154&&this.target[0]>=0){
                             this.targetTile.addType(10)
@@ -2042,7 +2042,7 @@ turn.prototype.update=function(){
                         this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
                         if(this.target[0]<0||this.target[1]>=0){
                             if(this.procedure[0]>0){
-                                this.battle.activateTile(1,this.userCombatant.id)
+                                this.battle.activate(1,this.userCombatant.id)
                             }
                             this.battle.turnManager.unMoveTurn(this.user)
                             this.remove=true
@@ -2286,7 +2286,7 @@ turn.prototype.update=function(){
                         }
                         if(this.timer==15&&!this.remove){
                             this.userCombatant.moveTilePosition(this.ztargetTile.tilePosition.x,this.ztargetTile.tilePosition.y)
-                            this.battle.activateTile(1,this.userCombatant.id)
+                            this.battle.activate(1,this.userCombatant.id)
                             this.direction=atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.targetCombatant.position.y-this.userCombatant.position.y)
                             this.distance=sqrt((this.targetCombatant.position.x-this.userCombatant.position.x)**2+(this.targetCombatant.position.y-this.userCombatant.position.y)**2)
                             this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)
@@ -3563,9 +3563,9 @@ turn.prototype.update=function(){
                         for(let a=0,la=8;a<la;a++){
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.battle.combatantManager.combatants[this.effect[0]].position.x+150,this.battle.combatantManager.combatants[this.effect[0]].position.y-600,190,[random(193,197),50,a*6+random(0,4)]))
                         }
-                    }else if(this.timer%10==0&&this.timer>=30&&this.timer<=30+this.effect[0]*15){
+                    }else if(this.timer%15==0&&this.timer>=30&&this.timer<30+this.effect[3]*15){
                         this.battle.combatantManager.combatants[this.effect[0]].takeDamage(this.effect[1],this.effect[2])
-                    }else if(this.timer>=45+this.effect[0]*15){
+                    }else if(this.timer>=45+this.effect[3]*15){
                         this.remove=true
                     }
                 break
@@ -3671,7 +3671,7 @@ turn.prototype.update=function(){
                             this.userCombatant.moveTile(this.direction,this.distance)
                             this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
                             this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
-                            this.battle.activateTile(1,this.userCombatant.id)
+                            this.battle.activate(1,this.userCombatant.id)
                             this.remove=true
                         }else{
                             if(this.timer==1){
@@ -3682,7 +3682,7 @@ turn.prototype.update=function(){
                             this.userCombatant.runAnimation(1/15,0)
                             if(this.timer>=15*this.targetDistance){
                                 this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
-                                this.battle.activateTile(1,this.userCombatant.id)
+                                this.battle.activate(1,this.userCombatant.id)
                                 this.remove=true
                             }
                         }

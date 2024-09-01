@@ -4,8 +4,9 @@ class turnManager{
         this.battle=battle
         
         this.auxiliary=false
-        this.phase=false
+        this.phase=0
         this.loads=0
+        this.movePhase=false
 
         this.turns=[]
         this.turnsBack=[]
@@ -94,7 +95,7 @@ class turnManager{
     }
     loadEnemyTurns(){
         this.auxiliary=false
-        this.phase=true
+        this.phase=1
         this.loads=0
         if(this.battle.modded(125)){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
@@ -147,7 +148,7 @@ class turnManager{
                     }
                 }
                 if(this.battle.combatantManager.combatants[a].getStatus('Extra Turn')>0){
-                    this.battle.combatantManager.combatants[a].status.main[findList('Extra Turn',combatant.status.name)]=0
+                    this.battle.combatantManager.combatants[a].status.main[findList('Extra Turn',this.battle.combatantManager.combatants[a].status.name)]=0
                 }
             }else{
                 if(this.battle.modded(66)&&!this.battle.combatantManager.combatants[a].activated&&this.battle.combatantManager.combatants[a].team==0){
@@ -273,12 +274,19 @@ class turnManager{
                 }
             }else if(this.battle.turn.main>=this.battle.players&&this.turnsBack.length<=0){
                 if(this.auxiliary){
-                    this.battle.turn.main=0
-                }else if(this.phase){
-                    this.phase=false
+                    if(this.phase==2){
+                        this.phase=0
+                        this.battle.combatantManager.tickLate()
+                        this.battle.startTurn()
+                    }else{
+                        this.battle.turn.main=0
+                    }
+                }else if(this.phase==1){
                     this.loadEnemyTurnsMove()
                     this.battle.replayManager.list.push(new attack(-1001,this.battle,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
+                    this.phase=2
                 }else{
+                    this.phase=0
                     this.battle.combatantManager.tickLate()
                     this.battle.startTurn()
                 }
