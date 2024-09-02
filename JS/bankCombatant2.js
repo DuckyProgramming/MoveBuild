@@ -888,32 +888,110 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction,sword:true}}
         break
         case 'Shinmyoumaru':
-            this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
-                legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
-                arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
-            this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
-            this.parts={eyeLevel:-78,mouth:-70,minor:15,
-                legs:[{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}}],
-                arms:[{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
+            if(graphics.combatant[8]==-1){
+                setupCombatantGraphics(8)
+                graphics.combatant.splice(8,1,graphics.combatant[graphics.combatant.length-1])
+                delete graphics.combatant[graphics.combatant.length-1]
+                graphics.combatant.splice(graphics.combatant.length-1,1)
+            }
+            this.anim={direction:direction,mouth:{x:8,y:4,open:0},
+                eye:[0,0],eyeStyle:[0,0],sword:1,
+                legs:[
+                    {top:9,bottom:0,length:{top:15,bottom:15}},
+                    {top:9,bottom:0,length:{top:15,bottom:15}}
+                ],arms:[
+                    {top:27,bottom:9,length:{top:15,bottom:15}},
+                    {top:27,bottom:9,length:{top:15,bottom:15}}
+                ]}
+
+            this.spin={
+                legs:[{top:-60,bottom:-120},{top:60,bottom:120}],
+                arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],
+                wrap:{bow:180},
+                eye:[-18,18],button:0,sword:75,mouth:45}
+
+            this.color=graphics.combatant[8].color
+
+            this.kimono={decoration:graphics.combatant[8].parts.kimono.decoration}
+
+            this.parts={eyeLevel:-65,mouth:-61.5,
+                kimono:{main:-56.5,outside:-56},
+                wrap:{bow:-44,decoration:[],bowDecoration:[]},
+                sleeve:{decoration:[]},
+                minor:15,
+                legs:[
+                    {top:{x:3,y:-29},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:3,y:-29},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                ],arms:[
+                    {top:{x:4,y:-47},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:4,y:-47},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                ]}
+
             this.graphics={
-                legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
-                arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
-            this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
-            this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
-            this.trigger.display.extra={damage:false}
+                legs:[
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                ],arms:[
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}
+                ]}
+
+            this.fades={eye:[1,1],mouth:1,
+                sleeve:1,sleeveDecoration:1,
+                skin:{legs:1,arms:1,body:1,head:1},
+                kimono:{decoration:[1,1,1],main:{back:{x:1,y:1},front:{x:1,y:1}},outside:{back:{x:1,y:1},front:{x:1,y:1}}},
+                wrap:{round:1,bow:1},
+            }
+
+            this.trigger={display:{mouth:true,
+                sleeve:true,sleeveDecoration:true,
+                hair:{back:true,front:true,glow:true},eye:[true,true],
+                skin:{legs:true,arms:true,body:true,head:true},
+                kimono:{main:{back:true,front:true},outside:{back:true,front:true},decoration:[true,true,true]},
+                wrap:{round:true,bow:true},
+            }}
+
+            this.trigger.display.extra={sword:true,damage:false}
+
             this.calc={int:[0,0,0,0]}
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
-            this.goal={anim:{direction:this.anim.direction}}
-            this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
-
-
-
-
+            
             this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+
+            this.animSet={loop:0,flip:0,hand:0,foot:1}
+
             this.goal={anim:{direction:this.anim.direction,sword:true}}
+
+            for(let a=0,la=24;a<la;a++){
+                this.parts.wrap.decoration.push([random(0.15,0.3)+a%2*0.55,random(0.6,1),random(0,0.8)])
+            }
+            this.parts.wrap.bowDecoration.push([-0.8,-0.6,random(0.6,1)])
+            this.parts.wrap.bowDecoration.push([-0.85,-0.1,random(0.6,1)])
+            this.parts.wrap.bowDecoration.push([-0.5,-0.3,random(0.6,1)])
+            this.parts.wrap.bowDecoration.push([-0.6,0.4,random(0.6,1)])
+            this.parts.wrap.bowDecoration.push([0.9,0.8,random(0.6,1)])
+            this.parts.wrap.bowDecoration.push([0.7,0.4,random(0.6,1)])
+            this.parts.wrap.bowDecoration.push([0.75,-0.55,random(0.6,1)])
+            this.parts.wrap.bowDecoration.push([0.9,-0.1,random(0.6,1)])
+            this.parts.wrap.bowDecoration.push([0.35,-0.25,random(0.6,1)])
+            for(let a=0,la=2;a<la;a++){
+                this.parts.sleeve.decoration.push([])
+                for(let b=0,lb=20;b<lb;b++){
+                    this.parts.sleeve.decoration[a].push(
+                        {
+                            type:floor(random(0,3)),spin:360*b/lb,rotate:random(0,360),size:random(1,1.5),
+                            y:1+b%2*3+(b%4==1?1:0)*3+random(0,2)
+                        }
+                    )
+                }
+            }
         break
         case 'Merlin':
+            if(graphics.combatant[9]==-1){
+                setupCombatantGraphics(9)
+                graphics.combatant.splice(9,1,graphics.combatant[graphics.combatant.length-1])
+                delete graphics.combatant[graphics.combatant.length-1]
+                graphics.combatant.splice(graphics.combatant.length-1,1)
+            }
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                 legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
                 arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
@@ -940,6 +1018,12 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction,sword:true}}
         break
         case 'Ume':
+            if(graphics.combatant[20]==-1){
+                setupCombatantGraphics(20)
+                graphics.combatant.splice(6,1,graphics.combatant[graphics.combatant.length-1])
+                delete graphics.combatant[graphics.combatant.length-1]
+                graphics.combatant.splice(graphics.combatant.length-1,1)
+            }
             this.anim={direction:direction,head:direction,sword:1,mouth:{x:6,y:4,open:0},
                 eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{
                     top:[{position:{x:1,y:1},size:{x:1,y:1}},{position:{x:1,y:1},size:{x:1,y:1}}],
@@ -3959,13 +4043,84 @@ combatant.prototype.minorDisplay=function(type,key){
                 break
             }
         break
+        case 'Shinmyoumaru':
+            switch(type){
+                case 0:
+                    this.layer.push()
+                    this.layer.translate(this.graphics.arms[key].bottom.x*1.1+this.graphics.arms[key].middle.x*-0.1,this.graphics.arms[key].bottom.y*1.1+this.graphics.arms[key].middle.y*-0.1)
+                    this.layer.rotate(90+90*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75))-this.spin.sword*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75)))
+                    this.layer.scale(1,constrain(lsin(this.anim.direction+this.spin.arms[key].bottom+75)*2,-1,1)*this.anim.sword)
+                    for(let a=0,la=4;a<la;a++){
+                        this.layer.noFill()
+                        this.layer.stroke(map((a+1)/la,0,1,102,187),map((a+1)/la,0,1,85,181),map((a+1)/la,0,1,118,185),this.fade)
+                        this.layer.strokeWeight(2.8-a*0.8)
+                        this.layer.line(-3,-2,-3,2)
+                        this.layer.line(3,-2,3,2)
+                        this.layer.arc(0,-2,6,10,-180,0)
+                        this.layer.arc(0,2,6,10,0,180)
+                        this.layer.noStroke()
+                        this.layer.fill(map((a+1)/la,0,1,102,187),map((a+1)/la,0,1,85,181),map((a+1)/la,0,1,118,185),this.fade)
+                        this.layer.quad(-1.4+a*0.4,-7,1.4-a*0.4,-7,0.35-a*0.1,-50,-0.35+a*0.1,-50)
+                        this.layer.triangle(0.35-a*0.1,-50,-0.35+a*0.1,-50,0,-52-a*0.5)
+                    }
+                    this.layer.pop()
+                break
+                case 1:
+                    this.layer.fill(...this.color.kimono.decoration[0])
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.beginShape()
+                        this.layer.vertex(0,0)
+                        this.layer.bezierVertex(-3,-2,-3,-6,-2,-8)
+                        this.layer.vertex(0,-6)
+                        this.layer.vertex(2,-8)
+                        this.layer.bezierVertex(3,-6,3,-2,0,0)
+                        this.layer.endShape()
+                        this.layer.rotate(360/la)
+                    }
+                break
+                case 2:
+                    this.layer.noStroke()
+                    this.layer.fill(...this.color.kimono.decoration[1])
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.beginShape()
+                        this.layer.vertex(0,0)
+                        this.layer.bezierVertex(-3,-3,-3,-6,-3,-8)
+                        this.layer.vertex(-1.5,-6)
+                        this.layer.vertex(0,-8)
+                        this.layer.vertex(1.5,-6)
+                        this.layer.vertex(3,-8)
+                        this.layer.bezierVertex(3,-6,3,-3,0,0)
+                        this.layer.endShape()
+                        this.layer.rotate(360/la)
+                    }
+                break
+                case 3:
+                    this.layer.noFill()
+                    this.layer.stroke(...this.color.kimono.decoration[2])
+                    this.layer.strokeWeight(0.4)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.beginShape()
+                        this.layer.vertex(0,0)
+                        this.layer.bezierVertex(-2.5,-4,-4,-8,-2.5,-11)
+                        this.layer.vertex(-1,-9.5)
+                        this.layer.endShape()
+                        this.layer.beginShape()
+                        this.layer.vertex(0,0)
+                        this.layer.bezierVertex(2.5,-4,4,-8,2.5,-11)
+                        this.layer.vertex(1,-9.5)
+                        this.layer.endShape()
+                        this.layer.rotate(360/la)
+                    }
+                break
+            }
+        break
         case 'Ume':
             switch(type){
                 case -1:
                     this.layer.push()
                     this.layer.translate(this.graphics.arms[key].bottom.x*0.95+this.graphics.arms[key].middle.x*0.05,this.graphics.arms[key].bottom.y*0.95+this.graphics.arms[key].middle.y*0.05)
-                    this.layer.rotate(90+90*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75))-this.spin.sword*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75)))
-                    this.layer.scale(1,constrain(lsin(this.anim.direction+this.spin.arms[key].bottom+75)*2,-1,1)*this.anim.sword)
+                    this.layer.rotate(90+90*sign(lsin(this.anim.direction+this.spin.arms[key].bottom-75))-this.spin.sword*sign(lsin(this.anim.direction+this.spin.arms[key].bottom-75)))
+                    this.layer.scale(1,constrain(lsin(this.anim.direction+this.spin.arms[key].bottom-75)*2,-1,1)*this.anim.sword)
                     this.layer.fill(225,this.fade)
                     this.layer.noStroke()
                     this.layer.rect(0,-12,1,24)

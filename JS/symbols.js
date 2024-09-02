@@ -6102,6 +6102,9 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
         case 16:
             layer.fill(240,240,180,fade)
         break
+        case 17:
+            layer.fill(200,100,175,fade)
+        break
     }
     layer.ellipse(0,0,50)
     layer.fill(255,fade)
@@ -6370,6 +6373,22 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
                 layer.quad(-3,-12,-17.75,-12,-21,-6,0.25,-6)
                 layer.rotate(60)
             }
+        break
+        case 17:
+            regStar(layer,0,0,6,10,10,4,4,0)
+            for(let a=0,la=3;a<la;a++){
+                layer.triangle(-22,0,-10,0,-16,8)
+                layer.triangle(22,0,10,0,16,-8)
+                layer.rotate(120)
+            }
+            layer.stroke(255,fade)
+            layer.noFill()
+            layer.strokeWeight(4)
+            layer.strokeCap(SQUARE)
+            for(let a=0,la=6;a<la;a++){
+                layer.arc(0,0,32,32,-185+a*60,-156+a*60)
+            }
+            layer.strokeCap(ROUND)
         break
     }
     layer.pop()

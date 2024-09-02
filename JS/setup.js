@@ -19,8 +19,8 @@ function setup(){
             //transition.trigger=true
             //transition.scene='menu'
             
-        current.menu.combatant=[1]
-        current.menu.deck=[-1]
+        current.menu.combatant=[17,17]
+        current.menu.deck=[0,0]
 
             //variants.mtg=true
 
@@ -50,7 +50,7 @@ function setup(){
         transition.trigger=false
 
             /*stage.scene='graphic'
-            graphics.test=5
+            graphics.test=7
             graphics.staticBackground.clear()
             setupBackground(graphics.test,graphics.staticBackground)*/
         
@@ -64,7 +64,8 @@ function setup(){
             transition.scene='bossstash'*/
             
             /*player(0).size=5
-            player(0).offset.position.y=250*/
+            player(0).offset.position.y+=150
+            game.infoOff=true*/
 
             /*transition.trigger=true
             transition.scene='event'

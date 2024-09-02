@@ -4285,7 +4285,7 @@ class card{
             case 3415: string+=`Add ${effect[0]} Random\nSkill${pl(effect[0])} to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
             case 3416: string+=`Cards No Longer\nRequire Armament`; break
             case 3417: string+=`Burns Give ${effect[0]} Strength\nand Deal No Damage`; break
-            case 3422: string+=`${variants.mtg?`Basic Attacks\n`:`Strikes`}Gain ${effect[0]} Range`; break
+            case 3422: string+=`${variants.mtg?`Basic Attacks\n`:`Strikes `}Gain ${effect[0]} Range`; break
             case 3423: string+=`Skills Cost ${effect[0]}\nLess and Exhaust\nThis Combat`; break
             case 3424: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nWhen You Play a Step`; break
             case 3425: string+=`Cable Cards\nGain ${effect[0]} Range`; break
@@ -4562,7 +4562,7 @@ class card{
             case 3688: string+=`Remove All\nBlock of Target\nIf it Had Block,\nApply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable`; break
             case 3689: string+=`+1: Draw ${effect[0]} Card${pl(effect[0])}\nExhaust ${effect[1]} Card${pl(effect[1])}\n-4: Reflect Next Hit Taken\n-9: Add ${effect[2]} Discus${effect[2]!=1?`es`:``} of\nLight and Dark of\nEquivalent Level\nto Hand\n${effect[2]!=1?`They Cost`:`It Costs`} 0`; break
             case 3690: string+=`Attacks This Combat\nApply ${effect[0]} Poison`; break
-            case 3691: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} Once\nCounter ${effect[2]} Once Next Turn`; break
+            case 3691: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} Once\nCounter ${effect[2]} Once\nNext Turn`; break
             case 3692: string+=`If Target Has No\nBleed and No Block,\nApply ${effect[0]} Bleed\nOtherwise,\nDeal ${this.calculateEffect(effect[1],0)} Damage`; break
             case 3693: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nChoose and Exhaust a\nCard From the First ${effect[1]}\nin Draw Pile`; break
             case 3694: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEvery 2nd Time Played,\nIgnore Block\nOn Play: ${this.limit%2+1}/2`; break
@@ -4756,7 +4756,7 @@ class card{
             case 3877: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Defend${pl(effect[1])}\nof Equivalent Level\nto Hand`; break
             case 3878: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPierces Up to 2 Targets\nDraw ${effect[1]} Card${pl(effect[1])} Per Hit`; break
             case 3879: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${variants.mtg?`Basic Attack`:`Strike`} in Hand:\nDeals Double Damage`; break
-            case 3880: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n${variants.mtg?`Basic Defense`:`Strike`} in Hand:\nAdds Double Block`; break
+            case 3880: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n${variants.mtg?`Basic Defense`:`Defend`} in Hand:\nAdds Double Block`; break
             case 3881: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable`; break
             case 3882: string+=`Gain ${effect[0]}${variants.mtg?` Red`:``} Energy\nDraw ${effect[1]} Card${pl(effect[1])}\nGives Triple Energy During\nElite and Boss Combats`; break
             case 3883: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd a Random Common\nCard of Equivalent\nLevel to Hand`; break

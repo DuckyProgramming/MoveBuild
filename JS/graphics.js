@@ -317,8 +317,8 @@ function displayTrianglesBackMerge(layer,parts,direction,base,width,weight,slant
 			layer.stroke(0,fade)
 			layer.erase(fade,fade)
 		}else{
-			layer.fill(color1[0]*g/lg+color2[0]*(1-g/lg),color1[1]*g/lg+color2[1]*(1-g/lg),color1[2]*g/lg+color2[2]*(1-g/lg),fade)
-			layer.stroke(color1[0]*g/lg+color2[0]*(1-g/lg),color1[1]*g/lg+color2[1]*(1-g/lg),color1[2]*g/lg+color2[2]*(1-g/lg),fade)
+			layer.fill(...mergeColor(color1,color2,g/lg))
+			layer.stroke(...mergeColor(color1,color2,g/lg))
 		}
 		let reality=[
 			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
@@ -466,8 +466,8 @@ function displayTrianglesFrontMerge(layer,parts,direction,base,width,weight,slan
 			layer.stroke(0,fade)
 			layer.erase(fade,fade)
 		}else{
-			layer.fill(color1[0]*g/lg+color2[0]*(1-g/lg),color1[1]*g/lg+color2[1]*(1-g/lg),color1[2]*g/lg+color2[2]*(1-g/lg),fade)
-			layer.stroke(color1[0]*g/lg+color2[0]*(1-g/lg),color1[1]*g/lg+color2[1]*(1-g/lg),color1[2]*g/lg+color2[2]*(1-g/lg),fade)
+			layer.fill(...mergeColor(color1,color2,g/lg))
+			layer.stroke(...mergeColor(color1,color2,g/lg))
 		}
 		let reality=[
 			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
@@ -606,12 +606,8 @@ function displayTrianglesFrontMerge(layer,parts,direction,base,width,weight,slan
 function controlSpin(set,direction,spec){
 	for(let g=0,lg=set.length;g<lg;g++){
 		if(set[g].spin[0]>set[g].spin[1]&&spec==1){
-			set[g].spin[1]=set[g].spin[0]+set[g].spin[1]
-			set[g].spin[0]=set[g].spin[1]-set[g].spin[0]
-			set[g].spin[1]=set[g].spin[1]-set[g].spin[0]
-			set[g].y[1]=set[g].y[0	]+set[g].y[1]
-			set[g].y[0]=set[g].y[1]-set[g].y[0]
-			set[g].y[1]=set[g].y[1]-set[g].y[0]
+			set[g].spin=[set[g].spin[1],set[g].spin[0],set[g].spin[2]]
+			set[g].y=[set[g].y[1],set[g].y[0],set[g].y[2]]
 		}
 		for(let h=0,lh=set[g].spin.length;h<lh;h++){
 			if(direction+set[g].spin[h]>180){
@@ -1644,8 +1640,197 @@ function generateSprite(layer,type,direction){
 			layer.strokeWeight(0.8)
 			layer.point(lsin(direction*6)*0.6,22)
 		break
+		case 62:
+			controlSpin(data.parts.hair.inside,direction,0)
+			displayTrianglesFrontMerge(layer,data.parts.hair.inside,direction,0,31,1,0.15,data.color.hair.insideFront,data.color.hair.insideFront,1)
+			layer.fill(...data.color.hair.front)
+			layer.stroke(...data.color.hair.front)
+			layer.strokeWeight(1)
+			layer.arc(0,0,33,32,-180,0)
+			layer.line(-16.5,0,16.5,0)
+			controlSpin(data.parts.hair.reverse,direction,0)
+			displayTrianglesFrontMerge(layer,data.parts.hair.reverse,direction,0.5,34.5,0.1,0.1,-1,-1,1)
+			layer.noErase()
+			controlSpin(data.parts.hair.main,direction,0)
+			displayTrianglesFrontMerge(layer,data.parts.hair.main,direction,0,33,1,0.15,data.color.hair.front,data.color.hair.front,1)
+			layer.erase()
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			layer.arc(0,0,37,36,-180,0)
+		break
+		case 63:
+			layer.fill(...data.color.hair.front)
+			layer.stroke(...data.color.hair.front)
+			layer.strokeWeight(1)
+			layer.arc(0,0,33,32,-180,0)
+			layer.line(-16.5,0,16.5,0)
+			displayTrianglesBackMerge(layer,data.parts.hair.main,direction,0,33,1,0.15,data.color.hair.back,data.color.hair.back,1)
+			displayTrianglesBackMerge(layer,data.parts.hair.inside,direction,0,31,1,0.15,data.color.hair.insideBack,data.color.hair.insideBack,1)
+			layer.erase()
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			layer.arc(0,0,37,36,-180,0)
+		break
+		case 64:
+			controlSpin(data.parts.kimono.main,direction,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.main,direction,20,8.5,0.5,0.12,data.color.kimono.main.start,data.color.kimono.main.end,1)
+		break
+		case 65:
+			displayTrianglesBackMerge(layer,data.parts.kimono.main,direction,20,8.5,0.5,0.12,data.color.kimono.mainBack.start,data.color.kimono.mainBack.end,1)
+		break
+		case 66:
+			controlSpin(data.parts.kimono.outside[0],direction,1)
+			controlSpin(data.parts.kimono.outside[1],direction,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.outside[0],direction,20,9,0.5,0.15,data.color.kimono.outside.start,mergeColor(data.color.kimono.outside.start,data.color.kimono.outside.end,0.5),1)
+			for(let g=0,lg=data.parts.kimono.decoration[0].length;g<lg;g++){
+				let element=data.parts.kimono.decoration[0][g]
+				if(lcos(element.spin+direction)>0){
+					layer.push()
+					layer.translate(
+						(4.5+element.y*0.15)*lsin(element.spin+direction),
+						20+element.y
+					)
+					layer.rotate(-12*lsin(element.spin+direction))
+					layer.scale(
+						0.1*element.size*lcos(element.spin+direction),
+						0.1*element.size
+					)
+					layer.rotate(element.rotate)
+					switch(element.type){
+						case 0:
+							layer.noStroke()
+							layer.fill(...data.color.kimono.decoration[0])
+							for(let a=0,la=5;a<la;a++){
+								layer.beginShape()
+								layer.vertex(0,0)
+								layer.bezierVertex(-3,-2,-3,-6,-2,-8)
+								layer.vertex(0,-6)
+								layer.vertex(2,-8)
+								layer.bezierVertex(3,-6,3,-2,0,0)
+								layer.endShape()
+								layer.rotate(360/la)
+							}
+						break
+						case 1:
+							layer.noStroke()
+							layer.fill(...data.color.kimono.decoration[1])
+							for(let a=0,la=5;a<la;a++){
+								layer.beginShape()
+								layer.vertex(0,0)
+								layer.bezierVertex(-3,-3,-3,-6,-3,-8)
+								layer.vertex(-1.5,-6)
+								layer.vertex(0,-8)
+								layer.vertex(1.5,-6)
+								layer.vertex(3,-8)
+								layer.bezierVertex(3,-6,3,-3,0,0)
+								layer.endShape()
+								layer.rotate(360/la)
+							}
+						break
+						case 2:
+							layer.noFill()
+							layer.stroke(...data.color.kimono.decoration[2])
+							layer.strokeWeight(0.4)
+							for(let a=0,la=5;a<la;a++){
+								layer.beginShape()
+								layer.vertex(0,0)
+								layer.bezierVertex(-2.5,-4,-4,-8,-2.5,-11)
+								layer.vertex(-1,-9.5)
+								layer.endShape()
+								layer.beginShape()
+								layer.vertex(0,0)
+								layer.bezierVertex(2.5,-4,4,-8,2.5,-11)
+								layer.vertex(1,-9.5)
+								layer.endShape()
+								layer.rotate(360/la)
+							}
+						break
+					}
+					layer.pop()
+				}
+			}
+			displayTrianglesFrontMerge(layer,data.parts.kimono.outside[1],direction,20,9,0.5,0.15,mergeColor(data.color.kimono.outside.start,data.color.kimono.outside.end,0.5),data.color.kimono.outside.end,1)
+			for(let g=0,lg=data.parts.kimono.decoration[1].length;g<lg;g++){
+				let element=data.parts.kimono.decoration[1][g]
+				if(lcos(element.spin+direction)>0){
+					layer.push()
+					layer.translate(
+						(4.5+element.y*0.15)*lsin(element.spin+direction),
+						20+element.y
+					)
+					layer.rotate(-12*lsin(element.spin+direction))
+					layer.scale(
+						0.1*element.size*lcos(element.spin+direction),
+						0.1*element.size
+					)
+					layer.rotate(element.rotate)
+					switch(element.type){
+						case 0:
+							layer.noStroke()
+							layer.fill(...data.color.kimono.decoration[0])
+							for(let a=0,la=5;a<la;a++){
+								layer.beginShape()
+								layer.vertex(0,0)
+								layer.bezierVertex(-3,-3,-3,-6,-3,-8)
+								layer.vertex(-1.5,-6)
+								layer.vertex(0,-8)
+								layer.vertex(1.5,-6)
+								layer.vertex(3,-8)
+								layer.bezierVertex(3,-6,3,-3,0,0)
+								layer.endShape()
+								layer.rotate(360/la)
+							}
+						break
+						case 1:
+							layer.noStroke()
+							layer.fill(...data.color.kimono.decoration[1])
+							for(let a=0,la=5;a<la;a++){
+								layer.beginShape()
+								layer.vertex(0,0)
+								layer.bezierVertex(-3,-2,-3,-6,-2,-8)
+								layer.vertex(0,-6)
+								layer.vertex(2,-8)
+								layer.bezierVertex(3,-6,3,-2,0,0)
+								layer.endShape()
+								layer.rotate(360/la)
+							}
+						break
+						case 2:
+							layer.noFill()
+							layer.stroke(...data.color.kimono.decoration[2])
+							layer.strokeWeight(0.4)
+							for(let a=0,la=5;a<la;a++){
+								layer.beginShape()
+								layer.vertex(0,0)
+								layer.bezierVertex(-2.5,-4,-4,-8,-2.5,-11)
+								layer.vertex(-1,-9.5)
+								layer.endShape()
+								layer.beginShape()
+								layer.vertex(0,0)
+								layer.bezierVertex(2.5,-4,4,-8,2.5,-11)
+								layer.vertex(1,-9.5)
+								layer.endShape()
+								layer.rotate(360/la)
+							}
+						break
+					}
+					layer.pop()
+				}
+			}
+			layer.fill(...data.color.kimono.top)
+			layer.stroke(...data.color.kimono.top)
+			layer.strokeWeight(0.5)
+			layer.quad(-4.5,20,4.5,20,4.65,21,-4.65,21)
+		break
+		case 67:
+			displayTrianglesBackMerge(layer,data.parts.kimono.outside[0],direction,20,9,0.5,0.15,data.color.kimono.outsideBack.start,mergeColor(data.color.kimono.outsideBack.start,data.color.kimono.outsideBack.end,0.5),1)
+			displayTrianglesBackMerge(layer,data.parts.kimono.outside[1],direction,20,9,0.5,0.15,mergeColor(data.color.kimono.outsideBack.start,data.color.kimono.outsideBack.end,0.5),data.color.kimono.outsideBack.end,1)
+		break
 		
 	}
+	//mark s
 }
 function setupCombatantGraphics(type){
 	let data
@@ -2880,6 +3065,230 @@ function setupCombatantGraphics(type){
 				//print('Generated S-HT-'+(g+1))
 			}
 		break
+		case 8:
+			graphics.combatant.push({
+				sprites:{detail:15,genAmount:0,animDirection:0,hair:{back:[],front:[]},kimono:{main:{back:[],front:[]},outside:{back:[],front:[]}}},
+				parts:{kimono:{main:[],outside:[[],[]],decoration:[[],[]]}},
+				color:{
+					hair:{back:[115,92,134],front:[160,138,177],insideBack:[90,61,93],insideFront:[131,107,155],glow:[226,211,216]},
+					skin:{head:[252,222,212],body:[244,198,185],legs:[250,217,208],arms:[249,219,209],button:[238,164,165]},
+					eye:{back:[142,48,66],front:[25,8,16],glow:[254,255,255]},
+					sleeve:{back:[187,72,101],front:[206,77,86]},
+                    kimono:{
+						main:{start:[255,233,235],end:[240,201,204]},mainBack:{start:[214,188,213],end:[201,159,179]},
+						outside:{start:[201,65,79],end:[159,59,95]},outsideBack:{start:[140,40,66],end:[100,26,59]},
+						decoration:[[228,189,210],[234,142,165],[220,174,99]],top:[123,29,55]},
+					wrap:{in:[78,50,72],rope:[144,100,75],bow:[105,69,83],decoration:[166,124,84],string:[231,186,118]},
+					mouth:{in:[225,125,125],out:[0,0,0]},
+				}
+			})
+
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={
+				main:[
+					{spin:[0,6,3],y:[-6,-6,3]},
+
+					{spin:[-54,-18,-36],y:[0,-3,5]},
+					{spin:[-60,-42,-54],y:[0,0,9]},
+					{spin:[-90,-54,-75],y:[0,0,11]},
+					{spin:[-99,-84,-93],y:[0,0,16]},
+					{spin:[-114,-99,-108],y:[0,0,12]},
+					{spin:[-129,-105,-120],y:[0,0,15]},
+					{spin:[-154,-117,-135],y:[0,0,17]},
+					{spin:[-180,-144,-162],y:[0,0,16]},
+					{spin:[174,-162,-177],y:[0,0,19]},
+
+					{spin:[18,45,33],y:[-3,0,4]},
+					{spin:[36,63,51],y:[0,0,8]},
+					{spin:[57,96,81],y:[0,0,13]},
+					{spin:[81,102,93],y:[0,0,14]},
+					{spin:[99,117,111],y:[0,0,17]},
+					{spin:[108,126,117],y:[0,0,15]},
+					{spin:[123,159,138],y:[0,0,18]},
+					{spin:[150,171,165],y:[0,0,17]},
+				],inside:[
+					{spin:[-57,-36,-48],y:[0,0,4.5]},
+					{spin:[-66,-51,-60],y:[0,0,7.5]},
+					{spin:[-90,-81,-87],y:[0,0,9.5]},
+					{spin:[-108,-93,-102],y:[0,0,10.5]},
+					{spin:[-117,-99,-114],y:[0,0,11.5]},
+					{spin:[-138,-123,-129],y:[0,0,13.5]},
+					{spin:[-156,-132,-147],y:[0,0,14.5]},
+					{spin:[174,-159,-171],y:[0,0,16.5]},
+
+					{spin:[39,51,42],y:[0,0,3.5]},
+					{spin:[48,72,69],y:[0,0,6.5]},
+					{spin:[72,99,87],y:[0,0,10.5]},
+					{spin:[90,111,99],y:[0,0,11.5]},
+					{spin:[108,117,114],y:[0,0,15.5]},
+					{spin:[120,135,129],y:[0,0,12.5]},
+					{spin:[138,177,150],y:[0,0,15.5]},
+					{spin:[159,-168,174],y:[0,0,17.5]},
+				],reverse:[
+					{spin:[-24,24,3],y:[0,0,-6]},
+				]
+			}
+		
+			data.sprites.genAmount=360/data.sprites.detail
+
+			for(let a=0,la=12;a<la;a++){
+				data.parts.kimono.main.push({
+					spin:[-195+a*30,-165+a*30,-180+a*30],
+					y:[0,0,lsin((a+0.5)/(la+0.5)*90)*34]
+				})
+				data.parts.kimono.main.push({
+					spin:[-180+a*30,-171+a*30,-165+a*30],
+					y:[lsin((a+0.5)/(la+0.5)*90)*34,lsin((a+1)/(la+0.5)*90)*34+3,0]
+				})
+				data.parts.kimono.main.push({
+					spin:[-171+a*30,-165+a*30,-165+a*30],
+					y:[lsin((a+1)/(la+0.5)*90)*34+3,lsin((a+1)/(la+0.5)*90)*34+3.5,0]
+				})
+				data.parts.kimono.main.push({
+					spin:[-165+a*30,-159+a*30,-165+a*30],
+					y:[lsin((a+1)/(la+0.5)*90)*34+3.5,lsin((a+1)/(la+0.5)*90)*34+3,0]
+				})
+				data.parts.kimono.main.push({
+					spin:[-159+a*30,-150+a*30,-165+a*30],
+					y:[lsin((a+1)/(la+0.5)*90)*34+3,lsin((a+1.5)/(la+0.5)*90)*34,0]
+				})
+			}
+			data.parts.kimono.main.push({
+				spin:[165,-165,-180],
+				y:[0,0,36]
+			})
+			for(let a=0,la=12;a<la;a++){
+				data.parts.kimono.main.push({
+					spin:[-159+a*30,-150+a*30,-165+a*30],
+					y:[lsin(90+(a+1)/(la+0.5)*90)*34+3,lsin(90+(a+1.5)/(la+0.5)*90)*34,0]
+				})
+				data.parts.kimono.main.push({
+					spin:[-165+a*30,-159+a*30,-165+a*30],
+					y:[lsin(90+(a+1)/(la+0.5)*90)*34+3.5,lsin(90+(a+1)/(la+0.5)*90)*34+3,0]
+				})
+				data.parts.kimono.main.push({
+					spin:[-171+a*30,-165+a*30,-165+a*30],
+					y:[lsin(90+(a+1)/(la+0.5)*90)*34+3,lsin(90+(a+1)/(la+0.5)*90)*34+3.5,0]
+				})
+				data.parts.kimono.main.push({
+					spin:[-180+a*30,-171+a*30,-165+a*30],
+					y:[lsin(90+(a+0.5)/(la+0.5)*90)*34,lsin(90+(a+1)/(la+0.5)*90)*34+3,0]
+				})
+				data.parts.kimono.main.push({
+					spin:[-165+a*30,-135+a*30,-150+a*30],
+					y:[0,0,lsin(90+(a+1.5)/(la+0.5)*90)*34]
+				})
+			}
+			let decorationIndex=0
+			for(let a=0,la=12;a<la;a++){
+				data.parts.kimono.outside[0].push({
+					spin:[-120+a*24,-96+a*24,-108+a*24],
+					y:[0,0,lsin((a+0.5)/(la+0.5)*90)*40]
+				})
+				data.parts.kimono.outside[0].push({
+					spin:[-108+a*24,-84+a*24,-96+a*24],
+					y:[lsin((a+0.5)/(la+0.5)*90)*40,lsin((a+1.5)/(la+0.5)*90)*40,0]
+				})
+				data.parts.kimono.decoration[a==11?1:0].push(
+					{
+						type:floor(random(0,3)),spin:-96+a*24,rotate:random(0,360),size:random(1,1.5),
+						y:lsin((a+1)/(la+0.5)*90)*40-1-decorationIndex%2*3-(decorationIndex%4==1?1:0)*3-random(0,2)
+					}
+				)
+				decorationIndex++
+				data.parts.kimono.decoration[a==11?1:0].push(
+					{
+						type:floor(random(0,3)),spin:-84+a*24,rotate:random(0,360),size:random(1,1.5),
+						y:lsin((a+1.5)/(la+0.5)*90)*40-1-decorationIndex%2*3-(decorationIndex%4==1?1:0)*3-random(0,2)
+					}
+				)
+				decorationIndex++
+			}
+			data.parts.kimono.outside[0].push({
+				spin:[168,-168,-180],
+				y:[0,0,40]
+			})
+			for(let a=0,la=12;a<la;a++){
+				data.parts.kimono.outside[1].push({
+					spin:[-180+a*24,-156+a*24,-168+a*24],
+					y:[lsin(90+(a+0.5)/(la+0.5)*90)*40,lsin(90+(a+1.5)/(la+0.5)*90)*40,0]
+				})
+				data.parts.kimono.outside[1].push({
+					spin:[-168+a*24,-144+a*24,-156+a*24],
+					y:[0,0,lsin(90+(a+1.5)/(la+0.5)*90)*40]
+				})
+				data.parts.kimono.decoration[1].push(
+					{
+						type:floor(random(0,3)),spin:-168+a*24,rotate:random(0,360),size:random(1,1.5),
+						y:lsin(90+(a+1)/(la+0.5)*90)*40-1-decorationIndex%2*3-(decorationIndex%4==1?1:0)*3-random(0,2)
+					}
+				)
+				decorationIndex++
+				data.parts.kimono.decoration[1].push(
+					{
+						type:floor(random(0,3)),spin:-156+a*24,rotate:random(0,360),size:random(1,1.5),
+						y:lsin(90+(a+1.5)/(la+0.5)*90)*40-1-decorationIndex%2*3-(decorationIndex%4==1?1:0)*3-random(0,2)
+					}
+				)
+				decorationIndex++
+			}
+			for(let a=0,la=data.parts.kimono.decoration.length;a<la;a++){
+				for(let b=0,lb=data.parts.kimono.decoration[a].length;b<lb;b++){
+					if(data.parts.kimono.decoration[a][b].y<3){
+						data.parts.kimono.decoration[a].splice(b,1)
+						b--
+						lb--
+					}
+				}
+			}
+
+			data.sprites.hair={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.front.push(createGraphics(250,500))
+				setupLayer(data.sprites.hair.front[g])
+				data.sprites.hair.front[g].translate(125,100)
+				data.sprites.hair.front[g].scale(5)
+				generateSprite(data.sprites.hair.front[g],62,g*data.sprites.detail)
+				//print('Generated L-HF-'+(g+1))
+				data.sprites.hair.back.push(createGraphics(250,500))
+				setupLayer(data.sprites.hair.back[g])
+				data.sprites.hair.back[g].translate(125,100)
+				data.sprites.hair.back[g].scale(5)
+				generateSprite(data.sprites.hair.back[g],63,g*data.sprites.detail)
+				//print('Generated L-HB-'+(g+1))
+			}
+			data.sprites.kimono.main={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.kimono.main.front.push(createGraphics(150,330))
+				setupLayer(data.sprites.kimono.main.front[g])
+				data.sprites.kimono.main.front[g].translate(75,0)
+				data.sprites.kimono.main.front[g].scale(5)
+				generateSprite(data.sprites.kimono.main.front[g],64,g*data.sprites.detail)
+				//print('Generated L-KMF-'+(g+1))
+				data.sprites.kimono.main.back.push(createGraphics(150,330))
+				setupLayer(data.sprites.kimono.main.back[g])
+				data.sprites.kimono.main.back[g].translate(75,0)
+				data.sprites.kimono.main.back[g].scale(5)
+				generateSprite(data.sprites.kimono.main.back[g],65,g*data.sprites.detail)
+				//print('Generated L-KMB-'+(g+1))
+			}
+			data.sprites.kimono.outside={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.kimono.outside.front.push(createGraphics(150,330))
+				setupLayer(data.sprites.kimono.outside.front[g])
+				data.sprites.kimono.outside.front[g].translate(75,0)
+				data.sprites.kimono.outside.front[g].scale(5)
+				generateSprite(data.sprites.kimono.outside.front[g],66,g*data.sprites.detail)
+				//print('Generated L-KOF-'+(g+1))
+				data.sprites.kimono.outside.back.push(createGraphics(150,330))
+				setupLayer(data.sprites.kimono.outside.back[g])
+				data.sprites.kimono.outside.back[g].translate(75,0)
+				data.sprites.kimono.outside.back[g].scale(5)
+				generateSprite(data.sprites.kimono.outside.back[g],67,g*data.sprites.detail)
+				//print('Generated L-KOB-'+(g+1))
+			}
+		break
 		case 20:
 			graphics.combatant.push({
 				spin:{tail:[-96,96]},
@@ -3095,6 +3504,7 @@ function setupCombatantGraphics(type){
 		break
 		
 	}
+	//mark c
 }
 function setupCombatantBackground(type,player,a,la,damage,layer){
 	let p1
@@ -3332,6 +3742,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:45,bottom:60,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-81,lock:0},{top:90,bottom:84,lock:0}]
 				break
+				case 'Shinmyoumaru':
+					p1.position.x+=10
+					p1.anim.mouth.y++
+					p1.anim.legs=[
+						{top:12,bottom:9,length:{top:15,bottom:15}},
+						{top:12,bottom:36,length:{top:15,bottom:15}}
+					]
+					p1.anim.arms=[
+						{top:36,bottom:51,length:{top:15,bottom:15}},
+						{top:36,bottom:51,length:{top:15,bottom:15}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:45,bottom:90,lock:0}]
+					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
+				break
 
 			}
 			p1.size=2.5
@@ -3539,6 +3963,22 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-75,bottom:-75,lock:0},{top:-60,bottom:-75,lock:0}]
 					p1.spin.arms=[{top:-120,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
 				break
+				case 'Shinmyoumaru':
+					p1.parts.mouth+=2.5
+					p1.spin.mouth+=183
+					p1.anim.mouth.y--
+					p1.trigger.display.extra.sword=false
+					p1.anim.legs=[
+						{top:24-a*9,bottom:-72-a*9,length:{top:15,bottom:15}},
+						{top:-6-a*15,bottom:-36-a*18,length:{top:15,bottom:15}}
+					]
+					p1.anim.arms=[
+						{top:27,bottom:27,length:{top:15,bottom:15}},
+						{top:45+a*18,bottom:51-a*42,length:{top:15,bottom:15}}
+					]
+					p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+				break
 			}
 			p1.anim.eye=[1,1]
 			p1.size=2.5
@@ -3695,8 +4135,8 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 						{top:54+a*12,bottom:66-a*24,length:{top:15.5,bottom:15.5}}
 					]
 					p1.anim.arms=[
-						{top:24,bottom:36-a*6,length:{top:16,bottom:16}},
-						{top:24,bottom:36-a*6,length:{top:16,bottom:16}}
+						{top:24,bottom:36-a*6,length:{top:15.5,bottom:15.5}},
+						{top:24,bottom:36-a*6,length:{top:15.5,bottom:15.5}}
 					]
 					p1.spin.legs=[{top:-45+a*5,bottom:-15-a*5,lock:0},{top:120+a*5,bottom:150-a*30,lock:0}]
 					p1.spin.arms=[{top:-75+a*6,bottom:-12-a*24,lock:0},{top:75-a*6,bottom:-30+a*60,lock:0}]
@@ -3769,6 +4209,25 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60-a*30,bottom:-150,lock:0},{top:60+a*30,bottom:165,lock:0}]
 					p1.spin.arms=[{top:-75-a*15,bottom:-30-a*54,lock:0},{top:75+a*15,bottom:6+a*72,lock:0}]
+				break
+				case 'Shinmyoumaru':
+					p1.fades.kimono.main.front={x:1,y:0.85}
+					p1.fades.kimono.main.back={x:1,y:0.85}
+					p1.fades.kimono.outside.front={x:1,y:0.85}
+					p1.fades.kimono.outside.back={x:1,y:0.85}
+					p1.trigger.display.extra.sword=false
+					p1.position.y+=30
+					p1.anim.mouth.y+=0.5
+					p1.anim.legs=[
+						{top:54,bottom:66-a*48,length:{top:15,bottom:15}},
+						{top:54+a*12,bottom:66-a*42,length:{top:15,bottom:15}}
+					]
+					p1.anim.arms=[
+						{top:18,bottom:48-a*6,length:{top:15,bottom:15}},
+						{top:18,bottom:48-a*6,length:{top:15,bottom:15}}
+					]
+					p1.spin.legs=[{top:-45+a*5,bottom:-15-a*45,lock:0},{top:120+a*5,bottom:150-a*36,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
 				break
 			}
 			if(p1.name!='DD-610'&&p1.name!='Vincent'){
@@ -3985,6 +4444,22 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60+a*45,bottom:-120-a*30,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
 					p1.spin.arms=[{top:-90-a*18,bottom:-30-a*15,lock:0},{top:90,bottom:-15+a*60,lock:0}]
 				break
+				case 'Shinmyoumaru':
+					p1.position.y-=a*25
+					p1.anim.mouth.y+=0.5
+					p1.parts.mouth+=0.5
+					p1.trigger.display.extra.sword=false
+					p1.anim.legs=[
+						{top:6+a*36,bottom:12-a*18,length:{top:15,bottom:15}},
+						{top:6+a*36,bottom:12-a*18,length:{top:15,bottom:15}}
+					]
+					p1.anim.arms=[
+						{top:15+a*9,bottom:6+a*36,length:{top:15,bottom:15}},
+						{top:27-a*3,bottom:72-a*24,length:{top:15,bottom:15}}
+					]
+					p1.spin.legs=[{top:-48+a*45,bottom:-120+a*90,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -4189,6 +4664,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 						{top:18+a*3,bottom:18,length:{top:16.5,bottom:16.5}}
 					]
 					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
+					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
+				break
+				case 'Shinmyoumaru':
+					p1.trigger.display.extra.sword=false
+					p1.anim.mouth.y+=0.25
+					p1.anim.legs=[
+						{top:9-a*6,bottom:3,length:{top:15,bottom:15}},
+						{top:9-a*6,bottom:3,length:{top:15,bottom:15}}
+					]
+					p1.anim.arms=[
+						{top:12+a*3,bottom:6+a*30,length:{top:15,bottom:15}},
+						{top:12-a*3,bottom:36-a*24,length:{top:15,bottom:15}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
 				break
 			}
@@ -4428,6 +4917,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-150,lock:0},{top:60,bottom:150,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
 				break
+				case 'Shinmyoumaru':
+					p1.trigger.display.extra.sword=false
+					p1.anim.mouth.y-=0.5
+					p1.parts.mouth+=0.25
+					p1.anim.legs=[
+						{top:6,bottom:0,length:{top:15,bottom:15}},
+						{top:6,bottom:0,length:{top:15,bottom:15}}
+					]
+					p1.anim.arms=[
+						{top:24+a*6,bottom:36-a*12,length:{top:15,bottom:15}},
+						{top:18-a*6,bottom:24+a*18,length:{top:15,bottom:15}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-105,lock:0},{top:105,bottom:105,lock:0}]
+				break
 			}
 			p1.size=2
 			p1.fade=1
@@ -4605,6 +5109,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:-90,lock:0},{top:60,bottom:90,lock:0}]
 					p1.spin.arms=[{top:-120,bottom:-141,lock:0},{top:93,bottom:75,lock:0}]
+				break
+				case 'Shinmyoumaru':
+					p1.anim.mouth.y-=0.5
+					p1.anim.legs=[
+						{top:18,bottom:6,length:{top:15,bottom:15}},
+						{top:24,bottom:-24,length:{top:15,bottom:15}}
+					]
+					p1.anim.arms=[
+						{top:21,bottom:33,length:{top:15,bottom:15}},
+						{top:27,bottom:18,length:{top:15,bottom:15}}
+					]
+					p1.spin.legs=[{top:-30,bottom:-60,lock:0},{top:30,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-60,lock:0},{top:90,bottom:90,lock:0}]
 				break
 			}
 			p1.size=1.5
@@ -4928,6 +5445,9 @@ function setupGeneralGraphics(){
 }
 function setupBackground(type,layer){
 	switch(type){
+		case -1:
+			layer.background(0)
+		break
 		case 0:
 			layer.noStroke()
             for(let a=0,la=layer.height*4/5;a<la;a++){

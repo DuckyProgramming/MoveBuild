@@ -6,8 +6,6 @@ deploy new enemies
 
 deploy new events
 
-give shinmy a model
-
 collection screen
 
 
@@ -15,9 +13,6 @@ collection screen
 
 
 
-
-
-a small shinmy purge
 
 
 
@@ -255,8 +250,6 @@ koishi cards?
 
 SUKUNA DEVELOPMENT
 
-model
-icon
 tutorial
 
 

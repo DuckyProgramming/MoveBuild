@@ -5025,7 +5025,7 @@ class combatant{
                                 this.spin.arms[g].bottom=(75-lsin((this.animSet.loop+this.animSet.flip+g)*180)*-18)*(g*2-1)
                             }
                         }
-                        if(this.name=='Lira'||this.name=='Sakura'||this.name=='Setsuna'||this.name=='Ume'){
+                        if(this.name=='Lira'||this.name=='Sakura'||this.name=='Setsuna'||this.name=='Shinmyoumaru'||this.name=='Ume'){
                             this.fades.kimono.main.back.x=1+abs(lsin(this.animSet.loop*180))*0.1
                             this.fades.kimono.main.front.x=1+abs(lsin(this.animSet.loop*180))*0.1
                             this.fades.kimono.main.back.y=1-abs(lsin(this.animSet.loop*180))*0.05
@@ -5036,8 +5036,10 @@ class combatant{
                                 this.fades.kimono.outside.back.y=1-abs(lsin(this.animSet.loop*180))*0.05
                                 this.fades.kimono.outside.front.y=1-abs(lsin(this.animSet.loop*180))*0.05
                             }
-                            this.fades.kimono.decoration.position.x=1+abs(lsin(this.animSet.loop*180))*0.1
-                            this.fades.kimono.decoration.position.y=1-abs(lsin(this.animSet.loop*180))*0.05
+                            if(this.name!='Shinmyoumaru'){
+                                this.fades.kimono.decoration.position.x=1+abs(lsin(this.animSet.loop*180))*0.1
+                                this.fades.kimono.decoration.position.y=1-abs(lsin(this.animSet.loop*180))*0.05
+                            }
                         }
                     break
                     case 1:
@@ -5050,7 +5052,7 @@ class combatant{
                     break
                     case 2:
                         this.animSet.loop+=rate
-                        if(this.name=='Lira'||this.name=='Sakura'||this.name=='Setsuna'||this.name=='Sanae'||this.name=='Ume'){
+                        if(this.name=='Lira'||this.name=='Sakura'||this.name=='Setsuna'||this.name=='Sanae'||this.name=='Shinmyoumaru'||this.name=='Ume'){
                             this.anim.arms[this.animSet.hand].top=24+lsin(this.animSet.loop*180)*36
                             this.anim.arms[this.animSet.hand].bottom=9+lsin(this.animSet.loop*180)*96
                             this.spin.arms[this.animSet.hand].top=(93-lsin(this.animSet.loop*180)*63)*(this.animSet.hand*2-1)
@@ -6714,7 +6716,7 @@ class combatant{
                 this.infoAnim.orbSpec[a][b]=smoothAnim(this.infoAnim.orbSpec[a][b],this.orbs[a]==b,0,1,10)
             }
         }
-        if(abs(this.anim.direction-this.goal.anim.direction)<=18||abs(this.anim.direction-this.goal.anim.direction-360)<=18||abs(this.anim.direction-this.goal.anim.direction+360)<=18||abs(this.anim.direction-this.goal.anim.direction-720)<=18||abs(this.anim.direction-this.goal.anim.direction+720)<=18){
+        if(abs(this.anim.direction-this.goal.anim.direction)<=15||abs(this.anim.direction-this.goal.anim.direction-360)<=15||abs(this.anim.direction-this.goal.anim.direction+360)<=15||abs(this.anim.direction-this.goal.anim.direction-720)<=15||abs(this.anim.direction-this.goal.anim.direction+720)<=15){
             this.anim.direction=this.goal.anim.direction
         }else if(
             this.anim.direction>this.goal.anim.direction&&this.anim.direction<this.goal.anim.direction+180||

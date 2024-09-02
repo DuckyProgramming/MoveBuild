@@ -227,7 +227,9 @@ class battle{
                 a==4&&this.player.includes(8)||
                 a==5&&this.player.includes(11)||
                 a==6&&this.player.includes(15)||
-                a==7&&this.player.includes(16)
+                a==7&&this.player.includes(16)||
+                a==8&&this.player.includes(17)||
+                a==9&&this.player.includes(18)
             ){
                 setupCombatantGraphics(a)
             }else{
@@ -2298,7 +2300,9 @@ class battle{
                 this.particleManager.display('front')
                 this.relicManager.display(stage.scene)
                 this.itemManager.display(stage.scene)
-                this.combatantManager.displayInfo(scene)
+                if(!game.infoOff){
+                    this.combatantManager.displayInfo(scene)
+                }
                 this.relicManager.display('info')
                 this.itemManager.display('info')
                 this.overlayManager.display()
@@ -2541,9 +2545,20 @@ class battle{
             break
             case 'graphic':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=this.players;a<la;a++){
-                    this.graphics.combatants[graphics.test][0][a].time++
-                    this.graphics.combatants[graphics.test][0][a].display()
+                if(graphics.test==-1){
+                    this.graphics.combatants[0][0][0].position.x=this.layer.width/2
+                    this.graphics.combatants[0][0][0].position.y=this.layer.height/2+200
+                    if(game.timer%30==0){
+                        this.graphics.combatants[0][0][0].anim.direction+=15
+                    }
+                    this.graphics.combatants[0][0][0].time++
+                    this.graphics.combatants[0][0][0].size=4
+                    this.graphics.combatants[0][0][0].display()
+                }else{
+                    for(let a=0,la=this.players;a<la;a++){
+                        this.graphics.combatants[graphics.test][0][a].time++
+                        this.graphics.combatants[graphics.test][0][a].display()
+                    }
                 }
             break
             case 'tier':

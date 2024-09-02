@@ -17,7 +17,7 @@ types={
         {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:``},
         {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:``},
         {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:339,effect:[8,8]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:``},
-        {name:'Shinmyoumaru',moniker:'',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]}],description:``},
+        {name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]}],description:``},
         {name:'Merlin',moniker:'',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:312,effect:[5,5,1,1,2,2,2,2,10]}],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
@@ -10313,7 +10313,7 @@ Caps at +1, cap is raised by 1 for each Wisdom you have.`,
 }
 stage={scale:0,scene:'title',internal:{version:1}}
 game={player:[],deck:[],playerNumber:18,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0,infoOff:false}
 variants={
     mtg:false,mod:false,selectCombat:false,chaos:false,
     lowDraw:false,cyclicDraw:false,balance:false,blackjack:false,
