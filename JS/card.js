@@ -4985,7 +4985,7 @@ class card{
             case 4106: string+=`Draw ${effect[0]} Basic Card${pl(effect[0])}`; break
             case 4107: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have No\nOther Attacks in Hand,\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 4108: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nPer Exhausted Card${stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.cardManagers[this.player].exhaust.cards.length})`:``}`; break
-            case 4109: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Triple Damage\nIf You Dodged an\nAttack This Turn`; break
+            case 4109: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Triple Damage\nIf You Dodged an\nAttack This Turn${this.player>=0&&this.player<this.battle.players&&stage.scene=='battle'&&!this.nonCalc?` (${this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].turnDodges>0?`Yes`:`No`})`:``}`; break
             case 4110: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]==1?`a`:`${effect[1]}`} 1 ${variants.mtg?`Total\n`:``}Cost Attack${pl(effect[1])}`; break
             case 4111: string+=`Gain ${effect[0]} Strength\nNext Luck-Based Card\nis Guaranteed to Fail`; break
             case 4112: string+=`Add ${this.calculateEffect(effect[0],1)}+${this.calculateEffect(effect[1],16)} Block\nWhere X = Wish Power\nWhen Exhausted,\nGain ${effect[2]} Dodge`; break
@@ -5948,7 +5948,7 @@ class card{
             case 5076: string+=`All Combatants\nGain ${effect[0]} Strength\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 5077: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\non Stance Change`; break
             case 5078: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIncreases by ${effect[1]}\non Stance Change`; break
-
+            case 5079: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nTransform ${effect[1]} Card${pl(effect[1])}\nLose ${effect[2]} Health`; break
 
 
 

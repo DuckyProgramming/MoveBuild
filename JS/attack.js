@@ -13728,6 +13728,11 @@ class attack{
                     case 5061:
                         this.userCombatant.loseHealth(this.effect[0])
                     break
+                    case 5079:
+                        this.userManager.draw(this.effect[0])
+                        this.userManager.hand.transform(this.effect[1])
+                        this.userCombatant.loseHealth(this.effect[2])
+                    break
 
                 }
                 //mark 6

@@ -197,7 +197,7 @@ types={
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
         {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:200,effect:[8]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
-        {name:'Crusader',life:127,behavior:15,spec:[1,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,3]},{type:343,effect:[14,1]},{type:344,effect:[20]},{type:376,effect:[22,1]},{type:346,effect:[22,1]},{type:347,effect:[20]}],description:`Two millenia late to the party`},
+        {name:'Crusader',life:127,behavior:15,spec:[1,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:343,effect:[14,1]},{type:344,effect:[20]},{type:376,effect:[22,1]},{type:346,effect:[22,1]},{type:347,effect:[20]}],description:`Two millenia late to the party`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,2]}],description:`Gunning for a promotion`},

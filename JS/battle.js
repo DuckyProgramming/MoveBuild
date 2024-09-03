@@ -1294,9 +1294,11 @@ class battle{
         }
         if(userCombatant.getStatus('Card Delay Exhaust')>0){
             this.cardManagers[player].hand.exhaust(userCombatant.getStatus('Card Delay Exhaust'))
+            userCombatant.status.main[findList('Card Delay Exhaust',userCombatant.status.name)]=0
         }
         if(userCombatant.getStatus('Card Delay Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Card Delay Draw'))
+            userCombatant.status.main[findList('Card Delay Draw',userCombatant.status.name)]=0
         }
         if(card.spec.includes(54)&&userCombatant.getStatus('Discus Temporary Strength')>0){
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Discus Temporary Strength'))
@@ -2103,7 +2105,7 @@ class battle{
                     for(let b=0,lb=2;b<lb;b++){
                         if(this.menu.anim.combatant[b][a]>0){
                             this.layer.fill(255,this.menu.anim.combatant[b][a])
-                            this.layer.textSize(10)
+                            this.layer.textSize(types.combatant[a].name.length>=12?9:10)
                             this.layer.text(a==0?'000_BLANK':`0${a<10?`0`:``}${a}_${types.combatant[a].name.toUpperCase()}`,this.layer.width/4+b*this.layer.width/2,this.layer.height*0.65)
                             this.layer.textSize(9)
                             this.layer.text(types.combatant[a].moniker.toUpperCase(),this.layer.width/4+b*this.layer.width/2,this.layer.height*0.65+40)

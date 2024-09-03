@@ -761,9 +761,11 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('-20%',8,0)
                 break
-                case 'Remove Discount':
+                case 'Card Service Discount':
                     displaySymbol(this.layer,0,-7,8,0,0.75,this.fade)
                     displaySymbol(this.layer,0,-7,16,0,0.75,this.fade)
+                    displaySymbol(this.layer,-1.75,-7,7,0,0.3,this.fade)
+                    displaySymbol(this.layer,1.75,-7,7,0,0.3,this.fade)
                     displaySymbol(this.layer,0,11,28,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(6)

@@ -461,9 +461,6 @@ class combatant{
                 this.battle.tileManager.tiles[tile].addType(6)
             }
         }
-        if(this.spec.includes(6)){
-            this.threshold=this.life-20
-        }
         if(this.team==0){
             if(this.battle.modded(20)&&floor(random(0,4))==0){
                 this.statusEffect('Invisible',999)
@@ -1225,6 +1222,9 @@ class combatant{
                 this.subHealthBuff(0.8)
             }
         }
+        if(this.spec.includes(6)){
+            this.threshold=this.life-20
+        }
     }
     subHealthBuff(value){
         this.life=round(this.life*value)
@@ -1244,6 +1244,7 @@ class combatant{
                         &&!(this.attack[a].type==163&&b==1)
                         &&!(this.attack[a].type==254&&b==1)
                         &&!(this.attack[a].type==281&&b==1)
+                        &&!(this.attack[a].type==342&&b==1)
                         &&this.attack[a].type!=39
                         &&this.attack[a].type!=40
                         &&this.attack[a].type!=41
@@ -2365,12 +2366,12 @@ class combatant{
                         }
                     break
                     case 9: case 16: case 17: case 28: case 44: case 53: case 54: case 55: case 60: case 64:
-                    case 69: case 82: case 84: case 85: case 86: case 87: case 95: case 104: case 114: case 117:
-                    case 120: case 124: case 128: case 131: case 133: case 135: case 136: case 142: case 146: case 147:
-                    case 153: case 154: case 157: case 168: case 171: case 175: case 176: case 192: case 198: case 204:
-                    case 213: case 215: case 217: case 222: case 255: case 256: case 259: case 264: case 265: case 278:
-                    case 288: case 291: case 292: case 308: case 319: case 330: case 344: case 347: case 350: case 351:
-                    case 357: case 360: case 368: case 379: case 381: case 384: case 387: case 388:
+                    case 69: case 82: case 84: case 85: case 86: case 87: case 95: case 104: case 114: case 120:
+                    case 124: case 128: case 131: case 133: case 136: case 142: case 146: case 147: case 153: case 157:
+                    case 168: case 171: case 176: case 192: case 198: case 204: case 213: case 215: case 217: case 222:
+                    case 255: case 256: case 259: case 264: case 265: case 278: case 288: case 291: case 292: case 308:
+                    case 330: case 350: case 351: case 357: case 360: case 368: case 379: case 381: case 384: case 387:
+                    case 388:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(this.targetTile[b].tilePosition.x>=0){
                                 this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
@@ -2405,7 +2406,7 @@ class combatant{
                             }
                         }
                     break
-                    case 49: case 164: case 185: case 195: case 205: case 219: case 286:
+                    case 49: case 164: case 185: case 205: case 219: case 286:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -2418,11 +2419,47 @@ class combatant{
                             }
                         }
                     break
+                    case 117: case 135: case 154:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b>=1&&(this.targetTile[0].tilePosition.x<0))&&
+                                !(b>=2&&(this.targetTile[1].tilePosition.x<0))&&
+                                !(b>=3&&(this.targetTile[2].tilePosition.x<0))&&
+                                !(b>=4&&(this.targetTile[3].tilePosition.x<0))&&
+                                !(b>=5&&(this.targetTile[4].tilePosition.x<0))){
+                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                            }
+                        }
+                    break
                     case 166:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
                                 !(b%2==1&&(this.targetTile[floor(b/2)*2].tilePosition.x<0||this.targetTile[floor(b/2)*2].occupied>0))){
+                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                            }
+                        }
+                    break
+                    case 175: case 319:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b>=1&&(this.targetTile[0].tilePosition.x<0))&&
+                                !(b>=2&&(this.targetTile[1].tilePosition.x<0))){
+                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                            }
+                        }
+                    break
+                    case 195:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b%6>=1&&(this.targetTile[floor(b/6)*6].tilePosition.x<0))&&
+                                !(b%6>=2&&(this.targetTile[floor(b/6)*6+1].tilePosition.x<0))&&
+                                !(b%6>=3&&(this.targetTile[floor(b/6)*6+2].tilePosition.x<0))&&
+                                !(b%6>=4&&(this.targetTile[floor(b/6)*6+3].tilePosition.x<0))&&
+                                !(b%6>=5&&(this.targetTile[floor(b/6)*6+4].tilePosition.x<0))){
                                     this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
                             }
                         }
@@ -2452,6 +2489,17 @@ class combatant{
                                 this.targetTile[b].tilePosition.x>=0&&
                                 !(b>=3&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
                                 !(b>=6&&(this.targetTile[3].tilePosition.x<0||this.targetTile[3].occupied>0))){
+                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                            }
+                        }
+                    break
+                    case 344: case 347:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b>=1&&(this.targetTile[0].tilePosition.x<0))&&
+                                !(b>=2&&(this.targetTile[1].tilePosition.x<0))&&
+                                !(b>=3&&(this.targetTile[2].tilePosition.x<0))){
                                     this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
                             }
                         }
@@ -6490,7 +6538,7 @@ class combatant{
                         }
                     }
                 }
-                if(this.battle.modded(55)&&this.battle.turn.main<this.battle.players){
+                if(this.battle.modded(54)&&this.battle.turn.main<this.battle.players){
                     this.battle.loseEnergy(1,this.battle.turn.main)
                 }
                 if(this.battle.modded(55)){

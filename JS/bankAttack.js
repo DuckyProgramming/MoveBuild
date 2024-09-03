@@ -963,6 +963,7 @@ attack.prototype.update=function(){
         case 4192: case 4193: case 4283: case 4286: case 4395: case 4416: case 4417: case 4418: case 4421: case 4422:
         case 4423: case 4680: case 4681: case 4682: case 4722: case 4723: case 4751: case 4759: case 4828: case 4835:
         case 4838: case 4858: case 4901: case 4921: case 4922: case 4923: case 4966: case 4967: case 5034: case 5061:
+        case 5079:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||
@@ -4980,7 +4981,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 729: case 5055:
+        case 729:
             if(this.timer==1){
                 this.userCombatant.startAnimation(2)
             }
@@ -4989,15 +4990,6 @@ attack.prototype.update=function(){
             }
             if(this.timer==15||this.timer==30){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
-                if(this.time==30){
-                    switch(this.type){
-                        case 5055:
-                            for(let a=0,la=this.effect[1];a<la;a++){
-                                this.battle.dropDrawShuffleAbstract(this.player,findName('Shiv',types.card),0,0,[4],[[62]])
-                            }
-                        break
-                    }
-                }
             }else if(this.timer>=45){
                 this.remove=true
             }
@@ -10550,6 +10542,52 @@ attack.prototype.update=function(){
                 if(this.timer>=15*this.targetDistance+20){
                     this.targetCombatant.moveTilePosition(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                     this.battle.activate(1,this.targetCombatant.id)
+                    this.remove=true
+                }
+            }
+        break
+        case 5055:
+            if(this.targetDistance==1){
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(2)
+                }
+                this.userCombatant.runAnimation(1/15,2)
+                if(this.timer==10||this.timer==20){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    if(this.timer==20){
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.dropDrawShuffleAbstract(this.player,findName('Shiv',types.card),0,0,[4],[[62]])
+                        }
+                    }
+                }else if(this.timer>=30){
+                    this.remove=true
+                }
+            }else if(this.targetDistance>=2){
+                if(this.timer==1||this.timer==15*this.targetDistance+1){
+                    this.userCombatant.startAnimation(0)
+                }else if(this.timer==15*this.targetDistance-19){
+                    this.userCombatant.startAnimation(2)
+                }
+                if(this.timer<=15*this.targetDistance-20||this.timer>15*this.targetDistance){
+                    this.userCombatant.runAnimation((this.targetDistance-1)/(this.targetDistance*15-20),0)
+                }else if(this.timer>15*this.targetDistance-20&&this.timer<=15*this.targetDistance){
+                    this.userCombatant.runAnimation(1/10,2)
+                }
+                if(this.timer<=15*this.targetDistance-20){
+                    this.userCombatant.moveTile(this.direction,this.distance/15/this.targetDistance)
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/15/this.targetDistance)
+                }else if(this.timer>15*this.targetDistance){
+                    this.userCombatant.moveTile(this.direction,-this.distance/15/this.targetDistance)
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/15/this.targetDistance)
+                }
+                if(this.timer==15*this.targetDistance-15||this.timer==15*this.targetDistance-5){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    if(this.timer==15*this.targetDistance-5){
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.dropDrawShuffleAbstract(this.player,findName('Shiv',types.card),0,0,[4],[[62]])
+                        }
+                    }
+                }else if(this.timer>=30*this.targetDistance-20){
                     this.remove=true
                 }
             }

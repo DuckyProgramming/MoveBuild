@@ -1,3 +1,5 @@
+
+
 UNCOMING:
 
 new cards
@@ -28,9 +30,6 @@ project constructed save?
 
 
 
-
-change riot shield
-animate sunny
 
 LISTING GROUP 45
 
@@ -90,6 +89,9 @@ ouroboros - 8 damage 2 range, increases by 4 when draw pile shuffled
 
 heal + restructure
 
+change riot shield
+
+
 
 
 sapphire facet - fires blue stars everywhere and lighter ones in set directions that create more particles
@@ -114,6 +116,8 @@ colliding puff - red ball that explodes
 red star explosion?
 
 2 new dice cards
+
+platinum pulse - 10 damage 2 cost, when fatal costs 1 less permanently
 
 
 
@@ -141,6 +145,8 @@ daggerlock - get hit by a falling shiv
 
 guardian angel - trade but its block
 
+virtue - retain, reduce all debuffs by 1
+
 
 
 [rainbow starfall]
@@ -162,6 +168,16 @@ sharp palm
 dragon-slaying circle - 17 damage, conditionally 1 weak and 1 vulnerable
 
 [setsuna movement]
+
+cursed hand - 0 cost, discard a random card, draw a rare card
+
+spoils - 12 block, center of hand: 5 currency
+
+[make a basic card in your deck free]
+
+filtration - gain 1 buffer, 1 cost, costs 1 more, rare
+
+
 
 
 
@@ -233,6 +249,8 @@ anticlash - opposite of clash, add defense if you have only attacks
 cashload - gain double currency from this combat
 
 merlin's tricolor mtg card
+
+innate move gain 1 energy draw 1 card ethereal
 
 
 

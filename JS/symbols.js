@@ -7152,7 +7152,6 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.fill(255,50,50,fade)
             layer.triangle(7,-3,-3.5,-5,-3.5,-1)
             layer.triangle(7,3,-3.5,1,-3.5,5)
-            layer.rect(-4.5,0,1,6)
         break
         case 104:
             layer.fill(255,50,50,fade)
