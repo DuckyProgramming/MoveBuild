@@ -32,7 +32,7 @@ class particle{
             case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 88: case 90: case 95:
             case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120: case 121:
             case 126: case 135: case 136: case 139: case 152: case 154: case 155: case 156: case 163: case 164:
-            case 168: case 169: case 170: case 173: case 192: case 193:
+            case 168: case 169: case 170: case 173: case 192: case 193: case 195:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -3145,6 +3145,20 @@ class particle{
                         this.layer.rotate(180/la)
                     }
                 break
+                case 195:
+                    this.layer.noFill()
+                    this.layer.strokeWeight(0.25)
+                    this.layer.stroke(220,60,40,this.fade*2)
+                    this.layer.ellipse(0,0,10*sqrt(2))
+                    this.layer.rect(0,0,10)
+                    this.layer.rect(0,0,9)
+                    this.layer.rotate(45)
+                    this.layer.strokeWeight(0.15)
+                    this.layer.ellipse(0,0,10*sqrt(2))
+                    this.layer.stroke(200,40,20,this.fade*2)
+                    this.layer.rect(0,0,10)
+                    this.layer.rect(0,0,9)
+                break
 
             }
             this.layer.pop()
@@ -3431,7 +3445,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 124:
+            case 124: case 195:
                 this.fade-=0.02
                 this.scale=(this.scale+0.02)*(1+this.time*0.001)
                 this.direction+=this.curve

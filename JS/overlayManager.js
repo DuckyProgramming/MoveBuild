@@ -15,8 +15,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[2])],//view deck
                     [new overlay(this.layer,this.battle,0,2,[3,1])],//upgrade card, no return
                     [new overlay(this.layer,this.battle,0,2,[4,1,0])],//remove card, no return
-                    [new overlay(this.layer,this.battle,0,2,[5])],//bring in discard card, no return
-                    [new overlay(this.layer,this.battle,0,2,[6])],//bring in draw card, no return
+                    [new overlay(this.layer,this.battle,0,2,[5,0])],//bring in discard card, no return
+                    [new overlay(this.layer,this.battle,0,2,[6,0])],//bring in draw card, no return
                     [new overlay(this.layer,this.battle,0,2,[7,0,0])],//transform card, no return
                     [new overlay(this.layer,this.battle,0,3,[1])],//new card to hand,10
                     [new overlay(this.layer,this.battle,0,4,[])],//end stats
@@ -136,7 +136,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[49,0,0,0,11])],//scry, draw skill into intangible
                     [new overlay(this.layer,this.battle,0,2,[49,0,0,0,11])],//scry, draw skill into intangible
                     [new overlay(this.layer,this.battle,0,19,[])],//card service choice
-
+                    [new overlay(this.layer,this.battle,0,2,[5,1])],//bring in discard card from ally, no return
+                    [new overlay(this.layer,this.battle,0,2,[6,1])],//bring in draw card from ally, no return
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

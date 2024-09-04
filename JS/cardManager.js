@@ -332,6 +332,9 @@ class cardManager{
             case 6:
                 list=copyArray(this.listing.ally)
             break
+            case 7:
+                list=copyArray(this.listing.all[args[ticker++]])
+            break
         }
         for(let a=0,la=filter.length;a<la;a++){
             for(let b=0,lb=list.length;b<lb;b++){

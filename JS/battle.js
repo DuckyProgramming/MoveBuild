@@ -1207,6 +1207,12 @@ class battle{
         if((card.name=='Strike'||card.name=='Strike-')&&userCombatant.getStatus('Strike Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Strike Block'))
         }
+        if((card.name=='Strike'||card.name=='Strike-')&&userCombatant.getStatus('Strike Lock On')>0){
+            if(this.attackManager.attacks[this.attackManager.attacks.length-1].type==1){
+                this.attackManager.attacks[this.attackManager.attacks.length-1].type=5117
+                this.attackManager.attacks[this.attackManager.attacks.length-1].effect.push(userCombatant.getStatus('Strike Lock On'))
+            }
+        }
         if(effectiveCost==0&&userCombatant.getStatus('0 Cost Single Damage Up')>0){
             userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('0 Cost Single Damage Up'))
         }

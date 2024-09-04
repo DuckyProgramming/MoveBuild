@@ -170,7 +170,8 @@ class combatant{
                 'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength','3+ Cost Single Damage Up','3+ Cost Block','Item Use (N)','(E) Cycle 2 1','(E) Cycle 2 2','(W) Cycle 2 1','(W) Cycle 2 2',
                 '(B) Cycle 2 1','(B) Cycle 2 2','(K) Cycle 2 1','(K) Cycle 2 2','(G) Cycle 2 1','(G) Cycle 2 2','(R) Cycle 2 1','(R) Cycle 2 2','(N) Cycle 2 1','(N) Cycle 2 2',
                 'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn','Shuffle (E)','(E) Spend Splash','2+ Cost (E)',
-                'Discus Temporary Strength','Discus Temporary Dexterity','Lightning Orb Per Turn','Lightning Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn',
+                'Discus Temporary Strength','Discus Temporary Dexterity','Lightning Orb Per Turn','Lightning Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn','Rearm Draw',
+                'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -232,7 +233,8 @@ class combatant{
                 0,2,0,0,0,0,2,2,2,2,//57
                 2,2,2,2,2,2,2,2,2,2,//58
                 0,2,2,2,0,0,0,0,0,0,//59
-                0,0,0,0,0,0,0,0,2,
+                0,0,0,0,0,0,0,0,2,0,//60
+                0,0,0,0,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -294,7 +296,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//57
                 2,2,2,2,2,2,2,2,2,2,//58
                 2,2,2,0,2,2,2,2,2,2,//59
-                2,2,2,2,2,2,2,2,0,
+                2,2,2,2,2,2,2,2,2,2,//60
+                2,2,3,2,0,
             ]}
         /*
         0-none
@@ -2730,6 +2733,9 @@ class combatant{
                                 this.statusEffect('(G) Next Turn',this.status.main[584])
                             }
                         }
+                        if(this.status.main[601]>0){
+                            this.battle.combatantManager.areaAbstract(0,[this.status.main[601],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
+                        }
                     }
                     if(this.status.main[173]>0){
                         this.status.main[173]--
@@ -2910,6 +2916,9 @@ class combatant{
                 }
                 if(this.status.main[319]>0){
                     damage*=0.25
+                }
+                if(this.status.main[604]>0&&damage>this.status.main[604]){
+                    damage=this.status.main[604]
                 }
                 let totalLck=0
                 if(this.status.main[461]>0){
@@ -4172,7 +4181,7 @@ class combatant{
         if(this.status.main[126]>0){
             this.addBlock(this.status.main[126])
         }
-        if(this.status.main[127]>0){
+        if(this.status.main[127]>0&&this.id>=0&&this.id<this.battle.players){
             this.battle.cardManagers[this.id].draw(this.status.main[127])
         }
         if(this.status.main[510]>0){
@@ -4204,6 +4213,14 @@ class combatant{
             }else{
                 this.battle.combatantManager.randomEnemyEffect(0,[this.status.main[306]])
             }
+        }
+    }
+    rearm(){
+        if(!this.armed){
+            this.armed=true
+        }
+        if(this.status.main[599]>0&&this.id>=0&&this.id<this.battle.players){
+            this.battle.cardManagers[this.id].draw(this.status.main[599])
         }
     }
     diceRoll(number,value){
@@ -4764,6 +4781,7 @@ class combatant{
                     case 592: for(let b=0,lb=this.status.main[a];b<lb;b++){this.holdOrb(5)} break
                     case 596: this.battle.combatantManager.allEffect(48,['Burn',this.status.main[a]]); break
                     case 597: this.battle.combatantManager.allEffect(48,['Freeze',this.status.main[a]]); break
+                    case 600: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.retain(this.status.main[a])}; break
 
                 }
                 if(

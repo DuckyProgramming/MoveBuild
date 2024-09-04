@@ -1,5 +1,3 @@
-
-
 UNCOMING:
 
 new cards
@@ -9,12 +7,6 @@ deploy new enemies
 deploy new events
 
 collection screen
-
-
-
-
-
-
 
 
 
@@ -30,6 +22,11 @@ project constructed save?
 
 
 
+enable rare partner cards to spawn
+
+
+
+
 
 LISTING GROUP 45
 
@@ -39,6 +36,9 @@ LISTING GROUP 45
 actually probably more
 
 rincoln lobster planeswalker
++1 deal 3d6 damage to a random enemy
+-5 gain 50 currency
+-10 all enemies gain 1 self reflect
 
 []
 
@@ -46,19 +46,15 @@ rincoln lobster planeswalker
 
 
 
-figure out what the hell is going on with the music gimmicks
+setup for the other merlin gimmick
 
 new scrap card for prehex
-
 scrap note
-
-[cannonball variant for #18]
 
 [annotation]
 
-
-
-several new cards to prehex for the extra turn gimmick
+extra turn
+extra turn
 
 
 
@@ -74,22 +70,23 @@ damage, amplify: weak and vulnerable
 variant of rainbow road/pothole/speed bump, etc, red mtg
 to complete the set of 5
 
-
-
-
 we gotta have a card that says gain block when you exhaust a card, but it's gotta be weak
-
-knife deflect - add 6 block, if your block is broken add a shiv
-
-ouroboros - 8 damage 2 range, increases by 4 when draw pile shuffled
-
-3 damage 3 block scry 1
 
 [suwa clear water]
 
-heal + restructure
-
 change riot shield
+
+hyperfixation - gain 3 base energy, all cards cost 1 more
+
+
+
+2 new dice cards
+
+innate move gain 1 energy draw 1 card ethereal
+
+above the realm - choose an attack of range 1, range 0, or range 2-6, it costs 0
+
+1 more pull (2 range pull enemy i mean)
 
 
 
@@ -106,6 +103,7 @@ twin leaf barrage - variant of floret fractal, fire 2 leaves, blue and yellow th
 
 
 
+
 astrology sphere
 
 whirling tomb - water particles, spawn from circular points around target, fire first toward center and then toward the sides
@@ -113,39 +111,13 @@ it'll look cool trust
 
 colliding puff - red ball that explodes
 
-red star explosion?
-
-2 new dice cards
-
-platinum pulse - 10 damage 2 cost, when fatal costs 1 less permanently
-
 
 
 trial of the first court
 
-[seija card]
-
-caltrops - create tiles that inflict bleed
-
 [sagume card]
 
-take out - retain exhaust 1
-
-cold snap
-
-
-
-accoutrement - 14 block, when rewound get a miracle or smth
-
-lock on card
-
-dodge doubler
-
 daggerlock - get hit by a falling shiv
-
-guardian angel - trade but its block
-
-virtue - retain, reduce all debuffs by 1
 
 
 
@@ -155,8 +127,6 @@ and hollow star particles
 
 [adzuki]
 
-yellow giant - 8 damage 2 times, 2 range, spend 2 charge: 1 more time
-
 [scarlet majesty]
 
 [wall of moonlight]
@@ -165,73 +135,13 @@ sharp palm
 
 
 
-dragon-slaying circle - 17 damage, conditionally 1 weak and 1 vulnerable
-
-[setsuna movement]
-
-cursed hand - 0 cost, discard a random card, draw a rare card
-
-spoils - 12 block, center of hand: 5 currency
+cyan meteor - leaves behind trial of lines and star outlines
 
 [make a basic card in your deck free]
 
-filtration - gain 1 buffer, 1 cost, costs 1 more, rare
-
-
-
-
-
-[5 common partnership cards]
-
-[1 uncommon partnership card]
-
-
-
-[5 rare partnership cards]
-
-[2 new tarots]
-
-
-
-[polar vortex]
-
-cyan meteor - leaves behind trial of lines and star outlines
-
-give sakura a multihit
-
-
-
 [shiru star]
 
-2 more pulls (2 range pull enemy i mean)
 
-backflip - gain 1 dodge, gain 1 temp strength
-
-
-
-waste utilization - exhaust a card, add a prismatic bomb to discard pile
-
-pulsating time - 1 cost, 6 damage, 3 damage in all directions at the end of this turn
-
-magnum - choke, but splash damage instead
-
-vantage - 10 block, upgrade 2 random cards if played first
-
-
-
-[guiding star]
-
-LSD - curse, when you play 3 cards, lose 5 health
-
-new 4 mana 7 7
-
-convection - when you dodge an attack, all enemies take 3 damage
-
-plan ahead - retain a random card once each turn
-
-
-
-[dragon's thunderbolt]
 
 make a card like vaccuum collapse
 with more particles
@@ -240,18 +150,9 @@ stars and little flashes
 radiance of wealth - damage, upgrade cards, gain 5 currency
 has little line lasers with golden centers and pink edges
 
-counter jinx - 10 block, counter targets for 10 jinx
 
-
-
-anticlash - opposite of clash, add defense if you have only attacks
-
-cashload - gain double currency from this combat
 
 merlin's tricolor mtg card
-
-innate move gain 1 energy draw 1 card ethereal
-
 
 
 
@@ -262,25 +163,13 @@ koishi cards?
 
 
 
-
-
-
-
 SUKUNA DEVELOPMENT
 
 tutorial
 
 
 
-CHARACTER 18 MECHANICS
-name
-
-countdowns
-freeze
-
-MOTIFS
-
-DEVELOPMENT
+MERLIN DEVELOPMENT
 
 model
 icon
@@ -290,9 +179,7 @@ can have a little blue star rotating around
 
 
 
-
 update azis tutorial with orb moving
-
 
 
 

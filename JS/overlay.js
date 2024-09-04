@@ -2985,7 +2985,7 @@ class overlay{
                                                 this.endAfter=false
                                                 this.battle.endTurn()
                                             }
-                                            this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                                            this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].hand.cards,a,a+1,1)
                                             a--
                                             la--
                                         break
@@ -3103,7 +3103,7 @@ class overlay{
                                     let complete=true
                                     switch(this.args[0]){
                                         case 6: case 13: case 14: case 15: case 16: case 62:
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].hand.cards,a,a+1,1)
                                             a--
                                             la--
                                         break
@@ -4044,7 +4044,7 @@ class overlay{
                                                 this.endAfter=false
                                                 this.battle.endTurn()
                                             }
-                                            this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                                            this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].hand.cards,a,a+1,1)
                                             a--
                                             la--
                                         break
@@ -4160,7 +4160,7 @@ class overlay{
                                     let complete=true
                                     switch(this.args[0]){
                                         case 6: case 13: case 14: case 15: case 16: case 62:
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].hand.cards,a,a+1,1)
                                             a--
                                             la--
                                         break

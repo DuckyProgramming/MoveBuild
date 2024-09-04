@@ -957,6 +957,13 @@ class combatantManager{
                     case 49:
                         this.combatants[a].loseHealth(args[0])
                     break
+                    case 50:
+                        if(this.combatants[a].life<this.combatants[a].base.life){
+                            for(let b=0,lb=floor(args.length/2);b<lb;b++){
+                                this.combatants[a].statusEffect(args[b*2],args[b*2+1])
+                            }
+                        }
+                    break
                 }
             }
         }
