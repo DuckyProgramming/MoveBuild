@@ -138,6 +138,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,19,[])],//card service choice
                     [new overlay(this.layer,this.battle,0,2,[5,1])],//bring in discard card from ally, no return
                     [new overlay(this.layer,this.battle,0,2,[6,1])],//bring in draw card from ally, no return
+                    [new overlay(this.layer,this.battle,0,2,[89])],//free basic, no return
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

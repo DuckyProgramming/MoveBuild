@@ -713,7 +713,7 @@ types={
         {name:'Shield Ram',internal:'3 Attack Block',id:44,rarity:1,list:0,mtg:0,description:'Every 3 Attacks Played,\nGain 4 Block'},
         {name:'Rotisserie',internal:'Boss Heal',id:45,rarity:1,list:0,mtg:0,description:'At the Start of Boss\nCombat, Heal All HP'},
         {name:'Empty Card',internal:'Extra Card Option',id:46,rarity:1,list:0,mtg:0,description:'Card Rewards Have\n1 More Choice'},
-        {name:'Muffin Mix',internal:'Max HP Rest',id:47,rarity:1,list:0,mtg:0,description:'Can Gain 4 Max\nHP When Resting'},
+        {name:'Muffin Mix',internal:'Max HP Rest',id:47,rarity:1,list:0,mtg:0,description:'Can Gain 8 Max\nHP When Resting'},
         {name:'Ceramic Egg',internal:'Damage Block Next Turn',id:48,rarity:1,list:0,mtg:0,description:'When You Take Damage,\nAdd 3 Block Next Turn'},
         {name:'Serrulata',internal:'Skip Card Max HP',id:49,rarity:1,list:0,mtg:0,description:'Gain 2 Max HP When\nYou Skip Adding a Card'},
 
@@ -725,7 +725,7 @@ types={
         {name:'Origami Paper',internal:'Damage Decrease',id:55,rarity:2,list:0,mtg:0,description:'Reduce All Damage\nAbove 1 By 1'},
         {name:'Picture Frame',internal:'Damage Threshold',id:56,rarity:2,list:0,mtg:0,description:'If You Take 5 or Less\nDamage, Reduce it to 1'},
         {name:'Leaf Ball',internal:'Starting Armor',id:57,rarity:2,list:0,mtg:0,description:'Gain 4 Armor at the\nStart of Combat'},
-        {name:'Metal Detector',internal:'Relic Rest',id:58,rarity:2,list:0,mtg:0,description:'Can Gain a Relic\nWhen Resting'},
+        {name:'Metal Detector',internal:'Relic Rest',id:58,rarity:1,list:0,mtg:0,description:'Can Gain a Relic\nWhen Resting'},
         {name:'Mortar and Pestle',internal:'Remove Rest',id:59,rarity:2,list:0,mtg:0,description:'Can Remove Cards\nWhen Resting'},
 
         {name:'Dumbbell',internal:'Strength Rest',id:60,rarity:2,list:0,mtg:0,description:'Can Gain Strength\nWhen Resting, 3 Uses'},

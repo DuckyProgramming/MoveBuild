@@ -829,6 +829,7 @@ class card{
             case -95: string+=`At the End of Your Turn,\nTake ${effect[0]} Damage\n2 Times`; break
             case -96: string+=`At the End of Your Turn,\nLose ${effect[0]} ${variants.mtg?`Random Mana`:`Energy`}\nNext Turn`; break
             case -97: string+=`Confuse a Random\nCard in Hand\nWhen You Play a Card`; break
+            case -98: string+=`At the End of Your Turn,\nTake ${effect[0]} Damage\nAdd ${effect[1]} Shiv${pl(effect[1])} to Hand`; break
 
             //mark n
 
@@ -6016,6 +6017,28 @@ class card{
             case 5143: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Colorless Card${pl(effect[1])}`; break
             case 5144: string+=`Gain ${effect[0]} Base\nEnergy This Combat\nAll Cards Cost ${effect[1]}\nMore This Combat`; break
             case 5145: string+=`Gain (E) (E) (E) (E) at\nthe Start of Your Turn\nAll Cards Cost ${effect[0]}\nMore This Combat`; break
+            case 5146: string+=`End Your Turn\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+            case 5147: string+=`Draw ${effect[0]!=1?`${effect[0]}`:``}D6${effect[1]!=0?`+${effect[1]}`:``} Cards`; break
+            case 5148: string+=`Increase the\nMaximum Roll of\nAll Dice by ${effect[0]}`; break
+            case 5149: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 5150: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (E) (N)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5151: string+=`Choose a 0 Range,\n1 Range, or 2+ Range\nAttack to Add to Hand\nIt Costs 0 Temporarily`; break
+            case 5152: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nPush 1 Tile`; break
+            case 5153: string+=`Pull Target Until Adjacent\nTarget Will Face User\nGain ${effect[0]} Currency`; break
+            case 5154: string+=`Pull Target Until Adjacent\nTarget Will Face User\nAdd a Random Common\nCard of Equivalent\nLevel to Hand`; break
+            case 5155: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Removed,\nGain ${effect[1]} Strength\nPermanently`; break
+            case 5156: string+=`When a Card is Exhausted,\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
+            case 5157: string+=`Make a Basic Card\nCost 1 Less Permanently`; break
+            case 5158: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOverdrive ${effect[1]}:\nDraw ${effect[2]} Card${pl(effect[2])}\nExhaust ${effect[3]} Card${pl(effect[3])}`; break
+            case 5159: string+=`Apply ${effect[0]} Weak and ${effect[1]} Frail\nin All Directions`; break
+            case 5160: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nHold ${effect[2]} Basic Orb${pl(effect[2])}\nHold ${effect[2]} Shield Orb${pl(effect[3])}`; break
+            case 5161: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nPush 1 Tile`; break
+            case 5162: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nTake Another Turn`; break
+            case 5163: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReturns and Costs 0\non Extra Turn`; break
+            case 5164: string+=`+1: Deal ${this.diceEffect(1,6,2,effect[0])} Damage\nto a Random Enemy\n-5: Gain ${effect[1]} Currency\n-10: All Enemies\nReflect Their Next\nAttack onto Themselves`; break
+                case -1062: string+=`-5: Gain ${effect[1]} Currency`; break
+                case -1063: string+=`-10: All Enemies\nReflect Their Next\nAttack onto Themselves`; break
+            case 5165: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nApply ${effect[2]} Lock On`; break
 
 
 
@@ -6244,6 +6267,12 @@ class card{
             break
             case -95:
                 this.battle.turnManager.loadSpecificAttack(userCombatant.id,393,[userCombatant.id,this.effect[0],-1,2])
+            break
+            case -98:
+                userCombatant.takeDamage(this.effect[0],-1)
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
+                }
             break
             case -96:
                 userCombatant.statusEffect(variants.mtg?'Random Mana Next Turn':'Energy Next Turn',-this.effect[0])
@@ -6703,7 +6732,7 @@ class card{
                 this.battle.relicManager.addSetRelic(0,this.player)
             break
             case 3596: case 3597: case 3598: case 3599: case 3600: case 3601: case 3602: case 3603: case 3604: case 3605:
-            case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205:
+            case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -6807,6 +6836,9 @@ class card{
             break
             case 4999:
                 userCombatant.loseHealth(this.effect[1])
+            break
+            case 5155:
+                userCombatant.permanentStrength++
             break
         }
     }
@@ -7052,7 +7084,7 @@ class card{
             case 3074: case 3075: case 3076: case 3078: case 3082: case 3134: case 3135: case 3334: case 3335: case 3381:
             case 3382: case 3383: case 3390: case 3395: case 3396: case 3397: case 3568: case 3569: case 3584: case 3585:
             case 3586: case 3689: case 3724: case 3725: case 3726: case 3727: case 3908: case 3909: case 4626: case 4627:
-            case 4628: case 4629: case 4630: case 4631: case 4632:
+            case 4628: case 4629: case 4630: case 4631: case 4632: case 5164:
                 if(!this.spec.includes(55)){
                     this.discardEffect.push(13)
                 }
@@ -7649,6 +7681,9 @@ class card{
                 break
                 case 4626:
                     this.battle.addSpecificEnergy(1,this.player,4)
+                break
+                case 5164:
+                    this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0]*userCombatant.diceRoll(1,6),this.id])
                 break
 
             }

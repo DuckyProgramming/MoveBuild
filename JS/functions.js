@@ -1898,22 +1898,22 @@ Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.l
 }
 function outListing(){
 	let box=``
-	let goal=140+140*game.playerNumber+30+20+15+30+15+60+150
+	let goal=150+150*game.playerNumber+30+20+15+30+15+60+150
 	let arbitrary=4000
 	for(let a=0,la=game.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
 Common:${current.cardManagers[0].listing.card[a+1][0].length}/60				${current.cardManagers[0].listing.card[a+1][0].length-60}
-Uncommon:${current.cardManagers[0].listing.card[a+1][1].length}/60				${current.cardManagers[0].listing.card[a+1][1].length-60}
-Rare:${current.cardManagers[0].listing.card[a+1][2].length}/20					${current.cardManagers[0].listing.card[a+1][2].length-20}
-	Total:${current.cardManagers[0].listing.card[a+1][3].length}/140\n`
+Uncommon:${current.cardManagers[0].listing.card[a+1][1].length}/65				${current.cardManagers[0].listing.card[a+1][1].length-65}
+Rare:${current.cardManagers[0].listing.card[a+1][2].length}/25					${current.cardManagers[0].listing.card[a+1][2].length-25}
+	Total:${current.cardManagers[0].listing.card[a+1][3].length}/150\n`
 	}
 	print(`Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
 Listed Cards: ${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.sub.length+current.cardManagers[0].listing.junk[game.playerNumber+1].length}/${goal}		${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.junk[game.playerNumber+1].length-goal}
 		Colorless:
 Common:${current.cardManagers[0].listing.card[0][0].length}/60				${current.cardManagers[0].listing.card[0][0].length-60}
-Uncommon:${current.cardManagers[0].listing.card[0][1].length}/60				${current.cardManagers[0].listing.card[0][1].length-60}
-Rare:${current.cardManagers[0].listing.card[0][2].length}/20					${current.cardManagers[0].listing.card[0][2].length-20}
-	Total:${current.cardManagers[0].listing.card[0][3].length}/140
+Uncommon:${current.cardManagers[0].listing.card[0][1].length}/65				${current.cardManagers[0].listing.card[0][1].length-65}
+Rare:${current.cardManagers[0].listing.card[0][2].length}/25					${current.cardManagers[0].listing.card[0][2].length-25}
+	Total:${current.cardManagers[0].listing.card[0][3].length}/150
 ${box}		Status:
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+1][3].length}/30				${current.cardManagers[0].listing.card[game.playerNumber+1][3].length-30}
 		Curse:

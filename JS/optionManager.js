@@ -94,7 +94,7 @@ class optionManager{
             break
             case 3:
                 this.finishSelection()
-                userCombatant.gainMaxHP(4)
+                userCombatant.gainMaxHP(8)
             break
             case 4:
                 this.finishSelection()

@@ -1,14 +1,10 @@
 UNCOMING:
 
-new cards
+deploy new events
 
 deploy new enemies
 
-deploy new events
-
 collection screen
-
-
 
 
 
@@ -21,24 +17,12 @@ project constructed save?
 
 
 
-
-enable rare partner cards to spawn
-
-
-
-
-
 LISTING GROUP 45
 
 
 
-3 ally cards
+2 ally cards
 actually probably more
-
-rincoln lobster planeswalker
-+1 deal 3d6 damage to a random enemy
--5 gain 50 currency
--10 all enemies gain 1 self reflect
 
 []
 
@@ -48,52 +32,24 @@ rincoln lobster planeswalker
 
 setup for the other merlin gimmick
 
-new scrap card for prehex
 scrap note
 
 [annotation]
 
-extra turn
-extra turn
+1 more wish power source
 
 
 
-exhaust
 exhaust
 wisp
 wisp
 amplify
-damage, amplify: weak and vulnerable
 
-
-
-variant of rainbow road/pothole/speed bump, etc, red mtg
-to complete the set of 5
-
-we gotta have a card that says gain block when you exhaust a card, but it's gotta be weak
-
-[suwa clear water]
-
-change riot shield
-
-hyperfixation - gain 3 base energy, all cards cost 1 more
-
-
-
-2 new dice cards
-
-innate move gain 1 energy draw 1 card ethereal
-
-above the realm - choose an attack of range 1, range 0, or range 2-6, it costs 0
-
-1 more pull (2 range pull enemy i mean)
 
 
 
 
 sapphire facet - fires blue stars everywhere and lighter ones in set directions that create more particles
-
-dimensional point rift - create a bunch of glowing yellow squares (composed of particles) that get large and then shrink on the target
 
 floret fractal but rainbow
 
@@ -101,13 +57,7 @@ twin leaf barrage - variant of floret fractal, fire 2 leaves, blue and yellow th
 
 [moon rain - animate actual rain particles]
 
-
-
-
 astrology sphere
-
-whirling tomb - water particles, spawn from circular points around target, fire first toward center and then toward the sides
-it'll look cool trust
 
 colliding puff - red ball that explodes
 
@@ -116,36 +66,6 @@ colliding puff - red ball that explodes
 trial of the first court
 
 [sagume card]
-
-daggerlock - get hit by a falling shiv
-
-
-
-[rainbow starfall]
-stars move in rough colored rows
-and hollow star particles
-
-[adzuki]
-
-[scarlet majesty]
-
-[wall of moonlight]
-
-sharp palm
-
-
-
-cyan meteor - leaves behind trial of lines and star outlines
-
-[make a basic card in your deck free]
-
-[shiru star]
-
-
-
-make a card like vaccuum collapse
-with more particles
-stars and little flashes
 
 radiance of wealth - damage, upgrade cards, gain 5 currency
 has little line lasers with golden centers and pink edges
@@ -340,7 +260,5 @@ linkup - choose 2 cards, when you draw 1 draw the other
 []
 
 []
-
-
 
 

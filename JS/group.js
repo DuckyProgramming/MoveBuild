@@ -387,6 +387,7 @@ class group{
         this.cards.splice(this.cards.length-1,1)
     }
     resetAnim(){
+        this.lastSort=-1
         for(let a=0,la=this.cards.length;a<la;a++){
             this.cards[a].size=0
             this.cards[a].deSize=true
@@ -1334,7 +1335,7 @@ class group{
                 break
                 case 61:
                     if(this.cards[a].getBasic(2)){
-                        this.cards[a].effect[0]*=2
+                        this.cards[a].effect[this.cards[a].attack==5045?1:0]*=2
                     }
                 break
                 case 62:
@@ -1862,6 +1863,13 @@ class group{
                         total++
                     }
                 break
+                case 44:
+                    if(args.includes(this.cards[a].attack)){
+                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,this.cards[a].attack==5163?1:4)
+                        a--
+                        la--
+                    }
+                break
             }
         }
         if(effect==9){
@@ -1876,8 +1884,8 @@ class group{
             for(let a=0,la=this.cards.length;a<la;a++){
                 if((this.cards[a].usable||this.id!=2)&&(!this.cards[a].deSize||this.id!=2||effect==41)
                 &&!((effect==0||effect==25||effect==28)&&this.cards[a].deSize)
-                &&!((effect==1||effect==5||effect==33||effect==40||effect==48)&&(this.cards[a].getCost(1)<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)))
-                &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)))
+                &&!((effect==1||effect==5||effect==33||effect==40||effect==48)&&(this.cards[a].getCost(1)<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(60)))
+                &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(60)))
                 &&!((effect==2||effect==45||effect==60)&&(this.cards[a].level>=1||this.cards[a].class!=args[0]&&args[0]!=0||this.cards[a].spec.includes(37)))
                 &&!(effect==3&&(this.cards[a].level==0||this.cards[a].class!=args[0]&&args[0]!=0||this.cards[a].spec.includes(37)))
                 &&!(effect==8&&this.cards[a].spec.includes(8))
@@ -3107,6 +3115,16 @@ class group{
         }
         this.sorted=names.sort()
     }
+    sortBasic(trigger){
+        this.lastSort=5
+        let active=[]
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].basic==trigger){
+                active.push(a)
+            }
+        }
+        this.sorted=active
+    }
     remove(index){
         let possible=!this.cards[index].spec.includes(7)&&!(this.battle.initialized&&this.battle.modded(97))
         if(possible){
@@ -3494,6 +3512,22 @@ class group{
                                 position++
                                 this.finalPosition=position
                             }
+                        }
+                    break
+                    case 11:
+                        if(this.lastSort!=5){
+                            this.sortBasic(args[2])
+                        }
+                        for(let a=0,la=this.sorted.length;a<la;a++){
+                            let b=this.sorted[a]
+                            this.cards[b].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
+                            this.cards[b].fade=1
+                            this.cards[b].relIndex=position
+                            this.cards[b].position.x=this.layer.width/2-200+position%5*100
+                            this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
+                            this.cards[b].anim.afford=1
+                            this.cards[b].display(this.id==0)
+                            position++
                         }
                     break
                     default:
@@ -4482,6 +4516,9 @@ class group{
             }
             if(userCombatant.getStatus('Exhaust Temporary Strength')>0){
                 userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Exhaust Temporary Strength'))
+            }
+            if(userCombatant.getStatus('Exhaust Block')>0){
+                userCombatant.addBlock(userCombatant.getStatus('Exhaust Block'))
             }
             this.battle.relicManager.activate(10,[this.player,this.cards[a]])
             if(variants.witch&&this.cards[a].spec.includes(31)){

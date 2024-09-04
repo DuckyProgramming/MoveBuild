@@ -403,7 +403,7 @@ class relic{
                     displaySymbol(this.layer,0,10,32,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('4',0,-6)
+                    this.layer.text('8',0,-6)
                 break
                 case 'Damage Block Next Turn':
                     displaySymbol(this.layer,-8,0,33,0,0.8,this.fade)

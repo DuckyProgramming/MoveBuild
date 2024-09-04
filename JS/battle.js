@@ -756,8 +756,8 @@ class battle{
                 this.loseEnergy(-this.energy.temp[this.turn.main],this.turn.main)
             }
             this.energy.temp[this.turn.main]=0
-            this.cardManagers[this.turn.main].discard.allEffectArgs(24,[5050,5051])
-            this.cardManagers[this.turn.main].reserve.allEffectArgs(24,[5050,5051])
+            this.cardManagers[this.turn.main].discard.allEffectArgs(44,[5050,5051,5163])
+            this.cardManagers[this.turn.main].reserve.allEffectArgs(44,[5050,5051,5163])
             noDraw=true
             extra=true
         }else if(combatant.getStatus('Extra Turn')>0){
@@ -774,8 +774,8 @@ class battle{
                 this.loseEnergy(-this.energy.temp[this.turn.main],this.turn.main)
             }
             this.energy.temp[this.turn.main]=0
-            this.cardManagers[this.turn.main].discard.allEffectArgs(24,[5050,5051])
-            this.cardManagers[this.turn.main].reserve.allEffectArgs(24,[5050,5051])
+            this.cardManagers[this.turn.main].discard.allEffectArgs(44,[5050,5051,5163])
+            this.cardManagers[this.turn.main].reserve.allEffectArgs(44,[5050,5051,5163])
             extra=true
         }else{
             this.turn.main++
@@ -1204,13 +1204,19 @@ class battle{
         if(effectiveCost==2&&userCombatant.getStatus('2 Cost Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('2 Cost Block'))
         }
-        if((card.name=='Strike'||card.name=='Strike-')&&userCombatant.getStatus('Strike Block')>0){
+        if((card.name=='Strike'||card.name=='Strike-'||card.name=='Strefend')&&userCombatant.getStatus('Strike Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Strike Block'))
         }
-        if((card.name=='Strike'||card.name=='Strike-')&&userCombatant.getStatus('Strike Lock On')>0){
-            if(this.attackManager.attacks[this.attackManager.attacks.length-1].type==1){
-                this.attackManager.attacks[this.attackManager.attacks.length-1].type=5117
-                this.attackManager.attacks[this.attackManager.attacks.length-1].effect.push(userCombatant.getStatus('Strike Lock On'))
+        if((card.name=='Strike'||card.name=='Strike-'||card.name=='Strefend')&&userCombatant.getStatus('Strike Lock On')>0){
+            switch(this.attackManager.attacks[this.attackManager.attacks.length-1].type){
+                case 1:
+                    this.attackManager.attacks[this.attackManager.attacks.length-1].type=5117
+                    this.attackManager.attacks[this.attackManager.attacks.length-1].effect.push(userCombatant.getStatus('Strike Lock On'))
+                break
+                case 5045:
+                    this.attackManager.attacks[this.attackManager.attacks.length-1].type=5165
+                    this.attackManager.attacks[this.attackManager.attacks.length-1].effect.push(userCombatant.getStatus('Strike Lock On'))
+                break
             }
         }
         if(effectiveCost==0&&userCombatant.getStatus('0 Cost Single Damage Up')>0){

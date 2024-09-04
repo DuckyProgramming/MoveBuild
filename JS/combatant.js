@@ -171,7 +171,7 @@ class combatant{
                 '(B) Cycle 2 1','(B) Cycle 2 2','(K) Cycle 2 1','(K) Cycle 2 2','(G) Cycle 2 1','(G) Cycle 2 2','(R) Cycle 2 1','(R) Cycle 2 2','(N) Cycle 2 1','(N) Cycle 2 2',
                 'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn','Shuffle (E)','(E) Spend Splash','2+ Cost (E)',
                 'Discus Temporary Strength','Discus Temporary Dexterity','Lightning Orb Per Turn','Lightning Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn','Rearm Draw',
-                'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap',
+                'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap','Dice Max Boost','Exhaust Block',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -234,7 +234,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//58
                 0,2,2,2,0,0,0,0,0,0,//59
                 0,0,0,0,0,0,0,0,2,0,//60
-                0,0,0,0,2,
+                0,0,0,0,2,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -297,7 +297,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//58
                 2,2,2,0,2,2,2,2,2,2,//59
                 2,2,2,2,2,2,2,2,2,2,//60
-                2,2,3,2,0,
+                2,2,3,2,0,2,2,
             ]}
         /*
         0-none
@@ -4224,6 +4224,7 @@ class combatant{
         }
     }
     diceRoll(number,value){
+        let effectiveValue=value+this.status.main[605]
         let total=0
         let average=0
         let roll=0
@@ -4242,7 +4243,7 @@ class combatant{
             }
         }
         for(let a=0,la=number;a<la;a++){
-            roll=(luckCheck?value:luckCheckFail?1:1+floor(random(0,value)))+this.status.main[252]
+            roll=(luckCheck?effectiveValue:luckCheckFail?1:1+floor(random(0,effectiveValue)))+this.status.main[252]
             total+=roll
             average+=(1+value)/2+this.status.main[252]
             this.battle.particleManager.createNumber(41,this.position.x,this.position.y,roll)
