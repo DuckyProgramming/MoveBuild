@@ -3249,7 +3249,7 @@ class attack{
                     break
                     case 2137:
                         if(this.targetCombatant.blocked<=1){
-                            this.userCombatant.statusEffect('Jinx',this.effect[1])
+                            this.targetCombatant.statusEffect('Jinx',this.effect[1])
                         }
                     break
                     case 2144:
@@ -13065,14 +13065,14 @@ class attack{
             case 5:
                 switch(this.type){
                     case -13: case -36:
-                        this.userCombatant.takeDamage(this.effect[0])
+                        this.userCombatant.takeDamage(this.effect[0],-1)
                     break
                     case -21:
-                        this.userCombatant.takeDamage(this.effect[0])
+                        this.userCombatant.takeDamage(this.effect[0],-1)
                         this.userManager.draw(this.effect[1])
                     break
                     case -33:
-                        this.userCombatant.takeDamage(this.effect[0])
+                        this.userCombatant.takeDamage(this.effect[0],-1)
                         this.userCombatant.statusEffect('Cannot Move',this.effect[1])
                     break
                     case -41:
@@ -16543,27 +16543,27 @@ class attack{
                         }
                     break
                     case 465:
-                        this.targetCombatant.takeDamage(this.effect[0])
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.goal.anim.direction-=60
                         this.battle.updateTargetting()
                     break
                     case 466:
-                        this.targetCombatant.takeDamage(this.effect[0])
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.goal.anim.direction+=60
                         this.battle.updateTargetting()
                     break
                     case 467:
-                        this.targetCombatant.takeDamage(this.effect[0])
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.goal.anim.direction-=120
                         this.battle.updateTargetting()
                     break
                     case 468:
-                        this.targetCombatant.takeDamage(this.effect[0])
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.goal.anim.direction+=120
                         this.battle.updateTargetting()
                     break
                     case 1281:
-                        this.targetCombatant.takeDamage(this.effect[0])
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.goal.anim.direction+=-60+floor(random(0,2))*120
                         this.battle.updateTargetting()
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,4))!=0){
@@ -19764,13 +19764,13 @@ class attack{
                         }
                     break
                     case 3781:
-                        this.targetCombatant.takeDamage(this.effect[0]*this.energy)
+                        this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
                         if(this.energy>=5){
                             this.userManager.allEffectArgs(2,21,[this.effect[1]])
                         }
                     break
                     case 3843:
-                        this.targetCombatant.takeDamage(this.effect[0])
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.removeRandomStatus([0,2])
                     break
                     case 3864: case 4644:

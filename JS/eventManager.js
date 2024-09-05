@@ -130,6 +130,10 @@ class eventManager{
                 !(this.listing.event[a]==132&&this.battle.currency.money[this.player]<100)&&
                 !(this.listing.event[a]==134&&this.battle.nodeManager.world!=2)&&
                 !(this.listing.event[a]==136&&userCombatant.life<6)&&
+                !(this.listing.event[a]==137&&userCombatant.life<6)&&
+                !(this.listing.event[a]==139&&this.battle.relicManager.total[this.player]<2)&&
+                !(this.listing.event[a]==140&&this.battle.cardManagers[this.player].deck.numberAbstract(18,[[2]])<1)&&
+                !(this.listing.event[a]==141&&this.battle.currency.money[this.player]<200)&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -142,7 +146,6 @@ class eventManager{
                     (this.listing.event[a]==106&&(effectiveEnergy[1]<1||effectiveEnergy[4]<1||effectiveEnergy[5]<1))||
                     (this.listing.event[a]==131&&(effectiveEnergy[2]<1||effectiveEnergy[4]<1))||
                     (this.listing.event[a]==136&&effectiveEnergy[3]<1)
-
                 ))
 
             ){
@@ -235,12 +238,27 @@ class eventManager{
                 }
             break
             case 88:
-                this.selection=this.battle.relicManager.getRandomRelic(this.player)
+                this.selection=this.battle.relicManager.getRandomRelic(this.player,1)[0]
                 this.pages[0].optionDesc[0]=`Lose Relic - ${types.relic[this.selection].name}`
                 this.pages[0].optionDesc[1]=`Lose Relic - ${types.relic[this.selection].name}`
             break
             case 123:
                 this.selection=[]
+            break
+            case 139:
+                this.selection=this.battle.relicManager.getRandomRelic(this.player,2)
+                this.pages[0].optionDesc[0]=`Lose Relic - ${types.relic[this.selection[0]].name}, Gain ${relicSellValue(types.relic[this.selection[0]].rarity)*2} Currency`
+                this.pages[0].optionDesc[1]=`Lose Relic - ${types.relic[this.selection[1]].name}, Gain ${relicSellValue(types.relic[this.selection[1]].rarity)*2} Currency`
+            break
+            case 140:
+                let valid=[]
+                for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
+                    if(this.battle.cardManagers[this.player].deck.cards[a].rarity==2){
+                        valid.push(a)
+                    }
+                }
+                this.selection=valid[floor(random(0,valid.length))]
+                this.pages[0].optionDesc[0]=`Remove Card - ${this.battle.cardManagers[this.player].deck.cards[this.selection].name.replace('\n',' ')}, Add a Rare Card`
             break
         }
     }
@@ -1586,6 +1604,51 @@ class eventManager{
                             this.battle.cardManagers[this.player].deck.add(findName('Temptation of\nthe Next World',types.card),0,0)
                         }else if(this.page==4&&a==0){
                             this.harm(userCombatant,5)
+                        }
+                    break
+                    case 137:
+                        if(
+                            this.page==0&&a==0&&floor(random(0,2))==0||
+                            this.page==0&&a==1&&floor(random(0,4))!=0
+                        ){
+                            tempPage=1
+                        }else if(this.page==0&&a==2||this.page==2&&a==0){
+                            this.harm(userCombatant,10)
+                        }else if((this.page==1||this.page==3||this.page==5)&&a==0){
+                            this.battle.addCurrency(150,this.player)
+                        }
+                    break
+                    case 138:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[131][this.player].active=true
+                            this.battle.overlayManager.overlays[131][this.player].activate()
+                            this.battle.overlayManager.overlays[131][this.player].args[1]=2
+                        }
+                    break
+                    case 139:
+                        if(this.page==0&&(a==0||a==1)){
+                            this.battle.relicManager.loseRelic(this.selection[a],this.player)
+                            this.battle.addCurrency(relicSellValue(types.relic[this.selection[a]].rarity)*2,this.player)
+                        }
+                    break
+                    case 140:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].deck.remove(this.selection)
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(150,this.player)
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
+                        }
+                    break
+                    case 141:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(50,this.player)
+                        }else if(this.page==0&&a==1&&floor(random(0,4))==0){
+                            tempPage=1
+                        }else if(this.page==3&&a==0){
+                            this.battle.loseCurrency(200,this.player)
                         }
                     break
 

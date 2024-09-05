@@ -35674,15 +35674,15 @@ types.card=[
     },{
         name:'Hundred\nStitches',rarity:0,list:17,
         levels:[
+            {effect:[2],attack:3874,cost:1,target:[0],spec:[59],class:12},
             {effect:[3],attack:3874,cost:1,target:[0],spec:[59],class:12},
             {effect:[4],attack:3874,cost:1,target:[0],spec:[59],class:12},
-            {effect:[5],attack:3874,cost:1,target:[0],spec:[59],class:12},
         ],mtg:{
             rarity:0,list:17,color:[4,5],
             levels:[
+                {effect:[2],attack:3874,cost:[1],target:[0],spec:[59],class:12},
                 {effect:[3],attack:3874,cost:[1],target:[0],spec:[59],class:12},
                 {effect:[4],attack:3874,cost:[1],target:[0],spec:[59],class:12},
-                {effect:[5],attack:3874,cost:[1],target:[0],spec:[59],class:12},
             ],
         },
     },{
@@ -35772,15 +35772,15 @@ types.card=[
     },{
         name:'Threaded\nScreen',rarity:0,list:17,
         levels:[
-            {effect:[3,1],attack:3561,cost:0,target:[0],spec:[],class:2},
-            {effect:[6,1],attack:3561,cost:0,target:[0],spec:[],class:2},
-            {effect:[8,1],attack:3561,cost:0,target:[0],spec:[],class:2},
+            {effect:[4,1],attack:3561,cost:0,target:[0],spec:[],class:2},
+            {effect:[7,1],attack:3561,cost:0,target:[0],spec:[],class:2},
+            {effect:[9,1],attack:3561,cost:0,target:[0],spec:[],class:2},
         ],mtg:{
             rarity:0,list:17,color:[1],
             levels:[
-                {effect:[3,1],attack:3561,cost:[],target:[0],spec:[],class:2},
-                {effect:[6,1],attack:3561,cost:[],target:[0],spec:[],class:2},
-                {effect:[8,1],attack:3561,cost:[],target:[0],spec:[],class:2},
+                {effect:[4,1],attack:3561,cost:[],target:[0],spec:[],class:2},
+                {effect:[7,1],attack:3561,cost:[],target:[0],spec:[],class:2},
+                {effect:[9,1],attack:3561,cost:[],target:[0],spec:[],class:2},
             ],
         },
     },{
@@ -39359,6 +39359,20 @@ types.card=[
                 {effect:[8,1],attack:-98,cost:[],target:[0],spec:[5],class:5},
                 {effect:[12,2],attack:-98,cost:[],target:[0],spec:[5],class:5},
                 {effect:[16,3],attack:-98,cost:[],target:[0],spec:[5],class:5},
+            ],
+        },
+    },{
+        name:'Cough',rarity:0,list:game.playerNumber+2,
+        levels:[
+            {effect:[12],attack:-49,cost:0,target:[0],spec:[5],class:6},
+            {effect:[8],attack:-49,cost:0,target:[0],spec:[5],class:6},
+            {effect:[4],attack:-49,cost:0,target:[0],spec:[5],class:6},
+        ],mtg:{
+            list:game.playerNumber+2,color:[game.playerNumber+2],
+            levels:[
+                {effect:[12],attack:-49,cost:[],target:[0],spec:[5],class:6},
+                {effect:[8],attack:-49,cost:[],target:[0],spec:[5],class:6},
+                {effect:[4],attack:-49,cost:[],target:[0],spec:[5],class:6},
             ],
         },
     },
@@ -46174,7 +46188,21 @@ types.card=[
 
     //mark p
 
-    
+    /*{
+        name:'Embers\nof Love',rarity:0,list:game.playerNumber+1,
+        levels:[
+            {effect:[2],attack:-52,cost:0,target:[0],spec:[1,2],class:5},
+            {effect:[3],attack:-52,cost:0,target:[0],spec:[1,2],class:5},
+            {effect:[4],attack:-52,cost:0,target:[0],spec:[1,2],class:5},
+        ],mtg:{
+            rarity:0,list:game.playerNumber+1,color:[3],
+            levels:[
+                {effect:[1],attack:-52,cost:[3],target:[0],spec:[1,2],class:5},
+                {effect:[2],attack:-52,cost:[3],target:[0],spec:[1,2],class:5},
+                {effect:[3],attack:-52,cost:[3],target:[0],spec:[1,2],class:5},
+            ],
+        },
+    },*/
 
     
 

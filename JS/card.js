@@ -52,6 +52,7 @@ class card{
         this.exhaust=false
         this.purge=false
         this.vanish=false
+        this.drawMark=false
         this.retain=false
         this.retain2=retain2
         this.select=false
@@ -731,6 +732,9 @@ class card{
         }
         if(spec.includes(9)){
             string+='Stapled\n'
+        }
+        if(spec.includes(65)){
+            string+='Drawlinked\n'
         }
         switch(attack){
             case -1: string+=`At the End of Your Turn,\nGain ${effect[0]} Weak`; break
@@ -4827,7 +4831,7 @@ class card{
             case 3943: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nCosts (1) More When\na Card is Played`; break
             case 3944: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nScry ${effect[1]}\nDraw ${effect[2]} Defense${pl(effect[2])}\n${effect[2]!=1?`They Cost`:`It Costs`} 2 Less`; break
             case 3945: string+=`Scry ${effect[0]}\nApply ${effect[1]} Vulnerable\nPer Card Discarded`; break
-            case 3947: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage if\nThis Card Has An Edition`; break
+            case 3947: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDeals Double Damage if\nThis Card Has An Edition`; break
             case 3948: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Lock On\nAdd ${this.calculateEffect(effect[2],1)} Block\nPer Adjacent Enemy\nOther Than Target`; break
             case 3949: string+=`Exhaust All\nBlueprints in Hand\nGain ${effect[0]} Energy and\nDraw ${effect[1]} Card${pl(effect[1])} Each`; break
             case 3950: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nIf Target Has Block`; break
@@ -5024,7 +5028,7 @@ class card{
             case 4146: string+=`Add a Random\nConcoction to Hand and\nUpgrade it ${effect[0]} Time${pl(effect[0])}`; break
             case 4147: string+=`Add ${effect[0]} Random\nCard${pl(effect[0])} That Give${effect[0]!=1?``:`s`} an\nExtra Turn to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
             case 4148: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Weak`; break
-            case 4149: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${this.calculateEffect(effect[1],3)} Block\nWhere X = Number of Attacks\nPlayed This Turn`; break
+            case 4149: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${this.calculateEffect(effect[1],3)} Block\nWhere X = Number of\nAttacks Played This Turn`; break
             case 4150: case 4960:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nNext ${effect[1]} Card${pl(effect[1])}\nPlayed ${effect[1]!=1?`are`:`is`} Duplicated`; break
             case 4151: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Not Fatal,\nGain ${effect[1]} Vulnerable`; break
@@ -8956,21 +8960,28 @@ class card{
             }
             if(this.edition>=1&&this.edition<=8){
                 if(this.width==90){
-                    this.layer.image(graphics.edition[this.edition-1][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
-                }else{
-                    this.layer.image(graphics.edition[this.edition-1][0],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
-                }
-                if(this.battle.relicManager.hasRelic(249,this.player)&&this.edition==4){
-                    if(this.width==90){
-                        this.layer.image(graphics.edition[5][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
-                    }else{
-                        this.layer.image(graphics.edition[5][0],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
+                    this.layer.image(graphics.edition[this.edition-1][0][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
+                    if(this.battle.relicManager.hasRelic(249,this.player)&&this.edition==4){
+                        this.layer.image(graphics.edition[5][0][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
+                    }else if(this.battle.relicManager.hasRelic(249,this.player)&&this.edition==6){
+                        this.layer.image(graphics.edition[3][0][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
                     }
-                }else if(this.battle.relicManager.hasRelic(249,this.player)&&this.edition==6){
-                    if(this.width==90){
-                        this.layer.image(graphics.edition[3][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
-                    }else{
-                        this.layer.image(graphics.edition[3][0],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
+                }else{
+                    let graphicKey=0
+                    for(let a=1,la=graphics.edition[this.edition-1].length;a<la;a++){
+                        if(graphics.edition[this.edition-1][a][0]==this.width){
+                            graphicKey=a
+                        }
+                    }
+                    if(graphicKey==0){
+                        setupSingleEditionGraphic(this.edition,this.width)
+                        graphicKey=graphics.edition[this.edition-1].length-1
+                    }
+                    this.layer.image(graphics.edition[this.edition-1][graphicKey][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
+                    if(this.battle.relicManager.hasRelic(249,this.player)&&this.edition==4){
+                        this.layer.image(graphics.edition[5][graphicKey][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
+                    }else if(this.battle.relicManager.hasRelic(249,this.player)&&this.edition==6){
+                        this.layer.image(graphics.edition[3][graphicKey][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
                     }
                 }
             }
@@ -9355,7 +9366,7 @@ class card{
                         }
                         this.layer.rotate(-90)
                     }else{
-                        this.layer.textSize(variants.blind?12:10-((name.length>=24&&name.includes('Discus')||name.length>=26&&this.class==9&&name!='Sunny, Glowing\nSunlight'&&name!='Star, Showering\nStarlight')&&!name.includes('$colorcharacter')||name=='Cauchy-Riemann\nEquations'||name=='Temptation of\nthe Next World'?3:0))
+                        this.layer.textSize(variants.blind?12:10-((name.length>=24&&name.includes('Discus')||name.length>=24&&this.class==9&&name!='Sunny, Glowing\nSunlight'&&name!='Star, Showering\nStarlight')&&!name.includes('$colorcharacter')||name=='Cauchy-Riemann\nEquations'||name=='Temptation of\nthe Next World'?3:0))
                         if(spec.includes(37)){
                             this.layer.text(effectiveName+":",0,variants.blind?0:-this.height/2+15+(variants.mtg?10:0))
                         }else{

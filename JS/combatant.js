@@ -1059,7 +1059,7 @@ class combatant{
                         this.addAttack(367,[8])
                     break
                     case 'Boss1':
-                        this.subAttackTypeSwitch([[2,254,254,[1,2]]])
+                        this.subAttackTypeSwitch([[1,4,254,[1]]])
                     break
                     case 'Danger':
                         this.subAttackTypeSwitch([[2,255,255,[1,2]],[2,256,256,[1,2]]])
@@ -1077,7 +1077,7 @@ class combatant{
                         this.subAttackTypeSwitch([[2,270,270,[1,2]]])
                     break
                     case 'Relic':
-                        this.statusEffect('Double Damage',1)
+                        this.statusEffect('1.5x Damage',1)
                     break
                     case 'Anomaly':
                         this.subAttackTypeSwitch([[0,2,19,[]]])
@@ -1198,6 +1198,7 @@ class combatant{
                 this.subHealthBuff(1.5)
                 this.subAttackBuff([1,2,5],1.5)
             }
+            this.normalizeAttack()
         }else if(this.type<=game.playerNumber){
             if(game.ascend>=6){
                 this.life*=0.75
@@ -1260,8 +1261,8 @@ class combatant{
                         &&this.attack[a].type!=300
                         &&this.attack[a].type!=391
                     ){
-                        this.attack[a].effect[b]=round(this.attack[a].effect[b]*value)
-                        this.attack[a].baseEffect[b]=round(this.attack[a].baseEffect[b]*value)
+                        this.attack[a].effect[b]=this.attack[a].effect[b]*value
+                        this.attack[a].baseEffect[b]=this.attack[a].baseEffect[b]*value
                     }
                 }
             }
@@ -1278,7 +1279,7 @@ class combatant{
                         (this.attack[a].effect[b]<0||this.attack[a].effect[b]>0)
                         &&!(this.attack[a].type==67&&b==1)
                     ){
-                        this.attack[a].effect[b]=round(this.attack[a].effect[b]+this.attack[a].baseEffect[b]*value)
+                        this.attack[a].effect[b]=this.attack[a].effect[b]+this.attack[a].baseEffect[b]*value
                     }
                 }
             }
@@ -1299,13 +1300,21 @@ class combatant{
                         case 2:
                             for(let c=0,lc=switches[b][3].length;c<lc;c++){
                                 if(switches[b][3][c]!=1){
-                                    this.attack[a].effect[c]=round(this.attack[a].effect[c]*switches[b][3][c])
-                                    this.attack[a].baseEffect[c]=round(this.attack[a].baseEffect[c]*switches[b][3][c])
+                                    this.attack[a].effect[c]=this.attack[a].effect[c]*switches[b][3][c]
+                                    this.attack[a].baseEffect[c]=this.attack[a].baseEffect[c]*switches[b][3][c]
                                 }
                             }
                         break
                     }
                 }
+            }
+        }
+    }
+    normalizeAttack(){
+        for(let a=0,la=this.attack.length;a<la;a++){
+            for(let b=0,lb=this.attack[a].effect.length;b<lb;b++){
+                this.attack[a].effect[b]=round(this.attack[a].effect[b])
+                this.attack[a].baseEffect[b]=round(this.attack[a].baseEffect[b])
             }
         }
     }
@@ -1900,7 +1909,8 @@ class combatant{
                     (game.ascend>=27&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=28&&this.battle.encounter.class==1||game.ascend>=29&&this.battle.encounter.class==2)&&
                     (this.turnsAlive%2==0&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||this.turnsAlive%3==0&&this.battle.encounter.class==1||this.turnsAlive%4==0&&this.battle.encounter.class==2)
                 ){
-                    this.subAttackBaseBuff([1,5],0.1)
+                    this.subAttackBaseBuff([1,2,5],0.1)
+                    this.normalizeAttack()
                 }
                 this.turnsAlive++
                 if(this.status.main[378]>0){

@@ -6242,14 +6242,14 @@ function setupOverlay(type,layer){
 		break
 	}
 }
-function setupEdition(type,layer,crop){
+function setupEdition(type,layer,width){
 	switch(type){
 		case 0:
 			layer.noFill()
 			layer.stroke(0)
 			layer.strokeWeight(10)
 			layer.erase(1,1)
-			layer.rect(layer.width/2,layer.height/2,105,135,12.5)
+			layer.rect(layer.width/2,layer.height/2,width+15,135,12.5)
 		break
 		case 1:
 			layer.fill(235,245,255,0.025)
@@ -6259,11 +6259,7 @@ function setupEdition(type,layer,crop){
 				}else if(a%20==10){
 					layer.erase(0.025,0.025)
 				}
-				if(crop==1){
-					layer.rect(layer.width/2,layer.height/2,layer.width*(1-a/la)*9/16,layer.height*(1-a/la),40*(1-a/la))
-				}else{
-					layer.rect(layer.width/2,layer.height/2,layer.width*(1-a/la),layer.height*(1-a/la),40*(1-a/la))
-				}
+				layer.rect(layer.width/2,layer.height/2,width*(1-a/la)*5/4,layer.height*(1-a/la),40*(1-a/la))
 			}
 			layer.noErase()
 			for(let a=0,la=15;a<la;a++){
@@ -6541,6 +6537,13 @@ function setupEdition(type,layer,crop){
 		break
 	}
 }
+function setupSingleEditionGraphic(edition,width){
+	let local=graphics.edition[edition-1]
+	local.push([width,createGraphics(200,150)])
+	setupLayer(local[local.length-1][1])
+	setupEdition(edition,local[local.length-1][1],width)
+	setupEdition(0,local[local.length-1][1],width)
+}
 function setupGraphics(){
 	angleMode(DEGREES)
 	textAlign(CENTER,CENTER)
@@ -6568,12 +6571,10 @@ function setupGraphics(){
 		setupOverlay(a,graphics.overlays[a])
 	}
 	for(let a=0,la=8;a<la;a++){
-		graphics.edition.push([createGraphics(200,150),createGraphics(200,150)])
-		setupLayer(graphics.edition[a][0])
-		setupLayer(graphics.edition[a][1])
-		setupEdition(a+1,graphics.edition[a][0],0)
-		setupEdition(a+1,graphics.edition[a][1],1)
-		setupEdition(0,graphics.edition[a][1])
+		graphics.edition.push([[90,createGraphics(200,150)]])
+		setupLayer(graphics.edition[a][0][1])
+		setupEdition(a+1,graphics.edition[a][0][1],90)
+		setupEdition(0,graphics.edition[a][0][1],90)
 	}
 	for(let a=0,la=50;a<la;a++){
 		graphics.paperball.push([random(0,80),random(0,360)])

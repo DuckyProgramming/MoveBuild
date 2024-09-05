@@ -18,14 +18,7 @@ class relic{
         this.active=true
         this.anim={active:1}
 
-        switch(this.rarity){
-            case -1: this.value=60; break
-            case 0: this.value=80; break
-            case 1: this.value=120; break
-            case 2: this.value=200; break
-            case 3: this.value=100; break
-            case 4: this.value=600; break
-        }
+        this.value=relicSellValue(this.rarity)
     }
     display(total,active=0,position=this.position,value=false,detail=-1){
         if(this.fade>0){

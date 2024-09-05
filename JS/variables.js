@@ -139,7 +139,7 @@ types={
         {name:'Jester',life:28,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:247,effect:[2]},{type:248,effect:[1,7]}],description:`Real funny guy, you are`},
         {name:'Lalex',life:84,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:249,effect:[2]},{type:250,effect:[13,1]},{type:251,effect:[6,3]}],description:`Why is he here?`},
         {name:'Normal1',life:12,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:31,effect:[3]}],description:`Precursor to Normal2`},
-        {name:'Boss1',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[12]},{type:254,effect:[10,1]},{type:253,effect:[10,6]}],description:`These numbers are a little arbitrary`},
+        {name:'Boss1',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[12]},{type:4,effect:[10]},{type:253,effect:[10,5]}],description:`These numbers are a little arbitrary`},
         {name:'Danger',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:255,effect:[9,1]},{type:256,effect:[9,1]}],description:`Contains... something?`},
         {name:'Carbonado Robot',life:145,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:30,effect:[16,4]},{type:257,effect:[6,1]},{type:258,effect:[6,6]}],description:`Very shiny robot`},
         {name:'Obstruction',life:87,behavior:5,spec:[0],move:{type:8,speed:1},attack:[{type:6,effect:[8]},{type:259,effect:[9]}],description:`Solving problems by not having problems`},
@@ -168,8 +168,6 @@ types={
         {name:'Embodimental Element',life:51,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:31,effect:[5]},{type:294,effect:[2,2]}],description:`Tandemaus`},
         {name:'Kugelblitz Particle',life:31,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:374,effect:[7,1]},{type:375,effect:[7,1]}],description:`He's smol`},
         {name:'Pure Swordsman',life:30,behavior:1,spec:[0],move:{type:0,speed:2},attack:[{type:107,effect:[6,1]}],description:`Appointed up`},
-
-        //{name:'Bartender',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[1]},{type:93,effect:[1]},{type:39,effect:[1,'Gangster']}],description:`I guess he's a gang member`},
 
         {name:'Inconsistent',life:69,behavior:0,spec:[],move:{type:5,speed:1},attack:[{type:245,effect:[6]},{type:245,effect:[9]}],description:`Nice!`},
         {name:'Latency',life:13,behavior:0,spec:[],move:{type:1,speed:5},attack:[{type:1,effect:[5]}],description:`...`},
@@ -265,6 +263,46 @@ types={
         {name:'BlockDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:2,effect:[1]}],description:`Gains block`},
         {name:'MoveDummy',life:1,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Can move`},
         {name:'Unknown',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`???`},
+
+
+
+
+
+
+        
+
+        {name:'Sick Duck',life:13,behavior:2,spec:[],move:{type:2,speed:1},attack:[{type:394,effect:[2,1]},{type:5,effect:[1,'Cough']}],description:`Not referencing real events I promise`},
+        {name:'Spirit of Wealth',life:26,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:20,effect:[5]},{type:395,effect:[7,1]}],description:`Seeing dollar signs`},
+        {name:'Puffball',life:14,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:396,effect:[4,8]},{type:6,effect:[6]}],description:`Strangely fluffy`},
+
+        {name:'Pistol Thug',life:28,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[8]}],description:`Finally I can use disarm`},
+        {name:'Brawler',life:36,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:14,effect:[10,'Dizzy']},{type:82,effect:[9,'Dizzy']}],description:`No surprise that he's a prisoner too`},
+        {name:'Mailman',life:40,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[9]}],description:`Protected by labor`},
+        
+        {name:'Thoughtless',life:36,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:`No mind lol`},
+
+        {name:'Guard',life:45,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:398,effect:[10,6]}],description:`More interesting than the old guy`},
+
+        {name:'Bar Security',life:60,behavior:1,spec:[0,7],move:{type:0,speed:1},attack:[{type:3,effect:[8]}],description:`Just doing business`},
+        {name:'Bartender',life:60,behavior:1,spec:[0],move:{type:12,speed:1},attack:[{type:92,effect:[1]},{type:93,effect:[1]},{type:39,effect:[1,'Gangster']}],description:`I guess he's a gang member`},
+        {name:'Cutthroat',life:56,behavior:1,spec:[0],move:{type:0,speed:2},attack:[{type:397,effect:[10,3]}],description:`Not the most elegant assassin`},
+
+        {name:'Renegade Agent',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        
+        {name:'Speedrunnner',life:52,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]}],description:`Faster than you would ever believe`},
+        {name:'The Subconcious',life:87,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:5,effect:[4,'Embers\nof Love']},{type:48,effect:[36]},{type:5,effect:[4,'Philosophy of\nthe Despised']},{type:6,effect:[71]},{type:5,effect:[4,'']}],description:``},
+        {name:'Management Robot Commander',life:120,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        
+        {name:'Lockdown',life:425,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        
+        {name:'Adrian Kane',life:350,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+
+        {name:'Gangster Machinegunner Informant',life:48,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:129,effect:[3]}],description:`It goes to the top`},
+        {name:'Walker Driver Informant',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]}],description:`Gonna walk on out`},
+        {name:'Armored Biker',life:48,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[11]},{type:10,effect:[5]}],description:`That's a good helmet`},
+        {name:'Shotgun Prison Guard',life:52,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:400,effect:[10,2]}],description:`Average riot control measure`},
+        {name:'Shield Prison Guard',life:62,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:399,effect:[8,10]},{type:353,effect:[12,1]}],description:`Not as good as riot police`},
+
     ],attack:[
         {name:'',class:0},//0
         {name:'Strike',class:1},
@@ -644,7 +682,7 @@ types={
         {name:'2 Tile Strike / Burn',class:1},
         {name:'Block / Dexterity',class:2},
         {name:'Triple Statusing Strike',class:1},
-        {name:'2 Tile Strike / Block',class:1},
+        {name:'Strike / Block',class:1},
         {name:'Crescent Strike / Weaken / Vulnerable',class:1},
         {name:'4 Tile Double Strike',class:1},//380
         {name:'2 Tile 3 Spread Triple Strike',class:1},
@@ -660,6 +698,14 @@ types={
         {name:'Double Absorb Shield Particles',class:4},
         {name:'All Enemy 2 Turn Block / Armor',class:2},
         {name:'Sunny, Glowing Sunlight',class:4},
+
+        {name:'Triple Strike / Frail',class:1},
+        {name:'3 Spread Strike / Strengthen',class:1},
+        {name:'Spin Strike / Block',class:1},
+        {name:'3 Tile Strike / Poison',class:1},
+        {name:'6 Tile Strike / Block',class:1},
+        {name:'Push / Block',class:1},
+        {name:'Push Shotgun',class:1},//400
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,description:''},
@@ -5540,7 +5586,180 @@ Besides, ghost objects aren't useful in the real world, right?`,
                     link:[-1],
                 },
             ],
-        },
+        },{
+            name:'Laser Defense Grid',id:137,list:0,
+            pages:[
+                {
+                    desc:
+`You find the vault you're attempting to breach is guarded
+by a series of lasers. It looks like it might be possible to
+get through, but there's probably another way.`,
+                    option:['Sneak Through','Mess with the Electricity','Punch the Wall'],
+                    optionDesc:['','','Lose 10 Health'],
+                    link:[1,3,5],
+                },{
+                    desc:
+`You manage to get between the lasers successfully
+and take the vault's contents.`,
+                    option:['Take it'],
+                    optionDesc:['Gain 150 Currency'],
+                    link:[-1],
+                },{
+                    desc:
+`Despite your best attempts, you trip one of the lasers.
+You're lucky to escape mostly intact.`,
+                    option:['Leave'],
+                    optionDesc:['Lose 10 Health'],
+                    link:[-1],
+                },{
+                    desc:`Disabling the lasers, you collect the vault's contents.`,
+                    option:['Take it'],
+                    optionDesc:['Gain 150 Currency'],
+                    link:[-1],
+                },{
+                    desc:
+`You spend an hour moving around wires, but to no luck.
+When the alarms go off, you're forced to make your escape.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`Your hand hurts, but you disabled the security at least.
+You can go ahead and take what's in the vault.`,
+                    option:['Take it'],
+                    optionDesc:['Gain 150 Currency'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Tape',id:138,list:0,
+            pages:[
+                {
+                    desc:
+`You find a roll of unique tape on the ground.
+Maybe you could use it for something.`,
+                    option:['Combine 2 Cards','Leave'],
+                    optionDesc:['Choose 2 Cards, When you Draw One, Draw the Other',''],
+                    link:[-1,1],
+                },{
+                    desc:`You don't need that stuff.`,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Relic Collector',id:139,list:0,
+            pages:[
+                {
+                    desc:
+`A collector of rare relics approaches you.
+"I can take possession of something you don't need,
+for a good price," he offers.`,
+                    option:['Sell','Sell','Decline'],
+                    optionDesc:['','',''],
+                    link:[1,1,2],
+                },{
+                    desc:`You give him the item and he pays you well.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:`You want to keep your relics.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Card Collector',id:140,list:0,
+            pages:[
+                {
+                    desc:
+`A duck approaches you, several valuable-looking
+cards in his hand. He offers to trade.`,
+                    option:['Trade a Card','Pay Him','Decline'],
+                    optionDesc:['','Lose 150 Currency, Add a Rare Card',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+`He takes your card, and you take a look at his wares.
+You can take one card of your choice.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`He takes your money, and you take a look at his wares.
+You can take one card of your choice.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:`You don't want his cards.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Hotel Room',id:141,list:0,
+            pages:[
+                {
+                    desc:
+`You check into your hotel room, but something seems off.`,
+                    option:['Sweep for Bugs',`Don't Worry About it`],
+                    optionDesc:['Lose 50 Currency',''],
+                    link:[1,2],
+                },{
+                    desc:
+`You spend several hours taking apart every object in the room.
+Eventually you find the bug.`,
+                    option:['Destroy the Bug'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`You're not worried about potential threats in the room.
+You just want to have some time to relax.`,
+                    option:['Sleep'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`A few hours later, you hear a strange beeping sound.
+It sounds like a bomb or something, that's all you can figure out.
+You make your escape, but without the time to bring things with you.`,
+                    option:['Escape'],
+                    optionDesc:['Lose 200 Currency'],
+                    link:[-1],
+                },
+            ],
+        },/*{
+            name:'',id:142,list:0,
+            pages:[
+                {
+                    desc:
+``,
+                    option:['',''],
+                    optionDesc:['',''],
+                    link:[1,1],
+                },{
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+``,
+                    option:[''],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },*/
     ],color:{
         card:[
             {

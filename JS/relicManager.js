@@ -198,17 +198,22 @@ class relicManager{
             this.lose(index,player)
         }
     }
-    getRandomRelic(player){
+    getRandomRelic(player,amount){
         let list=[]
+        let result=[]
         for(let a=1,la=this.active.length;a<la;a++){
             if(this.active[a][player+1]>0){
                 list.push(a)
             }
         }
-        if(list.length>0){
-            return list[floor(random(0,list.length))]
+        for(let a=0,la=amount;a<la;a++){
+            if(list.length>0){
+                let index=floor(random(0,list.length))
+                result.push(list[index])
+                list.splice(index,1)
+            }
         }
-        return 0
+        return result
     }
     addRandomRelic(player){
         let possible=[0,0,0,1,1,2]
@@ -2588,7 +2593,7 @@ class relicManager{
     update(scene,args){
         switch(scene){
             case 'battle': case 'map': case 'event':
-                this.relics.forEach(relic=>relic.update(this.up[relic.player],this.total[relic.player],inputs))
+                this.relics.forEach(relic=>relic.update(this.up[relic.player],this.overTotal[relic.player],inputs))
             break
             case 'stash': case 'bossstash':
                 this.displayRelics.forEach(relic=>relic.update(true,0,inputs))
@@ -2599,14 +2604,14 @@ class relicManager{
                 for(let a=0,la=this.relics.length;a<la;a++){
                     if(this.relics[a].player==args[2]&&this.relics[a].type!=0){
                         if(index>=args[1]*30&&index<args[1]*30+30){
-                            this.relics[a].update(args[0],this.total[relic.player],inputs,{x:this.layer.width/2-150+position%6*60,y:this.layer.height/2-120+floor(position/6)*60})
+                            this.relics[a].update(args[0],this.overTotal[relic.player],inputs,{x:this.layer.width/2-150+position%6*60,y:this.layer.height/2-120+floor(position/6)*60})
                             position++
                         }else{
-                            this.relics[a].update(false,this.total[relic.player],inputs,{x:-10000,y:0})
+                            this.relics[a].update(false,this.overTotal[relic.player],inputs,{x:-10000,y:0})
                         }
                         index++
                     }else{
-                        this.relics[a].update(false,this.total[relic.player],inputs,{x:-10000,y:0})
+                        this.relics[a].update(false,this.overTotal[relic.player],inputs,{x:-10000,y:0})
                     }
                 }
             break
@@ -2616,7 +2621,7 @@ class relicManager{
         switch(scene){
             case 'battle':
                 this.relics.forEach(relic=>relic.onClick(inputs.rel,this.battle))
-                if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.total[0]>0){
+                if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.overTotal[0]>0){
                     this.up[0]=toggle(this.up[0])
                 }
                 if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,100)<20&&this.total[1]>0){
@@ -2624,7 +2629,7 @@ class relicManager{
                 }
             break
             case 'map': case 'event':
-                if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.total[0]>0){
+                if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.overTotal[0]>0){
                     this.up[0]=toggle(this.up[0])
                 }
                 if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,100)<20&&this.total[1]>0){
@@ -2675,10 +2680,10 @@ class relicManager{
     onKey(scene,key,code){
         switch(scene){
             case 'battle': case 'map': case 'event':
-                if(key=='i'&&this.total[0]>0){
+                if(key=='i'&&this.overTotal[0]>0){
                     this.up[0]=toggle(this.up[0])
                 }
-                if(this.battle.players==2&&key=='I'&&this.total[1]>0){
+                if(this.battle.players==2&&key=='I'&&this.overTotal[1]>0){
                     this.up[1]=toggle(this.up[1])
                 }
             break

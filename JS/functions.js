@@ -1190,6 +1190,16 @@ function multiplyString(base,multiply){
 		return string
 	}
 }
+function relicSellValue(rarity){
+	switch(rarity){
+		case -1: return 60
+		case 0: return 80
+		case 1: return 120
+		case 2: return 200
+		case 3: return 100
+		case 4: return 600
+	}
+}
 function copyCard(base){
 	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,base.costUpTrigger)
 }

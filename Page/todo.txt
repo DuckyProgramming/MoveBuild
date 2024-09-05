@@ -17,7 +17,7 @@ project constructed save?
 
 
 
-LISTING GROUP 45
+LISTING GROUP 46
 
 
 
@@ -46,6 +46,12 @@ wisp
 amplify
 
 
+
+hype train - 3 cost 25 damage to a random adjacent enemy, costs 1 less
+
+last resort - gain 6x block, if x is 0 gain 1 energy
+
+merge to main - 13 block, shuffle discard into draw, draw a card
 
 
 
@@ -99,6 +105,18 @@ can have a little blue star rotating around
 
 
 
+CHARACTER 19
+
+he's a duck
+
+
+
+CHARACTER 20
+
+the dev?
+
+
+
 update azis tutorial with orb moving
 
 
@@ -107,21 +125,9 @@ new enemies:
 
 world 1:
 
-easies:
-
-sick duck - when killed you get a bunch of debuffs
-spirit of wealth - when killed gain $25
-kedama - kinda like louse
-
-enemies:
-
-[]
-pistol thug - a basic biker with a gun not really a threat
-brawler - gains 1 strength per turn, has a mid-range punch
-
 bosses:
 
-[]
+thoughtless - has 3 stances
 
 world 2:
 
@@ -160,15 +166,12 @@ world 4:
 
 elites:
 
-[]
+adrian kane - has heavy weapons
 
 azis boss needs another attack
 chip boss needs another attack
-sukuna boss needs 2 attacks and setup code
+shinmy boss needs 2 attacks and setup code
 #18 boss needs 2 attacks and setup code
-
-
-
 
 
 
@@ -180,21 +183,6 @@ new variants:
 
 
 new events:
-
-laser defense grid - choice
-sneak through - 50% lose health, 50% gain currency
-mess with the electricity - 25% gain currency, 75% nothing
-punch the wall - guaranteed lose health and gain currency
-
-purify the energy - refine the energy
-
-relic collector - offers to buy 2 of your relics for very good prices
-
-card collector - offers to trade one of your cards (random) for a rare card of your choice
-
-hotel room - choice
-sweep for bugs - lose 50$
-don't - 10% chance to lose a relic
 
 
 
@@ -233,7 +221,7 @@ quality lawyer - become poor
 cheap lawyer - lose money lose hp
 public defense - get bbbusted
 
-linkup - choose 2 cards, when you draw 1 draw the other
+open either a standard pack or a prism pack
 
 []
 

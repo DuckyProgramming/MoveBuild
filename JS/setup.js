@@ -20,7 +20,7 @@ function setup(){
             //transition.scene='menu'
             
         current.menu.combatant=[17]
-        current.menu.deck=[-1]
+        current.menu.deck=[0]
 
             //variants.mtg=true
 
@@ -69,7 +69,7 @@ function setup(){
 
             /*transition.trigger=true
             transition.scene='event'
-            current.setupSpecificEvent(64)*/
+            current.setupSpecificEvent(142)*/
 
             /*player(0).size=3
             player(0).goal.anim.direction=-30

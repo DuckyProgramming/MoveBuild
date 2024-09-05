@@ -819,7 +819,8 @@ class group{
                 type==14&&args[0].includes(this.cards[a].class)&&!this.cards[a].spec.includes(args[1])||
                 type==15&&!args[0].includes(this.cards[a].class)||
                 type==16&&args[0].includes(this.cards[a].class)&&this.cards[a].attack!=args[1]||
-                type==17&&(this.cards[a].spec.includes(12)&&(this.cards[a].effect[0].includes(args[0])||this.cards[a].effect[1].includes(args[0]))||!this.cards[a].spec.includes(12)&&this.cards[a].effect.includes(args[0]))
+                type==17&&(this.cards[a].spec.includes(12)&&(this.cards[a].effect[0].includes(args[0])||this.cards[a].effect[1].includes(args[0]))||!this.cards[a].spec.includes(12)&&this.cards[a].effect.includes(args[0]))||
+                type==18&&args[0].includes(this.cards[a].rarity)
             ){
                 total++
             }
@@ -2188,6 +2189,7 @@ class group{
     }
     drawEffect(card){
         card.drawn++
+        card.drawMark=true
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         userCombatant.activateDraw()
         this.battle.relicManager.activate(19,[card,this.player])
@@ -2211,6 +2213,9 @@ class group{
         }
         if(card.spec.includes(63)){
             this.drawEffects.push([5,2])
+        }
+        if(card.spec.includes(65)){
+            this.battle.cardManagers[this.player].drawAbstract(1,10,0,[65])
         }
         switch(card.attack){
             case -3:
@@ -2237,7 +2242,7 @@ class group{
             case -20:
                 this.drawEffects.push([2,[card.effect[0]]])
             break
-            case -22: return true
+            case -22: card.drawMark=false; return true
             case -23:
                 for(let a=0,la=card.effect[0];a<la;a++){
                     this.drawEffects.push([0,13,[]])
@@ -2588,6 +2593,7 @@ class group{
                 this.battle.addSpecificEnergy(1,this.player,3)
             break
         }
+        card.drawMark=false
         return false
     }
     deathEffect(){
@@ -2676,30 +2682,40 @@ class group{
         }
         for(let a=0,la=this.cards.length;a<la;a++){
             if(
-                variant==-1||
-                variant==0&&this.cards[a].class==args[0]||
-                variant==1&&this.cards[a].getCost(0)==args[0]&&!this.cards[a].specialCost||
-                variant==2&&this.cards[a].attack==args[0]||
-                variant==3&&this.cards[a].name==args[0]||
-                variant==4&&this.cards[a].rarity==args[0]||
-                variant==5&&this.cards[a].getCost(0)==this.sorted[0]||
-                variant==6&&this.cards[a].getCost(0)==this.sorted[this.sorted.length-1]||
-                variant==7&&this.cards[a].spec.length==this.sorted[0]||
-                variant==8&&this.cards[a].spec.length==this.sorted[this.sorted.length-1]||
-                variant==9&&this.cards[a].getCost(0)%args[0]==args[1]||
-                variant==10&&this.cards[a].spec.includes(args[0])||
-                variant==11&&this.cards[a].colorless()||
-                variant==12&&this.cards[a].rarity==this.sorted[0]||
-                variant==13&&this.cards[a].rarity==this.sorted[this.sorted.length-1]||
-                variant==14&&this.cards[a].getBasic(-1)||
-                variant==15&&args[0].includes(this.cards[a].class)&&args[1]==this.cards[a].getCost(0)||
-                variant==16&&this.cards[a].color.includes(args[0])||
-                variant==17&&args[0].includes(this.cards[a].name)
+                !this.cards[a].drawMark&&(
+                    variant==-1||
+                    variant==0&&this.cards[a].class==args[0]||
+                    variant==1&&this.cards[a].getCost(0)==args[0]&&!this.cards[a].specialCost||
+                    variant==2&&this.cards[a].attack==args[0]||
+                    variant==3&&this.cards[a].name==args[0]||
+                    variant==4&&this.cards[a].rarity==args[0]||
+                    variant==5&&this.cards[a].getCost(0)==this.sorted[0]||
+                    variant==6&&this.cards[a].getCost(0)==this.sorted[this.sorted.length-1]||
+                    variant==7&&this.cards[a].spec.length==this.sorted[0]||
+                    variant==8&&this.cards[a].spec.length==this.sorted[this.sorted.length-1]||
+                    variant==9&&this.cards[a].getCost(0)%args[0]==args[1]||
+                    variant==10&&this.cards[a].spec.includes(args[0])||
+                    variant==11&&this.cards[a].colorless()||
+                    variant==12&&this.cards[a].rarity==this.sorted[0]||
+                    variant==13&&this.cards[a].rarity==this.sorted[this.sorted.length-1]||
+                    variant==14&&this.cards[a].getBasic(-1)||
+                    variant==15&&args[0].includes(this.cards[a].class)&&args[1]==this.cards[a].getCost(0)||
+                    variant==16&&this.cards[a].color.includes(args[0])||
+                    variant==17&&args[0].includes(this.cards[a].name)
+                )
             ){
                 list.push(copyCard(this.cards[a]))
                 list[list.length-1].size=0
                 list[list.length-1].position.x=1200
                 list[list.length-1].position.y=500
+                delete this.cards[a]
+                this.cards.splice(a,1)
+                a--
+                la--
+                total++
+                if(total>=amount&&amount!=-1){
+                    a=la
+                }
                 if(this.drawEffect(list[list.length-1])){la=0}
                 switch(output){
                     case 1:
@@ -2748,14 +2764,6 @@ class group{
                         }
                     break
                 }
-                delete this.cards[a]
-                this.cards.splice(a,1)
-                a--
-                la--
-                total++
-                if(total>=amount&&amount!=-1){
-                    a=la
-                }
             }
         }
         return total
@@ -2779,6 +2787,8 @@ class group{
                     list.push(copyCard(this.cards[firstIndex]))
                 }
                 list[list.length-1].size=0
+                delete this.cards[firstIndex]
+                this.cards.splice(firstIndex,1)
                 if(
                     spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
                     spec==13||spec==14||spec==16||spec==18||spec==19||spec==20||spec==21
@@ -2790,8 +2800,6 @@ class group{
                 }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
                     list[list.length-1].cost=variants.mtg?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
                 }
-                delete this.cards[firstIndex]
-                this.cards.splice(firstIndex,1)
             }
         }else{
             for(let a=0,la=lastIndex-firstIndex;a<la;a++){
@@ -2809,6 +2817,8 @@ class group{
                     list.push(copyCard(this.cards[firstIndex]))
                 }
                 list[list.length-1].size=0
+                delete this.cards[firstIndex]
+                this.cards.splice(firstIndex,1)
                 if(
                     spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
                     spec==13||spec==14||spec==16||spec==18||spec==19||spec==20||spec==21
@@ -2820,8 +2830,6 @@ class group{
                 }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
                     list[list.length-1].cost=variants.mtg?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
                 }
-                delete this.cards[firstIndex]
-                this.cards.splice(firstIndex,1)
             }
         }
         this.battle.cardManagers[this.player].midDraw=false
@@ -4037,12 +4045,6 @@ class group{
             break
             case 4:
                 this.cards[a].deSize=true
-                if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block')>0){
-                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block'))
-                }
-                for(let b=0,lb=this.cards.length;b<lb;b++){
-                    this.cards[b].otherDiscard()
-                }
                 if(this.status[0]>0){
                     this.status[0]--
                 }
@@ -4137,12 +4139,6 @@ class group{
             break
             case 15:
                 this.cards[a].deSize=true
-                if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block')>0){
-                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block'))
-                }
-                for(let b=0,lb=this.cards.length;b<lb;b++){
-                    this.cards[b].otherDiscard()
-                }
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.status[10])
             break
             case 16:
@@ -4235,12 +4231,6 @@ class group{
             break
             case 24:
                 this.cards[a].deSize=true
-                if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block')>0){
-                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block'))
-                }
-                for(let b=0,lb=this.cards.length;b<lb;b++){
-                    this.cards[b].otherDiscard()
-                }
                 this.cards[a].setCost(2,[0])
                 if(this.status[19]>0){
                     this.status[19]--
@@ -4264,12 +4254,6 @@ class group{
             break
             case 27:
                 this.cards[a].deSize=true
-                if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block')>0){
-                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block'))
-                }
-                for(let b=0,lb=this.cards.length;b<lb;b++){
-                    this.cards[b].otherDiscard()
-                }
                 this.cards[a].discardEffectBuffered.push(1)
                 if(this.status[22]>0){
                     this.status[22]--
@@ -4301,12 +4285,6 @@ class group{
             break
             case 31:
                 this.cards[a].deSize=true
-                if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block')>0){
-                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block'))
-                }
-                for(let b=0,lb=this.cards.length;b<lb;b++){
-                    this.cards[b].otherDiscard()
-                }
                 this.battle.cardManagers[this.player].draw(1)
                 if(this.status[27]>0){
                     this.status[27]--
@@ -4613,6 +4591,10 @@ class group{
                         }
                         if(this.cards[a].usable){
                             this.cards[a].callSpecDiscardEffect()
+                            if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block')>0){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block'))
+                            }
+                            this.cards.forEach(card=>card.otherDiscard())
                         }
                         if(this.cards[a].vanish){
                             delete this.cards[a]
