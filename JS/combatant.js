@@ -7023,7 +7023,7 @@ class combatant{
                 }
             break
             case 'Spirit of Wealth':
-                if(this.time%5==0){
+                if(this.time%5==0&&this.life>0){
                     this.battle.particleManager.particlesBack.push(new particle(
                         this.layer,this.position.x+random(-30,30),this.position.y+random(-30,5),197,
                         [0,random(0.4,0.6)]))

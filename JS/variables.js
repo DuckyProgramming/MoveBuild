@@ -22,7 +22,7 @@ types={
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
-        {name:'Bouncer',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
+        {name:'Bouncer',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
         {name:'Thug',life:32,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]}],description:`Beats people up`},
         {name:'Biker',life:32,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:7,effect:[8]}],description:`Now bikeless`},
         {name:'Drunk',life:30,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:8,effect:[1,'Burn']},{type:1,effect:[6]}],description:`Doesn't know what he's doing`},
@@ -834,7 +834,7 @@ types={
         {name:'Snowball',internal:'Death Dexterity',id:95,rarity:0,list:0,mtg:0,description:'When an Enemy Dies,\nGain 1 Dexterity'},
         {name:'Tax Paperwork',internal:'Weak Elites',id:96,rarity:0,list:0,mtg:0,description:'Enemies in Elite\nCombats Lose 20% HP'},
         {name:'Card Service Voucher',internal:'Card Service Discount',id:97,rarity:3,list:0,mtg:0,description:'Card Service\nCosts 50% Less'},
-        {name:'Four Leaf Clover',internal:'Better Unknown',id:98,rarity:0,list:0,mtg:0,description:'Unknowns are More Likely\nto be Beneficial'},
+        {name:'Four Leaf Clover',internal:'Better Unknown',id:98,rarity:-1,list:0,mtg:0,description:'Unknowns are More Likely\nto be Beneficial'},
         {name:'Pink Dice',internal:'Unknown Heal',id:99,rarity:0,list:0,mtg:0,description:'Heal 5 HP When Entering an Unknown'},
 
         {name:'Glitter',internal:'Running Block',id:100,rarity:0,list:0,mtg:0,description:'After You Move or Get Moved,\nAdd 2 Block Per Tile Moved'},
@@ -4229,7 +4229,7 @@ Suddenly, you hear him approaching. There's little time.`,
                     link:[-1],
                 },{
                     desc:'You manage to escape.',
-                    option:['leave'],
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -9692,7 +9692,7 @@ You make your escape, but without the time to bring things with you.`,
             ],ally:[
             ],
         },{
-            level:['Crushed 5'],class:0,world:1,
+            level:['Crushed 5'],class:0,world:0,
             name:'Bouncer',
             player:{position:[[{x:2,y:1}],[{x:1,y:0},{x:2,y:0}]]},
             enemy:[
@@ -9876,8 +9876,8 @@ You make your escape, but without the time to bring things with you.`,
             player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
             enemy:[
                 {position:{x:0,y:0},name:'General Duckion'},
-                {position:{x:2,y:1},name:'Duckforce'},
-                {position:{x:1,y:2},name:'Duckforce'},
+                {position:{x:3,y:2},name:'Duckforce'},
+                {position:{x:2,y:3},name:'Duckforce'},
             ],reinforce:[
             ],assaultReinforce:[
                 {position:{x:3,y:0},name:'Duckforce',turn:8},
@@ -10696,7 +10696,7 @@ stage={scale:0,scene:'title',internal:{version:1}}
 game={player:[],deck:[],playerNumber:18,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0,infoOff:false}
 variants={
-    mtg:false,mod:false,selectCombat:false,chaos:false,
+    mtg:false,mod:false,chaos:false,
     lowDraw:false,cyclicDraw:false,balance:false,blackjack:false,
     chooselose:false,compress:false,cardHold:false,polar:false,
     inventor:false,unexpected:false,cursed:false,witch:false,
@@ -10707,10 +10707,10 @@ variants={
     cliff:false,assault:false,unary:false,running:false,
     commoners:false,business:false,
 
-    speedmove:false,speedcard:false,nobasicanim:false,deckbuild:false,
+    speedmove:false,speedcard:false,nobasicanim:false,deckbuild:false,selectCombat:false,
 
     map:[
-        'mtg','mod','selectCombat','chaos',
+        'mtg','mod','','chaos',
         'lowDraw','cyclicDraw','balance','blackjack',
         'chooselose','compress','cardHold','polar',
         'inventor','unexpected','cursed','witch',
@@ -10721,7 +10721,7 @@ variants={
         'cliff','assault','unary','running',
         'commoners','business','','',
     ],names:[
-        'MTG Mana','Bonus Mods','Choose Combats','Chaos',
+        'MTG Mana','Bonus Mods','','Chaos',
         '-1 Draw','Cyclic Draw','Balanced Draw','Blackjack Draw',
         'Choose or Lose','Compression Draw','Five-Card Hold','Card Slot Draw',
         'Card Techify','Expect the Unexpected','Cursed Mode','Polar',

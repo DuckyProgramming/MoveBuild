@@ -4,7 +4,11 @@ class nodeManager{
         this.battle=battle
         this.nodes=[]
 
-        this.listing={encounter:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]],name:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]]}
+        this.listing={
+            encounter:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]],
+            static:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]],
+            name:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]]
+        }
 
         this.tilePosition={x:0,y:-1}
         this.scroll=0
@@ -12,18 +16,23 @@ class nodeManager{
         this.total=0
 
         this.freeMove=0
-        this.saveBoss=-1
         this.saveClass=-1
         this.harmBoss=0
+        
+        this.unknownPossibilities=[]
 
         this.initialListing()
-
-        this.totals=[0,0,0,0,0,0,0,0,0]
     }
     initialListing(){
         for(let a=0,la=types.encounter.length;a<la;a++){
             if(types.encounter[a].class>=0&&types.encounter[a].world>=0){
+                if(types.encounter[a].world>=1&&types.encounter[a].class!=4){
+                    //temporary, until enough enemies are active
+                    this.listing.encounter[types.encounter[a].world][types.encounter[a].class].push(a)
+                    this.listing.name[types.encounter[a].world][types.encounter[a].class].push(types.encounter[a].name)
+                }
                 this.listing.encounter[types.encounter[a].world][types.encounter[a].class].push(a)
+                this.listing.static[types.encounter[a].world][types.encounter[a].class].push(a)
                 this.listing.name[types.encounter[a].world][types.encounter[a].class].push(types.encounter[a].name)
             }
         }
@@ -31,7 +40,6 @@ class nodeManager{
     nextWorld(){
         this.tilePosition={x:0,y:-1}
         this.world++
-        this.saveBoss=-1
         this.setupMap()
     }
     getNodeIndex(tileX,tileY){
@@ -72,12 +80,55 @@ class nodeManager{
                 }
             }
         }else{
-            let possibilities=game.ascend>=1?[0,0,0,0,0,1,1,1,3,3,3,4,4,5,5,5,5]:[0,0,0,0,0,0,1,1,3,3,3,4,4,5,5,5,5]
+            let possibilities=[]
+            switch(this.world){
+                case 0:
+                    for(let a=0,la=game.ascend>=1?27:31;a<la;a++){
+                        possibilities.push(0)
+                    }
+                    for(let a=0,la=game.ascend>=1?10:6;a<la;a++){
+                        possibilities.push(1)
+                    }
+                    for(let a=0,la=9;a<la;a++){
+                        possibilities.push(3)
+                    }
+                    for(let a=0,la=5;a<la;a++){
+                        possibilities.push(4)
+                    }
+                    for(let a=0,la=15;a<la;a++){
+                        possibilities.push(5)
+                    }
+                    this.unknownPossibilities=game.ascend>=15?[0,0,1,1,3,4,5,5,5,5,5,5,5,5,5]:[0,0,0,1,3,4,5,5,5,5,5,5,5,5,5]
+                break
+                case 1: case 2:
+                    for(let a=0,la=game.ascend>=1?23:27;a<la;a++){
+                        possibilities.push(0)
+                    }
+                    for(let a=0,la=game.ascend>=1?10:6;a<la;a++){
+                        possibilities.push(1)
+                    }
+                    for(let a=0,la=9;a<la;a++){
+                        possibilities.push(3)
+                    }
+                    for(let a=0,la=5;a<la;a++){
+                        possibilities.push(4)
+                    }
+                    for(let a=0,la=15;a<la;a++){
+                        possibilities.push(5)
+                    }
+                    this.unknownPossibilities=game.ascend>=15?[0,1,1,3,4,5,5,5,5,5,5,5,5,5,5]:[0,0,1,3,4,5,5,5,5,5,5,5,5,5,5]
+                break
+            }
             let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
             for(let a=0,la=length;a<la;a++){
                 for(let b=0,lb=min(a+1,4,la-a);b<lb;b++){
-                    this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,
-                    game.allMap>=0?game.allMap:a<2?0:a==la-1?2:a==la-2?3:a==round(la/2)?6:a==round(la/4)&&this.world==1?7:possibilities[floor(random(0,possibilities.length))]))
+                    let type=game.allMap>=0?game.allMap:a<2?0:a==la-1?2:a==la-2?3:a==round(la/2)?6:a==round(la/4)&&this.world==1?7:-1
+                    if(type==-1){
+                        let index=floor(random(0,possibilities.length))
+                        type=possibilities[index]
+                        possibilities.splice(index,1)
+                    }
+                    this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,type))
                 }
             }
             let side=[floor(random(0,2)),floor(random(0,3)),floor(random(0,3)),floor(random(0,2))]
@@ -109,7 +160,6 @@ class nodeManager{
                 }
             }
         }
-        this.nodes.forEach(node=>this.totals[node.type]++)
     }
     setupTutorialMap(){
         this.nodes=[]
@@ -129,7 +179,7 @@ class nodeManager{
         this.nodes.forEach(node=>node.scroll+=scroll-this.scroll)
         this.scroll=scroll
     }
-    enterNode(type,y,chain){
+    enterNode(type,y,chain,args){
         if(type!=5){
             this.battle.relicManager.activate(7,[type])
         }
@@ -152,7 +202,7 @@ class nodeManager{
                 if((type==0||type==1)&&this.saveClass>=0){
                     let tempClass=this.saveClass
                     this.saveClass=-1
-                    this.enterNode(tempClass,y,true)
+                    this.enterNode(tempClass,y,true,args)
                 }else{
                     transition.scene='battle'
                     if(variants.selectCombat){
@@ -160,12 +210,7 @@ class nodeManager{
                         this.battle.overlayManager.overlays[61][0].active=true
                         this.battle.overlayManager.overlays[61][0].activate([0,y])
                     }else{
-                        let list=this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0]
-                        let index=floor(random(0,list.length))
-                        this.battle.setupBattle(types.encounter[list[index]])
-                        if(y>0){
-                            list.splice(index,1)
-                        }
+                        this.battle.setupBattle(types.encounter[args[0]])
                     }
                 }
             break
@@ -173,7 +218,7 @@ class nodeManager{
                 if((type==0||type==1)&&this.saveClass>=0){
                     let tempClass=this.saveClass
                     this.saveClass=-1
-                    this.enterNode(tempClass,y,true)
+                    this.enterNode(tempClass,y,true,args)
                 }else{
                     transition.scene='battle'
                     if(this.battle.modded(69)){
@@ -182,7 +227,7 @@ class nodeManager{
                             this.battle.overlayManager.overlays[61][0].active=true
                             this.battle.overlayManager.overlays[61][0].activate([1,y])
                         }else{
-                            let list=this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0]
+                            let list=this.listing.static[this.world][y==0?4:y<3&&this.world==0?3:0]
                             let index=floor(random(0,list.length))
                             this.battle.setupBattle(types.encounter[list[index]])
                             list.splice(index,1)
@@ -195,10 +240,7 @@ class nodeManager{
                             this.battle.overlayManager.overlays[61][0].active=true
                             this.battle.overlayManager.overlays[61][0].activate([2,y])
                         }else{
-                            let list=this.listing.encounter[this.world][1]
-                            let index=floor(random(0,list.length))
-                            this.battle.setupBattle(types.encounter[list[index]])
-                            list.splice(index,1)
+                            this.battle.setupBattle(types.encounter[args[0]])
                         }
                     }
                 }
@@ -211,7 +253,7 @@ class nodeManager{
                         this.battle.overlayManager.overlays[61][0].active=true
                         this.battle.overlayManager.overlays[61][0].activate([2,y])
                     }else{
-                        let list=this.listing.encounter[this.world][1]
+                        let list=this.listing.static[this.world][1]
                         let index=floor(random(0,list.length))
                         this.battle.setupBattle(types.encounter[list[index]])
                         list.splice(index,1)
@@ -219,7 +261,7 @@ class nodeManager{
                         this.battle.combatantManager.allEffect(3,[5])
                     }
                 }else{
-                    this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][2][this.saveBoss>=0?this.saveBoss:floor(random(0,this.listing.encounter[this.world][2].length))]])
+                    this.battle.setupBattle(types.encounter[args[0]])
                     this.saveBoss=-1
                 }
             break
@@ -252,21 +294,18 @@ class nodeManager{
                     transition.scene='event'
                     this.battle.setupSpecificEvent(findName('Placeholder Event',types.event))
                 }else{
-                    let send=game.ascend>=15
-                    ?this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5,5,5][floor(random(0,10))]:[0,0,1,1,3,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5][floor(random(0,20))]
-                    :this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5,5,5][floor(random(0,10))]:[0,0,0,1,3,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5][floor(random(0,20))]
-                    if(send==5){
+                    if(args[1]==5){
                         this.battle.relicManager.activate(7,[type])
                         transition.scene='event'
                         this.battle.setupEvent()
                     }else{
-                        this.enterNode(send,y,true)
+                        this.enterNode(args[1],y,true,args)
                     }
                 }
             break
             case 6:
                 if(this.world==1&&game.ascend>=23){
-                    this.enterNode(1,y,true)
+                    this.enterNode(1,y,true,args)
                 }else{
                     transition.scene='stash'
                     this.battle.setupStash()
@@ -327,7 +366,7 @@ class nodeManager{
                     if(!this.nodes[a].complete){
                         this.nodes[a].complete=true
                         transition.trigger=true
-                        this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false)
+                        this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false,[this.nodes[a].combat,this.nodes[a].reality])
                     }
                 }
                 break
@@ -368,7 +407,7 @@ class nodeManager{
                     if(!this.nodes[a].complete){
                         this.nodes[a].complete=true
                         transition.trigger=true
-                        this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false)
+                        this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false,[this.nodes[a].combat,this.nodes[a].reality])
                     }
                 }
                 break

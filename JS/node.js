@@ -5,6 +5,46 @@ class node{
         this.position={x:x,y:y}
         this.tilePosition={x:tileX,y:tileY}
         this.type=type
+        let index=0
+        switch(this.type){
+            case 0:
+                this.reality=this.type
+                let list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
+                    this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.type
+                index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
+                this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
+                this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
+            break
+            case 1: case 2:
+                this.reality=this.type
+                index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type].length))
+                this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type][index]
+                this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type].splice(index,1)
+            break
+            case 5:
+                index=floor(random(0,this.battle.nodeManager.unknownPossibilities.length))
+                this.reality=this.battle.nodeManager.unknownPossibilities[index]
+                this.battle.nodeManager.unknownPossibilities.splice(index,1)
+                switch(this.reality){
+                    case 0:
+                        let list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
+                            this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.reality
+                        index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
+                        this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
+                        this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
+                    break
+                    case 1: case 2:
+                        index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].length))
+                        this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality][index]
+                        this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].splice(index,1)
+                    break
+                }
+            break
+            default:
+                this.reality=this.type
+                this.combat=0
+            break
+        }
 
         this.base={position:{x:this.position.x,y:this.position.y}}
 
@@ -15,6 +55,7 @@ class node{
         this.fade=1
         this.scroll=0
         this.complete=false
+        this.active=false
 
         this.anim={complete:0,active:0,past:0,description:0}
     }
@@ -57,10 +98,17 @@ class node{
                     this.layer.point(6,0)
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
-                    this.layer.rect(0,24,42,14,3)
-                    this.layer.fill(...color,this.fade*cap)
-                    this.layer.textSize(12)
-                    this.layer.text('Battle',0,25)
+                    if((this.complete||this.active)&&types.encounter[this.combat].name.length>15){
+                        this.layer.rect(0,24.5,this.complete||this.active?types.encounter[this.combat].name.length*4.05+13.5:30.5,15,3)
+                        this.layer.fill(...color,this.fade*cap)
+                        this.layer.textSize(9)
+                        this.layer.text(this.complete||this.active?types.encounter[this.combat].name:'Battle',0,25)
+                    }else{
+                        this.layer.rect(0,24.5,this.complete||this.active?types.encounter[this.combat].name.length*5.4+18:42,16,3)
+                        this.layer.fill(...color,this.fade*cap)
+                        this.layer.textSize(12)
+                        this.layer.text(this.complete||this.active?types.encounter[this.combat].name:'Battle',0,25)
+                    }
                 break
                 case 1:
                     this.layer.stroke(...color,this.fade)
@@ -77,10 +125,17 @@ class node{
                     this.layer.triangle(13,-7,7,-13,16,-16)
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
-                    this.layer.rect(0,24,35,14,3)
-                    this.layer.fill(...color,this.fade*cap)
-                    this.layer.textSize(12)
-                    this.layer.text('Elite',0,25)
+                    if((this.complete||this.active)&&types.encounter[this.combat].name.length>15){
+                        this.layer.rect(0,24.5,this.complete||this.active?types.encounter[this.combat].name.length*4.05+13.5:30.5,15,3)
+                        this.layer.fill(...color,this.fade*cap)
+                        this.layer.textSize(9)
+                        this.layer.text(this.complete||this.active?types.encounter[this.combat].name:'Elite',0,25)
+                    }else{
+                        this.layer.rect(0,24.5,this.complete||this.active?types.encounter[this.combat].name.length*5.4+18:35,16,3)
+                        this.layer.fill(...color,this.fade*cap)
+                        this.layer.textSize(12)
+                        this.layer.text(this.complete||this.active?types.encounter[this.combat].name:'Elite',0,25)
+                    }
                 break
                 case 2:
                     this.layer.noStroke()
@@ -104,11 +159,11 @@ class node{
                     this.layer.line(-3,-3,-8,-5)
                     this.layer.line(3,-3,8,-5)
                     this.layer.noStroke()
-                    this.layer.fill(70,75,80,this.fade*cap)
-                    this.layer.rect(0,49,36,16,3)
-                    this.layer.fill(...color,this.fade*cap)
+                    this.layer.fill(70,75,80,this.fade)
+                    this.layer.rect(0,52,36,20,3)
+                    this.layer.fill(...color,this.fade)
                     this.layer.textSize(15)
-                    this.layer.text('Boss',0,50)
+                    this.layer.text(types.encounter[this.combat].name,0,52)
                 break
                 case 3:
                     this.layer.stroke(...color,this.fade)
@@ -234,6 +289,7 @@ class node{
     }
     update(active,past){
         this.size=smoothAnim(this.size,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<25,1,1.5,5)
+        this.active=active
         this.anim.complete=smoothAnim(this.anim.complete,this.complete,0,1,5)
         this.anim.active=smoothAnim(this.anim.active,active,0,1,5)
         this.anim.past=smoothAnim(this.anim.past,past,0,1,5)

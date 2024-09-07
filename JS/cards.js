@@ -2140,20 +2140,6 @@ types.card=[
             ],
         },
     },{
-        name:`Director's\nCut`,rarity:2,list:0,
-        levels:[
-            {effect:[],attack:2115,cost:2,target:[0],spec:[1,15],limit:1,class:11},
-            {effect:[],attack:2115,cost:2,target:[0],spec:[1,15],limit:2,class:11},
-            {effect:[],attack:2115,cost:2,target:[0],spec:[1,15],limit:3,class:11},
-        ],mtg:{
-            rarity:2,list:0,color:[0],
-            levels:[
-                {effect:[],attack:2115,cost:[-1,-1,-1],target:[0],spec:[1,15],limit:1,class:11},
-                {effect:[],attack:2115,cost:[-1,-1,-1],target:[0],spec:[1,15],limit:2,class:11},
-                {effect:[],attack:2115,cost:[-1,-1,-1],target:[0],spec:[1,15],limit:3,class:11},
-            ],
-        },
-    },{
         name:'Health\nPack',rarity:2,list:0,
         levels:[
             {effect:[],attack:349,cost:0,target:[0],spec:[15],limit:2,class:11},
@@ -41244,20 +41230,6 @@ types.card=[
             ],
         },
     },{
-        name:'Haruka',rarity:-7,list:game.playerNumber+5,
-        levels:[
-            {effect:[],attack:3387,cost:1,target:[0],spec:[1],class:11},
-            {effect:[],attack:3387,cost:0,target:[0],spec:[1],class:11},
-            {effect:[],attack:3387,cost:0,target:[0],spec:[1,22],class:11},
-        ],mtg:{
-            rarity:-7,list:game.playerNumber+5,color:[game.playerNumber+5],
-            levels:[
-                {effect:[],attack:3387,cost:[-1,-1],target:[0],spec:[1],class:11},
-                {effect:[],attack:3387,cost:[-1],target:[0],spec:[1],class:11},
-                {effect:[],attack:3387,cost:[],target:[0],spec:[1],class:11},
-            ],
-        },
-    },{
         name:'Komachi',rarity:-7,list:game.playerNumber+5,
         levels:[
             {effect:[1],attack:3084,cost:2,target:[0],spec:[1],class:11},
@@ -46230,6 +46202,35 @@ types.card=[
 
     //mark p
 
+    /*{
+        name:'Haruka',rarity:-7,list:game.playerNumber+5,
+        levels:[
+            {effect:[],attack:3387,cost:1,target:[0],spec:[1],class:11},
+            {effect:[],attack:3387,cost:0,target:[0],spec:[1],class:11},
+            {effect:[],attack:3387,cost:0,target:[0],spec:[1,22],class:11},
+        ],mtg:{
+            rarity:-7,list:game.playerNumber+5,color:[game.playerNumber+5],
+            levels:[
+                {effect:[],attack:3387,cost:[-1,-1],target:[0],spec:[1],class:11},
+                {effect:[],attack:3387,cost:[-1],target:[0],spec:[1],class:11},
+                {effect:[],attack:3387,cost:[],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:`Director's\nCut`,rarity:2,list:0,
+        levels:[
+            {effect:[],attack:2115,cost:2,target:[0],spec:[1,15],limit:1,class:11},
+            {effect:[],attack:2115,cost:2,target:[0],spec:[1,15],limit:2,class:11},
+            {effect:[],attack:2115,cost:2,target:[0],spec:[1,15],limit:3,class:11},
+        ],mtg:{
+            rarity:2,list:0,color:[0],
+            levels:[
+                {effect:[],attack:2115,cost:[-1,-1,-1],target:[0],spec:[1,15],limit:1,class:11},
+                {effect:[],attack:2115,cost:[-1,-1,-1],target:[0],spec:[1,15],limit:2,class:11},
+                {effect:[],attack:2115,cost:[-1,-1,-1],target:[0],spec:[1,15],limit:3,class:11},
+            ],
+        },
+    },*/
     
 
 
