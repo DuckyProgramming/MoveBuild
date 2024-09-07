@@ -17,6 +17,8 @@ class nodeManager{
         this.harmBoss=0
 
         this.initialListing()
+
+        this.totals=[0,0,0,0,0,0,0,0,0]
     }
     initialListing(){
         for(let a=0,la=types.encounter.length;a<la;a++){
@@ -107,6 +109,7 @@ class nodeManager{
                 }
             }
         }
+        this.nodes.forEach(node=>this.totals[node.type]++)
     }
     setupTutorialMap(){
         this.nodes=[]

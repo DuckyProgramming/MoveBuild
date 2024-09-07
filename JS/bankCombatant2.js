@@ -1283,7 +1283,7 @@ combatant.prototype.setupGraphics=function(direction){
                 break
             }
         break
-        case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff':
+        case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck':
             this.anim={direction:direction,eye:[0,0],legs:[{top:24,length:{top:10}},{top:24,length:{top:10}}],arms:[{top:54,length:{top:10}},{top:54,length:{top:10}}]}
             this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1}}
             this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
@@ -1347,6 +1347,9 @@ combatant.prototype.setupGraphics=function(direction){
                     this.fades.bowtie=1
                     this.trigger.display.hat=true
                     this.trigger.display.bowtie=true
+                break
+                case 'Sick Duck':
+                    this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[235,255,25],body:[225,255,15],legs:[210,255,0],arms:[215,255,5]}}
                 break
             }
         break
@@ -1817,7 +1820,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
             this.color={skin:{in:[120,120,120],out:[100,100,100],limb:[95,95,95]},eye:{back:[50,50,200],front:[75,75,225],glow:[150,150,255]}}
         break
-        case 'Bush Thing':
+        case 'Bush Thing': case 'Puffball':
             this.anim={direction:direction,eye:[0,0],arms:[{top:54,length:{top:15}},{top:54,length:{top:15}}]}
             this.fades={eye:[1,1],skin:{arms:1,body:1}}
             this.spin={arms:[{top:-90},{top:90}],eye:[-24,24]}
@@ -1827,7 +1830,14 @@ combatant.prototype.setupGraphics=function(direction){
             this.calc={int:[0,0,0,0]}
             this.animSet={loop:0,flip:0}
             this.goal={anim:{direction:this.anim.direction}}
-            this.color={eye:{back:[255,0,0]},skin:{body:[40,120,40],arms:[30,90,30]}}
+            switch(this.name){
+                case 'Bush Thing':
+                    this.color={eye:{back:[255,0,0]},skin:{body:[40,120,40],arms:[30,90,30]}}
+                break
+                case 'Puffball':
+                    this.color={eye:{back:[75,125,150]},skin:{body:[160,200,220],arms:[120,160,180]}}
+                break
+            }
         break
         case 'Fireball':
             this.anim={direction:direction,eye:[0,0],arms:[{top:54,length:{top:10}},{top:54,length:{top:10}}]}
@@ -2322,6 +2332,34 @@ combatant.prototype.setupGraphics=function(direction){
             this.animSet={loop:0,flip:0,hand:0,foot:0}
 
             this.goal={anim:{direction:this.anim.direction,sword:true}}
+        break
+        case 'Spirit of Wealth':
+            this.anim={direction:direction}
+            this.fades={body:1}
+            this.trigger={display:{eye:[true,true],skin:{arms:true,body:true}}}
+            this.calc={int:[0,0,0,0]}
+            this.animSet={loop:0,flip:0}
+            this.goal={anim:{direction:this.anim.direction}}
+            this.color=[[255,245,125],[255,255,235]]
+        break
+        case 'Thoughtless':
+            this.anim={direction:direction,head:direction,
+                legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
+                arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
+            this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]}
+            this.parts={
+                legs:[{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                arms:[{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
+            this.graphics={
+                legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
+            this.fades={skin:{legs:1,arms:1,body:1,head:1}}
+            this.trigger={display:{skin:{legs:true,arms:true,body:true,head:true},muscles:true}}
+            this.trigger.display.extra={damage:false}
+            this.calc={int:[0,0,0,0]}
+            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.goal={anim:{direction:this.anim.direction}}
+            this.color={skin:{head:[[40,40,40],[240,240,240]],body:[50,50,50],legs:[40,40,40],arms:[45,45,45]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
         break
         default:
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
@@ -3480,9 +3518,39 @@ combatant.prototype.setupGraphics=function(direction){
                     this.trigger.display.extra={sword:true}
                     this.size=0.9
                 break
+                case 'Pistol Biker':
+                    this.color={skin:{head:[240,220,180],body:[175,25,25],legs:[170,20,20],arms:[180,30,30]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.hat=[150,0,0]
+                    this.color.goggles=[255,255,255]
+                    this.color.belt=[240,220,220]
+                    this.fades.hat=1
+                    this.fades.goggles=0.6
+                    this.fades.belt=1
+                    this.trigger.display.hat=true
+                    this.trigger.display.goggles=true
+                    this.trigger.display.belt=true
+                break
+                case 'Brawler':
+                    this.color={skin:{head:[240,220,180],body:[225,115,25],legs:[220,110,20],arms:[215,105,15]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.belt=[230,230,230]
+                    this.fades.belt=1
+                    this.trigger.display.belt=true
+                    this.trigger.display.muscles=true
+                break
+                case 'Mailman':
+                    this.color={skin:{head:[240,220,180],body:[220,190,130],legs:[180,160,120],arms:[180,185,190]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.skin.upperBody=[195,200,205]
+                    this.color.hat=[[80,140,180],[190,185,180]]
+                    this.color.tie=[[140,120,100],[0,40,100]]
+                    this.fades.hat=1
+                    this.fades.tie=1
+                    this.trigger.display.hat=true
+                    this.trigger.display.tie=true
+                break
                 default:
                     this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                 break
+                //mark d
             }
         break
     }

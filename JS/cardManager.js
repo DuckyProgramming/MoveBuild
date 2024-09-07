@@ -38,7 +38,9 @@ class cardManager{
         }else{
             this.listing.all[types.card[a].rarity].push(a)
         }
-        this.listing.all[3].push(a)
+        if(types.card[a].rarity!=3){
+            this.listing.all[3].push(a)
+        }
     }
     initialListing(){
         for(let a=0;a<game.playerNumber+6;a++){
@@ -105,14 +107,20 @@ class cardManager{
             }
             //variants.prismrule.includes(types.card[a].list)&&types.card[a].rarity>-10||variants.prismrule.includes(-1)&&types.card[a].list<0||variants.prismrule.includes(-2)&&types.card[a].rarity==-10
             if(types.card[a].rarity>=0&&types.card[a].list>=0){
-                this.listing.card[types.card[a].list][types.card[a].rarity].push(a)
+                if(types.card[a].rarity!=3){
+                    this.listing.card[types.card[a].list][types.card[a].rarity].push(a)
+                }
                 this.listing.card[types.card[a].list][3].push(a)
                 if(types.card[a].list>0&&types.card[a].list<=game.playerNumber){
-                    this.listing.allPlayerCard[types.card[a].rarity].push(a)
+                    if(types.card[a].rarity!=3){
+                        this.listing.allPlayerCard[types.card[a].rarity].push(a)
+                    }
                     this.listing.allPlayerCard[3].push(a)
                 }
                 if(types.card[a].list>=0&&types.card[a].list<=game.playerNumber+5){
-                    this.listing.allListableCard[types.card[a].rarity].push(a)
+                    if(types.card[a].rarity!=3){
+                        this.listing.allListableCard[types.card[a].rarity].push(a)
+                    }
                     this.listing.allListableCard[3].push(a)
                 }
             }

@@ -2533,7 +2533,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case -14: case -60:
+        case -14: case -60: case -101:
         case 102: case 112: case 114: case 219: case 270: case 324: case 325: case 341: case 403: case 404:
         case 405: case 426: case 587: case 637: case 670: case 676: case 683: case 710: case 792: case 845:
         case 888: case 889: case 927: case 936: case 941: case 969: case 1020: case 1099: case 1107: case 1132:

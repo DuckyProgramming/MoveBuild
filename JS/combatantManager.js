@@ -965,6 +965,11 @@ class combatantManager{
                             }
                         }
                     break
+                    case 51:
+                        for(let b=0,lb=floor(args.length/2);b<lb;b++){
+                            this.combatants[a].status.main[findList(args[b*2],this.combatants[a].status.name)]=max(0,this.combatants[a].status.main[findList(args[b*2],this.combatants[a].status.name)]-args[b*2+1])
+                        }
+                    break
                 }
             }
         }

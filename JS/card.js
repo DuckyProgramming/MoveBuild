@@ -785,7 +785,7 @@ class card{
             case -46: string+=`When Drawn,\nDraw ${effect[0]} More Card${pl(effect[0])}\nand Stop Drawing`; break
             case -47: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTake ${effect[1]} Damage\nWhen You Take Damage,\nDamage Decreases by ${effect[2]}`; break
             case -48: string+=`When Drawn,\nLose ${effect[0]} ${variants.mtg?`Random Mana`:`Energy`}\nWhen Discarded\nFrom Your Hand,\nNext ${effect[1]!=1?`${effect[1]} `:``}Attack${pl(effect[1])}\nDeal${effect[1]==1?`s`:``} Double Damage`; break
-            case -49: string+=`At the End of Your Turn\nLose ${effect[0]} Block`; break
+            case -49: string+=`At the End of Your Turn,\nLose ${effect[0]} Block`; break
             case -50: string+=`When Etherealed,\nDraw ${effect[0]} More Card${pl(effect[0])}\nNext Turn`; break
             case -51: string+=`When Drawn,\nCosts 1 Less`; break
             case -52: string+=`A Random Enemy\nGains ${effect[0]} Strength`; break
@@ -834,6 +834,9 @@ class card{
             case -96: string+=`At the End of Your Turn,\nLose ${effect[0]} ${variants.mtg?`Random Mana`:`Energy`}\nNext Turn`; break
             case -97: string+=`Confuse a Random\nCard in Hand\nWhen You Play a Card`; break
             case -98: string+=`At the End of Your Turn,\nTake ${effect[0]} Damage\nAdd ${effect[1]} Shiv${pl(effect[1])} to Hand`; break
+            case -99: string+=`Exhausts Self When\nYou Play an Attack\nIf You Play Another\nClass of Card,\nDiscard Your Hand`; break
+            case -100: string+=`Exhausts Self When\nYou Play a Defense\nIf You Play Another\nClass of Card,\nDiscard Your Hand`; break
+            case -101: string+=`All Enemies\nWith Mailshield\nLose ${effect[0]} Mailshield`; break
 
             //mark n
 
@@ -7177,6 +7180,22 @@ class card{
                 case -97:
                     this.battle.cardManagers[this.player].hand.randomEffect(43,[])
                 break
+                case -99:
+                    if(cardClass==1){
+                        this.deSize=true
+                        this.exhaust=true
+                    }else{
+                        this.battle.cardManagers[this.player].allEffect(2,2)
+                    }
+                break
+                case -100:
+                    if(cardClass==2){
+                        this.deSize=true
+                        this.exhaust=true
+                    }else{
+                        this.battle.cardManagers[this.player].allEffect(2,2)
+                    }
+                break
                 case 52: case 220: case 594: case 1508: case 3914:
                     this.deSize=true
                 break
@@ -7789,9 +7808,6 @@ class card{
         }
     }
     doubleBoth(){
-        if(!this.additionalSpec.includes(61)){
-            this.additionalSpec.push(61)
-        }
         if(variants.mtg){
             if(this.specialCost){
                 this.cost[0]*=2
@@ -8904,6 +8920,10 @@ class card{
                         this.layer.line(-this.width/2,this.height/2-5,-this.width/2+15,this.height/2-15)
                         this.layer.line(-this.width/2+5,this.height/2,-this.width/2+15,this.height/2-15)
                     break
+                    case 3:
+                        this.layer.line(-this.width/2,this.height/2-15,-this.width/2+5,this.height/2-5)
+                        this.layer.line(-this.width/2+15,this.height/2,-this.width/2+5,this.height/2-5)
+                    break
                 }
                 if(variants.mtg&&list>=0&&list<=game.playerNumber){
                     if(colorDetail.length>=2){
@@ -9758,7 +9778,7 @@ class card{
             this.upSize=true
         }
         if(this.player>=0&&this.player<this.battle.players){
-            let cost=this.editCost(this.falsed.trigger?this.falsed.cost:this.cost,0)
+                let cost=this.editCost(this.falsed.trigger?this.falsed.cost:this.cost,0)
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             let energyPay=false
             if(!(variants.mtg&&!this.specialCost)){

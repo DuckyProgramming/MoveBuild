@@ -577,6 +577,16 @@ class particle{
                 this.size=1
                 this.scale=0
             break
+            case 197:
+                this.direction=args[0]
+                this.size=args[1]
+                this.shear=random(0,360)
+                this.side=floor(random(0,2))
+                this.speed=3
+                this.scale=1
+                this.fade=0
+                this.trigger=false
+            break
 
         }
     }
@@ -3178,6 +3188,12 @@ class particle{
                     this.layer.line(15,0,10,0)
                     this.layer.line(0,15,0,10)
                 break
+                case 197:
+                    for(let a=0,la=10;a<la;a++){
+                        this.layer.fill(...mergeColor([255,245,125],[255,255,235],a/la),this.fade*0.2)
+                        regStar(this.layer,0,0,4,9*(1-a/la),9*(1-a/la),3*(1-a/la),3*(1-a/la),(this.time*2-a*9)*(this.side*2-1))
+                    }
+                break
 
             }
             //mark p
@@ -3826,6 +3842,21 @@ class particle{
                 this.fade=smoothAnim(this.fade,this.time<this.timer,0,1,10)
                 this.scale=smoothAnim(this.scale,this.time<this.timer,0,1,10)
                 this.speed+=0.4
+            break
+            case 197:
+                this.position.x+=lsin(this.direction)*this.speed+lcos(this.direction)*this.speed*lsin(this.shear+this.time*6)*0.2
+                this.position.y-=lcos(this.direction)*this.speed-lsin(this.direction)*this.speed*lsin(this.shear+this.time*6)*0.2
+                if(!this.trigger){
+                    this.fade+=0.1
+                    if(this.fade>=2){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.1
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
+                }
             break
 
         }

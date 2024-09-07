@@ -4295,7 +4295,7 @@ class attack{
                     case 4059:
                         if(this.targetCombatant.life<=0){
                             switch(this.targetCombatant.name){
-                                case 'Trenchcoat Gunner': case 'Gangster Gunner': case 'Management Officer': case 'Executive': case 'Corrupt Detective': case 'Voidglass': case 'Chief Engineering Officer':
+                                case 'Trenchcoat Gunner': case 'Gangster Gunner': case 'Management Officer': case 'Executive': case 'Corrupt Detective': case 'Voidglass': case 'Chief Engineering Officer': case 'Pistol Biker':
                                     this.userManager.hand.add(findName('Pistol',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break
@@ -16914,6 +16914,9 @@ class attack{
                     case -60:
                         this.battle.loseCurrency(this.effect[0],this.player)
                         this.userCombatant.statusEffect('Temporary Strength',this.effect[1])
+                    break
+                    case -101:
+                        this.battle.combatantManager.allEffect(51,['Mailshield',1])
                     break
                     case 102:
                         if(this.userCombatant.armed){

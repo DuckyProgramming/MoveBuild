@@ -126,7 +126,7 @@ class turn{
                                 case 36: case 37: case 58: case 97: case 101: case 103: case 113: case 116: case 121: case 122:
                                 case 212: case 226: case 227: case 229: case 242: case 246: case 247: case 251: case 252: case 270:
                                 case 271: case 274: case 282: case 295: case 304: case 305: case 309: case 341: case 355: case 369:
-                                case 370: case 371: case 372: case 373: case 377: case 378:
+                                case 370: case 371: case 372: case 373: case 377: case 378: case 399: case 412:
                                     this.target=this.battle.modded(57)?[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2]
@@ -138,14 +138,14 @@ class turn{
                                 case 112: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223: case 224:
                                 case 248: case 250: case 253: case 258: case 260: case 272: case 273: case 275: case 276: case 277:
                                 case 297: case 298: case 299: case 310: case 317: case 325: case 329: case 332: case 342: case 343:
-                                case 354: case 374: case 375: case 382: case 383: case 386:
+                                case 354: case 374: case 375: case 382: case 383: case 386: case 394: case 403:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2]
                                     ]
                                 break
                                 case 71: case 73: case 79: case 99: case 143: case 172: case 175: case 312: case 319: case 322:
-                                case 339: case 348: case 367: case 385: case 389: case 390:
+                                case 339: case 348: case 367: case 385: case 389: case 390: case 397:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -161,7 +161,7 @@ class turn{
                                     ]
                                 break
                                 case 9: case 60: case 64: case 69: case 82: case 84: case 95: case 104: case 114: case 124:
-                                case 153: case 264: case 265: case 278: case 308: case 330: case 368:
+                                case 153: case 264: case 265: case 278: case 308: case 330: case 368: case 395:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
@@ -176,7 +176,7 @@ class turn{
                                 case 235: case 236: case 245: case 262: case 263: case 266: case 268: case 279: case 283: case 284:
                                 case 285: case 287: case 290: case 303: case 306: case 313: case 316: case 320: case 321: case 327:
                                 case 328: case 335: case 336: case 337: case 338: case 340: case 353: case 358: case 361: case 362:
-                                case 364:
+                                case 364: case 398: case 400: case 402: case 407:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -188,6 +188,7 @@ class turn{
                                 break
                                 case 16: case 17: case 54: case 87: case 120: case 128: case 132: case 133: case 136: case 142:
                                 case 147: case 157: case 198: case 213: case 215: case 217: case 255: case 256: case 350: case 351:
+                                case 396:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]],
                                         [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]],
@@ -198,7 +199,7 @@ class turn{
                                     ]
                                 break
                                 case 28: case 44: case 53: case 105: case 146: case 168: case 171: case 288: case 357: case 360:
-                                case 381: case 387: case 388:
+                                case 381: case 387: case 388: case 404: case 409:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -211,7 +212,7 @@ class turn{
                                 case 43: case 46:
                                     this.targetIndex=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
                                 break
-                                case 49: case 164: case 185:
+                                case 49: case 164: case 185: case 406:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -531,7 +532,7 @@ class turn{
                                     this.targetTile.push(this.battle.tileManager.getTileIndex(this.target[a][0],this.target[a][1]))
                                 }
                             }
-                            if(this.type==78||this.type==117||this.type==135||this.type==154||this.type==162||this.type==175||this.type==243||this.type==296||this.type==319||this.type==323||this.type==324||this.type==347){
+                            if(this.type==78||this.type==117||this.type==135||this.type==154||this.type==162||this.type==175||this.type==243||this.type==296||this.type==319||this.type==323||this.type==324||this.type==347||this.type==403){
                                 this.direction=this.userCombatant.goal.anim.direction
                             }else if(this.type==344){
                                 this.direction=this.userCombatant.goal.anim.direction+180
@@ -596,7 +597,8 @@ class turn{
                                 this.type==86||this.type==87||this.type==95||this.type==104||this.type==105||this.type==114||this.type==120||this.type==124||this.type==142||this.type==146||
                                 this.type==153||this.type==157||this.type==166||this.type==168||this.type==171||this.type==176||this.type==192||this.type==204||this.type==213||this.type==222||
                                 this.type==223||this.type==224||this.type==259||this.type==264||this.type==265||this.type==278||this.type==288||this.type==291||this.type==292||this.type==308||
-                                this.type==330||this.type==350||this.type==351||this.type==357||this.type==360||this.type==368||this.type==379||this.type==381||this.type==387||this.type==388
+                                this.type==330||this.type==350||this.type==351||this.type==357||this.type==360||this.type==368||this.type==379||this.type==381||this.type==387||this.type==388||
+                                this.type==395||this.type==404||this.type==409
                             ){
                                 this.targetCombatant=[]
                                 this.direction=[]
@@ -655,7 +657,7 @@ class turn{
                                             case 36: case 37: case 58: case 97: case 101: case 103: case 113: case 116: case 121: case 122:
                                             case 212: case 226: case 227: case 229: case 242: case 246: case 247: case 252: case 270: case 271:
                                             case 274: case 282: case 295: case 305: case 309: case 332: case 341: case 355: case 369: case 370:
-                                            case 371: case 372: case 373: case 377:
+                                            case 371: case 372: case 373: case 377: case 399: case 412:
                                                 if(a==1&&this.targetTile[0]<0){
                                                     fail=true
                                                 }
@@ -668,13 +670,13 @@ class turn{
                                         case 112: case 140: case 156: case 183: case 203: case 211: case 248: case 253: case 258: case 260:
                                         case 272: case 273: case 275: case 276: case 277: case 297: case 298: case 299: case 310: case 317:
                                         case 325: case 329: case 342: case 343: case 354: case 374: case 375: case 378: case 382: case 383:
-                                        case 386:
+                                        case 386: case 394:
                                             if(a==1&&this.targetTile[0]<0){
                                                 fail=true
                                             }
                                         break
                                         case 71: case 73: case 79: case 172: case 312: case 322: case 339: case 348:
-                                        case 367: case 99: case 385: case 389: case 390:
+                                        case 367: case 99: case 385: case 389: case 390: case 397:
                                             if(
                                                 (a>=1&&this.targetTile[0]<0)||
                                                 (a>=2&&this.targetTile[1]<0)){
@@ -696,7 +698,7 @@ class turn{
                                         case 202: case 206: case 208: case 235: case 236: case 245: case 262: case 263: case 266: case 268:
                                         case 279: case 283: case 284: case 285: case 287: case 290: case 303: case 306: case 313: case 316:
                                         case 320: case 321: case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353:
-                                        case 358: case 361: case 362: case 364:
+                                        case 358: case 361: case 362: case 364: case 398: case 400: case 402: case 407:
                                             if(
                                                 (a>=1&&this.targetTile[0]<0)||
                                                 (a>=2&&this.targetTile[1]<0)||
@@ -706,7 +708,7 @@ class turn{
                                                     fail=true
                                             }
                                         break
-                                        case 49: case 131: case 164: case 185: case 195: case 205: case 219: case 286: case 384:
+                                        case 49: case 131: case 164: case 185: case 195: case 205: case 219: case 286: case 384: case 406:
                                             if(
                                                 (a%6>=1&&this.targetTile[floor(b/6)*6]<0)||
                                                 (a%6>=2&&this.targetTile[floor(b/6)*6+1]<0)||
@@ -1351,7 +1353,7 @@ class turn{
                     case 27:
                         this.targetCombatant.statusEffect('Frail Next Turn',this.effect[1])
                     break
-                    case 30: case 378:
+                    case 30: case 378: case 398:
                         this.userCombatant.addBlock(this.effect[1])
                     break
                     case 67:
@@ -1461,6 +1463,16 @@ class turn{
                     case 386:
                         this.targetCombatant.statusEffect('Miss',this.effect[1])
                     break
+                    case 397:
+                        this.targetCombatant.statusEffect('Poison',this.effect[1])
+                    break
+                    case 402:
+                        this.targetCombatant.statusEffect('Vulnerable Next Turn',this.effect[1])
+                    break
+                    case 412:
+                        this.targetCombatant.statusEffect('Lock On',this.effect[1])
+                    break
+
                 }
             break
             case 1:
@@ -1534,6 +1546,14 @@ class turn{
                         this.battle.combatantManager.allEffect(9,[1])
                         this.battle.combatantManager.allEffect(48,['Armor',this.effect[1]])
                     break
+                    case 401:
+                        this.battle.combatantManager.allEffect(6,[this.effect[0]])
+                        this.battle.combatantManager.allEffect(9,[1])
+                        this.battle.combatantManager.allEffect(48,['Strength',this.effect[1]])
+                    break
+                    case 410:
+                        this.userCombatant.addBlock(this.effect[0]*(1+floor(random(0,2))))
+                    break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
                         switch(this.type){
@@ -1596,6 +1616,15 @@ class turn{
                             break
                             case 376:
                                 this.userCombatant.statusEffect('Dexterity',this.effect[1])
+                            break
+                            case 405:
+                                this.userCombatant.statusEffect('Armor',this.effect[1])
+                            break
+                            case 408:
+                                this.userCombatant.statusEffectNext('Counter Shockwave',this.effect[1])
+                            break
+                            case 411:
+                                this.userCombatant.statusEffect('Buffer',this.effect[1])
                             break
 
                         }
@@ -1717,6 +1746,11 @@ class turn{
                     case 352:
                         this.battle.setReinforce('-h Traitor',{x:2,y:1})
                     break
+                    case 414:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.dropDrawShuffle(floor(random(0,this.battle.players)),findName(this.effect[1],types.card),0,game.playerNumber+1)
+                        }
+                    break
                 }
             break
             case 3:
@@ -1761,7 +1795,7 @@ class turn{
                                 }
                             }
                         break
-                        case 84:
+                        case 84: case 404:
                             this.targetCombatant[a].statusEffect('Weak Next Turn',this.effect[1])
                         break
                         case 114:
@@ -1792,6 +1826,14 @@ class turn{
                             this.targetCombatant[a].statusEffect('Vulnerable Next Turn',this.effect[2])
                         break
                     }
+                }
+                switch(this.type){
+                    case 395:
+                        this.userCombatant.statusEffect('Strength',this.effect[1])
+                    break
+                    case 409:
+                        this.userCombatant.addBlock(this.effect[1])
+                    break
                 }
             break
             case 4:
@@ -1952,6 +1994,9 @@ class turn{
                             }
                         }
                     break
+                    case 413:
+                        this.battle.combatantManager.allEffect(48,['Dodge',this.effect[0]])
+                    break
 
                 }
             break
@@ -2019,7 +2064,7 @@ class turn{
                     case 299:
                         this.targetCombatant.statusEffect('Shock',this.effect[1])
                     break
-                    case 355:
+                    case 355: case 394:
                         this.targetCombatant.statusEffect('Frail Next Turn',this.effect[1])
                     break
                     case 370:
@@ -2073,6 +2118,9 @@ class turn{
                     break
                     case 256:
                         this.battle.combatantManager.areaAbstract(2,['Vulnerable Next Turn',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                    break
+                    case 396:
+                        this.userCombatant.addBlock(this.effect[1])
                     break
                 }
             break

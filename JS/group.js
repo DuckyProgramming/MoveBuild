@@ -1866,7 +1866,7 @@ class group{
                 break
                 case 44:
                     if(args.includes(this.cards[a].attack)){
-                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,this.cards[a].attack==5163?1:4)
+                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,this.cards[a].attack==5163?4:1)
                         a--
                         la--
                     }
@@ -3107,7 +3107,7 @@ class group{
         this.lastSort=3
         let rarities=[]
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(!rarities.includes(this.cards[a].rarity)&&this.cards[a].rarity<=2&&this.cards[a].rarity>=-2){
+            if(!rarities.includes(this.cards[a].rarity)&&this.cards[a].rarity<=3&&this.cards[a].rarity>=-2){
                 rarities.push(this.cards[a].rarity)
             }
         }

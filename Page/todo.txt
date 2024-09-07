@@ -1,8 +1,12 @@
 UNCOMING:
 
-deploy new events
-
 deploy new enemies
+
+predetermine the map
+
+
+
+deploy new events
 
 collection screen
 
@@ -40,10 +44,15 @@ scrap note
 
 
 
+lots more azis cards
+
+
+
 exhaust
 wisp
 wisp
 amplify
+[big airi defense]
 
 
 
@@ -51,7 +60,9 @@ hype train - 3 cost 25 damage to a random adjacent enemy, costs 1 less
 
 last resort - gain 6x block, if x is 0 gain 1 energy
 
-merge to main - 13 block, shuffle discard into draw, draw a card
+merge to main - 14 block, shuffle discard into draw, draw a card
+
+nullity - 3 damage, if fatal remove a card, exhaust ethereal
 
 
 
@@ -175,6 +186,27 @@ shinmy boss needs 2 attacks and setup code
 
 
 
+new bonus mods (generalized)
+sick duck
+spirit of wealth
+puffball
+pistol biker
+brawler
+mailman
+thoughtless
+guard
+bar security
+bartender
+cutthroat
+renegade agent
+paramilitary
+speedrunner
+psychologist
+management robot commander
+
+
+
+
 new variants:
 
 []
@@ -249,4 +281,17 @@ open either a standard pack or a prism pack
 
 []
 
+
+
+enemyset next:
+
+world 1 replacements (send some world 1 enemies to world 2):
+
+neonic spikeball - half blue half pink, attacks one of two sides, doesn't rotate
+
+world 2:
+
+world 3:
+
+rocket launcher management robot
 

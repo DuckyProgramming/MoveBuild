@@ -711,6 +711,16 @@ class battle{
             this.cardManagers[a].drop.addDrop(type,level,color)
         }
     }
+    dropAllDrawShuffle(type,level,color){
+        for(let a=0,la=this.cardManagers.length;a<la;a++){
+            if(this.cardManagers[a].reserve.addAbstract(type,level,color,0,[5],[])){
+                if(this.modded(70)&&!this.cardManagers[a].reserve.cards[this.cardManagers[a].reserve.cardShuffledIndex].spec.includes(5)){
+                    this.cardManagers[a].reserve.cards[this.cardManagers[a].reserve.cardShuffledIndex].spec.push(5)
+                }
+            }
+            this.cardManagers[a].drop.addDrop(type,level,color)
+        }
+    }
     newTurn(){
         this.turn.active=false
         this.subTurn()
