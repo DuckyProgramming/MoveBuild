@@ -2094,7 +2094,7 @@ class relicManager{
                         }
                         if(this.active[78][args[1]+1]>0){
                             this.detail[78][args[1]]++
-                            if(this.detail[78][args[1]]%12==0){
+                            if(this.detail[78][args[1]]%16==0){
                                 this.getPlayer(args[1]).statusEffect('Buffer',this.active[78][args[1]+1])
                             }
                         }

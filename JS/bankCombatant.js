@@ -6124,7 +6124,7 @@ combatant.prototype.display=function(){
                     }
                 }
             break
-            case 'Drunk Boss': case 'Enforcer': case 'Bomber Boy': case 'Chief Engineering Officer': case 'Gangmaster':
+            case 'Drunk Boss': case 'Enforcer': case 'Bomber Boy': case 'Chief Engineering Officer': case 'Gangmaster': case 'Paramilitary':
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
                         this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms)
@@ -6140,7 +6140,15 @@ combatant.prototype.display=function(){
                     if(this.name=='Chief Engineering Officer'){
                         this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
                         this.layer.arc(0,-52,20,49,-180,0)
+                    }else if(this.name=='Paramilitary'){
+                        this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
+                        this.layer.arc(0,-49.5,21,55,-185,5)
                     }
+                }
+                if(this.name=='Paramilitary'&&this.trigger.display.belt&&lcos(this.anim.direction)>0){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.belt),this.fade*this.fades.belt)
+                    this.layer.rect(10*lsin(this.anim.direction),-47,4*lcos(this.anim.direction),3)
                 }
                 if(this.name=='Drunk Boss'&&this.trigger.display.belt){
                     this.layer.noStroke()
@@ -6167,6 +6175,11 @@ combatant.prototype.display=function(){
                             this.layer.ellipse(lsin(this.anim.direction-24+a*48)*8,-42,4*lcos(this.anim.direction-24+a*48),4)
                         }
                     }
+                }
+                if(this.name=='Paramilitary'&&this.trigger.display.badge&&lcos(this.anim.direction-36)>0){
+                    this.layer.noStroke()
+                    this.layer.fill(this.flashColor(this.color.badge)[0],this.flashColor(this.color.badge)[1],this.flashColor(this.color.badge)[2],this.fade*this.fades.badge)
+                    this.layer.ellipse(lsin(this.anim.direction-48)*9,-63,5*lcos(this.anim.direction-48),5)
                 }
                 if(this.name=='Bomber Boy'&&this.trigger.display.logo&&lcos(this.anim.direction)>0){
                     this.layer.noStroke()
@@ -6297,7 +6310,7 @@ combatant.prototype.display=function(){
                     }
                 }
             break
-            case 'Pointy': case 'Little Guy': case 'Rich Kid':
+            case 'Pointy': case 'Little Guy': case 'Rich Kid': case 'Speedrunner':
                 for(let g=0;g<2;g++){
                     if((this.name=='Pointy')&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4){
                         this.minorDisplay(0,g)
@@ -6316,7 +6329,7 @@ combatant.prototype.display=function(){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.skin.body),this.fade*this.fades.skin.body)
                     this.layer.ellipse(0,-45,13,33)
-                    if(this.name=='Pointy'||this.name=='Little Guy'||this.name=='Rich Kid'){
+                    if(this.name=='Pointy'||this.name=='Little Guy'||this.name=='Rich Kid'||this.name=='Speedrunner'){
                         this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
                         this.layer.arc(0,-42,14,40,-180,0)
                     }
@@ -6368,7 +6381,22 @@ combatant.prototype.display=function(){
                     this.layer.noStroke()
                     this.layer.ellipse(0,-72,30,30)
                 }
+                if(this.name=='Speedrunner'&&this.trigger.display.glasses&&lcos(this.anim.direction)>0){
+                    this.layer.fill(this.color.glasses[1][0],this.color.glasses[1][1],this.color.glasses[1][2],this.fade*this.fades.glasses/5)
+                    this.layer.stroke(this.color.glasses[0][0],this.color.glasses[0][1],this.color.glasses[0][2],this.fade*this.fades.glasses)
+                    this.layer.strokeWeight(1)
+                    this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*-5,-68,6*lcos(this.anim.direction),3)
+                    this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*5,-68,6*lcos(this.anim.direction),3)
+                    this.layer.line(lsin(this.anim.direction)*15+lcos(this.anim.direction)*2,-68,lsin(this.anim.direction)*15-lcos(this.anim.direction)*2,-68)
+                }
                 if(this.trigger.display.mouth&&lcos(this.anim.direction)>0.1){
+                    if(this.name=='Speedrunner'){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.mouth.teeth[0])[0],this.flashColor(this.color.mouth.teeth[0])[1],this.flashColor(this.color.mouth.teeth[0])[2],this.fade)
+                        this.layer.rect(lsin(this.anim.direction)*(this.parts.minor-2),this.parts.mouth-this.anim.mouth.y*(0.5+lcos(this.anim.direction)*0.5)*0.5+1,lcos(this.anim.direction)*2.5,2.5)
+                        this.layer.fill(this.flashColor(this.color.mouth.teeth[1])[0],this.flashColor(this.color.mouth.teeth[1])[1],this.flashColor(this.color.mouth.teeth[1])[2],this.fade)
+                        this.layer.rect(lsin(this.anim.direction)*(this.parts.minor-2),this.parts.mouth-this.anim.mouth.y*(0.5+lcos(this.anim.direction)*0.5)*0.5+1,lcos(this.anim.direction)*2,2)
+                    }
                     this.minorDisplayGeneral(1,0)
                 }
                 for(let g=0;g<2;g++){
@@ -6825,51 +6853,51 @@ combatant.prototype.display=function(){
             case 'Management Autoduck':
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)<=0){
-                        this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.arms)
+                        this.layer.stroke(...this.flashColor(this.color.skin.out),this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
-                        this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                        this.layer.fill(...this.flashColor(this.color.skin.in),this.fade*this.fades.skin.body)
                         this.layer.rect(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,10,10)
                     }
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.legs&&lcos(this.anim.direction+this.spin.legs[g].top)<=0){
-                        this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.arms)
+                        this.layer.stroke(...this.flashColor(this.color.skin.out),this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
-                        this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                        this.layer.fill(...this.flashColor(this.color.skin.in),this.fade*this.fades.skin.body)
                         this.layer.rect(this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,10,10)
                     }
                 }
                 if(this.trigger.display.skin.body){
-                    this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.arms)
+                    this.layer.stroke(...this.flashColor(this.color.skin.out),this.fade*this.fades.skin.arms)
                     this.layer.strokeWeight(4)
-                    this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                    this.layer.fill(...this.flashColor(this.color.skin.in),this.fade*this.fades.skin.body)
                     this.layer.rect(0,-19,12,22)
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.legs&&lcos(this.anim.direction+this.spin.legs[g].top)>0){
-                        this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.arms)
+                        this.layer.stroke(...this.flashColor(this.color.skin.out),this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
-                        this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                        this.layer.fill(...this.flashColor(this.color.skin.in),this.fade*this.fades.skin.body)
                         this.layer.rect(this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,10,10)
                     }
                 }
                 if(this.trigger.display.beak.main){
-                    this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.arms)
+                    this.layer.stroke(...this.flashColor(this.color.skin.out),this.fade*this.fades.skin.arms)
                     this.layer.strokeWeight(4)
-                    this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                    this.layer.fill(...this.flashColor(this.color.skin.in),this.fade*this.fades.skin.body)
                     this.layer.rect(lsin(this.anim.direction)*13,this.parts.beakLevel,12+2*lcos(this.anim.direction),8)
                 }
                 if(this.trigger.display.skin.head){
-                    this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.arms)
+                    this.layer.stroke(...this.flashColor(this.color.skin.out),this.fade*this.fades.skin.arms)
                     this.layer.strokeWeight(4)
-                    this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                    this.layer.fill(...this.flashColor(this.color.skin.in),this.fade*this.fades.skin.body)
                     this.layer.rect(0,-38,27,27)
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)>0){
-                        this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.arms)
+                        this.layer.stroke(...this.flashColor(this.color.skin.out),this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
-                        this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                        this.layer.fill(...this.flashColor(this.color.skin.in),this.fade*this.fades.skin.body)
                         this.layer.rect(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,10,10)
                     }
                     if(this.trigger.display.eye[g]){
@@ -6885,9 +6913,9 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.trigger.display.beak.main&&lcos(this.anim.direction)>0){
-                    this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.arms)
+                    this.layer.stroke(...this.flashColor(this.color.skin.out),this.fade*this.fades.skin.arms)
                     this.layer.strokeWeight(4)
-                    this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                    this.layer.fill(...this.flashColor(this.color.skin.in),this.fade*this.fades.skin.body)
                     this.layer.rect(lsin(this.anim.direction)*13,this.parts.beakLevel,12+2*lcos(this.anim.direction)-max(0,lsin(this.anim.direction)-0.5)*24,8)
                 }
             break
@@ -7722,7 +7750,7 @@ combatant.prototype.display=function(){
                     this.layer.quad(-3,-30,0,-33,3,-30,0,-27)
                 }
             break
-            case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02': case 'Carbonado Robot':
+            case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02': case 'Carbonado Robot': case 'Management Robot Commander': case 'Lockdown':
                 for(let g=0;g<2;g++){
                     if(this.name=='Purge X02'&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
                         this.minorDisplay(0,g)
@@ -7753,9 +7781,9 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.trigger.display.skin.body){
-                    this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.body)
+                    this.layer.stroke(...this.flashColor(this.color.skin.out),this.fade*this.fades.skin.body)
                     this.layer.strokeWeight(4)
-                    this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                    this.layer.fill(...this.flashColor(this.color.skin.in),this.fade*this.fades.skin.body)
                     if(this.name=='Management Prototype'){
                         for(let a=0,la=6;a<la;a++){
                             if(lcos(this.anim.direction+a*60)>0){
@@ -7774,6 +7802,37 @@ combatant.prototype.display=function(){
                             }
                         }
                     }
+                    if(this.name=='Lockdown'){
+                        this.layer.noStroke()
+                        for(let a=0,la=4;a<la;a++){
+                            if(lcos(this.anim.direction+a*90)>0){
+                                for(let b=0,lb=2;b<lb;b++){
+                                    for(let c=0,lc=2;c<lc;c++){
+                                        let bound=
+                                        lcos(this.anim.direction+a*90-90)<0?
+                                        [7.5*lsin(this.anim.direction+a*90)-7.5*lcos(this.anim.direction+a*90)-2,7.5*lsin(this.anim.direction+a*90)+7.5*lcos(this.anim.direction+a*90)]:
+                                        lcos(this.anim.direction+a*90+90)<0?
+                                        [7.5*lsin(this.anim.direction+a*90)-7.5*lcos(this.anim.direction+a*90),7.5*lsin(this.anim.direction+a*90)+7.5*lcos(this.anim.direction+a*90)+2]:
+                                        [7.5*lsin(this.anim.direction+a*90)-7.5*lcos(this.anim.direction+a*90),7.5*lsin(this.anim.direction+a*90)+7.5*lcos(this.anim.direction+a*90)]
+                                        this.layer.fill(...this.flashColor(this.color.skin.bar[(b+c)%2]),this.fade*this.fades.skin.head)
+                                        this.layer.quad(
+                                            bound[1-a%2],-45-17*(0.875-b*0.5)*(1-c*2),
+                                            bound[1-a%2],-45-17*(0.625-b*0.5)*(1-c*2),
+                                            map((0.625-b*0.5)*(c*2-1),-1,1,bound[1-a%2],bound[a%2]),-45-17,
+                                            map((0.875-b*0.5)*(c*2-1),-1,1,bound[1-a%2],bound[a%2]),-45-17
+                                        )
+                                        this.layer.fill(...this.flashColor(this.color.skin.bar[1-(b+c)%2]),this.fade*this.fades.skin.head)
+                                        this.layer.quad(
+                                            bound[a%2],-45+17*(0.875-b*0.5)*(1-c*2),
+                                            bound[a%2],-45+17*(0.625-b*0.5)*(1-c*2),
+                                            map((0.625-b*0.5)*(c*2-1),-1,1,bound[a%2],bound[1-a%2]),-45+17,
+                                            map((0.875-b*0.5)*(c*2-1),-1,1,bound[a%2],bound[1-a%2]),-45+17
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 if(this.name=='Destructor Bot'&&this.trigger.display.bomb){
                     this.layer.noStroke()
@@ -7784,6 +7843,13 @@ combatant.prototype.display=function(){
                         }
                     }
                     this.layer.arc(0,-90,6,6,-180,0)
+                }
+                if(this.name=='Management Robot Commander'&&this.trigger.display.badge&&lcos(this.anim.direction)>0){
+                    this.layer.noStroke()
+                    this.layer.fill(this.flashColor(this.color.badge[0])[0],this.flashColor(this.color.badge[0])[1],this.flashColor(this.color.badge[0])[2],this.fade*this.fades.badge)
+                    this.layer.ellipse(lsin(this.anim.direction)*7.5+lcos(this.anim.direction)*3,-54,5*lcos(this.anim.direction),5)
+                    this.layer.fill(this.flashColor(this.color.badge[1])[0],this.flashColor(this.color.badge[1])[1],this.flashColor(this.color.badge[1])[2],this.fade*this.fades.badge)
+                    this.layer.ellipse(lsin(this.anim.direction)*7.5+lcos(this.anim.direction)*3,-53,3*lcos(this.anim.direction),3)
                 }
                 for(let g=0;g<2;g++){
                     if(this.name=='Purge X02'&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6)&&g==0){
@@ -7806,9 +7872,9 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.trigger.display.skin.head){
-                    this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.arms)
+                    this.layer.stroke(...this.flashColor(this.color.skin.out),this.fade*this.fades.skin.head)
                     this.layer.strokeWeight(4)
-                    this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                    this.layer.fill(...this.flashColor(this.color.skin.in),this.fade*this.fades.skin.head)
                     if(this.name=='Management Prototype'){
                         for(let a=0,la=6;a<la;a++){
                             if(lcos(this.anim.direction+a*60)>0){
@@ -7819,6 +7885,37 @@ combatant.prototype.display=function(){
                         for(let a=0,la=4;a<la;a++){
                             if(lcos(this.anim.direction+a*90)>0){
                                 this.layer.rect(13.5*lsin(this.anim.direction+a*90),-75,27*lcos(this.anim.direction+a*90),27)
+                            }
+                        }
+                    }
+                    if(this.name=='Lockdown'){
+                        this.layer.noStroke()
+                        for(let a=0,la=4;a<la;a++){
+                            if(lcos(this.anim.direction+a*90)>0){
+                                for(let b=0,lb=2;b<lb;b++){
+                                    for(let c=0,lc=2;c<lc;c++){
+                                        let bound=
+                                        lcos(this.anim.direction+a*90-90)<0?
+                                        [13.5*lsin(this.anim.direction+a*90)-13.5*lcos(this.anim.direction+a*90)-2,13.5*lsin(this.anim.direction+a*90)+13.5*lcos(this.anim.direction+a*90)]:
+                                        lcos(this.anim.direction+a*90+90)<0?
+                                        [13.5*lsin(this.anim.direction+a*90)-13.5*lcos(this.anim.direction+a*90),13.5*lsin(this.anim.direction+a*90)+13.5*lcos(this.anim.direction+a*90)+2]:
+                                        [13.5*lsin(this.anim.direction+a*90)-13.5*lcos(this.anim.direction+a*90),13.5*lsin(this.anim.direction+a*90)+13.5*lcos(this.anim.direction+a*90)]
+                                        this.layer.fill(...this.flashColor(this.color.skin.bar[(b+c)%2]),this.fade*this.fades.skin.head)
+                                        this.layer.quad(
+                                            bound[a%2],-75-15.5*(0.875-b*0.5)*(1-c*2),
+                                            bound[a%2],-75-15.5*(0.625-b*0.5)*(1-c*2),
+                                            map((0.625-b*0.5)*(c*2-1),-1,1,bound[a%2],bound[1-a%2]),-75-15.5,
+                                            map((0.875-b*0.5)*(c*2-1),-1,1,bound[a%2],bound[1-a%2]),-75-15.5
+                                        )
+                                        this.layer.fill(...this.flashColor(this.color.skin.bar[1-(b+c)%2]),this.fade*this.fades.skin.head)
+                                        this.layer.quad(
+                                            bound[1-a%2],-75+15.5*(0.875-b*0.5)*(1-c*2),
+                                            bound[1-a%2],-75+15.5*(0.625-b*0.5)*(1-c*2),
+                                            map((0.625-b*0.5)*(c*2-1),-1,1,bound[1-a%2],bound[a%2]),-75+15.5,
+                                            map((0.875-b*0.5)*(c*2-1),-1,1,bound[1-a%2],bound[a%2]),-75+15.5
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
@@ -8050,9 +8147,9 @@ combatant.prototype.display=function(){
             break
             case 'Management Drone':
                 if(this.trigger.display.skin.body){
-                    this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.body)
+                    this.layer.stroke(...this.flashColor(this.color.skin.out),this.fade*this.fades.skin.body)
                     this.layer.strokeWeight(4)
-                    this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                    this.layer.fill(...this.flashColor(this.color.skin.in),this.fade*this.fades.skin.body)
                     for(let a=0,la=4;a<la;a++){
                         if(lcos(this.anim.direction+a*90)>=0){
                             this.layer.rect(20*lsin(this.anim.direction+a*90),-60,40*lcos(this.anim.direction+a*90),12)
@@ -8206,9 +8303,9 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(0,-87,30,30)
                 }
                 if(this.trigger.display.skin.body){
-                    this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.body)
+                    this.layer.stroke(...this.flashColor(this.color.skin.out),this.fade*this.fades.skin.body)
                     this.layer.strokeWeight(4)
-                    this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                    this.layer.fill(...this.flashColor(this.color.skin.in),this.fade*this.fades.skin.body)
                     for(let a=0,la=4;a<la;a++){
                         if(lcos(this.anim.direction+a*90)>=0){
                             this.layer.rect((7.5+a%2*7.5)*lsin(this.anim.direction+a*90),-51,(30-a%2*15)*lcos(this.anim.direction+a*90),42)
@@ -10030,7 +10127,7 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(0,-48,16,42)
                     this.layer.ellipse(0,-81,33,33)
                 }
-                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Riot Police'||this.name=='Management Shotgunner')&&this.trigger.display.visor&&lcos(this.anim.direction)<=0){
+                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Riot Police'||this.name=='Management Shotgunner'||this.name=='Walker Driver Informant')&&this.trigger.display.visor&&lcos(this.anim.direction)<=0){
                     this.layer.noStroke()
                     this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor/2)
                     this.layer.rect(lsin(this.anim.direction)*18,-78,20*lcos(this.anim.direction),6)
@@ -10107,7 +10204,7 @@ combatant.prototype.display=function(){
                     this.layer.strokeWeight(2)
                     this.layer.rect(lsin(this.anim.direction)*15.5,this.parts.eyeLevel,lcos(this.anim.direction)*20,7,2)
                 }
-                if(this.name=='Scrapper'&&this.trigger.display.goggles&&lcos(this.anim.direction)<=0){
+                if((this.name=='Scrapper'||this.name=='Adrian\nKane')&&this.trigger.display.goggles&&lcos(this.anim.direction)<=0){
                     this.layer.fill(this.flashColor(this.color.goggles)[0],this.flashColor(this.color.goggles)[1],this.flashColor(this.color.goggles)[2],this.fade*this.fades.goggles)
                     this.layer.stroke(120,120,120,this.fade*this.fades.goggles)
                     this.layer.strokeWeight(2)
@@ -10182,6 +10279,33 @@ combatant.prototype.display=function(){
                         this.layer.quad(-2*lcos(this.anim.direction)+12*lsin(this.anim.direction),-95,12*lsin(this.anim.direction),-92,2*lcos(this.anim.direction)+12*lsin(this.anim.direction),-95,12*lsin(this.anim.direction),-98)
                     }
                 }
+                if(this.name=='Guard'&&this.trigger.display.metal){
+                    this.layer.fill(...this.flashColor(this.color.metal),this.fade*this.fades.metal)
+                    this.layer.translate(0,-48)
+                    this.layer.rotate(20)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.rect(0,-8,3,16)
+                        this.layer.rotate(360/la)
+                    }
+                    this.layer.rotate(-20)
+                    this.layer.translate(0,-33)
+                    this.layer.rotate(-25)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.rect(0,-10,3,20)
+                        this.layer.rotate(360/la)
+                    }
+                    this.layer.rotate(25)
+                    this.layer.translate(0,81)
+                }
+                if(this.name=='Armored Biker'&&this.trigger.display.goggles&&lcos(this.anim.direction)<0){
+                    this.layer.fill(...this.flashColor(this.color.goggles[0]),this.fade)
+                    this.layer.noStroke()
+                    this.layer.rect(lsin(this.anim.direction)*15,this.parts.eyeLevel,lcos(this.anim.direction)*20,7,2)
+                    this.layer.fill(...this.flashColor(this.color.goggles[1]),this.fade*this.fades.goggles)
+                    this.layer.stroke(190,20,20,this.fade*this.fades.goggles)
+                    this.layer.strokeWeight(2)
+                    this.layer.rect(lsin(this.anim.direction)*15,this.parts.eyeLevel,lcos(this.anim.direction)*20,7,2)
+                }
                 for(let g=0;g<2;g++){
                     if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman')&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
                         this.minorDisplay(0,g)
@@ -10194,7 +10318,7 @@ combatant.prototype.display=function(){
                         if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader'||this.name=='Champion')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
                             this.minorDisplay(1,g)
                         }
-                        if(this.name=='Prison Guard'&&this.trigger.display.armor){
+                        if((this.name=='Prison Guard'||this.name=='Prison Guard Gunner'||this.name=='Shield Prison Guard')&&this.trigger.display.armor){
                             this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
                             this.layer.strokeWeight(4)
                             this.layer.line(
@@ -10296,7 +10420,7 @@ combatant.prototype.display=function(){
                     }else if(this.name=='Corrupt Detective'||this.name=='Mailman'){
                         this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
                         this.layer.arc(0,-47,14,42,-180,0)
-                    }else if(this.name=='Obstruction'||this.name=='Crusader'){
+                    }else if(this.name=='Obstruction'||this.name=='Crusader'||this.name=='Renegade Agent'){
                         this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
                         this.layer.arc(0,-45,14,46,-185,5)
                     }
@@ -10487,7 +10611,7 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Riot Police'||this.name=='Management Shotgunner')&&this.trigger.display.belt){
+                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Riot Police'||this.name=='Management Shotgunner'||this.name=='Walker Driver Informant')&&this.trigger.display.belt){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.belt),this.fade*this.fades.belt)
                     for(let a=0,la=8;a<la;a++){
@@ -10496,7 +10620,7 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if((this.name=='Sharpshot'||this.name=='Prison Guard')&&this.trigger.display.belt){
+                if((this.name=='Sharpshot'||this.name=='Prison Guard'||this.name=='Prison Guard Gunner'||this.name=='Shield Prison Guard')&&this.trigger.display.belt){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.belt[0])[0],this.flashColor(this.color.belt[0])[1],this.flashColor(this.color.belt[0])[2],this.fade*this.fades.belt)
                     this.layer.rect(0,-45,14,4)
@@ -10617,6 +10741,46 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
+                if(this.name=='Bar Security'&&this.trigger.display.belt){
+                    this.layer.noStroke()
+                    for(let a=0,la=10;a<la;a++){
+                        if(lcos(a*36+this.anim.direction)>0){
+                            this.layer.fill(...this.flashColor(this.color.belt),this.fade*this.fades.belt)
+                            this.layer.rect(lsin(a*36+this.anim.direction)*6.5,-46,lcos(a*36+this.anim.direction)*(4-a%2*2),3-a%2*2)
+                            if(a%2==0){
+                                this.layer.fill(...this.flashColor(this.color.skin.body),this.fade*this.fades.belt)
+                                this.layer.rect(lsin(a*36+this.anim.direction)*6.5,-46,lcos(a*36+this.anim.direction)*2,1)
+                            }
+                        }
+                    }
+                }
+                if(this.name=='Cutthroat'&&this.trigger.display.belt){
+                    this.layer.noStroke()
+                    for(let a=0,la=12;a<la;a++){
+                        if(lcos(a*30+this.anim.direction)>0){
+                            this.layer.fill(...this.flashColor(this.color.belt[a%3==0?0:1]),this.fade*this.fades.belt)
+                            this.layer.rect(lsin(a*30+this.anim.direction)*6.5,-46,lcos(a*30+this.anim.direction)*2,a%3==0?5:2)
+                        }
+                    }
+                }
+                if(this.name=='Renegade Agent'&&this.trigger.display.belt&&lcos(this.anim.direction)>0){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.belt),this.fade*this.fades.belt)
+                    this.layer.rect(6.5*lsin(this.anim.direction),-43,3*lcos(this.anim.direction),2)
+                }
+                if(this.name=='Adrian Kane'&&this.trigger.display.belt){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.belt),this.fade*this.fades.belt)
+                    if(lcos(this.anim.direction)>0){
+                        this.layer.rect(6.5*lsin(this.anim.direction),-43,6*lcos(this.anim.direction),4)
+                    }
+                    if(lcos(this.anim.direction-54)>0){
+                        this.layer.rect(6.5*lsin(this.anim.direction-54),-43,3*lcos(this.anim.direction-54),2)
+                    }
+                    if(lcos(this.anim.direction+54)>0){
+                        this.layer.rect(6.5*lsin(this.anim.direction+54),-43,3*lcos(this.anim.direction+54),2)
+                    }
+                }
                 if(this.name=='Reichswehr'&&this.trigger.display.pocket){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.pocket)[0],this.flashColor(this.color.pocket)[1],this.flashColor(this.color.pocket)[2],this.fade*this.fades.pocket)
@@ -10656,7 +10820,7 @@ combatant.prototype.display=function(){
                         if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader'||this.name=='Champion')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
                             this.minorDisplay(1,g)
                         }
-                        if(this.name=='Prison Guard'&&this.trigger.display.armor){
+                        if((this.name=='Prison Guard'||this.name=='Prison Guard Gunner'||this.name=='Shield Prison Guard')&&this.trigger.display.armor){
                             this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
                             this.layer.strokeWeight(4)
                             this.layer.line(
@@ -10690,7 +10854,7 @@ combatant.prototype.display=function(){
                                 this.layer.strokeWeight(4)
                                 this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                 this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
-                                if(this.name=='Prison Guard'&&this.trigger.display.armor){
+                                if((this.name=='Prison Guard'||this.name=='Prison Guard Gunner'||this.name=='Shield Prison Guard')&&this.trigger.display.armor){
                                     this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
                                     this.layer.strokeWeight(4)
                                     this.layer.line(
@@ -10715,16 +10879,26 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(lsin(this.spin.under.under.top[1]+this.anim.direction)*5.2,-52,lcos(this.spin.under.under.top[1]+this.anim.direction)*2.5+3.5,6)
                 }
                 if((this.name=='Trenchcoat'||this.name=='Trenchcoat Gunner'||this.name=='Capitalist'||this.name=='Bodyguard'||this.name=='Assistant Hiring Officer'||this.name=='Assistant Fitness Officer'||this.name=='Corrupt Detective'||this.name=='Coffee Commander'||this.name=='MobMan'||this.name=='Archivist'||this.name=='Yes Man'||this.name=='Mailman')&&this.trigger.display.tie&&lcos(this.anim.direction)>0.1){
-                    this.layer.fill(this.flashColor(this.color.tie[0])[0],this.flashColor(this.color.tie[0])[1],this.flashColor(this.color.tie[0])[2],this.fade*this.fades.tie)
+                    this.layer.fill(...this.flashColor(this.color.tie[0]),this.fade*this.fades.tie)
                     this.layer.noStroke()
                     this.layer.triangle(lsin(this.anim.direction)*3-lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*3+lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*9,-50)
-                    this.layer.fill(this.flashColor(this.color.tie[1])[0],this.flashColor(this.color.tie[1])[1],this.flashColor(this.color.tie[1])[2],this.fade*this.fades.tie)
+                    this.layer.fill(...this.flashColor(this.color.tie[1]),this.fade*this.fades.tie)
                     this.layer.quad(lsin(this.anim.direction)*6-lcos(this.anim.direction)*1.5,-60,lsin(this.anim.direction)*3,-70,lsin(this.anim.direction)*6+lcos(this.anim.direction)*1.5,-60,lsin(this.anim.direction)*9,-50)
                 }
                 if(this.name=='L'&&this.trigger.display.tie&&lcos(this.anim.direction)>0.1){
-                    this.layer.fill(this.flashColor(this.color.tie)[0],this.flashColor(this.color.tie)[1],this.flashColor(this.color.tie)[2],this.fade*this.fades.tie)
+                    this.layer.fill(...this.flashColor(this.color.tie),this.fade*this.fades.tie)
                     this.layer.noStroke()
                     this.layer.triangle(lsin(this.anim.direction)*3-lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*3+lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*9,-50)
+                }
+                if(this.name=='Renegade Agent'&&this.trigger.display.tie&&lcos(this.anim.direction)>0.1){
+                    this.layer.fill(...this.flashColor(this.color.tie),this.fade*this.fades.tie)
+                    this.layer.noStroke()
+                    this.layer.quad(lsin(this.anim.direction)*7-lcos(this.anim.direction)*3,-54,lsin(this.anim.direction)*3,-70,lsin(this.anim.direction)*7+lcos(this.anim.direction)*3,-54,lsin(this.anim.direction)*8,-48)
+                }
+                if(this.name=='Adrian Kane'&&this.trigger.display.tie&&lcos(this.anim.direction)>0.1){
+                    this.layer.fill(...this.flashColor(this.color.tie),this.fade*this.fades.tie)
+                    this.layer.noStroke()
+                    this.layer.quad(lsin(this.anim.direction)*7-lcos(this.anim.direction)*2.5,-44,lsin(this.anim.direction)*3,-68,lsin(this.anim.direction)*7+lcos(this.anim.direction)*2.5,-44,lsin(this.anim.direction)*8,-40)
                 }
                 if(this.name=='Navigator'&&this.trigger.display.midshirt&&lcos(this.anim.direction)>0.1){
                     this.layer.fill(this.flashColor(this.color.midshirt)[0],this.flashColor(this.color.midshirt)[1],this.flashColor(this.color.midshirt)[2],this.fade*this.fades.midshirt)
@@ -10768,6 +10942,13 @@ combatant.prototype.display=function(){
                     this.layer.noStroke()
                     this.layer.ellipse(lsin(this.anim.direction)*6,-54,5*lcos(this.anim.direction),5)
                 }
+                if(this.name=='Psychologist'&&this.trigger.display.button&&lcos(this.anim.direction)>0){
+                    this.layer.fill(...this.flashColor(this.color.button),this.fade*this.fades.button)
+                    this.layer.noStroke()
+                    this.layer.ellipse(lsin(this.anim.direction)*5.5,-59,3*lcos(this.anim.direction),3)
+                    this.layer.ellipse(lsin(this.anim.direction)*6,-54,3*lcos(this.anim.direction),3)
+                    this.layer.ellipse(lsin(this.anim.direction)*6.25,-49,3*lcos(this.anim.direction),3)
+                }
                 if(this.name=='Prestige'&&this.trigger.display.hex){
                     this.layer.fill(this.color.hex[0],this.color.hex[1],this.color.hex[2],this.fade*this.fades.hex)
                     this.layer.noStroke()
@@ -10781,10 +10962,20 @@ combatant.prototype.display=function(){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.button),this.fade*this.fades.button)
                     for(let a=0,la=2;a<la;a++){
-                        if(lcos(this.anim.direction-24+a*48)>0){
+                        if(lcos(this.anim.direction-30+a*60)>0){
                             this.layer.ellipse(lsin(this.anim.direction-30+a*60)*5.5,-56,2*lcos(this.anim.direction-30+a*60),2)
                             this.layer.ellipse(lsin(this.anim.direction-30+a*60)*6.5,-48,2*lcos(this.anim.direction-30+a*60),2)
                             this.layer.ellipse(lsin(this.anim.direction-30+a*60)*5.5,-40,2*lcos(this.anim.direction-30+a*60),2)
+                        }
+                    }
+                }
+                if(this.name=='Bartender'&&this.trigger.display.button){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.button),this.fade*this.fades.button)
+                    for(let a=0,la=2;a<la;a++){
+                        if(lcos(this.anim.direction-20+a*40)>0){
+                            this.layer.ellipse(lsin(this.anim.direction-20+a*40)*5.5,-58,2*lcos(this.anim.direction-20+a*40),2)
+                            this.layer.ellipse(lsin(this.anim.direction-20+a*40)*6.5,-50,2*lcos(this.anim.direction-20+a*40),2)
                         }
                     }
                 }
@@ -10801,7 +10992,7 @@ combatant.prototype.display=function(){
                     this.layer.noStroke()
                     this.layer.triangle(lsin(this.anim.direction)*3-lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*3+lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*9,-50)
                 }
-                if((this.name=='Trenchcoat'||this.name=='Trenchcoat Gunner'||this.name=='Corrupt Detective'||this.name=='PhD'||this.name=='Junkie'||this.name=='L'||this.name=='Archivist'||this.name=='Rebel Negotiator')&&this.trigger.display.coat){
+                if((this.name=='Trenchcoat'||this.name=='Trenchcoat Gunner'||this.name=='Corrupt Detective'||this.name=='PhD'||this.name=='Junkie'||this.name=='L'||this.name=='Archivist'||this.name=='Rebel Negotiator'||this.name=='Psychologist')&&this.trigger.display.coat){
                     this.layer.fill(...this.flashColor(this.color.coat),this.fade*this.fades.coat)
                     this.layer.noStroke()
                     if(lcos(this.anim.direction)<0.5){
@@ -10817,6 +11008,12 @@ combatant.prototype.display=function(){
                     this.layer.triangle(lsin(this.anim.direction)*6,-62,lsin(this.anim.direction)*6-lcos(this.anim.direction)*5,-64,lsin(this.anim.direction)*6-lcos(this.anim.direction)*5,-60)
                     this.layer.triangle(lsin(this.anim.direction)*6,-62,lsin(this.anim.direction)*6+lcos(this.anim.direction)*5,-64,lsin(this.anim.direction)*6+lcos(this.anim.direction)*5,-60)
                 }
+                if(this.name=='Bartender'&&this.trigger.display.bowtie&&lcos(this.anim.direction)>0){
+                    this.layer.fill(...this.color.bowtie,this.fade*this.fades.bowtie)
+                    this.layer.noStroke()
+                    this.layer.triangle(lsin(this.anim.direction)*6,-62,lsin(this.anim.direction)*6-lcos(this.anim.direction)*4,-63.5,lsin(this.anim.direction)*6-lcos(this.anim.direction)*4,-60.5)
+                    this.layer.triangle(lsin(this.anim.direction)*6,-62,lsin(this.anim.direction)*6+lcos(this.anim.direction)*4,-63.5,lsin(this.anim.direction)*6+lcos(this.anim.direction)*4,-60.5)
+                }
                 for(let g=0;g<2;g++){
                     if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6)&&g==0){
                         this.minorDisplay(0,g)
@@ -10829,7 +11026,7 @@ combatant.prototype.display=function(){
                         if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader'||this.name=='Champion')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
                             this.minorDisplay(1,g)
                         }
-                        if(this.name=='Prison Guard'&&this.trigger.display.armor){
+                        if((this.name=='Prison Guard'||this.name=='Prison Guard Gunner'||this.name=='Shield Prison Guard')&&this.trigger.display.armor){
                             this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
                             this.layer.strokeWeight(4)
                             this.layer.line(
@@ -10857,12 +11054,23 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if((this.name=='Gangster'||this.name=='Batter'||this.name=='Gangster Gunner'||this.name=='Gangster Machinegunner')&&this.trigger.display.overall){
+                if((this.name=='Gangster'||this.name=='Batter'||this.name=='Gangster Gunner'||this.name=='Gangster Machinegunner'||this.name=='Gangster Machinegunner Informant')&&this.trigger.display.overall){
                     this.layer.noStroke()
                     this.layer.fill(this.color.overall[0],this.color.overall[1],this.color.overall[2],this.fade)
                     this.layer.arc(0,-48,15,41,0,180)
                     for(let a=0,la=4;a<la;a++){
                         let direction=this.anim.direction-36+a*72+floor(a/2)*48
+                        if(lcos(direction)>0){
+                            this.layer.quad(lsin(direction)*7.5-lcos(direction),-46,lsin(direction)*7.5+lcos(direction),-46,lsin(direction)*3+lcos(direction),-72,lsin(direction)*3-lcos(direction),-72)
+                        }
+                    }
+                }
+                if(this.name=='Bartender'&&this.trigger.display.overall){
+                    this.layer.noStroke()
+                    this.layer.fill(this.color.overall[0],this.color.overall[1],this.color.overall[2],this.fade)
+                    this.layer.arc(0,-48,15,41,0,180)
+                    for(let a=0,la=4;a<la;a++){
+                        let direction=this.anim.direction-48+a*96-floor(a/2)*6
                         if(lcos(direction)>0){
                             this.layer.quad(lsin(direction)*7.5-lcos(direction),-46,lsin(direction)*7.5+lcos(direction),-46,lsin(direction)*3+lcos(direction),-72,lsin(direction)*3-lcos(direction),-72)
                         }
@@ -11007,7 +11215,7 @@ combatant.prototype.display=function(){
 					this.layer.line(3,2,6,-10)
                     this.layer.pop()
                 }
-                if(this.name=='Cartel'||this.name=='Roger Reviv'){
+                if(this.name=='Cartel'||this.name=='Roger Reviv'||this.name=='Cutthroat'){
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
                             this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms)
@@ -11021,7 +11229,7 @@ combatant.prototype.display=function(){
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                         }
                     }
-                    if(this.trigger.display.neck&&lcos(this.anim.direction)>0){
+                    if(this.trigger.display.neck){
                         this.layer.fill(this.color.neck[0],this.color.neck[1],this.color.neck[2],this.fade*this.fades.neck)
                         this.layer.noStroke()
                         this.layer.arc(0,-54,18,24,-180,0)
@@ -11073,6 +11281,11 @@ combatant.prototype.display=function(){
                         this.layer.noStroke()
                         this.layer.triangle(lsin(this.anim.direction)*11-lcos(this.anim.direction)*4,-71,lsin(this.anim.direction)*11+lcos(this.anim.direction)*4,-71,lsin(this.anim.direction)*10,-59)
                     }
+                    if(this.name=='Adrian Kane'&&this.trigger.display.beard&&lcos(this.anim.direction)>0){
+                        this.layer.fill(this.flashColor(this.color.beard)[0],this.flashColor(this.color.beard)[1],this.flashColor(this.color.beard)[2],this.fade*this.fades.beard)
+                        this.layer.noStroke()
+                        this.layer.triangle(lsin(this.anim.direction)*11-lcos(this.anim.direction)*5,-71,lsin(this.anim.direction)*11+lcos(this.anim.direction)*5,-71,lsin(this.anim.direction)*10,-57)
+                    }
                     for(let g=0;g<2;g++){
                         if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.6)&&g==0){
                             this.minorDisplay(0,g)
@@ -11085,7 +11298,7 @@ combatant.prototype.display=function(){
                             if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader'||this.name=='Champion')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
                                 this.minorDisplay(1,g)
                             }
-                            if(this.name=='Prison Guard'&&this.trigger.display.armor){
+                            if((this.name=='Prison Guard'||this.name=='Prison Guard Gunner'||this.name=='Shield Prison Guard')&&this.trigger.display.armor){
                                 this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(
@@ -11119,7 +11332,7 @@ combatant.prototype.display=function(){
                             if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1'||this.name=='Crusader'||this.name=='Champion')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0||this.name=='Dimension Wanderer'&&this.trigger.display.diamond){
                                 this.minorDisplay(1,g)
                             }
-                            if(this.name=='Prison Guard'&&this.trigger.display.armor){
+                            if((this.name=='Prison Guard'||this.name=='Prison Guard Gunner'||this.name=='Shield Prison Guard')&&this.trigger.display.armor){
                                 this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(
@@ -11202,7 +11415,22 @@ combatant.prototype.display=function(){
                     this.layer.strokeWeight(2)
                     this.layer.rect(lsin(this.anim.direction)*15.5,this.parts.eyeLevel,lcos(this.anim.direction)*20,7,2)
                 }
-                if(this.name=='Scrapper'&&this.trigger.display.goggles&&lcos(this.anim.direction)>0){
+                if(this.name=='Armored Biker'&&this.trigger.display.goggles&&lcos(this.anim.direction)>=0){
+                    this.layer.fill(...this.flashColor(this.color.goggles[0]),this.fade)
+                    this.layer.noStroke()
+                    this.layer.rect(lsin(this.anim.direction)*14.5,this.parts.eyeLevel,lcos(this.anim.direction)*14+6,7,2)
+                    if(this.trigger.display.eye[0]){
+                        this.minorDisplayGeneral(0,0)
+                    }
+                    if(this.trigger.display.eye[1]){
+                        this.minorDisplayGeneral(0,1)
+                    }
+                    this.layer.fill(...this.flashColor(this.color.goggles[1]),this.fade*this.fades.goggles)
+                    this.layer.stroke(190,20,20,this.fade*this.fades.goggles)
+                    this.layer.strokeWeight(2)
+                    this.layer.rect(lsin(this.anim.direction)*14.5,this.parts.eyeLevel,lcos(this.anim.direction)*14+6,7,2)
+                }
+                if((this.name=='Scrapper'||this.name=='Adrian Kane')&&this.trigger.display.goggles&&lcos(this.anim.direction)>0){
                     this.layer.fill(this.flashColor(this.color.goggles)[0],this.flashColor(this.color.goggles)[1],this.flashColor(this.color.goggles)[2],this.fade*this.fades.goggles)
                     this.layer.stroke(120,120,120,this.fade*this.fades.goggles)
                     this.layer.strokeWeight(2)
@@ -11227,7 +11455,7 @@ combatant.prototype.display=function(){
                     this.layer.line(-16,-90,16,-90)
                     this.layer.quad(-12,-90,12,-90,8,-96,-8,-96)
                 }
-                if((this.name=='Cartel'||this.name=='Slippery Gangster'||this.name=='Roger Reviv'||this.name=='Bodyguard'||this.name=='Tech Support')&&this.trigger.display.sunglasses&&lcos(this.anim.direction)>0){
+                if((this.name=='Cartel'||this.name=='Slippery Gangster'||this.name=='Roger Reviv'||this.name=='Bodyguard'||this.name=='Tech Support'||this.name=='Bar Security')&&this.trigger.display.sunglasses&&lcos(this.anim.direction)>0){
                     this.layer.fill(...this.color.sunglasses,this.fade*this.fades.sunglasses)
                     this.layer.noStroke()
                     this.layer.ellipse(lsin(this.anim.direction)*16+lcos(this.anim.direction)*-5,-78,8*lcos(this.anim.direction),6)
@@ -11244,7 +11472,7 @@ combatant.prototype.display=function(){
                     this.layer.rect(lsin(this.anim.direction)*16+lcos(this.anim.direction)*-5,-78,5*lcos(this.anim.direction),1)
                     this.layer.rect(lsin(this.anim.direction)*16+lcos(this.anim.direction)*5,-78,5*lcos(this.anim.direction),1)
                 }
-                if((this.name=='Gangster Machinegunner')&&this.trigger.display.sunglasses&&lcos(this.anim.direction)>0){
+                if((this.name=='Gangster Machinegunner'||this.name=='Gangster Machinegunner Informant')&&this.trigger.display.sunglasses&&lcos(this.anim.direction)>0){
                     this.layer.fill(...this.color.sunglasses,this.fade*this.fades.sunglasses)
                     this.layer.noStroke()
                     this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*-5,-78,7*lcos(this.anim.direction),5)
@@ -11264,7 +11492,7 @@ combatant.prototype.display=function(){
                     this.layer.rect(lsin(this.anim.direction)*16+lcos(this.anim.direction)*-5,-77.25,4*lcos(this.anim.direction),1)
                     this.layer.rect(lsin(this.anim.direction)*16+lcos(this.anim.direction)*5,-77.25,4*lcos(this.anim.direction),1)
                 }
-                if((this.name=='Gangster'||this.name=='Batter'||this.name=='Gangster Gunner'||this.name=='Sharpshot'||this.name=='Gangster Machinegunner')&&this.trigger.display.hat){
+                if((this.name=='Gangster'||this.name=='Batter'||this.name=='Gangster Gunner'||this.name=='Sharpshot'||this.name=='Gangster Machinegunner'||this.name=='Gangster Machinegunner Informant')&&this.trigger.display.hat){
                     this.layer.stroke(this.color.hat[0],this.color.hat[1],this.color.hat[2],this.fade)
                     this.layer.fill(this.color.hat[0],this.color.hat[1],this.color.hat[2],this.fade)
                     this.layer.strokeWeight(4)
@@ -11349,12 +11577,12 @@ combatant.prototype.display=function(){
                     this.layer.line(-15,-90,15,-90)
                     this.layer.rect(0,-97,16,14,1)
                 }
-                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Gas Man'||this.name=='Riot Police'||this.name=='Coffee Commander'||this.name=='Management Shotgunner')&&this.trigger.display.helmet){
+                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Gas Man'||this.name=='Riot Police'||this.name=='Coffee Commander'||this.name=='Management Shotgunner'||this.name=='Walker Driver Informant')&&this.trigger.display.helmet){
                     this.layer.noStroke()
                     this.layer.fill(this.color.helmet[0],this.color.helmet[1],this.color.helmet[2],this.fade*this.fades.helmet)
                     this.layer.arc(0,-81,36,36,-180,0)
                 }
-                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Gas Man'||this.name=='Riot Police'||this.name=='Coffee Commander'||this.name=='Management Shotgunner')&&this.trigger.display.visor&&lcos(this.anim.direction)>0){
+                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Gas Man'||this.name=='Riot Police'||this.name=='Coffee Commander'||this.name=='Management Shotgunner'||this.name=='Walker Driver Informant')&&this.trigger.display.visor&&lcos(this.anim.direction)>0){
                     this.layer.noStroke()
                     this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor/2)
                     this.layer.rect(lsin(this.anim.direction)*18,-78,20*lcos(this.anim.direction),6)
@@ -11408,7 +11636,7 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*4.5,-78,6*lcos(this.anim.direction),6)
                     this.layer.line(lsin(this.anim.direction)*15+lcos(this.anim.direction)*1.5,-78,lsin(this.anim.direction)*15-lcos(this.anim.direction)*1.5,-78)
                 }
-                if(this.name=='Intern'&&this.trigger.display.glasses&&lcos(this.anim.direction)>0){
+                if((this.name=='Intern'||this.name=='Psychologist')&&this.trigger.display.glasses&&lcos(this.anim.direction)>0){
                     this.layer.fill(this.color.glasses[1][0],this.color.glasses[1][1],this.color.glasses[1][2],this.fade*this.fades.glasses/5)
                     this.layer.stroke(this.color.glasses[0][0],this.color.glasses[0][1],this.color.glasses[0][2],this.fade*this.fades.glasses)
                     this.layer.strokeWeight(1)
@@ -11707,6 +11935,14 @@ combatant.prototype.display=function(){
                     this.layer.rect(0,-92,24,4,1)
                     this.layer.fill(...this.color.hat[1],this.fade*this.fades.hat)
                     this.layer.rect(0,-97,28,6,3)
+                }
+                if(this.name=='Cutthroat'&&this.trigger.display.glasses&&lcos(this.anim.direction)>0){
+                    this.layer.fill(this.color.glasses[1][0],this.color.glasses[1][1],this.color.glasses[1][2],this.fade*this.fades.glasses/5)
+                    this.layer.stroke(this.color.glasses[0][0],this.color.glasses[0][1],this.color.glasses[0][2],this.fade*this.fades.glasses)
+                    this.layer.strokeWeight(1)
+                    this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*-5,-77,6*lcos(this.anim.direction),3)
+                    this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*5,-77,6*lcos(this.anim.direction),3)
+                    this.layer.line(lsin(this.anim.direction)*15+lcos(this.anim.direction)*2,-77,lsin(this.anim.direction)*15-lcos(this.anim.direction)*2,-77)
                 }
             break
         }

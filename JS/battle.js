@@ -335,7 +335,7 @@ class battle{
             }else{
                 this.addCombatant(encounter.enemy[a].position,findName(effectiveName,types.combatant),0,0,false)
             }
-            if(effectiveName!='Prisoner Informant'){
+            if(effectiveName!='Prisoner Informant'&&effectiveName!='Gangster Machinegunner Informant'&&effectiveName!='Walker Driver Informant'){
                 this.counter.enemy++
             }
         }
@@ -347,7 +347,7 @@ class battle{
         }
         for(let a=0,la=encounter.reinforce.length;a<la;a++){
             this.reinforce.back.push({position:{x:encounter.reinforce[a].position.x,y:encounter.reinforce[a].position.y},name:encounter.reinforce[a].name,turn:encounter.reinforce[a].turn,minion:false})
-            if(encounter.reinforce[a].name!='Prisoner Informant'){
+            if(encounter.reinforce[a].name!='Prisoner Informant'&&encounter.reinforce[a].name!='Gangster Machinegunner Informant'&&encounter.reinforce[a].name!='Walker Driver Informant'){
                 this.counter.enemy++
             }
         }
@@ -901,7 +901,7 @@ class battle{
     subTurn(){
         let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
         combatant.tick()
-        if(!this.tutorialManager.active){
+        if(!this.tutorialManager.active&&combatant.life>0){
             if(this.turn.total<=1+this.relicManager.active[448][this.turn.main+1]){
                 if(!variants.initiative){
                     for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
@@ -917,6 +917,9 @@ class battle{
                     for(let a=0,la=3;a<la;a++){
                         this.dropDrawShuffle(this.turn.main,findName('Hunting\nRifle',types.card),0,0)
                     }
+                }
+                if(this.encounter.name=='Shield Prison Guard'){
+                    this.cardManagers[this.turn.main].hand.add(findName('Handcuffed',types.card),0,game.playerNumber+1)
                 }
                 this.cardManagers[this.turn.main].switchCheck()
                 if(variants.witch){
@@ -1283,6 +1286,9 @@ class battle{
             userCombatant.status.main[findList('X Cost Boost',userCombatant.status.name)]=0
         }
         if(userCombatant.getStatus('Play Limit')>0&&this.cardManagers[player].hand.turnPlayed[0]>=userCombatant.getStatus('Play Limit')){
+            this.cardManagers[player].allEffect(2,2)
+        }
+        if(userCombatant.getStatus('Play Limit Combat')>0&&this.cardManagers[player].hand.turnPlayed[0]>=userCombatant.getStatus('Play Limit Combat')){
             this.cardManagers[player].allEffect(2,2)
         }
         if(card.spec.includes(35)&&userCombatant.getStatus('Countdown Chain')>0){

@@ -2307,14 +2307,14 @@ class overlay{
                 this.layer.text('Select Boss',this.layer.width/2,this.layer.height/2-150)
                 this.layer.textSize(20)
                 this.layer.text('Close',this.layer.width/2,this.layer.height/2-205)
-                for(let a=0,la=this.battle.nodeManager.listing.encounter[this.world][2].length;a<la;a++){
+                for(let a=0,la=this.battle.nodeManager.listing.static[this.world][2].length;a<la;a++){
                     this.layer.noStroke()
                     this.layer.fill(120,this.fade)
                     this.layer.rect(this.layer.width/2,this.layer.height/2-105+a*50,340,40,10)
                     this.layer.fill(0,this.fade)
                     this.layer.noStroke()
                     this.layer.textSize(18)
-                    this.layer.text(types.encounter[this.battle.nodeManager.listing.encounter[this.world][2][a]].name,this.layer.width/2,this.layer.height/2-105+a*50)
+                    this.layer.text(types.encounter[this.battle.nodeManager.listing.static[this.world][2][a]].name,this.layer.width/2,this.layer.height/2-105+a*50)
                 }
             break
             case 13:
@@ -3082,6 +3082,9 @@ class overlay{
                                                 this.endAfter=false
                                                 this.battle.endTurn()
                                             }
+                                            if(this.args[1]==1){
+                                                this.battle.cardManagers[this.player].discard.cards[a].player=this.battle.players-1-this.battle.cardManagers[this.player].discard.cards[a].player
+                                            }
                                             this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].hand.cards,a,a+1,1)
                                             a--
                                             la--
@@ -3200,6 +3203,9 @@ class overlay{
                                     let complete=true
                                     switch(this.args[0]){
                                         case 6: case 13: case 14: case 15: case 16: case 62:
+                                            if(this.args[1]==1){
+                                                this.battle.cardManagers[this.player].reserve.cards[a].player=this.battle.players-1-this.battle.cardManagers[this.player].reserve.cards[a].player
+                                            }
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].hand.cards,a,a+1,1)
                                             a--
                                             la--
@@ -3624,10 +3630,10 @@ class overlay{
                     }
                 break
                 case 12:
-                    for(let a=0,la=this.battle.nodeManager.listing.encounter[this.world][2].length;a<la;a++){
+                    for(let a=0,la=this.battle.nodeManager.listing.static[this.world][2].length;a<la;a++){
                         if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-105+a*50},width:340,height:40})){
                             this.active=false
-                            this.battle.nodeManager.saveBoss=a
+                            this.battle.nodeManager.setCombat(2,this.battle.nodeManager.listing.static[this.world][2][a])
                         }
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-205},width:120,height:40})){
@@ -4165,6 +4171,9 @@ class overlay{
                                                 this.endAfter=false
                                                 this.battle.endTurn()
                                             }
+                                            if(this.args[1]==1){
+                                                this.battle.cardManagers[this.player].discard.cards[a].player=this.battle.players-1-this.battle.cardManagers[this.player].discard.cards[a].player
+                                            }
                                             this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].hand.cards,a,a+1,1)
                                             a--
                                             la--
@@ -4281,6 +4290,9 @@ class overlay{
                                     let complete=true
                                     switch(this.args[0]){
                                         case 6: case 13: case 14: case 15: case 16: case 62:
+                                            if(this.args[1]==1){
+                                                this.battle.cardManagers[this.player].reserve.cards[a].player=this.battle.players-1-this.battle.cardManagers[this.player].reserve.cards[a].player
+                                            }
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].hand.cards,a,a+1,1)
                                             a--
                                             la--
@@ -4725,10 +4737,10 @@ class overlay{
                     }
                 break
                 case 12:
-                    for(let a=0,la=this.battle.nodeManager.listing.encounter[this.world][2].length;a<la;a++){
+                    for(let a=0,la=this.battle.nodeManager.listing.static[this.world][2].length;a<la;a++){
                         if(int(key)==a+1){
                             this.active=false
-                            this.battle.nodeManager.saveBoss=a
+                            this.battle.nodeManager.setCombat(2,this.battle.nodeManager.listing.static[this.world][2][a])
                         }
                     }
                     if(code==ENTER){

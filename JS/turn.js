@@ -234,7 +234,7 @@ class turn{
                                         [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]+transformBase[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]+transformBase[1]*5]
                                     ]
                                 break
-                                case 55: case 192:
+                                case 55: case 192: case 415:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]],
                                         [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]],

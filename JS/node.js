@@ -40,6 +40,17 @@ class node{
                     break
                 }
             break
+            case 6:
+                if(this.battle.nodeManager.world==1&&game.ascend>=23){
+                    this.reality=1
+                    index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].length))
+                    this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality][index]
+                    this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].splice(index,1)
+                }else{
+                    this.reality=this.type
+                    this.combat=0
+                }
+            break
             default:
                 this.reality=this.type
                 this.combat=0
@@ -211,9 +222,25 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,48,14,3)
-                    this.layer.fill(...color,this.fade*cap)
-                    this.layer.textSize(12)
-                    this.layer.text('Unknown',0,25)
+                    if(this.battle.relicManager.hasRelic(98,-1)){
+                        let term=this.reality>=0&&this.reality<=2?types.encounter[this.combat].name:['','','','Rest','Shop','Event'][this.reality]
+                        if((this.complete||this.active)&&term.length>15){
+                            this.layer.rect(0,24.5,this.complete||this.active?term.length*4.05+13.5:30.5,15,3)
+                            this.layer.fill(...color,this.fade*cap)
+                            this.layer.textSize(9)
+                            this.layer.text(this.complete||this.active?term:'Unknown',0,25)
+                        }else{
+                            let term=this.reality>=0&&this.reality<=2?types.encounter[this.combat].name:['','','','Rest','Shop','Event'][this.reality]
+                            this.layer.rect(0,24.5,this.complete||this.active?term.length*5.4+18:42,16,3)
+                            this.layer.fill(...color,this.fade*cap)
+                            this.layer.textSize(12)
+                            this.layer.text(this.complete||this.active?term:'Unknown',0,25)
+                        }
+                    }else{
+                        this.layer.fill(...color,this.fade*cap)
+                        this.layer.textSize(12)
+                        this.layer.text('Unknown',0,25)
+                    }
                 break
                 case 6:
                     this.layer.stroke(...color,this.fade)

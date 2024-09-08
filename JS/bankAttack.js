@@ -132,9 +132,9 @@ attack.prototype.update=function(){
         case 4928: case 4956: case 4957: case 4958: case 4964: case 4985: case 4986: case 4987: case 4988: case 4989:
         case 4990: case 4991: case 4994: case 4999: case 5000: case 5005: case 5015: case 5016: case 5024: case 5038:
         case 5045: case 5046: case 5052: case 5077: case 5085: case 5100: case 5117: case 5118: case 5155: case 5160:
-        case 5163: case 5165:
+        case 5163: case 5165: case 5166:
             //mark 1
-            if(this.timer==1&&(this.type==2781||this.type==4024)){
+            if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
             }
             if(
@@ -279,7 +279,7 @@ attack.prototype.update=function(){
         case 4764: case 4813: case 4814: case 4829: case 4836: case 4872: case 4873: case 4874: case 4902: case 4919:
         case 4920: case 4930: case 4936: case 4937: case 4938: case 4939: case 4983: case 4995: case 5022: case 5025:
         case 5036: case 5053: case 5054: case 5062: case 5072: case 5078: case 5092: case 5093: case 5095: case 5099:
-        case 5105: case 5107: case 5120: case 5121: case 5143:
+        case 5105: case 5107: case 5120: case 5121: case 5143: case 5167: case 5168: case 5169:
             //mark 2
             if(
                 this.timer==1&&(
@@ -825,25 +825,25 @@ attack.prototype.update=function(){
         case 2796: case 2806: case 2809: case 2845: case 2849: case 2867: case 2869: case 2870: case 2882: case 2950:
         case 2956: case 3020: case 3025: case 3040: case 3045: case 3047: case 3055: case 3059: case 3060: case 3085:
         case 3105: case 3113: case 3123: case 3126: case 3141: case 3153: case 3154: case 3168: case 3217: case 3230:
-        case 3248: case 3277: case 3281: case 3307: case 3324: case 3328: case 3330: case 3338: case 3355: case 3359:
-        case 3371: case 3379: case 3380: case 3385: case 3387: case 3399: case 3400: case 3403: case 3414: case 3415:
-        case 3446: case 3447: case 3451: case 3471: case 3472: case 3473: case 3474: case 3478: case 3486: case 3487:
-        case 3489: case 3518: case 3525: case 3526: case 3547: case 3548: case 3549: case 3552: case 3553: case 3555:
-        case 3556: case 3557: case 3567: case 3570: case 3578: case 3592: case 3607: case 3609: case 3612: case 3660:
-        case 3666: case 3675: case 3684: case 3686: case 3687: case 3708: case 3712: case 3731: case 3768: case 3784:
-        case 3791: case 3839: case 3842: case 3849: case 3850: case 3852: case 3869: case 3890: case 3891: case 3918:
-        case 3919: case 3932: case 3936: case 3937: case 3938: case 3939: case 3949: case 3979: case 3980: case 3981:
-        case 3997: case 4001: case 4002: case 4003: case 4004: case 4005: case 4006: case 4012: case 4014: case 4015:
-        case 4031: case 4037: case 4047: case 4093: case 4099: case 4100: case 4106: case 4120: case 4175: case 4176:
-        case 4177: case 4180: case 4181: case 4186: case 4194: case 4195: case 4196: case 4231: case 4251: case 4255:
-        case 4267: case 4287: case 4288: case 4295: case 4297: case 4301: case 4302: case 4303: case 4329: case 4358:
-        case 4359: case 4360: case 4361: case 4391: case 4415: case 4461: case 4462: case 4508: case 4509: case 4543:
-        case 4600: case 4615: case 4616: case 4617: case 4622: case 4623: case 4635: case 4639: case 4640: case 4641:
-        case 4652: case 4653: case 4711: case 4712: case 4713: case 4714: case 4775: case 4776: case 4777: case 4820:
-        case 4844: case 4845: case 4846: case 4847: case 4875: case 4879: case 4880: case 4883: case 4892: case 4898:
-        case 4929: case 4933: case 4935: case 4942: case 4946: case 4970: case 5009: case 5032: case 5033: case 5041:
-        case 5042: case 5043: case 5044: case 5071: case 5087: case 5088: case 5091: case 5094: case 5122: case 5123:
-        case 5131: case 5132: case 5137: case 5139: case 5140: case 5141: case 5146: case 5147: case 5156:
+        case 3248: case 3277: case 3281: case 3307: case 3324: case 3330: case 3338: case 3355: case 3359: case 3371:
+        case 3379: case 3380: case 3385: case 3387: case 3399: case 3400: case 3403: case 3414: case 3415: case 3446:
+        case 3447: case 3451: case 3471: case 3472: case 3473: case 3474: case 3478: case 3486: case 3487: case 3489:
+        case 3518: case 3525: case 3526: case 3547: case 3548: case 3549: case 3552: case 3553: case 3555: case 3556:
+        case 3557: case 3567: case 3570: case 3578: case 3592: case 3607: case 3609: case 3612: case 3660: case 3666:
+        case 3675: case 3684: case 3686: case 3687: case 3708: case 3712: case 3731: case 3768: case 3784: case 3791:
+        case 3839: case 3842: case 3849: case 3850: case 3852: case 3869: case 3890: case 3891: case 3918: case 3919:
+        case 3932: case 3936: case 3937: case 3938: case 3939: case 3949: case 3979: case 3980: case 3981: case 3997:
+        case 4001: case 4002: case 4003: case 4004: case 4005: case 4006: case 4012: case 4014: case 4015: case 4031:
+        case 4037: case 4047: case 4093: case 4099: case 4100: case 4106: case 4120: case 4175: case 4176: case 4177:
+        case 4180: case 4181: case 4186: case 4194: case 4195: case 4196: case 4231: case 4251: case 4255: case 4267:
+        case 4287: case 4288: case 4295: case 4297: case 4301: case 4302: case 4303: case 4329: case 4358: case 4359:
+        case 4360: case 4361: case 4391: case 4415: case 4461: case 4462: case 4508: case 4509: case 4543: case 4600:
+        case 4615: case 4616: case 4617: case 4622: case 4623: case 4635: case 4639: case 4640: case 4641: case 4652:
+        case 4653: case 4711: case 4712: case 4713: case 4714: case 4775: case 4776: case 4777: case 4820: case 4844:
+        case 4845: case 4846: case 4847: case 4875: case 4879: case 4880: case 4883: case 4892: case 4898: case 4929:
+        case 4933: case 4935: case 4942: case 4946: case 4970: case 5009: case 5032: case 5033: case 5041: case 5042:
+        case 5043: case 5044: case 5071: case 5087: case 5088: case 5091: case 5094: case 5122: case 5123: case 5131:
+        case 5132: case 5137: case 5139: case 5140: case 5141: case 5146: case 5147: case 5156:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -3656,10 +3656,8 @@ attack.prototype.update=function(){
                 this.targetCombatant.moveTile(this.direction,-this.distance/10/this.targetDistance)
                 this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
             }
-            if(this.timer==this.targetDistance*15-35){
+            if(this.timer==this.targetDistance*15){
                 this.userCombatant.moveTilePosition(this.userCombatant.tilePosition.x*(1-1/this.targetDistance)+this.targetCombatant.tilePosition.x/this.targetDistance,this.userCombatant.tilePosition.y*(1-1/this.targetDistance)+this.targetCombatant.tilePosition.y/this.targetDistance)
-            }
-            if(this.timer>=this.targetDistance*15){
                 this.targetCombatant.moveTilePosition(round(this.targetCombatant.tilePosition.x/2+this.userCombatant.tilePosition.x/2),round(this.targetCombatant.tilePosition.y/2+this.userCombatant.tilePosition.y/2))
                 this.battle.activate(1,this.targetCombatant.id)
                 this.remove=true
@@ -8421,6 +8419,25 @@ attack.prototype.update=function(){
                         }
                     break
                 }
+            }else if(this.timer>=20){
+                this.remove=true
+            }
+        break
+        case 3328:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(5)
+                this.procedure=[0,0]
+                if(this.userManager.reserve.cards.length>0){
+                    this.procedure[0]=this.userManager.reserve.cards[0].id
+                }
+                if(this.userManager.discard.cards.length>0){
+                    this.procedure[1]=this.userManager.discard.cards[this.userManager.discard.cards.length-1].id
+                }
+            }
+            this.userCombatant.runAnimation(1/10,5)
+            if(this.timer==10){
+                this.userManager.reserve.allEffectArgs(45,[this.procedure[0],this.userManager.hand.cards])
+                this.userManager.discard.allEffectArgs(45,[this.procedure[1],this.userManager.hand.cards])
             }else if(this.timer>=20){
                 this.remove=true
             }

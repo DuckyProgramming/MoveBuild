@@ -1871,6 +1871,13 @@ class group{
                         la--
                     }
                 break
+                case 45:
+                    if(this.cards[a].id==args[0]){
+                        this.send(args[1],a,a+1,5)
+                        a--
+                        la--
+                    }
+                break
             }
         }
         if(effect==9){
@@ -1885,9 +1892,9 @@ class group{
             for(let a=0,la=this.cards.length;a<la;a++){
                 if((this.cards[a].usable||this.id!=2)&&(!this.cards[a].deSize||this.id!=2||effect==41)
                 &&!((effect==0||effect==25||effect==28)&&this.cards[a].deSize)
-                &&!((effect==1||effect==5||effect==33||effect==40||effect==48)&&(this.cards[a].getCost(1)<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(60)))
-                &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(60)))
-                &&!((effect==2||effect==45||effect==60)&&(this.cards[a].level>=1||this.cards[a].class!=args[0]&&args[0]!=0||this.cards[a].spec.includes(37)))
+                &&!((effect==1||effect==5||effect==33||effect==40||effect==48)&&(this.cards[a].getCost(1)<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(59)||this.cards[a].spec.includes(60)))
+                &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(59)||this.cards[a].spec.includes(60)))
+                &&!((effect==2||effect==60)&&(this.cards[a].level>=1||this.cards[a].class!=args[0]&&args[0]!=0||this.cards[a].spec.includes(37)))
                 &&!(effect==3&&(this.cards[a].level==0||this.cards[a].class!=args[0]&&args[0]!=0||this.cards[a].spec.includes(37)))
                 &&!(effect==8&&this.cards[a].spec.includes(8))
                 &&!(effect==10&&this.cards[a].spec.includes(9))
@@ -1907,7 +1914,7 @@ class group{
                 &&!(effect==32&&!(this.cards[a].name==args[1]&&this.cards[a].cost>0))
                 &&!(effect==34&&(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)))
                 &&!(effect==35&&(this.cards[a].getCost(0)<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(41)||this.cards[a].class!=1))
-                &&!(effect==36&&(this.cards[a].level>=2||this.cards[a].class!=args[0]&&args[0]!=0||this.cards[a].spec.includes(37)))
+                &&!((effect==36||effect==45)&&(this.cards[a].level>=2||this.cards[a].class!=args[0]&&args[0]!=0||this.cards[a].spec.includes(37)))
                 &&!(effect==38&&(this.cards[a].level!=1||this.cards[a].class!=args[0]&&args[0]!=0||this.cards[a].spec.includes(37)))
                 &&!(effect==39&&this.cards[a].spec.includes(7))
                 &&!((effect==41||effect==44)&&!this.cards[a].spec.includes(53))
@@ -4525,11 +4532,13 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     let length=
                     (a==0?
-                        (100+(this.cards[a].spec.includes(34)?-20:((this.cards[a].spec.includes(33)?50:0)+(this.battle.relicManager.hasRelic(170,this.player)?25:0))))
+                        (100+(this.cards[a].spec.includes(34)?-20:((this.cards[a].spec.includes(33)?50:0)+(this.cards[a].spec.includes(66)?150:0)+(this.battle.relicManager.hasRelic(170,this.player)?25:0))))
                         :(
                             (this.cards[a].name=='Unbuild'&&this.cards[a-1].name=='Unbuild'&&this.cards[a].level==this.cards[a-1].level&&this.cards[a].color==this.cards[a-1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a-1].additionalSpec.length==0?50:100)+
                             (this.cards[a].spec.includes(33)?50:0)+
                             (a>0&&this.cards[a-1].spec.includes(33)?50:0)+
+                            (this.cards[a].spec.includes(66)?150:0)+
+                            (a>0&&this.cards[a-1].spec.includes(66)?150:0)+
                             (this.battle.relicManager.hasRelic(170,this.player)?50:0)+
                             (this.cards[a].spec.includes(34)?-20:0)+
                             (a>0&&this.cards[a-1].spec.includes(34)?-20:0)

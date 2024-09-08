@@ -67,9 +67,9 @@ function setup(){
             player(0).offset.position.y+=150
             game.infoOff=true*/
 
-            /*transition.trigger=true
+            transition.trigger=true
             transition.scene='event'
-            current.setupSpecificEvent(142)*/
+            current.setupSpecificEvent(147)
 
             /*player(0).size=3
             player(0).goal.anim.direction=-30

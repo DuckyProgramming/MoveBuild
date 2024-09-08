@@ -1,15 +1,14 @@
 UNCOMING:
 
-deploy new enemies
-
-predetermine the map
-
-
-
 deploy new events
+
+cards in set 47
 
 collection screen
 
+deploy enemies in detachment 166
+
+design merlin
 
 
 title screen 5th button - collection
@@ -21,7 +20,7 @@ project constructed save?
 
 
 
-LISTING GROUP 46
+LISTING GROUP 47
 
 
 
@@ -56,13 +55,17 @@ amplify
 
 
 
-hype train - 3 cost 25 damage to a random adjacent enemy, costs 1 less
+push and steal block
 
-last resort - gain 6x block, if x is 0 gain 1 energy
+payload - gain 3 energy, lose 1 energy next 2 turns
 
-merge to main - 14 block, shuffle discard into draw, draw a card
+aileron - deal 9 damage, put a card from your draw pile on top of your draw pile
 
-nullity - 3 damage, if fatal remove a card, exhaust ethereal
+afterburner - draw 2 cards, gain 3 temporary dexterity
+
+human resources - 1 cost, next turn gain 2 energy, remove a random debuff, end your turn
+
+black current - scry 3, draw 3, discard 3
 
 
 
@@ -132,60 +135,6 @@ update azis tutorial with orb moving
 
 
 
-new enemies:
-
-world 1:
-
-bosses:
-
-thoughtless - has 3 stances
-
-world 2:
-
-replace human with guard
-
-enemies:
-
-bar security - counter pushes once per turn, but doesn't do much damage
-bartender - the management custodian but a gangster, applies debuffs to you from across the map
-cutthroat - stab guy who applies bleed, and all other enemies have buffs while he is alive
-
-bosses:
-
-renegade agent - switches abilities every turn on a 4 turn cycle
-turn 1: 25 damage, and starts turn with 15 block
-turn 2: push everybody on the map, and gets 1 dodge
-turn 3: spawn a paramilitary, counter 25 once
-turn 4: 5x4 damage, moves when you move
-
-world 3:
-
-enemies:
-
-speedrunner - []
-the subconcious - forces you to play the top card of your draw pile every turn, and fills your deck with pure garbage
-management robot commander - like a normal robot but can buff other robots and stronger generally
-
-bosses:
-
-lockdown - a strong robot, 8 metallicize
-every time you play 8 cards you take 4 damage
-counters 8 at the start of every turn
-otherwise pretty basic attacks
-
-world 4:
-
-elites:
-
-adrian kane - has heavy weapons
-
-azis boss needs another attack
-chip boss needs another attack
-shinmy boss needs 2 attacks and setup code
-#18 boss needs 2 attacks and setup code
-
-
-
 new bonus mods (generalized)
 sick duck
 spirit of wealth
@@ -203,6 +152,14 @@ paramilitary
 speedrunner
 psychologist
 management robot commander
+lockdown
+adrian kane
+gangster machinegunner informant
+walker driver
+armored biker
+prison guard gunner
+shield prison guard
+
 
 
 
@@ -215,27 +172,6 @@ new variants:
 
 
 new events:
-
-
-
-gangster rifleman informant
-
-management informant
-
-prison van - choice
-bribe the guard to escape
-fight the guard
-during the fight, you have a card called handcuffed - 10 cost countdown, exhaust,
-while in hand all attacks and defenses cost 1 more
-enemy is a prison guard with a riot shotgun that pushes 1 space
-
-broken elevator - choice
-sneak out the top
-fight inside a literal 5 tile map, no space whatsoever
-against armored biker - biker but he starts with 6 metallicize
-
-prison walkway - fight some prison guards with shields
-but can be pushed off a cliff and die instantly
 
 
 
@@ -255,7 +191,8 @@ public defense - get bbbusted
 
 open either a standard pack or a prism pack
 
-[]
+podbuilder - make a custom pod that deals damage, adds block, and draws
+but the better you make it, the more it money it costs
 
 
 

@@ -159,12 +159,11 @@ types={
         {name:'Embodimental Destabilization',life:202,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[2,2,2,2]}],description:`This is getting out of hand!`},
         {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[15]},{type:300,effect:[2]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
         {name:'Golden Duck',life:38,behavior:16,spec:[],move:{type:0,speed:3},attack:[{type:21,effect:[]},{type:68,effect:[]}],description:`Why is this thing alive?`},
-        {name:'Management Shotgunner',life:146,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:364,effect:[24,3,1,'Electrocuted']},{type:365,effect:[7,3]}],description:`At least he doesn't OHKO`},
+        {name:'Management Shotgunner',life:146,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:364,effect:[24,3,1,'Electrocuted']},{type:365,effect:[7,2]}],description:`At least he doesn't OHKO`},
         {name:'Management Light Infantry',life:135,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:367,effect:[6]},{type:368,effect:[10,1]}],description:`How can he dodge with that armor?`},
         {name:'Gangster Assassin',life:72,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:369,effect:[22,4]}],description:`Good at stabbing`},
         {name:'Ducky Donka',life:48,behavior:2,spec:[0],move:{type:0,speed:1},attack:[{type:370,effect:[2,2]}],description:`Legit`},
         {name:'Ducky McDuff',life:48,behavior:2,spec:[0],move:{type:0,speed:1},attack:[{type:371,effect:[2,2]}],description:`Probably not legit`},
-        {name:'Prisoner Informant',life:28,behavior:1,spec:[22],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Whose side is he on?`},
         {name:'Embodimental Element',life:51,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:31,effect:[5]},{type:294,effect:[2,2]}],description:`Tandemaus`},
         {name:'Kugelblitz Particle',life:31,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:374,effect:[7,1]},{type:375,effect:[7,1]}],description:`He's smol`},
         {name:'Pure Swordsman',life:30,behavior:1,spec:[0],move:{type:0,speed:2},attack:[{type:107,effect:[6,1]}],description:`Appointed up`},
@@ -174,7 +173,22 @@ types={
         {name:'Pistol Biker',life:28,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[8]}],description:`Finally I can use disarm`},
         {name:'Brawler',life:36,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:14,effect:[10,1,'Dizzy']},{type:82,effect:[9,1,'Dizzy']}],description:`No surprise that he's a prisoner too`},
         {name:'Mailman',life:40,behavior:8,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[7]},{type:414,effect:[4,'Mail']}],description:`Protected by labor`},
+        {name:'Guard',life:45,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:398,effect:[10,6]}],description:`More interesting than the old guy`},
+        {name:'Bar Security',life:60,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:3,effect:[8]}],description:`Just doing business`},
+        {name:'Bartender',life:60,behavior:1,spec:[0],move:{type:12,speed:1},attack:[{type:92,effect:[1]},{type:93,effect:[1]},{type:39,effect:[1,'Gangster']}],description:`I guess he's a gang member`},
+        {name:'Cutthroat',life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:397,effect:[5,3]}],description:`Not the most elegant assassin`},
+        {name:'Speedrunner',life:52,behavior:0,spec:[1],move:{type:0,speed:1},attack:[{type:6,effect:[12]}],description:`Faster than you would ever believe`},
+        {name:'Psychologist',life:87,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:5,effect:[1,'Trigger']},{type:48,effect:[15]},{type:5,effect:[1,'Stressor']},{type:9,effect:[18]}],description:`Knowing what you think`},
+        {name:'Management Robot Commander',life:120,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:402,effect:[12,1]},{type:99,effect:[5]},{type:401,effect:[6,1]}],description:`Actually has a budget`},
+        {name:'Adrian Kane',life:350,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:129,effect:[5]},{type:208,effect:[24]},{type:406,effect:[8]},{type:127,effect:[28]}],description:`Deposed leader of HVM`},
+        {name:'Armored Biker',life:48,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[11]},{type:10,effect:[5]}],description:`That's a good helmet`},
+        {name:'Prison Guard Gunner',life:52,behavior:0,spec:[7],move:{type:2,speed:1},attack:[{type:400,effect:[10,2,'Dazed']}],description:`Average riot control measure`},
+        {name:'Shield Prison Guard',life:62,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:399,effect:[8,10]},{type:353,effect:[12,1]}],description:`Not as good as riot police`},
 
+        {name:'Prisoner Informant',life:28,behavior:1,spec:[22],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Whose side is he on?`},
+        {name:'Gangster Machinegunner Informant',life:48,behavior:1,spec:[0,22],move:{type:1,speed:1},attack:[{type:129,effect:[3]}],description:`It goes to the top`},
+        {name:'Walker Driver Informant',life:65,behavior:1,spec:[22],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]}],description:`Gonna walk on out`},
+        
         {name:'Inconsistent',life:69,behavior:0,spec:[],move:{type:5,speed:1},attack:[{type:245,effect:[6]},{type:245,effect:[9]}],description:`Nice!`},
         {name:'Latency',life:13,behavior:0,spec:[],move:{type:1,speed:5},attack:[{type:1,effect:[5]}],description:`...`},
         {name:'Void Duck',life:120,behavior:2,spec:[1],move:{type:0,speed:1},attack:[{type:2,effect:[8]},{type:5,effect:[3,'Dazed']}],description:`Got spam-clicked on`},
@@ -193,6 +207,7 @@ types={
         {name:'Nil',life:91,behavior:5,spec:[0],move:{type:1,speed:1},attack:[{type:196,effect:[12,1,'Electrocuted']},{type:198,effect:[11,1]},{type:197,effect:[3]},{type:146,effect:[5]}],description:`My iq`},
         {name:'Buried',life:34,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[11]},{type:2,effect:[3]},{type:3,effect:[10]},{type:4,effect:[6]},{type:225,effect:[]}],description:`Stuck in the ground`},
         {name:'Keystone',life:62,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:350,effect:[12,1,'Dazed']},{type:351,effect:[12,1,'Dazed']}],description:`100% casualty rate`},
+        {name:'Paramilitary',life:60,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:403,effect:[10]}],description:`"Faction"`},
         
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
         {name:'Slime Boss',life:120,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[2]}],description:`Very fat slime`},
@@ -202,7 +217,7 @@ types={
         {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:200,effect:[8]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
         {name:'Crusader',life:127,behavior:15,spec:[1,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:343,effect:[14,1]},{type:344,effect:[20]},{type:376,effect:[22,1]},{type:346,effect:[22,1]},{type:347,effect:[20]}],description:`Two millenia late to the party`},
-        {name:'Thoughtless',life:144,behavior:17,spec:[0],move:{type:0,speed:1},attack:[{type:147,effect:[6]},{type:404,effect:[12,1]},{type:405,effect:[8,4]},{type:83,effect:[10,2,'Philosophy of\nthe Despised']}],description:`No mind lol`},
+        {name:'Thoughtless',life:144,behavior:17,spec:[0],move:{type:0,speed:1},attack:[{type:147,effect:[5]},{type:404,effect:[12,1]},{type:405,effect:[8,4]},{type:83,effect:[10,1,'Philosophy of\nthe Despised']}],description:`No mind lol`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,2]}],description:`Gunning for a promotion`},
@@ -210,7 +225,8 @@ types={
         {name:'Comrade',life:280,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:171,effect:[6,4]},{type:39,effect:[1,'Red']},{type:169,effect:[5]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
         {name:'Councilman',life:270,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:174,effect:[2]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
         {name:'Gangmaster',life:305,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Gangster']},{type:205,effect:[12]},{type:206,effect:[8]},{type:39,effect:[1,'Gangster Gunner']},{type:207,effect:[1]}],description:`Legitimate businessman`},
-        {name:'Daughter of Heaven',life:300,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:348,effect:[12,2,2]},{type:19,effect:[8]},{type:349,effect:[1,2]},{type:296,effect:[11]},{type:39,effect:[1,'Keystone']}],description:`Cut character POV`},
+        {name:'Daughter of Heaven',life:300,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:348,effect:[10,2,2]},{type:19,effect:[6]},{type:349,effect:[1,1]},{type:296,effect:[12]},{type:39,effect:[1,'Keystone']}],description:`Cut character POV`},
+        {name:'Renegade Agent',life:250,behavior:18,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[25]},{type:192,effect:[12]},{type:39,effect:[1,'Paramilitary']},{type:77,effect:[5]}],description:`Agent XI`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Dizzy']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2,19],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
@@ -219,6 +235,7 @@ types={
         {name:'Purge X02',life:500,behavior:0,spec:[0,2,19],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:32,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
         {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[2]}],description:`From the sky~`},
         {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[17,2]},{type:354,effect:[9,2]},{type:355,effect:[7,2]}],description:`Doxxed literally everybody`},
+        {name:'Lockdown',life:425,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:111,effect:[2]},{type:98,effect:[24]},{type:407,effect:[5]},{type:408,effect:[36,12]},{type:409,effect:[22,11]}],description:`Stay in jail`},
 
         {name:'Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:190,effect:[36,2,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
         {name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
@@ -270,44 +287,6 @@ types={
         {name:'BlockDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:2,effect:[1]}],description:`Gains block`},
         {name:'MoveDummy',life:1,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Can move`},
         {name:'Unknown',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`???`},
-
-
-
-
-
-
-        
-
-        
-
-        
-
-        {name:'Guard',life:45,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:398,effect:[10,6]}],description:`More interesting than the old guy`},
-
-        {name:'Bar Security',life:60,behavior:1,spec:[0,7],move:{type:0,speed:1},attack:[{type:3,effect:[8]}],description:`Just doing business`},
-        {name:'Bartender',life:60,behavior:1,spec:[0],move:{type:12,speed:1},attack:[{type:92,effect:[1]},{type:93,effect:[1]},{type:39,effect:[1,'Gangster']}],description:`I guess he's a gang member`},
-        {name:'Cutthroat',life:56,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:397,effect:[10,3]}],description:`Not the most elegant assassin`},
-
-        {name:'Renegade Agent',life:250,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[25]},{type:192,effect:[12]},{type:39,effect:[20]},{type:77,effect:[5]}],description:`Agent XI`},
-        {name:'Paramilitary',life:75,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:403,effect:[10]}],description:`"Faction"`},
-        
-        {name:'Speedrunnner',life:52,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]}],description:`Faster than you would ever believe`},
-        {name:'Psychologist',life:87,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:5,effect:[4,'Trigger']},{type:48,effect:[36]},{type:5,effect:[4,'Stressor']}],description:`Knowing what you think`},
-        {name:'Management Robot Commander',life:120,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:402,effect:[12,1]},{type:99,effect:[5]},{type:401,effect:[6,1]}],description:`Actually has a budget`},
-        
-        {name:'Lockdown',life:425,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:111,effect:[4]},{type:98,effect:[24]},{type:407,effect:[5]},{type:408,effect:[36,12]},{type:409,effect:[22,11]}],description:`Stay in jail`},
-        
-        {name:'Adrian Kane',life:350,behavior:1,spec:[0],move:{type:2,speed:1},attack:[{type:129,effect:[5]},{type:208,effect:[24]},{type:406,effect:[8]},{type:127,effect:[28]}],description:`Deposed leader of HVM`},
-
-        {name:'Gangster Machinegunner Informant',life:48,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:129,effect:[3]}],description:`It goes to the top`},
-        {name:'Walker Driver Informant',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]}],description:`Gonna walk on out`},
-        {name:'Armored Biker',life:48,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[11]},{type:10,effect:[5]}],description:`That's a good helmet`},
-        {name:'Prison Guard Gunner',life:52,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:400,effect:[10,2,'Dazed']}],description:`Average riot control measure`},
-        {name:'Shield Prison Guard',life:62,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:399,effect:[8,10]},{type:353,effect:[12,1]}],description:`Not as good as riot police`},
-
-        //azis boss
-        //chip boss
-        //shinmy boss
 
     ],attack:[
         {name:'',class:0},//0
@@ -722,10 +701,10 @@ types={
         {name:'2 Tile 3 Spread Strike / Block',class:1},
         {name:'Lucky Block',class:2},//410
         {name:'Block / Buffer',class:4},
-        {name:'Strike / Lock On',class:4},
+        {name:'Strike / Lock On',class:1},
         {name:'All Enemy Dodge',class:4},
         {name:'Draw Status',class:4},
-
+        {name:'2 Tile Triple Spin Strike',class:1},
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,description:''},
         {name:'Leftovers',internal:'Quick Heal',id:1,rarity:0,list:0,mtg:0,description:'Heal 2 HP at\nthe End of Combat'},
@@ -812,7 +791,7 @@ types={
         {name:'Rapier',internal:'Blocked Weaken',id:75,rarity:1,list:0,mtg:0,description:'When an Enemy Deals Blocked\nDamage to You, Apply 1 Weak'},
         {name:'Bookmark',internal:'Retain Card Block',id:76,rarity:1,list:0,mtg:0,description:'Add 4 Block When\nYou Retain a Card'},
         {name:'Seasoning',internal:'Better Items',id:77,rarity:-1,list:0,mtg:0,description:'Items are 2x More Effective'},
-        {name:'Pyrite Cube',internal:'12 Defense Buffer',id:78,rarity:1,list:0,mtg:0,description:'Every 12 Defenses Played,\nGain 1 Buffer'},
+        {name:'Pyrite Cube',internal:'16 Defense Buffer',id:78,rarity:1,list:0,mtg:0,description:'Every 16 Defenses Played,\nGain 1 Buffer'},
         {name:'Clip-On Tie',internal:'Important Enemies',id:79,rarity:1,list:0,mtg:0,description:'Enemies Can Give\nElite Rewards'},
 
         {name:'Rummaging Rum',internal:'Item Reuse',id:80,rarity:1,list:0,mtg:0,description:'When an Item is Used,\n50% Chance to Get Another'},
@@ -834,7 +813,7 @@ types={
         {name:'Snowball',internal:'Death Dexterity',id:95,rarity:0,list:0,mtg:0,description:'When an Enemy Dies,\nGain 1 Dexterity'},
         {name:'Tax Paperwork',internal:'Weak Elites',id:96,rarity:0,list:0,mtg:0,description:'Enemies in Elite\nCombats Lose 20% HP'},
         {name:'Card Service Voucher',internal:'Card Service Discount',id:97,rarity:3,list:0,mtg:0,description:'Card Service\nCosts 50% Less'},
-        {name:'Four Leaf Clover',internal:'Better Unknown',id:98,rarity:-1,list:0,mtg:0,description:'Unknowns are More Likely\nto be Beneficial'},
+        {name:'Four Leaf Clover',internal:'Visible Unknown',id:98,rarity:1,list:0,mtg:0,description:'You Can See\nInside Unknown Nodes'},
         {name:'Pink Dice',internal:'Unknown Heal',id:99,rarity:0,list:0,mtg:0,description:'Heal 5 HP When Entering an Unknown'},
 
         {name:'Glitter',internal:'Running Block',id:100,rarity:0,list:0,mtg:0,description:'After You Move or Get Moved,\nAdd 2 Block Per Tile Moved'},
@@ -3779,8 +3758,8 @@ After eating it, you feel somewhat replenished.`,
                     optionDesc:['Lose 35 Currency',''],
                     link:[3,4],
                 },{
-                    desc:'',
-                    option:[''],
+                    desc:`You're not hungry right now.`,
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },{
@@ -4998,7 +4977,7 @@ he'll defect until the others are all defeated,
 however, so you'll have to deal with all of them.`,
                     option:['Take the Mission','Decline'],
                     optionDesc:['Start Fight',''],
-                    link:[-2,-1],
+                    link:[-2,1],
                 },{
                     desc:
 `You decide against it, thinking that it's a trap.
@@ -5034,7 +5013,7 @@ politican to safety, but get shot in the process.`,
                     desc:
 `You know the Management is probably planning something.
 Taking the job is too risky.`,
-                    option:[''],
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -5663,7 +5642,7 @@ Maybe you could use it for something.`,
                     link:[-1,1],
                 },{
                     desc:`You don't need that stuff.`,
-                    option:[''],
+                    option:['Leave'],
                     optionDesc:[''],
                     link:[-1],
                 },
@@ -5755,8 +5734,132 @@ You make your escape, but without the time to bring things with you.`,
                     link:[-1],
                 },
             ],
+        },{
+            name:'Gangster Informant',id:142,list:0,
+            pages:[
+                {
+                    desc:
+`Some interesting news comes in: there's a gang war
+going on in the city. One of the highest-ranking
+lieutenants in the gang has contacted the rebels,
+and he wants out - and is willing to hand over access
+to some of the gangster weapons arsenals.
+If you successfully kill the other gangsters,
+he'll give it up. You're promised some quick cash
+if you take go in to make the deal go smoothly.`,
+                    option:['Take the Mission','Decline'],
+                    optionDesc:['Start Fight',''],
+                    link:[-2,1],
+                },{
+                    desc:
+`If this high-rank gangster wants out,
+he can do it himself.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Management Informant',id:143,list:0,
+            pages:[
+                {
+                    desc:
+`Due to recent changes in Management command structure
+in the local area, it looks like a member of the
+Management military is looking to defect and share secrets.
+Once you kill the other Management soldiers there,
+the informant is ready to switch sides.`,
+                    option:['Take the Mission','Decline'],
+                    optionDesc:['Start Fight',''],
+                    link:[-2,1],
+                },{
+                    desc:
+`The Management would set up a trap like this.
+You're not risking yourself for some random guy.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Broken Elevator',id:144,list:0,
+            pages:[
+                {
+                    desc:
+`The elevator up the building suddenly stops,
+but it doesn't seem to be falling, just stuck.
+You hear some noise from outside, maybe the enemy
+managed to stop your elevator to attack you?`,
+                    option:['Open the Door','Crawl Out'],
+                    optionDesc:['','Lose 4 Health'],
+                    link:[1,2],
+                },{
+                    desc:
+`When you open the door, the thugs pour in.
+There's not much space to maneuver, so your
+only choice is to take them out.`,
+                    option:['Battle Them'],
+                    optionDesc:['Start Fight'],
+                    link:[-2],
+                },{
+                    desc:`You manage to escape, with a few scratches.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Prison Walkway',id:145,list:0,
+            pages:[
+                {
+                    desc:
+`On your way to take down a high-value target,
+you're faced with having to cross over a walkway
+in the center of the cell area to avoid other routes
+with far more guards. However, the walkway looks like
+a good place for the enemy to set up an ambush.`,
+                    option:['Cross Through','Escape'],
+                    optionDesc:['Gain 100 Currency',''],
+                    link:[1,2],
+                },{
+                    desc:
+`In the center intersection of the walkway,
+four guards, one from each direction, appear,
+each holding a shotgun. You're trapped.`,
+                    option:['Fight Your Way Out'],
+                    optionDesc:['Start Fight'],
+                    link:[-2],
+                },{
+                    desc:
+`Finding no safe route to pursue the target,
+you make a clean getaway out of the prison.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Prison Van',id:146,list:0,
+            pages:[
+                {
+                    desc:
+`Having been ambushed, you now reside within a
+prison van, cuffed, and with one of the guards
+bringing you on your way to incarceration.`,
+                    option:['Try to Break Free','Bribe'],
+                    optionDesc:['Start Fight','Lose 50 Currency'],
+                    link:[-2,1],
+                },{
+                    desc:
+`Taking the bribe, he lets you escape.
+You're grateful to not have to deal with a prison sentence.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
         },/*{
-            name:'',id:142,list:0,
+            name:'',id:147,list:0,
             pages:[
                 {
                     desc:
@@ -6140,6 +6243,15 @@ You make your escape, but without the time to bring things with you.`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Chopped Rectangular 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Rectangular 3',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1}],
@@ -6519,6 +6631,14 @@ You make your escape, but without the time to bring things with you.`,
                 [{type:-1},{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
             ],
         },{
+            name:'Closed Hole 3',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Extended Hole 3',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1}],
@@ -6714,6 +6834,17 @@ You make your escape, but without the time to bring things with you.`,
                 [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
             ],
         },{
+            name:'Factory1B 7',
+            map:[
+                [{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]}],
+            ],
+        },{
             name:'Factory2 7',
             map:[
                 [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
@@ -6791,6 +6922,17 @@ You make your escape, but without the time to bring things with you.`,
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Central Spikes 5',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[1]},{type:[1]},{type:[1]},{type:[1]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
             ],
         },{
             name:'Quad 5',
@@ -7032,6 +7174,17 @@ You make your escape, but without the time to bring things with you.`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[15]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]}],
+            ],
+        },{
+            name:'Managerial 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[15]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:[]},{type:-1},{type:[]},{type:-1}],
+                [{type:[]},{type:[15]},{type:[]},{type:[]},{type:[]},{type:[15]},{type:[]}],
+                [{type:-1},{type:[]},{type:-1},{type:[]},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[15]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Triplet 6',
@@ -7444,6 +7597,94 @@ You make your escape, but without the time to bring things with you.`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Roomed 5',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Roomed 2 5',
+            map:[
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Loading 6',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:-1},{type:-1},{type:[]}],
+            ],
+        },{
+            name:'Teardrop 3',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Resliced 5',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+            ],
+        },{
+            name:'Topped Sliced 7',
+            map:[
+                [{type:[]},{type:-1},{type:[]},{type:-1},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Tiny 3',
+            map:[
+                [{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Chevron 4',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Walkways 9',
+            map:[
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Walkways 7',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
         },
 
         /*{
@@ -7484,22 +7725,219 @@ You make your escape, but without the time to bring things with you.`,
             ],assaultReinforce:[
             ],ally:[
             ],
-        },/*{
-            level:['Basic 7'],class:0,world:-1,
-            name:'Placeholder',
-            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
-            enemy:[
-                {position:{x:2,y:2},name:'Guard'},
-            ],reinforce:[
-            ],assaultReinforce:[
-            ],ally:[
-            ],
-        },*/{
+        },{
             level:['Basic 7'],class:0,world:-1,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Walkways 7'],class:0,world:-1,
+            name:'Prison Guard Gunner',
+            player:{position:[[{x:3,y:2}],[{x:3,y:2},{x:3,y:3}]]},
+            enemy:[
+                {position:{x:2,y:0},name:'Prison Guard Gunner'},
+                {position:{x:4,y:5},name:'Prison Guard Gunner'},
+                {position:{x:0,y:2},name:'Prison Guard Gunner'},
+                {position:{x:6,y:3},name:'Prison Guard Gunner'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Chevron 4'],class:0,world:-1,
+            name:'Shield Prison Guard',
+            player:{position:[[{x:0,y:1}],[{x:0,y:0},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'Shield Prison Guard'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Tiny 3'],class:-1,world:0,
+            name:'Armored Biker',
+            player:{position:[[{x:2,y:1}],[{x:1,y:0},{x:2,y:1}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Biker'},
+                {position:{x:0,y:0},name:'Armored Biker'},
+            ],reinforce:[
+                {position:{x:0,y:1},name:'Pistol Biker',turn:2},
+                {position:{x:0,y:0},name:'Armored Biker',turn:3},
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Biker',turn:4},
+                {position:{x:2,y:1},name:'Armored Biker',turn:5},
+            ],ally:[
+            ],
+        },{
+            level:['Closed Hole 3'],class:0,world:-1,
+            name:'Walker Driver Informant',
+            player:{position:[[{x:2,y:1}],[{x:2,y:1},{x:3,y:3}]]},
+            enemy:[
+                {position:{x:0,y:2},name:'Walker Driver Informant'},
+                {position:{x:0,y:0},name:'Management Shotgunner'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:1},name:'Management Shotgunner',turn:5},
+            ],ally:[
+            ],
+        },{
+            level:['Central Spikes 5'],class:0,world:-1,
+            name:'Gangster Machinegunner Informant',
+            player:{position:[[{x:4,y:5}],[{x:3,y:5},{x:5,y:5}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Gangster Machinegunner Informant'},
+                {position:{x:0,y:1},name:'Gangster'},
+                {position:{x:0,y:2},name:'Gangster'},
+                {position:{x:0,y:3},name:'Gangster'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:1},name:'Gangster Gunner',turn:5},
+                {position:{x:2,y:1},name:'Gangster Gunner',turn:5},
+                {position:{x:0,y:3},name:'Gangster',turn:9},
+                {position:{x:4,y:3},name:'Gangster',turn:9},
+            ],ally:[
+            ],
+        },{
+            level:['Topped Sliced 7'],class:1,world:3,
+            name:'Adrian Kane',
+            player:{position:[[{x:4,y:4}],[{x:2,y:4},{x:6,y:4}]]},
+            enemy:[
+                {position:{x:2,y:0},name:'Adrian Kane'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:1},name:'Carbonado Robot',turn:6},
+                {position:{x:5,y:5},name:'Carbonado Robot',turn:6},
+                {position:{x:3,y:1},name:'Carbonado Robot',turn:12},
+                {position:{x:3,y:5},name:'Carbonado Robot',turn:12},
+                {position:{x:1,y:3},name:'Carbonado Robot',turn:18},
+                {position:{x:5,y:3},name:'Carbonado Robot',turn:18},
+            ],ally:[
+            ],
+        },{
+            level:['Managerial 7'],class:2,world:2,
+            name:'Lockdown',
+            player:{position:[[{x:6,y:6}],[{x:6,y:6},{x:0,y:0}]]},
+            enemy:[
+                {position:{x:3,y:3},name:'Lockdown'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:0},name:'Management Robot',turn:4},
+                {position:{x:0,y:3},name:'Management Robot',turn:4},
+                {position:{x:3,y:6},name:'Management Soldier',turn:8},
+                {position:{x:6,y:3},name:'Management Soldier',turn:8},
+                {position:{x:0,y:0},name:'Management Officer',turn:10},
+                {position:{x:1,y:0},name:'Management Sniper',turn:14},
+                {position:{x:0,y:1},name:'Management Sniper',turn:14},
+                {position:{x:3,y:0},name:'Management Shotgunner',turn:18},
+                {position:{x:0,y:3},name:'Management Shotgunner',turn:18},
+            ],ally:[
+            ],
+        },{
+            level:['Factory1B 7'],class:0,world:2,
+            name:'Management Robot Commander',
+            player:{position:[[{x:2,y:5}],[{x:2,y:5},{x:3,y:5}]]},
+            enemy:[
+                {position:{x:3,y:3},name:'Management Robot Commander'},
+                {position:{x:0,y:1},name:'Management Robot'},
+                {position:{x:6,y:5},name:'Management Robot'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:1},name:'Management Robot',turn:6},
+                {position:{x:4,y:1},name:'Management Robot',turn:6},
+                {position:{x:3,y:1},name:'Management Robot',turn:12},
+                {position:{x:4,y:1},name:'Management Robot',turn:12},
+            ],ally:[
+            ],
+        },{
+            level:['Resliced 5'],class:0,world:2,
+            name:'Psychologist',
+            player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:2,y:3}]]},
+            enemy:[
+                {position:{x:3,y:1},name:'Psychologist'},
+                {position:{x:4,y:3},name:'Psychologist'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Psychologist',turn:6},
+                {position:{x:2,y:4},name:'Psychologist',turn:6},
+                {position:{x:4,y:1},name:'Psychologist',turn:8},
+                {position:{x:5,y:3},name:'Psychologist',turn:8},
+            ],ally:[
+            ],
+        },{
+            level:['Teardrop 3'],class:0,world:2,
+            name:'Speedrunner',
+            player:{position:[[{x:4,y:2}],[{x:3,y:2},{x:3,y:3}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'Speedrunner'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Loading 6'],class:2,world:1,
+            name:'Renegade Agent',
+            player:{position:[[{x:5,y:4}],[{x:5,y:3},{x:5,y:4}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Renegade Agent'},
+                {position:{x:0,y:3},name:'Paramilitary'},
+                {position:{x:1,y:0},name:'Paramilitary'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:5},name:'Paramilitary',turn:6},
+                {position:{x:5,y:2},name:'Paramilitary',turn:6},
+            ],ally:[
+            ],
+        },{
+            level:['Chopped Rectangular 5'],class:0,world:1,
+            name:'Cutthroat',
+            player:{position:[[{x:0,y:0}],[{x:1,y:0},{x:1,y:1}]]},
+            enemy:[
+                {position:{x:4,y:3},name:'Cutthroat'},
+                {position:{x:2,y:3},name:'Cartel'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:0},name:'Cutthroat',turn:5},
+                {position:{x:0,y:1},name:'Cartel',turn:11},
+                {position:{x:4,y:4},name:'Cutthroat',turn:17},
+            ],ally:[
+            ],
+        },{
+            level:['Roomed 2 5'],class:0,world:1,
+            name:'Bartender',
+            player:{position:[[{x:4,y:2}],[{x:4,y:2},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Bartender'},
+                {position:{x:1,y:3},name:'Bar Security'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:2},name:'Bar Security',turn:5},
+            ],ally:[
+            ],
+        },{
+            level:['Roomed 5'],class:0,world:1,
+            name:'Bar Security',
+            player:{position:[[{x:3,y:0}],[{x:3,y:0},{x:4,y:1}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Bar Security'},
+                {position:{x:1,y:4},name:'Bar Security'},
+                {position:{x:4,y:4},name:'Bar Security'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:0},name:'Bar Security',turn:6},
+                {position:{x:3,y:0},name:'Bar Security',turn:6},
+            ],ally:[
+            ],
+        },{
+            level:['Basic 5'],class:4,world:1,
+            name:'Guard',
+            player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Guard'},
             ],reinforce:[
             ],assaultReinforce:[
             ],ally:[
@@ -7564,7 +8002,7 @@ You make your escape, but without the time to bring things with you.`,
         },{
             level:['Looped 3'],class:3,world:0,
             name:'Spirit of Wealth',
-            player:{position:[[{x:2,y:0}],[{x:1,y:0},{x:0,y:1}]]},
+            player:{position:[[{x:2,y:0}],[{x:1,y:0},{x:3,y:1}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Spirit of Wealth'},
             ],reinforce:[
@@ -9243,7 +9681,7 @@ You make your escape, but without the time to bring things with you.`,
             ],ally:[
             ],
         },{
-            level:['Basic 5'],class:4,world:1,
+            level:['Basic 5'],class:-1,world:0,
             name:'Human',
             player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
             enemy:[

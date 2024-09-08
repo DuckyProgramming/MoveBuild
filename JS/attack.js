@@ -770,7 +770,7 @@ class attack{
                     this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
                 }
             break
-            case 2781: case 4024:
+            case 2781: case 4024: case 5166:
                 let available=this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,1)
                 if(available.length==0){
                     this.remove=true
@@ -4303,7 +4303,7 @@ class attack{
                                     this.userManager.hand.add(findName('Sniper',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break
-                                case 'Gangster Machinegunner': case 'Coffee Commander':
+                                case 'Gangster Machinegunner': case 'Coffee Commander': case 'Gangster Machinegunner Informant':
                                     this.userManager.hand.add(findName('Triple\nTap',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break
@@ -4311,7 +4311,7 @@ class attack{
                                     this.userManager.hand.add(findName('Reserve\nRocket',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break
-                                case 'Management Shotgunner':
+                                case 'Management Shotgunner': case 'Prison Guard Gunner':
                                     this.userManager.hand.add(findName('Shotgun',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break
@@ -5081,6 +5081,7 @@ class attack{
             case 1:
                 switch(this.type){
                     case 13: case 235: case 968: case 2289: case 2778: case 3278: case 3512: case 3998: case 4507: case 4624:
+                    case 5167: case 5168:
                         this.userCombatant.addBlock(this.effect[0]*this.energy)
                     break
                     case 141:
@@ -6855,6 +6856,21 @@ class attack{
                     break
                     case 5143:
                         this.userManager.drawAbstract(this.effect[1],11,0,[])
+                    break
+                    case 5167:
+                        if(this.energy==0){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 5168:
+                        if(this.energy==1){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 5169:
+                        this.userManager.swap(1,3)
+                        this.userManager.draw(this.effect[1])
                     break
 
                 }
@@ -12275,19 +12291,6 @@ class attack{
                     break
                     case 3324:
                         this.userManager.drawAbstract(this.effect[0],-1,9,[])
-                    break
-                    case 3328:
-                        if(this.userManager.reserve.cards.length>0){
-                            this.userManager.reserve.send(this.userManager.hand.cards,0,1,5)
-                        }
-                        if(this.userManager.discard.cards.length>0){
-                            for(let a=0,la=this.userManager.discard.cards.length;a<la;a++){
-                                if(this.userManager.discard.cards[this.userManager.discard.cards.length-1-a].color!=game.playerNumber+1){
-                                    this.userManager.discard.send(this.userManager.hand.cards,this.userManager.discard.cards.length-1-a,this.userManager.discard.cards.length-a,5)
-                                    a=la
-                                }
-                            }
-                        }
                     break
                     case 3330:
                         this.userManager.draw(this.effect[0])

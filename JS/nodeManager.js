@@ -29,7 +29,6 @@ class nodeManager{
                 if(types.encounter[a].world>=1&&types.encounter[a].class!=4){
                     //temporary, until enough enemies are active
                     this.listing.encounter[types.encounter[a].world][types.encounter[a].class].push(a)
-                    this.listing.name[types.encounter[a].world][types.encounter[a].class].push(types.encounter[a].name)
                 }
                 this.listing.encounter[types.encounter[a].world][types.encounter[a].class].push(a)
                 this.listing.static[types.encounter[a].world][types.encounter[a].class].push(a)
@@ -41,6 +40,13 @@ class nodeManager{
         this.tilePosition={x:0,y:-1}
         this.world++
         this.setupMap()
+    }
+    setCombat(type,combat){
+        for(let a=0,la=this.nodes.length;a<la;a++){
+            if(this.nodes[a].type==type){
+                this.nodes[a].combat=combat
+            }
+        }
     }
     getNodeIndex(tileX,tileY){
         for(let a=0,la=this.nodes.length;a<la;a++){
@@ -83,10 +89,10 @@ class nodeManager{
             let possibilities=[]
             switch(this.world){
                 case 0:
-                    for(let a=0,la=game.ascend>=1?27:31;a<la;a++){
+                    for(let a=0,la=game.ascend>=1?28:31;a<la;a++){
                         possibilities.push(0)
                     }
-                    for(let a=0,la=game.ascend>=1?10:6;a<la;a++){
+                    for(let a=0,la=game.ascend>=1?9:6;a<la;a++){
                         possibilities.push(1)
                     }
                     for(let a=0,la=9;a<la;a++){
@@ -101,10 +107,10 @@ class nodeManager{
                     this.unknownPossibilities=game.ascend>=15?[0,0,1,1,3,4,5,5,5,5,5,5,5,5,5]:[0,0,0,1,3,4,5,5,5,5,5,5,5,5,5]
                 break
                 case 1: case 2:
-                    for(let a=0,la=game.ascend>=1?23:27;a<la;a++){
+                    for(let a=0,la=game.ascend>=1?24:27;a<la;a++){
                         possibilities.push(0)
                     }
-                    for(let a=0,la=game.ascend>=1?10:6;a<la;a++){
+                    for(let a=0,la=game.ascend>=1?9:6;a<la;a++){
                         possibilities.push(1)
                     }
                     for(let a=0,la=9;a<la;a++){
@@ -199,12 +205,13 @@ class nodeManager{
         }
         switch(type){
             case 0:
-                if((type==0||type==1)&&this.saveClass>=0){
-                    let tempClass=this.saveClass
-                    this.saveClass=-1
-                    this.enterNode(tempClass,y,true,args)
+                transition.scene='battle'
+                if(this.saveClass>=0){
+                    let list=this.listing.static[this.world][this.saveClass]
+                    let index=floor(random(0,list.length))
+                    this.battle.setupBattle(types.encounter[list[index]])
+                    list.splice(index,1)
                 }else{
-                    transition.scene='battle'
                     if(variants.selectCombat){
                         transition.trigger=false
                         this.battle.overlayManager.overlays[61][0].active=true
@@ -215,12 +222,13 @@ class nodeManager{
                 }
             break
             case 1:
-                if((type==0||type==1)&&this.saveClass>=0){
-                    let tempClass=this.saveClass
-                    this.saveClass=-1
-                    this.enterNode(tempClass,y,true,args)
+                transition.scene='battle'
+                if(this.saveClass>=0){
+                    let list=this.listing.static[this.world][this.saveClass]
+                    let index=floor(random(0,list.length))
+                    this.battle.setupBattle(types.encounter[list[index]])
+                    list.splice(index,1)
                 }else{
-                    transition.scene='battle'
                     if(this.battle.modded(69)){
                         if(variants.selectCombat){
                             transition.trigger=false
@@ -305,7 +313,7 @@ class nodeManager{
             break
             case 6:
                 if(this.world==1&&game.ascend>=23){
-                    this.enterNode(1,y,true,args)
+                    this.enterNode(args[1],y,true,args)
                 }else{
                     transition.scene='stash'
                     this.battle.setupStash()

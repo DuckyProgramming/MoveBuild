@@ -1161,7 +1161,7 @@ combatant.prototype.setupGraphics=function(direction){
                 }
             }
         break
-        case 'Drunk Boss': case 'Enforcer': case 'Bomber Boy': case 'Chief Engineering Officer': case 'Gangmaster':
+        case 'Drunk Boss': case 'Enforcer': case 'Bomber Boy': case 'Chief Engineering Officer': case 'Gangmaster': case 'Paramilitary':
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                 legs:[{top:9,bottom:0,length:{top:19,bottom:19}},{top:9,bottom:0,length:{top:19,bottom:19}}],
                 arms:[{top:24,bottom:9,length:{top:19,bottom:19}},{top:24,bottom:9,length:{top:19,bottom:19}}]}
@@ -1236,9 +1236,19 @@ combatant.prototype.setupGraphics=function(direction){
                     this.trigger.display.pocket=true
                     this.trigger.display.beard=true
                 break
+                case 'Paramilitary':
+                    this.color={skin:{head:[240,220,180],body:[40,40,40],legs:[35,35,35],arms:[235,235,235]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.skin.upperBody=[240,240,240]
+                    this.color.badge=[40,40,40]
+                    this.color.belt=[240,240,240]
+                    this.fades.badge=1
+                    this.fades.belt=1
+                    this.trigger.display.badge=true
+                    this.trigger.display.belt=true
+                break
             }
         break
-        case 'Pointy': case 'Little Guy': case 'Rich Kid': case 'Latency':
+        case 'Pointy': case 'Little Guy': case 'Rich Kid': case 'Latency': case 'Speedrunner':
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                 legs:[{top:12,bottom:0,length:{top:14,bottom:14}},{top:12,bottom:0,length:{top:14,bottom:14}}],
                 arms:[{top:27,bottom:12,length:{top:14,bottom:14}},{top:27,bottom:12,length:{top:14,bottom:14}}]}
@@ -1280,6 +1290,13 @@ combatant.prototype.setupGraphics=function(direction){
                 break
                 case 'Latency':
                     this.color={eye:{back:[255,150,150],front:[255,50,50],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                break
+                case 'Speedrunner':
+                    this.color={skin:{head:[240,220,150],body:[200,180,160],legs:[190,170,150],arms:[230,150,30]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0],teeth:[[65,65,65],[245,245,245]]}}
+                    this.color.skin.upperBody=[240,160,40]
+                    this.color.glasses=[[40,40,40],[255,255,255]]
+                    this.fades.glasses=1
+                    this.trigger.display.glasses=true
                 break
             }
         break
@@ -1732,7 +1749,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.calc={int:[0,0,0,0]}
             this.goal={anim:{direction:this.anim.direction}}
         break
-        case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02': case 'Carbonado Robot':
+        case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02': case 'Carbonado Robot': case 'Management Robot Commander': case 'Lockdown':
             this.anim={direction:direction,head:direction,eye:[0,0],eyeStyle:[0,0],
                 legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
                 arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
@@ -1773,6 +1790,16 @@ combatant.prototype.setupGraphics=function(direction){
                     this.color.light=[255,255,200]
                     this.fades.light=1
                     this.trigger.display.light=true
+                break
+                case 'Management Robot Commander':
+                    this.color={skin:{in:[120,120,120],out:[100,100,100],limb:[95,95,95]},eye:{back:[50,50,200],front:[75,75,225],glow:[150,150,255]}}
+                    this.color.badge=[[50,200,200],[75,225,225]]
+                    this.fades.badge=1
+                    this.trigger.display.badge=true
+                break
+                case 'Lockdown':
+                    this.color={skin:{in:[240,240,40],out:[200,200,40],limb:[180,180,40]},eye:{back:[50,50,100],front:[75,75,125],glow:[150,150,255]}}
+                    this.color.skin.bar=[[220,220,40],[170,170,40]]
                 break
                 default:
                     this.color={skin:{in:[120,120,120],out:[100,100,100],limb:[95,95,95]},eye:{back:[50,50,200],front:[75,75,225],glow:[150,150,255]}}
@@ -3546,6 +3573,146 @@ combatant.prototype.setupGraphics=function(direction){
                     this.fades.tie=1
                     this.trigger.display.hat=true
                     this.trigger.display.tie=true
+                break
+                case 'Guard':
+                    this.color={skin:{head:[80,80,80],body:[45,45,54],legs:[35,35,53],arms:[55,55,55]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.metal=[24,24,42]
+                    this.fades.metal=1
+                    this.trigger.display.metal=true
+                break
+                case 'Bar Security':
+                    this.color={skin:{head:[240,220,180],body:[80,60,60],legs:[75,55,55],arms:[70,50,50]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.sunglasses=[0,0,0]
+                    this.color.belt=[180,160,160]
+                    this.fades.sunglasses=1
+                    this.fades.belt=1
+                    this.trigger.display.sunglasses=true
+                    this.trigger.display.belt=true
+                break
+                case 'Bartender':
+                    this.color={skin:{head:[240,220,180],body:[240,240,240],legs:[75,55,75],arms:[235,235,235]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.overall=[80,60,80]
+                    this.color.bowtie=[60,40,60]
+                    this.color.button=[125,100,125]
+                    this.fades.overall=1
+                    this.fades.bowtie=1
+                    this.fades.button=1
+                    this.trigger.display.overall=true
+                    this.trigger.display.bowtie=true
+                    this.trigger.display.button=true
+                break
+                case 'Cutthroat':
+                    this.color={skin:{head:[240,220,180],body:[160,130,100],legs:[140,110,80],arms:[130,100,70]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.neck=[200,60,60]
+                    this.color.bandana=[150,120,90]
+                    this.color.glasses=[[30,30,30],[200,215,230]]
+                    this.color.belt=[[240,200,160],[50,40,30]]
+                    this.fades.neck=1
+                    this.fades.bandana=1
+                    this.fades.glasses=1
+                    this.fades.belt=1
+                    this.trigger.display.neck=true
+                    this.trigger.display.bandana=true
+                    this.trigger.display.glasses=true
+                    this.trigger.display.belt=true
+                break
+                case 'Renegade Agent':
+                    this.color={skin:{head:[240,220,180],body:[40,40,40],legs:[35,35,35],arms:[235,235,235]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.skin.upperBody=[240,240,240]
+                    this.color.tie=[50,50,50]
+                    this.color.belt=[240,240,240]
+                    this.fades.tie=1
+                    this.fades.belt=1
+                    this.trigger.display.tie=true
+                    this.trigger.display.belt=true
+                break
+                case 'Psychologist':
+                    this.color={skin:{head:[240,220,180],body:[40,45,50],legs:[45,50,55],arms:[170,140,110]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.skin.upperBody=[180,150,120]
+                    this.color.glasses=[[40,40,40],[160,200,240]]
+                    this.color.button=[60,80,100]
+                    this.color.coat=[220,230,240]
+                    this.fades.glasses=1
+                    this.fades.button=1
+                    this.fades.coat=1
+                    this.trigger.display.glasses=true
+                    this.trigger.display.button=true
+                    this.trigger.display.coat=true
+                break
+                case 'Adrian Kane':
+                    this.color={skin:{head:[240,220,180],body:[200,120,40],legs:[190,110,30],arms:[195,115,35]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.belt=[100,90,80]
+                    this.color.tie=[240,80,40]
+                    this.color.beard=[60,60,60]
+                    this.color.goggles=[200,200,80]
+                    this.fades.belt=1
+                    this.fades.tie=1
+                    this.fades.beard=1
+                    this.fades.goggles=0.8
+                    this.trigger.display.belt=true
+                    this.trigger.display.tie=true
+                    this.trigger.display.beard=true
+                    this.trigger.display.goggles=true
+                break
+                case 'Gangster Machinegunner Informant':
+                    this.color={skin:{head:[240,220,180],body:[240,240,240],legs:[200,200,20],arms:[235,235,235]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.overall=[205,205,25]
+                    this.color.hat=[225,225,45]
+                    this.color.sunglasses=[100,90,60]
+                    this.fades.overall=1
+                    this.fades.hat=1
+                    this.fades.sunglasses=1
+                    this.trigger.display.overall=true
+                    this.trigger.display.hat=true
+                    this.trigger.display.sunglasses=true
+                break
+                case 'Walker Driver Informant':
+                    this.color={skin:{head:[240,220,180],body:[205,205,25],legs:[200,200,20],arms:[195,195,20]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.belt=[100,90,80]
+                    this.color.helmet=[160,160,40]
+                    this.color.visor=[240,240,240]
+                    this.fades.belt=1
+                    this.fades.helmet=1
+                    this.fades.visor=1
+                    this.trigger.display.belt=true
+                    this.trigger.display.helmet=true
+                    this.trigger.display.visor=true
+                break
+                case 'Armored Biker':
+                    this.color={skin:{head:[200,10,10],body:[225,25,25],legs:[220,20,20],arms:[230,30,30]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.goggles=[[240,220,180],[255,255,255]]
+                    this.fades.goggles=0.6
+                    this.trigger.display.goggles=true
+                break
+                case 'Prison Guard Gunner':
+                    this.color={skin:{head:[240,220,180],body:[0,175,100],legs:[0,170,95],arms:[0,165,90]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.belt=[[70,70,70],[60,60,60]]
+                    this.color.armor=[80,80,80]
+                    this.color.helmet=[100,100,100]
+                    this.color.visor=[200,200,200]
+                    this.fades.belt=1
+                    this.fades.armor=1
+                    this.fades.helmet=1
+                    this.fades.visor=1
+                    this.trigger.display.belt=true
+                    this.trigger.display.armor=true
+                    this.trigger.display.helmet=true
+                    this.trigger.display.visor=true
+                break
+                case 'Shield Prison Guard':
+                    this.color={skin:{head:[240,220,180],body:[100,175,100],legs:[95,170,95],arms:[90,165,0]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.belt=[[70,70,70],[60,60,60]]
+                    this.color.armor=[80,80,80]
+                    this.color.helmet=[100,100,100]
+                    this.color.visor=[200,200,200]
+                    this.fades.belt=1
+                    this.fades.armor=1
+                    this.fades.helmet=1
+                    this.fades.visor=1
+                    this.trigger.display.belt=true
+                    this.trigger.display.armor=true
+                    this.trigger.display.helmet=true
+                    this.trigger.display.visor=true
                 break
                 default:
                     this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}

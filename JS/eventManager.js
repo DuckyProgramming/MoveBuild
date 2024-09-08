@@ -134,6 +134,11 @@ class eventManager{
                 !(this.listing.event[a]==139&&this.battle.relicManager.total[this.player]<2)&&
                 !(this.listing.event[a]==140&&this.battle.cardManagers[this.player].deck.numberAbstract(18,[[2]])<1)&&
                 !(this.listing.event[a]==141&&this.battle.currency.money[this.player]<200)&&
+                !(this.listing.event[a]==142&&this.battle.nodeManager.world!=1)&&
+                !(this.listing.event[a]==143&&this.battle.nodeManager.world!=2)&&
+                !(this.listing.event[a]==144&&(this.battle.nodeManager.world!=1||userCombatant.life<5))&&
+                !(this.listing.event[a]==145&&this.battle.nodeManager.world!=0)&&
+                !(this.listing.event[a]==146&&(this.battle.nodeManager.world!=0||this.battle.currency.money[this.player]<50))&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -1649,6 +1654,41 @@ class eventManager{
                             tempPage=1
                         }else if(this.page==3&&a==0){
                             this.battle.loseCurrency(200,this.player)
+                        }
+                    break
+                    case 142:
+                        if(this.page==0&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Gangster Machinegunner Informant',types.encounter)])
+                        }
+                    break
+                    case 143:
+                        if(this.page==0&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Walker Driver Informant',types.encounter)])
+                        }
+                    break
+                    case 144:
+                        if(this.page==0&&a==1){
+                            this.harm(userCombatant,4)
+                        }else if(this.page==1&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Armored Biker',types.encounter)])
+                        }
+                    break
+                    case 145:
+                        if(this.page==1&&a==0){
+                            this.battle.addCurrency(100,this.player)
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Prison Guard Gunner',types.encounter)])
+                        }
+                    break
+                    case 146:
+                        if(this.page==0&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Shield Prison Guard',types.encounter)])
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(50,this.player)
                         }
                     break
 

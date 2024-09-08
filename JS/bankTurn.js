@@ -453,9 +453,9 @@ turn.prototype.update=function(){
                         this.remove=true
                     }else{
                         if(this.timer==1){
-                            this.userCombatant.startAnimation(this.userCombatant.name=='Lira'?6:7)
+                            this.userCombatant.startAnimation(this.userCombatant.name=='Lira'||this.userCombatant.name=='Shinmyoumaru'?6:7)
                         }
-                        this.userCombatant.runAnimation(1/15,this.userCombatant.name=='Lira'?6:7)
+                        this.userCombatant.runAnimation(this.userCombatant.name=='Lira'||this.userCombatant.name=='Shinmyoumaru'?2/15:1/15,this.userCombatant.name=='Lira'||this.userCombatant.name=='Shinmyoumaru'?6:7)
                         if(this.timer>=15){
                             this.selfCall(5)
                             this.remove=true
@@ -1079,7 +1079,7 @@ turn.prototype.update=function(){
                 case 117: case 135: case 154: case 175: case 195: case 319: case 344: case 347: case 403:
                     if(this.timer==1){
                         this.procedure[0]=0
-                        if(this.type==175||this.type==319){
+                        if(this.type==175||this.type==319||this.type==403){
                             this.userCombatant.startAnimation(0)
                         }
                     }
@@ -1087,9 +1087,6 @@ turn.prototype.update=function(){
                         this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1]),
                         this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
                         if(this.target[0]<0){
-                            if(this.procedure[0]>0){
-                                this.battle.activate(1,this.userCombatant.id)
-                            }
                             this.battle.turnManager.unMoveTurn(this.user)
                             this.remove=true
                         }else{
@@ -1110,7 +1107,7 @@ turn.prototype.update=function(){
                         }
                     }
                     if(!this.remove){
-                        if(this.type==175||this.type==319){
+                        if(this.type==175||this.type==319||this.type==403){
                             this.userCombatant.runAnimation(1/10,0)
                         }
                         this.userCombatant.moveTile(this.direction,this.distance/(10*distTargetCombatant(0,this,this.targetTile)))
@@ -1137,6 +1134,7 @@ turn.prototype.update=function(){
                             this.targetTile.addType(10)
                         }
                         this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                        this.battle.activate(1,this.userCombatant.id)
                         if(
                             this.procedure[0]>=1&&this.type==403||
                             this.procedure[0]>=2&&(this.type==175||this.type==319)||
@@ -1947,13 +1945,20 @@ turn.prototype.update=function(){
                         this.remove=true
                     }
                 break
-                case 147:
+                case 147: case 415:
                     if(this.timer==1){
                         this.userCombatant.startAnimation(6)
                     }
                     this.userCombatant.runAnimation(3/10,6)
                     if(this.timer==4||this.timer==10||this.timer==16){
-                        this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                        switch(this.type){
+                            case 147:
+                                this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                            break
+                            case 415:
+                                this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
+                            break
+                        }
                     }else if(this.timer>=20){
                         this.remove=true
                     }

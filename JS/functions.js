@@ -775,8 +775,8 @@ function intentDescription(attack,user,info){
 			case 82: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\n3 Tiles Wide\nRange 1-1`
 			case 83: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nRange 1-6`
 			case 84: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\n3 Tiles Wide\nRange 1-1`
-			case 85: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n5 Tiles Wide\nRange 2-2`
-			case 86: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\n5 Tiles Wide\nRange 2-2`
+			case 85: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n2 Tiles Forward,\n1 Tile to the Side,\nor 1 Tile Diagonally`
+			case 86: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n2 Tiles Forward,\n1 Tile to the Side,\nor 1 Tile Diagonally`
 			case 87: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nin All Directions\nRange 1-1`
 			case 88: return `You Cannot Move\nFor ${info?attack.effect[0]:`?`} Turn${pl(attack.effect[0])}`
 			case 89: case 145: case 338:
@@ -1059,7 +1059,7 @@ function intentDescription(attack,user,info){
 			case 376: return `Add ${info?attack.effect[0]:`?`} Block\nGain ${info?attack.effect[1]:`?`} Dexterity`
 			case 377: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nRange 1-1`
 			case 378: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Block\nRange 1-1`
-			case 379: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nApply ${info?attack.effect[2]:`?`} Vulnerable\n5 Tiles Wide\nRange 2-2`
+			case 379: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nApply ${info?attack.effect[2]:`?`} Vulnerable\n2 Tiles Forward,\n1 Tile to the Side,\nor 1 Tile Diagonally`
 			case 380: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nRange 1-4`
 			case 381: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\n3 Tiles Wide\nRange 1-2`
 			case 382: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Right\nRange 1-2`
@@ -1095,6 +1095,7 @@ function intentDescription(attack,user,info){
 			case 412: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Lock On\nRange 1-1`
 			case 413: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Dodge`
 			case 414: return `Shuffle in ${info?attack.effect[0]:'?'} ${info?attack.effect[1].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[0])}`
+			case 415: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin All Directions\n3 Times\nRange 1-2`
 
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
@@ -1893,7 +1894,7 @@ function quickItem(type,player){
 }
 function outEncounter(){
 	print(`
-Total:${current.nodeManager.listing.static[0][0].length+current.nodeManager.listing.static[0][1].length+current.nodeManager.listing.static[0][2].length+current.nodeManager.listing.static[0][3].length+current.nodeManager.listing.static[1][0].length+current.nodeManager.listing.static[1][1].length+current.nodeManager.listing.static[1][2].length+current.nodeManager.listing.static[2][0].length+current.nodeManager.listing.static[2][1].length+current.nodeManager.listing.static[2][2].length+current.nodeManager.listing.static[3][1].length+current.nodeManager.listing.static[3][2].length}/156
+Total:${current.nodeManager.listing.static[0][0].length+current.nodeManager.listing.static[0][1].length+current.nodeManager.listing.static[0][2].length+current.nodeManager.listing.static[0][3].length+current.nodeManager.listing.static[1][0].length+current.nodeManager.listing.static[1][1].length+current.nodeManager.listing.static[1][2].length+current.nodeManager.listing.static[2][0].length+current.nodeManager.listing.static[2][1].length+current.nodeManager.listing.static[2][2].length+current.nodeManager.listing.static[3][1].length+current.nodeManager.listing.static[3][2].length}/166
 \nWorld 1:
 Easies:${current.nodeManager.listing.static[0][3].length}/12
 (${current.nodeManager.listing.name[0][3].join(',')})

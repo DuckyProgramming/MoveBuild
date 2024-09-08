@@ -618,13 +618,13 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('2x',0,10)
                 break
-                case '12 Defense Buffer':
+                case '16 Defense Buffer':
                     displaySymbol(this.layer,-7,0,8,0,1,this.fade)
                     displaySymbol(this.layer,-7,0,19,0,0.8,this.fade)
                     displaySymbol(this.layer,10,0,44,0,1.5,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('12',-7,0)
+                    this.layer.text('16',-7,0)
                     this.layer.text('1',10,0)
                 break
                 case 'Important Enemies':
@@ -764,8 +764,8 @@ class relic{
                     this.layer.textSize(6)
                     this.layer.text('-50%',0,11)
                 break
-                case 'Better Unknown':
-                    displaySymbol(this.layer,8,0,50,0,1,this.fade)
+                case 'Visible Unknown':
+                    displaySymbol(this.layer,8,0,120,0,2,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(20)
                     this.layer.text('?',-8,0)
@@ -3342,10 +3342,15 @@ class relic{
                         this.layer.textSize(6)
                         this.layer.text(`${detail}/3`,0,-16)
                     break
-                    case '12 Attack Damage': case '12 Attack Energy': case '12 Defense Buffer':
+                    case '12 Attack Damage': case '12 Attack Energy':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%12}/12`,0,-16)
+                    break
+                    case '16 Defense Buffer':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail%16}/16`,0,-16)
                     break
                     case '3 Turn Draw': case '3 Turn Duplicate': case 'Green Mana/3 Turn Dodge': case 'Green Mana/3 Turn Strength':
                         this.layer.fill(0,this.fade)
