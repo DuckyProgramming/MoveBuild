@@ -139,6 +139,10 @@ class eventManager{
                 !(this.listing.event[a]==144&&(this.battle.nodeManager.world!=1||userCombatant.life<5))&&
                 !(this.listing.event[a]==145&&this.battle.nodeManager.world!=0)&&
                 !(this.listing.event[a]==146&&(this.battle.nodeManager.world!=0||this.battle.currency.money[this.player]<50))&&
+                !(this.listing.event[a]==147&&userCombatant.life<12)&&
+                !(this.listing.event[a]==148&&(this.battle.currency.money[this.player]<100||userCombatant.life<11))&&
+                !(this.listing.event[a]==149&&(this.battle.currency.money[this.player]<250||userCombatant.life<21))&&
+                !(this.listing.event[a]==151&&this.battle.currency.money[this.player]<100)&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -1689,6 +1693,50 @@ class eventManager{
                             this.battle.setupBattle(types.encounter[findName('Shield Prison Guard',types.encounter)])
                         }else if(this.page==0&&a==1){
                             this.battle.loseCurrency(50,this.player)
+                        }
+                    break
+                    case 147:
+                        if(this.page==0&&a==1&&floor(random(0,4))==0){
+                            tempPage++
+                        }else if(this.page==2&&a==0){
+                            this.harm(userCombatant,11)
+                        }else if(this.page==3&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                        }
+                    break
+                    case 148:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(100,this.player)
+                        }else if(this.page==0&&a==1){
+                            for(let a=0,la=3;a<la;a++){
+                                this.battle.cardManagers[this.player].randomEffect(0,21,[])
+                            }
+                        }else if(this.page==0&&a==2){
+                            this.battle.loseCurrency(20,this.player)
+                            this.harm(userCombatant,10)
+                        }
+                    break
+                    case 149:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(250,this.player)
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(100,this.player)
+                        }else if(this.page==2&&a==0){
+                            this.harm(userCombatant,20)
+                        }else if(this.page==3&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('B-B-Busted',types.card),0,game.playerNumber+2)
+                        }
+                    break
+                    case 150:
+                        if(this.page==0&&(a>=0&&a<=2)){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,3,[14,15,25][a]])
+                        }
+                    break
+                    case 151:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[132][this.player].active=true
+                            this.battle.overlayManager.overlays[132][this.player].activate([0])
                         }
                     break
 

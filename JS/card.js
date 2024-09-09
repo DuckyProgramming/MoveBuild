@@ -3333,7 +3333,7 @@ class card{
             case 2486: string+=`Next Luck-Based Card\nis Guaranteed to Fail`; break
             case 2487: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext Luck-Based Card\nis Guaranteed to Fail`; break
             case 2488: string+=`Draw a Card\nMake ${effect[0]} Cop${effect[0]!=1?`ies`:`y`}`; break
-            case 2489: string+=`When Discarded\nFrom Your Hand,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nto All Enemies\nDiscards to Hand`; break
+            case 2489: string+=`When Discarded\nFrom Your Hand,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nto All Enemies and\nReturns to Hand`; break
             case 2490: string+=`Deal ${this.calculateEffect(effect[0],2)} Splash Damage\nWhere X = Total\nHand Cost\n(Other Than This Card)`; break
             case 2491: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nBecome Confused`; break
             case 2492: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOther Cards in Hand\nCost 1 More`; break
@@ -6050,7 +6050,7 @@ class card{
             case 5167: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nIf X is 0, Gain ${effect[1]} Energy`; break
             case 5168: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nIf X is 1, Gain (E) (N)`; break
             case 5169: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nSwap Draw and Discard\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-
+            case 5170: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nDraw ${effect[2]} Card${pl(effect[2])}`; break
 
 
             
@@ -6430,6 +6430,7 @@ class card{
             break
             case 2489:
                 this.battle.combatantManager.allEffect(43,[this.effect[0],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
+                this.discardEffect.push(16)
             break
             case 2500:
                 this.battle.endTurn()

@@ -175,27 +175,6 @@ new events:
 
 
 
-sharks - you're on a boat towards a management outpost on a island
-swim away - nothing happens
-punch a shark - 90% lose 10 health, 10% gain a relic
-
-tax collector - choice
-pay taxes - lose 250 currency
-evade taxes - lose 3 random cards
-declare bankruptcy - lose 100 currency, lose 20 health
-
-court - choice
-quality lawyer - become poor
-cheap lawyer - lose money lose hp
-public defense - get bbbusted
-
-open either a standard pack or a prism pack
-
-podbuilder - make a custom pod that deals damage, adds block, and draws
-but the better you make it, the more it money it costs
-
-
-
 []
 
 []
@@ -225,10 +204,25 @@ enemyset next:
 world 1 replacements (send some world 1 enemies to world 2):
 
 neonic spikeball - half blue half pink, attacks one of two sides, doesn't rotate
+[]
 
 world 2:
+
+[]
+[]
+[]
+[]
+[]
+[]
 
 world 3:
 
 rocket launcher management robot
+[]
+[]
+[]
+[]
+[]
+[]
+[]
 

@@ -132,7 +132,7 @@ attack.prototype.update=function(){
         case 4928: case 4956: case 4957: case 4958: case 4964: case 4985: case 4986: case 4987: case 4988: case 4989:
         case 4990: case 4991: case 4994: case 4999: case 5000: case 5005: case 5015: case 5016: case 5024: case 5038:
         case 5045: case 5046: case 5052: case 5077: case 5085: case 5100: case 5117: case 5118: case 5155: case 5160:
-        case 5163: case 5165: case 5166:
+        case 5163: case 5165: case 5166: case 5170:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -9639,7 +9639,7 @@ attack.prototype.update=function(){
             this.userCombatant.runAnimation(1/30,1)
             if(this.timer==15){
                 for(let a=0,la=this.effect[0];a<la;a++){
-                    this.userManager.deck.add(findName('Strike',types.card),this.level,this.color,floor(random(0,7)))
+                    this.userManager.deck.add(findName('Strike',types.card),this.level,this.color,floor(random(1,7)))
                 }
                 current.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,155,[10]))
             }else if(this.timer>=30){
@@ -9653,7 +9653,7 @@ attack.prototype.update=function(){
             this.userCombatant.runAnimation(1/30,1)
             if(this.timer==15){
                 for(let a=0,la=this.effect[0];a<la;a++){
-                    this.userManager.deck.add(findName('Defend',types.card),this.level,this.color,floor(random(0,7)))
+                    this.userManager.deck.add(findName('Defend',types.card),this.level,this.color,floor(random(1,7)))
                 }
                 current.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,156,[10]))
             }else if(this.timer>=30){

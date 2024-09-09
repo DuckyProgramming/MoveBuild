@@ -10,7 +10,7 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    if(false){
+    if(true){
             //game.ascend=32
 
             //stage.scene='tier'
@@ -20,7 +20,7 @@ function setup(){
             //transition.scene='menu'
             
         current.menu.combatant=[17]
-        current.menu.deck=[0]
+        current.menu.deck=[-1]
 
             //variants.mtg=true
 
@@ -67,9 +67,9 @@ function setup(){
             player(0).offset.position.y+=150
             game.infoOff=true*/
 
-            transition.trigger=true
+            /*transition.trigger=true
             transition.scene='event'
-            current.setupSpecificEvent(147)
+            current.setupSpecificEvent(152)*/
 
             /*player(0).size=3
             player(0).goal.anim.direction=-30

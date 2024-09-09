@@ -227,7 +227,7 @@ class attack{
             case 4932: case 4934: case 4941: case 4947: case 4956: case 4957: case 4958: case 4959: case 4960: case 4961: case 4962: case 4963: case 4964: case 4965: case 4975: case 4976: case 4977: case 4978: case 4979: case 4980:
             case 4981: case 4982: case 4985: case 4986: case 4987: case 4988: case 4989: case 4990: case 4991: case 4994: case 4997: case 4998: case 4999: case 5000: case 5005: case 5014: case 5015: case 5016: case 5024: case 5029:
             case 5038: case 5045: case 5046: case 5051: case 5052: case 5055: case 5057: case 5067: case 5077: case 5081: case 5082: case 5083: case 5085: case 5089: case 5090: case 5097: case 5100: case 5108: case 5109: case 5110:
-            case 5111: case 5112: case 5114: case 5115: case 5117: case 5118: case 5152: case 5153: case 5154: case 5155: case 5158: case 5160: case 5161: case 5163: case 5165:
+            case 5111: case 5112: case 5114: case 5115: case 5117: case 5118: case 5152: case 5153: case 5154: case 5155: case 5158: case 5160: case 5161: case 5163: case 5165: case 5170:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -2187,7 +2187,7 @@ class attack{
                         }
                     break
                     case 5024:
-                        this.targetCombatant.takeDamage(this.effect[0]*(this.battle.tileManager.getAreaAll(this.userCombatant.tilePosition,1,1).length<6?3:1),this.user)
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.battle.tileManager.getAreaAll(this.targetCombatant.tilePosition,1,1).length<6?3:1),this.user)
                     break
                     case 5038:
                         this.targetCombatant.takeDamage(this.effect[0]*(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1?2:1),this.user)
@@ -5073,6 +5073,10 @@ class attack{
                     case 5165:
                         this.userCombatant.addBlock(this.effect[1])
                         this.targetCombatant.statusEffect('Lock On',this.effect[2])
+                    break
+                    case 5170:
+                        this.userCombatant.addBlock(this.effect[1])
+                        this.userManager.draw(this.effect[2])
                     break
 
                 }

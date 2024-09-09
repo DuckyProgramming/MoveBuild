@@ -351,11 +351,9 @@ class group{
                     break
                     case 6:
                         this.cards[this.cards.length-1].effect[args[ticker++]]=args[ticker++]
-                        ticker+=2
                     break
                     case 7:
                         this.cards[this.cards.length-1].effect[args[ticker++]]+=args[ticker++]
-                        ticker+=2
                     break
                     case 8:
                         this.cards[this.cards.length-1].retain=true
@@ -4765,14 +4763,18 @@ class group{
                             this.cards[a].attack==1649||this.cards[a].attack==1650||this.cards[a].attack==1654||this.cards[a].attack==1655||this.cards[a].attack==1740||
                             this.cards[a].attack==1753||this.cards[a].attack==1777||this.cards[a].attack==1788||this.cards[a].attack==1806||this.cards[a].attack==1821||
                             this.cards[a].attack==1852||this.cards[a].attack==1856||this.cards[a].attack==1857||this.cards[a].attack==1868||this.cards[a].attack==1909||
-                            this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||this.cards[a].attack==2470||this.cards[a].attack==2489||
-                            this.cards[a].attack==3196||this.cards[a].attack==4754||this.cards[a].attack==4805||this.cards[a].attack==4806||this.cards[a].attack==4807||
-                            this.cards[a].attack==4808||this.cards[a].attack==4833||this.cards[a].attack==4834||
+                            this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||this.cards[a].attack==2470||this.cards[a].attack==3196||
+                            this.cards[a].attack==4754||this.cards[a].attack==4805||this.cards[a].attack==4806||this.cards[a].attack==4807||this.cards[a].attack==4808||
+                            this.cards[a].attack==4833||this.cards[a].attack==4834||
                             (this.cards[a].attack==587||this.cards[a].attack==676)&&this.battle.combatantManager.constructAlive(this.player+1)&&!options.oldUnbuild||
                             this.cards[a].attack==1642&&this.battle.attackManager.energy==4||
                             this.cards[a].attack==4772&&this.battle.attackManager.mtgEnergy.length==4||
-                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Hook')>0&&this.cards[a].getCost(0)>0&&this.battle.turn.main==this.player
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Hook')>0&&this.cards[a].getCost(0)>0&&this.battle.turn.main==this.player||
+                            this.cards[a].discardEffect.includes(16)
                         )&&!this.cards[a].exhaust){
+                            if(this.cards[a].discardEffect.includes(16)){
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(16),1)
+                            }
                             this.send(this.cards,a,a+1,2)
                             a--
                             la--

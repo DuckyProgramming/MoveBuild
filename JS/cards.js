@@ -4793,6 +4793,20 @@ types.card=[
                 {effect:[32,3],attack:5057,cost:[12,-1],target:[2,2,2],spec:[0],class:1},
             ],
         },
+    },{
+        name:'Wall\nSmash',rarity:0,list:1,
+        levels:[
+            {effect:[9],attack:5024,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14],attack:5024,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[18],attack:5024,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:0,list:-1,color:[3,4],
+            levels:[
+                {effect:[7],attack:5024,cost:[14],target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:5024,cost:[-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[13],attack:5024,cost:[-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
     },
 
     //mark 1
@@ -24193,6 +24207,20 @@ types.card=[
                 {effect:[20],attack:5107,cost:[2,2],target:[0],spec:[],class:2},
                 {effect:[28],attack:5107,cost:[2,-1],target:[0],spec:[],class:2},
                 {effect:[36],attack:5107,cost:[2,-1],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Immortal\nSpark',rarity:2,list:11,
+        levels:[
+            {effect:[2],attack:2489,cost:0,target:[0],spec:[5],class:8},
+            {effect:[3],attack:2489,cost:0,target:[0],spec:[5],class:8},
+            {effect:[4],attack:2489,cost:0,target:[0],spec:[5],class:8},
+        ],mtg:{
+            rarity:2,list:11,color:[4,5],
+            levels:[
+                {effect:[2],attack:2489,cost:[],target:[0],spec:[5],class:8},
+                {effect:[3],attack:2489,cost:[],target:[0],spec:[5],class:8},
+                {effect:[4],attack:2489,cost:[],target:[0],spec:[5],class:8},
             ],
         },
     },
@@ -44508,6 +44536,20 @@ types.card=[
                 {effect:[25,19],attack:3826,cost:[3,-1,-1,-1],target:[2,1,6],spec:[0],class:1},
             ],
         },
+    },{
+        name:'Duckiz\nPod',rarity:-8,list:0,
+        levels:[
+            {effect:[2,3,1],attack:5170,cost:0,target:[2,1,1],spec:[37],class:1},
+            {effect:[2,3,1],attack:5170,cost:0,target:[2,1,1],spec:[37],class:1},
+            {effect:[2,3,1],attack:5170,cost:0,target:[2,1,1],spec:[37],class:1},
+        ],mtg:{
+            rarity:-8,list:0,color:[0],
+            levels:[
+                {effect:[2,3,1],attack:5170,cost:[],target:[2,1,1],spec:[37],class:1},
+                {effect:[3,3,1],attack:5170,cost:[],target:[2,1,1],spec:[37],class:1},
+                {effect:[2,3,1],attack:5170,cost:[],target:[2,1,1],spec:[37],class:1},
+            ],
+        },
     },
 
     //mark e
@@ -46259,36 +46301,6 @@ types.card=[
     //marker goes here
 
     //mark p
-
-    /*{
-        name:'Wall\nSmash',rarity:0,list:1,
-        levels:[
-            {effect:[9],attack:5024,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[14],attack:5024,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[18],attack:5024,cost:1,target:[2,1,1],spec:[0],class:1},
-        ],mtg:{
-            rarity:0,list:-1,color:[3,4],
-            levels:[
-                {effect:[7],attack:5024,cost:[14],target:[2,1,1],spec:[0],class:1},
-                {effect:[10],attack:5024,cost:[-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[13],attack:5024,cost:[-1],target:[2,1,1],spec:[0],class:1},
-            ],
-        },
-    },{
-        name:'Immortal\nSpark',rarity:2,list:11,
-        levels:[
-            {effect:[1],attack:2489,cost:0,target:[0],spec:[5],class:8},
-            {effect:[2],attack:2489,cost:0,target:[0],spec:[5],class:8},
-            {effect:[3],attack:2489,cost:0,target:[0],spec:[5],class:8},
-        ],mtg:{
-            rarity:2,list:11,color:[4,5],
-            levels:[
-                {effect:[1],attack:2489,cost:[],target:[0],spec:[5],class:8},
-                {effect:[2],attack:2489,cost:[],target:[0],spec:[5],class:8},
-                {effect:[3],attack:2489,cost:[],target:[0],spec:[5],class:8},
-            ],
-        },
-    },*/
 
     //mark q
 

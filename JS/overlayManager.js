@@ -140,6 +140,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[6,1])],//bring in draw card from ally, no return
                     [new overlay(this.layer,this.battle,0,2,[89])],//free basic, no return,130
                     [new overlay(this.layer,this.battle,0,2,[90,0,0])],//link number cards, no return
+                    [new overlay(this.layer,this.battle,0,20,[])],//pod constructor
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

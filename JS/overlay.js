@@ -74,6 +74,9 @@ class overlay{
                 this.card=0
                 this.cards=[]
             break
+            case 20:
+                this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,variants.mtg?[]:0,0)
+            break
         }
     }
     getPosKey(){
@@ -1190,6 +1193,19 @@ class overlay{
                     break
                 }
             break
+            case 20:
+                this.setupArgs=args
+                switch(args[0]){
+                    case 0:
+                        let type=findName('Duckiz\nPod',types.card)
+                        this.card=new card(this.layer,this.battle,this.player,this.layer.width/2+225*this.posKey,this.layer.height/2-60,type,0,this.battle.standardColorize(type),0)
+                        this.options=2
+                        this.cost=60
+                        this.changes=0
+                    break
+                }
+            break
+        
         }
     }
     execute(args){
@@ -2444,6 +2460,39 @@ class overlay{
                 this.layer.text('Remove Card',this.layer.width/2-60,this.layer.height/2+20)
                 this.layer.text('Deluxe Upgrade',this.layer.width/2+60,this.layer.height/2+20)
             break
+            case 20:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2,this.layer.height/2-30,240,300,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2+145,120,40,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2+190,120,40,10)
+                this.layer.fill(120,this.fade)
+                this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2+40,120,40,10)
+                this.layer.rect(this.layer.width/2+225*this.posKey-85,this.layer.height/2+40,30,30,10)
+                this.layer.rect(this.layer.width/2+225*this.posKey+85,this.layer.height/2+40,30,30,10)
+                this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2+90,120,40,10)
+                this.layer.rect(this.layer.width/2+225*this.posKey-85,this.layer.height/2+90,30,30,10)
+                this.layer.rect(this.layer.width/2+225*this.posKey+85,this.layer.height/2+90,30,30,10)
+                this.layer.fill(60,this.fade)
+                regTriangle(this.layer,this.layer.width/2+225*this.posKey-85,this.layer.height/2+39,8,8,0)
+                regTriangle(this.layer,this.layer.width/2+225*this.posKey+85,this.layer.height/2+41,8,8,60)
+                regTriangle(this.layer,this.layer.width/2+225*this.posKey-85,this.layer.height/2+89,8,8,0)
+                regTriangle(this.layer,this.layer.width/2+225*this.posKey+85,this.layer.height/2+91,8,8,60)
+                this.layer.fill(0,this.fade*0.8)
+                this.layer.textSize(30)
+                this.layer.text(`Design Pod`,this.layer.width/2,this.layer.height/2-150)
+                this.layer.textSize(20)
+                this.layer.text(`Purchase`,this.layer.width/2,this.layer.height/2+145)
+                this.layer.text(`Cancel`,this.layer.width/2,this.layer.height/2+190)
+                this.layer.textSize(8)
+                this.layer.text(`${this.cost} Currency`,this.layer.width/2,this.layer.height/2+160)
+                this.layer.fill(0,this.fade)
+                this.layer.textSize(16)
+                this.layer.text(`Damage`,this.layer.width/2,this.layer.height/2+40)
+                this.layer.text(`Block`,this.layer.width/2,this.layer.height/2+90)
+                this.card.fade=1
+                this.card.anim.afford=1
+                this.card.display()
+            break
             
         }
     }
@@ -2628,6 +2677,9 @@ class overlay{
                             this.cards[a].size=round(this.cards[a].size*5-1)/5
                         }
                     }
+                break
+                case 20:
+                    this.card.size=constrain(smoothAnim(this.card.size,this.active,0,this.fade,5),0,this.fade)
                 break
             }
         }else if(!this.active){
@@ -3737,6 +3789,45 @@ class overlay{
                         this.active=false
                     }
                 break
+                case 20:
+                    let scaling=[]
+                    switch(this.setupArgs[0]){
+                        case 0:
+                            scaling=[2,3,30,5]
+                        break
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey-85,y:this.layer.height/2+40},width:30,height:30})&&this.card.effect[0]>scaling[0]){
+                        this.card.effect[0]-=scaling[0]
+                        this.changes--
+                        this.cost-=scaling[2]+scaling[3]*this.changes
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey+85,y:this.layer.height/2+40},width:30,height:30})){
+                        this.card.effect[0]+=scaling[0]
+                        this.cost+=scaling[2]+scaling[3]*this.changes
+                        this.changes++
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey-85,y:this.layer.height/2+90},width:30,height:30})&&this.card.effect[1]>scaling[1]){
+                        this.card.effect[1]-=scaling[1]
+                        this.changes--
+                        this.cost-=scaling[2]+scaling[3]*this.changes
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey+85,y:this.layer.height/2+90},width:30,height:30})){
+                        this.card.effect[1]+=scaling[1]
+                        this.cost+=scaling[2]+scaling[3]*this.changes
+                        this.changes++
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2+145},width:120,height:40})&&this.battle.currency.money[this.player]>=this.cost){
+                        this.active=false
+                        this.battle.loseCurrency(this.cost,this.player)
+                        switch(this.setupArgs[0]){
+                            case 0:
+                                this.battle.cardManagers[this.player].deck.addAbstract(this.card.type,this.card.level,this.card.color,this.card.edition,[6,6],[0,this.card.effect[0],1,this.card.effect[1]])
+                            break
+                        }
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2+190},width:120,height:40})){
+                        this.active=false
+                    }
+                break
             
             }
         }
@@ -4840,6 +4931,11 @@ class overlay{
                     }else if((int(key)+9)%10==1&&this.active){
                         this.battle.overlayManager.overlays[28][this.player].active=true
                         this.battle.overlayManager.overlays[28][this.player].activate()
+                        this.active=false
+                    }
+                break
+                case 20:
+                    if(code==ENTER){
                         this.active=false
                     }
                 break
