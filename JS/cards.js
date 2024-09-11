@@ -36472,15 +36472,15 @@ types.card=[
     },{
         name:'Heart\nSlash',rarity:1,list:17,
         levels:[
-            {effect:[7,1,1],attack:4050,cost:1,target:[2,1,1],spec:[],class:1},
-            {effect:[11,1,1],attack:4050,cost:1,target:[2,1,1],spec:[],class:1},
-            {effect:[12,2,1],attack:4050,cost:1,target:[2,1,1],spec:[],class:1},
+            {effect:[8,1,1],attack:4050,cost:1,target:[2,1,1],spec:[],class:1},
+            {effect:[10,2,1],attack:4050,cost:1,target:[2,1,1],spec:[],class:1},
+            {effect:[14,2,1],attack:4050,cost:1,target:[2,1,1],spec:[],class:1},
         ],mtg:{
             rarity:1,list:17,color:[1,5],
             levels:[
-                {effect:[5,1,1],attack:4050,cost:[10],target:[2,1,1],spec:[],class:1},
-                {effect:[8,1,1],attack:4050,cost:[10],target:[2,1,1],spec:[],class:1},
-                {effect:[9,2,1],attack:4050,cost:[10],target:[2,1,1],spec:[],class:1},
+                {effect:[6,1,1],attack:4050,cost:[10],target:[2,1,1],spec:[],class:1},
+                {effect:[8,2,1],attack:4050,cost:[10],target:[2,1,1],spec:[],class:1},
+                {effect:[11,2,1],attack:4050,cost:[10],target:[2,1,1],spec:[],class:1},
             ],
         },
     },{
