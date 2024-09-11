@@ -326,7 +326,9 @@ class nodeManager{
         }
     }
     display(){
-        this.nodes.forEach(node=>node.displayConnections())
+        if(!this.battle.modded(215)){
+            this.nodes.forEach(node=>node.displayConnections())
+        }
         this.nodes.forEach(node=>node.display(this.battle.relicManager.hasRelic(282,-1)&&node.tilePosition.y>=this.tilePosition.y+4?8:undefined))
     }
     update(){

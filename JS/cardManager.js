@@ -758,6 +758,13 @@ class cardManager{
         }else{
             this.draw(tempDrawAmount)
         }
+        if(this.battle.relicManager.hasRelic(306,a)){
+            for(let a=0,la=this.battle.relicManager.active[306][a+1];a<la;a++){
+                if(this.hand.cards.length-1-a>=0&&!this.hand.cards[this.hand.cards.length-1-a].spec.includes(9)){
+                    this.hand.cards[this.hand.cards.length-1-a].spec.push(9)
+                }
+            }
+        }
         if(this.tempDraw.freeze>0){
             this.draw(this.tempDraw.freeze,3)
         }

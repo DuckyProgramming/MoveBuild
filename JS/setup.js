@@ -10,7 +10,7 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    if(false){
+    if(true){
             //game.ascend=32
 
             //stage.scene='tier'
@@ -75,16 +75,15 @@ function setup(){
             player(0).goal.anim.direction=-30
             player(0).anim.direction=-30*/
 
-            variants.mod=true
+            /*variants.mod=true
             for(let a=0,la=9;a<la;a++){
-                //current.modManager.addMod(212+a)
-                current.modManager.addMod(81)
-            }
-
-            /*for(let a=0,la=4;a<la;a++){
-                //current.relicManager.addRandomRelic(0)
-                quickRelic(446+a,0)
+                current.modManager.addMod(221+a)
             }*/
+
+            for(let a=0,la=2;a<la;a++){
+                //current.relicManager.addRandomRelic(0)
+                quickRelic(459+a,0)
+            }
 
             /*current.itemManager.addItemSlots(7,0)
             for(let a=0,la=2;a<la;a++){

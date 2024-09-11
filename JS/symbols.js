@@ -5858,6 +5858,14 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(200,fade)
             layer.quad(0,-1,-1.5,0.5,0,2,1.5,0.5)
         break
+        case 618:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.quad(-9,0,-8,-1,-7,0,-8,1)
+            layer.quad(-9,2,-8,1,-7,2,-8,3)
+            layer.quad(-9,-2,-8,-1,-7,-2,-8,-3)
+        break
 
     }
     //mark s
@@ -11654,6 +11662,24 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
                 layer.line(lsin(a/la*360)*8,lcos(a/la*360)*8,lsin(a/la*360)*16,lcos(a/la*360)*16)
             }
         break
+        case 165:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.quad(-9,0,-8,-1,-7,0,-8,1)
+            layer.quad(-9,2,-8,1,-7,2,-8,3)
+            layer.quad(-9,-2,-8,-1,-7,-2,-8,-3)
+        break
+        case 166:
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,6,4,-3,0,-3)
+            layer.quad(-4.5,0,3,-1.5,1.5,0,-3,-1.5)
+        break
+        case 167:
+            layer.fill(150,175,200,fade)
+            layer.triangle(2,6,4,-3,0,-3)
+            layer.quad(-4.5,0,3,-1.5,1.5,0,-3,-1.5)
+        break
 
     }
     layer.pop()
@@ -11820,4 +11846,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 162-Ice Wing
 163-Occult
 164-Sword of Hisou
+165-Lasting Counter Once
+166-Damage Down
+167-Block Down
 */

@@ -15,8 +15,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[2])],//view deck
                     [new overlay(this.layer,this.battle,0,2,[3,1])],//upgrade card, no return
                     [new overlay(this.layer,this.battle,0,2,[4,1,0])],//remove card, no return
-                    [new overlay(this.layer,this.battle,0,2,[5,0])],//bring in discard card, no return
-                    [new overlay(this.layer,this.battle,0,2,[6,0])],//bring in draw card, no return
+                    [new overlay(this.layer,this.battle,0,2,[5,0,1])],//bring in discard card, no return
+                    [new overlay(this.layer,this.battle,0,2,[6,0,1])],//bring in draw card, no return
                     [new overlay(this.layer,this.battle,0,2,[7,0,0])],//transform card, no return
                     [new overlay(this.layer,this.battle,0,3,[1])],//new card to hand,10
                     [new overlay(this.layer,this.battle,0,4,[])],//end stats
@@ -136,11 +136,14 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[49,0,0,0,11])],//scry, draw skill into intangible
                     [new overlay(this.layer,this.battle,0,2,[49,0,0,0,11])],//scry, draw skill into intangible
                     [new overlay(this.layer,this.battle,0,19,[])],//card service choice
-                    [new overlay(this.layer,this.battle,0,2,[5,1])],//bring in discard card from ally, no return
-                    [new overlay(this.layer,this.battle,0,2,[6,1])],//bring in draw card from ally, no return
+                    [new overlay(this.layer,this.battle,0,2,[5,1,1])],//bring in discard card from ally, no return
+                    [new overlay(this.layer,this.battle,0,2,[6,1,1])],//bring in draw card from ally, no return
                     [new overlay(this.layer,this.battle,0,2,[89])],//free basic, no return,130
                     [new overlay(this.layer,this.battle,0,2,[90,0,0])],//link number cards, no return
                     [new overlay(this.layer,this.battle,0,20,[])],//pod constructor
+                    [new overlay(this.layer,this.battle,0,2,[6,0,0])],//bring in number draw cards, no return
+                    [new overlay(this.layer,this.battle,0,21,[0])],//set relic 458, quality disguise
+                    [new overlay(this.layer,this.battle,0,8,[0,0,2])],//new card to deck, relic 459, backtick
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

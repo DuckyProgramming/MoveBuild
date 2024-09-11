@@ -1,6 +1,4 @@
-proposal - gain 1 charge when you attack instead of each turn
-
-broken stapler is cringe
+buff lock on (other than singular duel)
 
 
 
@@ -129,23 +127,6 @@ new variants:
 
 []
 []
-
-
-
-new relics:
-
-craggleroot (b) - gain 1 base energy, a random card costs 1 more temporarily each turn
-lilial (c) - every 8 defenses played, gain 1 energy
-sea salt ice cream (u) - when taken, gain 2 copies of a random common relic
-pocket mushroom (c) - counter 12 the first time you get attacked each combat
-curious eye (r) - at the start of combat pull from draw pile
-peanut butter (c) - heal 4 health each combat if you didn't lose health
-quality disguise (r) - like cheap disguise but you can choose the character
-backtick (r) - when taken, choose any card on your character to add
-test 271 (b) - gain 1 base energy, reduce all damage dealt by 1, reduce all block added by 1
-
-
-do the last 9 bonus mods
 
 
 

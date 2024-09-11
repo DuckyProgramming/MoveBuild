@@ -968,7 +968,7 @@ types={
         {name:'Philosophical Duck',internal:'Sell Relic',id:236,rarity:0,list:0,mtg:0,description:'When Sold, Gain a Relic'},
         {name:'MS Paint',internal:'Starting Draw Retain',id:237,rarity:1,list:0,mtg:0,description:'Draw a Card on Turn 1\nand Retain it Until Played'},
         {name:'Orange Stake',internal:'Booster Pack Choice',id:238,rarity:0,list:0,mtg:0,description:'Booster Packs Contain 2 More Choices'},
-        {name:'Loaded Disk',internal:'Paper Items',id:239,rarity:2,list:0,mtg:0,description:'Gain a Cream Paper or Pink\nPaper Item on Turn 1'},
+        {name:'Loaded Disk',internal:'Paper Items',id:239,rarity:-1,list:0,mtg:0,description:'Gain a Cream Paper or Pink\nPaper Item on Turn 1'},
 
         {name:'Enlightened Duck',internal:'Boss Spectral Pack',id:240,rarity:2,list:0,mtg:0,description:'Open a Spectral Pack After Every Boss'},
         {name:'Jester Duck',internal:'Random Enemy Statuses',id:241,rarity:-1,list:0,mtg:0,description:'All Enemies Start Combat\nWith 1 Burn, Freeze, and Shock'},
@@ -1042,7 +1042,7 @@ types={
         {name:'Uncommon Relic Voucher',internal:'Uncommon Relic Discount',id:303,rarity:3,list:0,mtg:0,description:'Uncommon Relics in the\nShop Cost 50% Less'},
         {name:'Rare Relic Voucher',internal:'Rare Relic Discount',id:304,rarity:3,list:0,mtg:0,description:'Rare Relics in the\nShop Cost 50% Less'},
         {name:'Shop Relic Voucher',internal:'Shop Relic Discount',id:305,rarity:3,list:0,mtg:0,description:'Shop Relics in the\nShop Cost 50% Less'},
-        {name:'Broken Stapler',internal:'Energy/Staple',id:306,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nStaple the Last Card in Hand Each Turn'},
+        {name:'Broken Stapler',internal:'Energy/Staple',id:306,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nStaple the Last Card Drawn Each Turn'},
         {name:'Favored Trades',internal:'Sell Value',id:307,rarity:3,list:0,mtg:0,description:'Selling Relics Gives\n50% More Currency'},
         {name:'Seltzer',internal:'Rest 10 Turn Block',id:308,rarity:3,list:0,mtg:0,description:'Gain 10 Block Each Turn For 10 Turns,\nOnly Resets After Each Rest Site'},
         {name:'Vampiric Parasol',internal:'Turn 2 Temporary Strength/Turn 2 Temporary Dexterity',id:309,rarity:2,list:0,mtg:0,description:'On Turn 2, Gain 5 Temporary Strength\nand 5 Temporary Dexterity'},
@@ -1202,17 +1202,17 @@ types={
         {name:'Enhanced Facilities',internal:'Better Shop Heal',id:449,rarity:0,list:0,mtg:0,description:'Heal 50% More at Shops'},
 
         {name:'Anaglyph Glasses',internal:'No Attack Temporary Strength',id:450,rarity:2,list:0,mtg:0,description:'When You Do Not Attack,\nGain 5 Temporary Strength\nNext Turn'},
-        /*
-        {name:'Craggleroot',internal:'Energy/Random Cost',id:451,rarity:4,list:0,mtg:0,description:'Gain 1 Base Energy,\nEach Turn, a Random\nCard Costs 1 More'},
-        {name:'Lilial',internal:'8 Defense Energy',id:452,rarity:0,list:0,mtg:0,description:'Every 8 Defenses Played,\nGain 1 Energy'},
-        {name:'Sea Salt Ice Cream',internal:'Double Common Relic',id:453,rarity:1,list:0,mtg:0,description:'When Taken, Gain 2 Copies\nof a Random Common Relic'},
-        {name:'Pocket Mushroom',internal:'Lasting Counter Once',id:454,rarity:0,list:0,mtg:0,description:'Counter the First Attack\nEach Combat For 12 Damage'},
-        {name:'Curious Eye',internal:'Starting Pull',id:455,rarity:2,list:0,mtg:0,description:'At the Start of Combat,\nPut a Card in Your\nDraw Pile in Your Hand'},
-        {name:'Peanut Butter',internal:'Safe Heal',id:456,rarity:0,list:0,mtg:0,description:'If You Didn't Lose Health,\nHeal 4 Health at the End of Combat'},
-        {name:'Quality Disguise',internal:'Offcolor Choice',id:457,rarity:2,list:0,mtg:0,description:'You Get a Card Option From Another Color\nChoose Color When Taken'},
-        {name:'Backtick',internal:'Any Character Card',id:458,rarity:2,list:0,mtg:0,description:'When Taken, Choose Any Card\nFrom Your Color to Add to Deck'},
-        {name:'Test 271',internal:'Energy/Damage Down/Block Down',id:459,rarity:4,list:0,mtg:0,description:'Gain 1 Base Energy,\nReduce All Damage Dealt by 1\nReduce All Block Added by 1'},
-        */
+        {name:'Craggleroot',internal:'Energy/Random Cost',id:451,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nEach Turn, a Random\nCard Costs 1 More'},
+        {name:'Lilial',internal:'8 Defense Energy',id:452,rarity:0,list:0,mtg:1,description:'Every 8 Defenses Played,\nGain 1 Energy'},
+        {name:'Lilial',internal:'6 Defense Mana',id:453,rarity:0,list:0,mtg:2,description:'Every 6 Defenses Played,\nGain (E)'},
+        {name:'Sea Salt Ice Cream',internal:'Double Common Relic',id:454,rarity:1,list:0,mtg:0,description:'When Taken, Gain 2 Copies\nof a Random Common Relic'},
+        {name:'Pocket Mushroom',internal:'Lasting Counter Once',id:455,rarity:0,list:0,mtg:0,description:'Counter the First Attack\nEach Combat For 12 Damage'},
+        {name:'Curious Eye',internal:'Starting Pull',id:456,rarity:2,list:0,mtg:0,description:'At the Start of Combat,\nPut a Card in Your\nDraw Pile in Your Hand'},
+        {name:'Peanut Butter',internal:'Safe Heal',id:457,rarity:0,list:0,mtg:0,description:`If You Didn't Lose Health,\nHeal 4 Health at the End of Combat`},
+        {name:'Quality Disguise',internal:'Offcolor Choice',id:458,rarity:2,list:0,mtg:0,description:'You Get a Card Option From Another Color\nChoose Color When Taken'},
+        {name:'Backtick',internal:'Any Character Card',id:459,rarity:2,list:0,mtg:0,description:'When Taken, Choose Any Card\nFrom Your Color to Add to Deck'},
+        
+        {name:'Test 271',internal:'Energy/Damage Down/Block Down',id:460,rarity:4,list:0,mtg:0,description:'Gain 1 Base Energy,\nReduce All Damage Dealt by 1\nReduce All Block Added by 1'},
 
         //mark mtg mark r
     ],item:[
@@ -6619,17 +6619,15 @@ Caps at +1, cap is raised by 1 for each Wisdom you have.`,
         {name:'Armored Biker',desc:'Reduce All Block You Add by 1'},
         {name:'Prison Guard Gunner',desc:'Fatigues Have Retain'},//210
         {name:'Shield Prison Guard',desc:'Fatigues Exhaust After 2 Plays'},
-
-        {name:'Gangster Machinegunner',desc:'All Enemies Counter Gun 8 Once Per Turn'},
+        {name:'Gangster Machinegunner',desc:'All Enemies Counter Gun 6 Once Per Turn'},
         {name:'Lalex',desc:'While You Are Weak, Deal No Damage'},
-        {name:'Latency',desc:'Reduce FPS by 10'},
+        {name:'Latency',desc:'Reduce FPS by 15'},
         {name:'Human',desc:'Cannot See Paths on Map'},
-        {name:'Bolt',desc:''},
+        {name:'Bolt',desc:'Start Combat With 2 Electrocuted in Draw Pile'},
         {name:'Jet',desc:'While You Are Frail, Add No Block'},
-        {name:'Armored Ninja',desc:''},
-        {name:'Destructor Bot',desc:'When an Enemy Dies, it Deals 5 Splash Damage'},
-        {name:'Assistant Fitness Officer',desc:''},//220
-
+        {name:'Armored Ninja',desc:'5% of All Enemies are Permanently Invisible'},
+        {name:'Destructor Bot',desc:'When an Enemy Dies, it Deals 4 Splash Damage'},
+        {name:'Assistant Fitness Officer',desc:'All Enemies Appear 20% Larger'},//220
     ],deckmode:[
         {name:'Standard Deck'},
         {name:'Draft Deck'},

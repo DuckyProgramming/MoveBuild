@@ -175,7 +175,7 @@ class combatant{
                 'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn','Shuffle (E)','(E) Spend Splash','2+ Cost (E)',
                 'Discus Temporary Strength','Discus Temporary Dexterity','Lightning Orb Per Turn','Lightning Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn','Rearm Draw',
                 'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap','Dice Max Boost','Exhaust Block','Counter Shockwave','Frail on Kill','Mailshield',
-                'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap',
+                'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -239,7 +239,7 @@ class combatant{
                 0,2,2,2,0,0,0,0,0,0,//59
                 0,0,0,0,0,0,0,0,2,0,//60
                 0,0,0,0,2,0,0,2,0,0,//61
-                0,2,0,0,2,2,0,0,
+                0,2,0,0,2,2,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -303,7 +303,7 @@ class combatant{
                 2,2,2,0,2,2,2,2,2,2,//59
                 2,2,2,2,2,2,2,2,2,2,//60
                 2,2,3,2,0,2,2,2,2,2,//61
-                3,2,2,2,2,2,3,2,
+                3,2,2,2,2,2,3,2,2
             ]}
         /*
         0-none
@@ -565,6 +565,20 @@ class combatant{
             }
             if(this.battle.modded(199)){
                 this.statusEffect('Dodge Cycle 2 1',1)
+            }
+            if(this.battle.modded(212)){
+                this.statusEffect('Counter Gun Once Per Turn',6)
+                this.statusEffect('Counter Gun Once',6)
+            }
+            if(this.battle.modded(218)&&floor(random(0,20))==0){
+                this.statusEffect('Protected Invisible',999)
+            }
+            if(this.battle.modded(219)){
+                this.statusEffect('Numeric Explode on Death',4)
+            }
+            if(this.battle.modded(220)){
+                this.size*=1.2
+                this.base.size*=1.2
             }
         }
         if(this.name.includes('Duck')){
@@ -2826,7 +2840,7 @@ class combatant{
                         damage*=userCombatant.tempStatus[0]
                     }
                     if(userCombatant.status.main[8]>0){
-                        damage*=this.status.main[426]>0?0.5:userCombatant.status.main[381]>0?1.25:0.75
+                        damage*=this.battle.modded(213)&&user<this.battle.players?0:this.status.main[426]>0?0.5:userCombatant.status.main[381]>0?1.25:0.75
                     }
                     if(userCombatant.status.main[82]>0){
                         damage*=2
@@ -3690,9 +3704,6 @@ class combatant{
                                 }
                             }
                         }
-                        if(this.battle.relicManager.hasRelic(61,this.id)){
-                            userCombatant.takeDamage(3*this.battle.relicManager.active[61][this.id+1],-1)
-                        }
                         if(this.blocked>0&&this.battle.relicManager.hasRelic(74,this.id)){
                             userCombatant.statusEffect('Weak Next Turn',this.battle.relicManager.active[74][this.id+1])
                         }
@@ -3723,6 +3734,10 @@ class combatant{
                         }
                         if(this.status.main[108]>0){
                             this.addBlock(this.status.main[108])
+                        }
+                        if(this.status.main[618]>0){
+                            userCombatant.takeDamage(this.status.main[618],-1)
+                            this.status.main[618]=0
                         }
                     }
                     if(this.status.main[44]>0&&this.life<=0){
@@ -3784,7 +3799,7 @@ class combatant{
                 block*=max(0.2,1+totalDex*0.1)
             }
             if(this.status.main[9]>0){
-                block*=0.75
+                block*=this.battle.modded(217)&&this.id<this.battle.players?0:0.75
             }
             if(this.status.main[65]>0){
                 block*=2

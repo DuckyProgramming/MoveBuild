@@ -3302,6 +3302,81 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('5',8,-3)
                 break
+                case 'Energy/Random Cost':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,-4,9,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,-4,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('+1',8,-4)
+                break
+                case '8 Defense Energy':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,19,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,0,9,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('8',-7,0)
+                    this.layer.text('1',10,0)
+                break
+                case '6 Defense Mana':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,19,0,0.8,this.fade)
+                    displayMtgManaSymbol(this.layer,10,0,6,0,0.64,this.fade,-1,[])
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('6',-7,0)
+                    this.layer.text('1',10,0)
+                break
+                case 'Double Common Relic':
+                    displaySymbol(this.layer,-6,-3,1,0,0.8,this.fade)
+                    displaySymbol(this.layer,6,3,1,0,0.8,this.fade)
+                    displaySymbol(this.layer,-6,-3,100,0,0.8,this.fade)
+                    displaySymbol(this.layer,6,3,100,0,0.8,this.fade)
+                break
+                case 'Lasting Counter Once':
+                    displaySymbol(this.layer,2,0,165,0,2,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('12',0,0)
+                break
+                case 'Starting Pull':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,5,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Safe Heal':
+                    displaySymbol(this.layer,-10,0,2,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-4,18,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-4,16,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,9,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',-10,0)
+                break
+                case 'Offcolor Choice':
+                    displaySymbol(this.layer,-11,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,11,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-11,0,120,0,1,this.fade)
+                break
+                case 'Any Character Card':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,120,0,1.5,this.fade)
+                break
+                case 'Energy/Damage Down/Block Down':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,-8,166,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,167,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,-8)
+                    this.layer.text('1',8,8)
+                break
 
                 //mark p
             }
@@ -3327,7 +3402,7 @@ class relic{
                         this.layer.textSize(6)
                         this.layer.text(`${detail%15}/15`,0,-16)
                     break
-                    case '8 Attack Strength': case '8 Attack Dexterity': case '8 Skill Draw': case '8 Attack Mana':
+                    case '8 Attack Strength': case '8 Attack Dexterity': case '8 Skill Draw': case '8 Attack Mana': case '8 Defense Energy':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%8}/8`,0,-16)
@@ -3401,6 +3476,11 @@ class relic{
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%12+1}/12`,0,-16)
+                    break
+                    case '6 Defense Mana':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail%6}/6`,0,-16)
                     break
                 }
             }

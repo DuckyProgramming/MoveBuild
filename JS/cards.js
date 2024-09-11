@@ -35982,15 +35982,15 @@ types.card=[
     },{
         name:'Luminescent\nNight',rarity:0,list:17,
         levels:[
-            {effect:[21,3],attack:3732,cost:2,target:[0],spec:[],class:2},
-            {effect:[30,4],attack:3732,cost:2,target:[0],spec:[],class:2},
-            {effect:[37,5],attack:3732,cost:2,target:[0],spec:[],class:2},
+            {effect:[21,2],attack:3732,cost:2,target:[0],spec:[],class:2},
+            {effect:[30,3],attack:3732,cost:2,target:[0],spec:[],class:2},
+            {effect:[37,4],attack:3732,cost:2,target:[0],spec:[],class:2},
         ],mtg:{
             rarity:0,list:17,color:[3,5],
             levels:[
-                {effect:[25,3],attack:3732,cost:[3,5,-1],target:[0],spec:[],class:2},
-                {effect:[36,4],attack:3732,cost:[3,5,-1],target:[0],spec:[],class:2},
-                {effect:[45,5],attack:3732,cost:[3,5,-1],target:[0],spec:[],class:2},
+                {effect:[25,2],attack:3732,cost:[3,5,-1],target:[0],spec:[],class:2},
+                {effect:[36,3],attack:3732,cost:[3,5,-1],target:[0],spec:[],class:2},
+                {effect:[45,4],attack:3732,cost:[3,5,-1],target:[0],spec:[],class:2},
             ],
         },
     },{
@@ -44399,29 +44399,29 @@ types.card=[
     },{
         name:'Good\nNews',rarity:-8,list:0,
         levels:[
-            {effect:[1],attack:3728,cost:0,target:[0],spec:[15],limit:5,class:11},
-            {effect:[1],attack:3728,cost:0,target:[0],spec:[15],limit:10,class:11},
-            {effect:[1],attack:3728,cost:0,target:[0],spec:[15],limit:15,class:11},
+            {effect:[1],attack:3728,cost:0,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[1],attack:3728,cost:0,target:[0],spec:[1,15],limit:10,class:11},
+            {effect:[1],attack:3728,cost:0,target:[0],spec:[1,15],limit:15,class:11},
         ],mtg:{
             rarity:-8,list:0,color:[0],
             levels:[
-                {effect:[1],attack:3728,cost:[],target:[0],spec:[15],limit:5,class:11},
-                {effect:[1],attack:3728,cost:[],target:[0],spec:[15],limit:10,class:11},
-                {effect:[1],attack:3728,cost:[],target:[0],spec:[15],limit:15,class:11},
+                {effect:[1],attack:3728,cost:[],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[1],attack:3728,cost:[],target:[0],spec:[1,15],limit:10,class:11},
+                {effect:[1],attack:3728,cost:[],target:[0],spec:[1,15],limit:15,class:11},
             ],
         },
     },{
         name:'Bad\nNews',rarity:-8,list:0,
         levels:[
-            {effect:[1],attack:3729,cost:0,target:[0],spec:[15],limit:5,class:11},
-            {effect:[1],attack:3729,cost:0,target:[0],spec:[15],limit:3,class:11},
-            {effect:[1],attack:3729,cost:0,target:[0],spec:[15],limit:1,class:11},
+            {effect:[1],attack:3729,cost:0,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[1],attack:3729,cost:0,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[1],attack:3729,cost:0,target:[0],spec:[1,15],limit:1,class:11},
         ],mtg:{
             rarity:-8,list:0,color:[0],
             levels:[
-                {effect:[1],attack:3729,cost:[],target:[0],spec:[15],limit:5,class:11},
-                {effect:[1],attack:3729,cost:[],target:[0],spec:[15],limit:3,class:11},
-                {effect:[1],attack:3729,cost:[],target:[0],spec:[15],limit:1,class:11},
+                {effect:[1],attack:3729,cost:[],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[1],attack:3729,cost:[],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[1],attack:3729,cost:[],target:[0],spec:[1,15],limit:1,class:11},
             ],
         },
     },{

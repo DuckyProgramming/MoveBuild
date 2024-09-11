@@ -114,6 +114,9 @@ class modManager{
                     this.battle.cardManagers[a].randomEffect(0,9,[100])
                 }
             break
+            case 214:
+                frameRate(45)
+            break
         }
     }
     display(){
