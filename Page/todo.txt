@@ -1,14 +1,21 @@
+proposal - gain 1 charge when you attack instead of each turn
+
+broken stapler is cringe
+
+
+
 UNCOMING:
 
 deploy new events
 
 cards in set 47
 
-collection screen
+collection 
 
 deploy enemies in detachment 166
 
 design merlin
+
 
 
 title screen 5th button - collection
@@ -55,20 +62,6 @@ amplify
 
 
 
-push and steal block
-
-payload - gain 3 energy, lose 1 energy next 2 turns
-
-aileron - deal 9 damage, put a card from your draw pile on top of your draw pile
-
-afterburner - draw 2 cards, gain 3 temporary dexterity
-
-human resources - 1 cost, next turn gain 2 energy, remove a random debuff, end your turn
-
-black current - scry 3, draw 3, discard 3
-
-
-
 sapphire facet - fires blue stars everywhere and lighter ones in set directions that create more particles
 
 floret fractal but rainbow
@@ -96,10 +89,7 @@ merlin's tricolor mtg card
 
 
 
-koishi cards?
-[sinking consciousness]
-[wtf is terrifyingly cute caller who named this stuff]
-[perfect crime]
+wait until koishi is made to add cards
 
 
 
@@ -135,35 +125,6 @@ update azis tutorial with orb moving
 
 
 
-new bonus mods (generalized)
-sick duck
-spirit of wealth
-puffball
-pistol biker
-brawler
-mailman
-thoughtless
-guard
-bar security
-bartender
-cutthroat
-renegade agent
-paramilitary
-speedrunner
-psychologist
-management robot commander
-lockdown
-adrian kane
-gangster machinegunner informant
-walker driver
-armored biker
-prison guard gunner
-shield prison guard
-
-
-
-
-
 new variants:
 
 []
@@ -171,19 +132,45 @@ new variants:
 
 
 
+new relics:
+
+craggleroot (b) - gain 1 base energy, a random card costs 1 more temporarily each turn
+lilial (c) - every 8 defenses played, gain 1 energy
+sea salt ice cream (u) - when taken, gain 2 copies of a random common relic
+pocket mushroom (c) - counter 12 the first time you get attacked each combat
+curious eye (r) - at the start of combat pull from draw pile
+peanut butter (c) - heal 4 health each combat if you didn't lose health
+quality disguise (r) - like cheap disguise but you can choose the character
+backtick (r) - when taken, choose any card on your character to add
+test 271 (b) - gain 1 base energy, reduce all damage dealt by 1, reduce all block added by 1
+
+
+do the last 9 bonus mods
+
+
+
 new events:
 
 
 
-[]
+fake news
+read article - choose 1 of 3 rare cards
+read article - choose 1 of 12 uncommon cards
+throw it away
 
-[]
+against the machine
+lose 33 health - upgrade a card, duplicate it
+lose 13 health - transform and upgrade a card
+do nothing
 
-[]
+rebottler - gain an item slot for 40 currency, or fill all item slots for free
 
-[]
+an unlikely ally - meet another playable character, ask for an attack, defense, or skill
 
-[]
+pretentious designer
+[must have at least 3 upgraded cards]
+remove an upgraded card
+transform an upgraded card
 
 
 
@@ -218,8 +205,8 @@ world 2:
 world 3:
 
 rocket launcher management robot
-[]
-[]
+fire and ice slime
+fire and ice big slime [nerf jet off the elite stack]
 []
 []
 []

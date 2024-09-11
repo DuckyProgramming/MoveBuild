@@ -77,6 +77,9 @@ class combatant{
             if((this.battle.modded(126)&&this.battle.encounter.class==2||this.battle.modded(127)&&this.battle.encounter.class==1)&&this.spec.includes(2)){
                 this.spec.splice(this.spec.indexOf(2))
             }
+            if(this.battle.modded(201)&&!this.spec.includes(7)){
+                this.spec.push(7)
+            }
         }
 
         this.order=0
@@ -498,6 +501,9 @@ class combatant{
             if(this.battle.modded(180)&&(this.name.includes('L')||this.name.includes('l'))){
                 this.statusEffect('Strength',3)
             }
+            if(this.battle.modded(204)&&this.name.includes('Management')){
+                this.statusEffect('Strength',3)
+            }
             if(this.battle.modded(88)){
                 this.statusEffect('Single Counter Block',10)
             }
@@ -535,6 +541,31 @@ class combatant{
             if(this.battle.modded(179)){
                 this.statusEffect('Counter Block Combat',2)
             }
+            if(this.battle.modded(189)){
+                this.statusEffect('Control',1)
+            }
+            if(this.battle.modded(190)){
+                this.statusEffect('Currency',25)
+            }
+            if(this.battle.modded(191)&&floor(random(0,2))==0){
+                this.statusEffect('Reflect',1)
+            }
+            if(this.battle.modded(192)){
+                this.subAttackTypeSwitch([[0,1,12,[]]])
+                this.subAttackTypeSwitch([[0,6,12,[]]])
+                this.subAttackTypeSwitch([[0,38,12,[]]])
+                this.subAttackTypeSwitch([[0,79,12,[]]])
+                this.subAttackTypeSwitch([[0,100,12,[]]])
+            }
+            if(this.battle.modded(194)){
+                this.statusEffect('Mailshield',1)
+            }
+            if(this.battle.modded(195)){
+                this.statusEffect('Intent Change Threshold',20)
+            }
+            if(this.battle.modded(199)){
+                this.statusEffect('Dodge Cycle 2 1',1)
+            }
         }
         if(this.name.includes('Duck')){
             if(this.battle.modded(22)){
@@ -543,7 +574,7 @@ class combatant{
                 this.collect.life*=2
             }
             if(this.battle.modded(106)){
-                this.statusEffect('Double Damage',999)
+                this.statusEffect('Double Damage Turn',999)
             }
         }
         switch(this.name){
@@ -686,10 +717,12 @@ class combatant{
                 this.statusEffect('Strength Per Turn',1)
             break
             case 'Mailman':
-                this.statusEffect('Mailshield',game.ascend>=31?6:4)
+                this.statusEffect('Mailshield',game.ascend>=31?5:4)
             break
             case 'Thoughtless':
-                this.statusEffect('Intent Change Threshold',20)
+                if(!this.battle.modded(195)){
+                    this.statusEffect('Intent Change Threshold',20)
+                }
                 this.accelerate=0
             break
             case 'Speedrunner':
@@ -1201,9 +1234,6 @@ class combatant{
                     case 'Councilman':
                         this.move.speed++
                         this.subAttackTypeSwitch([[0,9,28,[]]])
-                    break
-                    case 'Daughter of Heaven':
-                        this.subAttackTypeSwitch([[2,349,349,[2]]])
                     break
                     case 'Lunaria':
                         this.statusEffect('Block Cycle 2 1',40)
@@ -1719,7 +1749,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction+60)[0]+transformBase[0]*4,this.tilePosition.y+transformDirection(0,this.goal.anim.direction+60)[1]+transformBase[1]*4),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction+60)[0]+transformBase[0]*5,this.tilePosition.y+transformDirection(0,this.goal.anim.direction+60)[1]+transformBase[1]*5)
                 ]
-            case 55: case 192: case 415:
+            case 55: case 166: case 192: case 415:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-150)[0],this.tilePosition.y+transformDirection(0,-150)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-90)[0],this.tilePosition.y+transformDirection(0,-90)[1]),
@@ -1774,21 +1804,6 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]+transformDirection(0,this.goal.anim.direction-60)[0],this.tilePosition.y+transformBase[1]+transformDirection(0,this.goal.anim.direction-60)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]+transformDirection(0,this.goal.anim.direction+60)[0],this.tilePosition.y+transformBase[1]+transformDirection(0,this.goal.anim.direction+60)[1])
-                ]
-            case 166:
-                return [
-                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-150)[0],this.tilePosition.y+transformDirection(0,-150)[1]),
-                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-150)[0]*2,this.tilePosition.y+transformDirection(0,-150)[1]*2),
-                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-90)[0],this.tilePosition.y+transformDirection(0,-90)[1]),
-                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-90)[0]*2,this.tilePosition.y+transformDirection(0,-90)[1]*2),
-                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-30)[0],this.tilePosition.y+transformDirection(0,-30)[1]),
-                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-30)[0]*2,this.tilePosition.y+transformDirection(0,-30)[1]*2),
-                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,30)[0],this.tilePosition.y+transformDirection(0,30)[1]),
-                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,30)[0]*2,this.tilePosition.y+transformDirection(0,30)[1]*2),
-                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,90)[0],this.tilePosition.y+transformDirection(0,90)[1]),
-                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,90)[0]*2,this.tilePosition.y+transformDirection(0,90)[1]*2),
-                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,150)[0],this.tilePosition.y+transformDirection(0,150)[1]),
-                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,150)[0]*2,this.tilePosition.y+transformDirection(0,150)[1]*2)
                 ]
             case 176:
                 return [
@@ -2006,6 +2021,12 @@ class combatant{
                     this.normalizeAttack()
                 }
                 this.turnsAlive++
+                if(this.battle.modded(193)&&this.turnsAlive>5){
+                    this.statusEffect('Strength',1)
+                }
+                if(this.battle.modded(200)&&this.turnsAlive%4==0){
+                    this.addBlock(15)
+                }
                 if(this.status.main[378]>0){
                     this.status.main[378]--
                 }else if(this.battle.modded(41)){
@@ -2296,11 +2317,11 @@ class combatant{
                         case 9: case 16: case 17: case 28: case 44: case 53: case 54: case 55: case 60: case 64:
                         case 69: case 82: case 84: case 85: case 86: case 87: case 95: case 104: case 105: case 114:
                         case 117: case 120: case 124: case 128: case 131: case 132: case 133: case 136: case 142: case 146:
-                        case 147: case 153: case 154: case 157: case 168: case 171: case 174: case 175: case 176: case 192:
-                        case 195: case 198: case 204: case 213: case 215: case 217: case 222: case 255: case 256: case 259:
-                        case 264: case 265: case 278: case 288: case 291: case 292: case 308: case 330: case 350: case 351:
-                        case 357: case 360: case 368: case 379: case 381: case 384: case 387: case 388: case 395: case 396:
-                        case 403: case 404: case 409: case 415:
+                        case 147: case 153: case 154: case 157: case 166: case 168: case 171: case 174: case 175: case 176:
+                        case 192: case 195: case 198: case 204: case 213: case 215: case 217: case 222: case 255: case 256:
+                        case 259: case 264: case 265: case 278: case 288: case 291: case 292: case 308: case 330: case 350:
+                        case 351: case 357: case 360: case 368: case 379: case 381: case 384: case 387: case 388: case 395:
+                        case 396: case 403: case 404: case 409: case 415:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -2354,17 +2375,6 @@ class combatant{
                                 this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[0].tilePosition.y){
                                 this.activated=true
                                 targetted=true
-                            }
-                        break
-                        case 166:
-                            for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                                if(
-                                    this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
-                                    this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[b].tilePosition.y&&
-                                    !(b%2==1&&(this.targetTile[floor(b/2)*2].tilePosition.x<0||this.targetTile[floor(b/2)*2].occupied>0))){
-                                        this.activated=true
-                                        targetted=true
-                                }
                             }
                         break
                         case 214:
@@ -2513,10 +2523,10 @@ class combatant{
                     case 9: case 16: case 17: case 28: case 44: case 53: case 54: case 55: case 60: case 64:
                     case 69: case 82: case 84: case 85: case 86: case 87: case 95: case 104: case 114: case 120:
                     case 124: case 128: case 131: case 133: case 136: case 142: case 146: case 147: case 153: case 157:
-                    case 168: case 171: case 176: case 192: case 198: case 204: case 213: case 215: case 217: case 222:
-                    case 255: case 256: case 259: case 264: case 265: case 278: case 288: case 291: case 292: case 308:
-                    case 330: case 350: case 351: case 357: case 360: case 368: case 379: case 381: case 384: case 387:
-                    case 388: case 395: case 396: case 404: case 409: case 415:
+                    case 166: case 168: case 171: case 176: case 192: case 198: case 204: case 213: case 215: case 217:
+                    case 222: case 255: case 256: case 259: case 264: case 265: case 278: case 288: case 291: case 292:
+                    case 308: case 330: case 350: case 351: case 357: case 360: case 368: case 379: case 381: case 384:
+                    case 387: case 388: case 395: case 396: case 404: case 409: case 415:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(this.targetTile[b].tilePosition.x>=0){
                                 this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
@@ -2573,15 +2583,6 @@ class combatant{
                                 !(b>=3&&(this.targetTile[2].tilePosition.x<0))&&
                                 !(b>=4&&(this.targetTile[3].tilePosition.x<0))&&
                                 !(b>=5&&(this.targetTile[4].tilePosition.x<0))){
-                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
-                            }
-                        }
-                    break
-                    case 166:
-                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                            if(
-                                this.targetTile[b].tilePosition.x>=0&&
-                                !(b%2==1&&(this.targetTile[floor(b/2)*2].tilePosition.x<0||this.targetTile[floor(b/2)*2].occupied>0))){
                                     this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
                             }
                         }
@@ -2943,6 +2944,14 @@ class combatant{
                     if(this.battle.modded(185)){
                         this.statusEffect('Strength',2)
                         userCombatant.statusEffect('Strength',2)
+                    }
+                    if(this.battle.modded(207)){
+                        this.addBlock(20)
+                        userCombatant.addBlock(20)
+                    }
+                    if(this.battle.modded(208)){
+                        this.heal(10)
+                        userCombatant.heal(10)
                     }
                 }
                 if(userCombatant.team==0&&this.battle.modded(18)){
@@ -3932,6 +3941,9 @@ class combatant{
             if(this.status.main[379]<=0){
                 this.combo=max(this.combo-distance,0)
             }
+            if(this.battle.modded(197)&&this.battle.turn.main!=this.id){
+                this.takeDamage(6,-1)
+            }
         }
         this.tilePosition.x=x
         this.tilePosition.y=y
@@ -4005,8 +4017,16 @@ class combatant{
                 }
             }
             if(!success){
-                this.evoke(0,this.status.main[375]>0?this.battle.combatantManager.getRandom(1,[])[0]:this.id,[1])
-                this.holdOrb(type)
+                if(this.status.main[375]>0){
+                    let result=this.battle.combatantManager.getRandom(1,[])
+                    if(result.length>0){
+                        this.evoke(0,result[0],[1])
+                        this.holdOrb(type)
+                    }
+                }else{
+                    this.evoke(0,this.id,[1])
+                    this.holdOrb(type)
+                }
             }
             this.checkAnyOrb()
         }
@@ -4491,6 +4511,10 @@ class combatant{
                     if(userCombatant.getStatus('Debuff Damage')>0){
                         this.takeDamage(userCombatant.getStatus('Debuff Damage'),userCombatant.id)
                     }
+                }
+                if(this.battle.modded(203)&&this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
+                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
+                    userCombatant.statusEffect(name,value)
                 }
                 if(this.status.main[511]>0){
                     this.addBlock(this.status.main[511])
@@ -6978,7 +7002,7 @@ class combatant{
                 this.infoAnim.orbSpec[a][b]=smoothAnim(this.infoAnim.orbSpec[a][b],this.orbs[a]==b,0,1,10)
             }
         }
-        if(abs(this.anim.direction-this.goal.anim.direction)<=15||abs(this.anim.direction-this.goal.anim.direction-360)<=15||abs(this.anim.direction-this.goal.anim.direction+360)<=15||abs(this.anim.direction-this.goal.anim.direction-720)<=15||abs(this.anim.direction-this.goal.anim.direction+720)<=15){
+        if(abs(this.anim.direction-this.goal.anim.direction)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction-360)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction+360)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction-720)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction+720)<=15*game.animRate){
             this.anim.direction=this.goal.anim.direction
         }else if(
             this.anim.direction>this.goal.anim.direction&&this.anim.direction<this.goal.anim.direction+180||
@@ -6986,16 +7010,16 @@ class combatant{
             this.anim.direction>this.goal.anim.direction+360&&this.anim.direction<this.goal.anim.direction+540||
             this.anim.direction>this.goal.anim.direction-720&&this.anim.direction<this.goal.anim.direction-540||
             this.anim.direction>this.goal.anim.direction+720&&this.anim.direction<this.goal.anim.direction+900){
-            this.anim.direction-=15
+            this.anim.direction-=15*game.animRate
         }else if(
             this.anim.direction<this.goal.anim.direction&&this.anim.direction>this.goal.anim.direction-180||
             this.anim.direction<this.goal.anim.direction+360&&this.anim.direction>this.goal.anim.direction+180||
             this.anim.direction<this.goal.anim.direction-360&&this.anim.direction>this.goal.anim.direction-540||
             this.anim.direction<this.goal.anim.direction+720&&this.anim.direction>this.goal.anim.direction+540||
             this.anim.direction<this.goal.anim.direction-720&&this.anim.direction>this.goal.anim.direction-900){
-            this.anim.direction+=15
+            this.anim.direction+=15*game.animRate
         }else{
-            this.anim.direction+=15*(floor(random(0,2)*2-1))
+            this.anim.direction+=15*game.animRate*(floor(random(0,2)*2-1))
         }
         if(this.anim.direction>180){
             this.anim.direction-=360
@@ -7128,7 +7152,7 @@ class combatant{
                         let marker=[0,4,8,2,6,9,1,5,10,10,3,7][a]/11
                         if(this.time%22==marker*22){
                             let spin=this.time*(1+marker)*(a%2*2-1)+360*marker
-                            this.battle.particleManager.particlesBack.push(new particle(
+                            this.battle.particleManager.particlesNonCalc.push(new particle(
                                 this.layer,this.position.x+lsin(spin)*45,this.position.y-45+lcos(this.time*2+360*marker)*10+lcos(-this.time+360*marker)*30+a*4-20,112,
                                 [[100-50*this.sins[a]%2,0,50*floor(this.sins[a]/2)]]))
                         }
@@ -7137,7 +7161,7 @@ class combatant{
             break
             case 'Spirit of Wealth':
                 if(this.time%5==0&&this.life>0){
-                    this.battle.particleManager.particlesBack.push(new particle(
+                    this.battle.particleManager.particlesNonCalc.push(new particle(
                         this.layer,this.position.x+random(-30,30),this.position.y+random(-30,5),197,
                         [0,random(0.4,0.6)]))
                 }

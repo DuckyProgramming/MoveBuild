@@ -5,10 +5,12 @@ class particleManager{
         
         this.particles=[]
         this.particlesBack=[]
+        this.particlesNonCalc=[]
     }
     clear(){
         this.particles=[]
         this.particlesBack=[]
+        this.particlesNonCalc=[]
     }
     createNumber(type,x,y,value){
         this.particles.push(new particle(this.layer,x,y,type,[value]))
@@ -16,6 +18,7 @@ class particleManager{
     display(scene){
         switch(scene){
             case 'back':
+                this.particlesNonCalc.forEach(particle=>particle.display())
                 this.particlesBack.forEach(particle=>particle.display())
             break
             case 'front':
@@ -24,6 +27,15 @@ class particleManager{
         }
     }
     update(){
+        for(let a=0,la=this.particlesNonCalc.length;a<la;a++){
+            this.particlesNonCalc[a].update(this)
+            if(this.particlesNonCalc[a].remove){
+                delete this.particlesNonCalc[a]
+                this.particlesNonCalc.splice(a,1)
+                a--
+                la--
+            }
+        }
         for(let a=0,la=this.particlesBack.length;a<la;a++){
             for(let b=0,lb=game.animRate;b<lb;b++){
                 this.particlesBack[a].update(this)

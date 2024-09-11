@@ -2787,13 +2787,16 @@ class battle{
                         if(this.modded(82)){
                             mult*=0.5
                         }
+                        if(this.modded(190)){
+                            mult=0
+                        }
                         if(!(this.encounter.class==2&&this.nodeManager.world==3)){
                             this.relicManager.activate(15,[a,-1,reward,this.turn.total])
                             this.itemManager.activateEndBattle(a,this.encounter.class,reward)
                         }
                         switch(this.encounter.class){
                             case 0: case 3: case 4:
-                                if(!this.modded(177)||this.turn.total<=5){
+                                if((!this.modded(177)||this.turn.total<=5)&&mult>0){
                                     reward.push({type:0,value:[floor(random(40,81)*mult)]})
                                 }
                                 if(!variants.business){
@@ -2806,7 +2809,9 @@ class battle{
                                 }
                             break
                             case 1:
-                                reward.push({type:0,value:[floor(random(120,201)*mult)]})
+                                if((!this.modded(177)||this.turn.total<=5)&&mult>0){
+                                    reward.push({type:0,value:[floor(random(120,201)*mult)]})
+                                }
                                 if(!variants.business){
                                     if(!this.modded(48)&&!this.relicManager.hasRelic(289,a)){
                                         this.relicManager.activate(15,[a,1,reward,this.turn.total])
@@ -2822,7 +2827,7 @@ class battle{
                             break
                             case 2:
                                 if(this.nodeManager.world!=3){
-                                    if(game.ascend<13){
+                                    if(game.ascend<13&&(!this.modded(177)||this.turn.total<=5)&&mult>0){
                                         reward.push({type:0,value:[round(floor(random(240,401)*mult*(1+this.relicManager.active[232][a+1]*0.5)))]})
                                     }
                                     if(!variants.business){

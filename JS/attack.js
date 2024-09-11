@@ -4307,7 +4307,7 @@ class attack{
                                     this.userManager.hand.add(findName('Triple\nTap',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break
-                                case 'Jet': case 'Tech Support':
+                                case 'Jet': case 'Tech Support': case 'Adrian Kane':
                                     this.userManager.hand.add(findName('Reserve\nRocket',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break

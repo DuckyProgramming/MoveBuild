@@ -4860,7 +4860,7 @@ combatant.prototype.display=function(){
                                         map(0.2+0.06*this.parts.sleeve.decoration[g][a].y,0,1,this.graphics.arms[g].bottom.y,this.graphics.arms[g].middle.y)
                                             +lsin(dir[1])*5*(1-0.02*this.parts.sleeve.decoration[g][a].y)*lsin(this.parts.sleeve.decoration[g][a].spin+this.anim.direction)
                                     )
-                                    this.layer.rotate(-dir[1])
+                                    this.layer.rotate(-dir[1]-10*lsin(this.parts.sleeve.decoration[g][a].spin+this.anim.direction))
                                     this.layer.scale(
                                         0.1*lcos(this.parts.sleeve.decoration[g][a].spin+this.anim.direction)*this.parts.sleeve.decoration[g][a].size,
                                         0.1*this.parts.sleeve.decoration[g][a].size
@@ -5106,7 +5106,7 @@ combatant.prototype.display=function(){
                                         map(0.2+0.06*this.parts.sleeve.decoration[g][a].y,0,1,this.graphics.arms[g].bottom.y,this.graphics.arms[g].middle.y)
                                             +lsin(dir[1])*5*(1-0.02*this.parts.sleeve.decoration[g][a].y)*lsin(this.parts.sleeve.decoration[g][a].spin+this.anim.direction)
                                     )
-                                    this.layer.rotate(-dir[1])
+                                    this.layer.rotate(-dir[1]-10*lsin(this.parts.sleeve.decoration[g][a].spin+this.anim.direction))
                                     this.layer.scale(
                                         0.1*lcos(this.parts.sleeve.decoration[g][a].spin+this.anim.direction)*this.parts.sleeve.decoration[g][a].size,
                                         0.1*this.parts.sleeve.decoration[g][a].size

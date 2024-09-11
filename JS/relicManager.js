@@ -1153,9 +1153,6 @@ class relicManager{
                                     this.loseRelic(111,a)
                                 }
                             }
-                            if(this.active[122][a+1]>0){
-                                this.getPlayer(a).statusEffect('Control',this.active[122][a+1])
-                            }
                             if(this.active[149][a+1]>0){
                                 this.getPlayer(a).statusEffect('Free Card',3*this.active[149][a+1])
                             }
@@ -1238,6 +1235,9 @@ class relicManager{
                             if(this.active[445][a+1]>0){
                                 this.getPlayer(a).statusEffect('Single Attack Weak',2*this.active[445][a+1])
                             }
+                            if(this.active[122][a+1]>0){
+                                this.getPlayer(a).statusEffect('Control',this.active[122][a+1])
+                            }
                             if(this.active[39][a+1]>0){this.detail[39][a]=0}
                             if(this.active[108][a+1]>0){this.detail[108][a]=0}
                             if(this.active[206][a+1]>0){this.detail[206][a][0]=0}
@@ -1314,6 +1314,19 @@ class relicManager{
                                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('No Block',1)
                             }
                         }
+                        if(this.battle.modded(206)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Damage Down',1)
+                            }
+                        }
+                        if(this.battle.modded(209)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Block Down',1)
+                            }
+                        }
+                        if(this.battle.modded(194)){
+                            this.battle.dropDrawShuffle(floor(random(0,this.battle.players)),findName('Mail',types.card),0,game.playerNumber+1)
+                        }
                     break
                     case 2:
                         for(let a=0,la=this.battle.players;a<la;a++){
@@ -1366,6 +1379,9 @@ class relicManager{
                         }
                         if(this.battle.modded(172)){
                             this.battle.combatantManager.allEffect(40,[[1,3]])
+                        }
+                        if(this.battle.modded(198)){
+                            this.battle.quickReinforce('Gangster')
                         }
                     break
                     case 6: case 9:
@@ -1892,7 +1908,7 @@ class relicManager{
                         this.getPlayer(a).statusEffect('Dexterity',this.active[95][a+1])
                     }
                     if(this.active[116][a+1]>0){
-                        this.battle.addCurrency(10*this.active[116][a+1],a)
+                        this.battle.addCurrency(20*this.active[116][a+1],a)
                     }
                     if(this.active[362][a+1]>0){
                         this.battle.cardManagers[a].draw(this.active[362][a+1])

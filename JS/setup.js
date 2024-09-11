@@ -10,7 +10,7 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    if(true){
+    if(false){
             //game.ascend=32
 
             //stage.scene='tier'
@@ -20,7 +20,7 @@ function setup(){
             //transition.scene='menu'
             
         current.menu.combatant=[17]
-        current.menu.deck=[-1]
+        current.menu.deck=[0]
 
             //variants.mtg=true
 
@@ -75,10 +75,11 @@ function setup(){
             player(0).goal.anim.direction=-30
             player(0).anim.direction=-30*/
 
-            /*variants.mod=true
-            for(let a=0,la=3;a<la;a++){
-                current.modManager.addMod(186+a)
-            }*/
+            variants.mod=true
+            for(let a=0,la=9;a<la;a++){
+                //current.modManager.addMod(212+a)
+                current.modManager.addMod(81)
+            }
 
             /*for(let a=0,la=4;a<la;a++){
                 //current.relicManager.addRandomRelic(0)

@@ -2462,9 +2462,9 @@ class overlay{
             break
             case 20:
                 this.layer.fill(160,this.fade*0.8)
-                this.layer.rect(this.layer.width/2,this.layer.height/2-30,240,300,10)
-                this.layer.rect(this.layer.width/2,this.layer.height/2+145,120,40,10)
-                this.layer.rect(this.layer.width/2,this.layer.height/2+190,120,40,10)
+                this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-30,240,300,10)
+                this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2+145,120,40,10)
+                this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2+190,120,40,10)
                 this.layer.fill(120,this.fade)
                 this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2+40,120,40,10)
                 this.layer.rect(this.layer.width/2+225*this.posKey-85,this.layer.height/2+40,30,30,10)
@@ -2479,16 +2479,16 @@ class overlay{
                 regTriangle(this.layer,this.layer.width/2+225*this.posKey+85,this.layer.height/2+91,8,8,60)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
-                this.layer.text(`Design Pod`,this.layer.width/2,this.layer.height/2-150)
+                this.layer.text(`Design Pod`,this.layer.width/2+225*this.posKey,this.layer.height/2-150)
                 this.layer.textSize(20)
-                this.layer.text(`Purchase`,this.layer.width/2,this.layer.height/2+145)
-                this.layer.text(`Cancel`,this.layer.width/2,this.layer.height/2+190)
+                this.layer.text(`Purchase`,this.layer.width/2+225*this.posKey,this.layer.height/2+145)
+                this.layer.text(`Cancel`,this.layer.width/2+225*this.posKey,this.layer.height/2+190)
                 this.layer.textSize(8)
-                this.layer.text(`${this.cost} Currency`,this.layer.width/2,this.layer.height/2+160)
+                this.layer.text(`${this.cost} Currency`,this.layer.width/2+225*this.posKey,this.layer.height/2+160)
                 this.layer.fill(0,this.fade)
                 this.layer.textSize(16)
-                this.layer.text(`Damage`,this.layer.width/2,this.layer.height/2+40)
-                this.layer.text(`Block`,this.layer.width/2,this.layer.height/2+90)
+                this.layer.text(`Damage`,this.layer.width/2+225*this.posKey,this.layer.height/2+40)
+                this.layer.text(`Block`,this.layer.width/2+225*this.posKey,this.layer.height/2+90)
                 this.card.fade=1
                 this.card.anim.afford=1
                 this.card.display()
@@ -2497,7 +2497,7 @@ class overlay{
         }
     }
     update(first,firstType){
-        this.fade=smoothAnim(this.fade,this.active&&(first==-1||firstType==this.type&&(this.type==1||this.type==4||this.type==16)),0,1,5)
+        this.fade=smoothAnim(this.fade,this.active&&(first==-1||firstType==this.type&&(this.type==1||this.type==4||this.type==16||this.type==20)),0,1,5)
         if(this.activeTimer>0){
             this.activeTimer--
             if(this.activeTimer<=0){

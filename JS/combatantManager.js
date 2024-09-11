@@ -157,7 +157,7 @@ class combatantManager{
         for(let a=0,la=this.combatants.length;a<la;a++){
             if((this.combatants[a].team==0||this.combatants[a].construct||this.combatants[a].support)&&this.combatants[a].life>0){
                 this.combatants[a].moved=false
-                this.combatants[a].activated=types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==2||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==4||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==5
+                this.combatants[a].activated=types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==2||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==4||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==5||this.battle.modded(202)
             }
         }
     }
@@ -1468,9 +1468,7 @@ class combatantManager{
         switch(scene){
             case 'battle': case 'replay':
                 for(let a=0,la=this.combatants.length;a<la;a++){
-                    for(let b=0;b<game.animRate;b++){
-                        this.combatants[a].update()
-                    }
+                    this.combatants[a].update()
                     this.combatants[a].infoAnim.upSize=dist(inputs.rel.x,inputs.rel.y,this.combatants[a].position.x,this.combatants[a].position.y)<game.targetRadius&&!this.battle.overlayManager.anyActive
                 }
                 if(this.battle.attackManager.attacks.length==0&&this.battle.turnManager.turns.length==0&&this.summons.length>0){

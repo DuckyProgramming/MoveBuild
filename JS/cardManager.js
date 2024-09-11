@@ -836,11 +836,26 @@ class cardManager{
             this.drop.cards[this.drop.cards.length-1].spec.push(43)
             if(this.battle.modded(61)&&!this.discard.cards[this.discard.cards.length-1].spec.includes(33)){
                 this.discard.cards[this.discard.cards.length-1].spec.push(33)
+                this.discard.cards[this.discard.cards.length-1].additionalSpec.push(33)
                 this.drop.cards[this.drop.cards.length-1].spec.push(33)
             }
             if(this.battle.modded(120)){
                 this.discard.cards[this.discard.cards.length-1].attack=-35
                 this.drop.cards[this.drop.cards.length-1].attack=-35
+            }
+            if(this.battle.modded(210)&&!this.discard.cards[this.discard.cards.length-1].spec.includes(2)){
+                this.discard.cards[this.discard.cards.length-1].spec.push(2)
+                this.discard.cards[this.discard.cards.length-1].additionalSpec.push(2)
+                this.drop.cards[this.drop.cards.length-1].spec.push(2)
+            }
+            if(this.battle.modded(211)&&this.discard.cards[this.discard.cards.length-1].spec.includes(1)){
+                this.discard.cards[this.discard.cards.length-1].spec.splice(this.discard.cards[this.discard.cards.length-1].spec.indexOf(1),1)
+                this.discard.cards[this.discard.cards.length-1].spec.push(42)
+                this.discard.cards[this.discard.cards.length-1].additionalSpec.push(42)
+                this.discard.cards[this.discard.cards.length-1].limit=2
+                this.drop.cards[this.drop.cards.length-1].spec.splice(this.drop.cards[this.drop.cards.length-1].spec.indexOf(1),1)
+                this.drop.cards[this.drop.cards.length-1].spec.push(42)
+                this.drop.cards[this.drop.cards.length-1].limit=2
             }
             if(this.battle.relicManager.hasRelic(142,this.player)){
                 this.discard.cards[this.discard.cards.length-1].costUp(2,[1])

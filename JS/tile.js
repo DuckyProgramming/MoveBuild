@@ -37,7 +37,7 @@ class tile{
             this.addType(20)
         }
         if(this.type.length==0&&this.battle.modded(81)&&floor(random(0,12))==0){
-            this.addType(22)
+            //this.addType(22)
         }
         if(this.type.length==0&&this.battle.modded(136)&&floor(random(0,24))==0){
             this.addType(7)
