@@ -9115,8 +9115,8 @@ combatant.prototype.display=function(){
                     this.layer.fill(this.flashColor(this.color.shieldIn)[0],this.flashColor(this.color.shieldIn)[1],this.flashColor(this.color.shieldIn)[2],this.fade*this.fades.body)
                     this.layer.stroke(this.flashColor(this.color.shieldOut)[0],this.flashColor(this.color.shieldOut)[1],this.flashColor(this.color.shieldOut)[2],this.fade*this.fades.body)
                     this.layer.ellipse(0,-48,40,40)
-                    this.layer.line(-10*sqrt(2),-48-10*sqrt(2),10*sqrt(2),-48+10*sqrt(2))
-                    this.layer.line(-10*sqrt(2),-48+10*sqrt(2),10*sqrt(2),-48-10*sqrt(2))
+                    this.layer.line(-10*constants.sqrt2,-48-10*constants.sqrt2,10*constants.sqrt2,-48+10*constants.sqrt2)
+                    this.layer.line(-10*constants.sqrt2,-48+10*constants.sqrt2,10*constants.sqrt2,-48-10*constants.sqrt2)
                 }
             break
             case '💀':
@@ -10358,8 +10358,8 @@ combatant.prototype.display=function(){
                                 this.layer.arc(0,-48,24*lcos(a*180+this.anim.direction),24,105,255)
                             }
                             this.layer.line(12*lcos(a*180+this.anim.direction),-48,18*lcos(a*180+this.anim.direction),-48)
-                            this.layer.line(6*sqrt(2)*lcos(a*180+this.anim.direction),-48-6*sqrt(2),9*sqrt(2)*lcos(a*180+this.anim.direction),-48-9*sqrt(2))
-                            this.layer.line(6*sqrt(2)*lcos(a*180+this.anim.direction),-48+6*sqrt(2),9*sqrt(2)*lcos(a*180+this.anim.direction),-48+9*sqrt(2))
+                            this.layer.line(6*constants.sqrt2*lcos(a*180+this.anim.direction),-48-6*constants.sqrt2,9*constants.sqrt2*lcos(a*180+this.anim.direction),-48-9*constants.sqrt2)
+                            this.layer.line(6*constants.sqrt2*lcos(a*180+this.anim.direction),-48+6*constants.sqrt2,9*constants.sqrt2*lcos(a*180+this.anim.direction),-48+9*constants.sqrt2)
                         }
                     }
                 }
@@ -10932,8 +10932,8 @@ combatant.prototype.display=function(){
                                 this.layer.arc(0,-48,24*lcos(a*180+this.anim.direction),24,105,255)
                             }
                             this.layer.line(12*lcos(a*180+this.anim.direction),-48,18*lcos(a*180+this.anim.direction),-48)
-                            this.layer.line(6*sqrt(2)*lcos(a*180+this.anim.direction),-48-6*sqrt(2),9*sqrt(2)*lcos(a*180+this.anim.direction),-48-9*sqrt(2))
-                            this.layer.line(6*sqrt(2)*lcos(a*180+this.anim.direction),-48+6*sqrt(2),9*sqrt(2)*lcos(a*180+this.anim.direction),-48+9*sqrt(2))
+                            this.layer.line(6*constants.sqrt2*lcos(a*180+this.anim.direction),-48-6*constants.sqrt2,9*constants.sqrt2*lcos(a*180+this.anim.direction),-48-9*constants.sqrt2)
+                            this.layer.line(6*constants.sqrt2*lcos(a*180+this.anim.direction),-48+6*constants.sqrt2,9*constants.sqrt2*lcos(a*180+this.anim.direction),-48+9*constants.sqrt2)
                         }
                     }
                 }

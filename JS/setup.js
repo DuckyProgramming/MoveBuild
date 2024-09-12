@@ -1,5 +1,6 @@
 function setup(){
     createCanvas(windowWidth-50,windowHeight-50)
+    setupConstants(0)
     setupGraphics()
     
     for(let a=0,la=types.relic.length;a<la;a++){
@@ -13,14 +14,11 @@ function setup(){
     if(false){
             //game.ascend=32
 
-            //stage.scene='tier'
-            //current.overlayManager=new overlayManager(current.layer,current,1)
+            /*stage.scene='tier'
+            current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-            //transition.trigger=true
-            //transition.scene='menu'
-            
         current.menu.combatant=[17]
-        current.menu.deck=[0]
+        current.menu.deck=[-1]
 
             //variants.mtg=true
 
@@ -31,6 +29,12 @@ function setup(){
             }
         }
         current.startGame()
+
+        transition.trigger=false
+        
+        game.dev=true
+        stage.scene='battle'
+        current.setupBattle(types.encounter[1])
 
         //game.animRate=4
 
@@ -47,16 +51,10 @@ function setup(){
             //current.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
             //current.create()
 
-        transition.trigger=false
-
             /*stage.scene='graphic'
             graphics.test=7
             graphics.staticBackground.clear()
             setupBackground(graphics.test,graphics.staticBackground)*/
-        
-        game.dev=true
-        stage.scene='battle'
-        current.setupBattle(types.encounter[1])
 
             //quickNode(3)
             

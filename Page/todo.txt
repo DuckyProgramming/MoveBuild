@@ -1,8 +1,8 @@
 UNCOMING:
 
-deploy new events
-
 cards in set 47
+
+deploy new events
 
 collection 
 
@@ -31,6 +31,18 @@ actually probably more
 []
 
 []
+
+
+
+detroit
+
+needle in a haystack - 15 block, 2 or less cards in hand: apply 2 lock on in all directions
+
+big certes defense
+can opener - closer but a defense
+
+dual orb
+dual orb
 
 
 
@@ -119,6 +131,7 @@ the dev?
 
 
 update azis tutorial with orb moving
+remove freeze from sanae tutorial
 
 
 
@@ -126,31 +139,11 @@ new variants:
 
 []
 []
+[]
 
 
 
 new events:
-
-
-
-fake news
-read article - choose 1 of 3 rare cards
-read article - choose 1 of 12 uncommon cards
-throw it away
-
-against the machine
-lose 33 health - upgrade a card, duplicate it
-lose 13 health - transform and upgrade a card
-do nothing
-
-rebottler - gain an item slot for 40 currency, or fill all item slots for free
-
-an unlikely ally - meet another playable character, ask for an attack, defense, or skill
-
-pretentious designer
-[must have at least 3 upgraded cards]
-remove an upgraded card
-transform an upgraded card
 
 
 

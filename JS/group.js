@@ -2776,7 +2776,9 @@ class group{
     }
     send(list,firstIndex,lastIndex,spec){
         this.lastSort=-1
-        this.battle.cardManagers[this.player].midDraw=true
+        if(this.player>=0&&stage!='tier'){
+            this.battle.cardManagers[this.player].midDraw=true
+        }
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 if(spec==17){
@@ -2838,7 +2840,9 @@ class group{
                 }
             }
         }
-        this.battle.cardManagers[this.player].midDraw=false
+        if(this.player>=0&&stage!='tier'){
+            this.battle.cardManagers[this.player].midDraw=false
+        }
     }
     sendSpec(cardData,spec){
         cardData.position.x=1200
@@ -4612,13 +4616,6 @@ class group{
                         if(this.cards[a].spec.includes(34)){
                             this.cards[a].spec.splice(this.cards[a].spec.indexOf(34),1)
                         }
-                        if(this.cards[a].usable){
-                            this.cards[a].callSpecDiscardEffect()
-                            if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block')>0){
-                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block'))
-                            }
-                            this.cards.forEach(card=>card.otherDiscard())
-                        }
                         if(this.cards[a].vanish){
                             delete this.cards[a]
                             this.cards.splice(a,1)
@@ -4835,6 +4832,13 @@ class group{
                             }
                             if(this.cards[a].usable){
                                 this.battle.cardManagers[this.player].greenDiff--
+                                if(this.cards[a].usable){
+                                    this.cards[a].callSpecDiscardEffect()
+                                    if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block')>0){
+                                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block'))
+                                    }
+                                    this.cards.forEach(card=>card.otherDiscard())
+                                }
                             }
                             let triplet=false
                             if(this.cards[a].discardEffectBuffered.includes(1)){

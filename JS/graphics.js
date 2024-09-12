@@ -78,8 +78,8 @@ p5.prototype.createSimplePattern=(func,w,h,repeat)=>{
 p5.prototype.fillGradient=function(gradient){
 	this.drawingContext.fillStyle=gradient.gradient?gradient.gradient:gradient
 }
-p5.prototype.strokePattern=function(pattern){
-	this.drawingContext.strokeStyle=pattern
+p5.prototype.strokeGradient=function(gradient){
+	this.drawingContext.strokeStyle=gradient.gradient?gradient.gradient:gradient
 }
 p5.prototype.backgroundPattern=function(pattern){
 	this.drawingContext.fillStyle=pattern
@@ -6312,7 +6312,7 @@ function setupEdition(type,layer,width){
 				for(let b=0,lb=12;b<lb;b++){
 					for(let c=0,lc=14;c<lc;c++){
 						if(1-a/la*schema[b][c][1]>0){
-							regTriangle(layer,(b+(1-sqrt(3)/2)/(sqrt(3)/2)*((b+c)%2*2-1))/(lb-1)*layer.width,c/(lc-1)*layer.height,10*(1-a/la*schema[b][c][1])*random(0.8,1.2)*schema[b][c][0],10*(1-a/la*schema[b][c][1])*random(0.8,1.2)*schema[b][c][0],(b+c)%2*60-30+random(-15,15))
+							regTriangle(layer,(b+(1-constants.sqrt3/2)/(constants.sqrt3/2)*((b+c)%2*2-1))/(lb-1)*layer.width,c/(lc-1)*layer.height,10*(1-a/la*schema[b][c][1])*random(0.8,1.2)*schema[b][c][0],10*(1-a/la*schema[b][c][1])*random(0.8,1.2)*schema[b][c][0],(b+c)%2*60-30+random(-15,15))
 						}
 					}
 				}

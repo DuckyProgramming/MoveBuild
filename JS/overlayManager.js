@@ -147,6 +147,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[91,1])],//upgrade and duplicate card, no return
                     [new overlay(this.layer,this.battle,0,2,[92,1,0])],//remove upgraded card, no return
                     [new overlay(this.layer,this.battle,0,2,[93,0,0])],//transform upgraded card, no return
+                    [new overlay(this.layer,this.battle,0,2,[94])],//flip draw card to top
 
                 )
                 if(this.battle.players==2){

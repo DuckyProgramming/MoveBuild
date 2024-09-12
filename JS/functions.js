@@ -1,6 +1,10 @@
 function isInt(value){
 	return !isNaN(value)&&parseInt(Number(value))==value&&!isNaN(parseInt(value,10))
 }
+function setupConstants(){
+	constants.sqrt2=sqrt(2)
+	constants.sqrt3=sqrt(3)
+}
 function setupLayer(layer){
 	layer.noStroke()
     layer.angleMode(DEGREES)

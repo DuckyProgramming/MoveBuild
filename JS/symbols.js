@@ -24,7 +24,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(255,fade)
             layer.strokeWeight(0.8)
             layer.noFill()
-            layer.line(-5/sqrt(2),-5/sqrt(2),5/sqrt(2),5/sqrt(2))
+            layer.line(-5/constants.sqrt2,-5/constants.sqrt2,5/constants.sqrt2,5/constants.sqrt2)
             layer.ellipse(0,0,10,10)
         break
         case 3:
@@ -44,7 +44,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 5:
             layer.fill(200,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
         break
         case 6:
             layer.fill(255,50,50,fade)
@@ -111,7 +111,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.75)
             layer.noFill()
             layer.ellipse(0,0,12,12)
-            layer.line(-3*sqrt(2),3*sqrt(2),3*sqrt(2),-3*sqrt(2))
+            layer.line(-3*constants.sqrt2,3*constants.sqrt2,3*constants.sqrt2,-3*constants.sqrt2)
         break
         case 17:
             layer.fill(255,50,50,fade)
@@ -217,7 +217,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 31:
             layer.fill(150,255,100,fade)
             layer.arc(0,0,8,8,-30,210)
-            layer.quad(0,0,sqrt(3)*2,-2,0,-2/(2-sqrt(3)),-sqrt(3)*2,-2)
+            layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
         break
         case 32:
             layer.fill(100,255,100,fade)
@@ -262,7 +262,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.75)
             layer.noFill()
             layer.ellipse(0,0,12,12)
-            layer.line(-3*sqrt(2),3*sqrt(2),3*sqrt(2),-3*sqrt(2))
+            layer.line(-3*constants.sqrt2,3*constants.sqrt2,3*constants.sqrt2,-3*constants.sqrt2)
             layer.fill(80,fade)
             layer.triangle(-2,-1.5,-2,1.5,4,0)
         break
@@ -278,7 +278,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 39:
             layer.fill(200,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
             layer.fill(255,50,50,fade)
             layer.triangle(-5,-4,-5,-0.5,6,-2.25)
             layer.triangle(5,4,5,-0.5,-6,2.25)
@@ -663,7 +663,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(1.5)
             layer.ellipse(0,0,8)
-            layer.line(-2*sqrt(2),2*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.line(-2*constants.sqrt2,2*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
         break
         case 80:
             layer.fill(150,0,0,fade)
@@ -757,7 +757,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(0.5)
             layer.ellipse(-3.5,0,8)
-            layer.line(-3.5-2*sqrt(2),2*sqrt(2),-3.5+2*sqrt(2),-2*sqrt(2))
+            layer.line(-3.5-2*constants.sqrt2,2*constants.sqrt2,-3.5+2*constants.sqrt2,-2*constants.sqrt2)
         break
         case 91:
             layer.fill(200,25,25,fade)
@@ -837,7 +837,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             regStar(layer,0,0,8,6,6,3.6,3.6,0)
             layer.fill(200,0,0,fade)
             layer.arc(0,0,6,6,-45,225)
-            layer.quad(0,0,sqrt(2)*1.5,-sqrt(2)*1.5,0,-sqrt(2)*3,-sqrt(2)*1.5,-sqrt(2)*1.5)
+            layer.quad(0,0,constants.sqrt2*1.5,-constants.sqrt2*1.5,0,-constants.sqrt2*3,-constants.sqrt2*1.5,-constants.sqrt2*1.5)
             layer.rect(0,8,3,3)
         break
         case 99:
@@ -845,7 +845,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             regStar(layer,0,0,8,6,6,3.6,3.6,0)
             layer.fill(200,0,0,fade)
             layer.arc(0,0,6,6,-45,225)
-            layer.quad(0,0,sqrt(2)*1.5,-sqrt(2)*1.5,0,-sqrt(2)*3,-sqrt(2)*1.5,-sqrt(2)*1.5)
+            layer.quad(0,0,constants.sqrt2*1.5,-constants.sqrt2*1.5,0,-constants.sqrt2*3,-constants.sqrt2*1.5,-constants.sqrt2*1.5)
             layer.ellipse(0,8.5,4,4)
         break
         case 100:
@@ -853,7 +853,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             regStar(layer,0,0,8,6,6,3.6,3.6,0)
             layer.fill(200,0,0,fade)
             layer.arc(0,0,6,6,-45,225)
-            layer.quad(0,0,sqrt(2)*1.5,-sqrt(2)*1.5,0,-sqrt(2)*3,-sqrt(2)*1.5,-sqrt(2)*1.5)
+            layer.quad(0,0,constants.sqrt2*1.5,-constants.sqrt2*1.5,0,-constants.sqrt2*3,-constants.sqrt2*1.5,-constants.sqrt2*1.5)
         break
         case 101:
             layer.fill(255,175,255,fade)
@@ -895,7 +895,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(1)
             layer.noFill()
             layer.ellipse(0,0,12,12)
-            layer.line(-3*sqrt(2),3*sqrt(2),3*sqrt(2),-3*sqrt(2))
+            layer.line(-3*constants.sqrt2,3*constants.sqrt2,3*constants.sqrt2,-3*constants.sqrt2)
         break
         case 105:
             for(let a=0,la=10;a<la;a++){
@@ -990,8 +990,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,255,100,fade)
             layer.strokeWeight(2)
             layer.line(-4,0,4,0)
-            layer.line(-2,-2*sqrt(3),2,2*sqrt(3))
-            layer.line(-3,2*sqrt(3),2,-2*sqrt(3))
+            layer.line(-2,-2*constants.sqrt3,2,2*constants.sqrt3)
+            layer.line(-3,2*constants.sqrt3,2,-2*constants.sqrt3)
             layer.stroke(255,255,200,fade)
             layer.strokeWeight(1)
             layer.beginShape()
@@ -1004,8 +1004,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,255,255,fade)
             layer.strokeWeight(2)
             layer.line(-4,0,4,0)
-            layer.line(-2,-2*sqrt(3),2,2*sqrt(3))
-            layer.line(-3,2*sqrt(3),2,-2*sqrt(3))
+            layer.line(-2,-2*constants.sqrt3,2,2*constants.sqrt3)
+            layer.line(-3,2*constants.sqrt3,2,-2*constants.sqrt3)
             layer.noStroke()
             layer.fill(150,0,0,fade)
             regStar(layer,0,0,8,6,6,3.6,3.6,0)
@@ -1022,8 +1022,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(150,225,50,fade)
             layer.strokeWeight(1)
             regPoly(layer,0,0,6,5,5,30)
-            layer.line(-2.5,-sqrt(3)*2.5,-2.5,sqrt(3)*2.5)
-            layer.line(2.5,-sqrt(3)*2.5,2.5,sqrt(3)*2.5)
+            layer.line(-2.5,-constants.sqrt3*2.5,-2.5,constants.sqrt3*2.5)
+            layer.line(2.5,-constants.sqrt3*2.5,2.5,constants.sqrt3*2.5)
         break
         case 118:
             layer.fill(0,150,255,fade)
@@ -1065,14 +1065,14 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 121:
             layer.fill(175,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
             layer.triangle(-3,2,-2,3,-5,5)
             layer.triangle(3,2,2,3,5,5)
         break
         case 122:
             layer.fill(200,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
             layer.fill(255,50,50,fade)
             layer.triangle(-5,-4,-5,-0.5,6,-2.25)
             layer.triangle(5,4,5,-0.5,-6,2.25)
@@ -1233,7 +1233,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(1)
             layer.ellipse(0,0,12,12)
-            layer.line(-3*sqrt(2),3*sqrt(2),3*sqrt(2),-3*sqrt(2))
+            layer.line(-3*constants.sqrt2,3*constants.sqrt2,3*constants.sqrt2,-3*constants.sqrt2)
         break
         case 138:
             layer.fill(150,175,200,fade)
@@ -1356,7 +1356,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(1)
             layer.ellipse(0,0,12,12)
-            layer.line(-3*sqrt(2),3*sqrt(2),3*sqrt(2),-3*sqrt(2))
+            layer.line(-3*constants.sqrt2,3*constants.sqrt2,3*constants.sqrt2,-3*constants.sqrt2)
         break
         case 149:
             layer.fill(0,fade)
@@ -1369,7 +1369,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(1)
             layer.ellipse(0,0,12,12)
-            layer.line(-3*sqrt(2),3*sqrt(2),3*sqrt(2),-3*sqrt(2))
+            layer.line(-3*constants.sqrt2,3*constants.sqrt2,3*constants.sqrt2,-3*constants.sqrt2)
             layer.noStroke()
             layer.fill(225,fade)
             layer.rect(-2,0,6,2)
@@ -1849,7 +1849,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 204:
             layer.fill(0,125,255,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
         break
         case 205:
             layer.fill(200,0,0,fade)
@@ -1927,7 +1927,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(1)
             layer.ellipse(0,0,12,12)
-            layer.line(-3*sqrt(2),3*sqrt(2),3*sqrt(2),-3*sqrt(2))
+            layer.line(-3*constants.sqrt2,3*constants.sqrt2,3*constants.sqrt2,-3*constants.sqrt2)
         break
         case 214:
             layer.fill(150,fade)
@@ -2273,7 +2273,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(0.5)
             layer.ellipse(-3.5,0,8)
-            layer.line(-3.5-2*sqrt(2),2*sqrt(2),-3.5+2*sqrt(2),-2*sqrt(2))
+            layer.line(-3.5-2*constants.sqrt2,2*constants.sqrt2,-3.5+2*constants.sqrt2,-2*constants.sqrt2)
         break
         case 252:
             layer.fill(225,fade)
@@ -2564,7 +2564,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 284:
             layer.fill(180,180,240,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
             layer.quad(-6,0,0,-1,6,0,0,1)
             layer.triangle(-1,0,1,0,0,6)
         break
@@ -2721,13 +2721,13 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 302:
             layer.fill(200,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
             layer.triangle(0,5,-1,7,1,7)
         break
         case 303:
             layer.fill(200,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
             layer.triangle(0,5,-1,7,1,7)
             layer.triangle(0,7.5,-1,9.5,1,9.5)
         break
@@ -3092,8 +3092,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.5)
             regTriangle(layer,0,0,4,4,0)
             regTriangle(layer,0,-3,2,2,60)
-            regTriangle(layer,-1.5*sqrt(3),1.5,2,2,60)
-            regTriangle(layer,1.5*sqrt(3),1.5,2,2,60)
+            regTriangle(layer,-1.5*constants.sqrt3,1.5,2,2,60)
+            regTriangle(layer,1.5*constants.sqrt3,1.5,2,2,60)
         break
         case 336:
             layer.fill(125,255,255,fade)
@@ -3217,8 +3217,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.5)
             regTriangle(layer,0,0,4,4,0)
             regTriangle(layer,0,-3,2,2,60)
-            regTriangle(layer,-1.5*sqrt(3),1.5,2,2,60)
-            regTriangle(layer,1.5*sqrt(3),1.5,2,2,60)
+            regTriangle(layer,-1.5*constants.sqrt3,1.5,2,2,60)
+            regTriangle(layer,1.5*constants.sqrt3,1.5,2,2,60)
             layer.stroke(240,240,200,fade)
             layer.strokeWeight(0.2)
             layer.rect(0,0,10)
@@ -3385,7 +3385,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(150,0,0,fade)
             layer.strokeWeight(1)
             layer.ellipse(0,0,10)
-            layer.line(2.5*sqrt(2),-2.5*sqrt(2),-2.5*sqrt(2),2.5*sqrt(2))
+            layer.line(2.5*constants.sqrt2,-2.5*constants.sqrt2,-2.5*constants.sqrt2,2.5*constants.sqrt2)
         break
         case 365:
             layer.fill(255,100,100,fade)
@@ -3497,8 +3497,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,255,100,fade)
             layer.strokeWeight(1.5)
             layer.line(-3,0,3,0)
-            layer.line(-1.5,-1.5*sqrt(3),1.5,1.5*sqrt(3))
-            layer.line(-1.5,1.5*sqrt(3),1.5,-1.5*sqrt(3))
+            layer.line(-1.5,-1.5*constants.sqrt3,1.5,1.5*constants.sqrt3)
+            layer.line(-1.5,1.5*constants.sqrt3,1.5,-1.5*constants.sqrt3)
         break
         case 376:
             layer.stroke(0,fade)
@@ -3590,7 +3590,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 384:
             layer.fill(150,255,100,fade)
             layer.arc(0,0,8,8,-30,210)
-            layer.quad(0,0,sqrt(3)*2,-2,0,-2/(2-sqrt(3)),-sqrt(3)*2,-2)
+            layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
             for(let a=0,la=6;a<la;a++){
                 layer.fill([255,255,255,0,0,150][a],[0,150,255,255,150,0][a],[0,0,0,50,255,200][a],fade)
                 layer.quad(0,0,2*lsin(a*60-30),2*lcos(a*60-30),8*lsin(a*60),8*lcos(a*60),2*lsin(a*60+30),2*lcos(a*60+30))
@@ -3789,7 +3789,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(0.5)
             layer.ellipse(0,0,8)
-            layer.line(-2*sqrt(2),2*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.line(-2*constants.sqrt2,2*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
         break
         case 407:
             layer.fill(255,50,50,fade)
@@ -3799,8 +3799,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         break
         case 408:
             layer.fill(150,0,200,fade)
-            layer.quad(-5,-0.5,5,-0.5,2.5,-2.5*sqrt(3),-2.5,-2.5*sqrt(3))
-            layer.quad(-5,0.5,5,0.5,2.5,2.5*sqrt(3),-2.5,2.5*sqrt(3))
+            layer.quad(-5,-0.5,5,-0.5,2.5,-2.5*constants.sqrt3,-2.5,-2.5*constants.sqrt3)
+            layer.quad(-5,0.5,5,0.5,2.5,2.5*constants.sqrt3,-2.5,2.5*constants.sqrt3)
             layer.fill(200,255,255,fade)
             layer.quad(-3.2,0,0,-4,3.2,0,0,4)
             layer.triangle(-4,-1,-5,-1,-4.5,1)
@@ -3808,8 +3808,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         break
         case 409:
             layer.fill(150,0,200,fade)
-            layer.quad(-5,-0.5,5,-0.5,2.5,-2.5*sqrt(3),-2.5,-2.5*sqrt(3))
-            layer.quad(-5,0.5,5,0.5,2.5,2.5*sqrt(3),-2.5,2.5*sqrt(3))
+            layer.quad(-5,-0.5,5,-0.5,2.5,-2.5*constants.sqrt3,-2.5,-2.5*constants.sqrt3)
+            layer.quad(-5,0.5,5,0.5,2.5,2.5*constants.sqrt3,-2.5,2.5*constants.sqrt3)
             layer.fill(125,fade)
             layer.stroke(100,fade)
             layer.strokeWeight(1)
@@ -3818,7 +3818,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(0.5)
             layer.ellipse(0,0,8)
-            layer.line(-2*sqrt(2),2*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.line(-2*constants.sqrt2,2*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
         break
         case 410:
             layer.fill(75,150,75,fade)
@@ -4065,7 +4065,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(0.5)
             layer.ellipse(0,0,8)
-            layer.line(-2*sqrt(2),2*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.line(-2*constants.sqrt2,2*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
             layer.noStroke()
             layer.fill(100,255,100,fade)
             layer.quad(0,4,-1,5,0,6,1,5)
@@ -4128,8 +4128,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(150,0,200,fade)
             layer.strokeWeight(0.5)
             regPoly(layer,0,0,6,4,4,30)
-            layer.line(-10/3,-2/3*sqrt(3),10/3,-2/3*sqrt(3))
-            layer.line(-10/3,2/3*sqrt(3),10/3,2/3*sqrt(3))
+            layer.line(-10/3,-2/3*constants.sqrt3,10/3,-2/3*constants.sqrt3)
+            layer.line(-10/3,2/3*constants.sqrt3,10/3,2/3*constants.sqrt3)
             layer.fill(125,fade)
             layer.stroke(100,fade)
             layer.strokeWeight(1)
@@ -4153,7 +4153,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(0.5)
             layer.ellipse(-3.5,0,8)
-            layer.line(-3.5-2*sqrt(2),2*sqrt(2),-3.5+2*sqrt(2),-2*sqrt(2))
+            layer.line(-3.5-2*constants.sqrt2,2*constants.sqrt2,-3.5+2*constants.sqrt2,-2*constants.sqrt2)
         break
         case 443:
             layer.fill(125,fade)
@@ -4164,7 +4164,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(0.5)
             layer.ellipse(0,0,8)
-            layer.line(-2*sqrt(2),2*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.line(-2*constants.sqrt2,2*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
             layer.noStroke()
             layer.fill(255,200,255,fade)
             layer.quad(-1,-7.5,0,-5,0,5,-1,5)
@@ -4192,7 +4192,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(0.5)
             layer.ellipse(0,0,8)
-            layer.line(-2*sqrt(2),2*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.line(-2*constants.sqrt2,2*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
             layer.stroke(240,240,200,fade)
             layer.strokeWeight(0.2)
             layer.rect(0,0,10)
@@ -4444,8 +4444,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         break
         case 469:
             layer.fill(150,0,200,fade)
-            layer.quad(-5,-0.5,5,-0.5,2.5,-2.5*sqrt(3),-2.5,-2.5*sqrt(3))
-            layer.quad(-5,0.5,5,0.5,2.5,2.5*sqrt(3),-2.5,2.5*sqrt(3))
+            layer.quad(-5,-0.5,5,-0.5,2.5,-2.5*constants.sqrt3,-2.5,-2.5*constants.sqrt3)
+            layer.quad(-5,0.5,5,0.5,2.5,2.5*constants.sqrt3,-2.5,2.5*constants.sqrt3)
             layer.fill(200,255,255,fade)
             layer.quad(-3.2,0,0,-4,3.2,0,0,4)
         break
@@ -4469,12 +4469,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.75)
             layer.noFill()
             layer.ellipse(0,0,12,12)
-            layer.line(-3*sqrt(2),3*sqrt(2),3*sqrt(2),-3*sqrt(2))
+            layer.line(-3*constants.sqrt2,3*constants.sqrt2,3*constants.sqrt2,-3*constants.sqrt2)
         break
         case 472:
             layer.fill(200,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
             layer.fill(255,50,50,fade)
             layer.triangle(-5,-4,-5,-0.5,6,-2.25)
             layer.triangle(5,4,5,-0.5,-6,2.25)
@@ -4509,7 +4509,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(0.5)
             layer.ellipse(0,0,8)
-            layer.line(-2*sqrt(2),2*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.line(-2*constants.sqrt2,2*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
             layer.noStroke()
             layer.fill(255,50,50,fade)
             layer.triangle(2,-6,4,3,0,3)
@@ -4520,7 +4520,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             regStar(layer,0,0,8,6,6,3.6,3.6,0)
             layer.fill(150,255,100,fade)
             layer.arc(0,0,8,8,-30,210)
-            layer.quad(0,0,sqrt(3)*2,-2,0,-2/(2-sqrt(3)),-sqrt(3)*2,-2)
+            layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
         break
         case 477:
             layer.fill(255,50,50,fade)
@@ -4587,8 +4587,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         break
         case 482:
             layer.fill(150,0,200,fade)
-            layer.quad(-5,-0.5,5,-0.5,2.5,-2.5*sqrt(3),-2.5,-2.5*sqrt(3))
-            layer.quad(-5,0.5,5,0.5,2.5,2.5*sqrt(3),-2.5,2.5*sqrt(3))
+            layer.quad(-5,-0.5,5,-0.5,2.5,-2.5*constants.sqrt3,-2.5,-2.5*constants.sqrt3)
+            layer.quad(-5,0.5,5,0.5,2.5,2.5*constants.sqrt3,-2.5,2.5*constants.sqrt3)
             layer.fill(255,50,50,fade)
             layer.triangle(2,-6,4,3,0,3)
             layer.rect(-3,0,3,3)
@@ -4596,7 +4596,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 483:
             layer.fill(150,255,100,fade)
             layer.arc(0,0,8,8,-30,210)
-            layer.quad(0,0,sqrt(3)*2,-2,0,-2/(2-sqrt(3)),-sqrt(3)*2,-2)
+            layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
             layer.fill(255,50,50,fade)
             layer.triangle(-5,-4,-5,-0.5,6,-2.25)
             layer.triangle(5,4,5,-0.5,-6,2.25)
@@ -5150,7 +5150,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 549:
             layer.fill(200,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
             layer.fill(255,50,50,fade)
             layer.triangle(-5,-4,-5,-0.5,6,-2.25)
             layer.triangle(5,4,5,-0.5,-6,2.25)
@@ -5159,7 +5159,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 550:
             layer.fill(200,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
             layer.fill(255,50,50,fade)
             layer.triangle(-5,-4,-5,-0.5,6,-2.25)
             layer.triangle(5,4,5,-0.5,-6,2.25)
@@ -5729,7 +5729,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(0.5)
             layer.ellipse(0,0,8)
-            layer.line(-2*sqrt(2),2*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.line(-2*constants.sqrt2,2*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
         break
         case 607:
             layer.fill(150,0,0,fade)
@@ -5866,6 +5866,11 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.quad(-9,2,-8,1,-7,2,-8,3)
             layer.quad(-9,-2,-8,-1,-7,-2,-8,-3)
         break
+        case 619:
+            displayMtgManaSymbol(layer,0,0,-1,0,0.4,fade,-1,[])
+            layer.fill(30,fade)
+            layer.triangle(0,-5,-1,-7,1,-7)
+        break
 
     }
     //mark s
@@ -5893,16 +5898,16 @@ function displayMtgManaIcon(layer,x,y,type,direction,size,fade){
         case 1:
             layer.stroke(160,160,80,fade)
             layer.line(0,-6,0,6)
-            layer.line(-3*sqrt(3),-3,+3*sqrt(3),3)
-            layer.line(-3*sqrt(3),3,+3*sqrt(3),-3)
+            layer.line(-3*constants.sqrt3,-3,+3*constants.sqrt3,3)
+            layer.line(-3*constants.sqrt3,3,+3*constants.sqrt3,-3)
         break
         case 2:
             layer.stroke(40,100,160,fade)
             layer.arc(0,0,8,8,-45,225)
             layer.beginShape()
-            layer.vertex(-2*sqrt(2),-2*sqrt(2))
-            layer.vertex(0,-4*sqrt(2))
-            layer.vertex(2*sqrt(2),-2*sqrt(2))
+            layer.vertex(-2*constants.sqrt2,-2*constants.sqrt2)
+            layer.vertex(0,-4*constants.sqrt2)
+            layer.vertex(2*constants.sqrt2,-2*constants.sqrt2)
             layer.endShape()
         break
         case 3:
@@ -5913,7 +5918,7 @@ function displayMtgManaIcon(layer,x,y,type,direction,size,fade){
         case 4:
             layer.stroke(40,160,40,fade)
             regPoly(layer,0,0,6,5,5,30)
-            layer.line(2.5,-2.5*sqrt(3),-2.5,2.5*sqrt(3))
+            layer.line(2.5,-2.5*constants.sqrt3,-2.5,2.5*constants.sqrt3)
         break
         case 5:
             layer.stroke(160,40,40,fade)
@@ -6183,8 +6188,8 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
                     layer.stroke(100,255,100,fade*typeFades[a])
                     layer.strokeWeight(3)
                     layer.line(-6,0,6,0)
-                    layer.line(-3,-3*sqrt(3),3,3*sqrt(3))
-                    layer.line(-3,3*sqrt(3),3,-3*sqrt(3))
+                    layer.line(-3,-3*constants.sqrt3,3,3*constants.sqrt3)
+                    layer.line(-3,3*constants.sqrt3,3,-3*constants.sqrt3)
                 break
                 case 1:
                     layer.noFill()
@@ -6275,6 +6280,20 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
                     layer.strokeWeight(2)
                     layer.arc(0,0,8,8,-150,-120)
                 break
+                case 13:
+                    layer.translate(-15,0)
+                    layer.noFill()
+                    let gradient=new p5.LinearGradient(-15,30)
+                    gradient.colors(0.0,color(255,50,50,fade*typeFades[a]),1.0,color(50,50,255,fade*typeFades[a]))
+                    layer.stroke(0)
+                    layer.strokeGradient(gradient)
+                    layer.strokeWeight(2)
+                    layer.line(15,0,15,8)
+                    layer.line(15,0,15-4*constants.sqrt3,-4)
+                    layer.line(15,0,15+4*constants.sqrt3,-4)
+                    layer.quad(9,0,15,-6,21,0,15,6)
+                    layer.translate(15,0)
+                break
             }
         }
     }
@@ -6344,17 +6363,17 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
         case 1:
             layer.beginShape()
             layer.vertex(-20,0)
-            layer.vertex(0,-20/sqrt(3))
+            layer.vertex(0,-20/constants.sqrt3)
             layer.vertex(20,0)
-            layer.vertex(10,-10*sqrt(3))
-            layer.vertex(-10,-10*sqrt(3))
+            layer.vertex(10,-10*constants.sqrt3)
+            layer.vertex(-10,-10*constants.sqrt3)
             layer.endShape()
             layer.beginShape()
             layer.vertex(-20,0)
-            layer.vertex(0,20/sqrt(3))
+            layer.vertex(0,20/constants.sqrt3)
             layer.vertex(20,0)
-            layer.vertex(10,10*sqrt(3))
-            layer.vertex(-10,10*sqrt(3))
+            layer.vertex(10,10*constants.sqrt3)
+            layer.vertex(-10,10*constants.sqrt3)
             layer.endShape()
             layer.ellipse(0,0,10,10)
         break
@@ -6776,7 +6795,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 24:
             layer.fill(150,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,-2*sqrt(2),-2*sqrt(2),0,-4*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.quad(0,0,-2*constants.sqrt2,-2*constants.sqrt2,0,-4*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-3,-4.5,3)
             layer.rect(-5.5,0,1,6)
@@ -6910,7 +6929,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 44:
             layer.fill(150,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,-2*sqrt(2),-2*sqrt(2),0,-4*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.quad(0,0,-2*constants.sqrt2,-2*constants.sqrt2,0,-4*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-2,-4.5,2)
             layer.triangle(9,-4,-4.5,-2,-4.5,2)
@@ -7021,7 +7040,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 58:
             layer.fill(150,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,-2*sqrt(2),-2*sqrt(2),0,-4*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.quad(0,0,-2*constants.sqrt2,-2*constants.sqrt2,0,-4*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
         break
         case 59:
             layer.fill(255,50,50,fade)
@@ -7534,7 +7553,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 123:
             layer.fill(150,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,-2*sqrt(2),-2*sqrt(2),0,-4*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.quad(0,0,-2*constants.sqrt2,-2*constants.sqrt2,0,-4*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
             layer.fill(200,fade)
             layer.quad(-2,0,0,-8,2,0,0,8)
             layer.quad(-8,0,0,-2,8,0,0,2)
@@ -7755,7 +7774,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 148:
             layer.fill(150,255,100,fade)
             layer.arc(0,0,8,8,-30,210)
-            layer.quad(0,0,sqrt(3)*2,-2,0,-2/(2-sqrt(3)),-sqrt(3)*2,-2)
+            layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
             layer.fill(255,50,50,fade)
             layer.rect(-3,0,4,3)
             layer.triangle(6,0,-1,-4,-1,4)
@@ -7763,7 +7782,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 149:
             layer.fill(150,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,-2*sqrt(2),-2*sqrt(2),0,-4*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.quad(0,0,-2*constants.sqrt2,-2*constants.sqrt2,0,-4*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,0,-2,0,2)
             layer.triangle(3,-3,-6,-5,-6,-1)
@@ -7805,7 +7824,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 154:
             layer.fill(150,255,100,fade)
             layer.arc(0,0,8,8,-30,210)
-            layer.quad(0,0,sqrt(3)*2,-2,0,-2/(2-sqrt(3)),-sqrt(3)*2,-2)
+            layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
             layer.fill(255,50,50,fade)
             layer.triangle(1.5,0,-4.5,-3,-4.5,3)
             layer.triangle(6,0,0,-3,0,3)
@@ -7952,7 +7971,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 171:
             layer.fill(150,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,-2*sqrt(2),-2*sqrt(2),0,-4*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.quad(0,0,-2*constants.sqrt2,-2*constants.sqrt2,0,-4*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
             layer.fill(255,50,50,fade)
             layer.triangle(0,0,-6,-1.5,-6,1.5)
             layer.triangle(0,-4,-6,-1.5,-6,1.5)
@@ -9166,7 +9185,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 305:
             layer.fill(150,255,100,fade)
             layer.arc(0,0,8,8,-30,210)
-            layer.quad(0,0,sqrt(3)*2,-2,0,-2/(2-sqrt(3)),-sqrt(3)*2,-2)
+            layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
             layer.fill(255,50,50,fade)
             layer.triangle(7,-3,-3.5,-5,-3.5,-1)
             layer.triangle(7,3,-3.5,1,-3.5,5)
@@ -9231,8 +9250,8 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.stroke(100,255,100,fade)
             layer.strokeWeight(1.5)
             layer.line(-3,0,3,0)
-            layer.line(-1.5,-1.5*sqrt(3),1.5,1.5*sqrt(3))
-            layer.line(-1.5,1.5*sqrt(3),1.5,-1.5*sqrt(3))
+            layer.line(-1.5,-1.5*constants.sqrt3,1.5,1.5*constants.sqrt3)
+            layer.line(-1.5,1.5*constants.sqrt3,1.5,-1.5*constants.sqrt3)
         break
         case 312:
             layer.fill(100,0,100,fade)
@@ -9794,7 +9813,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 369:
             layer.fill(150,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,-2*sqrt(2),-2*sqrt(2),0,-4*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.quad(0,0,-2*constants.sqrt2,-2*constants.sqrt2,0,-4*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-3,-4.5,3)
         break
@@ -9817,7 +9836,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 372:
             layer.fill(150,255,100,fade)
             layer.arc(0,0,8,8,-30,210)
-            layer.quad(0,0,sqrt(3)*2,-2,0,-2/(2-sqrt(3)),-sqrt(3)*2,-2)
+            layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
         break
         case 373:
             layer.fill(150,175,200,fade)
@@ -10060,7 +10079,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 397:
             layer.fill(150,255,100,fade)
             layer.arc(0,0,8,8,-30,210)
-            layer.quad(0,0,sqrt(3)*2,-2,0,-2/(2-sqrt(3)),-sqrt(3)*2,-2)
+            layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-3,-4.5,3)
             layer.rect(-5.5,0,1,6)
@@ -10463,7 +10482,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(1.5)
             layer.ellipse(0,0,24,24)
-            layer.line(-6*sqrt(2),6*sqrt(2),6*sqrt(2),-6*sqrt(2))
+            layer.line(-6*constants.sqrt2,6*constants.sqrt2,6*constants.sqrt2,-6*constants.sqrt2)
         break
         case 17:
             layer.fill(60,fade)
@@ -10648,7 +10667,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         case 40:
             layer.fill(100,0,100,fade)
             layer.rect(0,0,8,8)
-            layer.quad(0,-4*sqrt(2),-4*sqrt(2),0,0,4*sqrt(2),4*sqrt(2),0)
+            layer.quad(0,-4*constants.sqrt2,-4*constants.sqrt2,0,0,4*constants.sqrt2,4*constants.sqrt2,0)
         break
         case 41:
             layer.fill(255,50,50,fade)
@@ -10832,7 +10851,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         case 66:
             layer.fill(150,255,100,fade)
             layer.arc(0,0,12,12,-30,210)
-            layer.quad(0,0,sqrt(3)*3,-3,0,-3/(2-sqrt(3)),-sqrt(3)*3,-3)
+            layer.quad(0,0,constants.sqrt3*3,-3,0,-3/(2-constants.sqrt3),-constants.sqrt3*3,-3)
         break
         case 67:
             layer.stroke(150,0,0,fade)
@@ -11208,12 +11227,12 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         case 113:
             layer.fill(0,50,150,fade)
             regTriangle(layer,0,-3,3,3,0)
-            regTriangle(layer,-1.5*sqrt(3),1.5,3,3,0)
-            regTriangle(layer,1.5*sqrt(3),1.5,3,3,0)
+            regTriangle(layer,-1.5*constants.sqrt3,1.5,3,3,0)
+            regTriangle(layer,1.5*constants.sqrt3,1.5,3,3,0)
             layer.fill(0,100,150,fade)
             regTriangle(layer,0,3,3,3,60)
-            regTriangle(layer,-1.5*sqrt(3),-1.5,3,3,60)
-            regTriangle(layer,1.5*sqrt(3),-1.5,3,3,60)
+            regTriangle(layer,-1.5*constants.sqrt3,-1.5,3,3,60)
+            regTriangle(layer,1.5*constants.sqrt3,-1.5,3,3,60)
         break
         case 114:
             for(let a=0,la=5;a<la;a++){
@@ -11291,8 +11310,8 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(150,0,200,fade)
             layer.strokeWeight(1)
             regPoly(layer,0,0,6,8,8,30)
-            layer.line(-20/3,-4/3*sqrt(3),20/3,-4/3*sqrt(3))
-            layer.line(-20/3,4/3*sqrt(3),20/3,4/3*sqrt(3))
+            layer.line(-20/3,-4/3*constants.sqrt3,20/3,-4/3*constants.sqrt3)
+            layer.line(-20/3,4/3*constants.sqrt3,20/3,4/3*constants.sqrt3)
         break
         case 124:
             layer.stroke(0,240,120,fade)
@@ -11422,7 +11441,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.875)
             layer.noFill()
             layer.ellipse(0,0,14,14)
-            layer.line(-3.5*sqrt(2),3.5*sqrt(2),3.5*sqrt(2),-3.5*sqrt(2))
+            layer.line(-3.5*constants.sqrt2,3.5*constants.sqrt2,3.5*constants.sqrt2,-3.5*constants.sqrt2)
         break
         case 138:
             layer.fill(200,255,255,fade)
@@ -11528,8 +11547,8 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.line(-2,-8,-8,-4)
             layer.line(4,8,8,4)
             layer.line(0,16,0,24)
-            layer.line(-8*sqrt(2),8*sqrt(2),-12*sqrt(2),12*sqrt(2))
-            layer.line(8*sqrt(2),8*sqrt(2),12*sqrt(2),12*sqrt(2))
+            layer.line(-8*constants.sqrt2,8*constants.sqrt2,-12*constants.sqrt2,12*constants.sqrt2)
+            layer.line(8*constants.sqrt2,8*constants.sqrt2,12*constants.sqrt2,12*constants.sqrt2)
         break
         case 151:
             layer.fill(225,fade)

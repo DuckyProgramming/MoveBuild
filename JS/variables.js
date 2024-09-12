@@ -182,7 +182,7 @@ types={
         {name:'Management Robot Commander',life:120,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:402,effect:[12,1]},{type:99,effect:[5]},{type:401,effect:[6,1]}],description:`Actually has a budget`},
         {name:'Adrian Kane',life:350,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:129,effect:[5]},{type:208,effect:[24]},{type:406,effect:[8]},{type:127,effect:[28]}],description:`Deposed leader of HVM`},
         {name:'Armored Biker',life:48,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[11]},{type:10,effect:[5]}],description:`That's a good helmet`},
-        {name:'Prison Guard Gunner',life:52,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:400,effect:[10,2,'Dazed']}],description:`Average riot control measure`},
+        {name:'Prison Guard Gunner',life:32,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:400,effect:[10,2,'Dazed']}],description:`Average riot control measure`},
         {name:'Shield Prison Guard',life:62,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:399,effect:[8,10]},{type:353,effect:[12,1]}],description:`Not as good as riot police`},
 
         {name:'Prisoner Informant',life:28,behavior:1,spec:[22],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Whose side is he on?`},
@@ -6254,6 +6254,8 @@ Unaffected by focus.`,
 Unaffected by focus.`,
         },{name:'Glass Orb',mtg:0,desc:
 `On evoke, deals 4 damage.`,
+        },{name:'Dual Orb',mtg:0,desc:
+`On evoke, deals 15 damage on an enemy or adds 20 block on an ally or yourself.`,
         },{name:'Holding',mtg:0,desc:
 `Draw a Card When Discarded`,
         },{name:'Quickdraw',mtg:0,desc:
@@ -6642,7 +6644,7 @@ Caps at +1, cap is raised by 1 for each Wisdom you have.`,
     ],
 }
 stage={scale:0,scene:'title',internal:{version:1}}
-game={player:[],deck:[],playerNumber:18,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[],deck:[],playerNumber:18,orbNumber:14,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0,infoOff:false}
 variants={
     mtg:false,mod:false,chaos:false,
@@ -6682,7 +6684,8 @@ variants={
         'Commoners','Business','','',
     ]
 }
-constants={collisionDamage:4,
+constants={
+    collisionDamage:4,sqrt2:0,sqrt3:0,
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],

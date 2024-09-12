@@ -175,7 +175,7 @@ class combatant{
                 'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn','Shuffle (E)','(E) Spend Splash','2+ Cost (E)',
                 'Discus Temporary Strength','Discus Temporary Dexterity','Lightning Orb Per Turn','Lightning Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn','Rearm Draw',
                 'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap','Dice Max Boost','Exhaust Block','Counter Shockwave','Frail on Kill','Mailshield',
-                'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter',
+                'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -239,7 +239,7 @@ class combatant{
                 0,2,2,2,0,0,0,0,0,0,//59
                 0,0,0,0,0,0,0,0,2,0,//60
                 0,0,0,0,2,0,0,2,0,0,//61
-                0,2,0,0,2,2,0,0,0,
+                0,2,0,0,2,2,0,0,0,2,//62
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -303,7 +303,7 @@ class combatant{
                 2,2,2,0,2,2,2,2,2,2,//59
                 2,2,2,2,2,2,2,2,2,2,//60
                 2,2,3,2,0,2,2,2,2,2,//61
-                3,2,2,2,2,2,3,2,2
+                3,2,2,2,2,2,3,2,2,2,//62
             ]}
         /*
         0-none
@@ -4102,6 +4102,13 @@ class combatant{
             case 12:
                 this.battle.combatantManager.combatants[target].orbTake(round(4*multi*playerMulti),-1)
             break
+            case 13:
+                if((this.battle.combatantManager.combatants[target].team>0?1:0)!=(this.team>0?1:0)){
+                    this.battle.combatantManager.combatants[target].orbTake(round(15*multi*playerMulti),-1)
+                }else{
+                    this.battle.combatantManager.combatants[target].addBlock(round(20*multi))
+                }
+            break
         }
     }
     subMinorEvoke(type,detail,target){
@@ -4155,6 +4162,13 @@ class combatant{
             break
             case 12:
                 this.battle.combatantManager.combatants[target].orbTake(round(2*multi*playerMulti),-1)
+            break
+            case 13:
+                if((this.battle.combatantManager.combatants[target].team>0?1:0)!=(this.team>0?1:0)){
+                    this.battle.combatantManager.combatants[target].orbTake(round(8*multi*playerMulti),-1)
+                }else{
+                    this.battle.combatantManager.combatants[target].addBlock(round(10*multi))
+                }
             break
         }
     }
@@ -5017,6 +5031,7 @@ class combatant{
                     case 612: this.status.main[findList('Counter Push Once',this.status.name)]+=this.status.main[a]; break
                     case 614: this.status.main[findList('Dodge',this.status.name)]+=this.status.main[a];this.status.next[findList('Dodge Cycle 2 2',this.status.name)]+=this.status.main[a]; break
                     case 615: this.status.main[findList('Dodge Cycle 2 1',this.status.name)]+=this.status.main[a]; break
+                    case 619: this.status.main[findList('Random Mana in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     
                 }
                 if(
