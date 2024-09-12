@@ -818,7 +818,8 @@ class group{
                 type==15&&!args[0].includes(this.cards[a].class)||
                 type==16&&args[0].includes(this.cards[a].class)&&this.cards[a].attack!=args[1]||
                 type==17&&(this.cards[a].spec.includes(12)&&(this.cards[a].effect[0].includes(args[0])||this.cards[a].effect[1].includes(args[0]))||!this.cards[a].spec.includes(12)&&this.cards[a].effect.includes(args[0]))||
-                type==18&&args[0].includes(this.cards[a].rarity)
+                type==18&&args[0].includes(this.cards[a].rarity)||
+                type==19&&this.cards[a].level>=args[0]
             ){
                 total++
             }
@@ -3541,6 +3542,21 @@ class group{
                             this.cards[b].anim.afford=1
                             this.cards[b].display(this.id==0)
                             position++
+                        }
+                    break
+                    case 12:
+                        for(let a=0,la=this.cards.length;a<la;a++){
+                            if(this.cards[a].level>=args[2]){
+                                this.cards[a].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
+                                this.cards[a].fade=1
+                                this.cards[a].relIndex=position
+                                this.cards[a].position.x=this.layer.width/2-200+position%5*100
+                                this.cards[a].position.y=this.layer.height/2-130+floor(position/5)%3*130
+                                this.cards[a].anim.afford=1
+                                this.cards[a].display(this.id==0)
+                                position++
+                                this.finalPosition=position
+                            }
                         }
                     break
                     default:

@@ -4639,8 +4639,135 @@ weapon he's been developing, custom-made as well.`,
                 link:[-1],
             },
         ],
+    },{
+        name:'Fake News',id:152,list:0,
+        pages:[
+            {
+                desc:
+`You find a stack of newspapers discarded on the ground.
+Confused as to why anybody would throw them away, you pick
+up the stack, opening one to find a wealth of - fake news.`,
+                option:['Read Article','Read Article','Throw it Away'],
+                optionDesc:['Add a Rare Card From 3 Choices','Add an Uncommon Card From 12 Choices',''],
+                link:[1,1,2],
+            },{
+                desc:
+`You read the article, learning some half-truths.
+Nothing much you'll remember, though.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You couldn't care less for such fabrications.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Against the Machine',id:153,list:0,
+        pages:[
+            {
+                desc:
+`At one Management laboratory you successfully infiltrate,
+you find an entry way toward the interior of a machine.
+You can't understand the instructions nearby, but you could
+still take a look inside, what can go wrong?`,
+                option:['Explore the Inside','Steal Something','Run'],
+                optionDesc:['Lose 33 Health','Lose 13 Health',''],
+                link:[1,2,3],
+            },{
+                desc:
+`You search around the machinery for some time, finding little.
+But, something seems to change within you as you wander...
+You eventually make it out, having no idea how long you were in for.`,
+                option:['Escape'],
+                optionDesc:['Upgrade and Duplicate a Card'],
+                link:[-1],
+            },{
+                desc:
+`Spending some time inside the machine, you grab the first
+thing that looks valuable and make your escape. You get lost on
+the way out, though, and it's been some time before you're free.`,
+                option:['Escape'],
+                optionDesc:['Transform and Upgrade a Card'],
+                link:[-1],
+            },{
+                desc:`You're not going to mess with that thing.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Rebottler',id:154,list:0,
+        pages:[
+            {
+                desc:
+`Stopping for a break, you run into a duck carrying
+all sorts of items and potions. He reveals his allegiance with
+the rebellion, and offers to sell you something or just
+to refill your bags for free.`,
+                option:['Make a Purchase','Get a Refill'],
+                optionDesc:['Lose 40 Currency, Gain an Item Slot','Fill All Item Slots'],
+                link:[1,2],
+            },{
+                desc:`You buy some extra storage space for a decent price.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`He dumps some items into your bag.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'An Unlikely Ally',id:155,list:0,
+        pages:[
+            {
+                desc:
+`Walking through the rebel camp, you come across an
+interesting character, $c. Maybe you could spend some
+time training alongside them?`,
+                option:['Observe Their Strikes','Observe Their Guard','Observe Their Movements'],
+                optionDesc:['Add an Attack','Add a Defense','Add a Movement'],
+                link:[1,1,1],
+            },{
+                desc:
+`You spend time observing their abilities, maybe
+learning a few tricks from what they're able to do.
+After a few hours, you decide to part ways.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Prententious Designer',id:156,list:0,
+        pages:[
+            {
+                desc:
+`You find an expensive-looking, stylish shop on a
+corner and take a look inside. The owner is well-dressed
+and has a fancy haircut, and offers his services.
+"I only work with the best!" he says.`,
+                option:['Remaster','Remake'],
+                optionDesc:['Remove an Upgraded Card','Transform an Upgraded Card'],
+                link:[1,1],
+            },{
+                desc:
+`"Now that's what I like to see, real quality stuff!"
+he says and finishes your service. This being your first
+visit to the shop, it's on the house.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
     },/*{
-        name:'',id:152,list:0,
+        name:'',id:157,list:0,
         pages:[
             {
                 desc:

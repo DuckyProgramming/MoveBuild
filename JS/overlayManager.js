@@ -144,6 +144,10 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[6,0,0])],//bring in number draw cards, no return
                     [new overlay(this.layer,this.battle,0,21,[0])],//set relic 458, quality disguise
                     [new overlay(this.layer,this.battle,0,8,[0,0,2])],//new card to deck, relic 459, backtick
+                    [new overlay(this.layer,this.battle,0,2,[91,1])],//upgrade and duplicate card, no return
+                    [new overlay(this.layer,this.battle,0,2,[92,1,0])],//remove upgraded card, no return
+                    [new overlay(this.layer,this.battle,0,2,[93,0,0])],//transform upgraded card, no return
+
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

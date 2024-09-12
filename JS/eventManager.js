@@ -143,6 +143,9 @@ class eventManager{
                 !(this.listing.event[a]==148&&(this.battle.currency.money[this.player]<100||userCombatant.life<11))&&
                 !(this.listing.event[a]==149&&(this.battle.currency.money[this.player]<250||userCombatant.life<21))&&
                 !(this.listing.event[a]==151&&this.battle.currency.money[this.player]<100)&&
+                !(this.listing.event[a]==153&&userCombatant.life<34)&&
+                !(this.listing.event[a]==154&&this.battle.currency.money[this.player]<40)&&
+                !(this.listing.event[a]==156&&this.battle.cardManagers[this.player].deck.numberAbstract(19,[1])<3)&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -189,6 +192,7 @@ class eventManager{
         if(this.firstEvent==''){
             this.firstEvent=this.name
         }
+        let possible
         switch(this.id){
             case 30:
                 if(this.battle.relicManager.hasRelic(259,this.player)){
@@ -228,7 +232,7 @@ class eventManager{
                 }
             break
             case 85:
-                let possible=[]
+                possible=[]
                 for(let a=1,la=game.playerNumber+1;a<la;a++){
                     if(!this.battle.player.includes(a)){
                         possible.push(a)
@@ -268,6 +272,18 @@ class eventManager{
                 }
                 this.selection=valid[floor(random(0,valid.length))]
                 this.pages[0].optionDesc[0]=`Remove Card - ${this.battle.cardManagers[this.player].deck.cards[this.selection].name.replace('\n',' ')}, Add a Rare Card`
+            break
+            case 155:
+                possible=[]
+                for(let a=1,la=game.playerNumber+1;a<la;a++){
+                    if(!this.battle.player.includes(a)){
+                        possible.push(a)
+                    }
+                }
+                let index=floor(random(0,possible.length))
+                this.selection=possible[index]
+                this.pages[0].desc=this.pages[0].desc.replace('$c',types.combatant[possible[index]].name)
+                possible.splice(index,1)
             break
         }
     }
@@ -1737,6 +1753,53 @@ class eventManager{
                         if(this.page==0&&a==0){
                             this.battle.overlayManager.overlays[132][this.player].active=true
                             this.battle.overlayManager.overlays[132][this.player].activate([0])
+                        }
+                    break
+                    case 152:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,2,46,3])
+                        }else if(this.page==0&&a==1){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,1,46,12])
+                        }
+                    break
+                    case 153:
+                        if(this.page==0&&a==0){
+                            this.harm(userCombatant,33)
+                        }else if(this.page==0&&a==1){
+                            this.harm(userCombatant,13)
+                        }else if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[136][this.player].active=true
+                            this.battle.overlayManager.overlays[136][this.player].activate()
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[99][this.player].active=true
+                            this.battle.overlayManager.overlays[99][this.player].activate()
+                        }
+                    break
+                    case 154:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(40,this.player)
+                            this.battle.itemManager.addItemSlots(1,this.player)
+                        }else if(this.page==0&&a==1){
+                            for(let b=0,lb=this.battle.itemManager.items[this.player].length;b<lb;b++){
+                                this.battle.itemManager.addRandomItem(this.player)
+                            }
+                        }
+                    break
+                    case 155:
+                        if(this.page==0&&a>=0&&a<=2){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,3,47,this.selection,a+1])
+                        }
+                    break
+                    case 156:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[137][this.player].active=true
+                            this.battle.overlayManager.overlays[137][this.player].activate()
+                        }else if(this.page==0&&a==1){
+                            this.battle.overlayManager.overlays[138][this.player].active=true
+                            this.battle.overlayManager.overlays[138][this.player].activate()
                         }
                     break
 

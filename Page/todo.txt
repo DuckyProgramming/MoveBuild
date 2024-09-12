@@ -1,7 +1,3 @@
-buff lock on (other than singular duel)
-
-
-
 UNCOMING:
 
 deploy new events
@@ -45,6 +41,8 @@ scrap note
 [annotation]
 
 1 more wish power source
+
+another lock on card
 
 
 
@@ -156,7 +154,7 @@ transform an upgraded card
 
 
 
-[]
+another ally card
 
 []
 
