@@ -901,7 +901,9 @@ class battle{
     subTurn(){
         let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
         combatant.tick()
-        if(!this.tutorialManager.active&&combatant.life>0){
+        if(this.tutorialManager.active){
+            this.cardManagers[this.turn.main].allEffect(2,103)
+        }else if(combatant.life>0){
             if(this.turn.total<=1+this.relicManager.active[448][this.turn.main+1]){
                 if(!variants.initiative){
                     for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){

@@ -4766,6 +4766,16 @@ visit to the shop, it's on the house.`,
                 link:[-1],
             },
         ],
+    },{
+        name:'Placeholder Event',id:157,list:-1,
+        pages:[
+            {
+                desc:`Stuff happens.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
     },/*{
         name:'',id:157,list:0,
         pages:[

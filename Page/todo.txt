@@ -44,6 +44,8 @@ can opener - closer but a defense
 dual orb
 dual orb
 
+focus defense
+
 
 
 setup for the other merlin gimmick
@@ -102,12 +104,6 @@ wait until koishi is made to add cards
 
 
 
-SUKUNA DEVELOPMENT
-
-tutorial
-
-
-
 MERLIN DEVELOPMENT
 
 model
@@ -127,11 +123,6 @@ he's a duck
 CHARACTER 20
 
 the dev?
-
-
-
-update azis tutorial with orb moving
-remove freeze from sanae tutorial
 
 
 

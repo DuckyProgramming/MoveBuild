@@ -53,14 +53,12 @@ class purchaseManager{
                         0
                     ))
                     for(let a=0,la=3;a<la;a++){
+                        let type=[0,0,1,2,3][floor(random(0,5))]
                         this.purchases.push(new purchase(this.layer,this.battle,0,1040,160+a*140,5,
-                            [150],
-                            [4],
-                            13
+                            [(this.battle.relicManager.hasRelic([270,271,272,273][type],0)?0.5:1)*[100,160,200,80][type]],
+                            [type],
+                            type+9
                         ))
-                    }
-                    for(let a=0,la=3;a<la;a++){
-                        this.purchases.push(new purchase(this.layer,this.battle,0,1040,160+a*140,5,[150],[3]))
                     }
                     group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,2,2,3,3]
                     cost=this.generalizedListing(2)

@@ -20407,6 +20407,48 @@ types.card=[
                 {effect:[],attack:5189,cost:[8],target:[0],spec:[2],class:11},
             ],
         },
+    },{
+        name:'Follow\nUp',rarity:0,list:9,
+        levels:[
+            {effect:[7,1],attack:992,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[11,1],attack:992,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14,1],attack:992,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:0,list:9,color:[2],
+            levels:[
+                {effect:[11],attack:4875,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[16],attack:4876,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[20],attack:4877,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Cyclic\nShield',rarity:0,list:9,
+        levels:[
+            {effect:[11,1],attack:990,cost:1,target:[0],spec:[],class:2},
+            {effect:[17,1],attack:990,cost:1,target:[0],spec:[],class:2},
+            {effect:[21,1],attack:990,cost:1,target:[0],spec:[],class:2},
+        ],mtg:{
+            rarity:0,list:9,color:[2],
+            levels:[
+                {effect:[17],attack:4872,cost:[2,-1],target:[0],spec:[],class:2},
+                {effect:[24],attack:4873,cost:[2,-1],target:[0],spec:[],class:2},
+                {effect:[30],attack:4874,cost:[2,-1],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Chain\nStep',rarity:0,list:9,
+        levels:[
+            {effect:[1,1],attack:999,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,1],attack:999,cost:0,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,1],attack:999,cost:0,target:[1,1,1],spec:[],class:3},
+        ],mtg:{
+            rarity:0,list:9,color:[2],
+            levels:[
+                {effect:[1],attack:4878,cost:[2,-1],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:4879,cost:[2,-1],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:4880,cost:[2,-1],target:[1,1,1],spec:[0],class:3},
+            ],
+        },
     },
 
     //mark 9
@@ -55169,20 +55211,6 @@ types.card=[
             ],
         },
     },{
-        name:'Cyclic\nShield',rarity:-1,list:-8,
-        levels:[
-            {effect:[10,1],attack:990,cost:1,target:[0],spec:[],class:2},
-            {effect:[15,1],attack:990,cost:1,target:[0],spec:[],class:2},
-            {effect:[19,1],attack:990,cost:1,target:[0],spec:[],class:2},
-        ],mtg:{
-            rarity:-1,list:-8,color:[2],
-            levels:[
-                {effect:[16],attack:4872,cost:[2,-1],target:[0],spec:[],class:2},
-                {effect:[24],attack:4873,cost:[2,-1],target:[0],spec:[],class:2},
-                {effect:[30],attack:4874,cost:[2,-1],target:[0],spec:[],class:2},
-            ],
-        },
-    },{
         name:'Retrograde',rarity:-1,list:-8,
         levels:[
             {effect:[7,2],attack:991,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -55194,20 +55222,6 @@ types.card=[
                 {effect:[11,2],attack:991,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[16,2],attack:991,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[18,3],attack:991,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
-            ],
-        },
-    },{
-        name:'Follow\nUp',rarity:-1,list:-8,
-        levels:[
-            {effect:[7,1],attack:992,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[11,1],attack:992,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[14,1],attack:992,cost:1,target:[2,1,1],spec:[0],class:1},
-        ],mtg:{
-            rarity:-1,list:-8,color:[2],
-            levels:[
-                {effect:[11],attack:4875,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[16],attack:4876,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[20],attack:4877,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
             ],
         },
     },{
@@ -55264,20 +55278,6 @@ types.card=[
                 {effect:[16,1],attack:996,cost:[12,-1],target:[0],spec:[],class:2},
                 {effect:[21,2],attack:996,cost:[12,-1],target:[0],spec:[],class:2},
                 {effect:[24,3],attack:996,cost:[12,-1],target:[0],spec:[],class:2},
-            ],
-        },
-    },{
-        name:'Chain\nStep',rarity:-1,list:-8,
-        levels:[
-            {effect:[1,1],attack:999,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[1,1],attack:999,cost:0,target:[1,1,1],spec:[0],class:3},
-            {effect:[1,1],attack:999,cost:0,target:[1,1,1],spec:[],class:3},
-        ],mtg:{
-            rarity:-1,list:-8,color:[2],
-            levels:[
-                {effect:[1],attack:4878,cost:[2,-1],target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:4879,cost:[2,-1],target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:4880,cost:[2,-1],target:[1,1,1],spec:[0],class:3},
             ],
         },
     },{
