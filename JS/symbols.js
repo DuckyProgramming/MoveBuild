@@ -146,13 +146,13 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         break
         case 22:
             layer.fill(150,0,0,fade)
-            layer.beginShape()
-            for(let a=0,la=9;a<la;a++){
-                layer.vertex(sin(a/(la-1)*180)*(5-a%2*3),cos(a/(la-1)*180)*(5-a%2*3))
+            regStar(layer,0,0,8,6,6,3,3,0)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
             }
-            layer.endShape()
-            layer.fill(200,255,255,fade)
-            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
         break
         case 23:
             layer.fill(200,fade)
@@ -192,8 +192,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 27:
             layer.fill(150,fade)
             layer.rect(0,0,7.5,10,2)
-            layer.fill(200,255,255,fade)
-            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            }
         break
         case 28:
             layer.fill(225,fade)
@@ -316,9 +320,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 43:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=16;a<la;a++){
-                layer.vertex(lsin(360*a/la)*(6-a%2*3),lcos(360*a/la)*(6-a%2*3))
-            }
+            regStar(layer,0,0,8,6,6,3,3,0)
             layer.endShape()
             layer.fill(255,50,50,fade)
             layer.triangle(0,-6,-3,3,3,3)
@@ -430,9 +432,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 56:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=16;a<la;a++){
-                layer.vertex(lsin(360*a/la)*(6-a%2*3),lcos(360*a/la)*(6-a%2*3))
-            }
+            regStar(layer,0,0,8,6,6,3,3,0)
             layer.endShape()
             layer.fill(255,50,50,fade)
             layer.triangle(2,-6,4,3,0,3)
@@ -506,9 +506,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 64:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=16;a<la;a++){
-                layer.vertex(lsin(360*a/la)*(6-a%2*3),lcos(360*a/la)*(6-a%2*3))
-            }
+            regStar(layer,0,0,8,6,6,3,3,0)
             layer.endShape()
             layer.fill(200,255,255,fade)
             layer.quad(-4,0,0,-5,4,0,0,5)
@@ -1398,11 +1396,15 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.arc(0,0,8,8,-180,-45)
             layer.arc(0,0,8,8,0,135)
             layer.strokeCap(ROUND)
-            layer.noStroke()
-            layer.fill(200,255,255,fade)
-            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
-            layer.fill(225,255,255,fade)
-            layer.quad(-4,0,0,-5,4,0,0,5)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,-1,0,0.4,fade,-1,[])
+            }else{
+                layer.noStroke()
+                layer.fill(200,255,255,fade)
+                layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+                layer.fill(225,255,255,fade)
+                layer.quad(-4,0,0,-5,4,0,0,5)
+            }
         break
         case 152:
             layer.fill(75,fade)
@@ -1452,11 +1454,17 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
                 layer.rotate(36)
                 layer.triangle(-0.5,-4,0.5,-4,0,-6)
             }
-            layer.fill(200,255,255,fade)
-            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
-            layer.ellipse(-8,0,3,3)
-            layer.fill(225,255,255,fade)
-            layer.quad(-4,0,0,-5,4,0,0,5)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,-1,0,0.4,fade,-1,[])
+                layer.fill(30,fade)
+                layer.ellipse(-8,0,3,3)
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+                layer.ellipse(-8,0,3,3)
+                layer.fill(225,255,255,fade)
+                layer.quad(-4,0,0,-5,4,0,0,5)
+            }
         break
         case 157:
             layer.stroke(150,175,200,fade)
@@ -1634,9 +1642,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 177:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=16;a<la;a++){
-                layer.vertex(lsin(360*a/la)*(6-a%2*3),lcos(360*a/la)*(6-a%2*3))
-            }
+            regStar(layer,0,0,8,6,6,3,3,0)
             layer.endShape()
             layer.fill(80,100,120,fade)
             layer.rect(-1,0,6,4)
@@ -1682,9 +1688,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 183:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=16;a<la;a++){
-                layer.vertex(lsin(360*a/la)*(6-a%2*3),lcos(360*a/la)*(6-a%2*3))
-            }
+            regStar(layer,0,0,8,6,6,3,3,0)
             layer.endShape()
             layer.fill(150,175,200,fade)
             layer.triangle(0,-6,-3,3,3,3)
@@ -1692,9 +1696,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 184:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=16;a<la;a++){
-                layer.vertex(lsin(360*a/la)*(6-a%2*3),lcos(360*a/la)*(6-a%2*3))
-            }
+            regStar(layer,0,0,8,6,6,3,3,0)
             layer.endShape()
             layer.fill(150,175,200,fade)
             layer.triangle(2,-6,4,3,0,3)
@@ -2900,7 +2902,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-0.5,4,-0.5,-4,-4,-4)
             layer.triangle(0.5,-4,0.5,4,4,4)
             layer.fill(200,255,255,fade)
-            layer.quad(-6,0,0,-7.5,6,0,0,7.5)
+            layer.quad(-4,0,0,-5,4,0,0,5)
         break
         case 318:
             layer.fill(150,0,0,fade)
@@ -4606,8 +4608,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(150,175,200,fade)
 			layer.triangle(-5,-3,5,-3,0,-6)
 			layer.arc(0,-3,10,16,0,180)
-            layer.fill(200,255,255,fade)
-            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            }
         break
         case 485:
             layer.fill(150,175,200,fade)
@@ -4847,9 +4853,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 508:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=16;a<la;a++){
-                layer.vertex(lsin(360*a/la)*(6-a%2*3),lcos(360*a/la)*(6-a%2*3))
-            }
+            regStar(layer,0,0,8,6,6,3,3,0)
             layer.endShape()
             displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
         break
@@ -5870,6 +5874,58 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             displayMtgManaSymbol(layer,0,0,-1,0,0.4,fade,-1,[])
             layer.fill(30,fade)
             layer.triangle(0,-5,-1,-7,1,-7)
+        break
+        case 620:
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+            layer.fill(200,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+            layer.triangle(-1.5,-5.5,1.5,-5.5,0,-7.5)
+            layer.fill(225,255,255,fade)
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+        break
+        case 621:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-2,-6,-4,3,0,3)
+            layer.ellipse(3,0,4,4)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)  
+            layer.strokeWeight(1)
+            layer.rect(0,-0.5,4.5,6,1)
+            layer.noStroke()
+            layer.fill(200,255,255,fade)
+            layer.quad(-4,-3,-3,-4,4,3,3,4)
+            layer.quad(-4,3,-3,4,4,-3,3,-4)
+        break
+        case 622:
+            layer.fill(150,175,200,fade)
+            layer.triangle(-5,-3,5,-3,0,-6)
+            layer.arc(0,-3,10,16,0,180)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)  
+            layer.strokeWeight(1)
+            layer.rect(0,-0.5,4.5,6,1)
+            layer.noStroke()
+            layer.fill(200,255,255,fade)
+            layer.quad(-4,-3,-3,-4,4,3,3,4)
+            layer.quad(-4,3,-3,4,4,-3,3,-4)
+        break
+        case 623:
+            layer.fill(200,255,255,fade)
+            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+            layer.fill(60,fade)
+            layer.quad(-4,-3,-3,-4,4,3,3,4)
+            layer.quad(-4,3,-3,4,4,-3,3,-4)
+        break
+        case 624:
+            displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
+            layer.noStroke()
+            layer.fill(200,255,255,fade)
+            layer.quad(-4,-3,-3,-4,4,3,3,4)
+            layer.quad(-4,3,-3,4,4,-3,3,-4)
         break
 
     }
@@ -10696,10 +10752,14 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.rect(1.5,1.5,7,7)
         break
         case 45:
-            layer.fill(255,50,50,fade)
-            layer.triangle(0,-6,-3,3,3,3)
-            layer.fill(200,255,255,fade)
-            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3,3,0)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            }
         break
         case 46:
             layer.fill(150,fade)
@@ -10820,8 +10880,12 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         case 62:
             layer.fill(150,fade)
             layer.rect(0,0,7.5,10,2)
-            layer.fill(200,255,255,fade)
-            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            }
         break
         case 63:
             layer.fill(75,fade)
@@ -11571,8 +11635,12 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.fill(150,175,200,fade)
 			layer.triangle(-5,-3,5,-3,0,-6)
 			layer.arc(0,-3,10,16,0,180)
-            layer.fill(200,255,255,fade)
-            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            }
         break
         case 154:
             layer.fill(25,75,250,fade)
@@ -11698,6 +11766,13 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.fill(150,175,200,fade)
             layer.triangle(2,6,4,-3,0,-3)
             layer.quad(-4.5,0,3,-1.5,1.5,0,-3,-1.5)
+        break
+        case 168:
+            layer.fill(255,125,0,fade)
+            layer.quad(0,0,-2,-4,0,-6,2,-4)
+            layer.quad(0,0,-4,-2,-6,0,-4,2)
+            layer.quad(0,0,2,4,0,6,-2,4)
+            layer.quad(0,0,4,2,6,0,4,-2)
         break
 
     }
@@ -11868,4 +11943,5 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 165-Lasting Counter Once
 166-Damage Down
 167-Block Down
+168-Storage (Citrine)
 */

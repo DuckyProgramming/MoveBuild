@@ -19,6 +19,8 @@ types={
         {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:339,effect:[8,8]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:``},
         {name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]},{type:412,effect:[15,2]},{type:413,effect:[2]}],description:``},
         {name:'Merlin',moniker:'',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:312,effect:[5,5,1,1,2,2,2,2,10]}],description:``},
+        {name:'Ducopo',moniker:'',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
+        {name:'',moniker:'',identifier:['',''],life:50,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -124,8 +126,8 @@ types={
         {name:'Pixie',life:11,behavior:1,spec:[1],move:{type:3,speed:1},attack:[{type:1,effect:[4]}],description:`Sibiea reference?`},
         {name:'PhD',life:58,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:158,effect:[4,1]},{type:159,effect:[1]},{type:160,effect:[8]}],description:`Still can't find a job`},
         {name:'Glimmerrer',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:87,effect:[4]},{type:161,effect:[5]},{type:162,effect:[7]}],description:`Oh shiny`},
-        {name:'Host Drone',life:9,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:165,effect:[5]}],description:`Random walk`},
-        {name:'Host',life:33,behavior:12,spec:[],move:{type:2,speed:1},attack:[{type:1,effect:[8]},{type:155,effect:[1,'Host Drone']}],description:`Voluntary`},
+        {name:'Host Drone',life:8,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:165,effect:[5]}],description:`Random walk`},
+        {name:'Host',life:32,behavior:12,spec:[],move:{type:2,speed:1},attack:[{type:1,effect:[8]},{type:155,effect:[1,'Host Drone']}],description:`Voluntary`},
         {name:'Junkie',life:80,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[16]},{type:79,effect:[6]},{type:167,effect:[1,3]}],description:`Purchases product`},
         {name:'Prestige',life:131,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:168,effect:[2]}],description:`Back for more?`},
         {name:'Darkblot',life:51,behavior:13,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[11]},{type:31,effect:[8]},{type:29,effect:[12]},{type:186,effect:[]}],description:`Blame the Lobster`},
@@ -216,7 +218,7 @@ types={
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
         {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:200,effect:[8]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
-        {name:'Crusader',life:127,behavior:15,spec:[1,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:343,effect:[14,1]},{type:344,effect:[20]},{type:376,effect:[22,1]},{type:346,effect:[22,1]},{type:347,effect:[20]}],description:`Two millenia late to the party`},
+        {name:'Crusader',life:127,behavior:15,spec:[0,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:343,effect:[14,1]},{type:344,effect:[20]},{type:376,effect:[22,1]},{type:346,effect:[22,1]},{type:347,effect:[20]}],description:`Two millenia late to the party`},
         {name:'Thoughtless',life:144,behavior:17,spec:[0],move:{type:0,speed:1},attack:[{type:147,effect:[5]},{type:404,effect:[12,1]},{type:405,effect:[8,4]},{type:83,effect:[10,1,'Philosophy of\nthe Despised']}],description:`No mind lol`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
@@ -780,7 +782,7 @@ types={
         {name:'Cheese Sauce',internal:'Better Rest Heal',id:65,rarity:0,list:0,mtg:0,description:'Heal 10 More\nHealth When Resting'},
         {name:'Poisoned Potato',internal:'Cancel Curse',id:66,rarity:0,list:0,mtg:0,description:'Remove the Next\nCurse Added'},
         {name:'Recursive Pouch',internal:'Large Bag',id:67,rarity:0,list:0,mtg:0,description:'When Taken,\nAdd 2 Item Slots'},
-        {name:'Oricalchum',internal:'Base Block',id:68,rarity:0,list:0,mtg:0,description:'If You End Your Turn\nWithout Block, Add 6 Block'},
+        {name:'Oricalchum',internal:'Base Block',id:68,rarity:0,list:0,mtg:0,description:'If You End Your Turn\nWith No Block, Add 6 Block'},
         {name:'Wire Cutter',internal:'Block Damage',id:69,rarity:0,list:0,mtg:0,description:'Deal 4 More Damage\nto Enemies With Block'},
 
         {name:'Tin Can',internal:'3 Turn Draw',id:70,rarity:0,list:0,mtg:0,description:'Draw 1 Card\nEvery 3 Turns'},
@@ -911,7 +913,7 @@ types={
         {name:'Polychrome Pack',internal:'1 Random Polychrome',id:184,rarity:3,list:0,mtg:0,description:'When Taken, Make 1\nRandom Card Polychrome'},
         {name:'Negative Pack',internal:'1 Random Negative',id:185,rarity:3,list:0,mtg:0,description:'When Taken, Make 1\nRandom Card Negative'},
         {name:'Erratic Pack',internal:'1 Random Erratic',id:186,rarity:3,list:0,mtg:0,description:'When Taken, Make 1\nRandom Card Erratic'},
-        {name:'Credit Card',internal:'Go Into Debt',id:187,rarity:0,list:0,mtg:0,description:'Go Into Up to 200\nCurrency of Debt\nWithout Debt Curse'},
+        {name:'Credit Card',internal:'Go Into Debt',id:187,rarity:0,list:0,mtg:0,description:'Go Into Up to 200\nCurrency of Debt'},
         {name:'Tauball',internal:'Fragile Strength',id:188,rarity:0,list:0,mtg:0,description:'Gain 3 Strength on Turn 1\n10% Chance to Break Each Battle'},
         {name:'Hallucinogen Pills',internal:'Purchase Item',id:189,rarity:1,list:0,mtg:0,description:'After Purchasing From the Shop,\nGain an Item'},
         
@@ -938,13 +940,13 @@ types={
         {name:'Bootstraps',internal:'Currency Strength',id:209,rarity:3,list:0,mtg:0,description:'Gain 2 Strength Per\n500 Currency You Have\non Turn 1'},
 
         {name:'To The Moon',internal:'1000 Currency Currency Per Node',id:210,rarity:3,list:0,mtg:0,description:'Gain 40 Currency Every Node\nWhen You Have 1000 Currency or More'},
-        {name:'Brainstorm',internal:'Copy First Relic',id:211,rarity:3,list:0,mtg:0,description:'When Sold, Copy Your\nFirst Owned Relic'},
+        {name:'Brainstorm',internal:'Copy First Relic',id:211,rarity:-1,list:0,mtg:0,description:'When Sold, Copy Your\nFirst Owned Relic'},
         {name:'Faceless Face',internal:'Movement Remove Currency',id:212,rarity:1,list:0,mtg:0,description:'Gain 400 Currency When\na Movement Card is Removed'},
         {name:'Shiny Button',internal:'Energy/Shinies',id:213,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nFind No Shinies and\nLose Existing Shinies'},
         {name:'Auto Arm',internal:'Energy/Unupgrade',id:214,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nWhen Taken, Unupgrade 5 Random Cards'},
         {name:'Cartomancer',internal:'Random Arcana',id:215,rarity:3,list:0,mtg:0,description:'When Taken, Add a Random\nArcana to Deck'},
         {name:'Common Voucher',internal:'Free Common',id:216,rarity:3,list:0,mtg:0,description:'Common Cards in the\nShop are Free'},
-        {name:'Invisible Duck',internal:'Copy Random Relic',id:217,rarity:3,list:0,mtg:0,description:'When Sold, Copy a\nRandom Owned Relic'},
+        {name:'Invisible Duck',internal:'Copy Random Relic',id:217,rarity:-1,list:0,mtg:0,description:'When Sold, Copy a\nRandom Owned Relic'},
         {name:'Aerogel',internal:'Anti-Innate Card',id:218,rarity:3,list:0,mtg:0,description:'When Taken, Make\na Card Anti-Innate'},
         {name:'Aluminum Foil',internal:'Double Upgraded Card Rewards',id:219,rarity:2,list:0,mtg:0,description:'Card Rewards Have a 10% Chance\nto be Double Upgraded'},
 
@@ -1029,7 +1031,7 @@ types={
         {name:'Perpetual Library',internal:'Any 5 Rare Cards',id:291,rarity:4,list:0,mtg:1,description:'When Taken, Choose and Add\n5 Double Upgraded Rare Cards\nFrom Any Character to Deck'},
         {name:'Silicon Wafer',internal:'First Free',id:292,rarity:4,list:0,mtg:1,description:'The First Card (Non-Innately)\nDrawn Each Turn Costs 0'},
         {name:'Octahedron',internal:'3 Card Draw',id:293,rarity:4,list:0,mtg:1,description:'Every 3 Cards Played,\nDraw a Card'},
-        {name:'Lucky Coin',internal:'Random Double Upgrade',id:294,rarity:4,list:0,mtg:1,description:'When Taken, Deluxe Upgrade\n10 Random Upgraded Cards'},
+        {name:'Massive Donut',internal:'Random Double Upgrade',id:294,rarity:4,list:0,mtg:1,description:'When Taken, Deluxe Upgrade\n10 Random Upgraded Cards'},
         {name:'Ring of Suffering',internal:'3 Attack Strength/3 Defense Dexterity',id:295,rarity:4,list:0,mtg:1,description:'Every 3 Attacks Played, Gain 1 Strength\nEvery 3 Defenses Played, Gain 1 Dexterity'},
         {name:'Truffle',internal:'Energy Bump',id:296,rarity:4,list:0,mtg:1,description:'Gain 1 Energy After Playing 3 Cards,\nTriggers Once Per Turn'},
         {name:'Centrosome',internal:'Triochrome',id:297,rarity:4,list:0,mtg:1,description:'When Taken, Make a Card Polychrome\nand Duplicate it 2 Times'},
@@ -1212,7 +1214,16 @@ types={
         {name:'Quality Disguise',internal:'Offcolor Choice',id:458,rarity:2,list:0,mtg:0,description:'You Get a Card Option From Another Color\nChoose Color When Taken'},
         {name:'Backtick',internal:'Any Character Card',id:459,rarity:2,list:0,mtg:0,description:'When Taken, Choose Any Card\nFrom Your Color to Add to Deck'},
         
-        {name:'Test 271',internal:'Energy/Damage Down/Block Down',id:460,rarity:4,list:0,mtg:0,description:'Gain 1 Base Energy,\nReduce All Damage Dealt by 1\nReduce All Block Added by 1'},
+        {name:'Test 271',internal:'Energy/Damage Down/Block Down',id:460,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nReduce All Damage Dealt by 1\nReduce All Block Added by 1'},
+        {name:'Converging Stick',internal:'Status Damage Up',id:461,rarity:1,list:0,mtg:0,description:'When You Draw a Status Card,\nNext Attack Deals 2 More Damage'},
+        {name:'Opportunity',internal:'Starting Attack',id:462,rarity:0,list:0,mtg:0,description:'On Turn 1, Add a Random Attack to Hand\nIt Costs 0 Temporary and\nHas Exhaust and Ethereal'},
+        {name:'Hubris',internal:'Death Temporary Strength',id:463,rarity:1,list:0,mtg:0,description:'When an Enemy Dies,\nGain 5 Temporary Strength'},
+        {name:'Refills',internal:'Empty Items',id:464,rarity:1,list:0,mtg:0,description:'Gain an Item at the Start of Combat\nIf You Have No Items'},
+        {name:'Vitrine',internal:'Store Card',id:465,rarity:2,list:0,mtg:0,description:'When Taken, Remove a Card\nYou May Add it to\nHand Once Per Combat'},
+        {name:'Press F',internal:'Energy/Power Limit',id:466,rarity:4,list:0,mtg:1,description:`Gain 1 Base Energy,\nWhen You Play a Power,\nDiscard a Random Card`},
+        {name:'Plated Vent',internal:'Power Block',id:467,rarity:1,list:0,mtg:0,description:'When You Play a Power, Add 6 Block'},
+        {name:'Backslash',internal:'Any Common or Uncommon Relic',id:468,rarity:2,list:0,mtg:0,description:'When Taken, Choose and Gain\nAny Common or Uncommon Relic'},
+        {name:'Straw Shield',internal:'Bonus Block',id:469,rarity:0,list:0,mtg:0,description:'If You End Your Turn With Block,\nAdd 2 Block'},
 
         //mark mtg mark r
     ],item:[
@@ -1459,6 +1470,16 @@ types={
                 stroke:[75,70,120],
                 text:[30,25,40],
                 active:[240,235,250],
+            },{
+                fill:[75,225,195],
+                stroke:[60,195,180],
+                text:[10,25,30],
+                active:[230,245,250],
+            },{
+                fill:[150,175,125],
+                stroke:[135,150,115],
+                text:[30,35,25],
+                active:[240,250,220],
             },
             
             {
@@ -1518,7 +1539,7 @@ types={
                 stroke:[225,75,75],
                 text:[100,0,0],
                 active:[255,200,200],
-            },{},{},{},{},{},{},{},{},{},{},{},{},{},
+            },{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},
             
             {
                 fill:[125,125,125],
@@ -6644,10 +6665,10 @@ Caps at +1, cap is raised by 1 for each Wisdom you have.`,
     ],
 }
 stage={scale:0,scene:'title',internal:{version:1}}
-game={player:[],deck:[],playerNumber:18,orbNumber:14,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[],deck:[],playerNumber:20,orbNumber:14,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0,infoOff:false}
 variants={
-    mtg:false,mod:false,chaos:false,
+    mtg:false,mod:false,chaos:false,randomCombat:false,
     lowDraw:false,cyclicDraw:false,balance:false,blackjack:false,
     chooselose:false,compress:false,cardHold:false,polar:false,
     inventor:false,unexpected:false,cursed:false,witch:false,
@@ -6656,12 +6677,12 @@ variants={
     prism:false,ultraprism:false,junk:false,colorshift:false,prismrule:[],
     vanish:false,blind:false,transcend:false,overheat:false,
     cliff:false,assault:false,unary:false,running:false,
-    commoners:false,business:false,
+    commoners:false,business:false,quarterPool:false,close:false,
 
     speedmove:false,speedcard:false,nobasicanim:false,deckbuild:false,selectCombat:false,
 
     map:[
-        'mtg','mod','','chaos',
+        'mtg','mod','chaos','randomCombat',
         'lowDraw','cyclicDraw','balance','blackjack',
         'chooselose','compress','cardHold','polar',
         'inventor','unexpected','cursed','witch',
@@ -6670,9 +6691,9 @@ variants={
         'prism','ultraprism','junk','colorshift',
         'vanish','blind','transcend','overheat',
         'cliff','assault','unary','running',
-        'commoners','business','','',
+        'commoners','business','quarterPool','close',
     ],names:[
-        'MTG Mana','Bonus Mods','','Chaos',
+        'MTG Mana','Bonus Mods','Chaos','Random Combat Maps',
         '-1 Draw','Cyclic Draw','Balanced Draw','Blackjack Draw',
         'Choose or Lose','Compression Draw','Five-Card Hold','Card Slot Draw',
         'Card Techify','Expect the Unexpected','Cursed Mode','Polar',
@@ -6681,7 +6702,7 @@ variants={
         'Prism','Ultraprism','Junkyard','Colorshift',
         'All Vanishing','Silent Cards','Transcend','Overheat',
         'Cliffs','Assault','Unary','Running Loop',
-        'Commoners','Business','','',
+        'Commoners','Business','Quarter Pool','Close Enough',
     ]
 }
 constants={

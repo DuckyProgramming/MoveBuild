@@ -185,7 +185,11 @@ class relic{
                 break
                 case 'Power Cost Reduce':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
-                    displaySymbol(this.layer,-8,0,9,0,0.7,this.fade)
+                    if(variants.mtg){
+                        displayMtgManaSymbol(this.layer,-8,0,-1,0,0.56,this.fade,-1,[])
+                    }else{
+                        displaySymbol(this.layer,-8,0,9,0,0.7,this.fade)
+                    }
                     displaySymbol(this.layer,8,-4,8,0,0.8,this.fade)
                     displaySymbol(this.layer,8,-4,21,0,0.5,this.fade)
                     displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
@@ -1945,7 +1949,11 @@ class relic{
                 case 'Cheap Basics':
                     displaySymbol(this.layer,-9,0,8,0,1,this.fade)
                     displaySymbol(this.layer,-9,0,108,0,1,this.fade)
-                    displaySymbol(this.layer,9,0,9,0,1,this.fade)
+                    if(variants.mtg){
+                        displayMtgManaSymbol(this.layer,9,0,-1,0,0.8,this.fade,-1,[])
+                    }else{
+                        displaySymbol(this.layer,9,0,9,0,1,this.fade)
+                    }
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('-1',9,0)
@@ -3377,6 +3385,72 @@ class relic{
                     this.layer.text('1',8,-8)
                     this.layer.text('1',8,8)
                 break
+                case 'Status Damage Up':
+                    displaySymbol(this.layer,-8,-2,51,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,4,4,0,0.5,this.fade)
+                    displaySymbol(this.layer,9,0,29,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',9,0)
+                break
+                case 'Starting Attack':
+                    displaySymbol(this.layer,-8,0,18,0,1,this.fade)
+                    if(variants.mtg){
+                        displayMtgManaSymbol(this.layer,-8,0,-1,0,0.6,this.fade,-1,[])
+                    }else{
+                        displaySymbol(this.layer,-8,0,9,0,0.8,this.fade)
+                    }
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('0',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Death Temporary Strength':
+                    displaySymbol(this.layer,-8,0,22,0,0.5,this.fade)
+                    displaySymbol(this.layer,9,0,41,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',9,0)
+                break
+                case 'Empty Items':
+                    displaySymbol(this.layer,-8,0,30,0,0.45,this.fade)
+                    displaySymbol(this.layer,-8,0,16,0,0.75,this.fade)
+                    displaySymbol(this.layer,10,0,30,0,0.5,this.fade)
+                break
+                case 'Store Card':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,168,1.5,this.fade)
+                break
+                case 'Energy/Power Limit':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,-6,21,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,8,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.25,this.fade)
+                break
+                case 'Power Block':
+                    displaySymbol(this.layer,-8,-4,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,-4,21,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,10,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,27,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('6',8,0)
+                break
+                case 'Any Common or Uncommon Relic':
+                    displaySymbol(this.layer,0,0,1,0,1.25,this.fade)
+                    displaySymbol(this.layer,0,0,120,0,1.5,this.fade)
+                break
+                case 'Bonus Block':
+                    displaySymbol(this.layer,-9,-2,27,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,-2,27,0,0.8,this.fade)
+                    displaySymbol(this.layer,1,12,4,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',9,-2)
+                break
 
                 //mark p
             }
@@ -3482,6 +3556,11 @@ class relic{
                         this.layer.textSize(6)
                         this.layer.text(`${detail%6}/6`,0,-16)
                     break
+                    case 'Store Card':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${active-detail[0]}/${active}`,0,-16)
+                    break
                 }
             }
             this.layer.pop()
@@ -3544,6 +3623,18 @@ class relic{
                             break
                             case 'Click For Mana':
                                 battle.addSpecificEnergy(3,this.player,6)
+                            break
+                        }
+                    }
+                break
+                case 'Store Card':
+                    if(battle.relicManager.detail[this.type][this.player][0]<battle.relicManager.active[this.type][this.player+1]&&battle.turn.main==this.player){
+                        battle.relicManager.detail[this.type][this.player][0]++
+                        switch(this.internal){
+                            case 'Store Card':
+                                battle.cardManagers[this.player].hand.cards.push(copyCard(battle.relicManager.detail[this.type][this.player][1]))
+                                battle.cardManagers[this.player].hand.cards[battle.cardManagers[this.player].hand.cards.length-1].position.x=1200
+                                battle.cardManagers[this.player].hand.cards[battle.cardManagers[this.player].hand.cards.length-1].position.y=500
                             break
                         }
                     }

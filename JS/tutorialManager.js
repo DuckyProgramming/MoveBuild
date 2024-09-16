@@ -1037,6 +1037,12 @@ As a group of cards, there are a lot of interactions.`,
 `[Freeze]`,
                 */
             break
+            case 26:
+                print('t26')
+            break
+            case 27:
+                print('t27')
+            break
         }
         this.anim.pages=[]
         for(let a=0,la=this.pages.length;a<la;a++){

@@ -19,7 +19,7 @@ class cardManager{
 
         this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.cyclicDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0)-(variants.compress?1:0)-(variants.unexpected?1:0)+(variants.polar?1:0)-(variants.cardHold?1:0))
         this.drawBoost=0
-        this.tempDraw={main:0,freeze:0,burn:0,free:0,class:[0,0,0,0,0,0,0,0,0,0,0,0]}
+        this.tempDraw={active:false,main:0,freeze:0,burn:0,free:0,class:[0,0,0,0,0,0,0,0,0,0,0,0]}
         this.tempCostDown=0
         this.baseDrops=variants.cyclicDraw?3:0
         this.drops=0
@@ -55,84 +55,106 @@ class cardManager{
         this.listing.ally=[]
         this.listing.disband=[]
         for(let a=0,la=types.card.length;a<la;a++){
-            if(types.card[a].rarity==-10){
-                this.listing.junk[types.card[a].list].push(a)
-                this.listing.junk[game.playerNumber+1].push(a)
-            }
-            if(types.card[a].rarity==-6){
-                this.listing.sub.push(a)
-            }
-            if(types.card[a].rarity==-7&&types.card[a].levels[0].class==9){
-                this.listing.ally.push(a)
-            }
-            if(types.card[a].rarity==-1&&types.card[a].list==-8){
-                this.listing.disband.push(a)
-            }
-            if(types.card[a].rarity>=0&&types.card[a].list>=0&&types.card[a].list<=game.playerNumber+5){
-                if(variants.prismrule.includes(types.card[a].list)){
-                    this.subAllList(a)
+            let cardData
+            if(variants.close){
+                let possible=[]
+                for(let b=0,lb=types.card.length;b<lb;b++){
+                    if(types.card[b].name.substr(0,4)==types.card[a].name.substr(0,4)||a==b){
+                        possible.push(b)
+                    }
                 }
-            }else if(types.card[a].rarity<0&&types.card[a].list==game.playerNumber+5){
-                if(variants.prismrule.includes(-1)){
-                    this.subAllList(a)
-                }
-            }else if(types.card[a].rarity==-10){
-                if(variants.prismrule.includes(-2)){
-                    this.subAllList(a)
-                }
-            }else if(types.card[a].rarity==-6){
-                if(variants.prismrule.includes(-3)){
-                    this.subAllList(a)
-                }
-            }else if(types.card[a].rarity==-8){
-                if(variants.prismrule.includes(-4)){
-                    this.subAllList(a)
-                }
-            }else if(types.card[a].list==-9){
-                if(variants.prismrule.includes(-5)){
-                    this.subAllList(a)
-                }
-            }else if(types.card[a].rarity==-5&&types.card[a].list==-1){
-                if(variants.prismrule.includes(-6)){
-                    this.subAllList(a)
-                }
-            }else if(types.card[a].rarity==-1&&types.card[a].list==-8){
-                if(variants.prismrule.includes(-7)){
-                    this.subAllList(a)
-                }
+                cardData=types.card[possible[floor(random(0,possible.length))]]
             }else{
-                if(variants.prismrule.includes(-8)){
-                    this.subAllList(a)
-                }
+                cardData=types.card[a]
             }
-            //variants.prismrule.includes(types.card[a].list)&&types.card[a].rarity>-10||variants.prismrule.includes(-1)&&types.card[a].list<0||variants.prismrule.includes(-2)&&types.card[a].rarity==-10
-            if(types.card[a].rarity>=0&&types.card[a].list>=0){
-                if(types.card[a].rarity!=3){
-                    this.listing.card[types.card[a].list][types.card[a].rarity].push(a)
+            if(!(variants.quarterPool&&floor(random(0,4))!=0)){
+                if(cardData.rarity==-10){
+                    this.listing.junk[cardData.list].push(a)
+                    this.listing.junk[game.playerNumber+1].push(a)
                 }
-                this.listing.card[types.card[a].list][3].push(a)
-                if(types.card[a].list>0&&types.card[a].list<=game.playerNumber){
-                    if(types.card[a].rarity!=3){
-                        this.listing.allPlayerCard[types.card[a].rarity].push(a)
+                if(cardData.rarity==-6){
+                    this.listing.sub.push(a)
+                }
+                if(cardData.rarity==-7&&cardData.levels[0].class==9){
+                    this.listing.ally.push(a)
+                }
+                if(cardData.rarity==-1&&cardData.list==-8){
+                    this.listing.disband.push(a)
+                }
+                if(cardData.rarity>=0&&cardData.list>=0&&cardData.list<=game.playerNumber+5){
+                    if(variants.prismrule.includes(cardData.list)){
+                        this.subAllList(a)
                     }
-                    this.listing.allPlayerCard[3].push(a)
-                }
-                if(types.card[a].list>=0&&types.card[a].list<=game.playerNumber+5){
-                    if(types.card[a].rarity!=3){
-                        this.listing.allListableCard[types.card[a].rarity].push(a)
+                }else if(cardData.rarity<0&&cardData.list==game.playerNumber+5){
+                    if(variants.prismrule.includes(-1)){
+                        this.subAllList(a)
                     }
-                    this.listing.allListableCard[3].push(a)
-                }
-            }
-            if(types.card[a].rarity==-4&&this.battle.player.includes(2)&&this.battle.player.includes(7)){
-                if(types.card[a].list==27){
-                    this.listing.card[2][1].push(a)
-                    this.listing.card[2][3].push(a)
-                    this.listing.card[7][1].push(a)
-                    this.listing.card[7][3].push(a)
+                }else if(cardData.rarity==-10){
+                    if(variants.prismrule.includes(-2)){
+                        this.subAllList(a)
+                    }
+                }else if(cardData.rarity==-6){
+                    if(variants.prismrule.includes(-3)){
+                        this.subAllList(a)
+                    }
+                }else if(cardData.rarity==-8){
+                    if(variants.prismrule.includes(-4)){
+                        this.subAllList(a)
+                    }
+                }else if(cardData.list==-9){
+                    if(variants.prismrule.includes(-5)){
+                        this.subAllList(a)
+                    }
+                }else if(cardData.rarity==-5&&cardData.list==-1){
+                    if(variants.prismrule.includes(-6)){
+                        this.subAllList(a)
+                    }
+                }else if(cardData.rarity==-1&&cardData.list==-8){
+                    if(variants.prismrule.includes(-7)){
+                        this.subAllList(a)
+                    }
+                }else if(cardData.rarity==-2){
+                    if(variants.prismrule.includes(-8)){
+                        this.subAllList(a)
+                    }
+                }else if(cardData.rarity==-3){
+                    if(variants.prismrule.includes(-9)){
+                        this.subAllList(a)
+                    }
                 }else{
-                    this.listing.card[types.card[a].list][1].push(a)
-                    this.listing.card[types.card[a].list][3].push(a)
+                    if(variants.prismrule.includes(-10)){
+                        this.subAllList(a)
+                    }
+                }
+                //variants.prismrule.includes(cardData.list)&&cardData.rarity>-10||variants.prismrule.includes(-1)&&cardData.list<0||variants.prismrule.includes(-2)&&cardData.rarity==-10
+                if(cardData.rarity>=0&&cardData.list>=0){
+                    if(cardData.rarity!=3){
+                        this.listing.card[cardData.list][cardData.rarity].push(a)
+                    }
+                    this.listing.card[cardData.list][3].push(a)
+                    if(cardData.list>0&&cardData.list<=game.playerNumber){
+                        if(cardData.rarity!=3){
+                            this.listing.allPlayerCard[cardData.rarity].push(a)
+                        }
+                        this.listing.allPlayerCard[3].push(a)
+                    }
+                    if(cardData.list>=0&&cardData.list<=game.playerNumber+5){
+                        if(cardData.rarity!=3){
+                            this.listing.allListableCard[cardData.rarity].push(a)
+                        }
+                        this.listing.allListableCard[3].push(a)
+                    }
+                }
+                if(cardData.rarity==-4&&this.battle.player.includes(2)&&this.battle.player.includes(7)){
+                    if(cardData.list==27){
+                        this.listing.card[2][1].push(a)
+                        this.listing.card[2][3].push(a)
+                        this.listing.card[7][1].push(a)
+                        this.listing.card[7][3].push(a)
+                    }else{
+                        this.listing.card[cardData.list][1].push(a)
+                        this.listing.card[cardData.list][3].push(a)
+                    }
                 }
             }
         }
@@ -210,52 +232,64 @@ class cardManager{
             effectiveMana[this.battle.energy.base[this.player][a]]++
         }
         for(let a=0,la=types.card.length;a<la;a++){
-            if(types.card[a].mtg!=undefined&&typeof types.card[a].mtg.levels[0].cost!='number'){
+            let cardData
+            if(variants.close){
+                let possible=[]
+                for(let b=0,lb=types.card.length;b<lb;b++){
+                    if(types.card[b].name.substr(0,4)==types.card[a].name.substr(0,4)||a==b){
+                        possible.push(b)
+                    }
+                }
+                cardData=types.card[possible[floor(random(0,possible.length))]]
+            }else{
+                cardData=types.card[a]
+            }
+            if(!(variants.quarterPool&&floor(random(0,4))!=0)&&cardData.mtg!=undefined&&typeof cardData.mtg.levels[0].cost!='number'){
                 if(
-                    types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list==this.battle.player[this.player]||types.card[a].mtg.list==-1)&&
+                    cardData.mtg.rarity>=0&&(cardData.mtg.list==this.battle.player[this.player]||cardData.mtg.list==-1)&&
                     (
-                        types.card[a].mtg.color.length==1&&effectiveMana[types.card[a].mtg.color[0]]>0||
-                        types.card[a].mtg.color.length==2&&effectiveMana[types.card[a].mtg.color[0]]>0&&effectiveMana[types.card[a].mtg.color[1]]>0||
-                        types.card[a].mtg.color.length==3&&effectiveMana[types.card[a].mtg.color[0]]>0&&effectiveMana[types.card[a].mtg.color[1]]>0&&effectiveMana[types.card[a].mtg.color[2]]>0
+                        cardData.mtg.color.length==1&&effectiveMana[cardData.mtg.color[0]]>0||
+                        cardData.mtg.color.length==2&&effectiveMana[cardData.mtg.color[0]]>0&&effectiveMana[cardData.mtg.color[1]]>0||
+                        cardData.mtg.color.length==3&&effectiveMana[cardData.mtg.color[0]]>0&&effectiveMana[cardData.mtg.color[1]]>0&&effectiveMana[cardData.mtg.color[2]]>0
                     )&&(
                         (
-                            types.card[a].mtg.levels[0].spec.includes(11)||
-                            types.card[a].mtg.levels[0].spec.includes(21)||
-                            types.card[a].mtg.levels[0].spec.includes(35)
+                            cardData.mtg.levels[0].spec.includes(11)||
+                            cardData.mtg.levels[0].spec.includes(21)||
+                            cardData.mtg.levels[0].spec.includes(35)
                         )||
-                        !types.card[a].mtg.levels[0].spec.includes(11)&&
-                        !types.card[a].mtg.levels[0].spec.includes(21)&&
-                        !types.card[a].mtg.levels[0].spec.includes(35)&&
-                        mtgAutoCost(effectiveMana,types.card[a].mtg.levels[0].cost,0,[],false)!=-1
+                        !cardData.mtg.levels[0].spec.includes(11)&&
+                        !cardData.mtg.levels[0].spec.includes(21)&&
+                        !cardData.mtg.levels[0].spec.includes(35)&&
+                        mtgAutoCost(effectiveMana,cardData.mtg.levels[0].cost,0,[],false)!=-1
                     )
                 ){
-                    this.listing.mtg[0][types.card[a].mtg.rarity].push(a)
+                    this.listing.mtg[0][cardData.mtg.rarity].push(a)
                     this.listing.mtg[0][3].push(a)
                 }
                 if(
-                    types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber+5)&&(
+                    cardData.mtg.rarity>=0&&(cardData.mtg.list>=-1&&cardData.mtg.list<=game.playerNumber+5)&&(
                         (
-                            types.card[a].mtg.levels[0].spec.includes(11)||
-                            types.card[a].mtg.levels[0].spec.includes(21)
+                            cardData.mtg.levels[0].spec.includes(11)||
+                            cardData.mtg.levels[0].spec.includes(21)
                         )||
-                        !types.card[a].mtg.levels[0].spec.includes(11)&&
-                        !types.card[a].mtg.levels[0].spec.includes(21)&&
-                        mtgAutoCost(effectiveMana,types.card[a].mtg.levels[0].cost,0,[],false)!=-1
+                        !cardData.mtg.levels[0].spec.includes(11)&&
+                        !cardData.mtg.levels[0].spec.includes(21)&&
+                        mtgAutoCost(effectiveMana,cardData.mtg.levels[0].cost,0,[],false)!=-1
                     )
                 ){
-                    this.listing.mtg[1][types.card[a].mtg.list==-1?game.playerNumber+6:types.card[a].mtg.list][types.card[a].mtg.rarity].push(a)
-                    this.listing.mtg[1][types.card[a].mtg.list==-1?game.playerNumber+6:types.card[a].mtg.list][3].push(a)
-                    if(types.card[a].mtg.list==-1||types.card[a].mtg.list>0&&types.card[a].mtg.list<=game.playerNumber){
-                        this.listing.mtg[1][game.playerNumber+7][types.card[a].mtg.rarity].push(a)
+                    this.listing.mtg[1][cardData.mtg.list==-1?game.playerNumber+6:cardData.mtg.list][cardData.mtg.rarity].push(a)
+                    this.listing.mtg[1][cardData.mtg.list==-1?game.playerNumber+6:cardData.mtg.list][3].push(a)
+                    if(cardData.mtg.list==-1||cardData.mtg.list>0&&cardData.mtg.list<=game.playerNumber){
+                        this.listing.mtg[1][game.playerNumber+7][cardData.mtg.rarity].push(a)
                         this.listing.mtg[1][game.playerNumber+7][3].push(a)
                     }
                 }
-                if(types.card[a].mtg.rarity>=0&&(types.card[a].mtg.list==this.battle.player[this.player]||types.card[a].mtg.list==-1)){
-                    this.listing.mtg[2][types.card[a].mtg.rarity].push(a)
+                if(cardData.mtg.rarity>=0&&(cardData.mtg.list==this.battle.player[this.player]||cardData.mtg.list==-1)){
+                    this.listing.mtg[2][cardData.mtg.rarity].push(a)
                     this.listing.mtg[2][3].push(a)
                 }
-                if(types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber+5&&types.card[a].mtg.rarity>=0){
-                    this.listing.mtg[3][types.card[a].mtg.rarity].push(a)
+                if(cardData.mtg.list>=-1&&cardData.mtg.list<=game.playerNumber+5&&cardData.mtg.rarity>=0){
+                    this.listing.mtg[3][cardData.mtg.rarity].push(a)
                     this.listing.mtg[3][3].push(a)
                 }
             }
@@ -438,7 +472,9 @@ class cardManager{
                     this.getList(group).addAbstract(type,level,color,edition,[args[ticker++]],[])
                 break
                 case 2:
-                    this.getList(group).addAbstract(type,level,color,edition,[args[ticker++],4],[[args[ticker]++]])
+                    let process=[args[ticker],copyArray(args[ticker+1])]
+                    ticker+=2
+                    this.getList(group).addAbstract(type,level,color,edition,[process[0],4],process[1])
                 break
                 case 3:
                     return this.getList(group).addReturn(type,level,color,edition)
@@ -724,6 +760,7 @@ class cardManager{
         this.discard.allEffectArgs(effect,args)
     }
     turnDraw(turn){
+        this.tempDraw.active=true
         let tempDrawAmount=this.drawAmount+this.tempDraw.main-(this.battle.turn.total==1&&(variants.cyclicDraw||game.ascend>=21)?1:0)
         if(turn==1){
             tempDrawAmount-=this.drawInnate()
@@ -827,6 +864,7 @@ class cardManager{
             this.addRandomAbstract(2,0,0,4,0,[],[3])
         }
         this.hand.allEffect(103)
+        this.tempDraw.active=false
     }
     subFatigue(name,bypass){
         this.interval++

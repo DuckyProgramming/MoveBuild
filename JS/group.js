@@ -1461,7 +1461,6 @@ class group{
                     if(this.cards[a].usable){
                         this.cards[a].discardEffect.push(6)
                     }
-                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].activateRewind()
                 break
                 case 87:
                     this.cards[a].callAnotherDrawEffect()
@@ -2151,6 +2150,8 @@ class group{
                     break
                     case 46:
                         this.cards[index]=this.battle.cardManagers[this.player].transformCard(this.cards[index])
+                        this.cards[index].callAddEffect()
+                        this.cards.forEach(card=>card.callAnotherAddEffect())
                     break
                     case 48:
                         this.cards[index].costDown(0,[args[0]])
@@ -2597,6 +2598,23 @@ class group{
             break
             case 4746:
                 this.battle.addSpecificEnergy(1,this.player,3)
+            break
+            case 5223:
+                if(!this.battle.cardManagers[this.player].tempDraw.active){
+                    this.battle.addEnergy(card.effect[1],this.player)
+                    this.drawEffects.push([5,card.effect[2]])
+                }
+            break
+            case 5224:
+                if(!this.battle.cardManagers[this.player].tempDraw.active){
+                    this.battle.addSpecificEnergy(2,this.player,1)
+                    this.drawEffects.push([5,card.effect[1]])
+                }
+            break
+            case 5271:
+                if(!this.battle.cardManagers[this.player].tempDraw.active){
+                    card.effect[0]+=card.effect[1]
+                }
             break
         }
         card.drawMark=false
@@ -4154,7 +4172,6 @@ class group{
                 if(this.status[8]>0){
                     this.status[8]--
                 }
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].activateRewind()
             break
             case 14:
                 this.cards[a].retain2=true
@@ -4716,6 +4733,7 @@ class group{
                                 }else{
                                     this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,15)
                                 }
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].activateRewind()
                                 a--
                                 la--
                             }else if(this.cards[a].discardEffect.includes(7)){

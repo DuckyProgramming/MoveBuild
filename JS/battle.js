@@ -28,7 +28,7 @@ class battle{
         for(let a=0,la=variants.names.length;a<la;a++){
             this.menu.anim.variants.push(0)
         }
-        for(let a=-8,la=game.playerNumber+6;a<la;a++){
+        for(let a=-10,la=game.playerNumber+8;a<la;a++){
             this.menu.anim.prismrule.push(0)
             variants.prismrule.push(a)
         }
@@ -288,11 +288,63 @@ class battle{
         transition.convert=true
         this.overlayManager.closeElse([0])
     }
+    simulateCombat(encounter){
+        let result={}
+        let possible=[]
+        for(let a=0,la=types.encounter.length;a<la;a++){
+            if(
+                types.encounter[a].enemy.length+types.encounter[a].reinforce.length==
+                encounter.enemy.length+encounter.reinforce.length
+            ){
+                possible.push(a)
+            }
+        }
+        if(possible.length>0){
+            let template=types.encounter[possible[floor(random(0,possible.length))]]
+            result.level=copyArray(template.level)
+            result.class=encounter.class
+            result.world=encounter.world
+            result.name=encounter.name
+            result.player={position:copyArray(template.player.position)}
+            result.enemy=[]
+            result.reinforce=[]
+            result.assaultReinforce=[]
+            result.ally=[]
+            let remaining=[]
+            let entire=[]
+            for(let a=0,la=encounter.enemy.length;a<la;a++){
+                remaining.push(encounter.enemy[a].name)
+                entire.push(encounter.enemy[a].name)
+            }
+            for(let a=0,la=encounter.reinforce.length;a<la;a++){
+                remaining.push(encounter.reinforce[a].name)
+                entire.push(encounter.reinforce[a].name)
+            }
+            for(let a=0,la=template.enemy.length;a<la;a++){
+                let index=floor(random(0,remaining.length))
+                result.enemy.push({position:template.enemy[a].position,name:remaining[index]})
+                remaining.splice(index,1)
+            }
+            for(let a=0,la=template.reinforce.length;a<la;a++){
+                let index=floor(random(0,remaining.length))
+                result.reinforce.push({position:template.reinforce[a].position,name:remaining[index],turn:template.reinforce[a].turn})
+                remaining.splice(index,1)
+            }
+            for(let a=0,la=template.assaultReinforce.length;a<la;a++){
+                let index=floor(random(0,entire.length))
+                result.assaultReinforce.push({position:template.assaultReinforce[a].position,name:entire[index],turn:template.assaultReinforce[a].turn})
+            }
+        }else{
+            return encounter
+        }
+        return result
+    }
     setupBattle(encounter,first=true){
-        this.lastEncounter=encounter
-        this.encounter.class=encounter.class
-        this.encounter.world=encounter.world
-        this.encounter.name=encounter.name
+        let effectiveEncounter=variants.randomCombat?this.simulateCombat(encounter):encounter
+        this.lastEncounter=effectiveEncounter
+        this.encounter.class=effectiveEncounter.class
+        this.encounter.world=effectiveEncounter.world
+        this.encounter.name=effectiveEncounter.name
         for(let a=0,la=this.energy.base.length;a<la;a++){
             this.energy.gen[a]=variants.mtg?copyArray(this.energy.base[a]):this.energy.base[a]
         }
@@ -304,7 +356,7 @@ class battle{
 
         game.collisionDamage=constants.collisionDamage
 
-        this.tileManager.generateTiles(types.level[findName(encounter.level[floor(random(0,encounter.level.length))],types.level)])
+        this.tileManager.generateTiles(types.level[findName(effectiveEncounter.level[floor(random(0,effectiveEncounter.level.length))],types.level)])
         this.combatantManager.resetCombatants()
         
         this.resetAnim()
@@ -317,12 +369,12 @@ class battle{
                     playerCombatant.revive()
                 }
                 if(!this.modded(156)){
-                    this.positionCombatant(playerCombatant,{x:encounter.player.position[la-1][a].x,y:encounter.player.position[la-1][a].y})
+                    this.positionCombatant(playerCombatant,{x:effectiveEncounter.player.position[la-1][a].x,y:effectiveEncounter.player.position[la-1][a].y})
                 }
             }
         }
-        for(let a=0,la=encounter.enemy.length;a<la;a++){
-            let effectiveName=encounter.enemy[a].name
+        for(let a=0,la=effectiveEncounter.enemy.length;a<la;a++){
+            let effectiveName=effectiveEncounter.enemy[a].name
             if(effectiveName=='-h Traitor'){
                 let summon=this.combatantManager.getRandomNonexistingPlayer()
                 if(summon>=0){
@@ -330,10 +382,10 @@ class battle{
                 }
             }
             if(this.modded(1)&&floor(random(0,2))==0){
-                this.reinforce.back.push({position:{x:encounter.enemy[a].position.x,y:encounter.enemy[a].position.y},name:effectiveName,turn:1,minion:false})
-                this.quickReinforce(encounter.enemy[a].name)
+                this.reinforce.back.push({position:{x:effectiveEncounter.enemy[a].position.x,y:effectiveEncounter.enemy[a].position.y},name:effectiveName,turn:1,minion:false})
+                this.quickReinforce(effectiveEncounter.enemy[a].name)
             }else{
-                this.addCombatant(encounter.enemy[a].position,findName(effectiveName,types.combatant),0,0,false)
+                this.addCombatant(effectiveEncounter.enemy[a].position,findName(effectiveName,types.combatant),0,0,false)
             }
             if(effectiveName!='Prisoner Informant'&&effectiveName!='Gangster Machinegunner Informant'&&effectiveName!='Walker Driver Informant'){
                 this.counter.enemy++
@@ -345,19 +397,19 @@ class battle{
                 this.positionCombatant(playerCombatant,this.tileManager.getRandomTilePosition())
             }
         }
-        for(let a=0,la=encounter.reinforce.length;a<la;a++){
-            this.reinforce.back.push({position:{x:encounter.reinforce[a].position.x,y:encounter.reinforce[a].position.y},name:encounter.reinforce[a].name,turn:encounter.reinforce[a].turn,minion:false})
-            if(encounter.reinforce[a].name!='Prisoner Informant'&&encounter.reinforce[a].name!='Gangster Machinegunner Informant'&&encounter.reinforce[a].name!='Walker Driver Informant'){
+        for(let a=0,la=effectiveEncounter.reinforce.length;a<la;a++){
+            this.reinforce.back.push({position:{x:effectiveEncounter.reinforce[a].position.x,y:effectiveEncounter.reinforce[a].position.y},name:effectiveEncounter.reinforce[a].name,turn:effectiveEncounter.reinforce[a].turn,minion:false})
+            if(effectiveEncounter.reinforce[a].name!='Prisoner Informant'&&effectiveEncounter.reinforce[a].name!='Gangster Machinegunner Informant'&&effectiveEncounter.reinforce[a].name!='Walker Driver Informant'){
                 this.counter.enemy++
             }
         }
         if(variants.assault){
-            for(let a=0,la=encounter.assaultReinforce.length;a<la;a++){
-                this.reinforce.assault.back.push({position:{x:encounter.assaultReinforce[a].position.x,y:encounter.assaultReinforce[a].position.y},name:encounter.assaultReinforce[a].name,turn:encounter.assaultReinforce[a].turn,minion:false})
+            for(let a=0,la=effectiveEncounter.assaultReinforce.length;a<la;a++){
+                this.reinforce.assault.back.push({position:{x:effectiveEncounter.assaultReinforce[a].position.x,y:effectiveEncounter.assaultReinforce[a].position.y},name:effectiveEncounter.assaultReinforce[a].name,turn:effectiveEncounter.assaultReinforce[a].turn,minion:false})
             }
         }
-        for(let a=0,la=encounter.ally.length;a<la;a++){
-            this.addCombatantAbstract(encounter.ally[a].position,findName(encounter.ally[a].name,types.combatant),this.players+1,0,false,0)
+        for(let a=0,la=effectiveEncounter.ally.length;a<la;a++){
+            this.addCombatantAbstract(effectiveEncounter.ally[a].position,findName(effectiveEncounter.ally[a].name,types.combatant),this.players+1,0,false,0)
             this.combatantManager.lastAlly()
         }
         for(let a=0,la=this.cardManagers.length;a<la;a++){
@@ -390,7 +442,7 @@ class battle{
         this.attackManager.clear()
         this.turnManager.clear()
         this.particleManager.clear()
-        if(this.encounter.class==0&&this.encounter.world!=-1&&encounter.ally.length==0&&!this.modded(10)){
+        if(this.encounter.class==0&&this.encounter.world!=-1&&effectiveEncounter.ally.length==0&&!this.modded(10)){
             if(this.first){
                 let tile=this.tileManager.getRandomTilePosition()
                 this.encounter.custom=tile==-1?[0,0]:[constrain(floor(random(-3,5)),0,4),tile]
@@ -1182,6 +1234,7 @@ class battle{
             userCombatant.vision++
         }
         let effectiveCost=variants.mtg?(card.specialCost?card.cost[0]:card.cost.length):card.cost
+        let xCost=variants.mtg?card.cost.includes(-3):card.cost==-1
         switch(cardClass){
             case 1:
                 if(userCombatant.getStatus('Must Attack or Take Damage')>0){
@@ -1335,6 +1388,18 @@ class battle{
         }
         if(card.spec.includes(54)&&userCombatant.getStatus('Discus Temporary Dexterity')>0){
             userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Discus Temporary Dexterity'))
+        }
+        if(xCost&&userCombatant.getStatus('X Cost Single Damage Up')>0){
+            userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('X Cost Single Damage Up'))
+        }
+        if(xCost&&userCombatant.getStatus('X Cost Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('X Cost Block'))
+        }
+        if(xCost&&userCombatant.getStatus('X Cost Energy')>0){
+            this.addEnergy(userCombatant.getStatus('X Cost Energy'),player)
+        }
+        if(xCost&&userCombatant.getStatus('X Cost (E)')>0){
+            this.addSpecificEnergy(userCombatant.getStatus('X Cost (E)'),player,6)
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])
@@ -2036,9 +2101,9 @@ class battle{
         }
     }
     loseCurrency(amount,player){
-        if(this.currency.money[player]>=0&&this.currency.money[player]-round(amount)<0&&!this.relicManager.hasRelic(187,player)){
+        /*if(this.currency.money[player]>=0&&this.currency.money[player]-round(amount)<0&&!this.relicManager.hasRelic(187,player)){
             this.cardManagers[player].deck.add(findName('Debt',types.card),0,game.playerNumber+2)
-        }
+        }*/
         this.currency.money[player]-=round(amount)
     }
     modded(type){
@@ -2214,10 +2279,10 @@ class battle{
             break
             case 'custom':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=32;a<la;a++){
+                for(let a=0,la=36;a<la;a++){
                     if(this.menu.anim.prismrule[a]>0){
                         this.layer.fill(255,this.menu.anim.prismrule[a])
-                        this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/2-185+floor(a/4)*40,10)
+                        this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/2-205+floor(a/4)*40,10)
                     }
                 }
             break
@@ -2669,9 +2734,9 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8]
-                for(let a=0,la=32;a<la;a++){
-                    this.menu.anim.prismrule[a]=smoothAnim(this.menu.anim.prismrule[a],variants.prismrule.includes(a<14?prismrules[a]:a-13),0,1,5)
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
+                for(let a=0,la=36;a<la;a++){
+                    this.menu.anim.prismrule[a]=smoothAnim(this.menu.anim.prismrule[a],variants.prismrule.includes(a<16?prismrules[a]:a-15),0,1,5)
                 }
             break
             case 'battle':
@@ -3200,10 +3265,10 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8]
-                for(let a=0,la=32;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-185+floor(a/4)*40},width:22.5,height:22.5})){
-                        let value=a<14?prismrules[a]:a-13
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
+                for(let a=0,la=36;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-205+floor(a/4)*40},width:22.5,height:22.5})){
+                        let value=a<16?prismrules[a]:a-15
                         if(variants.prismrule.includes(value)){
                             variants.prismrule.splice(variants.prismrule.indexOf(value),1)
                         }else{
@@ -3211,17 +3276,17 @@ class battle{
                         }
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7+50},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7+70},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='variants'
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7+50},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7+70},width:62.5,height:62.5})){
                     variants.prismrule=[]
                 }
             break
             case 'tutorial':
-                for(let a=0,la=26;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190+(a>=24?190:0),y:this.layer.height/2-165+(a>=8?30:0)+floor(a/4)*40},width:22.5,height:22.5})){
+                for(let a=0,la=28;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-165+(a>=8?30:0)+floor(a/4)*40},width:22.5,height:22.5})){
                         this.tutorialManager.setupTutorial(a)
                     }
                 }
@@ -3606,10 +3671,10 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8]
-                if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=8&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
+                if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=9&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
                     let index=(int(inputs.lastKey[0])+9)%10*4+int(inputs.lastKey[1])-1
-                    let value=index<14?prismrules[index]:index-13
+                    let value=index<16?prismrules[index]:index-15
                     if(variants.prismrule.includes(value)){
                         variants.prismrule.splice(variants.prismrule.indexOf(value),1)
                     }else{
@@ -3625,8 +3690,8 @@ class battle{
                 }
             break
             case 'tutorial':
-                if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=7&&int(inputs.lastKey[1])>=(int(inputs.lastKey[0])==7?2:1)&&int(inputs.lastKey[1])<=(int(inputs.lastKey[0])==7?3:4)){
-                    let index=(int(inputs.lastKey[0])+9)%10*4+int(inputs.lastKey[1])-1+(int(inputs.lastKey[0])==7?-1:0)
+                if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=7&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
+                    let index=(int(inputs.lastKey[0])+9)%10*4+int(inputs.lastKey[1])-1
                     this.tutorialManager.setupTutorial(index)
                 }
                 if(code==ENTER){

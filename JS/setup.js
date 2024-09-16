@@ -2,12 +2,6 @@ function setup(){
     createCanvas(windowWidth-50,windowHeight-50)
     setupConstants(0)
     setupGraphics()
-    
-    for(let a=0,la=types.relic.length;a<la;a++){
-        if(types.relic[a].name==''){
-            types.relic[a].name=types.relic[a].internal
-        }
-    }
 
     current=new battle(graphics.main,game.player)
 
@@ -78,9 +72,9 @@ function setup(){
                 current.modManager.addMod(221+a)
             }*/
 
-            /*for(let a=0,la=2;a<la;a++){
+            /*for(let a=0,la=4;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(459+a,0)
+                quickRelic(470+a,0)
             }*/
 
             /*current.itemManager.addItemSlots(7,0)

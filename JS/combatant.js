@@ -176,6 +176,7 @@ class combatant{
                 'Discus Temporary Strength','Discus Temporary Dexterity','Lightning Orb Per Turn','Lightning Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn','Rearm Draw',
                 'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap','Dice Max Boost','Exhaust Block','Counter Shockwave','Frail on Kill','Mailshield',
                 'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
+                'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -240,6 +241,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,2,0,//60
                 0,0,0,0,2,0,0,2,0,0,//61
                 0,2,0,0,2,2,0,0,0,2,//62
+                0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -304,6 +306,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//60
                 2,2,3,2,0,2,2,2,2,2,//61
                 3,2,2,2,2,2,3,2,2,2,//62
+                2,2,2,2,2,
             ]}
         /*
         0-none
@@ -2712,6 +2715,9 @@ class combatant{
         if(amount>0&&this.status.main[439]>0){
             this.battle.combatantManager.areaAbstract(0,[this.status.main[439],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
         }
+        if(amount>0&&this.status.main[620]>0){
+            this.statusEffect('Temporary Strength',this.status.main[620])
+        }
     }
     lowRoll(){
         if(this.status.main[162]>0){
@@ -4962,7 +4968,7 @@ class combatant{
                     case 441: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,2,2,[0],[3,11,1,[[1]]])}} break
                     case 446: for(let b=0,lb=this.status.main[a];b<lb;b++){if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Astrology']])<=0){this.battle.cardManagers[this.id].hand.add(findName('Astrology',types.card),0,0)}} break
                     case 450: this.ammo+=this.status.main[a]; break
-                    case 452: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,1,2,[],[0,0])}} break
+                    case 452: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,1,0,[],[0,0])}} break
                     case 466: this.status.main[findList('Temporary All Cost Up',this.status.name)]+=this.status.main[a]; break
                     case 468: this.status.main[findList('Buffer',this.status.name)]+=this.status.main[a]; break
                     case 477: this.status.main[findList('Counter Once',this.status.name)]+=this.status.main[a]; break

@@ -24,7 +24,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[9])],//view reserve (ordered)
                     [new overlay(this.layer,this.battle,0,2,[10])],//make card innate
                     [new overlay(this.layer,this.battle,0,2,[4,0,0])],//remove number cards, no return
-                    [new overlay(this.layer,this.battle,0,5,[0])],//sell relic, no return
+                    [new overlay(this.layer,this.battle,0,5,[])],//sell relic, no return
                     [new overlay(this.layer,this.battle,0,2,[4,1,1])],//remove card, return through event (bonfire spirits)
                     [new overlay(this.layer,this.battle,0,2,[11])],//bring in discard card as free, no return
                     [new overlay(this.layer,this.battle,0,2,[12])],//bring in exhaust card, no return
@@ -148,7 +148,9 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[92,1,0])],//remove upgraded card, no return
                     [new overlay(this.layer,this.battle,0,2,[93,0,0])],//transform upgraded card, no return
                     [new overlay(this.layer,this.battle,0,2,[94])],//flip draw card to top
-
+                    [new overlay(this.layer,this.battle,0,2,[4,1,4])],//remove card, return through relic (vitrine),140
+                    [new overlay(this.layer,this.battle,0,22,[1,[0,1]])],//all common and uncommon relics, no return
+                    [new overlay(this.layer,this.battle,0,22,[0,[0,1,2,3,4]])],//all relics, no return
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

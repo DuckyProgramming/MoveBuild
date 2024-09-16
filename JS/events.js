@@ -934,7 +934,7 @@ I have things I can trade..."`,
                 link:[1,2,4],
             },{
                 desc:`You hand him some of your money while he gives you a relic.`,
-                option:['Good deal'],
+                option:['Good Deal'],
                 optionDesc:['Gain a Relic'],
                 link:[-1],
             },{

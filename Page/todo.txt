@@ -1,16 +1,4 @@
-UNCOMING:
-
-cards in set 47
-
-deploy new events
-
-collection 
-
-deploy enemies in detachment 166
-
-design merlin
-
-
+seed randomness
 
 title screen 5th button - collection
 lists all cards, if you've seen them
@@ -21,12 +9,13 @@ project constructed save?
 
 
 
-LISTING GROUP 47
+LISTING GROUP 48
 
 
 
-2 ally cards
-actually probably more
+how many ally cards?
+
+[]
 
 []
 
@@ -34,17 +23,11 @@ actually probably more
 
 
 
-detroit
+subconscious sweep - autoplay, 10 damage in all directions
 
-needle in a haystack - 15 block, 2 or less cards in hand: apply 2 lock on in all directions
+unconscious - autoplay, 18 block
 
-big certes defense
-can opener - closer but a defense
-
-dual orb
-dual orb
-
-focus defense
+instant reflex - lose 1 energy, draw 2 cards
 
 
 
@@ -54,49 +37,9 @@ scrap note
 
 [annotation]
 
-1 more wish power source
-
-another lock on card
 
 
-
-lots more azis cards
-
-
-
-exhaust
-wisp
-wisp
-amplify
-[big airi defense]
-get charge
-
-
-
-sapphire facet - fires blue stars everywhere and lighter ones in set directions that create more particles
-
-floret fractal but rainbow
-
-twin leaf barrage - variant of floret fractal, fire 2 leaves, blue and yellow that repeatedly explodes into 4 more small leaves
-
-[moon rain - animate actual rain particles]
-
-astrology sphere
-
-colliding puff - red ball that explodes
-
-
-
-trial of the first court
-
-[sagume card]
-
-radiance of wealth - damage, upgrade cards, gain 5 currency
-has little line lasers with golden centers and pink edges
-
-
-
-merlin's tricolor mtg card
+ducopo tricolor card
 
 
 
@@ -114,9 +57,13 @@ can have a little blue star rotating around
 
 
 
-CHARACTER 19
+DUCOPO DEVELOPMENT
 
-he's a duck
+model
+icon
+tutorial
+
+third gimmick - red mtg alignment
 
 
 
@@ -126,23 +73,15 @@ the dev?
 
 
 
-new variants:
-
-[]
-[]
-[]
-
-
-
 new events:
 
 
 
-another ally card
+star showering starlight
 
-[]
+navigation event - go to a random spot on the map
 
-[]
+scrap ooze
 
 []
 
@@ -155,7 +94,8 @@ enemyset next:
 world 1 replacements (send some world 1 enemies to world 2):
 
 neonic spikeball - half blue half pink, attacks one of two sides, doesn't rotate
-[]
+3 weak enemies with 1 revive each
+revive - when killed, respawn, lose 1 revive, become stunned, become invincible
 
 world 2:
 

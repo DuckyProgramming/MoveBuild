@@ -32,7 +32,7 @@ class particle{
             case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 88: case 90: case 95:
             case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120: case 121:
             case 126: case 135: case 136: case 139: case 152: case 154: case 155: case 156: case 163: case 164:
-            case 168: case 169: case 170: case 173: case 192: case 193: case 195: case 196:
+            case 168: case 169: case 170: case 173: case 192: case 193: case 195: case 196: case 199: case 206:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -180,7 +180,7 @@ class particle{
                 }
             break
             case 61: case 62: case 63: case 64: case 96: case 100: case 171: case 172: case 179: case 180:
-            case 181: case 182:
+            case 181: case 182: case 198:
                 this.direction=args[0]
                 this.speed=args[1]
                 this.baseSpeed=args[1]
@@ -227,7 +227,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 108: case 140: case 142: case 157:
+            case 108: case 140: case 142: case 157: case 202:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=this.type==140?10:5
@@ -411,7 +411,7 @@ class particle{
                 this.speed=8
                 this.clouds=[]
             break
-            case 159:
+            case 159: case 200:
                 this.direction=args[0]
                 this.fade=0
                 this.size=1
@@ -585,6 +585,52 @@ class particle{
                 this.speed=3
                 this.scale=1
                 this.fade=0
+                this.trigger=false
+            break
+            case 201:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.speed=12
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=1
+                this.color=floor(random(0,6))
+            break
+            case 203:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.speed=4
+                this.fade=0
+                this.size=1
+                this.scale=1
+            break
+            case 204:
+                this.target=args[0]
+                this.direction=args[1]
+                this.color=args[2]
+                this.timer=180
+                this.speed=8
+                this.hit=false
+                this.size=1
+                this.scale=1
+                this.fade=0
+            break
+            case 205:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.color=args[2]
+                this.speed=4
+                this.fade=0
+                this.size=1
+                this.scale=1
+            break
+            case 207:
+                this.direction=args[0]
+                this.spin=args[1]
+                this.fade=0
+                this.size=1
+                this.scale=1
                 this.trigger=false
             break
 
@@ -3194,6 +3240,145 @@ class particle{
                         regStar(this.layer,0,0,4,9*(1-a/la),9*(1-a/la),3*(1-a/la),3*(1-a/la),(this.time*2-a*9)*(this.side*2-1))
                     }
                 break
+                case 198:
+                    this.layer.rotate(this.time*-5)
+                    this.layer.fill(200,50,100,this.fade*0.2)
+                    regStar(this.layer,0,0,6,20,20,6,6,0)
+                    this.layer.fill(100,50,200,this.fade*0.2)
+                    regStar(this.layer,0,0,6,6,6,20,20,0)
+                    this.layer.fill(200,50,100,this.fade)
+                    this.layer.arc(0,0,20,20,-180,0)
+                    this.layer.fill(100,50,200,this.fade)
+                    this.layer.arc(0,0,20,20,0,180)
+                    this.layer.ellipse(5,0,10)
+                    this.layer.fill(200,50,100,this.fade)
+                    this.layer.ellipse(-5,0,10)
+                break
+                case 199:
+                    this.layer.rotate(this.time*-2)
+                    this.layer.fill(255,255,240,this.fade)
+                    this.layer.beginShape()
+                    this.layer.vertex(0,10)
+                    for(let a=0,la=18;a<la;a++){
+                        this.layer.bezierVertex(
+                            lsin((a+0.2)/la*360)*11,lcos((a+0.2)/la*360)*11,
+                            lsin((a+0.8)/la*360)*11,lcos((a+0.8)/la*360)*11,
+                            lsin((a+1)/la*360)*10,lcos((a+1)/la*360)*10
+                        )
+                    }
+                    this.layer.endShape()
+                    for(let a=0,la=10;a<la;a++){
+                        let size=1-a%2*0.2
+                        this.layer.fill(255-a%2*105,255-a%2*230,200-a%2*175,this.fade)
+                        this.layer.beginShape()
+                        this.layer.vertex(0,0)
+                        this.layer.vertex(6*size,-1*size)
+                        this.layer.bezierVertex(10*size,-1*size,14*size,2*size,18*size,9*size)
+                        this.layer.bezierVertex(14*size,4*size,10*size,2*size,6*size,1*size)
+                        this.layer.endShape()
+                        this.layer.rotate(360/la)
+                    }
+                break
+                case 200:
+                    this.layer.rotate(this.direction)
+                    for(let a=0,la=8;a<la;a++){
+                        this.layer.fill(255,150+a/la*150,150+a/la*50,this.fade)
+                        this.layer.rect(0,-640,8-a,1200)
+                        this.layer.triangle(-4+a*0.5,-40,4-a*0.5,-40,0,-20)
+                    }
+                break
+                case 201:
+                    this.layer.rotate(this.direction)
+                    this.layer.scale(0.8)
+                    this.layer.stroke(...[[255,100,100],[255,150,50],[255,255,175],[80,240,80],[40,160,240],[150,0,180]][this.color],this.fade*0.25)
+                    for(let a=0,la=3;a<la;a++){
+                        this.layer.strokeWeight(9-a*2)
+                        this.layer.line(0,-8,-6,-2)
+                        this.layer.line(0,-8,6,-2)
+                        this.layer.line(-6,-2,-10,6)
+                        this.layer.line(6,-2,10,6)
+                    }
+                    this.layer.stroke(...[[255,0,0],[255,125,0],[255,255,100],[40,160,40],[20,120,200],[90,0,120]][this.color],this.fade)
+                    this.layer.strokeWeight(3)
+                    this.layer.line(0,-8,-6,-2)
+                    this.layer.line(0,-8,6,-2)
+                    this.layer.line(-6,-2,-10,6)
+                    this.layer.line(6,-2,10,6)
+                    this.layer.strokeWeight(6)
+                    this.layer.point(0,6)
+                    this.layer.stroke(...[[255,100,100],[255,150,50],[255,255,175],[80,240,80],[40,160,240],[150,0,180]][this.color],this.fade)
+                    this.layer.strokeWeight(2)
+                    this.layer.line(0,-8,-6,-2)
+                    this.layer.line(0,-8,6,-2)
+                    this.layer.line(-6,-2,-10,6)
+                    this.layer.line(6,-2,10,6)
+                    this.layer.strokeWeight(4)
+                    this.layer.point(0,6)
+                break
+                case 202:
+                    this.layer.rotate(this.time*-1.5)
+                    this.layer.fill(170,this.fade)
+                    regStar(this.layer,0,0,5,10,10,6,6,0)
+                    this.layer.fill(210,this.fade)
+                    regStar(this.layer,0,0,5,6,6,10,10,0)
+                break
+                case 203:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(170,this.fade)
+                    this.layer.ellipse(0,0,8,12)
+                    this.layer.fill(210,this.fade)
+                    this.layer.ellipse(0,0,4,8)
+                break
+                case 204:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(...[[255,255,100],[100,100,255]][this.color],this.fade*0.1)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.ellipse(0,0,36-a*3,48-a*4)
+                    }
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.fill(...[[255,255,100+a/(la-1)*150],[100+a/(la-1)*150,100+a/(la-1)*150,255]][this.color],this.fade)
+                        this.layer.ellipse(0,0,18-a*3,24-a*4)
+                    }
+                break
+                case 205:
+                    this.layer.rotate(this.direction)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.fill(...[[255,255,100+a/(la-1)*150],[100+a/(la-1)*150,100+a/(la-1)*150,255]][this.color],this.fade)
+                        this.layer.ellipse(0,0,10-a*2,15-a*3)
+                    }
+                break
+                case 206:
+                    this.layer.fill(150,25,200,this.fade)
+                    this.layer.ellipse(0,0,10)
+                    this.layer.fill(125,25,175,this.fade)
+                    this.layer.ellipse(0,0,9)
+                    this.layer.fill(100,25,150,this.fade)
+                    this.layer.ellipse(0,0,8)
+                    this.layer.noFill()
+                    this.layer.stroke(200,150,225,this.fade)
+                    this.layer.strokeJoin(ROUND)
+                    this.layer.strokeWeight(0.5)
+                    regPolyStellate(this.layer,0,0,5,2,4,4,15)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.arc(0,0,8,8,30+a*72,60+a*72)
+                    }
+                    this.layer.strokeJoin(MITER)
+                    this.layer.strokeWeight(1.5)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.point(lsin(15+a*72)*4,lcos(15+a*72)*4)
+                    }
+                break
+                case 207:
+                    this.layer.rotate(this.direction)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.fill(255,200+a/la*100,50+a/la*150,this.fade)
+                        for(let b=0,lb=6;b<lb;b++){
+                            this.layer.rect(0,-640,6-a,1200)
+                            this.layer.triangle(-3+a*0.5,-40,3-a*0.5,-40,0,-20)
+                            this.layer.rotate(360/lb)
+                        }
+                    }
+                break
 
             }
             //mark p
@@ -3222,7 +3407,7 @@ class particle{
             case 1: case 4: case 5: case 6: case 7: case 8: case 11: case 14: case 16: case 18:
             case 19: case 20: case 21: case 32: case 35: case 39: case 42: case 43: case 44: case 47:
             case 48: case 49: case 50: case 78: case 79: case 82: case 83: case 89: case 98: case 105:
-            case 111: case 113: case 131: case 160:
+            case 111: case 113: case 131: case 160: case 201:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2,0,1,5)
@@ -3336,7 +3521,7 @@ class particle{
                 }
             break
             case 61: case 62: case 63: case 64: case 96: case 100: case 171: case 172: case 179: case 180:
-            case 181: case 182:
+            case 181: case 182: case 198:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=(lcos(this.direction)-0.2)*this.speed
                 this.speed-=this.baseSpeed/30
@@ -3389,12 +3574,21 @@ class particle{
                     this.remove=true
                 }
             break
-            case 108: case 140: case 142:
+            case 108: case 140: case 142: case 202:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,10)
                 this.scale=smoothAnim(this.scale,this.time<this.timer*2-5,0,1,10)
-                if(this.fade<=0){
+                if(this.time==this.timer*2-5){
+                    switch(this.type){
+                        case 202:
+                            let direction=random(0,360)
+                            for(let a=0,la=5;a<la;a++){
+                                parent.particles.push(new particle(this.layer,this.position.x,this.position.y,203,[a/la*360+direction,20]))
+                            }
+                        break
+                    }
+                }else if(this.fade<=0){
                     this.remove=true
                     switch(this.type){
                         case 108:
@@ -3846,6 +4040,100 @@ class particle{
             case 197:
                 this.position.x+=lsin(this.direction)*this.speed+lcos(this.direction)*this.speed*lsin(this.shear+this.time*6)*0.2
                 this.position.y-=lcos(this.direction)*this.speed-lsin(this.direction)*this.speed*lsin(this.shear+this.time*6)*0.2
+                if(!this.trigger){
+                    this.fade+=0.1
+                    if(this.fade>=2){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.1
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
+                }
+            break
+            case 199: case 206:
+                this.fade-=0.05
+                this.scale+=0.2-this.fade*0.2
+                if(this.fade<=0){
+                    this.remove=true
+                }
+            break
+            case 200:
+                if(this.time%4==0){
+                    let distance=floor(random(0,900))
+                    parent.particlesNonCalc.push(new particle(this.layer,
+                        this.position.x+lsin(this.direction)*distance+random(-10,10),
+                        this.position.y-lcos(this.direction)*distance+random(-10,10),
+                        197,[0,random(0.4,0.6)]))
+                }
+                if(!this.trigger){
+                    this.fade+=0.1
+                    if(this.fade>=2){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.1
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
+                }
+            break
+            case 203: case 205:
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed
+                this.fade=smoothAnim(this.fade,this.time<this.timer,0,1,5)
+                this.speed*=0.95
+                if(this.fade<=0){
+                    this.remove=true
+                }
+            break
+            case 204:
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed
+                if(dist(this.target[0],this.target[1],this.position.x,this.position.y)<40){
+                    this.hit=true
+                }
+                if(!this.hit){
+                    let goalDirection=atan2(this.target[0]-this.position.x,this.position.y-this.target[1])
+                    if(abs(this.direction-goalDirection)<=8||abs(this.direction-goalDirection-360)<=8||abs(this.direction-goalDirection+360)<=8||abs(this.direction-goalDirection-720)<=8||abs(this.direction-goalDirection+720)<=8){
+                        this.direction=goalDirection
+                    }else if(
+                        this.direction>goalDirection&&this.direction<goalDirection+180||
+                        this.direction>goalDirection-360&&this.direction<goalDirection-180||
+                        this.direction>goalDirection+360&&this.direction<goalDirection+540||
+                        this.direction>goalDirection-720&&this.direction<goalDirection-540||
+                        this.direction>goalDirection+720&&this.direction<goalDirection+900){
+                        this.direction-=8
+                    }else if(
+                        this.direction<goalDirection&&this.direction>goalDirection-180||
+                        this.direction<goalDirection+360&&this.direction>goalDirection+180||
+                        this.direction<goalDirection-360&&this.direction>goalDirection-540||
+                        this.direction<goalDirection+720&&this.direction>goalDirection+540||
+                        this.direction<goalDirection-720&&this.direction>goalDirection-900){
+                        this.direction+=8
+                    }else{
+                        this.direction+=8*(floor(random(0,2)*2-1))
+                    }
+                    if(this.direction>180){
+                        this.direction-=360
+                    }else if(this.direction<-180){
+                        this.direction+=360
+                    }
+                }
+                if(this.time%6==0){
+                    let direction=random(0,360)
+                    for(let a=0,la=4;a<la;a++){
+                        parent.particles.push(new particle(this.layer,this.position.x,this.position.y,205,[a/la*360+direction,25,this.color]))
+                    }
+                }
+                this.fade=smoothAnim(this.fade,this.time<this.timer,0,1,5)
+                if(this.fade<=0){
+                    this.remove=true
+                }
+            break
+            case 207:
+                this.direction+=this.spin
                 if(!this.trigger){
                     this.fade+=0.1
                     if(this.fade>=2){

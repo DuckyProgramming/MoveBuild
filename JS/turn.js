@@ -976,7 +976,21 @@ class turn{
                                 }
                             break
                             case 1:
-                                this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
+                                if(this.setTarget!=-1){
+                                    this.target=this.setTarget
+                                }else if(this.userCombatant.construct||this.userCombatant.support){
+                                    this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                    this.target=this.battle.combatantManager.combatants[this.target[0]]
+                                }else{
+                                    this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                    this.target=this.battle.combatantManager.combatants[this.target[0]]
+                                }
                                 this.possible=[]
                                 for(let a=0,la=6;a<la;a++){
                                     let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,360*(a+0.5)/la)[0],this.userCombatant.tilePosition.y+transformDirection(0,360*(a+0.5)/la)[1])
@@ -1025,7 +1039,21 @@ class turn{
                                 }
                             break
                             case 3:
-                                this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
+                                if(this.setTarget!=-1){
+                                    this.target=this.setTarget
+                                }else if(this.userCombatant.construct||this.userCombatant.support){
+                                    this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                    this.target=this.battle.combatantManager.combatants[this.target[0]]
+                                }else{
+                                    this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                    this.target=this.battle.combatantManager.combatants[this.target[0]]
+                                }
                                 this.movable=[]
                                 for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                                     if(distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)==1&&this.battle.tileManager.tiles[a].occupied<=0){
@@ -1051,7 +1079,21 @@ class turn{
                                 }
                             break
                             case 5:
-                                this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
+                                if(this.setTarget!=-1){
+                                    this.target=this.setTarget
+                                }else if(this.userCombatant.construct||this.userCombatant.support){
+                                    this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                    this.target=this.battle.combatantManager.combatants[this.target[0]]
+                                }else{
+                                    this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                    this.target=this.battle.combatantManager.combatants[this.target[0]]
+                                }
                                 this.movable=[]
                                 for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                                     if(distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)>0&&this.battle.tileManager.tiles[a].occupied<=0){
@@ -1077,7 +1119,21 @@ class turn{
                                 }
                             break
                             case 7:
-                                this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
+                                if(this.setTarget!=-1){
+                                    this.target=this.setTarget
+                                }else if(this.userCombatant.construct||this.userCombatant.support){
+                                    this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                    this.target=this.battle.combatantManager.combatants[this.target[0]]
+                                }else{
+                                    this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                    this.target=this.battle.combatantManager.combatants[this.target[0]]
+                                }
                                 this.movable=[]
                                 for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                                     if(distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)>0&&distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)<=(game.ascend>=32?1:2)&&this.battle.tileManager.tiles[a].occupied<=0){
@@ -1103,7 +1159,21 @@ class turn{
                                 }
                             break
                             case 10:
-                                this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
+                                if(this.setTarget!=-1){
+                                    this.target=this.setTarget
+                                }else if(this.userCombatant.construct||this.userCombatant.support){
+                                    this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                    this.target=this.battle.combatantManager.combatants[this.target[0]]
+                                }else{
+                                    this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                    this.target=this.battle.combatantManager.combatants[this.target[0]]
+                                }
                                 this.possible=[]
                                 for(let a=0,la=3;a<la;a++){
                                     let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.procedure[0]-60+a*60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.procedure[0]-60+a*60)[1])
@@ -1124,7 +1194,21 @@ class turn{
                                 }
                             break
                             case 11: case 12: case 13:
-                                this.targetCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                                if(this.setTarget!=-1){
+                                    this.targetCombatant=this.setTarget
+                                }else if(this.userCombatant.construct||this.userCombatant.support){
+                                    this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                    this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                                }else{
+                                    this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                    this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                                }
                                 this.target=this.targetCombatant.tilePosition
                                 this.possible=[]
                                 if(this.type==13){
@@ -1747,8 +1831,16 @@ class turn{
                         this.battle.setReinforce('-h Traitor',{x:2,y:1})
                     break
                     case 414:
-                        for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.dropDrawShuffle(floor(random(0,this.battle.players)),findName(this.effect[1],types.card),0,game.playerNumber+1)
+                        let targets=[]
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].life>0){
+                                targets.push(a)
+                            }
+                        }
+                        if(targets.length>0){
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.battle.dropDrawShuffle(targets[floor(random(0,targets.length))],findName(this.effect[1],types.card),0,game.playerNumber+1)
+                            }
                         }
                     break
                 }

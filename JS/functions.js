@@ -2048,7 +2048,8 @@ ${base[12]},${base[13]},${base[14]},${base[15]},${base[16]},
 	`Colorless: ${base[0]}, White: ${base[1]}, Blue: ${base[2]}, Black: ${base[3]}, `+
 	`Green: ${base[4]}, Red: ${base[5]}, White-Blue: ${base[7]}, White-Black: ${base[8]}, `+
 	`White-Green: ${base[9]}, White-Red: ${base[10]}, Blue-Black: ${base[11]}, Blue-Green: ${base[12]}, `+
-	`Blue-Red: ${base[13]}, Black-Green: ${base[14]}, Black-Red: ${base[15]}, Green-Red: ${base[16]}`*/
+	`Blue-Red: 
+	${base[13]}, Black-Green: ${base[14]}, Black-Red: ${base[15]}, Green-Red: ${base[16]}`*/
 }
 function outMtg2(){
 	let mtgd=0
@@ -2090,6 +2091,36 @@ Total: ${count[a][1][3]}\n`
 	}
 	print(box)
 	print(`${mtgd}/${types.card.length} (${round(mtgd/types.card.length*1000/10)}%) Converted`)
+}
+function outMtgError(){
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+			if(
+				!types.card[a].mtg.levels[b].spec.includes(11)&&
+				!types.card[a].mtg.levels[b].spec.includes(21)&&
+				!types.card[a].mtg.levels[b].spec.includes(59)&&(
+					types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.color.includes(0)||
+					types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.color.includes(1)||
+					types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.color.includes(2)||
+					types.card[a].mtg.levels[b].cost.includes(3)&&!types.card[a].mtg.color.includes(3)||
+					types.card[a].mtg.levels[b].cost.includes(4)&&!types.card[a].mtg.color.includes(4)||
+					types.card[a].mtg.levels[b].cost.includes(5)&&!types.card[a].mtg.color.includes(5)||
+					types.card[a].mtg.levels[b].cost.includes(6)&&!types.card[a].mtg.color.includes(0)||
+					types.card[a].mtg.levels[b].cost.includes(7)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(2))||
+					types.card[a].mtg.levels[b].cost.includes(8)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(3))||
+					types.card[a].mtg.levels[b].cost.includes(9)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(4))||
+					types.card[a].mtg.levels[b].cost.includes(10)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(5))||
+					types.card[a].mtg.levels[b].cost.includes(11)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(3))||
+					types.card[a].mtg.levels[b].cost.includes(12)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(4))||
+					types.card[a].mtg.levels[b].cost.includes(13)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(5))||
+					types.card[a].mtg.levels[b].cost.includes(14)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(4))||
+					types.card[a].mtg.levels[b].cost.includes(15)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(5))||
+					types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
+			)){
+				print(types.card[a].name)
+			}
+		}
+	}
 }
 function outDupes(){
 	for(let a=0,la=types.card.length;a<la;a++){
@@ -2333,6 +2364,10 @@ function oracle(){
 		cardData.display()
 	}
 }
+function rOracle(){
+	current.overlayManager.overlays[142][0].active=true
+    current.overlayManager.overlays[142][0].activate()
+}
 function generalizedSearch(test,type){
 	current.overlayManager.overlays[35][0].active=true
     current.overlayManager.overlays[35][0].activate([0])
@@ -2384,6 +2419,8 @@ function mtgPlayerColor(player){
 		case 16: return [1,2,4]
 		case 17: return [1,4,5]
 		case 18: return [1,2,3]
+		case 19: return [3,4,5]
+		case 20: return [2,3,5]
 		default: return [6]
 	}
 }
