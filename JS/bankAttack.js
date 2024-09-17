@@ -875,7 +875,7 @@ attack.prototype.update=function(){
         case 5043: case 5044: case 5071: case 5087: case 5088: case 5091: case 5094: case 5122: case 5123: case 5131:
         case 5132: case 5137: case 5139: case 5140: case 5141: case 5146: case 5147: case 5156: case 5178: case 5186:
         case 5187: case 5188: case 5189: case 5192: case 5196: case 5227: case 5236: case 5247: case 5282: case 5283:
-        case 5284: case 5287: case 5313: case 5316: case 5319: case 5320: case 5334:
+        case 5284: case 5287: case 5313: case 5316: case 5319: case 5320: case 5334: case 5336:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||

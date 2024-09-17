@@ -39925,6 +39925,20 @@ types.card=[
                 {effect:[27],attack:2,cost:[5],target:[0],spec:[68],class:2},
             ],
         },
+    },{
+        name:'Misguide',rarity:0,list:20,
+        levels:[
+            {effect:[1,3],attack:5336,cost:0,target:[0],spec:[],class:11},
+            {effect:[1,4],attack:5336,cost:0,target:[0],spec:[],class:11},
+            {effect:[1,5],attack:5336,cost:0,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:0,list:20,color:[2],
+            levels:[
+                {effect:[1,2],attack:5336,cost:[],target:[0],spec:[],class:11},
+                {effect:[1,3],attack:5336,cost:[],target:[0],spec:[],class:11},
+                {effect:[1,4],attack:5336,cost:[],target:[0],spec:[],class:11},
+            ],
+        },
     },
 
     //mark 20

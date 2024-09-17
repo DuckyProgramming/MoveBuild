@@ -2257,7 +2257,7 @@ of purifcation to assist you in controlling it?`,
             },
         ],
     },{
-        name:'Public Transit',id:71,list:0,
+        name:'Public Transit',id:71,list:-1,
         pages:[
             {
                 desc:
@@ -4776,8 +4776,226 @@ visit to the shop, it's on the house.`,
                 link:[-1],
             },
         ],
+    },{
+        name:'Fairy of Starlight',id:158,list:0,
+        pages:[
+            {
+                desc:
+`During a particularly clear night outside, you hear a noise
+from somewhere in the forest. Suddenly, a fairy appears, laughs,
+and flies off into the tangled trees and vines.
+The stars above you seem to glow brighter, as if beckoning
+you to enter the forest. You might just be seeing things...`,
+                option:['Chase Her','Stare at the Stars','Stand There'],
+                optionDesc:['Lose 12 Max Health','Become Cursed - Starry Glare','Lose 8 Health'],
+                link:[1,2,3],
+            },{
+                desc:
+`After what seems to be hours of pursuing her, she
+finally tires out, giving you a chance to catch up.
+"Got you there!" she says. "You're pretty strong though,
+I give you that. Want to be a team?"`,
+                option:['Accept','Decline'],
+                optionDesc:['Add Star, Showering Starlight (Ally Card) to Deck',''],
+                link:[4,5],
+            },{
+                desc:
+`You could've been standing there for just a few minutes,
+or maybe it was multiple hours of staring.
+Regardless, you finally snap out of it, drained.`,
+                option:['Leave'],
+                optionDesc:['Transform 3 Cards'],
+                link:[-1],
+            },{
+                desc:
+`The glow from above becomes unbearable, but
+you refuse to look up or pursue her into the trees.
+You hope this nightmare will end soon, and it does,
+with everything seemingly returning to normal.`,
+                option:['Leave'],
+                optionDesc:['Transform a Card'],
+                link:[-1],
+            },{
+                desc:
+`She begins following you around. You'll get to used
+to having her as an ally eventually.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You don't need her slowing you down.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Short Stay',id:159,list:0,
+        pages:[
+            {
+                desc:
+`With only a few hours to stay in town, your time is limited.
+Your options, however, seem to be numerous.`,
+                option:['Relax','Go Shopping','Explore'],
+                optionDesc:['Encounter a Rest Site','Encounter an Shop','Enter a Random Event'],
+                link:[-2,-2,-2],
+            },
+        ],
+    },{
+        name:'Scrap Ooze',id:160,list:0,
+        pages:[
+            {
+                desc:
+`You find a blob of slime that has clearly absorbed far too much
+scrap for its own good. It simply lies there, full of stuff.
+It looks like there's a few shiny things stuck in the slime,
+but also a lot of pain....`,
+                option:['Reach in','Leave'],
+                optionDesc:['Lose 5 Health',''],
+                link:[1,3],
+            },{
+                desc:`You manage to pull something useful out.`,
+                option:['Take it'],
+                optionDesc:['Gain a Relic'],
+                link:[-1],
+            },{
+                desc:`You reach in, but find nothing of value.`,
+                option:['Try Again','Leave'],
+                optionDesc:['Lose 5 Health',''],
+                link:[1,3],
+            },{
+                desc:`You're not gonna risk it.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Collateral Damage',id:161,list:0,
+        pages:[
+            {
+                desc:
+`You are tasked with destroying a local Management office,
+but find the building to be in the center of a residential
+area. There might be some civilians around.`,
+                option:['Send Bomb Threats','Use a Weaker Bomb','Ignore the Civilians','Cancel the Plan'],
+                optionDesc:['','','',''],
+                link:[1,3,4,5],
+            },{
+                desc:
+`Your bomb threats successfully scare off most of the
+civilians, and the rest of the plan goes off without a hitch.`,
+                option:['Success'],
+                optionDesc:['Gain 500 Currency'],
+                link:[-1],
+            },{
+                desc:
+`The Management is notified about the threats and
+several soldiers ambush you. You barely make it out.`,
+                option:['Failure'],
+                optionDesc:['Lose 10 Health'],
+                link:[-1],
+            },{
+                desc:
+`The smaller bomb doesn't do much damage, but there
+are no casualties among the civilians.`,
+                option:['Success'],
+                optionDesc:['Gain 100 Currency'],
+                link:[-1],
+            },{
+                desc:
+`Ignoring the civilians, you successfully carry out the bombing.
+But still, you do feel some guilt for how many of them were hurt.`,
+                option:['Success'],
+                optionDesc:['Gain 500 Currency, Become Cursed - Guilt'],
+                link:[-1],
+            },{
+                desc:`You abandon the plan.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Underground Vault',id:162,list:0,
+        pages:[
+            {
+                desc:
+`You reach the Management vault underground.
+There's no lock on the door, only a sign that says,
+"DO NOT ENTER!"
+"THERE ARE NO OBJECTS OF VALUE WTIHIN!"`,
+                option:['Destroy the Entrance','Enter the Vault'],
+                optionDesc:['',''],
+                link:[1,2],
+            },{
+                desc:
+`You destroy the entrance, sealing the vault off.
+You'll never know what was inside, but your mission's complete.`,
+                option:['Leave'],
+                optionDesc:['Gain 100 Currency'],
+                link:[-1],
+            },{
+                desc:
+`Curiosity gets the better of you and you enter
+the vault. Within, you find rows upon rows of barrels,
+each labelled with "Nuclear Waste".
+You don't feel so good...`,
+                option:['Take Nuclear Waste','Run'],
+                optionDesc:['Lose 5 Max HP','Lose 1 Max HP'],
+                link:[3,4],
+            },{
+                desc:
+`You grab a barrel and escape.
+You'll find some use for it, you hope.`,
+                option:['Leave'],
+                optionDesc:['Gain a Relic - Nuclear Waste'],
+                link:[-1],
+            },{
+                desc:
+`You escape, spending as little time in
+the radioactivity as possible.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Mob Doctor',id:163,list:0,
+        pages:[
+            {
+                desc:
+`You run into what seems to be a normal doctor,
+but it takes you only a few minutes to realize he's the
+one the gangsters rely on for treatment.
+He doesn't recognize you and asks what you're in for,
+but you can tell who he is, loud and clear.`,
+                option:['Treatment','Bioengineering','Kill Him'],
+                optionDesc:['Lose 25 Currency','Lose 25 Currency','Gain 25 Currency'],
+                link:[1,2,3],
+            },{
+                desc:`Despite working for the mob, the doctor knows his stuff.`,
+                option:['Done'],
+                optionDesc:['Heal 15 Health'],
+                link:[-1],
+            },{
+                desc:
+`The operation is quite advanced, but the doctor
+sticks by his word and finishes the job.`,
+                option:['Done'],
+                optionDesc:['Gain 4 Max Health'],
+                link:[-1],
+            },{
+                desc:
+`You don't want to risk treatment from this doctor,
+so you take him out when you get the chance.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
     },/*{
-        name:'',id:157,list:0,
+        name:'',id:164,list:0,
         pages:[
             {
                 desc:

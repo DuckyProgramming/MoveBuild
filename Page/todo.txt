@@ -1,4 +1,6 @@
-seed randomness
+cringe boss relic - never get fatigued again lol
+
+
 
 title screen 5th button - collection
 lists all cards, if you've seen them
@@ -20,10 +22,6 @@ how many ally cards?
 []
 
 []
-
-
-
-instant reflex - lose 1 energy, draw 2 cards
 
 
 
@@ -66,25 +64,6 @@ third gimmick - red mtg alignment
 CHARACTER 20
 
 the dev?
-
-
-
-new events:
-
-
-
-star showering starlight
-
-navigation event - go to a random spot on the map
-
-scrap ooze
-
-bomb the management office, but it's in a residential district
-send bomb threats - 50% lose 10 health, 50% gain 500 currency
-use a weaker bomb - gain 100 currency
-don't worry about it - gain 500 currency, become cursed - guilt
-
-[]
 
 
 

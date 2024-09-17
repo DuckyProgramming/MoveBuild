@@ -3451,6 +3451,16 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('2',9,-2)
                 break
+                case '3 Turn Temporary Strength':
+                    displaySymbol(this.layer,-8,0,41,0,1,this.fade)
+                    displaySymbol(this.layer,7,10,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-10,5,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('3',7,1)
+                break
 
                 //mark p
             }
@@ -3501,7 +3511,7 @@ class relic{
                         this.layer.textSize(6)
                         this.layer.text(`${detail%16}/16`,0,-16)
                     break
-                    case '3 Turn Draw': case '3 Turn Duplicate': case 'Green Mana/3 Turn Dodge': case 'Green Mana/3 Turn Strength':
+                    case '3 Turn Draw': case '3 Turn Duplicate': case 'Green Mana/3 Turn Dodge': case 'Green Mana/3 Turn Strength': case '3 Turn Temporary Strength':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%3+1}/3`,0,-16)

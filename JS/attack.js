@@ -13497,6 +13497,10 @@ class attack{
                         this.userManager.hand.exhaust(this.effect[1])
                         this.userCombatant.statusEffect('Temporary Draw',this.effect[2])
                     break
+                    case 5336:
+                        this.battle.loseEnergy(this.effect[0],this.player)
+                        this.userManager.draw(this.effect[1])
+                    break
 
                 }
                 //mark 5

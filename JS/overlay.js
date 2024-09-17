@@ -3002,6 +3002,7 @@ class overlay{
                                             }
                                             this.activated++
                                             complete=this.activated>=this.args[1]
+                                            breakAfter=true
                                         break
                                         case 4: case 67: case 81: case 87: case 92:
                                             if(this.args[2]==4){
@@ -3044,6 +3045,7 @@ class overlay{
                                             if(this.args[2]==1&&this.battle.cardManagers[this.player].deck.cards[a].level==0){
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
                                             }
+                                            breakAfter=true
                                         break
                                         case 8:
                                             this.battle.cardManagers[this.player].deck.copySelf(a)
@@ -4218,6 +4220,7 @@ class overlay{
                                             }
                                             this.activated++
                                             complete=this.activated>=this.args[1]
+                                            breakAfter=true
                                         break
                                         case 4: case 67: case 81: case 87: case 92:
                                             if(this.args[2]==4){
@@ -4260,6 +4263,7 @@ class overlay{
                                             if(this.args[2]==1&&this.battle.cardManagers[this.player].deck.cards[a].level==0){
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
                                             }
+                                            breakAfter=true
                                         break
                                         case 8:
                                             this.battle.cardManagers[this.player].deck.copySelf(a)

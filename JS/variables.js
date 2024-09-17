@@ -1227,6 +1227,8 @@ types={
         {name:'Backslash',internal:'Any Common or Uncommon Relic',id:468,rarity:2,list:0,mtg:0,description:'When Taken, Choose and Gain\nAny Common or Uncommon Relic'},
         {name:'Straw Shield',internal:'Bonus Block',id:469,rarity:0,list:0,mtg:0,description:'If You End Your Turn With Block,\nAdd 2 Block'},
 
+        {name:'Nuclear Waste',internal:'3 Turn Temporary Strength',id:470,rarity:-1,list:0,mtg:0,description:'Every 3 Turns,\nGain 3 Temporary Strength'},
+
         //mark mtg mark r
     ],item:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:''},

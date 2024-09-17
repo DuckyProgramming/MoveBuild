@@ -6216,6 +6216,7 @@ class card{
             case 5333: string+=`-1: Play a Non-0\n${variants.mtg?`Total `:``}Cost Card\nActive: Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions`; break
             case 5334: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nExhaust ${effect[1]} Card${pl(effect[1])}\nDraw ${effect[2]} More Card${pl(effect[2])}\nNext Turn`; break
             case 5335: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Become`:`It Becomes`} Foil`; break
+            case 5336: string+=`Lose ${effect[0]} ${variants.mtg?`Random Mana`:`Energy`}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
 
             //mark p
 
