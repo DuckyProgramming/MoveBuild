@@ -3670,6 +3670,22 @@ turn.prototype.update=function(){
                         this.remove=true
                     }
                 break
+                case 416:
+                    if(this.timer==1||this.timer==11){
+                        this.procedure[0]=random(0,360)
+                        for(let a=0,la=9;a<la;a++){
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y,208,[this.procedure[0]+a/la*360,0,1]))
+                        }
+                    }else if(this.timer==6||this.timer==16){
+                        for(let a=0,la=9;a<la;a++){
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y,208,[this.procedure[0]+(a+0.5)/la*360,1,1]))
+                        }
+                    }else if(this.timer==15){
+                        this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.userCombatant.id,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                    }else if(this.timer>=30){
+                        this.remove=true
+                    }
+                break
 
                 default:
                     this.remove=true

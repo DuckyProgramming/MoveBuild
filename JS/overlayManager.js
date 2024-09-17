@@ -151,6 +151,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[4,1,4])],//remove card, return through relic (vitrine),140
                     [new overlay(this.layer,this.battle,0,22,[1,[0,1]])],//all common and uncommon relics, no return
                     [new overlay(this.layer,this.battle,0,22,[0,[0,1,2,3,4]])],//all relics, no return
+                    [new overlay(this.layer,this.battle,0,2,[95])],//bring in foil copy of draw card, no return
+                    //63,95
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

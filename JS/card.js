@@ -358,6 +358,8 @@ class card{
                     }
                 }
                 return variants.mtg?(this.specialCost?this.base.cost[0]:totalNeutral):this.base.cost
+            case 4:
+                return variants.mtg?this.cost.includes(-3):this.cost==-1
         }
     }
     setCost(type,args){
@@ -841,7 +843,11 @@ class card{
             case -100: string+=`Exhausts Self When\nYou Play a Defense\nIf You Play Another\nClass of Card,\nDiscard Your Hand`; break
             case -101: string+=`All Enemies\nWith Mailshield\nLose ${effect[0]} Mailshield`; break
             case -102: string+=`When Removed\nFrom Your Hand\nDuring Your Turn,\nAdd a Copy to Hand`; break
-
+            case -103: string+=`When Drawn,\nDiscard All Attacks`; break
+            case -104: string+=`When Drawn,\nDiscard All Movements`; break
+            case -105: string+=`When Drawn,\nDiscard All Powers`; break
+            case -106: string+=`At the End of Your Turn,\nDouble All Your Debuffs`; break
+            
             //mark n
 
             case 1: case 25: case 32: case 36: case 57: case 590: case 1139: case 1191:
@@ -6156,38 +6162,29 @@ class card{
             case 5279: string+=`Add ${this.calculateEffect(effect[0],1)}+${this.calculateEffect(effect[1],16)} Block\nWhere X = Total Mana`; break
             case 5280: string+=`Apply ${effect[0]} Weak\nAdd ${this.calculateEffect(effect[1],1)} Block\nIf Played First,\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 5281: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDiscard Your Hand\nPut a Card in Discard\nPile in Your Hand`; break
-
-            //mark p
-
             case 5282: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporarily\nGain ${effect[1]} Energy\nNext Turn`; break
             case 5283: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporarily\nGain (E) Next Turn`; break
             case 5284: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporarily\nGain (E) (E) Next Turn`; break
-            //279
             case 5285: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage if\nOnly 1 Enemy is Alive`; break
             case 5286: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Double Block if\nOnly 1 Enemy is Alive`; break
-            case 5287: string+=`Put a Copy of\na Card in Draw\nPile in Your Hand\nand Make it Foil`; break
+            case 5287: string+=`Put a Copy of\na Card in Draw\nPile in Your Ha  nd\nand Make it Foil`; break
             case 5288: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nCan be Played\nFrom Discard Pile`; break
             case 5289: string+=`Next Attack Deals\n${effect[0]} More Damage\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-            //760
-
             case 5290: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 Temporarily\nWhen an X Cost\nCard is Played`; break
             case 5291: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCosts 0 Temporarily\nWhen an X Cost\nCard is Played`; break
             case 5292: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Temporary\nDexterity`; break
             case 5293: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy\nX Times`; break
-            case 5294: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nIf X is 2 or More,\nApply ${effect[1]} Weak\nIf X is 4 or More,\nApply ${effect[2]} Vulnerable`; break
+            case 5294: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nIf X is 3 or More,\nApply ${effect[1]} Weak\nIf X is 4 or More,\nApply ${effect[2]} Vulnerable`; break
             case 5295: string+=`Add Any Random\nX Cost Card\nof Equivalent Level\nto Hand\nGain ${effect[0]} Energy`; break
             case 5296: string+=`Add Any Random\nX Cost Card\nof Equivalent Level\nto Hand\nGain (E)`; break
-            
             case 5297: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nWhen You Purchase a\nRelic From the Shop`; break
-            case 5298: string+=`Add ${effect[0]} Miracle${pl(effect[0])}\nto Hand\nDiscard Your Hand`; break
-            case 5299: string+=`Add ${effect[0]} Occult${pl(effect[0])}\nto Hand\nDiscard Your Hand`; break
-            //2812
+            case 5298: string+=`Discard Your Hand\nAdd ${effect[0]} Miracle${pl(effect[0])}\nto Hand`; break
+            case 5299: string+=`Discard Your Hand\nAdd ${effect[0]} Occult${pl(effect[0])}\nto Hand`; break
             case 5300: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nDraw ${effect[1]!=1?`${effect[1]}`:``}X Cards`; break
             case 5301: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nDraw ${effect[1]!=1?`${effect[1]}`:``}X Cards`; break
             case 5302: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]!=1?`${effect[1]}`:``}X Energy\nNext Turn`; break
             case 5303: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]!=1?`${effect[1]}`:``}X (E)\nNext Turn`; break
             case 5304: string+=`Complete a Random\nQuest in Hand`; break
-
             case 5305: string+=`-1: Play ${effect[0]} Attack${pl(effect[0])}\nin a Single Turn\nActive: Add ${this.calculateEffect(effect[1],1)} Block`; break
             case 5306: string+=`-1: Play ${effect[0]} Defense${pl(effect[0])}\nin a Single Turn\nActive: Deal ${this.calculateEffect(effect[1],0)} Damage`; break
             case 5307: string+=`-1: Play ${effect[0]} Skill${pl(effect[0])}\nin a Single Turn\nActive: Gain ${effect[1]} Strength\nGain ${effect[2]} Dexterity`; break
@@ -6196,53 +6193,31 @@ class card{
             case 5310: string+=`-1: Play a Card\nWith an Edition\nActive: Gain (E) (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 5311: string+=`-1: Play a Rare Card\nActive: Add ${effect[0]} Miracle${pl(effect[0])}\nto Hand`; break
             case 5312: string+=`-1: Gain Energy\nActive: Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions`; break
-
             case 5313: string+=`-1: Kill an Enemy\nActive: Draw ${effect[0]} Card${pl(effect[0])}`; break
             case 5314: string+=`-1: Play ${effect[0]} Card${pl(effect[0])}\nin a Single Turn\nActive: Take Another Turn`; break
             case 5315: string+=`-1: Play an Attack\nActive: Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage`; break
             case 5316: string+=`-1: Play a Defense\nActive: Next ${effect[0]!=1?`${effect[0]} `:``}Card${pl(effect[0])}\nPlayed ${effect[0]!=1?`are`:`is`} Duplicated`; break
-            case 5317: string+=`-1: Play a Movement\nActive: Add ${effect[0]} Stride${pl(effect[0])}\nto Hand`; break
+            case 5317: string+=`-1: Play a Movement\nActive: Add a Stride\nto Hand`; break
             case 5318: string+=`-1: Play a Skill\nActive: Double\n${variants.mtg?`Existing Mana`:`Your Energy`}`; break
-            //521
-
-            case 5319: string+=`-1: Play a 0 Cost Card\nActive: Put a Card in\nDiscard Pile in Your Hand`; break
-            case 5320: string+=`-1: Play a 2 Cost Card\nActive: Put a Card in\nDraw Pile in Your Hand`; break
-            case 5321: string+=`-1: Draw a Card\nDuring Your Turn\nActive: Upgrade ${effect[0]} Card${pl(effect[0])}`; break
+            case 5319: string+=`-1: Play a 0${variants.mtg?`\nTotal`:``} Cost Card\nActive: Put a Card in\nDiscard Pile in Your Hand`; break
+            case 5320: string+=`-1: Play a 2${variants.mtg?`\nTotal`:``} Cost Card\nActive: Put a Card in\nDraw Pile in Your Hand`; break
+            case 5321: string+=`-1: Draw Cards\nDuring Your Turn\nActive: Upgrade ${effect[0]} Card${pl(effect[0])}`; break
             case 5322: string+=`-1: Do Not Attack\nDuring Your Turn\nActive: Apply ${effect[0]} Weak\nto All Enemies`; break
             case 5323: string+=`-1: Get Hit\nActive: Apply ${effect[0]} Vulnerable\nto All Enemies`; break
             case 5324: string+=`-1: End Your Turn\nWith at Least ${effect[0]} Block\nActive: Apply ${effect[1]} Frail\nto All Enemies`; break
-
-            case -103: string+=`When Drawn,\nDiscard All Attacks`; break
-            case -104: string+=`When Drawn,\nDiscard All Movements`; break
-            case -105: string+=`When Drawn,\nDiscard All Powers`; break
-            //-76
-            case -106: string+=`At the End of Your Turn,\nDouble All Your Debuffs`; break
             case 5325: string+=`Hold ${effect[0]} Lightning Orb${pl(effect[0])}\nDraw ${effect[1]} Skill${pl(effect[1])}`; break
-            //506
-            //3075,animate star,showering starlight
-
             case 5326: string+=`Push 1 Tile\nGain ${effect[0]} Metal`; break
-            //4066
             case 5327: string+=`Gain ${effect[0]} Energy\nAdd a Stuck\nto Discard Pile`; break
-            //517
             case 5328: string+=`Gain (E) (E) (E)\nAdd a Stuck\nto Discard Pile`; break
             case 5329: string+=`Gain (E) (E) (E) (E)\nAdd a Stuck\nto Discard Pile`; break
             case 5330: string+=`Gain (E) (E) (E) (E) (E)\nAdd a Stuck\nto Discard Pile`; break
-            //4213-4215
             case 5331: string+=`-1: Play an X Cost Card\nActive: Gain ${effect[0]} Energy`; break
             case 5332: string+=`-1: Play an X Cost Card\nActive: Gain (E) (E) (E)`; break
-            case 5333: string+=`-1: Spend ${variants.mtg?`Mana`:`Energy`} on a Card\nActive: Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions`; break
-            case 5334: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nExhaust ${effect[1]} Card${pl(effect[1])}\nDraw ${effect[2]} Card${pl(effect[2])} Next Turn`; break
+            case 5333: string+=`-1: Play a Non-0\n${variants.mtg?`Total `:``}Cost Card\nActive: Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions`; break
+            case 5334: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nExhaust ${effect[1]} Card${pl(effect[1])}\nDraw ${effect[2]} More Card${pl(effect[2])}\nNext Turn`; break
             case 5335: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Become`:`It Becomes`} Foil`; break
 
-
-
-
-
-
-
-
-
+            //mark p
 
             //mark q
 
@@ -6549,6 +6524,9 @@ class card{
             case -96:
                 userCombatant.statusEffect(variants.mtg?'Random Mana Next Turn':'Energy Next Turn',-this.effect[0])
             break
+            case -106:
+                userCombatant.multiplyStatusClass(2,[1,3])
+            break
             case 187:
                 userCombatant.takeDamage(this.effect[1],-1)
             break
@@ -6575,6 +6553,16 @@ class card{
             break
             case 5194:
                 userCombatant.addBlock(this.effect[2])
+            break
+            case 5322:
+                if(this.battle.cardManagers[this.player].hand.turnPlayed[1]==0){
+                    this.costDown(0,[1])
+                }
+            break
+            case 5324:
+                if(userCombatant.block>=this.effect[0]){
+                    this.costDown(0,[1])
+                }
             break
         }
     }
@@ -6800,6 +6788,9 @@ class card{
             case 3746:
                 this.effect[0]=min(this.effect[0]+this.effect[1],3)
                 this.target[2]=min(this.target[2]+this.effect[1],3)
+            break
+            case 5321:
+                this.costDown(0,[1])
             break
         }
     }
@@ -7058,10 +7049,10 @@ class card{
             case 1881:
                 userCombatant.statusEffect('Regeneration',this.effect[0])
             break
-            //update addinitial to invalidate these
         }
     }
     callEndEffect(encounterClass){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         switch(this.attack){
             case -94:
                 if(encounterClass==2){
@@ -7094,6 +7085,15 @@ class card{
             break
             case 3671:
                 if(encounterClass==1||encounterClass==2){
+                    this.effect[0]+=this.effect[1]
+                }
+            break
+        }
+    }
+    callPurchaseEffect(purchase){
+        switch(this.attack){
+            case 5297:
+                if(purchase.type==3){
                     this.effect[0]+=this.effect[1]
                 }
             break
@@ -7293,6 +7293,29 @@ class card{
                 }
                 this.deSize=true
                 this.exhaust=true
+            break
+            case 5323:
+                this.costDown(0,[1])
+            break
+        }
+    }
+    callDeathEffect(){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        switch(this.attack){
+            case -8:
+                userCombatant.takeDamage(this.effect[0],-1)
+            break
+            case -69:
+                userCombatant.life=0
+            break
+            case 1275:
+                this.battle.addCurrency(this.effect[0],this.player)
+            break
+            case 2547:
+                this.effect[0]=this.effect[1]
+            break
+            case 5313:
+                this.costDown(0,[1])
             break
         }
     }
@@ -7696,7 +7719,7 @@ class card{
                     }
                 break
                 case 3825:
-                    if(card.colorless()&&this.cost>0){
+                    if(card.colorless()&&this.getCost(0)>0){
                         this.costDown(0,[1])
                     }
                 break
@@ -7740,6 +7763,81 @@ class card{
                         this.setCost(0,[0])
                     }
                 break
+                case 5290: case 5291:
+                    if(card.getCost(4)){
+                        this.setCost(0,[0])
+                    }
+                break
+                case 5305:
+                    if(this.battle.cardManagers[this.player].hand.turnPlayed[1]==this.effect[0]-1){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5306:
+                    if(this.battle.cardManagers[this.player].hand.turnPlayed[2]==this.effect[0]-1){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5307:
+                    if(this.battle.cardManagers[this.player].hand.turnPlayed[11]==this.effect[0]-1){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5308: case 5309: case 5310:
+                    if(card.edition!=0){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5311:
+                    if(card.rarity==2){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5314:
+                    if(this.battle.cardManagers[this.player].hand.turnPlayed[0]==this.effect[0]-1){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5315:
+                    if(cardClass==1){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5316:
+                    if(cardClass==2){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5317:
+                    if(cardClass==3){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5318:
+                    if(cardClass==11){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5319:
+                    if(card.getCost(0)==0){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5320:
+                    if(card.getCost(0)==2){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5331: case 5332:
+                    if(card.getCost(1)){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5333:
+                    if(card.getCost(0)!=0){
+                        this.costDown(0,[1])
+                    }
+                break
                 
             }
         }
@@ -7769,7 +7867,7 @@ class card{
     }
     energyEffect(delta){
         switch(this.attack){
-            case 3253: case 4903:
+            case 3253: case 4903: case 5312:
                 if(delta>0){
                     this.costDown(0,[1])
                 }
@@ -7886,7 +7984,7 @@ class card{
                     this.battle.combatantManager.randomEnemyEffect(21,[this.effect[0],this.battle.combatantManager.getPlayerCombatantIndex(this.player),2])
                 break
                 case 3075:
-                    this.battle.combatantManager.areaAbstract(0,[this.effect[0],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                    this.battle.turnManager.loadSpecificAttack(this.battle.combatantManager.getPlayerCombatantIndex(this.player),416,[this.effect[0]])
                 break
                 case 3134:
                     this.battle.combatantManager.randomEnemyEffect(14,[this.effect[0]])
@@ -9523,9 +9621,9 @@ class card{
                         this.layer.fill(255,100,150,this.fade)
                         this.layer.stroke(255,125,175,this.fade)
                     }
-                    this.layer.strokeWeight(1.5)
+                    this.layer.strokeWeight(variants.mtg?1.2:1.5)
                     this.layer.strokeJoin(ROUND)
-                    regStarGear(this.layer,0,0,6,2,7,7,9,9,30)
+                    regStarGear(this.layer,0,0,6,2,variants.mtg?5.4:7,variants.mtg?5.4:7,variants.mtg?7.2:9,variants.mtg?7.2:9,30)
                     this.layer.strokeJoin(MITER)
                     this.layer.noStroke()
                     if(!spec.includes(60)){
@@ -9535,9 +9633,9 @@ class card{
                     }else{
                         this.layer.fill(255,150,200,this.fade)
                     }
-                    this.layer.ellipse(0,0,6)
+                    this.layer.ellipse(0,0,variants.mtg?4.8:6)
                     for(let a=0,la=3;a<la;a++){
-                        this.layer.quad(-1.5,-4.25,1.5,-4.25,0.5,-6,-0.5,-6)
+                        this.layer.quad(variants.mtg?-1.2:-1.5,variants.mtg?-3.2:-4.25,variants.mtg?1.2:1.5,variants.mtg?-3.2:-4.25,variants.mtg?0.375:0.5,variants.mtg?-4.8:-6,variants.mtg?-0.375:-0.5,variants.mtg?-4.8:-6)
                         this.layer.rotate(120)
                     }
                     this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-12-(this.colorful?3:0))
@@ -9545,14 +9643,14 @@ class card{
                     this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+12+(this.colorful?3:0))
                     this.layer.fill(50,225,125,this.fade)
                     this.layer.stroke(25,200,100,this.fade)
-                    this.layer.strokeWeight(1.5)
+                    this.layer.strokeWeight(variants.mtg?1.2:1.5)
                     this.layer.strokeJoin(ROUND)
-                    regStar(this.layer,0,0,6,7,7,10,10,30)
+                    regStar(this.layer,0,0,6,variants.mtg?5.4:7,variants.mtg?5.4:7,variants.mtg?8:10,variants.mtg?8:10,30)
                     this.layer.strokeJoin(MITER)
                     this.layer.noStroke()
                     this.layer.fill(125,255,175,this.fade)
-                    this.layer.ellipse(0,0,6)
-                    regStar(this.layer,0,0,6,3,3,5,5,30)
+                    this.layer.ellipse(0,0,variants.mtg?4.8:6)
+                    regStar(this.layer,0,0,6,variants.mtg?2.4:3,variants.mtg?2.4:3,variants.mtg?4:5,variants.mtg?4:5,30)
                     this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-12-(this.colorful?3:0))
                 }else if(!spec.includes(5)&&!spec.includes(41)){
                     if(variants.mtg){

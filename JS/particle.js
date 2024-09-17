@@ -633,6 +633,27 @@ class particle{
                 this.scale=1
                 this.trigger=false
             break
+            case 208:
+                this.direction=args[0]
+                this.color=args[1]
+                this.bounce=0
+                this.bounceLimit=args[2]
+                this.gear=random(-4,4)
+                this.size=1
+                this.scale=1.5
+                this.fade=0
+                this.speed=15
+                this.velocity={x:lsin(this.direction)*this.speed,y:lcos(this.direction)*this.speed}
+            break
+            case 209:
+                this.direction=args[0]
+                this.color=args[1]
+                this.gear=random(-4,4)
+                this.size=1
+                this.scale=1
+                this.fade=0
+                this.speed=12
+            break
 
         }
     }
@@ -3379,6 +3400,45 @@ class particle{
                         }
                     }
                 break
+                case 208:
+                    this.layer.rotate(this.direction)
+                    this.layer.scale(0.6)
+                    for(let a=0,la=4;a<la;a++){
+                        this.layer.fill(...mergeColor([this.color*50,50+this.color*150,255],[255,255,255],a/(la-1)),this.fade*0.2)
+                        this.layer.triangle(-4,3,4,3,0,(20+a*10)*min(this.time/20,1))
+                    }
+                    this.layer.fill([this.color*50,50+this.color*150,255],this.fade*0.2)
+                    for(let a=0,la=4;a<la;a++){
+                        regStar(this.layer,0,0,5,12-a,12-a,5.4-a*0.45,5.4-a*0.45,this.time*this.gear)
+                    }
+                    this.layer.fill(255,this.fade*0.4)
+                    for(let a=0,la=5;a<la;a++){
+                        regStar(this.layer,0,0,5,8-a,8-a,3.6-a*0.45,3.6-a*0.45,this.time*this.gear)
+                    }
+                break
+                case 209:
+                    this.layer.rotate(this.direction)
+                    this.layer.scale(0.6)
+                    for(let a=0,la=4;a<la;a++){
+                        this.layer.fill(...mergeColor([this.color*50,50+this.color*150,255],[255,255,255],a/(la-1)),this.fade*0.2)
+                        this.layer.triangle(-3,3,3,3,0,(16+a*8)*min(this.time/20,1))
+                    }
+                    this.layer.fill([this.color*50,50+this.color*150,255],this.fade*0.2)
+                    this.layer.noFill()
+                    this.layer.stroke(this.color*50,50+this.color*150,255,this.fade*0.2)
+                    for(let a=0,la=4;a<la;a++){
+                        this.layer.strokeWeight(4-a*2)
+                        regStar(this.layer,0,0,5,8,8,3.6,3.6,this.time*this.gear)
+                    }
+                    this.layer.stroke(255,this.fade*0.4)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.strokeWeight(2-a)
+                        regStar(this.layer,0,0,5,6-a*0.5,6-a*0.5,2.7-a*0.225,2.7-a*0.225,this.time*this.gear)
+                    }
+                    this.layer.stroke(255,this.fade)
+                    this.layer.strokeWeight(1)
+                    regStar(this.layer,0,0,5,3.5,3.5,1.575,1.575,this.time*this.gear)
+                break
 
             }
             //mark p
@@ -4144,6 +4204,47 @@ class particle{
                     if(this.fade<=0){
                         this.remove=true
                     }
+                }
+            break
+            case 208:
+                this.position.x+=this.velocity.x
+                this.position.y-=this.velocity.y
+                if(this.fade<1){
+                    this.fade+=0.1
+                }
+                if(this.time%20==0&&floor(random(0,2))==0){
+                    parent.particles.push(new particle(this.layer,this.position.x,this.position.y,209,[random(0,360),this.color]))
+                }
+                if(this.position.x<=0&&this.bounce<this.bounceLimit){
+                    this.velocity.x*=-1
+                    this.position.x=0
+                    this.bounce++
+                }else if(this.position.y<=0&&this.bounce<this.bounceLimit){
+                    this.velocity.y*=-1
+                    this.position.y=0
+                    this.bounce++
+                }else if(this.position.x>=this.layer.width&&this.bounce<this.bounceLimit){
+                    this.velocity.x*=-1
+                    this.position.x=this.layer.width
+                    this.bounce++
+                }else if(this.position.y>=this.layer.height&&this.bounce<this.bounceLimit){
+                    this.velocity.y*=-1
+                    this.position.y=this.layer.height
+                    this.bounce++
+                }
+                if((this.position.x<=-20||this.position.y<=-20||this.position.x>this.layer.width+20||this.position.y>this.layer.height+20)&&this.bounce>=this.bounceLimit){
+                    this.remove=true
+                }
+                this.direction=atan2(this.velocity.x,this.velocity.y)
+            break
+            case 209:
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed
+                if(this.fade<1){
+                    this.fade+=0.1
+                }
+                if(this.position.x<=-20||this.position.y<=-20||this.position.x>this.layer.width+20||this.position.y>this.layer.height+20){
+                    this.remove=true
                 }
             break
 

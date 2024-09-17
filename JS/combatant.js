@@ -6773,7 +6773,7 @@ class combatant{
                 }
                 this.battle.updateTargetting()
                 if(this.battle.turn.main<this.battle.players){
-                    this.battle.cardManagers[this.battle.turn.main].hand.deathEffect()
+                    this.battle.cardManagers[this.battle.turn.main].hand.allEffect(111)
                 }
                 if(!this.minion){
                     this.battle.relicManager.activate(3)

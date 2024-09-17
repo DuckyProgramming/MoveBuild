@@ -707,6 +707,8 @@ types={
         {name:'All Enemy Dodge',class:4},
         {name:'Draw Status',class:4},
         {name:'2 Tile Triple Spin Strike',class:1},
+        {name:'Star, Showering Starlight',class:4},
+
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,description:''},
         {name:'Leftovers',internal:'Quick Heal',id:1,rarity:0,list:0,mtg:0,description:'Heal 2 HP at\nthe End of Combat'},

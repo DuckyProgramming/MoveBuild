@@ -108,6 +108,7 @@ class purchase{
                 cancel=true
             }
             if(!cancel){
+                this.battle.cardManagers[purchaser].allEffectArgs(0,46,[this])
                 this.battle.loseCurrency(round(this.cost[purchaser]),purchaser)
                 this.usable=false
                 this.deSize=true

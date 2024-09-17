@@ -23,10 +23,6 @@ how many ally cards?
 
 
 
-subconscious sweep - autoplay, 10 damage in all directions
-
-unconscious - autoplay, 18 block
-
 instant reflex - lose 1 energy, draw 2 cards
 
 
@@ -83,7 +79,10 @@ navigation event - go to a random spot on the map
 
 scrap ooze
 
-[]
+bomb the management office, but it's in a residential district
+send bomb threats - 50% lose 10 health, 50% gain 500 currency
+use a weaker bomb - gain 100 currency
+don't worry about it - gain 500 currency, become cursed - guilt
 
 []
 
