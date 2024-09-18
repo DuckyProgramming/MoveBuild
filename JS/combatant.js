@@ -457,7 +457,7 @@ class combatant{
         this.startAnimation(0)
         this.runAnimation(0,0)
         switch(this.name){
-            case 'Donakho':
+            case 'Donakho': case 'Ducopo':
                 this.anim.fat=1
             break
         }
@@ -1555,7 +1555,7 @@ class combatant{
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
-            case 'Donakho':
+            case 'Donakho': case 'Ducopo':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -5251,7 +5251,7 @@ class combatant{
                     break
                 }
             break
-            case 'Donakho':
+            case 'Donakho': case 'Ducopo':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -5732,7 +5732,7 @@ class combatant{
                     break
                 }
             break
-            case 'Donakho':
+            case 'Donakho': case 'Ducopo':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate

@@ -3461,6 +3461,13 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('3',7,1)
                 break
+                case 'No Fatigue':
+                    displaySymbol(this.layer,-6,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-6,0,51,0,0.8,this.fade)
+                    displaySymbol(this.layer,6,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,6,0,51,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,0,16,0,1.2,this.fade)
+                break
 
                 //mark p
             }

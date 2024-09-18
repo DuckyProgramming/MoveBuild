@@ -2312,7 +2312,7 @@ class group{
                 this.battle.loseEnergy(card.effect[0],this.player)
                 this.drawEffects.push([8,card.effect[1]])
             break
-            case -61:
+            case -61: case 5360:
                 for(let a=0,la=card.effect[0];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
@@ -2389,7 +2389,7 @@ class group{
 
             //mark n
             
-            case 288: case 374: case 2217: case 2776: case 4078:
+            case 288: case 374: case 2217: case 2776: case 4078: case 5361:
                 for(let a=0,la=card.effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }

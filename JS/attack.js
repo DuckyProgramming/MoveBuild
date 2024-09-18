@@ -229,7 +229,9 @@ class attack{
             case 5038: case 5045: case 5046: case 5051: case 5052: case 5055: case 5057: case 5067: case 5077: case 5081: case 5082: case 5083: case 5085: case 5089: case 5090: case 5097: case 5100: case 5108: case 5109: case 5110:
             case 5111: case 5112: case 5114: case 5115: case 5117: case 5118: case 5152: case 5153: case 5154: case 5155: case 5158: case 5160: case 5161: case 5163: case 5165: case 5170: case 5171: case 5172: case 5173: case 5174:
             case 5179: case 5184: case 5191: case 5193: case 5194: case 5197: case 5213: case 5216: case 5223: case 5224: case 5229: case 5232: case 5233: case 5234: case 5237: case 5241: case 5242: case 5243: case 5244: case 5245:
-            case 5246: case 5255: case 5260: case 5271: case 5280: case 5285: case 5288: case 5290: case 5292: case 5294: case 5297: case 5300: case 5306: case 5326:
+            case 5246: case 5255: case 5260: case 5271: case 5280: case 5285: case 5288: case 5290: case 5292: case 5294: case 5297: case 5300: case 5306: case 5326: case 5337: case 5338: case 5340: case 5341: case 5342: case 5343:
+            case 5344: case 5345: case 5346: case 5347: case 5348: case 5349: case 5351: case 5352: case 5353: case 5354: case 5355: case 5356: case 5357: case 5358: case 5359: case 5360: case 5361: case 5363: case 5364: case 5365:
+            case 5367: case 5368: case 5369: case 5370: case 5371: case 5372: case 5375:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -349,7 +351,7 @@ class attack{
                 }
             break
             case 138: case 139: case 175: case 400: case 453: case 516: case 1436: case 1709: case 2384: case 2654:
-            case 3014: case 3573: case 3587: case 3913: case 4063:
+            case 3014: case 3573: case 3587: case 3913: case 4063: case 5366:
                 this.targetCombatant=[]
                 this.direction=[]
                 this.distance=[]
@@ -398,7 +400,7 @@ class attack{
                 this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.targetCombatant.relativePosition.x,this.targetTile.relativePosition.y-this.targetCombatant.relativePosition.y)
                 this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.targetCombatant.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.targetCombatant.relativePosition.y)**2)
             break
-            case 201: case 222:
+            case 201: case 222: case 5339:
                 this.targetCombatant=[]
                 this.direction=[]
                 this.distance=[]
@@ -433,7 +435,7 @@ class attack{
                 this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
                 this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
             break
-            case 358: case 986: case 2657: case 3872: case 3878:
+            case 358: case 986: case 2657: case 3872: case 3878: case 5350:
                 this.targetCombatant=[]
                 this.direction=[]
                 this.distance=[]
@@ -789,10 +791,10 @@ class attack{
                     this.targetDistance=distTargetCombatant(0,this,this.targetCombatant)
                 }
             break
-            case 2837:
+            case 2837: case 5362:
                 if(this.userCombatant.elemental){
                     this.procedure[0]=1
-                    this.targetCombatant=this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,2)
+                    this.targetCombatant=this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,1)
                     this.direction=[]
                     this.distance=[]
                     this.relativeDirection=[]
@@ -2310,7 +2312,7 @@ class attack{
                     break
                     case 234:
                         if(this.targetCombatant.life<=0){
-                            this.userCombatant.combo+=this.effect[1]
+                            this.userCombatant.combo=min(this.userCombatant.combo+this.effect[1],this.userCombatant.comboCap)
                         }
                     break
                     case 260:
@@ -5166,6 +5168,9 @@ class attack{
                     case 5300:
                         this.userManager.draw(this.effect[1]*this.energy)
                     break
+                    case 5375:
+                        this.userManager.drawAbstract(this.effect[1],-1,12,[2])
+                    break
 
                 }
                 //mark 1s
@@ -5682,7 +5687,7 @@ class attack{
                         }
                     break
                     case 221:
-                        this.userCombatant.combo+=this.effect[1]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[1],this.userCombatant.comboCap)
                     break
                     case 235:
                         this.userCombatant.statusEffect('Counter',this.effect[1]*this.energy)
@@ -6883,7 +6888,7 @@ class attack{
                             this.battle.addSpecificEnergy(2,this.player,6)
                         }
                     break
-                    case 4902:
+                    case 4902: case 5376:
                         this.userCombatant.statusEffect('Armor',this.effect[1])
                     break
                     case 4920:
@@ -7091,7 +7096,7 @@ class attack{
                         this.userCombatant.addBlock(this.effect[1])
                     break
                     case 182:
-                        this.userCombatant.combo+=this.effect[1]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[1],this.userCombatant.comboCap)
                         this.userCombatant.statusEffect('Must Attack or Take Damage',this.effect[2])
                     break
                     case 192:
@@ -7436,8 +7441,8 @@ class attack{
                         }
                     break
                     case 1671:
-                        this.userCombatant.combo+=this.effect[1]
-                        this.userCombatant.statusEffect('Combo Next Turn',this.effect[2])
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[1],this.userCombatant.comboCap)
+                        this.userCombatant.statusEffect('Combo Next Turn',-this.effect[2])
                     break
                     case 1673:
                         this.userCombatant.statusEffect('Single Damage Up',this.effect[1])
@@ -8505,7 +8510,7 @@ class attack{
                         this.userManager.draw(this.effect[1])
                     break
                     case 128:
-                        this.userCombatant.combo+=this.effect[0]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[0],this.userCombatant.comboCap)
                     break
                     case 149:
                         this.userCombatant.statusEffect('Take 3/4 Damage',this.effect[0])
@@ -8539,18 +8544,18 @@ class attack{
                         this.battle.addEnergyGen(this.effect[0],this.player)
                     break
                     case 215:
-                        this.userCombatant.combo+=this.effect[0]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[0],this.userCombatant.comboCap)
                         this.userCombatant.loseHealth(this.effect[1])
                     break
                     case 223:
                         this.userCombatant.statusEffect('Conditioning',this.effect[0])
                     break
                     case 225:
-                        this.userCombatant.combo+=this.effect[0]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[0],this.userCombatant.comboCap)
                         this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
                     break
                     case 226:
-                        this.userCombatant.combo+=this.effect[0]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[0],this.userCombatant.comboCap)
                         this.userCombatant.statusEffect('Remove Combo',1)
                     break
                     case 231:
@@ -8658,7 +8663,7 @@ class attack{
                         this.battle.addCurrency(this.effect[2],this.player)
                     break
                     case 488:
-                        this.userCombatant.combo+=this.effect[0]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[0],this.userCombatant.comboCap)
                         this.userManager.addRandomAbstract(2,0,0,2,0,[4],[3,11])
                     break
                     case 500:
@@ -8702,21 +8707,21 @@ class attack{
                         this.userCombatant.statusEffect('Dodge Next Turn',this.effect[1])
                     break
                     case 644:
-                        this.userCombatant.combo+=this.effect[0]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[0],this.userCombatant.comboCap)
                         this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
                         this.userCombatant.statusEffect('Combo Next Turn',this.effect[2])
                     break
                     case 646:
                         this.userCombatant.statusEffect('Combo Per Hit Boost',this.effect[0])
-                        this.userCombatant.combo+=this.effect[1]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[1],this.userCombatant.comboCap)
                     break
                     case 648:
                         this.userCombatant.statusEffect('Combo Per Turn',this.effect[0])
-                        this.userCombatant.combo+=this.effect[1]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[1],this.userCombatant.comboCap)
                     break
                     case 649:
                         this.userCombatant.statusEffect('Strength',floor(this.userCombatant.combo/max(1,this.effect[0])))
-                        this.userCombatant.combo=this.effect[1]
+                        this.userCombatant.combo=min(this.effect[1],this.userCombatant.comboCap)
                     break
                     case 655:
                         this.userManager.deAbstract(1,this.effect[0],[])
@@ -10090,7 +10095,7 @@ class attack{
                         this.battle.addSpecificEnergy(this.type-3973,this.player,6)
                     break
                     case 3978:
-                        this.userCombatant.combo+=this.effect[0]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[0],this.userCombatant.comboCap)
                         this.userCombatant.statusEffect('(G) Next Turn',1)
                     break
                     case 3987:
@@ -13225,7 +13230,7 @@ class attack{
                         this.userCombatant.statusEffect('Knowledge Next Turn',this.effect[0])
                         this.userCombatant.statusEffect('Knowledge in 2 Turns',this.effect[0])
                         this.userCombatant.statusEffect('Wisdom',this.effect[1])
-                        this.userManagaer.draw(this.effect[2])
+                        this.userManager.draw(this.effect[2])
                     break
                     case 4623:
                         this.userCombatant.statusEffect('Elemental (E)',1)
@@ -13622,7 +13627,7 @@ class attack{
                         this.userCombatant.combo=0
                     break
                     case 202:
-                        this.userCombatant.combo+=this.effect[0]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[0],this.userCombatant.comboCap)
                     break
                     case 224:
                         this.userCombatant.heal(this.effect[0]*this.energy)
@@ -13946,7 +13951,7 @@ class attack{
                         this.userCombatant.statusEffect('Hook',1)
                     break
                     case 1710:
-                        this.userCombatant.combo+=this.effect[0]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[0],this.userCombatant.comboCap)
                         this.userCombatant.heal(this.effect[1])
                     break
                     case 1712:
@@ -17025,7 +17030,7 @@ class attack{
                         this.targetCombatant.goal.anim.direction+=120
                         this.battle.updateTargetting()
                     break
-                    case 1281:
+                    case 1281: case 5355:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.goal.anim.direction+=-60+floor(random(0,2))*120
                         this.battle.updateTargetting()
@@ -17168,7 +17173,7 @@ class attack{
                             this.userManager.draw(this.effect[1])
                         }
                     break
-                    case 4812:
+                    case 4812: case 5371:
                         this.targetCombatant.takeDamage(this.effect[0])
                         this.targetCombatant.goal.anim.direction+=-60+floor(random(0,2))*120
                         this.battle.updateTargetting()
@@ -17194,6 +17199,22 @@ class attack{
                     case 5115:
                         this.targetCombatant.statusEffect('Freeze',this.effect[0])
                         this.userCombatant.statusEffect('Armor',this.effect[1])
+                    break
+                    case 5344:
+                        this.targetCombatant.goal.anim.direction-=60
+                        this.battle.updateTargetting()
+                    break
+                    case 5345:
+                        this.targetCombatant.goal.anim.direction+=60
+                        this.battle.updateTargetting()
+                    break
+                    case 5346:
+                        this.targetCombatant.goal.anim.direction-=120
+                        this.battle.updateTargetting()
+                    break
+                    case 5347:
+                        this.targetCombatant.goal.anim.direction+=120
+                        this.battle.updateTargetting()
                     break
 
                 }
@@ -18645,6 +18666,20 @@ class attack{
                     break
                     case 5324:
                         this.battle.combatantManager.allEffect(48,['Frail',this.effect[0]])
+                    break
+                    case 5373:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Shiv',types.card),0,0)
+                        }
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 5374:
+                        if(this.userManager.hand.numberAbstract(0,[['Shiv','Broken\nShiv','Deluxe\nShiv']])>0){
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userManager.hand.add(findName('Shiv',types.card),0,0)
+                            }
+                            this.userManager.draw(this.effect[1])
+                        }
                     break
 
                 }

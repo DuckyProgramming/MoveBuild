@@ -828,7 +828,7 @@ types={
         {name:'Anger Insurance',internal:'Low Health Strength',id:105,rarity:-1,list:0,mtg:0,description:'Gain 1 Strength Every Turn\nWhen Health Below 50%'},
         {name:'Clear Candle',internal:'Status Immunity',id:106,rarity:-1,list:0,mtg:0,description:'Status Cards Other Than\nFatigue Exhaust When Drawn'},
         {name:'Oil Can',internal:'Early Initiative',id:107,rarity:1,list:0,mtg:0,description:'Start Each Combat With 2 Initiative'},
-        {name:'Orange Peel',internal:'Less Fatigue',id:108,rarity:1,list:0,mtg:0,description:'Remove the First Fatigue\nAdded Each Combat'},
+        {name:'Orange Peel',internal:'Less Fatigue',id:108,rarity:0,list:0,mtg:0,description:'Remove the First Fatigue\nAdded Each Combat'},
         {name:'Loot Glove',internal:'More Stashes',id:109,rarity:1,list:0,mtg:0,description:'Stashes Contain 2 More Relics'},
 
         {name:'Green Stripe',internal:'Upgrade Purchases',id:110,rarity:1,list:0,mtg:0,description:'Upgrade All Cards\nBought at the Shop'},
@@ -1228,6 +1228,7 @@ types={
         {name:'Straw Shield',internal:'Bonus Block',id:469,rarity:0,list:0,mtg:0,description:'If You End Your Turn With Block,\nAdd 2 Block'},
 
         {name:'Nuclear Waste',internal:'3 Turn Temporary Strength',id:470,rarity:-1,list:0,mtg:0,description:'Every 3 Turns,\nGain 3 Temporary Strength'},
+        {name:'Green Pentachoron',internal:'No Fatigue',id:471,rarity:4,list:0,mtg:0,description:'Never Get Fatigued Again'},
 
         //mark mtg mark r
     ],item:[

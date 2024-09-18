@@ -3161,7 +3161,7 @@ class card{
             case 2303: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Strength\nin 2 Turns`; break
             case 2304: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Dexterity\nin 2 Turns`; break
             case 2305: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Hand Size\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-            case 2306: string+=`If You Have a\nCost 2+ Card in Hand,\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 2306: string+=`If You Have a\n2+ Cost Card in Hand,\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 2307: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain ${effect[1]} Random\nCard${pl(effect[1])} Once`; break
             case 2309: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf You Have No Armor,\nGain ${effect[1]} Armor`; break
             case 2310: string+=`Gain ${effect[0]} Regeneration\nWhen You Take Damage`; break
@@ -5380,9 +5380,9 @@ class card{
             case 4485: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEven Mana Total:\nApply ${effect[1]} Weak`; break
             case 4487: string+=`Add Any Random\n${effect[0]} 3 ${variants.mtg?`Total `:``}Cost Card${effect[0]!=1?`s`:``}\nof Equivalent Level\nto Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
             case 4488: string+=`Trigger Target's Jinx\nDraw ${effect[0]} Card${pl(effect[0])}`; break
-            case 4489: string+=`If You Have a Total\nCost 3+ Card in Hand,\nGain (K) (K) (K)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
-            case 4490: string+=`If You Have a Total\nCost 3+ Card in Hand,\nGain (E) (K) (K)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
-            case 4491: string+=`If You Have a Total\nCost 3+ Card in Hand,\nGain (E) (E) (K)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 4489: string+=`If You Have a 3+\nTotal Cost Card in Hand,\nGain (K) (K) (K)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 4490: string+=`If You Have a 3+\nTotal Cost Card in Hand,\nGain (E) (K) (K)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 4491: string+=`If You Have a 3+\nTotal Cost Card in Hand,\nGain (E) (E) (K)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 4492: string+=`Gain (G) (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nSlime ${effect[1]} Random Card${pl(effect[1])}`; break
             case 4493: string+=`Gain (G) (G)\nDraw ${effect[0]} Card${pl(effect[0])}\nSlime ${effect[1]} Random Card${pl(effect[1])}`; break
             case 4494: string+=`Gain (E) (G)\nDraw ${effect[0]} Card${pl(effect[0])}\nSlime ${effect[1]} Random Card${pl(effect[1])}`; break
@@ -6167,7 +6167,7 @@ class card{
             case 5284: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporarily\nGain (E) (E) Next Turn`; break
             case 5285: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage if\nOnly 1 Enemy is Alive`; break
             case 5286: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Double Block if\nOnly 1 Enemy is Alive`; break
-            case 5287: string+=`Put a Copy of\na Card in Draw\nPile in Your Ha  nd\nand Make it Foil`; break
+            case 5287: string+=`Put a Copy of\na Card in Draw\nPile in Your Hand\nand Make it Foil`; break
             case 5288: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nCan be Played\nFrom Discard Pile`; break
             case 5289: string+=`Next Attack Deals\n${effect[0]} More Damage\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 5290: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 Temporarily\nWhen an X Cost\nCard is Played`; break
@@ -6217,6 +6217,51 @@ class card{
             case 5334: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nExhaust ${effect[1]} Card${pl(effect[1])}\nDraw ${effect[2]} More Card${pl(effect[2])}\nNext Turn`; break
             case 5335: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Become`:`It Becomes`} Foil`; break
             case 5336: string+=`Lose ${effect[0]} ${variants.mtg?`Random Mana`:`Energy`}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5337: string+=`Push 1 Tile`; break
+            case 5338: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile`; break
+            case 5339: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nin Both Directions`; break
+            case 5340: string+=`Push 2 Tiles\nAround Right`; break
+            case 5341: string+=`Push 2 Tiles\nAround Left`; break
+            case 5342: string+=`Push to End`; break
+            case 5343: string+=`Push 1 Tile\nto All Enemies`; break
+            case 5344: string+=`Rotate Target Left`; break
+            case 5345: string+=`Rotate Target Right`; break
+            case 5346: string+=`Rotate Target Hard Left`; break
+            case 5347: string+=`Rotate Target Hard Right`; break
+            case 5348: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nAdvance`; break
+            case 5349: string+=`Push 1 Tile\nIf Target is Unmoved,\nPush Again`; break
+            case 5350: string+=`Push 1 Tile\nCan Push 2 Targets`; break
+            case 5351: string+=`Push 1 Tile\nGain ${effect[0]} Strength`; break
+            case 5352: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nTarget Will Face Away`; break
+            case 5353: string+=`Push 1 Tile\nTarget Will Face Away`; break
+            case 5354: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nRandomize Target Intent`; break
+            case 5355: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRotate Target Randomly\nLeft or Right\n75%: Gain ${effect[1]} Energy`; break
+            case 5356: string+=`Push 1 Tile\nYou Cannot be Pushed\nThis Turn`; break
+            case 5357: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nDiscard ${effect[1]} Card${pl(effect[1])}`; break
+            case 5358: string+=`Push to Edge\nto All Enemies`; break
+            case 5359: string+=`Push 1 Tile\nRearm From Target Tile`; break
+            case 5360: string+=`Push 1 Tile\nWhen Drawn,\nMake ${effect[0]} Cop${effect[0]!=1?`ies`:`y`}`; break
+            case 5361: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nWhen Drawn,\nMake ${effect[1]} Cop${effect[1]!=1?`ies`:`y`}`; break
+            case 5362: string+=`Push 1 Tile\nElemental Form:\nIn All Directions`; break
+            case 5363: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 2 Tiles\nAdvance`; break
+            case 5364: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPull 1 Tile at Range 2+`; break
+            case 5365: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nin a Random Direction`; break
+            case 5366: string+=`Push 1 Tile\nin 3 Directions`; break
+            case 5367: string+=`Push 1 Tile\nGain ${effect[0]} Dexterity`; break
+            case 5368: string+=`Push 1 Tile\nAdd a Pristine to Hand`; break
+            case 5369: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nAdd a Pristine to Hand`; break
+            case 5370: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nAdd a Pristine or\nan Occult to Hand`; break
+            case 5371: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRotate Target Randomly\nLeft or Right\n75%: Gain (N) (N)`; break
+            case 5372: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nCosts 1 Less Temporarily\nWhen You Play\na Movement`; break
+            case 5373: string+=`Add ${effect[0]} Shiv${pl(effect[0])} to Hand\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5374: string+=`If You Have a\nShiv in Your Hand,\nAdd ${effect[0]} Shiv${pl(effect[0])} to Hand\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5375: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Become`:`It Becomes`} Foil`; break
+            case 5376: string+=`-1: Play a Foil Card\nActive: Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Armor`; break
+
+
+
+
+
 
             //mark p
 
@@ -6226,7 +6271,6 @@ class card{
             case 1: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break
             case 3: string+=`Move ${effect[0]} Tile${pl(effect[0])}`; break
-            case 5: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile`; break
             case 6: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage`; break
             case 8: string+=`Draw ${effect[0]} Card${pl(effect[0])}`; break
             case 10: string+=`Heal ${this.calculateEffect(effect[0],4)} Health`; break
@@ -6246,6 +6290,7 @@ class card{
             case 491: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}`; break
             case 637: string+=`Gain ${effect[0]} Currency`; break
             case 2906: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier`; break
+            case 5337: string+=`Push 1 Tile`; break
             */
         }
         if(string[string.length-1]=='\n'){
@@ -7754,7 +7799,7 @@ class card{
                     this.deSize=true
                     this.exhaust=true
                 break
-                case 5014:
+                case 5014: case 5372:
                     if(cardClass==3){
                         this.costDown(0,[1])
                     }
@@ -7830,12 +7875,17 @@ class card{
                     }
                 break
                 case 5331: case 5332:
-                    if(card.getCost(1)){
+                    if(card.getCost(4)){
                         this.costDown(0,[1])
                     }
                 break
                 case 5333:
                     if(card.getCost(0)!=0){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5376:
+                    if(card.edition==2){
                         this.costDown(0,[1])
                     }
                 break

@@ -389,8 +389,8 @@ class purchaseManager{
                     for(let a=0,la=this.battle.players;a<la;a++){
                         let list=variants.mtg?copyArrayStack(this.battle.cardManagers[a].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[a].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[a].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[a].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
                         let valid=[]
-                        for(let b=0,lb=this.battle.cardManagers[0].deck.cards.length;b<lb;b++){
-                            if(!this.battle.cardManagers[0].deck.cards[b].basic){
+                        for(let b=0,lb=this.battle.cardManagers[a].deck.cards.length;b<lb;b++){
+                            if(!this.battle.cardManagers[a].deck.cards[b].basic){
                                 valid.push(b)
                             }
                         }

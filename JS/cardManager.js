@@ -869,7 +869,7 @@ class cardManager{
     subFatigue(name,bypass){
         this.interval++
         let override=true
-        if(this.numberAbstract(3,[43])<10||this.interval%2==0||bypass||override){
+        if((this.numberAbstract(3,[43])<10||this.interval%2==0||bypass||override)&&!this.battle.relicManager.hasRelic(471,this.player)){
             if(this.battle.relicManager.hasRelic(286,this.player)){
                 this.reserve.add(findName(name,types.card),0,game.playerNumber+1)
                 this.reserve.cards[this.reserve.cards.length-1].spec.push(43)

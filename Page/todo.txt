@@ -1,4 +1,4 @@
-cringe boss relic - never get fatigued again lol
+star active ability doesn't have animation
 
 
 
@@ -33,6 +33,10 @@ scrap note
 
 
 
+[foil]
+
+
+
 ducopo tricolor card
 
 
@@ -56,8 +60,6 @@ DUCOPO DEVELOPMENT
 model
 icon
 tutorial
-
-third gimmick - red mtg alignment
 
 
 
@@ -94,4 +96,3 @@ fire and ice big slime [nerf jet off the elite stack]
 []
 []
 []
-

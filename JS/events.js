@@ -2323,7 +2323,7 @@ seems to have decreased somewhat.`,
             },
         ],
     },{
-        name:'The Collector',id:73,list:0,
+        name:'The Trader',id:73,list:0,
         pages:[
             {
                 desc:
