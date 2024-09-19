@@ -2268,7 +2268,7 @@ class attack{
                         this.battle.dropDrawShuffle(this.player,findName('Anger',types.card),this.level,this.color,this.edition)
                     break
                     case 123:
-                        this.battle.drop(this.player,findName('Slow\nBleed',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Slow\nBleed',types.card),0,constants.playerNumber+1)
                     break
                     case 124:
                         this.userManager.randomEffect(2,13,[])
@@ -2392,7 +2392,7 @@ class attack{
                         this.targetCombatant.statusEffect('Vulnerable',this.effect[2])
                     break
                     case 429:
-                        this.battle.drop(this.player,findName('Winded',types.card),this.level,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Winded',types.card),this.level,constants.playerNumber+1)
                     break
                     case 435:
                         if(this.userCombatant.armed){
@@ -2614,14 +2614,14 @@ class attack{
                         }
                     break
                     case 940:
-                        this.userManager.hand.add(findName('Burn',types.card),0,game.playerNumber+1)
+                        this.userManager.hand.add(findName('Burn',types.card),0,constants.playerNumber+1)
                     break
                     case 946:
                         this.battle.setEnergy(this.effect[1],this.player)
                     break
                     case 950:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Burn',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Burn',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 966:
@@ -2759,7 +2759,7 @@ class attack{
                         this.battle.dropDrawShuffle(this.player,findName('Diamond',types.card),0,0)
                     break
                     case 1155:
-                        this.userManager.addRandomAbstract(2,0,0,1,0,[],[game.playerNumber+2,3])
+                        this.userManager.addRandomAbstract(2,0,0,1,0,[],[constants.playerNumber+2,3])
                     break
                     case 1166:
                         this.targetCombatant.statusEffect('Take Damage',this.effect[0])
@@ -3045,7 +3045,7 @@ class attack{
                     break
                     case 1668:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Poison\nThorn',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Poison\nThorn',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 1678:
@@ -3735,7 +3735,7 @@ class attack{
                         }
                     break
                     case 2716:
-                        this.userManager.hand.add(findName(this.userCombatant.elemental?'Refreshed':'Disappointed',types.card),0,game.playerNumber+1)
+                        this.userManager.hand.add(findName(this.userCombatant.elemental?'Refreshed':'Disappointed',types.card),0,constants.playerNumber+1)
                     break
                     case 2723:
                         if(this.userManager.hand.deAbstract(3,1,[])==1){
@@ -4541,7 +4541,7 @@ class attack{
                     break
                     case 4276: case 4281:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Wisp',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Wisp',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 4319:
@@ -5833,7 +5833,7 @@ class attack{
                         this.userCombatant.charge+=this.effect[1]
                     break
                     case 861:
-                        this.userManager.hand.add(findName('Burn',types.card),0,game.playerNumber+1)
+                        this.userManager.hand.add(findName('Burn',types.card),0,constants.playerNumber+1)
                     break
                     case 867:
                         this.userCombatant.removeRandomStatus([1,3])
@@ -5864,7 +5864,7 @@ class attack{
                     break
                     case 968:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Burn',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Burn',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 989:
@@ -6181,7 +6181,7 @@ class attack{
                     break
                     case 2676:
                         for(let a=0,la=this.userCombatant.elemental?2:1;a<la;a++){
-                            this.userManager.hand.add(findName('Refreshed',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Refreshed',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 2679:
@@ -6224,7 +6224,7 @@ class attack{
                     break
                     case 2778:
                         for(let a=0,la=this.effect[1]*this.energy;a<la;a++){
-                            this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                            this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,constants.playerNumber+1)
                         }
                     break
                     case 2780:
@@ -6331,7 +6331,7 @@ class attack{
                     case 3017:
                         this.battle.overlayManager.overlays[58][this.player].active=true
                         this.battle.overlayManager.overlays[58][this.player].activate([this.effect[1],0])
-                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
                     break
                     case 3024:
                         this.userCombatant.statusEffect('Barrier Next Turn',this.effect[1])
@@ -6492,7 +6492,7 @@ class attack{
                         this.userCombatant.faith+=this.effect[1]
                     break
                     case 3450:
-                        this.userManager.hand.add(findName('Shadow',types.card),0,game.playerNumber+1)
+                        this.userManager.hand.add(findName('Shadow',types.card),0,constants.playerNumber+1)
                     break
                     case 3454:
                         this.userCombatant.statusEffect('Temporary Strength Next Turn',this.effect[1]*this.userManager.hand.turnPlayed[1])
@@ -6740,7 +6740,7 @@ class attack{
                     break
                     case 4279:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Wisp',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Wisp',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 4285: case 4663:
@@ -7359,7 +7359,7 @@ class attack{
                     break
                     case 1577:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Burn',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Burn',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 1578:
@@ -7723,7 +7723,7 @@ class attack{
                     break
                     case 2742:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Refreshed',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Refreshed',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 2743:
@@ -7765,7 +7765,7 @@ class attack{
                     break
                     case 2760:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Disappointed',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Disappointed',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 2761:
@@ -8099,7 +8099,7 @@ class attack{
                     break
                     case 4284:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Wisp',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Wisp',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 4331:
@@ -8671,7 +8671,7 @@ class attack{
                     break
                     case 517:
                         this.battle.addEnergy(this.effect[0],this.player)
-                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
                     break
                     case 521: case 5318:
                         this.battle.multiplyEnergy(2,this.player)
@@ -8882,7 +8882,7 @@ class attack{
                     case 1074:
                         this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
-                        this.battle.drop(this.player,findName('Out of\nTime',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Out of\nTime',types.card),0,constants.playerNumber+1)
                     break
                     case 1079:
                         this.battle.addEnergy(this.effect[0]*this.battle.combatantManager.numberAbstract(1,[]),this.player)
@@ -8897,7 +8897,7 @@ class attack{
                     case 1108:
                         this.userCombatant.statusEffect('Strength',this.effect[0])
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.dropDrawShuffle(this.player,findName('Basicity',types.card),0,game.playerNumber+1)
+                            this.battle.dropDrawShuffle(this.player,findName('Basicity',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 1124:
@@ -9515,7 +9515,7 @@ class attack{
                     case 2975:
                         this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
-                        this.battle.drop(this.player,findName('Defocus',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Defocus',types.card),0,constants.playerNumber+1)
                     break
                     case 2984: case 4313:
                         let result2984=this.userManager.drawReturn(this.effect[0])
@@ -9572,7 +9572,7 @@ class attack{
                     case 3133:
                         this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
-                        this.battle.drop(this.player,findName('Moonscape',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Moonscape',types.card),0,constants.playerNumber+1)
                     break
                     case 3161:
                         for(let a=0,la=this.effect[0];a<la;a++){
@@ -9978,7 +9978,7 @@ class attack{
                     break
                     case 3777:
                         this.userCombatant.statusEffect('Extra Turn',1)
-                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
                     break
                     case 3783:
                         this.userCombatant.statusEffect('Strength',this.effect[0]*(this.userCombatant.stance==5?2:1))
@@ -10228,15 +10228,15 @@ class attack{
                     break
                     case 4213:
                         this.battle.addSpecificEnergy(3,this.player,6)
-                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
                     break
                     case 4214:
                         this.battle.addSpecificEnergy(4,this.player,6)
-                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
                     break
                     case 4215:
                         this.battle.addSpecificEnergy(5,this.player,6)
-                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
                     break
                     case 4239:
                         this.battle.addSpecificEnergyGen(1,this.player,3)
@@ -10464,7 +10464,7 @@ class attack{
                             this.battle.addSpecificEnergy(1,this.player,[6,1,2,3,4,5,0][a])
                         }
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Out of\nTime',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Out of\nTime',types.card),0,constants.playerNumber+1)
                     break
                     case 4505:
                         this.battle.addSpecificEnergy(6,this.player,4)
@@ -10472,30 +10472,30 @@ class attack{
                             this.battle.addSpecificEnergy(1,this.player,[1,2,3,4,5][a])
                         }
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Out of\nTime',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Out of\nTime',types.card),0,constants.playerNumber+1)
                     break
                     case 4506:
                         this.battle.addSpecificEnergy(10,this.player,6)
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Out of\nTime',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Out of\nTime',types.card),0,constants.playerNumber+1)
                     break
                     case 4534:
                         this.battle.addSpecificEnergy(1,this.player,2)
                         this.battle.addSpecificEnergy(2,this.player,0)
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Defocus',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Defocus',types.card),0,constants.playerNumber+1)
                     break
                     case 4535:
                         this.battle.addSpecificEnergy(1,this.player,2)
                         this.battle.addSpecificEnergy(3,this.player,0)
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Defocus',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Defocus',types.card),0,constants.playerNumber+1)
                     break
                     case 4536:
                         this.battle.addSpecificEnergy(1,this.player,2)
                         this.battle.addSpecificEnergy(4,this.player,0)
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Defocus',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Defocus',types.card),0,constants.playerNumber+1)
                     break
                     case 4537:
                         for(let a=0,la=this.effect[0];a<la;a++){
@@ -10601,22 +10601,22 @@ class attack{
                     case 4581:
                         this.battle.addSpecificEnergy(1,this.player,0)
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Moonscape',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Moonscape',types.card),0,constants.playerNumber+1)
                     break
                     case 4582:
                         this.battle.addSpecificEnergy(2,this.player,0)
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Moonscape',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Moonscape',types.card),0,constants.playerNumber+1)
                     break
                     case 4583:
                         this.battle.addSpecificEnergy(3,this.player,0)
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Moonscape',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Moonscape',types.card),0,constants.playerNumber+1)
                     break
                     case 4584:
                         this.battle.addSpecificEnergy(4,this.player,0)
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Moonscape',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Moonscape',types.card),0,constants.playerNumber+1)
                     break
                     case 4595:
                         this.battle.addSpecificEnergy(1,this.player,2)
@@ -10935,11 +10935,11 @@ class attack{
                     break
                     case 5020:
                         this.battle.overlayManager.overlays[10][this.player].active=true
-                        this.battle.overlayManager.overlays[10][this.player].activate([0,game.playerNumber+1,44])
+                        this.battle.overlayManager.overlays[10][this.player].activate([0,constants.playerNumber+1,44])
                     break
                     case 5021:
                         this.battle.overlayManager.overlays[10][this.player].active=true
-                        this.battle.overlayManager.overlays[10][this.player].activate([0,game.playerNumber+1,44])
+                        this.battle.overlayManager.overlays[10][this.player].activate([0,constants.playerNumber+1,44])
                         this.userManager.draw(this.effect[0])
                     break
                     case 5023:
@@ -11036,7 +11036,7 @@ class attack{
                     case 5239:
                         this.userCombatant.charge+=this.effect[0]
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Wisp',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Wisp',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 5273:
@@ -11082,22 +11082,30 @@ class attack{
                     break
                     case 5327:
                         this.battle.addEnergy(this.effect[0],this.player)
-                        this.battle.drop(this.player,findName('Stuck',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Stuck',types.card),0,constants.playerNumber+1)
                     break
                     case 5328:
                         this.battle.addSpecificEnergy(3,this.player,6)
-                        this.battle.drop(this.player,findName('Stuck',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Stuck',types.card),0,constants.playerNumber+1)
                     break
                     case 5329:
                         this.battle.addSpecificEnergy(4,this.player,6)
-                        this.battle.drop(this.player,findName('Stuck',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Stuck',types.card),0,constants.playerNumber+1)
                     break
                     case 5330:
                         this.battle.addSpecificEnergy(5,this.player,6)
-                        this.battle.drop(this.player,findName('Stuck',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Stuck',types.card),0,constants.playerNumber+1)
                     break
                     case 5332:
                         this.battle.addSpecificEnergy(3,this.player,6)
+                    break
+                    case 5377:
+                        this.battle.addEnergy(this.effect[0],this.player)
+                        this.battle.addCurrency(this.effect[1],this.player)
+                    break
+                    case 5378: case 5379: case 5360:
+                        this.battle.addSpecificEnergy(this.type-5376,this.player,6)
+                        this.battle.addCurrency(this.effect[0],this.player)
                     break
 
                 }
@@ -11167,7 +11175,7 @@ class attack{
                     break
                     case 109:
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Burn',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Burn',types.card),0,constants.playerNumber+1)
                     break
                     case 116:
                         this.userCombatant.statusEffect('Energy Next Turn',this.effect[0]+this.energy)
@@ -11997,7 +12005,7 @@ class attack{
                     break
                     case 1685:
                         this.battle.dropDraw(this.player,findName('Peak',types.card),this.level,0)
-                        this.battle.dropDraw(this.player,findName('Trough',types.card),this.level,game.playerNumber+1)
+                        this.battle.dropDraw(this.player,findName('Trough',types.card),this.level,constants.playerNumber+1)
                     break
                     case 1694:
                         if(game.theme==3){
@@ -12017,11 +12025,11 @@ class attack{
                     break
                     case 1716:
                         this.battle.dropDraw(this.player,findName('Uptick',types.card),this.level,0)
-                        this.battle.dropDraw(this.player,findName('Downtick',types.card),this.level,game.playerNumber+1)
+                        this.battle.dropDraw(this.player,findName('Downtick',types.card),this.level,constants.playerNumber+1)
                     break
                     case 1718:
                         this.battle.dropDraw(this.player,findName('Buff\nUp',types.card),this.level,0)
-                        this.battle.dropDraw(this.player,findName('Nerf\nUp',types.card),this.level,game.playerNumber+1)
+                        this.battle.dropDraw(this.player,findName('Nerf\nUp',types.card),this.level,constants.playerNumber+1)
                     break
                     case 1743:
                         this.userManager.hand.allEffectArgs(8,[this.effect[0]])
@@ -12332,7 +12340,7 @@ class attack{
                     break
                     case 2684:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.userManager.hand.add(findName('Refreshed',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Refreshed',types.card),0,constants.playerNumber+1)
                         }
                         this.userManager.hand.exhaust(this.effect[1])
                     break
@@ -12385,7 +12393,7 @@ class attack{
                     case 2715:
                         this.userManager.draw(this.effect[0])
                         this.userManager.hand.rewind(this.effect[1])
-                        this.userManager.hand.add(findName('Disappointed',types.card),0,game.playerNumber+1)
+                        this.userManager.hand.add(findName('Disappointed',types.card),0,constants.playerNumber+1)
                     break
                     case 2717:
                         this.battle.overlayManager.overlays[this.userCombatant.elemental?29:8][this.player].active=true
@@ -13137,7 +13145,7 @@ class attack{
                     case 4295:
                         this.userManager.draw(this.effect[0])
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Wisp',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Wisp',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 4297:
@@ -14160,7 +14168,7 @@ class attack{
                     break
                     case 3268:
                         this.userCombatant.heal(this.effect[0])
-                        this.userManager.hand.add(findName('Burn',types.card),0,game.playerNumber+1)
+                        this.userManager.hand.add(findName('Burn',types.card),0,constants.playerNumber+1)
                     break
                     case 3282:
                         this.userCombatant.heal(this.effect[0])
@@ -14257,7 +14265,7 @@ class attack{
                     case 4283:
                         this.userCombatant.heal(this.effect[0])
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Wisp',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Wisp',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 4286:
@@ -14299,7 +14307,7 @@ class attack{
                     case 4759:
                         this.userCombatant.heal(this.effect[0])
                         this.userCombatant.statusEffect('Cannot Move',this.effect[1])
-                        this.userManager.hand.add(findName('Stuffed',types.card),0,game.playerNumber+1)
+                        this.userManager.hand.add(findName('Stuffed',types.card),0,constants.playerNumber+1)
                     break
                     case 4835:
                         for(let a=0,la=this.effect[0]*this.energy;a<la;a++){
@@ -14755,7 +14763,7 @@ class attack{
                     break
                     case 452:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                        this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,constants.playerNumber+1)
                     break
                     case 472:
                         this.targetTile.addType(19)
@@ -15014,7 +15022,7 @@ class attack{
                     case 903:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.userManager.hand.exhaust(this.effect[1])
-                        this.userManager.hand.add(findName('Burn',types.card),0,game.playerNumber+1)
+                        this.userManager.hand.add(findName('Burn',types.card),0,constants.playerNumber+1)
                     break
                     case 905: case 4637:
                         if(this.amplify){
@@ -15088,7 +15096,7 @@ class attack{
                     break
                     case 1075:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        this.battle.dropDrawShuffle(this.player,findName('Impending\nDoom',types.card),this.level,game.playerNumber+1)
+                        this.battle.dropDrawShuffle(this.player,findName('Impending\nDoom',types.card),this.level,constants.playerNumber+1)
                     break
                     case 1097:
                         if(this.userCombatant.luckCheck()){
@@ -16091,7 +16099,7 @@ class attack{
                     break
                     case 2435:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
-                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
                     break
                     case 2458:
                         this.targetCombatant.randomStatusInstant(this.effect[0],[1])
@@ -16114,7 +16122,7 @@ class attack{
                     case 2482:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                            this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,constants.playerNumber+1)
                         }
                     break
                     case 2506:
@@ -16137,7 +16145,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.targetCombatant.life>0){
                             for(let a=0,la=this.effect[1];a<la;a++){
-                                this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                                this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,constants.playerNumber+1)
                             }
                         }
                     break
@@ -16628,7 +16636,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.userManager.hand.exhaust(this.effect[1])
                         for(let a=0,la=this.effect[2];a<la;a++){
-                            this.userManager.hand.add(findName('Wisp',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Wisp',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 4300:
@@ -17847,7 +17855,7 @@ class attack{
                     break
                     case 2226:
                         this.targetCombatant.statusEffect('Strength',-this.effect[0])
-                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
                     break
                     case 2232:
                         for(let a=0,la=this.effect[0];a<la;a++){
@@ -17879,7 +17887,10 @@ class attack{
                         this.userCombatant.statusEffect('Cannot Add Block',this.effect[1])
                     break
                     case 2414:
-                        this.userManager.addRandomAbstract(2,0,0,2,5,[4],[3,25,1])
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.addRandomAbstract(2,0,0,2,5,[4],[3,25,1])
+                        }
+                        this.userCombatant.ammo+=this.effect[1]
                     break
                     case 2438:
                         this.userManager.allGroupEffectArgs(15,[this.effect[0]])
@@ -17964,7 +17975,7 @@ class attack{
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.player)
                         }
-                        this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                        this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,constants.playerNumber+1)
                     break
                     case 2847:
                         this.battle.addCurrency(this.effect[0],this.player)
@@ -18005,7 +18016,7 @@ class attack{
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.battle.dropDrawShuffle(this.player,findName('Prismatic\nBomb',types.card),0,0)
                         }
-                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
                     break
                     case 2894:
                         for(let a=0,la=this.effect[0];a<la;a++){
@@ -18053,7 +18064,7 @@ class attack{
                     case 3058:
                         this.battle.combatantManager.allEffect(30,[this.effect[0]])
                         this.battle.overlayManager.overlays[3][this.player].additionalOptions+=this.effect[1]
-                        this.userManager.hand.add(findName('Trough',types.card),this.level,game.playerNumber+1)
+                        this.userManager.hand.add(findName('Trough',types.card),this.level,constants.playerNumber+1)
                     break
                     case 3061:
                         for(let a=0,la=this.effect[0];a<la;a++){
@@ -18075,7 +18086,7 @@ class attack{
                     case 3090:
                         this.userManager.hand.add(findName('Pristine',types.card),0,0)
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
                     break
                     case 3091:
                         this.battle.dropDrawShuffle(this.player,findName('Vitality',types.card),0,0)
@@ -18112,7 +18123,7 @@ class attack{
                     case 3185:
                         this.userManager.hand.add(findName('Pristine',types.card),0,0)
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,constants.playerNumber+1)
                     break
                     case 3186:
                         this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.user])
@@ -18190,7 +18201,7 @@ class attack{
                         this.userCombatant.statusEffect('Knowledge',this.effect[1])
                         this.userCombatant.statusEffect('Wisdom',this.effect[2])
                     break
-                    case 3370: case 5214:
+                    case 3370: case 5214: case 5381:
                         for(let a=0,la=this.effect[0];a<la;a++){
                             let enemyLength=this.battle.combatantManager.combatants.length
                             switch(this.type){
@@ -18199,6 +18210,9 @@ class attack{
                                 break
                                 case 5214:
                                     this.battle.combatantManager.summonCombatant(this.userCombatant.tilePosition,findName('Gangster Gunner',types.combatant),30)
+                                break
+                                case 5381:
+                                    this.battle.combatantManager.summonCombatant(this.userCombatant.tilePosition,findName('Personnel Carrier',types.combatant),30)
                                 break
                             }
                             if(enemyLength!=this.battle.combatantManager.combatants.length){
@@ -18219,7 +18233,7 @@ class attack{
                             this.battle.dropDrawShuffle(this.player,findName('Prismatic\nBomb',types.card),0,0)
                         }
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                            this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 3458:
@@ -18294,7 +18308,7 @@ class attack{
                     break
                     case 3730:
                         let possible3730=[]
-                        for(let a=0,la=game.playerNumber;a<la;a++){
+                        for(let a=0,la=constants.playerNumber;a<la;a++){
                             if(a+1!=this.battle.players[this.player]){
                                 possible3730.push(a+1)
                             }
@@ -18323,9 +18337,9 @@ class attack{
                         this.userCombatant.loseHealth(this.effect[0])
                         let names3818=['Sunny, Glowing\nSunlight','Star, Showering\nStarlight','Luna, Silent\nMoonlight']
                         let choice3818=floor(random(0,3))
-                        this.userManager.hand.add(findName(names3818[choice3818],types.card),this.level,game.playerNumber+5)
-                        this.battle.dropDrawShuffle(this.player,findName(names3818[(choice3818+1)%3],types.card),this.level,game.playerNumber+5)
-                        this.battle.dropDrawShuffle(this.player,findName(names3818[(choice3818+2)%3],types.card),this.level,game.playerNumber+5)
+                        this.userManager.hand.add(findName(names3818[choice3818],types.card),this.level,constants.playerNumber+5)
+                        this.battle.dropDrawShuffle(this.player,findName(names3818[(choice3818+1)%3],types.card),this.level,constants.playerNumber+5)
+                        this.battle.dropDrawShuffle(this.player,findName(names3818[(choice3818+2)%3],types.card),this.level,constants.playerNumber+5)
                     break
                     case 3866:
                         this.userCombatant.statusEffect('13 Card Block',this.effect[0])
@@ -18360,7 +18374,7 @@ class attack{
                     break
                     case 3982:
                         this.targetCombatant.statusEffect('Weak',this.effect[0])
-                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
                     break
                     case 3986:
                         this.targetCombatant.statusEffect('Strength',this.effect[0])
@@ -19388,7 +19402,7 @@ class attack{
                         this.userCombatant.statusEffect('Perfect Dice Rolls',999)
                     break
                     case 2043:
-                        for(let a=0,la=game.playerNumber;a<la;a++){
+                        for(let a=0,la=constants.playerNumber;a<la;a++){
                             this.userManager.addRandomAbstract(2,this.level,0,1,0,[],[a+1,3])
                         }
                     break
@@ -19753,7 +19767,7 @@ class attack{
                     case 2911:
                         this.userCombatant.statusEffect('Intangible',this.effect[0])
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                            this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,constants.playerNumber+1)
                         }
                     break
                     case 2912:
@@ -19945,7 +19959,7 @@ class attack{
                         this.userManager.hand.allEffect(99)
                     break
                     case 3166:
-                        for(let a=0,la=game.playerNumber;a<la;a++){
+                        for(let a=0,la=constants.playerNumber;a<la;a++){
                             this.userManager.addRandomAbstract(2,0,0,1,0,[1],[a+1,3,0])
                         }
                     break
@@ -20243,7 +20257,7 @@ class attack{
                     case 3721:
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&this.userCombatant.check10()){
                             this.battle.overlayManager.overlays[10][this.player].active=true
-                            this.battle.overlayManager.overlays[10][this.player].activate([0,3,30,[game.playerNumber+5]])
+                            this.battle.overlayManager.overlays[10][this.player].activate([0,3,30,[constants.playerNumber+5]])
                             this.userCombatant.highRoll()
                         }else{
                             this.battle.overlayManager.overlays[10][this.player].active=true
@@ -20302,7 +20316,7 @@ class attack{
                         }else if((variants.mtg?this.cost[0]:this.cost)>=5){
                             this.selfCall(20)
                         }else if((variants.mtg?this.cost[0]:this.cost)>=3){
-                            this.userManager.addRandomAbstract(0,0,0,1,0,[],[game.playerNumber+2,3])
+                            this.userManager.addRandomAbstract(0,0,0,1,0,[],[constants.playerNumber+2,3])
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
@@ -20412,7 +20426,7 @@ class attack{
                         this.userCombatant.statusEffect('Free Draw Up',this.effect[0])
                     break
                     case 4051:
-                        for(let a=0,la=game.playerNumber;a<la;a++){
+                        for(let a=0,la=constants.playerNumber;a<la;a++){
                             this.userManager.addRandomAbstract(2,0,0,1,0,[0,1],[a+1,3,11,0])
                         }
                     break
@@ -20893,7 +20907,7 @@ class attack{
                     break
                     case 981:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Burn',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Burn',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 1447:
@@ -20956,7 +20970,7 @@ class attack{
                     break
                     case 4282:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Wisp',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Wisp',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 4306:
@@ -21117,13 +21131,13 @@ class attack{
                         }
                     break
                     case 2535:
-                        this.userManager.deck.add(findName(['Seiun','Elysia','Ennealis','Miratei','Syuua','Aria','Haruka','Komachi'][floor(random(0,8))],types.card),this.level,game.playerNumber+5)
+                        this.userManager.deck.add(findName(['Seiun','Elysia','Ennealis','Miratei','Syuua','Aria','Haruka','Komachi'][floor(random(0,8))],types.card),this.level,constants.playerNumber+5)
                     break
                     case 2536:
                         this.userManager.allEffect(2,82)
                     break
                     case 2537:
-                        this.userManager.hand.allEffectArgs(17,[floor(random(1,game.playerNumber+1))])
+                        this.userManager.hand.allEffectArgs(17,[floor(random(1,constants.playerNumber+1))])
                     break
                     case 2538:
                         for(let a=0,la=this.effect[0];a<la;a++){

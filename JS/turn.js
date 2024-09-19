@@ -1345,7 +1345,7 @@ class turn{
                 switch(this.type){
                     case 8:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.drop(this.targetCombatant.id,findName(this.effect[1],types.card),0,game.playerNumber+1)
+                            this.battle.drop(this.targetCombatant.id,findName(this.effect[1],types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 23: case 33: case 152:
@@ -1417,7 +1417,7 @@ class turn{
                     case 13: case 14: case 178:
                         if(this.targetCombatant.blocked>0){
                             for(let a=0,la=this.effect[1];a<la;a++){
-                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                             }
                         }
                     break
@@ -1426,7 +1426,7 @@ class turn{
                     break
                     case 22: case 32: case 83:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 24: case 369:
@@ -1450,7 +1450,7 @@ class turn{
                         this.userCombatant.combo++
                         if(this.targetCombatant.blocked>0){
                             for(let a=0,la=this.effect[1];a<la;a++){
-                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                             }
                         }
                     break
@@ -1462,7 +1462,7 @@ class turn{
                     break
                     case 183:
                         for(let a=0,la=this.effect[1]*(3-this.targetDistance);a<la;a++){
-                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 193: case 342:
@@ -1719,7 +1719,7 @@ class turn{
                 switch(this.type){
                     case 5:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.dropAll(findName(this.effect[1],types.card),0,game.playerNumber+1)
+                            this.battle.dropAll(findName(this.effect[1],types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 39:
@@ -1752,7 +1752,7 @@ class turn{
                     break
                     case 74:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.dropAll(findName(this.effect[1],types.card),0,game.playerNumber+1)
+                            this.battle.dropAll(findName(this.effect[1],types.card),0,constants.playerNumber+1)
                         }
                         this.battle.cardManagers.forEach(cardManager=>cardManager.allGroupEffect(9))
                     break
@@ -1839,7 +1839,7 @@ class turn{
                         }
                         if(targets.length>0){
                             for(let a=0,la=this.effect[0];a<la;a++){
-                                this.battle.dropDrawShuffle(targets[floor(random(0,targets.length))],findName(this.effect[1],types.card),0,game.playerNumber+1)
+                                this.battle.dropDrawShuffle(targets[floor(random(0,targets.length))],findName(this.effect[1],types.card),0,constants.playerNumber+1)
                             }
                         }
                     break
@@ -1853,7 +1853,7 @@ class turn{
                         break
                         case 105:
                             for(let b=0,lb=this.effect[0];b<lb;b++){
-                                this.battle.drop(this.targetCombatant[a].id,findName(this.effect[1],types.card),0,game.playerNumber+1)
+                                this.battle.drop(this.targetCombatant[a].id,findName(this.effect[1],types.card),0,constants.playerNumber+1)
                             }
                         break
                         case 153:
@@ -1877,13 +1877,13 @@ class turn{
                         break
                         case 53: case 60:
                             for(let b=0,lb=this.effect[1];b<lb;b++){
-                                this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                             }
                         break
                         case 82:
                             if(this.targetCombatant[a].blocked>0){
                                 for(let b=0,lb=this.effect[1];b<lb;b++){
-                                    this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                    this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                 }
                             }
                         break
@@ -1936,13 +1936,13 @@ class turn{
                     break
                     case 81:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 89:
                         if(this.targetCombatant.blocked>0){
                             for(let a=0,la=this.effect[1];a<la;a++){
-                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                             }
                         }
                     break
@@ -2096,7 +2096,7 @@ class turn{
                 switch(this.type){
                     case 66: case 358:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 103:
@@ -2108,7 +2108,7 @@ class turn{
                     case 194:
                         if(this.targetCombatant.blocked>0){
                             for(let a=0,la=this.effect[1];a<la;a++){
-                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                             }
                         }
                     break
@@ -2135,7 +2135,7 @@ class turn{
                     case 76:
                         if(this.targetCombatant.blocked>0){
                             for(let a=0,la=this.effect[1];a<la;a++){
-                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                             }
                         }
                     break
@@ -2167,7 +2167,7 @@ class turn{
                     break
                     case 377:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                         }
                     break
                 }
@@ -2175,7 +2175,7 @@ class turn{
             case 8:
                 if(this.type==132){
                     for(let a=0,la=this.effect[0];a<la;a++){
-                        this.battle.combatantManager.areaAbstract(4,[findName(this.effect[1],types.card),0,game.playerNumber+1],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                        this.battle.combatantManager.areaAbstract(4,[findName(this.effect[1],types.card),0,constants.playerNumber+1],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     }
                 }else{
                     this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
@@ -2186,12 +2186,12 @@ class turn{
                     break
                     case 54:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.combatantManager.areaAbstract(4,[findName(this.effect[2],types.card),0,game.playerNumber+1],this.userCombatant.tilePosition,[5,this.userCombatant.id],[0,1],false,0)
+                            this.battle.combatantManager.areaAbstract(4,[findName(this.effect[2],types.card),0,constants.playerNumber+1],this.userCombatant.tilePosition,[5,this.userCombatant.id],[0,1],false,0)
                         }
                     break
                     case 128:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.combatantManager.areaAbstract(4,[findName(this.effect[2],types.card),0,game.playerNumber+1],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                            this.battle.combatantManager.areaAbstract(4,[findName(this.effect[2],types.card),0,constants.playerNumber+1],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                         }
                     break
                     case 198:

@@ -5867,37 +5867,46 @@ function setupBackground(type,layer){
 				}
 			}
 			layer.fill(180)
-			layer.rect(layer.width/2-315,layer.height*0.6,125,125)
-			layer.rect(layer.width/2-105,layer.height*0.6,125,125)
-			layer.rect(layer.width/2+105,layer.height*0.6,125,125)
-			layer.rect(layer.width/2+315,layer.height*0.6,125,125)
-			layer.rect(layer.width/2-315,layer.height*0.6+100,200,55)
-			layer.rect(layer.width/2-105,layer.height*0.6+100,200,55)
-			layer.rect(layer.width/2+105,layer.height*0.6+100,200,55)
-			layer.rect(layer.width/2+315,layer.height*0.6+100,200,55)
+			for(let a=0,la=3;a<la;a++){
+				layer.rect(layer.width/2-240+a*240,layer.height*0.55,125,125)
+				layer.rect(layer.width/2-240+a*240,layer.height*0.75,125,125)
+				layer.rect(layer.width/2-240+a*240,layer.height*0.55+100,200,55)
+				layer.rect(layer.width/2-240+a*240,layer.height*0.75+100,200,55)
+			}
 			layer.rect(layer.width/2,layer.height*0.32,875,275)
 			layer.fill(20)
-			layer.rect(layer.width/2-315,layer.height*0.6,100,100)
-			layer.rect(layer.width/2-105,layer.height*0.6,100,100)
-			layer.rect(layer.width/2+105,layer.height*0.6,100,100)
-			layer.rect(layer.width/2+315,layer.height*0.6,100,100)
-			layer.rect(layer.width/2-315,layer.height*0.6+100,175,30)
-			layer.rect(layer.width/2-105,layer.height*0.6+100,175,30)
-			layer.rect(layer.width/2+105,layer.height*0.6+100,175,30)
-			layer.rect(layer.width/2+315,layer.height*0.6+100,175,30)
+			for(let a=0,la=3;a<la;a++){
+				layer.rect(layer.width/2-240+a*240,layer.height*0.55,100,100)
+				layer.rect(layer.width/2-240+a*240,layer.height*0.75,100,100)
+				layer.rect(layer.width/2-240+a*240,layer.height*0.55+100,175,30)
+				layer.rect(layer.width/2-240+a*240,layer.height*0.75+100,175,30)
+			}
 			layer.rect(layer.width/2,layer.height*0.32,850,250)
 			layer.fill(180)
-			regTriangle(layer,layer.width/2-320,layer.height*0.6,40,40,-30)
-			regTriangle(layer,layer.width/2-130,layer.height*0.6,24,24,-30)
-			regTriangle(layer,layer.width/2-90,layer.height*0.6,24,24,-30)
-			layer.rect(layer.width/2+105,layer.height*0.6,36,36)
-			regPoly(layer,layer.width/2+315,layer.height*0.6,4,25,25,0)
+			regTriangle(layer,layer.width/2-245,layer.height*0.55,30,30,-30)
+			regTriangle(layer,layer.width/2-25,layer.height*0.55,24,24,-30)
+			regTriangle(layer,layer.width/2+15,layer.height*0.55,24,24,-30)
+			regTriangle(layer,layer.width/2+260,layer.height*0.55,20,20,-30)
+			layer.rect(layer.width/2-240,layer.height*0.75,36,36)
+			regPoly(layer,layer.width/2,layer.height*0.75,4,25,25,0)
+			layer.rect(layer.width/2+228,layer.height*0.75-12,18,18)
+			layer.rect(layer.width/2+228,layer.height*0.75+12,18,18)
+			layer.rect(layer.width/2+252,layer.height*0.75-12,18,18)
+			layer.rect(layer.width/2+252,layer.height*0.75+12,18,18)
+			layer.noFill()
+			layer.stroke(180)
+			layer.strokeWeight(10)
+			layer.ellipse(layer.width/2+220,layer.height*0.55,30)
+			layer.line(layer.width/2+235,layer.height*0.55,layer.width/2+250,layer.height*0.55)
+			layer.noStroke()
 			layer.fill(255)
 			layer.textSize(20)
-			layer.text('BEGIN 1 PLAYER',layer.width/2-315,layer.height*0.6+100)
-			layer.text('BEGIN 2 PLAYER',layer.width/2-105,layer.height*0.6+100)
-			layer.text('VARIANTS',layer.width/2+105,layer.height*0.6+100)
-			layer.text('TUTORIALS',layer.width/2+315,layer.height*0.6+100)
+			layer.text('BEGIN 1 PLAYER',layer.width/2-240,layer.height*0.55+100)
+			layer.text('BEGIN 2 PLAYER',layer.width/2,layer.height*0.55+100)
+			layer.text('LOAD SAVE',layer.width/2+240,layer.height*0.55+100)
+			layer.text('VARIANTS',layer.width/2-240,layer.height*0.75+100)
+			layer.text('TUTORIALS',layer.width/2,layer.height*0.75+100)
+			layer.text('COLLECTION',layer.width/2+240,layer.height*0.75+100)
 			layer.textSize(180)
 			for(let a=0,la=10;a<la;a++){
 				layer.fill(50-50*a/la,255-105*a/la,100-100*a/la)
@@ -5939,7 +5948,7 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2-350,layer.height-137.5,200,30)
 			layer.rect(layer.width/2+350,layer.height-137.5,200,30)
 			layer.fill(120)
-			regTriangle(layer,layer.width/2+295,layer.height*0.6,40,40,-30)
+			regTriangle(layer,layer.width/2+295,layer.height*0.6,30,30,-30)
 			regTriangle(layer,layer.width/2-575,layer.height-60,22.5,22.5,-30)
 			regTriangle(layer,layer.width/2-437.5,layer.height-60,22.5,22.5,-30)
 			regTriangle(layer,layer.width/2-412.5,layer.height-60,22.5,22.5,-30)
@@ -6031,7 +6040,7 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2-350,layer.height-137.5,200,30)
 			layer.rect(layer.width/2+350,layer.height-137.5,200,30)
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-5,layer.height*0.6,40,40,-30)
+			regTriangle(layer,layer.width/2-5,layer.height*0.6,30,30,-30)
 			regTriangle(layer,layer.width/2-575,layer.height-60,22.5,22.5,-30)
 			regTriangle(layer,layer.width/2-437.5,layer.height-60,22.5,22.5,-30)
 			regTriangle(layer,layer.width/2-412.5,layer.height-60,22.5,22.5,-30)
@@ -6115,7 +6124,7 @@ function setupBackground(type,layer){
 				layer.rect(layer.width/2-430+a%4*380,layer.height/2-450+floor(a/4)*80,45,45)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-110,layer.height*0.7+190,40,40,-30)
+			regTriangle(layer,layer.width/2-110,layer.height*0.7+190,30,30,-30)
 			layer.rect(layer.width/2+105,layer.height*0.7+190,36,36)
 			layer.fill(255)
 			layer.textSize(20)
@@ -6153,7 +6162,7 @@ function setupBackground(type,layer){
 				layer.rect(layer.width/2-430+a%4*380,layer.height/2-410+floor(a/4)*80,45,45)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-110,layer.height*0.7+150,40,40,-30)
+			regTriangle(layer,layer.width/2-110,layer.height*0.7+150,30,30,-30)
 			layer.beginShape()
 			layer.vertex(layer.width/2+85,layer.height*0.7+120)
 			layer.vertex(layer.width/2+75,layer.height*0.7+120)
@@ -6175,7 +6184,7 @@ function setupBackground(type,layer){
 			layer.text('BACK',layer.width/2-105,layer.height*0.7+250)
 			let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBSPECTRAL','JUNKYARD','SUBCARD','EVENT','VARIANT','DEVELOPER','REMOVED','BASIC','PACK','MISC']
 			for(let a=0,la=36;a<la;a++){
-				layer.text(a<16?names2[a]:types.combatant[a-15].name.toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-410+floor(a/4)*80)
+				layer.text(a>=constants.playerNumber?names2[a-constants.playerNumber]:types.combatant[a+1].name.toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-410+floor(a/4)*80)
 			}
 			for(let a=0,la=9;a<la;a++){
 				layer.text(a+1,layer.width/2-770,layer.height/2-410+a*80)
@@ -6202,7 +6211,7 @@ function setupBackground(type,layer){
 				layer.rect(layer.width/2-430+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*80,45,45)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-5,layer.height*0.7+130,40,40,-30)
+			regTriangle(layer,layer.width/2-5,layer.height*0.7+130,30,30,-30)
 			layer.fill(255)
 			layer.textSize(20)
 			layer.text('BACK',layer.width/2,layer.height*0.7+230)
@@ -6221,6 +6230,103 @@ function setupBackground(type,layer){
 				layer.fill(50-50*a/la,255-105*a/la,100-100*a/la)
 				layer.text('Mechanics',layer.width/2+a*0.5,layer.height/2-400+a*0.5)
 				layer.text('Characters',layer.width/2+a*0.5,layer.height/2-180+a*0.5)
+			}
+		break
+		case 14:
+			menuBackground(layer)
+			layer.fill(120)
+			layer.rect(layer.width/2,layer.height*0.7+115,125,125)
+			layer.rect(layer.width/2,layer.height*0.7+265,125,125)
+			layer.rect(layer.width/2-150,layer.height*0.7+190,125,125)
+			layer.rect(layer.width/2+150,layer.height*0.7+190,125,125)
+			layer.rect(layer.width/2+300,layer.height*0.7+190,125,125)
+			layer.rect(layer.width/2+450,layer.height*0.7+190,125,125)
+			layer.rect(layer.width/2+600,layer.height*0.7+190,125,125)
+			layer.rect(layer.width/2+300,layer.height*0.7+290,125,55)
+			layer.rect(layer.width/2+450,layer.height*0.7+290,125,55)
+			layer.rect(layer.width/2+600,layer.height*0.7+290,125,55)
+			layer.rect(layer.width/2+150,layer.height*0.7+85,125,55)
+			layer.fill(0)
+			layer.rect(layer.width/2,layer.height*0.7+115,100,100)
+			layer.rect(layer.width/2,layer.height*0.7+265,100,100)
+			layer.rect(layer.width/2-150,layer.height*0.7+190,100,100)
+			layer.rect(layer.width/2+150,layer.height*0.7+190,100,100)
+			layer.rect(layer.width/2+300,layer.height*0.7+190,100,100)
+			layer.rect(layer.width/2+450,layer.height*0.7+190,100,100)
+			layer.rect(layer.width/2+600,layer.height*0.7+190,100,100)
+			layer.rect(layer.width/2+300,layer.height*0.7+290,100,30)
+			layer.rect(layer.width/2+450,layer.height*0.7+290,100,30)
+			layer.rect(layer.width/2+600,layer.height*0.7+290,100,30)
+			layer.rect(layer.width/2+150,layer.height*0.7+85,100,30)
+			layer.fill(120)
+			regTriangle(layer,layer.width/2-145,layer.height*0.7+190,30,30,30)
+			regTriangle(layer,layer.width/2+145,layer.height*0.7+190,30,30,-30)
+			regTriangle(layer,layer.width/2,layer.height*0.7+260,30,30,0)
+			regTriangle(layer,layer.width/2,layer.height*0.7+120,30,30,60)
+			layer.rect(layer.width/2+300,layer.height*0.7+190,36,36)
+			layer.rect(layer.width/2+450,layer.height*0.7+176.5,36,9)
+			layer.rect(layer.width/2+450,layer.height*0.7+190,36,9)
+			layer.rect(layer.width/2+450,layer.height*0.7+203.5,36,9)
+			layer.rect(layer.width/2+586.5,layer.height*0.7+190,9,36)
+			layer.rect(layer.width/2+600,layer.height*0.7+190,9,36)
+			layer.rect(layer.width/2+613.5,layer.height*0.7+190,9,36)
+			layer.fill(255)
+			layer.textSize(20)
+			layer.text('BACK',layer.width/2+300,layer.height*0.7+290)
+			layer.text('QUERIES',layer.width/2+450,layer.height*0.7+290)
+			layer.text('LISTS',layer.width/2+600,layer.height*0.7+290)
+		break
+		case 15:
+			menuBackground(layer)
+			layer.fill(120)
+			layer.rect(layer.width/2-105,layer.height*0.7+50,125,125)
+			layer.rect(layer.width/2+105,layer.height*0.7+50,125,125)
+			layer.rect(layer.width/2-105,layer.height*0.7+150,200,55)
+			layer.rect(layer.width/2+105,layer.height*0.7+150,200,55)
+			for(let a=0,la=12;a<la;a++){
+				layer.rect(layer.width/2-570+a%4*380,layer.height/2-130+(a>=4?60:0)+floor(a/4)*80,350,70)
+			}
+			layer.fill(0)
+			layer.rect(layer.width/2-105,layer.height*0.7+50,100,100)
+			layer.rect(layer.width/2+105,layer.height*0.7+50,100,100)
+			layer.rect(layer.width/2-105,layer.height*0.7+150,175,30)
+			layer.rect(layer.width/2+105,layer.height*0.7+150,175,30)
+			for(let a=0,la=12;a<la;a++){
+				layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-130+(a>=4?60:0)+floor(a/4)*80,270,45)
+				layer.rect(layer.width/2-430+a%4*380,layer.height/2-130+(a>=4?60:0)+floor(a/4)*80,45,45)
+			}
+			layer.fill(120)
+			regTriangle(layer,layer.width/2-110,layer.height*0.7+50,30,30,-30)
+			regTriangle(layer,layer.width/2-110,layer.height*0.7+50,30,30,-30)
+			layer.beginShape()
+			layer.vertex(layer.width/2+85,layer.height*0.7+20)
+			layer.vertex(layer.width/2+75,layer.height*0.7+20)
+			layer.vertex(layer.width/2+75,layer.height*0.7+30)
+			layer.vertex(layer.width/2+125,layer.height*0.7+80)
+			layer.vertex(layer.width/2+135,layer.height*0.7+80)
+			layer.vertex(layer.width/2+135,layer.height*0.7+70)
+			layer.endShape()
+			layer.beginShape()
+			layer.vertex(layer.width/2+85,layer.height*0.7+80)
+			layer.vertex(layer.width/2+75,layer.height*0.7+80)
+			layer.vertex(layer.width/2+75,layer.height*0.7+70)
+			layer.vertex(layer.width/2+125,layer.height*0.7+20)
+			layer.vertex(layer.width/2+135,layer.height*0.7+20)
+			layer.vertex(layer.width/2+135,layer.height*0.7+30)
+			layer.endShape()
+			layer.fill(255)
+			layer.textSize(20)
+			layer.text('BACK',layer.width/2-105,layer.height*0.7+150)
+			layer.text('DISABLE ALL',layer.width/2+105,layer.height*0.7+150)
+			let names4=['COMMON','UNCOMMON','RARE','OTHER','ATTACK','DEFENSE','MOVEMENT','SKILL','POWER','STATUS','CURSE','OTHER']
+			for(let a=0,la=12;a<la;a++){
+				layer.text(names4[a],layer.width/2-597.5+a%4*380,layer.height/2-130+(a>=4?60:0)+floor(a/4)*80)
+			}
+			layer.textSize(50)
+			for(let a=0,la=10;a<la;a++){
+				layer.fill(50-50*a/la,255-105*a/la,100-100*a/la)
+				layer.text('Rarity',layer.width/2+a*0.5,layer.height/2-200+a*0.5)
+				layer.text('Class',layer.width/2+a*0.5,layer.height/2-60+a*0.5)
 			}
 		break
 
@@ -6594,27 +6700,28 @@ function setupGraphics(){
 	11-Variants
 	12-Custom
 	13-Tutorial
+	14-Collection (Background Only)
 	*/
 }
 function setupTrig(){
 	for(let a=0,la=180;a<la;a++){
-		game.trig[0].push(sin(a))
-		game.trig[1].push(cos(a))
-		if(abs(game.trig[0][a])<0.001){
-			game.trig[0][a]=0
+		constants.trig[0].push(sin(a))
+		constants.trig[1].push(cos(a))
+		if(abs(constants.trig[0][a])<0.001){
+			constants.trig[0][a]=0
 		}
-		if(abs(game.trig[1][a])<0.001){
-			game.trig[1][a]=0
+		if(abs(constants.trig[1][a])<0.001){
+			constants.trig[1][a]=0
 		}
 	}
 	for(let a=0,la=180;a<la;a++){
-		game.trig[0].push(-game.trig[0][a])
-		game.trig[1].push(-game.trig[1][a])
+		constants.trig[0].push(-constants.trig[0][a])
+		constants.trig[1].push(-constants.trig[1][a])
 	}
 }
 function lsin(direction){
-	return game.trig[0][floor((direction%360+360)%360)]
+	return constants.trig[0][floor((direction%360+360)%360)]
 }
 function lcos(direction){
-	return game.trig[1][floor((direction%360+360)%360)]
+	return constants.trig[1][floor((direction%360+360)%360)]
 }

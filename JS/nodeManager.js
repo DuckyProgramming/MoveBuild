@@ -23,6 +23,39 @@ class nodeManager{
 
         this.initialListing()
     }
+    save(){
+        let composite={
+            nodes:[
+            ],
+            listing:{
+                static:this.listing.static,
+            },
+            tilePosition:this.tilePosition,
+            scroll:this.scroll,
+            world:this.world,
+            total:this.total,
+            freeMove:this.freeMove,
+            saveClass:this.saveClass,
+            harmBoss:this.harmBoss,
+        }
+        this.nodes.forEach(node=>composite.nodes.push(node.save()))
+        return composite
+    }
+    load(composite){
+        this.tilePosition=composite.tilePosition
+        this.scroll=composite.scroll
+        this.world=composite.world
+        this.total=composite.world
+        this.freeMove=composite.freeMove
+        this.saveClass=composite.saveClass
+        this.harmBoss=composite.harmBoss
+        this.nodes=[]
+        for(let a=0,la=composite.nodes.length;a<la;a++){
+            let base=composite.nodes[a]
+            this.nodes.push(new node(this.layer,this.battle))
+            this.nodes[this.nodes.length-1].establish(base.position.x,base.position.y,base.tilePosition.x,base.tilePosition.y,base.type,base.reality,base.combat,base.connections,base.extraConnections,base.complete)
+        }
+    }
     initialListing(){
         for(let a=0,la=types.encounter.length;a<la;a++){
             if(types.encounter[a].class>=0&&types.encounter[a].world>=0){
@@ -330,6 +363,21 @@ class nodeManager{
             this.nodes.forEach(node=>node.displayConnections())
         }
         this.nodes.forEach(node=>node.display(this.battle.relicManager.hasRelic(282,-1)&&node.tilePosition.y>=this.tilePosition.y+4?8:undefined))
+        this.layer.fill(200,this.fade)
+        this.layer.noStroke()
+        this.layer.ellipse(this.layer.width/2,25,40)
+        this.layer.stroke(100,this.fade)
+        this.layer.strokeWeight(2)
+        this.layer.line(this.layer.width/2-10,36,this.layer.width/2+10,36)
+        this.layer.line(this.layer.width/2-10,36,this.layer.width/2-10,30)
+        this.layer.line(this.layer.width/2+10,36,this.layer.width/2+10,30)
+        this.layer.line(this.layer.width/2-3,10,this.layer.width/2+3,10)
+        this.layer.line(this.layer.width/2-3,10,this.layer.width/2-3,20)
+        this.layer.line(this.layer.width/2-8,20,this.layer.width/2-3,20)
+        this.layer.line(this.layer.width/2-8,20,this.layer.width/2,30)
+        this.layer.line(this.layer.width/2+3,10,this.layer.width/2+3,20)
+        this.layer.line(this.layer.width/2+8,20,this.layer.width/2+3,20)
+        this.layer.line(this.layer.width/2+8,20,this.layer.width/2,30)
     }
     update(){
         for(let a=0,la=this.nodes.length;a<la;a++){
@@ -381,6 +429,10 @@ class nodeManager{
                 }
                 break
             }
+        }
+        if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2,25)<20){
+            this.battle.overlayManager.overlays[144][0].active=true
+            this.battle.overlayManager.overlays[144][0].activate()
         }
     }
     onKey(key,code){

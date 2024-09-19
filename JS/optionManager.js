@@ -10,6 +10,17 @@ class optionManager{
         this.selected=-1
         this.removePost=[]
     }
+    save(){
+        let composite={
+            options:[],
+        }
+        this.options.forEach(option=>composite.options.push(option.type))
+        return composite
+    }
+    load(composite){
+        this.options=[]
+        composite.options.forEach(option=>this.addOption(option))
+    }
     assemble(){
         this.getPosKey()
         this.addOption(0)

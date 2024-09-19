@@ -15,6 +15,40 @@ class itemManager{
 
         this.initialListing()
     }
+    save(){
+        let composite={
+            listing:{
+                item:this.listing.item,
+            },
+            items:[
+            ],
+            position:this.position,
+            up:this.up,
+            total:this.total,
+            effectiveness:this.effectiveness,
+        }
+        for(let a=0,la=this.items.length;a<la;a++){
+            composite.items.push([])
+            this.items[a].forEach(item=>composite.items[a].push(item.save()))
+        }
+        return composite
+    }
+    load(composite){
+        this.listing.item=composite.listing.item
+        this.position=composite.position
+        this.up=composite.up
+        this.total=composite.total
+        this.effectiveness=composite.effectiveness
+        this.items=[]
+        for(let a=0,la=composite.items.length;a<la;a++){
+            this.items.push([])
+            for(let b=0,lb=composite.items[a].length;b<lb;b++){
+                let base=composite.items[a][b]
+                this.items[a].push(new item(this.layer,this.battle,0,0,0,0,0,0,0))
+                this.items[a][this.items[a].length-1].establish(base.player,base.position.x,base.position.y,base.altPosition.x,base.altPosition.y,base.type,base.size)
+            }
+        }
+    }
     initialListing(){
         for(let a=0,la=types.item.length;a<la;a++){
             if(
@@ -603,7 +637,7 @@ class itemManager{
             case 1001:
                 userCombatant.statusEffect('Strength',5*effectiveness)
                 for(let a=0,la=5*effectiveness;a<la;a++){
-                    this.battle.dropDrawShuffle(player,findName('Burn',types.card),0,game.playerNumber+1)
+                    this.battle.dropDrawShuffle(player,findName('Burn',types.card),0,constants.playerNumber+1)
                 }
             break
             case 1002:

@@ -19,6 +19,25 @@ class item{
         this.infoFade=0
         this.deFade=false
     }
+    save(){
+        let composite={
+            player:this.player,
+            position:this.position,
+            altPosition:this.altPosition,
+            type:this.type,
+            size:this.size,
+        }
+        return composite
+    }
+    establish(player,x,y,altX,altY,type,size){
+        this.player=player
+        this.position={x:x,y:y}
+        this.altPosition={x:altX,y:altY}
+        this.type=type
+        this.size=size
+
+        this.refresh()
+    }
     refresh(){
         this.name=types.item[this.type].name
         this.internal=types.item[this.type].internal

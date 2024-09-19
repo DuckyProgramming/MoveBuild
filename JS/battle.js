@@ -4,10 +4,92 @@ class battle{
         this.player=player
         this.createBasic()
     }
+    save(){
+        let composite={
+            game:{player:game.player,deck:game.deck,ascend:game.ascend,id:game.id,timer:game.timer,animRate:game.animRate,turnTime:game.turnTime,dev:game.dev},
+            variants:{},
+            currency:this.currency,
+            energy:this.energy,
+            stats:this.stats,
+            lastEncounter:this.lastEncounter,
+            combatantManager:this.combatantManager.save(),
+            nodeManager:this.nodeManager.save(),
+            purchaseManager:this.purchaseManager.save(),
+            relicManager:this.relicManager.save(),
+            itemManager:this.itemManager.save(),
+            overlayManager:this.overlayManager.save(),
+            modManager:this.modManager.save(),
+            cardManagers:[],
+            optionManagers:[],
+            eventManagers:[],
+        }
+        this.cardManagers.forEach(cardManager=>composite.cardManagers.push(cardManager.save()))
+        this.optionManagers.forEach(optionManager=>composite.optionManagers.push(optionManager.save()))
+        this.eventManagers.forEach(eventManager=>composite.eventManagers.push(eventManager.save()))
+        for(let a=0,la=variants.map.length;a<la;a++){
+            composite.variants[variants.map[a]]=variants[variants.map[a]]
+        }
+        return composite
+    }
+    saveCol(){
+        saveStrings([JSON.stringify(this.save())],'saveFile','json')
+    }
+    load(result){
+        let composite=JSON.parse(result)
+        let keys=Object.keys(composite.game)
+        keys.forEach(key=>game[key]=composite.game[key])
+        keys=Object.keys(composite.variants)
+        keys.forEach(key=>variants[key]=composite.variants[key])
+        this.menu.combatant=game.player
+        this.menu.deck=game.deck
+        this.startGame()
+        if(this.menu.combatant.length==1){
+            this.menu.combatant.push(1)
+        }
+        if(this.menu.deck.length==1){
+            this.menu.deck.push(0)
+        }
+        transition.scene='map'
+        this.currency=composite.currency
+        this.energy=composite.energy
+        this.stats=composite.stats
+        this.lastEncounter=composite.lastEncounter
+        this.combatantManager.load(composite.combatantManager)
+        this.nodeManager.load(composite.nodeManager)
+        this.purchaseManager.load(composite.purchaseManager)
+        this.relicManager.load(composite.relicManager)
+        this.itemManager.load(composite.itemManager)
+        this.modManager.load(composite.modManager)
+        for(let a=0,la=composite.cardManagers.length;a<la;a++){
+            this.cardManagers[a].load(composite.cardManagers[a])
+        }
+        for(let a=0,la=composite.optionManagers.length;a<la;a++){
+            this.optionManagers[a].load(composite.optionManagers[a])
+        }
+        for(let a=0,la=composite.eventManagers.length;a<la;a++){
+            this.eventManagers[a].load(composite.eventManagers[a])
+        }
+    }
+    loadStp(input){
+        let file=input.files[0]
+        let reader=new FileReader()
+        reader.battle=this
+        reader.readAsText(file)
+        reader.onload=function(){
+            this.battle.load(reader.result);
+        }
+    }
+    loadCol(){
+        let input=document.createElement('input')
+        input.type='file'
+        input.battle=this
+        input.click()
+        input.addEventListener('change',function(){this.battle.loadStp(this)},false)
+    }
     createBasic(){
         this.initialized=false
         this.menu={combatant:[1],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[],turnTime:[],variants:[],prismrule:[],mtg:[]},mtg:{manaChoice:[],manaBase:[],manaOld:[],manaNew:[]}}
-        for(let a=0,la=game.playerNumber;a<=la;a++){
+        for(let a=0,la=constants.playerNumber;a<=la;a++){
             for(let b=0,lb=2;b<lb;b++){
                 this.menu.anim.combatant[b].push(-1)
             }
@@ -28,7 +110,7 @@ class battle{
         for(let a=0,la=variants.names.length;a<la;a++){
             this.menu.anim.variants.push(0)
         }
-        for(let a=-10,la=game.playerNumber+8;a<la;a++){
+        for(let a=-10,la=constants.playerNumber+6;a<la;a++){
             this.menu.anim.prismrule.push(0)
             variants.prismrule.push(a)
         }
@@ -41,6 +123,7 @@ class battle{
         }
         this.proxyPlayer=new combatant(this.layer,this,0,0,0,0,0,0,0,0,0,0)
         this.tutorialManager=new tutorialManager(this.layer,this)
+        this.collectionManager=new collectionManager(this.layer,this)
         //this.tierManager=new tierManager(this.layer,this)
     }
     startGame(){
@@ -127,8 +210,8 @@ class battle{
 
             this.energy.main.push(variants.mtg?[]:0)
             this.energy.gen.push(variants.mtg?[]:0)
-            this.energy.base.push(variants.mtg?copyArray(this.menu.mtg.manaBase[a][this.menu.mtg.manaChoice[a]]):game.startEnergy)
-            this.energy.originalBase.push(variants.mtg?copyArray(this.menu.mtg.manaBase[a][this.menu.mtg.manaChoice[a]]):game.startEnergy)
+            this.energy.base.push(variants.mtg?copyArray(this.menu.mtg.manaBase[a][this.menu.mtg.manaChoice[a]]):constants.startEnergy)
+            this.energy.originalBase.push(variants.mtg?copyArray(this.menu.mtg.manaBase[a][this.menu.mtg.manaChoice[a]]):constants.startEnergy)
             this.energy.temp.push(0)
             this.energy.lastSpend.push(variants.mtg?[]:0)
             if(variants.mtg){
@@ -256,6 +339,7 @@ class battle{
         this.replayManager.reset()
     }
     sceneChange(past,post){
+        this.collectionManager.execute()
         if(this.initialized){
             this.cardManagers.forEach(cardManager=>cardManager.sceneChange())
         }
@@ -354,7 +438,7 @@ class battle{
         this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
         this.first=first
 
-        game.collisionDamage=constants.collisionDamage
+        game.collisionDamage=constants.collisionDamage*(this.modded(68)?5:1)
 
         this.tileManager.generateTiles(types.level[findName(effectiveEncounter.level[floor(random(0,effectiveEncounter.level.length))],types.level)])
         this.combatantManager.resetCombatants()
@@ -973,7 +1057,7 @@ class battle{
                     }
                 }
                 if(this.encounter.name=='Shield Prison Guard'){
-                    this.cardManagers[this.turn.main].hand.add(findName('Handcuffed',types.card),0,game.playerNumber+1)
+                    this.cardManagers[this.turn.main].hand.add(findName('Handcuffed',types.card),0,constants.playerNumber+1)
                 }
                 this.cardManagers[this.turn.main].switchCheck()
                 if(variants.witch){
@@ -2102,7 +2186,7 @@ class battle{
     }
     loseCurrency(amount,player){
         /*if(this.currency.money[player]>=0&&this.currency.money[player]-round(amount)<0&&!this.relicManager.hasRelic(187,player)){
-            this.cardManagers[player].deck.add(findName('Debt',types.card),0,game.playerNumber+2)
+            this.cardManagers[player].deck.add(findName('Debt',types.card),0,constants.playerNumber+2)
         }*/
         this.currency.money[player]-=round(amount)
     }
@@ -2116,12 +2200,12 @@ class battle{
             break
             case 'menu':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=game.playerNumber;a<=la;a++){
+                for(let a=0,la=constants.playerNumber;a<=la;a++){
                     if(this.menu.anim.combatant[0][a]>0&&a>0){
                         displayPlayerSymbol(this.layer,this.layer.width/2,this.layer.height*0.3+88.75,a,0,1,1)
                     }
                 }
-                for(let a=0,la=game.playerNumber;a<=la;a++){
+                for(let a=0,la=constants.playerNumber;a<=la;a++){
                     if(this.menu.anim.combatant[0][a]>0){
                         this.layer.fill(255,this.menu.anim.combatant[0][a])
                         this.layer.textSize(types.combatant[a].name.length>=12?9:10)
@@ -2189,14 +2273,14 @@ class battle{
             break
             case 'menu2':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=game.playerNumber;a<=la;a++){
+                for(let a=0,la=constants.playerNumber;a<=la;a++){
                     for(let b=0,lb=2;b<lb;b++){
                         if(this.menu.anim.combatant[b][a]>0&&a>0){
                             displayPlayerSymbol(this.layer,this.layer.width/4+b*this.layer.width/2,this.layer.height*0.3+88.75,a,0,1,this.menu.anim.combatant[b][a])
                         }
                     }
                 }
-                for(let a=0,la=game.playerNumber;a<=la;a++){
+                for(let a=0,la=constants.playerNumber;a<=la;a++){
                     for(let b=0,lb=2;b<lb;b++){
                         if(this.menu.anim.combatant[b][a]>0){
                             this.layer.fill(255,this.menu.anim.combatant[b][a])
@@ -2288,6 +2372,18 @@ class battle{
             break
             case 'tutorial':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
+            break
+            case 'collection':
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
+                this.collectionManager.display('collection')
+            break
+            case 'query':
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
+                this.collectionManager.display('query')
+            break
+            case 'listQuery':
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
+                this.collectionManager.display('listQuery')
             break
             case 'battle':
                 this.encounter.tooltip=0
@@ -2677,7 +2773,7 @@ class battle{
     update(scene){
         switch(scene){
             case 'menu':
-                for(let a=0,la=game.playerNumber;a<=la;a++){
+                for(let a=0,la=constants.playerNumber;a<=la;a++){
                     this.menu.anim.combatant[0][a]=smoothAnim(this.menu.anim.combatant[0][a],this.menu.combatant[0]==a,-1,1,5)
                 }
                 for(let a=0,la=types.deckmode.length;a<=la;a++){
@@ -2699,7 +2795,7 @@ class battle{
                 }
             break
             case 'menu2':
-                for(let a=0,la=game.playerNumber;a<=la;a++){
+                for(let a=0,la=constants.playerNumber;a<=la;a++){
                     for(let b=0,lb=2;b<lb;b++){
                         this.menu.anim.combatant[b][a]=smoothAnim(this.menu.anim.combatant[b][a],this.menu.combatant[b]==a,-1,1,5)
                     }
@@ -2734,10 +2830,19 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
+                let prismrules=[0,constants.playerNumber+1,constants.playerNumber+2,constants.playerNumber+3,constants.playerNumber+4,constants.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
                 for(let a=0,la=36;a<la;a++){
-                    this.menu.anim.prismrule[a]=smoothAnim(this.menu.anim.prismrule[a],variants.prismrule.includes(a<16?prismrules[a]:a-15),0,1,5)
+                    this.menu.anim.prismrule[a]=smoothAnim(this.menu.anim.prismrule[a],variants.prismrule.includes(a>=constants.playerNumber?prismrules[a-constants.playerNumber]:a+1),0,1,5)
                 }
+            break
+            case 'collection':
+                this.collectionManager.update('collection')
+            break
+            case 'query':
+                this.collectionManager.update('query')
+            break
+            case 'listQuery':
+                this.collectionManager.update('listQuery')
             break
             case 'battle':
                 this.tileManager.update(scene)
@@ -3071,7 +3176,7 @@ class battle{
     onClick(scene){
         switch(scene){
             case 'title':
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-157.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-120,y:this.layer.height*0.55},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='menu'
                     if(this.menu.combatant.length==2){
@@ -3081,7 +3186,7 @@ class battle{
                         this.setupMtgManaChoice(0)
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.55},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='menu2'
                     if(this.menu.combatant.length==1){
@@ -3093,24 +3198,32 @@ class battle{
                         }
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+120,y:this.layer.height*0.55},width:62.5,height:62.5})){
+                    this.loadCol()
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-120,y:this.layer.height*0.75},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='variants'
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+157.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.75},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='tutorial'
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+120,y:this.layer.height*0.75},width:62.5,height:62.5})){
+                    transition.trigger=true
+                    transition.scene='collection'
+                    this.collectionManager.executeQuery()
                 }
             break
             case 'menu':
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-80,y:this.layer.height*0.65},width:37.5,height:37.5})){
-                    this.menu.combatant[0]=(this.menu.combatant[0]+game.playerNumber-2)%game.playerNumber+1
+                    this.menu.combatant[0]=(this.menu.combatant[0]+constants.playerNumber-2)%constants.playerNumber+1
                     if(variants.mtg){
                         this.setupMtgManaChoice(0)
                     }
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+80,y:this.layer.height*0.65},width:37.5,height:37.5})){
-                    this.menu.combatant[0]=this.menu.combatant[0]%game.playerNumber+1
+                    this.menu.combatant[0]=this.menu.combatant[0]%constants.playerNumber+1
                     if(variants.mtg){
                         this.setupMtgManaChoice(0)
                     }
@@ -3123,7 +3236,7 @@ class battle{
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.65-240},width:112.5,height:32.5})){
                     let remaining=[]
-                    for(let a=0,la=game.playerNumber;a<la;a++){
+                    for(let a=0,la=constants.playerNumber;a<la;a++){
                         if(this.menu.combatant[0]!=a+1){
                             remaining.push(a+1)
                         }
@@ -3168,13 +3281,13 @@ class battle{
             case 'menu2':
                 for(let a=0,la=2;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a-80,y:this.layer.height*0.65},width:37.5,height:37.5})){
-                        this.menu.combatant[a]=(this.menu.combatant[a]+game.playerNumber-2)%game.playerNumber+1
+                        this.menu.combatant[a]=(this.menu.combatant[a]+constants.playerNumber-2)%constants.playerNumber+1
                         if(variants.mtg){
                             this.setupMtgManaChoice(a)
                         }
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a+80,y:this.layer.height*0.65},width:37.5,height:37.5})){
-                        this.menu.combatant[a]=this.menu.combatant[a]%game.playerNumber+1
+                        this.menu.combatant[a]=this.menu.combatant[a]%constants.playerNumber+1
                         if(variants.mtg){
                             this.setupMtgManaChoice(a)
                         }
@@ -3187,7 +3300,7 @@ class battle{
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a,y:this.layer.height*0.65-240},width:112.5,height:32.5})){
                         let remaining=[]
-                        for(let b=0,lb=game.playerNumber;b<lb;b++){
+                        for(let b=0,lb=constants.playerNumber;b<lb;b++){
                             if(this.menu.combatant[a]!=b+1){
                                 remaining.push(b+1)
                             }
@@ -3265,10 +3378,10 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
+                let prismrules=[0,constants.playerNumber+1,constants.playerNumber+2,constants.playerNumber+3,constants.playerNumber+4,constants.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
                 for(let a=0,la=36;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-205+floor(a/4)*40},width:22.5,height:22.5})){
-                        let value=a<16?prismrules[a]:a-15
+                        let value=a>=constants.playerNumber?prismrules[a-constants.playerNumber]:a+1
                         if(variants.prismrule.includes(value)){
                             variants.prismrule.splice(variants.prismrule.indexOf(value),1)
                         }else{
@@ -3294,6 +3407,15 @@ class battle{
                     transition.trigger=true
                     transition.scene='title'
                 }
+            break
+            case 'collection':
+                this.collectionManager.onClick('collection')
+            break
+            case 'query':
+                this.collectionManager.onClick('query')
+            break
+            case 'listQuery':
+                this.collectionManager.onClick('listQuery')
             break
             case 'battle':
                 if(!this.result.defeat){
@@ -3527,23 +3649,31 @@ class battle{
                     }
                 }
                 if(key=='3'){
-                    transition.trigger=true
-                    transition.scene='variants'
+                    this.loadCol()
                 }
                 if(key=='4'){
                     transition.trigger=true
+                    transition.scene='variants'
+                }
+                if(key=='5'){
+                    transition.trigger=true
                     transition.scene='tutorial'
+                }
+                if(key=='6'){
+                    transition.trigger=true
+                    transition.scene='collection'
+                    this.collectionManager.executeQuery()
                 }
             break
             case 'menu':
                 if(code==LEFT_ARROW){
-                    this.menu.combatant[0]=(this.menu.combatant[0]+game.playerNumber-2)%game.playerNumber+1
+                    this.menu.combatant[0]=(this.menu.combatant[0]+constants.playerNumber-2)%constants.playerNumber+1
                     if(variants.mtg){
                         this.setupMtgManaChoice(0)
                     }
                 }
                 if(code==RIGHT_ARROW){
-                    this.menu.combatant[0]=this.menu.combatant[0]%game.playerNumber+1
+                    this.menu.combatant[0]=this.menu.combatant[0]%constants.playerNumber+1
                     if(variants.mtg){
                         this.setupMtgManaChoice(0)
                     }
@@ -3556,7 +3686,7 @@ class battle{
                 }
                 if(key=='r'||key=='R'){
                     let remaining=[]
-                    for(let a=0,la=game.playerNumber;a<la;a++){
+                    for(let a=0,la=constants.playerNumber;a<la;a++){
                         if(this.menu.combatant[0]!=a+1){
                             remaining.push(a+1)
                         }
@@ -3588,13 +3718,13 @@ class battle{
             case 'menu2':
                 for(let a=0,la=2;a<la;a++){
                     if(code==LEFT_ARROW&&a==0||(key=='a'||key=='A')&&a==1){
-                        this.menu.combatant[a]=(this.menu.combatant[a]+game.playerNumber-2)%game.playerNumber+1
+                        this.menu.combatant[a]=(this.menu.combatant[a]+constants.playerNumber-2)%constants.playerNumber+1
                         if(variants.mtg){
                             this.setupMtgManaChoice(a)
                         }
                     }
                     if(code==RIGHT_ARROW&&a==0||(key=='d'||key=='D')&&a==1){
-                        this.menu.combatant[a]=this.menu.combatant[a]%game.playerNumber+1
+                        this.menu.combatant[a]=this.menu.combatant[a]%constants.playerNumber+1
                         if(variants.mtg){
                             this.setupMtgManaChoice(a)
                         }
@@ -3607,7 +3737,7 @@ class battle{
                     }
                     if(key=='r'&&a==0||key=='R'&&a==1){
                         let remaining=[]
-                        for(let b=0,lb=game.playerNumber;b<lb;b++){
+                        for(let b=0,lb=constants.playerNumber;b<lb;b++){
                             if(this.menu.combatant[a]!=b+1){
                                 remaining.push(b+1)
                             }
@@ -3671,10 +3801,10 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
+                let prismrules=[0,constants.playerNumber+1,constants.playerNumber+2,constants.playerNumber+3,constants.playerNumber+4,constants.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
                 if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=9&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
                     let index=(int(inputs.lastKey[0])+9)%10*4+int(inputs.lastKey[1])-1
-                    let value=index<16?prismrules[index]:index-15
+                    let value=index>=constants.playerNumber?prismrules[index-constants.playerNumber]:index+1
                     if(variants.prismrule.includes(value)){
                         variants.prismrule.splice(variants.prismrule.indexOf(value),1)
                     }else{
@@ -3698,6 +3828,15 @@ class battle{
                     transition.trigger=true
                     transition.scene='title'
                 }
+            break
+            case 'collection':
+                this.collectionManager.onKey('collection',key,code)
+            break
+            case 'query':
+                this.collectionManager.onKey('query',key,code)
+            break
+            case 'listQuery':
+                this.collectionManager.onKey('listQuery',key,code)
             break
             case 'battle':
                 if(!this.result.defeat){

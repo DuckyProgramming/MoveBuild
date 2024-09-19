@@ -152,7 +152,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,22,[1,[0,1]])],//all common and uncommon relics, no return
                     [new overlay(this.layer,this.battle,0,22,[0,[0,1,2,3,4]])],//all relics, no return
                     [new overlay(this.layer,this.battle,0,2,[95])],//bring in foil copy of draw card, no return
-                    //63,95
+                    [new overlay(this.layer,this.battle,0,23,[])],//save prompt
+                    [new overlay(this.layer,this.battle,0,24,[])],//dictionary
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
@@ -179,6 +180,18 @@ class overlayManager{
             }
         }
         this.anyActive=false
+    }
+    save(){
+        let composite={
+            additionalOptions:[],
+        }
+        this.overlays[3].forEach(overlay=>composite.additionalOptions.push(overlay.additionalOptions))
+        return composite
+    }
+    load(composite){
+        for(let a=0,la=composite.additionalOptions.length;a<la;a++){
+            this.overlays[3][a].additionalOptions=composite.additionalOptions[a]
+        }
     }
     anySpecificActive(index){
         for(let a=0,la=this.overlays[index].length;a<la;a++){

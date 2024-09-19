@@ -95,11 +95,11 @@ class combatant{
         this.blocked=0
         this.taken=0
         this.builder=0
+        
         this.compression=0
-        this.lastDeal=0
-        this.lastTake=0
         this.permanentStrength=0
         this.carry=[0,0,0]
+
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
         this.collect={life:this.life}
         this.infoAnim={
@@ -107,9 +107,6 @@ class combatant{
             size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],
             flash:[0,0,0,0],upFlash:[false,false,false,false],
             stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],elemental:0}
-        this.block=0
-        this.barrier=0
-        this.lastBlock=0
         this.dodges=[]
         this.turnDodges=0
         this.status={
@@ -336,33 +333,14 @@ class combatant{
         this.direction=0
         this.size=1
 
-        this.combo=0
-        this.comboCap=10
-        this.armed=true
-        this.balance=0
-        this.balanceCap=10
-        this.orbs=this.team>0||this.name=='Azis'?[-1,-1,-1,-1]:[]
-        this.orbDetail=this.team>0||this.name=='Azis'?[0,0,0,0]:[]
-        this.orbDetail=[]
-        this.anyOrb=false
-        this.totalOrb=0
-        this.totalOrbClass=[]
-        this.lastOrb=0
-        this.metal=3
-        this.stance=0
-        this.faith=0
-        this.charge=0
-        this.ammo=3
-        this.vision=0
-        this.elemental=false
-        this.wish=3
+        this.constants()
 
         this.intent=0
         this.activated=this.construct
         this.target=0
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.infoAnim.orbSpec.push([])
-            for(let b=0,lb=game.orbNumber;b<lb;b++){
+            for(let b=0,lb=constants.orbNumber;b<lb;b++){
                 this.infoAnim.orbSpec[a].push(0)
             }
         }
@@ -378,13 +356,29 @@ class combatant{
             this.initialBuff()
         }
     }
-    reset(){
-        this.size=this.base.size
-        this.anim=this.base.anim
+    save(){
+        let composite={
+            life:this.life,
+            base:{life:this.life},
+            compression:this.compression,
+            permanentStrength:this.permanentStrength,
+            carry:this.carry,
+        }
+        return composite
+    }
+    load(composite){
+        this.life=composite.life
+        this.base.life=composite.base.life
+        this.compression=composite.compression
+        this.permanentStrength=composite.permanentStrength
+        this.carry=composite.carry
+    }
+    constants(){
         this.block=0
         this.barrier=0
         this.lastDeal=0
         this.lastTake=0
+        this.lastBlock=0
 
         this.combo=0
         this.comboCap=10
@@ -405,6 +399,12 @@ class combatant{
         this.vision=0
         this.elemental=false
         this.wish=3
+    }
+    reset(){
+        this.size=this.base.size
+        this.anim=this.base.anim
+        
+        this.constants()
 
         this.resetAnim()
         for(let a=0,la=this.status.main.length;a<la;a++){
@@ -445,11 +445,11 @@ class combatant{
             stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],elemental:0}
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.infoAnim.orbSpec.push([])
-            for(let b=0,lb=game.orbNumber;b<lb;b++){
+            for(let b=0,lb=constants.orbNumber;b<lb;b++){
                 this.infoAnim.orbSpec[a].push(0)
             }
         }
-        for(let a=0,la=game.orbNumber;a<la;a++){
+        for(let a=0,la=constants.orbNumber;a<la;a++){
             this.totalOrbClass.push(0)
         }
     }
@@ -760,7 +760,7 @@ class combatant{
             break
         }
         if(this.team==0){
-            if(this.type<=game.playerNumber){
+            if(this.type<=constants.playerNumber){
                 this.subHealthBuff(2)
             }
             if(game.ascend>=2&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2){
@@ -1330,7 +1330,7 @@ class combatant{
                 this.subAttackBuff([1,2,5],1.5)
             }
             this.normalizeAttack()
-        }else if(this.type<=game.playerNumber){
+        }else if(this.type<=constants.playerNumber){
             if(game.ascend>=6){
                 this.life*=0.75
                 this.collect.life*=0.75
@@ -3297,7 +3297,7 @@ class combatant{
                     }
                 }
                 if(this.battle.modded(9)&&this.team>0&&this.team<=this.battle.players&&damage>10){
-                    this.battle.drop(this.id,findName('Concussion',types.card),0,game.playerNumber+1)
+                    this.battle.drop(this.id,findName('Concussion',types.card),0,constants.playerNumber+1)
                 }
                 if(this.status.main[285]>0&&this.block<=0){
                     this.status.main[285]=0
@@ -4891,7 +4891,7 @@ class combatant{
                     case 133: if(this.id<this.battle.players){this.battle.cardManagers[this.id].reserve.addAbstract(findName('Insight',types.card),0,0,0,[5],[])}; break
                     case 135: case 343: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,6)};if(this.status.main[a]<0){this.battle.loseEnergyGen(-this.status.main[a],this.id)}else{this.battle.addEnergyGen(this.status.main[a],this.id)} break
                     case 142: case 155: this.charge+=this.status.main[a]; break
-                    case 143: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Burn',types.card),0,game.playerNumber+1)}} break
+                    case 143: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Burn',types.card),0,constants.playerNumber+1)}} break
                     case 149: this.status.main[findList('No Amplify',this.status.name)]+=this.status.main[a]; break
                     case 157: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,0,0,[0],[3,2])}} break
                     case 158: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,1,0,0,0,[0],[3,2])}} break
@@ -5089,12 +5089,12 @@ class combatant{
         if(this.name=='Eternal Judge'&&this.life>0){
             if(this.sins.includes(0)&&this.turnsAlive%2==0){
                 for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
-                    this.battle.cardManagers[a].hand.add(findName('Pride',types.card),0,game.playerNumber+2)
+                    this.battle.cardManagers[a].hand.add(findName('Pride',types.card),0,constants.playerNumber+2)
                 }
             }
             if(this.sins.includes(2)){
                 for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
-                    this.battle.cardManagers[a].addRandomAbstract(1,0,0,1,0,[],[game.playerNumber+1,3])
+                    this.battle.cardManagers[a].addRandomAbstract(1,0,0,1,0,[],[constants.playerNumber+1,3])
                 }
             }
             if(this.sins.includes(3)){
@@ -5109,7 +5109,7 @@ class combatant{
             }
             if(this.sins.includes(6)){
                 let list=[]
-                for(let a=game.playerNumber,la=findName('Managerial',types.combatant);a<la;a++){
+                for(let a=constants.playerNumber,la=findName('Managerial',types.combatant);a<la;a++){
                     if(types.combatant[a].life>5&&types.combatant[a].life<=30&&!types.combatant[a].spec.includes(2)&&!types.combatant[a].spec.includes(12)){
                         list.push(a)
                     }
@@ -7034,7 +7034,7 @@ class combatant{
         this.infoAnim.balance=smoothAnim(this.infoAnim.balance,this.balance>0,0,1,5)
         this.infoAnim.orb=smoothAnim(this.infoAnim.orb,this.anyOrb,0,1,5)
         for(let a=0,la=this.orbs.length;a<la;a++){
-            for(let b=0,lb=game.orbNumber;b<lb;b++){
+            for(let b=0,lb=constants.orbNumber;b<lb;b++){
                 this.infoAnim.orbSpec[a][b]=smoothAnim(this.infoAnim.orbSpec[a][b],this.orbs[a]==b,0,1,10)
             }
         }
@@ -7114,7 +7114,7 @@ class combatant{
                 la--
             }
         }
-        if(this.type>0&&this.type<=game.playerNumber){
+        if(this.type>0&&this.type<=constants.playerNumber){
             this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
             if(this.balance>this.balanceCap){
                 if(this.status.main[105]>0){

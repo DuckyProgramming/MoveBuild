@@ -27,6 +27,40 @@ class relicManager{
             this.addRelic(0,a)
         }
     }
+    save(){
+        let composite={
+            listing:{
+                relic:this.listing.relic,
+            },
+            active:this.active,
+            detail:this.detail,
+            relics:[
+            ],
+            position:this.position,
+            total:this.total,
+            overTotal:this.overTotal,
+            up:this.up,
+            lost:this.lost,
+        }
+        this.relics.forEach(relic=>composite.relics.push(relic.save()))
+        return composite
+    }
+    load(composite){
+        this.listing.relic=composite.listing.relic
+        this.active=composite.active
+        this.detail=composite.detail
+        this.position=composite.position
+        this.total=composite.total
+        this.overTotal=composite.overTotal
+        this.up=composite.up
+        this.lost=composite.lost
+        this.relics=[]
+        for(let a=0,la=composite.relics.length;a<la;a++){
+            let base=composite.relics[a]
+            this.relics.push(new relic(this.layer,this.battle,0,0,0,0,0))
+            this.relics[this.relics.length-1].establish(base.player,base.position.x,base.position.y,base.type,base.size,base.active)
+        }
+    }
     initialListing(){
         for(let a=0,la=5;a<la;a++){
             for(let b=0,lb=types.relic.length;b<lb;b++){
@@ -399,7 +433,7 @@ class relicManager{
                 for(let a=0,la=3;a<la;a++){
                     this.addRandomRelic(player)
                 }
-                this.battle.cardManagers[player].deck.add(findName('Hoarding',types.card),0,game.playerNumber+2)
+                this.battle.cardManagers[player].deck.add(findName('Hoarding',types.card),0,constants.playerNumber+2)
             break
             case 130: case 429:
                 this.battle.overlayManager.overlays[14][player].active=true
@@ -415,8 +449,8 @@ class relicManager{
             break
             case 134:
                 this.battle.addEnergyBase(player)
-                this.battle.cardManagers[player].addRandomAbstract(0,0,0,1,0,[],[game.playerNumber+2,3])
-                this.battle.cardManagers[player].addRandomAbstract(0,0,0,1,0,[],[game.playerNumber+2,3])
+                this.battle.cardManagers[player].addRandomAbstract(0,0,0,1,0,[],[constants.playerNumber+2,3])
+                this.battle.cardManagers[player].addRandomAbstract(0,0,0,1,0,[],[constants.playerNumber+2,3])
             break
             case 131: case 135: case 136: case 137: case 138: case 140: case 141: case 142: case 144: case 145:
             case 146: case 147: case 148: case 170: case 222: case 228: case 234: case 242: case 243: case 280:
@@ -510,7 +544,7 @@ class relicManager{
                 }
             break
             case 215:
-                this.battle.cardManagers[player].addRandomAbstract(0,0,0,1,0,[],[game.playerNumber+4,3])
+                this.battle.cardManagers[player].addRandomAbstract(0,0,0,1,0,[],[constants.playerNumber+4,3])
             break
             case 216:
                 this.battle.purchaseManager.costChange(player,1,0)
@@ -932,7 +966,7 @@ class relicManager{
                 }
             break
             case 215:
-                this.battle.cardManagers[player].deck.removeAbstract(4,[game.playerNumber+4])
+                this.battle.cardManagers[player].deck.removeAbstract(4,[constants.playerNumber+4])
             break
             case 216:
                 this.battle.purchaseManager.costChange(player,1,-1)
@@ -1446,7 +1480,7 @@ class relicManager{
                             }
                         }
                         if(this.battle.modded(194)){
-                            this.battle.dropDrawShuffle(floor(random(0,this.battle.players)),findName('Mail',types.card),0,game.playerNumber+1)
+                            this.battle.dropDrawShuffle(floor(random(0,this.battle.players)),findName('Mail',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 2:
@@ -1684,7 +1718,7 @@ class relicManager{
                         }
                         if(this.active[144][args[1]+1]>0){
                             for(let a=0,la=this.active[144][args[1]+1];a<la;a++){
-                                this.battle.dropDrawShuffle(args[1],findName('Electrocuted',types.card),0,game.playerNumber+1)
+                                this.battle.dropDrawShuffle(args[1],findName('Electrocuted',types.card),0,constants.playerNumber+1)
                             }
                         }
                         if(this.active[156][args[1]+1]>0){
@@ -1713,7 +1747,7 @@ class relicManager{
                         }
                         if(this.active[285][args[1]+1]>0){
                             for(let a=0,la=this.active[285][args[1]+1];a<la;a++){
-                                this.battle.dropDrawShuffle(args[1],findName('Trough',types.card),0,game.playerNumber+1)
+                                this.battle.dropDrawShuffle(args[1],findName('Trough',types.card),0,constants.playerNumber+1)
                             }
                         }
                         if(this.active[348][args[1]+1]>0){
@@ -1765,7 +1799,7 @@ class relicManager{
                         }
                         if(this.active[418][args[1]+1]>0){
                             for(let a=0,la=2*this.active[418][args[1]+1];a<la;a++){
-                                this.battle.dropDrawShuffle(args[1],findName('Burn',types.card),0,game.playerNumber+1)
+                                this.battle.dropDrawShuffle(args[1],findName('Burn',types.card),0,constants.playerNumber+1)
                             }
                         }
                         if(this.active[433][args[1]+1]>0){
@@ -1800,7 +1834,7 @@ class relicManager{
                         }
                         if(this.battle.modded(216)){
                             for(let a=0,la=2;a<la;a++){
-                                this.battle.dropDrawShuffle(args[1],findName('Electrocuted',types.card),0,game.playerNumber+1)
+                                this.battle.dropDrawShuffle(args[1],findName('Electrocuted',types.card),0,constants.playerNumber+1)
                             }
                         }
                     break
@@ -2128,7 +2162,7 @@ class relicManager{
                 if(this.active[327][args[1]+1]>0&&args[3][0]==6){
                     this.battle.combatantManager.allEffect(43,[3*this.active[327][args[1]+1],this.getPlayer(args[1]).id])
                 }
-                if(this.active[338][args[1]+1]>0&&(args[2].rarity==2&&args[2].list==game.playerNumber+4||args[2].rarity==2&&args[2].list==game.playerNumber+5)){
+                if(this.active[338][args[1]+1]>0&&(args[2].rarity==2&&args[2].list==constants.playerNumber+4||args[2].rarity==2&&args[2].list==constants.playerNumber+5)){
                     this.battle.cardManagers[this.battle.turn.main].draw(2*this.active[338][args[1]+1])
                 }
                 if(this.active[374][args[1]+1]>0){

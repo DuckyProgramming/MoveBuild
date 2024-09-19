@@ -5,9 +5,24 @@ class modManager{
         this.mods=[]
         this.holdMod=[]
         this.listing={mod:[]}
-        this.createListing()
+        this.initialListing()
     }
-    createListing(){
+    save(){
+        let composite={
+            mods:this.mods,
+            holdMod:this.holdMod,
+            listing:{
+                mod:this.listing.mod
+            },
+        }
+        return composite
+    }
+    load(composite){
+        this.mods=composite.mods
+        this.holdMod=composite.holdMod
+        this.listing.mod=composite.listing.mod
+    }
+    initialListing(){
         for(let a=0,la=types.mod.length;a<la;a++){
             this.mods.push(false)
             this.listing.mod.push(a)
@@ -22,11 +37,8 @@ class modManager{
     }
     getMod(type){
         switch(type){
-            case 68:
-                constants.collisionDamage*=5
-            break
             case 77:
-                for(let a=0,la=game.playerNumber;a<la;a++){
+                for(let a=0,la=constants.playerNumber;a<la;a++){
                     this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomAbstract(0,0,0,1,0,[],[a+1,0]))
                 }
             break
@@ -46,7 +58,7 @@ class modManager{
             case 124:
                 for(let a=0,la=2;a<la;a++){
                     this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomAll(0,0,2))
-                    this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomCharacter(0,0,game.playerNumber+2,3))
+                    this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomCharacter(0,0,constants.playerNumber+2,3))
                 }
             break
             case 132:
@@ -103,7 +115,7 @@ class modManager{
                 this.battle.combatantManager.combatants=[]
                 this.battle.colorDetail=[]
                 for(let a=0,la=this.battle.players;a<la;a++){
-                    this.battle.player[a]=floor(random(0,game.playerNumber))+1
+                    this.battle.player[a]=floor(random(0,constants.playerNumber))+1
                     this.battle.addCombatant({x:0,y:0},this.battle.player[a],a+1,0,false)
                     this.battle.colorDetail.push(types.color.card[this.battle.player[a]])
                 }
@@ -123,7 +135,7 @@ class modManager{
         if(variants.mod){
             this.layer.fill(200,this.fade)
             this.layer.noStroke()
-            this.layer.ellipse(this.layer.width-25,250,40,40)
+            this.layer.ellipse(this.layer.width-25,250,40)
             this.layer.stroke(100,this.fade)
             this.layer.strokeWeight(2)
             this.layer.quad(this.layer.width-19,240,this.layer.width-11,240,this.layer.width-31,260,this.layer.width-39,260)

@@ -1,13 +1,4 @@
-star active ability doesn't have animation
-
-
-
-title screen 5th button - collection
-lists all cards, if you've seen them
-
 it may be time to add tooltips
-
-project constructed save?
 
 
 
@@ -34,6 +25,10 @@ scrap note
 
 
 [foil]
+
+[foil]
+
+[luminous horizon]
 
 
 

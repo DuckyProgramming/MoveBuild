@@ -6669,9 +6669,9 @@ Caps at +1, cap is raised by 1 for each Wisdom you have.`,
         {name:'Colorless Deck'},
     ],
 }
-stage={scale:0,scene:'title',internal:{version:1}}
-game={player:[],deck:[],playerNumber:20,orbNumber:14,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0,infoOff:false}
+stage={scale:0,scene:'title',internal:{version:1.9}}
+game={player:[],deck:[],ascend:0,id:0,timer:0,animRate:1,turnTime:0,
+    collisionDamage:4,dev:false,allMap:-1,theme:0,infoOff:false}
 variants={
     mtg:false,mod:false,chaos:false,randomCombat:false,
     lowDraw:false,cyclicDraw:false,balance:false,blackjack:false,
@@ -6711,7 +6711,9 @@ variants={
     ]
 }
 constants={
-    collisionDamage:4,sqrt2:0,sqrt3:0,
+    playerNumber:20,orbNumber:14,
+    targetRadius:30,startEnergy:3,collisionDamage:4,
+    sqrt2:0,sqrt3:0,trig:[[],[]],
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],
@@ -6722,7 +6724,7 @@ constants={
     HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]
 }
 options={damage:false,alt:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false,devGen:false}
-graphics={main:0,backgroundGen:14,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],paperball:[],proxyBattle:0,test:0}
+graphics={main:0,backgroundGen:16,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],paperball:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0

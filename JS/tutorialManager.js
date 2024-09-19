@@ -330,7 +330,7 @@ enemy to play them in.`,
                 this.battle.cardManagers[0].deck.cards=[]
                 this.popups=[[],[],[],[],[],[]]
                 this.pages=[
-`Movebuild has ${game.playerNumber} playable characters.`,
+`Movebuild has ${constants.playerNumber} playable characters.`,
 `Each one has their own set of cards, colored thematically.
 Typically, you cannot get cards from another character during normal runs,
 though some variants, cards, relics, and items will give these off-color cards.`,
@@ -1090,7 +1090,7 @@ As a group of cards, there are a lot of interactions.`,
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,0)
-                        this.battle.cardManagers[0].hand.add(findName('Fatigue',types.card),0,game.playerNumber+1)
+                        this.battle.cardManagers[0].hand.add(findName('Fatigue',types.card),0,constants.playerNumber+1)
                     break
                     case 2:
                         this.battle.cardManagers[0].allEffect(2,2)
@@ -1275,7 +1275,7 @@ As a group of cards, there are a lot of interactions.`,
             case 7:
                 switch(this.page){
                     case 1:
-                        for(let a=0,la=game.playerNumber;a<la;a++){
+                        for(let a=0,la=constants.playerNumber;a<la;a++){
                             this.battle.cardManagers[0].hand.add(findName('Placeholder\n$colorcharacter Card',types.card),0,a+1)
                         }
                         this.battle.cardManagers[0].allEffect(2,43)
@@ -1550,7 +1550,7 @@ As a group of cards, there are a lot of interactions.`,
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Wisp',types.card),0,game.playerNumber+1)
+                        this.battle.cardManagers[0].hand.add(findName('Wisp',types.card),0,constants.playerNumber+1)
                     break
                     case 5:
                         this.battle.combatantManager.resetCombatants()

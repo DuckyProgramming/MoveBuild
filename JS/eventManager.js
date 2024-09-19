@@ -16,6 +16,19 @@ class eventManager{
         this.listing={event:[],complete:[]}
         this.posKey=this.layer.width/2+225*(this.player*2-this.battle.players+1)
     }
+    save(){
+        let composite={
+            listing:{
+                event:this.listing.event,
+                complete:this.listing.complete,
+            }
+        }
+        return composite
+    }
+    load(composite){
+        this.listing.event=composite.listing.event
+        this.listing.complete=composite.listing.complete
+    }
     initial(){
         for(let a=0,la=types.event.length;a<la;a++){
             if(types.event[a].list==0){
@@ -238,7 +251,7 @@ class eventManager{
             break
             case 85:
                 possible=[]
-                for(let a=1,la=game.playerNumber+1;a<la;a++){
+                for(let a=1,la=constants.playerNumber+1;a<la;a++){
                     if(!this.battle.player.includes(a)){
                         possible.push(a)
                     }
@@ -280,7 +293,7 @@ class eventManager{
             break
             case 155:
                 possible=[]
-                for(let a=1,la=game.playerNumber+1;a<la;a++){
+                for(let a=1,la=constants.playerNumber+1;a<la;a++){
                     if(!this.battle.player.includes(a)){
                         possible.push(a)
                     }
@@ -412,7 +425,7 @@ class eventManager{
                             this.battle.overlayManager.overlays[5][this.player].activate()
                         }else if(this.page==2&&a==0){
                             this.battle.relicManager.addRelic(findInternal('Upgrade Random Turn',types.relic),this.player)
-                            this.battle.cardManagers[this.player].deck.add(findName('Pain',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Pain',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 8:
@@ -468,7 +481,7 @@ class eventManager{
                         if(this.page==1&&a==0){
                             this.battle.addCurrency(75,this.player)
                         }else if(this.page==2&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Regret',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Regret',types.card),0,constants.playerNumber+2)
                             this.battle.addCurrency(175,this.player)
                         }
                     break
@@ -496,7 +509,7 @@ class eventManager{
                         }else if(this.page==2&&a==0){
                             this.battle.relicManager.addRandomRelic(this.player)
                             this.battle.relicManager.addRandomRelic(this.player)
-                            this.battle.cardManagers[this.player].deck.add(findName('Regret',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Regret',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 19:
@@ -523,7 +536,7 @@ class eventManager{
                         if(this.page==0&&a==0){
                             this.battle.addCurrency(275,this.player)
                         }else if(this.page==1&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Doubt',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Doubt',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 22:
@@ -567,7 +580,7 @@ class eventManager{
                         }else if(this.page==1&&a==0){
                             userCombatant.gainMaxHP(5)
                         }else if(this.page==2&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Decay',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Decay',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 27:
@@ -588,7 +601,7 @@ class eventManager{
                             transition.scene='battle'
                             this.battle.setupBattle(types.encounter[findName('Slaver',types.encounter)])
                         }else if(this.page==1&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Guilt',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Guilt',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 29:
@@ -598,7 +611,7 @@ class eventManager{
                                 tempPage++
                             }
                         }else if(this.page==1&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Writhe',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Writhe',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 30:
@@ -632,7 +645,7 @@ class eventManager{
                             this.battle.relicManager.addRandomRelic(this.player)
                         }else if(this.page==3&&a==0){
                             this.battle.relicManager.addRandomRelic(this.player)
-                            this.battle.cardManagers[this.player].deck.add(findName('Shame',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Shame',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 32:
@@ -655,10 +668,10 @@ class eventManager{
                         }else if(this.page==1&&a==0){
                             this.battle.relicManager.addRelic(findInternal('No Heal',types.relic),this.player)
                         }else if(this.page==2&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Normality',types.card),0,game.playerNumber+2)
-                            this.battle.cardManagers[this.player].deck.add(findName('Normality',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Normality',types.card),0,constants.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Normality',types.card),0,constants.playerNumber+2)
                         }else if(this.page==3&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Doubt',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Doubt',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 34:
@@ -676,7 +689,7 @@ class eventManager{
                             this.battle.cardManagers[this.player].deck.add(findName('Madness',types.card),0,0)
                             this.harmMax(userCombatant,10)
                         }else if(this.page==2&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Writhe',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Writhe',types.card),0,constants.playerNumber+2)
                         }else if(this.page==3&&a==0){
                             this.harmMax(userCombatant,5)
                         }
@@ -703,7 +716,7 @@ class eventManager{
                             this.battle.setupBattle(types.encounter[findName('Fungal Duck',types.encounter)])
                         }else if(this.page==2&&a==0){
                             userCombatant.heal(25)
-                            this.battle.cardManagers[this.player].deck.add(findName('Parasite',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Parasite',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 39:
@@ -812,7 +825,7 @@ class eventManager{
                         }else if(this.page==4&&a==0){
                             this.harmMax(userCombatant,4)
                         }else if(this.page==5&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Injury',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Injury',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 50:
@@ -920,7 +933,7 @@ class eventManager{
                     break
                     case 62:
                         if(this.page==0&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Drunk',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Drunk',types.card),0,constants.playerNumber+2)
                         }else if(this.page==1&&a==0){
                             this.battle.addCurrency(400,this.player)
                         }
@@ -941,11 +954,11 @@ class eventManager{
                         if(this.page==0&&a==0){
                             this.battle.overlayManager.overlays[88][this.player].active=true
                             this.battle.overlayManager.overlays[88][this.player].activate()
-                            this.battle.cardManagers[this.player].deck.add(findName('Bozo',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Bozo',types.card),0,constants.playerNumber+2)
                         }else if(this.page==0&&a==1){
                             this.battle.overlayManager.overlays[52][this.player].active=true
                             this.battle.overlayManager.overlays[52][this.player].activate()
-                            this.battle.cardManagers[this.player].deck.add(findName('Backfire',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Backfire',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 66:
@@ -1010,7 +1023,7 @@ class eventManager{
                         }else if(this.page==2&&a==1){
                             this.battle.loseCurrency(300,this.player)
                         }else if(this.page==2&&a==2){
-                            this.battle.cardManagers[this.player].deck.add(findName('Unfortunate',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Unfortunate',types.card),0,constants.playerNumber+2)
                         }else if(this.page==3&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Lucky\nCharm',types.card),0,0)
                         }
@@ -1052,7 +1065,7 @@ class eventManager{
                     case 76:
                         if(this.page==0&&a==0){
                             userCombatant.gainMaxHP(16)
-                            this.battle.cardManagers[this.player].deck.add(findName('Lunar\nNight',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Lunar\nNight',types.card),0,constants.playerNumber+2)
                         }else if(this.page==0&&a==1){
                             this.battle.cardManagers[this.player].deck.add(findName('Lunar\nSoil',types.card),0,0)
                             this.battle.cardManagers[this.player].deck.add(findName('Lunar\nSoil',types.card),0,0)
@@ -1195,15 +1208,15 @@ class eventManager{
                             this.battle.overlayManager.overlays[3][this.player].active=true
                             this.battle.overlayManager.overlays[3][this.player].activate([0,3,16])
                         }else if(this.page==0&&a==1){
-                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[game.playerNumber+5,3])
-                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[game.playerNumber+5,3])
+                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[constants.playerNumber+5,3])
+                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[constants.playerNumber+5,3])
                         }
                     break
                     case 92:
                         if(this.page==0&&a==0){
                             this.battle.cardManagers[this.player].deck.removeAbstract(6,[[6]])
                         }else if(this.page==0&&a==1){
-                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[game.playerNumber+2,3])
+                            this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[constants.playerNumber+2,3])
                             this.battle.relicManager.addRelic(findInternal('Curse Strength',types.relic),this.player)
                         }
                     break
@@ -1229,7 +1242,7 @@ class eventManager{
                     break
                     case 96:
                         if(this.page==0&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Duck\nFluff',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Duck\nFluff',types.card),0,constants.playerNumber+2)
                         }else if(this.page==1&&a==0){
                             this.battle.relicManager.addRandomRelic(this.player)
                         }
@@ -1262,7 +1275,7 @@ class eventManager{
                             this.battle.overlayManager.overlays[3][this.player].active=true
                             this.battle.overlayManager.overlays[3][this.player].activate([0,0,32])
                         }else if(this.page==3&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName(`Reimu's\nWrath`,types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName(`Reimu's\nWrath`,types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 101:
@@ -1328,7 +1341,7 @@ class eventManager{
                     case 109:
                         if(this.page==0&&a==0){
                             this.battle.relicManager.addRelic(findInternal('Glitched Cards',types.relic),this.player)
-                            this.battle.cardManagers[this.player].deck.add(findName('Gamer',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Gamer',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 110:
@@ -1533,7 +1546,7 @@ class eventManager{
                         if(this.page==0&&a==0&&this.battle.currency.money[this.player]>0){
                             this.battle.loseCurrency(this.battle.currency.money[this.player],this.player)
                         }else if(this.page==0&&a==1){
-                            this.battle.cardManagers[this.player].deck.add(findName('Buy\nSafety',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Buy\nSafety',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 128:
@@ -1551,11 +1564,11 @@ class eventManager{
                         if(this.page==0&&a==0){
                             this.harmMax(userCombatant,12)
                         }else if(this.page==0&&a==1){
-                            this.battle.cardManagers[this.player].deck.add(findName('Direct\nSunlight',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Direct\nSunlight',types.card),0,constants.playerNumber+2)
                         }else if(this.page==0&&a==2){
                             this.harm(userCombatant,8)
                         }else if(this.page==1&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Sunny, Glowing\nSunlight',types.card),0,game.playerNumber+5)
+                            this.battle.cardManagers[this.player].deck.add(findName('Sunny, Glowing\nSunlight',types.card),0,constants.playerNumber+5)
                         }else if(this.page==2&&a==0){
                             this.battle.overlayManager.overlays[104][this.player].active=true
                             this.battle.overlayManager.overlays[104][this.player].activate([])
@@ -1745,7 +1758,7 @@ class eventManager{
                         }else if(this.page==2&&a==0){
                             this.harm(userCombatant,20)
                         }else if(this.page==3&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('B-B-Busted',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('B-B-Busted',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 150:
@@ -1811,11 +1824,11 @@ class eventManager{
                         if(this.page==0&&a==0){
                             this.harmMax(userCombatant,12)
                         }else if(this.page==0&&a==1){
-                            this.battle.cardManagers[this.player].deck.add(findName('Starry\nGlare',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Starry\nGlare',types.card),0,constants.playerNumber+2)
                         }else if(this.page==0&&a==2){
                             this.harm(userCombatant,8)
                         }else if(this.page==1&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Star, Showering\nStarlight',types.card),0,game.playerNumber+5)
+                            this.battle.cardManagers[this.player].deck.add(findName('Star, Showering\nStarlight',types.card),0,constants.playerNumber+5)
                         }else if(this.page==2&&a==0){
                             this.battle.overlayManager.overlays[119][this.player].active=true
                             this.battle.overlayManager.overlays[119][this.player].activate([])
@@ -1857,7 +1870,7 @@ class eventManager{
                             this.battle.addCurrency(100,this.player)
                         }else if(this.page==4&&a==0){
                             this.battle.addCurrency(500,this.player)
-                            this.battle.cardManagers[this.player].deck.add(findName('Guilt',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Guilt',types.card),0,constants.playerNumber+2)
                         }
                     break
                     case 162:

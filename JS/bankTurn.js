@@ -188,7 +188,7 @@ turn.prototype.update=function(){
                             switch(this.type){
                                 case 361:
                                     for(let a=0,la=this.effect[1];a<la;a++){
-                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                     }
                                 break
                             }
@@ -282,7 +282,7 @@ turn.prototype.update=function(){
                             break
                             case 196:
                                 for(let a=0,la=this.effect[1];a<la;a++){
-                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                 }
                             break
                             case 399:
@@ -485,7 +485,7 @@ turn.prototype.update=function(){
                                 case 89:
                                     if(this.targetCombatant.blocked>0){
                                         for(let a=0,la=this.effect[1];a<la;a++){
-                                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                         }
                                     }
                                 break
@@ -517,7 +517,7 @@ turn.prototype.update=function(){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             if(this.type==164){
                                 for(let a=0,la=this.effect[1];a<la;a++){
-                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                 }
                             }
                         }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -566,7 +566,7 @@ turn.prototype.update=function(){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             if(this.type==164){
                                 for(let a=0,la=this.effect[1];a<la;a++){
-                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                 }
                             }
                         }else if(this.timer>=max(45,5*this.targetDistance+40)){
@@ -633,7 +633,7 @@ turn.prototype.update=function(){
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.type==73){
                             for(let a=0,la=this.effect[1];a<la;a++){
-                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                             }
                         }
                     }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -650,7 +650,7 @@ turn.prototype.update=function(){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             if(this.type==76&&this.targetCombatant.blocked>0){
                                 for(let a=0,la=this.effect[1];a<la;a++){
-                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                 }
                             }
                         }else if(this.timer>=30){
@@ -679,7 +679,7 @@ turn.prototype.update=function(){
                                 this.battle.activate(1,this.userCombatant.id)
                                 if(this.type==76&&this.targetCombatant.blocked>0){
                                     for(let a=0,la=this.effect[1];a<la;a++){
-                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                     }
                                 }
                             }
@@ -733,7 +733,7 @@ turn.prototype.update=function(){
                             this.targetCombatant[a].takeDamage(this.effect[0],this.user)
                             if(this.type==157&&this.targetCombatant[a].id<this.battle.players){
                                 for(let b=0,lb=this.effect[1];b<lb;b++){
-                                    this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                    this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                 }
                             }
                         }
@@ -792,12 +792,12 @@ turn.prototype.update=function(){
                         switch(this.type){
                             case 91:
                                 for(let a=0,la=this.effect[1];a<la;a++){
-                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                 }
                             break
                             case 400:
                                 for(let a=0,la=this.effect[1];a<la;a++){
-                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                 }
                             break
                         }
@@ -1123,7 +1123,7 @@ turn.prototype.update=function(){
                             switch(this.type){
                                 case 135:
                                     for(let a=0,la=this.effect[1];a<la;a++){
-                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                     }
                                 break
                             }
@@ -1537,7 +1537,7 @@ turn.prototype.update=function(){
                             break
                             case 181:
                                 for(let a=0,la=this.effect[1];a<la;a++){
-                                    this.battle.combatantManager.areaAbstract(4,[findName(this.effect[2],types.card),0,game.playerNumber+1],this.targetTile.tilePosition,[5,this.userCombatant.id],[0,1],false,0)
+                                    this.battle.combatantManager.areaAbstract(4,[findName(this.effect[2],types.card),0,constants.playerNumber+1],this.targetTile.tilePosition,[5,this.userCombatant.id],[0,1],false,0)
                                 }
                             break
                             case 331:
@@ -1631,7 +1631,7 @@ turn.prototype.update=function(){
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.type==384){
                             for(let a=0,la=this.effect[1];a<la;a++){
-                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                             }
                         }
                     }else if(this.timer>=20){
@@ -1938,7 +1938,7 @@ turn.prototype.update=function(){
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.targetCombatant.blocked>0){
                             for(let a=0,la=this.effect[1];a<la;a++){
-                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                             }
                         }
                     }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -2139,7 +2139,7 @@ turn.prototype.update=function(){
                             this.targetCombatant[a].takeDamage(this.effect[0],this.user)
                             if(this.type==166&&this.targetCombatant[a].id<this.battle.players){
                                 for(let b=0,lb=this.effect[1];b<lb;b++){
-                                    this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                    this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                 }
                             }
                         }
@@ -2765,7 +2765,7 @@ turn.prototype.update=function(){
                             switch(this.type){
                                 case 350:
                                     for(let a=0,la=this.effect[1];a<la;a++){
-                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                     }
                                 break
                             }
@@ -2834,7 +2834,7 @@ turn.prototype.update=function(){
                             switch(this.type){
                                 case 350:
                                     for(let a=0,la=this.effect[1];a<la;a++){
-                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                     }
                                 break
                             }
@@ -3259,7 +3259,7 @@ turn.prototype.update=function(){
                                 case 364:
                                     if(this.targetCombatant.blocked>0){
                                         for(let b=0,lb=this.effect[2];b<lb;b++){
-                                            this.battle.drop(this.targetCombatant.id,findName(this.effect[3],types.card),0,game.playerNumber+1)
+                                            this.battle.drop(this.targetCombatant.id,findName(this.effect[3],types.card),0,constants.playerNumber+1)
                                         }
                                     }
                                 break
@@ -3419,7 +3419,7 @@ turn.prototype.update=function(){
                                 this.userCombatant.charge+=this.effect[3]
                                 if(this.targetCombatant.blocked>0){
                                     for(let a=0,la=this.effect[1];a<la;a++){
-                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                     }
                                 }
                             break
@@ -3478,7 +3478,7 @@ turn.prototype.update=function(){
                             case 338:
                                 if(this.targetCombatant.blocked>0){
                                     for(let b=0,lb=this.effect[1];b<lb;b++){
-                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                     }
                                 }
                             break
@@ -3611,7 +3611,7 @@ turn.prototype.update=function(){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             if(this.type==164){
                                 for(let a=0,la=this.effect[1];a<la;a++){
-                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                 }
                             }
                         }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -3660,7 +3660,7 @@ turn.prototype.update=function(){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             if(this.type==164){
                                 for(let a=0,la=this.effect[1];a<la;a++){
-                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                    this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,constants.playerNumber+1)
                                 }
                             }
                         }else if(this.timer>=max(45,5*this.targetDistance+40)){

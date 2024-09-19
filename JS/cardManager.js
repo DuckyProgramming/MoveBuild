@@ -32,6 +32,38 @@ class cardManager{
 
         this.initialListing()
     }
+    save(){
+        let composite={
+            listing:{
+                card:this.listing.card,
+            },
+            deck:this.deck.save(),
+            remove:this.remove.save(),
+            drawAmount:this.drawAmount,
+            baseDrops:this.baseDrops,
+            carry:this.carry,
+            pack:[],
+        }
+        this.pack.forEach(card=>composite.pack.push(card.save()))
+        return composite
+    }
+    load(composite){
+        this.listing.card=composite.listing.card
+        this.deck.load(composite.deck)
+        this.remove.load(composite.remove)
+        this.drawAmount=composite.drawAmount
+        this.baseDrops=composite.baseDrops
+        this.carry=composite.carry
+        this.pack=[]
+        composite.pack.forEach(base=>this.pack.push(new card(
+            this.layer,this.battle,base.player,base.position.x,base.position.y,
+            base.type,base.level,base.color,base.id,base.cost,
+            base.additionalSpec,base.name,base.list,base.effect,base.attack,
+            base.target,base.spec,base.cardClass,base.limit,base.falsed,
+            false,base.colorful,base.edition,base.base.cost,base.drawn,
+            base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,base.costUpTrigger
+        )))
+    }
     subAllList(a){
         if(types.card[a].rarity<0){
             this.listing.all[floor(random(0,3))].push(a)
@@ -43,14 +75,14 @@ class cardManager{
         }
     }
     initialListing(){
-        for(let a=0;a<game.playerNumber+6;a++){
+        for(let a=0;a<constants.playerNumber+6;a++){
             this.listing.card.push([[],[],[],[]])
         }
         this.listing.allPlayerCard=[[],[],[],[]]
         this.listing.allListableCard=[[],[],[],[]]
         this.listing.coc=[[],[],[],[]]
         this.listing.all=[[],[],[],[]]
-        this.listing.junk=multiplyArray([],game.playerNumber+2)
+        this.listing.junk=multiplyArray([],constants.playerNumber+2)
         this.listing.sub=[]
         this.listing.ally=[]
         this.listing.disband=[]
@@ -70,7 +102,7 @@ class cardManager{
             if(!(variants.quarterPool&&floor(random(0,4))!=0)){
                 if(cardData.rarity==-10){
                     this.listing.junk[cardData.list].push(a)
-                    this.listing.junk[game.playerNumber+1].push(a)
+                    this.listing.junk[constants.playerNumber+1].push(a)
                 }
                 if(cardData.rarity==-6){
                     this.listing.sub.push(a)
@@ -81,11 +113,11 @@ class cardManager{
                 if(cardData.rarity==-1&&cardData.list==-8){
                     this.listing.disband.push(a)
                 }
-                if(cardData.rarity>=0&&cardData.list>=0&&cardData.list<=game.playerNumber+5){
+                if(cardData.rarity>=0&&cardData.list>=0&&cardData.list<=constants.playerNumber+5){
                     if(variants.prismrule.includes(cardData.list)){
                         this.subAllList(a)
                     }
-                }else if(cardData.rarity<0&&cardData.list==game.playerNumber+5){
+                }else if(cardData.rarity<0&&cardData.list==constants.playerNumber+5){
                     if(variants.prismrule.includes(-1)){
                         this.subAllList(a)
                     }
@@ -132,13 +164,13 @@ class cardManager{
                         this.listing.card[cardData.list][cardData.rarity].push(a)
                     }
                     this.listing.card[cardData.list][3].push(a)
-                    if(cardData.list>0&&cardData.list<=game.playerNumber){
+                    if(cardData.list>0&&cardData.list<=constants.playerNumber){
                         if(cardData.rarity!=3){
                             this.listing.allPlayerCard[cardData.rarity].push(a)
                         }
                         this.listing.allPlayerCard[3].push(a)
                     }
-                    if(cardData.list>=0&&cardData.list<=game.playerNumber+5){
+                    if(cardData.list>=0&&cardData.list<=constants.playerNumber+5){
                         if(cardData.rarity!=3){
                             this.listing.allListableCard[cardData.rarity].push(a)
                         }
@@ -158,7 +190,7 @@ class cardManager{
                 }
             }
         }
-        for(let a=0,la=game.playerNumber;a<la;a++){
+        for(let a=0,la=constants.playerNumber;a<la;a++){
             if(variants.cyclicDraw){
                 let list=['Buster','Multicard','Dropbox','DeDrop','Eye\nDropper','Dropout']
                 for(let b=0,lb=list.length;b<lb;b++){
@@ -183,7 +215,7 @@ class cardManager{
         if(variants.mtg){
             colorlisting.push(-1)
         }
-        for(let a=0,la=game.playerNumber;a<la;a++){
+        for(let a=0,la=constants.playerNumber;a<la;a++){
             colorlisting.push(a+1)
         }
         colorlisting.push(0)
@@ -224,7 +256,7 @@ class cardManager{
     }
     mtgListing(){
         this.listing.mtg=[[[],[],[],[]],[],[[],[],[],[]],[[],[],[],[]]]
-        for(let a=0,la=game.playerNumber+8;a<la;a++){
+        for(let a=0,la=constants.playerNumber+8;a<la;a++){
             this.listing.mtg[1].push([[],[],[],[]])
         }
         let effectiveMana=[0,0,0,0,0,0,0]
@@ -267,7 +299,7 @@ class cardManager{
                     this.listing.mtg[0][3].push(a)
                 }
                 if(
-                    cardData.mtg.rarity>=0&&(cardData.mtg.list>=-1&&cardData.mtg.list<=game.playerNumber+5)&&(
+                    cardData.mtg.rarity>=0&&(cardData.mtg.list>=-1&&cardData.mtg.list<=constants.playerNumber+5)&&(
                         (
                             cardData.mtg.levels[0].spec.includes(11)||
                             cardData.mtg.levels[0].spec.includes(21)
@@ -277,18 +309,18 @@ class cardManager{
                         mtgAutoCost(effectiveMana,cardData.mtg.levels[0].cost,0,[],false)!=-1
                     )
                 ){
-                    this.listing.mtg[1][cardData.mtg.list==-1?game.playerNumber+6:cardData.mtg.list][cardData.mtg.rarity].push(a)
-                    this.listing.mtg[1][cardData.mtg.list==-1?game.playerNumber+6:cardData.mtg.list][3].push(a)
-                    if(cardData.mtg.list==-1||cardData.mtg.list>0&&cardData.mtg.list<=game.playerNumber){
-                        this.listing.mtg[1][game.playerNumber+7][cardData.mtg.rarity].push(a)
-                        this.listing.mtg[1][game.playerNumber+7][3].push(a)
+                    this.listing.mtg[1][cardData.mtg.list==-1?constants.playerNumber+6:cardData.mtg.list][cardData.mtg.rarity].push(a)
+                    this.listing.mtg[1][cardData.mtg.list==-1?constants.playerNumber+6:cardData.mtg.list][3].push(a)
+                    if(cardData.mtg.list==-1||cardData.mtg.list>0&&cardData.mtg.list<=constants.playerNumber){
+                        this.listing.mtg[1][constants.playerNumber+7][cardData.mtg.rarity].push(a)
+                        this.listing.mtg[1][constants.playerNumber+7][3].push(a)
                     }
                 }
                 if(cardData.mtg.rarity>=0&&(cardData.mtg.list==this.battle.player[this.player]||cardData.mtg.list==-1)){
                     this.listing.mtg[2][cardData.mtg.rarity].push(a)
                     this.listing.mtg[2][3].push(a)
                 }
-                if(cardData.mtg.list>=-1&&cardData.mtg.list<=game.playerNumber+5&&cardData.mtg.rarity>=0){
+                if(cardData.mtg.list>=-1&&cardData.mtg.list<=constants.playerNumber+5&&cardData.mtg.rarity>=0){
                     this.listing.mtg[3][cardData.mtg.rarity].push(a)
                     this.listing.mtg[3][3].push(a)
                 }
@@ -356,7 +388,7 @@ class cardManager{
                 list=variants.mtg?copyArray(this.listing.mtg[1][args[ticker++]][args[ticker++]]):copyArray(this.listing.card[args[ticker++]][args[ticker++]])
             break
             case 2:
-                list=variants.mtg?copyArray((output==0||output==5||output==8?this.listing.mtg[1][game.playerNumber+7]:this.listing.mtg[2])[args[ticker++]]):copyArray(this.listing.allPlayerCard[args[ticker++]])
+                list=variants.mtg?copyArray((output==0||output==5||output==8?this.listing.mtg[1][constants.playerNumber+7]:this.listing.mtg[2])[args[ticker++]]):copyArray(this.listing.allPlayerCard[args[ticker++]])
             break
             case 3:
                 list=copyArray(this.listing.allPlayerCard[args[ticker]])
@@ -840,13 +872,13 @@ class cardManager{
             userCombatant.status.main[findList('Random Card Cost More Next Turn',userCombatant.status.name)]=0
         }
         if(turn%4==0&&game.ascend>=24){
-            this.reserve.addAbstract(findName('Dazed',types.card),0,game.playerNumber+1,0,[5],[])
+            this.reserve.addAbstract(findName('Dazed',types.card),0,constants.playerNumber+1,0,[5],[])
         }
         if(turn%3==0&&this.battle.modded(0)){
-            this.battle.drop(this.player,findName('Dazed',types.card),0,game.playerNumber+1)
+            this.battle.drop(this.player,findName('Dazed',types.card),0,constants.playerNumber+1)
         }
         if(turn%5==0&&this.battle.modded(31)){
-            this.battle.drop(this.player,findName('Spiked',types.card),0,game.playerNumber+1)
+            this.battle.drop(this.player,findName('Spiked',types.card),0,constants.playerNumber+1)
         }
         if(this.battle.modded(4)){
             this.hand.randomEffect(7,[1])
@@ -871,13 +903,13 @@ class cardManager{
         let override=true
         if((this.numberAbstract(3,[43])<10||this.interval%2==0||bypass||override)&&!this.battle.relicManager.hasRelic(471,this.player)){
             if(this.battle.relicManager.hasRelic(286,this.player)){
-                this.reserve.add(findName(name,types.card),0,game.playerNumber+1)
+                this.reserve.add(findName(name,types.card),0,constants.playerNumber+1)
                 this.reserve.cards[this.reserve.cards.length-1].spec.push(43)
             }else{
-                this.discard.add(findName(name,types.card),0,game.playerNumber+1)
+                this.discard.add(findName(name,types.card),0,constants.playerNumber+1)
                 this.discard.cards[this.discard.cards.length-1].spec.push(43)
             }
-            this.drop.addDrop(findName(name,types.card),0,game.playerNumber+1)
+            this.drop.addDrop(findName(name,types.card),0,constants.playerNumber+1)
             this.drop.cards[this.drop.cards.length-1].spec.push(43)
             if(this.battle.modded(61)&&!this.discard.cards[this.discard.cards.length-1].spec.includes(33)){
                 this.discard.cards[this.discard.cards.length-1].spec.push(33)
@@ -934,8 +966,8 @@ class cardManager{
         if(this.battle.relicManager.hasRelic(108,this.player)&&this.battle.relicManager.detail[108][this.player]==0){
             this.battle.relicManager.detail[108][this.player]=1
         }else{
-            this.discard.add(findName('Heavy\nFatigue',types.card),0,game.playerNumber+1)
-            this.drop.addDrop(findName('Heavy\nFatigue',types.card),0,game.playerNumber+1)
+            this.discard.add(findName('Heavy\nFatigue',types.card),0,constants.playerNumber+1)
+            this.drop.addDrop(findName('Heavy\nFatigue',types.card),0,constants.playerNumber+1)
             if(this.battle.relicManager.hasRelic(142,this.player)){
                 this.discard.cards[this.discard.cards.length-1].cost++
                 this.discard.cards[this.discard.cards.length-1].base.cost++
@@ -985,7 +1017,7 @@ class cardManager{
     }
     transformCard(base){
         if(variants.mtg){
-            if((base.list==0||base.list>game.playerNumber)&&base.rarity>=0){
+            if((base.list==0||base.list>constants.playerNumber)&&base.rarity>=0){
                 let index=floor(random(0,this.listing.mtg[1][base.list][3].length))
                 while(this.listing.mtg[0][3][index]==base.type){
                     index=floor(random(0,this.listing.mtg[1][base.list][3].length))
@@ -998,7 +1030,7 @@ class cardManager{
                 }
                 return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.mtg[0][3][index],base.level,types.card[this.listing.mtg[0][3][index]].mtg.color,base.id)
             }else{
-                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,[game.playerNumber+1],base.id)
+                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,[constants.playerNumber+1],base.id)
             }
         }else{
             if(base.list>=0&&base.rarity>=0){
@@ -1014,17 +1046,17 @@ class cardManager{
                 }
                 return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.color][3][index],base.level,base.color,base.id)
             }else{
-                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,game.playerNumber+1,base.id)
+                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,constants.playerNumber+1,base.id)
             }
         }
     }
     transformCardPrism(base){
         if(variants.mtg){
-            let index=floor(random(0,this.listing.mtg[1][game.playerNumber+7][3].length))
-            while(this.listing.mtg[1][game.playerNumber+7][3][index]==base.type){
-                index=floor(random(0,this.listing.mtg[1][game.playerNumber+7][3].length))
+            let index=floor(random(0,this.listing.mtg[1][constants.playerNumber+7][3].length))
+            while(this.listing.mtg[1][constants.playerNumber+7][3][index]==base.type){
+                index=floor(random(0,this.listing.mtg[1][constants.playerNumber+7][3].length))
             }
-            return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.mtg[1][game.playerNumber+7][3][index],base.level,this.battle.standardColorize(this.listing.mtg[1][game.playerNumber+7][3][index]),base.id)
+            return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.mtg[1][constants.playerNumber+7][3][index],base.level,this.battle.standardColorize(this.listing.mtg[1][constants.playerNumber+7][3][index]),base.id)
         }else{
             let index=floor(random(0,this.listing.allPlayerCard[3].length))
             while(this.listing.allPlayerCard[3][index]==base.type){
@@ -1051,7 +1083,6 @@ class cardManager{
         this.hand.reset()
     }
     regenDrops(){
-        this.drawBoost=0
         if(variants.cyclicDraw){
             this.drops=min(this.drops+1,this.baseDrops)
         }else if(variants.blackjack){
@@ -1060,9 +1091,7 @@ class cardManager{
     }
     standardBase(){
         this.checkCompact()
-        if(variants.polar){
-            this.hand.pole=1
-        }
+        this.drawBoost=0
         this.hand.exhausts=0
         if(variants.cyclicDraw){
             this.drops=this.baseDrops

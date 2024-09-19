@@ -61,6 +61,7 @@ class card{
         this.cancelDesc=false
         this.originated=false
         this.swapped=false
+        this.blind=false
         this.discardEffect=[]
         this.discardEffectBuffered=[]
         this.upped=[false,false,false,false]
@@ -282,6 +283,41 @@ class card{
             this.spec=[]
         }
         this.setColorDetail()
+    }
+    save(){
+        let composite={
+            player:this.player,
+            position:this.position,
+            type:this.type,
+            level:this.level,
+            color:this.color,
+            id:this.id,
+            cost:this.cost,
+            additionalSpec:this.additionalSpec,
+            name:this.name,
+            list:this.list,
+            effect:this.effect,
+            attack:this.attack,
+            target:this.target,
+            spec:this.spec,
+            cardClass:this.cardClass,
+            limit:this.limit,
+            falsed:this.falsed,
+            colorful:this.colorful,
+            edition:this.edition,
+            base:{
+                cost:this.base.cost,
+            },
+            drawn:this.drawn,
+            edited:{
+                cost:this.edited.cost,
+                costComplete:this.edited.costComplete,
+            },
+            nonCalc:this.nonCalc,
+            costDownTrigger:this.costDownTrigger,
+            costUpTrigger:this.costUpTrigger,
+        }
+        return composite
     }
     setColorDetail(){
         if(this.attack==1754){
@@ -2263,7 +2299,7 @@ class card{
             case 1396: string+=`When You Deal\nMore Than 20 Damage,\nApply ${effect[0]} Miss`; break
             case 1397: string+=`Even X:\nDeal ${this.calculateEffect(effect[0],2)} Damage\nHeal ${this.calculateEffect(effect[1],9)} Health\nShuffle a Snip\nBetween 1 and X-1\nInto Draw`; break
             case 1398: string+=`While in Your Deck,\nHeal ${this.calculateEffect(effect[0],4)} Health\nEvery Turn`; break
-            case 1399: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} ${['Burn','Freeze','Shock','Weak'][this.battle.turn.total%4]}\nChanges Every Turn`; break
+            case 1399: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} ${stage.scene=='battle'?['Burn','Freeze','Shock','Weak'][this.battle.turn.total%4]:'Turn-Dependent Status'}\nChanges Every Turn`; break
             case 1400: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health\nTarget Cannot Move\nFor ${effect[2]} Turn${pl(effect[2])}`; break
             case 1401: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Miracle${pl(effect[1])} to Hand\nDiscards to Hand`; break
             case 1402: string+=`Gain ${effect[0]} Energy\nDraw Cards to ${effect[1]} Cost`; break
@@ -2474,7 +2510,7 @@ class card{
             case 1612: string+=`While in Your Deck,\nIgnore ${effect[0]} Tile${pl(effect[0])}\nEvery Combat`; break
             case 1613: string+=`Apply ${effect[0]} Jinx\nNext Turn`; break
             case 1614: string+=`Multiply Target\nJinx by ${effect[0]}`; break
-            case 1616: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} ${['Burn','Freeze','Shock','Weak'][this.battle.turn.total%4]}\nChanges Every Turn\nDiscards to Hand`; break
+            case 1616: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} ${stage.scene=='battle'?['Burn','Freeze','Shock','Weak'][this.battle.turn.total%4]:'Turn-Dependent Status'}\nChanges Every Turn\nDiscards to Hand`; break
             case 1617: string+=`Leftmost Card in Hand:\nApply ${effect[0]} Freeze\nRightmost Card in Hand:\nApply ${effect[1]} Burn`; break
             case 1618: string+=`Exactly 0 Energy:\nApply ${effect[0]} Jinx\nand Draw ${effect[1]} Card${pl(effect[1])}`; break
             case 1619: string+=`Apply ${effect[0]} Jinxshock`; break
@@ -2610,7 +2646,7 @@ class card{
             case 1751: string+=`Deal ${effect[0]} Damage\nApply ${effect[1]} Burn\nDamage is Constant`; break
             case 1752: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReduce All Countdowns\nby Leftover Energy`; break
             case 1753: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less Temporarily\nWhen Retained\nDiscards to Hand`; break
-            case 1754: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Random ${[`Setsuna`,`Lira`][this.battle.turn.total%2]}\nCard${pl(effect[1])} to Hand`; break
+            case 1754: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Random${stage.scene=='battle'?[` Setsuna`,` Lira`][this.battle.turn.total%2]:`\nSetsuna or Lira`}\nCard${pl(effect[1])} to Hand`; break
             case 1755: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nDiscard ${effect[2]} Random Card${pl(effect[2])}\nOverdrive ${effect[3]}:\nDeal Triple Damage`; break
             case 1756: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nOverdrive ${effect[1]}:\nX Increased by ${effect[2]}`; break
             case 1757: string+=`Add ${effect[0]} Miracle${pl(effect[0])} to Hand\nAdd ${effect[1]} Wrong Miracle${pl(effect[1])}\nto Hand\nLose All ${variants.mtg?`Mana`:`Energy`}`; break
@@ -2903,7 +2939,7 @@ class card{
             case 2047: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
             case 2048: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Apply ${effect[1]} Freeze\n50%: Apply ${effect[2]} Shock`; break
             case 2049: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\nGain ${effect[2]} Weak`; break
-            case 2050: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} ${['Burn','Freeze','Shock','Weak'][this.battle.turn.total%4]}\nChanges Every Turn\nDiscards to Hand`; break
+            case 2050: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} ${stage.scene=='battle'?['Burn','Freeze','Shock','Weak'][this.battle.turn.total%4]:'Turn-Dependent Status'}\nChanges Every Turn\nDiscards to Hand`; break
             case 2051: case 4763:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${variants.mtg?`Basic Attacks`:`Strikes`} Lose ${effect[1]} Effect`; break
             case 2052: case 4764:
@@ -6257,8 +6293,11 @@ class card{
             case 5374: string+=`If You Have a\nShiv in Your Hand,\nAdd ${effect[0]} Shiv${pl(effect[0])} to Hand\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 5375: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Become`:`It Becomes`} Foil`; break
             case 5376: string+=`-1: Play a Foil Card\nActive: Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Armor`; break
-
-
+            case 5377: string+=`Gain ${effect[0]} Energy\nGain ${effect[1]} Currency`; break
+            case 5378: string+=`Gain (E) (E)\nGain ${effect[0]} Currency`; break
+            case 5379: string+=`Gain (E) (E) (E)\nGain ${effect[0]} Currency`; break
+            case 5380: string+=`Gain (E) (E) (E) (E)\nGain ${effect[0]} Currency`; break
+            case 5381: string+=`Spawn ${effect[0]} Personnel\nCarrier Enem${effect[0]!=1?`ies`:``}\nThey Attack You`; break
 
 
 
@@ -6536,13 +6575,13 @@ class card{
                 userCombatant.block=max(0,userCombatant.block-this.effect[0])
             break
             case -79:
-                this.battle.drop(this.player,findName('Refracted\nSunlight',types.card),0,game.playerNumber+1)
+                this.battle.drop(this.player,findName('Refracted\nSunlight',types.card),0,constants.playerNumber+1)
             break
             case -81:
-                this.battle.drop(this.player,findName('Quiet\nMoonlight',types.card),0,game.playerNumber+1)
+                this.battle.drop(this.player,findName('Quiet\nMoonlight',types.card),0,constants.playerNumber+1)
             break
             case -82:
-                this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,game.playerNumber+1)
+                this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,constants.playerNumber+1)
             break
             case -86:
                 this.battle.loseCurrency(this.effect[0],this.player)
@@ -7029,19 +7068,19 @@ class card{
                 this.battle.cardManagers[this.player].hand.add(this.type,this.level,this.color,this.edition)
             break
             case 1238:
-                this.battle.cardManagers[this.player].deck.add(findName('Plague',types.card),0,game.playerNumber+2)
+                this.battle.cardManagers[this.player].deck.add(findName('Plague',types.card),0,constants.playerNumber+2)
             break
             case 1477:
                 this.battle.cardManagers[this.player].deck.add(findName('Skellic\nSlash',types.card),0,0)
             break
             case 1486:
-                this.battle.cardManagers[this.player].deck.add(findName('Backfire',types.card),0,game.playerNumber+2)
+                this.battle.cardManagers[this.player].deck.add(findName('Backfire',types.card),0,constants.playerNumber+2)
             break
             case 1487:
                 this.battle.cardManagers[this.player].deck.add(findName('Bear\nMaul',types.card),0,0)
             break
             case 1488:
-                this.battle.cardManagers[this.player].deck.add(findName('Bozo',types.card),0,game.playerNumber+2)
+                this.battle.cardManagers[this.player].deck.add(findName('Bozo',types.card),0,constants.playerNumber+2)
             break
             case 1489:
                 this.battle.cardManagers[this.player].deck.add(findName('Fury\nSpell',types.card),0,0)
@@ -7189,19 +7228,19 @@ class card{
                 this.battle.cardManagers[this.player].deck.randomEffect(29,[3])
             break
             case 1461:
-                this.battle.cardManagers[this.player].deck.add(findName('Pride',types.card),0,game.playerNumber+2)
+                this.battle.cardManagers[this.player].deck.add(findName('Pride',types.card),0,constants.playerNumber+2)
             break
             case 1924:
-                this.battle.cardManagers[this.player].deck.add(findName('Bozo',types.card),0,game.playerNumber+2)
+                this.battle.cardManagers[this.player].deck.add(findName('Bozo',types.card),0,constants.playerNumber+2)
             break
             case 2575:
-                this.battle.cardManagers[this.player].deck.add(findName('Normality',types.card),0,game.playerNumber+2)
+                this.battle.cardManagers[this.player].deck.add(findName('Normality',types.card),0,constants.playerNumber+2)
             break
             case 2641:
                 this.battle.cardManagers[this.player].deck.randomEffect(21)
             break
             case 3195:
-                this.battle.cardManagers[this.player].deck.add(findName('Copystrike',types.card),0,game.playerNumber+2)
+                this.battle.cardManagers[this.player].deck.add(findName('Copystrike',types.card),0,constants.playerNumber+2)
             break
             case 3758:
                 this.battle.addCurrency(this.effect[1],this.player)
@@ -9374,7 +9413,7 @@ class card{
                         this.layer.line(-this.width/2+15,this.height/2,-this.width/2+5,this.height/2-5)
                     break
                 }
-                if(variants.mtg&&list>=0&&list<=game.playerNumber){
+                if(variants.mtg&&list>=0&&list<=constants.playerNumber){
                     if(colorDetail.length>=2){
                         if(this.colorful){
                             this.layer.stroke(50,this.fade)
@@ -9389,7 +9428,7 @@ class card{
                 }
             }
             if(spec.includes(12)){
-                if(variants.mtg&&list>=0&&list<=game.playerNumber&&colorDetail.length>=2){
+                if(variants.mtg&&list>=0&&list<=constants.playerNumber&&colorDetail.length>=2){
                     this.gradient=[new p5.LinearGradient(-15,this.width*0.5-5)]
                     if(this.edition==5){
                         if(corDetail.length==3){
@@ -9530,7 +9569,7 @@ class card{
                 if(this.player==-1){
                     this.layer.noStroke()
                     switch(this.color){
-                        case game.playerNumber+3:
+                        case constants.playerNumber+3:
                             this.layer.fill(255,100,100,this.fade)
                         break
                         default:
@@ -9848,13 +9887,13 @@ class card{
                         }
                         this.layer.rotate(-90)
                     }else{
-                        this.layer.textSize(variants.blind?12:10-((name.length>=24&&name.includes('Discus')||name.length>=24&&this.class==9&&name!='Sunny, Glowing\nSunlight'&&name!='Star, Showering\nStarlight')&&!name.includes('$colorcharacter')||name=='Cauchy-Riemann\nEquations'||name=='Temptation of\nthe Next World'?3:0))
+                        this.layer.textSize(variants.blind||this.blind?12:10-((name.length>=24&&name.includes('Discus')||name.length>=24&&this.class==9&&name!='Sunny, Glowing\nSunlight'&&name!='Star, Showering\nStarlight')&&!name.includes('$colorcharacter')||name=='Cauchy-Riemann\nEquations'||name=='Temptation of\nthe Next World'||name=='Youmu, Phantom\nGardener'?3:0))
                         if(spec.includes(37)){
-                            this.layer.text(effectiveName+":",0,variants.blind?0:-this.height/2+15+(variants.mtg?10:0))
+                            this.layer.text(effectiveName+":",0,variants.blind||this.blind?0:-this.height/2+15+(variants.mtg?10:0))
                         }else{
-                            this.layer.text(effectiveName+(this.level>=3?`+[${this.level}]`:multiplyString('+',this.level)),0,variants.blind?0:-this.height/2+15+(variants.mtg?10:0))
+                            this.layer.text(effectiveName+(this.level>=3?`+[${this.level}]`:multiplyString('+',this.level)),0,variants.blind||this.blind?0:-this.height/2+15+(variants.mtg?10:0))
                         }
-                        if(!variants.blind){
+                        if(!variants.blind&&!this.blind){
                             if(this.edition==5){
                                 this.layer.fill(255,255,255,this.fade)
                             }else if(this.colorful){

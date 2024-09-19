@@ -56,7 +56,22 @@ class node{
                 this.combat=0
             break
         }
-
+        this.base()
+    }
+    save(){
+        let composite={
+            position:this.position,
+            tilePosition:this.tilePosition,
+            type:this.type,
+            reality:this.reality,
+            combat:this.combat,
+            connections:this.connections,
+            extraConnections:this.extraConnections,
+            complete:this.complete,
+        }
+        return composite
+    }
+    base(){
         this.base={position:{x:this.position.x,y:this.position.y}}
 
         this.connections=[]
@@ -69,6 +84,16 @@ class node{
         this.active=false
 
         this.anim={complete:0,active:0,past:0,description:0}
+    }
+    establish(x,y,tileX,tileY,type,reality,combat,connections,extraConnections,complete){
+        this.position={x:x,y:y}
+        this.tilePosition={x:tileX,y:tileY}
+        this.type=type
+        this.reality=reality
+        this.combat=combat
+        this.connections=connections
+        this.extraConnections=extraConnections
+        this.complete=complete
     }
     display(type=this.type){
         let color=mergeColor(

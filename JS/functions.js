@@ -50,13 +50,21 @@ function displayTransition(layer,transition){
 					graphics.staticBackground.clear()
 					setupBackground(11,graphics.staticBackground)
 				break
-				case 'custom':
+				case 'custom': case 'listQuery':
 					graphics.staticBackground.clear()
 					setupBackground(12,graphics.staticBackground)
 				break
 				case 'tutorial':
 					graphics.staticBackground.clear()
 					setupBackground(13,graphics.staticBackground)
+				break
+				case 'collection':
+					graphics.staticBackground.clear()
+					setupBackground(14,graphics.staticBackground)
+				break
+				case 'query':
+					graphics.staticBackground.clear()
+					setupBackground(15,graphics.staticBackground)
 				break
 				case 'rest':
 					graphics.staticBackground.clear()
@@ -1775,7 +1783,7 @@ function quickAddAlly(name){
 function quickAddSec(name){
 	let type=findNameApprox(name,types.card)
 	if(type>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,types.card[type].list>=0&&types.card[type].list<=game.playerNumber+5?types.card[type].list:0)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,types.card[type].list>=0&&types.card[type].list<=constants.playerNumber+5?types.card[type].list:0)
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].cost=0
 		return 'Added'
 	}else{
@@ -1936,9 +1944,9 @@ Total:${current.nodeManager.listing.static[3][1].length+current.nodeManager.list
 }
 function outListing(){
 	let box=``
-	let goal=150+150*game.playerNumber+30+20+15+30+15+60+150
+	let goal=150+150*constants.playerNumber+30+20+15+30+15+60+150
 	let arbitrary=4000
-	for(let a=0,la=game.playerNumber;a<la;a++){
+	for(let a=0,la=constants.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
 Common:${current.cardManagers[0].listing.card[a+1][0].length}/60				${current.cardManagers[0].listing.card[a+1][0].length-60}
 Uncommon:${current.cardManagers[0].listing.card[a+1][1].length}/65				${current.cardManagers[0].listing.card[a+1][1].length-65}
@@ -1946,24 +1954,24 @@ Rare:${current.cardManagers[0].listing.card[a+1][2].length}/25					${current.car
 	Total:${current.cardManagers[0].listing.card[a+1][3].length}/150\n`
 	}
 	print(`Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
-Listed Cards: ${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.sub.length+current.cardManagers[0].listing.junk[game.playerNumber+1].length}/${goal}		${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.junk[game.playerNumber+1].length-goal}
+Listed Cards: ${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.sub.length+current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/${goal}		${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.junk[constants.playerNumber+1].length-goal}
 		Colorless:
 Common:${current.cardManagers[0].listing.card[0][0].length}/60				${current.cardManagers[0].listing.card[0][0].length-60}
 Uncommon:${current.cardManagers[0].listing.card[0][1].length}/65				${current.cardManagers[0].listing.card[0][1].length-65}
 Rare:${current.cardManagers[0].listing.card[0][2].length}/25					${current.cardManagers[0].listing.card[0][2].length-25}
 	Total:${current.cardManagers[0].listing.card[0][3].length}/150
 ${box}		Status:
-	Total:${current.cardManagers[0].listing.card[game.playerNumber+1][3].length}/30				${current.cardManagers[0].listing.card[game.playerNumber+1][3].length-30}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length}/30				${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length-30}
 		Curse:
-	Total:${current.cardManagers[0].listing.card[game.playerNumber+2][3].length}/20				${current.cardManagers[0].listing.card[game.playerNumber+2][3].length-20}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+2][3].length}/20				${current.cardManagers[0].listing.card[constants.playerNumber+2][3].length-20}
 		Partnership:
-Common:${current.cardManagers[0].listing.card[game.playerNumber+3][0].length}/5					${current.cardManagers[0].listing.card[game.playerNumber+3][0].length-5}
-Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/10				${current.cardManagers[0].listing.card[game.playerNumber+3][1].length-10}
-	Total:${current.cardManagers[0].listing.card[game.playerNumber+3][3].length}/15
+Common:${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length}/5					${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length-5}
+Uncommon:${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length}/10				${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-10}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+3][3].length}/15
 		Tarot:
-	Total:${current.cardManagers[0].listing.card[game.playerNumber+4][3].length}/30				${current.cardManagers[0].listing.card[game.playerNumber+4][3].length-30}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length}/30				${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length-30}
 		Spectral:
-	Total:${current.cardManagers[0].listing.card[game.playerNumber+5][3].length}/15				${current.cardManagers[0].listing.card[game.playerNumber+5][3].length-15}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/15				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-15}
 		Subcard:
 	Total:${current.cardManagers[0].listing.sub.length}/60			${current.cardManagers[0].listing.sub.length-60}
 		Ally:
@@ -1971,17 +1979,17 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 		Disband:
 	Total:${current.cardManagers[0].listing.disband.length}/600			${current.cardManagers[0].listing.disband.length-600}
 		Junkyard:
-	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/150			${current.cardManagers[0].listing.junk[game.playerNumber+1].length-150}
+	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/150			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-150}
 			`)
 }
 function outClassCosts(){
 	let box=``
 	let count=[]
-	for(let a=0,la=game.playerNumber+1;a<la;a++){
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
 		count.push([[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]])
 	}
 	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].list>=0&&types.card[a].list<=game.playerNumber&&types.card[a].rarity>=0){
+		if(types.card[a].list>=0&&types.card[a].list<=constants.playerNumber&&types.card[a].rarity>=0){
 			for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
 				if(!specialCost(types.card[a].levels[b])&&types.card[a].levels[b].cost>=0&&[0,1,2,3,4,11].includes(types.card[a].levels[b].class)){
 					count[types.card[a].list][[0,1,2,3,4,11].indexOf(types.card[a].levels[b].class)][0]++
@@ -2005,7 +2013,7 @@ function outClassCosts(){
 }
 function outMtg(){
 	let count=[]
-	for(let a=0,la=game.playerNumber+2;a<la;a++){
+	for(let a=0,la=constants.playerNumber+2;a<la;a++){
 		count.push([])
 		for(let b=0,lb=4;b<lb;b++){
 			count[a].push([])
@@ -2016,7 +2024,7 @@ function outMtg(){
 	}
 	for(let a=0,la=types.card.length;a<la;a++){
 		if(types.card[a].mtg!=undefined){
-			if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber){
+			if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=constants.playerNumber){
 				let list=types.card[a].mtg.list==-1?0:types.card[a].mtg.list==0?1:types.card[a].mtg.list+1
 				let color=types.card[a].mtg.color.length==1?types.card[a].mtg.color[0]:mtgCombineColor(types.card[a].mtg.color[0],types.card[a].mtg.color[1])
 				try{
@@ -2029,7 +2037,7 @@ function outMtg(){
 		}
 	}
 	let box=``
-	for(let a=0,la=game.playerNumber+2;a<la;a++){
+	for(let a=0,la=constants.playerNumber+2;a<la;a++){
 		box+=`\n		${a==0?`Neutral`:a==1?`Colorless`:types.combatant[a-1].name}:
 	Common: ${subMtg(count[a][0])}
 	Uncommon: ${subMtg(count[a][1])}
@@ -2055,7 +2063,7 @@ ${base[12]},${base[13]},${base[14]},${base[15]},${base[16]},
 function outMtg2(){
 	let mtgd=0
 	let count=[]
-	for(let a=0,la=game.playerNumber+1;a<la;a++){
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
 		count.push([])
 		for(let b=0,lb=2;b<lb;b++){
 			count[a].push([0,0,0,0])
@@ -2064,7 +2072,7 @@ function outMtg2(){
 	for(let a=0,la=types.card.length;a<la;a++){
 		if(types.card[a].mtg!=undefined){
 			mtgd++
-			if(types.card[a].rarity>=0&&types.card[a].list>=0&&types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=game.playerNumber){
+			if(types.card[a].rarity>=0&&types.card[a].list>=0&&types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=constants.playerNumber){
 				let list=types.card[a].list
 				let sublist=types.card[a].list==types.card[a].mtg.list?0:1
 				try{
@@ -2077,7 +2085,7 @@ function outMtg2(){
 		}
 	}
 	let box=``
-	for(let a=0,la=game.playerNumber+1;a<la;a++){
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
 		box+=`\n		${a==0?`Colorless`:types.combatant[a].name}:
 	Character:
 Common: ${count[a][0][0]}
@@ -2201,15 +2209,15 @@ function outRelic(){
 function outClass(){
 	let totals=[]
 	let build=``
-	for(let a=0,la=game.playerNumber+1;a<la;a++){
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
 		totals.push([0,0,0,0,0,0,0,0,0,0,0,0])
 	}
 	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].list>=0&&types.card[a].list<=game.playerNumber&&types.card[a].rarity>=0&&types.card[a].levels[0].class>=1&&types.card[a].levels[0].class<=11){
+		if(types.card[a].list>=0&&types.card[a].list<=constants.playerNumber&&types.card[a].rarity>=0&&types.card[a].levels[0].class>=1&&types.card[a].levels[0].class<=11){
 			totals[types.card[a].list][types.card[a].levels[0].class-1]++
 		}
 	}
-	for(let a=0,la=game.playerNumber+1;a<la;a++){
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
 		build+=(a==0?`Colorless:`:`${types.combatant[a].name}:`)+`\nAttacks: ${totals[a][0]}\nDefenses: ${totals[a][1]}\nSkills: ${totals[a][10]}\nMovements: ${totals[a][2]}\nPowers: ${totals[a][3]}\n\n`
 	}
 	print(build)
@@ -2218,13 +2226,13 @@ function outCosts(){
 	let averages=[]
 	let totals=[]
 	let build=``
-	for(let a=0,la=game.playerNumber+1;a<la;a++){
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
 		averages.push([0,0])
 		totals.push([])
 	}
 	for(let a=0,la=types.card.length;a<la;a++){
 		if(
-			types.card[a].list>=0&&types.card[a].list<=game.playerNumber&&types.card[a].rarity>=0&&
+			types.card[a].list>=0&&types.card[a].list<=constants.playerNumber&&types.card[a].rarity>=0&&
 			!types.card[a].levels[0].spec.includes(5)&&
 			!types.card[a].levels[0].spec.includes(11)&&
 			!types.card[a].levels[0].spec.includes(21)&&
@@ -2247,7 +2255,7 @@ function outCosts(){
 			}
 		}
 	}
-	for(let a=0,la=game.playerNumber+1;a<la;a++){
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
 		build+=`${(a==0?`Colorless:`:`${types.combatant[a].name}:`)}\nAverage: ${round(averages[a][0]/averages[a][1]*1000)/1000}\n`
 		let left=[]
 		for(let b=0,lb=totals[a].length;b<lb;b++){
@@ -2271,7 +2279,7 @@ function colorTest(){
 	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName('Charm\nQuark',types.card),0,0)
 	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
 	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.compact=0.56
-	for(let a=0,la=game.playerNumber+6;a<la;a++){
+	for(let a=0,la=constants.playerNumber+6;a<la;a++){
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(1,0,a,0)
 	}
 }

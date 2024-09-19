@@ -654,6 +654,23 @@ class particle{
                 this.fade=0
                 this.speed=12
             break
+            case 210:
+                this.direction=args[0]
+                this.color=args[1]
+                this.timer=args[2]
+                this.gear=random(-4,4)
+                this.size=1
+                this.scale=random(1.2,1.8)
+                this.fade=0
+                this.speed=15
+                this.velocity={x:lsin(this.direction)*this.speed,y:lcos(this.direction)*this.speed}
+            break
+            case 211:
+                this.size=args[0]
+                this.color=args[1]
+                this.fade=1
+                this.scale=0
+            break
 
         }
     }
@@ -1151,7 +1168,7 @@ class particle{
                             map((a+1)/la,0,1,0,this.position2.y)+this.sets[a][1])
                     }
                 break
-                case 56:
+                case 56: case 211:
                     this.layer.fill(this.color[0],this.color[1],this.color[2],this.fade)
                     this.layer.ellipse(0,0,12,12)
                 break
@@ -3400,7 +3417,7 @@ class particle{
                         }
                     }
                 break
-                case 208:
+                case 208: case 210:
                     this.layer.rotate(this.direction)
                     this.layer.scale(0.6)
                     for(let a=0,la=4;a<la;a++){
@@ -3480,7 +3497,7 @@ class particle{
             case 73: case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 90: case 93:
             case 95: case 97: case 99: case 103: case 104: case 110: case 114: case 115: case 116: case 117:
             case 118: case 119: case 120: case 121: case 126: case 152: case 154: case 155: case 156: case 168:
-            case 169: case 170: case 173: case 192: case 193: case 196:
+            case 169: case 170: case 173: case 192: case 193: case 196: case 211:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){
@@ -4245,6 +4262,15 @@ class particle{
                 }
                 if(this.position.x<=-20||this.position.y<=-20||this.position.x>this.layer.width+20||this.position.y>this.layer.height+20){
                     this.remove=true
+                }
+            break
+            case 210:
+                this.position.x+=this.velocity.x
+                this.position.y-=this.velocity.y
+                this.fade=smoothAnim(this.fade,this.time<this.timer,0,1,10)
+                if(this.fade<=0){
+                    this.remove=true
+                    parent.particles.push(new particle(this.layer,this.position.x,this.position.y,211,[5,mergeColor([this.color*50,50+this.color*150,255],[255,255,255],random(0,0.8))]))
                 }
             break
 

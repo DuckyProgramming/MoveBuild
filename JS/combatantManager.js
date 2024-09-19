@@ -15,8 +15,25 @@ class combatantManager{
         for(let a=0,la=this.battle.players;a<la;a++){
             this.allies.push([])
         }
-
         this.finalBossSwitch=0
+    }
+    save(){
+        let composite={
+            combatants:[],
+            allies:this.allies,
+            finalBossSwitch:this.finalBossSwitch,
+        }
+        for(let a=0,la=this.battle.players;a<la;a++){
+            composite.combatants.push(this.combatants[a].save())
+        }
+        return composite
+    }
+    load(composite){
+        this.allies=composite.allies
+        this.finalBossSwitch=composite.finalBossSwitch
+        for(let a=0,la=composite.combatants.length;a<la;a++){
+            this.combatants[a].load(composite.combatants[a])
+        }
     }
     sendAllies(){
         for(let a=0,la=this.allies.length;a<la;a++){
@@ -1062,11 +1079,11 @@ class combatantManager{
     }
     getRandomNonexistingPlayer(){
         let list=[]
-        for(let a=0,la=game.playerNumber;a<la;a++){
+        for(let a=0,la=constants.playerNumber;a<la;a++){
             list.push(a+1)
         }
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].type>0&&this.combatants[a].type<=game.playerNumber&&list.includes(this.combatants[a].type)){
+            if(this.combatants[a].type>0&&this.combatants[a].type<=constants.playerNumber&&list.includes(this.combatants[a].type)){
                 list.splice(list.indexOf(this.combatants[a].type),1)
             }
         }
@@ -1469,7 +1486,7 @@ class combatantManager{
             case 'battle': case 'replay':
                 for(let a=0,la=this.combatants.length;a<la;a++){
                     this.combatants[a].update()
-                    this.combatants[a].infoAnim.upSize=dist(inputs.rel.x,inputs.rel.y,this.combatants[a].position.x,this.combatants[a].position.y)<game.targetRadius&&!this.battle.overlayManager.anyActive
+                    this.combatants[a].infoAnim.upSize=dist(inputs.rel.x,inputs.rel.y,this.combatants[a].position.x,this.combatants[a].position.y)<constants.targetRadius&&!this.battle.overlayManager.anyActive
                 }
                 if(this.battle.attackManager.attacks.length==0&&this.battle.turnManager.turns.length==0&&this.summons.length>0){
                     this.outSummons()

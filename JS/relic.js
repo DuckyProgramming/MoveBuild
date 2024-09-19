@@ -7,16 +7,38 @@ class relic{
         this.type=type
         this.size=size
 
-        this.name=types.relic[this.type].name
-        this.internal=types.relic[this.type].internal
-        this.description=types.relic[this.type].description
-        this.rarity=types.relic[this.type].rarity
+        this.base()
 
         this.fade=0
         this.infoFade=0
         this.deFade=false
         this.active=true
         this.anim={active:1}
+    }
+    save(){
+        let composite={
+            player:this.player,
+            position:this.position,
+            type:this.type,
+            size:this.size,
+            active:this.active,
+        }
+        return composite
+    }
+    establish(player,x,y,type,size,active){
+        this.player=player
+        this.position={x:x,y:y}
+        this.type=type
+        this.size=size
+        this.active=active
+
+        this.base()
+    }
+    base(){
+        this.name=types.relic[this.type].name
+        this.internal=types.relic[this.type].internal
+        this.description=types.relic[this.type].description
+        this.rarity=types.relic[this.type].rarity
 
         this.value=relicSellValue(this.rarity)
     }

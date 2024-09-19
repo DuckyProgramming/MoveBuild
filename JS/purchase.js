@@ -244,7 +244,7 @@ class purchase{
                             0.2,color(types.color.card[9].stroke[0],types.color.card[9].stroke[1],types.color.card[9].stroke[2]),
                             0.4,color(types.color.card[13].stroke[0],types.color.card[13].stroke[1],types.color.card[13].stroke[2]),
                             0.6,color(types.color.card[15].stroke[0],types.color.card[15].stroke[1],types.color.card[15].stroke[2]),
-                            0.8,color(types.color.card[game.playerNumber+5].stroke[0],types.color.card[game.playerNumber+5].stroke[1],types.color.card[16].stroke[2]),
+                            0.8,color(types.color.card[constants.playerNumber+5].stroke[0],types.color.card[constants.playerNumber+5].stroke[1],types.color.card[16].stroke[2]),
                             1.0,color(types.color.card[14].stroke[0],types.color.card[14].stroke[1],types.color.card[14].stroke[2])
                         )
                         this.gradient[1].colors(
@@ -252,7 +252,7 @@ class purchase{
                             0.2,color(types.color.card[9].fill[0],types.color.card[9].fill[1],types.color.card[9].fill[2]),
                             0.4,color(types.color.card[13].fill[0],types.color.card[13].fill[1],types.color.card[13].fill[2]),
                             0.6,color(types.color.card[15].fill[0],types.color.card[15].fill[1],types.color.card[15].fill[2]),
-                            0.8,color(types.color.card[game.playerNumber+5].fill[0],types.color.card[game.playerNumber+5].fill[1],types.color.card[game.playerNumber+5].fill[2]),
+                            0.8,color(types.color.card[constants.playerNumber+5].fill[0],types.color.card[constants.playerNumber+5].fill[1],types.color.card[constants.playerNumber+5].fill[2]),
                             1.0,color(types.color.card[14].fill[0],types.color.card[14].fill[1],types.color.card[14].fill[2])
                         )
                         this.gradient[2].colors(
@@ -260,7 +260,7 @@ class purchase{
                             0.2,color(types.color.card[9].active[0],types.color.card[9].active[1],types.color.card[9].active[2]),
                             0.4,color(types.color.card[13].active[0],types.color.card[13].active[1],types.color.card[13].active[2]),
                             0.6,color(types.color.card[15].active[0],types.color.card[15].active[1],types.color.card[15].active[2]),
-                            0.8,color(types.color.card[game.playerNumber+5].active[0],types.color.card[game.playerNumber+5].active[1],types.color.card[game.playerNumber+5].active[2]),
+                            0.8,color(types.color.card[constants.playerNumber+5].active[0],types.color.card[constants.playerNumber+5].active[1],types.color.card[constants.playerNumber+5].active[2]),
                             1.0,color(types.color.card[14].active[0],types.color.card[14].active[1],types.color.card[14].active[2])
                         )
 
@@ -328,8 +328,8 @@ class purchase{
                                 this.layer.stroke(types.color.card[0].stroke)
                             break
                             case 2:
-                                this.layer.fill(types.color.card[game.playerNumber+5].fill)
-                                this.layer.stroke(types.color.card[game.playerNumber+5].stroke)
+                                this.layer.fill(types.color.card[constants.playerNumber+5].fill)
+                                this.layer.stroke(types.color.card[constants.playerNumber+5].stroke)
                             break
                         }
                         this.layer.strokeWeight(4)
@@ -343,7 +343,7 @@ class purchase{
                                 this.layer.fill(types.color.card[0].active)
                             break
                             case 2:
-                                this.layer.fill(types.color.card[game.playerNumber+5].active)
+                                this.layer.fill(types.color.card[constants.playerNumber+5].active)
                             break
                         }
                         regStar(this.layer,0,0,12,12,12,30,30,0)
@@ -356,7 +356,7 @@ class purchase{
                                     this.layer.fill(upColor(types.color.card[0].stroke,-20,[1,1,1]))
                                 break
                                 case 2:
-                                    this.layer.fill(upColor(types.color.card[game.playerNumber+5].stroke,-20,[1,1,1]))
+                                    this.layer.fill(upColor(types.color.card[constants.playerNumber+5].stroke,-20,[1,1,1]))
                                 break
                             }
                             this.layer.rect(0,0,2.4,100)

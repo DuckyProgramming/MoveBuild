@@ -808,7 +808,7 @@ attack.prototype.update=function(){
         case 5148: case 5151: case 5180: case 5181: case 5182: case 5183: case 5195: case 5228: case 5239: case 5272:
         case 5273: case 5274: case 5275: case 5276: case 5277: case 5289: case 5304: case 5307: case 5308: case 5309:
         case 5310: case 5314: case 5315: case 5317: case 5318: case 5321: case 5327: case 5328: case 5329: case 5330:
-        case 5331: case 5332:
+        case 5331: case 5332: case 5377: case 5378: case 5379: case 5380:
             //mark 4
             if(
                 this.timer==1&&(
@@ -2168,7 +2168,7 @@ attack.prototype.update=function(){
                     break
                     case 976:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.userManager.hand.add(findName('Burn',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Burn',types.card),0,constants.playerNumber+1)
                         }
                     break
                     case 979:
@@ -2199,7 +2199,7 @@ attack.prototype.update=function(){
                     break
                     case 4278:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.userManager.hand.add(findName('Wisp',types.card),0,game.playerNumber+1)
+                            this.userManager.hand.add(findName('Wisp',types.card),0,constants.playerNumber+1)
                         }
                     break
                 }
@@ -2632,7 +2632,7 @@ attack.prototype.update=function(){
         case 4593: case 4704: case 4705: case 4706: case 4715: case 4716: case 4717: case 4718: case 4719: case 4720:
         case 4821: case 4882: case 4927: case 5063: case 5064: case 5065: case 5066: case 5068: case 5069: case 5076:
         case 5106: case 5116: case 5119: case 5124: case 5135: case 5175: case 5185: case 5214: case 5222: case 5235:
-        case 5295: case 5296: case 5311: case 5322: case 5323: case 5324: case 5373: case 5374:
+        case 5295: case 5296: case 5311: case 5322: case 5323: case 5324: case 5373: case 5374: case 5381:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -5284,7 +5284,7 @@ attack.prototype.update=function(){
                                 }
                             break
                             case 2808:
-                                this.userManager.hand.add(findName('Spiked',types.card),0,game.playerNumber+1)
+                                this.userManager.hand.add(findName('Spiked',types.card),0,constants.playerNumber+1)
                             break
                         }
                     }
@@ -7685,9 +7685,15 @@ attack.prototype.update=function(){
             }
         break
         case 3080:
-            this.targetCombatant.takeDamage(this.effect[0],this.user)
-            this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
-            this.remove=true
+            if(this.timer%2==0&&this.timer<=60){
+                let direction=random(150,210)
+                this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x-lsin(direction)*600+random(-5,5),this.targetCombatant.position.y+lcos(direction)*600,210,[direction,floor(random(0,2)),30+random(-4,4)]))
+            }else if(this.timer==80){
+                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+            }else if(this.timer==120){
+                this.remove=true
+            }
         break
         case 3104: case 3628: case 5249: case 5250: case 5251: case 5252:
             if(this.timer==1){
@@ -7723,14 +7729,14 @@ attack.prototype.update=function(){
                 }
                 switch(this.type){
                     case 3104:
-                        this.battle.drop(this.player,findName('Dazed',types.card),0,game.playerNumber+1)
-                        this.battle.drop(this.player,findName('Burn',types.card),0,game.playerNumber+1)
-                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Dazed',types.card),0,constants.playerNumber+1)
+                        this.battle.drop(this.player,findName('Burn',types.card),0,constants.playerNumber+1)
+                        this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
                     break
                     case 3628: case 5249: case 5250: case 5251: case 5252:
-                        this.battle.drop(this.player,findName('Quiet\nMoonlight',types.card),0,game.playerNumber+1)
-                        this.battle.drop(this.player,findName('Refracted\nSunlight',types.card),0,game.playerNumber+1)
-                        this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Quiet\nMoonlight',types.card),0,constants.playerNumber+1)
+                        this.battle.drop(this.player,findName('Refracted\nSunlight',types.card),0,constants.playerNumber+1)
+                        this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,constants.playerNumber+1)
                     break
                 }
             }else if(this.timer>=20){
@@ -8066,7 +8072,7 @@ attack.prototype.update=function(){
                 this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,87,[this.targetCombatant.position.x+random(-5,5),this.targetCombatant.position.y-30+random(-5,5)]))
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 if(this.timer==20){
-                    this.userManager.hand.add(findName('Lunacy',types.card),0,game.playerNumber+1)
+                    this.userManager.hand.add(findName('Lunacy',types.card),0,constants.playerNumber+1)
                 }
             }else if(this.timer>=30){
                 this.remove=true
@@ -8942,7 +8948,7 @@ attack.prototype.update=function(){
             }else if(this.timer==5*this.targetDistance+15){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 for(let a=0,la=this.effect[1];a<la;a++){
-                    this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,game.playerNumber+1)
+                    this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,constants.playerNumber+1)
                 }
             }else if(this.timer>=max(30,5*this.targetDistance+25)){
                 this.remove=true
@@ -8988,7 +8994,7 @@ attack.prototype.update=function(){
             this.userCombatant.runAnimation(1/10,26)
             if(this.timer==10){
                 this.userCombatant.statusEffect('Strength',this.effect[0])
-                this.battle.dropDrawShuffle(this.player,findName('Refracted\nSunlight',types.card),0,game.playerNumber+1)
+                this.battle.dropDrawShuffle(this.player,findName('Refracted\nSunlight',types.card),0,constants.playerNumber+1)
                 this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,
                     this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
@@ -9013,7 +9019,7 @@ attack.prototype.update=function(){
             if(this.timer==10*this.targetDistance+12||this.timer==10*this.targetDistance+18){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 if(this.timer==10*this.targetDistance+18){
-                    this.battle.drop(this.player,findName('Dark\nResidue',types.card),0,game.playerNumber+1)
+                    this.battle.drop(this.player,findName('Dark\nResidue',types.card),0,constants.playerNumber+1)
                 }
             }else if(this.timer>=max(30,10*this.targetDistance+25)){
                 this.remove=true
@@ -9166,7 +9172,7 @@ attack.prototype.update=function(){
                     this.userManager.hand.add(findName('Miracle',types.card),0,0)
                 }
                 this.userManager.draw(this.effect[1])
-                this.battle.drop(this.player,findName('Quiet\nMoonlight',types.card),0,game.playerNumber+1)
+                this.battle.drop(this.player,findName('Quiet\nMoonlight',types.card),0,constants.playerNumber+1)
             }else if(this.timer>=20){
                 this.remove=true
             }
@@ -9182,7 +9188,7 @@ attack.prototype.update=function(){
                     this.userManager.hand.add(findName('Miracle',types.card),0,0)
                 }
                 this.userManager.draw(this.effect[1])
-                this.battle.drop(this.player,findName('Refracted\nSunlight',types.card),0,game.playerNumber+1)
+                this.battle.drop(this.player,findName('Refracted\nSunlight',types.card),0,constants.playerNumber+1)
             }else if(this.timer>=20){
                 this.remove=true
             }
@@ -9198,7 +9204,7 @@ attack.prototype.update=function(){
                     this.userManager.hand.add(findName('Miracle',types.card),0,0)
                 }
                 this.userManager.draw(this.effect[1])
-                this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,game.playerNumber+1)
+                this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,constants.playerNumber+1)
             }else if(this.timer>=20){
                 this.remove=true
             }
@@ -9407,7 +9413,7 @@ attack.prototype.update=function(){
                 current.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,133,[5]))
                 this.battle.combatantManager.allEffect(48,['Temporary Strength',-this.effect[0]])
                 for(let a=0,la=this.effect[1];a<la;a++){
-                    this.userManager.hand.add(findName('Shadow',types.card),0,game.playerNumber+1)
+                    this.userManager.hand.add(findName('Shadow',types.card),0,constants.playerNumber+1)
                 }
                 this.userCombatant.wish+=this.effect[2]
             }else if(this.timer>=20){
@@ -10659,19 +10665,19 @@ attack.prototype.update=function(){
                     case 5006:
                         this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
-                        this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,constants.playerNumber+1)
                         this.userCombatant.wish+=this.effect[2]
                     break
                     case 5007:
                         this.battle.addSpecificEnergy(2,this.player,6)
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,constants.playerNumber+1)
                         this.userCombatant.wish+=this.effect[1]
                     break
                     case 5008:
                         this.battle.addSpecificEnergy(3,this.player,6)
                         this.userManager.draw(this.effect[0])
-                        this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,constants.playerNumber+1)
                         this.userCombatant.wish+=this.effect[1]
                     break
                 }
