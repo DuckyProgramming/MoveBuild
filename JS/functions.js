@@ -1,3 +1,22 @@
+function isCyclic(obj){
+	var seenObjects=[]
+	function detect(obj){
+		if(obj&&typeof obj=='object'){
+			if(seenObjects.indexOf(obj)!==-1){
+				return true
+			}
+			seenObjects.push(obj)
+			for(var key in obj){
+				if(obj.hasOwnProperty(key)&&detect(obj[key])){
+					console.log(obj,'cycle at'+key)
+					return true
+		  		}
+			}
+		}
+		return false
+	}
+	return detect(obj)
+}
 function isInt(value){
 	return !isNaN(value)&&parseInt(Number(value))==value&&!isNaN(parseInt(value,10))
 }
@@ -197,15 +216,15 @@ function plus(layer,size){
 	layer.line(size*4,-size,size,-size)
 	layer.line(size*4,size,size,size)
 }
-function flower(layer,size,color,width,height){
+function flower(layer,size,color,width,height,fade,extent){
 	layer.push()
 	layer.scale(size)
 	layer.strokeWeight(0.6)
 	layer.strokeJoin(ROUND)
-	for(let a=0,la=100;a<la;a++){
+	for(let a=0,la=extent;a<la;a++){
 		for(let b=0,lb=5;b<lb;b++){
-			layer.fill(mergeColor(color[0],color[1],a/la))
-			layer.stroke(mergeColor(color[0],color[1],a/la))
+			layer.fill(...mergeColor(color[0],color[1],a/la),fade)
+			layer.stroke(...mergeColor(color[0],color[1],a/la),fade)
 			if(a<la/2){
 				layer.beginShape()
 				layer.vertex(0,0)
@@ -227,23 +246,23 @@ function flower(layer,size,color,width,height){
 		}
 	}
 	layer.noStroke()
-	layer.fill(color[2])
+	layer.fill(...color[2],fade)
 	for(let a=0,la=5;a<la;a++){
 		layer.rotate(60)
 		layer.quad(0,-4,width[3],-16,0,-24,-width[3],-16)
 		layer.rotate(12)
 	}
-	layer.fill(color[3])
+	layer.fill(...color[3],fade)
 	layer.ellipse(0,0,12,12)
 	layer.pop()
 }
-function crystalFlower(layer,size,direction,color,width,height){
+function crystalFlower(layer,size,direction,color,width,height,fade){
 	layer.push()
 	layer.scale(size)
     layer.rotate(direction)
     for(let a=0,la=5;a<la;a++){
         for(let b=0,lb=100;b<lb;b++){
-            layer.fill(mergeColor(color[0],color[1],1-b/lb))
+            layer.fill(...mergeColor(color[0],color[1],1-b/lb),fade)
             layer.beginShape()
             layer.vertex(0,0)
             layer.bezierVertex(-width[0]*(1-b/lb),-15*(1-b/lb),-width[0]*(1-b/lb),-55*(1-b/lb),-width[1]*(1-b/lb),-70*(1-b/lb))
@@ -252,7 +271,7 @@ function crystalFlower(layer,size,direction,color,width,height){
         }
         layer.rotate(-72)
         for(let b=0,lb=100;b<lb;b++){
-            layer.fill(mergeColor([216,112,124],[247,225,225],1-b/lb))
+            layer.fill(...mergeColor([216,112,124],[247,225,225],1-b/lb),fade)
             layer.beginShape()
             layer.vertex(0,0)
             layer.bezierVertex(width[0]*(1-b/lb),-15*(1-b/lb),width[0]*(1-b/lb),-55*(1-b/lb),width[1]*(1-b/lb),-70*(1-b/lb))
@@ -260,13 +279,13 @@ function crystalFlower(layer,size,direction,color,width,height){
             layer.endShape(CLOSE)
         }
     }
-    layer.fill(color[2])
+    layer.fill(...color[2],fade)
     for(let a=0;a<5;a++){
         layer.rotate(60)
         layer.quad(0,-4,width[2],-16,0,-24,-width[2],-16)
         layer.rotate(12)
     }
-    layer.fill(color[3])
+    layer.fill(...color[3],fade)
     layer.ellipse(0,0,12,12)
     layer.pop()
 }
@@ -1436,7 +1455,7 @@ function arcMid3(layer,keypoints,side){
 	}
 }
 function specialCost(card){
-	return card.spec.includes(5)||card.spec.includes(11)||card.spec.includes(21)||card.spec.includes(35)||card.spec.includes(40)||card.spec.includes(41)||card.spec.includes(55)||card.spec.includes(58)||card.spec.includes(59)
+	return card.spec.includes(5)||card.spec.includes(11)||card.spec.includes(21)||card.spec.includes(35)||card.spec.includes(40)||card.spec.includes(41)||card.spec.includes(55)||card.spec.includes(58)||card.spec.includes(59)||card.spec.includes(67)
 }
 function legalTarget(type,lengthStart,lengthEnd,x,y){
 	switch(type){
@@ -1906,7 +1925,7 @@ function quickItem(type,player){
 	current.itemManager.addItem(type,player)
 }
 function outEncounter(){
-	print(`
+	console.log(`
 Total:${current.nodeManager.listing.static[0][0].length+current.nodeManager.listing.static[0][1].length+current.nodeManager.listing.static[0][2].length+current.nodeManager.listing.static[0][3].length+current.nodeManager.listing.static[1][0].length+current.nodeManager.listing.static[1][1].length+current.nodeManager.listing.static[1][2].length+current.nodeManager.listing.static[2][0].length+current.nodeManager.listing.static[2][1].length+current.nodeManager.listing.static[2][2].length+current.nodeManager.listing.static[3][1].length+current.nodeManager.listing.static[3][2].length}/166
 \nWorld 1:
 Easies:${current.nodeManager.listing.static[0][3].length}/12
@@ -1953,7 +1972,7 @@ Uncommon:${current.cardManagers[0].listing.card[a+1][1].length}/65				${current.
 Rare:${current.cardManagers[0].listing.card[a+1][2].length}/25					${current.cardManagers[0].listing.card[a+1][2].length-25}
 	Total:${current.cardManagers[0].listing.card[a+1][3].length}/150\n`
 	}
-	print(`Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
+	console.log(`Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
 Listed Cards: ${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.sub.length+current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/${goal}		${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.junk[constants.playerNumber+1].length-goal}
 		Colorless:
 Common:${current.cardManagers[0].listing.card[0][0].length}/60				${current.cardManagers[0].listing.card[0][0].length-60}
@@ -2009,7 +2028,7 @@ function outClassCosts(){
 			box+=`\n	${[`Total`,`Attack`,`Defense`,`Movement`,`Power`,`Skill`][b]}: ${round(count[a][b][1]/count[a][b][0]*1000)/1000}`
 		}
 	}
-	print(box)
+	console.log(box)
 }
 function outMtg(){
 	let count=[]
@@ -2031,7 +2050,7 @@ function outMtg(){
 					count[list][types.card[a].mtg.rarity][color]++
 					count[list][3][color]++
 				}catch(error){
-					print(types.card[a].name)
+					console.log(types.card[a].name)
 				}
 			}
 		}
@@ -2044,7 +2063,7 @@ function outMtg(){
 	Rare: ${subMtg(count[a][2])}
 	Total: ${subMtg(count[a][3])}\n`
 	}
-	print(box)
+	console.log(box)
 }
 function subMtg(base){
 	return `[
@@ -2079,7 +2098,7 @@ function outMtg2(){
 					count[list][sublist][types.card[a].mtg.rarity]++
 					count[list][sublist][3]++
 				}catch(error){
-					print(types.card[a].name,'Failed!')
+					console.log(types.card[a].name,'Failed!')
 				}
 			}
 		}
@@ -2098,8 +2117,8 @@ Uncommon: ${count[a][1][1]}
 Rare: ${count[a][1][2]}
 Total: ${count[a][1][3]}\n`
 	}
-	print(box)
-	print(`${mtgd}/${types.card.length} (${round(mtgd/types.card.length*1000/10)}%) Converted`)
+	console.log(box)
+	console.log(`${mtgd}/${types.card.length} (${round(mtgd/types.card.length*1000/10)}%) Converted`)
 }
 function outMtgError(){
 	for(let a=0,la=types.card.length;a<la;a++){
@@ -2107,7 +2126,8 @@ function outMtgError(){
 			if(
 				!types.card[a].mtg.levels[b].spec.includes(11)&&
 				!types.card[a].mtg.levels[b].spec.includes(21)&&
-				!types.card[a].mtg.levels[b].spec.includes(59)&&(
+				!types.card[a].mtg.levels[b].spec.includes(59)&&
+				!types.card[a].mtg.levels[b].spec.includes(67)&&(
 					types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.color.includes(0)||
 					types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.color.includes(1)||
 					types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.color.includes(2)||
@@ -2126,7 +2146,7 @@ function outMtgError(){
 					types.card[a].mtg.levels[b].cost.includes(15)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(5))||
 					types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
 			)){
-				print(types.card[a].name)
+				console.log(types.card[a].name)
 			}
 		}
 	}
@@ -2135,7 +2155,7 @@ function outDupes(){
 	for(let a=0,la=types.card.length;a<la;a++){
 		for(let b=0,lb=types.card.length;b<lb;b++){
 			if(types.card[a].name==types.card[b].name&&types.card[a].name.length>0&&a!=b){
-				print(types.card[a].name)
+				console.log(types.card[a].name)
 			}
 		}
 	}
@@ -2144,7 +2164,7 @@ function outRepeats(){
 	for(let a=0,la=types.card.length;a<la;a++){
 		for(let b=0,lb=types.card.length;b<lb;b++){
 			if(types.card[a].name==types.card[b].name.substr(0,types.card[a].name.length)&&types.card[a].name.length>0&&a!=b){
-				print(types.card[a].name)
+				console.log(types.card[a].name)
 			}
 		}
 	}
@@ -2173,7 +2193,7 @@ function outOffColor(){
 					types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
 				)&&!specialCost(types.card[a].mtg.levels[b])
 			){
-				print(types.card[a].name)
+				console.log(types.card[a].name)
 			}
 		}
 	}
@@ -2185,7 +2205,7 @@ function outUniqueCards(){
 			list.push(types.card[a].levels[0].attack)
 		}
 	}
-	print(list.length)
+	console.log(list.length)
 }
 function outUniqueEffects(){
 	let list=[]
@@ -2196,10 +2216,10 @@ function outUniqueEffects(){
 			}
 		}
 	}
-	print(list.length)
+	console.log(list.length)
 }
 function outRelic(){
-	print(`Common: ${current.relicManager.listing.relic[0].length}
+	console.log(`Common: ${current.relicManager.listing.relic[0].length}
 	Uncommon: ${current.relicManager.listing.relic[1].length}
 	Rare: ${current.relicManager.listing.relic[2].length}
 	Shop: ${current.relicManager.listing.relic[3].length}
@@ -2220,7 +2240,7 @@ function outClass(){
 	for(let a=0,la=constants.playerNumber+1;a<la;a++){
 		build+=(a==0?`Colorless:`:`${types.combatant[a].name}:`)+`\nAttacks: ${totals[a][0]}\nDefenses: ${totals[a][1]}\nSkills: ${totals[a][10]}\nMovements: ${totals[a][2]}\nPowers: ${totals[a][3]}\n\n`
 	}
-	print(build)
+	console.log(build)
 }
 function outCosts(){
 	let averages=[]
@@ -2237,7 +2257,9 @@ function outCosts(){
 			!types.card[a].levels[0].spec.includes(11)&&
 			!types.card[a].levels[0].spec.includes(21)&&
 			!types.card[a].levels[0].spec.includes(35)&&
-			!types.card[a].levels[0].spec.includes(41)
+			!types.card[a].levels[0].spec.includes(58)&&
+			!types.card[a].levels[0].spec.includes(59)&&
+			!types.card[a].levels[0].spec.includes(67)
 		){
 			if(types.card[a].levels[0].cost>=0){
 				averages[types.card[a].list][0]+=types.card[a].levels[0].cost
@@ -2272,7 +2294,7 @@ function outCosts(){
 		}
 		build+=`\n`
 	}
-	print(build)
+	console.log(build)
 }
 function colorTest(){
 	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards=[]
@@ -2384,7 +2406,7 @@ function generalizedSearch(test,type){
 		let cardData=current.overlayManager.overlays[35][0].cards[a]
 		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
 		if(cardData.desc.includes(test)){
-			print(cardData.name.replace('\n',' '),'\n',cardData.desc)
+			console.log(cardData.name.replace('\n',' '),'\n',cardData.desc)
 		}
 	}
 	if(type==1){
@@ -2394,7 +2416,7 @@ function generalizedSearch(test,type){
 			let cardData=current.overlayManager.overlays[115][0].cards[a]
 			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
 			if(cardData.desc.includes(test)){
-				print(cardData.name.replace('\n',' '),'\n',cardData.desc)
+				console.log(cardData.name.replace('\n',' '),'\n',cardData.desc)
 			}
 		}
 	}
@@ -2608,7 +2630,7 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 	try{
 		costLeft=copyArray(cost)
 	}catch(error){
-		print(`Cannot Parse Card Costing ${cost}`)
+		console.log(`Cannot Parse Card Costing ${cost}`)
 		noLoop()
 	}
 	for(let a=0,la=costLeft.length;a<la;a++){
@@ -2793,7 +2815,7 @@ function mtgAutoCost(mana,cost,variant,args,bypass){
 		}
 	}
 	if(costLeft.length>0&&(variant==0||variant==3)){
-		print(costLeft,'Failed MTG Spending Calculation')
+		console.log(costLeft,'Failed MTG Spending Calculation')
 		return -1
 	}
 	switch(variant){

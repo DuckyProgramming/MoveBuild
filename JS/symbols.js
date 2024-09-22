@@ -5927,6 +5927,32 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.quad(-4,-3,-3,-4,4,3,3,4)
             layer.quad(-4,3,-3,4,4,-3,3,-4)
         break
+        case 625:
+            layer.fill(200,150,75,fade)
+            layer.ellipse(0,0,10)
+            layer.fill(150,100,50,fade)
+            layer.ellipse(-2,-3,2.5)
+            layer.ellipse(-1,2.5,2)
+            layer.ellipse(2.5,1,3)
+        break
+        case 626:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,5,5,3,3,0)
+            layer.fill(100,60,100,fade)
+            layer.ellipse(0,2,7)
+            layer.fill(255,100,100,fade)
+            layer.triangle(0,-2,-2,-5,2,-5)
+        break
+        case 627:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(100,255,255,fade)
+            layer.triangle(0,-0.5,-2,-3,2,-3)
+            layer.triangle(0,0.5,-2,3,2,3)
+        break
 
     }
     //mark s
@@ -6237,7 +6263,7 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
     layer.fill(255,fade)
     layer.textSize(10)
     layer.text(id+1,0,20)
-    for(let a=0,la=game.orbNumber;a<la;a++){
+    for(let a=0,la=constants.orbNumber;a<la;a++){
         if(typeFades[a]>0){
             switch(a){
                 case 0:
@@ -6349,6 +6375,14 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
                     layer.line(15,0,15+4*constants.sqrt3,-4)
                     layer.quad(9,0,15,-6,21,0,15,6)
                     layer.translate(15,0)
+                break
+                case 14:
+                    layer.noFill()
+                    layer.stroke(240,220,200,fade*typeFades[a])
+                    layer.strokeWeight(2)
+                    layer.quad(0,-6,-6,0,0,6,6,0)
+                    layer.line(-5,-5,5,5)
+                    layer.line(-5,5,5,-5)
                 break
             }
         }

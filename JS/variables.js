@@ -170,7 +170,7 @@ types={
         {name:'Kugelblitz Particle',life:31,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:374,effect:[7,1]},{type:375,effect:[7,1]}],description:`He's smol`},
         {name:'Pure Swordsman',life:30,behavior:1,spec:[0],move:{type:0,speed:2},attack:[{type:107,effect:[6,1]}],description:`Appointed up`},
         {name:'Sick Duck',life:13,behavior:2,spec:[],move:{type:2,speed:1},attack:[{type:394,effect:[2,1]},{type:5,effect:[1,'Cough']}],description:`Not referencing real events I promise`},
-        {name:'Spirit of Wealth',life:26,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:20,effect:[5]},{type:395,effect:[7,1]}],description:`Seeing dollar signs`},
+        {name:'Spirit of Wealth',life:26,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[5]},{type:395,effect:[7,1]}],description:`Seeing dollar signs`},
         {name:'Puffball',life:14,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:396,effect:[4,8]},{type:6,effect:[6]}],description:`Strangely fluffy`},
         {name:'Pistol Biker',life:28,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[8]}],description:`Finally I can use disarm`},
         {name:'Brawler',life:36,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:14,effect:[7,1,'Dizzy']},{type:82,effect:[5,1,'Dizzy']}],description:`No surprise that he's a prisoner too`},
@@ -289,6 +289,33 @@ types={
         {name:'BlockDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:2,effect:[1]}],description:`Gains block`},
         {name:'MoveDummy',life:1,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Can move`},
         {name:'Unknown',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`???`},
+
+
+
+
+
+        {name:'Half Spikeball',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:417,effect:[8]},{type:418,effect:[10]}],description:`Poor rotational alignment`},
+        {name:'Zombie Fairy',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Titanite',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Spirit of Elegance',life:26,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[5]},{type:395,effect:[7,1]}],description:`Look how they massacred my boy`},
+        
+        {name:'Hit Squad',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+
+        {name:'Rocket Launcher Management Robot',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Fire Slime',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Ice Slime',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Big Fire Slime',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Big Ice Slime',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Shotgun Management Robot',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Scoutbot',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+
+
 
     ],attack:[
         {name:'',class:0},//0
@@ -709,6 +736,10 @@ types={
         {name:'2 Tile Triple Spin Strike',class:1},
         {name:'Star, Showering Starlight',class:4},
 
+        {name:'Left 3 Wide Strike',class:1},
+        {name:'Right 3 Wide Strike',class:1},
+
+
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,description:''},
         {name:'Leftovers',internal:'Quick Heal',id:1,rarity:0,list:0,mtg:0,description:'Heal 2 HP at\nthe End of Combat'},
@@ -741,7 +772,7 @@ types={
         {name:'Malachite',internal:'Retain Block',id:26,rarity:-1,list:0,mtg:0,description:'Lose Only 20 Block\nat End of Turn'},
         {name:'Reforming Peas',internal:'Power Heal',id:27,rarity:2,list:0,mtg:0,description:'When You Play a\nPower, Heal 2 HP'},
         {name:'Glass Sphere',internal:'Retain Energy',id:28,rarity:2,list:0,mtg:1,description:'1 Energy Can be\nRetained Between Turns'},
-        {name:'Pomegranite',internal:'14 Max HP',id:29,rarity:2,list:0,mtg:0,description:'When Taken,\nGain 14 Max HP'},
+        {name:'Pomegranite',internal:'16 Max HP',id:29,rarity:2,list:0,mtg:0,description:'When Taken,\nGain 16 Max HP'},
 
         {name:'IOU',internal:'600 Currency',id:30,rarity:2,list:0,mtg:0,description:'When Taken,\nGain 600 Currency'},
         {name:'Feldspar',internal:'First Attack',id:31,rarity:0,list:0,mtg:0,description:'First Attack Deals\n8 More Damage'},
@@ -886,7 +917,7 @@ types={
         {name:'Holy Water',internal:'3 Starting Miracles',id:158,rarity:4,list:0,mtg:1,description:'Add 3 Miracles\non Turn 1'},
         {name:'Pentaxon',internal:'Random',id:159,rarity:4,list:0,mtg:1,description:'When Taken, Gain a Rare Item,\n300 Currency, 10 Max HP, a Rare Card,\nand Upgrade a Random Card'},
 
-        {name:'Watermelon',internal:'40 Max HP',id:160,rarity:4,list:0,mtg:1,description:'When Taken,\nGain 40 Max HP'},
+        {name:'Watermelon',internal:'50 Max HP',id:160,rarity:4,list:0,mtg:1,description:'When Taken,\nGain 50 Max HP'},
         {name:'Bent Pliers',internal:'Upgrade Random Turn',id:161,rarity:-1,list:0,mtg:0,description:'Every Turn, Upgrade a Random\nCard in Your Hand'},
         {name:'Audric Codex',internal:'Duplicate Random Turn',id:162,rarity:-1,list:0,mtg:0,description:'Every Turn, Duplicate a Random\nCard in Your Hand'},
         {name:'Mark of Infinition',internal:'No Heal',id:163,rarity:-1,list:0,mtg:0,description:'You Can No Longer Heal'},
@@ -977,7 +1008,7 @@ types={
         {name:'Enlightened Duck',internal:'Boss Spectral Pack',id:240,rarity:2,list:0,mtg:0,description:'Open a Spectral Pack After Every Boss'},
         {name:'Jester Duck',internal:'Random Enemy Statuses',id:241,rarity:-1,list:0,mtg:0,description:'All Enemies Start Combat\nWith 1 Burn, Freeze, and Shock'},
         {name:'Asphalt Block',internal:'Energy/Miss',id:242,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nGain 2 Miss on Turn 1'},
-        {name:'Radioscope',internal:'Energy/View',id:243,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nCannot See Draw and Discard Piles'},
+        {name:'Radioscope',internal:'Energy/View',id:243,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nCannot See Draw, Discard, and Exhaust Piles'},
         {name:'Blue Raspberry',internal:'Spectral Rest',id:244,rarity:2,list:0,mtg:0,description:'You Can Open Spectral\nPacks When Resting, 3 Uses'},
         {name:'The Trail',internal:'3 Cost Energy Next Turn',id:245,rarity:2,list:0,mtg:1,description:'Cards Costing 3 or More\nGive 1 Energy Next Turn'},
         {name:'Spearmint',internal:'25 Damage Draw',id:246,rarity:0,list:0,mtg:0,description:'Draw a Card When You\nDeal 25 or More Damage'},
@@ -5952,6 +5983,9 @@ The card effects play out with X = the amount of energy.`,
         },{name:'Energy Orb',mtg:1,desc:
 `On evoke, gain 3 energy.
 Unaffected by focus.`,
+        },{name:'Crystal Orb',mtg:1,desc:
+`On evoke, counter 8 all and gain 1 energy (energy unaffected by focus).
+Also counters 4 all each turn.`,
         },{name:'Miracle',mtg:1,desc:
 `Card that gives energy, exhausts and retains.
 Typically gives 1, but there are other versions that give more.`,
@@ -5988,8 +6022,11 @@ The card effects play out with X = the amount of mana spent.`,
         },{name:'Sludge Tile',mtg:2,desc:
 `Removes all mana when stepped on.`,
         },{name:'Energy Orb',mtg:2,desc:
-`On evoke, gain 3 rainbow mana.
+`On evoke, gain (E) (E) (E).
 Unaffected by focus.`,
+        },{name:'Crystal Orb',mtg:2,desc:
+`On evoke, counter 8 all and gain (N) (mana unaffected by focus).
+Also counters 4 all each turn.`,
         },{name:'Pristine',mtg:2,desc:
 `Card that gives neutral mana, exhausts and retains.
 Typically gives 2, but there are other versions that give more.`,
@@ -6399,6 +6436,13 @@ Decrements after each miss.`,
 Caps at +1, cap is raised by 1 for each Wisdom you have.`,
         },{name:'Wisdom',mtg:0,desc:
 `Raises the cap on extra draw gained from Knowledge.`,
+        },{name:'Chocolate Chip',mtg:0,desc:
+`Deals splash damage when you add block.`,
+        },{name:'Mass',mtg:0,desc:
+`If a card with Mass is present, it will always
+be chosen when a "random" card is selected.`,
+        },{name:'Pulled',mtg:0,desc:
+`Triggers when a card with Mass is randomly selected.`,
         },
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0
@@ -6711,7 +6755,7 @@ variants={
     ]
 }
 constants={
-    playerNumber:20,orbNumber:14,
+    playerNumber:20,orbNumber:15,
     targetRadius:30,startEnergy:3,collisionDamage:4,
     sqrt2:0,sqrt3:0,trig:[[],[]],
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],

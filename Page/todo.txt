@@ -1,56 +1,48 @@
-it may be time to add tooltips
+somewhere the saves aren't working
+(passive)
 
 
 
-LISTING GROUP 48
+LISTING GROUP 49
 
 
 
-how many ally cards?
+ducopo and merlin can't move
 
-[]
+merlin movement x 6
 
-[]
+ducopo movement x 10
 
-[]
+merlin power x 3
 
+ducopo power x 3
 
+2 cost ducopo
 
-setup for the other merlin gimmick
+x cost ducopo
 
-scrap note
-
-[annotation]
-
-
-
-[foil]
-
-[foil]
-
-[luminous horizon]
-
-
-
-ducopo tricolor card
-
-
-
-wait until koishi is made to add cards
+character 20 x 6
 
 
 
 MERLIN DEVELOPMENT
 
+countdowns
+freeze
+skill->card
+
 model
 icon
 tutorial
-
 can have a little blue star rotating around
 
 
 
 DUCOPO DEVELOPMENT
+
+expensive (2+ and x cost) cards
+quests
+foil cards
 
 model
 icon
@@ -60,7 +52,14 @@ tutorial
 
 CHARACTER 20
 
-the dev?
+hazmat man
+
+mass, gravitation, and pull
+autoplay
+
+model
+icon
+tutorial
 
 
 
@@ -69,14 +68,14 @@ enemyset next:
 world 1 replacements (send some world 1 enemies to world 2):
 
 neonic spikeball - half blue half pink, attacks one of two sides, doesn't rotate
-3 weak enemies with 1 revive each
+zombie fairy - 3 weak enemies with 1 revive each
 revive - when killed, respawn, lose 1 revive, become stunned, become invincible
+[titanite]
+[]
 
 world 2:
 
-[]
-[]
-[]
+[hit squad]
 []
 []
 []
@@ -86,8 +85,8 @@ world 3:
 rocket launcher management robot
 fire and ice slime
 fire and ice big slime [nerf jet off the elite stack]
-[]
-[]
+[shotgun manageemnt robot]
+[scoutbot]
 []
 []
 []

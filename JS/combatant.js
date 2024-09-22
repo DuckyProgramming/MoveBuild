@@ -27,7 +27,7 @@ class combatant{
             this.attack=copyArrayAttack(types.combatant[this.type].attack)
             this.description=types.combatant[this.type].description
         }catch(error){
-            print('!!!',this.type,error)
+            console.log('!!!',this.type,error)
             this.type=0
             this.name=types.combatant[this.type].name
             this.life=types.combatant[this.type].life
@@ -173,7 +173,7 @@ class combatant{
                 'Discus Temporary Strength','Discus Temporary Dexterity','Lightning Orb Per Turn','Lightning Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn','Rearm Draw',
                 'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap','Dice Max Boost','Exhaust Block','Counter Shockwave','Frail on Kill','Mailshield',
                 'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
-                'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)',
+                'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -238,7 +238,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,2,0,//60
                 0,0,0,0,2,0,0,2,0,0,//61
                 0,2,0,0,2,2,0,0,0,2,//62
-                0,0,0,0,0,
+                0,0,0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -303,7 +303,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//60
                 2,2,3,2,0,2,2,2,2,2,//61
                 3,2,2,2,2,2,3,2,2,2,//62
-                2,2,2,2,2,
+                2,2,2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -3841,6 +3841,9 @@ class combatant{
                 this.status.main[434]=0
                 this.battle.combatantManager.randomEnemyEffect(3,[block,this.id])
             }
+            if(this.status.main[625]>0){
+                this.battle.combatantManager.areaAbstract(0,[this.status.main[625],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
+            }
             if(this.battle.modded(140)&&this.team==0){
                 block*=2
             }
@@ -4076,7 +4079,7 @@ class combatant{
             break
             case 3:
                 if(target<this.battle.players||this.id<this.battle.players){
-                    this.battle.addSpecificEnergy(round(3*multi),target>=this.battle.players?this.id:target,6)
+                    this.battle.addSpecificEnergy(3,target>=this.battle.players?this.id:target,6)
                 }
             break
             case 4:
@@ -4115,6 +4118,12 @@ class combatant{
                     this.battle.combatantManager.combatants[target].addBlock(round(20*multi))
                 }
             break
+            case 14:
+                this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(8*multi))
+                if(target<this.battle.players||this.id<this.battle.players){
+                    this.battle.addSpecificEnergy(1,target>=this.battle.players?this.id:target,0)
+                }
+            break
         }
     }
     subMinorEvoke(type,detail,target){
@@ -4140,7 +4149,7 @@ class combatant{
                 }
             break
             case 3:
-                this.battle.addSpecificEnergy(round(2*multi),target>=this.battle.players?this.id:target,6)
+                this.battle.addSpecificEnergy(2,target>=this.battle.players?this.id:target,6)
             break
             case 4:
                 this.battle.combatantManager.combatants[target].orbTake(round(detail*multi*playerMulti/2),-1)
@@ -4174,6 +4183,12 @@ class combatant{
                     this.battle.combatantManager.combatants[target].orbTake(round(8*multi*playerMulti),-1)
                 }else{
                     this.battle.combatantManager.combatants[target].addBlock(round(10*multi))
+                }
+            break
+            case 14:
+                this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(4*multi))
+                if(target<this.battle.players||this.id<this.battle.players){
+                    this.battle.addSpecificEnergy(1,target>=this.battle.players?this.id:target,0)
                 }
             break
         }
@@ -5038,6 +5053,7 @@ class combatant{
                     case 614: this.status.main[findList('Dodge',this.status.name)]+=this.status.main[a];this.status.next[findList('Dodge Cycle 2 2',this.status.name)]+=this.status.main[a]; break
                     case 615: this.status.main[findList('Dodge Cycle 2 1',this.status.name)]+=this.status.main[a]; break
                     case 619: this.status.main[findList('Random Mana in 2 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 627: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.exhaustRandom+=this.status.main[a]} break
                     
                 }
                 if(
@@ -5132,6 +5148,12 @@ class combatant{
         }
     }
     tickOrbs(type){
+        let multi=1
+        if(this.status.main[111]>0){
+            multi=1+this.status.main[111]*0.1
+        }else if(this.status.main[111]<0){
+            multi=max(0.2,1+this.status.main[111]*0.1)
+        }
         for(let a=0,la=this.orbs.length;a<la;a++){
             if(this.orbs[a]==type||type==-1){
                 switch(this.orbs[a]){
@@ -5144,6 +5166,9 @@ class combatant{
                         }else{
                             this.battle.combatantManager.randomEnemyEffect(0,[4+this.status.main[593]])
                         }
+                    break
+                    case 14:
+                        this.statusEffect('Counter All',round(4*multi))
                     break
                 }
             }

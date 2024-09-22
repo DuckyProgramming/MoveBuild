@@ -278,7 +278,7 @@ class card{
                 }
             }
         }catch(error){
-            print('!!!',this.type,error)
+            console.log('!!!',this.type,error)
             this.remove=true
             this.spec=[]
         }
@@ -302,7 +302,6 @@ class card{
             spec:this.spec,
             cardClass:this.cardClass,
             limit:this.limit,
-            falsed:this.falsed,
             colorful:this.colorful,
             edition:this.edition,
             base:{
@@ -730,7 +729,7 @@ class card{
         if(stage.scene=='battle'&&!this.nonCalc&&!this.cancelDesc){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             this.cancelDesc=false
-            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.getBasic(-1),this.name=='Shiv'||this.name=='Broken\nShiv'||this.name=='Deluxe\nShiv',this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20)])
+            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20)])
         }else{
             this.cancelDesc=false
             return calculateEffect(effect,this.battle.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false,false,false,false,false,false,false,false,false,false])
@@ -740,7 +739,7 @@ class card{
         if(stage.scene=='battle'&&!this.nonCalc&&!this.cancelDesc){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.players-1-this.player)]
             this.cancelDesc=false
-            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.getBasic(-1),this.name=='Shiv'||this.name=='Broken\nShiv'||this.name=='Deluxe\nShiv',this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20)])
+            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20)])
         }else{
             this.cancelDesc=false
             return calculateEffect(effect,this.battle.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false,false,false,false,false,false,false,false,false,false])
@@ -776,6 +775,9 @@ class card{
         }
         if(spec.includes(68)){
             string+='Forceplay\n'
+        }
+        if(spec.includes(69)){
+            string+='Has Mass\n'
         }
         switch(attack){
             case -1: string+=`At the End of Your Turn,\nGain ${effect[0]} Weak`; break
@@ -1594,7 +1596,7 @@ class card{
             case 695: string+=`Build a Doubler`; break
             case 696: string+=`Build an Exhauster`; break
             case 697: string+=`Deal ${this.calculateEffect(effect[1],0)} Damage\nTarget Moves in a\nRandom Direction ${effect[0]} Times`; break
-            case 698: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nDiscard ${effect[1]}\nRandom Card`; break
+            case 698: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nDiscard ${effect[1]}\nRandom Card${pl(effect[1])}`; break
             case 699: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Metal`; break
             case 700: string+=`Build a Teleporter Start`; break
             case 701: string+=`Build a Teleporter End`; break
@@ -1741,7 +1743,7 @@ class card{
             case 842: string+=`Gain ${effect[0]} Charge\nAmplify:\nGain ${effect[1]} More`; break
             case 843: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor Every ${effect[1]}\nRelics You Have`; break
             case 844: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nWhen Discard is Empty`; break
-            case 845: string+=`Add ${effect[0]} Dark Matter${pl(effect[0])}\nto Draw Pile\nWhen Etherealed,\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            case 845: string+=`Add ${effect[0]} Black Matter${pl(effect[0])}\nto Draw Pile\nWhen Etherealed,\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
             case 846: string+=`Exhaust the Top ${effect[0]}\nCard${pl(effect[0])} of Your Draw Pile\nDeal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Attacks Exhausted`; break
             case 847: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRemove ${effect[1]} Strength\nFrom a Random Enemy\nAmplify:\nRepeat`; break
             case 848: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Spark to Hand`; break
@@ -2124,7 +2126,7 @@ class card{
             case 1224: string+=`Put a Card in Draw\nPile in Your Hand\nIt is Reusable Each Turn`; break
             case 1225: string+=`Exhaust ${effect[0]} Card${pl(effect[0])},\nEither a Card Slot\nor Made by One\nAdd to Hand:\nCard Slot\nSlot Shift`; break
             case 1226: string+=`50%: Put a Card in Draw\nPile in Your Hand`; break
-            case 1227: string+=`Put a Random Card\nFrom Draw Pile\nin Your Hand`; break
+            case 1227: string+=`Put ${effect[0]} Random Card${pl(effect[0])}\nFrom Draw Pile\nin Your Hand`; break
             case 1228: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nPer Other Medley`; break
             case 1229: string+=`Exhaust ${effect[0]} Card${pl(effect[0])}\nIf You Have No Energy,\nGain ${effect[1]} Energy`; break
             case 1230: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAt Max, Deal ${this.calculateEffect(effect[1],0)}\nSplash Damage`; break
@@ -3885,7 +3887,7 @@ class card{
             case 2992: string+=`Gain ${effect[0]} Base\nEnergy This Combat\nAfter 2 Turns`; break
             case 2993: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier\nWhen You Scry`; break
             case 2994: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReturn on Scry`; break
-            case 2995: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has Freeze,\nGain ${effect[1]} Temporary Strength`; break
+            case 2995: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has Freeze,\nGain ${effect[1]} Temporary\nStrength`; break
             case 2996: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Double Block\nIf You Have Barrier`; break
             case 2997: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],17)} Barrier\nConvert Your Block\nto Barrier`; break
             case 2998: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier\nIncreases by ${effect[1]}\nWhen Discarded by Scry`; break
@@ -4334,7 +4336,7 @@ class card{
             case 3409: string+=`Choose a Skill\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
             case 3410: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIncreases by ${effect[1]}\nWhen a Skill is Played\n(Max 3)`; break
             case 3411: string+=`Target Takes ${effect[0]}\nDamage Per Card\nPlayed This Turn\nDraw ${effect[1]} Card${pl(effect[1])}\nIf it is a Skill,\nTarget Takes ${effect[2]} More`; break
-            case 3412: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Triple Block If\nYou Have Played ${effect[1]}\nSkill${pl(effect[1])} This Turn`; break
+            case 3412: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Double Block If\nYou Have Played ${effect[1]}\nSkill${pl(effect[1])} This Turn${stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players&&!this.nonCalc?`\n(Currently ${this.battle.cardManagers[this.player].hand.turnPlayed[11]})`:``}`; break
             case 3413: string+=`When Drawn,\nDraw ${effect[0]} Defense${pl(effect[0])}\nDraw ${effect[1]} Movement${pl(effect[1])}\nDraw ${effect[2]} Skill${pl(effect[2])}`; break
             case 3414: string+=`Add ${effect[0]} Random\nSkill${pl(effect[0])} to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
             case 3415: string+=`Add ${effect[0]} Random\nSkill${pl(effect[0])} to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
@@ -4402,7 +4404,8 @@ class card{
             case 3479: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Add ${this.calculateEffect(effect[1],1)} Block\n50%: Deal ${this.calculateEffect(effect[2],0)} Damage\nto a Random Enemy`; break
             case 3480: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nOverdrive ${effect[1]}:\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
             case 3481: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw to ${effect[1]} Card${pl(effect[1])}`; break
-            case 3482: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy\n${effect[1]} Time${effect[1]!=1?`s`:``}`; break
+            case 3482: case 5404:
+                string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy\n${effect[1]} Time${effect[1]!=1?`s`:``}`; break
             case 3483: string+=`Gain ${effect[0]} Temporary\nStrength\nHeal ${this.calculateEffect(effect[1],4)} Health\nTake ${effect[2]} Damage\nNext Turn`; break
             case 3484: string+=`End Your Current Turn\nTake Another Instantly\nYou Can Only Play\n${effect[0]} Card${pl(effect[0])} During it`; break
             case 3485: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOverdrive ${effect[1]}:\nGain ${effect[2]} Dodge`; break
@@ -6298,13 +6301,188 @@ class card{
             case 5379: string+=`Gain (E) (E) (E)\nGain ${effect[0]} Currency`; break
             case 5380: string+=`Gain (E) (E) (E) (E)\nGain ${effect[0]} Currency`; break
             case 5381: string+=`Spawn ${effect[0]} Personnel\nCarrier Enem${effect[0]!=1?`ies`:``}\nThey Attack You`; break
-
-
-
-
-            //mark p
+            case 5382: string+=`Draw ${effect[0]} Foil Card${pl(effect[0])}`; break
+            case 5383: string+=`Shuffle ${effect[0]} Foil Miracle${pl(effect[0])}\ninto Draw Pile`; break
+            case 5384: string+=`-1: Play ${effect[0]} Foil Card${pl(effect[0])}\nin a Single Turn\nActive: Next Card Played\nis Free`; break
+            case 5385: string+=`-1: Play ${effect[0]} Foil Card${pl(effect[0])}\nin a Single Turn\nActive: Next Card Played\nis Free\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5386: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Number of\nFoil Cards in Hand`; break
+            case 5387: string+=`Add ${this.calculateEffect(effect[0],1)}+${this.calculateEffect(effect[1],16)} Block\nWhere X = Number of\nFoil Cards in Hand`; break
+            case 5388: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nCosts 0 When an\nErratic Card\nis Played`; break
+            case 5389: string+=`Draw ${effect[0]} Foil Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less`; break
+            case 5390: string+=`${effect[0]} Random Card${pl(effect[0])} in Hand\nBecome Foil`; break
+            case 5391: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have a\nFoil Card in Hand,\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            case 5392: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\n${effect[2]} Random Card${pl(effect[2])} in Hand\nBecome Foil`; break
+            case 5393: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd a Pristine to Hand`; break
+            case 5394: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nShuffle ${effect[1]} Foil Tile${pl(effect[1])}\ninto Draw Pile`; break
+            case 5395: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nShuffle ${effect[1]} Foil Tile${pl(effect[1])}\ninto Draw Pile`; break
+            case 5396: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nShuffle ${effect[1]} Foil Tile${pl(effect[1])}\ninto Draw Pile`; break
+            case 5397: string+=`Draw ${effect[0]!=1?`${effect[0]}`:``}X${effect[1]>0?`+${effect[1]}`:``} Cards\nWere X = Energy`; break
+            case 5398: string+=`Draw ${effect[0]!=1?`${effect[0]}`:``}X${effect[1]>0?`+${effect[1]}`:``} Cards\nWere X = Mana Total`; break
+            case 5399: string+=`50%: Target Gains\nIndefinite Weak\n50%: Target Gains\nIndefinite Vulnerable`; break
+            case 5400: string+=`When Drawn,\nPut a Card in Draw\nPile in Your Hand`; break
+            case 5401: string+=`When Drawn,\nPut a Card in Draw\nPile in Your Hand\nand Add ${this.calculateEffect(effect[0],1)} Block`; break
+            case 5402: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal Equal to\nTarget's Health Lost`; break
+            case 5403: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nApply ${effect[1]} Vulnerable\nto a Random Enemy`; break
+            case 5405: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nNext Turn`; break
+            case 5406: string+=`Gain ${effect[0]} Base\nEnergy This Combat\nCosts 1 Less Permanently`; break
+            case 5407: string+=`Gain (E) at the\nStart of Your Turn\nCosts 1 Less Permanently`; break
+            case 5408: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Armor\nGain ${effect[2]} Vulnerable`; break
+            case 5409: string+=`Gain ${effect[0]} Dexterity\nGain ${effect[1]} Frail`; break
+            case 5410: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDraw ${effect[1]} More Card${pl(effect[1])} if\nOnly 1 Enemy is Alive`; break
+            case 5411: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Chocolate Chip`; break
+            case 5412: string+=`Gain ${effect[0]} Chocolate Chip`; break
+            case 5413: string+=`Gain ${effect[0]} Chocolate Chip\nShuffle ${effect[1]} Foil Tile${pl(effect[1])}\ninto Draw Pile`; break
+            case 5414: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAdd ${effect[1]} Shiv${pl(effect[1])} to Hand`; break
+            case 5415: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Health\nAdd ${effect[2]} Shiv${pl(effect[2])} to Hand`; break
+            case 5416: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Times\nApply ${effect[1]} Lock On`; break
+            case 5417: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nProgress a Random\nQuest in Hand by ${effect[1]}`; break
+            case 5418: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+            case 5419: string+=`Apply ${effect[0]} Lock On\nAnd ${effect[1]} Weak\nin All Directions`; break
+            case 5420: string+=`Apply ${effect[0]} Lock On\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5421: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nBecomes Foil on Play`; break
+            case 5422: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nBecomes Foil on Play`; break
+            case 5423: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nBecomes Foil on Play`; break
+            case 5424: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAll Enemies Lose\nHealth Equal to\nTheir Lock On`; break
+            case 5425: string+=`Shuffle ${effect[0]} Foil Tile${pl(effect[0])}\ninto Draw Pile\nPut a Card in Draw\nPile in Your Hand`; break
+            case 5426: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nUpgrade ${effect[1]} Random Card${pl(effect[1])}`; break
+            case 5427: string+=`Apply ${effect[0]} Freeze\nin All Directions\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5428: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nGain ${effect[1]} Energy\nEnergy Increases by ${effect[2]}`; break
+            case 5429: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nGain ${effect[1]} (W) (G)\nMana Gain Increases by ${effect[2]}`; break
+            case 5430: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Energy\nEnergy Increases by ${effect[2]}`; break
+            case 5431: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nin All Directions\nGain ${effect[1]} (W) (G)\nMana Gain Increases by ${effect[2]}`; break
+            case 5432: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nProgress a Random\nQuest in Hand by ${effect[1]}`; break
+            case 5433: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nExhaust Any\nNumber of Cards\nAdd a Miracle to Hand\nPer Card Exhausted`; break
+            case 5434: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas a Skill,\nDeals Double Damage`; break
+            case 5435: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas a Skill,\nApply ${effect[1]} Weak`; break
+            case 5436: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas a Skill,\nApply ${effect[1]} Vulnerable`; break
+            case 5437: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas a Skill,\nGain ${effect[1]} Energy`; break
+            case 5438: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas a Skill,\nGain (B) (N)`; break
+            case 5439: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRetain ${effect[1]} Random\nSkill${pl(effect[1])} in Hand\nUntil Played`; break
+            case 5440: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nMake a Card in Draw\nPile Ethereal and\nShuffle ${effect[1]} Cop${effect[1]!=1?`ies`:`y`} of it\ninto Draw Pile`; break
+            case 5441: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Last Card Played\nWas a Skill,\nAdds Double Block`; break
+            case 5442: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Last Card Played\nWas a Skill,\nGain ${effect[1]} Temporary\nStrength`; break
+            case 5443: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Last Card Played\nWas a Skill,\nGain ${effect[1]} Temporary\nDexterity`; break
+            case 5444: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Last Card Played\nWas a Skill,\nGain ${effect[1]} Energy`; break
+            case 5445: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Last Card Played\nWas a Skill,\nGain (B) (N)`; break
+            case 5446: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain ${effect[1]} Random\nSkill${pl(effect[1])} in Hand\nUntil Played`; break
+            case 5447: string+=`When Drawn or Created,\nRetains Once`; break
+            case 5448: string+=`When Drawn or Created,\nRetains Until Played`; break
+            case 5449: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPulled:\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            case 5450: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Dark Matter${pl(effect[1])}\nto Hand`; break
+            case 5451: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nExhaust ${effect[2]} Random Card${pl(effect[2])}`; break
+            case 5452: string+=`Put a Card in Draw\nPile in Your Hand\nShuffle ${effect[0]} Dark Matter${pl(effect[0])}\ninto Draw Pile`; break
+            case 5453: string+=`Gain ${effect[0]} Buffer\nDraw ${effect[1]} More Card${pl(effect[1])}\nNext Turn`; break
+            case 5454: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Added, Remove a\nCard Permanently`; break
+            case 5455: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Become`:`It Becomes`} Foil`; break
+            case 5456: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDuplicate ${effect[1]} Random\nFoil Card${pl(effect[1])}`; break
+            case 5457: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],1)} Block\nPer Foil Card Drawn`; break
+            case 5458: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have a\nFoil Card in Hand,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5459: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Chocolate Chip`; break
+            case 5460: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Added, a\nRandom Card in Deck\nBecomes Foil`; break
+            case 5461: string+=`Make a Card Foil\nPermanently`; break
+            case 5462: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nThe Top Card\nof Draw Pile\nCosts ${effect[1]} Less Temporarily`; break
+            case 5463: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMake the Top Card\nof Draw Pile Foil`; break
+            case 5464: string+=`Retain All Foil Cards\nin Hand This Turn`; break
+            case 5465: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Foil\nTile${pl(effect[1])} to Hand`; break            
+            case 5466: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Played or Pulled`; break
+            case 5467: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nPulled:\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage`; break
+            case 5468: string+=`When Drawn,\nAdd ${this.calculateEffect(effect[0],1)} Block\nPulled:\nAdd ${effect[1]} Dark Matter${pl(effect[1])}\nto Discard Pile`; break
+            case 5469: string+=`When Drawn,\nAdd ${this.calculateEffect(effect[0],1)} Block\nPulled:\nDiscard ${effect[1]} Random Card${pl(effect[1])}`; break
+            case 5470: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nGain ${effect[1]} Energy Per\nCard in Hand With Mass`; break
+            case 5471: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nGain (E) Per Card\nin Hand With Mass`; break
+            case 5472: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\nPulled:\nCounter ${effect[2]} All`; break
+            case 5473: string+=`Gain ${effect[0]} Energy\nPulled:\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5474: string+=`Gain (E) (E)\nPulled:\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 5475: string+=`Gain (E) (E) (E)\nPulled:\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 5476: string+=`Gain (E) (E) (E) (E)\nPulled:\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 5477: string+=`Exhaust Your Hand\nAdd ${effect[0]} Dark Matter${pl(effect[0])}\nto Hand and\nDeal ${effect[1]} Damage to\na Random Enemy Each`; break
+            case 5478: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nDiscard ${effect[1]}\nRandom Card${pl(effect[1])}\nIf a Card With Mass\nWas Pulled, Repeat`; break
+            case 5479: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nFor Each Card\nWith Mass Drawn,\nDeals ${this.calculateEffect(effect[2],10)} More Damage`; break
+            case 5480: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nFor Each Card\nWith Mass Drawn,\nDeals ${this.calculateEffect(effect[2],14)} Add Block`; break
+            case 5481: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDiscard ${effect[1]} Random Card${pl(effect[1])}\nGain ${effect[2]} Energy`; break
+            case 5482: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDiscard ${effect[1]} Random Card${pl(effect[1])}\nGain (K)`; break
+            case 5483: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nExhaust ${effect[1]} Random Card${pl(effect[1])}`; break
+            case 5484: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} Once\nBoth Increase by ${effect[2]}\nWhen a Card is Played`; break
+            case 5485: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nIncreases by ${effect[1]}\nWhen a Card is Played`; break
+            case 5486: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Explosive Orb${pl(effect[1])}`; break
+            case 5487: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nHold ${effect[1]} Glass Orb${pl(effect[1])}`; break
+            case 5488: string+=`Apply ${effect[0]} Weak\nin All Directions\nHold ${effect[1]} Poison Orb${pl(effect[1])}`; break
+            case 5489: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Lightning Orb${pl(effect[1])}`; break
+            case 5490: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Crystal Orb${pl(effect[1])}`; break
+            case 5491: string+=`Hold ${effect[0]} Crystal Orb${pl(effect[0])}`; break
+            case 5492: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Crystal Orb${pl(effect[1])}`; break
+            case 5493: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nWhen Another Countdown\nis Incremented`; break
+            case 5494: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nHold ${effect[1]} Crystal Orb${pl(effect[1])}`; break
+            case 5495: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nHold ${effect[1]} Dual Orb${pl(effect[1])}`; break
+            case 5496: string+=`Add ${effect[0]} Miracle${pl(effect[0])} to Hand\nDraw ${effect[0]} Card${pl(effect[0])}\nExhaust ${effect[2]} Random Card${pl(effect[2])}`; break
+            case 5497: string+=`Add ${effect[0]} Occult${pl(effect[0])} to Hand\nDraw ${effect[0]} Card${pl(effect[0])}\nExhaust ${effect[2]} Random Card${pl(effect[2])}`; break
+            case 5498: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPlayed Above 1 ${variants.mtg?`Neutral `:``}Cost:\nHalves Block and\nCosts 1 Less`; break
+            case 5499: string+=`When You Pull\na Card With Mass,\nDeal ${effect[0]} Damage\nto a Random Enemy`; break
+            case 5500: string+=`When Drawn,\nExhaust ${effect[0]} Random Card${pl(effect[0])}\nGain ${effect[1]} Strength`; break
+            case 5501: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nUpgrade ${effect[1]} Random\nCard${pl(effect[1])} in Hand\nDeals ${this.calculateEffect(effect[2],10)} More Damage\nPer Card With\nMass Pulled`; break
+            case 5502: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPulled:\nPut a Copy of This\nCard in Your Hand`; break
+            case 5503: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}\nAdd a Quiet\nMoonlight to Discard Pile`; break
+            case 5504: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}\nAdd a Refracted\nSunlight to Discard Pile`; break
+            case 5505: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}\nAdd a Glamorous\nStarlight to Discard Pile`; break
+            case 5506: string+=`Gain (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Quiet\nMoonlight to Discard Pile`; break
+            case 5507: string+=`Gain (E) (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Quiet\nMoonlight to Discard Pile`; break
+            case 5508: string+=`Gain (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Refracted\nSunlight to Discard Pile`; break
+            case 5509: string+=`Gain (E) (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Refracted\nSunlight to Discard Pile`; break
+            case 5510: string+=`Gain (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Glamorous\nStarlight to Discard Pile`; break
+            case 5511: string+=`Gain (E) (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Glamorous\nStarlight to Discard Pile`; break
+            case 5512: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas a Skill,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5513: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Last Card Played\nWas a Skill,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5514: string+=`Put ${effect[0]} Random Card${pl(effect[0])}\nFrom Draw Pile\nin Your Hand\nReturn ${effect[1]} Random Card${pl(effect[1])}\nFrom Discard Pile\nto Hand`; break
+            case 5515: string+=`Draw ${effect[0]} More Card${pl(effect[0])} and\nExhaust ${effect[1]} Random Card${pl(effect[1])}\nEach Turn`; break
+            case 5516: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\n4 Times\nWhen Retained,\nDecreases by ${effect[1]}`; break
+            case 5517: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCounts as a Shiv`; break
+            case 5518: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\nCounts as a Shiv`; break
+            case 5519: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRepeats For Each Card\nExhausted This Turn`; break
+            case 5520: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nin All Directions\nExhaust ${effect[1]!=1?`${effect[1]}`:``}X Cards`; break
+            case 5521: string+=`Add ${effect[0]} Random\nAttack${pl(effect[0])} to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporarily\nAdd ${effect[0]} Random\nDefense${pl(effect[1])} to Hand\n${effect[1]!=1?`They Cost`:`It Costs`} 0 Temporarily\nAdd ${effect[2]} Dark Matter${pl(effect[2])}\nto Hand`; break
+            case 5522: string+=`Add ${effect[0]} Random\nAttack${pl(effect[0])} to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0\nAdd ${effect[0]} Random\nDefense${pl(effect[1])} to Hand\n${effect[1]!=1?`They Cost`:`It Costs`} 0\nAdd ${effect[2]} Dark Matter${pl(effect[2])}\nto Hand`; break
+            case 5523: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Last Card Played\nWas a Skill,\nGain ${effect[1]} Energy`; break
+            case 5524: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Last Card Played\nWas a Skill,\nGain (B) (N)`; break
+            case 5525: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nRetain ${effect[1]} Random\nSkill${pl(effect[1])} in Hand\nUntil Played`; break
+            case 5526: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIn a Random Direction\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5527: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}\nExhaust ${effect[2]} Random Card${pl(effect[2])}`; break
+            case 5528: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${effect[1]} Dark Matter${pl(effect[1])}\nto Hand`; break
+            case 5529: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Quest${pl(effect[1])}`; break
+            case 5530: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Wish${pl(effect[1])}`; break
+            case 5531: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Unplayable Card${pl(effect[1])}`; break
+            case 5532: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nExhaust ${effect[2]} Random Card${pl(effect[2])}`; break
+            case 5533: string+=`-1: Exhaust a Card\nActive: Gain ${effect[0]}\nTemporary Strength`; break
+            case 5534: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nHold ${effect[1]} Basic Orb${pl(effect[1])}`; break
+            case 5535: string+=`All Cards in Hand\nDuplicate Once\nWhen Played`; break
+            case 5536: string+=`Add ${effect[0]} Random\nSkill${pl(effect[0])} to Hand`; break
+            case 5537: string+=`Pulled:\nAdd ${effect[0]} Dark Matter${pl(effect[0])}\nto Hand`; break
+            case 5538: string+=`When You Play\na Blueprint,\nAdd a Copy of it to Hand\nThat Costs 0 Temporarily\nand Exhaust This Card`; break
+            case 5539: string+=`When You Play\na Countdown,\nAdd a Copy of it to Hand\nThat Costs 0 Temporarily\nand Exhaust This Card`; break
+            case 5540: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],1)} Block\nPer Card Played While\nThis Card is in Your hand`; break
+            case 5541: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDraw ${effect[1]} Less Card${pl(effect[1])}\nNext Turn`; break
+            case 5542: string+=`Exhaust ${effect[0]} Card${pl(effect[0])}\nHold ${effect[1]} Light Orb${pl(effect[1])}`; break
+            case 5543: string+=`+1: Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nExhaust ${effect[1]} Card${pl(effect[1])}\n-3: Exhaust Discard Pile\nDeal ${this.calculateEffect(effect[2],0)} Damage\nin All Directions Each\n-6: Exhaust Your Hand\nDraw ${effect[3]} Card${pl(effect[3])} and\nGain ${effect[4]} Energy Each`; break
+                case -1064: string+=`-3: Exhaust Discard Pile\nDeal ${this.calculateEffect(effect[2],0)} Damage\nin All Directions Each`; break
+                case -1065: string+=`-6: Exhaust Your Hand\nDraw ${effect[3]} Card${pl(effect[3])} and\nGain ${effect[4]} Energy Each`; break
+            case 5544: string+=`+1: Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nExhaust ${effect[1]} Card${pl(effect[1])}\n-3: Exhaust Discard Pile\nDeal ${this.calculateEffect(effect[2],0)} Damage\nin All Directions Each\n-6: Exhaust Your Hand\nDraw ${effect[3]} Card${pl(effect[3])} and\nGain (E) Each`; break
+                case -1066: string+=`-6: Exhaust Your Hand\nDraw ${effect[3]} Card${pl(effect[3])} and\nGain (E) Each`; break
+            case 5545: string+=`Draw ${effect[0]} Skill${pl(effect[0])} and\nRetain ${effect[0]!=1?`Them`:`It`} Until Played`; break
+            case 5546: string+=`Draw ${effect[0]!=1?`${effect[0]}`:``}X${effect[1]>0?`+${effect[1]}`:``} Cards\nUpgrade ${effect[2]!=1?`${effect[2]}`:``}X${effect[3]>0?`+${effect[3]}`:``} Cards`; break
+            case 5547: string+=`Draw ${effect[0]!=1?`${effect[0]}`:``}X${effect[1]>0?`+${effect[1]}`:``} Cards\nUpgrade ${effect[2]} Card${pl(effect[2])}`; break
+            case 5548: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nPulled:\nApply ${effect[1]} Vulnerable\nin All Directions`; break
+            case 5549: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nRandomly Swap the Costs\nof Every Card in Hand`; break
+            case 5550: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain (E) (E) (E)\nRandomly Swap the Costs\nof Every Card in Hand`; break
+            case 5551: string+=`Apply ${effect[0]} Weak and Frail\nApplies Double if\nAnother Enemy is\nAdjacent to Target`; break
+            case 5552: string+=`Take Another Turn\nGain ${effect[0]} Energy\non That Turn\nAll Cards Cost\n${effect[1]} More on That Turn\nCosts 1 Less\nWhen a Card is Played`; break
+            case 5553: string+=`Take Another Turn\nGain (E)\non That Turn\nAll Cards Cost\n${effect[0]} More on That Turn\nCosts 1 Less\nWhen a Card is Played`; break
+            case 5554: string+=`Take Another Turn\nGain (E) (E)\non That Turn\nAll Cards Cost\n${effect[0]} More on That Turn\nCosts 1 Less\nWhen a Card is Played`; break
+            case 5555: string+=`Take Another Turn\nGain (E) (E) (E)\non That Turn\nAll Cards Cost\n${effect[0]} More on That Turn\nCosts 1 Less\nWhen a Card is Played`; break
+            case 5556: string+=`Gain ${effect[0]} Dexterity\nGives ${effect[1]} More If\nYou Have Played ${effect[2]}\nSkill${pl(effect[2])} This Turn${stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players&&!this.nonCalc?`\n(Currently ${this.battle.cardManagers[this.player].hand.turnPlayed[11]})`:``}`; break
+            case 5557: string+=`Apply ${effect[0]} Freeze\nApplies Double Freeze If\nYou Have Played ${effect[1]}\nSkill${pl(effect[1])} This Turn${stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players&&!this.nonCalc?`\n(Currently ${this.battle.cardManagers[this.player].hand.turnPlayed[11]})`:``}`; break
 
             //mark q
+            
+            //mark p
 
             /*
             case 1: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
@@ -7062,6 +7240,13 @@ class card{
             break
         }
     }
+    callAnotherExhaustEffect(){
+        switch(this.attack){
+            case 5533:
+                this.costDown(0,[1])
+            break
+        }
+    }
     callVanishEffect(){
         switch(this.attack){
             case -102:
@@ -7103,9 +7288,48 @@ class card{
                 this.battle.relicManager.addSetRelic(0,this.player)
             break
             case 3596: case 3597: case 3598: case 3599: case 3600: case 3601: case 3602: case 3603: case 3604: case 3605:
-            case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146:
+            case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
+            break
+        }
+    }
+    callPullEffect(){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        switch(this.attack){
+            case 5449:
+                userCombatant.addBlock(this.effect[1])
+            break
+            case 5466:
+                userCombatant.addBlock(this.effect[0])
+            break
+            case 5467:
+                this.battle.combatantManager.areaAbstract(0,[this.effect[1],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+            break
+            case 5468:
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.battle.drop(this.player,findName('Dark\nMatter',types.card),0,0)
+                }
+            break
+            case 5469:
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.battle.cardManagers[this.player].randomEffect(2,0,[])
+                }
+            break
+            case 5472:
+                userCombatant.statusEffect('Counter All',this.effect[2])
+            break
+            case 5473:
+                this.battle.cardManagers[this.player].draw(this.effect[1])
+            break
+            case 5474: case 5475: case 5476:
+                this.battle.cardManagers[this.player].draw(this.effect[0])
+            break
+            case 5502:
+                this.battle.cardManagers[this.player].hand.add(this.type,this.level,this.color,this.edition)
+            break
+            case 5537:
+                this.battle.cardManagers[this.player].hand.add(findName('Dark\nMatter',types.card),0,0)
             break
         }
     }
@@ -7248,12 +7472,29 @@ class card{
             case 3759:
                 this.battle.addCurrency(this.effect[0],this.player)
             break
+            case 5454:
+                this.battle.overlayManager.overlays[6][this.player].active=true
+                this.battle.overlayManager.overlays[6][this.player].activate()
+            break
+            case 5460:
+                this.battle.cardManagers[this.player].deck.randomEffect(30,[2])
+            break
         }
     }
     callAnotherAddEffect(){
         switch(this.attack){
             case 2773:
                 this.effect[0]+=this.effect[1]
+            break
+        }
+    }
+    callSubAddEffect(){
+        switch(this.attack){
+            case 5447:
+                this.retain=true
+            break
+            case 5448:
+                this.retain2=true
             break
         }
     }
@@ -7279,6 +7520,7 @@ class card{
     }
     onIncrementCountdown(spent){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        this.battle.cardManagers[this.player].allEffectArgs(2,48,[this.id,'onIncrementAnotherCountdown',[spent]])
         switch(this.attack){
             case 1345: case 3704: case 4064:
                 this.effect[0]+=this.effect[1]
@@ -7305,6 +7547,13 @@ class card{
                         this.effect[1]++
                     }
                 }
+            break
+        }
+    }
+    onIncrementAnotherCountdown(spent){
+        switch(this.attack){
+            case 5493:
+                this.effect[0]+=this.effect[1]
             break
         }
     }
@@ -7425,7 +7674,7 @@ class card{
             case 5208:
                 this.effect[0]+=this.effect[1]
             break
-            case 866: case 908: case 1893: case 2356: case 2482:
+            case 866: case 908: case 1893: case 2356: case 2482: case 5428: case 5429: case 5430: case 5431:
                 this.effect[1]+=this.effect[2]
             break
             case 937:
@@ -7496,7 +7745,7 @@ class card{
             case 3074: case 3075: case 3076: case 3078: case 3082: case 3134: case 3135: case 3334: case 3335: case 3381:
             case 3382: case 3383: case 3390: case 3395: case 3396: case 3397: case 3568: case 3569: case 3584: case 3585:
             case 3586: case 3689: case 3724: case 3725: case 3726: case 3727: case 3908: case 3909: case 4626: case 4627:
-            case 4628: case 4629: case 4630: case 4631: case 4632: case 5164:
+            case 4628: case 4629: case 4630: case 4631: case 4632: case 5164: case 5543: case 5544:
                 if(!this.spec.includes(55)){
                     this.discardEffect.push(13)
                 }
@@ -7545,6 +7794,15 @@ class card{
                     this.discardEffectBuffered.push(1)
                 }else{
                     this.discardEffect.push(15)
+                }
+            break
+            case 5421: case 5422: case 5423:
+                this.edition=2
+            break
+            case 5498:
+                if(this.getCost(1)){
+                    this.effect[0]=ceil(this.effect[0]/2)
+                    this.costDown(2,[1])
                 }
             break
         }
@@ -7676,7 +7934,7 @@ class card{
                     this.effect[1]=this.effect[1]+this.effect[2]
                 break
                 case 2197:
-                    if(card.name=='Shiv'||card.name=='Broken\nShiv'||card.name=='Deluxe\nShiv'){
+                    if(card.spec.includes(70)){
                         this.costDown(0,[1])
                     }
                 break
@@ -7928,6 +8186,45 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
+                case 5384: case 5385:
+                    if(this.battle.cardManagers[this.player].hand.turnPlayedEdition[2]==this.effect[0]-1){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 5388:
+                    if(card.edition==6){
+                        this.setCost(0,[0])
+                    }
+                break
+                case 5484:
+                    this.effect[0]+=this.effect[2]
+                    this.effect[1]+=this.effect[2]
+                break
+                case 5485:
+                    this.effect[0]+=this.effect[1]
+                break
+                case 5538:
+                    if(cardClass==7){
+                        this.deSize=true
+                        this.exhaust=true
+                        this.battle.cardManagers[this.player].hand.cards.push(copyCard(card))
+                        this.battle.cardManagers[this.player].hand.postCopyAbstract(1)
+                    }
+                break
+                case 5539:
+                    if(card.spec.includes(35)){
+                        this.deSize=true
+                        this.exhaust=true
+                        this.battle.cardManagers[this.player].hand.cards.push(copyCard(card))
+                        this.battle.cardManagers[this.player].hand.postCopyAbstract(1)
+                    }
+                break
+                case 5540:
+                    userCombatant.addBlock(this.effect[1])
+                break
+                case 5552: case 5553: case 5554: case 5555:
+                    this.costDown(0,[1])
+                break
                 
             }
         }
@@ -8067,6 +8364,9 @@ class card{
                     this.costDown(0,[1])
                 }
             break
+            case 5516:
+                this.effect[0]=max(0,this.effect[0]-this.effect[1])
+            break
         }
         if(this.spec.includes(55)){
             switch(this.attack){
@@ -8195,6 +8495,10 @@ class card{
                 break
                 case 5164:
                     this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0]*userCombatant.diceRoll(1,6),this.id])
+                break
+                case 5543: case 5544:
+                    this.battle.combatantManager.areaAbstract(0,[this.effect[0],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                    this.battle.cardManagers[this.player].hand.exhaust(this.effect[1])
                 break
 
             }
@@ -9909,7 +10213,7 @@ class card{
                                 this.desc=this.desc.toLowerCase()
                             }
                             this.layer.textSize(
-                                name=='Charred\nLizard'||name=='Flame of\nNirvana'||name=='First\nQuarter'||name=='Foehn'||name=='Yukari, Boundary\nof Fantasy'||name=='Keystone\nCannon'||name=='Hakurei\nTalisman'||name=='Hakurei\nAmulet'||name=='Shizuha, Symbol\nof Loneliness'||name=='Ran,\nScheming Fox'||name==`Flandre,\nDevil's Sister`||name=='Hina, Ward\nof Misfortune'||
+                                name=='Charred\nLizard'||name=='Flame of\nNirvana'||name=='First\nQuarter'||name=='Foehn'||name=='Yukari, Boundary\nof Fantasy'||name=='Keystone\nCannon'||name=='Hakurei\nTalisman'||name=='Hakurei\nAmulet'||name=='Shizuha, Symbol\nof Loneliness'||name=='Ran,\nScheming Fox'||name==`Flandre,\nDevil's Sister`||name=='Hina, Ward\nof Misfortune'||name=='Diamond\nRing'||
                                 !spec.includes(12)&&getIndicesOf(this.desc,'\n',true)>=8?6:7.5)
                             if(spec.includes(12)){
                                 this.layer.text(this.description(attack[0],effect[0],reality[0],target),0,variants.mtg?-6:-16)
@@ -10123,7 +10427,7 @@ class card{
                 if(anim[a]>0){
                     switch(a){
                         case 0: case 23: this.layer.stroke(255,0,0,this.fade*anim[a]); break
-                        case 1: case 24: case 28: case 29: this.layer.stroke(100,255,255,this.fade*anim[a]); break
+                        case 1: case 24: case 28: case 29: case 31: this.layer.stroke(100,255,255,this.fade*anim[a]); break
                         case 2: this.layer.stroke(255,225,0,this.fade*anim[a]); break
                         case 3: this.layer.stroke(255,100,255,this.fade*anim[a]); break
                         case 4: case 21: case 26: case 27: this.layer.stroke(255,200,200,this.fade*anim[a]); break
@@ -10147,7 +10451,7 @@ class card{
                     }
                     this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
                     switch(a){
-                        case 21: case 23: case 24: case 25: case 26: case 27: case 28: case 29: case 30:
+                        case 21: case 23: case 24: case 25: case 26: case 27: case 28: case 29: case 30: case 31:
                             switch(a){
                                 case 21: case 23: case 24:
                                     this.layer.stroke(220,this.fade*anim[a])
@@ -10166,6 +10470,9 @@ class card{
                                 break
                                 case 30:
                                     this.layer.stroke(120,this.fade*anim[a])
+                                break
+                                case 31:
+                                    this.layer.stroke(200,255,100,this.fade*anim[a])
                                 break
                             }
                             this.layer.strokeWeight(1)

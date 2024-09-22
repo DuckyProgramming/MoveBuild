@@ -8,6 +8,7 @@ class collectionManager{
         this.anim={query:{list:[],rarity:[],class:[]}}
         this.level=0
         this.page=0
+        this.totals=[0,0]
         this.query={
             name:'',
             list:[],
@@ -33,6 +34,7 @@ class collectionManager{
     }
     executeQuery(){
         this.page=0
+        this.totals=[0,0]
         let names=[]
         for(let a=0,la=constants.playerNumber+16;a<la;a++){
             names.push([[],[]])
@@ -76,7 +78,7 @@ class collectionManager{
                 resultlist=constants.playerNumber+15
             }
             if(
-                (this.query.name==''||cardData.name.toLowerCase().includes(this.query.name.toLowerCase()))&&
+                (this.query.name==''||cardData.name.toLowerCase().replace('\n',' ').includes(this.query.name.toLowerCase().replace('\n',' ')))&&
                 (this.query.list.includes(sublist))&&
                 (cardData.rarity>=0&&cardData.rarity<=2&&this.query.rarity[cardData.rarity]||(cardData.rarity<0||cardData.rarity>=3)&&this.query.rarity[3])&&
                 (
@@ -90,7 +92,7 @@ class collectionManager{
                     ![1,2,3,4,5,6,11].includes(cardData.levels[this.level].class)&&this.query.class[7]
                 )
             ){
-                names[resultlist][this.query.name.toLowerCase()!=''&&cardData.name.toLowerCase().substr(0,this.query.name.length)!=this.query.name.toLowerCase()?1:0].push(cardData.name)
+                names[resultlist][this.query.name.toLowerCase().replace('\n',' ')!=''&&cardData.name.toLowerCase().replace('\n',' ').substr(0,this.query.name.length)!=this.query.name.toLowerCase().replace('\n',' ')?1:0].push(cardData.name)
             }
         }
         names.forEach(sub1=>sub1.forEach(sub2=>sub2=sub2.sort()))
@@ -103,14 +105,17 @@ class collectionManager{
                     this.cards.push(new card(this.layer,this.battle,0,this.layer.width/2-350+tick%8*100,this.layer.height/2-200+floor(tick/8)%3*130,selector,this.level,this.battle.standardColorize(selector),-1))
                     if(!this.known.includes(names[a][b][c])){
                         this.cards[this.cards.length-1].blind=true
+                    }else{
+                        this.totals[0]++
                     }
+                    this.totals[1]++
                     tick++
                 }
             }
         }
     }
     activate(name){
-        if(!this.known.includes(name)){
+        if(!this.known.includes(name)&&!game.dev){
             this.known.push(name)
             this.saveKey=true
         }
@@ -142,7 +147,8 @@ class collectionManager{
                 this.layer.text(this.query.name,65,515)
                 this.layer.textAlign(CENTER,CENTER)
                 this.layer.textSize(10)
-                this.layer.text(`${this.page+1}/${ceil(this.cards.length/24)}`,this.layer.width/2+75,this.layer.height*0.7+42.5)
+                this.layer.text(`${this.totals[0]}/${this.totals[1]}`,this.layer.width/2-75,this.layer.height*0.7+42.5)
+                this.layer.text(`${this.page+1}/${max(1,ceil(this.cards.length/24))}`,this.layer.width/2+75,this.layer.height*0.7+42.5)
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].fade=1
                     this.cards[a].anim={select:0,afford:1}

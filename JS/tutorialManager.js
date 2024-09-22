@@ -1025,7 +1025,7 @@ They can be made stronger, or more of them can be created, using other cards.`,
                 */
             break
             case 25:
-                print('t25')
+                console.log('t25')
                 /*
 `Countdowns are a set of cards with a special marker on the energy symbol.
 Many characters have some countdowns but Azis has the most.`,
@@ -1038,10 +1038,10 @@ As a group of cards, there are a lot of interactions.`,
                 */
             break
             case 26:
-                print('t26')
+                console.log('t26')
             break
             case 27:
-                print('t27')
+                console.log('t27')
             break
         }
         this.anim.pages=[]

@@ -367,7 +367,7 @@ class relicManager{
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(10)
             break
             case 29:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(14)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(16)
             break
             case 30:
                 this.battle.addCurrency(600,player)
@@ -501,10 +501,10 @@ class relicManager{
                 this.battle.cardManagers[player].randomEffect(0,2,[0])
             break
             case 160:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(40)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(50)
             break
             case 168:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(0.5)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(1)
             break
             case 181:
                 for(let a=0,la=3;a<la;a++){
@@ -795,7 +795,7 @@ class relicManager{
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(10)
             break
             case 29:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(14)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(16)
             break
             case 30:
                 this.battle.currency.money[player]-=500
@@ -916,10 +916,10 @@ class relicManager{
                 this.battle.cardManagers[player].randomEffect(0,3,[0])
             break
             case 160:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(40)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(50)
             break
             case 168:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(0.5)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(1)
             break
             case 181:
                 for(let a=0,la=3;a<la;a++){

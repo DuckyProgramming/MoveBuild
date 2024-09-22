@@ -231,7 +231,9 @@ class attack{
             case 5179: case 5184: case 5191: case 5193: case 5194: case 5197: case 5213: case 5216: case 5223: case 5224: case 5229: case 5232: case 5233: case 5234: case 5237: case 5241: case 5242: case 5243: case 5244: case 5245:
             case 5246: case 5255: case 5260: case 5271: case 5280: case 5285: case 5288: case 5290: case 5292: case 5294: case 5297: case 5300: case 5306: case 5326: case 5337: case 5338: case 5340: case 5341: case 5342: case 5343:
             case 5344: case 5345: case 5346: case 5347: case 5348: case 5349: case 5351: case 5352: case 5353: case 5354: case 5355: case 5356: case 5357: case 5358: case 5359: case 5360: case 5361: case 5363: case 5364: case 5365:
-            case 5367: case 5368: case 5369: case 5370: case 5371: case 5372: case 5375:
+            case 5367: case 5368: case 5369: case 5370: case 5371: case 5372: case 5375: case 5386: case 5391: case 5392: case 5394: case 5399: case 5402: case 5405: case 5415: case 5416: case 5417: case 5418: case 5420: case 5421:
+            case 5433: case 5434: case 5435: case 5436: case 5437: case 5438: case 5439: case 5449: case 5451: case 5454: case 5456: case 5460: case 5462: case 5463: case 5472: case 5479: case 5485: case 5489: case 5490: case 5493:
+            case 5501: case 5512: case 5517: case 5518: case 5519: case 5548: case 5551: case 5557:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -285,7 +287,8 @@ class attack{
             case 4879: case 4880: case 4948: case 5004: case 5037: case 5048: case 5049: case 5050: case 5056: case 5060:
             case 5113: case 5125: case 5126: case 5127: case 5128: case 5129: case 5130: case 5149: case 5150: case 5162:
             case 5176: case 5177: case 5203: case 5204: case 5205: case 5207: case 5217: case 5231: case 5253: case 5302:
-            case 5303:
+            case 5303: case 5396: case 5423: case 5458: case 5467: case 5487: case 5494: case 5495: case 5523: case 5524:
+            case 5525: case 5527: case 5528: case 5529: case 5530: case 5531:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -554,7 +557,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 1011:
+            case 1011: case 5526:
                 tiles=this.battle.tileManager.getArea(this.userCombatant.tilePosition,1,1)
                 if(tiles.length>0){
                     this.targetTile=tiles[floor(random(0,tiles.length))]
@@ -1017,7 +1020,7 @@ class attack{
             case 0:
                 switch(this.type){
                     case 12: case 719: case 1213: case 1733: case 1944: case 2112: case 2241: case 3376: case 5242: case 5294:
-                    case 5300:
+                    case 5300: case 5418:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
                     break
                     case 35:
@@ -2214,6 +2217,26 @@ class attack{
                     case 5285:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.battle.counter.enemy-this.battle.counter.killed==1?2:1),this.user)
                     break
+                    case 5386:
+                        this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.userManager.hand.numberAbstract(20,[[2]]),this.user)
+                    break
+                    case 5402:
+                        let prelife5402=this.targetCombatant.life
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.targetCombatant.life<prelife5402){
+                            this.userCombatant.heal(prelife5402-this.targetCombatant.life)
+                        }
+                    break
+                    case 5434:
+                        this.targetCombatant.takeDamage(this.effect[0]*(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11?2:1),this.user)
+                    break
+                    case 5501:
+                        let total5501=0
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            total5501+=this.userManager.hand.randomEffect(67,[0,69])?1:0
+                        }
+                        this.targetCombatant.takeDamage(this.effect[0]+this.effect[2]*total5501,this.user)
+                    break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
@@ -2271,12 +2294,14 @@ class attack{
                         this.battle.drop(this.player,findName('Slow\nBleed',types.card),0,constants.playerNumber+1)
                     break
                     case 124:
-                        this.userManager.randomEffect(2,13,[])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.randomEffect(2,13,[])
+                        }
                     break
                     case 125:
                         this.userCombatant.statusEffect('Single Damage Down',this.effect[1])
                     break
-                    case 126: case 2248:
+                    case 126: case 2248: case 5518:
                         this.targetCombatant.statusEffect('Weak',this.effect[1])
                     break
                     case 137:
@@ -5152,7 +5177,9 @@ class attack{
                         }
                     break
                     case 5260:
-                        this.userManager.discard.randomEffect(16,[this.userManager.hand.cards])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.discard.randomEffect(16,[this.userManager.hand.cards])
+                        }
                     break
                     case 5292:
                         this.userCombatant.statusEffect('Temporary Dexterity',this.effect[1])
@@ -5170,6 +5197,86 @@ class attack{
                     break
                     case 5375:
                         this.userManager.drawAbstract(this.effect[1],-1,12,[2])
+                    break
+                    case 5391:
+                        if(this.userManager.hand.numberAbstract(20,[[2]])>0){
+                            this.userCombatant.addBlock(this.effect[1])
+                        }
+                    break
+                    case 5392:
+                        this.targetCombatant.statusEffect('Weak',this.effect[1])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.randomEffect(2,30,[2])
+                        }
+                    break
+                    case 5394:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.dropDrawShuffle(this.player,findName('Tile',types.card),0,0,2)
+                        }
+                    break
+                    case 5405:
+                        this.userCombatant.statusEffect('Block Next Turn',this.effect[1])
+                    break
+                    case 5415:
+                        this.userCombatant.loseHealth(this.effect[1])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.hand.add(findName('Shiv',types.card),0,0)
+                        }
+                    break
+                    case 5417:
+                        this.userManager.hand.randomEffect(63,[this.effect[1],67])
+                    break
+                    case 5435:
+                        if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11){
+                            this.targetCombatant.statusEffect('Weak',this.effect[1])
+                        }
+                    break
+                    case 5436:
+                        if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11){
+                            this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                        }
+                    break
+                    case 5437:
+                        if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 5438:
+                        if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11){
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 5439:
+                        this.userManager.hand.randomEffect(64,[11])
+                    break
+                    case 5456:
+                        this.userManager.hand.randomEffect(65,[2])
+                    break
+                    case 5462:
+                        if(this.userManager.reserve.cards.length>0){
+                            this.userManager.reserve.cards[0].costDown(0,[1])
+                        }
+                    break
+                    case 5463:
+                        if(this.userManager.reserve.cards.length>0){
+                            this.userManager.reserve.cards[0].edition=2
+                        }
+                    break
+                    case 5489:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(5)
+                        }
+                    break
+                    case 5490:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(14)
+                        }
+                    break
+                    case 5512:
+                        if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11){
+                            this.userManager.draw(this.effect[1])
+                        }
                     break
 
                 }
@@ -5493,7 +5600,7 @@ class attack{
                         this.userCombatant.addBlock(this.effect[0]*(this.userManager.hand.turnPlayed[4]>=3?3:1))
                     break
                     case 3412:
-                        this.userCombatant.addBlock(this.effect[0]*(this.userManager.hand.turnPlayed[11]>=this.effect[1]?3:1))
+                        this.userCombatant.addBlock(this.effect[0]*(this.userManager.hand.turnPlayed[11]>=this.effect[1]?2:1))
                     break
                     case 3500:
                         this.userCombatant.carry[1]+=this.effect[0]
@@ -5630,6 +5737,36 @@ class attack{
                     case 5286:
                         this.userCombatant.addBlock(this.effect[0]*(this.battle.counter.enemy-this.battle.counter.killed==1?2:1))
                     break
+                    case 5387:
+                        this.userCombatant.addBlock(this.effect[0]+this.effect[1]*this.userManager.hand.numberAbstract(20,[[2]]))
+                    break
+                    case 5441:
+                        this.userCombatant.addBlock(this.effect[0]*(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11?2:1))
+                    break
+                    case 5457:
+                        let result5457=this.userManager.drawReturn(this.effect[0])
+                        let total5457=0
+                        for(let a=0,la=result5457.length;a<la;a++){
+                            if(result5457[a].edition==2){
+                                total5457++
+                            }
+                        }
+                        if(total5457>0){
+                            this.userCombatant.addBlock(total5457*this.effect[1])
+                        }
+                    break
+                    case 5480:
+                        let result5480=this.userManager.drawReturn(this.effect[1])
+                        let total5480=0
+                        for(let a=0,la=result5480.length;a<la;a++){
+                            if(result5480[a].spec.includes(69)==1){
+                                total5480++
+                            }
+                        }
+                        if(total5480>0){
+                            this.userCombatant.addBlock(this.effect[0]+total5480*this.effect[2])
+                        }
+                    break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
                     break
@@ -5702,7 +5839,9 @@ class attack{
                         this.userCombatant.statusEffect('Block Next Turn',this.effect[1])
                     break
                     case 281:
-                        this.userManager.randomEffect(2,13,[])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.randomEffect(2,13,[])
+                        }
                     break
                     case 320:
                         this.userCombatant.statusEffect('Block Next Turn',this.effect[0])
@@ -6110,7 +6249,9 @@ class attack{
                         this.userCombatant.statusEffect('Weak',this.effect[1])
                     break
                     case 2416:
-                        this.userManager.discard.randomEffect(16,[this.userManager.hand.cards])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.discard.randomEffect(16,[this.userManager.hand.cards])
+                        }
                     break
                     case 2484:
                         let list2484=[this.userManager.deck.cards,this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
@@ -6344,7 +6485,7 @@ class attack{
                             this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
-                    case 3033:
+                    case 3033: case 5430:
                         this.battle.addEnergy(this.effect[1],this.player)
                     break
                     case 3064:
@@ -6373,7 +6514,7 @@ class attack{
                         this.userCombatant.statusEffect('Strength',this.effect[2])
                         this.userCombatant.statusEffect('Lose Per Turn',this.effect[3])
                     break
-                    case 3131:
+                    case 3131: case 5484:
                         this.userCombatant.statusEffect('Counter Once',this.effect[1])
                     break
                     case 3138:
@@ -7071,6 +7212,83 @@ class attack{
                     break
                     case 5335:
                         this.userManager.drawAbstract(this.effect[1],-1,12,[2])
+                    break
+                    case 5395:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.dropDrawShuffle(this.player,findName('Tile',types.card),0,0,2)
+                        }
+                    break
+                    case 5403:
+                        this.battle.combatantManager.randomEnemyEffect(23,['Vulnerable',this.effect[1]])
+                    break
+                    case 5408:
+                        this.userCombatant.statusEffect('Armor',this.effect[1])
+                        this.userCombatant.statusEffect('Vulnerable',this.effect[2])
+                    break
+                    case 5411:
+                        this.userCombatant.statusEffect('Chocolate Chip',this.effect[1])
+                    break
+                    case 5424:
+                        this.battle.combatantManager.allEffect(52,['Lock On'])
+                        for(let a=0,la=10;a<la;a++){
+                            this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-25,213,[random(0.6,1),360*(a+0.5)/la,random(1,2.5),random(-3,3)]))
+                        }
+                    break
+                    case 5431:
+                        this.battle.addSpecificEnergy(this.effect[1],this.player,1)
+                        this.battle.addSpecificEnergy(this.effect[1],this.player,4)
+                    break
+                    case 5432:
+                        this.userManager.hand.randomEffect(63,[this.effect[1],67])
+                    break
+                    case 5442:
+                        if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11){
+                            this.userCombatant.statusEffect('Temporary Strength',this.effect[1])
+                        }
+                    break
+                    case 5443:
+                        if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11){
+                            this.userCombatant.statusEffect('Temporary Dexterity',this.effect[1])
+                        }
+                    break
+                    case 5444:
+                        if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 5445:
+                        if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11){
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 5446:
+                        this.userManager.hand.randomEffect(64,[11])
+                    break
+                    case 5450:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Dark\nMatter',types.card),0,0)
+                        }
+                    break
+                    case 5465:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Tile',types.card),0,0,2)
+                        }
+                    break
+                    case 5486:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(2)
+                        }
+                    break
+                    case 5492:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(14)
+                        }
+                    break
+                    case 5513:
+                        if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11){
+                            this.userManager.draw(this.effect[1])
+                        }
                     break
 
                 }
@@ -7919,7 +8137,7 @@ class attack{
                             this.userCombatant.statusEffect('Strength',this.effect[1])
                         }
                     break
-                    case 3332:
+                    case 3332: case 5526:
                         this.userManager.draw(this.effect[1])
                     break
                     case 3378:
@@ -8466,6 +8684,65 @@ class attack{
                     case 5303:
                         this.userCombatant.statusEffect('(E) Next Turn',this.effect[1]*this.energy)
                     break
+                    case 5396:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.dropDrawShuffle(this.player,findName('Tile',types.card),0,0,2)
+                        }
+                    break
+                    case 5458:
+                        if(this.userManager.hand.numberAbstract(20,[[2]])>0){
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 5487:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(12)
+                        }
+                    break
+                    case 5494:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(14)
+                        }
+                    break
+                    case 5495:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(13)
+                        }
+                    break
+                    case 5523:
+                        if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 5524:
+                        if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==11){
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 5525:
+                        this.userManager.hand.randomEffect(64,[11])
+                    break
+                    case 5527:
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.randomEffect(2,13,[])
+                        }
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 5528:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Dark\nMatter',types.card),0,0)
+                        }
+                    break
+                    case 5529:
+                        this.userManager.drawAbstract(this.effect[1],0,0,[13])
+                    break
+                    case 5530:
+                        this.userManager.drawAbstract(this.effect[1],0,0,[12])
+                    break
+                    case 5531:
+                        this.userManager.drawAbstract(this.effect[0],10,0,[5])
+                    break
 
                 }
                 //mark 3
@@ -8487,6 +8764,7 @@ class attack{
                     break
                     case -89:
                     case 41: case 807: case 820: case 821: case 822: case 2827: case 3253: case 4013: case 5272: case 5331:
+                    case 5473:
                         this.battle.addEnergy(this.effect[0],this.player)
                     break
                     case 6: case 2567: case 5315:
@@ -8574,7 +8852,7 @@ class attack{
                     case 264:
                         this.userCombatant.statusEffect('Shiv Boost',this.effect[0])
                     break
-                    case 278:
+                    case 278: case 5533:
                         this.userCombatant.statusEffect('Temporary Strength',this.effect[0])
                     break
                     case 286: case 1638: case 4830:
@@ -11107,13 +11385,72 @@ class attack{
                         this.battle.addSpecificEnergy(this.type-5376,this.player,6)
                         this.battle.addCurrency(this.effect[0],this.player)
                     break
+                    case 5384:
+                        this.userCombatant.statusEffect('Free Card',1)
+                    break
+                    case 5385:
+                        this.userCombatant.statusEffect('Free Card',1)
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 5406:
+                        this.battle.addEnergyGen(this.effect[0],this.player)
+                        let list5406=[this.userManager.deck.cards,this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
+                        for(let a=0,la=list5406.length;a<la;a++){
+                            for(let b=0,lb=list5406[a].length;b<lb;b++){
+                                if(list5406[a][b].id==this.id){
+                                    list5406[a][b].costDown(2,[1])
+                                }
+                            }
+                        }
+                    break
+                    case 5407:
+                        this.battle.addSpecificEnergyGen(1,this.player,6)
+                        let list5407=[this.userManager.deck.cards,this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
+                        for(let a=0,la=list5407.length;a<la;a++){
+                            for(let b=0,lb=list5407[a].length;b<lb;b++){
+                                if(list5407[a][b].id==this.id){
+                                    list5407[a][b].costDown(2,[1])
+                                }
+                            }
+                        }
+                    break
+                    case 5409:
+                        this.userCombatant.statusEffect('Dexterity',this.effect[0])
+                        this.userCombatant.statusEffect('Frail',this.effect[1])
+                    break
+                    case 5453:
+                        this.userCombatant.statusEffect('Buffer',this.effect[0])
+                        this.userCombatant.statusEffect('Temporary Draw',this.effect[1])
+                    break
+                    case 5474: case 5475: case 5476:
+                        this.battle.addSpecificEnergy(this.type-5472,this.player,6)
+                    break
+                    case 5535:
+                        this.userManager.hand.allEffect(113)
+                    break
+                    case 5545:
+                        this.userManager.drawAbstract(this.effect[0],0,13,[11])
+                    break
+                    case 5552:
+                        this.userCombatant.statusEffect('Energy Next Turn',this.effect[0])
+                        this.userCombatant.statusEffect('Extra Turn',1)
+                        this.userCombatant.statusEffect('Temporary All Cost Up Next Turn',this.effect[1])
+                    break
+                    case 5553: case 5554: case 5555:
+                        this.userCombatant.statusEffect('(E) Next Turn',this.type-5552)
+                        this.userCombatant.statusEffect('Extra Turn',1)
+                        this.userCombatant.statusEffect('Temporary All Cost Up Next Turn',this.effect[0])
+                    break
+                    case 5556:
+                        this.userCombatant.statusEffect('Dexterity',this.userManager.hand.turnPlayed[11]>=this.effect[2]?this.effect[0]+this.effect[1]:this.effect[0])
+                    break
 
                 }
                 //mark 4
             break
             case 4:
                 switch(this.type){
-                    case 8: case 892: case 2406: case 2413: case 3371: case 4933: case 5178: case 5313:
+                    case 8: case 892: case 2406: case 2413: case 3371: case 4933: case 5178: case 5313: case 5540:
                         this.userManager.draw(this.effect[0])
                     break
                     case 28: case 5319:
@@ -11847,9 +12184,8 @@ class attack{
                         }
                     break
                     case 1227:
-                        if(this.userManager.reserve.cards.length>0){
-                            let index=floor(random(0,this.userManager.reserve.cards.length))
-                            this.userManager.reserve.send(this.userManager.hand.cards,index,index+1,1)
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.reserve.randomEffect(12,[this.userManager.hand.cards])
                         }
                     break
                     case 1237:
@@ -13514,6 +13850,189 @@ class attack{
                         this.battle.loseEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
                     break
+                    case 5382:
+                        this.userManager.drawAbstract(this.effect[0],18,0,[[2]])
+                    break
+                    case 5389:
+                        this.userManager.drawAbstract(this.effect[0],18,3,[[2]])
+                    break
+                    case 5390:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.randomEffect(2,30,[2])
+                        }
+                    break
+                    case 5393:
+                        this.userManager.draw(this.effect[0])
+                        this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                    break
+                    case 5397:
+                        this.userManager.draw(this.effect[0]*this.energy+this.effect[1])
+                    break
+                    case 5398:
+                        this.userManager.draw(ceil(this.effect[0]*this.mtgEnergy.length+this.effect[1]))
+                    break
+                    case 5410:
+                        this.userManager.draw(this.battle.counter.enemy-this.battle.counter.killed==1?this.effect[0]+this.effect[1]:this.effect[0])
+                    break
+                    case 5420:
+                        this.targetCombatant.statusEffect('Lock On',this.effect[0])
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 5425:
+                        this.battle.overlayManager.overlays[8][this.player].active=true
+                        this.battle.overlayManager.overlays[8][this.player].activate()
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.dropDrawShuffle(this.player,findName('Tile',types.card),0,0,2)
+                        }
+                    break
+                    case 5440:
+                        this.userManager.draw(this.effect[0])
+                        this.battle.overlayManager.overlays[146][this.player].active=true
+                        this.battle.overlayManager.overlays[146][this.player].activate([this.effect[1]])
+                    break
+                    case 5452:
+                        this.battle.overlayManager.overlays[8][this.player].active=true
+                        this.battle.overlayManager.overlays[8][this.player].activate()
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.dropDrawShuffle(this.player,findName('Dark\nMatter',types.card),0,0)
+                        }
+                    break
+                    case 5455:
+                        this.userManager.drawAbstract(this.effect[0],-1,12,[2])
+                    break
+                    case 5461:
+                        this.battle.overlayManager.overlays[87][this.player].active=true
+                        this.battle.overlayManager.overlays[87][this.player].activate()
+                    break
+                    case 5477:
+                        this.userManager.hand.allEffect(22)
+                        for(let a=0,la=this.effect[0]*(this.handSize-1);a<la;a++){
+                            this.userManager.hand.add(findName('Dark\nMatter',types.card),0,0)
+                        }
+                        for(let a=0,la=this.handSize-1;a<la;a++){
+                            this.battle.combatantManager.randomEnemyEffect(3,[this.effect[1],this.user])
+                        }
+                    break
+                    case 5481:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.randomEffect(2,0,[])
+                        }
+                        this.userManager.draw(this.effect[0])
+                        this.battle.addEnergy(this.effect[2],this.player)
+                    break
+                    case 5482:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.randomEffect(2,0,[])
+                        }
+                        this.userManager.draw(this.effect[0])
+                        this.battle.addSpecificEnergy(1,this.player,3)
+                    break
+                    case 5496:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Miracle',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.randomEffect(2,13,[])
+                        }
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 5497:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Occult',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.randomEffect(2,13,[])
+                        }
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 5514:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.reserve.randomEffect(12,[this.userManager.hand.cards])
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.discard.randomEffect(16,[this.userManager.hand.cards])
+                        }
+                    break
+                    case 5515:
+                        this.userCombatant.statusEffect('Draw Up',this.effect[0])
+                        this.userCombatant.statusEffect('Turn Exhaust Random',this.effect[1])
+                    break
+                    case 5521:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.addRandomAbstract(2,0,0,0,1,[0],[3,1,0])
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.addRandomAbstract(2,0,0,0,1,[0],[3,11,0])
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.hand.add(findName('Dark\nMatter',types.card),0,0)
+                        }
+                    break
+                    case 5522:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.addRandomAbstract(2,0,0,0,1,[0],[3,1,1])
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.addRandomAbstract(2,0,0,0,1,[0],[3,11,1])
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.hand.add(findName('Dark\nMatter',types.card),0,0)
+                        }
+                    break
+                    case 5534:
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(0)
+                        }
+                    break
+                    case 5536:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.addRandomAbstract(2,0,0,0,0,[0],[3,11])
+                        }
+                    break
+                    case 5541:
+                        this.userManager.draw(this.effect[0])
+                        this.userCombatant.statusEffect('Temporary Draw',-this.effect[1])
+                    break
+                    case 5542:
+                        this.userManager.hand.exhaust(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(6)
+                        }
+                    break
+                    case 5546:
+                        this.userManager.draw(this.effect[0]*this.energy+this.effect[1])
+                        this.userManager.hand.upgrade(this.effect[2]*this.energy+this.effect[3])
+                    break
+                    case 5547:
+                        this.userManager.draw(this.effect[0]*this.energy+this.effect[1])
+                        this.userManager.hand.upgrade(this.effect[2])
+                    break
+                    case 5549:
+                        this.userManager.draw(this.effect[0])
+                        let costs5549=[]
+                        this.userManager.hand.cards.forEach(card=>costs5549.push(card.getCost(0)))
+                        for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
+                            if(costs5549.length>0){
+                                let index=floor(random(0,costs5549.length))
+                                this.userManager.hand.cards[a].setCost(0,[costs5549[index]])
+                                costs5549.splice(index,1)
+                            }
+                        }
+                    break
+                    case 5550:
+                        this.userManager.draw(this.effect[0])
+                        this.battle.addSpecificEnergy(3,this.player,6)
+                        let costs5550=[]
+                        this.userManager.hand.cards.forEach(card=>costs5550.push(card.getCost(0)))
+                        for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
+                            if(costs5550.length>0){
+                                let index=floor(random(0,costs5550.length))
+                                this.userManager.hand.cards[a].setCost(0,[costs5550[index]])
+                                costs5550.splice(index,1)
+                            }
+                        }
+                    break
 
                 }
                 //mark 5
@@ -13533,7 +14052,6 @@ class attack{
                     break
                     case -41:
                         this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[0],[0,1],false,0)
-
                         this.userCombatant.statusEffect('Cannot Move',this.effect[1])
                     break
                     case -62:
@@ -14385,6 +14903,26 @@ class attack{
                     case 5084:
                         this.userCombatant.heal(this.effect[0])
                         this.userManager.draw(this.effect[1],6)
+                    break
+                    case 5426:
+                        this.userCombatant.heal(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.randomEffect(2,2,[0])
+                        }
+                    break
+                    case 5459:
+                        this.userCombatant.heal(this.effect[0])
+                        this.userCombatant.statusEffect('Chocolate Chip',this.effect[1])
+                    break
+                    case 5483:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.randomEffect(2,13,[])
+                        }
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 5551:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0]*(this.battle.combatantManager.getArea(this.userCombatant.team,this.targetCombatant.tilePosition,1).length>=1?2:1))
+                        this.targetCombatant.statusEffect('Frail',this.effect[0]*(this.battle.combatantManager.getArea(this.userCombatant.team,this.targetCombatant.tilePosition,1).length>=1?2:1))
                     break
 
                 }
@@ -17000,6 +17538,34 @@ class attack{
                             }
                         }
                     break
+                    case 5399:
+                        if(this.userCombatant.luckCheck()){
+                            this.targetCombatant.statusEffect('Weak',999)
+                            this.targetCombatant.statusEffect('Vulnerable',999)
+                        }else if(!this.userCombatant.luckCheckFail()){
+                            if(floor(random(0,2))==0){
+                                this.targetCombatant.statusEffect('Weak',999)
+                            }else{
+                                this.targetCombatant.statusEffect('Vulnerable',999)
+                            }
+                        }
+                    break
+                    case 5472:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Weak',this.effect[1])
+                    break
+                    case 5479:
+                        let result5479=this.userManager.drawReturn(this.effect[1])
+                        let total5479=0
+                        for(let a=0,la=result5479.length;a<la;a++){
+                            if(result5479[a].spec.includes(69)==1){
+                                total5479++
+                            }
+                        }
+                        if(total5479>0){
+                            this.targetCombatant.takeDamage(this.effect[0]+total5479*this.effect[2],this.user)
+                        }
+                    break
 
                 }
                 //mark 8
@@ -17224,6 +17790,9 @@ class attack{
                         this.targetCombatant.goal.anim.direction+=120
                         this.battle.updateTargetting()
                     break
+                    case 5557:
+                        this.targetCombatant.statusEffect('Freeze',this.effect[0]*(this.userManager.hand.turnPlayed[11]>=this.effect[1]?2:1))
+                    break
 
                 }
                 //mark 9
@@ -17439,14 +18008,8 @@ class attack{
                     break
                     case 324:
                         for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
-                            if(this.userManager.hand.cards[a].name=='Shiv'){
-                                this.userManager.hand.add(findName('Shiv',types.card),0,0)
-                            }
-                            if(this.userManager.hand.cards[a].name=='Broken\nShiv'){
-                                this.userManager.hand.add(findName('Broken\nShiv',types.card),0,0)
-                            }
-                            if(this.userManager.hand.cards[a].name=='Deluxe\nShiv'){
-                                this.userManager.hand.add(findName('Deluxe\nShiv',types.card),0,0)
+                            if(this.userManager.hand.cards[a].spec.includes(70)){
+                                this.userManager.hand.add(this.userManager.hand.cards[a].name,0,0)
                             }
                         }
                     break
@@ -17509,7 +18072,7 @@ class attack{
                     break
                     case 845:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.dropDrawShuffle(this.player,findName('Dark\nMatter',types.card),0,this.color)
+                            this.battle.dropDrawShuffle(this.player,findName('Black\nMatter',types.card),0,this.color)
                         }
                     break
                     case 888:
@@ -18694,6 +19257,32 @@ class attack{
                             }
                             this.userManager.draw(this.effect[1])
                         }
+                    break
+                    case 5383:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.dropDrawShuffle(this.player,findName('Miracle',types.card),0,0,2)
+                        }
+                    break
+                    case 5412:
+                        this.userCombatant.statusEffect('Chocolate Chip',this.effect[0])
+                    break
+                    case 5413:
+                        this.userCombatant.statusEffect('Chocolate Chip',this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.dropDrawShuffle(this.player,findName('Tile',types.card),0,0,2)
+                        }
+                    break
+                    case 5414:
+                        this.userCombatant.heal(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Shiv',types.card),0,0)
+                        }
+                    break
+                    case 5464:
+                        this.userManager.allEffectArgs(2,47,[2,'retain'])
+                    break
+                    case 5499:
+                        this.userCombatant.statusEffect('Mass Pull Damage Random',this.effect[0])
                     break
 
                 }
@@ -20821,6 +21410,42 @@ class attack{
                         }
                         this.userManager.drawAbstract(this.effect[1],0,0,[11])
                     break
+                    case 5419:
+                        this.battle.combatantManager.areaAbstract(2,['Lock On',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                        this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                    break
+                    case 5427:
+                        this.battle.combatantManager.areaAbstract(2,['Freeze',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 5488:
+                        this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(11)
+                        }
+                    break
+                    case 5491:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(14)
+                        }
+                    break
+                    case 5543: case 5544:
+                        if((variants.mtg?this.cost[0]:this.cost)>=6){
+                            this.selfCall(20)
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=3){
+                            this.battle.combatantManager.areaAbstract(0,[this.effect[2]*this.userManager.discard.cards.length,this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y,2,[10]))
+                            this.userManager.discard.allEffect(114)
+                            let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
+                            for(let a=0,la=list.length;a<la;a++){
+                                for(let b=0,lb=list[a].length;b<lb;b++){
+                                    if(list[a][b].id==this.id){
+                                        list[a][b].costDown(0,[3])
+                                    }
+                                }
+                            }
+                        }
+                    break
 
                 }
                 //mark 12
@@ -20885,6 +21510,9 @@ class attack{
                             this.battle.combatantManager.areaAbstract(0,[this.effect[1],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                         }
                         this.userCombatant.addBarrier(this.effect[0])
+                    break
+                    case 5520:
+                        this.battle.combatantManager.areaAbstract(0,[this.effect[0]*this.energy,this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     default:
                         this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
@@ -20994,6 +21622,22 @@ class attack{
                     break
                     case 5031:
                         this.userCombatant.addBlock(this.effect[1]*this.userManager.hand.numberAbstract(0,[['Shiv','Frozen\nShiv','Deluxe\nShiv']]),this.user)
+                    break
+                    case 5428:
+                        this.battle.addEnergy(this.effect[1],this.player)
+                    break
+                    case 5429:
+                        this.battle.addSpecificEnergy(this.effect[1],this.player,1)
+                        this.battle.addSpecificEnergy(this.effect[1],this.player,4)
+                    break
+                    case 5470:
+                        this.battle.addEnergy(this.effect[1]*this.userManager.hand.numberAbstract(3,[69]),this.player)
+                    break
+                    case 5471:
+                        this.battle.addSpecificEnergy(this.userManager.hand.numberAbstract(3,[69]),this.player,6)
+                    break
+                    case 5520:
+                        this.userManager.hand.exhaust(this.effect[1]*this.energy)
                     break
 
                 }

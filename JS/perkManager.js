@@ -8,14 +8,6 @@ class perkManager{
         this.complete=false
         this.selected=-1
     }
-    save(){
-        let composite={
-            
-        }
-        return composite
-    }
-    load(composite){
-    }
     assemble(){
         this.getPosKey()
         this.addPerk([0,1,2,3,13][floor(random(0,5))])

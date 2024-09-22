@@ -154,6 +154,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[95])],//bring in foil copy of draw card, no return
                     [new overlay(this.layer,this.battle,0,23,[])],//save prompt
                     [new overlay(this.layer,this.battle,0,24,[])],//dictionary
+                    [new overlay(this.layer,this.battle,0,2,[96,0])],//make card in draw pile ethereal and duplicate it
+                    [new overlay(this.layer,this.battle,0,2,[97])],//view exhaust
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

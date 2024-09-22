@@ -19,7 +19,7 @@ class cardManager{
 
         this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.cyclicDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0)-(variants.compress?1:0)-(variants.unexpected?1:0)+(variants.polar?1:0)-(variants.cardHold?1:0))
         this.drawBoost=0
-        this.tempDraw={active:false,main:0,freeze:0,burn:0,free:0,class:[0,0,0,0,0,0,0,0,0,0,0,0]}
+        this.tempDraw={active:false,main:0,freeze:0,burn:0,free:0,exhaustRandom:0,class:[0,0,0,0,0,0,0,0,0,0,0,0]}
         this.tempCostDown=0
         this.baseDrops=variants.cyclicDraw?3:0
         this.drops=0
@@ -843,6 +843,11 @@ class cardManager{
         if(this.tempDraw.free>0){
             this.draw(this.tempDraw.free,5)
         }
+        if(this.tempDraw.exhaustRandom>0){
+            for(let a=0,la=this.tempDraw.exhaustRandom;a<la;a++){
+                this.hand.randomEffect(13,[])
+            }
+        }
         for(let a=0,la=this.tempDraw.class.length;a<la;a++){
             if(this.tempDraw.class[a]>0){
                 this.drawAbstract(this.tempDraw.class[a],0,0,[a])
@@ -857,6 +862,7 @@ class cardManager{
         this.tempDraw.freeze=0
         this.tempDraw.burn=0
         this.tempDraw.free=0
+        this.tempDraw.exhaustRandom=0
         this.tempDraw.class=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.tempCostDown=0
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
@@ -1016,21 +1022,22 @@ class cardManager{
         return this.reserve.numberAbstract(type,args)+this.hand.numberAbstract(type,args)+this.discard.numberAbstract(type,args)
     }
     transformCard(base){
+        let result
         if(variants.mtg){
             if((base.list==0||base.list>constants.playerNumber)&&base.rarity>=0){
                 let index=floor(random(0,this.listing.mtg[1][base.list][3].length))
                 while(this.listing.mtg[0][3][index]==base.type){
                     index=floor(random(0,this.listing.mtg[1][base.list][3].length))
                 }
-                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.mtg[1][base.list][3][index],base.level,types.card[this.listing.mtg[1][base.list][3][index]].mtg.color,base.id)
+                result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.mtg[1][base.list][3][index],base.level,types.card[this.listing.mtg[1][base.list][3][index]].mtg.color,base.id)
             }else if(base.list>=-1&&base.rarity>=0||base.basic){
                 let index=floor(random(0,this.listing.mtg[0][3].length))
                 while(this.listing.mtg[0][3][index]==base.type){
                     index=floor(random(0,this.listing.mtg[0][3].length))
                 }
-                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.mtg[0][3][index],base.level,types.card[this.listing.mtg[0][3][index]].mtg.color,base.id)
+                result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.mtg[0][3][index],base.level,types.card[this.listing.mtg[0][3][index]].mtg.color,base.id)
             }else{
-                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,[constants.playerNumber+1],base.id)
+                result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,[constants.playerNumber+1],base.id)
             }
         }else{
             if(base.list>=0&&base.rarity>=0){
@@ -1044,11 +1051,13 @@ class cardManager{
                 while(this.listing.card[base.color][3][index]==base.type){
                     index=floor(random(0,this.listing.card[base.color][3].length))
                 }
-                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.color][3][index],base.level,base.color,base.id)
+                result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.color][3][index],base.level,base.color,base.id)
             }else{
-                return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,constants.playerNumber+1,base.id)
+                result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,constants.playerNumber+1,base.id)
             }
         }
+        this.battle.collectionManager.activate(result.name)
+        return result
     }
     transformCardPrism(base){
         if(variants.mtg){

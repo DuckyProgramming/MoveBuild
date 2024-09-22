@@ -274,11 +274,11 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('1',0,-4)
                 break
-                case '14 Max HP':
+                case '16 Max HP':
                     displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('14',0,12)
+                    this.layer.text('16',0,12)
                 break
                 case '600 Currency':
                     displaySymbol(this.layer,0,0,28,0,1,this.fade)
@@ -1218,11 +1218,11 @@ class relic{
                     displaySymbol(this.layer,0,0,7,0,0.4,this.fade)
                     displaySymbol(this.layer,8,8,17,0,0.3,this.fade)
                 break
-                case '40 Max HP':
+                case '50 Max HP':
                     displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('40',0,12)
+                    this.layer.text('50',0,12)
                 break
                 case 'Upgrade Random Turn':
                     displaySymbol(this.layer,0,-4,8,0,1,this.fade)
