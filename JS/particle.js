@@ -33,6 +33,7 @@ class particle{
             case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120: case 121:
             case 126: case 135: case 136: case 139: case 152: case 154: case 155: case 156: case 163: case 164:
             case 168: case 169: case 170: case 173: case 192: case 193: case 195: case 196: case 199: case 206:
+            case 225:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -3675,6 +3676,14 @@ class particle{
                         }
                     }
                 break
+                case 225:
+                    this.layer.fill(50,0,0,this.fade)
+                    this.layer.ellipse(0,0,12,12)
+                    this.layer.fill(100,25,0,this.fade)
+                    this.layer.ellipse(0,0,8,8)
+                    this.layer.fill(100,75,0,this.fade)
+                    this.layer.ellipse(0,0,4,4)
+                break
 
             }
             //mark p
@@ -3716,7 +3725,7 @@ class particle{
             case 73: case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 90: case 93:
             case 95: case 97: case 99: case 103: case 104: case 110: case 114: case 115: case 116: case 117:
             case 118: case 119: case 120: case 121: case 126: case 152: case 154: case 155: case 156: case 168:
-            case 169: case 170: case 173: case 192: case 193: case 196: case 211: case 212:
+            case 169: case 170: case 173: case 192: case 193: case 196: case 211: case 212: case 225:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){

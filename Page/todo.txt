@@ -3,25 +3,7 @@ somewhere the saves aren't working
 
 
 
-LISTING GROUP 49
-
-
-
-ducopo and merlin can't move
-
-merlin movement x 6
-
-ducopo movement x 10
-
-merlin power x 3
-
-ducopo power x 3
-
-2 cost ducopo
-
-x cost ducopo
-
-character 20 x 6
+LISTING GROUP 50
 
 
 
@@ -55,7 +37,6 @@ CHARACTER 20
 hazmat man
 
 mass, gravitation, and pull
-autoplay
 
 model
 icon
@@ -89,4 +70,30 @@ fire and ice big slime [nerf jet off the elite stack]
 [scoutbot]
 []
 []
+[]
+
+
+
+eventset next:
+
+luna event
+
+good wheel - get money
+
+bad wheel - get stabbed
+
+monty hall problem
+
+[]
+
+
+
+[]
+
+[]
+
+[]
+
+[]
+
 []
