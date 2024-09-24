@@ -1350,6 +1350,23 @@ class battle{
                     userCombatant.statusEffect('Double Damage Without Power',-1)
                 }
             break
+            case 11:
+                if(userCombatant.getStatus('Skill Temporary Strength')>0){
+                    userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Skill Temporary Strength'))
+                }
+            break
+            case 12:
+                if(!card.spec.includes(60)&&userCombatant.getStatus('Wish Miracle')>0){
+                    for(let a=0,la=userCombatant.getStatus('Wish Miracle');a<la;a++){
+                        this.cardManagers[player].hand.add(findName('Miracle',types.card),0,0)
+                    }
+                }
+            break
+            case 13:
+                if(userCombatant.getStatus('Quest Chain')>0){
+                    this.cardManagers[player].hand.randomEffect(63,[userCombatant.getStatus('Quest Chain'),67])
+                }
+            break
         }
         if(userCombatant.getStatus('Card Play Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Card Play Block'))
@@ -1440,19 +1457,11 @@ class battle{
         if(this.cardManagers[player].hand.totalPlayed[0]%5==0&&userCombatant.getStatus('5 Card Random Mana')>0){
             this.addSpecificEnergy(userCombatant.getStatus('5 Card Random Mana'),player,floor(random(0,7)))
         }
-        if(cardClass==11&&userCombatant.getStatus('Skill Temporary Strength')>0){
-            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Skill Temporary Strength'))
-        }
         if(this.cardManagers[player].hand.totalPlayed[0]%13==0&&userCombatant.getStatus('13 Card Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('13 Card Block'))
         }
         if(this.cardManagers[player].hand.totalPlayed[0]%13==0&&userCombatant.getStatus('13 Card Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('13 Card Draw'))
-        }
-        if(cardClass==12&&!card.spec.includes(60)&&userCombatant.getStatus('Wish Miracle')>0){
-            for(let a=0,la=userCombatant.getStatus('Wish Miracle');a<la;a++){
-                this.cardManagers[player].hand.add(findName('Miracle',types.card),0,0)
-            }
         }
         if(card.getBasic(-1)&&userCombatant.getStatus('Basic Temporary Strength')>0){
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Basic Temporary Strength'))
@@ -1485,6 +1494,9 @@ class battle{
         }
         if(xCost&&userCombatant.getStatus('X Cost (E)')>0){
             this.addSpecificEnergy(userCombatant.getStatus('X Cost (E)'),player,6)
+        }
+        if(card.name=='Tile'&&userCombatant.getStatus('Tile Draw')>0){
+            this.cardManagers[player].draw(userCombatant.getStatus('Tile Draw'))
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])

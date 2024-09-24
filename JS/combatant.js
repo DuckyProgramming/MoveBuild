@@ -173,7 +173,8 @@ class combatant{
                 'Discus Temporary Strength','Discus Temporary Dexterity','Lightning Orb Per Turn','Lightning Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn','Rearm Draw',
                 'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap','Dice Max Boost','Exhaust Block','Counter Shockwave','Frail on Kill','Mailshield',
                 'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
-                'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random',
+                'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable','Energy Gain Splash Freeze',
+                'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -238,7 +239,8 @@ class combatant{
                 0,0,0,0,0,0,0,0,2,0,//60
                 0,0,0,0,2,0,0,2,0,0,//61
                 0,2,0,0,2,2,0,0,0,2,//62
-                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,//63
+                0,0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -303,7 +305,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//60
                 2,2,3,2,0,2,2,2,2,2,//61
                 3,2,2,2,2,2,3,2,2,2,//62
-                2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//63
+                2,2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -2718,6 +2721,9 @@ class combatant{
         if(amount>0&&this.status.main[620]>0){
             this.statusEffect('Temporary Strength',this.status.main[620])
         }
+        if(amount>0&&this.status.main[629]>0){
+            this.battle.combatantManager.areaAbstract(2,['Freeze',this.status.main[629]],this.tilePosition,[3,this.id],[0,1],false,0)
+        }
     }
     lowRoll(){
         if(this.status.main[162]>0){
@@ -3265,7 +3271,7 @@ class combatant{
                             this.taken=damageLeft
                             this.battle.relicManager.activate(6,[this.id])
                             if(this.id<this.battle.players){
-                                this.battle.stats.taken[this.id][2]+=damage
+                                this.battle.stats.taken[this.id][2]+=damageLeft
                             }
                         }else if(!this.infoAnim.upFlash[2]){
                             this.infoAnim.upFlash[1]=true
@@ -4570,6 +4576,14 @@ class combatant{
                     this.addBlock(this.status.main[511])
                 }
             }
+            if(this.status.name[status]=='Freeze'&&value>0){
+                if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
+                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
+                    if(userCombatant.getStatus('Freeze Vulnerable')>0){
+                        this.statusEffect('Vulnerable',userCombatant.getStatus('Freeze Vulnerable'))
+                    }
+                }
+            }
             this.statusSignUpdate(status)
         }
     }
@@ -5054,6 +5068,9 @@ class combatant{
                     case 615: this.status.main[findList('Dodge Cycle 2 1',this.status.name)]+=this.status.main[a]; break
                     case 619: this.status.main[findList('Random Mana in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 627: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.exhaustRandom+=this.status.main[a]} break
+                    case 630: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[11]+=this.status.main[a]} break
+                    case 633: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[3]+=this.status.main[a]} break
+                    case 634: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.dropDrawShuffle(this.id,findName('Dark\nMatter',types.card),0,0)}} break
                     
                 }
                 if(

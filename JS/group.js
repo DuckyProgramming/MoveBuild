@@ -1007,6 +1007,7 @@ class group{
     }
     allEffect(effect){
         let total=0
+        let userCombatant
         switch(effect){
             case 1:
                 this.cancel()
@@ -1016,6 +1017,7 @@ class group{
                 if(this.battle.relicManager.hasRelic(190,this.player)){
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Single Damage Up',this.cards.length*this.battle.relicManager.active[190][this.player+1])
                 }
+                userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             break
         }
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -1028,7 +1030,7 @@ class group{
                 case 1:
                     this.selfCall(1,a)
                     this.cards[a].callDiscardEffect()
-                    if(this.cards[a].retain2){
+                    if(this.cards[a].retain2||a<userCombatant.getStatus('Retain Bar Per Turn')){
                         this.cards[a].retained()
                         this.cards.forEach(card=>card.anotherRetained(this.cards[a]))
                         total++
@@ -1660,7 +1662,7 @@ class group{
     }
     allEffectArgs(effect,args){
         let total=0
-        if(effect==3||effect==10||effect==12||effect==18||effect==19||effect==32||effect==43){
+        if(effect==3||effect==10||effect==12||effect==18||effect==19||effect==32||effect==43||effect==49){
             total=0
         }else if(effect==9){
             total=args[1]
@@ -1951,11 +1953,18 @@ class group{
                         this.cards[a][args[1]](...args[2])
                     }
                 break
+                case 49:
+                    if(this.cards[a].spec.includes(args[0])){
+                        this.cards[a].deSize=true
+                        this.cards[a].exhaust=true
+                        total++
+                    }
+                break
             }
         }
         if(effect==9){
             return args[1]-total
-        }else if(effect==10||effect==12||effect==18||effect==19||effect==32||effect==43){
+        }else if(effect==10||effect==12||effect==18||effect==19||effect==32||effect==43||effect==49){
             return total
         }
     }
@@ -1976,6 +1985,7 @@ class group{
                         &&!(effect==8&&this.cards[b].spec.includes(8))
                         &&!(effect==10&&this.cards[b].spec.includes(9))
                         &&!(effect==11&&this.cards[b].spec.includes(10))
+                        &&!((effect==13||effect==50||effect==56)&&this.cards[b].attack==5612)
                         &&!((effect==15||effect==20)&&(this.cards[b].effect.length==0||this.cards[b].class==3&&this.cards[b].effect==1))
                         &&!(effect==17&&(this.cards[b].attack==-66||this.cards[b].attack==1115||this.cards[b].deSize))
                         &&!(effect==18&&this.cards[b].class==3)
@@ -2016,7 +2026,7 @@ class group{
                         list.push(b)
                     }
                 }
-                if(list.length>0){
+                if(list.length>0&&a==0){
                     massed=true
                     break
                 }
@@ -2024,8 +2034,10 @@ class group{
             if(list.length>0){
                 let index=list[floor(random(0,list.length))]
                 if(massed){
-                    this.cards[index].callPullEffect()
                     let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                    for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
+                        this.cards[index].callPullEffect()
+                    }
                     if(userCombatant.getStatus('Mass Pull Damage Random')>0){
                         this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
                     }
@@ -2290,6 +2302,10 @@ class group{
                     case 67:
                         this.cards[index]=upgradeCard(this.cards[index])
                         return this.cards[index].spec.includes(args[1])
+                    case 68:
+                        let result=this.cards[index].spec.includes(args[1])
+                        this.send(args[0],index,index+1,1)
+                        return result
 
                 }
             }
@@ -2741,15 +2757,24 @@ class group{
             break
             case 5447:
                 card.retain=true
+                if(userCombatant.getStatus('Dark Matter Draw Block')>0){
+                    userCombatant.addBlock(userCombatant.getStatus('Dark Matter Draw Block'))
+                }
             break
             case 5448:
                 card.retain2=true
+                if(userCombatant.getStatus('Dark Matter Draw Block')>0){
+                    userCombatant.addBlock(userCombatant.getStatus('Dark Matter Draw Block'))
+                }
             break
             case 5500:
                 for(let a=0,la=card.effect[0];a<la;a++){
                     this.drawEffects.push([0,13,[]])
                 }
                 userCombatant.statusEffect('Strength',card.effect[1])
+            break
+            case 5622:
+                this.battle.combatantManager.areaAbstract(0,[card.effect[0],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
             break
         }
         card.drawMark=false
@@ -2932,6 +2957,18 @@ class group{
                 }else if(spec==22){
                     this.cards[firstIndex].cost=variants.mtg?copyArray(this.cards[firstIndex].base.cost):this.cards[firstIndex].base.cost
                     list.splice(0,0,copyCard(this.cards[firstIndex]))
+                }else if(spec==23){
+                    let index=floor(random(0,list.length))
+                    list.splice(index,0,copyCard(this.cards[firstIndex]))
+                    if(list[index].spec.includes(69)){
+                        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                        for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
+                            this.cards[index].callPullEffect()
+                        }
+                        if(userCombatant.getStatus('Mass Pull Damage Random')>0){
+                            this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
+                        }
+                    }
                 }else{
                     list.push(copyCard(this.cards[firstIndex]))
                 }
@@ -2962,6 +2999,18 @@ class group{
                 }else if(spec==22){
                     this.cards[firstIndex].cost=variants.mtg?copyArray(this.cards[firstIndex].base.cost):this.cards[firstIndex].base.cost
                     list.splice(0,0,copyCard(this.cards[firstIndex]))
+                }else if(spec==23){
+                    let index=floor(random(0,list.length))
+                    list.splice(index,0,copyCard(this.cards[firstIndex]))
+                    if(list[index].spec.includes(69)){
+                        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                        for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
+                            this.cards[index].callPullEffect()
+                        }
+                        if(userCombatant.getStatus('Mass Pull Damage Random')>0){
+                            this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
+                        }
+                    }
                 }else{
                     list.push(copyCard(this.cards[firstIndex]))
                 }
@@ -3112,6 +3161,9 @@ class group{
         game.id++
         this.lastDuplicate.push(this.cards[index].name)
         this.cards.splice(index,0,copyCard(this.cards[index]))
+        if(this.id==0){
+            this.cards[index+1].callAddEffect()
+        }
         this.cards[index+1].id=game.id
     }
     copySelfShuffleMulti(index,multi){
@@ -3121,13 +3173,19 @@ class group{
         for(let a=0,la=multi;a<la;a++){
             let point=floor(random(0,this.cards.length))
             this.cards.splice(point,0,result)
-            this.cards[point].id=game.id
+            if(this.id==0){
+                this.cards[point].callAddEffect()
+            }
+            this.cards[point].id=game.i
         }
     }
     copySelfAbstract(index,spec){
         game.id++
         this.lastDuplicate.push(this.cards[index].name)
         this.cards.splice(index,0,copyCard(this.cards[index]))
+        if(this.id==0){
+            this.cards[index+1].callAddEffect()
+        }
         this.cards[index+1].id=game.id
         switch(spec){
             case 0:
@@ -3140,10 +3198,16 @@ class group{
         this.cards.splice(this.cards.length,0,copyCard(this.cards[index]))
         this.cards[this.cards.length-1].position.x=1200
         this.cards[this.cards.length-1].position.y=500
+        if(this.id==0){
+            this.cards[this.cards.length-1].callAddEffect()
+        }
         this.cards[this.cards.length-1].id=game.id
     }
     postCopyAbstract(type){
         game.id++
+        if(this.id==0){
+            this.cards[this.cards.length-1].callAddEffect()
+        }
         this.cards[this.cards.length-1].id=game.id
         switch(type){
             case 0:

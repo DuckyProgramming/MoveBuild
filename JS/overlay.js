@@ -978,8 +978,8 @@ class overlay{
                         }
                     break
                 }
-                for(let a=0,la=this.cards.length;a<la;a++){
-                    this.cards[a].nonCalc=true
+                if(this.args[0]==0||this.args[0]==2){
+                    this.cards.forEach(card=>card.nonCalc=true)
                 }
             break
             case 7:

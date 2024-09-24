@@ -1330,6 +1330,9 @@ class combatantManager{
                             }
                         }
                     break
+                    case 8:
+                        this.combatants[a].takeDamage(values[0]*(this.combatants[a].block>0?values[3]:1),values[1],values[2])
+                    break
                 }
                 if(
                     output==0||

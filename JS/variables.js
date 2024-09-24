@@ -19,8 +19,8 @@ types={
         {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:339,effect:[8,8]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:``},
         {name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]},{type:412,effect:[15,2]},{type:413,effect:[2]}],description:``},
         {name:'Merlin',moniker:'',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:312,effect:[5,5,1,1,2,2,2,2,10]}],description:``},
-        {name:'Ducopo',moniker:'',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
-        {name:'',moniker:'',identifier:['',''],life:50,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Randy',moniker:'',identifier:['',''],life:50,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -296,7 +296,7 @@ types={
 
         {name:'Half Spikeball',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:417,effect:[8]},{type:418,effect:[10]}],description:`Poor rotational alignment`},
         {name:'Zombie Fairy',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'Titanite',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Graphite Block',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
         {name:'Spirit of Elegance',life:26,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[5]},{type:395,effect:[7,1]}],description:`Look how they massacred my boy`},
         
         {name:'Hit Squad',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
