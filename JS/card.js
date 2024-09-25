@@ -6612,6 +6612,8 @@ class card{
             case 5685: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFuel ${effect[1]} (${this.fuel}):\nTake Another Turn`; break
             case 5686: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nFuel ${effect[1]} (${this.fuel}):\nGain ${effect[2]} Dodge`; break
             case 5687: string+=`Gain ${effect[0]} Metal\nUpgrade ${effect[1]} Card${pl(effect[1])}`; break
+            case 5688: string+=`For Each ${effect[0]} Fuel (${this.fuel}),\nDeal ${this.calculateEffect(effect[1],0)} Damage\nin All Directions\nShuffle ${effect[2]} Dark Matter${pl(effect[2])}\ninto Draw Pile`; break
+            case 5689: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nPulled:\nIncreases by ${effect[1]}`; break
 
             //mark p
 
@@ -7503,6 +7505,9 @@ class card{
             break
             case 5674:
                 userCombatant.statusEffect('Retain Hand',1)
+            break
+            case 5689:
+                this.effect[0]+=this.effect[1]
             break
         }
     }

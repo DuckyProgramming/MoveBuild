@@ -4994,8 +4994,91 @@ so you take him out when you get the chance.`,
                 link:[-1],
             },
         ],
+    },{
+        name:'Wheel of Money',id:164,list:0,
+        pages:[
+            {
+                desc:
+`You walk into a gameshow, across from a duck.
+There's lights everywhere, and a big wheel between you.
+Upon it are all kinds of numbers that look to be money.
+"Welcome to the Wheel of Money, where you can win big!"
+"Want a spin to see your winnings?" he asks.`,
+                option:['Spin','Decline'],
+                optionDesc:['',''],
+                link:[1,2],
+            },{
+                desc:`You collect your winnings.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You don't want money, for some reason.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Wheel of Getting Stabbed',id:165,list:0,
+        pages:[
+            {
+                desc:
+`You are pushed awkwardly into a gameshow.
+An annoying-sounding duck with a bowtie welcomes you on stage.
+"Welcome to the Wheel of Getting Stabbed, where you... get stabbed!"
+Want a spin?"`,
+                option:['Spin','Decline'],
+                optionDesc:['',''],
+                link:[1,2],
+            },{
+                desc:
+`You collect your "winnings".`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`"You don't get a choice, buddy!" he tells you angrily.`,
+                option:['Spin'],
+                optionDesc:[''],
+                link:[1],
+            },
+        ],
+    },{
+        name:'Monty Hall Problem',id:166,list:0,
+        pages:[
+            {
+                desc:
+`On a gameshow, your placed in front of three doors.
+One of them contains 500 Standard Management Currency,
+and the other two have no prizes at all behind them.
+The host, one Monty Hall, offers you a choice.`,
+                option:['Choose Door 1','Choose Door 2','Choose Door 3'],
+                optionDesc:['','',''],
+                link:[1,1,1],
+            },{
+                desc:
+`Standing in front of door %a, Monty Hall then walks
+over to door %b and opens it, revealing no money behind it.
+He asks if you'd like to switch to door %3 or stay with door %a.`,
+                option:['Switch',`Don't Switch`],
+                optionDesc:['',''],
+                link:[0,0],
+            },{
+                desc:`Opening your door, you find the money.`,
+                option:['Win'],
+                optionDesc:['Gain 500 Currency'],
+                link:[-1],
+            },{
+                desc:`Opening your door, you find nothing.`,
+                option:['Lose'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
     },/*{
-        name:'',id:164,list:0,
+        name:'',id:167,list:0,
         pages:[
             {
                 desc:

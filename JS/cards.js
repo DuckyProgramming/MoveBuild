@@ -43244,20 +43244,6 @@ types.card=[
             ],
         },
     },{
-        name:'Electron\nWave',rarity:1,list:20,
-        levels:[
-            {effect:[7,4],attack:5661,cost:1,target:[0],spec:[0,69],class:1},
-            {effect:[11,5],attack:5661,cost:1,target:[0],spec:[0,69],class:1},
-            {effect:[14,6],attack:5661,cost:1,target:[0],spec:[0,69],class:1},
-        ],mtg:{
-            rarity:1,list:20,color:[2,3],
-            levels:[
-                {effect:[12,4],attack:5661,cost:[11,-1],target:[0],spec:[0,69],class:1},
-                {effect:[18,5],attack:5661,cost:[11,-1],target:[0],spec:[0,69],class:1},
-                {effect:[22,6],attack:5661,cost:[11,-1],target:[0],spec:[0,69],class:1},
-            ],
-        },
-    },{
         name:'Sonic\nShell',rarity:0,list:20,
         levels:[
             {effect:[9,3],attack:5662,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -43521,6 +43507,34 @@ types.card=[
                 {effect:[20,6,1],attack:5686,cost:[2,3],target:[0],spec:[],class:2},
                 {effect:[29,6,1],attack:5686,cost:[2,3],target:[0],spec:[],class:2},
                 {effect:[36,6,1],attack:5686,cost:[2,3],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Crossfeed',rarity:1,list:20,
+        levels:[
+            {effect:[2,6,1],attack:5688,cost:1,target:[0],spec:[0],class:1},
+            {effect:[2,9,1],attack:5688,cost:1,target:[0],spec:[0],class:1},
+            {effect:[2,11,1],attack:5688,cost:1,target:[0],spec:[0],class:1},
+        ],mtg:{
+            rarity:1,list:20,color:[3,5],
+            levels:[
+                {effect:[2,10,1],attack:5688,cost:[3,5],target:[0],spec:[0],class:1},
+                {effect:[2,15,1],attack:5688,cost:[3,5],target:[0],spec:[0],class:1},
+                {effect:[2,18,1],attack:5688,cost:[15,-1],target:[0],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Electron\nWave',rarity:1,list:20,
+        levels:[
+            {effect:[6,4],attack:5689,cost:1,target:[0],spec:[0,69],class:1},
+            {effect:[8,6],attack:5689,cost:1,target:[0],spec:[0,69],class:1},
+            {effect:[8,8],attack:5689,cost:1,target:[0],spec:[0,69],class:1},
+        ],mtg:{
+            rarity:1,list:20,color:[2,3],
+            levels:[
+                {effect:[10,6],attack:5689,cost:[11,-1],target:[0],spec:[0,69],class:1},
+                {effect:[14,10],attack:5689,cost:[11,-1],target:[0],spec:[0,69],class:1},
+                {effect:[16,12],attack:5689,cost:[-1,-1],target:[0],spec:[0,69],class:1},
             ],
         },
     },

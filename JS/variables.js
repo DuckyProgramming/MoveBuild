@@ -20,7 +20,7 @@ types={
         {name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]},{type:412,effect:[15,2]},{type:413,effect:[2]}],description:``},
         {name:'Merlin',moniker:'',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:312,effect:[5,5,1,1,2,2,2,2,10]}],description:``},
         {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
-        {name:'Randy',moniker:'',identifier:['',''],life:50,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -1345,7 +1345,7 @@ types={
         {name:'Vacuum Collapse',internal:'35 Damage/2 Prismatic Bombs',id:72,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 35 Damage, Add 2\nPrismatic Bombs to Draw Pile\nRange 1-6'},
         {name:'Binary Die',internal:'Double or Nothing',id:73,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Randomly Duplicate a Card\nor Destroy it Permanently'},
         {name:'Replacement Papers',internal:'Edition',id:74,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Edition a Card'},
-        {name:'Full Medkit',internal:'Heal All',id:75,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Heal All Health'},
+        {name:'Full Medkit',internal:'Heal All',id:75,rarity:1,list:0,menu:true,temp:false,mtg:0,description:'Heal All Health'},
         {name:'Surprise Coupon',internal:'3 Free Items',id:76,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Make 3 Things Free\nat the Next Shop'},
         {name:'Starter Pack',internal:'Basic Cards',id:77,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Add 1 Strike, Defend,\nand Step to Hand'},
         {name:'Equilibrium System',internal:'Retain Hand',id:78,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Retain Your Hand This Turn'},

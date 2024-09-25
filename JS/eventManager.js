@@ -164,6 +164,7 @@ class eventManager{
                 !(this.listing.event[a]==161&&userCombatant.life<11)&&
                 !(this.listing.event[a]==162&&userCombatant.base.life<6)&&
                 !(this.listing.event[a]==163&&(userCombatant.life>userCombatant.base.life-15||this.battle.currency.money[this.player]<25))&&
+                !(this.listing.event[a]==165&&userCombatant.life<26)&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -303,6 +304,9 @@ class eventManager{
                 this.pages[0].desc=this.pages[0].desc.replace('$c',types.combatant[possible[index]].name)
                 possible.splice(index,1)
             break
+            case 166:
+                this.selection=[floor(random(0,3)),0,0]
+            break
         }
     }
     display(){
@@ -323,27 +327,29 @@ class eventManager{
         this.layer.textSize(this.name.length>=25?24:30)
         this.layer.text(this.name,this.posKey,100)
         for(let a=0,la=this.pages.length;a<la;a++){
-            this.layer.fill(0,this.fade[a]*this.primaryFade)
-            this.layer.textSize(10)
-            this.layer.text(this.pages[a].desc
-                .replace('|0|',types.combatant[this.battle.player[this.player]].identifier[0])
-                .replace('|1|',types.combatant[this.battle.player[this.player]].identifier[1])
-                ,this.posKey,200)
-            this.layer.textSize(12)
-            for(let b=0,lb=this.pages[a].option.length;b<lb;b++){
-                this.layer.text(b>0&&this.battle.relicManager.hasRelic(339,this.player)?'-':this.pages[a].option[b],this.posKey,300+b*50-(this.pages[a].optionDesc[b].length>0?2:0))
+            if(this.fade[a]>0&&this.primaryFade>0){
+                this.layer.fill(0,this.fade[a]*this.primaryFade)
+                this.layer.textSize(10)
+                this.layer.text(this.pages[a].desc
+                    .replace('|0|',types.combatant[this.battle.player[this.player]].identifier[0])
+                    .replace('|1|',types.combatant[this.battle.player[this.player]].identifier[1])
+                    ,this.posKey,200)
+                this.layer.textSize(12)
+                for(let b=0,lb=this.pages[a].option.length;b<lb;b++){
+                    this.layer.text(b>0&&this.battle.relicManager.hasRelic(339,this.player)?'-':this.pages[a].option[b],this.posKey,300+b*50-(this.pages[a].optionDesc[b].length>0?2:0))
+                }
+                this.layer.textSize(8)
+                for(let b=0,lb=this.pages[a].optionDesc.length;b<lb;b++){
+                    this.layer.text(b>0&&this.battle.relicManager.hasRelic(339,this.player)?'':this.pages[a].optionDesc[b],this.posKey,310+b*50)
+                }
+                this.layer.noFill()
+                this.layer.stroke(0,this.fade[a]*this.primaryFade)
+                this.layer.strokeWeight(1)
+                for(let b=0,lb=this.pages[a].option.length;b<lb;b++){
+                    this.layer.rect(this.posKey,300+b*50,220,30,5)
+                }
+                this.layer.noStroke()
             }
-            this.layer.textSize(8)
-            for(let b=0,lb=this.pages[a].optionDesc.length;b<lb;b++){
-                this.layer.text(b>0&&this.battle.relicManager.hasRelic(339,this.player)?'':this.pages[a].optionDesc[b],this.posKey,310+b*50)
-            }
-            this.layer.noFill()
-            this.layer.stroke(0,this.fade[a]*this.primaryFade)
-            this.layer.strokeWeight(1)
-            for(let b=0,lb=this.pages[a].option.length;b<lb;b++){
-                this.layer.rect(this.posKey,300+b*50,220,30,5)
-            }
-            this.layer.noStroke()
         }
     }
     harm(combatant,amount){
@@ -1893,6 +1899,39 @@ class eventManager{
                             userCombatant.heal(15)
                         }else if(this.page==2&&a==0){
                             userCombatant.gainMaxHP(4)
+                        }
+                    break
+                    case 164:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[148][this.player].active=true
+                            this.battle.overlayManager.overlays[148][this.player].activate([])
+                        }
+                    break
+                    case 165:
+                        if((this.page==0||this.page==2)&&a==0){
+                            this.battle.overlayManager.overlays[149][this.player].active=true
+                            this.battle.overlayManager.overlays[149][this.player].activate([])
+                        }
+                    break
+                    case 166:
+                        if(this.page==0&&a>=0&&a<=2){
+                            this.selection[1]=a
+                            let options=[]
+                            for(let b=0,lb=3;b<lb;b++){
+                                if(a!=b&&this.selection[0]!=b){
+                                    options.push(b)
+                                }
+                            }
+                            this.selection[2]=options[floor(random(0,options.length))]
+                            this.pages[1].desc=`Standing in front of Door ${a+1}, Monty Hall then walks
+over to Door ${this.selection[2]+1} and opens it, revealing no money behind it.
+He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]} or stay with Door ${a+1}.`
+                        }else if(this.page==1&&a==0){
+                            tempPage=3-this.selection[1]-this.selection[2]==this.selection[0]?2:3
+                        }else if(this.page==1&&a==1){
+                            tempPage=this.selection[1]==this.selection[0]?2:3
+                        }else if(this.page==2&&a==0){
+                            this.battle.addCurrency(500,this.player)
                         }
                     break
 

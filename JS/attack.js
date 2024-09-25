@@ -21972,6 +21972,9 @@ class attack{
                     case 5675:
                         this.battle.combatantManager.areaAbstract(0,[this.effect[0]+this.effect[1]*this.userManager.hand.numberAbstract(3,[69]),this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
+                    case 5688:
+                        this.battle.combatantManager.areaAbstract(0,[this.effect[1],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                    break
                     default:
                         this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break

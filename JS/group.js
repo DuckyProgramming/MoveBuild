@@ -2044,7 +2044,7 @@ class group{
             }
             if(list.length>0){
                 let index=list[floor(random(0,list.length))]
-                if(massed){
+                if(massed&&this.id!=0){
                     let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                     for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                         this.cards[index].callPullEffect()

@@ -81,6 +81,10 @@ class overlay{
                 this.page=0
                 this.battle.relicManager.allRelics.forEach(relic=>relic.fade=0)
             break
+            case 25:
+                this.spin=0
+                this.speed=0
+            break
         }
     }
     getPosKey(){
@@ -160,8 +164,8 @@ class overlay{
                         this.card.nonCalc=true
                         this.activated=0
                     break
-                    case 4: case 5: case 6: case 7: case 66: case 67: case 82: case 87: case 90: case 92:
-                    case 93:
+                    case 4: case 5: case 6: case 7: case 13: case 14: case 15: case 16: case 62: case 66:
+                    case 67: case 82: case 87: case 90: case 92: case 93:
                         this.activated=0
                     break
                     case 21: case 22: this.block=args[0]; break
@@ -1308,6 +1312,10 @@ class overlay{
                         this.changes=0
                     break
                 }
+            break
+            case 25:
+                this.spin=random(0,360)
+                this.speed=random(10,12)
             break
         
         }
@@ -2675,6 +2683,34 @@ class overlay{
                 this.layer.text('Yes',this.layer.width/2,this.layer.height/2+10)
                 this.layer.text('No',this.layer.width/2,this.layer.height/2+55)
             break
+            case 25:
+                this.layer.push()
+                this.layer.translate(this.layer.width/2,this.layer.height/2)
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(0,0,300,300,10)
+                this.layer.fill(40,this.fade)
+                this.layer.ellipse(0,0,270)
+                this.layer.textSize(20)
+                this.layer.rotate(this.spin)
+                for(let a=0,la=16;a<la;a++){
+                    this.layer.fill(240,120+a%2*120,0,this.fade)
+                    this.layer.arc(0,0,260,260,-180/la,180/la)
+                    this.layer.fill(0,this.fade)
+                    switch(this.args[0]){
+                        case 0:
+                            this.layer.text([1000,40,80,40,200,40,80,40,400,40,80,40,200,40,80,40][a],90,0)
+                        break
+                        case 1:
+                            this.layer.text(-[25,5,10,5,20,5,10,5,20,5,10,5,15,5,10,5][a],90,0)
+                        break
+                    }
+                    this.layer.rotate(360/la)
+                }
+                this.layer.rotate(-this.spin)
+                this.layer.fill(40,this.fade)
+                this.layer.triangle(-5,-130,5,-130,0,-105)
+                this.layer.pop()
+            break
             
         }
     }
@@ -2847,8 +2883,8 @@ class overlay{
                     this.battle.relicManager.update('overlay',[this.active,this.page,this.player])
                 break
                 case 7:
-                    this.battle.combatantManager.combatants[this.player].updatePassive()
-                    this.battle.combatantManager.combatants[this.player].updatePassiveAnimLife()
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].updatePassive()
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].updatePassiveAnimLife()
                 break
                 case 8:
                     this.page=constrain(this.page,0,ceil(this.cards.length/24)-1)
@@ -2867,6 +2903,32 @@ class overlay{
                 break
                 case 22:
                     this.battle.relicManager.update('all',[this.active,this.page,this.args[1]])
+                break
+                case 25:
+                    this.speed-=0.025
+                    if(this.speed>0){
+                        this.spin+=this.speed
+                    }
+                    if(this.speed<=-1&&this.active){
+                        switch(this.args[0]){
+                            case 0:
+                                for(let a=0,la=16;a<la;a++){
+                                    if((this.spin+360*a/la-180/la)%360<270&&(this.spin+360*a/la+180/la)%360>270){
+                                        this.battle.addCurrency([1000,40,80,40,200,40,80,40,400,40,80,40,200,40,80,40][a],this.player)
+                                        this.active=false
+                                    }
+                                }
+                            break
+                            case 1:
+                                for(let a=0,la=16;a<la;a++){
+                                    if((this.spin+360*a/la-180/la)%360<270&&(this.spin+360*a/la+180/la)%360>270){
+                                        this.battle.eventManagers[this.player].harm(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)],[25,5,10,5,20,5,10,5,20,5,10,5,15,5,10,5][a])
+                                        this.active=false
+                                    }
+                                }
+                            break
+                        }
+                    }
                 break
             }
         }else if(!this.active){

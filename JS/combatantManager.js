@@ -1517,7 +1517,7 @@ class combatantManager{
                     this.outSummons()
                 }
             break
-            case 'rest': case 'event':
+            case 'map': case 'rest': case 'event':
                 for(let a=0,la=this.combatants.length;a<la;a++){
                     for(let b=0;b<game.animRate;b++){
                         this.combatants[a].updatePassive()

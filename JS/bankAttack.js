@@ -1375,7 +1375,7 @@ attack.prototype.update=function(){
         case 2903: case 2923: case 3004: case 3021: case 3073: case 3130: case 3196: case 3237: case 3303: case 3583:
         case 3748: case 3766: case 3846: case 3983: case 4089: case 4114: case 4121: case 4282: case 4306: case 4700:
         case 4906: case 4907: case 4992: case 5019: case 5031: case 5312: case 5333: case 5388: case 5428: case 5429:
-        case 5470: case 5471: case 5520: case 5561: case 5600: case 5661: case 5671: case 5674: case 5675:
+        case 5470: case 5471: case 5520: case 5561: case 5600: case 5661: case 5671: case 5674: case 5675: case 5689:
             //mark 7
             if(
                 this.timer==1&&(
@@ -8766,11 +8766,7 @@ attack.prototype.update=function(){
                 this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
                 this.battle.activate(1,this.userCombatant.id)
             }else if(this.timer==15*this.targetDistance-5){
-                switch(this.type){
-                    case 3368:
-                        this.targetCombatant.takeDamage(this.effect[0],this.user)
-                    break
-                }
+                this.targetCombatant.takeDamage(this.effect[0],this.user)
             }else if(this.timer>=15*this.targetDistance+15){
                 this.remove=true
             }
@@ -11272,12 +11268,14 @@ attack.prototype.update=function(){
         break
         case 5519:
             if(this.timer==1){
-                this.userCombatant.startAnimation(17)
                 this.procedure[0]=this.userManager.hand.turnExhausts
+            }
+            if(this.timer%20==1){
+                this.userCombatant.startAnimation(17)
             }
             this.userCombatant.runAnimation(1/20,17)
             if(this.timer%20==10){
-                this.targetCombatant.takeDamage(this.effect[0])
+                this.targetCombatant.takeDamage(this.effect[0],this.user)
             }else if(this.timer>=20+this.procedure[0]*20){
                 this.remove=true
             }
@@ -11457,6 +11455,27 @@ attack.prototype.update=function(){
                 }
             }else if(this.timer>=15*this.targetDistance+50){
                 this.remove=true
+            }
+        break
+        case 5688:
+            if(this.timer==1){
+                this.procedure[0]=floor(this.fuel/this.effect[0])
+            }
+            if(this.procedure[0]<=0){
+                this.remove=true
+            }else{
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(10)
+                }
+                this.userCombatant.runAnimation(1/10,10)
+                if(this.timer%20==10){
+                    this.selfCall(13)
+                    for(let a=0,la=this.effect[2];a<la;a++){
+                        this.battle.dropDrawShuffle(this.player,findName('Dark\nMatter',types.card),0,0)
+                    }
+                }else if(this.timer>=20*this.procedure[0]){
+                    this.remove=true
+                }
             }
         break
 

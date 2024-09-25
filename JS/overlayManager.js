@@ -28,10 +28,10 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[4,1,1])],//remove card, return through event (bonfire spirits)
                     [new overlay(this.layer,this.battle,0,2,[11])],//bring in discard card as free, no return
                     [new overlay(this.layer,this.battle,0,2,[12])],//bring in exhaust card, no return
-                    [new overlay(this.layer,this.battle,0,2,[13])],//bring in draw card-attack, no return,20
-                    [new overlay(this.layer,this.battle,0,2,[14])],//bring in draw card-defense, no return
-                    [new overlay(this.layer,this.battle,0,2,[15])],//bring in draw card-movement, no return
-                    [new overlay(this.layer,this.battle,0,2,[16])],//bring in draw card-power, no return
+                    [new overlay(this.layer,this.battle,0,2,[13,0,1])],//bring in draw card-attack, no return,20
+                    [new overlay(this.layer,this.battle,0,2,[14,0,1])],//bring in draw card-defense, no return
+                    [new overlay(this.layer,this.battle,0,2,[15,0,1])],//bring in draw card-movement, no return
+                    [new overlay(this.layer,this.battle,0,2,[16,0,1])],//bring in draw card-power, no return
                     [new overlay(this.layer,this.battle,0,6,[])],//dictionary
                     [new overlay(this.layer,this.battle,0,1,[1])],//rewards (draft)
                     [new overlay(this.layer,this.battle,0,2,[3,1])],//upgrade card, no return, out of rewards
@@ -93,7 +93,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,18,[])],//select combat type
                     [new overlay(this.layer,this.battle,0,3,[2])],//new card to hand and deck
                     [new overlay(this.layer,this.battle,0,2,[61])],//make power innate
-                    [new overlay(this.layer,this.battle,0,2,[62])],//bring in draw card-skill, no return
+                    [new overlay(this.layer,this.battle,0,2,[62,0,1])],//bring in draw card-skill, no return
                     [new overlay(this.layer,this.battle,0,2,[63])],//bring in copy of draw card, no return
                     [new overlay(this.layer,this.battle,0,2,[64])],//foil edition, no return
                     [new overlay(this.layer,this.battle,0,2,[65])],//erratic edition, no return
@@ -156,6 +156,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,24,[])],//dictionary
                     [new overlay(this.layer,this.battle,0,2,[96,0])],//make card in draw pile ethereal and duplicate it
                     [new overlay(this.layer,this.battle,0,2,[97])],//view exhaust
+                    [new overlay(this.layer,this.battle,0,25,[0])],//wheel of money
+                    [new overlay(this.layer,this.battle,0,25,[1])],//wheel of stab
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

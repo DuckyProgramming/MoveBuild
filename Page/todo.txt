@@ -79,12 +79,6 @@ eventset next:
 
 luna event
 
-good wheel - get money
-
-bad wheel - get stabbed
-
-monty hall problem
-
 []
 
 

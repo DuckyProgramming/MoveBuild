@@ -1100,6 +1100,7 @@ class cardManager{
     }
     standardBase(){
         this.checkCompact()
+        this.tempDraw={active:false,main:0,freeze:0,burn:0,free:0,exhaustRandom:0,class:[0,0,0,0,0,0,0,0,0,0,0,0]}
         this.drawBoost=0
         this.hand.exhausts=0
         if(variants.cyclicDraw){
