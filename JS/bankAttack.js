@@ -139,6 +139,7 @@ attack.prototype.update=function(){
         case 5434: case 5435: case 5436: case 5437: case 5438: case 5439: case 5454: case 5456: case 5460: case 5462:
         case 5463: case 5489: case 5490: case 5493: case 5501: case 5512: case 5517: case 5518: case 5558: case 5606:
         case 5615: case 5619: case 5620: case 5631: case 5633: case 5641: case 5651: case 5657: case 5664: case 5668:
+        case 5684: case 5685:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -293,7 +294,7 @@ attack.prototype.update=function(){
         case 5411: case 5422: case 5424: case 5430: case 5431: case 5432: case 5441: case 5442: case 5443: case 5444:
         case 5445: case 5446: case 5450: case 5457: case 5465: case 5466: case 5480: case 5484: case 5486: case 5492:
         case 5498: case 5502: case 5513: case 5563: case 5609: case 5618: case 5621: case 5629: case 5632: case 5643:
-        case 5645: case 5648: case 5652:
+        case 5645: case 5648: case 5652: case 5686:
             //mark 2
             if(
                 this.timer==1&&(
@@ -823,7 +824,7 @@ attack.prototype.update=function(){
         case 5331: case 5332: case 5377: case 5378: case 5379: case 5380: case 5384: case 5385: case 5406: case 5407:
         case 5409: case 5453: case 5473: case 5474: case 5475: case 5476: case 5533: case 5535: case 5545: case 5552:
         case 5553: case 5554: case 5555: case 5556: case 5559: case 5560: case 5602: case 5607: case 5608: case 5614:
-        case 5626: case 5630: case 5642:
+        case 5626: case 5630: case 5642: case 5677: case 5678: case 5687:
             //mark 4
             if(
                 this.timer==1&&(
@@ -927,7 +928,7 @@ attack.prototype.update=function(){
         case 5455: case 5461: case 5477: case 5481: case 5482: case 5496: case 5497: case 5514: case 5515: case 5521:
         case 5522: case 5534: case 5536: case 5540: case 5541: case 5542: case 5546: case 5547: case 5549: case 5550:
         case 5588: case 5589: case 5591: case 5597: case 5613: case 5627: case 5634: case 5635: case 5638: case 5639:
-        case 5640: case 5646:
+        case 5640: case 5646: case 5679: case 5680: case 5681: case 5682: case 5683: case 5684:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -1062,7 +1063,7 @@ attack.prototype.update=function(){
         case 4423: case 4680: case 4681: case 4682: case 4722: case 4723: case 4751: case 4759: case 4828: case 4835:
         case 4838: case 4858: case 4901: case 4921: case 4922: case 4923: case 4966: case 4967: case 5034: case 5061:
         case 5079: case 5084: case 5426: case 5459: case 5483: case 5551: case 5586: case 5587: case 5590: case 5592:
-        case 5603: case 5610: case 5611: case 5659:
+        case 5603: case 5610: case 5611: case 5659: case 5676:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||
@@ -1374,7 +1375,7 @@ attack.prototype.update=function(){
         case 2903: case 2923: case 3004: case 3021: case 3073: case 3130: case 3196: case 3237: case 3303: case 3583:
         case 3748: case 3766: case 3846: case 3983: case 4089: case 4114: case 4121: case 4282: case 4306: case 4700:
         case 4906: case 4907: case 4992: case 5019: case 5031: case 5312: case 5333: case 5388: case 5428: case 5429:
-        case 5470: case 5471: case 5520: case 5561: case 5600: case 5661: case 5671:
+        case 5470: case 5471: case 5520: case 5561: case 5600: case 5661: case 5671: case 5674: case 5675:
             //mark 7
             if(
                 this.timer==1&&(
@@ -3118,12 +3119,10 @@ attack.prototype.update=function(){
             }else if(this.timer==10*this.targetDistance+15){
                 if(this.type==1720&&(floor(random(0,4))==0&&!this.userCombatant.luckCheck()||this.userCombatant.luckCheckFail())){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y,10,[10]))
-                    this.userCombatant.takeDamage(this.effect[0],this.user)
-                    this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                    this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[0],[0,1],false,0)
                 }else if(this.type==176){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,10,[10]))
-                    this.targetCombatant.takeDamage(this.effect[0],this.user,2)
-                    this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,2],this.targetCombatant.tilePosition,[3,this.targetCombatant.id],[0,1],false,0)
+                    this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,2],this.targetCombatant.tilePosition,[0],[0,1],false,0)
                 }else if(this.type==3506){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,10,[10]))
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -3140,12 +3139,10 @@ attack.prototype.update=function(){
                     }
                 }else if(this.type==5562){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,225,[10]))
-                    this.targetCombatant.takeDamage(this.effect[0],this.user,2)
-                    this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.targetCombatant.tilePosition,[3,this.targetCombatant.id],[0,1],false,0)
+                    this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.targetCombatant.tilePosition,[0],[0,1],false,0)
                 }else{
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,10,[10]))
-                    this.targetCombatant.takeDamage(this.effect[0],this.user)
-                    this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.targetCombatant.tilePosition,[3,this.targetCombatant.id],[0,1],false,0)
+                    this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.targetCombatant.tilePosition,[0],[0,1],false,0)
                 }
                 switch(this.type){
                     case 2146:

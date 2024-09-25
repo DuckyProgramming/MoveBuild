@@ -6069,7 +6069,13 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(4.5,-0.5,4.5,0.5,6,0)
             layer.rect(0,5,3,1)
         break
-
+        case 639:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,5,5,3,3,0)
+            layer.triangle(-5.5,-0.5,-5.5,0.5,-7,0)
+            layer.triangle(5.5,-0.5,5.5,0.5,7,0)
+            layer.rect(0,6,3,1)
+        break
     }
     //mark s
     layer.pop()

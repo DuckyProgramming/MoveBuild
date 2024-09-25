@@ -235,7 +235,7 @@ class attack{
             case 5367: case 5368: case 5369: case 5370: case 5371: case 5372: case 5375: case 5386: case 5391: case 5392: case 5394: case 5399: case 5402: case 5405: case 5415: case 5416: case 5417: case 5418: case 5420: case 5421:
             case 5433: case 5434: case 5435: case 5436: case 5437: case 5438: case 5439: case 5449: case 5451: case 5454: case 5456: case 5460: case 5462: case 5463: case 5472: case 5479: case 5485: case 5489: case 5490: case 5493:
             case 5501: case 5512: case 5517: case 5518: case 5519: case 5548: case 5551: case 5557: case 5558: case 5562: case 5564: case 5598: case 5605: case 5606: case 5615: case 5619: case 5620: case 5625: case 5628: case 5631:
-            case 5633: case 5636: case 5637: case 5641: case 5644: case 5647: case 5651: case 5657: case 5658: case 5662: case 5664: case 5666: case 5668: case 5673:
+            case 5633: case 5636: case 5637: case 5641: case 5644: case 5647: case 5651: case 5657: case 5658: case 5662: case 5664: case 5666: case 5668: case 5673: case 5684: case 5685:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -5333,6 +5333,15 @@ class attack{
                             this.userManager.allEffectArgs(2,21,[this.effect[1]])
                         }
                     break
+                    case 5684:
+                        this.userManager.draw(this.effect[1])
+                        this.userManager.allEffectArgs(2,50,[this.effect[2]])
+                    break
+                    case 5685:
+                        if(this.fuel>=this.effect[1]){
+                            this.userCombatant.statusEffect('Extra Turn',1)
+                        }
+                    break
 
                 }
                 //mark 1s
@@ -7376,6 +7385,11 @@ class attack{
                     break
                     case 5652:
                         this.userManager.hand.randomEffect(64,[0])
+                    break
+                    case 5686:
+                        if(this.fuel>=this.effect[1]){
+                            this.userCombatant.statusEffect('Dodge',this.effect[2])
+                        }
                     break
 
                 }
@@ -11686,6 +11700,19 @@ class attack{
                     case 5642:
                         this.userManager.hand.retain2Fuel(this.effect[0],this.effect[1])
                     break
+                    case 5677:
+                        this.battle.addEnergy(this.effect[0],this.player)
+                        this.userManager.allEffectArgs(2,50,[this.effect[1]])
+                    break
+                    case 5678:
+                        this.battle.addSpecificEnergy(1,this.player,6)
+                        this.battle.addSpecificEnergy(1,this.player,2)
+                        this.userManager.allEffectArgs(2,50,[this.effect[0]])
+                    break
+                    case 5687:
+                        this.userCombatant.metal+=this.effect[0]
+                        this.userManager.hand.upgrade(this.effect[1])
+                    break
 
                 }
                 //mark 4
@@ -14337,6 +14364,34 @@ class attack{
                             this.userCombatant.holdOrb(14)
                         }
                     break
+                    case 5679:
+                        this.userManager.draw(this.effect[0])
+                        this.userManager.allEffectArgs(2,50,[this.effect[1]])
+                    break
+                    case 5680:
+                        this.userManager.draw(this.effect[0])
+                        if(this.fuel>=this.effect[1]){
+                            this.battle.addEnergy(this.effect[2],this.player)
+                        }
+                    break
+                    case 5681:
+                        this.userManager.draw(this.effect[0])
+                        if(this.fuel>=this.effect[1]){
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                        }
+                    break
+                    case 5682:
+                        this.userManager.draw(this.effect[0])
+                        if(this.fuel>=this.effect[1]){
+                            this.battle.addSpecificEnergy(2,this.player,2)
+                        }
+                    break
+                    case 5683:
+                        this.userManager.draw(this.effect[0])
+                        if(this.fuel>=this.effect[1]){
+                            this.battle.addSpecificEnergy(2,this.player,6)
+                        }
+                    break
 
                 }
                 //mark 5
@@ -15252,6 +15307,9 @@ class attack{
                     break
                     case 5659:
                         this.userCombatant.statusEffect('Splash Attach Poison',this.effect[0])
+                    break
+                    case 5676:
+                        this.userCombatant.statusEffect('Splash Boost',this.effect[0])
                     break
 
                 }
@@ -21911,6 +21969,9 @@ class attack{
                     case 5600:
                         this.battle.combatantManager.areaAbstract(8,[this.effect[0],this.user,0,2],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
+                    case 5675:
+                        this.battle.combatantManager.areaAbstract(0,[this.effect[0]+this.effect[1]*this.userManager.hand.numberAbstract(3,[69]),this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                    break
                     default:
                         this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
@@ -22041,6 +22102,9 @@ class attack{
                     break
                     case 5671:
                         this.userCombatant.statusEffect('Vulnerable',this.effect[1])
+                    break
+                    case 5674:
+                        this.userCombatant.addBlock(this.effect[1])
                     break
 
                 }

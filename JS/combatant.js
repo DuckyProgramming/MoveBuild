@@ -174,7 +174,7 @@ class combatant{
                 'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap','Dice Max Boost','Exhaust Block','Counter Shockwave','Frail on Kill','Mailshield',
                 'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
                 'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable','Energy Gain Splash Freeze',
-                'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost','Splash Attach Poison',
+                'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost','Splash Attach Poison','Splash Boost',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -240,7 +240,8 @@ class combatant{
                 0,0,0,0,2,0,0,2,0,0,//61
                 0,2,0,0,2,2,0,0,0,2,//62
                 0,0,0,0,0,0,0,0,0,0,//63
-                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,//64
+
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -306,7 +307,8 @@ class combatant{
                 2,2,3,2,0,2,2,2,2,2,//61
                 3,2,2,2,2,2,3,2,2,2,//62
                 2,2,2,2,2,2,2,2,2,2,//63
-                2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//64
+                
             ]}
         /*
         0-none

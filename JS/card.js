@@ -6598,10 +6598,20 @@ class card{
             case 5671: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nGain ${effect[1]} Vulnerable`; break
             case 5672: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nUpward:\nDraw ${effect[1]} Card${pl(effect[1])}\nAdd ${effect[2]} Dark Matter${pl(effect[2])}\nto Hand`; break
             case 5673: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Frail\nAdd ${effect[2]} Shiv${pl(effect[2])}\nto Hand`; break
-
-
-
-
+            case 5674: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nAdd ${this.calculateEffect(effect[1],1)} Block\nPulled:\nRetain Your Hand\nThis Turn`; break
+            case 5675: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],10)} Damage\nin All Directions\nWhere X = Number of\nCards in Hand With Mass`; break
+            case 5676: string+=`When You Deal\nSplash Damage,\nDeal ${this.calculateEffect(effect[0],10)} More`; break
+            case 5677: string+=`Gain ${effect[0]} Energy\nFuel Your Hand For ${effect[1]}`; break
+            case 5678: string+=`Gain (E) (B)\nFuel Your Hand For ${effect[0]}`; break
+            case 5679: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nFuel Your Hand For ${effect[1]}`; break
+            case 5680: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nFuel ${effect[1]} (${this.fuel}):\nGain ${effect[2]} Energy`; break
+            case 5681: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nFuel ${effect[1]} (${this.fuel}):\nGain (B)`; break
+            case 5682: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nFuel ${effect[1]} (${this.fuel}):\nGain (B) (B)`; break
+            case 5683: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nFuel ${effect[1]} (${this.fuel}):\nGain (E) (E)`; break
+            case 5684: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nFuel Your Hand For ${effect[2]}`; break
+            case 5685: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFuel ${effect[1]} (${this.fuel}):\nTake Another Turn`; break
+            case 5686: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nFuel ${effect[1]} (${this.fuel}):\nGain ${effect[2]} Dodge`; break
+            case 5687: string+=`Gain ${effect[0]} Metal\nUpgrade ${effect[1]} Card${pl(effect[1])}`; break
 
             //mark p
 
@@ -7490,6 +7500,9 @@ class card{
             case 5661:
                 this.battle.cardManagers[this.player].allEffect(2,2)
                 this.battle.cardManagers[this.player].draw(this.effect[1])
+            break
+            case 5674:
+                userCombatant.statusEffect('Retain Hand',1)
             break
         }
     }
