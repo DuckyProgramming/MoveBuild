@@ -5,6 +5,7 @@ class particle{
         this.type=type
         this.remove=false
         this.time=0
+        this.base={position:{x:x,y:y}}
         switch(this.type){
             case 0: case 41: case 77: case 106:
                 this.value=args[0]
@@ -228,10 +229,10 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 108: case 140: case 142: case 157: case 202: case 215:
+            case 108: case 140: case 142: case 157: case 202: case 215: case 226: case 227:
                 this.direction=args[0]
                 this.timer=args[1]
-                this.speed=this.type==140?10:5
+                this.speed=this.type==140||this.type==226||this.type==227?10:5
                 this.fade=0
                 this.trigger=false
                 this.size=1
@@ -515,7 +516,7 @@ class particle{
                 this.scale=2
                 this.offset=random(0,360)
             break
-            case 185: case 216:
+            case 185: case 216: case 229:
                 this.direction=args[0]
                 this.fade=1
                 this.trigger=false
@@ -666,7 +667,7 @@ class particle{
                 this.speed=15
                 this.velocity={x:lsin(this.direction)*this.speed,y:lcos(this.direction)*this.speed}
             break
-            case 211:
+            case 211: case 228:
                 this.size=args[0]
                 this.color=args[1]
                 this.fade=1
@@ -735,6 +736,22 @@ class particle{
                         this.points[this.points.length-1][1]+lcos(direction)*40
                     ])
                 }
+            break
+            case 230:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.switch=args[2]
+                this.interval=args[3]
+                this.points=[[0,0]]
+                this.speed=2
+                this.fade=1
+                this.trigger=false
+                this.size=1
+                this.scale=1
+                this.shift=0
+                this.shiftGoal=0
+                this.shiftTrigger=false
+                this.bumps=0
             break
 
         }
@@ -3684,6 +3701,72 @@ class particle{
                     this.layer.fill(100,75,0,this.fade)
                     this.layer.ellipse(0,0,4,4)
                 break
+                case 226:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(100,200,50,this.fade*0.5)
+                    this.layer.ellipse(0,0,6,12)
+                    this.layer.ellipse(0,0,3,6)
+                    this.layer.quad(0,0,-6,-2,0,-4,6,-2)
+                    this.layer.quad(0,0,-6,2,0,4,6,2)
+                break
+                case 227:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(200,255,255,this.fade*0.5)
+                    this.layer.ellipse(0,0,6,12)
+                    this.layer.ellipse(0,0,3,6)
+                    this.layer.quad(0,0,-6,-2,0,-4,6,-2)
+                    this.layer.quad(0,0,-6,2,0,4,6,2)
+                break
+                case 228:
+                    this.layer.noFill()
+                    this.layer.stroke(...this.color,this.fade)
+                    this.layer.strokeWeight(2)
+                    this.layer.ellipse(0,0,10,4)
+                break
+                case 229:
+                    let cap229=constrain(this.activation,0,1)
+                    this.layer.rotate(this.direction)
+                    this.layer.noFill()
+                    for(let a=0,la=3;a<la;a++){
+                        for(let b=0,lb=4;b<lb;b++){
+                            this.layer.stroke(120-b/(lb-1)*40,b/(lb-1)*20,b/(lb-1)*20,this.fade*0.4)
+                            this.layer.strokeWeight((1.2-b*0.3)*cap229)
+                            this.layer.line(-3+a*3,-10,0,-400)
+                        }
+                        this.layer.stroke(180,30,30,this.fade)
+                        this.layer.strokeWeight(1.8*cap229)
+                        this.layer.point(-3+a*3,-10)
+                        this.layer.stroke(150,25,25,this.fade)
+                        this.layer.strokeWeight(1.5*cap229)
+                        this.layer.point(-3+a*3,-10)
+                    }
+                    for(let a=0,la=this.sparks.length;a<la;a++){
+                        this.layer.stroke(50,0,100,this.sparks[a][2]*this.fade)
+                        this.layer.strokeWeight(0.1*cap229)
+                        regStar(this.layer,-3+this.sparks[a][0]*3,-410+this.sparks[a][1],3,1,1,0.2,0.2,this.sparks[a][3])
+                    }
+                break
+                case 230:
+                    this.layer.strokeWeight(2)
+                    for(let a=0,la=this.points.length;a<la;a++){
+                        this.layer.stroke(255,this.fade*(0.8+a*0.08-this.time*0.01))
+                        this.layer.line(
+                            this.points[a][0]+this.base.position.x-this.position.x,
+                            this.points[a][1]+this.base.position.y-this.position.y,
+                            a==la-1?0:this.points[a+1][0]+this.base.position.x-this.position.x,
+                            a==la-1?0:this.points[a+1][1]+this.base.position.y-this.position.y
+                        )
+                    }
+                    this.layer.rotate(this.direction)
+                    this.layer.noStroke()
+                    this.layer.fill(100,200,225,this.fade)
+                    this.layer.quad(-1,-12.5,0,-10,0,5,-1,5)
+                    this.layer.fill(50,150,225,this.fade)
+                    this.layer.quad(1,-7.5,0,-10,0,5,1,5)
+                    this.layer.fill(255,255,255,this.fade)
+                    this.layer.rect(0,6,5,2)
+                    this.layer.rect(0,8,3,2)
+                break
 
             }
             //mark p
@@ -3725,7 +3808,7 @@ class particle{
             case 73: case 74: case 75: case 76: case 80: case 84: case 85: case 86: case 90: case 93:
             case 95: case 97: case 99: case 103: case 104: case 110: case 114: case 115: case 116: case 117:
             case 118: case 119: case 120: case 121: case 126: case 152: case 154: case 155: case 156: case 168:
-            case 169: case 170: case 173: case 192: case 193: case 196: case 211: case 212: case 225:
+            case 169: case 170: case 173: case 192: case 193: case 196: case 211: case 212: case 225: case 228:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){
@@ -3879,11 +3962,11 @@ class particle{
                     this.remove=true
                 }
             break
-            case 108: case 140: case 142: case 202: case 215:
+            case 108: case 140: case 142: case 202: case 215: case 226: case 227:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed
-                this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,10)
-                this.scale=smoothAnim(this.scale,this.time<this.timer*2-5,0,1,10)
+                this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,this.type==226||this.type==227?2:10)
+                this.scale=smoothAnim(this.scale,this.time<this.timer*2-5,0,1,this.type==226||this.type==227?2:10)
                 if(this.time==this.timer*2-5){
                     switch(this.type){
                         case 202:
@@ -3891,6 +3974,12 @@ class particle{
                             for(let a=0,la=5;a<la;a++){
                                 parent.particles.push(new particle(this.layer,this.position.x,this.position.y,203,[a/la*360+direction,20]))
                             }
+                        break
+                        case 226:
+                            parent.particles.push(new particle(this.layer,this.position.x,this.position.y,211,[5,[100,200,50]]))
+                        break
+                        case 227:
+                            parent.particles.push(new particle(this.layer,this.position.x,this.position.y,228,[3,[200,255,255]]))
                         break
                     }
                 }else if(this.fade<=0){
@@ -4271,7 +4360,7 @@ class particle{
                     }
                 }
             break
-            case 185: case 216:
+            case 185: case 216: case 229:
                 if(!this.trigger){
                     this.activation+=0.1
                     if(this.activation>=2){
@@ -4589,6 +4678,36 @@ class particle{
             case 224:
                 this.progress+=5
                 if(this.progress>=500){
+                    this.remove=true
+                }
+            break
+            case 230:
+                if(this.speed<8){
+                    this.speed+=0.1
+                }
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed
+                if(this.shift<this.shiftGoal-15){
+                    this.shift+=15
+                    this.position.x+=lcos(this.direction)*15
+                    this.position.y+=lsin(this.direction)*15
+                }else if(this.shift>this.shiftGoal+15){
+                    this.shift-=15
+                    this.position.x-=lcos(this.direction)*15
+                    this.position.y-=lsin(this.direction)*15
+                }else if(this.shiftTrigger){
+                    this.shiftTrigger=false
+                    this.points.push([this.position.x-this.base.position.x,this.position.y-this.base.position.y])
+                }
+                if(this.time%16==this.interval){
+                    this.shiftTrigger=true
+                    this.shiftGoal+=(this.bumps*30-15)*this.switch
+                    this.bumps++
+                    this.switch=-this.switch
+                    this.points.push([this.position.x-this.base.position.x,this.position.y-this.base.position.y])
+                }
+                this.fade=smoothAnim(this.fade,this.time<this.timer,0,1,30)
+                if(this.fade<=0){
                     this.remove=true
                 }
             break

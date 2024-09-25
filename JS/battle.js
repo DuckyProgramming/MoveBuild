@@ -2568,6 +2568,7 @@ class battle{
                     this.layer.textSize(7*this.anim.dictionaryMulti[a])
                     this.layer.text('Dictionary',26+a*(this.layer.width-52),522)
                 }
+                this.combatantManager.displayInfo(stage.scene)
                 this.nodeManager.display()
                 this.relicManager.display(stage.scene)
                 this.itemManager.display(stage.scene)

@@ -1297,16 +1297,19 @@ class combatantManager{
             ){
                 switch(effect){
                     case 0:
-                       this.combatants[a].takeDamage(values[0],values[1],values[2])
+                        this.combatants[a].takeDamage(values[0],values[1],values[2])
+                        if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Attach Poison')>0){
+                            this.combatants[a].statusEffect('Poison',this.combatants[values[1]].getStatus('Splash Attach Poison'))
+                        }
                     break
                     case 1:
-                       this.combatants[a].heal(values[0])
+                        this.combatants[a].heal(values[0])
                     break
                     case 2:
-                       this.combatants[a].statusEffect(values[0],values[1])
+                        this.combatants[a].statusEffect(values[0],values[1])
                     break
                     case 3:
-                       this.combatants[a].statusEffectNext(values[0],values[1])
+                        this.combatants[a].statusEffectNext(values[0],values[1])
                     break
                     case 4:
                         if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
@@ -1483,7 +1486,7 @@ class combatantManager{
                 this.combatants.forEach(combatant=>combatant.displayInfo('battle'))
                 this.combatants.forEach(combatant=>combatant.displayInfo('overlay'))
             break
-            case 'rest': case 'event':
+            case 'map': case 'rest': case 'event':
                 for(let a=0,la=this.combatants.length;a<la;a++){
                     if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
                         this.combatants[a].displayInfo(scene)

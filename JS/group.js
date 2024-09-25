@@ -25,12 +25,13 @@ class group{
         this.rewinds=0
         this.turnExhausts=0
         this.turnRewinds=0
+        this.retain2FuelValue=0
         this.lastMouseOver=-1
         this.lastSort=-1
         this.basicChange=[0,0]
         this.addEffect=[]
         this.finalPosition=0
-        this.listKey=39
+        this.listKey=40
         this.listInput=[
             [0,4],
             [1,8],
@@ -67,6 +68,7 @@ class group{
             [36,41],
             [37,43],
             [38,44],
+            [39,48],
         ]
 
         this.reset()
@@ -87,7 +89,8 @@ class group{
             base.additionalSpec,base.name,base.list,base.effect,base.attack,
             base.target,base.spec,base.cardClass,base.limit,undefined,
             false,base.colorful,base.edition,base.base.cost,base.drawn,
-            base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,base.costUpTrigger
+            base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
+            base.costUpTrigger
         )))
 
     }
@@ -596,6 +599,11 @@ class group{
     }
     exhaustAdd(amount){
         this.status[38]=amount
+        this.generalSelfStatus()
+    }
+    retain2Fuel(amount,value){
+        this.status[39]=amount
+        this.retain2FuelValue=value
         this.generalSelfStatus()
     }
     generalSelfStatus(){
@@ -1960,6 +1968,9 @@ class group{
                         total++
                     }
                 break
+                case 50:
+                    this.cards[a].fuel+=args[0]
+                break
             }
         }
         if(effect==9){
@@ -2020,7 +2031,7 @@ class group{
                         &&!(effect==58&&this.cards[b].class!=args[0]&&args[0]!=0)
                         &&!(effect==62&&(this.cards[b].getCost(1)<=0||this.cards[b].class!=args[0]&&args[0]!=0))
                         &&!(effect==63&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(41)||!this.cards[b].spec.includes(args[1])))
-                        &&!(effect==64&&this.cards[b].class!=args[0])
+                        &&!(effect==64&&this.cards[b].class!=args[0]&&args[0]!=0)
                         &&!(effect==65&&this.cards[b].edition!=args[0])
                     ){
                         list.push(b)
@@ -3640,6 +3651,7 @@ class group{
                 this.battle.attackManager.id=-1
                 this.battle.attackManager.edition=-1
                 this.battle.attackManager.drawn=-1
+                this.battle.attackManager.fuel=-1
 
                 this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
                 this.battle.attackManager.targetDistance=0
@@ -3658,7 +3670,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[29],this.anim[30]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36]),this.anim[37],this.anim[38]]
+                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[29],this.anim[30]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36]),this.anim[37],this.anim[38],this.anim[39]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -4561,6 +4573,7 @@ class group{
                 this.battle.attackManager.id=a.id
                 this.battle.attackManager.edition=a.edition
                 this.battle.attackManager.drawn=a.drawn
+                this.battle.attackManager.fuel=a.fuel
                 this.battle.attackManager.cost=a.cost
                 if(a.getBasic(1)&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
@@ -4753,6 +4766,13 @@ class group{
             case 47:
                 this.cardInUse=a
                 this.selfCall(45,a)
+            break
+            case 48:
+                this.cards[a].retain2=true
+                this.cards[a].fuel+=this.retain2FuelValue
+                if(this.status[39]>0){
+                    this.status[39]--
+                }
             break
         }
     }

@@ -6061,6 +6061,14 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
                 layer.rotate(120)
             }
         break
+        case 638:
+            layer.fill(150,255,100,fade)
+            layer.arc(0,0,8,8,-30,210)
+            layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
+            layer.triangle(-4.5,-0.5,-4.5,0.5,-6,0)
+            layer.triangle(4.5,-0.5,4.5,0.5,6,0)
+            layer.rect(0,5,3,1)
+        break
 
     }
     //mark s

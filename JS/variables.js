@@ -1124,7 +1124,7 @@ types={
         {name:'Item Canister',internal:'No Shop Items',id:346,rarity:0,list:0,mtg:0,description:'Gain an Item Every Node\nUntil You Enter a Shop'},
         {name:'Sugar Cube',internal:'Energy/Leftover Energy',id:347,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nLose 4 Health at End of Turn\nFor Each Extra Energy'},
         {name:'Medicine Cabinet',internal:'Turn 1 Energy/Turn 2 Heal/Turn 3 Temporary Strength',id:348,rarity:2,list:0,mtg:1,description:'Gain 1 Energy on Turn 1\nHeal 2 Health on Turn 2\nGain 3 Temporary Strength on Turn 3'},
-        {name:'Chondrule',internal:'Double Foil',id:349,rarity:0,list:0,mtg:0,description:'Foil Editions Add Double Block'},
+        {name:'Chondrule',internal:'Double Foil',id:349,rarity:-1,list:0,mtg:0,description:'Foil Editions Add Double Block'},
 
         {name:'Exponentia',internal:'Energy Gain Draw',id:350,rarity:2,list:0,mtg:1,description:'Draw 1 Card When You Gain Energy'},
         {name:'Traffic Cone',internal:'Replenish Card',id:351,rarity:3,list:0,mtg:0,description:'When Taken, Make a Card Replenish'},

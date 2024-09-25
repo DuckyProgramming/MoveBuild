@@ -1256,15 +1256,15 @@ function relicSellValue(rarity){
 	}
 }
 function copyCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,base.costUpTrigger)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,base.costUpTrigger)
 }
 function copyCardNew(base){
 	game.id++
-	return new card(base.layer,base.battle,base.player,1200,500,base.type,base.level,base.color,game.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,base.costUpTrigger)
+	return new card(base.layer,base.battle,base.player,1200,500,base.type,base.level,base.color,game.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,base.costUpTrigger)
 }
 function copyCardNewAbstract(base,type,args){
 	game.id++
-	let result=new card(base.layer,base.battle,base.player,1200,500,base.type,base.level,base.color,game.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,base.costUpTrigger)
+	let result=new card(base.layer,base.battle,base.player,1200,500,base.type,base.level,base.color,game.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,base.costUpTrigger)
 	switch(type){
 		case 0:
 			result.cost=copyArray(args[0])
@@ -1280,7 +1280,7 @@ function upgradeCard(base,nonlimiting=false){
 	if(base.spec.includes(37)){
 		return copyCard(base)
 	}else{
-		let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.edited.cost,false,base.nonCalc,undefined,base.costDownTrigger,base.costUpTrigger)
+		let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.fuel,base.edited.cost,false,base.nonCalc,undefined,base.costDownTrigger,base.costUpTrigger)
 		if(base.attack==1352||nonlimiting){
 			result.limit=base.limit
 		}
@@ -1291,7 +1291,7 @@ function unupgradeCard(base,nonlimiting=false){
 	if(base.spec.includes(37)){
 		return copyCard(base)
 	}else{
-		let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.edited.cost,false,base.nonCalc,undefined,base.costDownTrigger,base.costUpTrigger)
+		let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.fuel,base.edited.cost,false,base.nonCalc,undefined,base.costDownTrigger,base.costUpTrigger)
 		if(base.attack==1352||nonlimiting){
 			result.limit=base.limit
 		}
@@ -1338,7 +1338,7 @@ function copyArray(base){
 		list.push(base[a])
 	}
 	return list*/
-	return base.slice()
+	return typeof base=='number'?base:base.slice()
 }
 function copyArrayStack(base){
 	let list=[]
@@ -1964,7 +1964,8 @@ Total:${current.nodeManager.listing.static[3][1].length+current.nodeManager.list
 function outListing(){
 	let box=``
 	let goal=150+150*constants.playerNumber+30+20+15+30+15+60+150
-	let arbitrary=4000
+	let actual=current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.sub.length+current.cardManagers[0].listing.junk[constants.playerNumber+1].length
+	let arbitrary=5000
 	for(let a=0,la=constants.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
 Common:${current.cardManagers[0].listing.card[a+1][0].length}/60				${current.cardManagers[0].listing.card[a+1][0].length-60}
@@ -1973,7 +1974,7 @@ Rare:${current.cardManagers[0].listing.card[a+1][2].length}/25					${current.car
 	Total:${current.cardManagers[0].listing.card[a+1][3].length}/150\n`
 	}
 	console.log(`Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
-Listed Cards: ${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.sub.length+current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/${goal}		${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.junk[constants.playerNumber+1].length-goal}
+Listed Cards: ${actual}/${goal}		${actual-goal}
 		Colorless:
 Common:${current.cardManagers[0].listing.card[0][0].length}/60				${current.cardManagers[0].listing.card[0][0].length-60}
 Uncommon:${current.cardManagers[0].listing.card[0][1].length}/65				${current.cardManagers[0].listing.card[0][1].length-65}
@@ -2337,6 +2338,7 @@ function attackTest(type,target,startpoint){
 							current.attackManager.id=-1
 							current.attackManager.edition=0
 							current.attackManager.drawn=0
+							current.attackManager.fuel=0
 							current.attackManager.cost=types.card[a].mtg.levels[b].cost
 							current.attackManager.execute()
 						}
@@ -2369,6 +2371,7 @@ function attackTest(type,target,startpoint){
 							current.attackManager.id=-1
 							current.attackManager.edition=0
 							current.attackManager.drawn=0
+							current.attackManager.fuel=0
 							current.attackManager.cost=types.card[a].levels[b].cost
 							current.attackManager.execute()
 						}

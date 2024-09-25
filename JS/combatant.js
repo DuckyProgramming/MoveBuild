@@ -174,7 +174,7 @@ class combatant{
                 'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap','Dice Max Boost','Exhaust Block','Counter Shockwave','Frail on Kill','Mailshield',
                 'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
                 'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable','Energy Gain Splash Freeze',
-                'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost',
+                'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost','Splash Attach Poison',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -240,7 +240,7 @@ class combatant{
                 0,0,0,0,2,0,0,2,0,0,//61
                 0,2,0,0,2,2,0,0,0,2,//62
                 0,0,0,0,0,0,0,0,0,0,//63
-                0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -306,7 +306,7 @@ class combatant{
                 2,2,3,2,0,2,2,2,2,2,//61
                 3,2,2,2,2,2,3,2,2,2,//62
                 2,2,2,2,2,2,2,2,2,2,//63
-                2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -1521,7 +1521,7 @@ class combatant{
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
-            case 'Certes': case 'Airi': case 'Shiru': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin':
+            case 'Certes': case 'Airi': case 'Shiru': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -5239,7 +5239,7 @@ class combatant{
     startAnimation(type){
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
-            case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin':
+            case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
             case 'Ume':
                 switch(type){
                     case 0:
@@ -5358,7 +5358,7 @@ class combatant{
     runAnimation(rate,type){
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
-            case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin':
+            case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
             case 'Ume':
                 switch(type){
                     case 0:
@@ -6650,6 +6650,13 @@ class combatant{
                         }
                     }
                 }
+            break
+            case 'map':
+                this.layer.push()
+                this.layer.translate(125+this.id*650,16)
+                this.layer.scale(1.5)
+                this.displayInfoInternal(scene)
+                this.layer.pop()
             break
             case 'rest':
                 this.layer.push()
