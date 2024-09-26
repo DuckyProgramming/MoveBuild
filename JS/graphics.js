@@ -3756,6 +3756,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:45,bottom:90,lock:0}]
 					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
 				break
+				case 'Ducopo':
+					p1.position.y+=10
+					p1.anim.arms[0].top=72
+					p1.anim.arms[1].top=60
+					p1.anim.legs[0].top=30
+					p1.anim.legs[1].top=36
+				break
+				case 'Randy':
+					p1.position.y-=1
+					p1.position.x+=2.5
+					p1.anim.legs=[{top:9,bottom:3,length:{top:17,bottom:17}},{top:12,bottom:15,length:{top:17,bottom:17}}]
+					p1.anim.arms=[{top:24,bottom:-33,length:{top:17,bottom:17}},{top:24,bottom:-33,length:{top:17,bottom:17}}]
+					p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:60}]
+					p1.spin.arms=[{top:-90,bottom:-66,lock:0},{top:90,bottom:66,lock:0}]
+				break
 
 			}
 			p1.size=2.5
@@ -3979,6 +3994,27 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
 					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
 				break
+				case 'Ducopo':
+					p1.parts.eyeLevel++
+					p1.anim.arms[0].top=54
+					p1.anim.arms[1].top=45
+					p1.anim.legs[0].top=12
+					p1.anim.legs[1].top=42
+				break
+				case 'Randy':
+					p1.position.y+=10
+					p1.anim.mouth.y++
+					p1.anim.legs=[
+						{top:9,bottom:12-a*3,length:{top:17,bottom:17}},
+						{top:3+a*6,bottom:-15-a*3,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:36,bottom:-12,length:{top:17,bottom:17}},
+						{top:24+a*15,bottom:39-a*24,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-180,bottom:-180,lock:0},{top:-60,bottom:-45,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+				break
 			}
 			p1.anim.eye=[1,1]
 			p1.size=2.5
@@ -3992,7 +4028,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 		case 2:
 			p1=new combatant(layer,graphics.proxyBattle,225+a*450,314,0,0,0,0,player[a],0,0,30-a*60)
 			switch(p1.name){
-				case 'Donakho':
+				case 'Donakho': case 'Ducopo':
 					p1.position.y+=2
 				break
 			}
@@ -4229,8 +4265,28 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-45+a*5,bottom:-15-a*45,lock:0},{top:120+a*5,bottom:150-a*36,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
 				break
+				case 'Ducopo':
+					p1.position.y-=36
+					p1.anim.arms[0].top=60
+					p1.anim.arms[1].top=45
+					p1.anim.legs[0].top=18
+					p1.anim.legs[1].top=12
+				break
+				case 'Randy':
+					p1.position.y-=47.5
+					p1.anim.legs=[
+						{top:6,bottom:3,length:{top:18,bottom:18}},
+						{top:6,bottom:3,length:{top:18,bottom:18}}
+					]
+					p1.anim.arms=[
+						{top:15+a*3,bottom:9+a*6,length:{top:18,bottom:18}},
+						{top:15+a*3,bottom:9+a*6,length:{top:18,bottom:18}}
+					]
+					p1.spin.legs=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
+					p1.spin.arms=[{top:-84-a*3,bottom:-60,lock:0},{top:84+a*3,bottom:12,lock:0}]
+				break
 			}
-			if(p1.name!='DD-610'&&p1.name!='Vincent'){
+			if(p1.name!='DD-610'&&p1.name!='Vincent'&&p1.name!='Ducopo'&&p1.name!='Randy'){
 				p1.anim.eye=[1,1]
 				p1.anim.eyeStyle=[2,2]
 			}
@@ -4460,6 +4516,26 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-48+a*45,bottom:-120+a*90,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
 				break
+				case 'Ducopo':
+					p1.anim.arms[0].top=30+a*72
+					p1.anim.arms[1].top=54-a*9
+					p1.anim.legs[0].top=15
+					p1.anim.legs[1].top=15
+					p1.position.y+=5-a*25
+				break
+				case 'Randy':
+					p1.position.y-=a*30
+					p1.anim.legs=[
+						{top:3+a*6,bottom:6+a*9,length:{top:17,bottom:17}},
+						{top:3+a*6,bottom:6+a*9,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:15-a*3,bottom:3+a*6,length:{top:17,bottom:17}},
+						{top:18+a*3,bottom:21-a*3,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120-a*15,lock:0},{top:60-a*15,bottom:120+a*15,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -4676,6 +4752,25 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.arms=[
 						{top:12+a*3,bottom:6+a*30,length:{top:15,bottom:15}},
 						{top:12-a*3,bottom:36-a*24,length:{top:15,bottom:15}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
+				break
+				case 'Ducopo':
+					p1.anim.arms[0].top=21+a*27
+					p1.anim.arms[1].top=48-a*27
+					p1.anim.legs[0].top=21
+					p1.anim.legs[1].top=21
+					p1.position.y+=12
+				break
+				case 'Randy':
+					p1.anim.legs=[
+						{top:6-a*3,bottom:9+a*3,length:{top:17,bottom:17}},
+						{top:6-a*3,bottom:9+a*3,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:24-a*3,bottom:-9+a*6,length:{top:17,bottom:17}},
+						{top:24-a*3,bottom:-9+a*6,length:{top:17,bottom:17}}
 					]
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
@@ -4932,6 +5027,26 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-105,bottom:-105,lock:0},{top:105,bottom:105,lock:0}]
 				break
+				case 'Ducopo':
+					p1.anim.arms[0].top=36+a*18
+					p1.anim.arms[1].top=54-a*18
+					p1.anim.legs[0].top=36
+					p1.anim.legs[1].top=36
+					p1.position.y+=8
+				break
+				case 'Randy':
+					p1.position.y+=1
+					p1.anim.legs=[
+						{top:3,bottom:0,length:{top:17,bottom:17}},
+						{top:3,bottom:0,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:18-a*3,bottom:6-a*24,length:{top:17,bottom:17}},
+						{top:18+a*6,bottom:6-a*12,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:90-a*15,lock:0}]
+				break
 			}
 			p1.size=2
 			p1.fade=1
@@ -5122,6 +5237,16 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-30,bottom:-60,lock:0},{top:30,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-60,lock:0},{top:90,bottom:90,lock:0}]
+				break
+				case 'Ducopo':
+					p1.anim.arms[0].top=57
+					p1.anim.arms[1].top=30
+				break
+				case 'Randy':
+					p1.anim.legs=[{top:6,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:3,length:{top:17,bottom:17}}]
+                    p1.anim.arms=[{top:18,bottom:-6,length:{top:17,bottom:17}},{top:36,bottom:-24,length:{top:17,bottom:17}}]
+                	p1.spin.legs=[{top:-45,bottom:-60},{top:45,bottom:60}]
+					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
 				break
 			}
 			p1.size=1.5

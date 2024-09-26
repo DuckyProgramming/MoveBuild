@@ -1019,42 +1019,33 @@ combatant.prototype.setupGraphics=function(direction){
         break
         case 'Ducopo':
             this.anim={direction:direction,fat:1,eye:[0,0],eyeStyle:[0,0],legs:[{top:24,length:{top:12.5}},{top:24,length:{top:12.5}}],arms:[{top:54,length:{top:12.5}},{top:54,length:{top:12.5}}]}
-            this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1},hat:1,coat:1}
+            this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1},hat:1,belt:1}
             this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
-            this.color={eye:{back:[0,0,0],front:[30,20,0],glow:[255,255,200]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[255,225,15],legs:[255,210,0],arms:[255,215,5]}}
+            this.color={eye:{back:[0,0,0],front:[30,20,0],glow:[255,255,200]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[135,255,115],body:[125,255,105],legs:[110,255,90],arms:[115,255,95]},hat:[180,140,80],belt:[180,145,120]}
             this.parts={eyeLevel:-48,beakLevel:-41,minor:13,legs:[{top:{x:4,y:-18},middle:{x:0,y:0}},{top:{x:4,y:-18},middle:{x:0,y:0}}],arms:[{top:{x:3.75,y:-30.5},middle:{x:0,y:0}},{top:{x:3.75,y:-30.5},middle:{x:0,y:0}}]}
             this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
-            this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true},hat:true,coat:true,extra:{damage:false}}}
+            this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true},hat:true,belt:true,extra:{damage:false}}}
             this.calc={int:[0,0,0,0]}
             this.animSet={loop:0,flip:0,hand:0,foot:0}
             this.goal={anim:{direction:this.anim.direction}}
         break
-        
         case 'Randy':
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                 legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
                 arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
             this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
+            this.color={skin:{head:[240,220,40],body:[225,205,35],legs:[205,195,30],arms:[215,185,30]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},belt:[40,45,40],goggles:[[40,40,35],[240,240,240]],mark:[80,80,20],band:[100,95,80]}
             this.parts={eyeLevel:-78,mouth:-70,minor:15,
                 legs:[{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}}],
                 arms:[{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
             this.graphics={
                 legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
                 arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
-            this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
-            this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
-            this.trigger.display.extra={damage:false}
+            this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1},belt:1,goggles:0.8,mark:1,band:1}
+            this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},belt:true,goggles:true,mark:true,band:true,extra:{damage:false}}}
             this.calc={int:[0,0,0,0]}
             this.animSet={loop:0,flip:0,hand:0,foot:0}
             this.goal={anim:{direction:this.anim.direction}}
-            this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
-
-
-
-
-            this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
-            this.goal={anim:{direction:this.anim.direction,sword:true}}
         break
         case 'Ume':
             if(graphics.combatant[20]==-1){
@@ -4384,6 +4375,22 @@ combatant.prototype.minorDisplay=function(type,key){
                         this.layer.vertex(1,-9.5)
                         this.layer.endShape()
                         this.layer.rotate(360/la)
+                    }
+                break
+            }
+        break
+        case 'Randy':
+            switch(type){
+                case 0:
+                    let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                    this.layer.stroke(...this.color.band,this.fade*this.fades.band)
+                    this.layer.strokeWeight(2.4)
+                    for(let a=0,la=3;a<la;a++){
+                        this.layer.line(
+                            this.graphics.arms[key].middle.x*(0.25+a*0.2)+this.graphics.arms[key].bottom.x*(0.75-a*0.2)+1.8*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*(0.25+a*0.2)+this.graphics.arms[key].bottom.y*(0.75-a*0.2)+1.8*lcos(dir+90),
+                            this.graphics.arms[key].middle.x*(0.25+a*0.2)+this.graphics.arms[key].bottom.x*(0.75-a*0.2)-1.8*lsin(dir+90),
+                            this.graphics.arms[key].middle.y*(0.25+a*0.2)+this.graphics.arms[key].bottom.y*(0.75-a*0.2)-1.8*lcos(dir+90))
                     }
                 break
             }

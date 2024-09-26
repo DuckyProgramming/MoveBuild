@@ -8928,7 +8928,7 @@ class attack{
                     break
                     case 5649:
                         if(this.fuel>=this.effect[1]){
-                            this.userManager.draw(this.effect[2])
+                            this.userManager.hand.upgrade(this.effect[2])
                             this.userManager.hand.exhaust(this.effect[3])
                         }
                     break

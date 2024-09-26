@@ -18,7 +18,7 @@ types={
         {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:``},
         {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:339,effect:[8,8]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:``},
         {name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]},{type:412,effect:[15,2]},{type:413,effect:[2]}],description:``},
-        {name:'Merlin',moniker:'',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:312,effect:[5,5,1,1,2,2,2,2,10]}],description:``},
+        {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:312,effect:[5,5,1,1,2,2,2,2,10]}],description:``},
         {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
         {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
         
@@ -219,7 +219,7 @@ types={
         {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:200,effect:[8]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
         {name:'Crusader',life:127,behavior:15,spec:[0,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:343,effect:[14,1]},{type:344,effect:[20]},{type:376,effect:[22,1]},{type:346,effect:[22,1]},{type:347,effect:[20]}],description:`Two millenia late to the party`},
-        {name:'Thoughtless',life:144,behavior:17,spec:[0],move:{type:0,speed:1},attack:[{type:147,effect:[5]},{type:404,effect:[12,1]},{type:405,effect:[8,4]},{type:83,effect:[10,1,'Philosophy of\nthe Despised']}],description:`No mind lol`},
+        {name:'Thoughtless',life:144,behavior:17,spec:[0],move:{type:0,speed:1},attack:[{type:147,effect:[5]},{type:404,effect:[12,1]},{type:405,effect:[9,3]},{type:83,effect:[10,1,'Philosophy of\nthe Despised']}],description:`No mind lol`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,2]}],description:`Gunning for a promotion`},
@@ -874,7 +874,7 @@ types={
         {name:'Managerial Statue',internal:'Premium',id:119,rarity:2,list:0,mtg:0,description:'Whenever You Gain\nCurrency, Gain 20 More'},
 
         {name:'Surprise Gun',internal:'Planned Attack',id:120,rarity:-1,list:0,mtg:1,description:'Each Turn, If the First Card in Draw Pile\nis an Attack, Draw it, it Costs 1 Less'},
-        {name:'Power Shell',internal:'X 2 Increase',id:121,rarity:2,list:0,mtg:0,description:'X Cost Cards\nGet +2 to X'},
+        {name:'Power Shell',internal:'X 2 Increase',id:121,rarity:-1,list:0,mtg:0,description:'X Cost Cards\nGet +2 to X'},
         {name:'Rusty Gear',internal:'Starting Control',id:122,rarity:0,list:0,mtg:0,description:'Gain 1 Control at\nthe Start of Combat'},
         {name:'Shattered Mirror',internal:'Duplicate Card',id:123,rarity:3,list:0,mtg:0,description:'When Taken,\nDuplicate a Card'},
         {name:'Tweezers',internal:'Block Break Vulnerable',id:124,rarity:0,list:0,mtg:0,description:`When You Break an Enemy's\nBlock, Apply 2 Vulnerable`},
@@ -1214,8 +1214,8 @@ types={
         {name:'Centrosome',internal:'Random Mana/Duplicate',id:428,rarity:4,list:0,mtg:2,description:'Gain a Random Mana Each Turn,\nWhen Taken, Duplicate a Card',manaColor:7},
         {name:'Stapler',internal:'Random Mana/Innate Card',id:429,rarity:4,list:0,mtg:2,description:'Gain a Random Mana Each Turn,\nWhen Taken, Make a Card Innate',manaColor:7},
 
-        {name:'Pasta Bowl',internal:'X Cost Energy',id:430,rarity:3,list:0,mtg:1,description:'When You Play an X Cost Card,\nGain 1 Energy'},
-        {name:'Pasta Bowl',internal:'X Cost Mana',id:431,rarity:3,list:0,mtg:2,description:'When You Play an X Cost Card,\nGain (N)'},
+        {name:'Pasta Bowl',internal:'X Cost Energy',id:430,rarity:-1,list:0,mtg:1,description:'When You Play an X Cost Card,\nGain 1 Energy'},
+        {name:'Pasta Bowl',internal:'X Cost Mana',id:431,rarity:-1,list:0,mtg:2,description:'When You Play an X Cost Card,\nGain (N)'},
         {name:'Gas Oven',internal:'Elite Upgrade',id:432,rarity:2,list:0,mtg:0,description:'Upgrade a Card After Each Elite'},
         {name:'Radio Receiver',internal:'Emergency Push',id:433,rarity:0,list:0,mtg:0,description:'Add 1 Emergency Push at\nthe Start of Combat'},
         {name:'Optimal Sneakers',internal:'Free Move',id:434,rarity:4,list:0,mtg:1,description:'Add a Free Move\nto Hand Every Turn'},

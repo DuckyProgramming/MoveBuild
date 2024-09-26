@@ -7,6 +7,20 @@ LISTING GROUP 50
 
 
 
+[control rod]
+
+[device driver]
+
+
+
+changes to merlin cardset
+
+
+
+cards that draw when pulled or similar deck manip should happen after all pull effects are concluded
+
+
+
 MERLIN DEVELOPMENT
 
 countdowns
@@ -32,9 +46,7 @@ tutorial
 
 
 
-CHARACTER 20
-
-hazmat man
+RANDY DEVELOPMENT
 
 mass, gravitation, and pull
 fuel

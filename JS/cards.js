@@ -43540,15 +43540,15 @@ types.card=[
     },{
         name:'Atomic\nClock',rarity:1,list:20,
         levels:[
-            {effect:[16,6],attack:5685,cost:2,target:[2,1,1],spec:[0,1],class:1},
-            {effect:[24,6],attack:5685,cost:2,target:[2,1,1],spec:[0,1],class:1},
-            {effect:[30,6],attack:5685,cost:2,target:[2,1,1],spec:[0,1],class:1},
+            {effect:[16,8],attack:5685,cost:2,target:[2,1,1],spec:[0,1],class:1},
+            {effect:[24,8],attack:5685,cost:2,target:[2,1,1],spec:[0,1],class:1},
+            {effect:[30,8],attack:5685,cost:2,target:[2,1,1],spec:[0,1],class:1},
         ],mtg:{
             rarity:1,list:20,color:[1,2],
             levels:[
-                {effect:[20,6],attack:5685,cost:[7,7,-1],target:[2,1,1],spec:[0,1],class:1},
-                {effect:[30,6],attack:5685,cost:[7,7,-1],target:[2,1,1],spec:[0,1],class:1},
-                {effect:[38,6],attack:5685,cost:[7,7,-1],target:[2,1,1],spec:[0,1],class:1},
+                {effect:[20,8],attack:5685,cost:[7,7,-1],target:[2,1,1],spec:[0,1],class:1},
+                {effect:[30,8],attack:5685,cost:[7,7,-1],target:[2,1,1],spec:[0,1],class:1},
+                {effect:[38,8],attack:5685,cost:[7,7,-1],target:[2,1,1],spec:[0,1],class:1},
             ],
         },
     },{

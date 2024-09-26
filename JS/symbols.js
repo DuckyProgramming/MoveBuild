@@ -5931,9 +5931,9 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(200,150,75,fade)
             layer.ellipse(0,0,10)
             layer.fill(150,100,50,fade)
-            layer.ellipse(-2,-3,2.5)
+            layer.ellipse(-2,-2,2.5)
             layer.ellipse(-1,2.5,2)
-            layer.ellipse(2.5,1,3)
+            layer.ellipse(2.5,0.5,3)
         break
         case 626:
             layer.fill(150,0,0,fade)
@@ -6595,6 +6595,15 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
         case 17:
             layer.fill(200,100,175,fade)
         break
+        case 18:
+            layer.fill(75,50,125,fade)
+        break
+        case 19:
+            layer.fill(75,255,225,fade)
+        break
+        case 20:
+            layer.fill(120,160,40,fade)
+        break
     }
     layer.ellipse(0,0,50)
     layer.fill(255,fade)
@@ -6879,6 +6888,55 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
                 layer.arc(0,0,32,32,-185+a*60,-156+a*60)
             }
             layer.strokeCap(ROUND)
+        break
+        case 18:
+            layer.ellipse(-10,12,10,8)
+            layer.ellipse(8,9,10,8)
+            layer.rect(-6.5,0,3,24)
+            layer.rect(11.5,-3,3,24)
+            layer.quad(-8,-10,-8,-13,13,-17,13,-14)
+            layer.quad(-8,-5,-8,-8,13,-12,13,-9)
+        break
+        case 19:
+            layer.ellipse(-6,-6,20)
+            layer.push()
+            layer.translate(-6,-6)
+            for(let a=0,la=3;a<la;a++){
+                layer.rect(17,0,3,9)
+                layer.rect(22,0,3,12)
+                layer.rotate(45)
+            }
+            layer.pop()
+            layer.fill(75,255,225,fade)
+            layer.ellipse(-10,-10,5)
+            layer.ellipse(-8,-1,4)
+            layer.ellipse(-1,-5,6)
+        break
+        case 20:
+            layer.arc(0,0,30,30,60,120)
+            layer.arc(0,0,30,30,180,240)
+            for(let a=0,la=4;a<la;a++){
+                layer.rotate(15)
+                layer.triangle(0,0,-2,-22,2,-22)
+                layer.rotate(15)
+            }
+            layer.noFill()
+            layer.stroke(120,160,40,fade)
+            layer.strokeWeight(4)
+            layer.ellipse(0,0,46)
+            layer.noStroke()
+            layer.fill(120,160,40,fade)
+            layer.ellipse(0,0,16)
+            layer.fill(255,fade)
+            layer.rotate(-60)
+            layer.arc(0,0,10,10,0,180)
+            layer.ellipse(0,0,10,4)
+            layer.triangle(-5,0,-3,0,-4,-3)
+            layer.triangle(-4,0,-1,0,-2.5,-5)
+            layer.triangle(-2,0,1,0,-0.5,-4)
+            layer.triangle(0,0,2,0,1,-6)
+            layer.triangle(1,0,4,0,2.5,-4.5)
+            layer.triangle(3,0,5,0,4,-3.5)
         break
     }
     layer.pop()
