@@ -6614,6 +6614,16 @@ class card{
             case 5687: string+=`Gain ${effect[0]} Metal\nUpgrade ${effect[1]} Card${pl(effect[1])}`; break
             case 5688: string+=`For Each ${effect[0]} Fuel (${this.fuel}),\nDeal ${this.calculateEffect(effect[1],0)} Damage\nin All Directions\nShuffle ${effect[2]} Dark Matter${pl(effect[2])}\ninto Draw Pile`; break
             case 5689: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nPulled:\nIncreases by ${effect[1]}`; break
+            case 5690: string+=`Gain ${effect[0]} Dodge\nApply ${effect[1]} Freeze`; break
+            case 5691: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nRemove ${effect[1]} Fatigue${pl(effect[1])}\nGain ${effect[2]} Control`; break
+            case 5692: string+=`If Target Has\nLess Than ${effect[0]}% Health,\nIt Dies`; break
+            case 5693: string+=`Hold ${effect[0]} Basic Orb${pl(effect[0])}\nEach Turn`; break
+            case 5694: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen You Start\nYour Turn in Calm`; break
+            case 5695: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nHold ${effect[1]} Basic Orb${pl(effect[1])}`; break
+
+
+
+
 
             //mark p
 

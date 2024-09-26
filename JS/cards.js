@@ -8791,6 +8791,20 @@ types.card=[
                 {effect:[12],attack:5372,cost:[-1,-1],target:[2,1,1],spec:[0],class:1},
             ],
         },
+    },{
+        name:'Uncorruptible',rarity:2,list:3,
+        levels:[
+            {effect:[1,1,1],attack:5691,cost:0,target:[0],spec:[],class:11},
+            {effect:[1,2,1],attack:5691,cost:0,target:[0],spec:[],class:11},
+            {effect:[1,3,1],attack:5691,cost:0,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:2,list:-1,color:[1],
+            levels:[
+                {effect:[1,1,1],attack:5691,cost:[],target:[0],spec:[],class:11},
+                {effect:[1,2,1],attack:5691,cost:[],target:[0],spec:[],class:11},
+                {effect:[1,3,1],attack:5691,cost:[],target:[0],spec:[],class:11},
+            ],
+        },
     },
 
     //mark 3
@@ -12605,6 +12619,34 @@ types.card=[
                 {effect:[2,1,1],attack:5646,cost:[7,-1,-1],target:[0],spec:[],class:11},
                 {effect:[2,1,1],attack:5646,cost:[7,-1],target:[0],spec:[],class:11},
                 {effect:[3,1,1],attack:5646,cost:[7,-1],target:[0],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Basic\nAura',rarity:1,list:5,
+        levels:[
+            {effect:[1],attack:5693,cost:2,target:[0],spec:[],class:4},
+            {effect:[1],attack:5693,cost:1,target:[0],spec:[],class:4},
+            {effect:[1],attack:5693,cost:1,target:[0],spec:[22],class:4},
+        ],mtg:{
+            rarity:2,list:5,color:[1],
+            levels:[
+                {effect:[1],attack:5693,cost:[5,-1,-1],target:[0],spec:[],class:4},
+                {effect:[1],attack:5693,cost:[5,-1],target:[0],spec:[],class:4},
+                {effect:[1],attack:5693,cost:[5],target:[0],spec:[],class:4},
+            ],
+        },
+    },{
+        name:'Linelevel',rarity:0,list:5,
+        levels:[
+            {effect:[1,1],attack:5695,cost:1,target:[26,0,6],spec:[],class:11},
+            {effect:[1,1],attack:5695,cost:0,target:[26,0,6],spec:[],class:11},
+            {effect:[1,2],attack:5695,cost:0,target:[26,0,6],spec:[],class:11},
+        ],mtg:{
+            rarity:0,list:5,color:[2],
+            levels:[
+                {effect:[1,1],attack:5695,cost:[2,-1],target:[26,0,6],spec:[],class:11},
+                {effect:[1,1],attack:5695,cost:[-1],target:[26,0,6],spec:[],class:11},
+                {effect:[1,2],attack:5695,cost:[],target:[26,0,6],spec:[],class:11},
             ],
         },
     },
@@ -16757,6 +16799,20 @@ types.card=[
                 {effect:[8],attack:5192,cost:[4],target:[0],spec:[2],class:11},
                 {effect:[14],attack:5192,cost:[4],target:[0],spec:[2],class:11},
                 {effect:[18],attack:5192,cost:[4],target:[0],spec:[2],class:11},
+            ],
+        },
+    },{
+        name:'Like\nWater',rarity:1,list:7,
+        levels:[
+            {effect:[5],attack:5694,cost:1,target:[0],spec:[],class:4},
+            {effect:[8],attack:5694,cost:1,target:[0],spec:[],class:4},
+            {effect:[10],attack:5694,cost:1,target:[0],spec:[],class:4},
+        ],mtg:{
+            rarity:1,list:7,color:[2],
+            levels:[
+                {effect:[7],attack:5694,cost:[2,-1],target:[0],spec:[],class:4},
+                {effect:[10],attack:5694,cost:[2,-1],target:[0],spec:[],class:4},
+                {effect:[12],attack:5694,cost:[2,-1],target:[0],spec:[],class:4},
             ],
         },
     },
@@ -37622,20 +37678,6 @@ types.card=[
             ],
         },
     },{
-        name:'Pirouette',rarity:1,list:18,
-        levels:[
-            {effect:[1,2],attack:3914,cost:0,target:[0],spec:[1],class:11},
-            {effect:[1,1],attack:3914,cost:0,target:[0],spec:[1],class:11},
-            {effect:[1,1],attack:3914,cost:0,target:[0],spec:[],class:11},
-        ],mtg:{
-            rarity:1,list:18,color:[5],
-            levels:[
-                {effect:[1,2],attack:3914,cost:[],target:[0],spec:[1],class:11},
-                {effect:[1,1],attack:3914,cost:[],target:[0],spec:[1],class:11},
-                {effect:[1,1],attack:3914,cost:[],target:[0],spec:[],class:11},
-            ],
-        },
-    },{
         name:'Frost\nShatter',rarity:0,list:18,
         levels:[
             {effect:[9],attack:1355,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -39621,6 +39663,20 @@ types.card=[
                 {effect:[22,1],attack:5664,cost:[3,3,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[34,1],attack:5664,cost:[3,3,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[42,1],attack:5664,cost:[3,3,-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'On\nIce',rarity:1,list:18,
+        levels:[
+            {effect:[1,1],attack:5690,cost:1,target:[2,1,1],spec:[1],class:11},
+            {effect:[1,2],attack:5690,cost:1,target:[2,1,1],spec:[1],class:11},
+            {effect:[1,3],attack:5690,cost:1,target:[2,1,1],spec:[1],class:11},
+        ],mtg:{
+            rarity:1,list:18,color:[2,4],
+            levels:[
+                {effect:[1,1],attack:5690,cost:[12],target:[2,1,1],spec:[1],class:11},
+                {effect:[1,2],attack:5690,cost:[12],target:[2,1,1],spec:[1],class:11},
+                {effect:[1,3],attack:5690,cost:[12],target:[2,1,1],spec:[1],class:11},
             ],
         },
     },
@@ -43535,6 +43591,20 @@ types.card=[
                 {effect:[10,6],attack:5689,cost:[11,-1],target:[0],spec:[0,69],class:1},
                 {effect:[14,10],attack:5689,cost:[11,-1],target:[0],spec:[0,69],class:1},
                 {effect:[16,12],attack:5689,cost:[-1,-1],target:[0],spec:[0,69],class:1},
+            ],
+        },
+    },{
+        name:'Terminate',rarity:2,list:20,
+        levels:[
+            {effect:[25],attack:5692,cost:1,target:[2,1,3],spec:[],class:11},
+            {effect:[35],attack:5692,cost:1,target:[2,1,3],spec:[],class:11},
+            {effect:[40],attack:5692,cost:1,target:[2,1,3],spec:[],class:11},
+        ],mtg:{
+            rarity:2,list:20,color:[1,5],
+            levels:[
+                {effect:[25],attack:5692,cost:[1,5],target:[2,1,3],spec:[],class:11},
+                {effect:[35],attack:5692,cost:[1,5],target:[2,1,3],spec:[],class:11},
+                {effect:[40],attack:5692,cost:[1,5],target:[2,1,3],spec:[],class:11},
             ],
         },
     },
@@ -63660,6 +63730,20 @@ types.card=[
                 {effect:[1,2],attack:5336,cost:[],target:[0],spec:[],class:11},
                 {effect:[1,3],attack:5336,cost:[],target:[0],spec:[],class:11},
                 {effect:[1,4],attack:5336,cost:[],target:[0],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Pirouette',rarity:-1,list:-8,
+        levels:[
+            {effect:[1,2],attack:3914,cost:0,target:[0],spec:[1],class:11},
+            {effect:[1,1],attack:3914,cost:0,target:[0],spec:[1],class:11},
+            {effect:[1,1],attack:3914,cost:0,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[5],
+            levels:[
+                {effect:[1,2],attack:3914,cost:[],target:[0],spec:[1],class:11},
+                {effect:[1,1],attack:3914,cost:[],target:[0],spec:[1],class:11},
+                {effect:[1,1],attack:3914,cost:[],target:[0],spec:[],class:11},
             ],
         },
     },

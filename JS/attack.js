@@ -235,7 +235,7 @@ class attack{
             case 5367: case 5368: case 5369: case 5370: case 5371: case 5372: case 5375: case 5386: case 5391: case 5392: case 5394: case 5399: case 5402: case 5405: case 5415: case 5416: case 5417: case 5418: case 5420: case 5421:
             case 5433: case 5434: case 5435: case 5436: case 5437: case 5438: case 5439: case 5449: case 5451: case 5454: case 5456: case 5460: case 5462: case 5463: case 5472: case 5479: case 5485: case 5489: case 5490: case 5493:
             case 5501: case 5512: case 5517: case 5518: case 5519: case 5548: case 5551: case 5557: case 5558: case 5562: case 5564: case 5598: case 5605: case 5606: case 5615: case 5619: case 5620: case 5625: case 5628: case 5631:
-            case 5633: case 5636: case 5637: case 5641: case 5644: case 5647: case 5651: case 5657: case 5658: case 5662: case 5664: case 5666: case 5668: case 5673: case 5684: case 5685:
+            case 5633: case 5636: case 5637: case 5641: case 5644: case 5647: case 5651: case 5657: case 5658: case 5662: case 5664: case 5666: case 5668: case 5673: case 5684: case 5685: case 5690: case 5692: case 5695:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -11713,6 +11713,13 @@ class attack{
                         this.userCombatant.metal+=this.effect[0]
                         this.userManager.hand.upgrade(this.effect[1])
                     break
+                    case 5690:
+                        this.userCombatant.statusEffect('Dodge',this.effect[0])
+                        this.targetCombatant.statusEffect('Freeze',this.effect[1])
+                    break
+                    case 5694:
+                        this.userCombatant.statusEffect('Calm Block Per Turn',this.effect[0])
+                    break
 
                 }
                 //mark 4
@@ -14391,6 +14398,11 @@ class attack{
                         if(this.fuel>=this.effect[1]){
                             this.battle.addSpecificEnergy(2,this.player,6)
                         }
+                    break
+                    case 5691:
+                        this.userManager.draw(this.effect[0])
+                        this.userManager.deAbstract(1,this.effect[1],[])
+                        this.userCombatant.statusEffect('Control',this.effect[2])
                     break
 
                 }
@@ -17961,6 +17973,11 @@ class attack{
                         this.targetCombatant.statusEffect('Weak',this.effect[0])
                         this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
                         this.userManager.draw(this.effect[2])
+                    break
+                    case 5692:
+                        if(this.targetCombatant.life<this.targetCombatant.base.life*this.effect[0]/100){
+                            this.targetCombatant.life=0
+                        }
                     break
 
                 }
@@ -21897,6 +21914,15 @@ class attack{
                     break
                     case 5658:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.fuel>=this.effect[1]?2:1),this.user)
+                    break
+                    case 5693:
+                        this.userCombatant.statusEffect('Basic Orb Per Turn',this.effect[0])
+                    break
+                    case 5695:
+                        this.userCombatant.evoke(0,this.targetCombatant.id,[this.effect[0]])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(0)
+                        }
                     break
 
                 }

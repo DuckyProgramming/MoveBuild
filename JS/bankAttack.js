@@ -824,7 +824,7 @@ attack.prototype.update=function(){
         case 5331: case 5332: case 5377: case 5378: case 5379: case 5380: case 5384: case 5385: case 5406: case 5407:
         case 5409: case 5453: case 5473: case 5474: case 5475: case 5476: case 5533: case 5535: case 5545: case 5552:
         case 5553: case 5554: case 5555: case 5556: case 5559: case 5560: case 5602: case 5607: case 5608: case 5614:
-        case 5626: case 5630: case 5642: case 5677: case 5678: case 5687:
+        case 5626: case 5630: case 5642: case 5677: case 5678: case 5687: case 5690: case 5694:
             //mark 4
             if(
                 this.timer==1&&(
@@ -928,7 +928,7 @@ attack.prototype.update=function(){
         case 5455: case 5461: case 5477: case 5481: case 5482: case 5496: case 5497: case 5514: case 5515: case 5521:
         case 5522: case 5534: case 5536: case 5540: case 5541: case 5542: case 5546: case 5547: case 5549: case 5550:
         case 5588: case 5589: case 5591: case 5597: case 5613: case 5627: case 5634: case 5635: case 5638: case 5639:
-        case 5640: case 5646: case 5679: case 5680: case 5681: case 5682: case 5683: case 5684:
+        case 5640: case 5646: case 5679: case 5680: case 5681: case 5682: case 5683: case 5684: case 5691:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -1928,6 +1928,7 @@ attack.prototype.update=function(){
         case 4860: case 4861: case 4866: case 4868: case 4888: case 4909: case 4932: case 4941: case 5004: case 5037:
         case 5082: case 5083: case 5089: case 5090: case 5108: case 5109: case 5110: case 5133: case 5134: case 5138:
         case 5142: case 5158: case 5197: case 5234: case 5237: case 5280: case 5399: case 5472: case 5479: case 5598:
+        case 5692:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -4392,7 +4393,7 @@ attack.prototype.update=function(){
         case 4810: case 4869: case 4940: case 4982: case 4996: case 5035: case 5039: case 5040: case 5070: case 5086:
         case 5159: case 5164: case 5198: case 5216: case 5218: case 5219: case 5220: case 5298: case 5299: case 5325:
         case 5419: case 5427: case 5488: case 5491: case 5543: case 5544: case 5601: case 5605: case 5616: case 5644:
-        case 5658:
+        case 5658: case 5693: case 5695:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true

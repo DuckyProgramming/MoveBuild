@@ -175,6 +175,7 @@ class combatant{
                 'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
                 'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable','Energy Gain Splash Freeze',
                 'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost','Splash Attach Poison','Splash Boost',
+                'Basic Orb Per Turn','Calm Block Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -241,7 +242,7 @@ class combatant{
                 0,2,0,0,2,2,0,0,0,2,//62
                 0,0,0,0,0,0,0,0,0,0,//63
                 0,0,0,0,0,0,0,0,0,0,//64
-
+                0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -308,7 +309,7 @@ class combatant{
                 3,2,2,2,2,2,3,2,2,2,//62
                 2,2,2,2,2,2,2,2,2,2,//63
                 2,2,2,2,2,2,2,2,2,2,//64
-                
+                2,2,
             ]}
         /*
         0-none
@@ -5073,6 +5074,8 @@ class combatant{
                     case 630: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[11]+=this.status.main[a]} break
                     case 633: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[3]+=this.status.main[a]} break
                     case 634: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.dropDrawShuffle(this.id,findName('Dark\nMatter',types.card),0,0)}} break
+                    case 640: for(let b=0,lb=this.status.main[a];b<lb;b++){this.holdOrb(0)} break
+                    case 641: if(this.stance==2){this.addBlock(this.status.main[a])} break
                     
                 }
                 if(
