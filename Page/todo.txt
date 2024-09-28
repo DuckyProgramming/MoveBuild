@@ -7,12 +7,6 @@ LISTING GROUP 51
 
 
 
-MERLIN DEVELOPMENT
-
-model
-
-
-
 enemyset next:
 
 world 1 replacements (send some world 1 enemies to world 2):
