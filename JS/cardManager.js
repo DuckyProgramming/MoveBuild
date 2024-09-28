@@ -591,7 +591,7 @@ class cardManager{
                     let amountLeft=amount-this.reserve.cards.length
                     if(this.reserve.cards.length>0){
                         let amountSent=min(amount,this.reserve.cards.length)
-                        this.reserve.send(this.hand.cards,0,amountSent,[3,8,13,14,18][spec])
+                        this.reserve.send(this.hand.cards,0,amountSent,[3,8,13,14,18,5,6,19,9,12][spec])
                         for(let a=0,la=amountSent;a<la;a++){
                             sent.push(this.hand.cards[this.hand.cards.length-1-a])
                         }
@@ -601,7 +601,7 @@ class cardManager{
                         this.reserve.shuffle()
                         if(this.reserve.cards.length>0){
                             let amountSent=min(amountLeft,this.reserve.cards.length)
-                            this.reserve.send(this.hand.cards,0,amountSent,[3,8,13,14,18][spec])
+                            this.reserve.send(this.hand.cards,0,amountSent,[3,8,13,14,18,5,6,19,9,12][spec])
                             for(let a=0,la=amountSent;a<la;a++){
                                 sent.push(this.hand.cards[this.hand.cards.length-1-a])
                             }
@@ -622,7 +622,7 @@ class cardManager{
         }
         return sent
     }
-    drawBottom(amount){
+    drawBottom(amount,spec=0){
         if(amount>0){
             this.hand.allEffectArgs(31,[amount])
             this.battle.stats.drawn[this.player]+=amount
@@ -633,13 +633,13 @@ class cardManager{
             }else{
                 let amountLeft=amount-this.reserve.cards.length
                 if(this.reserve.cards.length>0){
-                    this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amount,this.reserve.cards.length),-1,3)
+                    this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amount,this.reserve.cards.length),-1,[3,8,13,14,18,5,6,19,9,12][spec])
                 }
                 if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                     this.discard.send(this.reserve.cards,0,-1,2)
                     this.reserve.shuffle()
                     if(this.reserve.cards.length>0){
-                        this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amountLeft,this.reserve.cards.length),-1,3)
+                        this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amountLeft,this.reserve.cards.length),-1,[3,8,13,14,18,5,6,19,9,12][spec])
                     }
                 }
                 this.reserve.parseDrawEffects(this.hand)

@@ -3,57 +3,13 @@ somewhere the saves aren't working
 
 
 
-LISTING GROUP 50
-
-
-
-[control rod]
-
-[device driver]
-
-
-
-changes to merlin cardset
-
-
-
-cards that draw when pulled or similar deck manip should happen after all pull effects are concluded
+LISTING GROUP 51
 
 
 
 MERLIN DEVELOPMENT
 
-countdowns
-freeze
-skill->card
-
 model
-icon
-tutorial
-can have a little blue star rotating around
-
-
-
-DUCOPO DEVELOPMENT
-
-expensive (2+ and x cost) cards
-quests
-foil cards
-
-model
-icon
-tutorial
-
-
-
-RANDY DEVELOPMENT
-
-mass, gravitation, and pull
-fuel
-
-model
-icon
-tutorial
 
 
 

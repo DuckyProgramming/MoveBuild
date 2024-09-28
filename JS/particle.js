@@ -203,7 +203,7 @@ class particle{
                     this.sets.push([random(-10,10),random(-10,10)])
                 }
             break
-            case 81:
+            case 81: case 231:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.color=random(0,1)
@@ -212,6 +212,7 @@ class particle{
                 this.trigger=false
                 this.size=1
                 this.scale=1
+                this.spin=random(0,360)
             break
             case 93: case 103: case 104: case 110: case 212:
                 this.size=args[0]
@@ -304,7 +305,7 @@ class particle{
                 this.fade=1
                 this.scale=0
             break
-            case 133: case 194: case 217: case 218: case 219:
+            case 133: case 194: case 217: case 218: case 219: case 232:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -752,6 +753,14 @@ class particle{
                 this.shiftGoal=0
                 this.shiftTrigger=false
                 this.bumps=0
+            break
+            case 233:
+                this.size=args[0]
+                this.direction=args[1]
+                this.side=args[2]
+                this.color=args[3]
+                this.fade=1
+                this.scale=0
             break
 
         }
@@ -1559,7 +1568,7 @@ class particle{
                     this.layer.fill(120-this.color*240,this.color*240,240,this.fade*0.5)
                     this.layer.stroke(80-this.color*160,this.color*160,160,this.fade)
                     this.layer.strokeWeight(2)
-                    regPoly(this.layer,0,0,5,8,8,this.position.y*3)
+                    regPoly(this.layer,0,0,5,8,8,this.position.y*3+this.spin)
                     this.layer.strokeWeight(3)
                     this.layer.point(0,0)
                 break
@@ -2290,7 +2299,7 @@ class particle{
                     this.layer.fill(255,125,175,this.fade*0.1)
                     this.layer.ellipse(0,0,24)
                 break
-                case 133: case 194: case 217: case 218: case 219:
+                case 133: case 194: case 217: case 218: case 219: case 232:
                     for(let a=0,la=this.notes.length;a<la;a++){
                         this.layer.rotate(360/la)
                         switch(this.type){
@@ -2313,6 +2322,10 @@ class particle{
                             case 219:
                                 this.layer.fill(240,40+this.notes[a][0]*120,40+this.notes[a][0]*120,this.fade*2)
                                 this.layer.stroke(240,40+this.notes[a][0]*120,40+this.notes[a][0]*120,this.fade*2)
+                            break
+                            case 232:
+                                this.layer.fill(200+this.notes[a][0]*40,this.fade*2)
+                                this.layer.stroke(200+this.notes[a][0]*40,this.fade*2)
                             break
                         }
                         this.layer.strokeWeight(0.8)
@@ -3767,6 +3780,35 @@ class particle{
                     this.layer.rect(0,6,5,2)
                     this.layer.rect(0,8,3,2)
                 break
+                case 231:
+                    this.layer.rotate(this.position.y*3+this.spin)
+                    this.layer.fill(120-this.color*120,240,240,this.fade*0.5)
+                    this.layer.stroke(80-this.color*80,200,200,this.fade)
+                    this.layer.strokeWeight(2)
+                    this.layer.quad(-3,0,0,-6,3,0,0,6)
+                    this.layer.strokeWeight(3)
+                    this.layer.point(0,0)
+                break
+                case 233:
+                    this.layer.rotate(this.direction)
+                    this.layer.scale(this.side,1)
+                    this.layer.fill(...[[255,0,0],[255,125,0],[255,255,0],[0,255,0],[0,0,255],[255,0,255]][this.color],this.fade*0.5)
+                    this.layer.beginShape()
+                    this.layer.vertex(0,4)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.bezierVertex(12*lsin(a*60+20),12*lcos(a*60+20),16*lsin(a*60+40),16*lcos(a*60+40),18*lsin(a*60+50),18*lcos(a*60+50))
+                        this.layer.bezierVertex(16*lsin(a*60+40),16*lcos(a*60+40),12*lsin(a*60+20),12*lcos(a*60+20),4*lsin(a*60+60),4*lcos(a*60+60))
+                    }
+                    this.layer.endShape()
+                    this.layer.fill(...[[255,125,125],[255,190,125],[255,255,125],[125,255,125],[125,125,255],[255,125,255]][this.color],this.fade*0.5)
+                    this.layer.beginShape()
+                    this.layer.vertex(0,2)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.bezierVertex(10*lsin(a*60+20),10*lcos(a*60+20),14*lsin(a*60+40),14*lcos(a*60+40),18*lsin(a*60+50),18*lcos(a*60+50))
+                        this.layer.bezierVertex(16*lsin(a*60+40),16*lcos(a*60+40),14*lsin(a*60+20),14*lcos(a*60+20),2*lsin(a*60+60),2*lcos(a*60+60))
+                    }
+                    this.layer.endShape()
+                break
 
             }
             //mark p
@@ -3809,6 +3851,7 @@ class particle{
             case 95: case 97: case 99: case 103: case 104: case 110: case 114: case 115: case 116: case 117:
             case 118: case 119: case 120: case 121: case 126: case 152: case 154: case 155: case 156: case 168:
             case 169: case 170: case 173: case 192: case 193: case 196: case 211: case 212: case 225: case 228:
+            case 233:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){
@@ -3937,7 +3980,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 81: case 94: case 102: case 127: case 178:
+            case 81: case 94: case 102: case 127: case 178: case 231:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,5)
@@ -3946,7 +3989,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 88: case 133: case 136: case 194: case 217: case 218: case 219:
+            case 88: case 133: case 136: case 194: case 217: case 218: case 219: case 232:
                 this.fade-=0.05
                 this.scale+=0.05
                 if(this.fade<=0){

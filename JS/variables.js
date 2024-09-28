@@ -76,7 +76,7 @@ types={
         {name:'Angry Gremlin',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[3]}],description:`Anger management issue`},
         {name:'Deployer',life:40,behavior:9,spec:[],move:{type:2,speed:1},attack:[{type:6,effect:[9]},{type:4,effect:[10]},{type:39,effect:[1,'Sentry']}],description:`Brings in backups`},
         {name:'Chief Deployer',life:80,behavior:3,spec:[],move:{type:2,speed:1},attack:[{type:39,effect:[1,'Sentry']},{type:6,effect:[6]},{type:4,effect:[7]},{type:39,effect:[1,'Deployer']}],description:`Builds the builders`},
-        {name:'Sentry',life:8,behavior:0,spec:[0,19],move:{type:0,speed:0},attack:[{type:47,effect:[4]}],description:`Gonna get destroyed`},
+        {name:'Sentry',life:8,behavior:0,spec:[19],move:{type:0,speed:0},attack:[{type:47,effect:[4]}],description:`Gonna get destroyed`},
         {name:'Solar Shard',life:275,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[15]},{type:87,effect:[6]},{type:39,effect:[1,'Lunar Dust']},{type:88,effect:[1]}],description:`How do these things work anyway?`},
         {name:'Lunar Shard',life:120,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[10]},{type:86,effect:[3]}],description:`Extra enemy's kinda pointless`},
         {name:'Lunar Dust',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[6]}],description:`Weak, but exists to be annoying`},
@@ -224,7 +224,7 @@ types={
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,2]}],description:`Gunning for a promotion`},
         {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Lazer games`},
-        {name:'Comrade',life:280,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:171,effect:[6,4]},{type:39,effect:[1,'Red']},{type:169,effect:[5]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
+        {name:'Comrade',life:280,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:171,effect:[6,4]},{type:39,effect:[1,'Red']},{type:169,effect:[4]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
         {name:'Councilman',life:270,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:174,effect:[2]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
         {name:'Gangmaster',life:305,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Gangster']},{type:205,effect:[12]},{type:206,effect:[8]},{type:39,effect:[1,'Gangster Gunner']},{type:207,effect:[1]}],description:`Legitimate businessman`},
         {name:'Daughter of Heaven',life:240,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:348,effect:[10,2,2]},{type:19,effect:[6]},{type:349,effect:[1,1]},{type:296,effect:[12]},{type:39,effect:[1,'Keystone']}],description:`Cut character POV`},
@@ -1299,7 +1299,7 @@ types={
         {name:'Lifesprig',internal:'8 Regeneration',id:30,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Gain 8 Regeneration'},
         {name:'Attack Powder',internal:'1 Strength Per Turn',id:31,rarity:-1,list:0,menu:false,temp:false,mtg:0,description:'Gain 1 Strength\nEvery Turn'},
         {name:'Defense Powder',internal:'1 Dexterity Per Turn',id:32,rarity:-1,list:0,menu:false,temp:false,mtg:0,description:'Gain 1 Dexterity\nEvery Turn'},
-        {name:'Memory Pearl',internal:'Free Discard Pull',id:33,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Put a Card From Discard Pile\nin Your Hand, it Costs 0'},
+        {name:'Memory Pearl',internal:'Free Discard Pull',id:33,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Put a Card in Discard\nPile in Your Hand\nIt Costs 0 Temporarily'},
         {name:'Shiny Cube',internal:'3 Miracles',id:34,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Add 3 Miracles\nto Your Hand'},
         {name:'Berlin Key',internal:'Duplicate 2',id:35,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Duplicate the Next\n2 Cards Played'},
         {name:'Distilled Chaos',internal:'Draw 3 Free',id:36,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Draw 3 Cards,\nThey Cost 0'},
@@ -1360,7 +1360,7 @@ types={
         {name:'Helium Canister',internal:'All Cannot Add Block',id:86,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'All Enemies Cannot Add\nBlock For 2 Turns'},
         {name:'Spare Spacebar',internal:'3 Pristines',id:87,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Add 3 Pristines to Hand'},
         {name:'Corn Cob',internal:'Expensive Free',id:88,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'The Most Expensive Card\nin Hand Costs 0 Temporarily\n(Picks Randomly if Tied)'},
-        {name:'Divination Pearl',internal:'Free Draw Pull',id:89,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Put a Card From Draw Pile\nin Your Hand, it Costs 0'},
+        {name:'Divination Pearl',internal:'Free Draw Pull',id:89,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Put a Card in Draw\nPile in Your Hand\nIt Costs 0 Temporarily'},
 
         {name:'Sun Stone',internal:'Upgrade All/Burn',id:90,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Upgrade All Cards This Combat\nGain 2 Burn'},
         {name:'Soap',internal:'Cleanse',id:91,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Remove All Debuffs'},
@@ -5461,8 +5461,6 @@ types={
             name:'Batter',
             player:{position:[[{x:3,y:2}],[{x:2,y:2},{x:4,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Gangster'},
-                {position:{x:6,y:4},name:'Gangster'},
                 {position:{x:0,y:1},name:'Batter'},
                 {position:{x:6,y:3},name:'Batter'},
             ],reinforce:[
@@ -6157,7 +6155,7 @@ Stacks degrade by 1 each turn.`,
 `Removes weapon from posession, thus disabling scythe-requiring cards.
 Creates rearmament point on target (if applicable) or self.`,
         },{name:'Rearmament Point',mtg:0,desc:
-`Rearms when stepped on, if you are unarmed.
+`Rearms when stepped on, if you are disarmed.
 Removes itself in the process.`,
         },{name:'Target Will',mtg:0,desc:
 `Refers to the target's intent.

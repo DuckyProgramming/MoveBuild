@@ -2048,7 +2048,9 @@ class group{
                     let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                     for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                         this.cards[index].callPullEffect()
+                        
                     }
+                    this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
                     if(userCombatant.getStatus('Mass Pull Damage Random')>0){
                         this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
                     }
@@ -2974,7 +2976,7 @@ class group{
                     if(list[index].spec.includes(69)){
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                         for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
-                            this.cards[index].callPullEffect()
+                            list[index].callPullEffect()
                         }
                         if(userCombatant.getStatus('Mass Pull Damage Random')>0){
                             this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
@@ -3016,7 +3018,7 @@ class group{
                     if(list[index].spec.includes(69)){
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                         for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
-                            this.cards[index].callPullEffect()
+                            list[index].callPullEffect()
                         }
                         if(userCombatant.getStatus('Mass Pull Damage Random')>0){
                             this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
@@ -3043,6 +3045,9 @@ class group{
         }
         if(this.player>=0&&stage!='tier'){
             this.battle.cardManagers[this.player].midDraw=false
+        }
+        if(spec==23){
+            this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
         }
     }
     sendSpec(cardData,spec){

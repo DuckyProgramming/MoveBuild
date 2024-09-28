@@ -2425,10 +2425,10 @@ turn.prototype.update=function(){
                     }
                     if(this.procedure[0]==2){
                         if(this.timer>15*this.targetDistance-5&&this.timer<=15*this.targetDistance+3){
-                            this.targetCombatant.moveTile(this.procedure[1],this.distance/40)
+                            this.targetCombatant.moveTile(this.procedure[1],this.distance/40/this.targetDistance)
                             this.targetCombatant.moveRelativeTile(this.relativeDirection+this.procedure[2]*60,this.relativeDistance/40/this.targetDistance)
                         }else if(this.timer>15*this.targetDistance+3&&this.timer<=15*this.targetDistance+11){
-                            this.targetCombatant.moveTile(this.procedure[1],-this.distance/40)
+                            this.targetCombatant.moveTile(this.procedure[1],-this.distance/40/this.targetDistance)
                             this.targetCombatant.moveRelativeTile(this.relativeDirection+this.procedure[2]*60,-this.relativeDistance/40/this.targetDistance)
                         }
                         if(this.timer>=15*this.targetDistance+11){
@@ -2436,10 +2436,10 @@ turn.prototype.update=function(){
                         }
                     }else if(this.procedure[0]==1){
                         if(this.timer>15*this.targetDistance-5&&this.timer<=15*this.targetDistance+3){
-                            this.targetCombatant.moveTile(this.procedure[1],this.distance/10)
+                            this.targetCombatant.moveTile(this.procedure[1],this.distance/10/this.targetDistance)
                             this.targetCombatant.moveRelativeTile(this.relativeDirection+this.procedure[2]*60,this.relativeDistance/10/this.targetDistance)
                         }else if(this.timer>15*this.targetDistance+3&&this.timer<=15*this.targetDistance+11){
-                            this.targetCombatant.moveTile(this.procedure[1],-this.distance/10)
+                            this.targetCombatant.moveTile(this.procedure[1],-this.distance/10/this.targetDistance)
                             this.targetCombatant.moveRelativeTile(this.relativeDirection+this.procedure[2]*60,-this.relativeDistance/10/this.targetDistance)
                         }
                         if(this.timer==15*this.targetDistance+3){

@@ -82,7 +82,7 @@ class combatantManager{
         this.battle.turnManager.turns=[]
         this.battle.turnManager.turnsBack=[]
     }
-    resetCombatants(){
+    resetCombatants(type){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0||this.combatants[a].construct||this.combatants[a].support){
                 switch(this.combatants[a].name){
@@ -124,7 +124,14 @@ class combatantManager{
                 a--
                 la--
             }else{
-                this.combatants[a].reset()
+                switch(type){
+                    case 0:
+                        this.combatants[a].resetInfo()
+                    break
+                    case 1:
+                        this.combatants[a].reset()
+                    break
+                }
             }
         }
         this.battle.tileManager.activate()

@@ -972,7 +972,7 @@ based on the cards in your draw pile that you can Scry.`,
             break
             case 24:
                 transition.scene='battle'
-                game.player=[16]
+                game.player=[17]
                 game.deck=[0]
                 this.battle.player=[17]
                 this.battle.deck=[0]
@@ -1015,33 +1015,118 @@ at the start of your turn, the wish will remove itself. Remember, they only
 take effect at the start of each of your turns, not when you play them.`,
 `END OF TUTORIAL`,
                 ]
-                /*
-`Strike and Defend are the most basic cards in the game, along with Step.
-Because Step is a movement card, it is best removed from the basic card group.
-All characters gain access to Strike and Defend, and they are seen as weak cards.`,
-`But for Chip, they can be used as the core of a strategy.
-Because you start with many of them, a deck only requires adding a few more cards.
-They can be made stronger, or more of them can be created, using other cards.`,
-                */
             break
             case 25:
-                console.log('t25')
-                /*
+                transition.scene='battle'
+                game.player=[18]
+                game.deck=[0]
+                this.battle.player=[18]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.setEnergy(0,0)
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(50)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
+                this.popups=[[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Merlin, the Fanfare, is designed around patience and variance.
+Her gimmicks include: Countdowns, Freeze, and Skills.`,
 `Countdowns are a set of cards with a special marker on the energy symbol.
-Many characters have some countdowns but Azis has the most.`,
+Many characters have some countdowns, but Merlin has the most.`,
 `Countdowns can be paid for over time by putting energy in.
 Here, one energy can be put into the countdown.`,
 `Countdowns are very diverse and a wide variety of strategies involve them.
 As a group of cards, there are a lot of interactions.`,
-
-`[Freeze]`,
-                */
+`Freeze is a status effect that is built up on each turn individually.
+At the end of each turn, Freeze triggers and all Freeze is removed,
+unlike other statuses that persist between turns.`,
+`The damage dealt by Freeze scales quickly, as it is equal
+to the square of the amount of Freeze applied. Because of this,
+you should aim to apply as much Freeze as you can quickly.`,
+`Finally, Merlin can make specific use of skill cards,
+and can form some combos around them.`,
+`END OF TUTORIAL`,
+                ]
             break
             case 26:
-                console.log('t26')
+                transition.scene='battle'
+                game.player=[19]
+                game.deck=[0]
+                this.battle.player=[19]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
+                this.popups=[[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Ducopo, the Adventurer, can follow several distinct plans.
+His gimmicks include: Foil cards, Quests, and expensive cards.`,
+`Foil is an edition that adds 5 block when the card is used.
+As Donakho, you can generate a lot of foil cards, which can
+come in handy as a block source or can act as its own synergy.`,
+`Furthermore, Ducopo has access to Chocolate Chip,
+a status that deals 1 splash damage when you gain block.
+If you gain many foil cards, it can deal plenty of damage.`,
+`Ducopo's token card is Tile, which draws 1 card and exhausts
+1 card. While useful generally for exhausting and being draw-neutral,
+almost all sources of Tiles make them foil on creation.`,
+`Quests are cards that require a series of tasks to be completed,
+but reward the player with a free effect afterward.`,
+`The "-1:" indicator indicates what must be done to reduce
+the remaining progress on the quest by 1. When the progress is down
+to 0, the quest is complete and can be played for the active effect.`,
+`X cost and 2 cost cards can be used by Ducopo more than
+for other characters. Despite the high energy expenditure, there
+are many ways to build around these high-cost cards.`,
+`END OF TUTORIAL`,
+                ]
             break
             case 27:
-                console.log('t27')
+                transition.scene='battle'
+                game.player=[20]
+                game.deck=[0]
+                this.battle.player=[20]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
+                this.popups=[[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Randy, the Inspector, is about controlling chaos.
+His gimmicks include: Mass, Pulling, and Fuel.`,
+`Many of Randy's cards include an effect that targets a random card.
+Whenever one of these is triggered, cards with Mass will be
+prioritized over all other cards and chosen first.`,
+`When such a random effect targets a card with mass,
+that card will be considered Pulled. There are also other ways
+to Pull a card, and Pulling on many cards gives special effects.`,
+`Fuel cards have additional effects whenever enough fuel
+has been added. Whenever a card is played, it fuels your hand for 1.`,
+`Fuel is used up on play regardless of if you have enough of it,
+but if you do not play a card, it retains its Fuel counter.`,
+`Randy's token card is Dark Matter, which stays in your hand
+for a bit of time, but more importantly can be used as fodder
+for random effects since it has mass.`,
+`Dark Matter, by virtue of being free and exhausting,
+can also be used as cheap fuel for any fuel cards.`,
+`END OF TUTORIAL`,
+                ]
             break
         }
         this.anim.pages=[]
@@ -1061,6 +1146,7 @@ As a group of cards, there are a lot of interactions.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=5
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activated=true
+                        this.battle.updateTargetting()
                     break
                     case 5:
                         this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,0)
@@ -1883,6 +1969,120 @@ As a group of cards, there are a lot of interactions.`,
             break
             case 25:
                 switch(this.page){
+                    case 1:
+                        this.battle.setEnergy(0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Tetraphobia',types.card),0,18)
+                    break
+                    case 2:
+                        this.battle.setEnergy(1,0)
+                    break
+                    case 3:
+                        this.battle.setEnergy(7,0)
+                        this.battle.cardManagers[0].hand.add(findName('Tetraphobia',types.card),0,18)
+                        this.battle.cardManagers[0].hand.add(findName('Cloak',types.card),0,18)
+                        this.battle.cardManagers[0].hand.add(findName('Cascade',types.card),0,18)
+                        this.battle.cardManagers[0].hand.add(findName('Magic\nSwitch',types.card),0,18)
+                    break
+                    case 5:
+                        this.battle.setEnergy(99,0)
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Beaming\nFrost',types.card),0,18)
+                        this.battle.cardManagers[0].hand.add(findName('Snowdrop',types.card),0,18)
+                    break
+                    case 6:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(15)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Guarantee',types.card),0,18)
+                        this.battle.cardManagers[0].hand.add(findName('Downbeat',types.card),0,18)
+                    break
+                }
+            break
+            case 26:
+                switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,19,2)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,19,2)
+                    break
+                    case 2:
+                        this.battle.cardManagers[0].hand.add(findName('Cookie\nJar',types.card),0,19)
+                        this.battle.cardManagers[0].hand.add(findName('Mint\nCondition',types.card),0,19)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,19,2)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,19,2)
+                        this.battle.cardManagers[0].hand.add(findName('Nod\nOff',types.card),0,19,2)
+                    break
+                    case 3:
+                        this.battle.cardManagers[0].hand.add(findName('Tile',types.card),0,0,2)
+                    break
+                    case 4:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.endTurn()
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Passivity',types.card),0,19)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,19)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,19)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,19)
+                    break
+                    case 6:
+                        this.battle.setEnergy(3,0)
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(30)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Charge\nStrike',types.card),0,19)
+                        this.battle.cardManagers[0].hand.add(findName('Big\nStrike',types.card),0,19)
+                        this.battle.cardManagers[0].hand.add(findName('High\nGround',types.card),0,19)
+                    break
+                }
+            break
+            case 27:
+                switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Exhausting\nStrike',types.card),0,20)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,20)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,20)
+                        this.battle.cardManagers[0].hand.add(findName('Golden\nGun',types.card),0,20)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,20)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,20)
+                    break
+                    case 2:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:2,y:1},findName('AttackDummy',types.combatant),-30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=10
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activated=true
+                        this.battle.updateTargetting()
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Exhausting\nStrike',types.card),0,20)
+                        this.battle.cardManagers[0].hand.add(findName('Shooting\nStar',types.card),0,20)
+                    break
+                    case 3:
+                        this.battle.cardManagers[0].hand.add(findName('Sinter',types.card),0,20)
+                        this.battle.cardManagers[0].hand.add(findName('',types.card),0,20)
+                        this.battle.cardManagers[0].hand.add(findName('',types.card),0,20)
+                    break
+                    case 5:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Exhausting\nStrike',types.card),0,20)
+                        this.battle.cardManagers[0].hand.add(findName('Grit',types.card),0,20)
+                        this.battle.cardManagers[0].hand.add(findName('Dark\nMatter',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Dark\nMatter',types.card),0,0)
+                    break
+                    case 6:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Sinter',types.card),0,20)
+                        this.battle.cardManagers[0].hand.add(findName('Dark\nMatter',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Dark\nMatter',types.card),0,0)
+                    break
                 }
             break
         }

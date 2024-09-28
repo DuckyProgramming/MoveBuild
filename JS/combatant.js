@@ -175,7 +175,7 @@ class combatant{
                 'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
                 'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable','Energy Gain Splash Freeze',
                 'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost','Splash Attach Poison','Splash Boost',
-                'Basic Orb Per Turn','Calm Block Per Turn',
+                'Basic Orb Per Turn','Calm Block Per Turn','Dark Matter Pull Fuel All','Snowflake Per Turn','Counter All Spread','Flame Orb Splash',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -242,7 +242,7 @@ class combatant{
                 0,2,0,0,2,2,0,0,0,2,//62
                 0,0,0,0,0,0,0,0,0,0,//63
                 0,0,0,0,0,0,0,0,0,0,//64
-                0,0,
+                0,0,0,0,1,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -309,7 +309,7 @@ class combatant{
                 3,2,2,2,2,2,3,2,2,2,//62
                 2,2,2,2,2,2,2,2,2,2,//63
                 2,2,2,2,2,2,2,2,2,2,//64
-                2,2,
+                2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -406,12 +406,8 @@ class combatant{
         this.elemental=false
         this.wish=3
     }
-    reset(){
-        this.size=this.base.size
-        this.anim=this.base.anim
-        
+    resetInfo(){
         this.constants()
-
         this.resetAnim()
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -421,6 +417,17 @@ class combatant{
             this.status.size[a]=0
         }
         this.status.display=[]
+        this.infoAnim={
+            life:1,block:0,blockSize:1,barrier:0,barrierSize:1,blockBarrier:0,
+            size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],
+            flash:[0,0,0,0],upFlash:[false,false,false,false],
+            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],elemental:0}
+    }
+    reset(){
+        this.size=this.base.size
+        this.anim=this.base.anim
+        
+        this.resetInfo()
         if(this.team>0&&variants.terminal){
             this.statusEffect('Armor',4)
             this.addBlock(4)
@@ -444,11 +451,6 @@ class combatant{
                 this.carry[a]=0
             }
         }
-        this.infoAnim={
-            life:1,block:0,blockSize:1,barrier:0,barrierSize:1,blockBarrier:0,
-            size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],
-            flash:[0,0,0,0],upFlash:[false,false,false,false],
-            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],elemental:0}
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.infoAnim.orbSpec.push([])
             for(let b=0,lb=constants.orbNumber;b<lb;b++){
@@ -851,7 +853,7 @@ class combatant{
                         this.statusEffect('Strength Per Turn',1)
                         this.statusEffect('Control',1)
                     break
-                    case 'Pointy': case 'Prisoner': case 'Elf Archer': case 'Normal1': case 'Structural Energy': case 'Disorder Energy': case 'Prisoner Informant': case 'Inconsistent': case 'Latency': case 'Dark Priest': case 'Brawler':
+                    case 'Pointy': case 'Sentry': case 'Prisoner': case 'Elf Archer': case 'Normal1': case 'Structural Energy': case 'Disorder Energy': case 'Prisoner Informant': case 'Inconsistent': case 'Latency': case 'Dark Priest': case 'Brawler':
                         this.spec.push(0)
                     break
                     case 'Romeo':
@@ -899,7 +901,7 @@ class combatant{
                     case 'Big Slime': case 'Big Spike Slime': case 'Big Slimoid':
                         this.subAttackTypeSwitch([[2,32,32,[1,2]]])
                     break
-                    case 'Moss Creature':
+                    case 'Moss Creature': case 'Deployer': case 'Chief Deployer':
                         this.statusEffect('Armor',5)
                     break
                     case 'Goblin':
@@ -934,7 +936,7 @@ class combatant{
                         this.spec.push(7)
                         this.removeAttack(4)
                     break
-                    case 'Management Robot': case 'Sentry': case 'Destructor Bot': case 'Riot Police': case 'Duckforce': case 'Management Robot Commander':
+                    case 'Management Robot': case 'Destructor Bot': case 'Riot Police': case 'Duckforce': case 'Management Robot Commander':
                         this.spec.push(7)
                     break
                     case 'Management Soldier':
@@ -954,7 +956,7 @@ class combatant{
                     case 'Fat Gremlin':
                         this.statusEffect('Single Counter Block',12)
                     break
-                    case 'Deployer': case 'Chief Deployer': case 'Golden Duck':
+                    case 'Golden Duck':
                         this.move.type=12
                     break
                     case 'Solar Shard':
@@ -1252,7 +1254,7 @@ class combatant{
                     break
                     case 'Comrade':
                         this.statusEffect('Buffer',2)
-                        this.statusEffect('Regeneration',15) 
+                        this.statusEffect('Regeneration',10) 
                     break
                     case 'Councilman':
                         this.move.speed++
@@ -3245,7 +3247,6 @@ class combatant{
                                 }
                                 damageLeft-=this.block
                                 this.block=0
-
                             }
                         }
                         if(damageLeft>0&&this.barrier>0){
@@ -3726,7 +3727,11 @@ class combatant{
                             userCombatant.statusEffect('Weak Next Turn',this.battle.relicManager.active[75][this.id+1])
                         }
                         if(this.status.main[26]>0){
-                            userCombatant.takeDamage(this.status.main[26],-1)
+                            if(this.status.main[644]>0){
+                                this.battle.combatantManager.allEffect(19,[this.status.main[26]])
+                            }else{
+                                userCombatant.takeDamage(this.status.main[26],-1)
+                            }
                         }
                         if(this.status.main[78]>0){
                             userCombatant.takeDamage(this.status.main[78],-1)
@@ -4104,6 +4109,9 @@ class combatant{
             break
             case 7:
                 this.battle.combatantManager.combatants[target].statusEffect('Burn',3)
+                if(this.status.main[645]>0){
+                    this.battle.combatantManager.areaAbstract(0,[this.status.main[645],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
+                }
             break
             case 8:
                 this.battle.combatantManager.combatants[target].statusEffect('Freeze',3)
@@ -4171,6 +4179,9 @@ class combatant{
             break
             case 7:
                 this.battle.combatantManager.combatants[target].statusEffect('Burn',2)
+                if(this.status.main[645]>0){
+                    this.battle.combatantManager.areaAbstract(0,[this.status.main[645],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
+                }
             break
             case 8:
                 this.battle.combatantManager.combatants[target].statusEffect('Freeze',2)
@@ -5076,6 +5087,7 @@ class combatant{
                     case 634: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.dropDrawShuffle(this.id,findName('Dark\nMatter',types.card),0,0)}} break
                     case 640: for(let b=0,lb=this.status.main[a];b<lb;b++){this.holdOrb(0)} break
                     case 641: if(this.stance==2){this.addBlock(this.status.main[a])} break
+                    case 643: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Snowflake',types.card),0,0)} break
                     
                 }
                 if(

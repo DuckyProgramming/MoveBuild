@@ -348,6 +348,11 @@ class battle{
                 this.optionManagers.forEach(optionManager=>optionManager.removeAfter())
             break
         }
+        switch(post){
+            case 'map': case 'rest': case 'shop': case 'event': case 'stash': case 'bossStash':
+                this.combatantManager.resetCombatants(0)
+            break
+        }
     }
     convert(scene){
         switch(scene){
@@ -441,7 +446,7 @@ class battle{
         game.collisionDamage=constants.collisionDamage*(this.modded(68)?5:1)
 
         this.tileManager.generateTiles(types.level[findName(effectiveEncounter.level[floor(random(0,effectiveEncounter.level.length))],types.level)])
-        this.combatantManager.resetCombatants()
+        this.combatantManager.resetCombatants(1)
         
         this.resetAnim()
         for(let a=0,la=this.players;a<la;a++){
@@ -574,7 +579,6 @@ class battle{
     }
     setupRest(){
         this.optionManagers.forEach(optionManager=>optionManager.reset())
-        this.combatantManager.resetCombatants()
     }
     setupShop(){
         this.purchaseManager.setup(0)
@@ -582,21 +586,17 @@ class battle{
     }
     setupStash(){
         this.relicManager.setupStash()
-        this.combatantManager.resetCombatants()
     }
     setupBossStash(){
         this.relicManager.setupBossStash()
-        this.combatantManager.resetCombatants()
     }
     setupEvent(){
         this.eventManagers.forEach(eventManager=>eventManager.pickEvent())
         this.eventManagers.forEach(eventManager=>eventManager.setup())
-        this.combatantManager.resetCombatants()
     }
     setupSpecificEvent(event){
         this.eventManagers.forEach(eventManager=>eventManager.event=event)
         this.eventManagers.forEach(eventManager=>eventManager.setup())
-        this.combatantManager.resetCombatants()
     }
     setupStats(){
         this.overlayManager.closeAll()
