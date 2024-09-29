@@ -175,7 +175,7 @@ class combatant{
                 'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
                 'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable','Energy Gain Splash Freeze',
                 'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost','Splash Attach Poison','Splash Boost',
-                'Basic Orb Per Turn','Calm Block Per Turn','Dark Matter Pull Fuel All','Snowflake Per Turn','Counter All Spread','Flame Orb Splash',
+                'Basic Orb Per Turn','Calm Block Per Turn','Dark Matter Pull Fuel All','Snowflake Per Turn','Counter All Spread','Flame Orb Splash','Dark Light Orb Swap','Light Dark Orb Swap',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -242,7 +242,7 @@ class combatant{
                 0,2,0,0,2,2,0,0,0,2,//62
                 0,0,0,0,0,0,0,0,0,0,//63
                 0,0,0,0,0,0,0,0,0,0,//64
-                0,0,0,0,1,0,
+                0,0,0,0,1,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -309,7 +309,7 @@ class combatant{
                 3,2,2,2,2,2,3,2,2,2,//62
                 2,2,2,2,2,2,2,2,2,2,//63
                 2,2,2,2,2,2,2,2,2,2,//64
-                2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -4098,6 +4098,11 @@ class combatant{
             break
             case 4:
                 this.battle.combatantManager.combatants[target].orbTake(round(detail*multi*playerMulti),-1)
+                if(this.status.main[646]>0&&!this.orbs.includes(6)){
+                    for(let a=0,la=this.status.main[646];a<la;a++){
+                        this.holdOrb(6)
+                    }
+                }
             break
             case 5:
                 this.battle.combatantManager.combatants[target].orbTake(round(8*multi*playerMulti),-1)
@@ -4105,6 +4110,11 @@ class combatant{
             case 6:
                 if(target<this.battle.players||this.id<this.battle.players){
                     this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(2)
+                }
+                if(this.status.main[647]>0&&!this.orbs.includes(4)){
+                    for(let a=0,la=this.status.main[647];a<la;a++){
+                        this.holdOrb(4)
+                    }
                 }
             break
             case 7:
@@ -7213,9 +7223,6 @@ class combatant{
                 if(this.battle.attackManager.attacks.length<=0){
                     this.goal.anim.sword2=false
                 }
-            break
-            case 'Azis':
-                controlSpin(this.hood,this.anim.direction,0)
             break
             case 'Slow King':
                 this.fades.shield=smoothAnim(this.fades.shield,this.block>0,0,1,5)

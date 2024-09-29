@@ -3884,6 +3884,8 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 				break
 				case 'Merlin':
 					p1.anim.mouth.y++
+					p1.anim.eye=[1,1]
+					p1.anim.eyeStyle=[1,1]
 					p1.anim.legs=[
 						{top:33,bottom:18,length:{top:16.5,bottom:16.5}},
 						{top:6,bottom:-15,length:{top:16.5,bottom:16.5}}
@@ -6596,6 +6598,7 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2+600,layer.height*0.7+290,125,55)
 			layer.rect(layer.width/2-150,layer.height*0.7+85,125,55)
 			layer.rect(layer.width/2+150,layer.height*0.7+85,125,55)
+			layer.rect(layer.width/2+450,layer.height*0.7+77.5,350,70)
 			layer.fill(0)
 			layer.rect(layer.width/2,layer.height*0.7+115,100,100)
 			layer.rect(layer.width/2,layer.height*0.7+265,100,100)
@@ -6609,6 +6612,8 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2+600,layer.height*0.7+290,100,30)
 			layer.rect(layer.width/2-150,layer.height*0.7+85,100,30)
 			layer.rect(layer.width/2+150,layer.height*0.7+85,100,30)
+			layer.rect(layer.width/2+422.5,layer.height*0.7+77.5,270,45)
+			layer.rect(layer.width/2+590,layer.height*0.7+77.5,45,45)
 			layer.fill(120)
 			regTriangle(layer,layer.width/2-145,layer.height*0.7+190,30,30,30)
 			regTriangle(layer,layer.width/2+145,layer.height*0.7+190,30,30,-30)
@@ -6623,6 +6628,7 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2+613.5,layer.height*0.7+190,9,36)
 			layer.fill(255)
 			layer.textSize(20)
+			layer.text('MARK INGAME',layer.width/2+422.5,layer.height*0.7+77.5)
 			layer.text('BACK',layer.width/2+300,layer.height*0.7+290)
 			layer.text('QUERIES',layer.width/2+450,layer.height*0.7+290)
 			layer.text('LISTS',layer.width/2+600,layer.height*0.7+290)

@@ -85,7 +85,7 @@ class group{
         this.cards=[]
         composite.cards.forEach(base=>this.cards.push(new card(
             this.layer,this.battle,base.player,base.position.x,base.position.y,
-            base.type,base.level,base.color,base.id,base.cost,
+            findName(base.name,types.card),base.level,base.color,base.id,base.cost,
             base.additionalSpec,base.name,base.list,base.effect,base.attack,
             base.target,base.spec,base.cardClass,base.limit,undefined,
             false,base.colorful,base.edition,base.base.cost,base.drawn,
@@ -426,6 +426,10 @@ class group{
     slideTop(){
         this.cards.splice(0,0,this.cards[this.cards.length-1])
         this.cards.splice(this.cards.length-1,1)
+    }
+    slideSpecific(index){
+        this.cards.splice(0,0,this.cards[index])
+        this.cards.splice(index+1,1)
     }
     resetAnim(){
         this.lastSort=-1

@@ -3,9 +3,10 @@ class collectionManager{
         this.layer=layer
         this.battle=battle
         this.known=[]
+        this.knownKey=[]
         this.saveKey=false
         this.cards=[]
-        this.anim={query:{list:[],rarity:[],class:[]}}
+        this.anim={query:{list:[],rarity:[],class:[]},variant:0}
         this.level=0
         this.page=0
         this.totals=[0,0]
@@ -29,7 +30,6 @@ class collectionManager{
             this.anim.query.class.push(0)
             this.query.class.push(true)
         }
-
         this.getData()
     }
     executeQuery(){
@@ -117,6 +117,7 @@ class collectionManager{
     activate(name){
         if(!this.known.includes(name)&&!game.dev){
             this.known.push(name)
+            this.knownKey[findName(name,types.card)]=true
             this.saveKey=true
         }
     }
@@ -129,6 +130,10 @@ class collectionManager{
     getData(){
         let result=getItem('DP_MOVEBUILD_COLLECTION_KNOWN')
         this.known=result==null?[]:JSON.parse(result)
+        for(let a=0,la=types.card.length;a<la;a++){
+            this.known.push([])
+        }
+        this.known.forEach(name=>this.knownKey[findName(name,types.card)]=true)
     }
     saveData(){
         storeItem('DP_MOVEBUILD_COLLECTION_KNOWN',JSON.stringify(this.known))
@@ -136,6 +141,9 @@ class collectionManager{
     display(scene){
         switch(scene){
             case 'collection':
+                this.layer.noStroke()
+                this.layer.fill(255,this.anim.variant)
+                this.layer.ellipse(this.layer.width/2+295,this.layer.height*0.7+38.75,10)
                 this.layer.fill(0)
                 this.layer.stroke(120)
                 this.layer.strokeWeight(3)
@@ -182,6 +190,7 @@ class collectionManager{
     update(scene){
         switch(scene){
             case 'collection':
+                this.anim.variant=smoothAnim(this.anim.variant,variants.collection,0,1,5)
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].upSize=a>=this.page*24&&a<this.page*24+24
                     this.cards[a].deSize=!this.cards[a].upSize
@@ -211,6 +220,9 @@ class collectionManager{
     onClick(scene){
         switch(scene){
             case 'collection':
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+295,y:this.layer.height*0.7+38.75},width:22.5,height:22.5})){
+                    variants.collection=!variants.collection
+                }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-75,y:this.layer.height*0.7+95},width:62.5,height:62.5})&&this.page>0){
                     this.page--
                 }
@@ -284,6 +296,9 @@ class collectionManager{
     onKey(scene,key,code){
         switch(scene){
             case 'collection':
+                if(key=='~'){
+                    variants.collection=!variants.collection
+                }
                 if(code==LEFT_ARROW&&this.page>0){
                     this.page--
                 }

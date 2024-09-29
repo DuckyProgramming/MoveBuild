@@ -3620,7 +3620,7 @@ class overlay{
                                             la--
                                         break
                                         case 94:
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,11)
+                                            this.battle.cardManagers[this.player].reserve.slideSpecific(a)
                                         break
                                         case 95:
                                             this.battle.cardManagers[this.player].reserve.copy(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
@@ -4851,7 +4851,7 @@ class overlay{
                                             la--
                                         break
                                         case 94:
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,11)
+                                            this.battle.cardManagers[this.player].reserve.slideSpecific(a)
                                         break
                                         case 95:
                                             this.battle.cardManagers[this.player].reserve.copy(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)

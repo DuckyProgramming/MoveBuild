@@ -6160,6 +6160,36 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.line(3,1,1.5,-3)
             layer.line(0,0,1.5,-3)
         break
+        case 646:
+            layer.strokeWeight(0.6)
+            layer.stroke(100,0,100,fade)
+            layer.triangle(-4.8,0,-0.3,-4.5,-0.3,4.5)
+            layer.stroke(255,255,100,fade)
+            layer.triangle(4.8,0,0.3,-4.5,0.3,4.5)
+            layer.noStroke()
+            layer.fill(25,fade)
+            layer.arc(0,0,6,6,-180,0)
+            layer.fill(255,fade)
+            layer.arc(0,0,6,6,0,180)
+            layer.quad(-3,0,-1.5,1.5,0,0,-1.5,-1.5)
+            layer.fill(25,fade)
+            layer.quad(3,0,1.5,1.5,0,0,1.5,-1.5)
+        break
+        case 647:
+            layer.strokeWeight(0.6)
+            layer.stroke(100,0,100,fade)
+            layer.triangle(4.8,0,0.3,-4.5,0.3,4.5)
+            layer.stroke(255,255,100,fade)
+            layer.triangle(-4.8,0,-0.3,-4.5,-0.3,4.5)
+            layer.noStroke()
+            layer.fill(25,fade)
+            layer.arc(0,0,6,6,0,180)
+            layer.fill(255,fade)
+            layer.arc(0,0,6,6,-180,0)
+            layer.quad(3,0,1.5,1.5,0,0,1.5,-1.5)
+            layer.fill(25,fade)
+            layer.quad(-3,0,-1.5,1.5,0,0,-1.5,-1.5)
+        break
     }
     //mark s
     layer.pop()

@@ -236,7 +236,7 @@ class attack{
             case 5433: case 5434: case 5435: case 5436: case 5437: case 5438: case 5439: case 5449: case 5451: case 5454: case 5456: case 5460: case 5462: case 5463: case 5472: case 5479: case 5485: case 5489: case 5490: case 5493:
             case 5501: case 5512: case 5517: case 5518: case 5519: case 5548: case 5551: case 5557: case 5558: case 5562: case 5564: case 5598: case 5605: case 5606: case 5615: case 5619: case 5620: case 5625: case 5628: case 5631:
             case 5633: case 5636: case 5637: case 5641: case 5644: case 5647: case 5651: case 5657: case 5658: case 5662: case 5664: case 5666: case 5668: case 5673: case 5684: case 5685: case 5690: case 5692: case 5695: case 5708:
-            case 5709: case 5716: case 5718: case 5719: case 5720: case 5721: case 5727: case 5730: case 5731: case 5732: case 5740: case 5744:
+            case 5709: case 5716: case 5718: case 5719: case 5720: case 5721: case 5727: case 5730: case 5731: case 5732: case 5740: case 5744: case 5745:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -5377,6 +5377,12 @@ class attack{
                             this.userCombatant.addBlock(this.effect[1])
                         }
                     break
+                    case 5745:
+                        let index5745=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)
+                        if(index5745>=0&&this.battle.tileManager.tiles[index5745].type.length>0){
+                            this.userCombatant.statusEffect('Counter Once',this.effect[1])
+                        }
+                    break
 
                 }
                 //mark 1s
@@ -5487,7 +5493,7 @@ class attack{
                         this.userCombatant.statusEffect('Counter Damage Down All',this.effect[0])
                     break
                     case 1161:
-                        this.userCombatant.addBlock(this.effect[0]*(this.userManager.hand.numberAbstract(4,[[1]])==0?1:2))
+                        this.userCombatant.addBlock(this.effect[0]*(this.userManager.hand.numberAbstract(4,[[1]])==0?2:1))
                     break
                     case 1357:
                         if(this.userCombatant.spendCharge(this.effect[1])){
@@ -7442,6 +7448,11 @@ class attack{
                     break
                     case 5729:
                         this.userManager.hand.randomEffect(62,[13])
+                    break
+                    case 5747:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.addRandomAbstract(2,0,0,2,0,[4],[3,69])
+                        }
                     break
 
                 }
@@ -12803,7 +12814,7 @@ class attack{
                         }
                     break
                     case 1872:
-                        this.userManager.draw(this.userManager.exhaust.length+this.effect[0])
+                        this.userManager.draw(this.userManager.exhaust.cards.length+this.effect[0])
                     break
                     case 1885:
                         this.userManager.hand.randomEffect(27,[this.effect[0]])
@@ -22087,6 +22098,10 @@ class attack{
                             this.userCombatant.holdOrb(7)
                         }
                         this.userCombatant.statusEffect('Flame Orb Splash',this.effect[1])
+                    break
+                    case 5746:
+                        this.userCombatant.statusEffect('Dark Light Orb Swap',this.effect[0])
+                        this.userCombatant.statusEffect('Light Dark Orb Swap',this.effect[1])
                     break
 
                 }

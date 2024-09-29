@@ -3408,7 +3408,7 @@ types={
         },{
             level:['Teardrop 3'],class:0,world:2,
             name:'Speedrunner',
-            player:{position:[[{x:4,y:2}],[{x:3,y:2},{x:3,y:3}]]},
+            player:{position:[[{x:4,y:2}],[{x:3,y:2},{x:3,y:1}]]},
             enemy:[
                 {position:{x:2,y:1},name:'Speedrunner'},
             ],reinforce:[
@@ -6721,11 +6721,12 @@ variants={
     inventor:false,unexpected:false,cursed:false,witch:false,
     lowhealth:false,midhealth:false,terminal:false,hungry:false,
     shortmap:false,shortermap:false,singlemap:false,initiative:false,
-    prism:false,ultraprism:false,junk:false,colorshift:false,prismrule:[],
+    prism:false,ultraprism:false,junk:false,colorshift:false,
     vanish:false,blind:false,transcend:false,overheat:false,
     cliff:false,assault:false,unary:false,running:false,
     commoners:false,business:false,quarterPool:false,close:false,
 
+    collection:false,prismrule:[],
     speedmove:false,speedcard:false,nobasicanim:false,deckbuild:false,selectCombat:false,
 
     map:[

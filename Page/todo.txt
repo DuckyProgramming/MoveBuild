@@ -1,13 +1,23 @@
+BUGS
+
 somewhere the saves aren't working
 (passive)
 
 
 
-LISTING GROUP 51
+OPERATION ASCENDANCY
+(428)
+
+LISTING GROUP 51 - QUOTA
+(72)
+
+LISTING GROUP 52 - ADDENDUM
+
+LISTING GROUP 53 - ASYNC
 
 
 
-enemyset next:
+OPERATION PREDESTINATION
 
 world 1 replacements (send some world 1 enemies to world 2):
 
@@ -37,7 +47,7 @@ fire and ice big slime [nerf jet off the elite stack]
 
 
 
-eventset next:
+OPERATION EPISODE
 
 luna event
 

@@ -2305,6 +2305,7 @@ combatant.prototype.display=function(){
                             this.layer.rect(lsin(this.anim.direction+122.5+a*15)*16,-70,5*lcos(this.anim.direction+122.5+a*15),16)
                         }
                     }
+                    controlSpin(this.hood,this.anim.direction,0)
                     displayTrianglesBack(this.layer,this.hood,this.anim.direction,-78,32,0.5,0.1,this.flashColor(this.color.hoodBack),this.fade)
                 }
                 for(let g=0;g<2;g++){

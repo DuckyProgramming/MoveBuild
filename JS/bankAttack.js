@@ -139,7 +139,7 @@ attack.prototype.update=function(){
         case 5434: case 5435: case 5436: case 5437: case 5438: case 5439: case 5454: case 5456: case 5460: case 5462:
         case 5463: case 5489: case 5490: case 5493: case 5501: case 5512: case 5517: case 5518: case 5558: case 5606:
         case 5615: case 5619: case 5620: case 5631: case 5633: case 5641: case 5651: case 5657: case 5664: case 5668:
-        case 5684: case 5685: case 5708: case 5709: case 5716: case 5727: case 5731: case 5732: case 5744:
+        case 5684: case 5685: case 5708: case 5709: case 5716: case 5727: case 5731: case 5732: case 5744: case 5745:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -295,6 +295,7 @@ attack.prototype.update=function(){
         case 5445: case 5446: case 5450: case 5457: case 5465: case 5466: case 5480: case 5484: case 5486: case 5492:
         case 5498: case 5502: case 5513: case 5563: case 5609: case 5618: case 5621: case 5629: case 5632: case 5643:
         case 5645: case 5648: case 5652: case 5686: case 5703: case 5704: case 5706: case 5713: case 5729: case 5734:
+        case 5747:
             //mark 2
             if(
                 this.timer==1&&(
@@ -4398,7 +4399,7 @@ attack.prototype.update=function(){
         case 4810: case 4869: case 4940: case 4982: case 4996: case 5035: case 5039: case 5040: case 5070: case 5086:
         case 5159: case 5164: case 5198: case 5216: case 5218: case 5219: case 5220: case 5298: case 5299: case 5325:
         case 5419: case 5427: case 5488: case 5491: case 5543: case 5544: case 5601: case 5605: case 5616: case 5644:
-        case 5658: case 5693: case 5695: case 5722: case 5736: case 5742: case 5743:
+        case 5658: case 5693: case 5695: case 5722: case 5736: case 5742: case 5743: case 5746:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true

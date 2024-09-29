@@ -2769,7 +2769,7 @@ class card{
             case 1869: string+=`Exactly 0 Energy:\nApply ${effect[0]} Chained\nand Draw ${effect[1]} Card${pl(effect[1])}`; break
             case 1870: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage If:\nTarget Has No Block\nTarget Health Isn't Full\nYou Have 100 Currency`; break
             case 1871: string+=`Put the Last Card\nFrom Exhaust Pile\nInto Hand`; break
-            case 1872: string+=`Draw a Card\nFor Every Exhausted\nCard${effect[0]!=0?` +${effect[0]}`:``}${stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.cardManagers[this.player].exhaust.cards.length+effect[0]})`:``}`; break
+            case 1872: string+=`Draw a Card For\nEvery Exhausted Card${effect[0]!=0?` +${effect[0]}`:``}\n(Including This Card)`; break
             case 1873: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nDraw ${effect[1]} More\nCard${pl(effect[1])} Next Turn`; break
             case 1874: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Total\nStatuses on Self`; break
             case 1875: string+=`Deal ${this.calculateEffect(effect[0],0)} More\nDamage Than Your\nLast Damage Deal`; break
@@ -6669,12 +6669,9 @@ class card{
             case 5742: string+=`Hold ${effect[0]} Crystal Orb${pl(effect[0])}\nCounter All Counters\nAll Enemies This Combat`; break
             case 5743: string+=`Hold ${effect[0]} Flame Orb${pl(effect[0])}\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage\nAround Self When\nYou Evoke a Flame Orb`; break
             case 5744: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Lock On\nCosts 1 Less\nWhen You Disable a Wish`; break
-
-
-
-
-
-
+            case 5745: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You are on\na Special Tile,\nCounter ${effect[1]} Once`; break
+            case 5746: string+=`When You Evoke\na Dark Orb,\nHold ${effect[0]} Light Orb${pl(effect[0])}\nIf You Have None\nWhen You Evoke\na Light Orb,\nHold ${effect[1]} Dark Orb${pl(effect[1])}\nIf You Have None`; break
+            case 5747: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Random Card${pl(effect[1])}\nWith Mass to Hand`; break
 
             //mark p
 
@@ -9930,7 +9927,11 @@ class card{
                     this.layer.stroke(...colorDetail[0].stroke,this.fade)
                     this.layer.noFill()
                 }else{
-                    this.layer.fill(...colorDetail.active,this.fade*this.anim.select)
+                    try{
+                        this.layer.fill(...colorDetail.active,this.fade*this.anim.select)
+                    }catch(e){
+                        print(this.name)
+                    }
                     this.layer.noStroke()
                     this.layer.rect(0,0,this.width+15,this.height+15,10)
                     this.layer.fill(...colorDetail.fill,this.fade)
@@ -10019,58 +10020,63 @@ class card{
                         this.layer.line(-this.width/2+15,this.height/2,-this.width/2+5,this.height/2-5)
                     break
                 }
-                if(variants.mtg&&list>=0&&list<=constants.playerNumber){
-                    if(colorDetail.length>=2){
-                        if(this.colorful){
-                            this.layer.stroke(50,this.fade)
-                        }else if(this.edition==5){
-                            this.layer.stroke(colorDetail[colorDetail.length-1].stroke[0]*0.2,colorDetail[colorDetail.length-1].stroke[1]*0.2,colorDetail[colorDetail.length-1].stroke[2]*0.2,this.fade)
+                if(spec.includes(12)){
+                    if(variants.mtg&&list>=0&&list<=constants.playerNumber&&colorDetail.length>=2){
+                        this.gradient=[new p5.LinearGradient(-15,this.width*0.5-5)]
+                        if(this.edition==5){
+                            if(corDetail.length==3){
+                                this.gradient[0].colors(0.0,
+                                    color(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade),0.3,
+                                    color(colorDetail[2].stroke[0]*0.2,colorDetail[2].stroke[1]*0.2,colorDetail[2].stroke[2]*0.2,this.fade),0.7,
+                                    color(colorDetail[2].stroke[0]*0.2,colorDetail[2].stroke[1]*0.2,colorDetail[2].stroke[2]*0.2,this.fade),1.0,
+                                    color(colorDetail[1].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade))
+                            }else{
+                                this.gradient[0].colors(0.0,
+                                    color(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade),1.0,
+                                    color(colorDetail[1].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade))
+                            }
                         }else{
-                            this.layer.stroke(...colorDetail[colorDetail.length-1].stroke,this.fade)
+                            if(colorDetail.length==3){
+                                this.gradient[0].colors(0.0,
+                                    color(...colorDetail[0].stroke,this.fade),0.3,
+                                    color(...colorDetail[2].stroke,this.fade),0.7,
+                                    color(...colorDetail[2].stroke,this.fade),1.0,
+                                    color(...colorDetail[1].stroke,this.fade))
+                            }else{
+                                this.gradient[0].colors(0.0,
+                                    color(...colorDetail[0].stroke,this.fade),1.0,
+                                    color(...colorDetail[1].stroke,this.fade))
+                            }
                         }
+                        this.layer.noStroke()
+                        this.layer.translate(-this.width*0.2-2,0)
+                        this.layer.fill(...colorDetail[0].stroke,this.fade)
+                        this.layer.fillGradient(this.gradient[0])
+                        this.layer.rect(this.width*0.2+2,16,this.width,3)
+                        this.layer.translate(this.width*0.2+2,0)
+                    }else{
+                        this.layer.strokeWeight(3)
+                        this.layer.line(-this.width/2,variants.mtg?16:10,this.width/2,variants.mtg?16:10)
                     }
-                    this.layer.strokeWeight(2)
-                    this.layer.ellipse(this.width/2-7.5,this.height/2-7.5,5)
                 }
             }
-            if(spec.includes(12)){
-                if(variants.mtg&&list>=0&&list<=constants.playerNumber&&colorDetail.length>=2){
-                    this.gradient=[new p5.LinearGradient(-15,this.width*0.5-5)]
-                    if(this.edition==5){
-                        if(corDetail.length==3){
-                            this.gradient[0].colors(0.0,
-                                color(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade),0.3,
-                                color(colorDetail[2].stroke[0]*0.2,colorDetail[2].stroke[1]*0.2,colorDetail[2].stroke[2]*0.2,this.fade),0.7,
-                                color(colorDetail[2].stroke[0]*0.2,colorDetail[2].stroke[1]*0.2,colorDetail[2].stroke[2]*0.2,this.fade),1.0,
-                                color(colorDetail[1].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade))
-                        }else{
-                            this.gradient[0].colors(0.0,
-                                color(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade),1.0,
-                                color(colorDetail[1].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade))
-                        }
+            if(variants.mtg&&list>=0&&list<=constants.playerNumber){
+                if(colorDetail.length>=2){
+                    if(this.colorful){
+                        this.layer.stroke(50,this.fade)
+                    }else if(this.edition==5){
+                        this.layer.stroke(colorDetail[colorDetail.length-1].stroke[0]*0.2,colorDetail[colorDetail.length-1].stroke[1]*0.2,colorDetail[colorDetail.length-1].stroke[2]*0.2,this.fade)
                     }else{
-                        if(colorDetail.length==3){
-                            this.gradient[0].colors(0.0,
-                                color(...colorDetail[0].stroke,this.fade),0.3,
-                                color(...colorDetail[2].stroke,this.fade),0.7,
-                                color(...colorDetail[2].stroke,this.fade),1.0,
-                                color(...colorDetail[1].stroke,this.fade))
-                        }else{
-                            this.gradient[0].colors(0.0,
-                                color(...colorDetail[0].stroke,this.fade),1.0,
-                                color(...colorDetail[1].stroke,this.fade))
-                        }
+                        this.layer.stroke(...colorDetail[colorDetail.length-1].stroke,this.fade)
                     }
-                    this.layer.noStroke()
-                    this.layer.translate(-this.width*0.2-2,0)
-                    this.layer.fill(...colorDetail[0].stroke,this.fade)
-                    this.layer.fillGradient(this.gradient[0])
-                    this.layer.rect(this.width*0.2+2,16,this.width,3)
-                    this.layer.translate(this.width*0.2+2,0)
-                }else{
-                    this.layer.strokeWeight(3)
-                    this.layer.line(-this.width/2,variants.mtg?16:10,this.width/2,variants.mtg?16:10)
                 }
+                this.layer.strokeWeight(2)
+                this.layer.ellipse(this.width/2-7.5,this.height/2-7.5,5)
+            }
+            if(variants.collection&&!this.battle.collectionManager.knownKey[this.type]){
+                this.layer.stroke(255,25,25,this.fade)
+                this.layer.strokeWeight(2)
+                this.layer.ellipse(this.width/2-7.5,-this.height/2+7.5,5)
             }
             if(this.edition>=1&&this.edition<=8){
                 if(this.width==90){
