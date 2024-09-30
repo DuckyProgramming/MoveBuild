@@ -1328,6 +1328,12 @@ class battle{
                 if(userCombatant.getStatus('Attack Draw')>0){
                     this.cardManagers[player].draw(userCombatant.getStatus('Attack Draw'))
                 }
+                if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Attack Energy')>0){
+                    this.addEnergy(userCombatant.getStatus('2+ Cost Attack Energy'),player)
+                }
+                if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Attack (E)')>0){
+                    this.addSpecificEnergy(userCombatant.getStatus('2+ Cost Attack (E)'),player,6)
+                }
             break
             case 3:
                 if(userCombatant.getStatus('Double Damage Without Movement')>0){

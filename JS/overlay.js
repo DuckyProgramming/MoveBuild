@@ -3073,6 +3073,7 @@ class overlay{
                                 if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].deck.cards[a])&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5&&this.battle.cardManagers[this.player].deck.cards[a].select&&
                                     !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(37))&&
                                     !(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))&&
+                                    !(this.args[0]==4&&this.args[2]==4&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(15))&&
                                     !((this.args[0]==10||this.args[0]==53||this.args[0]==54||this.args[0]==55||this.args[0]==56||this.args[0]==61)&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(3)||this.battle.cardManagers[this.player].deck.cards[a].spec.includes(12)))&&
                                     !(this.args[0]==17&&this.battle.cardManagers[this.player].deck.cards[a].level>=2&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))&&
                                     !(this.args[0]==43&&this.battle.cardManagers[this.player].deck.cards[a].base.cost<=0)&&
@@ -3349,6 +3350,7 @@ class overlay{
                                     if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].deck.cards[a])&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5&&this.active&&
                                         !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(37))&&
                                         !(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))&&
+                                        !(this.args[0]==4&&this.args[2]==4&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(15))&&
                                         !((this.args[0]==10||this.args[0]==53||this.args[0]==54||this.args[0]==55||this.args[0]==56||this.args[0]==61)&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(3)||this.battle.cardManagers[this.player].deck.cards[a].spec.includes(12)))&&
                                         !(this.args[0]==17&&this.battle.cardManagers[this.player].deck.cards[a].level>=2&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))&&
                                         !(this.args[0]==36&&this.battle.cardManagers[this.player].deck.cards[a].rarity!=0)&&
@@ -4306,6 +4308,7 @@ class overlay{
                                 if(key==inputs.hexadec[this.battle.cardManagers[this.player].deck.cards[a].relIndex%15]&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5&&this.battle.cardManagers[this.player].deck.cards[a].select&&
                                     !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(37))&&
                                     !(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))&&
+                                    !(this.args[0]==4&&this.args[2]==4&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(15))&&
                                     !((this.args[0]==10||this.args[0]==53||this.args[0]==54||this.args[0]==55||this.args[0]==56||this.args[0]==61)&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(3)||this.battle.cardManagers[this.player].deck.cards[a].spec.includes(12)))&&
                                     !(this.args[0]==17&&this.battle.cardManagers[this.player].deck.cards[a].level>=2&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))&&
                                     !(this.args[0]==36&&this.battle.cardManagers[this.player].deck.cards[a].rarity!=0)&&
@@ -4582,6 +4585,7 @@ class overlay{
                                     if(key==inputs.hexadec[this.battle.cardManagers[this.player].deck.cards[a].relIndex%15]&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5&&this.active&&
                                         !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(37))&&
                                         !(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))&&
+                                        !(this.args[0]==4&&this.args[2]==4&&this.battle.cardManagers[this.player].deck.cards[a].spec.includes(15))&&
                                         !((this.args[0]==10||this.args[0]==53||this.args[0]==54||this.args[0]==55||this.args[0]==56||this.args[0]==61)&&(this.battle.cardManagers[this.player].deck.cards[a].spec.includes(3)||this.battle.cardManagers[this.player].deck.cards[a].spec.includes(12)))&&
                                         !(this.args[0]==17&&this.battle.cardManagers[this.player].deck.cards[a].level>=2&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))&&
                                         !(this.args[0]==36&&this.battle.cardManagers[this.player].deck.cards[a].rarity!=0)&&

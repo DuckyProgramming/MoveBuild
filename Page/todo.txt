@@ -6,10 +6,10 @@ somewhere the saves aren't working
 
 
 OPERATION ASCENDANCY
-(428)
+(389)
 
 LISTING GROUP 51 - QUOTA
-(72)
+(39)
 
 LISTING GROUP 52 - ADDENDUM
 

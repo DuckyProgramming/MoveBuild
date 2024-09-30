@@ -175,7 +175,7 @@ class combatant{
                 'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
                 'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable','Energy Gain Splash Freeze',
                 'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost','Splash Attach Poison','Splash Boost',
-                'Basic Orb Per Turn','Calm Block Per Turn','Dark Matter Pull Fuel All','Snowflake Per Turn','Counter All Spread','Flame Orb Splash','Dark Light Orb Swap','Light Dark Orb Swap',
+                'Basic Orb Per Turn','Calm Block Per Turn','Dark Matter Pull Fuel All','Snowflake Per Turn','Counter All Spread','Flame Orb Splash','Dark Light Orb Swap','Light Dark Orb Swap','2+ Cost Attack Energy','2+ Cost Attack (E)',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -242,7 +242,7 @@ class combatant{
                 0,2,0,0,2,2,0,0,0,2,//62
                 0,0,0,0,0,0,0,0,0,0,//63
                 0,0,0,0,0,0,0,0,0,0,//64
-                0,0,0,0,1,0,0,0,
+                0,0,0,0,1,0,0,0,0,0,//65
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -309,7 +309,7 @@ class combatant{
                 3,2,2,2,2,2,3,2,2,2,//62
                 2,2,2,2,2,2,2,2,2,2,//63
                 2,2,2,2,2,2,2,2,2,2,//64
-                2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//65
             ]}
         /*
         0-none
@@ -1218,10 +1218,10 @@ class combatant{
                         this.statusEffect('Retain Block',999)
                     break
                     case 'Donu':
-                        this.subAttackTypeSwitch([[2,26,26,[2]]])
+                        this.statusEffect('Strength',1)
                     break
                     case 'Deca':
-                        this.subAttackTypeSwitch([[0,66,358,[]],[1,65,392,[3]]])
+                        this.subAttackTypeSwitch([[0,66,358,[]],[1,65,392,[2]]])
                     break
                     case 'Hexaghost Core':
                         this.removeAttack(21)
@@ -4381,6 +4381,16 @@ class combatant{
                     }
                 }
             break
+            case 13:
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    if(this.orbs[a]>=0){
+                        let hold=this.orbs[a]
+                        this.orbs[a]=-1
+                        let result=floor(random(0,constants.orbNumber-1))
+                        this.holdOrb(result+(result>=hold?1:0))
+                    }
+                }
+            break
         }
         this.checkAnyOrb()
     }
@@ -4458,7 +4468,7 @@ class combatant{
                 this.battle.cardManagers[this.id].hand.add(findName('Speed',types.card),0,0)
             break
             case 5:
-                this.battle.addSpecificEnergy(3,this.id,6)
+                this.battle.addSpecificEnergy(variants.mtg?5:3,this.id,6)
             break
         }
         if(this.status.main[126]>0){
@@ -4474,7 +4484,7 @@ class combatant{
     leaveStance(stance){
         switch(stance){
             case 2:
-                this.battle.addSpecificEnergy(2,this.id,6)
+                this.battle.addSpecificEnergy(variants.mtg?3:2,this.id,6)
             break
         }
     }
@@ -5206,9 +5216,9 @@ class combatant{
                     break
                     case 5:
                         if(this.team==0){
-                            this.battle.combatantManager.randomPlayerEffect(0,[4+this.status.main[593]])
+                            this.battle.combatantManager.randomPlayerEffect(0,[(4+this.status.main[593])*multi])
                         }else{
-                            this.battle.combatantManager.randomEnemyEffect(0,[4+this.status.main[593]])
+                            this.battle.combatantManager.randomEnemyEffect(0,[(4+this.status.main[593])*multi])
                         }
                     break
                     case 14:

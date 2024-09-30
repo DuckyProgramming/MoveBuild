@@ -6190,6 +6190,27 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(25,fade)
             layer.quad(-3,0,-1.5,1.5,0,0,-1.5,-1.5)
         break
+        case 648:
+            layer.fill(200,255,255,fade)
+            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,5,5,3,3,0)
+            layer.fill(200,255,255,fade)
+            layer.quad(-1.5,-2,-2.5,0,-1.5,2,-0.5,0)
+            layer.quad(1.5,-2,2.5,0,1.5,2,0.5,0)
+            layer.ellipse(0,0,1)
+        break
+        case 649:
+            displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,5,5,3,3,0)
+            layer.fill(200,255,255,fade)
+            layer.quad(-1.5,-2,-2.5,0,-1.5,2,-0.5,0)
+            layer.quad(1.5,-2,2.5,0,1.5,2,0.5,0)
+            layer.ellipse(0,0,1)
+        break
     }
     //mark s
     layer.pop()

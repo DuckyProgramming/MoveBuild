@@ -702,7 +702,7 @@ class particle{
                 this.scale=0
                 this.grav=0
             break
-            case 222:
+            case 222: case 234:
                 this.direction=args[0]
                 this.color=args[1]
                 this.colorShift=args[2]
@@ -761,6 +761,18 @@ class particle{
                 this.color=args[3]
                 this.fade=1
                 this.scale=0
+            break
+            case 235:
+                this.direction=args[0]
+                this.speed=args[1]
+                this.grav=args[2]
+                this.spin=args[3]
+                this.color=args[4]
+                this.colorShift=args[5]
+                this.size=args[6]
+                this.trigger=false
+                this.fade=0
+                this.scale=1
             break
 
         }
@@ -3676,7 +3688,7 @@ class particle{
                     }
                     this.layer.strokeJoin(MITER)
                 break
-                case 222: case 223:
+                case 222: case 223: case 234: case 235:
                     this.layer.noFill()
                     this.layer.strokeJoin(ROUND)
                     for(let a=0,la=4;a<la;a++){
@@ -4687,8 +4699,11 @@ class particle{
                 if(this.time%15==0){
                     parent.particles.push(new particle(this.layer,this.position.x+random(-20,20),this.position.y+random(-20,20),223,[random(0,360),this.color,0,random(0.3,0.5)]))
                 }
+                if(this.position.y>this.layer.height+50||this.position.x<-50||this.position.x>this.layer.width+50){
+                    this.remove=true
+                }
             break
-            case 222:
+            case 222: case 234:
                 if(this.time>this.delay){
                     this.position.x+=lsin(this.direction)*this.speed
                     this.position.y-=lcos(this.direction)*this.speed-this.grav
@@ -4698,8 +4713,18 @@ class particle{
                     }
                     this.spin+=3
                     if(this.time%15==14-this.delay%15){
-                        parent.particles.push(new particle(this.layer,this.position.x+random(-20,20),this.position.y+random(-20,20),223,[random(0,360),this.color,this.colorShift,random(0.3,0.5)*this.size]))
+                        switch(this.type){
+                            case 222:
+                                parent.particles.push(new particle(this.layer,this.position.x+random(-20,20),this.position.y+random(-20,20),223,[random(0,360),this.color,this.colorShift,random(0.3,0.5)*this.size]))
+                            break
+                            case 234:
+                                parent.particles.push(new particle(this.layer,this.position.x+random(-20,20),this.position.y+random(-20,20),235,[this.direction,this.speed*0.25,this.grav*0.5,random(0,360),this.color,this.colorShift,random(0.3,0.5)*this.size]))
+                            break
+                        }
                     }
+                }
+                if(this.position.y>this.layer.height+50||this.position.x<-50||this.position.x>this.layer.width+50){
+                    this.remove=true
                 }
             break
             case 223:
@@ -4752,6 +4777,25 @@ class particle{
                 this.fade=smoothAnim(this.fade,this.time<this.timer,0,1,30)
                 if(this.fade<=0){
                     this.remove=true
+                }
+            break
+            case 235:
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed-this.grav
+                this.grav+=0.15
+                if(this.colorShift<1){
+                    this.colorShift+=0.01
+                }
+                if(!this.trigger){
+                    this.fade+=0.1
+                    if(this.fade>=3){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.1
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
                 }
             break
 

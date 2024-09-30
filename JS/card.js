@@ -469,252 +469,256 @@ class card{
     }
     costUp(type,args){
         this.costUpTrigger=true
-        switch(type){
-            case 0:
-                if(variants.mtg){
-                    if(this.specialCost){
-                        if(this.cost[0]>=0){
-                            this.cost[0]+=args[0]
+        if(this.attack!=5760){
+            switch(type){
+                case 0:
+                    if(variants.mtg){
+                        if(this.specialCost){
+                            if(this.cost[0]>=0){
+                                this.cost[0]+=args[0]
+                            }
+                        }else{
+                            for(let a=0,la=args[0];a<la;a++){
+                                this.cost.push(-1)
+                            }
                         }
-                    }else{
-                        for(let a=0,la=args[0];a<la;a++){
-                            this.cost.push(-1)
-                        }
-                    }
-                }else if(this.cost>=0){
-                    this.cost+=args[0]
-                }
-            break
-            case 1:
-                if(variants.mtg){
-                    if(this.specialCost){
-                        if(this.base.cost[0]>=0){
-                            this.base.cost[0]+=args[0]
-                        }
-                    }else{
-                        for(let a=0,la=args[0];a<la;a++){
-                            this.base.cost.push(-1)
-                        }
-                    }
-                }else if(this.base.cost>=0){
-                    this.base.cost+=args[0]
-                }
-            break
-            case 2:
-                if(variants.mtg){
-                    if(this.specialCost){
-                        if(this.cost[0]>=0){
-                            this.cost[0]+=args[0]
-                        }
-                        if(this.base.cost[0]>=0){
-                            this.base.cost[0]+=args[0]
-                        }
-                    }else{
-                        for(let a=0,la=args[0];a<la;a++){
-                            this.cost.push(-1)
-                            this.base.cost.push(-1)
-                        }
-                    }
-                }else{
-                    if(this.cost>=0){
+                    }else if(this.cost>=0){
                         this.cost+=args[0]
                     }
-                    if(this.base.cost>=0){
+                break
+                case 1:
+                    if(variants.mtg){
+                        if(this.specialCost){
+                            if(this.base.cost[0]>=0){
+                                this.base.cost[0]+=args[0]
+                            }
+                        }else{
+                            for(let a=0,la=args[0];a<la;a++){
+                                this.base.cost.push(-1)
+                            }
+                        }
+                    }else if(this.base.cost>=0){
                         this.base.cost+=args[0]
                     }
-                }
-            break
-            case 3:
-                if(variants.mtg){
-                    if(this.specialCost){
-                        if(this.cost[0]>=0){
-                            this.cost[0]+=args[0]
-                        }
-                        if(this.base.cost[0]>=0){
-                            this.base.cost[0]+=args[0]
+                break
+                case 2:
+                    if(variants.mtg){
+                        if(this.specialCost){
+                            if(this.cost[0]>=0){
+                                this.cost[0]+=args[0]
+                            }
+                            if(this.base.cost[0]>=0){
+                                this.base.cost[0]+=args[0]
+                            }
+                        }else{
+                            for(let a=0,la=args[0];a<la;a++){
+                                this.cost.push(-1)
+                                this.base.cost.push(-1)
+                            }
                         }
                     }else{
-                        for(let a=0,la=args[0];a<la;a++){
-                            this.cost.push(-1)
-                            this.base.cost.push(-1)
+                        if(this.cost>=0){
+                            this.cost+=args[0]
+                        }
+                        if(this.base.cost>=0){
+                            this.base.cost+=args[0]
                         }
                     }
-                }else{
-                    if(this.cost>=0){
-                        this.cost+=args[0]
-                    }
-                    if(this.base.cost>=0){
-                        this.base.cost+=args[0]
-                    }
-                }
-                this.edited.cost+=args[0]
-                this.edited.costComplete=true
-            break
-            case 4:
-                if(variants.mtg){
-                    if(this.specialCost){
-                        if(this.cost[0]>=0){
-                            this.cost[0]+=args[0]
-                        }
-                        if(this.base.cost[0]>=0){
-                            this.base.cost[0]+=args[0]
+                break
+                case 3:
+                    if(variants.mtg){
+                        if(this.specialCost){
+                            if(this.cost[0]>=0){
+                                this.cost[0]+=args[0]
+                            }
+                            if(this.base.cost[0]>=0){
+                                this.base.cost[0]+=args[0]
+                            }
+                        }else{
+                            for(let a=0,la=args[0];a<la;a++){
+                                this.cost.push(-1)
+                                this.base.cost.push(-1)
+                            }
                         }
                     }else{
-                        for(let a=0,la=args[0];a<la;a++){
-                            this.cost.push(args[1])
-                            this.base.cost.push(args[1])
+                        if(this.cost>=0){
+                            this.cost+=args[0]
+                        }
+                        if(this.base.cost>=0){
+                            this.base.cost+=args[0]
                         }
                     }
-                }else{
-                    if(this.cost>=0){
-                        this.cost+=args[0]
+                    this.edited.cost+=args[0]
+                    this.edited.costComplete=true
+                break
+                case 4:
+                    if(variants.mtg){
+                        if(this.specialCost){
+                            if(this.cost[0]>=0){
+                                this.cost[0]+=args[0]
+                            }
+                            if(this.base.cost[0]>=0){
+                                this.base.cost[0]+=args[0]
+                            }
+                        }else{
+                            for(let a=0,la=args[0];a<la;a++){
+                                this.cost.push(args[1])
+                                this.base.cost.push(args[1])
+                            }
+                        }
+                    }else{
+                        if(this.cost>=0){
+                            this.cost+=args[0]
+                        }
+                        if(this.base.cost>=0){
+                            this.base.cost+=args[0]
+                        }
                     }
-                    if(this.base.cost>=0){
-                        this.base.cost+=args[0]
-                    }
-                }
-            break
+                break
+            }
         }
     }
     costDown(type,args){
         this.costDownTrigger=true
-        switch(type){
-            case 0:
-                if(variants.mtg){
-                    if(this.specialCost){
-                        if(this.cost[0]>0){
-                            this.cost[0]=max(0,this.cost[0]-args[0])
-                        }
-                    }else{
-                        for(let a=0,la=args[0];a<la;a++){
-                            if(this.cost.includes(-1)){
-                                this.cost.splice(this.cost.indexOf(-1),1)
-                            }else if(this.spec.includes(35)){
-                                this.cost.splice(floor(random(0,this.cost.length)),1)
+        if(this.attack!=5760){
+            switch(type){
+                case 0:
+                    if(variants.mtg){
+                        if(this.specialCost){
+                            if(this.cost[0]>0){
+                                this.cost[0]=max(0,this.cost[0]-args[0])
+                            }
+                        }else{
+                            for(let a=0,la=args[0];a<la;a++){
+                                if(this.cost.includes(-1)){
+                                    this.cost.splice(this.cost.indexOf(-1),1)
+                                }else if(this.spec.includes(35)){
+                                    this.cost.splice(floor(random(0,this.cost.length)),1)
+                                }
                             }
                         }
-                    }
-                }else if(this.cost>0){
-                    this.cost=max(0,this.cost-args[0])
-                }
-            break
-            case 1:
-                if(variants.mtg){
-                    if(this.specialCost){
-                        if(this.base.cost[0]>0){
-                            this.base.cost[0]=max(0,this.base.cost[0]-args[0])
-                        }
-                    }else{
-                        for(let a=0,la=args[0];a<la;a++){
-                            if(this.base.cost.includes(-1)){
-                                this.base.cost.splice(this.base.cost.indexOf(-1),1)
-                            }
-                        }
-                    }
-                }else if(this.base.cost>0){
-                    this.base.cost=max(0,this.base.cost-args[0])
-                }
-            break
-            case 2:
-                if(variants.mtg){
-                    if(this.specialCost){
-                        if(this.cost[0]>0){
-                            this.cost[0]=max(0,this.cost[0]-args[0])
-                        }
-                        if(this.base.cost[0]>0){
-                            this.base.cost[0]=max(0,this.base.cost[0]-args[0])
-                        }
-                    }else{
-                        for(let a=0,la=args[0];a<la;a++){
-                            if(this.cost.includes(-1)){
-                                this.cost.splice(this.cost.indexOf(-1),1)
-                            }
-                            if(this.base.cost.includes(-1)){
-                                this.base.cost.splice(this.base.cost.indexOf(-1),1)
-                            }
-                        }
-                    }
-                }else{
-                    if(this.cost>0){
+                    }else if(this.cost>0){
                         this.cost=max(0,this.cost-args[0])
                     }
-                    if(this.base.cost>0){
+                break
+                case 1:
+                    if(variants.mtg){
+                        if(this.specialCost){
+                            if(this.base.cost[0]>0){
+                                this.base.cost[0]=max(0,this.base.cost[0]-args[0])
+                            }
+                        }else{
+                            for(let a=0,la=args[0];a<la;a++){
+                                if(this.base.cost.includes(-1)){
+                                    this.base.cost.splice(this.base.cost.indexOf(-1),1)
+                                }
+                            }
+                        }
+                    }else if(this.base.cost>0){
                         this.base.cost=max(0,this.base.cost-args[0])
                     }
-                }
-            break
-            case 3:
-                if(variants.mtg){
-                    if(this.specialCost){
-                        if(this.cost[0]>0){
-                            this.cost[0]=max(0,this.cost[0]-args[0])
-                        }
-                        if(this.base.cost[0]>0){
-                            this.base.cost[0]=max(0,this.base.cost[0]-args[0])
+                break
+                case 2:
+                    if(variants.mtg){
+                        if(this.specialCost){
+                            if(this.cost[0]>0){
+                                this.cost[0]=max(0,this.cost[0]-args[0])
+                            }
+                            if(this.base.cost[0]>0){
+                                this.base.cost[0]=max(0,this.base.cost[0]-args[0])
+                            }
+                        }else{
+                            for(let a=0,la=args[0];a<la;a++){
+                                if(this.cost.includes(-1)){
+                                    this.cost.splice(this.cost.indexOf(-1),1)
+                                }
+                                if(this.base.cost.includes(-1)){
+                                    this.base.cost.splice(this.base.cost.indexOf(-1),1)
+                                }
+                            }
                         }
                     }else{
-                        for(let a=0,la=args[0];a<la;a++){
-                            if(this.cost.includes(-1)){
-                                this.cost.splice(this.cost.indexOf(-1),1)
-                            }
-                            if(this.base.cost.includes(-1)){
-                                this.base.cost.splice(this.base.cost.indexOf(-1),1)
-                            }
+                        if(this.cost>0){
+                            this.cost=max(0,this.cost-args[0])
+                        }
+                        if(this.base.cost>0){
+                            this.base.cost=max(0,this.base.cost-args[0])
                         }
                     }
-                }else{
-                    if(this.cost>0){
-                        this.cost=max(0,this.cost-args[0])
-                    }
-                    if(this.base.cost>0){
-                        this.base.cost=max(0,this.base.cost-args[0])
-                    }
-                }
-                this.edited.cost-=args[0]
-                this.edited.costComplete=true
-            break
-            case 4:
-                if(variants.mtg){
-                    if(this.specialCost){
-                        this.cost[0]=round(this.cost[0]/2)
+                break
+                case 3:
+                    if(variants.mtg){
+                        if(this.specialCost){
+                            if(this.cost[0]>0){
+                                this.cost[0]=max(0,this.cost[0]-args[0])
+                            }
+                            if(this.base.cost[0]>0){
+                                this.base.cost[0]=max(0,this.base.cost[0]-args[0])
+                            }
+                        }else{
+                            for(let a=0,la=args[0];a<la;a++){
+                                if(this.cost.includes(-1)){
+                                    this.cost.splice(this.cost.indexOf(-1),1)
+                                }
+                                if(this.base.cost.includes(-1)){
+                                    this.base.cost.splice(this.base.cost.indexOf(-1),1)
+                                }
+                            }
+                        }
                     }else{
-                        let last=-99
-                        for(let a=0,la=this.cost.length;a<la;a++){
-                            if(this.cost[a]==last){
-                                this.cost.splice(a,1)
-                                a--
-                                la--
-                                last=-99
-                            }else{
-                                last=this.cost[a]
-                            }
+                        if(this.cost>0){
+                            this.cost=max(0,this.cost-args[0])
+                        }
+                        if(this.base.cost>0){
+                            this.base.cost=max(0,this.base.cost-args[0])
                         }
                     }
-                }else if(this.cost>0){
-                    this.cost=round(this.cost/2)
-                }
-            break
-            case 5:
-                if(variants.mtg){
-                    if(this.specialCost){
-                        this.cost[0]=floor(this.cost[0]/2)
-                    }else{
-                        let last=-99
-                        for(let a=0,la=this.cost.length;a<la;a++){
-                            if(this.cost[a]!=last){
-                                last=this.cost[a]
-                                this.cost.splice(a,1)
-                                a--
-                                la--
-                            }else{
-                                last=-99
+                    this.edited.cost-=args[0]
+                    this.edited.costComplete=true
+                break
+                case 4:
+                    if(variants.mtg){
+                        if(this.specialCost){
+                            this.cost[0]=round(this.cost[0]/2)
+                        }else{
+                            let last=-99
+                            for(let a=0,la=this.cost.length;a<la;a++){
+                                if(this.cost[a]==last){
+                                    this.cost.splice(a,1)
+                                    a--
+                                    la--
+                                    last=-99
+                                }else{
+                                    last=this.cost[a]
+                                }
                             }
                         }
+                    }else if(this.cost>0){
+                        this.cost=round(this.cost/2)
                     }
-                }else if(this.cost>0){
-                    this.cost=floor(this.cost/2)
-                }
-            break
+                break
+                case 5:
+                    if(variants.mtg){
+                        if(this.specialCost){
+                            this.cost[0]=floor(this.cost[0]/2)
+                        }else{
+                            let last=-99
+                            for(let a=0,la=this.cost.length;a<la;a++){
+                                if(this.cost[a]!=last){
+                                    last=this.cost[a]
+                                    this.cost.splice(a,1)
+                                    a--
+                                    la--
+                                }else{
+                                    last=-99
+                                }
+                            }
+                        }
+                    }else if(this.cost>0){
+                        this.cost=floor(this.cost/2)
+                    }
+                break
+            }
         }
     }
     updateSpecialCost(){
@@ -888,6 +892,7 @@ class card{
             case -104: string+=`When Drawn,\nDiscard All Movements`; break
             case -105: string+=`When Drawn,\nDiscard All Powers`; break
             case -106: string+=`At the End of Your Turn,\nDouble All Your Debuffs`; break
+            case -107: string+=`When Drawn,\nAdd a Hurt to Hand`; break
             
             //mark n
 
@@ -1193,7 +1198,7 @@ class card{
             case 286: string+=`Counter ${effect[0]} All\nThis Combat`; break
             case 287: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Takes ${effect[1]}\nDamage Per Card\nPlayed This Turn`; break
             case 288: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Drawn,\nMake ${effect[1]} Cop${effect[1]!=1?`ies`:`y`}`; break
-            case 289: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nIf Last Card\nis a Defense,\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            case 289: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nIf Last Card Played\nWas a Defense,\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
             case 290: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Times\nCosts 1 Less Temporarily\nWhen a Card is Discarded\nFrom Your Hand`; break
             case 291: string+=`Draw to ${effect[0]} Card${pl(effect[0])}`; break
             case 292: string+=`Apply ${effect[0]} Weak\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
@@ -1218,7 +1223,7 @@ class card{
             case 310: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nGain ${effect[1]} Max Health`; break
             case 311: string+=`Multiply Your\nBuffs by ${effect[0]}`; break
             case 312: string+=`When You Take Damage,\nAdd ${effect[0]} Shiv${pl(effect[0])}\nto Hand`; break
-            case 313: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nIf Last Card\nis an Attack,\nAdd ${effect[1]} Shiv${pl(effect[1])}\nto Hand`; break
+            case 313: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nIf Last Card Played\nWas an Attack,\nAdd ${effect[1]} Shiv${pl(effect[1])}\nto Hand`; break
             case 314: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage\nAround Target`; break
             case 315: string+=`Send Discard\nPile to Hand`; break
             case 316: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Random Debuff`; break
@@ -1826,7 +1831,7 @@ class card{
             case 922: string+=`Transform Your Hand`; break
             case 923: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nConstructs Next to\nYou After Moving\nGain ${effect[1]} Max Health`; break
             case 924: string+=`Remove All\nBlock of Target\nApply ${effect[0]} Vulnerable`; break
-            case 925: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nIf Last Card\nis an Attack,\nGain ${effect[2]} Strength`; break
+            case 925: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nIf Last Card Played\nWas an Attack,\nGain ${effect[2]} Strength`; break
             case 926: string+=`Apply ${effect[0]} Distracted`; break
             case 927: string+=`Add ${effect[0]} Scrap Metal${pl(effect[0])}\nto Hand`; break
             case 928: string+=`Next ${effect[0]} Hit${pl(effect[0])} Taken\nHeal${effect[0]==1?`s`:``} You Instead`; break
@@ -6539,7 +6544,7 @@ class card{
             case 5612: string+=`When Retained,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy\n${effect[1]} Time${pl(effect[1])} and\nExhaust ${effect[2]} Random Card${pl(effect[2])}\nBoth Increase by ${effect[3]}\nCannot be Randomly\nExhausted`; break
             case 5613: string+=`Each Turn,\nRetain the First${effect[0]!=1?` ${effect[0]}`:``}\nCard${pl(effect[0])} in Hand`; break
             case 5614: string+=`Gain ${effect[0]} Temporary\nStrength\nGain ${effect[1]} Temporary\nDexterity\nUpgrade ${effect[2]} Random\nCard${pl(effect[2])} in Hand`; break
-            case 5615: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Upgrade\na Card Permanently`; break
+            case 5615: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Remove\na Card Permanently`; break
             case 5616: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAll Adjacent Combatants'\nAttacks Deal ${effect[1]} Less\nDamage This Turn\nUpgrade ${effect[2]} Card${pl(effect[2])}`; break
             case 5617: string+=`When a Card With\nMass is Pulled,\nPull it ${effect[0]} More Time${pl(effect[0])}`; break
             case 5618: string+=`Exhaust All Cards\nin Hand With Mass\nAdd ${this.calculateEffect(effect[0],1)} Block Each`; break
@@ -6575,8 +6580,8 @@ class card{
             case 5648: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nApply ${effect[1]} Frail\nin All Directions\nAdd a Stuck\nto Discard Pile`; break
             case 5649: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nFuel ${effect[1]} (${this.fuel}):\nUpgrade ${effect[2]} Card${pl(effect[2])}\nExhaust ${effect[3]} Card${pl(effect[3])}`; break
             case 5650: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nSwap Draw and Discard\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-            case 5651: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRetain ${effect[1]} Random\nCard${pl(effect[1])} in Hand\nUntil Played`; break
-            case 5652: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain ${effect[1]} Random\nCard${pl(effect[1])} in Hand\nUntil Played`; break
+            case 5651: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRetain ${effect[1]} Random\nCard${pl(effect[1])} Until Played`; break
+            case 5652: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain ${effect[1]} Random\nCard${pl(effect[1])} Until Played`; break
             case 5653: string+=`Push 1 Tile\nin All Directions\nExhaust ${effect[0]} Random Card${pl(effect[0])}\nAdd ${effect[1]} Dark\nMatter${pl(effect[1])} to Hand`; break
             case 5654: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nCosts 1 Less`; break
             case 5655: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]==1?`If it Has Mass,`:`For Each Card\nWith Mass Drawn,`}\nGain ${effect[2]} Energy`; break
@@ -6672,6 +6677,51 @@ class card{
             case 5745: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You are on\na Special Tile,\nCounter ${effect[1]} Once`; break
             case 5746: string+=`When You Evoke\na Dark Orb,\nHold ${effect[0]} Light Orb${pl(effect[0])}\nIf You Have None\nWhen You Evoke\na Light Orb,\nHold ${effect[1]} Dark Orb${pl(effect[1])}\nIf You Have None`; break
             case 5747: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Random Card${pl(effect[1])}\nWith Mass to Hand`; break
+            case 5748: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage\nPer Card Played While\nThis Card is in Your hand`; break
+            case 5749: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext Attack Deals\n${effect[1]} More Damage\nPer Card Played While\nThis Card is in Your hand`; break
+            case 5750: string+=`Add ${effect[0]} Shiv${pl(effect[0])} to Hand\nIncreases by ${effect[1]}`; break
+            case 5751: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Played First,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5752: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage ${effect[1]} Time${pl(effect[1])}\nWhen Played, Damage\nIncreases by ${effect[2]}\nWhen Discarded\nFrom Your Hand,\nIncreases by ${effect[3]} Time${pl(effect[3])}`; break
+            case 5753: string+=`If Last Card Played\nWas a Skill,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions`; break
+            case 5754: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nGain ${effect[1]} Temporary\nDexterity`; break
+            case 5755: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Strength\nIf Used on a Plant Tile`; break
+            case 5756: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n8 Times`; break
+            case 5757: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nWhen Drawn,\nDraw ${effect[1]} Skill${pl(effect[1])}`; break
+            case 5758: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain ${effect[1]} Card${pl(effect[1])} Once`; break
+            case 5759: string+=`Apply ${effect[0]} Vulnerable\nIf Played First,\nChoose a Skill\nto Add to Hand`; break
+            case 5760: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCannot Change Costs`; break
+            case 5761: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Etherealed,\nDraw ${effect[1]} More Card${pl(effect[1])}\nNext Turn`; break
+            case 5762: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDiscard Your Hand`; break
+            case 5763: string+=`Gain ${effect[0]} Regeneration\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5764: string+=`Draw to ${effect[0]} Card${pl(effect[0])}\nRetain Your Hand\nThis Turn`; break
+            case 5765: string+=`Put a Card in Discard\nPile in Your Hand\nWhen Etherealed, Add\nan Operational Contact\nof Equivalent Level`; break
+            case 5766: string+=`Put a Card in Draw\nPile in Your Hand\nWhen Etherealed, Add\nan Operational Access\nof Equivalent Level`; break
+            case 5767: string+=`Replace All Held Orbs\nWith Random Orbs`; break
+            case 5768: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain Unspent ${variants.mtg?`Mana`:`Energy`}\nFor ${effect[1]} Turn${pl(effect[1])}`; break
+            case 5769: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Hand Size\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 5770: string+=`The Most Expensive\nCard in Hand\nCosts 0 Temporarily\n(Picks Randomly if Tied)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 5771: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nin All Directions\nIf Last Card Played\nWas an Attack,\nGain ${effect[1]} Energy`; break
+            case 5772: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas an Attack,\nGain (B) (N)`; break
+            case 5773: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas an Attack,\nGain (E) (B)`; break
+            case 5774: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas an Attack,\nGain (E) (E)`; break
+            case 5775: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nOverdrive ${effect[1]}:\nCounter ${effect[2]} Once`; break
+            case 5776: string+=`Gain ${effect[0]} Energy\nWhen You Play\na 2+ Cost Attack`; break
+            case 5777: string+=`Gain (E) When You Play\na 2+ Cost Attack`; break
+            case 5778: string+=`Gain ${effect[0]} Weak\nEnter Calm`; break
+            case 5779: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Are Debuffed,\nGain ${effect[1]} Strength`; break
+            case 5780: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Vulnerable`; break
+            case 5781: string+=`Add ${effect[0]} Cop${effect[0]!=1?`ies`:`y`} of a\nCard in Hand to Hand\nIt Costs 0 Temporarily\nCop${effect[1]!=1?`ies Cost`:`y Costs`} 0 Temporarily`; break
+            case 5782: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Times\nApply ${effect[1]} Weak\nApply ${effect[2]} Vulnerable`; break
+            case 5783: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} 1 Cost Card${pl(effect[1])}`; break
+            case 5784: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGun in Hand:\nGain ${effect[1]} Energy`; break
+            case 5785: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGun in Hand:\nGain (G)`; break
+            case 5786: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGun in Hand:\nGain (G) (G)`; break
+            case 5787: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGun in Hand:\nGain (E) (E)`; break
+            case 5788: string+=`Gain ${effect[0]} Energy\nTake ${effect[1]} Damage\nDeal ${this.calculateEffect(effect[2],0)} Damage\nto All Enemies`; break
+            case 5789: string+=`Gain (K) (K)\nTake ${effect[0]} Damage\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto All Enemies`; break
+            case 5790: string+=`Gain (K) (K) (N)\nTake ${effect[0]} Damage\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto All Enemies`; break
+            case 5791: string+=`Gain (E) (K) (K)\nTake ${effect[0]} Damage\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto All Enemies`; break
+            case 5792: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nCosts 1 More`; break
 
             //mark p
 
@@ -7226,6 +7276,9 @@ class card{
             case 5107:
                 this.battle.itemManager.addRandomItem(this.player)
                 this.exhaust=true
+            break
+            case 5752:
+                this.effect[1]+=this.effect[3]
             break
         }
     }
@@ -7937,7 +7990,7 @@ class card{
             break
             case 118: case 619: case 1479: case 1480: case 1697: case 1740: case 1746: case 1788: case 2283: case 2471:
             case 2501: case 3198: case 3647: case 3915: case 4013: case 4178: case 4457: case 4658: case 4727: case 4771:
-            case 5208: case 5559: case 5560:
+            case 5208: case 5559: case 5560: case 5750:
                 this.effect[0]+=this.effect[1]
             break
             case 866: case 908: case 1893: case 2356: case 2482: case 5428: case 5429: case 5430: case 5431:
@@ -7986,7 +8039,7 @@ class card{
             case 1640: case 4881:
                 this.effect[0]=1+floor(random(0,3))*2
             break
-            case 1654: case 1909: case 5103: case 5104:
+            case 1654: case 1909: case 5103: case 5104: case 5792:
                 this.costUp(2,[1])
             break
             case 1739:
@@ -8070,6 +8123,9 @@ class card{
                     this.effect[0]=ceil(this.effect[0]/2)
                     this.costDown(2,[1])
                 }
+            break
+            case 5752:
+                this.effect[0]+=this.effect[2]
             break
         }
         if(this.battle.modded(94)&&this.battle.cardManagers[this.player].hand.turnPlayed[0]>=5){
@@ -8515,6 +8571,12 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
+                case 5748:
+                    this.battle.combatantManager.areaAbstract(0,[this.effect[1],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                break
+                case 5749:
+                    userCombatant.statusEffect('Single Damage Up',this.effect[1])
+                break
                 
             }
         }
@@ -8612,6 +8674,15 @@ class card{
             break
             case 3808:
                 this.battle.cardManagers[this.player].hand.add(findName('Dual\nDiscus',types.card),this.level,0)
+            break
+            case 5761:
+                userCombatant.statusEffect('Temporary Draw',this.effect[1])
+            break
+            case 5765:
+                this.battle.cardManagers[this.player].hand.add(findName('Operational\nContact',types.card),this.level,this.color)
+            break
+            case 5766:
+                this.battle.cardManagers[this.player].hand.add(findName('Operational\nAccess',types.card),this.level,this.color)
             break
         }
     }
@@ -10738,7 +10809,7 @@ class card{
                         case 1: case 24: case 28: case 29: case 31: this.layer.stroke(100,255,255,this.fade*anim[a]); break
                         case 2: this.layer.stroke(255,225,0,this.fade*anim[a]); break
                         case 3: this.layer.stroke(255,100,255,this.fade*anim[a]); break
-                        case 4: case 21: case 26: case 27: this.layer.stroke(255,200,200,this.fade*anim[a]); break
+                        case 4: case 21: case 26: case 27: case 33: this.layer.stroke(255,200,200,this.fade*anim[a]); break
                         case 5: this.layer.stroke(0,150,255,this.fade*anim[a]); break
                         case 6: this.layer.stroke(200,225,255,this.fade*anim[a]); break
                         case 7: this.layer.stroke(255,255,150,this.fade*anim[a]); break
@@ -10760,7 +10831,7 @@ class card{
                     this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
                     switch(a){
                         case 21: case 23: case 24: case 25: case 26: case 27: case 28: case 29: case 30: case 31:
-                        case 32:
+                        case 32: case 33:
                             switch(a){
                                 case 21: case 23: case 24:
                                     this.layer.stroke(220,this.fade*anim[a])
@@ -10785,6 +10856,9 @@ class card{
                                 break
                                 case 32:
                                     this.layer.stroke(255,255,150,this.fade*anim[a])
+                                break
+                                case 33:
+                                    this.layer.stroke(100,0,100,this.fade*anim[a])
                                 break
                             }
                             this.layer.strokeWeight(1)

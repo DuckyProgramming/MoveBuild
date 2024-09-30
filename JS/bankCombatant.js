@@ -5693,7 +5693,7 @@ combatant.prototype.display=function(){
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
-                    if(this.trigger.display.band&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6&&g==1){
+                    if(this.trigger.display.band&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3)&&g==1){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.eye[g]){

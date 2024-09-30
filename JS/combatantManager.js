@@ -1389,15 +1389,6 @@ class combatantManager{
         }
         return combatants
     }
-    getAreaCapped(team,tilePosition,range){
-        let combatants=[]
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].life>0&&(this.combatants[a].team!=team&&legalTargetCombatant(0,0,range,{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)||this.battle.modded(121))){
-                combatants.push(this.combatants[a])
-                return combatants
-            }
-        }
-    }
     getAreaId(id,tilePosition,range){
         let combatants=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
