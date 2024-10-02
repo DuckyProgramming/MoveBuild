@@ -69,7 +69,7 @@ function displayTransition(layer,transition){
 					graphics.staticBackground.clear()
 					setupBackground(11,graphics.staticBackground)
 				break
-				case 'custom': case 'listQuery':
+				case 'custom':
 					graphics.staticBackground.clear()
 					setupBackground(12,graphics.staticBackground)
 				break
@@ -84,6 +84,10 @@ function displayTransition(layer,transition){
 				case 'query':
 					graphics.staticBackground.clear()
 					setupBackground(15,graphics.staticBackground)
+				break
+				case 'listQuery':
+					graphics.staticBackground.clear()
+					setupBackground(16,graphics.staticBackground)
 				break
 				case 'rest':
 					graphics.staticBackground.clear()
@@ -1963,23 +1967,23 @@ Total:${current.nodeManager.listing.static[3][1].length+current.nodeManager.list
 }
 function outListing(){
 	let box=``
-	let goal=150+150*constants.playerNumber+30+20+15+30+15+60+150
+	let goal=160+160*constants.playerNumber+30+20+15+30+15+60+150
 	let actual=current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.sub.length+current.cardManagers[0].listing.junk[constants.playerNumber+1].length
 	let arbitrary=5000
 	for(let a=0,la=constants.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
-Common:${current.cardManagers[0].listing.card[a+1][0].length}/60				${current.cardManagers[0].listing.card[a+1][0].length-60}
+Common:${current.cardManagers[0].listing.card[a+1][0].length}/65				${current.cardManagers[0].listing.card[a+1][0].length-65}
 Uncommon:${current.cardManagers[0].listing.card[a+1][1].length}/65				${current.cardManagers[0].listing.card[a+1][1].length-65}
-Rare:${current.cardManagers[0].listing.card[a+1][2].length}/25					${current.cardManagers[0].listing.card[a+1][2].length-25}
-	Total:${current.cardManagers[0].listing.card[a+1][3].length}/150\n`
+Rare:${current.cardManagers[0].listing.card[a+1][2].length}/30					${current.cardManagers[0].listing.card[a+1][2].length-30}
+	Total:${current.cardManagers[0].listing.card[a+1][3].length}/160\n`
 	}
 	console.log(`Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
 Listed Cards: ${actual}/${goal}		${actual-goal}
 		Colorless:
-Common:${current.cardManagers[0].listing.card[0][0].length}/60				${current.cardManagers[0].listing.card[0][0].length-60}
+Common:${current.cardManagers[0].listing.card[0][0].length}/65				${current.cardManagers[0].listing.card[0][0].length-65}
 Uncommon:${current.cardManagers[0].listing.card[0][1].length}/65				${current.cardManagers[0].listing.card[0][1].length-65}
-Rare:${current.cardManagers[0].listing.card[0][2].length}/25					${current.cardManagers[0].listing.card[0][2].length-25}
-	Total:${current.cardManagers[0].listing.card[0][3].length}/150
+Rare:${current.cardManagers[0].listing.card[0][2].length}/30					${current.cardManagers[0].listing.card[0][2].length-30}
+	Total:${current.cardManagers[0].listing.card[0][3].length}/160
 ${box}		Status:
 	Total:${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length}/30				${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length-30}
 		Curse:

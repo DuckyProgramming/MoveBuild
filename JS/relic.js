@@ -3386,7 +3386,7 @@ class relic{
                     displaySymbol(this.layer,7,9,4,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('2',-10,0)
+                    this.layer.text('4',-10,0)
                 break
                 case 'Offcolor Choice':
                     displaySymbol(this.layer,-11,0,8,0,0.8,this.fade)

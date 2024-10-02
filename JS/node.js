@@ -61,12 +61,14 @@ class node{
     save(){
         let composite={
             position:this.position,
+            base:{position:this.base.position},
             tilePosition:this.tilePosition,
             type:this.type,
             reality:this.reality,
             combat:this.combat,
             connections:this.connections,
             extraConnections:this.extraConnections,
+            scroll:this.scroll,
             complete:this.complete,
         }
         return composite
@@ -85,14 +87,16 @@ class node{
 
         this.anim={complete:0,active:0,past:0,description:0}
     }
-    establish(x,y,tileX,tileY,type,reality,combat,connections,extraConnections,complete){
+    establish(x,y,baseX,baseY,tileX,tileY,type,reality,combat,connections,extraConnections,scroll,complete){
         this.position={x:x,y:y}
+        this.base.position={x:baseX,y:baseY}
         this.tilePosition={x:tileX,y:tileY}
         this.type=type
         this.reality=reality
         this.combat=combat
         this.connections=connections
         this.extraConnections=extraConnections
+        this.scroll=scroll
         this.complete=complete
     }
     display(type=this.type){

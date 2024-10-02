@@ -145,8 +145,8 @@ types={
         {name:'Danger',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:255,effect:[9,1]},{type:256,effect:[9,1]}],description:`Contains... something?`},
         {name:'Carbonado Robot',life:145,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:30,effect:[16,4]},{type:257,effect:[6,1]},{type:258,effect:[6,6]}],description:`Very shiny robot`},
         {name:'Obstruction',life:87,behavior:5,spec:[0],move:{type:8,speed:1},attack:[{type:6,effect:[8]},{type:259,effect:[9]}],description:`Solving problems by not having problems`},
-        {name:'Structural Energy',life:86,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:260,effect:[10,1]},{type:261,effect:[15,1]}],description:`Not quite plutonic`},
-        {name:'Disorder Energy',life:165,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:268,effect:[12,1]},{type:269,effect:[20,1,1]}],description:`Coloration error moment`},
+        {name:'Structural Energy',life:66,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:260,effect:[10,1]},{type:261,effect:[15,1]}],description:`Not quite plutonic`},
+        {name:'Disorder Energy',life:115,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:268,effect:[10,1]},{type:269,effect:[16,1,1]}],description:`Coloration error moment`},
         {name:'Kugelblitz',life:97,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:262,effect:[8,1]},{type:263,effect:[8,1]},{type:264,effect:[9,1]},{type:265,effect:[9,1]}],description:`From the overseer`},
         {name:'Voidglass',life:155,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:12,effect:[21]},{type:266,effect:[14,2]},{type:267,effect:[24,2]}],description:`Can't see anything behind those shades`},
         {name:'Intruder',life:21,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:270,effect:[7,1]},{type:271,effect:[5,1]}],description:`Didn't ask to be let in`},
@@ -216,7 +216,7 @@ types={
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
         {name:'Donu',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[6]}],description:`It's just shapes`},
-        {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
+        {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,1]},{type:39,effect:[2,'Flame']},{type:73,effect:[8,1,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:200,effect:[8]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
         {name:'Crusader',life:127,behavior:15,spec:[0,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:343,effect:[14,1]},{type:344,effect:[20]},{type:376,effect:[22,1]},{type:346,effect:[22,1]},{type:347,effect:[20]}],description:`Two millenia late to the party`},
         {name:'Thoughtless',life:144,behavior:17,spec:[0],move:{type:0,speed:1},attack:[{type:147,effect:[5]},{type:404,effect:[12,1]},{type:405,effect:[9,3]},{type:83,effect:[10,1,'Philosophy of\nthe Despised']}],description:`No mind lol`},
@@ -801,7 +801,7 @@ types={
         {name:'Pocket of Knives',internal:'Shivs',id:52,rarity:-1,list:0,mtg:0,description:'Add 4 Shivs at the\nStart of Combat'},
         {name:'Salted Pepper',internal:'Healing Boost',id:53,rarity:2,list:0,mtg:0,description:'All Healing is\n50% More Effective'},
         {name:'Psuedograph',internal:'No Card Draw',id:54,rarity:2,list:0,mtg:0,description:'If You Have No Cards in\nYour Hand, Draw 1 Card'},
-        {name:'Origami Paper',internal:'Damage Decrease',id:55,rarity:2,list:0,mtg:0,description:'Reduce All Damage\nAbove 1 By 1'},
+        {name:'Origami Paper',internal:'Damage Decrease',id:55,rarity:2,list:0,mtg:0,description:'Reduce All Damage\nTaken Above 1 By 1'},
         {name:'Picture Frame',internal:'Damage Threshold',id:56,rarity:2,list:0,mtg:0,description:'If You Take 5 or Less\nDamage, Reduce it to 1'},
         {name:'Leaf Ball',internal:'Starting Armor',id:57,rarity:2,list:0,mtg:0,description:'Gain 4 Armor at the\nStart of Combat'},
         {name:'Metal Detector',internal:'Relic Rest',id:58,rarity:1,list:0,mtg:0,description:'Can Gain a Relic\nWhen Resting'},
@@ -6382,7 +6382,7 @@ Vary greatly in effect.`,
 Is removed when damage taken.`,
         },{name:'Freeze',mtg:0,desc:
 `At the end of the global turn, combatants take damage equal to Freeze squared.
-Removed afterward.`,
+Stacks degrade by half, rounded up, each turn.`,
         },{name:'Shock',mtg:0,desc:
 `Take damage after each movement step.`,
         },{name:'Jinx',mtg:0,desc:
@@ -6767,7 +6767,7 @@ constants={
     HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]
 }
 options={damage:false,alt:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false,devGen:false}
-graphics={main:0,backgroundGen:16,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],paperball:[],proxyBattle:0,test:0}
+graphics={main:0,backgroundGen:17,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],paperball:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0

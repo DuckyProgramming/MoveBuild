@@ -4879,14 +4879,17 @@ class group{
                         (100+(this.cards[a].spec.includes(34)?-20:((this.cards[a].spec.includes(33)?50:0)+(this.cards[a].spec.includes(66)?150:0)+(this.battle.relicManager.hasRelic(170,this.player)?25:0))))
                         :(
                             (this.cards[a].name=='Unbuild'&&this.cards[a-1].name=='Unbuild'&&this.cards[a].level==this.cards[a-1].level&&this.cards[a].color==this.cards[a-1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a-1].additionalSpec.length==0?50:100)+
-                            (this.cards[a].spec.includes(33)?50:0)+
-                            (a>0&&this.cards[a-1].spec.includes(33)?50:0)+
-                            (this.cards[a].spec.includes(66)?150:0)+
-                            (a>0&&this.cards[a-1].spec.includes(66)?150:0)+
-                            (this.battle.relicManager.hasRelic(170,this.player)?50:0)+
-                            (this.cards[a].spec.includes(34)?-20:0)+
-                            (a>0&&this.cards[a-1].spec.includes(34)?-20:0)
-                            )*this.compact
+                            (this.cards[a].spec.includes(34)?-20:
+                                (this.cards[a].spec.includes(33)?50:0)+
+                                (this.cards[a].spec.includes(66)?150:0)+
+                                (this.battle.relicManager.hasRelic(170,this.player)?25:0)
+                            )+
+                            (a>0&&this.cards[a-1].spec.includes(34)?-20:
+                                (a>0&&this.cards[a-1].spec.includes(33)?50:0)+
+                                (a>0&&this.cards[a-1].spec.includes(66)?150:0)+
+                                (this.battle.relicManager.hasRelic(170,this.player)?25:0)
+                            )
+                        )*this.compact
                     )
                     cap+=length
                     for(let b=0,lb=variants.speedmove?2:1;b<lb;b++){

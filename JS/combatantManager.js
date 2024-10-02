@@ -1307,7 +1307,7 @@ class combatantManager{
                         if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Boost')>0){
                             this.combatants[a].takeDamage(values[0]+this.combatants[values[1]].getStatus('Splash Boost'),values[1],values[2])
                         }else{
-                            this.combatants[a].takeDamage(values[0],values[1],values[2])
+                            this.combatants[a].takeDamage(...values)
                         }
                         if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Attach Poison')>0){
                             this.combatants[a].statusEffect('Poison',this.combatants[values[1]].getStatus('Splash Attach Poison'))

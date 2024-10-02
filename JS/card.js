@@ -6723,6 +6723,12 @@ class card{
             case 5791: string+=`Gain (E) (K) (K)\nTake ${effect[0]} Damage\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto All Enemies`; break
             case 5792: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nCosts 1 More`; break
 
+            case 5793: string+=`When You Play\na Dark Matter,\nFuel Your Hand For ${effect[0]}`; break
+            //5707
+            case 5794: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],10)} Damage\nWhere X = Fuel (${this.fuel})\nApply ${effect[2]} Weak\nApply ${effect[3]} Vulnerable`; break
+
+
+
             //mark p
 
             //mark q
@@ -7017,7 +7023,7 @@ class card{
                 this.effect[0]+=this.effect[1]
             break
             case -90:
-                userCombatant.charge=min(0,userCombatant.charge-this.effect[0])
+                userCombatant.charge=max(0,userCombatant.charge-this.effect[0])
             break
             case -95:
                 this.battle.turnManager.loadSpecificAttack(userCombatant.id,393,[userCombatant.id,this.effect[0],-1,2])
@@ -10168,11 +10174,11 @@ class card{
                         setupSingleEditionGraphic(this.edition,this.width)
                         graphicKey=graphics.edition[this.edition-1].length-1
                     }
-                    this.layer.image(graphics.edition[this.edition-1][graphicKey][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
+                    this.layer.image(graphics.edition[this.edition-1][graphicKey][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,300-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
                     if(this.battle.relicManager.hasRelic(249,this.player)&&this.edition==4){
-                        this.layer.image(graphics.edition[5][graphicKey][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
+                        this.layer.image(graphics.edition[5][graphicKey][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,300-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
                     }else if(this.battle.relicManager.hasRelic(249,this.player)&&this.edition==6){
-                        this.layer.image(graphics.edition[3][graphicKey][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
+                        this.layer.image(graphics.edition[3][graphicKey][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,300-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
                     }
                 }
             }

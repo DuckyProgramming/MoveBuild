@@ -9,7 +9,7 @@ class collectionManager{
         this.anim={query:{list:[],rarity:[],class:[]},variant:0}
         this.level=0
         this.page=0
-        this.totals=[0,0]
+        this.totals={query:[0,0],list:[]}
         this.query={
             name:'',
             list:[],
@@ -34,10 +34,11 @@ class collectionManager{
     }
     executeQuery(){
         this.page=0
-        this.totals=[0,0]
+        this.totals={query:[0,0],list:[]}
         let names=[]
         for(let a=0,la=constants.playerNumber+16;a<la;a++){
             names.push([[],[]])
+            this.totals.list.push([0,0])
         }
         for(let a=0,la=types.card.length;a<la;a++){
             let cardData=types.card[a]
@@ -77,6 +78,10 @@ class collectionManager{
                 sublist=-10
                 resultlist=constants.playerNumber+15
             }
+            this.totals.list[resultlist][0]++
+            if(this.knownKey[a]){
+                this.totals.list[resultlist][1]++
+            }
             if(
                 (this.query.name==''||cardData.name.toLowerCase().replace('\n',' ').includes(this.query.name.toLowerCase().replace('\n',' ')))&&
                 (this.query.list.includes(sublist))&&
@@ -106,9 +111,9 @@ class collectionManager{
                     if(!this.known.includes(names[a][b][c])){
                         this.cards[this.cards.length-1].blind=true
                     }else{
-                        this.totals[0]++
+                        this.totals.query[0]++
                     }
-                    this.totals[1]++
+                    this.totals.query[1]++
                     tick++
                 }
             }
@@ -155,7 +160,7 @@ class collectionManager{
                 this.layer.text(this.query.name,65,515)
                 this.layer.textAlign(CENTER,CENTER)
                 this.layer.textSize(10)
-                this.layer.text(`${this.totals[0]}/${this.totals[1]}`,this.layer.width/2-75,this.layer.height*0.7+42.5)
+                this.layer.text(`${this.totals.query[0]}/${this.totals.query[1]}`,this.layer.width/2-75,this.layer.height*0.7+42.5)
                 this.layer.text(`${this.page+1}/${max(1,ceil(this.cards.length/24))}`,this.layer.width/2+75,this.layer.height*0.7+42.5)
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].fade=1
@@ -183,6 +188,12 @@ class collectionManager{
                         this.layer.fill(255,this.anim.query.list[a])
                         this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/2-205+floor(a/4)*40,10)
                     }
+                }
+                this.layer.fill(255)
+			    this.layer.textSize(10)
+                let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBSPECTRAL','JUNKYARD','SUBCARD','EVENT','VARIANT','DEVELOPER','REMOVED','BASIC','PACK','MISC']
+                for(let a=0,la=36;a<la;a++){
+                    this.layer.text(`${a>=constants.playerNumber?names2[a-constants.playerNumber]:types.combatant[a+1].name.toUpperCase()} (${this.totals.list[a][1]}/${this.totals.list[a][0]})`,this.layer.width/2-298.75+a%4*190,this.layer.height/2-205+floor(a/4)*40)
                 }
             break
         }

@@ -365,7 +365,7 @@ class combatant{
     save(){
         let composite={
             life:this.life,
-            base:{life:this.life},
+            base:{life:this.base.life},
             compression:this.compression,
             permanentStrength:this.permanentStrength,
             carry:this.carry,
@@ -3922,7 +3922,7 @@ class combatant{
     endBlock(){
         if(this.status.main[119]>0){
             this.takeDamage(this.status.main[119]**2,-1)
-            this.status.main[119]=0
+            this.status.main[119]=floor(this.status.main[119]/2)
         }
         if(this.status.main[281]>0){
             this.statusEffect('Single Damage Up',ceil(this.block))

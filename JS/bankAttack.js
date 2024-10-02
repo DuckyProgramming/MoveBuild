@@ -7928,7 +7928,7 @@ attack.prototype.update=function(){
             }else if(this.timer==5*this.targetDistance+15){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 this.targetCombatant.statusEffect('Freeze',this.effect[1])
-                this.userManager.hand.add(findName('Snowflake',types.card),0,this.color)
+                this.userManager.hand.add(findName('Snowflake',types.card),0,0)
             }else if(this.timer>=max(30,5*this.targetDistance+25)){
                 this.remove=true
             }

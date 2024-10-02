@@ -6686,6 +6686,55 @@ function setupBackground(type,layer){
 				layer.text('Class',layer.width/2+a*0.5,layer.height/2-60+a*0.5)
 			}
 		break
+		case 16:
+			menuBackground(layer)
+			layer.fill(120)
+			layer.rect(layer.width/2-105,layer.height*0.7+150,125,125)
+			layer.rect(layer.width/2-105,layer.height*0.7+250,200,55)
+			layer.rect(layer.width/2+105,layer.height*0.7+150,125,125)
+			layer.rect(layer.width/2+105,layer.height*0.7+250,200,55)
+			for(let a=0,la=36;a<la;a++){
+				layer.rect(layer.width/2-570+a%4*380,layer.height/2-410+floor(a/4)*80,350,70)
+			}
+			layer.fill(0)
+			layer.rect(layer.width/2-105,layer.height*0.7+150,100,100)
+			layer.rect(layer.width/2-105,layer.height*0.7+250,175,30)
+			layer.rect(layer.width/2+105,layer.height*0.7+150,100,100)
+			layer.rect(layer.width/2+105,layer.height*0.7+250,175,30)
+			for(let a=0,la=36;a<la;a++){
+				layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-410+floor(a/4)*80,270,45)
+				layer.rect(layer.width/2-430+a%4*380,layer.height/2-410+floor(a/4)*80,45,45)
+			}
+			layer.fill(120)
+			regTriangle(layer,layer.width/2-110,layer.height*0.7+150,30,30,-30)
+			layer.beginShape()
+			layer.vertex(layer.width/2+85,layer.height*0.7+120)
+			layer.vertex(layer.width/2+75,layer.height*0.7+120)
+			layer.vertex(layer.width/2+75,layer.height*0.7+130)
+			layer.vertex(layer.width/2+125,layer.height*0.7+180)
+			layer.vertex(layer.width/2+135,layer.height*0.7+180)
+			layer.vertex(layer.width/2+135,layer.height*0.7+170)
+			layer.endShape()
+			layer.beginShape()
+			layer.vertex(layer.width/2+85,layer.height*0.7+180)
+			layer.vertex(layer.width/2+75,layer.height*0.7+180)
+			layer.vertex(layer.width/2+75,layer.height*0.7+170)
+			layer.vertex(layer.width/2+125,layer.height*0.7+120)
+			layer.vertex(layer.width/2+135,layer.height*0.7+120)
+			layer.vertex(layer.width/2+135,layer.height*0.7+130)
+			layer.endShape()
+			layer.fill(255)
+			layer.textSize(20)
+			layer.text('BACK',layer.width/2-105,layer.height*0.7+250)
+			for(let a=0,la=9;a<la;a++){
+				layer.text(a+1,layer.width/2-770,layer.height/2-410+a*80)
+			}
+			for(let a=0,la=4;a<la;a++){
+				layer.text(a+1,layer.width/2-590+a%4*380,layer.height/2-460)
+			}
+			layer.textSize(15)
+			layer.text('DISABLE ALL',layer.width/2+105,layer.height*0.7+250)
+		break
 
 	}
 }
@@ -6741,7 +6790,7 @@ function setupEdition(type,layer,width){
 			layer.fill(100,50,200,0.1)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
 			layer.noFill()
-			for(let a=0,la=20;a<la;a++){
+			for(let a=0,la=50;a<la;a++){
 				let b=random(-4,4)
 				layer.stroke(255,255,255,random(0.025,0.1))
 				layer.strokeWeight(random(2,3))
@@ -6752,7 +6801,7 @@ function setupEdition(type,layer,width){
 			layer.fill(255,0.02)
 			for(let a=0,la=6;a<la;a++){
 				for(let b=0,lb=10;b<lb;b++){
-					layer.arc(layer.width/2,layer.height/2,300,300,-90+a*60-8*(1-b/lb),-90+a*60+8*(1-b/lb))
+					layer.arc(layer.width/2,layer.height/2,600,600,-90+a*60-8*(1-b/lb),-90+a*60+8*(1-b/lb))
 				}
 			}
 		break
@@ -6761,7 +6810,7 @@ function setupEdition(type,layer,width){
 			layer.fill(0,150,200)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
 			let schema=[]
-			for(let a=0,la=12;a<la;a++){
+			for(let a=0,la=layer.width*0.06;a<la;a++){
 				schema.push([])
 				for(let b=0,lb=14;b<lb;b++){
 					schema[a].push([random(0.6,1.5),random(1,2)])
@@ -6772,7 +6821,7 @@ function setupEdition(type,layer,width){
 				layer.stroke(360*(a+1)/(la+1),150,200)
 				layer.strokeWeight(3)
 				layer.strokeJoin(ROUND)
-				for(let b=0,lb=12;b<lb;b++){
+				for(let b=0,lb=layer.width*0.06;b<lb;b++){
 					for(let c=0,lc=14;c<lc;c++){
 						if(1-a/la*schema[b][c][1]>0){
 							regTriangle(layer,(b+(1-constants.sqrt3/2)/(constants.sqrt3/2)*((b+c)%2*2-1))/(lb-1)*layer.width,c/(lc-1)*layer.height,10*(1-a/la*schema[b][c][1])*random(0.8,1.2)*schema[b][c][0],10*(1-a/la*schema[b][c][1])*random(0.8,1.2)*schema[b][c][0],(b+c)%2*60-30+random(-15,15))
@@ -6791,13 +6840,13 @@ function setupEdition(type,layer,width){
 			layer.colorMode(HSB,360,255,255,1)
 			layer.fill(0,150,200)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
-			for(let a=0,la=6;a<la;a++){
+			for(let a=0,la=10;a<la;a++){
 				for(let b=0,lb=120;b<lb;b++){
 					layer.fill((360*6*b/lb+a*150)%360,100,150)
-					layer.arc(layer.width/2,layer.height/2,300*(1-a/la),300*(1-a/la),360*b/lb,360*(b+1)/lb)
+					layer.arc(layer.width/2,layer.height/2,500*(1-a/la),500*(1-a/la),360*b/lb,360*(b+1)/lb)
 				}
 			}
-			for(let a=0,la=8;a<la;a++){
+			for(let a=0,la=layer.width*0.04;a<la;a++){
 				for(let b=0,lb=6;b<lb;b++){
 					let c=(a+random(0.3,0.7))/la*layer.width
 					let d=(b+a%2*0.5+random(0.05,0.45))/lb*layer.height
@@ -6819,7 +6868,7 @@ function setupEdition(type,layer,width){
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
 		break
 		case 5:
-			for(let a=0,la=16;a<la;a++){
+			for(let a=0,la=layer.width*0.08;a<la;a++){
 				for(let b=0,lb=12;b<lb;b++){
 					let c=(a+random(0.3,0.7))/la*layer.width
 					let d=(b+a%2*0.5+random(0.05,0.45))/lb*layer.height
@@ -6838,7 +6887,7 @@ function setupEdition(type,layer,width){
 		case 6:
 			layer.fill(50,75,75,0.2)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
-			for(let a=0,la=16;a<la;a++){
+			for(let a=0,la=layer.width*0.08;a<la;a++){
 				for(let b=0,lb=12;b<lb;b++){
 					let c=floor(random(0,3))
 					switch(c){
@@ -7002,7 +7051,7 @@ function setupEdition(type,layer,width){
 }
 function setupSingleEditionGraphic(edition,width){
 	let local=graphics.edition[edition-1]
-	local.push([width,createGraphics(200,150)])
+	local.push([width,createGraphics(600,150)])
 	setupLayer(local[local.length-1][1])
 	setupEdition(edition,local[local.length-1][1],width)
 	setupEdition(0,local[local.length-1][1],width)

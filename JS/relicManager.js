@@ -2048,7 +2048,7 @@ class relicManager{
                 }
                 if(this.active[446][args[1]+1]>0){
                     let userCombatant=this.getPlayer(args[1])
-                    this.battle.combatantManager.areaAbstract(0,[5,userCombatant.id,0],userCombatant.tilePosition,[7],[0,1],false,0)
+                    this.battle.combatantManager.areaAbstract(0,[5*this.active[446][args[1]+1]],userCombatant.tilePosition,[7],[0,1],false,0)
                     current.particleManager.particles.push(new particle(this.battle.layer,userCombatant.position.x,userCombatant.position.y-50,174,[5,0,0]))
                     current.particleManager.particles.push(new particle(this.battle.layer,userCombatant.position.x,userCombatant.position.y-50,174,[5,20,5]))
                     current.particleManager.particles.push(new particle(this.battle.layer,userCombatant.position.x,userCombatant.position.y-50,174,[5,10,10]))

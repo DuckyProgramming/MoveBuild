@@ -1,7 +1,10 @@
 BUGS
 
-somewhere the saves aren't working
-(passive)
+various save bugs as they appear
+
+
+
+appearing and disappearing hotkeys
 
 
 
@@ -9,7 +12,7 @@ OPERATION ASCENDANCY
 (389)
 
 LISTING GROUP 51 - QUOTA
-(39)
+(206)
 
 LISTING GROUP 52 - ADDENDUM
 

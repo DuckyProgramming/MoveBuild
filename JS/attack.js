@@ -4487,9 +4487,6 @@ class attack{
                         this.userManager.draw(this.effect[0])
                         this.battle.addSpecificEnergy(2,this.user,1)
                     break
-                    case 4184:
-                        this.userManager.hand.add(findName('Miracle',types.card),0,0)
-                    break
                     case 4185:
                         this.userManager.hand.add(findName('Splash',types.card),0,0)
                     break
@@ -6980,6 +6977,9 @@ class attack{
                     break
                     case 4166:
                         this.userCombatant.statusEffect('(E) Next Turn',3)
+                    break
+                    case 4184:
+                        this.userManager.hand.add(findName('Miracle',types.card),0,0)
                     break
                     case 4245:
                         if(this.userCombatant.balance>=5){
