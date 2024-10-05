@@ -158,6 +158,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[97])],//view exhaust
                     [new overlay(this.layer,this.battle,0,25,[0])],//wheel of money
                     [new overlay(this.layer,this.battle,0,25,[1])],//wheel of stab
+                    [new overlay(this.layer,this.battle,0,8,[0,-1,2])],//new card to deck, brakecheck,150
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

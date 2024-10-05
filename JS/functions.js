@@ -1967,8 +1967,8 @@ Total:${current.nodeManager.listing.static[3][1].length+current.nodeManager.list
 }
 function outListing(){
 	let box=``
-	let goal=160+160*constants.playerNumber+30+20+15+30+15+60+150
-	let actual=current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.sub.length+current.cardManagers[0].listing.junk[constants.playerNumber+1].length
+	let goal=160+160*constants.playerNumber+60+60+25+30+20
+	let actual=current.cardManagers[0].listing.allListableCard[3].length
 	let arbitrary=5000
 	for(let a=0,la=constants.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
@@ -1985,19 +1985,20 @@ Uncommon:${current.cardManagers[0].listing.card[0][1].length}/65				${current.ca
 Rare:${current.cardManagers[0].listing.card[0][2].length}/30					${current.cardManagers[0].listing.card[0][2].length-30}
 	Total:${current.cardManagers[0].listing.card[0][3].length}/160
 ${box}		Status:
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length}/30				${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length-30}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length}/60				${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length-60}
 		Curse:
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+2][3].length}/20				${current.cardManagers[0].listing.card[constants.playerNumber+2][3].length-20}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+2][3].length}/60				${current.cardManagers[0].listing.card[constants.playerNumber+2][3].length-60}
 		Partnership:
-Common:${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length}/5					${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length-5}
+Common:${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length}/10				${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length-10}
 Uncommon:${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length}/10				${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-10}
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+3][3].length}/15
+Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length}/5					${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-5}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+3][3].length}/25
 		Tarot:
 	Total:${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length}/30				${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length-30}
 		Spectral:
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/15				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-15}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/20				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-15}
 		Subcard:
-	Total:${current.cardManagers[0].listing.sub.length}/60			${current.cardManagers[0].listing.sub.length-60}
+	Total:${current.cardManagers[0].listing.sub.length}/60				${current.cardManagers[0].listing.sub.length-60}
 		Ally:
 	Total:${current.cardManagers[0].listing.ally.length}/20				${current.cardManagers[0].listing.ally.length-20}
 		Disband:

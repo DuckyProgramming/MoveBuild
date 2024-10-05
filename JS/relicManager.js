@@ -1384,26 +1384,6 @@ class relicManager{
                             if(this.active[122][a+1]>0){
                                 this.getPlayer(a).statusEffect('Control',this.active[122][a+1])
                             }
-                            if(this.active[464][a+1]>0&&args[0]!=4){
-                                for(let b=0,lb=this.active[464][a+1];b<lb;b++){
-                                    if(this.battle.itemManager.total[a]==0){
-                                        this.battle.itemManager.addRandomItem(a)
-                                    }
-                                }
-                            }
-                            if(this.active[39][a+1]>0){this.detail[39][a]=0}
-                            if(this.active[108][a+1]>0){this.detail[108][a]=0}
-                            if(this.active[206][a+1]>0){this.detail[206][a][0]=0}
-                            if(this.active[317][a+1]>0){this.detail[317][a]=0}
-                            if(this.active[323][a+1]>0){this.detail[323][a]=0}
-                            if(this.active[324][a+1]>0){this.detail[324][a]=0}
-                            if(this.active[366][a+1]>0){this.detail[366][a]=0}
-                            if(this.active[367][a+1]>0){this.detail[367][a]=0}
-                            if(this.active[378][a+1]>0){this.detail[378][a]=0}
-                            if(this.active[383][a+1]>0){this.detail[383][a]=0}
-                            if(this.active[442][a+1]>0){this.detail[442][a]=0}
-                            if(this.active[457][a+1]>0){this.detail[457][a]=0}
-                            if(this.active[465][a+1]>0){this.detail[465][a][0]=0}
                         }
                         if(this.active[96][0]>0&&args[1]==1){
                             this.battle.combatantManager.allEffect(1,[1-this.active[96][0]*0.2])
@@ -1670,7 +1650,7 @@ class relicManager{
                             this.battle.cardManagers[args[1]].draw(2*this.active[2][args[1]+1])
                         }
                         if(this.active[3][args[1]+1]>0){
-                            this.battle.addSpecificEnergy(this.active[3][args[1]+1],a,6)
+                            this.battle.addSpecificEnergy(this.active[3][args[1]+1],args[1],6)
                         }
                         if(this.active[8][args[1]+1]>0){
                             for(let a=0,la=this.active[8][args[1]+1];a<la;a++){
@@ -2737,6 +2717,28 @@ class relicManager{
                 if(this.active[440][args[0].player+1]>0&&args[0].attackClass==1&&(this.battle.energy.lastSpend[args[0].player].includes(5)||this.battle.energy.lastSpend[args[0].player].includes(6))){
                     this.getPlayer(args[0].player).statusEffect('Temporary Strength',2*this.active[440][args[0].player+1])
                 }
+            break
+            case 22://general start of combat
+                if(this.active[464][a+1]>0&&args[0]!=4){
+                    for(let b=0,lb=this.active[464][a+1];b<lb;b++){
+                        if(this.battle.itemManager.total[a]==0){
+                            this.battle.itemManager.addRandomItem(a)
+                        }
+                    }
+                }
+                if(this.active[39][a+1]>0){this.detail[39][a]=0}
+                if(this.active[108][a+1]>0){this.detail[108][a]=0}
+                if(this.active[206][a+1]>0){this.detail[206][a][0]=0}
+                if(this.active[317][a+1]>0){this.detail[317][a]=0}
+                if(this.active[323][a+1]>0){this.detail[323][a]=0}
+                if(this.active[324][a+1]>0){this.detail[324][a]=0}
+                if(this.active[366][a+1]>0){this.detail[366][a]=0}
+                if(this.active[367][a+1]>0){this.detail[367][a]=0}
+                if(this.active[378][a+1]>0){this.detail[378][a]=0}
+                if(this.active[383][a+1]>0){this.detail[383][a]=0}
+                if(this.active[442][a+1]>0){this.detail[442][a]=0}
+                if(this.active[457][a+1]>0){this.detail[457][a]=0}
+                if(this.active[465][a+1]>0){this.detail[465][a][0]=0}
             break
         }
     }

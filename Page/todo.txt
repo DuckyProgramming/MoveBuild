@@ -4,23 +4,25 @@ various save bugs as they appear
 
 
 
-appearing and disappearing hotkeys
-
-
-
 OPERATION ASCENDANCY
-(389)
+(289)
 
-LISTING GROUP 51 - QUOTA
-(206)
+LISTING GROUP 52 - QUOTA 2
+(122)
 
-LISTING GROUP 52 - ADDENDUM
+shinmy has no lasers? (red/yellow) fusilade
+eschatology
 
-LISTING GROUP 53 - ASYNC
+LISTING GROUP 53 - ADDENDUM
+
+LISTING GROUP 54 - ASYNC
 
 
 
 OPERATION PREDESTINATION
+
+make the bosses for the newest characters
+also sakura boss can't dodge no more
 
 world 1 replacements (send some world 1 enemies to world 2):
 

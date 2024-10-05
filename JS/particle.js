@@ -774,6 +774,14 @@ class particle{
                 this.fade=0
                 this.scale=1
             break
+            case 236:
+                this.size=args[0]
+                this.direction=args[1]
+                this.fade=0
+                this.scale=1
+                this.trigger=false
+                this.occlude=0
+            break
 
         }
     }
@@ -3821,6 +3829,25 @@ class particle{
                     }
                     this.layer.endShape()
                 break
+                case 236:
+                    this.layer.rotate(this.direction)
+                    this.layer.strokeWeight(1)
+                    for(let a=0,la=3;a<la;a++){
+                        this.layer.fill(50+a*75,0,0,this.fade)
+                        this.layer.stroke(50+a*75,0,0,this.fade)
+                        if(this.occlude<10){
+                            this.layer.triangle(-(90-a*15),(60-a*10),-(90-a*15)+(88-a*15)*this.occlude/10,(60-a*10)-(62-a*10)*this.occlude/10,-(90-a*15)+(92-a*15)*this.occlude/10,(60-a*10)-(58-a*10)*this.occlude/10)
+                        }else if(this.occlude<20){
+                            this.layer.triangle(-(90-a*15),(60-a*10),-2,-2,2,2)
+                            this.layer.quad(-2,-2,2,2,2+(58-a*10)*(this.occlude-10)/10,2-(92-a*15)*(this.occlude-10)/10,-2+(62-a*10)*(this.occlude-10)/10,-2-(88-a*15)*(this.occlude-10)/10)
+                        }else if(this.occlude<30){
+                            this.layer.triangle((60-a*10),-(90-a*15),-2,-2,2,2)
+                            this.layer.quad(-2,-2,2,2,-(90-a*15)+(92-a*15)*(this.occlude-20)/10,(60-a*10)-(58-a*10)*(this.occlude-20)/10,-(90-a*15)+(88-a*15)*(this.occlude-20)/10,(60-a*10)-(62-a*10)*(this.occlude-20)/10)
+                        }else if(this.occlude<40){
+                            this.layer.triangle((60-a*10),-(90-a*15),-2+(62-a*10)*(this.occlude-30)/10,-2-(88-a*15)*(this.occlude-30)/10,2+(58-a*10)*(this.occlude-30)/10,2-(92-a*15)*(this.occlude-30)/10)
+                        }
+                    }
+                break
 
             }
             //mark p
@@ -4320,7 +4347,7 @@ class particle{
                     }
                 }
             break
-            case 162:
+            case 162: case 236:
                 this.occlude+=2
                 if(!this.trigger){
                     this.fade+=0.1

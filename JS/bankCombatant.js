@@ -7,8 +7,8 @@ combatant.prototype.display=function(){
         this.layer.scale(this.size)
         if(this.infoAnim.orb>0){
             for(let a=0,la=this.orbs.length;a<la;a++){
-                if(lcos(this.time/game.animRate+360*a/la)<=0){
-                    displayOrb(this.layer,lsin(this.time/game.animRate+360*a/la)*30,-45+lcos(this.time/game.animRate+360*a/la)*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb,a)
+                if(lcos(this.time/game.animRate+this.orbPos[a])<=0){
+                    displayOrb(this.layer,lsin(this.time/game.animRate+this.orbPos[a])*30,-45+lcos(this.time/game.animRate+this.orbPos[a])*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb,a)
                 }
             }
         }
@@ -12534,8 +12534,8 @@ combatant.prototype.display=function(){
         }
         if(this.infoAnim.orb>0){
             for(let a=0,la=this.orbs.length;a<la;a++){
-                if(lcos(this.time/game.animRate+360*a/la)>0){
-                    displayOrb(this.layer,lsin(this.time/game.animRate+360*a/la)*30,-45+lcos(this.time/game.animRate+360*a/la)*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb,a)
+                if(lcos(this.time/game.animRate+this.orbPos[a])>0){
+                    displayOrb(this.layer,lsin(this.time/game.animRate+this.orbPos[a])*30,-45+lcos(this.time/game.animRate+this.orbPos[a])*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb,a)
                 }
             }
         }

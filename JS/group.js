@@ -1666,6 +1666,9 @@ class group{
                     a--
                     la--
                 break
+                case 115:
+                    this.cards[a].callEvokeEffect()
+                break
 
             }
         }
@@ -2328,6 +2331,13 @@ class group{
                         let result=this.cards[index].spec.includes(args[1])
                         this.send(args[0],index,index+1,1)
                         return result
+                    case 69:
+                        this.copySelf(index)
+                        for(let a=0,la=args[0].length;a<la;a++){
+                            this.cards[index+1].spec.push(args[0][a])
+                            this.cards[index+1].additionalSpec.push(args[0][a])
+                        }
+                    break
 
                 }
             }
@@ -2357,6 +2367,9 @@ class group{
                     this.drawEffects.push([5,this.drawEffects.push([5,userCombatant.getStatus('Drawn Status Draw')])])
                 }
             break
+        }
+        if((card.spec.includes(5)||card.spec.includes(41))&&userCombatant.getStatus('Unplayable Draw Retain Once')>0){
+            card.retain=true
         }
         if(card.spec.includes(62)){
             this.drawEffects.push([5,1])
@@ -2663,6 +2676,11 @@ class group{
                         userCombatant.getStatus('Prismatic Bomb Poison')
                     ]
                 )
+                if(userCombatant.getStatus('Prismatic Bomb Items')>0){
+                    for(let a=0,la=userCombatant.getStatus('Prismatic Bomb Items');a<la;a++){
+                        this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.player)
+                    }
+                }
                 if(card.attack==4451){
                     this.battle.addSpecificEnergy(1,this.player,6)
                 }else{
@@ -2803,6 +2821,12 @@ class group{
             break
             case 5757:
                 this.drawEffects.push([4,card.effect[1],[11]])
+            break
+            case 5869: case 5870: case 5871:
+                card.edition=2
+            break
+            case 5942:
+                userCombatant.statusEffect('Focus',card.effect[0])
             break
         }
         card.drawMark=false
@@ -2962,6 +2986,9 @@ class group{
                     break
                     case 13:
                         list[list.length-1].retain2=true
+                    break
+                    case 14:
+                        list[list.length-1].costDown(0,[args[1]])
                     break
                 }
             }
@@ -3191,7 +3218,7 @@ class group{
     copySelf(index){
         game.id++
         this.lastDuplicate.push(this.cards[index].name)
-        this.cards.splice(index,0,copyCard(this.cards[index]))
+        this.cards.splice(index+1,0,copyCard(this.cards[index]))
         if(this.id==0){
             this.cards[index+1].callAddEffect()
         }
@@ -3504,7 +3531,8 @@ class group{
             }
             if(
                 !(userCombatant.getStatus('Free Defenses')>0&&cardClass==2)&&
-                !(userCombatant.getStatus('Free Cables')>0&&card.name.includes('Cable')&&cardClass==1)
+                !(userCombatant.getStatus('Free Cables')>0&&card.name.includes('Cable')&&cardClass==1)&&
+                !(userCombatant.getStatus('Free Minerals')>0&&card.spec.includes(52))
             ){
                 let calculatoryCost=variants.mtg?(card.specialCost?effectiveCost[0]:effectiveCost.length):effectiveCost
                 if(calculatoryCost!=0&&card.colorless()&&card.rarity!=2&&userCombatant.getStatus('Temporary Free Non-Rare Colorless')>0){
@@ -3523,6 +3551,9 @@ class group{
                     userCombatant.status.main[findList('Free Card',userCombatant.status.name)]--
                 }else if(calculatoryCost!=0&&spec.includes(11)){
                     userCombatant.combo-=calculatoryCost
+                    if(calculatoryCost>0){
+                        userCombatant.comboConsumed()
+                    }
                 }else if(calculatoryCost!=0&&spec.includes(21)){
                     userCombatant.metal-=calculatoryCost
                 }else if(calculatoryCost!=0&&spec.includes(40)){
@@ -3875,7 +3906,8 @@ class group{
                 if(
                     this.cards[a].target[0]==0||
                     this.cards[a].target[0]==62&&this.battle.turn.total%2==1||
-                    this.cards[a].spec.includes(12)&&this.cards[a].target[0]==63
+                    this.cards[a].spec.includes(12)&&this.cards[a].target[0]==63||
+                    this.cards[a].spec.includes(12)&&this.cards[a].target[0]==64
                 ){
                     this.battle.attackManager.spec=this.cards[a].spec
                     if(this.cards[a].spec.includes(57)&&this.cards[a].attack!=1491&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
@@ -4705,6 +4737,7 @@ class group{
                 this.battle.cardManagers[this.player].greenDiff++
                 let cardInUse=a[0]
                 cardInUse.played()
+                this.battle.countCard(cardInUse,this.player,a[1])
                 this.cards.forEach(card=>card.anotherPlayed(cardInUse,this.battle.attackManager.attackClass))
                 this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.battle.attackManager.spec,this.target,cardInUse)
                 if(!cardInUse.discardEffect.includes(13)&&!cardInUse.discardEffectBuffered.includes(1)){
@@ -5097,7 +5130,7 @@ class group{
                         }else if((
                             this.cards[a].attack==1031||this.cards[a].attack.length==2&&this.cards[a].attack[0]==1189||this.cards[a].attack==1739||this.cards[a].attack==1770||
                             this.cards[a].attack==1778||this.cards[a].attack==1893||this.cards[a].attack==2053||
-                            this.cards[a].attack==3371&&!this.cards[a].usable||
+                            (this.cards[a].attack==3371||this.cards[a].attack==5887||this.cards[a].attack==5888||this.cards[a].attack==5889||this.cards[a].attack==5890)&&!this.cards[a].usable||
                             this.cards[a].spec.includes(12)&&this.cards[a].attack[this.cards[a].characteristic]==1366
                         )&&!this.cards[a].exhaust){
                             this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
@@ -5226,13 +5259,13 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62||this.battle.attackManager.targetInfo[0]==63){
+        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62||this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==64){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                 if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team||this.battle.attackManager.targetInfo[0]==45)&&
                     (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==45)&&
                     !(this.battle.attackManager.targetInfo[0]==22&&this.battle.combatantManager.combatants[a].tilePosition.y!=this.battle.attackManager.tilePosition.y)&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<constants.targetRadius){
-                    this.selfCall(this.battle.attackManager.targetInfo[0]==63?46:3,a)
+                    this.selfCall(this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==64?46:3,a)
                 }
             }
         }
@@ -5267,11 +5300,11 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==59){
+        if(this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==59||this.battle.attackManager.targetInfo[0]==64){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                 if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team==this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<constants.targetRadius){
-                    this.selfCall(3,a)
+                    this.selfCall(this.battle.attackManager.targetInfo[0]==64?46:3,a)
                 }
             }
         }
@@ -5649,14 +5682,14 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62||this.battle.attackManager.targetInfo[0]==63){
+        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62||this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==64){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                     if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team||this.battle.attackManager.targetInfo[0]==45)&&
                         (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==45)&&
                         !(this.battle.attackManager.targetInfo[0]==22&&this.battle.combatantManager.combatants[a].tilePosition.y!=this.battle.attackManager.tilePosition.y)&&
                         this.battle.combatantManager.combatants[a].tilePosition.x==int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x&&this.battle.combatantManager.combatants[a].tilePosition.y==int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y){
-                        this.selfCall(this.battle.attackManager.targetInfo[0]==63?46:3,a)
+                        this.selfCall(this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==63?46:3,a)
                     }
                 }
             }
@@ -5691,12 +5724,12 @@ class group{
                 this.selfCall(2,a)
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==59){
+        if(this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==59||this.battle.attackManager.targetInfo[0]==64){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                     if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team==this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&
                         this.battle.combatantManager.combatants[a].tilePosition.x==int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x&&this.battle.combatantManager.combatants[a].tilePosition.y==int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y){
-                        this.selfCall(3,a)
+                        this.selfCall(this.battle.attackManager.targetInfo[0]==64?46:3,a)
                     }
                 }
             }

@@ -560,6 +560,7 @@ class battle{
         }
         this.combatantManager.reID()
         this.tileManager.activate()
+        this.relicManager.activate(22,[])
         if(this.modded(63)&&floor(random(0,2))==0){
             this.sendReinforce()
             this.tileManager.fire()
@@ -1140,6 +1141,18 @@ class battle{
     standardColorize(card){
         return variants.mtg?(types.card[card].mtg!=undefined?copyArray(types.card[card].mtg.color):[0]):types.card[card].list
     }
+    countCard(card,player,mode){
+        let cardClass=card.spec.includes(12)?card.class[mode]:card.class
+        this.cardManagers[player].hand.totalPlayed[0]++
+        if(cardClass!=0){
+            this.cardManagers[player].hand.totalPlayed[cardClass]++
+        }
+        this.cardManagers[player].hand.turnPlayed[0]++
+        if(cardClass!=0){
+            this.cardManagers[player].hand.turnPlayed[cardClass]++
+        }
+        this.cardManagers[player].hand.turnPlayedEdition[card.edition]++
+    }
     playCard(card,player,mode){
         let cardClass=card.spec.includes(12)?card.class[mode]:card.class
         if(card.spec.includes(0)||card.spec.includes(12)&&card.reality[mode].includes(0)){
@@ -1221,15 +1234,6 @@ class battle{
         }
         this.stats.played[player][0]++
         this.stats.played[player][cardClass]++
-        this.cardManagers[player].hand.totalPlayed[0]++
-        if(cardClass!=0){
-            this.cardManagers[player].hand.totalPlayed[cardClass]++
-        }
-        this.cardManagers[player].hand.turnPlayed[0]++
-        if(cardClass!=0){
-            this.cardManagers[player].hand.turnPlayed[cardClass]++
-        }
-        this.cardManagers[player].hand.turnPlayedEdition[card.edition]++
         let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
         if(this.modded(155)){
             switch(card.edition){
@@ -1335,6 +1339,11 @@ class battle{
                     this.addSpecificEnergy(userCombatant.getStatus('2+ Cost Attack (E)'),player,6)
                 }
             break
+            case 2:
+                if(userCombatant.getStatus('Defense Draw')>0){
+                    this.cardManagers[player].draw(userCombatant.getStatus('Defense Draw'))
+                }
+            break
             case 3:
                 if(userCombatant.getStatus('Double Damage Without Movement')>0){
                     userCombatant.statusEffect('Double Damage Without Movement',-1)
@@ -1359,6 +1368,9 @@ class battle{
             case 11:
                 if(userCombatant.getStatus('Skill Temporary Strength')>0){
                     userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Skill Temporary Strength'))
+                }
+                if(userCombatant.getStatus('Skill Draw')>0){
+                    this.cardManagers[player].draw(userCombatant.getStatus('Skill Draw'))
                 }
             break
             case 12:
@@ -1503,6 +1515,9 @@ class battle{
         }
         if(card.name=='Tile'&&userCombatant.getStatus('Tile Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Tile Draw'))
+        }
+        if(card.name=='Dark\nMatter'&&userCombatant.getStatus('Dark Matter Fuel All')>0){
+            this.cardManagers[player].allEffectArgs(2,50,[userCombatant.getStatus('Dark Matter Fuel All')])
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])

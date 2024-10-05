@@ -154,7 +154,7 @@ class combatant{
                 'Burn Strength','Burn Bypass','Strike Boost','Mineral Boost','Cable Boost','Free Defenses','Exhausting Defenses','Strike Range','Skill Cost Down','Exhausting Skills',
                 'Step Draw','Cable Range','Mineral Range','Common Attack Boost','Free Cables','Construct Turn','Construct Dual Block','Metal Per Turn','All Construct Speed Up','Construct Strength',
                 'Construct Dexterity','Gun Temporary Strength','Gun Block','Turn Speed','Extra Turn Block','Turn Reversal','Deluxe Weak','Prismatic Bomb Boost','No Damage Turn Next Turn','Play Limit',
-                '2+ Cost Single Damage Up','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block','X Cost Boost','Self Life Loss Splash','Energy Gain Splash',
+                '2+ Cost Single Damage Up','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block','X Cost Boost','Self Health Loss Splash','Energy Gain Splash',
                 'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw','Buff Loss Barrier','Astrology Per Turn','Construct Metal','Attack Jinx Combat','Attack Shock Combat',
                 'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
                 'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
@@ -176,6 +176,9 @@ class combatant{
                 'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable','Energy Gain Splash Freeze',
                 'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost','Splash Attach Poison','Splash Boost',
                 'Basic Orb Per Turn','Calm Block Per Turn','Dark Matter Pull Fuel All','Snowflake Per Turn','Counter All Spread','Flame Orb Splash','Dark Light Orb Swap','Light Dark Orb Swap','2+ Cost Attack Energy','2+ Cost Attack (E)',
+                'Dark Matter Fuel All','Combo Spend Draw','Double Wrath Block','Turn Exhaust','Skill Draw Next Turn','Health Loss Poison Random','Free Minerals','Lose Health in 2 Turns','Lock On Bleed','Elemental Entrance Draw',
+                'Dodge on Kill','5 or Less Charge Block','Amplify Charge','Radiation','Retain Radiation','Radiation Per Turn','Dark Matter Pull Radiation','Dark Matter Radiation Trigger','Calm Next Turn','Unplayable Draw Retain Once',
+                'Basic Orb Boost','Prismatic Bomb Items','Skill Draw','Defense Draw','Evoke Block','Orb Tick Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -243,6 +246,9 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//63
                 0,0,0,0,0,0,0,0,0,0,//64
                 0,0,0,0,1,0,0,0,0,0,//65
+                0,0,1,0,2,0,1,2,0,0,//66
+                0,0,0,6,1,0,0,0,1,1,//67
+                0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -310,6 +316,9 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//63
                 2,2,2,2,2,2,2,2,2,2,//64
                 2,2,2,2,2,2,2,2,2,2,//65
+                2,2,2,2,2,2,2,1,2,2,//66
+                1,2,2,0,2,2,2,2,2,2,//67
+                2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -393,6 +402,7 @@ class combatant{
         this.balanceCap=10
         this.orbs=[-1,-1,-1,-1]
         this.orbDetail=[0,0,0,0]
+        this.orbPos=[0,90,180,270]
         this.anyOrb=false
         this.totalOrb=0
         this.totalOrbClass=[]
@@ -1214,7 +1224,6 @@ class combatant{
                         this.subAttackTypeSwitch([[0,57,391,[]]])
                     break
                     case 'Shield Particle':
-                        this.addBlock(5)
                         this.statusEffect('Retain Block',999)
                     break
                     case 'Donu':
@@ -2220,6 +2229,9 @@ class combatant{
             }
             if(this.status.main[522]>0){
                 this.battle.cardManagers[this.id].draw(this.status.main[522])
+            }
+            if(this.status.main[662]>0){
+                this.charge+=this.status.main[662]
             }
         }
     }
@@ -3769,6 +3781,9 @@ class combatant{
                     if(this.status.main[608]>0&&this.life<=0){
                         userCombatant.statusEffect('Frail',this.status.main[608])
                     }
+                    if(this.status.main[660]>0&&this.life<=0){
+                        userCombatant.statusEffect('Dodge',this.status.main[660])
+                    }
                 }
                 if(this.status.main[213]>0&&this.life<=0){
                     this.status.main[213]--
@@ -3836,6 +3851,9 @@ class combatant{
             if(this.status.main[273]>0){
                 block=0
                 this.status.main[273]--
+            }
+            if(this.status.main[652]>0&&this.stance==1){
+                block*=2
             }
             block=round(block*10)/10
             if(this.status.main[70]>0){
@@ -3978,6 +3996,9 @@ class combatant{
             this.battle.cardManagers[this.id].hand.allEffectArgs(20,[this.tilePosition,{x:x,y:y},distance])
             if(this.status.main[379]<=0){
                 this.combo=max(this.combo-distance,0)
+                if(distance>0){
+                    this.comboConsumed()
+                }
             }
             if(this.battle.modded(197)&&this.battle.turn.main!=this.id){
                 this.takeDamage(6,-1)
@@ -4076,10 +4097,20 @@ class combatant{
         }else if(this.status.main[111]<0){
             multi=max(0.2,1+this.status.main[111]*0.1)
         }
+        if(this.id>=0&&this.id<this.battle.players){
+            this.battle.cardManagers[this.id].hand.allEffect(115,[])
+            if(type==0){
+                this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935])
+                this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935])
+            }
+        }
+        if(this.status.main[674]>0&&type>=0){
+            this.addBlock(this.status.main[674])
+        }
         let playerMulti=target==this.id?0.5:1
         switch(type){
             case 0:
-                this.battle.combatantManager.combatants[target].orbTake(round(12*multi*playerMulti),-1)
+                this.battle.combatantManager.combatants[target].orbTake(round((12+this.status.main[670])*multi*playerMulti),-1)
             break
             case 1:
                 this.battle.combatantManager.combatants[target].addBlock(round(16*multi))
@@ -4160,10 +4191,20 @@ class combatant{
         }else if(this.status.main[111]<0){
             multi=max(0.2,1+this.status.main[111]*0.1)
         }
+        if(this.id>=0&&this.id<this.battle.players){
+            this.battle.cardManagers[this.id].hand.allEffect(115,[])
+            if(type==0){
+                this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935])
+                this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935])
+            }
+        }
+        if(this.status.main[674]>0&&type>=0){
+            this.addBlock(this.status.main[674])
+        }
         let playerMulti=target==this.id?0.1:1
         switch(type){
             case 0:
-                this.battle.combatantManager.combatants[target].orbTake(round(6*multi*playerMulti),-1)
+                this.battle.combatantManager.combatants[target].orbTake(round((6+this.status.main[670])*multi*playerMulti),-1)
             break
             case 1:
                 this.battle.combatantManager.combatants[target].addBlock(round(8*multi))
@@ -4396,6 +4437,7 @@ class combatant{
     }
     spendCharge(value){
         if(this.status.main[595]>0){
+            this.status.main[595]--
             return true
         }else if(this.charge>=value){
             this.charge-=value
@@ -4486,6 +4528,11 @@ class combatant{
             case 2:
                 this.battle.addSpecificEnergy(variants.mtg?3:2,this.id,6)
             break
+        }
+    }
+    comboConsumed(){
+        if(this.status.main[651]>0&&this.id>=0&&this.id<this.battle.players){
+            this.battle.cardManagers[this.id].draw(this.status.main[651])
         }
     }
     chargeConsumed(){
@@ -4615,6 +4662,14 @@ class combatant{
                     let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
                     if(userCombatant.getStatus('Freeze Vulnerable')>0){
                         this.statusEffect('Vulnerable',userCombatant.getStatus('Freeze Vulnerable'))
+                    }
+                }
+            }
+            if(this.status.name[status]=='Lock On'&&value>0){
+                if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
+                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
+                    if(userCombatant.getStatus('Lock On Bleed')>0&&this.block<=0){
+                        this.statusEffect('Bleed',userCombatant.getStatus('Lock On Bleed'))
                     }
                 }
             }
@@ -4868,6 +4923,9 @@ class combatant{
                 this.battle.cardManagers[this.id].discard.allEffectArgs(24,[4727])
                 this.battle.cardManagers[this.id].reserve.allEffectArgs(24,[4727])
             }
+            if(this.status.main[655]>0){
+                this.battle.combatantManager.randomEnemyEffect(23,['Poison',this.status.main[655]])
+            }
         }
     }
     endTurn(){
@@ -4932,8 +4990,8 @@ class combatant{
                     case 41: case 84: case 285: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.main+=this.status.main[a]} break
                     case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 66: case 598: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
-                    case 67: this.combo=0; break
-                    case 71: case 72: this.combo=constrain(this.combo+this.status.main[a],0,this.comboCap); break
+                    case 67: if(this.combo>0){this.comboConsumed()};this.combo=0; break
+                    case 71: case 72: if(this.combo>0&&this.status.main[a]<0){this.comboConsmed()};this.combo=constrain(this.combo+this.status.main[a],0,this.comboCap); break
                     case 81: this.status.main[findList('Energy Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 83: this.status.main[findList('Double Damage Turn',this.status.name)]+=this.status.main[a]; break
                     case 85: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.discard(this.status.main[a])}; break
@@ -5014,7 +5072,7 @@ class combatant{
                     case 371: this.status.main[findList('Dexterity in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 372: this.status.main[findList('Strength in 3 Turns',this.status.name)]+=this.status.main[a]; break
                     case 373: this.status.main[findList('Dexterity in 3 Turns',this.status.name)]+=this.status.main[a]; break
-                    case 377: this.battle.combatantManager.areaAbstract(0,[this.status.main[a],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0); break
+                    case 377: case 663: this.battle.combatantManager.areaAbstract(0,[this.status.main[a],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0); break
                     case 389: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 390: this.battle.combatantManager.allEffect(43,[this.status.main[a],this.id]); break
                     case 391: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].discard.add(findName('Prismatic\nBomb',types.card),0,0)}} break
@@ -5102,16 +5160,22 @@ class combatant{
                     case 615: this.status.main[findList('Dodge Cycle 2 1',this.status.name)]+=this.status.main[a]; break
                     case 619: this.status.main[findList('Random Mana in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 627: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.exhaustRandom+=this.status.main[a]} break
-                    case 630: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[11]+=this.status.main[a]} break
+                    case 630: case 654: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[11]+=this.status.main[a]} break
                     case 633: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[3]+=this.status.main[a]} break
                     case 634: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.dropDrawShuffle(this.id,findName('Dark\nMatter',types.card),0,0)}} break
                     case 640: for(let b=0,lb=this.status.main[a];b<lb;b++){this.holdOrb(0)} break
                     case 641: if(this.stance==2){this.addBlock(this.status.main[a])} break
                     case 643: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Snowflake',types.card),0,0)} break
+                    case 653: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.exhaust(this.status.main[a])} break
+                    case 657: this.status.main[findList('Lose Health Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 661: if(this.charge<=5){this.addBlock(this.status.main[a])} break
+                    case 665: this.status.main[findList('Radiation',this.status.name)]+=this.status.main[a]; break
+                    case 668: this.enterStance(2); break
                     
                 }
-                if(
-                    this.status.behavior[a]==6&&!(a==306&&this.getStatus('Retain History')>0)
+                if(this.status.behavior[a]==6&&
+                    !(a==306&&this.getStatus('Retain History')>0)&&
+                    !(a==663&&this.getStatus('Retain Radiation')>0)
                 ){
                     if(this.status.main[a]>0){
                         this.status.main[a]=floor(this.status.main[a]/2)
@@ -5156,6 +5220,11 @@ class combatant{
             this.addBlock(3)
         }
         this.tickOrbs(-1)
+        if(this.status.main[675]>0){
+            for(let a=0,la=this.status.main[675];a<la;a++){
+                this.tickOrbs(-1)
+            }
+        }
         if(this.name=='Eternal Judge'&&this.life>0){
             if(this.sins.includes(0)&&this.turnsAlive%2==0){
                 for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
@@ -5296,7 +5365,7 @@ class combatant{
                         this.goal.anim.sword=false
                     break
                     case 4: case 12: case 14: case 15: case 18: case 19: case 20: case 22: case 24: case 25:
-                    case 30: case 34: case 37:
+                    case 30: case 34: case 37: case 44:
                         this.animSet.loop=0
                     break
                     case 5:
@@ -5808,6 +5877,10 @@ class combatant{
                             this.anim.mouth.y=5+lsin(this.animSet.loop*90)
                             this.anim.eye[0]=lsin(this.animSet.loop*90)
                         }
+                    break
+                    case 44:
+                        this.animSet.loop+=rate
+                        this.anim.eye[0]=lsin(this.animSet.loop*180)
                     break
                 }
             break
@@ -6756,6 +6829,9 @@ class combatant{
                 if(this.status.main[436]>0){
                     this.addBlock(this.status.main[436])
                 }
+                if(this.status.main[659]>0&&this.id>=0&&this.id<this.battle.players){
+                    this.battle.cardManagers[this.id].draw(this.status.main[659])
+                }
             }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)
@@ -7119,9 +7195,14 @@ class combatant{
         this.infoAnim.description=smoothAnim(this.infoAnim.description,this.infoAnim.upSize,0,1,5)
         this.infoAnim.balance=smoothAnim(this.infoAnim.balance,this.balance>0,0,1,5)
         this.infoAnim.orb=smoothAnim(this.infoAnim.orb,this.anyOrb,0,1,5)
-        for(let a=0,la=this.orbs.length;a<la;a++){
-            for(let b=0,lb=constants.orbNumber;b<lb;b++){
-                this.infoAnim.orbSpec[a][b]=smoothAnim(this.infoAnim.orbSpec[a][b],this.orbs[a]==b,0,1,10)
+        if(this.infoAnim.orb>0){
+            for(let a=0,la=this.orbs.length;a<la;a++){
+                for(let b=0,lb=constants.orbNumber;b<lb;b++){
+                    this.infoAnim.orbSpec[a][b]=smoothAnim(this.infoAnim.orbSpec[a][b],this.orbs[a]==b,0,1,10)
+                }
+                if(abs(this.orbPos[a]-a/la*360)>1){
+                    this.orbPos[a]=map(0.1,0,1,this.orbPos[a],a/la*360)
+                }
             }
         }
         if(abs(this.anim.direction-this.goal.anim.direction)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction-360)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction+360)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction-720)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction+720)<=15*game.animRate){
@@ -7293,8 +7374,8 @@ class combatant{
                 if(this.life>0&&this.infoAnim.orb>0){
                     let complete=false
                     for(let a=1,la=this.orbs.length;a<la;a++){
-                        if(lcos(this.time/game.animRate+360*a/la)>0){
-                            if(dist(inputs.rel.x,inputs.rel.y,this.position.x+lsin(this.time/game.animRate+360*a/la)*30,this.position.y-45+lcos(this.time/game.animRate+360*a/la)*10)<10&&this.orbs[0]>=0&&this.orbs[a]>=0){
+                        if(lcos(this.time/game.animRate+this.orbPos[a])>0){
+                            if(dist(inputs.rel.x,inputs.rel.y,this.position.x+lsin(this.time/game.animRate+this.orbPos[a])*30,this.position.y-45+lcos(this.time/game.animRate+this.orbPos[a])*10)<10&&this.orbs[0]>=0&&this.orbs[a]>=0){
                                 let hold=[this.orbs[a],this.orbDetail[a]]
                                 this.orbs[a]=this.orbs[0]
                                 this.orbs[0]=hold[0]
@@ -7305,8 +7386,8 @@ class combatant{
                     }
                     if(!complete){
                         for(let a=1,la=this.orbs.length;a<la;a++){
-                            if(lcos(this.time/game.animRate+360*a/la)<=0){
-                                if(dist(inputs.rel.x,inputs.rel.y,this.position.x+lsin(this.time/game.animRate+360*a/la)*30,this.position.y-45+lcos(this.time/game.animRate+360*a/la)*10)<10&&this.orbs[0]>=0&&this.orbs[a]>=0){
+                            if(lcos(this.time/game.animRate+this.orbPos[a])<=0){
+                                if(dist(inputs.rel.x,inputs.rel.y,this.position.x+lsin(this.time/game.animRate+this.orbPos[a])*30,this.position.y-45+lcos(this.time/game.animRate+this.orbPos[a])*10)<10&&this.orbs[0]>=0&&this.orbs[a]>=0){
                                     let hold=[this.orbs[a],this.orbDetail[a]]
                                     this.orbs[a]=this.orbs[0]
                                     this.orbs[0]=hold[0]
