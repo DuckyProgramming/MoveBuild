@@ -815,7 +815,7 @@ class combatantManager{
                         this.combatants[a].statusEffect('Strength',args[0])
                     break
                     case 4:
-                        this.combatants[a].statusEffect('Counter All',args[0])
+                        this.combatants[a].statusEffect('Counter All Combat',args[0])
                     break
                     case 5:
                         this.combatants[a].life*=args[0]

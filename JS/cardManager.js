@@ -34,9 +34,6 @@ class cardManager{
     }
     save(){
         let composite={
-            listing:{
-                card:this.listing.card,
-            },
             deck:this.deck.save(),
             remove:this.remove.save(),
             drawAmount:this.drawAmount,
@@ -48,7 +45,6 @@ class cardManager{
         return composite
     }
     load(composite){
-        this.listing.card=composite.listing.card
         this.deck.load(composite.deck)
         this.remove.load(composite.remove)
         this.drawAmount=composite.drawAmount

@@ -925,7 +925,7 @@ function intentDescription(attack,user,info){
 			case 197: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Armor`
 			case 198: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin All Directions\nTargets Lose ${info?attack.effect[1]:`?`} ${variants.mtg?`Random Mana`:`Energy`}\nRange 1-1`
 			case 199: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTransform ${info?attack.effect[1]:`?`} Card${pl(attack.effect[1])}\nRange 1-6`
-			case 200: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nHeal ${info?calculateIntent(attack.effect[0],user,4):`?`} Health\nRange 1-6`
+			case 200: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nHeal Health Equal to\nUnblocked Damage Dealt\nRange 1-6`
 			case 201: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nSet Values of ${info?attack.effect[1]:`?`} Card${pl(attack.effect[1])} to 1\nRange 1-6`
 			case 202: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nClear Target Statuses\nRange 1-6`
 			case 203: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile in a Random Direction\nRange 1-2`
@@ -1967,7 +1967,7 @@ Total:${current.nodeManager.listing.static[3][1].length+current.nodeManager.list
 }
 function outListing(){
 	let box=``
-	let goal=160+160*constants.playerNumber+60+60+25+30+20
+	let goal=160+160*constants.playerNumber+60+60+30+30+20
 	let actual=current.cardManagers[0].listing.allListableCard[3].length
 	let arbitrary=5000
 	for(let a=0,la=constants.playerNumber;a<la;a++){
@@ -1991,12 +1991,12 @@ ${box}		Status:
 		Partnership:
 Common:${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length}/10				${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length-10}
 Uncommon:${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length}/10				${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-10}
-Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length}/5					${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-5}
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+3][3].length}/25
+Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length}/10					${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-10}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+3][3].length}/30
 		Tarot:
 	Total:${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length}/30				${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length-30}
 		Spectral:
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/20				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-15}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/20				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-20}
 		Subcard:
 	Total:${current.cardManagers[0].listing.sub.length}/60				${current.cardManagers[0].listing.sub.length-60}
 		Ally:

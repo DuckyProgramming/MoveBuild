@@ -6318,7 +6318,7 @@ class card{
             case 5389: string+=`Draw ${effect[0]} Foil Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less`; break
             case 5390: string+=`${effect[0]} Random Card${pl(effect[0])} in Hand\nBecome Foil`; break
             case 5391: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have a\nFoil Card in Hand,\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
-            case 5392: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\n${effect[2]} Random Card${pl(effect[2])} in Hand\nBecome Foil`; break
+            case 5392: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\n${effect[2]} Random Card${pl(effect[2])} in Hand\nBecome${effect[2]==1?`s`:``} Foil`; break
             case 5393: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd a Pristine to Hand`; break
             case 5394: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nShuffle ${effect[1]} Foil Tile${pl(effect[1])}\ninto Draw Pile`; break
             case 5395: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nShuffle ${effect[1]} Foil Tile${pl(effect[1])}\ninto Draw Pile`; break
@@ -6880,6 +6880,32 @@ class card{
             case 5949: string+=`Add ${effect[0]} Shiv${pl(effect[0])} to Hand\nGain ${effect[1]} Strength`; break
             case 5950: string+=`Apply ${effect[0]} Weak\nand Apply ${effect[1]} Poison\nin All Directions`; break
             case 5951: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target is Debuffed,\nAdd ${effect[1]} Shiv${pl(effect[1])}\nto Hand`; break
+            case 5952: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nTransform ${effect[1]} Card${pl(effect[1])} Into\nAny Random Card${pl(effect[1])}\nand Upgrade ${effect[1]!=1?`Them`:`it`}`; break
+            case 5953: string+=`Gain ${effect[0]} Intangible\nLeftmost or Rightmost\nCard in Hand:\nHeal ${this.calculateEffect(effect[1],4)} Health`; break
+            case 5954: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Dodge\nGain ${effect[2]} Wish Power\nPer Dodge You Have`; break
+            case 5955: string+=`Gain ${effect[0]} Extra ${variants.mtg?`Mana`:`Energy`}\nWhen You Leave Calm`; break
+            case 5956: string+=`When You Scry,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nto All Enemies`; break
+            case 5957: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nAdvance`; break
+            case 5958: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nReduce Another\nCountdown by ${effect[1]}`; break
+            case 5959: string+=`Push 1 Tile\nDraw ${effect[0]} Skill${pl(effect[0])}`; break
+            case 5960: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Dark Orb${pl(effect[1])}\nHold ${effect[2]} Poison Orb${pl(effect[2])}\nCosts 1 Less\nWhen You Evoke an Orb`; break
+            case 5961: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Light Orb${pl(effect[1])}\nHold ${effect[2]} Ice Orb${pl(effect[2])}\nCosts 1 Less\nWhen You Evoke an Orb`; break
+            case 5962: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Combo`; break
+            case 5963: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nCreate 1 Plant Tile\nUnder Target`; break
+            case 5964: string+=`Draw ${effect[0]} Skill${pl(effect[0])}\nGain ${effect[1]} Energy\nNext Turn`; break
+            case 5965: string+=`Draw ${effect[0]} Skill${pl(effect[0])}\nGain (B) (N) Next Turn`; break
+            case 5966: string+=`Draw ${effect[0]} Skill${pl(effect[0])}\nGain (E) (B) Next Turn`; break
+            case 5967: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOverdrive ${effect[1]}:\nApply ${effect[2]} Vulnerable`; break
+            case 5968: string+=`Gain ${effect[0]} Dodge\nGain ${effect[1]} Charge`; break
+            case 5969: string+=`Gain ${effect[0]} Charge\nIncreases by ${effect[1]}\nWhen Retained`; break
+            case 5970: string+=`When a Wisp is Exhausted,\nGain ${effect[0]} Charge`; break
+            case 5971: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nWhen Drawn,\nGain ${effect[1]} Energy`; break
+            case 5972: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nWhen Drawn,\nGain (E)`; break
+            case 5973: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDamage Increases by ${effect[1]}\nCosts 1 More\nDiscards to Draw`; break
+            case 5974: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDamage Decreases by ${effect[1]}\nCosts 1 More\nDiscards to Draw`; break
+            case 5975: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPush 1 Tile`; break
+            case 5976: string+=`Add ${effect[0]} Shiv${pl(effect[0])} to Hand\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+            case 5977: string+=`Draw ${effect[0]} Skill${pl(effect[0])}`; break
 
             //mark p
 
@@ -7564,6 +7590,11 @@ class card{
             userCombatant.loseHealth(2)
         }
         switch(this.attack){
+            case -90:
+                if(userCombatant.getStatus('Wisp Exhaust Charge')>0){
+                    userCombatant.charge+=userCombatant.getStatus('Wisp Exhaust Charge')
+                }
+            break
             case -102:
                 this.battle.cardManagers[this.player].hand.add(this.type,this.level,this.color,this.edition)
             break
@@ -7713,6 +7744,7 @@ class card{
             break
             case 3596: case 3597: case 3598: case 3599: case 3600: case 3601: case 3602: case 3603: case 3604: case 3605:
             case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
+            case 5976:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -7831,14 +7863,19 @@ class card{
             break
         }
     }
-    callEvokeEffect(){
+    callEvokeEffect(type){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-        switch(this.attack){
-            case 5942:
-                this.battle.combatantManager.areaAbstract(0,[this.effect[1],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
-                this.battle.cardManagers[this.player].draw(this.effect[2])
-                this.deSize=true
-            break
+        if(type>=0){
+            switch(this.attack){
+                case 5942:
+                    this.battle.combatantManager.areaAbstract(0,[this.effect[1],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                    this.battle.cardManagers[this.player].draw(this.effect[2])
+                    this.deSize=true
+                break
+                case 5960: case 5961:
+                    this.costDown(0,[1])
+                break
+            }
         }
     }
     callStartEffect(encounterClass){
@@ -8243,11 +8280,11 @@ class card{
             break
             case 1739:
                 this.effect[0]+=this.effect[1]
-                this.costUp(2,[1])
+                this.costUp(2,[this.effect[2]])
             break
             case 2053:
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)
-                this.costUp(2,[1])
+                this.costUp(2,[this.effect[2]])
             break
             case 2653:
                 this.effect[0]=0
@@ -8325,6 +8362,14 @@ class card{
             break
             case 5752:
                 this.effect[0]+=this.effect[2]
+            break
+            case 5973:
+                this.effect[0]+=this.effect[1]
+                this.costUp(2,[1])
+            break
+            case 5974:
+                this.effect[0]=max(this.effect[0]-this.effect[1],0)
+                this.costUp(2,[1])
             break
         }
         if(this.battle.modded(94)&&this.battle.cardManagers[this.player].hand.turnPlayed[0]>=5){
@@ -8954,6 +8999,9 @@ class card{
                 this.battle.cardManagers[this.player].tempDraw.exhaustRandom+=this.effect[2]
                 this.effect[1]+=this.effect[3]
                 this.effect[2]+=this.effect[3]
+            break
+            case 5969:
+                this.effect[0]+=this.effect[1]
             break
         }
         if(this.spec.includes(55)){
@@ -11030,7 +11078,7 @@ class card{
                         case 4: case 21: case 26: case 27: case 33: this.layer.stroke(255,200,200,this.fade*anim[a]); break
                         case 5: this.layer.stroke(0,150,255,this.fade*anim[a]); break
                         case 6: this.layer.stroke(200,225,255,this.fade*anim[a]); break
-                        case 7: this.layer.stroke(255,255,150,this.fade*anim[a]); break
+                        case 7: case 34: this.layer.stroke(255,255,150,this.fade*anim[a]); break
                         case 8: this.layer.stroke(200,225,50,this.fade*anim[a]); break
                         case 9: case 32: this.layer.stroke(255,125,0,this.fade*anim[a]); break
                         case 10: this.layer.stroke(255,0,50,this.fade*anim[a]); break
@@ -11049,7 +11097,7 @@ class card{
                     this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
                     switch(a){
                         case 21: case 23: case 24: case 25: case 26: case 27: case 28: case 29: case 30: case 31:
-                        case 32: case 33:
+                        case 32: case 33: case 34:
                             switch(a){
                                 case 21: case 23: case 24:
                                     this.layer.stroke(220,this.fade*anim[a])
@@ -11077,6 +11125,9 @@ class card{
                                 break
                                 case 33:
                                     this.layer.stroke(100,0,100,this.fade*anim[a])
+                                break
+                                case 34:
+                                    this.layer.stroke(150,255,255,this.fade*anim[a])
                                 break
                             }
                             this.layer.strokeWeight(1)

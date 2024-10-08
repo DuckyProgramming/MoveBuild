@@ -342,7 +342,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 144:
+            case 144: case 240:
                 this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
                 this.position3={x:args[2]-this.position.x,y:args[3]-this.position.y}
                 this.direction=atan2(this.position2.x,-this.position2.y)
@@ -628,7 +628,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 207:
+            case 207: case 237:
                 this.direction=args[0]
                 this.spin=args[1]
                 this.fade=0
@@ -702,7 +702,7 @@ class particle{
                 this.scale=0
                 this.grav=0
             break
-            case 222: case 234:
+            case 222: case 234: case 241:
                 this.direction=args[0]
                 this.color=args[1]
                 this.colorShift=args[2]
@@ -762,7 +762,7 @@ class particle{
                 this.fade=1
                 this.scale=0
             break
-            case 235:
+            case 235: case 242:
                 this.direction=args[0]
                 this.speed=args[1]
                 this.grav=args[2]
@@ -781,6 +781,24 @@ class particle{
                 this.scale=1
                 this.trigger=false
                 this.occlude=0
+            break
+            case 238:
+                this.direction=args[0]
+                this.spin=args[1]
+                this.speed=0
+                this.fade=0
+                this.size=1
+                this.scale=0
+                this.extent=0
+                this.trigger=false
+            break
+            case 239:
+                this.direction=args[0]
+                this.fade=1
+                this.trigger=false
+                this.activation=0
+                this.size=1
+                this.scale=4
             break
 
         }
@@ -3848,6 +3866,68 @@ class particle{
                         }
                     }
                 break
+                case 237:
+                    this.layer.rotate(this.direction)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.fill(a/la*150,255+a/la*100,200+a/la*50,this.fade)
+                        for(let b=0,lb=6;b<lb;b++){
+                            this.layer.triangle(-3+a*0.5,-40,3-a*0.5,-40,0,-1200)
+                            this.layer.triangle(-3+a*0.5,-40,3-a*0.5,-40,0,-20)
+                            this.layer.rotate(360/lb)
+                        }
+                    }
+                break
+                case 238:
+                    this.layer.rotate(this.direction)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.fill(a/la*150,255+a/la*100,200+a/la*50,this.fade)
+                        for(let b=0,lb=6;b<lb;b++){
+                            this.layer.triangle(-6+a,-60-this.extent,6-a,-60-this.extent,0,-100-this.extent)
+                            this.layer.triangle(-6+a,-60-this.extent,6-a,-60-this.extent,0,-40-this.extent)
+                            this.layer.rotate(360/lb)
+                        }
+                    }
+                break
+                case 239:
+                    this.layer.rotate(this.direction)
+                    this.layer.noFill()
+                    for(let a=0,la=5;a<la;a++){
+                        let cap=constrain(this.activation-abs(2-a)*0.5,0,1)
+                        for(let b=0,lb=5;b<lb;b++){
+                            for(let c=0,lc=4;c<lc;c++){
+                                this.layer.stroke(mergeColor([240-c/(lc-1)*40,240-a%2*200-c/(lc-1)*(40-a%2*20),120-a%2*60-c/(lc-1)*20],[255,255,255],1-b/lb),this.fade*0.4)
+                                this.layer.strokeWeight((1.2-b*0.3)*cap*(1-b/lb*0.5))
+                                this.layer.line(-6+a*3,-12+(2-a)*(2-a)*1.5,-6+a*3,-400)
+                            }
+                            this.layer.stroke(mergeColor([210,210-a%2*60,90-a%2*45],[255,255,255],1-b/lb),this.fade)
+                            this.layer.strokeWeight(1.8*cap*(1-b/lb*0.5))
+                            this.layer.point(-6+a*3,-12+(2-a)*(2-a)*1.5)
+                            this.layer.stroke(mergeColor([175,175-a%2*50,75-a%2*45],[255,255,255],1-b/lb),this.fade)
+                            this.layer.strokeWeight(1.5*cap*(1-b/lb*0.5))
+                            this.layer.point(-6+a*3,-12+(2-a)*(2-a)*1.5)
+                        }
+                    }
+                break
+                case 240:
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.stroke(...mergeColor([225+a*30,50+a*100,50+a*100],[255,200,200],0.5+lsin(this.time*9)*0.5),this.fade)
+                        this.layer.strokeWeight(15-a*3)
+                        this.layer.line(0,0,lsin(this.direction)*900,-lcos(this.direction)*900)
+                    }
+                break
+                case 241: case 242:
+                    this.layer.rotate(this.direction)
+                    this.layer.noFill()
+                    this.layer.strokeJoin(ROUND)
+                    for(let a=0,la=4;a<la;a++){
+                        this.layer.stroke(...mergeColor(mergeColor(this.color[0],this.color[1],this.colorShift),[255,225,255],a/la*0.5),this.fade)
+                        this.layer.strokeWeight(4-a)
+                        this.layer.rect(0,0,12-a*0.5,12-a*0.5)
+                        let value=(6-a*0.5)*constants.sqrt2
+                        this.layer.quad(-value,0,0,-value,value,0,0,value)
+                    }
+                    this.layer.strokeJoin(MITER)
+                break
 
             }
             //mark p
@@ -4615,7 +4695,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 207:
+            case 207: case 237:
                 this.direction+=this.spin
                 if(!this.trigger){
                     this.fade+=0.1
@@ -4730,7 +4810,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 222: case 234:
+            case 222: case 234: case 241:
                 if(this.time>this.delay){
                     this.position.x+=lsin(this.direction)*this.speed
                     this.position.y-=lcos(this.direction)*this.speed-this.grav
@@ -4746,6 +4826,9 @@ class particle{
                             break
                             case 234:
                                 parent.particles.push(new particle(this.layer,this.position.x+random(-20,20),this.position.y+random(-20,20),235,[this.direction,this.speed*0.25,this.grav*0.5,random(0,360),this.color,this.colorShift,random(0.3,0.5)*this.size]))
+                            break
+                            case 241:
+                                parent.particles.push(new particle(this.layer,this.position.x+random(-20,20),this.position.y+random(-20,20),242,[this.direction,this.speed*0.25,this.grav*0.5,random(0,360),this.color,this.colorShift,random(0.3,0.5)*this.size]))
                             break
                         }
                     }
@@ -4806,7 +4889,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 235:
+            case 235: case 242:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-this.grav
                 this.grav+=0.15
@@ -4824,6 +4907,50 @@ class particle{
                         this.remove=true
                     }
                 }
+            break
+            case 238:
+                this.direction+=this.spin
+                if(this.scale<1){
+                    this.scale+=0.1
+                }else{
+                    this.extent+=this.speed
+                    this.speed+=1
+                }
+                if(!this.trigger){
+                    this.fade+=0.1
+                    if(this.fade>=3){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.1
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
+                }
+            break
+            case 239:
+                if(!this.trigger){
+                    this.activation+=0.1
+                    if(this.activation>=2){
+                        this.trigger=true
+                    }
+                }else{
+                    this.activation-=0.05
+                    if(this.activation<=0){
+                        this.remove=true
+                    }
+                }
+            break
+            case 240:
+                this.fade-=1/30
+                if(this.fade<=0){
+                    this.remove=true
+                }
+                let distance240=floor(random(0,900))
+                parent.particles.push(new particle(this.layer,
+                    this.position.x+lsin(this.direction)*distance240+random(-20,20),
+                    this.position.y-lcos(this.direction)*distance240+random(-20,20),
+                    145,[random(0,360),random(10,15),0,random(1,2),1]))
             break
 
         }

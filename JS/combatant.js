@@ -178,7 +178,8 @@ class combatant{
                 'Basic Orb Per Turn','Calm Block Per Turn','Dark Matter Pull Fuel All','Snowflake Per Turn','Counter All Spread','Flame Orb Splash','Dark Light Orb Swap','Light Dark Orb Swap','2+ Cost Attack Energy','2+ Cost Attack (E)',
                 'Dark Matter Fuel All','Combo Spend Draw','Double Wrath Block','Turn Exhaust','Skill Draw Next Turn','Health Loss Poison Random','Free Minerals','Lose Health in 2 Turns','Lock On Bleed','Elemental Entrance Draw',
                 'Dodge on Kill','5 or Less Charge Block','Amplify Charge','Radiation','Retain Radiation','Radiation Per Turn','Dark Matter Pull Radiation','Dark Matter Radiation Trigger','Calm Next Turn','Unplayable Draw Retain Once',
-                'Basic Orb Boost','Prismatic Bomb Items','Skill Draw','Defense Draw','Evoke Block','Orb Tick Per Turn',
+                'Basic Orb Boost','Prismatic Bomb Items','Skill Draw','Defense Draw','Evoke Block','Orb Tick Per Turn','Revive','Invulnerable','Calm Bonus','Scry Damage All',
+                'Wisp Exhaust Charge',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -248,7 +249,8 @@ class combatant{
                 0,0,0,0,1,0,0,0,0,0,//65
                 0,0,1,0,2,0,1,2,0,0,//66
                 0,0,0,6,1,0,0,0,1,1,//67
-                0,0,0,0,0,0,
+                0,0,0,0,0,0,0,1,0,0,//68
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -318,7 +320,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//65
                 2,2,2,2,2,2,2,1,2,2,//66
                 1,2,2,0,2,2,2,2,2,2,//67
-                2,2,2,2,2,2,
+                2,2,2,2,2,2,0,0,2,2,//68
+                2,
             ]}
         /*
         0-none
@@ -650,7 +653,7 @@ class combatant{
                 this.statusEffect('Weak on Kill',game.ascend>=31?4:2)
             break
             case 'Fireball':
-                this.statusEffect('Counter All Combat',2)
+                this.statusEffect('Counter All Combat',game.ascend>=31?2:1)
             break
             case 'Armored Ninja':
                 this.addBlock(18)
@@ -776,7 +779,11 @@ class combatant{
             case 'Armored Biker':
                 this.statusEffect('Metallicize',game.ascend>=31?10:6)
             break
+            case 'Zombie Fairy':
+                this.statusEffect('Revive',game.ascend>=31?3:2)
+            break
         }
+        //mark b
         if(this.team==0){
             if(this.type<=constants.playerNumber){
                 this.subHealthBuff(2)
@@ -789,7 +796,7 @@ class combatant{
                 this.subAttackBuff([2],1.2)
             }
             if(game.ascend>=17&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=18&&this.battle.encounter.class==1||game.ascend>=19&&this.battle.encounter.class==2){
-                this.subAttackBuff([4],1.5)
+                this.subAttackBuff([4,11],1.5)
             }
             /*if(game.ascend>=27&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=28&&this.battle.encounter.class==1){
                 let randombuffs=[
@@ -3065,6 +3072,9 @@ class combatant{
                     this.statusEffect('(E) Next Turn',this.status.main[508])
                 }
             }
+            if(this.status.main[677]>0&&hit){
+                hit=false
+            }
             if(spec!=3){
                 if(this.status.main[63]>0){
                     damage+=this.status.main[63]
@@ -4098,7 +4108,7 @@ class combatant{
             multi=max(0.2,1+this.status.main[111]*0.1)
         }
         if(this.id>=0&&this.id<this.battle.players){
-            this.battle.cardManagers[this.id].hand.allEffect(115,[])
+            this.battle.cardManagers[this.id].hand.allEffectArgs(51,[type])
             if(type==0){
                 this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935])
                 this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935])
@@ -4177,7 +4187,7 @@ class combatant{
                 }
             break
             case 14:
-                this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(8*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(12*multi))
                 if(target<this.battle.players||this.id<this.battle.players){
                     this.battle.addSpecificEnergy(1,target>=this.battle.players?this.id:target,0)
                 }
@@ -4257,7 +4267,7 @@ class combatant{
                 }
             break
             case 14:
-                this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(4*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(6*multi))
                 if(target<this.battle.players||this.id<this.battle.players){
                     this.battle.addSpecificEnergy(1,target>=this.battle.players?this.id:target,0)
                 }
@@ -4492,6 +4502,7 @@ class combatant{
     }
     onScry(){
         this.addBarrier(this.status.main[345])
+        this.battle.combatantManager.allEffect(19,[this.status.main[679]])
         return this.status.main[335]
     }
     energyParity(energy){
@@ -4526,7 +4537,7 @@ class combatant{
     leaveStance(stance){
         switch(stance){
             case 2:
-                this.battle.addSpecificEnergy(variants.mtg?3:2,this.id,6)
+                this.battle.addSpecificEnergy(variants.mtg?3:2+this.status.main[678],this.id,6)
             break
         }
     }
@@ -7009,6 +7020,16 @@ class combatant{
                     this.life=1
                     this.base.life=1
                     this.collect.life=1
+                    this.moved=false
+                    this.battle.updateTargetting()
+                    this.dead=false
+                    this.battle.tileManager.activate()
+                    this.battle.counter.killed--
+                }else if(this.status.main[676]>0){
+                    this.status.main[676]--
+                    this.life=this.base.life
+                    this.statusEffect('Stun',1)
+                    this.statusEffect('Invulnerable',1)
                     this.moved=false
                     this.battle.updateTargetting()
                     this.dead=false

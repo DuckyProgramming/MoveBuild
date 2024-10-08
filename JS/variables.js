@@ -3,7 +3,7 @@ types={
         {name:'Joe',moniker:'The Testbed',identifier:['Brother','Mister'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Tutorial man!`},
         {name:'George',moniker:'The Agent',identifier:['Brother','Mister'],life:80,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:34,effect:[8]},{type:304,effect:[20]},{type:37,effect:[15,5]}],description:``},
         {name:'Lira',moniker:'The Apprentice',identifier:['Sister','Miss'],life:60,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:305,effect:[5,6]},{type:25,effect:[14]},{type:306,effect:[18]}],description:``},
-        {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:307,effect:[2]},{type:24,effect:[8,8]},{type:308,effect:[13]}],description:``},
+        {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:419,effect:[10]},{type:24,effect:[8,8]},{type:308,effect:[13]}],description:``},
         {name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:52,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:309,effect:[4]},{type:88,effect:[2]},{type:310,effect:[12,2,2]}],description:``},
         {name:'Azis',moniker:'The Executor',identifier:['Brother','Mister'],life:66,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:311,effect:[4]},{type:313,effect:[]},{type:411,effect:[14,2]}],description:``},
         {name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[0],move:{type:9,speed:1},attack:[{type:314,effect:[]},{type:315,effect:[]},{type:316,effect:[15,1]}],description:``},
@@ -18,9 +18,9 @@ types={
         {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:``},
         {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:339,effect:[8,8]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:``},
         {name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]},{type:412,effect:[15,2]},{type:413,effect:[2]}],description:``},
-        {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:312,effect:[5,5,1,1,2,2,2,2,10]}],description:``},
-        {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
-        {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:312,effect:[5,5,1,1,2,2,2,2,10]},{type:420,effect:[3]},{type:93,effect:[1]}],description:``},
+        {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:``},
+        {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -217,7 +217,7 @@ types={
         {name:'Donu',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[6]}],description:`It's just shapes`},
         {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,1]},{type:39,effect:[2,'Flame']},{type:73,effect:[8,1,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
-        {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:200,effect:[8]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
+        {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:200,effect:[8]},{type:425,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
         {name:'Crusader',life:127,behavior:15,spec:[0,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:343,effect:[14,1]},{type:344,effect:[20]},{type:376,effect:[22,1]},{type:346,effect:[22,1]},{type:347,effect:[20]}],description:`Two millenia late to the party`},
         {name:'Thoughtless',life:144,behavior:17,spec:[0],move:{type:0,speed:1},attack:[{type:147,effect:[5]},{type:404,effect:[12,1]},{type:405,effect:[9,3]},{type:83,effect:[10,1,'Philosophy of\nthe Despised']}],description:`No mind lol`},
         
@@ -294,14 +294,14 @@ types={
 
 
 
-        {name:'Half Spikeball',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:417,effect:[8]},{type:418,effect:[10]}],description:`Poor rotational alignment`},
-        {name:'Zombie Fairy',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'Graphite Block',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'Spirit of Elegance',life:26,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[5]},{type:395,effect:[7,1]}],description:`Look how they massacred my boy`},
+        {name:'Half Spikeball',life:35,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:417,effect:[8]},{type:418,effect:[10]}],description:`Poor rotational alignment`},
+        {name:'Zombie Fairy',life:13,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[6]},{type:1,effect:[5]}],description:`You again?`},
+        {name:'Graphite Block',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:426,effect:[1]},{type:30,effect:[6,6]},{type:396,effect:[6,6]}],description:`Can be made into a packager`},
+        {name:'Spirit of Elegance',life:26,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[5]},{type:395,effect:[7,1]}],description:`Who needs Max HP?`},
         
-        {name:'Hit Squad',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        /*{name:'Hit Squad',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[12]},{type:427,attack:[9,1]},{type:428,effect:[9,1]}],description:`Take him out!`},
+        {name:'Old Konaian Guard',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Diamond Duck',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
         {name:'',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
 
         {name:'Rocket Launcher Management Robot',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
@@ -311,11 +311,14 @@ types={
         {name:'Big Ice Slime',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
         {name:'Shotgun Management Robot',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
         {name:'Scoutbot',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'MMIS Agent',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Mixed Number',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[],description:``},*/
 
-
+        //sakura
+        //merlin
+        //ducopo
+        //randy
 
     ],attack:[
         {name:'',class:0},//0
@@ -341,7 +344,7 @@ types={
         {name:'2 Tile Double Strike',class:1},//20
         {name:'Idle',class:4},
         {name:'Statusing Strike',class:1},
-        {name:'Weaken',class:1},
+        {name:'Weaken',class:11},
         {name:'2 Tile Strike / Bleed',class:1},
         {name:'All Enemy Heal',class:4},
         {name:'All Enemy Strengthen',class:4},
@@ -351,7 +354,7 @@ types={
         {name:'2 Tile Strike / Block',class:1},//30
         {name:'Double Strike',class:1},
         {name:'2 Tile Statusing Strike',class:1},
-        {name:'2 Tile Weaken',class:1},
+        {name:'2 Tile Weaken',class:11},
         {name:'Combo Triple Strike',class:1},
         {name:'Combo Push',class:1},
         {name:'Combo Injuring Strike',class:1},
@@ -373,14 +376,14 @@ types={
         {name:'Build Slime',class:4},
         {name:'2 Tile 3 Spread Statusing Strike',class:1},
         {name:'Spin Statusing Strike',class:1},
-        {name:'2 Tile Spin Weaken',class:1},
+        {name:'2 Tile Spin Weaken',class:11},
         {name:'Summon Shield Particles',class:4},
         {name:'Absorb Shield Particles',class:4},
         {name:'Bleed',class:1},
         {name:'6 Tile Double Strike',class:1},
         {name:'3 Spread Statusing Strike',class:1},//60
         {name:'2 Tile Frail',class:1},
-        {name:'2 Tile Vulnerable',class:1},
+        {name:'2 Tile Vulnerable',class:11},
         {name:'All Enemy Dexterity',class:4},
         {name:'Unblockable 3 Spread Strike',class:1},
         {name:'All Enemy 2 Turn Block',class:2},
@@ -470,8 +473,8 @@ types={
         {name:'2 Tile Triple Strike / Bleed',class:1},
         {name:'2 Tile Smoke Bomb',class:5},//150
         {name:'Gun / Burn',class:1},
-        {name:'6 Tile Weaken',class:1},
-        {name:'3 Spread Weaken',class:1},
+        {name:'6 Tile Weaken',class:11},
+        {name:'3 Spread Weaken',class:11},
         {name:'Poison Drive',class:5},
         {name:'Local Summon',class:4},
         {name:'2 Tile Pull Double Strike',class:1},
@@ -738,7 +741,17 @@ types={
 
         {name:'Left 3 Wide Strike',class:1},
         {name:'Right 3 Wide Strike',class:1},
-
+        {name:'6 Tile Bleed',class:1},
+        {name:'6 Tile Freeze',class:1},//420
+        {name:'Chocolate Chip',class:4},
+        {name:'Triple Block',class:2},
+        {name:'Radiation',class:4},
+        {name:'Lose Health in 2 Turns',class:1},
+        {name:'Magic Pulse',class:1},
+        {name:'Armored Strike',class:1},
+        //damage equal to armor
+        {name:'Gun / Weak',class:1},
+        {name:'Gun / Vulnerable',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,description:''},
@@ -3258,6 +3271,16 @@ types={
             name:'',
             player:{position:[[{x:0,y:0}],[{x:0,y:0},{x:0,y:0}]]},
             enemy:[
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 7'],class:0,world:-1,
+            name:'',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Duck'},
             ],reinforce:[
             ],assaultReinforce:[
             ],ally:[

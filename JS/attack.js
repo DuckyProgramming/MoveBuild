@@ -236,9 +236,10 @@ class attack{
             case 5433: case 5434: case 5435: case 5436: case 5437: case 5438: case 5439: case 5449: case 5451: case 5454: case 5456: case 5460: case 5462: case 5463: case 5472: case 5479: case 5485: case 5489: case 5490: case 5493:
             case 5501: case 5512: case 5517: case 5518: case 5519: case 5548: case 5551: case 5557: case 5558: case 5562: case 5564: case 5598: case 5605: case 5606: case 5615: case 5619: case 5620: case 5625: case 5628: case 5631:
             case 5633: case 5636: case 5637: case 5641: case 5644: case 5647: case 5651: case 5657: case 5658: case 5662: case 5664: case 5666: case 5668: case 5673: case 5684: case 5685: case 5690: case 5692: case 5695: case 5708:
-            case 5709: case 5716: case 5718: case 5719: case 5720: case 5721: case 5727: case 5730: case 5731: case 5732: case 5740: case 5744: case 5745: case 5752: case 5759: case 5760: case 5779: case 5782: case 5783: case 5794:
-            case 5806: case 5807: case 5808: case 5809: case 5814: case 5815: case 5817: case 5818: case 5819: case 5820: case 5824: case 5828: case 5829: case 5830: case 5833: case 5836: case 5837: case 5840: case 5842: case 5852:
-            case 5853: case 5856: case 5864: case 5865: case 5868: case 5869: case 5880: case 5885: case 5893: case 5896: case 5904: case 5907: case 5917: case 5931: case 5933: case 5940: case 5941: case 5944: case 5951:
+            case 5709: case 5716: case 5718: case 5719: case 5720: case 5721: case 5727: case 5731: case 5732: case 5740: case 5744: case 5745: case 5752: case 5759: case 5760: case 5779: case 5782: case 5783: case 5794: case 5806:
+            case 5807: case 5808: case 5809: case 5814: case 5815: case 5817: case 5818: case 5819: case 5820: case 5824: case 5828: case 5829: case 5830: case 5833: case 5836: case 5837: case 5840: case 5842: case 5852: case 5853:
+            case 5856: case 5864: case 5865: case 5868: case 5869: case 5880: case 5885: case 5893: case 5896: case 5904: case 5907: case 5917: case 5931: case 5933: case 5940: case 5941: case 5944: case 5951: case 5954: case 5957:
+            case 5959: case 5960: case 5963: case 5967: case 5973: case 5974:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -5483,7 +5484,7 @@ class attack{
                             this.userCombatant.holdOrb(14)
                         }
                     break
-                    case 5933:
+                    case 5933: case 5960:
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userCombatant.holdOrb(4)
                         }
@@ -6877,7 +6878,7 @@ class attack{
                     break
                     case 3481:
                         if(this.userManager.hand.cards.length<this.effect[1]){
-                            this.userManager.draw(this.effect[0]-this.userManager.hand.cards.length)
+                            this.userManager.draw(this.effect[1]-this.userManager.hand.cards.length)
                         }
                     break
                     case 3494:
@@ -7673,6 +7674,14 @@ class attack{
                     break
                     case 5947:
                         this.userCombatant.statusEffect('Single Counter Block',this.effect[1])
+                    break
+                    case 5961:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(6)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userCombatant.holdOrb(8)
+                        }
                     break
 
                 }
@@ -9615,7 +9624,7 @@ class attack{
                     case 839:
                         this.userCombatant.statusEffect('Block Spark+',this.effect[0])
                     break
-                    case 841: case 3610:
+                    case 841: case 3610: case 5969:
                         this.userCombatant.charge+=this.effect[0]
                     break
                     case 842: case 4650:
@@ -12188,6 +12197,13 @@ class attack{
                     break
                     case 5943:
                         this.userCombatant.metal+=this.effect[0]+this.effect[1]*this.battle.combatantManager.numberAbstract(0,[])
+                    break
+                    case 5968:
+                        this.userCombatant.statusEffect('Dodge',this.effect[0])
+                        this.userCombatant.charge+=this.effect[1]
+                    break
+                    case 5970:
+                        this.userCombatant.statusEffect('Wisp Exhaust Charge',this.effect[0])
                     break
 
                 }
@@ -15038,6 +15054,43 @@ class attack{
                     break
                     case 5946:
                         this.userManager.drawAbstract(this.effect[0],0,0,[13])
+                    break
+                    case 5953:
+                        this.userCombatant.statusEffect('Intangible',this.effect[0])
+                        if(this.relPos[0]==0||this.relPos[0]==this.relPos[1]){
+                            this.userCombatant.heal(this.effect[1])
+                        }
+                    break
+                    case 5955:
+                        this.userCombatant.statusEffect('Calm Bonus',this.effect[0])
+                    break
+                    case 5956:
+                        this.userCombatant.statusEffect('Scry Damage All',this.effect[0])
+                    break
+                    case 5958:
+                        this.userManager.draw(this.effect[0])
+                        this.userManager.hand.randomEffect(26,[this.effect[1]])
+                    break
+                    case 5962:
+                        this.userManager.draw(this.effect[0])
+                        this.userCombatant.combo+=this.effect[1]
+                    break
+                    case 5964:
+                        this.userManager.drawAbstract(this.effect[0],0,0,[11])
+                        this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
+                    break
+                    case 5965:
+                        this.userManager.drawAbstract(this.effect[0],0,0,[11])
+                        this.userCombatant.statusEffect('(B) Next Turn',1)
+                        this.userCombatant.statusEffect('(N) Next Turn',1)
+                    break
+                    case 5966:
+                        this.userManager.drawAbstract(this.effect[0],0,0,[11])
+                        this.userCombatant.statusEffect('(E) Next Turn',1)
+                        this.userCombatant.statusEffect('(B) Next Turn',1)
+                    break
+                    case 5977:
+                        this.userManager.drawAbstract(this.effect[0],0,0,[11])
                     break
 
                 }
@@ -19110,7 +19163,7 @@ class attack{
                             this.userCombatant.armed=true
                         }
                     break
-                    case 112: case 4205: case 5750:
+                    case 112: case 4205: case 5750: case 5976:
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userManager.hand.add(findName('Shiv',types.card),0,0)
                         }
@@ -22767,6 +22820,13 @@ class attack{
                             this.userCombatant.infoAnim.orbSpec[this.userCombatant.infoAnim.orbSpec.length-1].push(0)
                         }
                     break
+                    case 5963:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        let index5963=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
+                        if(index5963>=0){
+                            this.battle.tileManager.tiles[index5963].addType(19)
+                        }
+                    break
 
                 }
                 //mark 12
@@ -23281,6 +23341,9 @@ class attack{
                     break
                     case 2663:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.getStatus('Dodge')>0?3:1),this.user)
+                    break
+                    case 5957:
+                        this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)

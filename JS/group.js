@@ -31,7 +31,7 @@ class group{
         this.basicChange=[0,0]
         this.addEffect=[]
         this.finalPosition=0
-        this.listKey=41
+        this.listKey=42
         this.listInput=[
             [0,4],
             [1,8],
@@ -70,6 +70,7 @@ class group{
             [38,44],
             [39,48],
             [40,49],
+            [41,50],
         ]
 
         this.reset()
@@ -613,6 +614,10 @@ class group{
     }
     duplicateSelectFree(amount){
         this.status[40]+=amount
+        this.generalSelfStatus()
+    }
+    diffract(amount){
+        this.status[41]+=amount
         this.generalSelfStatus()
     }
     generalSelfStatus(){
@@ -1666,9 +1671,6 @@ class group{
                     a--
                     la--
                 break
-                case 115:
-                    this.cards[a].callEvokeEffect()
-                break
 
             }
         }
@@ -1982,6 +1984,9 @@ class group{
                 break
                 case 50:
                     this.cards[a].fuel+=args[0]
+                break
+                case 51:
+                    this.cards[a].callEvokeEffect(...args)
                 break
             }
         }
@@ -2827,6 +2832,12 @@ class group{
             break
             case 5942:
                 userCombatant.statusEffect('Focus',card.effect[0])
+            break
+            case 5971:
+                this.battle.addEnergy(card.effect[1],this.player)
+            break
+            case 5972:
+                this.battle.addSpecificEnergy(1,this.player,6)
             break
         }
         card.drawMark=false
@@ -3721,7 +3732,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[29],this.anim[30]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36]),this.anim[37],this.anim[38],this.anim[39],this.anim[40]]
+                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[29],this.anim[30]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -4838,6 +4849,13 @@ class group{
                     }
                 }
             break
+            case 50:
+                this.cards[a].deSize=true
+                this.cards[a].discardEffect.push(17)
+                if(this.status[41]>0){
+                    this.status[41]--
+                }
+            break
         }
     }
     generalExhaust(a){
@@ -5047,6 +5065,12 @@ class group{
                                 this.cards[a].setCost(0,[0])
                                 this.cards[a].discardEffect=hold
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(4),1)
+                            }else if(this.cards[a].discardEffect.includes(17)){
+                                let hold=this.cards[a].discardEffect
+                                this.cards[a]=this.battle.cardManagers[this.player].transformCardPrism(this.cards[a])
+                                this.cards[a]=upgradeCard(this.cards[a])
+                                this.cards[a].discardEffect=hold
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(17),1)
                             }
                             if(this.cards[a].discardEffect.includes(1)){
                                 this.cards[a].discardEffect=[]
@@ -5124,39 +5148,43 @@ class group{
                                 }
                                 a--
                                 la--
+                            }else if(this.cards[a].discardEffect.includes(16)){
+                                this.cards[a].discardEffect=[]
+                                this.send(this.cards,a,a+1,2)
+                                a--
+                                la--
                             }else{
                                 this.cards[a].discardEffect=[]
                             }
-                        }else if((
-                            this.cards[a].attack==1031||this.cards[a].attack.length==2&&this.cards[a].attack[0]==1189||this.cards[a].attack==1739||this.cards[a].attack==1770||
-                            this.cards[a].attack==1778||this.cards[a].attack==1893||this.cards[a].attack==2053||
-                            (this.cards[a].attack==3371||this.cards[a].attack==5887||this.cards[a].attack==5888||this.cards[a].attack==5889||this.cards[a].attack==5890)&&!this.cards[a].usable||
-                            this.cards[a].spec.includes(12)&&this.cards[a].attack[this.cards[a].characteristic]==1366
-                        )&&!this.cards[a].exhaust){
+                        }else if(
+                            (
+                                this.cards[a].attack==1031||this.cards[a].attack.length==2&&this.cards[a].attack[0]==1189||this.cards[a].attack==1739||this.cards[a].attack==1770||
+                                this.cards[a].attack==1778||this.cards[a].attack==1893||this.cards[a].attack==2053||
+                                (this.cards[a].attack==3371||this.cards[a].attack==5887||this.cards[a].attack==5888||this.cards[a].attack==5889||this.cards[a].attack==5890)&&!this.cards[a].usable||
+                                this.cards[a].spec.includes(12)&&this.cards[a].attack[this.cards[a].characteristic]==1366
+                            )&&!this.cards[a].exhaust
+                        ){
                             this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
                             a--
                             la--
-                        }else if((
-                            this.cards[a].attack==1248||this.cards[a].attack==1333||this.cards[a].attack==1348||this.cards[a].attack==1384||this.cards[a].attack==1401||
-                            this.cards[a].attack==1405||this.cards[a].attack==1443||this.cards[a].attack==1444||this.cards[a].attack==1455||this.cards[a].attack==1485||
-                            this.cards[a].attack==1504||this.cards[a].attack==1616||this.cards[a].attack==1622||this.cards[a].attack==1623||this.cards[a].attack==1625||
-                            this.cards[a].attack==1626||this.cards[a].attack==1627||this.cards[a].attack==1628||this.cards[a].attack==1630||this.cards[a].attack==1635||
-                            this.cards[a].attack==1649||this.cards[a].attack==1650||this.cards[a].attack==1654||this.cards[a].attack==1655||this.cards[a].attack==1740||
-                            this.cards[a].attack==1753||this.cards[a].attack==1777||this.cards[a].attack==1788||this.cards[a].attack==1806||this.cards[a].attack==1821||
-                            this.cards[a].attack==1852||this.cards[a].attack==1856||this.cards[a].attack==1857||this.cards[a].attack==1868||this.cards[a].attack==1909||
-                            this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||this.cards[a].attack==2470||this.cards[a].attack==3196||
-                            this.cards[a].attack==4754||this.cards[a].attack==4805||this.cards[a].attack==4806||this.cards[a].attack==4807||this.cards[a].attack==4808||
-                            this.cards[a].attack==4833||this.cards[a].attack==4834||
-                            (this.cards[a].attack==587||this.cards[a].attack==676)&&this.battle.combatantManager.constructAlive(this.player+1)&&!options.oldUnbuild||
-                            this.cards[a].attack==1642&&this.battle.attackManager.energy==4||
-                            this.cards[a].attack==4772&&this.battle.attackManager.mtgEnergy.length==4||
-                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Hook')>0&&this.cards[a].getCost(0)>0&&this.battle.turn.main==this.player||
-                            this.cards[a].discardEffect.includes(16)
-                        )&&!this.cards[a].exhaust){
-                            if(this.cards[a].discardEffect.includes(16)){
-                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(16),1)
-                            }
-                            this.send(this.cards,a,a+1,2)
+                        }else if(
+                            (
+                                this.cards[a].attack==1248||this.cards[a].attack==1333||this.cards[a].attack==1348||this.cards[a].attack==1384||this.cards[a].attack==1401||
+                                this.cards[a].attack==1405||this.cards[a].attack==1443||this.cards[a].attack==1444||this.cards[a].attack==1455||this.cards[a].attack==1485||
+                                this.cards[a].attack==1504||this.cards[a].attack==1616||this.cards[a].attack==1622||this.cards[a].attack==1623||this.cards[a].attack==1625||
+                                this.cards[a].attack==1626||this.cards[a].attack==1627||this.cards[a].attack==1628||this.cards[a].attack==1630||this.cards[a].attack==1635||
+                                this.cards[a].attack==1649||this.cards[a].attack==1650||this.cards[a].attack==1654||this.cards[a].attack==1655||this.cards[a].attack==1740||
+                                this.cards[a].attack==1753||this.cards[a].attack==1777||this.cards[a].attack==1788||this.cards[a].attack==1806||this.cards[a].attack==1821||
+                                this.cards[a].attack==1852||this.cards[a].attack==1856||this.cards[a].attack==1857||this.cards[a].attack==1868||this.cards[a].attack==1909||
+                                this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||this.cards[a].attack==2470||this.cards[a].attack==3196||
+                                this.cards[a].attack==4754||this.cards[a].attack==4805||this.cards[a].attack==4806||this.cards[a].attack==4807||this.cards[a].attack==4808||
+                                this.cards[a].attack==4833||this.cards[a].attack==4834||
+                                (this.cards[a].attack==587||this.cards[a].attack==676)&&this.battle.combatantManager.constructAlive(this.player+1)&&!options.oldUnbuild||
+                                this.cards[a].attack==1642&&this.battle.attackManager.energy==4||
+                                this.cards[a].attack==4772&&this.battle.attackManager.mtgEnergy.length==4||
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Hook')>0&&this.cards[a].getCost(0)>0&&this.battle.turn.main==this.player
+                            )&&!this.cards[a].exhaust
+                        ){
                             a--
                             la--
                         }else if(this.cards[a].exhaust){
@@ -5206,6 +5234,13 @@ class group{
                                         this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block'))
                                     }
                                     this.cards.forEach(card=>card.otherDiscard())
+                                    if(this.cards[a].discardEffect.includes(16)){
+                                        this.cards[a].discardEffect=[]
+                                        this.send(this.cards,a,a+1,2)
+                                        a--
+                                        la--
+                                        continue
+                                    }
                                 }
                             }
                             let triplet=false

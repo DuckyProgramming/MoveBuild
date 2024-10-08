@@ -556,7 +556,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 69:
             layer.stroke(150,0,0,fade)
             layer.strokeWeight(0.5)
-            regStar(layer,0,0,16,5,5,2.5,2.5,0)
+            regStar(layer,0,0,8,5,5,2.5,2.5,0)
             layer.endShape()
             layer.fill(125,fade)
             layer.stroke(100,fade)
@@ -6559,6 +6559,70 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(-1.5,-0.5,1,2)
             layer.rect(1.5,-0.5,1,2)
         break
+        case 676:
+            layer.fill(255,255,150,fade)
+            layer.ellipse(0,0,9)
+            layer.ellipse(-2.5,-2.5,3.5)
+            layer.ellipse(-2.5,2.5,3.5)
+            layer.ellipse(2.5,-2.5,3.5)
+            layer.ellipse(2.5,2.5,3.5)
+            layer.fill(0,fade)
+            layer.ellipse(0,0,8)
+            layer.ellipse(-2.5,-2.5,2.5)
+            layer.ellipse(-2.5,2.5,2.5)
+            layer.ellipse(2.5,-2.5,2.5)
+            layer.ellipse(2.5,2.5,2.5)
+            layer.fill(255,255,150,fade)
+            layer.ellipse(-2,-0.5,1.5)
+            layer.ellipse(2,-0.5,1.5)
+        break
+        case 677:
+            layer.fill(255,255,200,fade)
+            layer.stroke(255,fade)
+            layer.strokeWeight(1)
+            layer.beginShape()
+            layer.vertex(0,6)
+            layer.bezierVertex(-7.5,3,4.5,-2,0,-6)
+            layer.bezierVertex(7.5,-3,-4.5,2,0,6)
+            layer.endShape()
+        break
+        case 678:
+            layer.stroke(75,255,255,fade)
+            layer.strokeWeight(1)
+            layer.line(-4,-4,4,4)
+            layer.line(-4,4,4,-4)
+            layer.line(-4,-4,-4,4)
+            layer.line(4,4,4,-4)
+            layer.line(-4,-4,0,-4)
+            layer.line(4,4,0,4)
+            layer.fill(75,255,255,fade)
+            layer.quad(-2,0,0,-2,2,0,0,2)
+        break
+        case 679:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
+            layer.noStroke()
+            layer.stroke(240,240,160,fade)
+            layer.strokeWeight(0.5)
+            regTriangle(layer,0,0,4,4,0)
+            regTriangle(layer,0,-3,2,2,60)
+            regTriangle(layer,-1.5*constants.sqrt3,1.5,2,2,60)
+            regTriangle(layer,1.5*constants.sqrt3,1.5,2,2,60)
+        break
+        case 680:
+            layer.stroke(255,255,150,fade)
+            layer.strokeWeight(1)
+            for(let a=0,la=5;a<la;a++){
+                layer.rotate(72)
+                layer.line(0,0,0,5)
+                layer.line(0,5,-2,4)
+            }
+            layer.noStroke()
+            layer.fill(75,225,75,fade)
+            layer.quad(-2,0,0,-5,2,0,0,5)
+            layer.quad(-5,0,-3,-2,-1,0,-3,2)
+            layer.quad(5,0,3,-2,1,0,3,2)
+        break
         
     }
     //mark s
@@ -11246,7 +11310,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         case 18:
             layer.stroke(150,0,0,fade)
             layer.strokeWeight(1)
-            regStar(layer,0,0,16,10,10,5,5,0)
+            regStar(layer,0,0,8,10,10,5,5,0)
         break
         case 19:
             layer.stroke(150,175,200,fade)
