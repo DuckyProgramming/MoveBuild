@@ -1,8 +1,7 @@
-OPERATION ASCENDANCY
-(247)
 
-LISTING GROUP 52 - QUOTA 2
-(86)
+
+OPERATION ASCENDANCY
+(153)
 
 LISTING GROUP 53 - ADDENDUM
 
@@ -47,7 +46,7 @@ OPERATION EPISODE
 
 luna event
 
-[]
+math madness - stop 3 blocks, get money
 
 
 

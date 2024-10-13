@@ -2719,26 +2719,28 @@ class relicManager{
                 }
             break
             case 22://general start of combat
-                if(this.active[464][a+1]>0&&args[0]!=4){
-                    for(let b=0,lb=this.active[464][a+1];b<lb;b++){
-                        if(this.battle.itemManager.total[a]==0){
-                            this.battle.itemManager.addRandomItem(a)
+                for(let a=0,la=this.battle.players;a<la;a++){
+                    if(this.active[464][a+1]>0&&args[0]!=4){
+                        for(let b=0,lb=this.active[464][a+1];b<lb;b++){
+                            if(this.battle.itemManager.total[a]==0){
+                                this.battle.itemManager.addRandomItem(a)
+                            }
                         }
                     }
+                    if(this.active[39][a+1]>0){this.detail[39][a]=0}
+                    if(this.active[108][a+1]>0){this.detail[108][a]=0}
+                    if(this.active[206][a+1]>0){this.detail[206][a][0]=0}
+                    if(this.active[317][a+1]>0){this.detail[317][a]=0}
+                    if(this.active[323][a+1]>0){this.detail[323][a]=0}
+                    if(this.active[324][a+1]>0){this.detail[324][a]=0}
+                    if(this.active[366][a+1]>0){this.detail[366][a]=0}
+                    if(this.active[367][a+1]>0){this.detail[367][a]=0}
+                    if(this.active[378][a+1]>0){this.detail[378][a]=0}
+                    if(this.active[383][a+1]>0){this.detail[383][a]=0}
+                    if(this.active[442][a+1]>0){this.detail[442][a]=0}
+                    if(this.active[457][a+1]>0){this.detail[457][a]=0}
+                    if(this.active[465][a+1]>0){this.detail[465][a][0]=0}
                 }
-                if(this.active[39][a+1]>0){this.detail[39][a]=0}
-                if(this.active[108][a+1]>0){this.detail[108][a]=0}
-                if(this.active[206][a+1]>0){this.detail[206][a][0]=0}
-                if(this.active[317][a+1]>0){this.detail[317][a]=0}
-                if(this.active[323][a+1]>0){this.detail[323][a]=0}
-                if(this.active[324][a+1]>0){this.detail[324][a]=0}
-                if(this.active[366][a+1]>0){this.detail[366][a]=0}
-                if(this.active[367][a+1]>0){this.detail[367][a]=0}
-                if(this.active[378][a+1]>0){this.detail[378][a]=0}
-                if(this.active[383][a+1]>0){this.detail[383][a]=0}
-                if(this.active[442][a+1]>0){this.detail[442][a]=0}
-                if(this.active[457][a+1]>0){this.detail[457][a]=0}
-                if(this.active[465][a+1]>0){this.detail[465][a][0]=0}
             break
         }
     }

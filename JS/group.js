@@ -1988,6 +1988,14 @@ class group{
                 case 51:
                     this.cards[a].callEvokeEffect(...args)
                 break
+                case 52:
+                    this.cards[a].setCost(0,[...args])
+                break
+                case 53:
+                    if(this.cards[a].name.includes(args[1])){
+                        this.cards[a].costDown(0,[args[0]])
+                    }
+                break
             }
         }
         if(effect==9){
@@ -2050,28 +2058,18 @@ class group{
                         &&!(effect==63&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(41)||!this.cards[b].spec.includes(args[1])))
                         &&!(effect==64&&this.cards[b].class!=args[0]&&args[0]!=0)
                         &&!(effect==65&&this.cards[b].edition!=args[0])
+                        &&!(effect==70&&!this.cards[b].spec.includes(15))
                     ){
                         list.push(b)
                     }
                 }
-                if(list.length>0&&a==0){
+                if(list.length>0&&a==0&&this.id!=0){
                     massed=true
                     break
                 }
             }
             if(list.length>0){
                 let index=list[floor(random(0,list.length))]
-                if(massed&&this.id!=0){
-                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-                    for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
-                        this.cards[index].callPullEffect()
-                        
-                    }
-                    this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
-                    if(userCombatant.getStatus('Mass Pull Damage Random')>0){
-                        this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
-                    }
-                }
                 switch(effect){
                     case 0: case 17: case 57: case 58:
                         this.cards[index].deSize=true
@@ -2317,6 +2315,17 @@ class group{
                         this.generalExhaust(index)
                     break
                     case 60:
+                        if(massed&&this.id!=0){
+                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
+                                this.cards[index].callPullEffect()
+                                
+                            }
+                            this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
+                            if(userCombatant.getStatus('Mass Pull Damage Random')>0){
+                                this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
+                            }
+                        }
                         this.cards[index].deSize=true
                         this.cards[index].discardEffect.push(0)
                         return true
@@ -2327,12 +2336,45 @@ class group{
                         this.cards[index].retain2=true
                     break
                     case 66:
+                        if(massed&&this.id!=0){
+                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
+                                this.cards[index].callPullEffect()
+                                
+                            }
+                            this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
+                            if(userCombatant.getStatus('Mass Pull Damage Random')>0){
+                                this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
+                            }
+                        }
                         this.cards[index].deSize=true
                         return this.cards[index].spec.includes(args[0])
                     case 67:
+                        if(massed&&this.id!=0){
+                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
+                                this.cards[index].callPullEffect()
+                                
+                            }
+                            this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
+                            if(userCombatant.getStatus('Mass Pull Damage Random')>0){
+                                this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
+                            }
+                        }
                         this.cards[index]=upgradeCard(this.cards[index])
                         return this.cards[index].spec.includes(args[1])
                     case 68:
+                        if(massed&&this.id!=0){
+                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
+                                this.cards[index].callPullEffect()
+                                
+                            }
+                            this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
+                            if(userCombatant.getStatus('Mass Pull Damage Random')>0){
+                                this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
+                            }
+                        }
                         let result=this.cards[index].spec.includes(args[1])
                         this.send(args[0],index,index+1,1)
                         return result
@@ -2343,7 +2385,21 @@ class group{
                             this.cards[index+1].additionalSpec.push(args[0][a])
                         }
                     break
+                    case 70:
+                        this.cards[index].limit+=args[0]
+                    break
 
+                }
+                if(massed&&this.id!=0){
+                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                    for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
+                        this.cards[index].callPullEffect()
+                        
+                    }
+                    this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
+                    if(userCombatant.getStatus('Mass Pull Damage Random')>0){
+                        this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
+                    }
                 }
             }
         }else{
@@ -2375,6 +2431,9 @@ class group{
         }
         if((card.spec.includes(5)||card.spec.includes(41))&&userCombatant.getStatus('Unplayable Draw Retain Once')>0){
             card.retain=true
+        }
+        if((card.spec.includes(5)||card.spec.includes(41))&&userCombatant.getStatus('Unplayable Draw Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('Unplayable Draw Block'))
         }
         if(card.spec.includes(62)){
             this.drawEffects.push([5,1])
@@ -2590,7 +2649,7 @@ class group{
             case 1241:
                 userCombatant.statusEffect('Counter All',card.effect[0])
             break
-            case 1242: case 4393: case 5468: case 5469:
+            case 1242: case 4393: case 5468: case 5469: case 6013:
                 userCombatant.addBlock(card.effect[0])
             break
             case 1243:
@@ -2734,7 +2793,7 @@ class group{
             case 3581:
                 this.battle.loseEnergy(card.effect[2],this.player)
             break
-            case 3753: case 3754: case 4048:
+            case 3753: case 3754: case 4048: case 5992:
                 card.edition=floor(random(1,7))
             break
             case 3910:
@@ -3599,9 +3658,13 @@ class group{
             if(userCombatant.getStatus('No Amplify')<=0){
                 if(userCombatant.getStatus('Free Amplify')>0){
                     this.battle.attackManager.amplify=true
+                    this.cards.forEach(card=>card.anotherAmplified())
+                    userCombatant.amplified()
                 }else if(userCombatant.getStatus('Single Free Amplify')>0){
                     userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
                     this.battle.attackManager.amplify=true
+                    this.cards.forEach(card=>card.anotherAmplified())
+                    userCombatant.amplified()
                 }else{
                     if(spec.includes(27)&&variants.mtg){
                         let amplifyCost=[]
@@ -3616,7 +3679,7 @@ class group{
                             case 4642: case 4645:
                                 amplifyCost=[1,5]
                             break
-                            case 4650:
+                            case 4650: case 6000:
                                 amplifyCost=[5]
                             break
                             case 4659: case 4660: case 4661: case 4662: case 4671: case 4678: case 4800: case 4803: case 4862: case 4885:
@@ -5179,12 +5242,13 @@ class group{
                                 this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||this.cards[a].attack==2470||this.cards[a].attack==3196||
                                 this.cards[a].attack==4754||this.cards[a].attack==4805||this.cards[a].attack==4806||this.cards[a].attack==4807||this.cards[a].attack==4808||
                                 this.cards[a].attack==4833||this.cards[a].attack==4834||
-                                (this.cards[a].attack==587||this.cards[a].attack==676)&&this.battle.combatantManager.constructAlive(this.player+1)&&!options.oldUnbuild||
                                 this.cards[a].attack==1642&&this.battle.attackManager.energy==4||
                                 this.cards[a].attack==4772&&this.battle.attackManager.mtgEnergy.length==4||
+                                (this.cards[a].attack==587||this.cards[a].attack==676)&&this.battle.combatantManager.constructAlive(this.player+1)&&!options.oldUnbuild||
                                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Hook')>0&&this.cards[a].getCost(0)>0&&this.battle.turn.main==this.player
                             )&&!this.cards[a].exhaust
                         ){
+                            this.send(this.cards,a,a+1,2)
                             a--
                             la--
                         }else if(this.cards[a].exhaust){

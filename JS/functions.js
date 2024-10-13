@@ -1967,7 +1967,7 @@ Total:${current.nodeManager.listing.static[3][1].length+current.nodeManager.list
 }
 function outListing(){
 	let box=``
-	let goal=160+160*constants.playerNumber+60+60+30+30+20
+	let goal=160+160*constants.playerNumber+60+60+25+30+20
 	let actual=current.cardManagers[0].listing.allListableCard[3].length
 	let arbitrary=5000
 	for(let a=0,la=constants.playerNumber;a<la;a++){
@@ -1991,20 +1991,20 @@ ${box}		Status:
 		Partnership:
 Common:${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length}/10				${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length-10}
 Uncommon:${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length}/10				${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-10}
-Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length}/10					${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-10}
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+3][3].length}/30
+Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}/10					${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-10}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+3][3].length}/25
 		Tarot:
 	Total:${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length}/30				${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length-30}
 		Spectral:
 	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/20				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-20}
 		Subcard:
-	Total:${current.cardManagers[0].listing.sub.length}/60				${current.cardManagers[0].listing.sub.length-60}
+	Total:${current.cardManagers[0].listing.sub.length}/90				${current.cardManagers[0].listing.sub.length-90}
 		Ally:
 	Total:${current.cardManagers[0].listing.ally.length}/20				${current.cardManagers[0].listing.ally.length-20}
 		Disband:
 	Total:${current.cardManagers[0].listing.disband.length}/600			${current.cardManagers[0].listing.disband.length-600}
 		Junkyard:
-	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/150			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-150}
+	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/160			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-160}
 			`)
 }
 function outClassCosts(){

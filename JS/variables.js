@@ -212,7 +212,7 @@ types={
         {name:'Paramilitary',life:60,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:403,effect:[10]}],description:`"Faction"`},
         
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
-        {name:'Slime Boss',life:120,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[2]}],description:`Very fat slime`},
+        {name:'Slime Boss',life:90,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[2]}],description:`Very fat slime`},
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
         {name:'Donu',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[6]}],description:`It's just shapes`},
@@ -6461,9 +6461,17 @@ Caps at +1, cap is raised by 1 for each Wisdom you have.`,
 `Deals splash damage when you add block.`,
         },{name:'Mass',mtg:0,desc:
 `If a card with Mass is present, it will always
-be chosen when a "random" card is selected.`,
+be chosen when a "random" card is selected.
+(Only works in battle, not out of combat.)`,
         },{name:'Pulled',mtg:0,desc:
 `Triggers when a card with Mass is randomly selected.`,
+        },{name:'Radiation',mtg:0,desc:
+`Deals splash down around yourself at the start of your turn.
+Stacks degrade by half, rounded up, each turn.`,
+        },{name:'Bounce',mtg:0,desc:
+`Acts like block, but counters equal to amount of Bounce spent.
+If no targettable user can be countered, still blocks
+damage and is spent, but does not counter.`,
         },
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0

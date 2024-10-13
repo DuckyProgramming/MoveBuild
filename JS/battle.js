@@ -150,7 +150,7 @@ class battle{
         this.encounter={class:0,world:0,name:'',custom:[0,0]}
         this.currency={money:[],ss:[]}
         this.energy={main:[],gen:[],base:[],originalBase:[],temp:[],lastSpend:[],crystal:[],crystalTotal:[]}
-        this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],barrier:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
+        this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],barrier:[],bounce:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
         this.lastEncounter=types.encounter[0]
         
         this.turn={main:0,total:0,time:0,accelerate:0,endReady:false,active:false}
@@ -224,6 +224,7 @@ class battle{
             this.stats.damage.push(0)
             this.stats.block.push(0)
             this.stats.barrier.push(0)
+            this.stats.bounce.push(0)
             this.stats.move.push(0)
             this.stats.drawn.push(0)
             this.stats.played.push([0,0,0,0,0,0,0,0,0,0,0,0])
@@ -1513,11 +1514,17 @@ class battle{
         if(xCost&&userCombatant.getStatus('X Cost (E)')>0){
             this.addSpecificEnergy(userCombatant.getStatus('X Cost (E)'),player,6)
         }
+        if(xCost&&userCombatant.getStatus('X Cost Chocolate Chip')>0){
+            userCombatant.statusEffect('Chocolate Chip',userCombatant.getStatus('X Cost Chocolate Chip'))
+        }
         if(card.name=='Tile'&&userCombatant.getStatus('Tile Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Tile Draw'))
         }
         if(card.name=='Dark\nMatter'&&userCombatant.getStatus('Dark Matter Fuel All')>0){
             this.cardManagers[player].allEffectArgs(2,50,[userCombatant.getStatus('Dark Matter Fuel All')])
+        }
+        if(card.spec.includes(70)&&userCombatant.getStatus('Shiv Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('Shiv Block'))
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])

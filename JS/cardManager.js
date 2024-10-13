@@ -19,7 +19,7 @@ class cardManager{
 
         this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.cyclicDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0)-(variants.compress?1:0)-(variants.unexpected?1:0)+(variants.polar?1:0)-(variants.cardHold?1:0))
         this.drawBoost=0
-        this.tempDraw={active:false,main:0,freeze:0,burn:0,free:0,exhaustRandom:0,class:[0,0,0,0,0,0,0,0,0,0,0,0]}
+        this.tempDraw={active:false,main:0,freeze:0,burn:0,free:0,exhaustRandom:0,class:[0,0,0,0,0,0,0,0,0,0,0,0],spec:[]}
         this.tempCostDown=0
         this.baseDrops=variants.cyclicDraw?3:0
         this.drops=0
@@ -849,6 +849,11 @@ class cardManager{
                 this.drawAbstract(this.tempDraw.class[a],0,0,[a])
             }
         }
+        for(let a=0,la=this.tempDraw.spec.length;a<la;a++){
+            if(this.tempDraw.spec[a][1]>0){
+                this.drawAbstract(this.tempDraw.spec[a][1],10,0,[this.tempDraw.spec[a][0]])
+            }
+        }
         if(this.tempCostDown>0){
             for(let a=0,la=this.tempCostDown;a<la;a++){
                 this.randomEffect(2,1,[1])
@@ -860,6 +865,7 @@ class cardManager{
         this.tempDraw.free=0
         this.tempDraw.exhaustRandom=0
         this.tempDraw.class=[0,0,0,0,0,0,0,0,0,0,0,0]
+        this.tempDraw.spec=[]
         this.tempCostDown=0
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.getStatus('Random Card Cost Less Per Turn')>0){
@@ -1096,7 +1102,7 @@ class cardManager{
     }
     standardBase(){
         this.checkCompact()
-        this.tempDraw={active:false,main:0,freeze:0,burn:0,free:0,exhaustRandom:0,class:[0,0,0,0,0,0,0,0,0,0,0,0]}
+        this.tempDraw={active:false,main:0,freeze:0,burn:0,free:0,exhaustRandom:0,class:[0,0,0,0,0,0,0,0,0,0,0,0],spec:[]}
         this.drawBoost=0
         this.hand.exhausts=0
         if(variants.cyclicDraw){

@@ -146,7 +146,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         break
         case 22:
             layer.fill(150,0,0,fade)
-            regStar(layer,0,0,8,6,6,3,3,0)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
             if(variants.mtg){
                 displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
             }else{
@@ -320,7 +320,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 43:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            regStar(layer,0,0,8,6,6,3,3,0)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
             layer.endShape()
             layer.fill(255,50,50,fade)
             layer.triangle(0,-6,-3,3,3,3)
@@ -399,7 +399,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(225,fade)
             for(let a=0,la=6;a<la;a++){
                 layer.rotate(60)
-                layer.arc(0,4,8,8,-90,90)
+                layer.arc(0,3,6,6,-90,90)
             }
         break
         case 53:
@@ -432,7 +432,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 56:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            regStar(layer,0,0,8,6,6,3,3,0)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
             layer.endShape()
             layer.fill(255,50,50,fade)
             layer.triangle(2,-6,4,3,0,3)
@@ -506,7 +506,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 64:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            regStar(layer,0,0,8,6,6,3,3,0)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
             layer.endShape()
             layer.fill(200,255,255,fade)
             layer.quad(-4,0,0,-5,4,0,0,5)
@@ -1640,7 +1640,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 177:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            regStar(layer,0,0,8,6,6,3,3,0)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
             layer.endShape()
             layer.fill(80,100,120,fade)
             layer.rect(-1,0,6,4)
@@ -1686,7 +1686,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 183:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            regStar(layer,0,0,8,6,6,3,3,0)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
             layer.endShape()
             layer.fill(150,175,200,fade)
             layer.triangle(0,-6,-3,3,3,3)
@@ -1694,7 +1694,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 184:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            regStar(layer,0,0,8,6,6,3,3,0)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
             layer.endShape()
             layer.fill(150,175,200,fade)
             layer.triangle(2,-6,4,3,0,3)
@@ -4851,7 +4851,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 508:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            regStar(layer,0,0,8,6,6,3,3,0)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
             layer.endShape()
             displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
         break
@@ -5652,6 +5652,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,fade)
             layer.strokeWeight(1)
             layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
             layer.fill(225,fade)
             layer.rect(-1,-1.25,3,1.5)
             layer.triangle(0.5,-0.5,0.5,-3,3,-0.5)
@@ -5890,7 +5891,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(125,fade)
             layer.stroke(100,fade)  
             layer.strokeWeight(1)
-            layer.rect(0,-0.5,4.5,6,1)
+            layer.rect(0,0,4.5,6,1)
             layer.noStroke()
             layer.fill(200,255,255,fade)
             layer.quad(-4,-3,-3,-4,4,3,3,4)
@@ -5903,7 +5904,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(125,fade)
             layer.stroke(100,fade)  
             layer.strokeWeight(1)
-            layer.rect(0,-0.5,4.5,6,1)
+            layer.rect(0,0,4.5,6,1)
             layer.noStroke()
             layer.fill(200,255,255,fade)
             layer.quad(-4,-3,-3,-4,4,3,3,4)
@@ -6146,7 +6147,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         break
         case 645:
             layer.fill(255,50,50,fade)
-            regStar(layer,0,0,8,6,6,3,3,0)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
             layer.fill(255,fade/5)
             layer.ellipse(0,0,10)
             layer.stroke(150,0,0,fade)
@@ -6315,6 +6316,10 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,11.75,2,0.5)
         break
         case 658:
+            layer.fill(200,0,0,fade)
+            layer.arc(0,0,8,8,-45,225)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
+            layer.noFill()
             layer.stroke(225,75,25,fade)
             layer.strokeWeight(1.5)
             layer.point(0,0)
@@ -6323,10 +6328,6 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.line(-3,0,-5,0)
             layer.line(0,3,0,5)
             layer.line(3,0,5,0)
-            layer.noStroke()
-            layer.fill(200,0,0,fade)
-            layer.arc(0,0,8,8,-45,225)
-            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
         break
         case 659:
             layer.fill(125,fade)
@@ -6622,6 +6623,216 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.quad(-2,0,0,-5,2,0,0,5)
             layer.quad(-5,0,-3,-2,-1,0,-3,2)
             layer.quad(5,0,3,-2,1,0,3,2)
+        break
+        case 681:
+            layer.fill(255,50,50,fade)
+            layer.quad(-5,-5,1,-1,5,5,-1,1)
+            layer.quad(5,-5,-1,-1,-5,5,1,1)
+            layer.fill(255,200,255,fade)
+            layer.quad(-1,-7.5,0,-5,0,5,-1,5)
+            layer.fill(255,150,255,fade)
+            layer.quad(1,-2.5,0,-5,0,5,1,5)
+            layer.fill(255,255,255,fade)
+            layer.rect(0,6,5,2)
+            layer.rect(0,8,3,2)
+        break
+        case 682:
+            layer.fill(150,175,200,fade)
+            layer.triangle(-5,-3,5,-3,0,-6)
+            layer.arc(0,-3,10,16,0,180)
+            layer.fill(255,200,255,fade)
+            layer.quad(-1,-7.5,0,-5,0,5,-1,5)
+            layer.fill(255,150,255,fade)
+            layer.quad(1,-2.5,0,-5,0,5,1,5)
+            layer.fill(255,255,255,fade)
+            layer.rect(0,6,5,2)
+            layer.rect(0,8,3,2)
+        break
+        case 683:
+            layer.fill(200,150,75,fade)
+            layer.ellipse(0,0,10)
+            layer.fill(150,100,50,fade)
+            layer.ellipse(-2,-2,2.5)
+            layer.ellipse(-1,2.5,2)
+            layer.ellipse(2.5,0.5,3)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)  
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(200,255,255,fade)
+            layer.quad(-4,-3,-3,-4,4,3,3,4)
+            layer.quad(-4,3,-3,4,4,-3,3,-4)
+        break
+        case 684:
+            layer.fill(220,225,230,fade)
+            layer.ellipse(0,0,10)
+            layer.fill(80,60,80,fade)
+            for(let a=0,la=8;a<la;a++){
+                layer.ellipse(3.5*lsin(a/la*360),3.5*lcos(a/la*360),1.5)
+            }
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+        break
+        case 685:
+            layer.fill(150,255,100,fade)
+            layer.arc(0,0,8,8,-30,210)
+            layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,3.6,3.6,2.16,2.16,0)
+        break
+        case 686:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-2,0,2,0,0,-6)
+            layer.triangle(-4.5,-4.5,1.5,-1.5,-1.5,1.5)
+            layer.triangle(4.5,-4.5,-1.5,-1.5,1.5,1.5)
+            layer.fill(255,200,255,fade)
+            layer.quad(-1,-7.5,0,-5,0,5,-1,5)
+            layer.fill(255,150,255,fade)
+            layer.quad(1,-2.5,0,-5,0,5,1,5)
+            layer.fill(255,255,255,fade)
+            layer.rect(0,6,5,2)
+            layer.rect(0,8,3,2)
+        break
+        case 687:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(120,210,240,fade)
+            layer.triangle(-0.5,0.5,-4.5,0.5,-0.5,4.5)
+            layer.triangle(0.5,-0.5,4.5,-0.5,0.5,-4.5)
+        break
+        case 688:
+            layer.fill(150,255,100,fade)
+            layer.arc(0,0,8,8,-30,210)
+            layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
+            layer.noFill()
+            layer.stroke(225,75,25,fade)
+            layer.strokeWeight(1.5)
+            layer.point(0,0)
+            layer.ellipse(0,0,6,6)
+            layer.line(0,-3,0,-5)
+            layer.line(-3,0,-5,0)
+            layer.line(0,3,0,5)
+            layer.line(3,0,5,0)
+        break
+        case 689:
+            layer.fill(200,0,0,fade)
+            layer.arc(0,0,8,8,-45,225)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
+            layer.fill(255,100,100,fade)
+            regTriangle(layer,0,0,3,3,60)
+        break
+        case 690:
+            layer.fill(200,180,120,fade)
+            layer.ellipse(0,0,8)
+            layer.rect(0,-4,2,4)
+            layer.rect(0,4,2,4)
+            layer.rect(-4,0,4,2)
+            layer.rect(4,0,4,2)
+            layer.fill(160,fade)
+            layer.rect(-3,-1,4,4)
+            layer.rect(3,1,4,4)
+        break
+        case 691:
+            layer.fill(150,0,200,fade)
+            layer.triangle(-1.5,5,1.5,5,0,6.5)
+            layer.noStroke()
+            layer.fill(0,100,200,fade)
+            layer.triangle(2,-2,-2,2,-2,-6)
+            layer.fill(200,fade)
+            layer.triangle(2,-2,-2,2,2,6)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.fill(200,255,255,fade)
+            layer.noStroke()
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+        break
+        case 692:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
+            layer.fill(125,255,255,fade)
+            layer.rect(0,0,7.5,7.5)
+            layer.fill(175,255,255,fade)
+            layer.rect(0,0,5,5)
+            layer.fill(225,255,255,fade)
+            layer.rect(0,0,2.5,2.5)
+        break
+        case 693:
+            layer.fill(140,120,160,fade)
+            layer.stroke(120,100,140,fade)
+            layer.strokeWeight(1)
+            regPoly(layer,0,0,8,3.5,3.5,0)
+            layer.noStroke()
+            layer.fill(200,255,255,fade)
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            layer.triangle(-4,-1,-5,-1,-4.5,1)
+            layer.triangle(4,-1,5,-1,4.5,1)
+        break
+        case 694:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(75,fade)
+            layer.rect(-5,0,2)
+            layer.fill(100,fade)
+            layer.rect(-4,1,2,6)
+            layer.rect(2,-1,10,2)
+        break
+        case 695:
+            layer.fill(255,255,50,fade)
+            layer.beginShape()
+            layer.vertex(0.5,-10)
+            layer.vertex(-4,1.5)
+            layer.vertex(0.5,1.5)
+            layer.vertex(-0.5,10)
+            layer.vertex(4,-1.5)
+            layer.vertex(-0.5,-1.5)
+            layer.endShape()
+            layer.fill(160,fade)
+            layer.beginShape()
+            layer.vertex(-6,0)
+            layer.vertex(-4,-2)
+            layer.vertex(-4,-1)
+            layer.vertex(-1,-1)
+            layer.vertex(-1,-4)
+            layer.vertex(-2,-4)
+            layer.vertex(0,-6)
+            layer.vertex(2,-4)
+            layer.vertex(1,-4)
+            layer.vertex(1,-1)
+            layer.vertex(4,-1)
+            layer.vertex(4,-2)
+            layer.vertex(6,0)
+            layer.vertex(4,2)
+            layer.vertex(4,1)
+            layer.vertex(1,1)
+            layer.vertex(1,4)
+            layer.vertex(2,4)
+            layer.vertex(0,6)
+            layer.vertex(-2,4)
+            layer.vertex(-1,4)
+            layer.vertex(-1,1)
+            layer.vertex(-4,1)
+            layer.vertex(-4,2)
+            layer.endShape()
+        break
+        case 696:
+            layer.fill(0,fade)
+            layer.ellipse(0,0,9,9)
+            for(let a=0,la=10;a<la;a++){
+                layer.rotate(36)
+                layer.triangle(-0.5,-4,0.5,-4,0,-6)
+            }
+            layer.fill(150,255,100,fade)
+            layer.arc(0,0,8,8,-30,210)
+            layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
         break
         
     }
@@ -11511,7 +11722,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         break
         case 45:
             layer.fill(150,0,0,fade)
-            regStar(layer,0,0,8,6,6,3,3,0)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
             if(variants.mtg){
                 displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
             }else{

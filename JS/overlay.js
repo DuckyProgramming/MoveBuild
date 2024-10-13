@@ -2307,7 +2307,7 @@ class overlay{
                 this.layer.textSize(10)
                 this.layer.text(`${this.battle.stats.killed[this.player]} Enemies Killed`,this.layer.width/2+225*this.posKey,y+=split[0])
                 this.layer.text(`${tennify(this.battle.stats.damage[this.player])} Damage Dealt`,this.layer.width/2+225*this.posKey,y+=split[0])
-                this.layer.text(`${tennify(this.battle.stats.block[this.player])} Block Added${this.battle.stats.barrier[this.player]>0?`, ${tennify(this.battle.stats.barrier[this.player])} Barrier Added`:``}`,this.layer.width/2+225*this.posKey,y+=split[0])
+                this.layer.text(`${tennify(this.battle.stats.block[this.player])} Block Added${this.battle.stats.barrier[this.player]>0?`, ${tennify(this.battle.stats.barrier[this.player])} Barrier Added`:``}${this.battle.stats.bounce[this.player]>0?`, ${tennify(this.battle.stats.bounce[this.player])} Bounce Added`:``}`,this.layer.width/2+225*this.posKey,y+=split[0])
                 this.layer.text(`${this.battle.stats.move[this.player]} Tiles Moved`,this.layer.width/2+225*this.posKey,y+=split[0])
                 this.layer.text(`${this.battle.stats.drawn[this.player]} Cards Drawn`,this.layer.width/2+225*this.posKey,y+=split[0])
                 this.layer.text(`${this.battle.stats.played[this.player][0]} Cards Played:`,this.layer.width/2+225*this.posKey,y+=split[0])

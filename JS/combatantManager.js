@@ -118,6 +118,14 @@ class combatantManager{
                         delete graphics.combatant[7]
                         graphics.combatant.splice(7,1,-1)
                     break
+                    case 'Shinmyoumaru':
+                        delete graphics.combatant[8]
+                        graphics.combatant.splice(8,1,-1)
+                    break
+                    case 'Merlin':
+                        delete graphics.combatant[9]
+                        graphics.combatant.splice(9,1,-1)
+                    break
                 }
                 delete this.combatants[a]
                 this.combatants.splice(a,1)
@@ -529,7 +537,9 @@ class combatantManager{
     randomNumberEffect(number,effect,args){
         let list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0&&this.combatants[a].life>0){
+            if(this.combatants[a].team==0&&this.combatants[a].life>0
+                &&!(effect==1&&this.combatants[a].id==args[2])
+            ){
                 list.push(a)
             }
         }
@@ -541,6 +551,9 @@ class combatantManager{
                         this.combatants[list[index]].takeDamage(args[0],args[1])
                         this.combatants[list[index]].statusEffect('Freeze',args[2])
                         this.combatants[list[index]].statusEffect('Poison',args[3])
+                    break
+                    case 1:
+                        this.combatants[list[index]].takeDamage(args[0],args[1])
                     break
                 }
                 list.splice(index,1)
@@ -1002,6 +1015,13 @@ class combatantManager{
                     break
                     case 52:
                         this.combatants[a].loseHealth(this.combatants[a].getStatus(args[0]))
+                    break
+                    case 53:
+                        if(this.combatants[a].getStatus(args[0])>0){
+                            for(let b=0,lb=floor((args.length-1)/2);b<lb;b++){
+                                this.combatants[a].statusEffect(args[b*2+1],args[b*2+2])
+                            }
+                        }
                     break
                 }
             }
