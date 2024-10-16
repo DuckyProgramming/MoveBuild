@@ -85,6 +85,16 @@ class overlay{
                 this.spin=0
                 this.speed=0
             break
+            case 26:
+                this.progress=0
+                this.speed=0
+                this.spin=[0,0,0,0,0]
+                this.stop=[false,false,false,false,false]
+                this.end=[false,false,false,false,false]
+                this.collecting=false
+                this.collectFade=0
+                this.value=0
+            break
         }
     }
     getPosKey(){
@@ -225,7 +235,7 @@ class overlay{
                 let upKey=0
                 if(
                     args[2]==7||args[2]==9||args[2]==10||args[2]==11||args[2]==17||args[2]==22||args[2]==26||args[2]==27||args[2]==34||args[2]==33||
-                    args[2]==37||args[2]==46
+                    args[2]==37||args[2]==46||args[2]==49
                 ){
                     this.options=args[3]
                 }else{
@@ -985,6 +995,12 @@ class overlay{
                             }
                         }
                     break
+                    case 49:
+                        for(let a=0,la=this.options;a<la;a++){
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Guilt','Innocence'][a%2],types.card),0,constants.playerNumber+2,-1))
+                            this.cards[a].upSize=true
+                        }
+                    break
                 }
                 if(this.args[0]==0||this.args[0]==2){
                     this.cards.forEach(card=>card.nonCalc=true)
@@ -1320,6 +1336,16 @@ class overlay{
             case 25:
                 this.spin=random(0,360)
                 this.speed=random(10,12)
+            break
+            case 26:
+                this.progress=0
+                this.speed=6
+                this.spin=[0,0,0,0,0]
+                this.stop=[false,false,false,false,false]
+                this.end=[false,false,false,false,false]
+                this.collecting=false
+                this.collectFade=0
+                this.value=0
             break
         
         }
@@ -2715,6 +2741,40 @@ class overlay{
                 this.layer.triangle(-5,-130,5,-130,0,-105)
                 this.layer.pop()
             break
+            case 26:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2,this.layer.height/2,530,130,10)
+                this.layer.fill(160,this.fade*0.8*this.collectFade)
+                this.layer.rect(this.layer.width/2,this.layer.height/2+90,120,40,10)
+                this.layer.fill(0,this.fade*0.8*this.collectFade)
+                this.layer.textSize(20)
+                this.layer.text('Collect',this.layer.width/2,this.layer.height/2+90)
+                this.layer.textSize(8)
+                this.layer.text(`${this.value} Currency`,this.layer.width/2,this.layer.height/2+105)
+                this.layer.fill(40,this.fade)
+                for(let a=0,la=5;a<la;a++){
+                    this.layer.rect(this.layer.width/2-200+a*100,this.layer.height/2,80,80,10)
+                }
+                this.layer.fill(200,this.fade)
+                for(let a=0,la=5;a<la;a++){
+                    this.layer.rect(this.layer.width/2-200+a*100,this.layer.height/2,70,70,5)
+                }
+                this.layer.fill(0,this.fade)
+                this.layer.textSize(40)
+                for(let a=0,la=5;a<la;a++){
+                    for(let b=0,lb=10;b<lb;b++){
+                        let point=(900+this.spin[a]%900+b/lb*900)%900
+                        let value=point>=360?0:point
+                        if(lsin(value)>0){
+                            this.layer.push()
+                            this.layer.translate(this.layer.width/2-200+a*100,this.layer.height/2+35*lcos(value))
+                            this.layer.scale(1,lsin(value))
+                            this.layer.text([['1','2','3','4','5','6','7','8','9','10'],['x','+','x','+','x','+','x','+','x','+']][a%2][b],0,0)
+                            this.layer.pop()
+                        }
+                    }
+                }
+            break
             
         }
     }
@@ -2931,6 +2991,40 @@ class overlay{
                                     }
                                 }
                             break
+                        }
+                    }
+                break
+                case 26:
+                    this.collectFade=smoothAnim(this.collectFade,this.collecting,0,1,15)
+                    for(let a=0,la=5;a<la;a++){
+                        if(!this.end[a]){
+                            this.spin[a]-=this.speed
+                            if(this.stop[a]&&this.spin[a]%90>-this.speed){
+                                this.end[a]=true
+                                this.spin[a]-=this.spin[a]%90
+                                let allDone=true
+                                for(let b=0,lb=5;b<lb;b++){
+                                    if(!this.end[b]){
+                                        allDone=false
+                                    }
+                                }
+                                if(allDone){
+                                    this.collecting=true
+                                    let results=[0,0,0,0,0]
+                                    for(let b=0,lb=5;b<lb;b++){
+                                        for(c=0,lc=10;c<lc;c++){
+                                            let point=(900+this.spin[b]%900+c/lc*900)%900
+                                            let value=point>=360?0:point
+                                            if(lsin(value)>0){
+                                                results[b]=c
+                                            }
+                                        }
+                                    }
+                                    this.value=results[0]+1
+                                    this.value=results[1]%2==0?(results[2]+1)*this.value:results[2]+1+this.value
+                                    this.value=results[3]%2==0?(results[4]+1)*this.value:results[4]+1+this.value
+                                }
+                            }
                         }
                     }
                 break
@@ -3151,6 +3245,7 @@ class overlay{
                                             this.battle.cardManagers[this.player].deck.cards[a]=this.battle.cardManagers[this.player].transformCard(this.battle.cardManagers[this.player].deck.cards[a])
                                             this.battle.cardManagers[this.player].deck.cards[a].callAddEffect()
                                             this.battle.cardManagers[this.player].deck.cards.forEach(card=>card.callAnotherAddEffect())
+                                            this.battle.collectionManager.activate(this.battle.cardManagers[this.player].deck.cards[a].name)
                                             this.activated++
                                             complete=false
                                             this.activeTimer=this.activated>=this.args[1]?30:0
@@ -3300,6 +3395,7 @@ class overlay{
                                             this.battle.cardManagers[this.player].deck.cards[a].edition=floor(random(1,7))
                                             this.battle.cardManagers[this.player].deck.cards[a].callAddEffect()
                                             this.battle.cardManagers[this.player].deck.cards.forEach(card=>card.callAnotherAddEffect())
+                                            this.battle.collectionManager.activate(this.battle.cardManagers[this.player].deck.cards[a].name)
                                             complete=false
                                             this.activeTimer=30
                                             if(this.args[1]==1&&this.battle.cardManagers[this.player].deck.cards[a].level==0){
@@ -4190,6 +4286,18 @@ class overlay{
                         this.active=false
                     }
                 break
+                case 26:
+                    for(let a=0,la=5;a<la;a++){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-200+a*100,y:this.layer.height/2},width:80,height:80})&&!this.stop[a]){
+                            this.stop[a]=true
+                            this.speed+=6
+                        }
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+90},width:120,height:40})&&this.collecting>0){
+                        this.battle.addCurrency(this.value,this.player)
+                        this.active=false
+                    }
+                break
             
             }
         }
@@ -4388,6 +4496,7 @@ class overlay{
                                             this.battle.cardManagers[this.player].deck.cards[a]=this.battle.cardManagers[this.player].transformCard(this.battle.cardManagers[this.player].deck.cards[a])
                                             this.battle.cardManagers[this.player].deck.cards[a].callAddEffect()
                                             this.battle.cardManagers[this.player].deck.cards.forEach(card=>card.callAnotherAddEffect())
+                                            this.battle.collectionManager.activate(this.battle.cardManagers[this.player].deck.cards[a].name)
                                             this.activated++
                                             complete=false
                                             this.activeTimer=this.activated>=this.args[1]?30:0
@@ -4537,6 +4646,7 @@ class overlay{
                                             this.battle.cardManagers[this.player].deck.cards[a].edition=floor(random(1,7))
                                             this.battle.cardManagers[this.player].deck.cards[a].callAddEffect()
                                             this.battle.cardManagers[this.player].deck.cards.forEach(card=>card.callAnotherAddEffect())
+                                            this.battle.collectionManager.activate(this.battle.cardManagers[this.player].deck.cards[a].name)
                                             complete=false
                                             this.activeTimer=30
                                             if(this.args[1]==1&&this.battle.cardManagers[this.player].deck.cards[a].level==0){
@@ -5398,6 +5508,18 @@ class overlay{
                 break
                 case 23:
                     if(code==ENTER){
+                        this.active=false
+                    }
+                break
+                case 26:
+                    for(let a=0,la=5;a<la;a++){
+                        if(key==inputs.hexadec[a]&&!this.stop[a]){
+                            this.stop[a]=true
+                            this.speed+=6
+                        }
+                    }
+                    if(code==ENTER&&this.collecting>0){
+                        this.battle.addCurrency(this.value,this.player)
                         this.active=false
                     }
                 break

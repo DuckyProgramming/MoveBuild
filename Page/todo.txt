@@ -1,11 +1,8 @@
-
-
 OPERATION ASCENDANCY
-(153)
-
-LISTING GROUP 53 - ADDENDUM
 
 LISTING GROUP 54 - ASYNC
+
+(51)
 
 
 
@@ -44,11 +41,9 @@ fire and ice big slime [nerf jet off the elite stack]
 
 OPERATION EPISODE
 
-luna event
-
-math madness - stop 3 blocks, get money
 
 
+[event card]
 
 []
 
@@ -58,4 +53,3 @@ math madness - stop 3 blocks, get money
 
 []
 
-[]

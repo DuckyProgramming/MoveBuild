@@ -61,7 +61,7 @@ function setup(){
 
             /*transition.trigger=true
             transition.scene='event'
-            current.setupSpecificEvent(167)*/
+            current.setupSpecificEvent(168)*/
 
             /*player(0).size=3
             player(0).goal.anim.direction=-30

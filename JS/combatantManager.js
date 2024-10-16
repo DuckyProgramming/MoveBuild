@@ -1023,6 +1023,15 @@ class combatantManager{
                             }
                         }
                     break
+                    case 54:
+                        for(let b=0,lb=this.combatants[a].status.name.length;b<lb;b++){
+                            if(this.combatants[a].status.name[b].includes('Counter')&&this.combatants[a].status.main[b]!=0){
+                                for(let b=0,lb=floor(args.length/2);b<lb;b++){
+                                    this.combatants[a].statusEffect(args[b*2],args[b*2+1])
+                                }
+                            }
+                        }
+                    break
                 }
             }
         }
@@ -1088,6 +1097,15 @@ class combatantManager{
                 case 12:
                     for(let b=0,lb=floor(args.length/2);b<lb;b++){
                         this.combatants[a].statusEffect(args[b*2],args[b*2+1])
+                    }
+                break
+                case 13:
+                    if(this.combatants[a].id!=args[0]){
+                        this.battle.turnManager.loadEnemyRotate(args[0],a)
+                        this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,args[0],false))
+                        this.battle.turnManager.turns[this.battle.turnManager.turns.length-1].target=[a]
+                        this.battle.turnManager.turns[this.battle.turnManager.turns.length-1].auxiliary=true
+                        this.battle.turnManager.loadEnemyAttack(args[0])
                     }
                 break
                 

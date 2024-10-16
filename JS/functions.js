@@ -665,9 +665,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			switch(type){
 				case 1: return block==effect&&bonusB==0?tennify(effect):tennify(effect)+`(${tennify(block+bonusB)})`
 				case 3: return (block==effect?(effect==1?``:tennify(effect))+'X':(effect==1?``:tennify(effect))+`(${tennify(block)})X`)+(bonusB>0?`(+${tennify(bonusB)})`:``)
-				case 6: return effect==1?(block==effect?'1*Combo':`1(${tennify(block)})*Combo`):(block==effect?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(block)})*Combo`)
+				case 6: return effect==1?(block==effect?'Combo':`1(${tennify(block)})*Combo`):(block==effect?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(block)})*Combo`)
 				case 14: return block==effect?tennify(effect):tennify(effect)+`(${tennify(block)})`
-				case 15: return effect==1?(block==effect?'1*':`1(${tennify(block)})*`):(block==effect?tennify(effect)+'*':tennify(effect)+`(${tennify(block)})*C`)
+				case 15: return effect==1?(block==effect?'':`1(${tennify(block)})*`):(block==effect?tennify(effect)+'*':tennify(effect)+`(${tennify(block)})*C`)
 				case 16: return (block==effect?(effect==1?``:tennify(effect))+'X':tennify(effect)+`(${tennify(block)})X`)
 
 			}
@@ -1991,18 +1991,18 @@ ${box}		Status:
 		Partnership:
 Common:${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length}/10				${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length-10}
 Uncommon:${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length}/10				${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-10}
-Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}/10					${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-10}
+Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}/5					${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length-5}
 	Total:${current.cardManagers[0].listing.card[constants.playerNumber+3][3].length}/25
 		Tarot:
 	Total:${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length}/30				${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length-30}
 		Spectral:
 	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/20				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-20}
 		Subcard:
-	Total:${current.cardManagers[0].listing.sub.length}/90				${current.cardManagers[0].listing.sub.length-90}
+	Total:${current.cardManagers[0].listing.sub.length}/80				${current.cardManagers[0].listing.sub.length-80}
 		Ally:
 	Total:${current.cardManagers[0].listing.ally.length}/20				${current.cardManagers[0].listing.ally.length-20}
 		Disband:
-	Total:${current.cardManagers[0].listing.disband.length}/600			${current.cardManagers[0].listing.disband.length-600}
+	Total:${current.cardManagers[0].listing.disband.length}/800			${current.cardManagers[0].listing.disband.length-800}
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/160			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-160}
 			`)

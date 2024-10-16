@@ -203,7 +203,7 @@ class particle{
                     this.sets.push([random(-10,10),random(-10,10)])
                 }
             break
-            case 81: case 231:
+            case 81: case 231: case 246:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.color=random(0,1)
@@ -799,6 +799,15 @@ class particle{
                 this.activation=0
                 this.size=1
                 this.scale=4
+            break
+            case 245:
+                this.size=args[0]
+                this.fade=1
+                this.direction=random(0,360)
+                this.direction2=random(0,360)
+                this.spin=0
+                this.scale=0
+                this.growth=0.1
             break
 
         }
@@ -3967,6 +3976,27 @@ class particle{
                         this.layer.endShape()
                     }
                 break
+                case 245:
+                    this.layer.noFill()
+                    this.layer.stroke(175,255,255,this.fade)
+                    this.layer.strokeWeight(0.5)
+                    this.layer.ellipse(0,0,30)
+                    regPoly(this.layer,0,0,6,15,15,this.direction)
+                    regPoly(this.layer,0,0,6,15,15,this.direction2)
+                    this.layer.stroke(225,255,255,this.fade)
+                    this.layer.strokeWeight(0.25)
+                    this.layer.ellipse(0,0,30)
+                    regPoly(this.layer,0,0,6,15,15,this.direction)
+                    regPoly(this.layer,0,0,6,15,15,this.direction2)
+                break
+                case 246:
+                    this.layer.fill(180-this.color*180,this.color*240+120,255,this.fade*0.5)
+                    this.layer.stroke(120-this.color*120,this.color*160+80,240,this.fade)
+                    this.layer.strokeWeight(2)
+                    regPoly(this.layer,0,0,5,8,8,this.position.y*3+this.spin)
+                    this.layer.strokeWeight(3)
+                    this.layer.point(0,0)
+                break
 
             }
             //mark p
@@ -4138,7 +4168,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 81: case 94: case 102: case 127: case 178: case 231:
+            case 81: case 94: case 102: case 127: case 178: case 231: case 246:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,5)
@@ -4990,6 +5020,16 @@ class particle{
                     this.position.x+lsin(this.direction)*distance240+random(-20,20),
                     this.position.y-lcos(this.direction)*distance240+random(-20,20),
                     145,[random(0,360),random(10,15),0,random(1,2),1]))
+            break
+            case 245:
+                this.direction+=this.spin
+                this.direction2+=this.spin*2
+                this.scale+=this.growth
+                this.spin+=0.2
+                this.growth-=0.005
+                if(this.scale<=0){
+                    this.remove=true
+                }
             break
 
         }

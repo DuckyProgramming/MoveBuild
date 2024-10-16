@@ -1072,6 +1072,10 @@ class battle{
                     this.cardManagers[this.turn.main].bufferedTurn=30
                 }else{
                     this.cardManagers[this.turn.main].turnDraw(this.turn.total)
+                    if(combatant.getStatus('No Draw Next Turn')>0){
+                        combatant.status.main[findList('No Draw',combatant.status.name)]+=combatant.getStatus('No Draw Next Turn')
+                        combatant.status.main[findList('No Draw Next Turn',combatant.status.name)]=0
+                    }
                 }
                 if(this.turn.total==1){
                     this.cardManagers[this.turn.main].allEffect(0,48)
@@ -1488,6 +1492,12 @@ class battle{
         if(card.getBasic(-1)&&userCombatant.getStatus('Basic Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Basic Draw'))
         }
+        if(card.getBasic(-1)&&userCombatant.getStatus('Basic Energy')>0){
+            this.addEnergy(userCombatant.getStatus('Basic Energy'),player)
+        }
+        if(card.getBasic(-1)&&userCombatant.getStatus('Basic (E)')>0){
+            this.addSpecificEnergy(userCombatant.getStatus('Basic (E)'),player,6)
+        }
         if(userCombatant.getStatus('Card Delay Exhaust')>0){
             this.cardManagers[player].hand.exhaust(userCombatant.getStatus('Card Delay Exhaust'))
             userCombatant.status.main[findList('Card Delay Exhaust',userCombatant.status.name)]=0
@@ -1525,6 +1535,9 @@ class battle{
         }
         if(card.spec.includes(70)&&userCombatant.getStatus('Shiv Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Shiv Block'))
+        }
+        if(cardClass==1&&card.name.includes('Cable')&&userCombatant.getStatus('Cable Claw Up')>0){
+            userCombatant.statusEffect('Claw Up',userCombatant.getStatus('Cable Claw Up'))
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])
@@ -1579,14 +1592,16 @@ class battle{
             }
         }
     }
-    addSpecificEnergy(amount,player,type){
+    addSpecificEnergy(amount,player,type,bypass=false){
         this.relicManager.activate(17,[amount,player])
         if(player<this.players){
             if(amount!=0){
                 this.anim[amount>0?'energyUp':'energyDown']=1
             }
             this.cardManagers[player].allEffectArgs(2,25,[amount])
-            this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount)
+            if(!bypass){
+                this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount)
+            }
             if(variants.mtg){
                 if(type==-1){
                     for(let a=0,la=amount;a<la;a++){

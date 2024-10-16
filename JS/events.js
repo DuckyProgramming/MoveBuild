@@ -5077,8 +5077,85 @@ He asks if you'd like to switch to door %3 or stay with door %a.`,
                 link:[-1],
             },
         ],
+    },{
+        name:'Fairy of Moonlight',id:167,list:0,
+        pages:[
+            {
+                desc:
+`On a dark night out, the sounds of birds around you
+suddenly seem to fade away, drowned out by some imperceivable
+force. Unable to move, you look up at the sky, empty except
+for the moon. And as you stare, a fairy appears from behind
+the trees, snickering as you stand there.`,
+                option:['Attack Her',`Don't Move`,'Snap Out of it'],
+                optionDesc:['Lose 12 Max Health','Become Cursed - Moon Stillness','Lose 8 Health'],
+                link:[1,2,3],
+            },{
+                desc:
+`Breaking free from the pull of the sky, you chase the
+fairy down, managing to catch her after some time.
+"You're pretty good at this!" she tells you.
+"Why not take me with you?"`,
+                option:['Accept','Decline'],
+                optionDesc:['Add Luna, Silent Moonlight (Ally Card) to Deck',''],
+                link:[4,5],
+            },{
+                desc:
+`You stand there for what seems to be the entire night.
+By morning, you're able to move again.
+You're not sure what happened, but it was
+a pretty mesmerizing experience.`,
+                option:['Leave'],
+                optionDesc:['Remove 3 Cards'],
+                link:[-1],
+            },{
+                desc:
+`Shaking yourself free from the trap, you make your getaway.
+You don't feel quite the same, but at least you got out
+of there without too much injury.`,
+                option:['Leave'],
+                optionDesc:['Remove a Card'],
+                link:[-1],
+            },{
+                desc:
+`She's following you around now.
+She's not the most reliable ally to have, that's for sure.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You don't care to entertain this prospect.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Money Math',id:168,list:0,
+        pages:[
+            {
+                desc:
+`You walk into a gameshow, and a duck tells you what's going on.
+"Let's see how good you are at math!" he says.
+"But moreso, let's see how lucky you are!"
+A couple of blocks are lowered down, covered in spinning numbers.`,
+                option:['Play','Decline'],
+                optionDesc:['',''],
+                link:[1,2],
+            },{
+                desc:`You collect your winnings.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`"You hate money?" he says as you leave.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
     },/*{
-        name:'',id:167,list:0,
+        name:'',id:169,list:0,
         pages:[
             {
                 desc:

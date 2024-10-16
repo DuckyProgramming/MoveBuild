@@ -165,6 +165,7 @@ class eventManager{
                 !(this.listing.event[a]==162&&userCombatant.base.life<6)&&
                 !(this.listing.event[a]==163&&(userCombatant.life>userCombatant.base.life-15||this.battle.currency.money[this.player]<25))&&
                 !(this.listing.event[a]==165&&userCombatant.life<26)&&
+                !(this.listing.event[a]==167&&(userCombatant.life<9||userCombatant.base.life<13))&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -1934,6 +1935,30 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                             this.battle.addCurrency(500,this.player)
                         }
                     break
+                    case 167:
+                        if(this.page==0&&a==0){
+                            this.harmMax(userCombatant,12)
+                        }else if(this.page==0&&a==1){
+                            this.battle.cardManagers[this.player].deck.add(findName('Moon\nStillness',types.card),0,constants.playerNumber+2)
+                        }else if(this.page==0&&a==2){
+                            this.harm(userCombatant,8)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Luna, Silent\nMoonlight',types.card),0,constants.playerNumber+5)
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[15][this.player].active=true
+                            this.battle.overlayManager.overlays[15][this.player].activate([])
+                            this.battle.overlayManager.overlays[15][this.player].args[1]=3
+                        }else if(this.page==3&&a==0){
+                            this.battle.overlayManager.overlays[6][this.player].active=true
+                            this.battle.overlayManager.overlays[6][this.player].activate([])
+                        }
+                    break
+                    case 168:
+                        if((this.page==0||this.page==2)&&a==0){
+                            this.battle.overlayManager.overlays[151][this.player].active=true
+                            this.battle.overlayManager.overlays[151][this.player].activate([])
+                        }
+                    break
 
                 }
                 if(!cut){
@@ -1968,7 +1993,7 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
     onKey(key,code){
         if(this.page>=0){
             for(let a=0,la=this.pages[this.page].option.length;a<la;a++){
-                if(int(key)-1==a&&!(a>0&&this.battle.relicManager.hasRelic(339,this.player))){
+                if((int(key)-1==a||a==0&&code==ENTER)&&!(a>0&&this.battle.relicManager.hasRelic(339,this.player))){
                     this.selfCall(0,a)
                 }
             }

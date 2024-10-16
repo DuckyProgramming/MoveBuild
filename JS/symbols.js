@@ -6834,6 +6834,105 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.arc(0,0,8,8,-30,210)
             layer.quad(0,0,constants.sqrt3*2,-2,0,-2/(2-constants.sqrt3),-constants.sqrt3*2,-2)
         break
+        case 697:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,-0.5,4.5,6,1)
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(1.5)
+            layer.ellipse(0,0,8)
+            layer.line(-2*constants.sqrt2,2*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
+            layer.noStroke()
+            layer.fill(75,fade)
+            layer.rect(-5,0,2)
+        break
+        case 698:
+            layer.fill(200,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+            layer.triangle(-1.5,-5.5,1.5,-5.5,0,-7.5)
+            layer.fill(225,255,255,fade)
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            layer.fill(0,fade)
+            layer.quad(-2.4,0,0,-3,2.4,0,0,3)
+            layer.fill(225,255,255,fade)
+            layer.quad(-2,0,0,-2.5,2,0,0,2.5)
+        break
+        case 699:
+            layer.fill(200,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+            layer.triangle(-1.5,-5.5,1.5,-5.5,0,-7.5)
+            layer.fill(225,255,255,fade)
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            displayMtgManaSymbol(layer,0,0,6,0,0.5,fade,-1,[])
+        break
+        case 700:
+            layer.strokeWeight(1)
+            layer.stroke(50,200,50,fade)
+            layer.line(-5,3,5,3)
+            layer.stroke(200,50,50,fade)
+            layer.line(-5,0,5,0)
+            layer.stroke(50,50,200,fade)
+            layer.line(-5,-3,5,-3)
+            layer.noStroke()
+            layer.fill(180,0,0,fade)
+            layer.quad(0,5,-0.8,0,0,-5,0.8,0)
+            layer.quad(-1,5,-2,0.4,-4,-4,-3,0.6)
+            layer.quad(1,5,2,0.4,4,-4,3,0.6)
+        break
+        case 701:
+            layer.fill(255,fade/5)
+            layer.noStroke()
+            layer.ellipse(0,0,12)
+            layer.stroke(255,255,100,fade)
+            layer.noFill()
+            layer.strokeWeight(1.8)
+            layer.ellipse(0,0,6,6)
+        break
+        case 702:
+            layer.fill(200,255,255,fade)
+            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+            layer.fill(60,fade)
+            layer.rect(0,0,4,1.2)
+            layer.rect(0,-2,7,1.2)
+            layer.rect(0,2,7,1.2)
+            layer.rect(0,-4,4,1.2)
+            layer.rect(0,4,4,1.2)
+        break
+        case 703:
+            displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
+            layer.noStroke()
+            layer.fill(60,fade)
+            layer.rect(0,0,4,1.2)
+            layer.rect(0,-2,7,1.2)
+            layer.rect(0,2,7,1.2)
+            layer.rect(0,-4,4,1.2)
+            layer.rect(0,4,4,1.2)
+        break
+        case 704:
+            layer.fill(200,0,0,fade)
+            layer.arc(0,0,8,8,-45,225)
+            layer.quad(0,0,constants.sqrt2*2,-constants.sqrt2*2,0,-constants.sqrt2*4,-constants.sqrt2*2,-constants.sqrt2*2)
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,3.6,3.6,2.16,2.16,0)
+        break
+        case 705:
+            layer.fill(255,fade/5)
+            layer.noStroke()
+            layer.ellipse(0,0,12)
+            layer.stroke(180,150,180,fade)
+            layer.strokeWeight(1.2)
+            layer.arc(0,-1.8,3.6,3.6,-180,0)
+            layer.arc(1.8,0,3.6,3.6,-90,90)
+            layer.arc(0,1.8,3.6,3.6,0,180)
+            layer.arc(-1.8,0,3.6,3.6,90,270)
+            layer.point(0,0)
+            layer.fill(100,fade)
+            layer.noStroke()
+            layer.triangle(-2,4,2,4,0,-6)
+        break
         
     }
     //mark s
@@ -7265,11 +7364,39 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
                     layer.line(-5,-5,5,5)
                     layer.line(-5,5,5,-5)
                 break
+                case 15:
+                    layer.noFill()
+                    layer.stroke(180,150,180,fade*typeFades[a])
+                    layer.strokeWeight(2)
+                    layer.arc(0,-3,6,6,-180,0)
+                    layer.arc(3,0,6,6,-90,90)
+                    layer.arc(0,3,6,6,0,180)
+                    layer.arc(-3,0,6,6,90,270)
+                    layer.point(0,0)
+                break
             }
         }
     }
     layer.pop()
 }
+/*
+0-Basic
+1-Shield
+2-Explosive
+3-Energy
+4-Dark
+5-Lightning
+6-Light
+7-Flame
+8-Ice
+9-Buff
+10-Nerf
+11-Poison
+12-Glass
+13-Dual
+14-Crystal
+15-Dust
+*/
 function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
     layer.push()
     layer.translate(x,y)

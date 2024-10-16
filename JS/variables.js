@@ -2177,7 +2177,7 @@ types={
             name:'Chainlink 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
-                [{type:[]},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
             ],
         },{
@@ -6318,6 +6318,8 @@ Does not spend the orb.`,
 `On evoke, deals 6 damage. The amount of damage increases by 3 every turn.`,
         },{name:'Lightning Orb',mtg:0,desc:
 `On evoke, deals 8 damage. Also deals 4 damage to a random enemy every turn.`,
+        },{name:'Dust Orb',mtg:0,desc:
+`On evoke, adds 12 damage. Also adds 6 block every turn.`,
         },{name:'Light Orb',mtg:0,desc:
 `On evoke, draw 2 cards.
 Unaffected by focus.`,
@@ -6735,11 +6737,7 @@ damage and is spent, but does not counter.`,
         {name:'Basic Deck'},
         {name:'Random Character Deck'},
         {name:'Random Deck'},
-        {name:'Merged Deck'},
-        {name:'Hypermerged Deck'},
-        {name:'Rare Character Deck'},
-        {name:'Rare Deck'},
-        {name:'Colorless Deck'},
+        {name:'Specialized Deck'},
     ],
 }
 stage={scale:0,scene:'title',internal:{version:1.9}}
@@ -6785,7 +6783,7 @@ variants={
     ]
 }
 constants={
-    playerNumber:20,orbNumber:15,
+    playerNumber:20,orbNumber:16,
     targetRadius:30,startEnergy:3,collisionDamage:4,
     sqrt2:0,sqrt3:0,trig:[[],[]],
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],

@@ -157,7 +157,7 @@ class combatant{
                 'Burn Strength','Burn Bypass','Strike Boost','Mineral Boost','Cable Boost','Free Defenses','Exhausting Defenses','Strike Range','Skill Cost Down','Exhausting Skills',
                 'Step Draw','Cable Range','Mineral Range','Common Attack Boost','Free Cables','Construct Turn','Construct Dual Block','Metal Per Turn','All Construct Speed Up','Construct Strength',
                 'Construct Dexterity','Gun Temporary Strength','Gun Block','Turn Speed','Extra Turn Block','Turn Reversal','Deluxe Weak','Prismatic Bomb Boost','No Damage Turn Next Turn','Play Limit',
-                '2+ Cost Single Damage Up','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block','X Cost Boost','Self Health Loss Splash','Energy Gain Splash',
+                '2+ Cost Single Damage Up','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block','X Cost Boost','Self Health Loss Splash',variants.mtg?'Mana Gain Splash':'Energy Gain Splash',
                 'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw','Buff Loss Barrier','Astrology Per Turn','Construct Metal','Attack Jinx Combat','Attack Shock Combat',
                 'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
                 'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
@@ -176,14 +176,15 @@ class combatant{
                 'Discus Temporary Strength','Discus Temporary Dexterity','Lightning Orb Per Turn','Lightning Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn','Rearm Draw',
                 'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap','Dice Max Boost','Exhaust Block','Counter Shockwave','Frail on Kill','Mailshield',
                 'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
-                'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable','Energy Gain Splash Freeze',
+                variants.mtg?'Mana Gain Temporary Strength':'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable',variants.mtg?'Mana Gain Splash Freeze':'Energy Gain Splash Freeze',
                 'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost','Splash Attach Poison','Splash Boost',
                 'Basic Orb Per Turn','Calm Block Per Turn','Dark Matter Pull Fuel All','Snowflake Per Turn','Counter All Spread','Flame Orb Splash','Dark Light Orb Swap','Light Dark Orb Swap','2+ Cost Attack Energy','2+ Cost Attack (E)',
                 'Dark Matter Fuel All','Combo Spend Draw','Double Wrath Block','Turn Exhaust','Skill Draw Next Turn','Health Loss Poison Random','Free Minerals','Lose Health in 2 Turns','Lock On Bleed','Elemental Entrance Draw',
                 'Dodge on Kill','5 or Less Charge Block','Amplify Charge','Radiation','Retain Radiation','Radiation Per Turn','Dark Matter Pull Radiation','Dark Matter Radiation Trigger','Calm Next Turn','Unplayable Draw Retain Once',
                 'Basic Orb Boost','Prismatic Bomb Items','Skill Draw','Defense Draw','Evoke Block','Orb Tick Per Turn','Revive','Invulnerable','Calm Bonus','Scry Damage All',
                 'Wisp Exhaust Charge','Shiv Scatter','Shiv Block','X Cost Chocolate Chip','Hand Copy Next Turn','Poison Damage','Shiv Extra Target','Unplayable Draw Block','Lock On Poison','Bleed Boost',
-                'Control Base','Random Free Exhausting Ethereal Card Per Turn','Attack Freeze Combat','Blueprint Cost Down','Gun Draw Next Turn','Shock All Per Turn','Amplify Poison All',
+                'Control Base','Random Free Exhausting Ethereal Card Per Turn','Attack Freeze Combat','Blueprint Cost Down','Gun Draw Next Turn','Shock All Per Turn','Amplify Poison All','No Draw Next Turn','Energy Gain Energy','Energy Gain (E)',
+                'Cable Claw Up','Energy Orb Per Turn','Basic Energy','Basic (E)','Bleed Damage','Dust Orb Boost',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -255,7 +256,8 @@ class combatant{
                 0,0,0,6,1,0,0,0,1,1,//67
                 0,0,0,0,0,0,0,1,0,0,//68
                 0,0,0,0,2,0,0,0,0,0,//69
-                0,0,0,0,2,0,
+                0,0,0,0,2,0,0,0,0,0,//70
+                0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -327,6 +329,7 @@ class combatant{
                 1,2,2,0,2,2,2,2,2,2,//67
                 2,2,2,2,2,2,0,0,2,2,//68
                 2,2,2,2,2,2,2,2,2,2,//69
+                2,2,2,2,2,2,2,3,2,2,//70
                 2,2,2,2,2,2,
             ]}
         /*
@@ -2762,6 +2765,12 @@ class combatant{
         if(amount>0&&this.status.main[629]>0){
             this.battle.combatantManager.areaAbstract(2,['Freeze',this.status.main[629]],this.tilePosition,[3,this.id],[0,1],false,0)
         }
+        if(amount>0&&this.status.main[698]>0){
+            this.battle.addSpecificEnergy(this.status.main[698],this.id,0,true)
+        }
+        if(amount>0&&this.status.main[699]>0){
+            this.battle.addSpecificEnergy(this.status.main[699],this.id,6,true)
+        }
     }
     lowRoll(){
         if(this.status.main[162]>0){
@@ -4175,9 +4184,15 @@ class combatant{
         }
         if(this.id>=0&&this.id<this.battle.players){
             this.battle.cardManagers[this.id].hand.allEffectArgs(51,[type])
-            if(type==0){
-                this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935])
-                this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935])
+            switch(type){
+                case 0:
+                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935])
+                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935])
+                break
+                case 1:
+                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[6209])
+                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[6209])
+                break
             }
         }
         if(this.status.main[674]>0&&type>=0){
@@ -4257,6 +4272,9 @@ class combatant{
                 if(target<this.battle.players||this.id<this.battle.players){
                     this.battle.addSpecificEnergy(1,target>=this.battle.players?this.id:target,0)
                 }
+            break
+            case 15:
+                this.battle.combatantManager.combatants[target].addBlock(round(12*multi))
             break
         }
     }
@@ -4338,6 +4356,9 @@ class combatant{
                     this.battle.addSpecificEnergy(1,target>=this.battle.players?this.id:target,0)
                 }
             break
+            case 15:
+                this.battle.combatantManager.combatants[target].addBlock(round(6*multi))
+            break
         }
     }
     alternateEvoke(type,detail,target){
@@ -4354,7 +4375,7 @@ class combatant{
             case 2:
                 this.battle.combatantManager.combatants[target].orbTake(round(50*multi),-1)
             break
-            case 9:
+            case 9:w
                 this.battle.combatantManager.combatants[target].statusEffect('Double Damage',round(4))
             break
             case 10:
@@ -4749,6 +4770,14 @@ class combatant{
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
                         if(userCombatant.getStatus('Poison Damage')>0){
                             this.takeDamage(userCombatant.getStatus('Poison Damage'),-1)
+                        }
+                    }
+                }
+                if(name=='Bleed'&&effectiveValue>0){
+                    if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
+                        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
+                        if(userCombatant.getStatus('Bleed Damage')>0){
+                            this.takeDamage(userCombatant.getStatus('Bleed Damage'),-1)
                         }
                     }
                 }
@@ -5278,6 +5307,7 @@ class combatant{
                     case 691: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,2,2,[4],[3,4,1,[[1]]])}} break
                     case 694: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.spec.push([25,this.status.main[a]])} break
                     case 695: this.battle.combatantManager.allEffect(48,['Shock',this.status.main[a]]); break
+                    case 701: for(let b=0,lb=this.status.main[a];b<lb;b++){this.holdOrb(3)} break
                     
                 }
                 if(this.status.behavior[a]==6&&
@@ -5392,13 +5422,16 @@ class combatant{
                     break
                     case 5:
                         if(this.team==0){
-                            this.battle.combatantManager.randomPlayerEffect(0,[(4+this.status.main[593])*multi])
+                            this.battle.combatantManager.randomPlayerEffect(0,[round((4+this.status.main[593])*multi)])
                         }else{
-                            this.battle.combatantManager.randomEnemyEffect(0,[(4+this.status.main[593])*multi])
+                            this.battle.combatantManager.randomEnemyEffect(0,[round((4+this.status.main[593])*multi)])
                         }
                     break
                     case 14:
                         this.statusEffect('Counter All',round(4*multi))
+                    break
+                    case 15:
+                        this.addBlock(round((6+this.status.main[705])*multi))
                     break
                 }
             }
@@ -7334,9 +7367,9 @@ class combatant{
         this.infoAnim.block=smoothAnim(this.infoAnim.block,this.block>0,0,1,5)
         this.infoAnim.barrier=smoothAnim(this.infoAnim.barrier,this.barrier>0,0,1,5)
         this.infoAnim.bounce=smoothAnim(this.infoAnim.bounce,this.bounce>0,0,1,5)
-        this.infoAnim.blockSize=smoothAnim(this.infoAnim.blockSize,this.block>100||this.block!=vceil(this.block*10)/10&&this.block>10,1,this.block>100&&this.block!=vceil(this.block*10)/10?1.5:1.25,10)
-        this.infoAnim.barrierSize=smoothAnim(this.infoAnim.barrierSize,this.barrier>100||this.barrier!=vceil(this.barrier*10)/10&&this.barrier>10,1,this.barrier>100&&this.barrier!=vceil(this.barrier*10)/10?1.5:1.25,10)
-        this.infoAnim.bounceSize=smoothAnim(this.infoAnim.bounceSize,this.bounce>100||this.bounce!=vceil(this.bounce*10)/10&&this.bounce>10,1,this.bounce>100&&this.bounce!=vceil(this.bounce*10)/10?1.5:1.25,10)
+        this.infoAnim.blockSize=smoothAnim(this.infoAnim.blockSize,this.block>=100||vceil(this.block*10)%10!=0&&this.block>=10,1,this.block>=100&&vceil(this.block*10)%10!=0?1.5:1.25,10)
+        this.infoAnim.barrierSize=smoothAnim(this.infoAnim.barrierSize,this.barrier>=100||vceil(this.barrier*10)%10!=0&&this.barrier>=10,1,this.barrier>=100&&vceil(this.barrier*10)%10!=0?1.5:1.25,10)
+        this.infoAnim.bounceSize=smoothAnim(this.infoAnim.bounceSize,this.bounce>=100||vceil(this.bounce*10)%10!=0&&this.bounce>=10,1,this.bounce>=100&&vceil(this.bounce*10)%10!=0?1.5:1.25,10)
         this.infoAnim.barrierPush=smoothAnim(this.infoAnim.barrierPush,this.block>0&&this.barrier>0,0,1,5)
         this.infoAnim.bouncePush=smoothAnim(this.infoAnim.bouncePush,(this.block>0||this.barrier>0)&&this.bounce>0,0,1,5)
         this.infoAnim.size=smoothAnim(this.infoAnim.size,this.infoAnim.upSize,1,1.5,5)

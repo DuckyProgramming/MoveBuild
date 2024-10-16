@@ -441,7 +441,7 @@ end you turn a couple times to let it take damage.`,
                 this.popups=[[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Sakura, the Creation, has gimmicks that are harmful and helpful.
-Namely, they are Bleed, Armament, Balance.`,
+Namely, they are Bleed, Armament, Intent Manipulation.`,
 `Bleed is a status effect that can be applied. It does damage each turn.
 After dealing damage, bleed decrements by 1. This means that bleed is not infinite.
 Still, bleed can be maintained by applying more bleed, which can be done in various ways.`,
@@ -455,11 +455,11 @@ Cards may require armament, but they have powerful effects.`,
 `Cards may be labeled with Rearm or Disarm to indicate if they change armament.
 When you Disarm, an armament point is created somewhere. Moving there Rearms you.
 Many powerful cards involve Disarming, so it is recommended to find a way to Rearm.`,
-`Balance is a counter, starting from 0, that can go up to 10.
-Cards marked as X Balance will increase balance by X.
-If balance ever goes above 10, it breaks, causing it to reset to 0 but ending your turn.`,
-`Balance cards are often powerful, but you must keep in mind how much balance they give.
-If you must break balance, do so when you were going to end your turn anyway.`,
+`Sakura is able to manipulate enemies to attack her.
+While this may not seem like a benefit, you can make sure
+they cannot use other abilities.`,
+`In addition, there are many ways Sakura can take advantage of enemies
+who intend to attack on their turn.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -1454,10 +1454,10 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.cardManagers[0].hand.add(findName('Gather',types.card),0,3)
                     break
                     case 6:
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].addAttack(1,[1])
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Danger',types.card),0,3)
-                        this.battle.cardManagers[0].hand.add(findName('Peace',types.card),0,3)
-                        this.battle.cardManagers[0].hand.add(findName('Windslash',types.card),0,3)
+                        this.battle.cardManagers[0].hand.add(findName('Piercing\nGaze',types.card),0,3)
+                        this.battle.cardManagers[0].hand.add(findName('Thresh',types.card),0,3)
                     break
                 }
             break
