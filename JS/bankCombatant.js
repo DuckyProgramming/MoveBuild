@@ -213,7 +213,7 @@ combatant.prototype.display=function(){
             break
             case 'George':
                 if(this.trigger.display.visor&&lcos(this.anim.direction)<0){
-                    this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor*0.5)
+                    this.layer.fill(...this.color.visor,this.fade*this.fades.visor*0.5)
                     this.layer.noStroke()
                     if(this.trigger.display.extra.damage){
                         this.layer.triangle(lsin(this.anim.direction)*16-9*lcos(this.anim.direction),-84,lsin(this.anim.direction)*16+9*lcos(this.anim.direction),-84,lsin(this.anim.direction)*16,-78)
@@ -238,7 +238,9 @@ combatant.prototype.display=function(){
                     this.layer.fill(...this.flashColor(this.color.belt),this.fade*this.fades.belt)
                     this.layer.noStroke()
                     for(let a=0,la=7;a<la;a++){
-                        this.layer.rect(lsin(360*a/la+this.anim.direction)*8,-48,3*lcos(360*a/la+this.anim.direction),2)
+                        if(lcos(360*a/la+this.anim.direction)>0){
+                            this.layer.rect(lsin(360*a/la+this.anim.direction)*8,-48,3*lcos(360*a/la+this.anim.direction),2)
+                        }
                     }
                 }
                 for(let g=0;g<2;g++){
@@ -307,7 +309,7 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.trigger.display.visor&&lcos(this.anim.direction)>=0){
-                    this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor*0.5)
+                    this.layer.fill(...this.color.visor,this.fade*this.fades.visor*0.5)
                     this.layer.noStroke()
                     if(this.trigger.display.extra.damage){
                         this.layer.triangle(lsin(this.anim.direction)*16-9*lcos(this.anim.direction),-84,lsin(this.anim.direction)*16+9*lcos(this.anim.direction),-84,lsin(this.anim.direction)*16,-78)
@@ -7083,7 +7085,7 @@ combatant.prototype.display=function(){
                     this.layer.quad(-12,-69,12,-69,8,-75,-8,-75)
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Fat Duck': case 'Void Duck':  case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Fat Duck': case 'Void Duck':  case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck':
                 if(this.name=='Void Duck'&&this.trigger.display.outline){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.outline)[0],this.flashColor(this.color.outline)[1],this.flashColor(this.color.outline)[2],this.fade*this.fades.outline)
@@ -7203,6 +7205,9 @@ combatant.prototype.display=function(){
                             if(this.anim.eye[g]==0){
                                 this.layer.point(lsin(this.spin.eye[g]+this.anim.direction)*13-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel)
                                 this.layer.point(lsin(this.spin.eye[g]+this.anim.direction)*13-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel)
+                            }else if(this.name=='Zombie Duck'){
+                                this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*13-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2,lsin(this.spin.eye[g]+this.anim.direction)*13+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2)
+                                this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*13-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2,lsin(this.spin.eye[g]+this.anim.direction)*13+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2)
                             }else{
                                 this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*13-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*13+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2)
                                 this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*13-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*13+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2)
@@ -7280,6 +7285,13 @@ combatant.prototype.display=function(){
                     this.layer.triangle(0,0,-5,-2,-5,2)
                     this.layer.triangle(0,0,5,-2,5,2)
                     this.layer.pop()
+                }
+                if(this.name=='Pistol Duck'&&this.trigger.display.hat){
+                    this.layer.stroke(this.color.hat[0],this.color.hat[1],this.color.hat[2],this.fade)
+                    this.layer.fill(this.color.hat[0],this.color.hat[1],this.color.hat[2],this.fade)
+                    this.layer.strokeWeight(3)
+                    this.layer.line(-14,-48,14,-48)
+                    this.layer.quad(-9,-48,9,-48,6,-54,-6,-54)
                 }
             break
             case 'Big Duck': case 'Agent Duck': case 'General Duckion':
@@ -7578,19 +7590,29 @@ combatant.prototype.display=function(){
                     }
                 }
             break
-            case 'Slime': case 'Spike Slime': case 'Slimoid':
+            case 'Slime': case 'Spike Slime': case 'Slimoid': case 'Rainbow Slime':
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)<=0){
-                        if(this.name=='Spike Slime'){
-                            this.layer.fill(...this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.arms)
-                        }else{
-                            this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[2],this.fade*this.fades.skin.arms)
-                        }
                         this.layer.noStroke()
-                        if(this.name=='Slimoid'){
-                            this.layer.rect(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,14,14)
+                        switch(this.name){
+                            case 'Rainbow Slime':
+                                for(let a=0,la=12;a<la;a++){
+                                    this.layer.fill(...this.flashColor(upColor(this.color.skin.arms[a%6],lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.body)
+                                    this.layer.arc(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,16,a/la*360,(a+1)/la*360)
+                                }
+                            break
+                            default:
+                                if(this.name=='Spike Slime'){
+                                    this.layer.fill(...this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.arms)
+                                }else{
+                                    this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[2],this.fade*this.fades.skin.arms)
+                                }
+                                if(this.name=='Slimoid'){
+                                    this.layer.rect(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,14,14)
+                                }
+                                this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,16)
+                            break
                         }
-                        this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,16)
                         if(this.name=='Spike Slime'){
                             for(let a=0,la=9;a<la;a++){
                                 this.layer.triangle(this.graphics.arms[g].middle.x+lsin(a*40-16)*12,this.graphics.arms[g].middle.y+lcos(a*40-16)*12,this.graphics.arms[g].middle.x+lsin(a*40-16)*7+lcos(a*40-16)*2,this.graphics.arms[g].middle.y+lcos(a*40-16)*7-lsin(a*40-16)*2,this.graphics.arms[g].middle.x+lsin(a*40-16)*7-lcos(a*40-16)*2,this.graphics.arms[g].middle.y+lcos(a*40-16)*7+lsin(a*40-16)*2)
@@ -7599,9 +7621,19 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.trigger.display.skin.body){
-                    this.layer.fill(...this.flashColor(this.color.skin.body),this.fade*this.fades.skin.body)
                     this.layer.noStroke()
-                    this.layer.ellipse(0,-20,60,45)
+                    switch(this.name){
+                        case 'Rainbow Slime':
+                            for(let a=0,la=12;a<la;a++){
+                                this.layer.fill(...this.flashColor(this.color.skin.body[a%6]),this.fade*this.fades.skin.body)
+                                this.layer.arc(0,-20,60,45,a/la*360,(a+1)/la*360)
+                            }
+                        break
+                        default:
+                            this.layer.fill(...this.flashColor(this.color.skin.body),this.fade*this.fades.skin.body)
+                            this.layer.ellipse(0,-20,60,45)
+                        break
+                    }
                     switch(this.name){
                         case 'Spike Slime':
                             for(let a=0,la=18;a<la;a++){
@@ -7619,16 +7651,26 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)>0){
-                        if(this.name=='Spike Slime'){
-                            this.layer.fill(...this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.arms)
-                        }else{
-                            this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[2],this.fade*this.fades.skin.arms)
-                        }
                         this.layer.noStroke()
-                        if(this.name=='Slimoid'){
-                            this.layer.rect(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,14,14)
+                        switch(this.name){
+                            case 'Rainbow Slime':
+                                for(let a=0,la=12;a<la;a++){
+                                    this.layer.fill(...this.flashColor(upColor(this.color.skin.arms[a%6],lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.body)
+                                    this.layer.arc(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,16,a/la*360,(a+1)/la*360)
+                                }
+                            break
+                            default:
+                                if(this.name=='Spike Slime'){
+                                    this.layer.fill(...this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.arms)
+                                }else{
+                                    this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[2],this.fade*this.fades.skin.arms)
+                                }
+                                if(this.name=='Slimoid'){
+                                    this.layer.rect(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,14,14)
+                                }
+                                this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,16)
+                            break
                         }
-                        this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,16)
                         if(this.name=='Spike Slime'){
                             for(let a=0,la=9;a<la;a++){
                                 this.layer.triangle(this.graphics.arms[g].middle.x+lsin(a*40-16)*12,this.graphics.arms[g].middle.y+lcos(a*40-16)*12,this.graphics.arms[g].middle.x+lsin(a*40-16)*7+lcos(a*40-16)*2,this.graphics.arms[g].middle.y+lcos(a*40-16)*7-lsin(a*40-16)*2,this.graphics.arms[g].middle.x+lsin(a*40-16)*7-lcos(a*40-16)*2,this.graphics.arms[g].middle.y+lcos(a*40-16)*7+lsin(a*40-16)*2)
@@ -7648,19 +7690,29 @@ combatant.prototype.display=function(){
                     }
                 }
             break
-            case 'Big Slime': case 'Big Spike Slime': case 'Big Slimoid':
+            case 'Big Slime': case 'Big Spike Slime': case 'Big Slimoid': case 'Big Rainbow Slime':
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)<=0){
-                        if(this.name=='Big Spike Slime'){
-                            this.layer.fill(...this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.arms)
-                        }else{
-                            this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[2],this.fade*this.fades.skin.arms)
-                        }
                         this.layer.noStroke()
-                        if(this.name=='Big Slimoid'){
-                            this.layer.rect(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,21,21)
+                        switch(this.name){
+                            case 'Big Rainbow Slime':
+                                for(let a=0,la=12;a<la;a++){
+                                    this.layer.fill(...this.flashColor(upColor(this.color.skin.arms[a%6],lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.body)
+                                    this.layer.arc(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,24,24,a/la*360,(a+1)/la*360)
+                                }
+                            break
+                            default:
+                                if(this.name=='Big Spike Slime'){
+                                    this.layer.fill(...this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.arms)
+                                }else{
+                                    this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[2],this.fade*this.fades.skin.arms)
+                                }
+                                if(this.name=='Big Slimoid'){
+                                    this.layer.rect(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,21,21)
+                                }
+                                this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,24,24)
+                            break
                         }
-                        this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,24,24)
                         if(this.name=='Big Spike Slime'){
                             for(let a=0,la=9;a<la;a++){
                                 this.layer.triangle(this.graphics.arms[g].middle.x+lsin(a*40-16)*18,this.graphics.arms[g].middle.y+lcos(a*40-16)*18,this.graphics.arms[g].middle.x+lsin(a*40-16)*10.5+lcos(a*40-16)*3,this.graphics.arms[g].middle.y+lcos(a*40-16)*10.5-lsin(a*40-16)*3,this.graphics.arms[g].middle.x+lsin(a*40-16)*10.5-lcos(a*40-16)*3,this.graphics.arms[g].middle.y+lcos(a*40-16)*10.5+lsin(a*40-16)*3)
@@ -7671,7 +7723,18 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.skin.body){
                     this.layer.fill(...this.flashColor(this.color.skin.body),this.fade*this.fades.skin.body)
                     this.layer.noStroke()
-                    this.layer.ellipse(0,-30,90,67.5)
+                    switch(this.name){
+                        case 'Big Rainbow Slime':
+                            for(let a=0,la=12;a<la;a++){
+                                this.layer.fill(...this.flashColor(this.color.skin.body[a%6]),this.fade*this.fades.skin.body)
+                                this.layer.arc(0,-30,90,67.5,a/la*360,(a+1)/la*360)
+                            }
+                        break
+                        default:
+                            this.layer.fill(...this.flashColor(this.color.skin.body),this.fade*this.fades.skin.body)
+                            this.layer.ellipse(0,-30,90,67.5)
+                        break
+                    }
                     switch(this.name){
                         case 'Big Spike Slime':
                             for(let a=0,la=18;a<la;a++){
@@ -7689,16 +7752,26 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)>0){
-                        if(this.name=='Big Spike Slime'){
-                            this.layer.fill(...this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.arms)
-                        }else{
-                            this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[2],this.fade*this.fades.skin.arms)
-                        }
                         this.layer.noStroke()
-                        if(this.name=='Big Slimoid'){
-                            this.layer.rect(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,21,21)
+                        switch(this.name){
+                            case 'Big Rainbow Slime':
+                                for(let a=0,la=12;a<la;a++){
+                                    this.layer.fill(...this.flashColor(upColor(this.color.skin.arms[a%6],lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.body)
+                                    this.layer.arc(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,24,24,a/la*360,(a+1)/la*360)
+                                }
+                            break
+                            default:
+                                if(this.name=='Big Spike Slime'){
+                                    this.layer.fill(...this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.arms)
+                                }else{
+                                    this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[2],this.fade*this.fades.skin.arms)
+                                }
+                                if(this.name=='Big Slimoid'){
+                                    this.layer.rect(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,21,21)
+                                }
+                                this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,24,24)
+                            break
                         }
-                        this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,24,24)
                         if(this.name=='Big Spike Slime'){
                             for(let a=0,la=9;a<la;a++){
                                 this.layer.triangle(this.graphics.arms[g].middle.x+lsin(a*40-16)*18,this.graphics.arms[g].middle.y+lcos(a*40-16)*18,this.graphics.arms[g].middle.x+lsin(a*40-16)*10.5+lcos(a*40-16)*3,this.graphics.arms[g].middle.y+lcos(a*40-16)*10.5-lsin(a*40-16)*3,this.graphics.arms[g].middle.x+lsin(a*40-16)*10.5-lcos(a*40-16)*3,this.graphics.arms[g].middle.y+lcos(a*40-16)*10.5+lsin(a*40-16)*3)
@@ -8323,7 +8396,19 @@ combatant.prototype.display=function(){
                     this.layer.quad(-3,-30,0,-33,3,-30,0,-27)
                 }
             break
-            case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02': case 'Carbonado Robot': case 'Management Robot Commander': case 'Lockdown':
+            case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02': case 'Carbonado Robot': case 'Management Robot Commander': case 'Lockdown': case 'Rocket Launcher Management Robot': case 'Shotgun Management Robot': case 'Rammer Robot': case 'Management Experimental Robot': case 'Management Experimental Robot':
+                if(this.name=='Rammer Robot'&&this.trigger.display.hex){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.hex[0]),this.fade*this.fades.hex)
+                    regPoly(this.layer,0,-45,6,18,18,this.time)
+                    this.layer.fill(...this.flashColor(this.color.hex[1]),this.fade*this.fades.hex)
+                    this.layer.ellipse(0,-45,27)
+                }
+                if(this.name=='Management Experimental Robot'&&this.trigger.display.visor&&lcos(this.anim.direction)<=0){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.color.visor,this.fade*this.fades.visor/2)
+                    this.layer.rect(lsin(this.anim.direction)*16,-78,30*lcos(this.anim.direction),10,2)
+                }
                 for(let g=0;g<2;g++){
                     if(this.name=='Purge X02'&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
                         this.minorDisplay(0,g)
@@ -8333,6 +8418,13 @@ combatant.prototype.display=function(){
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        if(this.name=='Rocket Launcher Management Robot'&&this.trigger.display.armor){
+                            this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(
+                                this.graphics.arms[g].top.x*0.75+this.graphics.arms[g].middle.x*0.25,this.graphics.arms[g].top.y*0.75+this.graphics.arms[g].middle.y*0.25,
+                                this.graphics.arms[g].top.x*0.25+this.graphics.arms[g].middle.x*0.75,this.graphics.arms[g].top.y*0.25+this.graphics.arms[g].middle.y*0.75)
+                        }
                     }
                 }
                 for(let g=0;g<2;g++){
@@ -8341,6 +8433,13 @@ combatant.prototype.display=function(){
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        if(this.name=='Rocket Launcher Management Robot'&&this.trigger.display.armor){
+                            this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(
+                                this.graphics.arms[g].top.x*0.75+this.graphics.arms[g].middle.x*0.25,this.graphics.arms[g].top.y*0.75+this.graphics.arms[g].middle.y*0.25,
+                                this.graphics.arms[g].top.x*0.25+this.graphics.arms[g].middle.x*0.75,this.graphics.arms[g].top.y*0.25+this.graphics.arms[g].middle.y*0.75)
+                        }
                     }
                     for(let h=0;h<2;h++){
                         if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
@@ -8406,6 +8505,15 @@ combatant.prototype.display=function(){
                             }
                         }
                     }
+                    if(this.name=='Shotgun Management Robot'&&this.trigger.display.panel){
+                        this.layer.noStroke()
+                        this.layer.fill(...this.flashColor(this.color.panel),this.fade*this.fades.panel)
+                        for(let a=0,la=2;a<la;a++){
+                            if(lcos(this.anim.direction-90+a*180)>0){
+                                this.layer.rect(7.5*lsin(this.anim.direction-90+a*180),-45,5*lcos(this.anim.direction-90+a*180),20)
+                            }
+                        }
+                    }
                 }
                 if(this.name=='Destructor Bot'&&this.trigger.display.bomb){
                     this.layer.noStroke()
@@ -8433,6 +8541,13 @@ combatant.prototype.display=function(){
                         this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                         this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                         this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                        if(this.name=='Rocket Launcher Management Robot'&&this.trigger.display.armor){
+                            this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(
+                                this.graphics.arms[g].top.x*0.75+this.graphics.arms[g].middle.x*0.25,this.graphics.arms[g].top.y*0.75+this.graphics.arms[g].middle.y*0.25,
+                                this.graphics.arms[g].top.x*0.25+this.graphics.arms[g].middle.x*0.75,this.graphics.arms[g].top.y*0.25+this.graphics.arms[g].middle.y*0.75)
+                        }
                     }
                 }
                 if(this.name=='Carbonado Robot'&&this.trigger.display.light){
@@ -8512,6 +8627,13 @@ combatant.prototype.display=function(){
                         this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                         this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                         this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                        if(this.name=='Rocket Launcher Management Robot'&&this.trigger.display.armor){
+                            this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(
+                                this.graphics.arms[g].top.x*0.75+this.graphics.arms[g].middle.x*0.25,this.graphics.arms[g].top.y*0.75+this.graphics.arms[g].middle.y*0.25,
+                                this.graphics.arms[g].top.x*0.25+this.graphics.arms[g].middle.x*0.75,this.graphics.arms[g].top.y*0.25+this.graphics.arms[g].middle.y*0.75)
+                        }
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3){
                         this.layer.stroke(this.flashColor(this.color.skin.limb)[0],this.flashColor(this.color.skin.limb)[1],this.flashColor(this.color.skin.limb)[2],this.fade*this.fades.skin.arms)
@@ -8528,6 +8650,11 @@ combatant.prototype.display=function(){
                     this.layer.strokeWeight(4)
                     this.layer.line(-20,-90,20,-90)
                     this.layer.quad(-15,-90,15,-90,10,-98,-10,-98)
+                }
+                if(this.name=='Management Experimental Robot'&&this.trigger.display.visor&&lcos(this.anim.direction)>0){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.color.visor,this.fade*this.fades.visor/2)
+                    this.layer.rect(lsin(this.anim.direction)*16,-78,30*lcos(this.anim.direction),10,2)
                 }
             break
             case 'Sentry':
@@ -10432,6 +10559,15 @@ combatant.prototype.display=function(){
                     }
                 }
             break
+            case 'Spirit of Elegance':
+                for(let a=0,la=20;a<la;a++){
+                    this.layer.fill(...this.flashColor(mergeColor(this.color[0],this.color[1],a/la)),this.fade*0.1)
+                    for(let b=0,lb=2;b<lb;b++){
+                        let mult=(1-a/la)*(1-b*0.2)
+                        regStar(this.layer,0,-25-b*5,12,20*mult,20*mult,16*mult,16*mult,(this.time*2+a*3)*(b%2*2-1))
+                    }
+                }
+            break
             case 'Thoughtless':
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
@@ -10525,6 +10661,108 @@ combatant.prototype.display=function(){
                         this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                    }
+                }
+            break
+            case 'Half Spikeball':
+                if(this.trigger.display.body){
+                    this.layer.noStroke()
+                    this.layer.push()
+                    this.layer.translate(0,-30)
+                    this.layer.fill(...this.flashColor(this.color.body[0]),this.fade*this.fades.body)
+                    this.layer.ellipse(0,0,32,32)
+                    this.layer.fill(...this.flashColor(this.color.body[1]),this.fade*this.fades.body)
+                    this.layer.translate(-2,0)
+                    this.layer.arc(0,0,32*this.anim.body[0],36*this.anim.body[0],90,270)
+                    this.layer.scale(0.9,1)
+                    this.layer.rotate(-170)
+                    for(var a=0,la=9;a<la;a++){
+                        this.layer.triangle(-3,-18*this.anim.body[0]+3,3,-18*this.anim.body[0]+3,0,-18*this.anim.body[0]-4)
+                        this.layer.rotate(20)
+                    }
+                    this.layer.rotate(-10)
+                    this.layer.scale(1/0.9,1)
+                    this.layer.translate(4,0)
+                    this.layer.fill(...this.flashColor(this.color.body[2]),this.fade*this.fades.body)
+                    this.layer.arc(0,0,32*this.anim.body[1],36*this.anim.body[1],-90,90)
+                    this.layer.scale(0.9,1)
+                    this.layer.rotate(10)
+                    for(var a=0,la=9;a<la;a++){
+                        this.layer.triangle(-3,-18*this.anim.body[1]+3,3,-18*this.anim.body[1]+3,0,-18*this.anim.body[1]-4)
+                        this.layer.rotate(20)
+                    }
+                    this.layer.pop()
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.eye[g]){
+                        this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[g])
+                        this.layer.strokeWeight((5-this.anim.eye[g]*3)*constrain(lcos(this.spin.eye[g]+this.anim.direction)*5,0,1))
+                        if(this.anim.eye[g]==0){
+                            this.layer.point(lsin(this.spin.eye[g]+this.anim.direction)*18-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel)
+                            this.layer.point(lsin(this.spin.eye[g]+this.anim.direction)*18-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel)
+                        }else{
+                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*18-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*18+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2)
+                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*18-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*18+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2)
+                        }
+                    }
+                }
+            break
+            case 'Graphite Block':
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)<=0){
+                        this.layer.push()
+                        this.layer.translate(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.strokeWeight(3)
+                        for(let a=0,la=this.color.skin.length;a<la;a+=2){
+                            this.layer.stroke(...this.flashColor(upColor(this.color.skin[a],lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.arms)
+                            for(let b=0,lb=13-a*2;b<lb;b++){
+                                this.layer.rotate(360/lb)
+                                this.layer.line(0,0,0,12-a*2)
+                            }
+                            this.layer.rotate(a*7+3)
+                        }
+                        this.layer.pop()
+                    }
+                }
+                if(this.trigger.display.skin.body){
+                    this.layer.push()
+                    this.layer.translate(0,-21)
+                    this.layer.strokeWeight(4)
+                    for(let a=0,la=this.color.skin.length;a<la;a++){
+                        this.layer.stroke(...this.flashColor(this.color.skin[a]),this.fade*this.fades.skin.body)
+                        for(let b=0,lb=13-a*2;b<lb;b++){
+                            this.layer.rotate(360/lb)
+                            this.layer.line(0,0,0,24-a*4)
+                        }
+                        this.layer.rotate(a*7+3)
+                    }
+                    this.layer.pop()
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)>0){
+                        this.layer.push()
+                        this.layer.translate(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.strokeWeight(3)
+                        for(let a=0,la=this.color.skin.length;a<la;a+=2){
+                            this.layer.stroke(...this.flashColor(upColor(this.color.skin[a],lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.arms)
+                            for(let b=0,lb=13-a*2;b<lb;b++){
+                                this.layer.rotate(360/lb)
+                                this.layer.line(0,0,0,12-a*2)
+                            }
+                            this.layer.rotate(a*7+3)
+                        }
+                        this.layer.pop()
+                    }
+                    if(this.trigger.display.eye[g]){
+                        this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[g])
+                        this.layer.strokeWeight((5-this.anim.eye[g]*3)*constrain(lcos(this.spin.eye[g]+this.anim.direction)*5,0,1))
+                        if(this.anim.eye[g]==0){
+                            this.layer.point(lsin(this.spin.eye[g]+this.anim.direction)*22-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel)
+                            this.layer.point(lsin(this.spin.eye[g]+this.anim.direction)*22-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel)
+                        }else{
+                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*22-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*22+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2)
+                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*22-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*22+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2)
+                        }
                     }
                 }
             break
@@ -10700,9 +10938,9 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(0,-48,16,42)
                     this.layer.ellipse(0,-81,33,33)
                 }
-                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Riot Police'||this.name=='Management Shotgunner'||this.name=='Walker Driver Informant')&&this.trigger.display.visor&&lcos(this.anim.direction)<=0){
+                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Riot Police'||this.name=='Management Shotgunner'||this.name=='Walker Driver Informant'||this.name=='MMIS Agent'||this.name=='HVM Contractor')&&this.trigger.display.visor&&lcos(this.anim.direction)<=0){
                     this.layer.noStroke()
-                    this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor/2)
+                    this.layer.fill(...this.color.visor,this.fade*this.fades.visor/2)
                     this.layer.rect(lsin(this.anim.direction)*18,-78,20*lcos(this.anim.direction),6)
                 }
                 if(this.name=='Slow King'&&this.trigger.display.cape&&lcos(this.anim.direction+180)<-0.1){
@@ -10880,7 +11118,7 @@ combatant.prototype.display=function(){
                     this.layer.rect(lsin(this.anim.direction)*15,this.parts.eyeLevel,lcos(this.anim.direction)*20,7,2)
                 }
                 for(let g=0;g<2;g++){
-                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman')&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
+                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
@@ -11354,6 +11592,26 @@ combatant.prototype.display=function(){
                         this.layer.rect(6.5*lsin(this.anim.direction+54),-43,3*lcos(this.anim.direction+54),2)
                     }
                 }
+                if(this.name=='MMIS Agent'&&this.trigger.display.belt){
+                    this.layer.fill(...this.flashColor(this.color.belt),this.fade*this.fades.belt)
+                    this.layer.noStroke()
+                    for(let a=0,la=7;a<la;a++){
+                        if(lcos(360*a/la+this.anim.direction)>0){
+                            this.layer.rect(lsin(360*a/la+this.anim.direction)*6.5,-48,3*lcos(360*a/la+this.anim.direction),2)
+                        }
+                    }
+                }
+                if(this.name=='HVM Contractor'&&this.trigger.display.belt){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.belt[0]),this.fade*this.fades.belt)
+                    this.layer.rect(0,-48,13,5)
+                    this.layer.fill(...this.flashColor(this.color.belt[1]),this.fade*this.fades.belt)
+                    for(let a=0,la=12;a<la;a++){
+                        if(lcos(15+a*30+this.anim.direction)>0){
+                            this.layer.rect(lsin(15+a*30+this.anim.direction)*6.5,-48,lcos(15+a*30+this.anim.direction)*1,3)
+                        }
+                    }
+                }
                 if(this.name=='Reichswehr'&&this.trigger.display.pocket){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.pocket)[0],this.flashColor(this.color.pocket)[1],this.flashColor(this.color.pocket)[2],this.fade*this.fades.pocket)
@@ -11383,6 +11641,13 @@ combatant.prototype.display=function(){
                             this.layer.rect(lsin(this.anim.direction-36+a*72)*6,-52,lcos(this.anim.direction-36+a*72)*3,3)
                         }
                     }
+                }
+                if(this.name=='MMIS Agent'&&this.trigger.display.badge&&lcos(this.anim.direction+60)>0){
+                    this.layer.fill(this.color.badge[0][0],this.color.badge[0][1],this.color.badge[0][2])
+                    this.layer.noStroke()
+                    this.layer.ellipse(lsin(this.anim.direction+60)*7,-54,lcos(this.anim.direction+48)*6,6)
+                    this.layer.fill(this.color.badge[1][0],this.color.badge[1][1],this.color.badge[1][2])
+                    this.layer.quad(lsin(this.anim.direction+60)*7-lcos(this.anim.direction+60),-54,lsin(this.anim.direction+60)*7,-57,lsin(this.anim.direction+60)*7+lcos(this.anim.direction+60),-54,lsin(this.anim.direction+60)*7,-51)
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
@@ -11451,7 +11716,7 @@ combatant.prototype.display=function(){
                     this.layer.fill(...this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,lcos(this.spin.under.under.top[1]+this.anim.direction))),this.fade*this.fades.under.under.top)
                     this.layer.ellipse(lsin(this.spin.under.under.top[1]+this.anim.direction)*5.2,-52,lcos(this.spin.under.under.top[1]+this.anim.direction)*2.5+3.5,6)
                 }
-                if((this.name=='Trenchcoat'||this.name=='Trenchcoat Gunner'||this.name=='Capitalist'||this.name=='Bodyguard'||this.name=='Assistant Hiring Officer'||this.name=='Assistant Fitness Officer'||this.name=='Corrupt Detective'||this.name=='Coffee Commander'||this.name=='MobMan'||this.name=='Archivist'||this.name=='Yes Man'||this.name=='Mailman')&&this.trigger.display.tie&&lcos(this.anim.direction)>0.1){
+                if((this.name=='Trenchcoat'||this.name=='Trenchcoat Gunner'||this.name=='Capitalist'||this.name=='Bodyguard'||this.name=='Assistant Hiring Officer'||this.name=='Assistant Fitness Officer'||this.name=='Corrupt Detective'||this.name=='Coffee Commander'||this.name=='MobMan'||this.name=='Archivist'||this.name=='Yes Man'||this.name=='Mailman'||this.name=='Caporegime')&&this.trigger.display.tie&&lcos(this.anim.direction)>0.1){
                     this.layer.fill(...this.flashColor(this.color.tie[0]),this.fade*this.fades.tie)
                     this.layer.noStroke()
                     this.layer.triangle(lsin(this.anim.direction)*3-lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*3+lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*9,-50)
@@ -11552,6 +11817,18 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
+                if(this.name=='Hit Squad'&&this.trigger.display.button){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.button),this.fade*this.fades.button)
+                    if(lcos(this.anim.direction)>0){
+                        this.layer.ellipse(lsin(this.anim.direction)*3.8,-64.5,lcos(this.anim.direction),1)
+                        this.layer.ellipse(lsin(this.anim.direction)*4.75,-61.5,lcos(this.anim.direction),1)
+                        this.layer.ellipse(lsin(this.anim.direction)*5.5,-58.5,lcos(this.anim.direction),1)
+                        this.layer.ellipse(lsin(this.anim.direction)*6.05,-55.5,lcos(this.anim.direction),1)
+                        this.layer.ellipse(lsin(this.anim.direction)*6.4,-52.5,lcos(this.anim.direction),1)
+                        this.layer.ellipse(lsin(this.anim.direction)*6.55,-49.5,lcos(this.anim.direction),1)
+                    }
+                }
                 if(this.name=='Rewriter'&&this.trigger.display.bowtie&&lcos(this.anim.direction)>0){
                     this.layer.fill(this.flashColor(this.color.bowtie[0])[0],this.flashColor(this.color.bowtie[0])[1],this.flashColor(this.color.bowtie[0])[2],this.fade*this.fades.bowtie)
                     this.layer.noStroke()
@@ -11565,7 +11842,7 @@ combatant.prototype.display=function(){
                     this.layer.noStroke()
                     this.layer.triangle(lsin(this.anim.direction)*3-lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*3+lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*9,-50)
                 }
-                if((this.name=='Trenchcoat'||this.name=='Trenchcoat Gunner'||this.name=='Corrupt Detective'||this.name=='PhD'||this.name=='Junkie'||this.name=='L'||this.name=='Archivist'||this.name=='Rebel Negotiator'||this.name=='Psychologist')&&this.trigger.display.coat){
+                if((this.name=='Trenchcoat'||this.name=='Trenchcoat Gunner'||this.name=='Corrupt Detective'||this.name=='PhD'||this.name=='Junkie'||this.name=='L'||this.name=='Archivist'||this.name=='Rebel Negotiator'||this.name=='Psychologist'||this.name==='Caporegime')&&this.trigger.display.coat){
                     this.layer.fill(...this.flashColor(this.color.coat),this.fade*this.fades.coat)
                     this.layer.noStroke()
                     if(lcos(this.anim.direction)<0.5){
@@ -11587,8 +11864,19 @@ combatant.prototype.display=function(){
                     this.layer.triangle(lsin(this.anim.direction)*6,-62,lsin(this.anim.direction)*6-lcos(this.anim.direction)*4,-63.5,lsin(this.anim.direction)*6-lcos(this.anim.direction)*4,-60.5)
                     this.layer.triangle(lsin(this.anim.direction)*6,-62,lsin(this.anim.direction)*6+lcos(this.anim.direction)*4,-63.5,lsin(this.anim.direction)*6+lcos(this.anim.direction)*4,-60.5)
                 }
+                if(this.name=='Caporegime'&&this.trigger.display.pocket&&lcos(this.anim.direction+40)>0){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.pocket),this.fade*this.fades.pocket)
+                    this.layer.rect(lsin(this.anim.direction+40)*5.5,-55.75,4*lcos(this.anim.direction+40),1.5)
+                    this.layer.quad(
+                        lsin(this.anim.direction+40)*5.5-2*lcos(this.anim.direction+40),-55,
+                        lsin(this.anim.direction+40)*5.5-2*lcos(this.anim.direction+40),-56.5,
+                        lsin(this.anim.direction+40)*5.5+0.5*lcos(this.anim.direction+40),-58,
+                        lsin(this.anim.direction+40)*5.5+1*lcos(this.anim.direction+40),-55
+                    )
+                }
                 for(let g=0;g<2;g++){
-                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6)&&g==0){
+                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6)&&g==0){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
@@ -11646,6 +11934,17 @@ combatant.prototype.display=function(){
                         let direction=this.anim.direction-48+a*96-floor(a/2)*6
                         if(lcos(direction)>0){
                             this.layer.quad(lsin(direction)*7.5-lcos(direction),-46,lsin(direction)*7.5+lcos(direction),-46,lsin(direction)*3+lcos(direction),-72,lsin(direction)*3-lcos(direction),-72)
+                        }
+                    }
+                }
+                if(this.name=='Hit Squad'&&this.trigger.display.overall){
+                    this.layer.noStroke()
+                    this.layer.fill(this.color.overall[0],this.color.overall[1],this.color.overall[2],this.fade)
+                    this.layer.arc(0,-48,15,41,0,180)
+                    for(let a=0,la=4;a<la;a++){
+                        let direction=this.anim.direction-36+a*72+floor(a/2)*48
+                        if(lcos(direction)>0){
+                            this.layer.quad(lsin(direction)*7.5-lcos(direction)*0.5,-46,lsin(direction)*7.5+lcos(direction)*0.5,-46,lsin(direction)*3+lcos(direction)*0.5,-72,lsin(direction)*3-lcos(direction)*0.5,-72)
                         }
                     }
                 }
@@ -11860,7 +12159,7 @@ combatant.prototype.display=function(){
                         this.layer.triangle(lsin(this.anim.direction)*11-lcos(this.anim.direction)*5,-71,lsin(this.anim.direction)*11+lcos(this.anim.direction)*5,-71,lsin(this.anim.direction)*10,-57)
                     }
                     for(let g=0;g<2;g++){
-                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.6)&&g==0){
+                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.6)&&g==0){
                             this.minorDisplay(0,g)
                         }
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
@@ -12150,14 +12449,14 @@ combatant.prototype.display=function(){
                     this.layer.line(-15,-90,15,-90)
                     this.layer.rect(0,-97,16,14,1)
                 }
-                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Gas Man'||this.name=='Riot Police'||this.name=='Coffee Commander'||this.name=='Management Shotgunner'||this.name=='Walker Driver Informant')&&this.trigger.display.helmet){
+                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Gas Man'||this.name=='Riot Police'||this.name=='Coffee Commander'||this.name=='Management Shotgunner'||this.name=='Walker Driver Informant'||this.name=='MMIS Agent'||this.name=='HVM Contractor')&&this.trigger.display.helmet){
                     this.layer.noStroke()
                     this.layer.fill(this.color.helmet[0],this.color.helmet[1],this.color.helmet[2],this.fade*this.fades.helmet)
                     this.layer.arc(0,-81,36,36,-180,0)
                 }
-                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Gas Man'||this.name=='Riot Police'||this.name=='Coffee Commander'||this.name=='Management Shotgunner'||this.name=='Walker Driver Informant')&&this.trigger.display.visor&&lcos(this.anim.direction)>0){
+                if((this.name=='Management Soldier'||this.name=='Management Special Forces'||this.name=='Management Sniper'||this.name=='Walker Driver'||this.name=='Gas Man'||this.name=='Riot Police'||this.name=='Coffee Commander'||this.name=='Management Shotgunner'||this.name=='Walker Driver Informant'||this.name=='MMIS Agent'||this.name=='HVM Contractor')&&this.trigger.display.visor&&lcos(this.anim.direction)>0){
                     this.layer.noStroke()
-                    this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor/2)
+                    this.layer.fill(...this.color.visor,this.fade*this.fades.visor/2)
                     this.layer.rect(lsin(this.anim.direction)*18,-78,20*lcos(this.anim.direction),6)
                 }
                 if(this.name=='Armored Ninja'&&this.trigger.display.helmet){
@@ -12173,7 +12472,7 @@ combatant.prototype.display=function(){
                     }
                     this.layer.pop()
                 }
-                if(this.name=='Swordmaster'&&this.trigger.display.helmet){
+                if((this.name=='Swordmaster'||this.name=='Old Konaian')&&this.trigger.display.helmet){
                     this.layer.noStroke()
                     this.layer.fill(this.color.helmet[0],this.color.helmet[1],this.color.helmet[2],this.fade*this.fades.helmet)
                     this.layer.arc(0,-81,36,36,-180,0)
@@ -12516,6 +12815,29 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*-5,-77,6*lcos(this.anim.direction),3)
                     this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*5,-77,6*lcos(this.anim.direction),3)
                     this.layer.line(lsin(this.anim.direction)*15+lcos(this.anim.direction)*2,-77,lsin(this.anim.direction)*15-lcos(this.anim.direction)*2,-77)
+                }
+                if(this.name=='Hit Squad'&&this.trigger.display.hat){
+                    this.layer.stroke(...this.color.hat[0],this.fade)
+                    this.layer.fill(...this.color.hat[0],this.fade)
+                    this.layer.strokeWeight(4)
+                    this.layer.line(-16,-90,16,-90)
+                    this.layer.quad(-12,-90,12,-90,8,-98,-8,-98)
+                    this.layer.fill(...this.color.hat[1],this.fade)
+                    this.layer.noStroke()
+                    this.layer.quad(-13.1,-92,13.1,-92,11.6,-95,-11.6,-95)
+                }
+                if(this.name=='MMIS Agent'){
+                    this.layer.noFill()
+                    this.layer.stroke(240,240,40,this.fade)
+                    this.layer.strokeWeight(3)
+                    this.layer.strokeCap(SQUARE)
+                    this.layer.arc(0.5,-116.5,15,15,-135,45)
+                    this.layer.arc(-0.5,-115.5,15,15,45,225)
+                    this.layer.strokeCap(ROUND)
+                    this.layer.noStroke()
+                    this.layer.fill(255,this.fade)
+                    this.layer.textSize(12)
+                    this.layer.text(this.combo,0,-115.5)
                 }
             break
         }

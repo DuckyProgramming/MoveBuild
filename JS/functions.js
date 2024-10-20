@@ -20,6 +20,7 @@ function isCyclic(obj){
 function isInt(value){
 	return !isNaN(value)&&parseInt(Number(value))==value&&!isNaN(parseInt(value,10))
 }
+//mark s
 function setupConstants(){
 	constants.sqrt2=sqrt(2)
 	constants.sqrt3=sqrt(3)
@@ -736,7 +737,7 @@ function intentDescription(attack,user,info){
 			case 9: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nRange 1-1`
 			case 10: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block to All Enemies`
 			case 11: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\nRange 1-1`
-			case 12: case 80: case 115: case 161: case 165: case 245: case 283: case 362:
+			case 12: case 80: case 115: case 161: case 165: case 245: case 283: case 362: case 425:
 				return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6\nNo Movement`
 			case 13: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nRange 1-1`
 			case 14: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nRange 1-2`
@@ -785,7 +786,7 @@ function intentDescription(attack,user,info){
 			case 55: return `Apply ${info?attack.effect[0]:`?`} Weak\nin All Directions\nRange 1-2`
 			case 56: return `Create ${info?attack.effect[0]:`?`} Shield Particle${pl(attack.effect[0])}`
 			case 57: return `Gain Block Equal\nto Health of\nShield Particles`
-			case 58: return `Apply ${info?attack.effect[0]:`?`} Bleed`
+			case 58: return `Apply ${info?attack.effect[0]:`?`} Bleed\nRange 1-1`
 			case 59: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nRange 1-6`
 			case 60: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\n3 Tiles Wide\nRange 1-1`
 			case 61: return `Apply ${info?attack.effect[0]:`?`} Frail\nRange 1-2`
@@ -862,7 +863,7 @@ function intentDescription(attack,user,info){
 			case 130: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nRange 1-6\nNo Movement`
 			case 131: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Directions Wide\nRange 1-6\nNo Movement`
 			case 132: return `Add ${info?attack.effect[0]:'?'} ${info?attack.effect[1].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[0])}\nin All Directions\nRange 1-1`
-			case 133: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin All Directions\n2 Times\nRange 1-1`
+			case 133: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nin All Directions\nRange 1-1`
 			case 134: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6\nNo Movement\nIf No Target,\nCreate Target Zone`
 			case 135: return `Move to End of Board,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nand Add ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nto All Targets and Swap`
 			case 136: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin All Directions\nKill Self\nRange 1-1`
@@ -875,7 +876,7 @@ function intentDescription(attack,user,info){
 			case 143: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 2 Tiles\nRange 1-3`
 			case 144: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nStaple ${info?attack.effect[1]:`?`} Card${pl(attack.effect[1])}\nRange 1-6\nNo Movement`
 			case 146: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\n3 Tiles Wide\nRange 1-2`
-			case 147: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin All Directions\n3 Times\nRange 1-1`
+			case 147: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nin All Directions\nRange 1-1`
 			case 148: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Poison\nRange 1-6\nNo Movement`
 			case 149: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Bleed\nRange 1-2`
 			case 150: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Splash Damage\nSmoke ${info?attack.effect[1]:`?`} Card${pl(attack.effect[1])}\nRange 2-2`
@@ -1131,8 +1132,33 @@ function intentDescription(attack,user,info){
 			case 412: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Lock On\nRange 1-1`
 			case 413: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Dodge`
 			case 414: return `Shuffle in ${info?attack.effect[0]:'?'} ${info?attack.effect[1].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[0])}`
-			case 415: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin All Directions\n3 Times\nRange 1-2`
-
+			case 415: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nin All Directions\nRange 1-2`
+			case 417: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nto the Left\nRange 1-1`
+			case 418: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nto the Right\nRange 1-1`
+			case 419: return `Apply ${info?attack.effect[0]:`?`} Bleed\nRange 1-6`
+			case 420: return `Apply ${info?attack.effect[0]:`?`} Freeze\nRange 1-6`
+			case 421: return `Gain ${info?attack.effect[0]:`?`} Chocolate Chip`
+			case 422: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block 3 Times`
+			case 423: return `Gain ${info?attack.effect[0]:`?`} Radiation`
+			case 424: return `Target Loses ${info?attack.effect[0]:`?`} Health\nin 2 Turns`
+			case 426: return `Deal ${info?calculateIntent(attack.effect[0],user,2):`?`} Damage\nWhere X = Armor\nRange 1-1`
+			case 427: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-6\nNo Movement`
+			case 428: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Vulnerable\nRange 1-6\nNo Movement`
+			case 429: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 2-2\nNo Movement`
+			case 430: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Vulnerable\nRange 2-2\nNo Movement`
+			case 431: return `Leave Battle\nSpawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(pl(attack.effect[0])):`?`}`
+			case 432: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Temporary Strength`
+			case 433: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDraw ${info?attack.effect[1]:`?`} Less\nCard${pl(attack.effect[1])} Next Turn\nRange 1-2`
+			case 434: return `Apply ${info?attack.effect[0]:`?`} Weak\nApply ${info?attack.effect[1]:`?`} Vulnerable\nApply ${info?attack.effect[2]:`?`} Frail\nRange 1-1`
+			case 435: return `Apply ${info?attack.effect[0]:`?`} Weak\nApply ${info?attack.effect[1]:`?`} Vulnerable\nApply ${info?attack.effect[2]:`?`} Frail\nRange 1-2`
+			case 436: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`}-${info?calculateIntent(attack.effect[1],user,14):`?`}*Range Damage 2 Times\nRange 1-6\nNo Movement`
+			case 437: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nGain 1 Combo Per Hit\nRange 1-1`
+			case 438: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nCounter Gun ${info?calculateIntent(attack.effect[1],user,0):`?`}`
+			case 439: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Frail\nRange 1-6\nNo Movement`
+			case 440: return `Move up to 1 Tile,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap`
+			case 441: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nApply ${info?attack.effect[1]:`?`} Anti-Control\n3 Tiles Wide\nRange 1-2`
+			case 442: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nAll Enemies\nGain ${info?attack.effect[1]:`?`} Contro`
+			case 443: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nRange 1-6\nNo Movement`
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
 			case 2: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-1`
@@ -1697,54 +1723,17 @@ function directionCombatant(combatant1,combatant2){
 	return atan2(combatant1.relativePosition.x-combatant2.relativePosition.x,combatant1.relativePosition.y-combatant2.relativePosition.y)
 }
 function sortNumbers(numbers){
-	let numbersLeft=copyArray(numbers)
-	if(numbersLeft.length==0){
-		return []
-	}
+	return numbers.length<=1?numbers:mergeNumbers(sortNumbers(numbers.slice(0,floor(numbers.length/2))),sortNumbers(numbers.slice(floor(numbers.length/2),numbers.length)))
+}
+function mergeNumbers(left,right){
 	let result=[]
-	for(let a=0,la=numbersLeft.length;a<la;a++){
-		if(numbersLeft.length==0){
-			break
-		}
-		let minimum=numbersLeft[0]
-		for(let b=0,lb=numbersLeft.length;b<lb;b++){
-			minimum=min(minimum,numbersLeft[b])
-		}
-		for(let b=0,lb=numbersLeft.length;b<lb;b++){
-			if(numbersLeft[b]==minimum){
-				result.push(numbersLeft[b])
-				numbersLeft.splice(b,1)
-				b--
-				lb--
-			}
-		}
+	while(left.length>0&&right.length>0){
+		result.push((left[0]<=right[0]?left:right).shift())
 	}
-	return result
+	return [...result,...left,...right]
 }
 function sortNumbersUnique(numbers){
-	let numbersLeft=copyArray(numbers)
-	if(numbersLeft.length==0){
-		return []
-	}
-	let result=[]
-	for(let a=0,la=numbersLeft.length;a<la;a++){
-		if(numbersLeft.length==0){
-			break
-		}
-		let minimum=numbersLeft[0]
-		for(let b=0,lb=numbersLeft.length;b<lb;b++){
-			minimum=min(minimum,numbersLeft[b])
-		}
-		result.push(minimum)
-		for(let b=0,lb=numbersLeft.length;b<lb;b++){
-			if(numbersLeft[b]==minimum){
-				numbersLeft.splice(b,1)
-				b--
-				lb--
-			}
-		}
-	}
-	return result
+	return sortNumbers(numbers).filter(function(object,index,array){return index==0||object!=array[index-1]})
 }
 function prime(value){
 	if(value==1){

@@ -302,7 +302,7 @@ class battle{
     }
     initialGraphics(){
         this.graphics={combatants:[]}
-        for(let a=0,la=10;a<la;a++){
+        for(let a=0,la=21;a<la;a++){
             if(
                 a==0&&this.player.includes(2)||
                 a==1&&this.player.includes(3)||

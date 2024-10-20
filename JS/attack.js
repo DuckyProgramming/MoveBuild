@@ -238,11 +238,12 @@ class attack{
             case 5633: case 5636: case 5637: case 5641: case 5644: case 5647: case 5651: case 5657: case 5658: case 5662: case 5664: case 5666: case 5668: case 5673: case 5684: case 5685: case 5690: case 5692: case 5695: case 5708:
             case 5709: case 5716: case 5718: case 5719: case 5720: case 5721: case 5727: case 5731: case 5732: case 5740: case 5744: case 5745: case 5752: case 5759: case 5760: case 5779: case 5782: case 5783: case 5794: case 5806:
             case 5807: case 5808: case 5809: case 5814: case 5815: case 5817: case 5818: case 5819: case 5820: case 5824: case 5828: case 5829: case 5830: case 5833: case 5836: case 5837: case 5840: case 5842: case 5852: case 5853:
-            case 5856: case 5864: case 5865: case 5868: case 5869: case 5880: case 5885: case 5893: case 5896: case 5904: case 5907: case 5917: case 5931: case 5933: case 5940: case 5941: case 5944: case 5951: case 5954: case 5957:
-            case 5959: case 5960: case 5963: case 5967: case 5973: case 5974: case 5975: case 5994: case 5995: case 5997: case 5999: case 6000: case 6005: case 6009: case 6010: case 6011: case 6016: case 6017: case 6018: case 6034:
-            case 6041: case 6042: case 6049: case 6052: case 6053: case 6055: case 6059: case 6060: case 6067: case 6078: case 6079: case 6098: case 6099: case 6101: case 6102: case 6103: case 6104: case 6107: case 6109: case 6110:
-            case 6111: case 6118: case 6124: case 6125: case 6126: case 6130: case 6131: case 6132: case 6133: case 6136: case 6137: case 6138: case 6143: case 6144: case 6146: case 6148: case 6149: case 6150: case 6151: case 6153:
-            case 6156: case 6158: case 6159: case 6166: case 6168: case 6169: case 6172: case 6173: case 6175: case 6183: case 6191: case 6193: case 6194: case 6195: case 6196: case 6197: case 6199: case 6203: case 6205: case 6210:
+            case 5856: case 5864: case 5865: case 5868: case 5869: case 5874: case 5880: case 5885: case 5893: case 5896: case 5904: case 5907: case 5917: case 5931: case 5933: case 5940: case 5941: case 5944: case 5951: case 5954:
+            case 5957: case 5959: case 5960: case 5963: case 5967: case 5973: case 5974: case 5975: case 5994: case 5995: case 5997: case 5999: case 6000: case 6005: case 6009: case 6010: case 6011: case 6016: case 6017: case 6018:
+            case 6034: case 6041: case 6042: case 6049: case 6052: case 6053: case 6055: case 6059: case 6060: case 6067: case 6078: case 6079: case 6098: case 6099: case 6101: case 6102: case 6103: case 6104: case 6107: case 6109:
+            case 6110: case 6111: case 6118: case 6124: case 6125: case 6126: case 6130: case 6131: case 6132: case 6133: case 6136: case 6137: case 6138: case 6143: case 6144: case 6146: case 6148: case 6149: case 6150: case 6151:
+            case 6153: case 6156: case 6158: case 6159: case 6166: case 6168: case 6169: case 6172: case 6173: case 6175: case 6183: case 6191: case 6193: case 6194: case 6195: case 6196: case 6197: case 6199: case 6203: case 6205:
+            case 6210:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -302,7 +303,7 @@ class attack{
             case 5579: case 5580: case 5581: case 5582: case 5583: case 5584: case 5649: case 5650: case 5654: case 5655:
             case 5656: case 5663: case 5670: case 5672: case 5784: case 5785: case 5786: case 5787: case 5827: case 5841:
             case 5867: case 5871: case 5895: case 5992: case 6077: case 6113: case 6139: case 6140: case 6141: case 6142:
-            case 6155: case 6162: case 6184: case 6185:
+            case 6155: case 6162: case 6184: case 6185: case 6216: case 6217:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -2334,7 +2335,7 @@ class attack{
                         }
                     break
                     case 106:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.targetCombatant.blocked>0){
                             this.targetCombatant.statusEffect('Weak',this.effect[1])
                         }
                     break
@@ -9655,7 +9656,7 @@ class attack{
                     break
                     case -89:
                     case 41: case 807: case 820: case 821: case 822: case 2827: case 3253: case 4013: case 5272: case 5331:
-                    case 5473: case 5559: case 5810: case 5887:
+                    case 5473: case 5559: case 5810: case 5887: case 6214:
                         this.battle.addEnergy(this.effect[0],this.player)
                     break
                     case 6: case 2567: case 5315: case 5630:
@@ -12658,6 +12659,9 @@ class attack{
                     case 6211:
                         this.userCombatant.statusEffect('Dodge',this.effect[0])
                         this.userCombatant.statusEffect('Temporary Strength',this.effect[1])
+                    break
+                    case 6215:
+                        this.battle.addSpecificEnergy(1,this.player,6)
                     break
 
                 }
@@ -15677,6 +15681,9 @@ class attack{
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userCombatant.activateHistory()
                         }
+                    break
+                    case 6212:
+                        this.userManager.drawAbstract(this.effect[0],-1,11,[34])
                     break
 
                 }
@@ -23745,6 +23752,12 @@ class attack{
                             this.userCombatant.holdOrb(15)
                         }
                         this.userCombatant.statusEffect('Dust Orb Boost',this.effect[1])
+                    break
+                    case 6213:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(15)
+                        }
+                        this.userCombatant.tickOrbs(15)
                     break
 
                 }

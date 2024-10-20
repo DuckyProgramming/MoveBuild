@@ -140,12 +140,12 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     if(readable&&types.encounter[this.combat].name.length>15){
-                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*4.05+13.5:30.5,15,3)
+                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*4.2+13.5:30.5,15,3)
                         this.layer.fill(...color,this.fade*cap)
                         this.layer.textSize(9)
                         this.layer.text(readable?types.encounter[this.combat].name:'Battle',0,25)
                     }else{
-                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*5.4+18:42,16,3)
+                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*5.6+18:42,16,3)
                         this.layer.fill(...color,this.fade*cap)
                         this.layer.textSize(12)
                         this.layer.text(readable?types.encounter[this.combat].name:'Battle',0,25)
@@ -167,12 +167,12 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     if(readable&&types.encounter[this.combat].name.length>15){
-                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*4.05+13.5:30.5,15,3)
+                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*4.2+13.5:30.5,15,3)
                         this.layer.fill(...color,this.fade*cap)
                         this.layer.textSize(9)
                         this.layer.text(readable?types.encounter[this.combat].name:'Elite',0,25)
                     }else{
-                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*5.4+18:35,16,3)
+                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*5.6+18:35,16,3)
                         this.layer.fill(...color,this.fade*cap)
                         this.layer.textSize(12)
                         this.layer.text(readable?types.encounter[this.combat].name:'Elite',0,25)
@@ -255,13 +255,13 @@ class node{
                     if(this.battle.relicManager.hasRelic(98,-1)){
                         let term=this.reality>=0&&this.reality<=2?types.encounter[this.combat].name:['','','','Rest','Shop','Event'][this.reality]
                         if(readable&&term.length>15){
-                            this.layer.rect(0,24.5,readable?term.length*4.05+13.5:30.5,15,3)
+                            this.layer.rect(0,24.5,readable?term.length*4.2+13.5:30.5,15,3)
                             this.layer.fill(...color,this.fade*cap)
                             this.layer.textSize(9)
                             this.layer.text(readable?term:'Unknown',0,25)
                         }else{
                             let term=this.reality>=0&&this.reality<=2?types.encounter[this.combat].name:['','','','Rest','Shop','Event'][this.reality]
-                            this.layer.rect(0,24.5,readable?term.length*5.4+18:42,16,3)
+                            this.layer.rect(0,24.5,readable?term.length*5.6+18:42,16,3)
                             this.layer.fill(...color,this.fade*cap)
                             this.layer.textSize(12)
                             this.layer.text(readable?term:'Unknown',0,25)

@@ -872,7 +872,7 @@ class relicManager{
                 this.battle.optionManagers[player].addOption(2)
             break
             case 134:
-                this.battle.addEnergyBase(player)
+                this.battle.loseEnergyBase(player)
                 this.battle.cardManagers[player].deck.removeAbstract(2,[[6]])
                 this.battle.cardManagers[player].deck.removeAbstract(2,[[6]])
             break

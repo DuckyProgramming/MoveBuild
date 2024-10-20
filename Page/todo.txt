@@ -2,40 +2,22 @@ OPERATION ASCENDANCY
 
 LISTING GROUP 54 - ASYNC
 
-(51)
+(25)
+
+ally cards
+[kutaka?]
 
 
 
-OPERATION PREDESTINATION
+CHARACTER 21 STORAGE ZONE
 
-make the bosses for the newest characters
-also sakura boss can't dodge no more
+NOT TO BE ACTIVATED UNTIL 2025
 
-world 1 replacements (send some world 1 enemies to world 2):
+all cards to be absorbed will be stored in placeholder mark 21
 
-neonic spikeball - half blue half pink, attacks one of two sides, doesn't rotate
-zombie fairy - 3 weak enemies with 1 revive each
-revive - when killed, respawn, lose 1 revive, become stunned, become invincible
-[titanite]
-[]
+something like faith but instead of a stance, you just gain a bunch of buffs
 
-world 2:
-
-[hit squad]
-[]
-[]
-[]
-
-world 3:
-
-rocket launcher management robot
-fire and ice slime
-fire and ice big slime [nerf jet off the elite stack]
-[shotgun manageemnt robot]
-[scoutbot]
-[]
-[]
-[]
+strawberry cake - heal 3 health, []
 
 
 

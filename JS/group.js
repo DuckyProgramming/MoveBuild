@@ -1691,6 +1691,10 @@ class group{
                     a--
                     la--
                 break
+                case 115:
+                    this.cards[a].color=floor(random(0,constants.playerNumber))+1
+                    this.cards[a].setColorDetail()
+                break
 
             }
         }
@@ -2553,7 +2557,7 @@ class group{
                 this.battle.loseEnergy(card.effect[0],this.player)
                 this.drawEffects.push([8,card.effect[1]])
             break
-            case -61: case 5360:
+            case -61: case 5360: case 6215:
                 for(let a=0,la=card.effect[0];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
@@ -2635,10 +2639,14 @@ class group{
                 userCombatant.statusEffect(variants.mtg?'Random Mana Next Turn':'Energy Next Turn',-card.effect[0])
                 userCombatant.statusEffect(variants.mtg?'Random Mana in 2 Turns':'Energy in 2 Turns',-card.effect[0])
             break
+            case -113:
+                this.drawEffects.push([3,5])
+                this.drawEffects.push([3,115])
+            break
 
             //mark n
             
-            case 288: case 374: case 2217: case 2776: case 4078: case 5361:
+            case 288: case 374: case 2217: case 2776: case 4078: case 5361: case 6214:
                 for(let a=0,la=card.effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
@@ -3564,17 +3572,18 @@ class group{
     }
     removeAbstract(type,args){
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(
-                type==0&&args[0]==this.cards[a].type||
-                type==1&&args[0]==this.cards[a].type||
-                type==2&&args[0].includes(this.cards[a].class)||
-                type==3&&args[0]==this.cards[a].rarity||
-                type==4&&args[0]==this.cards[a].list||
-                type==5&&args[0]==this.cards[a].list&&args[1]==this.cards[a].edition||
-                type==6&&args[0].includes(this.cards[a].class)||
-                type==7&&this.cards[a].getBasicMultiple(args[0])||
-                type==8&&args[0]==this.cards[a].rarity&&args[1]==this.cards[a].level||
-                type==9&&args[0]==this.cards[a].id
+            if((
+                    type==0&&args[0]==this.cards[a].type||
+                    type==1&&args[0]==this.cards[a].type||
+                    type==2&&args[0].includes(this.cards[a].class)||
+                    type==3&&args[0]==this.cards[a].rarity||
+                    type==4&&args[0]==this.cards[a].list||
+                    type==5&&args[0]==this.cards[a].list&&args[1]==this.cards[a].edition||
+                    type==6&&args[0].includes(this.cards[a].class)||
+                    type==7&&this.cards[a].getBasicMultiple(args[0])||
+                    type==8&&args[0]==this.cards[a].rarity&&args[1]==this.cards[a].level||
+                    type==9&&args[0]==this.cards[a].id
+                )&&this.removable(a)
             ){
                 if(this.id==0&&type!=9){
                     if(this.remove(a)){

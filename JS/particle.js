@@ -583,6 +583,7 @@ class particle{
             case 197:
                 this.direction=args[0]
                 this.size=args[1]
+                this.color=args[2]
                 this.shear=random(0,360)
                 this.side=floor(random(0,2))
                 this.speed=3
@@ -3428,7 +3429,7 @@ class particle{
                 break
                 case 197:
                     for(let a=0,la=10;a<la;a++){
-                        this.layer.fill(...mergeColor([255,245,125],[255,255,235],a/la),this.fade*0.2)
+                        this.layer.fill(...mergeColor(...this.color,a/la),this.fade*0.2)
                         regStar(this.layer,0,0,4,9*(1-a/la),9*(1-a/la),3*(1-a/la),3*(1-a/la),(this.time*2-a*9)*(this.side*2-1))
                     }
                 break

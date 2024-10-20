@@ -3146,7 +3146,10 @@ class overlay{
                                 if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].discard.cards[a])&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5){
                                     switch(this.battle.cardManagers[this.player].discard.cards[a].attack){
                                         case 5288:
-                                            this.battle.cardManagers[this.player].hand.selfCall(6,[5288,this.battle.cardManagers[this.player].discard.cards[a].effect,1,this.battle.cardManagers[this.player].discard.cards[a].target])
+                                            this.battle.cardManagers[this.player].discard.cards[a].target[0]=63
+                                            this.battle.cardManagers[this.player].hand.selfCall(34,this.battle.cardManagers[this.player].discard.cards[a])
+                                            this.battle.cardManagers[this.player].hand.selfCall(47,this.battle.cardManagers[this.player].discard.cards[a])
+                                            this.battle.cardManagers[this.player].discard.cards[a].target[0]=2
                                             this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].reserve.cards,a,a+1,1)
                                             a--
                                             la--
@@ -4397,7 +4400,10 @@ class overlay{
                                 if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5){
                                     switch(this.battle.cardManagers[this.player].discard.cards[a].attack){
                                         case 5288:
-                                            this.battle.cardManagers[this.player].hand.selfCall(6,[5288,this.battle.cardManagers[this.player].discard.cards[a].effect,1,this.battle.cardManagers[this.player].discard.cards[a].target])
+                                            this.battle.cardManagers[this.player].discard.cards[a].target[0]=63
+                                            this.battle.cardManagers[this.player].hand.selfCall(34,this.battle.cardManagers[this.player].discard.cards[a])
+                                            this.battle.cardManagers[this.player].hand.selfCall(47,this.battle.cardManagers[this.player].discard.cards[a])
+                                            this.battle.cardManagers[this.player].discard.cards[a].target[0]=2
                                             this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].reserve.cards,a,a+1,1)
                                             a--
                                             la--
