@@ -243,7 +243,7 @@ class attack{
             case 6034: case 6041: case 6042: case 6049: case 6052: case 6053: case 6055: case 6059: case 6060: case 6067: case 6078: case 6079: case 6098: case 6099: case 6101: case 6102: case 6103: case 6104: case 6107: case 6109:
             case 6110: case 6111: case 6118: case 6124: case 6125: case 6126: case 6130: case 6131: case 6132: case 6133: case 6136: case 6137: case 6138: case 6143: case 6144: case 6146: case 6148: case 6149: case 6150: case 6151:
             case 6153: case 6156: case 6158: case 6159: case 6166: case 6168: case 6169: case 6172: case 6173: case 6175: case 6183: case 6191: case 6193: case 6194: case 6195: case 6196: case 6197: case 6199: case 6203: case 6205:
-            case 6210:
+            case 6210: case 6219: case 6231:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -12663,6 +12663,15 @@ class attack{
                     case 6215:
                         this.battle.addSpecificEnergy(1,this.player,6)
                     break
+                    case 6220:
+                        this.userCombatant.statusEffect('Free Card Per Turn',1)
+                    break
+                    case 6223:
+                        this.userCombatant.statusEffect('Power Energy Next Turn',this.effect[0])
+                    break
+                    case 6224:
+                        this.userCombatant.statusEffect('Power (N) Next Turn',1)
+                    break
 
                 }
                 //mark 4
@@ -15685,6 +15694,37 @@ class attack{
                     case 6212:
                         this.userManager.drawAbstract(this.effect[0],-1,11,[34])
                     break
+                    case 6218:
+                        this.battle.overlayManager.overlays[152][this.player].active=true
+                        this.battle.overlayManager.overlays[152][this.player].activate()
+                    break
+                    case 6221:
+                        this.userCombatant.statusEffect('Draw Pull',1)
+                    break
+                    case 6222:
+                        this.battle.overlayManager.overlays[58][this.player].active=true
+                        this.battle.overlayManager.overlays[58][this.player].activate([this.effect[0],0])
+                        this.battle.combatantManager.allEffect(48,['Weak',this.effect[1]])
+                    break
+                    case 6225:
+                        this.userManager.draw(this.effect[0])
+                        if(this.handSize==1){
+                            this.userCombatant.statusEffect('Extra Turn',1)
+                        }
+                    break
+                    case 6226:
+                        this.userManager.draw(this.effect[0])
+                        this.battle.overlayManager.overlays[13][this.battle.turn.main].active=true
+                        this.battle.overlayManager.overlays[13][this.battle.turn.main].activate()
+                    break
+                    case 6227:
+                        this.userCombatant.wish+=this.effect[0]
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.addRandomAbstract(2,0,0,2,0,[0],[3,12])
+                        }
+                        this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,132,[10,0,0]))
+                        this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,132,[10,0.5,10]))
+                    break
 
                 }
                 //mark 5
@@ -16763,7 +16803,7 @@ class attack{
                     case 1195:
                         this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
                     break
-                    case 1196:
+                    case 1196: case 6219:
                         this.targetCombatant.statusEffect('Stun',this.effect[0])
                     break
                     case 1197:
@@ -19451,6 +19491,10 @@ class attack{
                         if(this.targetCombatant.getStatus('Bleed')>0){
                             this.userCombatant.addBlock(this.effect[1],this.user)
                         }
+                    break
+                    case 6231:
+                        this.battle.turnManager.loadEnemyMove(this.targetCombatant.id)
+                        this.targetCombatant.statusEffect('Lose Health',this.effect[0])
                     break
 
                 }
@@ -23758,6 +23802,25 @@ class attack{
                             this.userCombatant.holdOrb(15)
                         }
                         this.userCombatant.tickOrbs(15)
+                    break
+                    case 6228: case 6229:
+                        this.battle.combatantManager.randomEnemyEffect(23,['Stun',this.effect[0]])
+                        this.userManager.draw(this.effect[1],5)
+                    break
+                    case 6230:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Miracle',types.card),0,0)
+                        }
+                        this.userCombatant.statusEffect(variants.mtg?'Random Mana Next Turn':'Energy Next Turn',-this.effect[1])
+                    break
+                    case 6232:
+                        this.battle.addEnergyGen(this.effect[0],this.player)
+                        this.userCombatant.enterStance(2)
+                    break
+                    case 6233:
+                        this.battle.addSpecificEnergyGen(1,this.player,4)
+                        this.battle.addSpecificEnergyGen(1,this.player,5)
+                        this.userCombatant.enterStance(2)
                     break
 
                 }

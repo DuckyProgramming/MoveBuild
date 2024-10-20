@@ -1160,6 +1160,7 @@ class battle{
     }
     playCard(card,player,mode){
         let cardClass=card.spec.includes(12)?card.class[mode]:card.class
+        let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
         if(card.spec.includes(0)||card.spec.includes(12)&&card.reality[mode].includes(0)){
             this.cardManagers[player].fatigue()
         }
@@ -1228,6 +1229,9 @@ class battle{
             this.cardManagers[player].hand.randomEffect(0)
             this.cardManagers[player].draw(1)
         }
+        if(this.modded(225)){
+            userCombatant.statusEffect('Temporary Strength',-1)
+        }
         if(variants.running){
             for(let a=0,la=this.cardManagers[player].hand.cards.length;a<la;a++){
                 if(!this.cardManagers[player].hand.cards[a].deSize){
@@ -1239,7 +1243,6 @@ class battle{
         }
         this.stats.played[player][0]++
         this.stats.played[player][cardClass]++
-        let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
         if(this.modded(155)){
             switch(card.edition){
                 case 1:
@@ -1368,6 +1371,12 @@ class battle{
                 }
                 if(userCombatant.getStatus('Double Damage Without Power')>0){
                     userCombatant.statusEffect('Double Damage Without Power',-1)
+                }
+                if(userCombatant.getStatus('Power Energy Next Turn')>0){
+                    userCombatant.statusEffect('Energy Next Turn',userCombatant.getStatus('Power Energy Next Turn'))
+                }
+                if(userCombatant.getStatus('Power (N) Next Turn')>0){
+                    userCombatant.statusEffect('(N) Next Turn',userCombatant.getStatus('Power (N) Next Turn'))
                 }
             break
             case 11:
@@ -2661,7 +2670,7 @@ class battle{
                     this.layer.rect(26+a*(this.layer.width-52),580,32*this.anim.food[a],20*this.anim.food[a],5*this.anim.food[a])
                     if(this.relicManager.hasRelic(191,a)){
                         this.layer.strokeWeight(3*this.anim.reroll[a])
-                        this.layer.rect(194+a*(this.layer.width-388),628-50*this.anim.rerollActive[a],32*this.anim.reroll[a],20*this.anim.reroll[a],5*this.anim.reroll[a])
+                        this.layer.rect(194+a*(this.layer.width-388),630-50*this.anim.rerollActive[a],32*this.anim.reroll[a],20*this.anim.reroll[a],5*this.anim.reroll[a])
                     }
                     this.layer.fill(0)
                     this.layer.noStroke()
@@ -2677,9 +2686,9 @@ class battle{
                     this.layer.text('Food',26+a*(this.layer.width-52),580)
                     if(this.relicManager.hasRelic(191,a)){
                         this.layer.textSize(8*this.anim.reroll[a])
-                        this.layer.text('Reroll',194+a*(this.layer.width-388),628-50*this.anim.rerollActive[a]-4*this.anim.reroll[a])
+                        this.layer.text('Reroll',194+a*(this.layer.width-388),630-50*this.anim.rerollActive[a]-4*this.anim.reroll[a])
                         this.layer.textSize(6*this.anim.reroll[a])
-                        this.layer.text('50 Currency',194+a*(this.layer.width-388),628-50*this.anim.rerollActive[a]+4*this.anim.reroll[a])
+                        this.layer.text('50 Currency',194+a*(this.layer.width-388),630-50*this.anim.rerollActive[a]+4*this.anim.reroll[a])
                     }
                 }
                 this.purchaseManager.display()
@@ -3149,7 +3158,7 @@ class battle{
                     this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:110+a*(this.layer.width-220),y:580},width:32,height:20}),1,1.5,5)
                     this.anim.sell[a]=smoothAnim(this.anim.sell[a],pointInsideBox({position:inputs.rel},{position:{x:68+a*(this.layer.width-136),y:580},width:32,height:20}),1,1.5,5)
                     this.anim.food[a]=smoothAnim(this.anim.food[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:580},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
-                    this.anim.reroll[a]=smoothAnim(this.anim.reroll[a],pointInsideBox({position:inputs.rel},{position:{x:194+a*(this.layer.width-388),y:628-this.anim.rerollActive[a]*50},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
+                    this.anim.reroll[a]=smoothAnim(this.anim.reroll[a],pointInsideBox({position:inputs.rel},{position:{x:194+a*(this.layer.width-388),y:630-this.anim.rerollActive[a]*50},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                     this.anim.rerollActive[a]=smoothAnim(this.anim.rerollActive[a],!this.purchaseManager.rerollActive[a],0,1,5)
                 }
             break
@@ -3605,7 +3614,7 @@ class battle{
                         if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:580},width:32,height:20})){
                             this.overlayManager.overlays[27][a].active=true
                             this.overlayManager.overlays[27][a].activate()
-                        }else if(pointInsideBox({position:inputs.rel},{position:{x:194+a*(this.layer.width-388),y:628-50*this.anim.rerollActive[a]},width:32,height:20})&&this.relicManager.hasRelic(191,a)&&!this.purchaseManager.rerollActive[a]&&this.currency.money[a]>=50-(this.relicManager.hasRelic(187,a)?200:0)){
+                        }else if(pointInsideBox({position:inputs.rel},{position:{x:194+a*(this.layer.width-388),y:630-50*this.anim.rerollActive[a]},width:32,height:20})&&this.relicManager.hasRelic(191,a)&&!this.purchaseManager.rerollActive[a]&&this.currency.money[a]>=50-(this.relicManager.hasRelic(187,a)?200:0)){
                             this.purchaseManager.reroll()
                             this.purchaseManager.rerollActive[a]=true
                             this.currency.money[a]-=50

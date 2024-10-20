@@ -1641,6 +1641,9 @@ class relicManager{
                     if(this.active[457][a+1]>0&&this.detail[457][a]==0){
                         this.getPlayer(a).heal(4*this.active[457][a+1])
                     }
+                    if(this.battle.modded(224)){
+                        this.getPlayer(a).loseMaxHP(1)
+                    }
                 }
             break
             case 2://start of player turn [turn,player,played]
@@ -1817,6 +1820,13 @@ class relicManager{
                                 this.battle.dropDrawShuffle(args[1],findName('Electrocuted',types.card),0,constants.playerNumber+1)
                             }
                         }
+                        if(this.battle.modded(230)){
+                            this.battle.cardManagers[args[1]].allEffect(2,5)
+                            this.battle.cardManagers[args[1]].allEffect(2,115)
+                        }
+                        if(this.battle.modded(231)){
+                            this.battle.dropDrawShuffle(args[1],findName('Colorblind',types.card),0,constants.playerNumber+1)
+                        }
                     break
                     case 2:
                         if(this.active[72][args[1]+1]>0){
@@ -1849,6 +1859,9 @@ class relicManager{
                             }else{
                                 this.battle.cardManagers[args[1]].hand.duplicate(3*this.active[207][args[1]+1])
                             }
+                        }
+                        if(this.battle.modded(233)){
+                            this.battle.combatantManager.allEffect(48,['Take Credit',1])
                         }
                     break
                 }

@@ -3721,7 +3721,7 @@ class group{
                             case 4642: case 4645:
                                 amplifyCost=[1,5]
                             break
-                            case 4650: case 6000:
+                            case 4650: case 6000: case 6229:
                                 amplifyCost=[5]
                             break
                             case 4659: case 4660: case 4661: case 4662: case 4671: case 4678: case 4800: case 4803: case 4862: case 4885:
@@ -3961,6 +3961,21 @@ class group{
                     case 12:
                         for(let a=0,la=this.cards.length;a<la;a++){
                             if(this.cards[a].level>=args[2]){
+                                this.cards[a].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
+                                this.cards[a].fade=1
+                                this.cards[a].relIndex=position
+                                this.cards[a].position.x=this.layer.width/2-200+position%5*100
+                                this.cards[a].position.y=this.layer.height/2-130+floor(position/5)%3*130
+                                this.cards[a].anim.afford=1
+                                this.cards[a].display(this.id==0)
+                                position++
+                                this.finalPosition=position
+                            }
+                        }
+                    break
+                    case 13:
+                        for(let a=0,la=this.cards.length;a<la;a++){
+                            if(this.cards[a].rarity==args[2]){
                                 this.cards[a].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
                                 this.cards[a].fade=1
                                 this.cards[a].relIndex=position
@@ -5354,6 +5369,11 @@ class group{
                                     if(this.cards[a].discardEffect.includes(16)){
                                         this.cards[a].discardEffect=[]
                                         this.send(this.cards,a,a+1,2)
+                                        a--
+                                        la--
+                                        continue
+                                    }else if(this.cards[a].exhaust){
+                                        this.generalExhaust(a)
                                         a--
                                         la--
                                         continue

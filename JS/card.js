@@ -7158,39 +7158,22 @@ class card{
             case 6215: string+=`Gain (E)\nWhen Drawn,\nMake ${effect[0]} Cop${effect[0]!=1?`ies`:`y`}`; break
             case 6216: string+=`90%: Move ${effect[0]} Tile${pl(effect[0])}\nCannot Move\nStraight Right`; break
             case 6217: string+=`90%: Move ${effect[0]} Tile${pl(effect[0])}\nCannot Move\nStraight Left`; break
-
             case 6218: string+=`Remove a Rare Card\nPermanently`; break
-            //949
             case 6219: string+=`Below 50% Health:\nApply ${effect[0]} Stun`; break
-            //371,1196
             case 6220: string+=`The First Card\nPlayed Each Turn\nis Free`; break
             case 6221: string+=`Next Turn,\nPut a Card in Draw\nPile in Your Hand`; break
-            //29
-            case 6222: string+=`Scry ${effect[0]} and\nApply ${effect[1]} Weak\nto All Enemies\nWhen You Play a Power`; break
-            //3896
+            case 6222: string+=`Scry ${effect[0]}\nApply ${effect[1]} Weak\nto All Enemies`; break
             case 6223: string+=`Gain ${effect[0]} Energy Next Turn\nWhen You Play a Power`; break
             case 6224: string+=`Gain (N) Next Turn\nWhen You Play a Power`; break
-
             case 6225: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nIf Last Card\nRemaining in Hand,\nTake Another Turn`; break
             case 6226: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nSee Your Draw\nPile in Order`; break
-            //2412
             case 6227: string+=`Gain ${effect[0]} Wish Power\nAdd ${effect[1]} Random\nWish${effect[1]!=1?`es`:``} to Hand\n${effect[1]!=1?`They Become`:`It Becomes`} Ethereal`; break
-            //3731
             case 6228: string+=`Apply ${effect[0]} Stun\nto a Random Enemy\nAmplify:\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
             case 6229: string+=`Apply ${effect[0]} Stun\nto a Random Enemy\nAmplify (R):\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
             case 6230: string+=`Add ${effect[0]} Miracle${pl(effect[0])}\nto Hand\nLose ${effect[1]} ${variants.mtg?`Random Mana`:`Energy`}\nNext Turn`; break
-            //767
             case 6231: string+=`Force Target to Move\nIt Loses ${effect[0]} Health\nNext Turn`; break
-            //1168
-
             case 6232: string+=`Gain ${effect[0]} Base\nEnergy This Combat\nEnter Calm`; break
-            //3252
             case 6233: string+=`Gain (G) (R) at the\nStart of Your Turn\nEnter Calm`; break
-            //4171
-
-
-
-
 
             //mark p
             
@@ -9596,6 +9579,9 @@ class card{
         }
     }
     display(cancelDesc=false){
+        if(this.battle.modded(232)){
+            this.height=110
+        }
         if(this.size>0&&this.fade>0){
             let userCombatant
             if(this.player>=0&&this.player<this.battle.players){
@@ -9638,6 +9624,29 @@ class card{
                 colorDetail=this.colorDetail
                 target=this.target
                 cost=this.cost
+            }
+            if(this.battle.modded(236)){
+                if(attack%3==0){
+                    name+=' Pro'
+                }
+                if(attack%5==0){
+                    name+=' Max'
+                }
+                if(attack%7==0){
+                    name+=' Plus'
+                }
+                if(attack%11==0){
+                    name+=' Deluxe'
+                }
+                if(attack%13==0){
+                    name+=' Ultimate'
+                }
+                if(attack%17==0){
+                    name+=' Supreme'
+                }
+                if(attack%19==0){
+                    name+=' 2'
+                }
             }
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)

@@ -6568,8 +6568,8 @@ Expends 1 stack afterward.`,
 `Heal for value of regeneration at the end of your turn.
 Stacks degrade by 1 each turn.`,
         },{name:'Confusion',mtg:0,desc:
-`Confused enemies turn a random direction instead of looking at their target.
-Stacks degrade by 1 each turn.`
+`When confused, your cards cost randomly between 0-3.
+Confusing a single card change only that card.`
         },{name:'Balance',mtg:0,desc:
 `Value that increases when certain cards are played. Other cards interact with it.
 When Balance exceeds its limit (default 10), your turn ends and it is reset to 0 (called Breaking).`,
@@ -7045,23 +7045,23 @@ damage and is spent, but does not counter.`,
         {name:'Armored Ninja',desc:'5% of All Enemies are Permanently Invisible'},
         {name:'Destructor Bot',desc:'When an Enemy Dies, it Deals 4 Splash Damage'},
         {name:'Assistant Fitness Officer',desc:'All Enemies Appear 20% Larger'},//220
-
-        {name:'Half Spikeball',desc:''},
-        {name:'Zombie Duck',desc:''},
-        {name:'Graphite Block',desc:''},
-        {name:'Spirit of Elegance',desc:''},
-        {name:'Pistol Duck',desc:''},
-        {name:'Hit Squad',desc:''},
-        {name:'Old Konaian',desc:''},
-        {name:'Nobleman',desc:''},
-        {name:'Rocket Launcher Management Robot',desc:''},
-        {name:'Rainbow Slime',desc:''},//230
-        {name:'Big Rainbow Slime',desc:''},
-        {name:'Shotgun Management Robot',desc:''},
-        {name:'MMIS Agent',desc:''},
-        {name:'HVM Contractor',desc:''},
-        {name:'Rammer Robot',desc:''},
-        {name:'DD-603',desc:''},
+        {name:'Half Spikeball',desc:'Add 2 Random Bonus Mods'},
+        {name:'Zombie Duck',desc:'25% of Enemies Gain 1 Revive'},
+        {name:'Graphite Block',desc:'Enemies Have a 10% Chance to be Invulnerable Each Turn'},
+        {name:'Spirit of Elegance',desc:'Lose 1 Max Health After Combat'},
+        {name:'Pistol Duck',desc:'Lose 1 Temporary Strength Per Card Played'},
+        {name:'Hit Squad',desc:'No Booster Packs in Shop'},
+        {name:'Old Konaian',desc:'Lose an Item Slot'},
+        {name:'Caporegime',desc:'No Colorless Cards in Shop'},
+        {name:'Rocket Launcher Management Robot',desc:'Remove Half of All Purchases in the Shop'},
+        {name:'Rainbow Slime',desc:'Become Colorblind Turn 1'},//230
+        {name:'Big Rainbow Slime',desc:'Shuffle 1 Colorblind into Draw Pile at the Start of Combat'},
+        {name:'Shotgun Management Robot',desc:'All Cards Are Slightly Less Tall'},
+        {name:'MMIS Agent',desc:'On Turn 4, Enemies Heal For the First Hit They Take'},
+        {name:'HVM Contractor',desc:'Sale Items in the Shop Cost More Instead'},
+        {name:'Rammer Robot',desc:'Replace Text With Comic Sans'},
+        {name:'Management Experimental Robot',desc:'Append Qualitative Terms to Card Names'},
+        //mark mod
     ],deckmode:[
         {name:'Standard Deck'},
         {name:'Draft Deck'},

@@ -184,7 +184,8 @@ class combatant{
                 'Basic Orb Boost','Prismatic Bomb Items','Skill Draw','Defense Draw','Evoke Block','Orb Tick Per Turn','Revive','Invulnerable','Calm Bonus','Scry Damage All',
                 'Wisp Exhaust Charge','Shiv Scatter','Shiv Block','X Cost Chocolate Chip','Hand Copy Next Turn','Poison Damage','Shiv Extra Target','Unplayable Draw Block','Lock On Poison','Bleed Boost',
                 'Control Base','Random Free Exhausting Ethereal Card Per Turn','Attack Freeze Combat','Blueprint Cost Down','Gun Draw Next Turn','Shock All Per Turn','Amplify Poison All','No Draw Next Turn','Energy Gain Energy','Energy Gain (E)',
-                'Cable Claw Up','Energy Orb Per Turn','Basic Energy','Basic (E)','Bleed Damage','Dust Orb Boost','Armor Per Turn','Max Health Gift','Fragile',
+                'Cable Claw Up','Energy Orb Per Turn','Basic Energy','Basic (E)','Bleed Damage','Dust Orb Boost','Armor Per Turn','Max Health Gift','Fragile','Free Card Per Turn',
+                'Draw Pull','Power Energy Next Turn','Power (N) Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -257,7 +258,8 @@ class combatant{
                 0,0,0,0,0,0,0,1,0,0,//68
                 0,0,0,0,2,0,0,0,0,0,//69
                 0,0,0,0,2,0,0,0,0,0,//70
-                0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,//71
+                1,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -330,7 +332,8 @@ class combatant{
                 2,2,2,2,2,2,0,0,2,2,//68
                 2,2,2,2,2,2,2,2,2,2,//69
                 2,2,2,2,2,2,2,3,2,2,//70
-                2,2,2,2,2,2,0,1,1,
+                2,2,2,2,2,2,0,1,1,2,//71
+                2,2,2,
             ]}
         /*
         0-none
@@ -616,6 +619,9 @@ class combatant{
             if(this.battle.modded(220)){
                 this.size*=1.2
                 this.base.size*=1.2
+            }
+            if(this.battle.modded(222)&&floor(random(0,4))==0){
+                this.statusEffect('Revive',1)
             }
         }
         if(this.name.includes('Duck')){
@@ -2124,6 +2130,9 @@ class combatant{
                 if(this.battle.modded(200)&&this.turnsAlive%4==0){
                     this.addBlock(15)
                 }
+                if(this.battle.modded(223)&&floor(random(0,10))==0){
+                    this.statusEffect('Invulnerable',1)
+                }
                 if(this.status.main[378]>0){
                     this.status.main[378]--
                 }else if(this.battle.modded(41)){
@@ -3387,7 +3396,7 @@ class combatant{
                                 }
                                 if(user>=0&&user<this.battle.combatantManager.combatants.length&&(spec==0||spec==2)){
                                     let userCombatant=this.battle.combatantManager.combatants[user]
-                                    userCombatant.takeDamage(bounce,-1)
+                                    userCombatant.takeDamage(this.bounce,-1)
                                 }
                                 damageLeft-=this.bounce
                                 this.bounce=0
@@ -5373,6 +5382,8 @@ class combatant{
                     case 695: this.battle.combatantManager.allEffect(48,['Shock',this.status.main[a]]); break
                     case 701: for(let b=0,lb=this.status.main[a];b<lb;b++){this.holdOrb(3)} break
                     case 706: this.status.main[findList('Armor',this.status.name)]+=this.status.main[a]; break
+                    case 709: this.status.main[findList('Free Card',this.status.name)]+=this.status.main[a]; break
+                    case 710: if(this.id<this.battle.players){this.battle.overlayManager.overlays[8][this.id].active=true;this.battle.overlayManager.overlays[8][this.id].activate()} break
                     
                 }
                 if(this.status.behavior[a]==6&&

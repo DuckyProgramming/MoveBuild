@@ -145,7 +145,7 @@ class eventManager{
                 !(this.listing.event[a]==136&&userCombatant.life<6)&&
                 !(this.listing.event[a]==137&&userCombatant.life<11)&&
                 !(this.listing.event[a]==139&&this.battle.relicManager.total[this.player]<2)&&
-                !(this.listing.event[a]==140&&this.battle.cardManagers[this.player].deck.numberAbstract(18,[[2]])<1)&&
+                !(this.listing.event[a]==140&&(this.battle.cardManagers[this.player].deck.numberAbstract(18,[[2]])<1||this.battle.currency.money[this.player]<150))&&
                 !(this.listing.event[a]==141&&this.battle.currency.money[this.player]<200)&&
                 !(this.listing.event[a]==142&&this.battle.nodeManager.world!=1)&&
                 !(this.listing.event[a]==143&&this.battle.nodeManager.world!=2)&&

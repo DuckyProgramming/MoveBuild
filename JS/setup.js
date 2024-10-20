@@ -68,8 +68,8 @@ function setup(){
             player(0).anim.direction=-30*/
 
             /*variants.mod=true
-            for(let a=0,la=9;a<la;a++){
-                current.modManager.addMod(221+a)
+            for(let a=0,la=2;a<la;a++){
+                current.modManager.addMod(235+a)
             }*/
 
             /*for(let a=0,la=4;a<la;a++){

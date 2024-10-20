@@ -129,6 +129,21 @@ class modManager{
             case 214:
                 frameRate(45)
             break
+            case 221:
+                for(let a=0,la=2;a<la;a++){
+                    let index=floor(random(0,this.listing.mod.length))
+                    this.addMod(this.listing.mod[index])
+                    this.listing.mod.splice(index,1)
+                }
+            break
+            case 227:
+                for(let a=0,la=this.battle.players;a<la;a++){
+                    this.battle.itemManager.removeItemSlots(1,a)
+                }
+            break
+            case 235:
+                this.layer.textFont('Comic Sans MS')
+            break
         }
     }
     display(){

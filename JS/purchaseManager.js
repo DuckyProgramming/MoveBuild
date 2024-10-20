@@ -41,7 +41,7 @@ class purchaseManager{
                     let cost=this.generalizedListing(0)
                     for(let a=0,la=group.length;a<la;a++){
                         this.purchases.push(new purchase(this.layer,this.battle,0,95+a%6*130,130+floor(a/6)*170,1,
-                            [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?0.5:1))],
+                            [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?(this.battle.modded(234)?2:0.5):1))],
                             [findName(['Placeholder\nCommon','Placeholder\nUncommon','Placeholder\nRare'][group[a]],types.card),0,0,sale==a],
                             group[a]+1
                         ))
@@ -102,7 +102,7 @@ class purchaseManager{
                             if(list[group[a]].length>0){
                                 let index=floor(random(0,list[group[a]].length))
                                 this.purchases.push(new purchase(this.layer,this.battle,0,95+a%6*130,130+floor(a/6)*170,1,
-                                    [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?0.5:1))],
+                                    [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?(this.battle.modded(234)?2:0.5):1))],
                                     [list[group[a]][index],0,this.battle.standardColorize(list[group[a]][index]),sale==a],
                                     group[a]+1
                                 ))
@@ -446,6 +446,15 @@ class purchaseManager{
                     }
                 }
             break
+        }
+        if(this.battle.modded(226)){
+            this.purchases=this.purchases.filter(purchase=>purchase.tag<9||purchase.tag>13)
+        }
+        if(this.battle.modded(228)){
+            this.purchases=this.purchases.filter(purchase=>purchase.tag<4||purchase.tag>6)
+        }
+        if(this.battle.modded(229)){
+            this.purchases=this.purchases.filter(purchase=>floor(random(0,2))==0)
         }
     }
     reroll(){

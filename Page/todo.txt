@@ -4,6 +4,16 @@ LISTING GROUP 54 - ASYNC
 
 (25)
 
+turn into steam - apply 1 stun, amplify: draw a card, remove all debuffs from self
+
+supreme will - apply 1 stun, scry 4 draw 1
+
+slippery karst - gain (G) next turn, amplify: draw a card discard a card
+
+bottlecap - 10 damage, if blocked draw a card
+
+exaration - draw 2 cards, get a random sculpture
+
 ally cards
 [kutaka?]
 
@@ -21,17 +31,23 @@ strawberry cake - heal 3 health, []
 
 
 
-OPERATION EPISODE
+OPERATION EPISODIC
 
 
 
-[event card]
+digger ducks
+mine anatase
 
-[]
+property requirements
+pay 300 currency
+or get disenfranchised
 
-[]
+very sick duck
+heal to full and gain 200 currency but get sickly
+or get 50 currency
 
-[]
+chocolate choice
+choose between ferrero rocher and lindt
 
 []
 
