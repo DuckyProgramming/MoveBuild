@@ -5459,7 +5459,7 @@ class combatant{
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffectNext(['Weak','Vulnerable','Frail'][this.turnsAlive%3],3)
                 }
             }
-            if(this.sins.includes(6)){
+            if(this.sins.includes(6)&&this.turnsAlive%2==0){
                 let list=[]
                 for(let a=constants.playerNumber,la=findName('Managerial',types.combatant);a<la;a++){
                     if(types.combatant[a].life>5&&types.combatant[a].life<=30&&!types.combatant[a].spec.includes(2)&&!types.combatant[a].spec.includes(12)){
@@ -5581,10 +5581,10 @@ class combatant{
                         this.goal.anim.sword=false
                     break
                     case 4: case 12: case 14: case 15: case 18: case 19: case 20: case 22: case 24: case 25:
-                    case 30: case 34: case 37: case 44:
+                    case 30: case 34: case 37:
                         this.animSet.loop=0
                     break
-                    case 5:
+                    case 5: case 45:
                         this.animSet.loop=0
                         this.anim.eyeStyle=[2,2]
                     break
@@ -5612,6 +5612,10 @@ class combatant{
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                         this.anim.eyeStyle=[1,1]
+                    break
+                    case 44:
+                        this.animSet.loop=0
+                        this.anim.eyeStyle=[2,2]
                     break
                 }
             break
@@ -6091,7 +6095,7 @@ class combatant{
                             this.anim.eye[0]=lsin(this.animSet.loop*90)
                         }
                     break
-                    case 44:
+                    case 44: case 45:
                         this.animSet.loop+=rate
                         this.anim.eye[0]=lsin(this.animSet.loop*180)
                     break
@@ -6970,7 +6974,7 @@ class combatant{
                                 case 3: this.layer.text('Greed - Remove All Non-Boss Relics',210,225+a*15); break
                                 case 4: this.layer.text('Envy - Take 1 Damage Per Card Played',210,225+a*15); break
                                 case 5: this.layer.text('Sloth - Each Turn, Applies 3 Weak, Vulnerable, or Frail',210,225+a*15); break
-                                case 6: this.layer.text('Lust - Spawns a Random Enemy Each Turn',210,225+a*15); break
+                                case 6: this.layer.text('Lust - Spawns a Random Enemy Every 2 Turns',210,225+a*15); break
                                 case 7: this.layer.text('War - Gains 2 Strength Per Turn',210,225+a*15); break
                                 case 8: this.layer.text('Famine - Can Only Play 5 Cards Per Turn',210,225+a*15); break
                                 case 9: this.layer.text('Pestilence - Lose 10 Health Each Turn',210,225+a*15); break

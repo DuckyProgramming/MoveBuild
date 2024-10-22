@@ -1137,11 +1137,11 @@ class relic{
                     displaySymbol(this.layer,9,0,12,0,0.8,this.fade)
                     displaySymbol(this.layer,9,0,16,0,0.6,this.fade)
                 break
-                case '3 Free Cards':
+                case '6 Free Cards':
                     displaySymbol(this.layer,0,0,62,0,2.5,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('3',0,0)
+                    this.layer.text('6',0,0)
                 break
                 case 'Avoidance':
                     displaySymbol(this.layer,0,0,63,0,1,this.fade)
@@ -3489,6 +3489,15 @@ class relic{
                     displaySymbol(this.layer,6,0,8,0,0.8,this.fade)
                     displaySymbol(this.layer,6,0,51,0,0.8,this.fade)
                     displaySymbol(this.layer,0,0,16,0,1.2,this.fade)
+                break
+                case 'Turn 3 Free Card':
+                    displaySymbol(this.layer,-8,0,62,0,1.5,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('3',8,-3)
                 break
 
                 //mark p

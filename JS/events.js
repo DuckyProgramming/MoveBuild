@@ -4095,8 +4095,7 @@ fragile as well. Maybe it'll be useful.`,
                 optionDesc:['Add a Deluxe Paper Ball to Deck'],
                 link:[-1],
             },{
-                desc:
-`You're not going to buy something so obviously useless.`,
+                desc:`You're not going to buy something so obviously useless.`,
                 option:['Exit'],
                 optionDesc:[''],
                 link:[-1],
@@ -5151,6 +5150,153 @@ A couple of blocks are lowered down, covered in spinning numbers.`,
                 desc:`"You hate money?" he says as you leave.`,
                 option:['Leave'],
                 optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Drill Zone',id:169,list:0,
+        pages:[
+            {
+                desc:
+`You encounter a group of ducks drilling a hole in the
+ground next to the road. Several of them seem to be using
+the drills, while another few are carrying large rocks out
+of the hole. A glimpse of one rock, shiny, catches your eye.
+One of the ducks notices you and offers to sell the rock,
+for a fairly cheap price.`,
+                option:['Buy Anatase','Decline'],
+                optionDesc:['Lose 40 Currency, Add a Anatase to Deck',''],
+                link:[1,2],
+            },{
+                desc:
+`You take the rock, feeling just slightly scammed.
+The ducks return to carry more rocks.`,
+                option:['Take it'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:'The ducks get back to their labor.',
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Property Requirements',id:170,list:0,
+        pages:[
+            {
+                desc:
+`You are informed of a policy change on the planet.
+Apparently, Management planetary military governor
+Belich Conoro has, in cooperation with the former nobility,
+decreed that only owners of property can participate
+in the electoral process from now on.
+You might end up without your vote.`,
+                option:['Buy Property',`Don't`],
+                optionDesc:['Lose 300 Currency','Become Cursed - Disenfranchised'],
+                link:[1,2],
+            },{
+                desc:
+`Buying a tiny, undeveloped square of property,
+you reaffirm that you can vote.
+Was it worth it?`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`You care not for the Management's power games.
+But you are disenfranchised now, regardless.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Contaminated Duck',id:171,list:0,
+        pages:[
+            {
+                desc:
+`You find a duck on the side of the raod, rolling around.
+With a raspy, weak voice, he asks you to take him to a doctor.
+He's looks heavy and unsafe to touch though.`,
+                option:['Get Him Medical Help','Take His Stuff'],
+                optionDesc:['Heal to Full, Gain 200 Currency, Become Cursed - Sickly','Gain 50 Currency'],
+                link:[1,2],
+            },{
+                desc:
+`You bring him to the hospital, and he thanks you with some money.
+But you think you might've cought something from him...`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`Leaving him to die, you take the money he has.
+It's not much, but it'll do.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Chocolate Factory',id:172,list:0,
+        pages:[
+            {
+                desc:
+`You enter a chocolate shop, seeing the many pieces
+of chocolate on offer. They look to be from two different
+brands. Maybe you should make a purchase?`,
+                option:['Buy Ferrero','Buy Lindt','Decline'],
+                optionDesc:['Lose 50 Currency','Lose 50 Currency',''],
+                link:[1,2,3],
+            },{
+                desc:
+`You grab some shiny chocolate balls and pay the price.
+You'll eat them at some point.`,
+                option:['Take it'],
+                optionDesc:['Add a Ferrero to Deck'],
+                link:[-1],
+            },{
+                desc:
+`You grab some shiny chocolate balls and pay the price.
+Eventually you'll get to eating them.`,
+                option:['Take it'],
+                optionDesc:['Add a Lindt to Deck'],
+                link:[-1],
+            },{
+                desc:`You're not will to waste money right now.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'HVM Garrison',id:173,list:0,
+        pages:[
+            {
+                desc:
+`You a single HVM soldier standing around a truck,
+while in the distance you can spot the HVM outpost.
+He's distracted, talking to someone on the radio.`,
+                option:['Ambush Him','Follow Him'],
+                optionDesc:['',''],
+                link:[1,2],
+            },{
+                desc:
+`You sneak up behind him and kill him without trouble.
+You seize whatever documents you find and dispose of the body.`,
+                option:['Leave'],
+                optionDesc:['Gain a Relic - HVM Orders'],
+                link:[-1],
+            },{
+                desc:
+`Following the truck, he eventually reaches what looks to be
+a drop sight. Afterward, he speeds off for a moment, and while
+he's gone, the drop arrives.
+You take all the supplies, escaping before he returns.`,
+                option:['Leave'],
+                optionDesc:['Gain 200 Currency, Heal 10 Health'],
                 link:[-1],
             },
         ],

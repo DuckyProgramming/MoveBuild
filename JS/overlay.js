@@ -1304,6 +1304,18 @@ class overlay{
                                 case 5544:
                                     this.cards[a].attack=[-1064,-1066][a]
                                 break
+                                case 6243:
+                                    this.cards[a].attack=[-1067,-1068][a]
+                                break
+                                case 6262:
+                                    this.cards[a].attack=[-1069,-1070][a]
+                                break
+                                case 6263:
+                                    this.cards[a].attack=[-1071,-1072][a]
+                                break
+                                case 6264:
+                                    this.cards[a].attack=[-1073,-1074][a]
+                                break
                             }
                         }
                     break
@@ -1768,6 +1780,43 @@ class overlay{
                                 this.battle.cardManagers[this.player].hand.allEffect(22)
                                 this.battle.cardManagers[this.player].draw(handSize1066*args[0].effect[3])
                                 this.battle.addSpecificEnergy(handSize1066,this.player,6)
+                            break
+                            case -1067:
+                                this.card.costDown(0,[3])
+                                this.battle.addSpecificEnergy(3,this.player,1)
+                            break
+                            case -1068:
+                                this.card.costDown(0,[7])
+                                userCombatant.statusEffect('Intangible',args[0].effect[1])
+                            break
+                            case -1069:
+                                this.card.costDown(0,[3])
+                                this.battle.cardManagers[this.player].hand.selfCall(6,[54,[],3,[6]])
+                            break
+                            case -1070:
+                                this.card.costDown(0,[5])
+                                this.battle.cardManagers[this.player].drawAbstract(args[0].effect[1],0,2,[11])
+                            break
+                            case -1071:
+                                this.card.costDown(0,[2])
+                                userCombatant.addBlock(args[0].effect[1])
+                                for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
+                                    if(this.battle.cardManagers[this.player].deck.cards[a].id==args[0].id){
+                                        this.battle.cardManagers[this.player].deck.cards[a].effect[1]+=this.battle.cardManagers[this.player].deck.cards[a].effect[2]
+                                    }
+                                }
+                            break
+                            case -1072:
+                                this.card.costDown(0,[6])
+                                userCombatant.statusEffect('Take Credit Block Turn',args[0].effect[3])
+                            break
+                            case -1073:
+                                this.card.costDown(0,[2])
+                                userCombatant.statusEffect('Cancel Exhaust',args[0].effect[1])
+                            break
+                            case -1074:
+                                this.card.costDown(0,[8])
+                                this.battle.addCurrency(args[0].effect[2],this.player)
                             break
                         }
                     break

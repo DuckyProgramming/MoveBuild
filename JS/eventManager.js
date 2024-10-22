@@ -166,6 +166,11 @@ class eventManager{
                 !(this.listing.event[a]==163&&(userCombatant.life>userCombatant.base.life-15||this.battle.currency.money[this.player]<25))&&
                 !(this.listing.event[a]==165&&userCombatant.life<26)&&
                 !(this.listing.event[a]==167&&(userCombatant.life<9||userCombatant.base.life<13))&&
+                !(this.listing.event[a]==169&&this.battle.currency.money[this.player]<40)&&
+                !(this.listing.event[a]==170&&this.battle.currency.money[this.player]<300)&&
+                !(this.listing.event[a]==171&&userCombatant.life>userCombatant.base.life-20)&&
+                !(this.listing.event[a]==172&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==173&&userCombatant.life>userCombatant.base.life-10)&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -1954,9 +1959,48 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                         }
                     break
                     case 168:
-                        if((this.page==0||this.page==2)&&a==0){
+                        if(this.page==0&&a==0){
                             this.battle.overlayManager.overlays[151][this.player].active=true
                             this.battle.overlayManager.overlays[151][this.player].activate([])
+                        }
+                    break
+                    case 169:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(40,this.player)
+                            this.battle.cardManagers[this.player].deck.add(findName('Anatase',types.card),0,0)
+                        }
+                    break
+                    case 170:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(300,this.player)
+                        }else if(this.page==0&&a==1){
+                            this.battle.cardManagers[this.player].deck.add(findName('Disenfranchised',types.card),0,constants.playerNumber+2)
+                        }
+                    break
+                    case 171:
+                        if(this.page==0&&a==0){
+                            userCombatant.heal(userCombatant.base.life)
+                            this.battle.addCurrency(200,this.player)
+                            this.battle.cardManagers[this.player].deck.add(findName('Sickly',types.card),0,constants.playerNumber+2)
+                        }else if(this.page==0&&a==1){
+                            this.battle.addCurrency(50,this.player)
+                        }
+                    break
+                    case 172:
+                        if(this.page==0&&(a==0||a==1)){
+                            this.battle.loseCurrency(50,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Ferrero',types.card),0,0)
+                        }else if(this.page==2&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Lindt',types.card),0,0)
+                        }
+                    break
+                    case 173:
+                        if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Turn 3 Free Card',types.relic),this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.addCurrency(200,this.player)
+                            userCombatant.heal(10)
                         }
                     break
 

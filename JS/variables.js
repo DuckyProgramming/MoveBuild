@@ -915,7 +915,7 @@ types={
         {name:'Euphorbia',internal:'Energy/Counter',id:146,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nAll Enemies Counter 1 All'},
         {name:'Magnifying Glass',internal:'Energy/Enemy Health',id:147,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nEnemies Have 20% More Health'},
         {name:'Absinthe',internal:'Energy/Dexterity',id:148,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nLose 1 Dexterity Every Turn'},
-        {name:'Aquamarine',internal:'3 Free Cards',id:149,rarity:4,list:0,mtg:1,description:'The First 3 Cards Played\nEvery Combat are Free'},
+        {name:'Aquamarine',internal:'6 Free Cards',id:149,rarity:4,list:0,mtg:1,description:'The First 6 Cards Played\nEvery Combat are Free'},
 
         {name:'Carnelian',internal:'Avoidance',id:150,rarity:-1,list:0,mtg:1,description:'You May Move\nThrough Obstructions\nReplace Step With Swap'},
         {name:'Rejector 300',internal:'Remove 6',id:151,rarity:4,list:0,mtg:1,description:'When Taken, Remove 6 Cards'},
@@ -1271,6 +1271,7 @@ types={
 
         {name:'Nuclear Waste',internal:'3 Turn Temporary Strength',id:470,rarity:-1,list:0,mtg:0,description:'Every 3 Turns,\nGain 3 Temporary Strength'},
         {name:'Green Pentachoron',internal:'No Fatigue',id:471,rarity:4,list:0,mtg:0,description:'Never Get Fatigued Again'},
+        {name:'HVM Orders',internal:'Turn 3 Free Card',id:472,rarity:-1,list:0,mtg:0,description:'The First Card You\nPlay on Turn 3 is Free'},
 
         //mark mtg mark r
     ],item:[

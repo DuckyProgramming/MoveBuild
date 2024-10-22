@@ -1989,9 +1989,9 @@ Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}
 		Subcard:
 	Total:${current.cardManagers[0].listing.sub.length}/80				${current.cardManagers[0].listing.sub.length-80}
 		Ally:
-	Total:${current.cardManagers[0].listing.ally.length}/20				${current.cardManagers[0].listing.ally.length-20}
+	Total:${current.cardManagers[0].listing.ally.length}/24				${current.cardManagers[0].listing.ally.length-24}
 		Disband:
-	Total:${current.cardManagers[0].listing.disband.length}/800			${current.cardManagers[0].listing.disband.length-800}
+	Total:${current.cardManagers[0].listing.disband.length}/900			${current.cardManagers[0].listing.disband.length-900}
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/160			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-160}
 			`)
@@ -2429,6 +2429,7 @@ function mtgPlayerColor(player){
 	6-rainbow
 	*/
 	switch(player){
+		case 0: return [0]
 		case 1: return [4]
 		case 2: return [1]
 		case 3: return [3,5]

@@ -12,7 +12,7 @@ function setup(){
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
         current.menu.combatant=[0/*floor(random(0,21))*/]
-        current.menu.deck=[0]
+        current.menu.deck=[-1]
 
             //variants.mtg=true
 
@@ -61,14 +61,14 @@ function setup(){
 
             /*transition.trigger=true
             transition.scene='event'
-            current.setupSpecificEvent(168)*/
+            current.setupSpecificEvent(174)*/
 
             /*player(0).size=3
             player(0).goal.anim.direction=-30
             player(0).anim.direction=-30*/
 
             /*variants.mod=true
-            for(let a=0,la=2;a<la;a++){
+            for(let a=0,la=2a<la;a++){
                 current.modManager.addMod(235+a)
             }*/
 

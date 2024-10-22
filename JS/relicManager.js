@@ -1293,7 +1293,7 @@ class relicManager{
                                 }
                             }
                             if(this.active[149][a+1]>0){
-                                this.getPlayer(a).statusEffect('Free Card',3*this.active[149][a+1])
+                                this.getPlayer(a).statusEffect('Free Card',6*this.active[149][a+1])
                             }
                             if(this.active[188][a+1]>0){
                                 if(floor(random(0,10))==0){
@@ -1490,6 +1490,9 @@ class relicManager{
                             }
                             if(this.active[380][a+1]>0){
                                 this.getPlayer(a).statusEffect('Temporary Strength',3*this.active[380][a+1])
+                            }
+                            if(this.active[472][a+1]>0){
+                                this.getPlayer(a).statusEffect('Free Card',this.active[472][a+1])
                             }
                         }
                         if(this.battle.modded(60)){

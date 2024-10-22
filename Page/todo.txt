@@ -1,53 +1,131 @@
-OPERATION ASCENDANCY
+OPERATION KOSTRZYN
 
-LISTING GROUP 54 - ASYNC
-
-(25)
-
-turn into steam - apply 1 stun, amplify: draw a card, remove all debuffs from self
-
-supreme will - apply 1 stun, scry 4 draw 1
-
-slippery karst - gain (G) next turn, amplify: draw a card discard a card
-
-bottlecap - 10 damage, if blocked draw a card
-
-exaration - draw 2 cards, get a random sculpture
-
-ally cards
-[kutaka?]
+NOT TO BE ACTIVATED UNTIL DECEMBER 2024
 
 
 
-CHARACTER 21 STORAGE ZONE
+blackmail - apply 1 weak, gain 5 currency
 
-NOT TO BE ACTIVATED UNTIL 2025
+paper recycling - exhaust a status card in hand, if successful draw a card gain 1 energy, retain
+
+shoot abundance
+replace with a card that does targeted damage when scryed
+
+spheric emission - get a miracle, fuel 5: upgrade 2 cards
+
+early warning - retain, exhaust a card from draw pile
+
+lost again - draw a card, gain energy equal to the cost of the last card played
+
+nuclear landscape - gain radiation, fuel: trigger your radiation without losing any
+
+rename lose per turn
+
+inyoite - damage, odd energy: apply lose per turn
+
+transversal - pull every card in your hand, draw 1 card
+
+flower, butterfly, wind and moon - when you draw a status card, exhaust 1 card
+
+cherry blizzard - block, when you rearm while this is in your hand apply 3 freeze to all enemies
+
+random barrage - damage, gain random mana
+
+library card - move, if you have played an attack this turn remove 3 fatigues
+
+Moriya talisman - when played or discarded by scry, add 5 block add 5 barrier
+
+duplicitous sky - choose damage, or more damage and get dazed in hand
+
+stress test - gain temporary strength, gain a random temporary item
+
+sharp breeze - 2 cost, deal 6 damage to 2 random enemies, gain 1 energy per enemy hit
+
+wind blessing - gain dodge, remove a non-fatigue status card
+
+walk water - damage, or damage and draw 2 cards and discard 2 random cards
+
+gohei whack - damage, gain control if you have no control
+
+floodlight - damage in all directions, get dazed
+
+shoot divine evocation
+shoot the card that turns you intangible when you draw
+nuke the intangible build honestly
+
+half divinity - rare, draw 2 cards, powers you draw are free
+
+summoner practice - get a miracle, in 2 turns dexterity
+
+ripple - 3 damage, add a copy with replenish to the top of draw pile
+
+sweet berry preserve - 0 cost, block, retain energy this turn, lose 1 energy next turn
+
+disband curiosity it's really weird
+rain of grains - innate, gain 1 strength when you play a power
+
+spectral shower - choose a card from red, white, and green
+
+wine and water - get tipsy and splash
+
+tipsy - retain, gain temporary strength
+
+trichromatic edelweiss - when you discard an unplayable card damage a random enemy
+
+overnight brightness - the star but you scry and draw rather than pulling from the draw (you still pull from discard)
+
+rename miracle pentacle
+new miracle pentacle - choose a power to add, it duplicates once
+
+shrine rivalry - add a hakurei card to hand
+
+nuke phrenitis
+spirit toxin - apply poison, choose between weak and vulnerable
+
+shoot safe moment
+night's lament - gain temporary strength, if below half apply vulnerable to all enemies
+
+spicy cuisine - heal 5 health, lose 1 health at the end of this combat
+
+red carnation - gain 1 dodge, add a slash of future to hand
+
+rename desire drive
+new desire drive - gain 4 temporary strength, and all enemies gain 1 temporary strength
+
+discus gap [rename] - add a discus and gain 1 energy next turn
+
+scythe's call - apply 2 vulnerable, if target will attack draw 2 cards
+
+close up - 15 block, gain 1 energy for each adjacent curse
+
+dissemination - concentrate, but gain less energy, but remove a fatigue
+
+candid shot - 20 damage, 3 vulnerable, 4 cost, retain, costs 1 less when you rearm
+
+F = ma - move 1 tile, amplify: 1 more tile
+
+[pyramid shaped puzzle]
+
+
+
+OPERATION AEDUI
+
+NOT TO BE ACTIVATED UNTIL JANUARY 2025
+
+
 
 all cards to be absorbed will be stored in placeholder mark 21
 
 something like faith but instead of a stance, you just gain a bunch of buffs
 
-strawberry cake - heal 3 health, []
+messing with the top of draw and discard piles
 
 
 
-OPERATION EPISODIC
+strawberry cake - heal 3 health, gain 1 []
 
+little salvation - 13 block, gain 2 temporary strength, gain 2 []
 
+[] guidance - redraw your hand, gain [] each, when drawn gain 1 energy
 
-digger ducks
-mine anatase
-
-property requirements
-pay 300 currency
-or get disenfranchised
-
-very sick duck
-heal to full and gain 200 currency but get sickly
-or get 50 currency
-
-chocolate choice
-choose between ferrero rocher and lindt
-
-[]
 
