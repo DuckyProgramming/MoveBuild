@@ -185,7 +185,7 @@ class combatant{
                 'Wisp Exhaust Charge','Shiv Scatter','Shiv Block','X Cost Chocolate Chip','Hand Copy Next Turn','Poison Damage','Shiv Extra Target','Unplayable Draw Block','Lock On Poison','Bleed Boost',
                 'Control Base','Random Free Exhausting Ethereal Card Per Turn','Attack Freeze Combat','Blueprint Cost Down','Gun Draw Next Turn','Shock All Per Turn','Amplify Poison All','No Draw Next Turn','Energy Gain Energy','Energy Gain (E)',
                 'Cable Claw Up','Energy Orb Per Turn','Basic Energy','Basic (E)','Bleed Damage','Dust Orb Boost','Armor Per Turn','Max Health Gift','Fragile','Free Card Per Turn',
-                'Draw Pull','Power Energy Next Turn','Power (N) Next Turn',
+                'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -259,7 +259,7 @@ class combatant{
                 0,0,0,0,2,0,0,0,0,0,//69
                 0,0,0,0,2,0,0,0,0,0,//70
                 0,0,0,0,0,0,0,0,0,0,//71
-                1,0,0,
+                1,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -333,7 +333,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//69
                 2,2,2,2,2,2,2,3,2,2,//70
                 2,2,2,2,2,2,0,1,1,2,//71
-                2,2,2,
+                2,2,2,2,2,
             ]}
         /*
         0-none
@@ -1428,7 +1428,7 @@ class combatant{
             }
         }
         if(this.spec.includes(6)){
-            this.threshold=this.life-20
+            this.threshold=this.life-25
         }
     }
     subHealthBuff(value){
@@ -2943,7 +2943,7 @@ class combatant{
                 }
             }
             if(userCombatant.status.main[49]>0&&userCombatant.status.main[204]<=0){
-                userCombatant.takeDamage(userCombatant.status.main[49]*2,-1)
+                userCombatant.takeDamage(userCombatant.status.main[49],-1)
             }
             if(userCombatant.status.main[95]>0&&!userCombatant.midHeal){
                 userCombatant.heal(userCombatant.status.main[95])
@@ -3933,7 +3933,7 @@ class combatant{
                 }
             }
             if(this.spec.includes(6)&&this.life<=this.threshold){
-                this.threshold-=20
+                this.threshold-=25
                 this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
             }
             if(this.spec.includes(10)&&this.battle.turn.main<this.battle.players&&!this.aggressor){

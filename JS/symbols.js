@@ -6984,6 +6984,21 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             regStar(layer,0,0,4,5,5,2,2,0)
             displayMtgManaSymbol(layer,0,0,0,0,0.32,fade,-1,[])
         break
+        case 713:
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,-6,-3,3,3,3)
+            layer.noFill()
+            layer.stroke(255,255,200,fade)
+            layer.strokeWeight(1)
+            regStar(layer,0,0,4,5,5,2,2,0)
+        break
+        case 714:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
+            layer.fill(120,210,240,fade)
+            layer.triangle(-0.5,0.5,-4.5,0.5,-0.5,4.5)
+            layer.triangle(0.5,-0.5,4.5,-0.5,0.5,-4.5)
+        break
         
     }
     //mark s

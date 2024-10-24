@@ -4698,7 +4698,7 @@ class particle{
                     parent.particlesNonCalc.push(new particle(this.layer,
                         this.position.x+lsin(this.direction)*distance+random(-10,10),
                         this.position.y-lcos(this.direction)*distance+random(-10,10),
-                        197,[0,random(0.4,0.6)]))
+                        197,[0,random(0.4,0.6),[[255,150,150],[255,255,200]]]))
                 }
                 if(!this.trigger){
                     this.fade+=0.1

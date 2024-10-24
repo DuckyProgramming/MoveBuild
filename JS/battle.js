@@ -1378,6 +1378,9 @@ class battle{
                 if(userCombatant.getStatus('Power (N) Next Turn')>0){
                     userCombatant.statusEffect('(N) Next Turn',userCombatant.getStatus('Power (N) Next Turn'))
                 }
+                if(userCombatant.getStatus('Power Strength')>0){
+                    userCombatant.statusEffect('Strength',userCombatant.getStatus('Power Strength'))
+                }
             break
             case 11:
                 if(userCombatant.getStatus('Skill Temporary Strength')>0){

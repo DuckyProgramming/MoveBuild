@@ -4,65 +4,29 @@ NOT TO BE ACTIVATED UNTIL DECEMBER 2024
 
 
 
-blackmail - apply 1 weak, gain 5 currency
-
 paper recycling - exhaust a status card in hand, if successful draw a card gain 1 energy, retain
 
-shoot abundance
-replace with a card that does targeted damage when scryed
-
-spheric emission - get a miracle, fuel 5: upgrade 2 cards
-
-early warning - retain, exhaust a card from draw pile
-
 lost again - draw a card, gain energy equal to the cost of the last card played
-
-nuclear landscape - gain radiation, fuel: trigger your radiation without losing any
 
 rename lose per turn
 
 inyoite - damage, odd energy: apply lose per turn
 
-transversal - pull every card in your hand, draw 1 card
-
 flower, butterfly, wind and moon - when you draw a status card, exhaust 1 card
-
-cherry blizzard - block, when you rearm while this is in your hand apply 3 freeze to all enemies
 
 random barrage - damage, gain random mana
 
 library card - move, if you have played an attack this turn remove 3 fatigues
 
-Moriya talisman - when played or discarded by scry, add 5 block add 5 barrier
-
 duplicitous sky - choose damage, or more damage and get dazed in hand
-
-stress test - gain temporary strength, gain a random temporary item
 
 sharp breeze - 2 cost, deal 6 damage to 2 random enemies, gain 1 energy per enemy hit
 
-wind blessing - gain dodge, remove a non-fatigue status card
-
 walk water - damage, or damage and draw 2 cards and discard 2 random cards
-
-gohei whack - damage, gain control if you have no control
-
-floodlight - damage in all directions, get dazed
-
-shoot divine evocation
-shoot the card that turns you intangible when you draw
-nuke the intangible build honestly
 
 half divinity - rare, draw 2 cards, powers you draw are free
 
 summoner practice - get a miracle, in 2 turns dexterity
-
-ripple - 3 damage, add a copy with replenish to the top of draw pile
-
-sweet berry preserve - 0 cost, block, retain energy this turn, lose 1 energy next turn
-
-disband curiosity it's really weird
-rain of grains - innate, gain 1 strength when you play a power
 
 spectral shower - choose a card from red, white, and green
 

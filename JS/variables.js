@@ -227,7 +227,7 @@ types={
         {name:'Paramilitary',life:60,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:403,effect:[10]}],description:`"Faction"`},
         
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
-        {name:'Slime Boss',life:90,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[2]}],description:`Very fat slime`},
+        {name:'Slime Boss',life:90,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[12]},{type:55,effect:[2]}],description:`Very fat slime`},
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
         {name:'Donu',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[6]}],description:`It's just shapes`},
@@ -3514,7 +3514,7 @@ types={
         },{
             level:['Outcut 5'],class:0,world:1,
             name:'Caporegime',
-            player:{position:[[{x:1,y:2}],[{x:1,y:1},{x:3,y:1}]]},
+            player:{position:[[{x:1,y:2}],[{x:1,y:1},{x:2,y:3}]]},
             enemy:[
                 {position:{x:4,y:2},name:'Caporegime'},
                 {position:{x:3,y:2},name:'Gangster'},

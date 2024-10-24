@@ -155,7 +155,7 @@ class cardManager{
                     }
                 }
                 //variants.prismrule.includes(cardData.list)&&cardData.rarity>-10||variants.prismrule.includes(-1)&&cardData.list<0||variants.prismrule.includes(-2)&&cardData.rarity==-10
-                if(cardData.rarity>=0&&cardData.list>=0){
+                if(cardData.rarity>=0&&cardData.list>=0&&cardData.list<constants.playerNumber+6){
                     if(cardData.rarity!=3){
                         this.listing.card[cardData.list][cardData.rarity].push(a)
                     }

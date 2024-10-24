@@ -126,18 +126,18 @@ class relicManager{
         }
         if(this.battle.tutorialManager.active){
             for(let a=0,la=3;a<la;a++){
-                this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,findInternal('Placeholder',types.relic),2))
+                this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2,this.layer.height/2+10-la*50+a*100,findInternal('Placeholder',types.relic),2))
             }
         }else{
             let relics=copyArrayStack(this.listing.relic)
             let possible=[0,0,0,1,1,2]
-            for(let a=0,la=this.active[109]>0?5:3;a<la;a++){
+            for(let a=0,la=this.active[109][0]>0?5:3;a<la;a++){
                 let rarity=possible[floor(random(0,possible.length))]
                 if(relics[rarity].length==0){
-                    this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,findName('Menger Square',types.relic),2))
+                    this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2,this.layer.height/2+10-la*50+a*100,findName('Menger Square',types.relic),2))
                 }else{
                     let index=floor(random(0,relics[rarity].length))
-                    this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,relics[rarity][index],2))
+                    this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2,this.layer.height/2+10-la*50+a*100,relics[rarity][index],2))
                     relics[rarity].splice(index,1)
                 }
             }
@@ -150,7 +150,7 @@ class relicManager{
         }
         if(this.battle.tutorialManager.active){
             for(let a=0,la=3;a<la;a++){
-                this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,findInternal('Placeholder',types.relic),2))
+                this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2,this.layer.height/2+10-la*50+a*100,findInternal('Placeholder',types.relic),2))
             }
         }else if(variants.mtg){
             let groups=[[],[],[],[],[],[],[],[]]
@@ -2788,9 +2788,9 @@ class relicManager{
                 this.displayRelics.forEach(relic=>relic.displayInfo())
                 this.layer.fill(200,this.fade)
                 this.layer.noStroke()
-                this.layer.ellipse(this.layer.width/2,this.layer.height/2+40+this.displayRelics.length*50,60,60)
+                this.layer.ellipse(this.layer.width/2,this.layer.height/2+this.displayRelics.length*50,60,60)
                 this.layer.fill(80,this.fade)
-                regTriangle(this.layer,this.layer.width/2,this.layer.height/2+40+this.displayRelics.length*50,20,20,90)
+                regTriangle(this.layer,this.layer.width/2,this.layer.height/2+this.displayRelics.length*50,20,20,90)
             break
             case 'bossstash':
                 if(this.battle.players>1){
@@ -2925,7 +2925,7 @@ class relicManager{
                         this.selfCall(0,[a,this.battle.players==1?0:inputs.rel.x<this.displayRelics[a].position.x&&this.complete[0]>0||this.complete[1]<=0?0:1,false])
                     }
                 }
-                if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2,this.layer.height/2+40+this.displayRelics.length*50)<30){
+                if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2,this.layer.height/2+this.displayRelics.length*50)<30){
                     transition.trigger=true
                     transition.scene='map'
                 }

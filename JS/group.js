@@ -1695,6 +1695,9 @@ class group{
                     this.cards[a].color=floor(random(0,constants.playerNumber))+1
                     this.cards[a].setColorDetail()
                 break
+                case 116:
+                    this.cards[a].callPullEffect()
+                break
 
             }
         }
@@ -2136,6 +2139,16 @@ class group{
                         this.cards[index].spec.push(10)
                     break
                     case 12: case 49:
+                        if(massed&&this.id!=0){
+                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
+                                this.cards[index].callPullEffect()
+                            }
+                            this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
+                            if(userCombatant.getStatus('Mass Pull Damage Random')>0){
+                                this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
+                            }
+                        }
                         this.send(args[0],index,index+1,1)
                     break
                     case 13:
@@ -2168,6 +2181,16 @@ class group{
                         }
                     break
                     case 16:
+                        if(massed&&this.id!=0){
+                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
+                                this.cards[index].callPullEffect()
+                            }
+                            this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
+                            if(userCombatant.getStatus('Mass Pull Damage Random')>0){
+                                this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
+                            }
+                        }
                         this.send(args[0],index,index+1,1)
                     break
                     case 18:
@@ -2347,7 +2370,6 @@ class group{
                             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                                 this.cards[index].callPullEffect()
-                                
                             }
                             this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
                             if(userCombatant.getStatus('Mass Pull Damage Random')>0){
@@ -2368,7 +2390,6 @@ class group{
                             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                                 this.cards[index].callPullEffect()
-                                
                             }
                             this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
                             if(userCombatant.getStatus('Mass Pull Damage Random')>0){
@@ -2382,7 +2403,6 @@ class group{
                             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                                 this.cards[index].callPullEffect()
-                                
                             }
                             this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
                             if(userCombatant.getStatus('Mass Pull Damage Random')>0){
@@ -2396,7 +2416,6 @@ class group{
                             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                                 this.cards[index].callPullEffect()
-                                
                             }
                             this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
                             if(userCombatant.getStatus('Mass Pull Damage Random')>0){
@@ -2422,11 +2441,13 @@ class group{
                     break
 
                 }
-                if(massed&&this.id!=0){
+                if(massed&&this.id!=0&&
+                    effect!=12&&effect!=16&&effect!=49&&effect!=60&&effect!=66&&
+                    effect!=67&&effect!=68
+                ){
                     let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                     for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                         this.cards[index].callPullEffect()
-                        
                     }
                     this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
                     if(userCombatant.getStatus('Mass Pull Damage Random')>0){
@@ -2642,6 +2663,14 @@ class group{
             case -113:
                 this.drawEffects.push([3,5])
                 this.drawEffects.push([3,115])
+            break
+            case -114:
+                if(userCombatant.luckCheck()||!userCombatant.luckCheckFail()&&floor(random(0,2))==0){
+                    userCombatant.highRoll()
+                }else{
+                    userCombatant.lowRoll()
+                    this.battle.loseEnergy(card.effect[0],this.player)
+                }
             break
 
             //mark n
