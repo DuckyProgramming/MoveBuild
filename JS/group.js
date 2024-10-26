@@ -9,7 +9,8 @@ class group{
         this.drawEffects=[]
         this.target=[]
         this.lastDuplicate=[]
-        this.lastPlayed=multiplyArray([0,0,variants.mtg?[]:0,0,[]],13)
+        this.tempCard=new card(this.layer,this.battle,this.player,0,0,0,0,0,0,variants.mtg?[]:0,[])
+        this.lastPlayed=elementArray(this.tempCard,14)
         this.totalPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
@@ -31,7 +32,7 @@ class group{
         this.basicChange=[0,0]
         this.addEffect=[]
         this.finalPosition=0
-        this.listKey=43
+        this.listKey=44
         this.listInput=[
             [0,4],
             [1,8],
@@ -72,6 +73,7 @@ class group{
             [40,49],
             [41,50],
             [42,51],
+            [43,52],
         ]
 
         this.reset()
@@ -259,7 +261,7 @@ class group{
         }
     }
     clear(){
-        this.lastPlayed=multiplyArray([0,0,variants.mtg?[]:0,0,[]],13)
+        this.lastPlayed=elementArray(this.tempCard,14)
         this.totalPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.lastTurnPlayedEdition=[0,0,0,0,0,0,0,0,0,0,0,0]
@@ -632,6 +634,10 @@ class group{
     }
     exhaustStrength(amount){
         this.status[42]+=amount
+        this.generalSelfStatus()
+    }
+    discardValid(amount){
+        this.status[43]+=amount
         this.generalSelfStatus()
     }
     generalSelfStatus(){
@@ -2363,6 +2369,16 @@ class group{
                         this.cards[index]=upgradeCard(upgradeCard(this.cards[index]))
                     break
                     case 56:
+                        if(massed&&this.id!=0){
+                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
+                                this.cards[index].callPullEffect()
+                            }
+                            this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
+                            if(userCombatant.getStatus('Mass Pull Damage Random')>0){
+                                this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
+                            }
+                        }
                         this.generalExhaust(index)
                     break
                     case 60:
@@ -2442,8 +2458,8 @@ class group{
 
                 }
                 if(massed&&this.id!=0&&
-                    effect!=12&&effect!=16&&effect!=49&&effect!=60&&effect!=66&&
-                    effect!=67&&effect!=68
+                    effect!=12&&effect!=16&&effect!=49&&effect!=56&&effect!=60&&
+                    effect!=66&&effect!=67&&effect!=68
                 ){
                     let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                     for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
@@ -2479,6 +2495,9 @@ class group{
             case 5:
                 if(userCombatant.getStatus('Drawn Status Draw')>0){
                     this.drawEffects.push([5,this.drawEffects.push([5,userCombatant.getStatus('Drawn Status Draw')])])
+                }
+                if(userCombatant.getStatus('Drawn Status Exhaust')>0){
+                    this.battle.cardManagers[this.player].hand.exhaust(userCombatant.getStatus('Drawn Status Exhaust'))
                 }
             break
         }
@@ -2967,6 +2986,9 @@ class group{
             break
             case 5972:
                 this.battle.addSpecificEnergy(1,this.player,6)
+            break
+            case 6375: case 6376:
+                this.battle.addSpecificEnergy(1,this.player,1)
             break
         }
         card.drawMark=false
@@ -3768,7 +3790,7 @@ class group{
                             case 4802:
                                 amplifyCost=[6,6]
                             break
-                            case 4860:
+                            case 4860: case 6321:
                                 amplifyCost=[4]
                             break
                             case 4868:
@@ -3866,7 +3888,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[this.anim[0],max(this.anim[1],this.anim[13],this.anim[29],this.anim[30]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42]]
+                let anim=[max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -4360,9 +4382,9 @@ class group{
                 this.battle.updateTargetting()
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
-                        this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,variants.mtg?copyArray(this.cards[b].color):this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
+                        this.lastPlayed[0]=copyCard(this.cards[b])
                         if(this.cards[b].class!=0){
-                            this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,variants.mtg?copyArray(this.cards[b].color):this.cards[b].color,this.cards[b].edition,copyArray(this.cards[b].spec)]
+                            this.lastPlayed[this.cards[b].class]=copyCard(this.cards[b])
                         }
                     }
                 }
@@ -4497,9 +4519,9 @@ class group{
                     }
                     if(this.cardInUse!=-1){
                         this.selfCall(42,[this.cardInUse,mode])
-                        this.lastPlayed[0]=[this.cardInUse.type,this.cardInUse.level,variants.mtg?copyArray(this.cardInUse.color):this.cardInUse.color,this.cardInUse.edition,copyArray(this.cardInUse.spec)]
+                        this.lastPlayed[0]=copyCard(this.cardInUse)
                         if(this.battle.attackManager.attackClass!=0){
-                            this.lastPlayed[this.battle.attackManager.attackClass]=[this.cardInUse.type,this.cardInUse.level,variants.mtg?copyArray(this.cardInUse.color):this.cardInUse.color,this.cardInUse.edition,copyArray(this.cardInUse.spec)]
+                            this.lastPlayed[this.battle.attackManager.attackClass]=copyCard(this.cardInUse)
                         }
                         if(this.cardInUse.spec.includes(26)){
                             this.battle.cardManagers[this.battle.players-1-this.player].callAmalgums(this.battle.attackManager)
@@ -4770,9 +4792,9 @@ class group{
                 this.cardInUse=a
                 this.selfCall(5,0)
                 this.selfCall(42,[a,0])
-                this.lastPlayed[0]=[a.type,a.level,variants.mtg?copyArray(a.color):a.color,a.edition,copyArray(a.spec)]
+                this.lastPlayed[0]=copyCard(a)
                 if(a.class!=0){
-                    this.lastPlayed[a.class]=[a.type,a.level,variants.mtg?copyArray(a.color):a.color,a.edition,copyArray(a.spec)]
+                    this.lastPlayed[a.class]=copyCard(a)
                 }
             break
             case 34:
@@ -4967,9 +4989,9 @@ class group{
                         this.battle.attackManager.execute()
                     }
                     this.battle.updateTargetting()
-                    this.lastPlayed[0]=[this.cardInUse.type,this.cardInUse.level,variants.mtg?copyArray(this.cardInUse.color):this.cardInUse.color,this.cardInUse.edition,copyArray(this.cardInUse.spec)]
+                    this.lastPlayed[0]=copyCard(this.cardInUse)
                     if(this.battle.attackManager.attackClass!=0){
-                        this.lastPlayed[this.battle.attackManager.attackClass]=[this.cardInUse.type,this.cardInUse.level,variants.mtg?copyArray(this.cardInUse.color):this.cardInUse.color,this.cardInUse.edition,copyArray(this.cardInUse.spec)]
+                        this.lastPlayed[this.battle.attackManager.attackClass]=copyCard(this.cardInUse)
                     }
                     if(this.cardInUse.spec.includes(26)){
                         this.battle.cardManagers[this.battle.players-1-this.player].callAmalgums(this.battle.attackManager)
@@ -5014,6 +5036,12 @@ class group{
                     if(this.status[42]>0){
                         this.status[42]--
                     }
+                }
+            break
+            case 52:
+                this.cards[a].deSize=true
+                if(this.status[43]>0){
+                    this.status[43]--
                 }
             break
         }
@@ -5149,7 +5177,7 @@ class group{
                                 this.cards[a].position.x=min(this.cards[a].position.x+25*this.compact,cap)
                             }
                         }
-                        if(this.cards[a].attack==-84&&this.cards[a].time>this.cards[a].effect[0]*60&&!this.cards[a].deSize){
+                        if(this.cards[a].attack==-84&&this.cards[a].time>this.cards[a].effect[0]*60&&!this.cards[a].deSize&&!this.battle.result.victory){
                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.cards[a].effect[1],-1)
                             this.cards[a].deSize=true
                         }

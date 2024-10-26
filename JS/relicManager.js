@@ -1336,7 +1336,7 @@ class relicManager{
                                 this.getPlayer(a).statusEffect('Strength',this.active[320][a+1]*this.battle.cardManagers[a].deck.numberAbstract(4,[[6]]))
                             }
                             if(this.active[328][a+1]>0){
-                                this.getPlayer(a).statusEffect('Single Attack Lose Per Turn',3*this.active[328][a+1])
+                                this.getPlayer(a).statusEffect('Single Attack Mortal',3*this.active[328][a+1])
                             }
                             if(this.active[329][a+1]>0){
                                 this.getPlayer(a).statusEffect('Single Attack Remove Block',this.active[329][a+1])

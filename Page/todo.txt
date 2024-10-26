@@ -1,74 +1,16 @@
 OPERATION KOSTRZYN
 
-NOT TO BE ACTIVATED UNTIL DECEMBER 2024
 
-
-
-paper recycling - exhaust a status card in hand, if successful draw a card gain 1 energy, retain
-
-lost again - draw a card, gain energy equal to the cost of the last card played
-
-rename lose per turn
-
-inyoite - damage, odd energy: apply lose per turn
-
-flower, butterfly, wind and moon - when you draw a status card, exhaust 1 card
 
 random barrage - damage, gain random mana
 
-library card - move, if you have played an attack this turn remove 3 fatigues
-
-duplicitous sky - choose damage, or more damage and get dazed in hand
-
-sharp breeze - 2 cost, deal 6 damage to 2 random enemies, gain 1 energy per enemy hit
-
 walk water - damage, or damage and draw 2 cards and discard 2 random cards
 
-half divinity - rare, draw 2 cards, powers you draw are free
-
-summoner practice - get a miracle, in 2 turns dexterity
-
-spectral shower - choose a card from red, white, and green
-
-wine and water - get tipsy and splash
-
-tipsy - retain, gain temporary strength
-
-trichromatic edelweiss - when you discard an unplayable card damage a random enemy
-
-overnight brightness - the star but you scry and draw rather than pulling from the draw (you still pull from discard)
-
-rename miracle pentacle
-new miracle pentacle - choose a power to add, it duplicates once
-
-shrine rivalry - add a hakurei card to hand
-
-nuke phrenitis
-spirit toxin - apply poison, choose between weak and vulnerable
-
-shoot safe moment
 night's lament - gain temporary strength, if below half apply vulnerable to all enemies
 
-spicy cuisine - heal 5 health, lose 1 health at the end of this combat
-
-red carnation - gain 1 dodge, add a slash of future to hand
-
-rename desire drive
-new desire drive - gain 4 temporary strength, and all enemies gain 1 temporary strength
-
-discus gap [rename] - add a discus and gain 1 energy next turn
-
-scythe's call - apply 2 vulnerable, if target will attack draw 2 cards
-
-close up - 15 block, gain 1 energy for each adjacent curse
-
-dissemination - concentrate, but gain less energy, but remove a fatigue
-
-candid shot - 20 damage, 3 vulnerable, 4 cost, retain, costs 1 less when you rearm
-
-F = ma - move 1 tile, amplify: 1 more tile
-
 [pyramid shaped puzzle]
+
+[] - draw 3 cards, gain 1 dodge per skill drawn
 
 
 
@@ -83,6 +25,8 @@ all cards to be absorbed will be stored in placeholder mark 21
 something like faith but instead of a stance, you just gain a bunch of buffs
 
 messing with the top of draw and discard piles
+
+discus
 
 
 

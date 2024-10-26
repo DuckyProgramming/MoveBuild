@@ -148,7 +148,7 @@ attack.prototype.update=function(){
         case 6144: case 6146: case 6148: case 6149: case 6150: case 6151: case 6156: case 6158: case 6159: case 6166:
         case 6169: case 6171: case 6183: case 6191: case 6194: case 6195: case 6210: case 6238: case 6240: case 6241:
         case 6242: case 6254: case 6279: case 6280: case 6281: case 6292: case 6293: case 6294: case 6295: case 6298:
-        case 6299: case 6303: case 6307: case 6308:
+        case 6299: case 6303: case 6307: case 6308: case 6332: case 6351: case 6352: case 6367:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -313,7 +313,8 @@ attack.prototype.update=function(){
         case 6086: case 6088: case 6089: case 6090: case 6091: case 6093: case 6127: case 6128: case 6129: case 6152:
         case 6154: case 6157: case 6160: case 6161: case 6164: case 6165: case 6167: case 6187: case 6188: case 6189:
         case 6202: case 6207: case 6247: case 6249: case 6250: case 6251: case 6267: case 6287: case 6289: case 6300:
-        case 6302:
+        case 6302: case 6325: case 6331: case 6340: case 6345: case 6364: case 6366: case 6368: case 6369: case 6372:
+        case 6373:
             //mark 2
             if(
                 this.timer==1&&(
@@ -395,7 +396,7 @@ attack.prototype.update=function(){
         case 5650: case 5654: case 5655: case 5656: case 5663: case 5670: case 5672: case 5784: case 5785: case 5786:
         case 5787: case 5841: case 5871: case 5895: case 5992: case 6077: case 6113: case 6139: case 6140: case 6141:
         case 6142: case 6155: case 6162: case 6184: case 6185: case 6216: case 6217: case 6283: case 6284: case 6285:
-        case 6286:
+        case 6286: case 6321: case 6322: case 6361:
             //mark 3
             if(
                 this.timer==1&&(
@@ -863,7 +864,8 @@ attack.prototype.update=function(){
         case 6076: case 6082: case 6083: case 6084: case 6085: case 6087: case 6094: case 6095: case 6096: case 6097:
         case 6106: case 6112: case 6115: case 6116: case 6117: case 6123: case 6145: case 6147: case 6179: case 6211:
         case 6214: case 6215: case 6220: case 6223: case 6224: case 6235: case 6236: case 6252: case 6271: case 6272:
-        case 6277: case 6290: case 6304:
+        case 6277: case 6290: case 6304: case 6314: case 6326: case 6327: case 6328: case 6329: case 6333: case 6354:
+        case 6355: case 6356: case 6357: case 6358: case 6370: case 6377: case 6379: case 6380:
             //mark 4
             if(
                 this.timer==1&&(
@@ -978,7 +980,9 @@ attack.prototype.update=function(){
         case 5987: case 5988: case 5989: case 6008: case 6026: case 6027: case 6043: case 6046: case 6047: case 6072:
         case 6073: case 6075: case 6081: case 6108: case 6114: case 6134: case 6135: case 6153: case 6170: case 6177:
         case 6192: case 6200: case 6206: case 6212: case 6218: case 6221: case 6222: case 6225: case 6226: case 6227:
-        case 6237: case 6239: case 6248: case 6266: case 6268: case 6306: case 6310:
+        case 6237: case 6239: case 6248: case 6266: case 6268: case 6306: case 6310: case 6318: case 6324: case 6330:
+        case 6335: case 6336: case 6339: case 6346: case 6347: case 6348: case 6349: case 6350: case 6353: case 6359:
+        case 6371: case 6375: case 6376: case 6381: case 6383:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -1121,7 +1125,7 @@ attack.prototype.update=function(){
         case 5079: case 5084: case 5426: case 5459: case 5483: case 5551: case 5586: case 5587: case 5590: case 5592:
         case 5603: case 5610: case 5611: case 5659: case 5676: case 5763: case 5776: case 5777: case 5822: case 5823:
         case 5826: case 6019: case 6039: case 6056: case 6064: case 6065: case 6066: case 6163: case 6173: case 6178:
-        case 6256: case 6257: case 6258:
+        case 6256: case 6257: case 6258: case 6315: case 6316: case 6341:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||
@@ -1896,7 +1900,7 @@ attack.prototype.update=function(){
         case 1427: case 1428: case 1463: case 1474: case 1649: case 1740: case 1822: case 1828: case 1829: case 1830:
         case 1934: case 1967: case 1968: case 2627: case 2630: case 2649: case 2651: case 3220: case 3349: case 3516:
         case 3692: case 3906: case 4085: case 4816: case 4833: case 4834: case 4850: case 4947: case 5098: case 5625:
-        case 6023: case 6024: case 6025: case 6102: case 6197: case 6199: case 6219: case 6234:
+        case 6023: case 6024: case 6025: case 6102: case 6197: case 6199: case 6219: case 6234: case 6317:
             if(
                 (this.type==1649||this.type==1740)&&this.userCombatant.energyParity(this.energy)!=this.limit%2||
                 this.type==1822&&this.energy<2||
@@ -2014,7 +2018,7 @@ attack.prototype.update=function(){
         case 5142: case 5158: case 5197: case 5234: case 5237: case 5280: case 5399: case 5472: case 5479: case 5598:
         case 5692: case 5759: case 5868: case 5896: case 5907: case 5999: case 6000: case 6042: case 6059: case 6060:
         case 6107: case 6109: case 6110: case 6111: case 6136: case 6172: case 6231: case 6245: case 6246: case 6274:
-        case 6278: case 6291:
+        case 6278: case 6291: case 6324: case 6337: case 6338: case 6342: case 6343: case 6344: case 6378:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -2766,7 +2770,8 @@ attack.prototype.update=function(){
         case 5851: case 5875: case 5908: case 5910: case 5923: case 5932: case 5938: case 5949: case 5976: case 5990:
         case 5991: case 5993: case 6021: case 6022: case 6048: case 6057: case 6067: case 6070: case 6098: case 6099:
         case 6100: case 6105: case 6119: case 6122: case 6181: case 6182: case 6186: case 6198: case 6253: case 6269:
-        case 6273: case 6276: case 6282: case 6301:
+        case 6273: case 6276: case 6282: case 6301: case 6319: case 6320: case 6323: case 6334: case 6362: case 6363:
+        case 6365: case 6374:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -4531,7 +4536,7 @@ attack.prototype.update=function(){
         case 6120: case 6121: case 6130: case 6137: case 6190: case 6196: case 6201: case 6203: case 6204: case 6205:
         case 6208: case 6209: case 6213: case 6228: case 6229: case 6230: case 6232: case 6233: case 6243: case 6244:
         case 6259: case 6260: case 6261: case 6262: case 6263: case 6264: case 6265: case 6288: case 6296: case 6305:
-        case 6309: case 6311:
+        case 6309: case 6311: case 6312: case 6313:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
@@ -7074,7 +7079,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 2210: case 2211: case 3258:
+        case 2210: case 2211: case 3258: case 6382:
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
             }
@@ -8603,10 +8608,10 @@ attack.prototype.update=function(){
                 this.userCombatant.startAnimation(0)
                 if(this.userCombatant.metal>=this.effect[1]){
                     let index=this.battle.tileManager.getTileIndex(this.targetTile.tilePosition.x*(1+1/this.targetDistance)-this.userCombatant.tilePosition.x/this.targetDistance,this.targetTile.tilePosition.y*(1+1/this.targetDistance)-this.userCombatant.tilePosition.y/this.targetDistance)
-                    if(index>=0){
+                    if(index>=0&&this.battle.tileManager.tiles[index].occupied==0){
                         this.userCombatant.metal-=this.effect[1]
                         let index2=this.battle.tileManager.getTileIndex(this.targetTile.tilePosition.x*(1+2/this.targetDistance)-this.userCombatant.tilePosition.x*2/this.targetDistance,this.targetTile.tilePosition.y*(1+2/this.targetDistance)-this.userCombatant.tilePosition.y*2/this.targetDistance)
-                        if(index2>=0){
+                        if(index2>=0&&this.battle.tileManager.tiles[index2].occupied==0){
                             this.targetTile=this.battle.tileManager.tiles[index2]
                             this.targetDistance+=2
                         }else{
@@ -8635,11 +8640,11 @@ attack.prototype.update=function(){
                 this.userCombatant.startAnimation(0)
                 if(this.userCombatant.charge>=this.effect[1]){
                     let index=this.battle.tileManager.getTileIndex(this.targetTile.tilePosition.x*(1+1/this.targetDistance)-this.userCombatant.tilePosition.x/this.targetDistance,this.targetTile.tilePosition.y*(1+1/this.targetDistance)-this.userCombatant.tilePosition.y/this.targetDistance)
-                    if(index>=0){
+                    if(index>=0&&this.battle.tileManager.tiles[index].occupied==0){
                         this.userCombatant.charge-=this.effect[1]
                         this.userCombatant.chargeConsumed()
                         let index2=this.battle.tileManager.getTileIndex(this.targetTile.tilePosition.x*(1+2/this.targetDistance)-this.userCombatant.tilePosition.x*2/this.targetDistance,this.targetTile.tilePosition.y*(1+2/this.targetDistance)-this.userCombatant.tilePosition.y*2/this.targetDistance)
-                        if(index2>=0){
+                        if(index2>=0&&this.battle.tileManager.tiles[index2].occupied==0){
                             this.targetTile=this.battle.tileManager.tiles[index2]
                             this.targetDistance+=2
                         }else{
@@ -12019,6 +12024,29 @@ attack.prototype.update=function(){
                     break
                 }
             }else if(this.timer>=20){
+                this.remove=true
+            }
+        break
+        case 6360:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(17)
+            }
+            if(this.timer<=10||this.timer>20&&this.timer<=30){
+                this.userCombatant.runAnimation(1/20,17)
+            }
+            if(this.timer==15){
+                for(let a=0,la=5;a<la;a++){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,
+                        this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                        this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                    247,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30)+random(-3,3)-a*12+a*6,15]))
+                }
+            }else if(this.timer==5*this.targetDistance+15){
+                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                this.targetCombatant.statusEffect('Weak',this.effect[1])
+                this.targetCombatant.statusEffect('Vulnerable',this.effect[2])
+                this.userManager.addRandomAbstract(2,0,0,1,0,[],[constants.playerNumber+2,3])
+            }else if(this.timer>=max(30,5*this.targetDistance+25)){
                 this.remove=true
             }
         break

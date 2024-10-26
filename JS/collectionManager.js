@@ -136,11 +136,12 @@ class collectionManager{
         let result=getItem('DP_MOVEBUILD_COLLECTION_KNOWN')
         this.known=result==null?[]:JSON.parse(result)
         for(let a=0,la=types.card.length;a<la;a++){
-            this.known.push([])
+            this.knownKey.push(false)
         }
         this.known.forEach(name=>this.knownKey[findName(name,types.card)]=true)
     }
     saveData(){
+        this.known=this.known.filter(item=>!(typeof item=='object'&&item.length==0))
         storeItem('DP_MOVEBUILD_COLLECTION_KNOWN',JSON.stringify(this.known))
     }
     display(scene){

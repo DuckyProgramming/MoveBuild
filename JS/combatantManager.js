@@ -531,6 +531,9 @@ class combatantManager{
                         this.combatants[index].statusEffect(args[b*2],args[b*2+1])
                     }
                 break
+                case 24:
+                    this.combatants[index].takeDamage(args[0],args[1])
+                    return index
             }
         }
     }
@@ -1030,6 +1033,11 @@ class combatantManager{
                                     this.combatants[a].statusEffect(args[b*2],args[b*2+1])
                                 }
                             }
+                        }
+                    break
+                    case 55:
+                        if(this.combatants[a].id!=args[0]){
+                            this.combatants[a].takeDamage(args[1],args[2])
                         }
                     break
                 }

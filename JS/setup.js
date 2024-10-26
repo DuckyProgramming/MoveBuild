@@ -11,7 +11,7 @@ function setup(){
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[0,/*floor(random(0,21))*/]
+        current.menu.combatant=[17,/*floor(random(0,21))*/]
         current.menu.deck=[-1]
 
             //variants.mtg=true
@@ -61,7 +61,7 @@ function setup(){
 
             /*transition.trigger=true
             transition.scene='event'
-            current.setupSpecificEvent(174)*/
+            current.setupSpecificEvent(156)*/
 
             /*player(0).size=3
             player(0).goal.anim.direction=-30

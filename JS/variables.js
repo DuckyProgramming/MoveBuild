@@ -188,6 +188,7 @@ types={
         {name:'Prison Guard Gunner',life:32,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:400,effect:[10,2,'Dazed']}],description:`Average riot control measure`},
         {name:'Shield Prison Guard',life:62,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:399,effect:[8,10]},{type:353,effect:[12,1]}],description:`Not as good as riot police`},
         {name:'Half Spikeball',life:35,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:417,effect:[10]},{type:418,effect:[10]}],description:`Poor rotational alignment`},
+        {name:'Graphite Block',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:426,effect:[1]},{type:30,effect:[6,6]},{type:396,effect:[6,6]}],description:`Can be made into a packager`},
         {name:'Zombie Duck',life:13,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[6]},{type:1,effect:[5]}],description:`You again?`},
         {name:'Pistol Duck',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:236,effect:[4]}],description:`Brought a gun to... a gun fight?`},
         {name:'Hit Squad',life:36,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[12]},{type:427,effect:[9,1]},{type:428,effect:[9,1]}],description:`Take him out!`},
@@ -951,7 +952,7 @@ types={
         {name:'Ataraxia',internal:'Extra Energy Temporary Strength',id:179,rarity:2,list:0,mtg:1,description:'Extra Energy is Converted\nto Temporary Strength'},
 
         {name:'Glow Up',internal:'More Editions',id:180,rarity:4,list:0,mtg:1,description:'Cards are 4x More\nLikely to Have Editions'},
-        {name:'Silver Pack',internal:'3 Random Silvers',id:181,rarity:3,list:0,mtg:0,description:'When Taken, Make 3\nRandom Cards Silver'},
+        {name:'Shiny Pack',internal:'3 Random Shinies',id:181,rarity:3,list:0,mtg:0,description:'When Taken, Make 3\nRandom Cards Shiny'},
         {name:'Foil Pack',internal:'3 Random Foils',id:182,rarity:3,list:0,mtg:0,description:'When Taken, Make 3\nRandom Cards Foil'},
         {name:'Holographic Pack',internal:'2 Random Holographics',id:183,rarity:3,list:0,mtg:0,description:'When Taken, Make 2\nRandom Cards Holographic'},
         {name:'Polychrome Pack',internal:'1 Random Polychrome',id:184,rarity:3,list:0,mtg:0,description:'When Taken, Make 1\nRandom Card Polychrome'},
@@ -1112,7 +1113,7 @@ types={
         {name:'Ducky Donka Ticket',internal:'Rest Max HP',id:325,rarity:-1,list:0,mtg:0,description:'Gain 2 Max HP When\nEntering a Rest Site'},
         {name:'Ducky McDuff Ticket',internal:'Shop Max HP',id:326,rarity:-1,list:0,mtg:0,description:'Gain 2 Max HP When\nEntering a Shop'},
         {name:'Bottled Firefly',internal:'6 Card 3 Damage All',id:327,rarity:-1,list:0,mtg:0,description:'Deal 3 Damage to All Enemies\nAfter Playing 6 Cards,\nTriggers Once Per Turn'},
-        {name:'Death Butterflies',internal:'First Enemy Lose Per Turn',id:328,rarity:-1,list:0,mtg:0,description:'The First Enemy\nYou Attack Each Combat\nLoses 3 Health Per Turn'},
+        {name:'Death Butterflies',internal:'First Enemy Mortal',id:328,rarity:-1,list:0,mtg:0,description:'The First Enemy\nYou Attack Each Combat\nGains 3 Mortality'},
         {name:'Ghostblade',internal:'First Enemy Remove Block',id:329,rarity:-1,list:0,mtg:0,description:'The First Enemy With Block\nYou Attack Each Combat\nLoses All Block'},
 
         {name:'Asagian Charm',internal:'Low Health Permanent Strength',id:330,rarity:-1,list:0,mtg:0,description:'When You Start Your Turn Below 5 Health,\nGain 1 Strength Permanently\nDestroys Self Afterward'},
@@ -1141,7 +1142,7 @@ types={
         {name:'Traffic Cone',internal:'Replenish Card',id:351,rarity:3,list:0,mtg:0,description:'When Taken, Make a Card Replenish'},
         {name:'Boredom',internal:'3 Turn Duplicate',id:352,rarity:2,list:0,mtg:0,description:'Duplicate the Next Card\nPlayed Every 3 Turns'},
         {name:'Big Cube',internal:'25 Block Draw',id:353,rarity:0,list:0,mtg:0,description:'Draw a Card When You\nAdd 25 or More Block'},
-        {name:'Breccia',internal:'Double Silver',id:354,rarity:0,list:0,mtg:0,description:'Silver Editions Heal Double Health'},
+        {name:'Breccia',internal:'Double Shiny',id:354,rarity:0,list:0,mtg:0,description:'Shiny Editions Heal Double Health'},
         {name:'Virtuous Duck',internal:'Double First Attack',id:355,rarity:2,list:0,mtg:0,description:'The First Attack Each Combat\nDeals Double Damage'},
         {name:'Congestion Control',internal:'Protocol',id:356,rarity:4,list:0,mtg:1,description:'Shuffle 1 Protocol Into\nDraw on Turn 1'},
         {name:'Tactical Conductor',internal:'Cheap Skills',id:357,rarity:2,list:0,mtg:1,description:'Skills Have a 50%\nChance to Cost 1 Less\nTemporarily When Drawn'},
@@ -6676,7 +6677,7 @@ Unaffected by focus.`,
         },{name:'Wrath',mtg:0,desc:
 `Stance. Deal double damage and take double damage.`,
         },{name:'Haste',mtg:0,desc:
-`Stance. Add a Speed card that moves 1 tile when entered, but you cannot attack.`,
+`Stance. Add a Stride to Hand when entered, but you cannot attack.`,
         },{name:'Sturdy',mtg:0,desc:
 `Stance. Deal 60% damage and take 40% damage. `,
         },{name:'Faith',mtg:0,desc:
@@ -6697,7 +6698,9 @@ Some card spend it in their effects. Others may generate it.`
         },{name:'Burn (Card)',mtg:0,desc:
 `Status, unplayable, makes you take damage at the end of your turn.`,
         },{name:'Burn (Status)',mtg:0,desc:
-`Take damage after each hit on an enemy..`,
+`Take damage after each hit on an enemy.`,
+        },{name:'Mortal',mtg:0,desc:
+`Lose health each turn.`,
         },{name:'Take Credit',mtg:0,desc:
 `When you take damage, heals you instead. Typically lasts for one hit.`,
         },{name:'Ichor',mtg:0,desc:
@@ -7127,7 +7130,7 @@ constants={
     HG2:[[-2,0],[-1,0],[0,2],[0,1],[-1,1],[2,0],[1,0],[0,-2],[0,-1],[1,-1]],
     HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]
 }
-options={damage:false,alt:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false,devGen:false}
+options={damage:false,alt:false,replay:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false,devGen:false}
 graphics={main:0,backgroundGen:17,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],paperball:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}

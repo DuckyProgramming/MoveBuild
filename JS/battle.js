@@ -173,7 +173,9 @@ class battle{
         this.itemManager=new itemManager(this.layer,this)
         this.overlayManager=new overlayManager(this.layer,this,0)
         this.modManager=new modManager(this.layer,this)
-        this.replayManager=new replayManager(this.layer,this)
+        if(options.replay){
+            this.replayManager=new replayManager(this.layer,this)
+        }
 
         this.initialManagersAfter()
         this.initialized=true
@@ -337,7 +339,9 @@ class battle{
         transition.trigger=true
         transition.scene='replay'
         transition.convert=true
-        this.replayManager.reset()
+        if(options.replay){
+            this.replayManager.reset()
+        }
     }
     sceneChange(past,post){
         this.collectionManager.execute()
@@ -566,7 +570,9 @@ class battle{
             this.sendReinforce()
             this.tileManager.fire()
             this.turnManager.loadEnemyTurns()
-            this.replayManager.list.push(new attack(-1005,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
+            if(options.replay){
+                this.replayManager.list.push(new attack(-1005,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
+            }
             this.combatantManager.enableCombatants()
             this.turn.main=this.players
         }else if(variants.initiative){
@@ -1550,6 +1556,15 @@ class battle{
         }
         if(cardClass==1&&card.name.includes('Cable')&&userCombatant.getStatus('Cable Claw Up')>0){
             userCombatant.statusEffect('Claw Up',userCombatant.getStatus('Cable Claw Up'))
+        }
+        if(card.name.includes('Silver')&&userCombatant.getStatus('Silver Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('Silver Block'))
+        }
+        if(card.spec.includes(52)&&userCombatant.getStatus('Mineral Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('Mineral Block'))
+        }
+        if(card.spec.includes(52)&&userCombatant.getStatus('Mineral Draw')>0){
+            this.cardManagers[player].draw(userCombatant.getStatus('Mineral Draw'))
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])
@@ -2933,7 +2948,7 @@ class battle{
                 for(let a=0,la=this.anim.turn.length;a<la;a++){
                     this.anim.turn[a]=smoothAnim(this.anim.turn[a],this.turn.main==a,0,1,5)
                     this.anim.extra[a]=smoothAnim(this.anim.extra[a],this.turn.main==a&&
-                        (this.cardManagers[a].hand.status[0]<0||this.cardManagers[a].hand.status[1]<0||this.cardManagers[a].hand.status[8]<0||this.cardManagers[a].hand.status[10]>0||this.cardManagers[a].hand.status[27]>0||this.cardManagers[a].hand.status[31]>0||this.cardManagers[a].hand.status[34]>0||this.cardManagers[a].hand.status[38]>0),0,1,5)
+                        (this.cardManagers[a].hand.status[0]<0||this.cardManagers[a].hand.status[1]<0||this.cardManagers[a].hand.status[8]<0||this.cardManagers[a].hand.status[10]>0||this.cardManagers[a].hand.status[27]>0||this.cardManagers[a].hand.status[31]>0||this.cardManagers[a].hand.status[34]>0||this.cardManagers[a].hand.status[38]>0||this.cardManagers[a].hand.status[43]>0),0,1,5)
                     this.anim.drop[a]=smoothAnim(this.anim.drop[a],pointInsideBox({position:inputs.rel},{position:{x:106,y:680-this.anim.turn[a]*100},width:32,height:20})&&!this.overlayManager.anyActive&&(variants.cyclicDraw||variants.blackjack),1,1.5,5)
                 }
                 this.anim.reserve=smoothAnim(this.anim.reserve,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:496},width:32,height:20})&&!this.overlayManager.anyActive,1,1.25,10)
@@ -2985,7 +3000,9 @@ class battle{
                             }
                         }else{
                             transition.scene='map'
-                            this.replayManager.clear()
+                            if(options.replay){
+                                this.replayManager.clear()
+                            }
                         }
                     }
                 }else if(this.counter.killed>=this.counter.enemy&&!this.result.defeat&&!this.overlayManager.anyActive&&!this.tutorialManager.active){
@@ -3114,7 +3131,9 @@ class battle{
             case 'replay':
                 this.tileManager.update(scene)
                 this.combatantManager.update(scene)
-                this.replayManager.update()
+                if(options.replay){
+                    this.replayManager.update()
+                }
                 this.particleManager.update()
             break
             case 'map':

@@ -1363,7 +1363,7 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('4x',0,12)
                 break
-                case '3 Random Silvers':
+                case '3 Random Shinies':
                     displaySymbol(this.layer,0,0,82,0,1.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(15)
@@ -2437,7 +2437,7 @@ class relic{
                     this.layer.text('6',-8,0)
                     this.layer.text('3',8,-4)
                 break
-                case 'First Enemy Lose Per Turn':
+                case 'First Enemy Mortal':
                     displaySymbol(this.layer,-8,-4,3,0,0.5,this.fade)
                     displaySymbol(this.layer,-8,10,120,0,1,this.fade)
                     displaySymbol(this.layer,8,2,148,0,1.2,this.fade)
@@ -2619,7 +2619,7 @@ class relic{
                     this.layer.text('25',-8,0)
                     this.layer.text('1',9,0)
                 break
-                case 'Double Silver':
+                case 'Double Shiny':
                     displaySymbol(this.layer,0,0,82,0,1.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(15)

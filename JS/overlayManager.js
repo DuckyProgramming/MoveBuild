@@ -160,7 +160,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,25,[1])],//wheel of stab
                     [new overlay(this.layer,this.battle,0,8,[0,-1,2])],//new card to deck, brakecheck,150
                     [new overlay(this.layer,this.battle,0,26,[0])],//money math
-                    [new overlay(this.layer,this.battle,0,2,[98,1,0])],//remove upgraded card, no return
+                    [new overlay(this.layer,this.battle,0,2,[98,1,0])],//remove rare card, no return
+                    [new overlay(this.layer,this.battle,0,2,[99])],//shuffle any discard cards into draw
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

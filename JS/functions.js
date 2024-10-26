@@ -1370,6 +1370,13 @@ function copyArray(base){
 	return list*/
 	return typeof base=='number'?base:base.slice()
 }
+function copyArrayCard(base){
+	let list=[]
+	for(let a=0,la=base.length;a<la;a++){
+		list.push(copyCard(base[a]))
+	}
+	return list
+}
 function copyArrayStack(base){
 	let list=[]
 	for(let a=0,la=base.length;a<la;a++){

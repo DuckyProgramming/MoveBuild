@@ -122,7 +122,7 @@ class combatant{
                 'Single Counter Block','Invisible','Dissipating','Take Third Damage','Speed Up','Strength Next Turn','Temporary Strength on Hit','Take 3/4 Damage','Temporary Strength Next Turn','Temporary Speed Up',
                 'Untargettable From Front','Cancel Exhaust','Must Attack or Take Damage','Damage Taken Up','Energy on Hit','Conditioning','Shiv Per Turn','Remove Combo','Combo Per Hit Boost','Attack Draw',
                 'Combo on Block','Combo Per Turn','Combo Next Turn','2 Range Counter','Card Play Block','Temporary Damage Down','Shiv Boost','Take Per Card Played','Counter All Combat','No Draw',
-                'Explode on Death','Energy in 2 Turns','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block in 2 Turns',
+                'Explode on Death','Energy in 2 Turns','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Mortal','Shiv on Hit','Intangible Next Turn','Block in 2 Turns',
                 'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
                 'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block Combat','Heal Gain Max HP',
                 'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic Orb','Basic Orb on Hit','Random Common Per Turn','Node','Focus Per Turn','Freeze',
@@ -161,7 +161,7 @@ class combatant{
                 'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw','Buff Loss Barrier','Astrology Per Turn','Construct Metal','Attack Jinx Combat','Attack Shock Combat',
                 'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
                 'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
-                'Single Attack Lose Per Turn','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Mana',
+                'Single Attack Mortal','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Mana',
                 '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
                 '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
                 'Elemental Draw','(E) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(N) Next Turn','(E) on Hit','Free Draw Up',
@@ -185,7 +185,8 @@ class combatant{
                 'Wisp Exhaust Charge','Shiv Scatter','Shiv Block','X Cost Chocolate Chip','Hand Copy Next Turn','Poison Damage','Shiv Extra Target','Unplayable Draw Block','Lock On Poison','Bleed Boost',
                 'Control Base','Random Free Exhausting Ethereal Card Per Turn','Attack Freeze Combat','Blueprint Cost Down','Gun Draw Next Turn','Shock All Per Turn','Amplify Poison All','No Draw Next Turn','Energy Gain Energy','Energy Gain (E)',
                 'Cable Claw Up','Energy Orb Per Turn','Basic Energy','Basic (E)','Bleed Damage','Dust Orb Boost','Armor Per Turn','Max Health Gift','Fragile','Free Card Per Turn',
-                'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random',
+                'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random','Silver Block','Mineral Block','Mineral Draw','End of Combat Lose','End of Combat Item',
+                'Moriya Talisman Per Turn','Drawn Status Exhaust',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -259,7 +260,8 @@ class combatant{
                 0,0,0,0,2,0,0,0,0,0,//69
                 0,0,0,0,2,0,0,0,0,0,//70
                 0,0,0,0,0,0,0,0,0,0,//71
-                1,0,0,0,0,
+                1,0,0,0,0,0,0,0,0,0,//72
+                0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -333,7 +335,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//69
                 2,2,2,2,2,2,2,3,2,2,//70
                 2,2,2,2,2,2,0,1,1,2,//71
-                2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//72
+                2,2,
             ]}
         /*
         0-none
@@ -3064,7 +3067,7 @@ class combatant{
                     this.statusEffect('Shock',userCombatant.status.main[449])
                 }
                 if(userCombatant.status.main[470]>0){
-                    this.statusEffect('Lose Per Turn',userCombatant.status.main[470])
+                    this.statusEffect('Mortal',userCombatant.status.main[470])
                     userCombatant.status.main[470]=0
                 }
                 if(userCombatant.status.main[471]>0&&this.block>0){
@@ -4680,7 +4683,7 @@ class combatant{
         this.stance=stance
         switch(stance){
             case 3:
-                this.battle.cardManagers[this.id].hand.add(findName('Speed',types.card),0,0)
+                this.battle.cardManagers[this.id].hand.add(findName('Stride',types.card),0,0)
             break
             case 5:
                 this.battle.addSpecificEnergy(variants.mtg?5:3,this.id,6)
@@ -5034,6 +5037,14 @@ class combatant{
         if(this.status.main[365]>0){
             this.heal(this.status.main[365])
         }
+        if(this.status.main[718]>0){
+            this.loseHealth(this.status.main[718])
+        }
+        if(this.status.main[719]>0&&this.id>=0&&this.id<this.battle.players){
+            for(let a=0,la=this.status.main[719];a<la;a++){
+                this.battle.itemManager.addRandomItem(this.id)
+            }
+        }
     }
     heal(amount){
         this.midHeal=true
@@ -5384,6 +5395,7 @@ class combatant{
                     case 706: this.status.main[findList('Armor',this.status.name)]+=this.status.main[a]; break
                     case 709: this.status.main[findList('Free Card',this.status.name)]+=this.status.main[a]; break
                     case 710: if(this.id<this.battle.players){this.battle.overlayManager.overlays[8][this.id].active=true;this.battle.overlayManager.overlays[8][this.id].activate()} break
+                    case 720: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.drop(this.id,findName('Moriya\nTalisman',types.card),0,0)}} break
                     
                 }
                 if(this.status.behavior[a]==6&&
