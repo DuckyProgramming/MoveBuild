@@ -1016,7 +1016,8 @@ function intentDescription(attack,user,info){
 			case 293: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nCounter ${info?calculateIntent(attack.effect[1],user,0):`?`} Twice`
 			case 294: return `Gain ${info?attack.effect[0]:`?`} Strength\nGain ${info?attack.effect[1]:`?`} Dexterity`
 			case 295: return `Apply ${info?attack.effect[0]:`?`} Burn\nApply ${info?attack.effect[1]:`?`} Freeze\nApply ${info?attack.effect[2]:`?`} Shock\nApply ${info?attack.effect[3]:`?`} Poison\nRange 1-1`
-			case 296: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAnywhere`
+			case 296: case 446:
+				return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAnywhere`
 			case 297: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Burn\nRange 1-2`
 			case 298: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Freeze\nRange 1-2`
 			case 299: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Shock\nRange 1-2`
@@ -1159,6 +1160,13 @@ function intentDescription(attack,user,info){
 			case 441: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nApply ${info?attack.effect[1]:`?`} Anti-Control\n3 Tiles Wide\nRange 1-2`
 			case 442: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nAll Enemies\nGain ${info?attack.effect[1]:`?`} Contro`
 			case 443: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nRange 1-6\nNo Movement`
+			case 444: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\n3 Tiles Wide\nRange 1-6\nNo Movement`
+			case 445: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1\nAdvance Only 1 Tile`
+			case 447: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush to End\nRange 1-3`
+			case 448: return `Apply ${info?attack.effect[0]:`?`} Weak\nApply ${info?attack.effect[1]:`?`} Vulnerable\nApply ${info?attack.effect[2]:`?`} Frail\nRange 1-6`
+			case 449: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nRange 1-3`
+			case 450: return `Create Target Zigzag\nfor ${info?attack.effect[0]:`?`} Damage`
+			
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
 			case 2: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-1`
@@ -1739,6 +1747,9 @@ function mergeNumbers(left,right){
 	}
 	return [...result,...left,...right]
 }
+function sortNumbersBad(numbers){
+	return numbers.length<=1?numbers:[Math.min.apply(null,numbers),...sortNumbersBad([...numbers.slice(0,numbers.indexOf(Math.min.apply(null,numbers))),...numbers.slice(numbers.indexOf(Math.min.apply(null,numbers))+1,numbers.length)])]
+}
 function sortNumbersUnique(numbers){
 	return sortNumbers(numbers).filter(function(object,index,array){return index==0||object!=array[index-1]})
 }
@@ -2241,6 +2252,33 @@ function outClass(){
 	}
 	for(let a=0,la=constants.playerNumber+1;a<la;a++){
 		build+=(a==0?`Colorless:`:`${types.combatant[a].name}:`)+`\nAttacks: ${totals[a][0]}\nDefenses: ${totals[a][1]}\nSkills: ${totals[a][10]}\nMovements: ${totals[a][2]}\nPowers: ${totals[a][3]}\n\n`
+	}
+	console.log(build)
+}
+function outSpec(){
+	let totals=[]
+	let build=``
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
+		totals.push([0,0,0,0])
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(types.card[a].list>=0&&types.card[a].list<=constants.playerNumber&&types.card[a].rarity>=0){
+			if(types.card[a].levels[0].spec.includes(1)){
+				totals[types.card[a].list][0]++
+			}
+			if(types.card[a].levels[0].spec.includes(2)){
+				totals[types.card[a].list][1]++
+			}
+			if(types.card[a].levels[0].spec.includes(3)){
+				totals[types.card[a].list][2]++
+			}
+			if(types.card[a].levels[0].spec.includes(4)){
+				totals[types.card[a].list][3]++
+			}
+		}
+	}
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
+		build+=(a==0?`Colorless:`:`${types.combatant[a].name}:`)+`\nExhaust: ${totals[a][0]}\nRetain: ${totals[a][1]}\nInnate: ${totals[a][2]}\nEthereal: ${totals[a][3]}\n\n`
 	}
 	console.log(build)
 }

@@ -195,6 +195,25 @@ class tileManager{
             }
         }
     }
+    fireAreaZigzag(type,power,tilePosition,range){
+        let spin=floor(random(0,6))*60-150
+        let direction=transformDirection(0,spin)
+        let skew=transformDirection(0,spin+floor(random(0,2))*240-120)
+        let tile=this.getTileIndex(tilePosition.x,tilePosition.y)
+        if(tile>=0){
+            this.tiles[tile].fire[type]+=power
+        }
+        for(let a=0,la=range;a<la;a++){
+            tile=this.getTileIndex(tilePosition.x+direction[0]*(a+1)+skew[0]*floor((a+1)/2),tilePosition.y+direction[1]*(a+1)+skew[1]*floor((a+1)/2))
+            if(tile>=0){
+                this.tiles[tile].fire[type]+=power
+            }
+            tile=this.getTileIndex(tilePosition.x-direction[0]*(a+1)-skew[0]*(floor(a/2)+1),tilePosition.y-direction[1]*(a+1)-skew[1]*(floor(a/2)+1))
+            if(tile>=0){
+                this.tiles[tile].fire[type]+=power
+            }
+        }
+    }
     fireRow(type,power,row){
         for(let a=0,la=this.tiles.length;a<la;a++){
             if(this.tiles[a].tilePosition.x==row){

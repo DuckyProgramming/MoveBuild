@@ -15,7 +15,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},logo:true}}
             this.trigger.display.extra={damage:false}
             this.calc={int:[0,0,0,0]}
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
             this.goal={anim:{direction:this.anim.direction}}
             this.color={skin:{head:[240,220,180],body:[180,170,160],legs:[160,150,140],arms:[100,180,200],upperBody:[120,200,220]},logo:[0,255,50],belt:[180,100,20],eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
         break
@@ -34,7 +34,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1},helmet:1,visor:1,belt:1,badge:1}
             this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},helmet:true,visor:true,belt:true,badge:true,extra:{damage:false}}}
             this.calc={int:[0,0,0,0]}
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
             this.goal={anim:{direction:this.anim.direction}}
         break
         case 'Lira':
@@ -122,7 +122,7 @@ combatant.prototype.setupGraphics=function(direction){
 
             this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-            this.animSet={loop:0,flip:0,hand:1,foot:1}
+            this.animSet={loop:0,flip:0,hand:0,foot:1}
 
             this.goal={anim:{direction:this.anim.direction,sword:true}}
 
@@ -262,7 +262,7 @@ combatant.prototype.setupGraphics=function(direction){
 
             this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
 
             this.goal={anim:{direction:this.anim.direction,sword:true,sword2:true}}
 
@@ -377,7 +377,7 @@ combatant.prototype.setupGraphics=function(direction){
 
             this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
 
             this.goal={anim:{direction:this.anim.direction}}
         break
@@ -397,7 +397,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1},button:1,hood:1,cape:1}
             this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},button:true,hood:true,cape:true,extra:{damage:false}}}
             this.calc={int:[0,0,0,0]}
-            this.animSet={loop:0,flip:0,hand:0,foot:1}
+            this.animSet={loop:0,flip:0,hand:1,foot:1}
             this.goal={anim:{direction:this.anim.direction}}
         break
         case 'Donakho':
@@ -409,7 +409,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
             this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true},hat:true,coat:true,extra:{damage:false}}}
             this.calc={int:[0,0,0,0]}
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
             this.goal={anim:{direction:this.anim.direction}}
         break
         case 'Setsuna':
@@ -497,7 +497,7 @@ combatant.prototype.setupGraphics=function(direction){
 
             this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
 
             this.goal={anim:{direction:this.anim.direction,sword:true}}
 
@@ -582,7 +582,7 @@ combatant.prototype.setupGraphics=function(direction){
 
             this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-            this.animSet={loop:0,flip:0,hand:0,foot:1}
+            this.animSet={loop:0,flip:0,hand:1,foot:1}
 
             this.goal={anim:{direction:this.anim.direction}}
         break
@@ -601,7 +601,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1},tie:1,belt:1,monocle:1}
             this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},tie:true,belt:true,monocle:true,briefcase:true,extra:{damage:false,sword:true}}}
             this.calc={int:[0,0,0,0]}
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
             this.goal={anim:{direction:this.anim.direction}}
         break
         case 'Chip':
@@ -619,7 +619,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1},rose:1,bowtie:1,hat:1}
             this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},rose:true,bowtie:true,hat:true,extra:{damage:false}}}
             this.calc={int:[0,0,0,0]}
-            this.animSet={loop:0,flip:0,hand:1,foot:0}
+            this.animSet={loop:0,flip:0,hand:0,foot:0}
             this.goal={anim:{direction:this.anim.direction}}
         break
         case 'Shiru':
@@ -682,7 +682,7 @@ combatant.prototype.setupGraphics=function(direction){
             
             this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
 
             this.goal={anim:{direction:this.anim.direction}}
         break
@@ -741,7 +741,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},glasses:true,belt:true,pocket:1}}
             this.trigger.display.extra={damage:false}
             this.calc={int:[0,0,0,0]}
-            this.animSet={loop:0,flip:0,hand:1,foot:0}
+            this.animSet={loop:0,flip:0,hand:0,foot:0}
             this.goal={anim:{direction:this.anim.direction}}
             this.color={skin:{head:[240,230,160],body:[140,130,120],legs:[120,110,100],arms:[120,160,180],upperBody:[140,180,200]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0],teeth:[[65,65,65],[245,245,245]]},belt:[60,50,35],glasses:[[85,85,85],[230,235,240]],pocket:[[160,200,220],[170,210,230]]}
         break
@@ -805,7 +805,7 @@ combatant.prototype.setupGraphics=function(direction){
             
             this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
 
             this.goal={anim:{direction:this.anim.direction}}
         break
@@ -883,7 +883,7 @@ combatant.prototype.setupGraphics=function(direction){
 
             this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
 
             this.goal={anim:{direction:this.anim.direction,sword:true}}
         break
@@ -957,7 +957,7 @@ combatant.prototype.setupGraphics=function(direction){
             
             this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-            this.animSet={loop:0,flip:0,hand:0,foot:1}
+            this.animSet={loop:0,flip:0,hand:1,foot:1}
 
             this.goal={anim:{direction:this.anim.direction,sword:true}}
 
@@ -1059,7 +1059,7 @@ combatant.prototype.setupGraphics=function(direction){
             
             this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
 
             this.goal={anim:{direction:this.anim.direction}}
         break
@@ -1072,7 +1072,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
             this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true},hat:true,belt:true,extra:{damage:false}}}
             this.calc={int:[0,0,0,0]}
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
             this.goal={anim:{direction:this.anim.direction}}
         break
         case 'Randy':
@@ -1090,7 +1090,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1},belt:1,goggles:0.8,mark:1,band:1}
             this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},belt:true,goggles:true,mark:true,band:true,extra:{damage:false}}}
             this.calc={int:[0,0,0,0]}
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
             this.goal={anim:{direction:this.anim.direction}}
         break
         case 'Ume':
@@ -1237,7 +1237,7 @@ combatant.prototype.setupGraphics=function(direction){
                 }
             }
         break
-        case 'Drunk Boss': case 'Enforcer': case 'Bomber Boy': case 'Chief Engineering Officer': case 'Gangmaster': case 'Paramilitary':
+        case 'Drunk Boss': case 'Enforcer': case 'Bomber Boy': case 'Chief Engineering Officer': case 'Gangmaster': case 'Paramilitary': case 'Nerfmaster': case 'Big Bounce':
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                 legs:[{top:9,bottom:0,length:{top:19,bottom:19}},{top:9,bottom:0,length:{top:19,bottom:19}}],
                 arms:[{top:24,bottom:9,length:{top:19,bottom:19}},{top:24,bottom:9,length:{top:19,bottom:19}}]}
@@ -1321,6 +1321,24 @@ combatant.prototype.setupGraphics=function(direction){
                     this.fades.belt=1
                     this.trigger.display.badge=true
                     this.trigger.display.belt=true
+                break
+                case 'Nerfmaster':
+                    this.color={skin:{head:[240,220,180],body:[200,150,150],legs:[190,140,140],arms:[180,130,130]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.arrows=[[200,0,0],[0,150,255],[255,255,50]]
+                    this.color.belt=[150,125,125]
+                    this.fades.arrows=1
+                    this.fades.belt=1
+                    this.trigger.display.arrows=true
+                    this.trigger.display.belt=true
+                break
+                case 'Big Bounce':
+                    this.color={skin:{head:[240,220,180],body:[200,200,200],legs:[195,195,195],arms:[205,205,205]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.belt=[255,50,50]
+                    this.color.hat=[180,180,180]
+                    this.fades.belt=1
+                    this.fades.hat=1
+                    this.trigger.display.belt=true
+                    this.trigger.display.hat=true
                 break
             }
         break
@@ -3912,6 +3930,30 @@ combatant.prototype.setupGraphics=function(direction){
                     this.trigger.display.belt=true
                     this.trigger.display.helmet=true
                     this.trigger.display.visor=true
+                break
+                case 'Warning Man':
+                    this.color={skin:{head:[240,220,180],body:[80,200,160],legs:[70,190,150],arms:[75,195,155]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.neck=[75,150,75]
+                    this.color.bandana=[100,200,100]
+                    this.color.talkie=[100,100,100]
+                    this.fades.neck=1
+                    this.fades.bandana=1
+                    this.fades.talkie=1
+                    this.trigger.display.neck=true
+                    this.trigger.display.bandana=true
+                    this.trigger.display.talkie=true
+                break
+                case 'Pinstripe':
+                    this.color={skin:{head:[240,220,180],body:[190,170,190],legs:[150,140,150],arms:[180,160,180]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.overall=[160,150,160]
+                    this.color.hat=[[50,40,50],[200,180,200]]
+                    this.color.tie=[[40,40,40],[220,220,220]]
+                    this.fades.overall=1
+                    this.fades.hat=1
+                    this.fades.tie=1
+                    this.trigger.display.overall=true
+                    this.trigger.display.hat=true
+                    this.trigger.display.tie=true
                 break
                 default:
                     this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}

@@ -6699,7 +6699,7 @@ combatant.prototype.display=function(){
                     }
                 }
             break
-            case 'Drunk Boss': case 'Enforcer': case 'Bomber Boy': case 'Chief Engineering Officer': case 'Gangmaster': case 'Paramilitary':
+            case 'Drunk Boss': case 'Enforcer': case 'Bomber Boy': case 'Chief Engineering Officer': case 'Gangmaster': case 'Paramilitary': case 'Nerfmaster': case 'Big Bounce':
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
                         this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms)
@@ -6730,6 +6730,12 @@ combatant.prototype.display=function(){
                     this.layer.fill(...this.flashColor(this.color.belt),this.fade*this.fades.belt)
                     this.layer.rect(0,-48,21,3)
                 }
+                if(this.name=='Big Bounce'&&this.trigger.display.belt){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.belt),this.fade*this.fades.belt)
+                    this.layer.rect(0,-53,21,1.5)
+                    this.layer.rect(0,-50,21,1.5)
+                }
                 if(this.name=='Drunk Boss'&&this.trigger.display.bottle){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.bottle)[0],this.flashColor(this.color.bottle)[1],this.flashColor(this.color.bottle)[2],this.fade*this.fades.bottle)
@@ -6750,6 +6756,14 @@ combatant.prototype.display=function(){
                             this.layer.ellipse(lsin(this.anim.direction-24+a*48)*8,-42,4*lcos(this.anim.direction-24+a*48),4)
                         }
                     }
+                }
+                if(this.name=='Nerfmaster'&&this.trigger.display.arrows&&lcos(this.anim.direction)>0){
+                    this.layer.fill(this.color.arrows[0][0],this.color.arrows[0][1],this.color.arrows[0][2],this.fade*this.fades.arrows)
+                    regTriangle(this.layer,9.5*lsin(this.anim.direction),-58.5,4*lcos(this.anim.direction),4,0)
+                    this.layer.fill(this.color.arrows[1][0],this.color.arrows[1][1],this.color.arrows[1][2],this.fade*this.fades.arrows)
+                    regTriangle(this.layer,10.5*lsin(this.anim.direction),-52.5,4*lcos(this.anim.direction),4,0)
+                    this.layer.fill(this.color.arrows[2][0],this.color.arrows[2][1],this.color.arrows[2][2],this.fade*this.fades.arrows)
+                    regTriangle(this.layer,9.5*lsin(this.anim.direction),-46.5,4*lcos(this.anim.direction),4,0)
                 }
                 if(this.name=='Paramilitary'&&this.trigger.display.badge&&lcos(this.anim.direction-36)>0){
                     this.layer.noStroke()
@@ -6883,6 +6897,14 @@ combatant.prototype.display=function(){
                             }
                         }
                     }
+                }
+                if(this.name=='Big Bounce'&&this.trigger.display.hat){
+                    this.layer.fill(...this.flashColor(this.color.hat),this.fade*this.fades.hat)
+                    this.layer.stroke(...this.flashColor(this.color.hat),this.fade*this.fades.hat)
+                    this.layer.strokeWeight(4)
+                    this.layer.line(-16,-100,16,-100)
+                    this.layer.quad(-11,-100,11,-100,8,-110,-8,-105)
+                    this.layer.quad(-11,-100,11,-100,8,-105,-8,-110)
                 }
             break
             case 'Pointy': case 'Little Guy': case 'Rich Kid': case 'Speedrunner':
@@ -11205,6 +11227,12 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
+                if(this.name=='Warning Man'&&this.trigger.display.talkie&&lcos(this.anim.direction+90)<=0){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.talkie),this.fade*this.fades.talkie)
+                    this.layer.rect(7.5*lsin(this.anim.direction+90),-48,2,6)
+                    this.layer.rect(7.5*lsin(this.anim.direction+90),-52,1,2)
+                }
                 if(this.name=='Lunaria'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[0]+this.anim.direction)<=0){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,-lcos(this.spin.under.under.top[0]+this.anim.direction))),this.fade*this.fades.under.under.top)
@@ -11612,6 +11640,12 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
+                if(this.name=='Warning Man'&&this.trigger.display.talkie&&lcos(this.anim.direction+90)>0){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.talkie),this.fade*this.fades.talkie)
+                    this.layer.rect(7.5*lsin(this.anim.direction+90),-48,2,6)
+                    this.layer.rect(7.5*lsin(this.anim.direction+90),-52,1,2)
+                }
                 if(this.name=='Reichswehr'&&this.trigger.display.pocket){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.pocket)[0],this.flashColor(this.color.pocket)[1],this.flashColor(this.color.pocket)[2],this.fade*this.fades.pocket)
@@ -11737,6 +11771,20 @@ combatant.prototype.display=function(){
                     this.layer.fill(...this.flashColor(this.color.tie),this.fade*this.fades.tie)
                     this.layer.noStroke()
                     this.layer.quad(lsin(this.anim.direction)*7-lcos(this.anim.direction)*2.5,-44,lsin(this.anim.direction)*3,-68,lsin(this.anim.direction)*7+lcos(this.anim.direction)*2.5,-44,lsin(this.anim.direction)*8,-40)
+                }
+                if(this.name=='Pinstripe'&&this.trigger.display.tie&&lcos(this.anim.direction)>0.1){
+                    this.layer.fill(...this.flashColor(this.color.tie[0]),this.fade*this.fades.tie)
+                    this.layer.noStroke()
+                    this.layer.quad(lsin(this.anim.direction)*7-lcos(this.anim.direction)*1.5,-53,lsin(this.anim.direction)*3,-70,lsin(this.anim.direction)*7+lcos(this.anim.direction)*1.5,-53,lsin(this.anim.direction)*8,-50)
+                    this.layer.fill(...this.flashColor(this.color.tie[1]),this.fade*this.fades.tie)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.quad(
+                            lsin(this.anim.direction)*(3+4*(1-a*0.2))-lcos(this.anim.direction)*1.5*(1-a*0.2),-70+17*(1-a*0.2),
+                            lsin(this.anim.direction)*(3+4*(0.9-a*0.2))-lcos(this.anim.direction)*1.5*(0.9-a*0.2),-70+17*(0.9-a*0.2),
+                            lsin(this.anim.direction)*(3+4*(0.8-a*0.2))+lcos(this.anim.direction)*1.5*(0.8-a*0.2),-70+17*(0.8-a*0.2),
+                            lsin(this.anim.direction)*(3+4*(0.9-a*0.2))+lcos(this.anim.direction)*1.5*(0.9-a*0.2),-70+17*(0.9-a*0.2)
+                        )
+                    }
                 }
                 if(this.name=='Navigator'&&this.trigger.display.midshirt&&lcos(this.anim.direction)>0.1){
                     this.layer.fill(this.flashColor(this.color.midshirt)[0],this.flashColor(this.color.midshirt)[1],this.flashColor(this.color.midshirt)[2],this.fade*this.fades.midshirt)
@@ -11937,7 +11985,7 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if(this.name=='Hit Squad'&&this.trigger.display.overall){
+                if((this.name=='Hit Squad'||this.name=='Pinstripe')&&this.trigger.display.overall){
                     this.layer.noStroke()
                     this.layer.fill(this.color.overall[0],this.color.overall[1],this.color.overall[2],this.fade)
                     this.layer.arc(0,-48,15,41,0,180)
@@ -12087,7 +12135,7 @@ combatant.prototype.display=function(){
 					this.layer.line(3,2,6,-10)
                     this.layer.pop()
                 }
-                if(this.name=='Cartel'||this.name=='Roger Reviv'||this.name=='Cutthroat'){
+                if(this.name=='Cartel'||this.name=='Roger Reviv'||this.name=='Cutthroat'||this.name=='Warning Man'){
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
                             this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms)
@@ -12320,7 +12368,7 @@ combatant.prototype.display=function(){
                     this.layer.strokeWeight(2)
                     this.layer.rect(lsin(this.anim.direction)*15.5,this.parts.eyeLevel,lcos(this.anim.direction)*18,6,2)
                 }
-                if((this.name=='Trenchcoat'||this.name=='Trenchcoat Gunner')&&this.trigger.display.hat){
+                if((this.name=='Trenchcoat'||this.name=='Trenchcoat Gunner'||this.name=='Pinstripe')&&this.trigger.display.hat){
                     this.layer.fill(...this.flashColor(this.color.hat),this.fade*this.fades.hat)
                     this.layer.stroke(...this.flashColor(this.color.hat),this.fade*this.fades.hat)
                     this.layer.strokeWeight(4)

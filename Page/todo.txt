@@ -2,6 +2,18 @@ OPERATION KOSTRZYN
 
 
 
+something like temptation
+
+new curses
+
+new partner cards
+
+a token status that gives block when exhausted
+
+seashell swap - 1 cost, move a card to the top of draw pile, if it is a skill, draw it
+
+add block, exhaust a card, replenish
+
 random barrage - damage, gain random mana
 
 walk water - damage, or damage and draw 2 cards and discard 2 random cards
@@ -11,6 +23,10 @@ night's lament - gain temporary strength, if below half apply vulnerable to all 
 [pyramid shaped puzzle]
 
 [] - draw 3 cards, gain 1 dodge per skill drawn
+
+[blossoming fantasy]
+
+hasty prayers - bias but with dex
 
 
 
@@ -33,7 +49,5 @@ discus
 strawberry cake - heal 3 health, gain 1 []
 
 little salvation - 13 block, gain 2 temporary strength, gain 2 []
-
-[] guidance - redraw your hand, gain [] each, when drawn gain 1 energy
 
 

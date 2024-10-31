@@ -3795,8 +3795,9 @@ class card{
             case 2880: string+=`Build a Shotgun`; break
             case 2881: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Dexterity\nIf You Have\na Construct`; break
             case 2882: string+=`Adjacent Cards Cost 0`; break
-            case 2883: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nChoose a Discus\nof Equivalent Level\nto Add to Hand`; break
-            case 2884: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd a Dual Discus\nof Equivalent Level\nto Hand`; break
+            case 2883: case 6389:
+                string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nChoose a Discus\nof Equivalent Level\nto Add to Hand`; break
+            case 2884: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd a Moriya Discus\nof Equivalent Level\nto Hand`; break
             case 2885: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${this.calculateEffect(effect[1],17)} Barrier`; break
             case 2886: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
             case 2887: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nCounter ${effect[1]}`; break
@@ -5255,7 +5256,7 @@ class card{
             case 4300: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMove All Wisps to Hand\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
             case 4301: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporarily\nAmplify:\nRetain ${effect[0]==1?`it`:`Them`} Until Played\nGain ${effect[1]} Energy Next Turn`; break
             case 4302: string+=`Even Turn:\nPut a Card in Draw\nPile in Your Hand`; break
-            case 4303: string+=`Even Turn:\nPut a Card in Draw\nPile in Your Hand\nGain ${effect[1]} Energy\nNext Turn`; break
+            case 4303: string+=`Even Turn:\nPut a Card in Draw\nPile in Your Hand\nGain ${effect[0]} Energy\nNext Turn`; break
             case 4304: string+=`For Each (B) Spent:\nDeal ${this.calculateEffect(effect[0],2)} Damage\nFor Each (W) Spent:\nAdd ${this.calculateEffect(effect[1],3)} Block`; break
             case 4305: string+=`For Each (B) Spent:\nGain ${effect[0]} Strength\nFor Each (W) Spent:\nGain ${effect[1]} Dexterity`; break
             case 4306: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nGain (E) Per\nDiscus in Hand`; break
@@ -7041,7 +7042,7 @@ class card{
             case 6097: string+=`Gain ${effect[0]} Strength\nRemove All of\nYour Debuffs`; break
             case 6098: string+=`Remove All\nBlock of Target\nAll Attacks in Hand\nCost ${effect[0]} Less\nTemporarily`; break
             case 6099: string+=`Remove All\nBlock of Target\nAll Attacks in Hand\nCost ${effect[0]} Less\nTemporarily\nApply ${effect[1]} Vulnerable`; break
-            case 6100: string+=`Add ${effect[0]} Slash${effect[0]!=1?`es`:``}\nof Future to Hand\nAll Slashes in Hand\nCost ${effect[1]} Less Temporarily`; break
+            case 6100: string+=`Add ${effect[0]} Slash${effect[0]!=1?`es`:``}\nof Future to Hand\nAll Cards in Hand\nContaining 'Slash'\nCost ${effect[1]} Less Temporarily`; break
             case 6101: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMake the Top Card\nof Draw Pile Glitched`; break
             case 6102: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
             case 6103: string+=`Change Target Intent to\nan Attack if Possible\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
@@ -7332,7 +7333,24 @@ class card{
             case 6381: string+=`When You Draw\na Status Card,\nExhaust ${effect[0]} Card${pl(effect[0])}`; break
             case 6382: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Discarded\nFrom Your Hand,\nPut a Card in Exhaust\nPile in Your Hand\nand Exhaust`; break
             case 6383: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nShuffle ${effect[1]} Moriya Talisman${pl(effect[1])}\ninto Discard Pile`; break
-
+            case 6384: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Character\nis Left-Handed`; break
+            case 6385: string+=`Attacks This Combat\nApply ${effect[0]} Bruise`; break
+            case 6386: string+=`Upgrade ${effect[0]} Card${pl(effect[1])}\nFrom Draw\nUpgrade ${effect[1]} Card${pl(effect[1])}\nFrom Discard\nUpgrade ${effect[2]} Card${pl(effect[2])}\nFrom Hand`; break
+            case 6387: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            case 6388: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd a Dual Discus\nof Equivalent Level\nto Hand`; break
+            case 6390: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nStatus in Hand:\nExhaust It\nGain ${effect[1]} Strength`; break
+            case 6391: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nIf it is Upgraded,\nAdd ${this.calculateEffect(effect[2],17)} Barrier`; break
+            case 6392: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nIf it is Upgraded,\nAdd ${this.calculateEffect(effect[2],17)} Barrier`; break
+            case 6393: string+=`Gain ${effect[0]} Dodge\nDraw ${effect[1]} Card${pl(effect[1])}\nIf it is Upgraded,\nAdd ${this.calculateEffect(effect[2],17)} Barrier`; break
+            case 6394: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze\nIf Last Card Played\nWas a Skill,\nRepeat`; break
+            case 6395: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDownward:\nApply ${effect[1]} Freeze\nin All Directions`; break
+            case 6396: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${effect[1]} Dazed${pl(effect[1])}\nto Hand`; break
+            case 6397: string+=`Add ${effect[0]} Miracle${pl(effect[0])} to Hand\nand Draw ${effect[1]} Card${pl(effect[1])}\nIf You Have a\nStatus Card or\na Curse in Hand`; break
+            case 6398: string+=`Shuffle ${effect[0]} Dual Discus${effect[0]!=1?`es`:``}\nof Equivalent Level\ninto Draw Pile\n${effect[0]!=1?`They Have`:`It Has`} Replenish`; break
+            case 6399: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nAdd ${this.calculateEffect(effect[1],1)} Block\nAdd ${effect[2]} Dual Discus${effect[2]!=1?`es`:``}\nto Hand`; break
+            case 6400: string+=`Add ${effect[0]} Dual Discus${effect[0]!=1?`es`:``}\nof Equivalent Level\nto Hand\nAll Discuses in Hand\nCost ${effect[1]} Less`; break
+            case 6401: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nCosts 1 Less Temporarily\nWhen You Exhaust a\nStatus Card or Curse`; break
+            
             //mark p
             
             //mark q
@@ -8156,10 +8174,15 @@ class card{
             break
         }
     }
-    callAnotherExhaustEffect(){
+    callAnotherExhaustEffect(card){
         switch(this.attack){
             case 5533:
                 this.costDown(0,[1])
+            break
+            case 6401:
+                if(card.class==5||card.class==6){
+                    this.costDown(0,[1])
+                }
             break
         }
     }
@@ -11350,7 +11373,7 @@ class card{
                         }
                         this.layer.rotate(-90)
                     }else{
-                        this.layer.textSize(variants.blind||this.blind?12:10-((name.length>=24&&name.includes('Discus')||name.length>=24&&this.class==9&&name!='Sunny, Glowing\nSunlight'&&name!='Star, Showering\nStarlight')&&!name.includes('$colorcharacter')||name=='Cauchy-Riemann\nEquations'||name=='Temptation of\nthe Next World'||name=='Youmu, Phantom\nGardener'?3:0))
+                        this.layer.textSize(variants.blind||this.blind?12:10-((name.length>=24&&name.includes('Discus')||name.length>=24&&this.class==9&&name!='Sunny, Glowing\nSunlight'&&name!='Star, Showering\nStarlight')&&!name.includes('$colorcharacter')||name=='Cauchy-Riemann\nEquations'||name=='Temptation of\nthe Next World'||name=='Youmu, Phantom\nGardener'||name=='Discus of Moon\nand Sky'||name=='Discus of Truth\nand Lie'?3:0))
                         if(spec.includes(37)){
                             this.layer.text(effectiveName+":",0,variants.blind||this.blind?0:-this.height/2+15+(variants.mtg?10:0))
                         }else{

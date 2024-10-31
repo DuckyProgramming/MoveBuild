@@ -32,7 +32,7 @@ types={
         {name:'Monkey',life:12,behavior:0,spec:[],move:{type:0,speed:2},attack:[{type:11,effect:[1]}],description:`You`},
         {name:'Trenchcoat',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`Nobody knows who he is`},
         {name:'Trenchcoat Gunner',life:45,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[10]}],description:`Keeps a low profile`},
-        {name:'Goon',life:45,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:14,effect:[4,1,'Arm\nInjury']},{type:4,effect:[12]}],description:`Bars you from life`},
+        {name:'Goon',life:45,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:14,effect:[4,1,'Hurt']},{type:4,effect:[12]}],description:`Bars you from life`},
         {name:'Slaver',life:46,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:15,effect:[7,2]},{type:17,effect:[2,1]}],description:`Former policeman`},
         {name:'Fungal Duck',life:26,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:18,effect:[1]}],description:`Default enemy design`},
         {name:'Orb Walker',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[15]},{type:22,effect:[10,1,'Dazed']}],description:`Why he so overpowered?`},
@@ -80,7 +80,7 @@ types={
         {name:'Solar Shard',life:275,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[15]},{type:87,effect:[6]},{type:39,effect:[1,'Lunar Dust']},{type:88,effect:[1]}],description:`How do these things work anyway?`},
         {name:'Lunar Shard',life:120,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[10]},{type:86,effect:[3]}],description:`Extra enemy's kinda pointless`},
         {name:'Lunar Dust',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[6]}],description:`Weak, but exists to be annoying`},
-        {name:'Management Sniper',life:110,behavior:10,spec:[0],move:{type:2,speed:1},attack:[{type:89,effect:[8,1,'Electrocuted']},{type:91,effect:[14,1,'Glued']},{type:10,effect:[8]},{type:21,effect:[]}],description:`Used to have good aim`},
+        {name:'Management Sniper',life:110,behavior:10,spec:[0],move:{type:2,speed:1},attack:[{type:89,effect:[8,1,'Electrocuted']},{type:91,effect:[14,1,'Stuck']},{type:10,effect:[8]},{type:21,effect:[]}],description:`Used to have good aim`},
         {name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:2,speed:1},attack:[{type:28,effect:[9]},{type:2,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
         {name:'Management Custodian',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[1]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
         {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]}],description:`No walker now`},
@@ -95,8 +95,8 @@ types={
         {name:'Champion',life:180,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:107,effect:[10,2]},{type:108,effect:[15,9]}],description:`Appointed up`},
         {name:'Management Autoduck',life:60,behavior:2,spec:[19],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:2,effect:[4]},{type:5,effect:[2,'Dazed']}],description:`Supposed to be better than duck`},
         {name:'Modicum',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[4]},{type:16,effect:[3]},{type:109,effect:[5]}],description:`Spammy boy`},
-        {name:'Slimoid',life:36,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[12]},{type:22,effect:[6,1,'Cemented']},{type:23,effect:[2]}],description:`You thought it wouldn't split`},
-        {name:'Big Slimoid',life:54,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[18]},{type:32,effect:[9,1,'Cemented']},{type:33,effect:[2]}],description:`Recursion`},
+        {name:'Slimoid',life:36,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[12]},{type:22,effect:[6,1,'Glued']},{type:23,effect:[2]}],description:`You thought it wouldn't split`},
+        {name:'Big Slimoid',life:54,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[18]},{type:32,effect:[9,1,'Glued']},{type:33,effect:[2]}],description:`Recursion`},
         {name:'Bush Thing',life:18,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:108,effect:[4,4]},{type:111,effect:[2]}],description:`Somewhat armored`},
         {name:'Fireball',life:40,behavior:10,spec:[],move:{type:0,speed:2},attack:[{type:112,effect:[4,2]},{type:21,effect:[]}],description:`Hurts to touch`},
         {name:'Dead Shell',life:44,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:20,effect:[6]},{type:113,effect:[8]},{type:114,effect:[5,2]}],description:`More alive then intended`},
@@ -151,7 +151,7 @@ types={
         {name:'Voidglass',life:155,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:12,effect:[21]},{type:266,effect:[14,2]},{type:267,effect:[24,2]}],description:`Can't see anything behind those shades`},
         {name:'Intruder',life:21,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:270,effect:[7,1]},{type:271,effect:[5,1]}],description:`Didn't ask to be let in`},
         {name:'Lead Brick',life:35,behavior:1,spec:[],move:{type:0,speed:0},attack:[{type:272,effect:[8]},{type:273,effect:[4]}],description:`Somehow floats`},
-        {name:'Regen Balloon',life:39,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:290,effect:[8,3]}],description:`Honestly I can't explain this one`},
+        {name:'Regen Balloon',life:39,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:290,effect:[8,3]}],description:`Honestly I can't explain this one`},
         {name:'Precision',life:8,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:274,effect:[4,1]},{type:38,effect:[6]}],description:`It works the first time at least`},
         {name:'Relic',life:108,behavior:0,spec:[0,18],move:{type:0,speed:1},attack:[{type:275,effect:[14]},{type:276,effect:[12]},{type:277,effect:[16]}],description:`Why do enemies award you now?`},
         {name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:278,effect:[14,2]},{type:279,effect:[17,2]},{type:280,effect:[30,2]}],description:`Just you wait...`},
@@ -190,7 +190,7 @@ types={
         {name:'Half Spikeball',life:35,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:417,effect:[10]},{type:418,effect:[10]}],description:`Poor rotational alignment`},
         {name:'Graphite Block',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:426,effect:[1]},{type:30,effect:[6,6]},{type:396,effect:[6,6]}],description:`Can be made into a packager`},
         {name:'Zombie Duck',life:13,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[6]},{type:1,effect:[5]}],description:`You again?`},
-        {name:'Pistol Duck',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:236,effect:[4]}],description:`Brought a gun to... a gun fight?`},
+        {name:'Pistol Duck',life:30,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:236,effect:[4]}],description:`Brought a gun to... a gun fight?`},
         {name:'Hit Squad',life:36,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[12]},{type:427,effect:[9,1]},{type:428,effect:[9,1]}],description:`Take him out!`},
         {name:'Old Konaian',life:45,behavior:1,spec:[1],move:{type:14,speed:1},attack:[{type:429,effect:[13]},{type:430,effect:[9,2]}],description:`Classic style`},
         {name:'Caporegime',life:37,behavior:3,spec:[0],move:{type:12,speed:1},attack:[{type:431,effect:[2,'Hit Squad']},{type:21,effect:[1]}],description:`Won't do it himself`},
@@ -202,6 +202,10 @@ types={
         {name:'HVM Contractor',life:118,behavior:1,spec:[0],move:{type:15,speed:1},attack:[{type:438,effect:[16,8]},{type:12,effect:[13]},{type:439,effect:[11,2]}],description:`Kane's old employees`},
         {name:'Rammer Robot',life:102,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:440,effect:[18]}],description:`One-directional`},
         {name:'Management Experimental Robot',life:192,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:343,effect:[17,1]},{type:441,effect:[8,1]},{type:442,effect:[15,1]}],description:`Now obsolete`},
+        {name:'Warning Man',life:132,behavior:0,spec:[0],move:{type:12,speed:1},attack:[{type:450,effect:[16,6]},{type:29,effect:[17]}],description:`He'll find you if it's\nthe last thing he does`},
+        {name:'Nerfmaster',life:116,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:449,effect:[15]},{type:48,effect:[16]},{type:448,effect:[3,3,3]}],description:`Nerfed entire characters`},
+        {name:'Big Bounce',life:81,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:10,effect:[12]},{type:447,effect:[10]},{type:39,effect:[1,'Bouncer']}],description:`Bounces you hard`},
+        {name:'Pinstripe',life:123,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:444,effect:[3]},{type:445,effect:[13]},{type:446,effect:[9]}],description:`Purchased a machine gun`},
         
         {name:'Prisoner Informant',life:28,behavior:1,spec:[22],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Whose side is he on?`},
         {name:'Gangster Machinegunner Informant',life:48,behavior:1,spec:[0,22],move:{type:1,speed:1},attack:[{type:129,effect:[3]}],description:`It goes to the top`},
@@ -249,8 +253,8 @@ types={
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Dizzy']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2,19],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
         {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:144,effect:[19,2]},{type:145,effect:[14,2,'Electrocuted']},{type:146,effect:[24]},{type:147,effect:[9]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
-        {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:2},attack:[{type:178,effect:[12,1,'Convulsive']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,1,'Napalm']}],description:`Classic warcriminal`},
-        {name:'Purge X02',life:500,behavior:0,spec:[0,2,19],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:32,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
+        {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:2},attack:[{type:178,effect:[12,1,'Shrapnel']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,2,'Burn']}],description:`Classic warcriminal`},
+        {name:'Purge X02',life:500,behavior:0,spec:[0,2,19],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:32,effect:[20,2,'Void']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
         {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[2]}],description:`From the sky~`},
         {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[17,2]},{type:354,effect:[9,2]},{type:355,effect:[7,2]}],description:`Doxxed literally everybody`},
         {name:'Lockdown',life:425,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:111,effect:[2]},{type:98,effect:[24]},{type:407,effect:[5]},{type:408,effect:[36,12]},{type:409,effect:[22,11]}],description:`Stay in jail`},
@@ -301,7 +305,7 @@ types={
         {name:'Rebel Negotiator',life:20,behavior:0,spec:[21],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Comes in peace?`},
         
         {name:'NumberDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Takes damage`},
-        {name:'AttackDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:1,effect:[1]}],description:`Does damage`},
+        {name:'AttackDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:1,effect:[1]}],description:`Deals damage`},
         {name:'BlockDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:2,effect:[1]}],description:`Gains block`},
         {name:'MoveDummy',life:1,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Can move`},
         {name:'Unknown',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`???`},
@@ -413,7 +417,7 @@ types={
         {name:'Double Strike / Weak',class:1},
         {name:'3 Spread Triple Strike',class:1},
         {name:'2 Tile 3 Spread Status',class:1},
-        {name:'Ultrapush',class:1},
+        {name:'6 Tile Push to End',class:1},
         {name:'2 Tile Double Strike / Strengthen',class:1},
         {name:'Counter',class:2},
         {name:'Self Heal',class:4},
@@ -751,6 +755,13 @@ types={
         {name:'3 Spread Double Strike / Anti-Control',class:1},
         {name:'All Enemy Block / Control',class:1},
         {name:'Statusing Triple Gun',class:1},
+        {name:'Triple Spread Statusing Machine Gun',class:1},
+        {name:'Advancing Gun',class:1},
+        {name:'Multidirectional Gun',class:5},
+        {name:'3 Tile Push to End',class:1},
+        {name:'6 Tile Weaken / Vulnerable / Frail',class:11},
+        {name:'3 Tile 3 Spread Strike',class:1},
+        {name:'Zigzag Missile',class:5},//450
         
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,description:''},
@@ -1894,6 +1905,14 @@ types={
                 [{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Nudged Rhombic 4',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Crescent 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
@@ -2293,6 +2312,15 @@ types={
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Funneled 5',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Funneled 7',
             map:[
                 [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
@@ -2533,6 +2561,15 @@ types={
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Wide Spikes 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[1]},{type:[1]},{type:[]},{type:[]},{type:[1]},{type:[1]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Central Spikes 5',
@@ -3357,6 +3394,13 @@ types={
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
             ],
+        },{
+            name:'Crushed 6',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
         },
 
         /*{
@@ -3405,6 +3449,61 @@ types={
                 {position:{x:2,y:2},name:'Duck'},
             ],reinforce:[
             ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Wide Spikes 5'],class:1,world:1,
+            name:'Pinstripe',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:4,y:3}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'Pinstripe'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Crushed 6'],class:0,world:1,
+            name:'Big Bounce',
+            player:{position:[[{x:4,y:1}],[{x:4,y:0},{x:5,y:2}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Big Bounce'},
+            ],reinforce:[
+                {position:{x:1,y:1},name:'Bouncer',turn:2},
+                {position:{x:1,y:1},name:'Bouncer',turn:3},
+                {position:{x:1,y:1},name:'Bouncer',turn:4},
+            ],assaultReinforce:[
+                {position:{x:1,y:1},name:'Bouncer',turn:6},
+                {position:{x:1,y:1},name:'Bouncer',turn:8},
+                {position:{x:1,y:1},name:'Bouncer',turn:10},
+                {position:{x:1,y:1},name:'Bouncer',turn:12},
+                {position:{x:1,y:1},name:'Bouncer',turn:14},
+            ],ally:[
+            ],
+        },{
+            level:['Nudged Rhombic 4'],class:1,world:1,
+            name:'Nerfmaster',
+            player:{position:[[{x:1,y:2}],[{x:0,y:2},{x:2,y:3}]]},
+            enemy:[
+                {position:{x:3,y:0},name:'Nerfmaster'},
+                {position:{x:1,y:0},name:'Nerfer'},
+                {position:{x:3,y:2},name:'Nerfer'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:1},name:'Nerfer',turn:5},
+                {position:{x:3,y:3},name:'Nerfer',turn:5},
+            ],ally:[
+            ],
+        },{
+            level:['Funneled 5'],class:1,world:1,
+            name:'Warning Man',
+            player:{position:[[{x:4,y:4}],[{x:4,y:3},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Warning Man'},
+                {position:{x:1,y:1},name:'Cartel'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:3},name:'Cartel',turn:8},
+                {position:{x:3,y:1},name:'Cartel',turn:8},
             ],ally:[
             ],
         },{
@@ -7065,6 +7164,11 @@ damage and is spent, but does not counter.`,
         {name:'HVM Contractor',desc:'Sale Items in the Shop Cost More Instead'},
         {name:'Rammer Robot',desc:'Replace Text With Comic Sans'},
         {name:'Management Experimental Robot',desc:'Append Qualitative Terms to Card Names'},
+        {name:'Warning Man',desc:'Get Bombed on Turn 5'},
+        {name:'Nerfmaster',desc:'When You Get Nerfed, Gain 1 Weak'},
+        {name:'Big Bounce',desc:'Enemies Have a 10% Chance to be Tripled but Pushed Back 1 Turn'},
+        {name:'Pinstripe',desc:'When an Enemy Dies, Take 2 Damage'},//240
+
         //mark mod
     ],deckmode:[
         {name:'Standard Deck'},

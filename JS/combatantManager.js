@@ -669,12 +669,19 @@ class combatantManager{
     dead(){
         this.combatants.forEach(combatant=>combatant.anotherDead())
     }
-    holdSummonCombatant(tilePosition,type,direction){
-        this.summons.push([tilePosition,type,direction])
+    holdSummonCombatant(tilePosition,type,direction,spec=0){
+        this.summons.push([tilePosition,type,direction,spec])
         this.battle.counter.enemy++
     }
     outSummons(){
-        this.summons.forEach(summon=>this.summonCombatant(summon[0],summon[1],summon[2]))
+        for(let a=0,la=this.summons.length;a<la;a++){
+            this.summonCombatant(this.summons[a][0],this.summons[a][1],this.summons[a][2])
+            switch(this.summons[a][3]){
+                case 1:
+                    this.combatants[this.combatants.length-1].setMaxHP(1)
+                break
+            }
+        }
         this.battle.counter.enemy-=this.summons.length
         this.summons=[]
     }

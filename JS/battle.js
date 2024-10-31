@@ -475,7 +475,11 @@ class battle{
                     effectiveName=types.combatant[summon].name
                 }
             }
-            if(this.modded(1)&&floor(random(0,2))==0){
+            if(this.modded(239)&&floor(random(0,10))==0){
+                this.reinforce.back.push({position:{x:effectiveEncounter.enemy[a].position.x,y:effectiveEncounter.enemy[a].position.y},name:effectiveName,turn:1,minion:false})
+                this.quickReinforce(effectiveEncounter.enemy[a].name)
+                this.quickReinforce(effectiveEncounter.enemy[a].name)
+            }else if(this.modded(1)&&floor(random(0,2))==0){
                 this.reinforce.back.push({position:{x:effectiveEncounter.enemy[a].position.x,y:effectiveEncounter.enemy[a].position.y},name:effectiveName,turn:1,minion:false})
                 this.quickReinforce(effectiveEncounter.enemy[a].name)
             }else{
@@ -2274,7 +2278,7 @@ class battle{
         this.currency.money[player]-=round(amount)
     }
     modded(type){
-        return variants.mod?this.modManager.mods[type]:false
+        return !this.initialized?false:variants.mod?this.modManager.mods[type]:false
     }
     display(scene){
         switch(scene){

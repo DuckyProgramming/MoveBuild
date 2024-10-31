@@ -2033,6 +2033,9 @@ class group{
                         this.cards[a].costUp(0,[args[0]])
                     }
                 break
+                case 55:
+                    this.cards[a][args[0]](...args[1])
+                break
             }
         }
         if(effect==9){
@@ -5053,7 +5056,7 @@ class group{
                 this.battle.cardManagers[this.player].draw(1)
             }
             this.cards[a].callExhaustEffect()
-            this.battle.cardManagers[this.player].hand.allEffect(112)
+            this.battle.cardManagers[this.player].hand.allEffectArgs(55,['callAnotherExhaustEffect',[this.cards[a]]])
             delete this.cards[a]
             this.cards.splice(a,1)
         }else if(userCombatant.getStatus('Double Exhaust')>0&&this.cards[a].attack!=1287){
@@ -5091,7 +5094,7 @@ class group{
                 this.battle.cardManagers[this.player].draw(1)
             }
             this.cards[a].callExhaustEffect()
-            this.battle.cardManagers[this.player].hand.allEffect(112)
+            this.battle.cardManagers[this.player].hand.allEffectArgs(55,['callAnotherExhaustEffect',[this.cards[a]]])
             this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
         }
     }

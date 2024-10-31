@@ -11,8 +11,8 @@ function setup(){
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[17,/*floor(random(0,21))*/]
-        current.menu.deck=[-1]
+        current.menu.combatant=[17/*,floor(random(0,21))*/]
+        current.menu.deck=[0]
 
             //variants.mtg=true
 
@@ -68,8 +68,8 @@ function setup(){
             player(0).anim.direction=-30*/
 
             /*variants.mod=true
-            for(let a=0,la=2a<la;a++){
-                current.modManager.addMod(235+a)
+            for(let a=0,la=4;a<la;a++){
+                current.modManager.addMod(237+a)
             }*/
 
             /*for(let a=0,la=4;a<la;a++){

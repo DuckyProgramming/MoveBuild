@@ -11,7 +11,7 @@ turn.prototype.update=function(){
                 case 287: case 290: case 291: case 295: case 304: case 306: case 316: case 325: case 328: case 329:
                 case 332: case 335: case 342: case 343: case 353: case 369: case 372: case 373: case 374: case 375:
                 case 378: case 385: case 386: case 389: case 390: case 397: case 398: case 402: case 412: case 419:
-                case 420: case 424: case 426: case 433: case 434: case 435:
+                case 420: case 424: case 426: case 433: case 434: case 435: case 448:
                     if(this.type==205&&this.timer==1){
                         this.userCombatant.goal.anim.direction=this.relativeDirection
                     }
@@ -405,7 +405,7 @@ turn.prototype.update=function(){
                 break
                 case 9: case 28: case 44: case 53: case 60: case 64: case 82: case 84: case 85: case 105:
                 case 114: case 124: case 153: case 204: case 259: case 264: case 265: case 278: case 288: case 308:
-                case 330: case 368: case 379: case 387: case 388: case 395: case 404: case 409:
+                case 330: case 368: case 379: case 387: case 388: case 395: case 404: case 409: case 449:
                     if(variants.nobasicanim){
                         this.selfCall(3)
                         this.remove=true
@@ -462,7 +462,7 @@ turn.prototype.update=function(){
                 case 18: case 25: case 26: case 43: case 46: case 63: case 70: case 109: case 159: case 167:
                 case 169: case 170: case 174: case 177: case 197: case 207: case 210: case 216: case 220: case 228:
                 case 281: case 289: case 294: case 296: case 300: case 345: case 349: case 356: case 413: case 421:
-                case 423: case 432:
+                case 423: case 432: case 450:
                     if(variants.nobasicanim){
                         this.selfCall(5)
                         this.remove=true
@@ -513,7 +513,11 @@ turn.prototype.update=function(){
                 break
                 case 49: case 164:
                     if(this.timer==1){
-                        this.procedure[0]=distTargetCombatant(0,this.userCombatant,this.targetCombatant)>=0?0:distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]}},this.targetCombatant)>=0?1:distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]}},this.targetCombatant)>=0?2:3
+                        this.procedure[0]=distTargetCombatant(0,this.userCombatant,this.targetCombatant)>=0?0:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]}},this.targetCombatant)==1?1:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]}},this.targetCombatant)==1?2:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]}},this.targetCombatant)>=0?1:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]}},this.targetCombatant)>=0?2:3
                         if(this.relativeDirection<this.userCombatant.goal.anim.direction-30){
                             this.userCombatant.goal.anim.direction-=60
                         }else if(this.relativeDirection>this.userCombatant.goal.anim.direction+30){
@@ -1001,7 +1005,7 @@ turn.prototype.update=function(){
                         this.remove=true
                     }
                 break
-                case 106:
+                case 106: case 447:
                     if(this.timer==1&&this.targetDistance>1){
                         this.userCombatant.startAnimation(0)
                     }else if(this.timer==15*this.targetDistance-14){
@@ -1588,7 +1592,7 @@ turn.prototype.update=function(){
                     }
                     if(this.timer==5*this.targetDistance+15||this.timer==5*this.targetDistance+18||this.timer==5*this.targetDistance+21||this.timer==5*this.targetDistance+24||this.timer==5*this.targetDistance+27){
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                    }else if(this.timer>=max(40,5*this.targetDistance+40)){
+                    }else if(this.timer>=max(45,5*this.targetDistance+40)){
                         this.remove=true
                     }
                 break
@@ -2285,7 +2289,11 @@ turn.prototype.update=function(){
                 break
                 case 185:
                     if(this.timer==1){
-                        this.procedure[0]=distTargetCombatant(0,this.userCombatant,this.targetCombatant)>=0?0:distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]}},this.targetCombatant)>=0?1:distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]}},this.targetCombatant)>=0?2:3
+                        this.procedure[0]=distTargetCombatant(0,this.userCombatant,this.targetCombatant)>=0?0:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]}},this.targetCombatant)==1?1:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]}},this.targetCombatant)==1?2:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]}},this.targetCombatant)>=0?1:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]}},this.targetCombatant)>=0?2:3
                     }
                     if(this.procedure[0]==0){
                         if(this.timer==1&&this.targetDistance>1){
@@ -3631,7 +3639,11 @@ turn.prototype.update=function(){
                 break
                 case 406:
                     if(this.timer==1){
-                        this.procedure[0]=distTargetCombatant(0,this.userCombatant,this.targetCombatant)>=0?0:distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]}},this.targetCombatant)>=0?1:distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]}},this.targetCombatant)>=0?2:3
+                        this.procedure[0]=distTargetCombatant(0,this.userCombatant,this.targetCombatant)>=0?0:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]}},this.targetCombatant)==1?1:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]}},this.targetCombatant)==1?2:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]}},this.targetCombatant)>=0?1:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]}},this.targetCombatant)>=0?2:3
                         if(this.relativeDirection<this.userCombatant.goal.anim.direction-30){
                             this.userCombatant.goal.anim.direction-=60
                         }else if(this.relativeDirection>this.userCombatant.goal.anim.direction+30){
@@ -3833,6 +3845,153 @@ turn.prototype.update=function(){
                         this.selfCall(3)
                     }else if(this.timer>=30){
                         this.remove=true
+                    }
+                break
+                case 444:
+                    if(this.timer==1){
+                        this.procedure[0]=distTargetCombatant(0,this.userCombatant,this.targetCombatant)>=0?0:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]}},this.targetCombatant)==1?1:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]}},this.targetCombatant)==1?2:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]}},this.targetCombatant)>=0?1:
+                            distTargetCombatant(0,{tilePosition:{x:this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],y:this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]}},this.targetCombatant)>=0?2:3
+                        if(this.relativeDirection<this.userCombatant.goal.anim.direction-30){
+                            this.userCombatant.goal.anim.direction-=60
+                        }else if(this.relativeDirection>this.userCombatant.goal.anim.direction+30){
+                            this.userCombatant.goal.anim.direction+=60
+                        }
+                    }
+                    if(this.procedure[0]==0){
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(5)
+                        }
+                        if(this.timer<=10||this.timer>35&&this.timer<=45){
+                            this.userCombatant.runAnimation(1/10,5)
+                        }
+                        if(this.timer==15||this.timer==18||this.timer==21||this.timer==24||this.timer==27){
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
+                        }
+                        if(this.timer==5*this.targetDistance+15||this.timer==5*this.targetDistance+18||this.timer==5*this.targetDistance+21||this.timer==5*this.targetDistance+24||this.timer==5*this.targetDistance+27){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        }else if(this.timer>=max(45,5*this.targetDistance+40)){
+                            this.remove=true
+                        }
+                    }else if(this.procedure[0]==1||this.procedure[0]==2){
+                        if(this.timer==1){
+                            this.ztarget=this.procedure[0]==2?[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1])]:[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1])]
+                            if(this.ztarget[0]==-1){
+                                this.remove=true
+                            }else{
+                                this.ztargetTile=this.battle.tileManager.tiles[this.ztarget[0]]
+                                if(this.ztargetTile.occupied>0){
+                                    this.remove=true
+                                }
+                                this.zdirection=atan2(this.ztargetTile.position.x-this.position.x,this.ztargetTile.position.y-this.position.y)
+                                this.zdistance=sqrt((this.ztargetTile.position.x-this.position.x)**2+(this.ztargetTile.position.y-this.position.y)**2)
+                                this.zrelativeDirection=atan2(this.ztargetTile.relativePosition.x-this.relativePosition.x,this.ztargetTile.relativePosition.y-this.relativePosition.y)
+                                this.zrelativeDistance=sqrt((this.ztargetTile.relativePosition.x-this.relativePosition.x)**2+(this.ztargetTile.relativePosition.y-this.relativePosition.y)**2)
+                            }
+                            this.userCombatant.startAnimation(0)
+                        }
+                        if(this.timer<=15&&!this.remove){
+                            this.userCombatant.moveTile(this.zdirection,this.zdistance/(15*distTargetCombatant(0,this,this.ztargetTile)))
+                            this.userCombatant.moveRelativeTile(this.zrelativeDirection,this.zrelativeDistance/(15*distTargetCombatant(0,this,this.ztargetTile)))
+                            this.userCombatant.runAnimation(1/15,0)
+                        }
+                        if(this.timer==15&&!this.remove){
+                            this.userCombatant.moveTilePosition(this.ztargetTile.tilePosition.x,this.ztargetTile.tilePosition.y)
+                            this.battle.activate(1,this.userCombatant.id)
+                            this.direction=atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.targetCombatant.position.y-this.userCombatant.position.y)
+                            this.distance=sqrt((this.targetCombatant.position.x-this.userCombatant.position.x)**2+(this.targetCombatant.position.y-this.userCombatant.position.y)**2)
+                            this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)
+                            this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)**2)
+                            this.targetDistance=distTargetCombatant(0,this.userCombatant,this.targetCombatant)
+                        }
+                        if(this.timer==16){
+                            this.userCombatant.startAnimation(5)
+                        }
+                        if(this.timer>15&&this.timer<=25||this.timer>50&&this.timer<=60){
+                            this.userCombatant.runAnimation(1/10,5)
+                        }
+                        if(this.timer==30||this.timer==33||this.timer==36||this.timer==39||this.timer==42){
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
+                        }
+                        if(this.timer==5*this.targetDistance+30||this.timer==5*this.targetDistance+33||this.timer==5*this.targetDistance+36||this.timer==5*this.targetDistance+39||this.timer==5*this.targetDistance+42){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        }else if(this.timer>=max(60,5*this.targetDistance+55)){
+                            this.remove=true
+                        }
+                    }else{
+                        this.remove=true
+                    }
+                break
+                case 445:
+                    if(this.targetDistance==1){
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(5)
+                        }
+                        if(this.timer<=10||this.timer>20&&this.timer<=30){
+                            this.userCombatant.runAnimation(1/10,5)
+                        }
+                        if(this.timer==15){
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
+                        }else if(this.timer==5*this.targetDistance+15){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        }else if(this.timer>=max(30,5*this.targetDistance+25)){
+                            this.remove=true
+                        }
+                    }else{
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(5)
+                            let offset=transformDirection(0,this.relativeDirection)
+                            let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+offset[0],this.userCombatant.tilePosition.y+offset[1])
+                            this.procedure[0]=index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                        }
+                        if(this.timer<=10||this.timer>20&&this.timer<=30){
+                            this.userCombatant.runAnimation(1/10,5)
+                        }
+                        if(this.timer==15){
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
+                        }else if(this.timer==5*this.targetDistance+15){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        }
+                        if(this.procedure[0]==0){
+                            if(this.timer==31){
+                                this.userCombatant.startAnimation(0)
+                            }
+                            if(this.timer>30&&this.timer<=45){
+                                this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
+                                this.userCombatant.runAnimation(1/15,0)
+                            }
+                            if(this.timer>=max(45,5*this.targetDistance+25)){
+                                let offset=transformDirection(0,this.relativeDirection)
+                                this.userCombatant.moveTilePosition(this.userCombatant.tilePosition.x+offset[0],this.userCombatant.tilePosition.y+offset[1])
+                                this.battle.activate(1,this.userCombatant.id)
+                                this.remove=true
+                            }
+                        }else if(this.timer>=max(30,5*this.targetDistance+25)){
+                            this.remove=true
+                        }
+                    }
+                break
+                case 446:
+                    if(variants.nobasicanim){
+                        this.selfCall(4)
+                        this.remove=true
+                    }else{
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(5)
+                        }
+                        if(this.timer<=10||this.timer>20&&this.timer<=30){
+                            this.userCombatant.runAnimation(1/10,5)
+                        }
+                        if(this.timer==15){
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
+                        }else if(this.timer==round(this.distance/30+15)){
+                            this.selfCall(4)
+                        }else if(this.timer>=max(30,this.distance/30+25)){
+                            this.remove=true
+                        }
                     }
                 break
 

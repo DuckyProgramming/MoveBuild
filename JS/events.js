@@ -5292,7 +5292,7 @@ You seize whatever documents you find and dispose of the body.`,
             },{
                 desc:
 `Following the truck, he eventually reaches what looks to be
-a drop sight. Afterward, he speeds off for a moment, and while
+a drop site. Afterward, he speeds off for a moment, and while
 he's gone, the drop arrives.
 You take all the supplies, escaping before he returns.`,
                 option:['Leave'],

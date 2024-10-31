@@ -98,6 +98,9 @@ class node{
         this.extraConnections=extraConnections
         this.scroll=scroll
         this.complete=complete
+        if(this.type==1&&this.combat==undefined){
+            this.combat=findName('Agent Duck',types.encounter)
+        }
     }
     display(type=this.type){
         let color=mergeColor(

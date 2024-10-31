@@ -1505,27 +1505,34 @@ class relicManager{
                         }
                     break
                     case 5:
-                        if(this.active[319][a+1]>0){
-                            this.getPlayer(a).statusEffect('Buffer',this.active[319][a+1])
-                        }
-                        if(this.active[409][a+1]>0){
-                            this.getPlayer(a).statusEffect('Strength',2*this.active[409][a+1])
-                            this.getPlayer(a).statusEffect('Dexterity',2*this.active[409][a+1])
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            if(this.active[319][a+1]>0){
+                                this.getPlayer(a).statusEffect('Buffer',this.active[319][a+1])
+                            }
+                            if(this.active[409][a+1]>0){
+                                this.getPlayer(a).statusEffect('Strength',2*this.active[409][a+1])
+                                this.getPlayer(a).statusEffect('Dexterity',2*this.active[409][a+1])
+                            }
                         }
                         if(this.battle.modded(58)){
                             this.battle.quickReinforce('Management Soldier')
                         }
-                        if(this.battle.modded(172)){
-                            this.battle.combatantManager.allEffect(40,[[1,3]])
-                        }
                         if(this.battle.modded(198)){
                             this.battle.quickReinforce('Gangster')
                         }
+                        if(this.battle.modded(172)){
+                            this.battle.combatantManager.allEffect(40,[[1,3]])
+                        }
+                        if(this.battle.modded(237)){
+                            this.battle.tileManager.fireAreaZigzag(0,10,this.getPlayer(a).tilePosition,6)
+                        }
                     break
-                    case 6: case 9:
-                        if(this.active[248][a+1]>0){
-                            this.getPlayer(a).statusEffect('Temporary Strength',4*this.active[248][a+1])
-                            this.getPlayer(a).addBlock(20*this.active[248][a+1])
+                    case 6:
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            if(this.active[248][a+1]>0){
+                                this.getPlayer(a).statusEffect('Temporary Strength',4*this.active[248][a+1])
+                                this.getPlayer(a).addBlock(20*this.active[248][a+1])
+                            }
                         }
                     break
                     case 7:
@@ -1533,14 +1540,24 @@ class relicManager{
                             this.battle.combatantManager.allEffect(19,[52*this.active[174][0]])
                         }
                     break
+                    case 9:
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            if(this.active[248][a+1]>0){
+                                this.getPlayer(a).statusEffect('Temporary Strength',4*this.active[248][a+1])
+                                this.getPlayer(a).addBlock(20*this.active[248][a+1])
+                            }
+                        }
+                    break
                     case 10:
-                        if(this.active[318][a+1]>0){
-                            this.getPlayer(a).statusEffect('Extra Turn',this.active[318][a+1])
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            if(this.active[318][a+1]>0){
+                                this.getPlayer(a).statusEffect('Extra Turn',this.active[318][a+1])
+                            }
                         }
                     break
                     case 20:
-                        if(this.battle.modded(175)){
-                            for(let a=0,la=this.battle.players;a<la;a++){
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            if(this.battle.modded(175)){
                                 this.getPlayer(a).life=0
                             }
                         }

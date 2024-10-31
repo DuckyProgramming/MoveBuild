@@ -162,6 +162,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,26,[0])],//money math
                     [new overlay(this.layer,this.battle,0,2,[98,1,0])],//remove rare card, no return
                     [new overlay(this.layer,this.battle,0,2,[99])],//shuffle any discard cards into draw
+                    [new overlay(this.layer,this.battle,0,2,[100,0,0,0])],//exhaust draw card, then trigger exhaust discard, no return
+                    [new overlay(this.layer,this.battle,0,2,[101,0,0])],//exhaust discard card, then trigger hand discard, no return
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
