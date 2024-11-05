@@ -596,13 +596,23 @@ turn.prototype.update=function(){
                         this.remove=true
                     }
                 break
-                case 55:
+                case 55: case 451: case 452:
                     if(this.timer==1){
                         this.userCombatant.startAnimation(6)
                     }
                     this.userCombatant.runAnimation(1/10,6)
                     if(this.timer==10){
-                        this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
+                        switch(this.type){
+                            case 55:
+                                this.battle.combatantManager.areaAbstract(2,['Weak Next Turn',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
+                            break
+                            case 451:
+                                this.battle.combatantManager.areaAbstract(2,['Weak Next Turn',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                            break
+                            case 452:
+                                this.battle.combatantManager.areaAbstract(2,['Vulnerable Next Turn',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                            break
+                        }
                     }else if(this.timer>=20){
                         this.remove=true
                     }

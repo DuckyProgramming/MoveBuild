@@ -3395,7 +3395,13 @@ class overlay{
                                             }
                                         break
                                         case 27:
-                                            this.battle.cardManagers[this.player].deck.copy(this.battle.cardManagers[this.player].hand.cards,a,a+1,0)
+                                            if(this.args[1]==1){
+                                                this.battle.cardManagers[this.player].deck.cards[a].player=this.battle.players-1-this.battle.cardManagers[this.player].deck.cards[a].player
+                                            }
+                                            this.battle.cardManagers[this.player].deck.copy(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].hand.cards,a,a+1,0)
+                                            if(this.args[1]==1){
+                                                this.battle.cardManagers[this.player].deck.cards[a].player=this.battle.players-1-this.battle.cardManagers[this.player].deck.cards[a].player
+                                            }
                                         break
                                         case 28:
                                             if(floor(random(0,2))==0){
@@ -3910,7 +3916,10 @@ class overlay{
                                     this.battle.cardManagers[this.player].exhaust.cards[a].select=false
                                     switch(this.args[0]){
                                         case 12:
-                                            this.battle.cardManagers[this.player].exhaust.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                                            if(this.args[1]==1){
+                                                this.battle.cardManagers[this.player].exhaust.cards[a].player=this.battle.players-1-this.battle.cardManagers[this.player].exhaust.cards[a].player
+                                            }
+                                            this.battle.cardManagers[this.player].exhaust.send(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].hand.cards,a,a+1,1)
                                             a--
                                             la--
                                         break
@@ -4695,7 +4704,13 @@ class overlay{
                                             }
                                         break
                                         case 27:
-                                            this.battle.cardManagers[this.player].deck.copy(this.battle.cardManagers[this.player].hand.cards,a,a+1,0)
+                                            if(this.args[1]==1){
+                                                this.battle.cardManagers[this.player].deck.cards[a].player=this.battle.players-1-this.battle.cardManagers[this.player].deck.cards[a].player
+                                            }
+                                            this.battle.cardManagers[this.player].deck.copy(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].hand.cards,a,a+1,0)
+                                            if(this.args[1]==1){
+                                                this.battle.cardManagers[this.player].deck.cards[a].player=this.battle.players-1-this.battle.cardManagers[this.player].deck.cards[a].player
+                                            }
                                         break
                                         case 28:
                                             if(floor(random(0,2))==0){
@@ -5207,7 +5222,10 @@ class overlay{
                                     this.battle.cardManagers[this.player].exhaust.cards[a].select=false
                                     switch(this.args[0]){
                                         case 12:
-                                            this.battle.cardManagers[this.player].exhaust.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                                            if(this.args[1]==1){
+                                                this.battle.cardManagers[this.player].exhaust.cards[a].player=this.battle.players-1-this.battle.cardManagers[this.player].exhaust.cards[a].player
+                                            }
+                                            this.battle.cardManagers[this.player].exhaust.send(this.battle.cardManagers[this.args[1]==1?this.battle.players-1-this.player:this.player].hand.cards,a,a+1,1)
                                             a--
                                             la--
                                         break

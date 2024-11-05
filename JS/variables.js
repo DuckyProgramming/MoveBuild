@@ -21,6 +21,7 @@ types={
         {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[26]},{type:420,effect:[3]},{type:93,effect:[1]}],description:``},
         {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:``},
         {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
+        {name:'',moniker:'The Placeholder',identifier:['',''],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -85,7 +86,7 @@ types={
         {name:'Management Custodian',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[1]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
         {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]}],description:`No walker now`},
         {name:'Prisoner',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[4]},{type:4,effect:[10]}],description:`Mr. Misdemeanor`},
-        {name:'Prison Guard',life:56,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:98,effect:[7]}],description:`Helping the prisoners for some reason`},
+        {name:'Prison Guard',life:56,behavior:1,spec:[7],move:{type:1,speed:1},attack:[{type:98,effect:[7]}],description:`Helping the prisoners for some reason`},
         {name:'Lightspeed',life:65,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:101,effect:[3]},{type:19,effect:[4]},{type:99,effect:[6]},{type:100,effect:[10]}],description:`He be fast`},
         {name:'Swordmaster',life:90,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:29,effect:[12]},{type:79,effect:[14]},{type:103,effect:[6,2]},{type:21,effect:[]}],description:`Mastered something`},
         {name:'Gas Man',life:84,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:104,effect:[6]},{type:105,effect:[4,'Burn']}],description:`Fills you with gas`},
@@ -101,7 +102,7 @@ types={
         {name:'Fireball',life:40,behavior:10,spec:[],move:{type:0,speed:2},attack:[{type:112,effect:[4,2]},{type:21,effect:[]}],description:`Hurts to touch`},
         {name:'Dead Shell',life:44,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:20,effect:[6]},{type:113,effect:[8]},{type:114,effect:[5,2]}],description:`More alive then intended`},
         {name:'Management Drone',life:75,behavior:1,spec:[0,20,19],move:{type:0,speed:1},attack:[{type:4,effect:[15]},{type:115,effect:[12]}],description:`Automated pain`},
-        {name:'Executive',life:95,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:12,effect:[10]},{type:120,effect:[1]},{type:6,effect:[8]}],description:`Thinks he outsmarted you`},
+        {name:'Executive',life:95,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:12,effect:[10]},{type:451,effect:[2]},{type:452,effect:[2]},{type:6,effect:[8]}],description:`Thinks he outsmarted you`},
         {name:'Mechanized',life:130,behavior:0,spec:[0,19],move:{type:0,speed:2},attack:[{type:124,effect:[8,1]},{type:125,effect:[12]},{type:126,effect:[6]}],description:`More machine than man`},
         {name:'Ninja Master',life:56,behavior:1,spec:[],move:{type:3,speed:1},attack:[{type:121,effect:[12]},{type:122,effect:[12]},{type:123,effect:[4]}],description:`Mastered teleportation, but not much else`},
         {name:'Bomber Boy',life:105,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:127,effect:[18]},{type:128,effect:[10,3,'Shrapnel']}],description:`Loves his weaponry`},
@@ -189,7 +190,7 @@ types={
         {name:'Shield Prison Guard',life:62,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:399,effect:[8,10]},{type:353,effect:[12,1]}],description:`Not as good as riot police`},
         {name:'Half Spikeball',life:35,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:417,effect:[10]},{type:418,effect:[10]}],description:`Poor rotational alignment`},
         {name:'Graphite Block',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:426,effect:[1]},{type:30,effect:[6,6]},{type:396,effect:[6,6]}],description:`Can be made into a packager`},
-        {name:'Zombie Duck',life:13,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[6]},{type:1,effect:[5]}],description:`You again?`},
+        {name:'Zombie Duck',life:10,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[6]},{type:1,effect:[5]}],description:`You again?`},
         {name:'Pistol Duck',life:30,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:236,effect:[4]}],description:`Brought a gun to... a gun fight?`},
         {name:'Hit Squad',life:36,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[12]},{type:427,effect:[9,1]},{type:428,effect:[9,1]}],description:`Take him out!`},
         {name:'Old Konaian',life:45,behavior:1,spec:[1],move:{type:14,speed:1},attack:[{type:429,effect:[13]},{type:430,effect:[9,2]}],description:`Classic style`},
@@ -762,6 +763,8 @@ types={
         {name:'6 Tile Weaken / Vulnerable / Frail',class:11},
         {name:'3 Tile 3 Spread Strike',class:1},
         {name:'Zigzag Missile',class:5},//450
+        {name:'Spin Weaken',class:11},
+        {name:'Spin Vulnerable',class:11},
         
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,description:''},
@@ -903,9 +906,9 @@ types={
         {name:'Tweezers',internal:'Block Break Vulnerable',id:124,rarity:0,list:0,mtg:0,description:`When You Break an Enemy's\nBlock, Apply 2 Vulnerable`},
         {name:'Waffle',internal:'10 Max HP Full Heal',id:125,rarity:3,list:0,mtg:0,description:'When Taken, Gain 10 Max\nHP and Heal All HP'},
         {name:'Napkin Ring',internal:'Starting Colorless',id:126,rarity:3,list:0,mtg:0,description:'Choose 1 Common Colorless Card\nto Add on Turn 1'},
-        {name:'Rock of Duckontonlek',internal:'Relic Pack',id:127,rarity:3,list:0,mtg:0,description:'When Taken, Gain 3 Relics\nand a Hoarding'},
+        {name:'Rock of Duckontonlek',internal:'Relic Pack',id:127,rarity:3,list:0,mtg:0,description:'When Taken, Gain 3 Relics\nand Become Cursed - Hoarding'},
         {name:'Card Rack',internal:'Card Hold',id:128,rarity:-1,list:0,mtg:0,description:'All Cards\nHave Retain'},
-        {name:'Mechanical Eye',internal:'View Draw',id:129,rarity:0,list:0,mtg:0,description:'Draw Pile Cards Are\nViewed in Order'},
+        {name:'Mechanical Eye',internal:'View Draw',id:129,rarity:-1,list:0,mtg:0,description:'Draw Pile Cards Are\nViewed in Order'},
 
         {name:'Stapler',internal:'Innate Card',id:130,rarity:-1,list:0,mtg:0,description:'When Taken, Make a Card Innate'},
         {name:'Concave Star',internal:'Energy/Card Choice',id:131,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy, Have 1\nLess Card to Choose From'},
@@ -1540,6 +1543,11 @@ types={
                 stroke:[135,150,115],
                 text:[30,35,25],
                 active:[240,250,220],
+            },{
+                fill:[245,215,200],
+                stroke:[215,185,170],
+                text:[40,30,25],
+                active:[255,235,225],
             },
             
             {
@@ -6891,6 +6899,10 @@ Stacks degrade by half, rounded up, each turn.`,
 `Acts like block, but counters equal to amount of Bounce spent.
 If no targettable user can be countered, still blocks
 damage and is spent, but does not counter.`,
+        },{name:'Pure',mtg:0,desc:
+`When you draw a status card, it is automatically exhausted,
+and another card is drawn in its place.
+Decrements afterward.`,
         },
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0
@@ -7219,10 +7231,10 @@ variants={
         'All Vanishing','Silent Cards','Transcend','Overheat',
         'Cliffs','Assault','Unary','Running Loop',
         'Commoners','Business','Quarter Pool','Close Enough',
-    ]
+    ],
 }
 constants={
-    playerNumber:20,orbNumber:16,
+    playerNumber:21,orbNumber:16,
     targetRadius:30,startEnergy:3,collisionDamage:4,
     sqrt2:0,sqrt3:0,trig:[[],[]],
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],

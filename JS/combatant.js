@@ -186,7 +186,7 @@ class combatant{
                 'Control Base','Random Free Exhausting Ethereal Card Per Turn','Attack Freeze Combat','Blueprint Cost Down','Gun Draw Next Turn','Shock All Per Turn','Amplify Poison All','No Draw Next Turn','Energy Gain Energy','Energy Gain (E)',
                 'Cable Claw Up','Energy Orb Per Turn','Basic Energy','Basic (E)','Bleed Damage','Dust Orb Boost','Armor Per Turn','Max Health Gift','Fragile','Free Card Per Turn',
                 'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random','Silver Block','Mineral Block','Mineral Draw','End of Combat Lose','End of Combat Item',
-                'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat',
+                'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -230,7 +230,7 @@ class combatant{
                 0,1,0,0,0,0,2,2,0,0,//39
                 2,0,0,0,2,2,0,2,0,1,//40
                 0,1,0,0,0,1,1,1,0,0,//41
-                1,1,1,0,1,0,0,0,0,0,//42
+                1,0,1,0,1,0,0,0,0,0,//42
                 0,0,0,0,0,1,1,0,2,2,//43
                 0,0,0,0,0,0,0,0,0,0,//44
                 0,0,0,0,0,0,0,0,0,0,//45
@@ -261,7 +261,7 @@ class combatant{
                 0,0,0,0,2,0,0,0,0,0,//70
                 0,0,0,0,0,0,0,0,0,0,//71
                 1,0,0,0,0,0,0,0,0,0,//72
-                0,0,2,0,0,
+                0,0,2,0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -336,7 +336,7 @@ class combatant{
                 2,2,2,2,2,2,2,3,2,2,//70
                 2,2,2,2,2,2,0,1,1,2,//71
                 2,2,2,2,2,2,2,2,2,2,//72
-                2,2,2,2,0,
+                2,2,2,2,0,2,2,2,2,
             ]}
         /*
         0-none
@@ -1480,6 +1480,7 @@ class combatant{
                         &&this.attack[a].type!=52
                         &&this.attack[a].type!=56
                         &&this.attack[a].type!=57
+                        &&this.attack[a].type!=120
                         &&this.attack[a].type!=155
                         &&this.attack[a].type!=300
                         &&this.attack[a].type!=391
@@ -1815,7 +1816,7 @@ class combatant{
                 ]
             case 16: case 17: case 54: case 87: case 120: case 128: case 132: case 133: case 136: case 142:
             case 147: case 157: case 198: case 213: case 215: case 217: case 255: case 256: case 350: case 351:
-            case 396:
+            case 396: case 451: case 452:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-150)[0],this.tilePosition.y+transformDirection(0,-150)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-90)[0],this.tilePosition.y+transformDirection(0,-90)[1]),
@@ -2463,7 +2464,8 @@ class combatant{
                         case 192: case 195: case 198: case 204: case 213: case 215: case 217: case 222: case 255: case 256:
                         case 259: case 264: case 265: case 278: case 288: case 291: case 292: case 308: case 330: case 350:
                         case 351: case 357: case 360: case 368: case 379: case 381: case 384: case 387: case 388: case 395:
-                        case 396: case 403: case 404: case 409: case 415: case 417: case 418: case 441: case 449:
+                        case 396: case 403: case 404: case 409: case 415: case 417: case 418: case 441: case 449: case 451:
+                        case 452:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -2679,7 +2681,7 @@ class combatant{
                     case 222: case 255: case 256: case 259: case 264: case 265: case 278: case 288: case 291: case 292:
                     case 308: case 330: case 350: case 351: case 357: case 360: case 368: case 379: case 381: case 384:
                     case 387: case 388: case 395: case 396: case 404: case 409: case 415: case 417: case 418: case 441:
-                    case 449:
+                    case 449: case 451: case 452:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(this.targetTile[b].tilePosition.x>=0){
                                 this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
@@ -3041,6 +3043,9 @@ class combatant{
                         this.turnDodges++
                         if(this.status.main[458]>0){
                             this.statusEffect('Strength',this.status.main[458])
+                        }
+                        if(this.status.main[728]>0&&this.id<this.battle.players){
+                            this.battle.cardManagers[this.id].draw(this.status.main[728])
                         }
                         if(this.status.main[459]>0){
                             if(this.battle.turn.main<=this.id){
@@ -5794,21 +5799,12 @@ class combatant{
                     break
                     case 2:
                         this.animSet.loop+=rate
+                        this.anim.arms[this.animSet.hand].top=24+lsin(this.animSet.loop*180)*36
+                        this.anim.arms[this.animSet.hand].bottom=9+lsin(this.animSet.loop*180)*96
+                        this.spin.arms[this.animSet.hand].top=(93-lsin(this.animSet.loop*180)*63)*(this.animSet.hand*2-1)
+                        this.spin.arms[this.animSet.hand].bottom=(75-lsin(this.animSet.loop*180)*90)*(this.animSet.hand*2-1)
                         if(this.name=='Lira'||this.name=='Sakura'||this.name=='Setsuna'||this.name=='Sanae'||this.name=='Shinmyoumaru'||this.name=='Ume'){
-                            this.anim.arms[this.animSet.hand].top=24+lsin(this.animSet.loop*180)*36
-                            this.anim.arms[this.animSet.hand].bottom=9+lsin(this.animSet.loop*180)*96
-                            this.spin.arms[this.animSet.hand].top=(93-lsin(this.animSet.loop*180)*63)*(this.animSet.hand*2-1)
-                            this.spin.arms[this.animSet.hand].bottom=(75-lsin(this.animSet.loop*180)*90)*(this.animSet.hand*2-1)
                             this.spin.sword=75+lsin(this.animSet.loop*180)*45
-                        }else{
-                            for(let g=0;g<2;g++){
-                                if(lsin((this.animSet.loop+this.animSet.flip+g)*180)>=0){
-                                    this.anim.arms[g].top=24+lsin((this.animSet.loop+this.animSet.flip+g)*180)*36
-                                    this.anim.arms[g].bottom=9+lsin((this.animSet.loop+this.animSet.flip+g)*180)*96
-                                    this.spin.arms[g].top=(93-lsin((this.animSet.loop+this.animSet.flip+g)*180)*63)*(g*2-1)
-                                    this.spin.arms[g].bottom=(75-lsin((this.animSet.loop+this.animSet.flip+g)*180)*90)*(g*2-1)
-                                }
-                            }
                         }
                     break
                     case 3:
@@ -7192,9 +7188,9 @@ class combatant{
                     if(!options.oldUnbuild&&!this.battle.combatantManager.constructAlive(this.team)){
                         this.battle.cardManagers[this.team-1].deAbstract(2,1,['Unbuild'])
                     }
-                    if(this.name=='Teleporter Start'){
+                    if(this.name=='Teleporter Start'&&this.battle.cardManagers[this.team-1].hand.lastPlayed[0].name!='Use Teleporter\nStart'){
                         this.battle.cardManagers[this.team-1].deAbstract(2,1,['Use Teleporter\nStart'])
-                    }else if(this.name=='Teleporter End'){
+                    }else if(this.name=='Teleporter End'&&this.battle.cardManagers[this.team-1].hand.lastPlayed[0].name!='Use Teleporter\nEnd'){
                         this.battle.cardManagers[this.team-1].deAbstract(2,1,['Use Teleporter\nEnd'])
                     }
                 }

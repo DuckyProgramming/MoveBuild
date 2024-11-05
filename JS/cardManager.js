@@ -547,27 +547,16 @@ class cardManager{
                         this.hand.add(findName('Card\nSlot',types.card),0,0)
                     }
                 }else{
-                    let amountLeft=amount-this.reserve.cards.length
-                    if(this.reserve.cards.length>0){
-                        this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),[3,8,13,14,18,5,6,19,9,12][spec])
-                    }
+                    let amountLeft=amount
+                    amountLeft-=this.reserve.send(this.hand.cards,0,amountLeft,[3,8,13,14,18,5,6,19,9,12][spec]).length
                     if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                         this.discard.send(this.reserve.cards,0,-1,2)
                         this.reserve.shuffle()
                         if(this.reserve.cards.length>0){
-                            this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),[3,8,13,14,18,5,6,19,9,12][spec])
+                            amountLeft-=this.reserve.send(this.hand.cards,0,amountLeft,[3,8,13,14,18,5,6,19,9,12][spec]).length
                         }
                     }
                     this.reserve.parseDrawEffects(this.hand)
-                    /*if(this.battle.relicManager.hasRelic(106,this.player)){
-                        for(let a=0,la=this.hand.cards.length;a<la;a++){
-                            if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
-                                this.hand.send(this.exhaust.cards,a,a+1,0)
-                                a--
-                                la--
-                            }
-                        }
-                    }*/
                 }
             }
         }
@@ -584,35 +573,24 @@ class cardManager{
                         this.hand.add(findName('Card\nSlot',types.card),0,0)
                     }
                 }else{
-                    let amountLeft=amount-this.reserve.cards.length
-                    if(this.reserve.cards.length>0){
-                        let amountSent=min(amount,this.reserve.cards.length)
-                        this.reserve.send(this.hand.cards,0,amountSent,[3,8,13,14,18,5,6,19,9,12][spec])
-                        for(let a=0,la=amountSent;a<la;a++){
-                            sent.push(this.hand.cards[this.hand.cards.length-1-a])
-                        }
+                    let amountLeft=amount
+                    let result=this.reserve.send(this.hand.cards,0,amountLeft,[3,8,13,14,18,5,6,19,9,12][spec])
+                    amountLeft-=result.length
+                    for(let a=0,la=result.length;a<la;a++){
+                        sent.push(result[a])
                     }
                     if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                         this.discard.send(this.reserve.cards,0,-1,2)
                         this.reserve.shuffle()
                         if(this.reserve.cards.length>0){
-                            let amountSent=min(amountLeft,this.reserve.cards.length)
-                            this.reserve.send(this.hand.cards,0,amountSent,[3,8,13,14,18,5,6,19,9,12][spec])
-                            for(let a=0,la=amountSent;a<la;a++){
-                                sent.push(this.hand.cards[this.hand.cards.length-1-a])
+                            result=this.reserve.send(this.hand.cards,0,amountLeft,[3,8,13,14,18,5,6,19,9,12][spec])
+                            amountLeft-=result.length
+                            for(let a=0,la=result.length;a<la;a++){
+                                sent.push(result[a])
                             }
                         }
                     }
                     this.reserve.parseDrawEffects(this.hand)
-                    /*if(this.battle.relicManager.hasRelic(106,this.player)){
-                        for(let a=0,la=this.hand.cards.length;a<la;a++){
-                            if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
-                                this.hand.send(this.exhaust.cards,a,a+1,0)
-                                a--
-                                la--
-                            }
-                        }
-                    }*/
                 }
             }
         }
@@ -629,84 +607,17 @@ class cardManager{
             }else{
                 let amountLeft=amount-this.reserve.cards.length
                 if(this.reserve.cards.length>0){
-                    this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amount,this.reserve.cards.length),-1,[3,8,13,14,18,5,6,19,9,12][spec])
+                    amountLeft-=this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amountLeft,this.reserve.cards.length),-1,[3,8,13,14,18,5,6,19,9,12][spec]).length()
                 }
                 if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                     this.discard.send(this.reserve.cards,0,-1,2)
                     this.reserve.shuffle()
                     if(this.reserve.cards.length>0){
-                        this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amountLeft,this.reserve.cards.length),-1,[3,8,13,14,18,5,6,19,9,12][spec])
+                        amountLeft-=this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amountLeft,this.reserve.cards.length),-1,[3,8,13,14,18,5,6,19,9,12][spec]).length()
                     }
                 }
                 this.reserve.parseDrawEffects(this.hand)
-                /*if(this.battle.relicManager.hasRelic(106,this.player)){
-                    for(let a=0,la=this.hand.cards.length;a<la;a++){
-                        if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
-                            this.hand.send(this.exhaust.cards,a,a+1,0)
-                            a--
-                            la--
-                        }
-                    }
-                }*/
             }
-        }
-    }
-    drawToCost(cost){
-        if(cost>0){
-            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-            let left=cost
-            let total=0
-            if(userCombatant.getStatus('No Draw')<=0){
-                if(variants.witch){
-                    for(let a=0,la=cost;a<la;a++){
-                        this.hand.add(findName('Card\nSlot',types.card),0,0)
-                    }
-                }else{
-                    for(let a=0,la=10;a<la;a++){
-                        if(left>0){
-                            this.battle.stats.drawn[this.player]++
-                            total++
-                            if(this.reserve.cards.length>0){
-                                let success=false
-                                for(let b=0,lb=this.reserve.cards.length;b<lb;b++){
-                                    if(this.reserve.cards[b].getCost(0)<=left&&this.reserve.cards[b].getCost(0)>=0){
-                                        left-=this.reserve.cards[b].getCost(0)
-                                        this.reserve.send(this.hand.cards,b,b+1)
-                                        success=true
-                                        break
-                                    }
-                                }
-                                if(!success){
-                                    if(this.discard.cards.length>0){
-                                        this.discard.send(this.reserve.cards,0,-1,4)
-                                        this.reserve.shuffle()
-                                    }else{
-                                        left=0
-                                    }
-                                }
-                            }else if(this.discard.cards.length>0){
-                                this.discard.send(this.reserve.cards,0,-1,4)
-                                this.reserve.shuffle()
-                            }else{
-                                left=0
-                            }
-                        }else{
-                            a=la
-                        }
-                    }
-                    this.reserve.parseDrawEffects(this.hand)
-                    /*if(this.battle.relicManager.hasRelic(106,this.player)){
-                        for(let a=0,la=this.hand.cards.length;a<la;a++){
-                            if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
-                                this.hand.send(this.exhaust.cards,a,a+1,0)
-                                a--
-                                la--
-                            }
-                        }
-                    }*/
-                }
-            }
-            this.hand.allEffectArgs(31,[total])
         }
     }
     drawAbstract(amount,variant,output,args){
@@ -722,25 +633,16 @@ class cardManager{
                 }else{
                     let amountLeft=amount
                     if(this.reserve.cards.length>0){
-                        amountLeft-=this.reserve.sendAbstract(this.hand.cards,amount,variant,output,args)
+                        amountLeft-=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args)
                     }
                     if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                         this.discard.send(this.reserve.cards,0,-1,2)
                         this.reserve.shuffle()
                         if(this.reserve.cards.length>0){
-                            this.reserve.sendAbstract(this.hand.cards,amount,variant,output,args)
+                            amountLeft-=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args)
                         }
                     }
                     this.reserve.parseDrawEffects(this.hand)
-                    /*if(this.battle.relicManager.hasRelic(106,this.player)){
-                        for(let a=0,la=this.hand.cards.length;a<la;a++){
-                            if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
-                                this.hand.send(this.exhaust.cards,a,a+1,0)
-                                a--
-                                la--
-                            }
-                        }
-                    }*/
                 }
             }
         }

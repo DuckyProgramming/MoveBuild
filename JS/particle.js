@@ -203,11 +203,11 @@ class particle{
                     this.sets.push([random(-10,10),random(-10,10)])
                 }
             break
-            case 81: case 231: case 246: case 247:
+            case 81: case 231: case 246: case 247: case 251:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.color=random(0,1)
-                this.speed=15*random(0.6,1.5)
+                this.speed=this.type==251?15:15*random(0.6,1.5)
                 this.fade=0
                 this.trigger=false
                 this.size=1
@@ -3998,7 +3998,7 @@ class particle{
                     this.layer.strokeWeight(3)
                     this.layer.point(0,0)
                 break
-                case 247:
+                case 247: case 251:
                     this.layer.rotate(this.direction)
                     this.layer.fill(200+this.color*80,200,200+this.color*80,this.fade*0.5)
                     regStar(this.layer,0,0,5,8,8,2,2,this.spin)
@@ -4217,7 +4217,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 81: case 94: case 102: case 127: case 178: case 231: case 246: case 247:
+            case 81: case 94: case 102: case 127: case 178: case 231: case 246: case 247: case 251:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,5)

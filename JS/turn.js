@@ -191,7 +191,7 @@ class turn{
                                 break
                                 case 16: case 17: case 54: case 87: case 120: case 128: case 132: case 133: case 136: case 142:
                                 case 147: case 157: case 198: case 213: case 215: case 217: case 255: case 256: case 350: case 351:
-                                case 396:
+                                case 396: case 451: case 452:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]],
                                         [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]],

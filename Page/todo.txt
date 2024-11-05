@@ -1,32 +1,120 @@
-OPERATION KOSTRZYN
+OPERATION KOSTRZYN III
 
 
 
-something like temptation
+character 21 can't move
+
+shiru common x1
+
+sanae uncommon x4
+
+damaging counterpart to reversal
+and all the coordinate cards
+
+centuries ascent - block, draw a reversal to hand, when etherealed, gain 1 pure
+
+regency - damage, when played 3 times, remove all your debuffs
+
+seal away - 0 cost, discard your hand and upgrade it, draw a card
+
+armillary sphere - add block, gain pure, exhaust a curse in hand: adds triple block
+
+beget eternity - 7 damage 3 times, draw 1 more card next turn, gain 1 strength, exhaust
+
+katabasis - apply x weak, gain x energy next turn
+
+battleforged bonds - 5 cost, gain 4 temp strength and 4 temp dex, all cards in hand cost 0 temporarilys
+
+have it all - [pentacolor] for another character
+
+luminary - hold light and dark orbs, gain 1 energy
+[functionally replace hyperfixation]
+
+war for religion - upgrade all skills in hand, all attacks cost 1 less
+
+rhystic disaster - all cards in hand cost 0, next turn lose 3 energy
+
+deja entendu - if target has already tried to use its current attack, apply 1 stun
+
+weighted wings - gain 4 temporary strength, add a fatigue to hand
+
+deep droplet - 0 cost, when played scry 2, when exhausted scry 2
+
+[turn status cards into discus]
+
+sputnik - draw 2 cards, draw 2 more if your deck has 30 or more cards
+
+disrepute - damage, gain energy for each curse in the exhaust pile
+
+espionage - apply 1 weak, gain 1 strength in 2 turns
+
+new event cards
 
 new curses
 
-new partner cards
-
-a token status that gives block when exhausted
-
-seashell swap - 1 cost, move a card to the top of draw pile, if it is a skill, draw it
-
-add block, exhaust a card, replenish
-
-random barrage - damage, gain random mana
-
-walk water - damage, or damage and draw 2 cards and discard 2 random cards
-
-night's lament - gain temporary strength, if below half apply vulnerable to all enemies
-
-[pyramid shaped puzzle]
-
-[] - draw 3 cards, gain 1 dodge per skill drawn
-
 [blossoming fantasy]
 
-hasty prayers - bias but with dex
+
+
+OPERATION KOSTRZYN IV
+
+
+
+OPERATION TRAPPENJAGD
+
+NOT TO BE ACTIVATED UNTIL JANUARY 2025
+
+common:
+
+prescription bottle - gain 1 control every 10 turns
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+
+uncommon:
+
+golden chicadee - upgrade all rare cards added to deck, gain 40 currency each
+[]
+[]
+[]
+
+rare:
+
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+
+shop:
+
+[]
+
+boss:
+
+immoral elixir - gain energy each turn, lose 6 health on turn 6
+[]
+[]
+[]
+[]
+[]
+[]
+[]
 
 
 
@@ -38,15 +126,11 @@ NOT TO BE ACTIVATED UNTIL JANUARY 2025
 
 all cards to be absorbed will be stored in placeholder mark 21
 
-something like faith but instead of a stance, you just gain a bunch of buffs
+status and curse
 
-messing with the top of draw and discard piles
+messing with the top of draw and discard piles, pure
 
 discus
-
-
-
-strawberry cake - heal 3 health, gain 1 []
 
 little salvation - 13 block, gain 2 temporary strength, gain 2 []
 

@@ -617,7 +617,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 20: return (damage==effect?(effect==1?``:tennify(effect))+'XY':tennify(effect)+`(${tennify(damage)})XY`)+(bonus>0?`(+${tennify(bonus)})`:``)
 
 			}
-		case 1: case 3: case 6: case 14: case 15: case 16:
+		case 1: case 3: case 6: case 14: case 15: case 16: case 21:
 			let block=effect
 			let bonusB=0
 			let totalDex=0
@@ -670,6 +670,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 14: return block==effect?tennify(effect):tennify(effect)+`(${tennify(block)})`
 				case 15: return effect==1?(block==effect?'':`1(${tennify(block)})*`):(block==effect?tennify(effect)+'*':tennify(effect)+`(${tennify(block)})*C`)
 				case 16: return (block==effect?(effect==1?``:tennify(effect))+'X':tennify(effect)+`(${tennify(block)})X`)
+				case 21: return (block==effect?(effect==1?``:tennify(effect))+'XX':(effect==1?``:tennify(effect))+`(${tennify(block)})XX`)+(bonusB>0?`(+${tennify(bonusB)})`:``)
 
 			}
 		case 4: case 9:
@@ -1166,6 +1167,8 @@ function intentDescription(attack,user,info){
 			case 448: return `Apply ${info?attack.effect[0]:`?`} Weak\nApply ${info?attack.effect[1]:`?`} Vulnerable\nApply ${info?attack.effect[2]:`?`} Frail\nRange 1-6`
 			case 449: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nRange 1-3`
 			case 450: return `Create Target Zigzag\nfor ${info?attack.effect[0]:`?`} Damage`
+			case 451: return `Apply ${info?attack.effect[0]:`?`} Weak\nin All Directions\nRange 1-1`
+			case 452: return `Apply ${info?attack.effect[0]:`?`} Vulnerable\nin All Directions\nRange 1-1`
 			
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
@@ -1974,7 +1977,7 @@ Total:${current.nodeManager.listing.static[3][1].length+current.nodeManager.list
 }
 function outListing(){
 	let box=``
-	let goal=160+160*constants.playerNumber+60+60+25+30+20
+	let goal=160+160*constants.playerNumber+60+60+30+30+20
 	let actual=current.cardManagers[0].listing.allListableCard[3].length
 	let arbitrary=5000
 	for(let a=0,la=constants.playerNumber;a<la;a++){
@@ -1998,8 +2001,8 @@ ${box}		Status:
 		Partnership:
 Common:${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length}/10				${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length-10}
 Uncommon:${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length}/10				${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-10}
-Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}/5					${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length-5}
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+3][3].length}/25
+Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}/10					${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length-10}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+3][3].length}/30
 		Tarot:
 	Total:${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length}/30				${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length-30}
 		Spectral:
@@ -2009,7 +2012,7 @@ Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}
 		Ally:
 	Total:${current.cardManagers[0].listing.ally.length}/24				${current.cardManagers[0].listing.ally.length-24}
 		Disband:
-	Total:${current.cardManagers[0].listing.disband.length}/900			${current.cardManagers[0].listing.disband.length-900}
+	Total:${current.cardManagers[0].listing.disband.length}/1000			${current.cardManagers[0].listing.disband.length-1000}
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/160			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-160}
 			`)
