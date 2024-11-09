@@ -7169,6 +7169,87 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.arc(0,0,10,10,15,75)
             layer.arc(0,0,10,10,105,165)
         break
+        case 729:
+            layer.fill(255,50,50,fade)
+            layer.rect(0,-4,9,1)
+            layer.rect(0,4,9,1)
+            layer.rect(-4,1,1,5)
+            layer.rect(4,-1,1,5)
+            layer.rect(0,0,3)
+        break
+        case 730:
+            layer.fill(225,215,205,fade)
+            layer.beginShape()
+            layer.vertex(3,1)
+            layer.bezierVertex(0,0,-3,-3,-6,-7)
+            layer.bezierVertex(-3,-2,0,2,3,4)
+            layer.bezierVertex(0.5,3,-2,0.5,-4.5,-3)
+            layer.bezierVertex(-2,1.5,0.5,5,3,6)
+            layer.endShape()
+        break
+        case 731:
+            layer.fill(225,215,205,fade)
+            layer.beginShape()
+            layer.vertex(-3,1)
+            layer.bezierVertex(0,0,3,-3,6,-7)
+            layer.bezierVertex(3,-2,0,2,-3,4)
+            layer.bezierVertex(-0.5,3,2,0.5,4.5,-3)
+            layer.bezierVertex(2,1.5,-0.5,5,-3,6)
+            layer.endShape()
+        break
+        case 732:
+            layer.fill(255,fade)
+            layer.arc(0,0,10,10,-180,0)
+            layer.fill(50,225,50,fade)
+            layer.arc(0,0,10,10,0,180)
+            layer.ellipse(2.5,0,5)
+            layer.fill(255,fade)
+            layer.ellipse(-2.5,0,5)
+            layer.ellipse(2.5,0,1.5)
+            layer.fill(50,225,50,fade)
+            layer.ellipse(-2.5,0,1.5)
+            layer.fill(240,240,150,fade)
+            layer.rect(0,0,9,1)
+            layer.triangle(0,-1,-3,-1,-1.5,-3)
+            layer.triangle(0,-1,3,-1,1.5,-3)
+            layer.triangle(0,1,-3,1,-1.5,3)
+            layer.triangle(0,1,3,1,1.5,3)
+        break
+        case 733:
+            layer.fill(225,215,205,fade)
+            layer.beginShape()
+            layer.vertex(0,-1)
+            layer.bezierVertex(-3,-2,-6,-5,-9,-9)
+            layer.bezierVertex(-6,-3,-3,1,0,1)
+            layer.bezierVertex(3,1,6,-3,9,-9)
+            layer.bezierVertex(6,-5,3,-2,0,-1)
+            layer.endShape()
+            layer.beginShape()
+            layer.vertex(0,4)
+            layer.bezierVertex(-3,1,-6,-2,-9,-6)
+            layer.bezierVertex(-6,0,-3,4,0,4)
+            layer.bezierVertex(3,4,6,0,9,-6)
+            layer.bezierVertex(6,-2,3,1,0,2)
+            layer.endShape()
+            layer.fill(245,fade)
+            layer.ellipse(0,0,8)
+            layer.fill(235,fade)
+            layer.ellipse(0,0,7)
+            layer.fill(175,fade)
+            layer.ellipse(-1.5,-0.5,3)
+            layer.ellipse(2,1,2)
+        break
+        case 734:
+            layer.fill(50,150,100,fade)
+            layer.ellipse(0,0,8)
+            layer.rotate(-45)
+            for(let a=0,la=3;a<la;a++){
+                layer.triangle(-2,3,2,3,0,8)
+                layer.rotate(45)
+            }
+            layer.triangle(0,-4.5,-1,-7.5,1,-7.5)
+            layer.triangle(0,-8,-1,-11,1,-11)
+        break
         
     }
     //mark s

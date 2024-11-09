@@ -186,7 +186,8 @@ class combatant{
                 'Control Base','Random Free Exhausting Ethereal Card Per Turn','Attack Freeze Combat','Blueprint Cost Down','Gun Draw Next Turn','Shock All Per Turn','Amplify Poison All','No Draw Next Turn','Energy Gain Energy','Energy Gain (E)',
                 'Cable Claw Up','Energy Orb Per Turn','Basic Energy','Basic (E)','Bleed Damage','Dust Orb Boost','Armor Per Turn','Max Health Gift','Fragile','Free Card Per Turn',
                 'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random','Silver Block','Mineral Block','Mineral Draw','End of Combat Lose','End of Combat Item',
-                'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw',
+                'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw','All Damage Convert',
+                'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -261,7 +262,8 @@ class combatant{
                 0,0,0,0,2,0,0,0,0,0,//70
                 0,0,0,0,0,0,0,0,0,0,//71
                 1,0,0,0,0,0,0,0,0,0,//72
-                0,0,2,0,0,0,0,0,0,
+                0,0,2,0,0,0,0,0,0,0,//73
+                0,0,0,0,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -336,7 +338,8 @@ class combatant{
                 2,2,2,2,2,2,2,3,2,2,//70
                 2,2,2,2,2,2,0,1,1,2,//71
                 2,2,2,2,2,2,2,2,2,2,//72
-                2,2,2,2,0,2,2,2,2,
+                2,2,2,2,0,2,2,2,2,2,//73
+                2,2,2,2,2,
             ]}
         /*
         0-none
@@ -368,7 +371,8 @@ class combatant{
 
         this.constants()
 
-        this.intent=0
+        this.intent=-1
+        this.usedIntent=[]
         this.activated=this.construct
         this.target=0
         for(let a=0,la=this.orbs.length;a<la;a++){
@@ -1752,6 +1756,9 @@ class combatant{
     }
     getTarget(){
         let transformBase=transformDirection(0,this.goal.anim.direction)
+        if(this.intent==-1){
+            this.intent=0
+        }
         switch(this.attack[this.intent].type){
             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
             case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
@@ -2161,6 +2168,9 @@ class combatant{
                 if(this.battle.modded(223)&&floor(random(0,10))==0){
                     this.statusEffect('Invulnerable',1)
                 }
+                if(!this.usedIntent.includes(this.intent)&&this.turnsAlive>=1){
+                    this.usedIntent.push(this.intent)
+                }
                 if(this.status.main[378]>0){
                     this.status.main[378]--
                 }else if(this.battle.modded(41)){
@@ -2270,6 +2280,9 @@ class combatant{
     setIntentClass(intentClass){
         for(let a=0,la=this.attack.length;a<la;a++){
             if(types.attack[this.attack[(this.intent+a)%this.attack.length].type].class==intentClass){
+                if(!this.usedIntent.includes(this.intent)){
+                    this.usedIntent.push(this.intent)
+                }
                 this.intent=(this.intent+a)%this.attack.length
                 a=la
             }
@@ -2277,6 +2290,9 @@ class combatant{
         this.battle.updateTargetting()
     }
     randomIntent(){
+        if(!this.usedIntent.includes(this.intent)){
+            this.usedIntent.push(this.intent)
+        }
         this.intent=floor(random(0,this.attack.length))
         this.battle.updateTargetting()
     }
@@ -3082,7 +3098,6 @@ class combatant{
                         damage=0
                     }
                 }
-                
                 if(userCombatant.tempStatus[3]>0){
                     this.statusEffect('Take Damage Next Turn',round(damage)*userCombatant.tempStatus[3])
                 }
@@ -3149,6 +3164,9 @@ class combatant{
                 }
                 if(userCombatant.stance==5){
                     damage*=3
+                }
+                if(userCombatant.status.main[729]>0){
+                    damage=userCombatant.status.main[729]
                 }
             }
             if(this.status.main[210]>0&&this.battle.turn.main==this.id&&hit){
@@ -5170,6 +5188,9 @@ class combatant{
                 this.status.main[610]-=amount
                 if(this.status.main[610]<=0){
                     this.accelerate++
+                    if(!this.usedIntent.includes(this.intent)){
+                        this.usedIntent.push(this.intent)
+                    }
                     this.intent=(this.turnsAlive-1+this.accelerate)%this.attack.length
                     this.battle.updateTargetting()
                     this.status.main[610]=20
@@ -5444,6 +5465,10 @@ class combatant{
                     case 710: if(this.id<this.battle.players){this.battle.overlayManager.overlays[8][this.id].active=true;this.battle.overlayManager.overlays[8][this.id].activate()} break
                     case 720: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.drop(this.id,findName('Moriya\nTalisman',types.card),0,0)}} break
                     case 723: this.status.main[findList('Counter Shockwave Once',this.status.name)]+=this.status.main[a]; break
+                    case 730: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].reserve.drawEffect(this.battle.cardManagers[this.id].hand.addReturn(findName('Reversal',types.card),0,constants.playerNumber+1))}} break
+                    case 731: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].reserve.drawEffect(this.battle.cardManagers[this.id].hand.addReturn(findName('Sharp\nWord',types.card),0,constants.playerNumber+1))}} break
+                    case 733: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].reserve.drawEffect(this.battle.cardManagers[this.id].hand.addReturn(findName('Shining\nMoon',types.card),0,constants.playerNumber+1))}} break
+                    case 734: this.status.main[findList('Intangible Next Turn',this.status.name)]+=this.status.main[a]; break
                     
                 }
                 if(this.status.behavior[a]==6&&

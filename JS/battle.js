@@ -914,8 +914,8 @@ class battle{
                 this.loseEnergy(-this.energy.temp[this.turn.main],this.turn.main)
             }
             this.energy.temp[this.turn.main]=0
-            this.cardManagers[this.turn.main].discard.allEffectArgs(44,[5050,5051,5163])
-            this.cardManagers[this.turn.main].reserve.allEffectArgs(44,[5050,5051,5163])
+            this.cardManagers[this.turn.main].discard.allEffectArgs(44,[5050,5051,5163,6511])
+            this.cardManagers[this.turn.main].reserve.allEffectArgs(44,[5050,5051,5163,6511])
             noDraw=true
             extra=true
         }else if(combatant.getStatus('Extra Turn')>0){
@@ -932,8 +932,8 @@ class battle{
                 this.loseEnergy(-this.energy.temp[this.turn.main],this.turn.main)
             }
             this.energy.temp[this.turn.main]=0
-            this.cardManagers[this.turn.main].discard.allEffectArgs(44,[5050,5051,5163])
-            this.cardManagers[this.turn.main].reserve.allEffectArgs(44,[5050,5051,5163])
+            this.cardManagers[this.turn.main].discard.allEffectArgs(44,[5050,5051,5163,6511])
+            this.cardManagers[this.turn.main].reserve.allEffectArgs(44,[5050,5051,5163,6511])
             extra=true
         }else{
             this.turn.main++
@@ -1171,6 +1171,13 @@ class battle{
     playCard(card,player,mode){
         let cardClass=card.spec.includes(12)?card.class[mode]:card.class
         let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
+        if(card.spec.includes(54)&&userCombatant.getStatus('Discus Flip Top')>0){
+            for(let a=0,la=userCombatant.getStatus('Discus Flip Top');a<la;a++){
+                if(this.cardManagers[player].discard.cards.length>a){
+                    this.cardManagers[player].discard.send(this.cardManagers[player].hand.cards,this.cardManagers[player].discard.cards.length-1-a,this.cardManagers[player].discard.cards.length-a,1)
+                }
+            }
+        }
         if(card.spec.includes(0)||card.spec.includes(12)&&card.reality[mode].includes(0)){
             this.cardManagers[player].fatigue()
         }

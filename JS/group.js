@@ -96,7 +96,7 @@ class group{
             base.target,base.spec,base.cardClass,base.limit,undefined,
             false,base.colorful,base.edition,base.base.cost,base.drawn,
             base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
-            base.costUpTrigger
+            base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger
         )))
 
     }
@@ -850,7 +850,8 @@ class group{
                 type==0&&this.cards[a].class==5&&!(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
                 type==1&&(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
                 type==2&&this.cards[a].name==args[0]||
-                type==3&&this.cards[a].class==5
+                type==3&&this.cards[a].class==5||
+                type==4&&args[0].includes(this.cards[a].class)
             ){
                 if(this.id==2){
                     this.cards[a].deSize=true
@@ -1058,6 +1059,9 @@ class group{
                 break
                 case 1:
                     this.cards[index].retain2=true
+                break
+                case 2:
+                    this.cards[index].deSize=true
                 break
             }
         }
@@ -1989,7 +1993,7 @@ class group{
                 break
                 case 44:
                     if(args.includes(this.cards[a].attack)){
-                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,this.cards[a].attack==5163?4:1)
+                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,this.cards[a].attack==5163||this.cards[a].attack==6511?4:1)
                         a--
                         la--
                     }
@@ -2056,11 +2060,24 @@ class group{
                         la--
                     }
                 break
+                case 58:
+                    if(args[0].includes(this.cards[a].class)){
+                        this.cards[a].deSize=true
+                        this.cards[a].exhaust=true
+                        total++
+                    }
+                break
+                case 59:
+                    if(args[0].includes(this.cards[a].class)){
+                        this.cards[a].deSize=true
+                        total++
+                    }
+                break
             }
         }
         if(effect==9){
             return args[1]-total
-        }else if(effect==10||effect==12||effect==18||effect==19||effect==32||effect==43||effect==49){
+        }else if(effect==10||effect==12||effect==18||effect==19||effect==32||effect==43||effect==49||effect==58||effect==59){
             return total
         }
     }
@@ -2730,7 +2747,7 @@ class group{
             case -116:
                 userCombatant.statusEffect('No Damage',card.effect[0])
             break
-            case -117:case 3245:
+            case -117: case 3245:
                 userCombatant.block=0
             break
 
@@ -2807,7 +2824,7 @@ class group{
             case 1565:
                 userCombatant.balance+=card.effect[0]
             break
-            case 1745: case 1943: case 2096: case 2128: case 2200: case 2465:
+            case 1745: case 1943: case 2096: case 2128: case 2200: case 2465: case 6535: case 6536:
                 for(let a=0,la=card.effect[2];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
@@ -3274,9 +3291,14 @@ class group{
         cardData.position.x=1200
         cardData.position.y=500
         this.sendResultCancel=false
+        if(this.id==3&&cardData.attack==6586){
+            cardData.setCost(0,[0])
+        }
         switch(spec){
             case 2:
                 if(!cardData.additionalSpec.includes(-2)&&!cardData.spec.includes(55)){
+                    cardData.costDownTrigger=cardData.baseCostDownTrigger
+                    cardData.costUpTrigger=cardData.baseCostUpTrigger
                     cardData.cost=variants.mtg?copyArray(cardData.base.cost):cardData.base.cost
                 }
             break
@@ -3353,8 +3375,13 @@ class group{
                 list.push(copyCard(this.cards[firstIndex+a]))
                 list[list.length-1].position.x=1200
                 list[list.length-1].position.y=500
-                if(spec==0){
-                    list[list.length-1].nonCalc=false
+                switch(spec){
+                    case 0:
+                        list[list.length-1].nonCalc=false
+                    break
+                    case 1:
+                        list[list.length-1].setCost(0,[0])
+                    break
                 }
             }
         }else{
@@ -3362,8 +3389,13 @@ class group{
                 list.push(copyCard(this.cards[firstIndex+a]))
                 list[list.length-1].position.x=1200
                 list[list.length-1].position.y=500
-                if(spec==0){
-                    list[list.length-1].nonCalc=false
+                switch(spec){
+                    case 0:
+                        list[list.length-1].nonCalc=false
+                    break
+                    case 1:
+                        list[list.length-1].setCost(0,[0])
+                    break
                 }
             }
         }

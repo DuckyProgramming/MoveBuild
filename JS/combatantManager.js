@@ -621,6 +621,23 @@ class combatantManager{
             this.combatants[possible[floor(random(0,possible.length))]].takeDamage(effect,user)
         }
     }
+    damageLowest(effect,user){
+        let minimum=this.combatants[this.combatants.length-1].life
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0){
+                minimum=min(minimum,this.combatants[a].life)
+            }
+        }
+        let possible=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0&&this.combatants[a].life==minimum){
+                possible.push(a)
+            }
+        }
+        if(possible.length>0){
+            this.combatants[possible[floor(random(0,possible.length))]].takeDamage(effect,user)
+        }
+    }
     hasDupe(name){
         let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){

@@ -2139,6 +2139,9 @@ Total: ${count[a][1][3]}\n`
 function outMtgError(){
 	for(let a=0,la=types.card.length;a<la;a++){
 		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+			if(types.card[a].mtg.levels[b].cost==undefined){
+				print(types.card[a].name)
+			}
 			if(
 				!types.card[a].mtg.levels[b].spec.includes(11)&&
 				!types.card[a].mtg.levels[b].spec.includes(21)&&

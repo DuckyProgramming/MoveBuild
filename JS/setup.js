@@ -14,7 +14,7 @@ function setup(){
         current.menu.combatant=[0/*,floor(random(0,21))*/]
         current.menu.deck=[-1]
 
-            variants.mtg=false
+            //variants.mtg=true
 
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){
