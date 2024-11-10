@@ -95,6 +95,16 @@ class overlay{
                 this.collectFade=0
                 this.value=0
             break
+            case 27:
+                this.cards=[]
+                this.text=''
+                this.possible=` ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz12345678990+=-_<>,./?;':"[]{}`
+                this.suggestions=[]
+                this.common=[]
+                this.revealEffect=[]
+                this.revealMtg=[]
+                this.commonLetters=0
+            break
         }
     }
     getPosKey(){
@@ -104,7 +114,7 @@ class overlay{
         return this.battle.relicManager.hasRelic(213,this.player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:this.battle.relicManager.hasRelic(322,this.player)&&roll>=12&&roll<=11+this.battle.relicManager.active[322][this.player+1]*12?8:0
     }
     activate(args){
-        if(!arrayIncludes(this.battle.overlayManager.priority,[this.index,this.player])){
+        if(this.battle.initialized&&!arrayIncludes(this.battle.overlayManager.priority,[this.index,this.player])){
             this.battle.overlayManager.priority.splice(0,0,[this.index,this.player])
         }
         let list=[]
@@ -1413,6 +1423,44 @@ class overlay{
                 this.collectFade=0
                 this.value=0
             break
+            case 27:
+                if(this.battle.initialized){
+                    this.battle.collectionManager.executeQuery()
+                }
+                this.text=''
+                this.cards=[]
+                let type=this.battle.collectionManager.cards[floor(random(0,this.battle.collectionManager.cards.length))].type
+                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-120,this.layer.height/2+80,type,0,this.battle.standardColorize(type),-1))
+                this.cards.push(copyCard(this.cards[0]))
+                this.cards[0].colorDetail={}
+                this.cards[0].colorDetail.fill=[225,225,225]
+                this.cards[0].colorDetail.stroke=[255,255,255]
+                this.cards[0].colorDetail.text=[0,0,0]
+                this.cards[0].colorDetail.active=[0,0,0]
+                this.cards[0].name=''
+                for(let a=0,la=this.cards[1].name.length;a<la;a++){
+                    this.cards[0].name+=this.cards[1].name[a]==' '||!this.possible.includes(this.cards[1].name[a])?this.cards[1].name[a]:'?'
+                }
+                this.cards[0].class=-1
+                this.cards[0].cost='?'
+                this.cards[0].attack=-120
+                this.cards[0].list=-100
+                this.cards[0].rarity=-100
+                for(let a=0,la=this.cards[0].spec.length;a<la;a++){
+                    this.cards[0].spec[a]=-1
+                }
+                this.cards[0].upSize=true
+                this.common=[]
+                this.revealEffect=[]
+                this.revealMtg=[]
+                this.commonLetters=0
+                for(let a=0,la=this.cards[0].effect.length;a<la;a++){
+                    this.revealEffect.push([0,0])
+                }
+                for(let a=0,la=types.card[this.cards[0].type].mtg.color.length;a<la;a++){
+                    this.revealMtg.push(false)
+                }
+            break
         
         }
     }
@@ -1904,6 +1952,86 @@ class overlay{
                             this.battle.cardManagers[this.player].hand.selfCall(33,args[0])
                         }
                     break
+                }
+            break
+            case 27:
+                this.cards[this.cards.length-1].upSize=false
+                this.cards[this.cards.length-1].deSize=true
+                let type=args[0]
+                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+120,this.layer.height/2+80,type,0,this.battle.standardColorize(type),-1))
+                this.cards[this.cards.length-1].upSize=true
+                this.text=''
+                this.suggestions=[]
+                this.common=[]
+                if(this.cards[this.cards.length-1].name==this.cards[1].name){
+                    this.common.push(0)
+                    this.cards[0]=copyCard(this.cards[1])
+                    this.cards[0].upSize=true
+                }
+                if(this.cards[this.cards.length-1].list==this.cards[1].list){
+                    this.common.push(1)
+                    this.cards[0].list=this.cards[1].list
+                    this.cards[0].colorDetail=this.cards[1].colorDetail
+                }
+                if(this.cards[this.cards.length-1].rarity==this.cards[1].rarity){
+                    this.common.push(2)
+                    this.cards[0].rarity=this.cards[1].rarity
+                }
+                if(this.cards[this.cards.length-1].cost==this.cards[1].cost){
+                    this.common.push(3)
+                    this.cards[0].cost=this.cards[1].cost
+                }
+                if(this.cards[this.cards.length-1].class==this.cards[1].class){
+                    this.common.push(4)
+                    this.cards[0].class=this.cards[1].class
+                }
+                if(this.cards[this.cards.length-1].list<this.cards[1].list){
+                    this.common.push(7)
+                }
+                if(this.cards[this.cards.length-1].rarity<this.cards[1].rarity){
+                    this.common.push(8)
+                }
+                if(this.cards[this.cards.length-1].list>this.cards[1].list){
+                    this.common.push(9)
+                }
+                if(this.cards[this.cards.length-1].rarity>this.cards[1].rarity){
+                    this.common.push(10)
+                }
+                for(let a=0,la=this.cards[this.cards.length-1].spec.length;a<la;a++){
+                    if(this.cards[1].spec.includes(this.cards[this.cards.length-1].spec[a])){
+                        if(!this.common.includes(5)){
+                            this.common.push(5)
+                        }
+                        if(!this.cards[0].spec.includes(this.cards[this.cards.length-1].spec[a])){
+                            this.cards[0].spec.push(this.cards[this.cards.length-1].spec[a])
+                            this.cards[0].spec.splice(this.cards[0].spec.indexOf(-1),1)
+                        }
+                    }
+                }
+                for(let a=0,la=min(this.cards[this.cards.length-1].effect.length,this.cards[1].effect.length);a<la;a++){
+                    if(this.revealEffect[a][0]!=1){
+                        if(this.cards[this.cards.length-1].effect[a]==this.cards[1].effect[a]){
+                            this.revealEffect[a][0]=1
+                        }else if(this.cards[this.cards.length-1].effect[a]>this.cards[1].effect[a]){
+                            this.revealEffect[a][0]=2
+                            this.revealEffect[a][1]=this.cards[this.cards.length-1].effect[a]
+                        }else if(this.cards[this.cards.length-1].effect[a]<this.cards[1].effect[a]){
+                            this.revealEffect[a][0]=3
+                            this.revealEffect[a][1]=this.cards[this.cards.length-1].effect[a]
+                        }
+                    }
+                }
+                for(let a=0,la=types.card[this.cards[this.cards.length-1].type].mtg.color.length;a<la;a++){
+                    if(types.card[this.cards[0].type].mtg.color.includes(types.card[this.cards[this.cards.length-1].type].mtg.color[a])){
+                        this.revealMtg[types.card[this.cards[0].type].mtg.color.indexOf(types.card[this.cards[this.cards.length-1].type].mtg.color[a])]=true
+                    }
+                }
+                this.commonLetters=0
+                for(let a=0,la=min(this.cards[this.cards.length-1].name.length,this.cards[1].name.length);a<la;a++){
+                    if(this.cards[this.cards.length-1].name[a].toLowerCase()==this.cards[1].name[a].toLowerCase()&&this.cards[this.cards.length-1].name[a].toLowerCase()!=' '&&this.cards[this.cards.length-1].name[a].toLowerCase()!='\n'){
+                        this.cards[0].name=this.cards[0].name.substr(0,a)+this.cards[1].name[a]+this.cards[0].name.substr(a+1   ,this.cards[0].name.length)
+                        this.commonLetters++
+                    }
                 }
             break
         }
@@ -2889,6 +3017,111 @@ class overlay{
                     }
                 }
             break
+            case 27:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2,this.layer.height/2+80,400,200,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2-150,480,240,10)
+                this.layer.rect(this.layer.width/2-65,this.layer.height/2+210,120,40,10)
+                this.layer.rect(this.layer.width/2+65,this.layer.height/2+210,120,40,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2+260,120,40,10)
+                this.layer.fill(200,this.fade*0.8)
+                this.layer.stroke(0,this.fade*0.8)
+                this.layer.strokeWeight(3)
+                this.layer.rect(this.layer.width/2,this.layer.height/2-230,440,30,5)
+                for(let a=0,la=this.suggestions.length;a<la;a++){
+                    this.layer.rect(this.layer.width/2,this.layer.height/2-205+a*20,400,20,5)
+                }
+                this.layer.textAlign(LEFT,CENTER)
+                this.layer.fill(0,this.fade*0.8)
+                this.layer.noStroke()
+                this.layer.textSize(20)
+                this.layer.text(this.text,this.layer.width/2-215,this.layer.height/2-230)
+                this.layer.textAlign(CENTER,CENTER)
+                this.layer.text('Reveal',this.layer.width/2-65,this.layer.height/2+210)
+                this.layer.text('Reset',this.layer.width/2+65,this.layer.height/2+210)
+                this.layer.text('Exit',this.layer.width/2,this.layer.height/2+260)
+                this.layer.textSize(12)
+                let ticker=0
+                if(this.common.includes(0)){
+                    this.layer.text('Success',this.layer.width/2,this.layer.height/2+ticker*20)
+                    ticker++
+                }else{
+                    for(let a=0,la=this.common.length;a<la;a++){
+                        switch(this.common[a]){
+                            case 1:
+                                this.layer.text('Same List',this.layer.width/2,this.layer.height/2+ticker*20)
+                            break
+                            case 2:
+                                this.layer.text('Same Rarity',this.layer.width/2,this.layer.height/2+ticker*20)
+                            break
+                            
+                            case 3:
+                                this.layer.text('Same Cost',this.layer.width/2,this.layer.height/2+ticker*20)
+                            break
+                            case 4:
+                                this.layer.text('Same Class',this.layer.width/2,this.layer.height/2+ticker*20)
+                            break
+                            case 5:
+                                this.layer.text('Keyword',this.layer.width/2,this.layer.height/2+ticker*20)
+                            break
+                            case 6:
+                                this.layer.text('Common MTG Color',this.layer.width/2,this.layer.height/2+ticker*20)
+                            break
+                            case 7:
+                                this.layer.text('Higher List',this.layer.width/2,this.layer.height/2+ticker*20)
+                            break
+                            case 8:
+                                this.layer.text('Higher Rarity',this.layer.width/2,this.layer.height/2+ticker*20)
+                            break
+                            case 9:
+                                this.layer.text('Lower List',this.layer.width/2,this.layer.height/2+ticker*20)
+                            break
+                            case 10:
+                                this.layer.text('Lower Rarity',this.layer.width/2,this.layer.height/2+ticker*20)
+                            break
+                        }
+                        ticker++
+                    }
+                    if(this.commonLetters>0){
+                        this.layer.text(`${this.commonLetters} Common Letter${pl(this.commonLetters)}`,this.layer.width/2,this.layer.height/2+ticker*20)
+                        ticker++
+                    }
+                }
+                for(let a=0,la=this.suggestions.length;a<la;a++){
+                    this.layer.text(types.card[this.suggestions[a]].name.replace('\n',' '),this.layer.width/2,this.layer.height/2-205+a*20)
+                }
+                for(let a=0,la=this.cards.length;a<la;a++){
+                    this.cards[a].fade=1
+                    this.cards[a].anim={select:0,afford:1}
+                    this.cards[a].display()
+                }
+                this.layer.noStroke()
+                this.layer.textSize(9)
+                for(let a=0,la=this.revealEffect.length;a<la;a++){
+                    this.layer.fill(...[[[255,255,255],[0,255,0],[255,0,0],[255,0,0]][this.revealEffect[a][0]]],this.fade)
+                    this.layer.rect(this.layer.width/2-120+a*24-la*12+12,this.layer.height/2,20,16,4)
+                    this.layer.fill(0,this.fade)
+                    this.layer.text([`?`,`${this.cards[1].effect[a]}`,`<${this.revealEffect[a][1]}`,`>${this.revealEffect[a][1]}`][this.revealEffect[a][0]],this.layer.width/2-120+a*24-la*12+12,this.layer.height/2)
+                }
+                for(let a=0,la=this.revealMtg.length;a<la;a++){
+                    this.layer.fill(...(this.revealMtg[a]?types.color.mtg[types.card[this.cards[0].type].mtg.color[a]].fill:[0,0,0]),this.fade)
+                    this.layer.ellipse(this.layer.width/2-120+a*20-la*10+10,this.layer.height/2+160,12)
+                }
+                for(let a=2,la=this.cards.length;a<la;a++){
+                    for(let b=0,lb=types.card[this.cards[a].type].mtg.color.length;b<lb;b++){
+                        this.layer.fill(...types.color.mtg[types.card[this.cards[a].type].mtg.color[b]].fill,this.fade)
+                        this.layer.ellipse(this.layer.width/2+120+b*20-lb*10+10,this.layer.height/2+160,12*this.cards[a].size)
+                    }
+                }
+                for(let a=2,la=this.cards.length;a<la;a++){
+                    for(let b=0,lb=this.cards[a].effect.length;b<lb;b++){
+                        this.layer.fill(255,this.fade)
+                        this.layer.rect(this.layer.width/2+120+b*24-lb*12+12,this.layer.height/2,20*this.cards[a].size,16*this.cards[a].size,4)
+                        this.layer.fill(0,this.fade*this.cards[a].size)
+                        this.layer.text(this.cards[a].effect[b],this.layer.width/2+120+b*24-lb*12+12,this.layer.height/2)
+                    }
+                }
+            break
             
         }
     }
@@ -3048,7 +3281,7 @@ class overlay{
                         break
                     }
                 break
-                case 3: case 9: case 17:
+                case 3: case 9: case 17: case 27:
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if(this.cards[a].upSize&&this.cards[a].size<1){
                             this.cards[a].size=round(this.cards[a].size*5+1)/5
@@ -4057,7 +4290,7 @@ class overlay{
                                             la--
                                         break
                                         case 88:
-                                            this.battle.cardManagers[this.player].remove.copy(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                                            this.battle.cardManagers[this.player].remove.copy(this.battle.cardManagers[this.player].hand.cards,a,a+1)
                                             this.battle.cardManagers[this.player].remove.send(this.battle.cardManagers[this.player].deck.cards,a,a+1,1)
                                             a--
                                             la--
@@ -4139,6 +4372,7 @@ class overlay{
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+125+(this.options>=8?75:0)},width:120,height:40})&&!this.battle.modded(83)){
                         this.active=false
+                        this.cards.forEach(card=>card.deSize)
                         if(this.args[0]==0){
                             this.battle.relicManager.activate(8,[this.player])
                         }
@@ -4240,6 +4474,7 @@ class overlay{
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+125},width:120,height:40})){
                         this.active=false
+                        this.cards.forEach(card=>card.deSize)
                         if(this.args[0]==0){
                             this.battle.relicManager.activate(8,[this.player])
                         }
@@ -4468,6 +4703,28 @@ class overlay{
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+90},width:120,height:40})&&this.collecting>0){
                         this.battle.addCurrency(this.value,this.player)
                         this.active=false
+                    }
+                break
+                case 27:
+                    for(let a=0,la=this.suggestions.length;a<la;a++){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-205+a*20},width:400,height:20})){
+                            this.execute([this.suggestions[a]])
+                            break
+                        }
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-65,y:this.layer.height/2+210},width:160,height:40})){
+                        this.cards[0]=copyCard(this.cards[1])
+                        this.cards[0].upSize=true
+                        for(let a=0,la=this.revealMtg.length;a<la;a++){
+                            this.revealMtg[a]=true
+                        }
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+65,y:this.layer.height/2+210},width:160,height:40})){
+                        this.activate()
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+260},width:160,height:40})){
+                        this.active=false
+                        this.cards.forEach(card=>card.deSize)
                     }
                 break
             
@@ -5363,7 +5620,7 @@ class overlay{
                                             la--
                                         break
                                         case 88:
-                                            this.battle.cardManagers[this.player].remove.copy(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                                            this.battle.cardManagers[this.player].remove.copy(this.battle.cardManagers[this.player].hand.cards,a,a+1)
                                             this.battle.cardManagers[this.player].remove.send(this.battle.cardManagers[this.player].deck.cards,a,a+1,1)
                                             a--
                                             la--
@@ -5487,7 +5744,7 @@ class overlay{
                         for(let a=0,la=types.dictionary.length;a<la;a++){
                             if(
                                 (types.dictionary[a].mtg==0||types.dictionary[a].mtg==1&&!variants.mtg||types.dictionary[a].mtg==2&&variants.mtg)&&
-                                types.dictionary[a].name.substr(0,this.text.length).toUpperCase()==this.text.toUpperCase()
+                                types.dictionary[a].name.toUpperCase().includes(this.text.toUpperCase())
                             ){
                                 this.suggestions.push(a)
                             }
@@ -5499,7 +5756,7 @@ class overlay{
                             for(let a=0,la=types.dictionary.length;a<la;a++){
                                 if(
                                     (types.dictionary[a].mtg==0||types.dictionary[a].mtg==1&&!variants.mtg||types.dictionary[a].mtg==2&&variants.mtg)&&
-                                    types.dictionary[a].name.substr(0,this.text.length).toUpperCase()==this.text.toUpperCase()
+                                    types.dictionary[a].name.toUpperCase().includes(this.text.toUpperCase())
                                 ){
                                     this.suggestions.push(a)
                                 }
@@ -5750,6 +6007,40 @@ class overlay{
                     if(code==ENTER&&this.collecting>0){
                         this.battle.addCurrency(this.value,this.player)
                         this.active=false
+                    }
+                break
+                case 27:
+                    if(this.possible.includes(key)&&this.text.length<40){
+                        this.text+=key
+                        this.suggestions=[]
+                        for(let a=0,la=this.battle.collectionManager.cards.length;a<la;a++){
+                            if(
+                                types.card[this.battle.collectionManager.cards[a].type].name.replace('\n',' ').toUpperCase().includes(this.text.toUpperCase())&&
+                                this.suggestions.length<9
+                            ){
+                                this.suggestions.push(this.battle.collectionManager.cards[a].type)
+                            }
+                        }
+                    }else if(code==BACKSPACE&&this.text.length>0){
+                        this.text=this.text.substring(0,this.text.length-1)
+                        this.suggestions=[]
+                        if(this.text.length>0){
+                            for(let a=0,la=this.battle.collectionManager.cards.length;a<la;a++){
+                                if(
+                                    types.card[this.battle.collectionManager.cards[a].type].name.replace('\n',' ').toUpperCase().includes(this.text.toUpperCase())&&
+                                    this.suggestions.length<9
+                                ){
+                                    this.suggestions.push(this.battle.collectionManager.cards[a].type)
+                                }
+                            }
+                        }
+                    }else if(code==ENTER){
+                        if(this.suggestions.length==1){
+                            this.execute([this.suggestions[0]])
+                        }else{
+                            this.active=false
+                            this.cards.forEach(card=>card.deSize)
+                        }
                     }
                 break
             }

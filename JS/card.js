@@ -944,6 +944,7 @@ class card{
             case -117: string+=`When Drawn,\nLose All Block`; break
             case -118: string+=`Exhausts Self When\nYou Play an Movement\nIf You Play Another\nClass of Card,\nDiscard Your Hand`; break
             case -119: string+=`Exhausts Self When\nYou Play an Skill\nIf You Play Another\nClass of Card,\nDiscard Your Hand`; break
+            case -120: string+=`Unknown Effect`; break
 
             //mark n
 
@@ -7612,11 +7613,13 @@ class card{
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
         }
-        if(target[0]==2||target[0]==12||target[0]==14||target[0]==17||target[0]==22||target[0]==26||target[0]==29||target[0]==48||target[0]==52){
-            string+=`\nRange ${target[1]}-${this.calculateEffect(target[2],19)}`
-        }
-        if(target[0]==46){
-            string+=`\nRange ${target[3]}-${this.calculateEffect(target[4],19)}`
+        if(this.attack!=-120){
+            if(target[0]==2||target[0]==12||target[0]==14||target[0]==17||target[0]==22||target[0]==26||target[0]==29||target[0]==48||target[0]==52){
+                string+=`\nRange ${target[1]}-${this.calculateEffect(target[2],19)}`
+            }
+            if(target[0]==46){
+                string+=`\nRange ${target[3]}-${this.calculateEffect(target[4],19)}`
+            }
         }
         let extent=0
         let element=false
@@ -7812,6 +7815,13 @@ class card{
         }
         if(spec.includes(42)){
             string+=`\nExhausting ${this.limit}`
+        }
+        if(spec.includes(-1)){
+            for(let a=0,la=spec.length;a<la;a++){
+                if(spec[a]==-1){
+                    string+=`\n?`
+                }
+            }
         }
         if(string[0]=='\n'){
             string=string.substring(1,string.length)
@@ -11821,6 +11831,9 @@ class card{
                                     [[0,5],[0,this.height/2-6]]
                                 for(let a=0,la=2;a<la;a++){
                                     switch(classT[a]){
+                                        case -1:
+                                            this.layer.text('?',...classPos[a])
+                                        break
                                         case 1:
                                             this.layer.text('Attack',...classPos[a])
                                         break
@@ -11868,6 +11881,9 @@ class card{
                             }else{
                                 let classPos=variants.mtg?[-this.width/2+15,-this.height/2+6]:[0,this.height/2-6]
                                 switch(classT){
+                                    case -1:
+                                        this.layer.text('?',...classPos)
+                                    break
                                     case 1:
                                         this.layer.text('Attack',...classPos)
                                     break

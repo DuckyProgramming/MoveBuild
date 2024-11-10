@@ -2607,6 +2607,9 @@ class combatant{
         }
     }
     markTarget(){
+        if(this.intent<=0){
+            this.intent=0
+        }
         if(this.life>0&&!this.moved&&this.status.main[32]<=0&&this.status.main[51]<=0&&this.status.main[374]<=0){
             if(this.attack[this.intent].type==78){
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){

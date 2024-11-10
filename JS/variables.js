@@ -1103,7 +1103,7 @@ types={
         {name:'Uncommon Relic Voucher',internal:'Uncommon Relic Discount',id:303,rarity:3,list:0,mtg:0,description:'Uncommon Relics in the\nShop Cost 50% Less'},
         {name:'Rare Relic Voucher',internal:'Rare Relic Discount',id:304,rarity:3,list:0,mtg:0,description:'Rare Relics in the\nShop Cost 50% Less'},
         {name:'Shop Relic Voucher',internal:'Shop Relic Discount',id:305,rarity:3,list:0,mtg:0,description:'Shop Relics in the\nShop Cost 50% Less'},
-        {name:'Broken Stapler',internal:'Energy/Staple',id:306,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nStaple the Last Card Drawn Each Turn'},
+        {name:'Broken Stapler',internal:'Energy/Staple',id:306,rarity:-1,list:0,mtg:1,description:'Gain 1 Base Energy,\nStaple the Last Card Drawn Each Turn'},
         {name:'Favored Trades',internal:'Sell Value',id:307,rarity:3,list:0,mtg:0,description:'Selling Relics Gives\n50% More Currency'},
         {name:'Seltzer',internal:'Rest 10 Turn Block',id:308,rarity:3,list:0,mtg:0,description:'Gain 10 Block Each Turn For 10 Turns,\nOnly Resets After Each Rest Site'},
         {name:'Vampiric Parasol',internal:'Turn 2 Temporary Strength/Turn 2 Temporary Dexterity',id:309,rarity:2,list:0,mtg:0,description:'On Turn 2, Gain 5 Temporary Strength\nand 5 Temporary Dexterity'},

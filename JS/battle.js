@@ -3210,6 +3210,7 @@ class battle{
                 if(allClosed){
                     transition.trigger=true
                     transition.scene='title'
+                    this.initialized=false
                 }
             break
             case 'stash':  case 'bossstash':

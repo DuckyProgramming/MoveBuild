@@ -22,6 +22,8 @@ class collectionManager{
                 this.query.list.push(a)
             }
         }
+        this.query.list.push(-8)
+        this.query.list.push(-9)
         for(let a=0,la=4;a<la;a++){
             this.anim.query.rarity.push(0)
             this.query.rarity.push(true)
@@ -30,6 +32,7 @@ class collectionManager{
             this.anim.query.class.push(0)
             this.query.class.push(true)
         }
+        this.overlayManager=new overlayManager(this.layer,this.battle,2)
         this.getData()
     }
     executeQuery(){
@@ -168,6 +171,7 @@ class collectionManager{
                     this.cards[a].anim={select:0,afford:1}
                     this.cards[a].display()
                 }
+                this.overlayManager.display()
             break
             case 'query':
                 for(let a=0,la=4;a<la;a++){
@@ -212,6 +216,7 @@ class collectionManager{
                         this.cards[a].size=round(this.cards[a].size*5-1)/5
                     }
                 }
+                this.overlayManager.update()
             break
             case 'query':
                 for(let a=0,la=4;a<la;a++){
@@ -232,38 +237,46 @@ class collectionManager{
     onClick(scene){
         switch(scene){
             case 'collection':
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+295,y:this.layer.height*0.7+38.75},width:22.5,height:22.5})){
-                    variants.collection=!variants.collection
-                }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-75,y:this.layer.height*0.7+95},width:62.5,height:62.5})&&this.page>0){
-                    this.page--
-                }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+75,y:this.layer.height*0.7+95},width:62.5,height:62.5})&&this.page<ceil(this.cards.length/24)-1){
-                    this.page++
-                }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+57.5},width:62.5,height:62.5})&&this.level<2){
-                    this.level++
-                    let holdPage=this.page
-                    this.executeQuery()
-                    this.page=holdPage
-                }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+132.5},width:62.5,height:62.5})&&this.level>0){
-                    this.level--
-                    let holdPage=this.page
-                    this.executeQuery()
-                    this.page=holdPage
-                }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+150,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
-                    transition.trigger=true
-                    transition.scene='title'
-                }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
-                    transition.trigger=true
-                    transition.scene='query'
-                }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+300,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
-                    transition.trigger=true
-                    transition.scene='listQuery'
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onClick()
+                }else{
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+295,y:this.layer.height*0.7+38.75},width:22.5,height:22.5})){
+                        variants.collection=!variants.collection
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-75,y:this.layer.height*0.7+95},width:62.5,height:62.5})&&this.page>0){
+                        this.page--
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+75,y:this.layer.height*0.7+95},width:62.5,height:62.5})&&this.page<ceil(this.cards.length/24)-1){
+                        this.page++
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+57.5},width:62.5,height:62.5})&&this.level<2){
+                        this.level++
+                        let holdPage=this.page
+                        this.executeQuery()
+                        this.page=holdPage
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+132.5},width:62.5,height:62.5})&&this.level>0){
+                        this.level--
+                        let holdPage=this.page
+                        this.executeQuery()
+                        this.page=holdPage
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+150,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                        transition.trigger=true
+                        transition.scene='title'
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                        transition.trigger=true
+                        transition.scene='query'
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+300,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                        transition.trigger=true
+                        transition.scene='listQuery'
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+375,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                        this.overlayManager.overlays[0][0].active=true
+                        this.overlayManager.overlays[0][0].activate([])
+                    }
                 }
             break
             case 'query':
@@ -308,44 +321,48 @@ class collectionManager{
     onKey(scene,key,code){
         switch(scene){
             case 'collection':
-                if(key=='~'){
-                    variants.collection=!variants.collection
-                }
-                if(code==LEFT_ARROW&&this.page>0){
-                    this.page--
-                }
-                if(code==RIGHT_ARROW&&this.page<ceil(this.cards.length/24)-1){
-                    this.page++
-                }
-                if(code==UP_ARROW&&this.level<2){
-                    this.level++
-                    let holdPage=this.page
-                    this.executeQuery()
-                    this.page=holdPage
-                }
-                if(code==DOWN_ARROW&&this.level>0){
-                    this.level--
-                    let holdPage=this.page
-                    this.executeQuery()
-                    this.page=holdPage
-                }
-                if(code==ENTER){
-                    transition.trigger=true
-                    transition.scene='title'
-                }else if(key=='['){
-                    transition.trigger=true
-                    transition.scene='query'
-                }else if(key==']'){
-                    transition.trigger=true
-                    transition.scene='listQuery'
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onKey(key,code)
                 }else{
-                    this.possible=` ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz12345678990+=-_<>,./?;':"{}`
-                    if(this.possible.includes(key)&&this.query.name.length<30){
-                        this.query.name+=key
+                    if(key=='~'){
+                        variants.collection=!variants.collection
+                    }
+                    if(code==LEFT_ARROW&&this.page>0){
+                        this.page--
+                    }
+                    if(code==RIGHT_ARROW&&this.page<ceil(this.cards.length/24)-1){
+                        this.page++
+                    }
+                    if(code==UP_ARROW&&this.level<2){
+                        this.level++
+                        let holdPage=this.page
                         this.executeQuery()
-                    }else if(code==BACKSPACE&&this.query.name.length>0){
-                        this.query.name=this.query.name.substring(0,this.query.name.length-1)
+                        this.page=holdPage
+                    }
+                    if(code==DOWN_ARROW&&this.level>0){
+                        this.level--
+                        let holdPage=this.page
                         this.executeQuery()
+                        this.page=holdPage
+                    }
+                    if(code==ENTER){
+                        transition.trigger=true
+                        transition.scene='title'
+                    }else if(key=='['){
+                        transition.trigger=true
+                        transition.scene='query'
+                    }else if(key==']'){
+                        transition.trigger=true
+                        transition.scene='listQuery'
+                    }else{
+                        this.possible=` ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz12345678990+=-_<>,./?;':"{}`
+                        if(this.possible.includes(key)&&this.query.name.length<30){
+                            this.query.name+=key
+                            this.executeQuery()
+                        }else if(code==BACKSPACE&&this.query.name.length>0){
+                            this.query.name=this.query.name.substring(0,this.query.name.length-1)
+                            this.executeQuery()
+                        }
                     }
                 }
             break

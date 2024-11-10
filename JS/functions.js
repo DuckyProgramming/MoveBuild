@@ -1249,6 +1249,11 @@ function findNameApprox(name,list){
 			}
 		}
 	}
+	for(let a=0,la=list.length;a<la;a++){
+		if(list[a].name.toLowerCase().includes(name.toLowerCase())){
+			return a
+		}
+	}
 	for(let a=0,la=name.length;a<la;a++){
 		for(let b=0,lb=list.length;b<lb;b++){
 			if(list[b].name.toLowerCase().length>=name.length&&list[b].name.toLowerCase().substr(0,name.length-a)==name.substr(0,name.length-a)){
@@ -2442,6 +2447,19 @@ function oracle(){
 		let cardData=current.overlayManager.overlays[35][0].cards[a]
 		cardData.display()
 	}
+}
+function oracle(){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0,-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.display()
+	}
+}
+function movebuildle(){
+	current.overlayManager.overlays.push(new overlay(current.overlayManager.layer,current.overlayManager.battle,0,27,[]))
+	current.overlayManager.overlays[current.overlayManager.overlays.length-1][0].active=true
+    current.overlayManager.overlays[current.overlayManager.overlays.length-1][0].activate([])
 }
 function rOracle(){
 	current.overlayManager.overlays[142][0].active=true

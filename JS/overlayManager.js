@@ -185,6 +185,10 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[24,8])],//view tier 9
                 )
             break
+            case 2:
+                this.overlays.push(
+                    [new overlay(this.layer,this.battle,0,27,[])],//movebuildle
+                )
         }
         for(let a=0,la=this.overlays.length;a<la;a++){
             for(let b=0,lb=this.overlays[a].length;b<lb;b++){
