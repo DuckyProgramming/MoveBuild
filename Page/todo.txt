@@ -1,23 +1,14 @@
-OPERATION KOSTRZYN IV
+{APOCADUCKS MAP 4: NORMANDY}
+
+{MENGER CUBE EXPERIMENT}
 
 
 
-white balloon - draw a card, target takes 10 damage in 2 turns
-
-character 21 slightly more movement
-and more positive status generation (sharp word and reversal)
-
-1 george common
-
-1 shiru uncommon
-
-[golden anklet]
-
-[rainbow wing]
+OPERATION KOSTRZYN V
 
 
 
-new event cards
+new status cards
 
 new curses
 

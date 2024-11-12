@@ -159,7 +159,7 @@ class nodeManager{
                 for(let b=0,lb=min(a+1,4,la-a);b<lb;b++){
                     let type=game.allMap>=0?game.allMap:a<2?0:a==la-1?2:a==la-2?3:a==round(la/2)?6:a==round(la/4)&&this.world==1?7:-1
                     if(type==-1){
-                        let index=floor(random(0,possibilities.length))
+                        let index=variants.sortmap?0:floor(random(0,possibilities.length))
                         type=possibilities[index]
                         possibilities.splice(index,1)
                     }

@@ -166,6 +166,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[101,0,0])],//exhaust discard card, then trigger hand discard, no return
                     [new overlay(this.layer,this.battle,0,2,[12,1])],//bring in exhaust card from ally, no return
                     [new overlay(this.layer,this.battle,0,2,[27,1])],//bring in deck card from ally, no return
+                    [new overlay(this.layer,this.battle,0,2,[102])],//bring in discard card as free and retain until played, no return
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

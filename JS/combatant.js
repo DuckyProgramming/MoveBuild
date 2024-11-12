@@ -187,7 +187,7 @@ class combatant{
                 'Cable Claw Up','Energy Orb Per Turn','Basic Energy','Basic (E)','Bleed Damage','Dust Orb Boost','Armor Per Turn','Max Health Gift','Fragile','Free Card Per Turn',
                 'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random','Silver Block','Mineral Block','Mineral Draw','End of Combat Lose','End of Combat Item',
                 'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw','All Damage Convert',
-                'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns',
+                'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -263,7 +263,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//71
                 1,0,0,0,0,0,0,0,0,0,//72
                 0,0,2,0,0,0,0,0,0,0,//73
-                0,0,0,0,2,
+                0,0,0,0,2,1,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -339,7 +339,7 @@ class combatant{
                 2,2,2,2,2,2,0,1,1,2,//71
                 2,2,2,2,2,2,2,2,2,2,//72
                 2,2,2,2,0,2,2,2,2,2,//73
-                2,2,2,2,2,
+                2,2,2,2,2,1,2,2,
             ]}
         /*
         0-none
@@ -5115,7 +5115,7 @@ class combatant{
     }
     heal(amount){
         this.midHeal=true
-        if(!this.battle.relicManager.hasRelic(163,this.id)&&amount>0&&this.life>0){
+        if(!this.battle.relicManager.hasRelic(163,this.id)&&amount>0&&this.life>0&&this.status.main[735]<=0){
             let gain=amount
             if(this.battle.relicManager.hasRelic(53,this.id)){
                 gain*=1.5

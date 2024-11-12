@@ -2398,7 +2398,7 @@ turn.prototype.update=function(){
                     }
                     this.userCombatant.runAnimation(1/10,3)
                     if(this.timer==10){
-                        this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,this.type-171,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
+                        this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,this.type==425?28:this.type-171,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         switch(this.type){
                             case 199:

@@ -440,7 +440,7 @@ class combatantManager{
         let list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0&&this.combatants[a].life>0
-                &&!(effect==16&&this.combatants[a].getStatus('Lose Per Turn')>0)
+                &&!(effect==16&&this.combatants[a].getStatus('Lose Health Per Turn')>0)
                 &&!(effect==18&&this.combatants[a].id==args[2])
                 &&!(effect==20&&this.combatants[a].id==args[0])
             ){
@@ -505,7 +505,7 @@ class combatantManager{
                     this.combatants[index].statusEffect('Protected Invisible',args[0])
                 break
                 case 16:
-                    this.combatants[index].statusEffect('Lose Per Turn',args[0])
+                    this.combatants[index].statusEffect('Lose Health Per Turn',args[0])
                 break
                 case 17:
                     this.combatants[index].statusEffect('Lock On',args[0])

@@ -1652,7 +1652,7 @@ class eventManager{
                         if(this.page==0&&a==0){
                             tempPage=floor(random(0,4))
                         }else if(this.page==1&&a==0){
-                            this.battle.relicManager.addRelic(findInternal('First Enemy Lose Per Turn',types.relic),this.player)
+                            this.battle.relicManager.addRelic(findInternal('First Enemy Lose Health Per Turn',types.relic),this.player)
                         }else if(this.page==2&&a==0){
                             this.battle.relicManager.addRelic(findInternal('First Enemy Remove Block',types.relic),this.player)
                         }else if(this.page==3&&a==0){

@@ -6403,7 +6403,7 @@ types={
     ],dictionary:[
         {name:'',mtg:0,desc:``,
         },
-        
+
         {name:'Energy',mtg:1,desc:
 `Energy is the fundamental currency used to play cards. Most cards cost energy.
 Energy is replenished at the start of each turn.`,
@@ -6903,6 +6903,9 @@ damage and is spent, but does not counter.`,
 `When you draw a status card, it is automatically exhausted,
 and another card is drawn in its place.
 Decrements afterward.`,
+        },{name:'Lock On',mtg:0,desc:
+`Each stack increases damage taken by 10%.
+Decrements each turn.`,
         },
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0
@@ -7200,14 +7203,14 @@ variants={
     chooselose:false,compress:false,cardHold:false,polar:false,
     inventor:false,unexpected:false,cursed:false,witch:false,
     lowhealth:false,midhealth:false,terminal:false,hungry:false,
-    shortmap:false,shortermap:false,singlemap:false,initiative:false,
+    shortmap:false,sortmap:true,singlemap:false,initiative:false,
     prism:false,ultraprism:false,junk:false,colorshift:false,
     vanish:false,blind:false,transcend:false,overheat:false,
     cliff:false,assault:false,unary:false,running:false,
     commoners:false,business:false,quarterPool:false,close:false,
 
     collection:false,prismrule:[],
-    speedmove:false,speedcard:false,nobasicanim:false,deckbuild:false,selectCombat:false,
+    speedmove:false,speedcard:false,nobasicanim:false,deckbuild:false,selectCombat:false,shortermap:false,
 
     map:[
         'mtg','mod','chaos','randomCombat',
@@ -7215,7 +7218,7 @@ variants={
         'chooselose','compress','cardHold','polar',
         'inventor','unexpected','cursed','witch',
         'lowhealth','midhealth','terminal','hungry',
-        'shortmap','shortermap','singlemap','initiative',
+        'shortmap','sortmap','singlemap','initiative',
         'prism','ultraprism','junk','colorshift',
         'vanish','blind','transcend','overheat',
         'cliff','assault','unary','running',
@@ -7226,7 +7229,7 @@ variants={
         'Choose or Lose','Compression Draw','Five-Card Hold','Card Slot Draw',
         'Card Techify','Expect the Unexpected','Cursed Mode','Polar',
         '20% HP','50% HP','Terminal','Hungry',
-        'Short Map','Shorter Map','Straight Map','Enemy Initiative',
+        'Short Map','Sorted Map','Straight Map','Enemy Initiative',
         'Prism','Ultraprism','Junkyard','Colorshift',
         'All Vanishing','Silent Cards','Transcend','Overheat',
         'Cliffs','Assault','Unary','Running Loop',

@@ -7250,6 +7250,40 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(0,-4.5,-1,-7.5,1,-7.5)
             layer.triangle(0,-8,-1,-11,1,-11)
         break
+        case 735:
+            layer.fill(255,100,100,fade)
+            layer.rect(0,0,1.5,6)
+            layer.rect(0,0,6,1.5)
+            layer.noFill()
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(1.5)
+            layer.ellipse(0,0,8)
+            layer.line(-2*constants.sqrt2,2*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
+        break
+        case 736:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(255,255,150,fade)
+            regStar(layer,0,0,10,0.5,0.5,3.5,3.5,0)
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
+        case 737:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(255,255,150,fade)
+            regStar(layer,0,0,10,0.5,0.5,3.5,3.5,0)
+            layer.fill(150,175,200,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
         
     }
     //mark s
@@ -13688,7 +13722,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 145-Strength in 3 Turns
 146-Dexterity in 3 Turns
 147-Glitched Card
-148-Lose Per Turn
+148-Lose Health Per Turn
 149-Permanent Strength
 150-Node With Paths
 151-Invisible

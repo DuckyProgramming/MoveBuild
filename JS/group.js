@@ -2073,6 +2073,12 @@ class group{
                         total++
                     }
                 break
+                case 60:
+                    if(args[0].includes(this.cards[a].id)){
+                        this.cards[a].deSizeDropDraw=true
+                        this.cards[a].exhaust=true
+                    }
+                break
             }
         }
         if(effect==9){
@@ -2547,6 +2553,12 @@ class group{
                 if(userCombatant.getStatus('Drawn Status Block')>0){
                     userCombatant.addBlock(userCombatant.getStatus('Drawn Status Block'))
                 }
+                if(userCombatant.getStatus('Drawn Status Temporary Strength')>0){
+                    userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Drawn Status Temporary Strength'))
+                }
+                if(userCombatant.getStatus('Drawn Status Temporary Dexterity')>0){
+                    userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Drawn Status Temporary Dexterity'))
+                }
             break
             case 6:
                 if(userCombatant.getStatus('Drawn Curse Block')>0){
@@ -2749,6 +2761,9 @@ class group{
             break
             case -117: case 3245:
                 userCombatant.block=0
+            break
+            case -121:
+                this.battle.cardManagers[this.player].addRandomAbstract(2,0,0,1,0,[],[constants.playerNumber+2,3])
             break
 
             //mark n
@@ -3269,7 +3284,7 @@ class group{
             this.cards.splice(firstIndex,1)
             if(
                 spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
-                spec==13||spec==14||spec==16||spec==18||spec==19||spec==20||spec==21
+                spec==13||spec==14||spec==16||spec==18||spec==19||spec==20||spec==21||spec==24
             ){
                 list[list.length-1]=this.sendSpec(list[list.length-1],spec)
                 if(this.sendResultCancel){
@@ -3365,6 +3380,10 @@ class group{
             case 21:
                 cardData.costDown(0,[1])
                 if(this.drawEffect(cardData)){la=0}
+            break
+            case 24:
+                cardData.setCost(0,[0])
+                cardData.retain2=true
             break
         }
         return cardData

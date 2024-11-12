@@ -2457,7 +2457,7 @@ function oracle(){
 	}
 }
 function movebuildle(){
-	current.overlayManager.overlays.push(new overlay(current.overlayManager.layer,current.overlayManager.battle,0,27,[]))
+	current.overlayManager.overlays.push([new overlay(current.overlayManager.layer,current.overlayManager.battle,0,27,[])])
 	current.overlayManager.overlays[current.overlayManager.overlays.length-1][0].active=true
     current.overlayManager.overlays[current.overlayManager.overlays.length-1][0].activate([])
 }
