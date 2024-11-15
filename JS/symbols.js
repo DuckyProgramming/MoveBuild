@@ -615,7 +615,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(125,fade)
             layer.stroke(100,fade)
             layer.strokeWeight(1)
-            layer.rect(0,-0.5,4.5,6,1)
+            layer.rect(0,0,4.5,6,1)
         break
         case 75:
             layer.fill(255,50,50,fade)
@@ -7283,6 +7283,31 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(150,175,200,fade)
             layer.triangle(2,-6,4,3,0,3)
             layer.rect(-3,0,3,3)
+        break
+        case 738:
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(75,fade)
+            layer.rect(-5,0,2)
+        break
+        case 739:
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+            layer.triangle(0,3.5,-1,6.5,1,6.5)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(75,fade)
+            layer.rect(-5,0,2)
         break
         
     }

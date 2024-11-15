@@ -1577,6 +1577,9 @@ class battle{
         if(card.spec.includes(52)&&userCombatant.getStatus('Mineral Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Mineral Draw'))
         }
+        if(userCombatant.getStatus('Temporary Card Play Temporary Strength')>0){
+            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Temporary Card Play Temporary Strength'))
+        }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])
     }
@@ -2959,7 +2962,7 @@ class battle{
                 for(let a=0,la=this.anim.turn.length;a<la;a++){
                     this.anim.turn[a]=smoothAnim(this.anim.turn[a],this.turn.main==a,0,1,5)
                     this.anim.extra[a]=smoothAnim(this.anim.extra[a],this.turn.main==a&&
-                        (this.cardManagers[a].hand.status[0]<0||this.cardManagers[a].hand.status[1]<0||this.cardManagers[a].hand.status[8]<0||this.cardManagers[a].hand.status[10]>0||this.cardManagers[a].hand.status[27]>0||this.cardManagers[a].hand.status[31]>0||this.cardManagers[a].hand.status[34]>0||this.cardManagers[a].hand.status[38]>0||this.cardManagers[a].hand.status[43]>0),0,1,5)
+                        (this.cardManagers[a].hand.status[0]<0||this.cardManagers[a].hand.status[1]<0||this.cardManagers[a].hand.status[8]<0||this.cardManagers[a].hand.status[10]>0||this.cardManagers[a].hand.status[27]>0||this.cardManagers[a].hand.status[28]<0||this.cardManagers[a].hand.status[31]>0||this.cardManagers[a].hand.status[34]>0||this.cardManagers[a].hand.status[38]>0||this.cardManagers[a].hand.status[43]>0),0,1,5)
                     this.anim.drop[a]=smoothAnim(this.anim.drop[a],pointInsideBox({position:inputs.rel},{position:{x:106,y:680-this.anim.turn[a]*100},width:32,height:20})&&!this.overlayManager.anyActive&&(variants.cyclicDraw||variants.blackjack),1,1.5,5)
                 }
                 this.anim.reserve=smoothAnim(this.anim.reserve,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:496},width:32,height:20})&&!this.overlayManager.anyActive,1,1.25,10)

@@ -581,6 +581,10 @@ class group{
         this.status[28]+=amount
         this.generalSelfStatus()
     }
+    exhaustViableAny(){
+        this.status[28]=-1
+        this.generalSelfStatus()
+    }
     exhaustHeal(amount){
         this.status[29]+=amount
         this.generalSelfStatus()
@@ -2128,7 +2132,7 @@ class group{
                         &&!(effect==43&&(this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(41)))
                         &&!(effect==46&&this.cards[b].list!=constants.playerNumber+2)
                         &&!(effect==47&&(this.cards[b].level<=1||this.cards[b].class!=args[0]&&args[0]!=0||this.cards[b].spec.includes(37)))
-                        &&!(effect==49&&this.cards[b].cost!=0)
+                        &&!(effect==49&&this.cards[b].getCost(0)!=0)
                         &&!(effect==50&&this.cards[b].class!=5)
                         &&!(effect==51&&this.cards[b].spec.includes(57))
                         &&!(effect==52&&(!this.removable(a)||this.cards[b].class!=args[0]&&args[0]!=0))
@@ -2142,6 +2146,7 @@ class group{
                         &&!(effect==64&&this.cards[b].class!=args[0]&&args[0]!=0)
                         &&!(effect==65&&this.cards[b].edition!=args[0])
                         &&!(effect==70&&!this.cards[b].spec.includes(15))
+                        &&!(effect==72&&this.cards[b].getCost(0)!=args[0])
                     ){
                         list.push(b)
                     }
@@ -2169,7 +2174,7 @@ class group{
                     case 4: case 65:
                         this.copySelf(index)
                     break
-                    case 5: case 62:
+                    case 5: case 62: case 72:
                         this.cards[index].setCost(0,[0])
                     break
                     case 6:
@@ -3066,6 +3071,9 @@ class group{
                     this.battle.cardManagers[this.player].hand.add(findName('Dazed',types.card),0,constants.playerNumber+1)
                 }
             break
+            case 6633: case 6634:
+                this.battle.loseEnergy(card.effect[0],this.player)
+            break
 
         }
         card.drawMark=false
@@ -3231,6 +3239,10 @@ class group{
                     case 14:
                         list[list.length-1].costDown(0,[args[1]])
                     break
+                    case 15:
+                        list[list.length-1].setCost(0,[0])
+                        list[list.length-1].edition=args[0]
+                    break
                 }
             }
         }
@@ -3253,17 +3265,22 @@ class group{
                 }
                 return this.sent
             }
-            this.sent.push(this.cards[firstIndex])
             if(spec==17){
                 this.cards[firstIndex].costDown(0,[1])
-                list.splice(floor(random(0,list.length)),0,copyCard(this.cards[firstIndex]))
+                let index=floor(random(0,list.length))
+                list.splice(index,0,copyCard(this.cards[firstIndex]))
+                this.sent.push(list[index])
             }else if(spec==15){
-                list.splice(floor(random(0,list.length)),0,copyCard(this.cards[firstIndex]))
+                let index=floor(random(0,list.length))
+                list.splice(index,0,copyCard(this.cards[firstIndex]))
+                this.sent.push(list[index])
             }else if(spec==11){
                 list.splice(0,0,copyCard(this.cards[firstIndex]))
+                this.sent.push(list[0])
             }else if(spec==22){
                 this.cards[firstIndex].cost=variants.mtg?copyArray(this.cards[firstIndex].base.cost):this.cards[firstIndex].base.cost
                 list.splice(0,0,copyCard(this.cards[firstIndex]))
+                this.sent.push(list[0])
             }else if(spec==23){
                 let index=floor(random(0,list.length))
                 list.splice(index,0,copyCard(this.cards[firstIndex]))
@@ -3276,8 +3293,10 @@ class group{
                         this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
                     }
                 }
+                this.sent.push(list[index])
             }else{
                 list.push(copyCard(this.cards[firstIndex]))
+                this.sent.push(list[list.length-1])
             }
             list[list.length-1].size=0
             delete this.cards[firstIndex]

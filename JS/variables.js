@@ -1,6 +1,6 @@
 types={
     combatant:[
-        {name:'Joe',moniker:'The Testbed',identifier:['Brother','Mister'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Tutorial man!`},
+        {name:'Joe',moniker:'The Testbed',identifier:['Brother','Mister'],life:50,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Tutorial man!`},
         {name:'George',moniker:'The Agent',identifier:['Brother','Mister'],life:80,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:34,effect:[8]},{type:304,effect:[20]},{type:37,effect:[15,5]}],description:``},
         {name:'Lira',moniker:'The Apprentice',identifier:['Sister','Miss'],life:60,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:305,effect:[5,6]},{type:25,effect:[14]},{type:306,effect:[18]}],description:``},
         {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:419,effect:[10]},{type:24,effect:[8,8]},{type:308,effect:[13]}],description:``},
@@ -21,8 +21,10 @@ types={
         {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[26]},{type:420,effect:[3]},{type:93,effect:[1]}],description:``},
         {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:``},
         {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
-        {name:'',moniker:'The Placeholder',identifier:['',''],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
+        {name:'',moniker:'The Placeholder',identifier:['Sister','Miss'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         
+        {name:'Koishi',moniker:'The Testbed',identifier:['Sister','Miss'],life:47,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
         {name:'Bouncer',life:27,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
@@ -7203,7 +7205,7 @@ variants={
     chooselose:false,compress:false,cardHold:false,polar:false,
     inventor:false,unexpected:false,cursed:false,witch:false,
     lowhealth:false,midhealth:false,terminal:false,hungry:false,
-    shortmap:false,sortmap:true,singlemap:false,initiative:false,
+    shortmap:false,sortmap:false,singlemap:false,initiative:false,
     prism:false,ultraprism:false,junk:false,colorshift:false,
     vanish:false,blind:false,transcend:false,overheat:false,
     cliff:false,assault:false,unary:false,running:false,

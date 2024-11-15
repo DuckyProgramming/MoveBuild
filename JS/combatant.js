@@ -187,7 +187,7 @@ class combatant{
                 'Cable Claw Up','Energy Orb Per Turn','Basic Energy','Basic (E)','Bleed Damage','Dust Orb Boost','Armor Per Turn','Max Health Gift','Fragile','Free Card Per Turn',
                 'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random','Silver Block','Mineral Block','Mineral Draw','End of Combat Lose','End of Combat Item',
                 'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw','All Damage Convert',
-                'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity',
+                'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity','Temporary Card Play Temporary Strength','Temporary Card Play Temporary Strength Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,1,0,0,1,1,//1
@@ -263,7 +263,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//71
                 1,0,0,0,0,0,0,0,0,0,//72
                 0,0,2,0,0,0,0,0,0,0,//73
-                0,0,0,0,2,1,0,0,
+                0,0,0,0,2,1,0,0,2,2,//74
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -339,7 +339,7 @@ class combatant{
                 2,2,2,2,2,2,0,1,1,2,//71
                 2,2,2,2,2,2,2,2,2,2,//72
                 2,2,2,2,0,2,2,2,2,2,//73
-                2,2,2,2,2,1,2,2,
+                2,2,2,2,2,1,2,2,2,2,//74
             ]}
         /*
         0-none
@@ -5472,6 +5472,7 @@ class combatant{
                     case 731: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].reserve.drawEffect(this.battle.cardManagers[this.id].hand.addReturn(findName('Sharp\nWord',types.card),0,constants.playerNumber+1))}} break
                     case 733: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].reserve.drawEffect(this.battle.cardManagers[this.id].hand.addReturn(findName('Shining\nMoon',types.card),0,constants.playerNumber+1))}} break
                     case 734: this.status.main[findList('Intangible Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 739: this.status.main[findList('Temporary Card Play Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     
                 }
                 if(this.status.behavior[a]==6&&
@@ -5650,7 +5651,8 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Ume':
+            case 'Sagume':
+            case 'Koishi': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -5770,7 +5772,8 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Ume':
+            case 'Sagume':
+            case 'Koishi': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate

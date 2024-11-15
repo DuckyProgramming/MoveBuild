@@ -152,7 +152,7 @@ attack.prototype.update=function(){
         case 6392: case 6401: case 6404: case 6410: case 6422: case 6424: case 6433: case 6453: case 6465: case 6477:
         case 6489: case 6499: case 6500: case 6519: case 6520: case 6523: case 6527: case 6535: case 6536: case 6537:
         case 6539: case 6547: case 6548: case 6553: case 6555: case 6565: case 6567: case 6568: case 6578: case 6586:
-        case 6593: case 6594:
+        case 6593: case 6594: case 6644: case 6645: case 6646: case 6650: case 6651:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -321,7 +321,7 @@ attack.prototype.update=function(){
         case 6325: case 6331: case 6340: case 6345: case 6364: case 6366: case 6368: case 6369: case 6372: case 6373:
         case 6391: case 6405: case 6414: case 6417: case 6423: case 6430: case 6431: case 6447: case 6448: case 6451:
         case 6466: case 6470: case 6488: case 6490: case 6509: case 6528: case 6531: case 6549: case 6552: case 6557:
-        case 6560: case 6566: case 6608:
+        case 6560: case 6566: case 6608: case 6642: case 6643:
             //mark 2
             if(
                 this.timer==1&&(
@@ -405,7 +405,7 @@ attack.prototype.update=function(){
         case 6142: case 6155: case 6162: case 6184: case 6185: case 6216: case 6217: case 6283: case 6284: case 6285:
         case 6286: case 6321: case 6322: case 6361: case 6395: case 6481: case 6482: case 6483: case 6484: case 6485:
         case 6486: case 6487: case 6541: case 6554: case 6559: case 6583: case 6584: case 6585: case 6598: case 6601:
-        case 6602: case 6603: case 6610:
+        case 6602: case 6603: case 6610: case 6629: case 6640:
             //mark 3
             if(
                 this.timer==1&&(
@@ -526,7 +526,7 @@ attack.prototype.update=function(){
                                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
                                 if(index>=0&&this.battle.tileManager.tiles[index].type.includes(3)){
                                     this.battle.tileManager.tiles[index].anim.upPart[this.battle.tileManager.tiles[index].type.indexOf(3)]=false
-                                    this.userCombatant.armed=true
+                                    this.userCombatant.rearm()
                                     la=0
                                 }
                             }
@@ -586,7 +586,7 @@ attack.prototype.update=function(){
                                         let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
                                         if(index>=0&&this.battle.tileManager.tiles[index].type.includes(3)){
                                             this.battle.tileManager.tiles[index].anim.upPart[this.battle.tileManager.tiles[index].type.indexOf(3)]=false
-                                            this.userCombatant.armed=true
+                                            this.userCombatant.rearm()
                                             la=0
                                         }
                                     }
@@ -715,7 +715,7 @@ attack.prototype.update=function(){
                                         let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
                                         if(index>=0&&this.battle.tileManager.tiles[index].type.includes(3)){
                                             this.battle.tileManager.tiles[index].anim.upPart[this.battle.tileManager.tiles[index].type.indexOf(3)]=false
-                                            this.userCombatant.armed=true
+                                            this.userCombatant.rearm()
                                             la=0
                                         }
                                     }
@@ -877,7 +877,8 @@ attack.prototype.update=function(){
         case 6355: case 6356: case 6357: case 6358: case 6370: case 6377: case 6379: case 6380: case 6393: case 6406:
         case 6411: case 6421: case 6426: case 6427: case 6428: case 6429: case 6436: case 6437: case 6438: case 6439:
         case 6440: case 6443: case 6444: case 6457: case 6458: case 6475: case 6504: case 6525: case 6533: case 6534:
-        case 6543: case 6546: case 6558: case 6569: case 6570: case 6571: case 6592: case 6607: case 6614:
+        case 6543: case 6546: case 6558: case 6569: case 6570: case 6571: case 6592: case 6607: case 6614: case 6630:
+        case 6631: case 6632: case 6633: case 6634: case 6637: case 6638: case 6639: case 6648:
             //mark 4
             if(
                 this.timer==1&&(
@@ -998,7 +999,8 @@ attack.prototype.update=function(){
         case 6416: case 6435: case 6442: case 6450: case 6459: case 6460: case 6461: case 6462: case 6463: case 6468:
         case 6471: case 6472: case 6473: case 6493: case 6501: case 6502: case 6505: case 6506: case 6513: case 6515:
         case 6516: case 6526: case 6529: case 6544: case 6545: case 6551: case 6579: case 6581: case 6587: case 6588:
-        case 6589: case 6590: case 6605: case 6611: case 6617: case 6619: case 6620: case 6621: case 6622:
+        case 6589: case 6590: case 6605: case 6611: case 6617: case 6619: case 6620: case 6621: case 6622: case 6624:
+        case 6628: case 6635: case 6636: case 6653:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -1461,7 +1463,7 @@ attack.prototype.update=function(){
         case 5470: case 5471: case 5520: case 5561: case 5600: case 5661: case 5671: case 5674: case 5675: case 5689:
         case 5702: case 5711: case 5714: case 5715: case 5723: case 5726: case 5733: case 5754: case 5834: case 5838:
         case 5839: case 5855: case 5950: case 5978: case 5998: case 5998: case 6275: case 6297: case 6399: case 6507:
-        case 6508: case 6511: case 6538: case 6540:
+        case 6508: case 6511: case 6538: case 6540: case 6647:
             //mark 7
             if(
                 this.timer==1&&(
@@ -1923,7 +1925,7 @@ attack.prototype.update=function(){
         case 1934: case 1967: case 1968: case 2627: case 2630: case 2649: case 2651: case 3220: case 3349: case 3516:
         case 3692: case 3906: case 4085: case 4816: case 4833: case 4834: case 4850: case 4947: case 5098: case 5625:
         case 6023: case 6024: case 6025: case 6102: case 6197: case 6199: case 6219: case 6234: case 6317: case 6418:
-        case 6503:
+        case 6503: case 6652:
             if(
                 (this.type==1649||this.type==1740)&&this.userCombatant.energyParity(this.energy)!=this.limit%2||
                 this.type==1822&&this.energy<2||
@@ -2043,7 +2045,7 @@ attack.prototype.update=function(){
         case 5692: case 5759: case 5868: case 5896: case 5907: case 5999: case 6000: case 6042: case 6059: case 6060:
         case 6107: case 6109: case 6110: case 6111: case 6136: case 6172: case 6231: case 6245: case 6246: case 6274:
         case 6278: case 6291: case 6324: case 6337: case 6338: case 6342: case 6343: case 6344: case 6378: case 6467:
-        case 6491: case 6492: case 6521: case 6532: case 6580: case 6591:
+        case 6491: case 6492: case 6521: case 6532: case 6580: case 6591: case 6641: case 6649: case 6654:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -12003,7 +12005,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 6030: case 6604:
+        case 6030: case 6604: case 6625: case 6626: case 6627:
             if(this.timer==1){
                 this.userCombatant.startAnimation(1)
             }
