@@ -1099,11 +1099,19 @@ class group{
                     if(this.cards[a].retain2||a<userCombatant.getStatus('Retain Bar Per Turn')){
                         this.cards[a].retained()
                         this.cards.forEach(card=>card.anotherRetained(this.cards[a]))
+                        if(userCombatant.getStatus('Retain Duplicate')>0){
+                            this.copySelf(a)
+                            a++
+                        }
                         total++
                     }else if(this.cards[a].retain||this.battle.relicManager.hasRelic(192,this.player)&&la==1){
                         this.cards[a].retained()
                         this.cards.forEach(card=>card.anotherRetained(this.cards[a]))
                         this.cards[a].retain=false
+                        if(userCombatant.getStatus('Retain Duplicate')>0){
+                            this.copySelf(a)
+                            a++
+                        }
                         total++
                     }else if(this.cards[a].spec.includes(4)){
                         this.cards[a].etherealed()
@@ -1113,6 +1121,10 @@ class group{
                     }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(60)||this.battle.relicManager.hasRelic(128,this.player)||variants.cardHold){
                         this.cards[a].retained()
                         this.cards.forEach(card=>card.anotherRetained(this.cards[a]))
+                        if(userCombatant.getStatus('Retain Duplicate')>0){
+                            this.copySelf(a)
+                            a++
+                        }
                         total++
                     }else{
                         this.cards[a].usable=false
@@ -2769,6 +2781,9 @@ class group{
             break
             case -121:
                 this.battle.cardManagers[this.player].addRandomAbstract(2,0,0,1,0,[],[constants.playerNumber+2,3])
+            break
+            case -123:
+                userCombatant.statusEffect('Temporary All Damage Convert',card.effect[0])
             break
 
             //mark n

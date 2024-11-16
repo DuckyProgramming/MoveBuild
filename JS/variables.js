@@ -1422,7 +1422,7 @@ types={
         {name:'Starflame Prototype',internal:'5 Strength/Burn',id:1001,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Gain 5 Strength,\nShuffle 5 Burns into Draw'},
         {name:'Cola',internal:'15 Heal/No Block',id:1002,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 15 HP\nCan No Longer Gain Block'},
         {name:'Salad',internal:'Heal 3',id:1003,rarity:3,list:0,menu:true,temp:true,mtg:0,description:'Heal 3 HP\nTemporary'},
-        {name:'Energy Drink',internal:'2 Energy',id:1004,rarity:3,list:0,menu:false,temp:true,mtg:1,description:'Gain 2 Energy\nTemporary'},
+        {name:'Energy Drink',internal:'1 Energy',id:1004,rarity:3,list:0,menu:false,temp:true,mtg:1,description:'Gain 1 Energy\nTemporary'},
         {name:'Glass Shard',internal:'5 Damage',id:1005,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 5 Damage\nRange 1-3'},
         {name:'Molten Metal',internal:'10 Block',id:1006,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add 10 Block\nTemporary'},
         {name:'Caffeine Pill',internal:'Draw 2',id:1007,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards\nTemporary'},
@@ -1434,7 +1434,7 @@ types={
         {name:'Cream Paper',internal:'Sanae Card',id:1012,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Choose a Sanae Card\nto Add to Deck'},
         {name:'Pink Paper',internal:'Sakura Card',id:1013,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Choose a Sakura Card\nto Add to Deck'},
         {name:'Quality Coffee',internal:'3 Energy/Draw and Upgrade 3',id:1014,rarity:-1,list:-1,menu:false,temp:false,mtg:1,description:'Gain 3 Energy,\nDraw and Upgrade 3 Cards'},
-        {name:'Energy Drink',internal:'3 Mana',id:1015,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Gain (E) (E) (E)\nTemporary'},
+        {name:'Energy Drink',internal:'2 Mana',id:1015,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Gain (E) (E)\nTemporary'},
         {name:'Quality Coffee',internal:'4 Mana/Draw and Upgrade 3',id:1016,rarity:-1,list:-1,menu:false,temp:false,mtg:2,description:'Gain (E) (E) (E) (E),\nDraw and Upgrade 3 Cards'},
 
         //mark i

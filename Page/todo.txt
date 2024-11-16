@@ -2,15 +2,58 @@ OPERATION DATAMINES
 
 
 
-achronologopraxis - when a card retains, it exhausts instead
-
-
-
 {MENGER CUBE EXPERIMENT}
 
 
 
-OPERATION KOSTRZYN VI
+OPERATION KOSTRZYN VII
+
+
+
+[cards that spawn with duplicate once]
+
+
+
+instinctive action - gain 1 dodge, trigger follow up
+
+overflowing - 6 damage, 1 vulnerable, follow up
+
+dance of the heart - 9 damage twice, follow up
+
+air kiss - 6 damage, 1 weak, trigger follow up
+
+persecution - 13 block, trigger follow up
+
+imaginary wave - trigger 2 follow up
+
+rosecage - damage, side of hand: trigger follow up
+
+lonely heart - 16 damage, gain 1 energy, follow up
+
+instictive love - 20 damage, follow up, anti-innate
+
+casting sky - forceplay, trigger follow up
+
+claustrophobia - block, when at side of hands more block
+transfer similar cards
+
+[perfect storm]
+
+ancestral dream - damage in all directions, discard a card from draw pile, it gains replenish
+
+replace embers of love, new - call a follow up, gain temporary strength
+
+rose hell - deal 9x damage in all directions, gain x/2 energy
+
+
+
+paranoia - 6 damage twice, enter calm, discards to draw pile when played
+
+mischievous rose - damage, block, [stance]
+
+psychic lock - take another turn, costs 1 less on stance change
+
+perfect crime - steal all buffs of the enemy
 
 
 
@@ -27,7 +70,7 @@ NOT TO BE ACTIVATED UNTIL JANUARY 2025
 common:
 
 prescription bottle - gain 1 control every 10 turns
-[]
+duck sunglasses - add 4 block each turn against elites
 []
 []
 []
@@ -48,7 +91,7 @@ golden chicadee - upgrade all rare cards added to deck, gain 40 currency each
 
 rare:
 
-[]
+death note - name 3 enemies when taken, they lose 200 health
 []
 []
 []

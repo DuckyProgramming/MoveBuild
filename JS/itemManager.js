@@ -650,7 +650,7 @@ class itemManager{
                 userCombatant.heal(3*effectiveness)
             break
             case 1004:
-                this.battle.addSpecificEnergy(2*effectiveness,player,6)
+                this.battle.addSpecificEnergy(effectiveness,player,6)
             break
             case 1005:
                 this.battle.cardManagers[player].hand.selfCall(6,[57,[5*effectiveness],1,[2,1,3]])
@@ -685,7 +685,7 @@ class itemManager{
                 this.battle.cardManagers[player].draw(3*effectiveness,1)
             break
             case 1015:
-                this.battle.addSpecificEnergy(3*effectiveness,player,6)
+                this.battle.addSpecificEnergy(2*effectiveness,player,6)
             break
             case 1016:
                 this.battle.addSpecificEnergy(4*effectiveness,player,6)

@@ -890,11 +890,11 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('3',0,0)
                 break
-                case '2 Energy':
+                case '1 Energy':
                     displaySymbol(this.layer,0,0,9,0,1.2,this.fade)
                     this.layer.fill(0)
                     this.layer.textSize(10)
-                    this.layer.text('2',0,0)
+                    this.layer.text('1',0,0)
                 break
                 case '5 Damage':
                     displaySymbol(this.layer,0,0,18,0,1.5,this.fade)
@@ -958,11 +958,11 @@ class item{
                     this.layer.text('3',-9,0)
                     this.layer.text('3',6,0)
                 break
-                case '3 Mana':
+                case '2 Mana':
                     displayMtgManaSymbol(this.layer,0,0,6,0,1,this.fade,-1,[])
                     this.layer.fill(0)
                     this.layer.textSize(10)
-                    this.layer.text('3',0,0)
+                    this.layer.text('2',0,0)
                 break
                 case '4 Mana/Draw and Upgrade 3':
                     displayMtgManaSymbol(this.layer,-9,0,6,0,0.8,this.fade,-1,[])
