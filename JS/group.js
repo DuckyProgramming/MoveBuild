@@ -3180,7 +3180,7 @@ class group{
                     variant==13&&this.cards[a].rarity==this.sorted[this.sorted.length-1]||
                     variant==14&&this.cards[a].getBasic(-1)||
                     variant==15&&args[0].includes(this.cards[a].class)&&args[1]==this.cards[a].getCost(0)||
-                    variant==16&&this.cards[a].color.includes(args[0])||
+                    variant==16&&(!variants.mtg||this.cards[a].color.includes(args[0]))||
                     variant==17&&args[0].includes(this.cards[a].name)||
                     variant==18&&args[0].includes(this.cards[a].edition)||
                     variant==19&&this.cards[a].class!=args[0]
@@ -3258,6 +3258,12 @@ class group{
                         list[list.length-1].setCost(0,[0])
                         list[list.length-1].edition=args[0]
                     break
+                    case 16:
+                        list[list.length-1].setCost(0,[0])
+                        if(!list[list.length-1].spec.includes(args[1])){
+                            list[list.length-1].spec.push(args[1])
+                        }
+                    break
                 }
             }
         }
@@ -3326,6 +3332,8 @@ class group{
                 }
             }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
                 list[list.length-1].cost=variants.mtg?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
+                list[list.length-1].costDownTrigger=list[list.length-1].baseCostDownTrigger
+                list[list.length-1].costUpTrigger=list[list.length-1].baseCostUpTrigger
             }
         }
         if(this.player>=0&&stage!='tier'){
@@ -5465,7 +5473,10 @@ class group{
                             (
                                 this.cards[a].attack==1031||this.cards[a].attack.length==2&&this.cards[a].attack[0]==1189||this.cards[a].attack==1739||this.cards[a].attack==1770||
                                 this.cards[a].attack==1778||this.cards[a].attack==1893||this.cards[a].attack==2053||
-                                (this.cards[a].attack==3371||this.cards[a].attack==5887||this.cards[a].attack==5888||this.cards[a].attack==5889||this.cards[a].attack==5890||this.cards[a].attack==6434)&&!this.cards[a].usable||
+                                (
+                                    this.cards[a].attack==3371||this.cards[a].attack==5887||this.cards[a].attack==5888||this.cards[a].attack==5889||this.cards[a].attack==5890||
+                                    this.cards[a].attack==6434||this.cards[a].attack==6673||this.cards[a].attack==6680
+                                )&&!this.cards[a].usable||
                                 this.cards[a].spec.includes(12)&&this.cards[a].attack[this.cards[a].characteristic]==1366
                             )&&!this.cards[a].exhaust
                         ){
@@ -5510,7 +5521,8 @@ class group{
                                 if(this.cards[a].discardEffectBuffered.includes(0)){
                                     this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(0))
                                 }
-                            }else if(this.cards[a].discardEffectBuffered.includes(1)){
+                            }
+                            if(this.cards[a].discardEffectBuffered.includes(1)){
                                 if(this.cards[a].spec.includes(60)){
                                     this.cards[a].spec.splice(this.cards[a].spec.indexOf(60))
                                 }
@@ -5518,15 +5530,19 @@ class group{
                                     this.cards[a].additionalSpec.splice(this.cards[a].additionalSpec.indexOf(60))
                                 }
                                 this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(1),1)
-                            }else if(this.cards[a].discardEffectBuffered.includes(2)){
+                            }
+                            if(this.cards[a].discardEffectBuffered.includes(2)){
                                 if(this.cards[a].spec.includes(60)){
                                     this.cards[a].spec.splice(this.cards[a].spec.indexOf(60))
                                 }
                                 if(this.cards[a].additionalSpec.includes(60)){
                                     this.cards[a].additionalSpec.splice(this.cards[a].additionalSpec.indexOf(60))
                                 }
-                                this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(1),1)
+                                this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(2),1)
                                 this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.cards[a].position.x,this.cards[a].position.y,126,[20]))
+                            }
+                            if(this.cards[a].spec.includes(72)){
+                                this.cards[a].spec.splice(this.cards[a].spec.indexOf(72))
                             }
                             if(this.battle.modded(160)&&!this.cards[a].usable){
                                 this.cards[a]=unupgradeCard(this.cards[a])

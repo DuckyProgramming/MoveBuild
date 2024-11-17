@@ -6,54 +6,13 @@ OPERATION DATAMINES
 
 
 
-OPERATION KOSTRZYN VII
+OPERATION KOSTRZYN VII (CARDSET #59)
+
+[...]
 
 
 
-[cards that spawn with duplicate once]
-
-
-
-instinctive action - gain 1 dodge, trigger follow up
-
-overflowing - 6 damage, 1 vulnerable, follow up
-
-dance of the heart - 9 damage twice, follow up
-
-air kiss - 6 damage, 1 weak, trigger follow up
-
-persecution - 13 block, trigger follow up
-
-imaginary wave - trigger 2 follow up
-
-rosecage - damage, side of hand: trigger follow up
-
-lonely heart - 16 damage, gain 1 energy, follow up
-
-instictive love - 20 damage, follow up, anti-innate
-
-casting sky - forceplay, trigger follow up
-
-claustrophobia - block, when at side of hands more block
-transfer similar cards
-
-[perfect storm]
-
-ancestral dream - damage in all directions, discard a card from draw pile, it gains replenish
-
-replace embers of love, new - call a follow up, gain temporary strength
-
-rose hell - deal 9x damage in all directions, gain x/2 energy
-
-
-
-paranoia - 6 damage twice, enter calm, discards to draw pile when played
-
-mischievous rose - damage, block, [stance]
-
-psychic lock - take another turn, costs 1 less on stance change
-
-perfect crime - steal all buffs of the enemy
+CARDSET #60
 
 
 
@@ -127,5 +86,15 @@ OPERATION AEDUI
 NOT TO BE ACTIVATED UNTIL JANUARY 2025
 
 [literally just make character 21]
+
+
+
+OPERATION []
+
+NOT TO BE ACTIVATED UNTIL JANUARY 2025
+
+[literally just make character 21]
+
+
 
 

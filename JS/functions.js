@@ -1899,6 +1899,9 @@ function elemental(){
 function wish(value){
 	current.combatantManager.combatants[0].wish+=value
 }
+function followup(){
+	quickAddFull('Overflowing',1,0,0)
+}
 function edition(edition){
 	current.cardManagers[0].hand.cards[0].edition=edition
 }
@@ -1984,7 +1987,7 @@ function outListing(){
 	let box=``
 	let goal=160+160*constants.playerNumber+60+60+30+30+20
 	let actual=current.cardManagers[0].listing.allListableCard[3].length
-	let arbitrary=5000
+	let arbitrary=6000
 	for(let a=0,la=constants.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
 Common:${current.cardManagers[0].listing.card[a+1][0].length}/65				${current.cardManagers[0].listing.card[a+1][0].length-65}
@@ -2019,7 +2022,7 @@ Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}
 		Disband:
 	Total:${current.cardManagers[0].listing.disband.length}/1000			${current.cardManagers[0].listing.disband.length-1000}
 		Junkyard:
-	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/160			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-160}
+	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/${constants.playerNumber*8}			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-constants.playerNumber*8}
 			`)
 }
 function outClassCosts(){
