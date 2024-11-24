@@ -1,18 +1,8 @@
-OPERATION DATAMINES
-
-
-
-{MENGER CUBE EXPERIMENT}
-
-
-
-OPERATION KOSTRZYN VII (CARDSET #59)
-
-[...]
-
-
-
 CARDSET #60
+
+
+
+[fugue state]
 
 
 
@@ -22,15 +12,64 @@ new curses
 
 
 
-OPERATION TRAPPENJAGD
+BURN REWORK
 
-NOT TO BE ACTIVATED UNTIL JANUARY 2025
+[idk]
+
+
+
+
+
+
+
+OPERATION DATAMINES [CANCELED, TO BE DISABLED]
+
+
+
+OPERATION ICONOCLASM [DELAYED]
+
+
+
+{MENGER CUBE EXPERIMENT} [DELAYED]
+
+
+
+
+
+
+BLEED REWORK
+
+enemies apply bleed now apply poison
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[NOT TO BE ACTIVATED UNTIL JANUARY 2025]
+
+
+
+OPERATION TRAPPENJAGD
 
 common:
 
-prescription bottle - gain 1 control every 10 turns
+prescription bottle - gain 1 control every 6 turns
 duck sunglasses - add 4 block each turn against elites
-[]
+critical cube - when you deal 25 or more damage, apply 1 weak
 []
 []
 []
@@ -43,16 +82,16 @@ duck sunglasses - add 4 block each turn against elites
 
 uncommon:
 
-golden chicadee - upgrade all rare cards added to deck, gain 40 currency each
-[]
-[]
-[]
+dulled axe - enemies can't buffer, dodge, or take half your attacks
+common ribbon - upgrade all common cards added
+uncommon ribbon - upgrade all uncommon cards added
+rare ribbon - upgrade all rare cards added
 
 rare:
 
 death note - name 3 enemies when taken, they lose 200 health
-[]
-[]
+drug bag - when you attack gain 1 temporary strength
+servaic shard - when taken, make a card cost 1 less
 []
 []
 []
@@ -83,17 +122,13 @@ immoral elixir - gain energy each turn, lose 6 health on turn 6
 
 OPERATION AEDUI
 
-NOT TO BE ACTIVATED UNTIL JANUARY 2025
-
 [literally just make character 21]
 
 
 
-OPERATION []
+OPERATION ROSENFELD
 
-NOT TO BE ACTIVATED UNTIL JANUARY 2025
-
-[literally just make character 21]
+[literally just make character 22]
 
 
 

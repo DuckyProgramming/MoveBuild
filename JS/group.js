@@ -1365,7 +1365,10 @@ class group{
                     }
                 break
                 case 44:
-                    this.cards[a].callEndEffect()
+                    if(this.cards[a].callEndEffect()){
+                        a++
+                        la++
+                    }
                 break
                 case 45:
                     this.cards[a].spec=[]
@@ -1949,7 +1952,10 @@ class group{
                     }
                 break
                 case 33:
-                    this.cards[a].callEndEffect(args[0])
+                    if(this.cards[a].callEndEffect(args[0])){
+                        a++
+                        la++
+                    }
                 break
                 case 34:
                     if(this.cards[a].class==args[0]){

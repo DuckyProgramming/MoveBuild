@@ -188,10 +188,10 @@ class combatant{
                 'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random','Silver Block','Mineral Block','Mineral Draw','End of Combat Lose','End of Combat Item',
                 'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw','All Damage Convert',
                 'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity','Temporary Card Play Temporary Strength','Temporary Card Play Temporary Strength Next Turn',
-                'Retain Duplicate','Power Cost Up','Temporary All Damage Convert',
+                'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
-                0,2,1,1,2,1,0,0,1,1,//1
+                0,2,1,1,2,0,0,0,1,1,//1
                 1,0,0,2,0,0,1,2,2,0,//2
                 2,0,0,0,1,1,2,0,1,2,//3
                 0,1,1,1,0,0,0,2,1,2,//4
@@ -265,7 +265,7 @@ class combatant{
                 1,0,0,0,0,0,0,0,0,0,//72
                 0,0,2,0,0,0,0,0,0,0,//73
                 0,0,0,0,2,1,0,0,2,2,//74
-                1,0,2,
+                1,0,2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -342,7 +342,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//72
                 2,2,2,2,0,2,2,2,2,2,//73
                 2,2,2,2,2,1,2,2,2,2,//74
-                2,2,2,
+                2,2,2,2,
             ]}
         /*
         0-none
@@ -354,8 +354,9 @@ class combatant{
         6-half decrement
         */
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
-        this.tempStatus=[1,0,0,0,0,0]
+        this.tempStatus=[1,0,0,0,0,0,0]
         //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed
+        //repeat extra turn 1
         for(let a=0;a<this.status.name.length;a++){
             this.status.main.push(0)
             this.status.next.push(0)
@@ -758,9 +759,9 @@ class combatant{
             break
             case 'Gangster Assassin':
                 this.statusEffect('Counter Once Per Turn',game.ascend>=31?18:12)
-                this.statusEffect('Counter Bleed Once Per Turn',game.ascend>=31?6:4)
+                this.statusEffect('Counter Bleed Once Per Turn',1)
                 this.statusEffect('Counter Once',game.ascend>=31?18:12)
-                this.statusEffect('Counter Bleed Once',game.ascend>=31?6:4)
+                this.statusEffect('Counter Bleed Once',1)
             break
             case 'Crusader':
                 this.statusEffect('Armor',game.ascend>=31?20:10)
@@ -2151,6 +2152,11 @@ class combatant{
             default: return []
         }
     }
+    convertIntent(){
+        if(types.attack[this.attack[this.intent].type].class==1&&this.status.main[5]>0){
+            this.takeDamage(this.status.main[5])
+        }
+    }
     setIntent(type){
         switch(type){
             case 0:
@@ -2178,6 +2184,7 @@ class combatant{
                     this.status.main[378]--
                 }else if(this.battle.modded(41)){
                     this.intent=(this.turnsAlive-1)%this.attack.length
+                    this.convertIntent()
                 }else{
                     switch(this.behavior){
                         case 0:
@@ -2276,6 +2283,7 @@ class combatant{
                             }
                         break
                     }
+                    this.convertIntent()
                 }
             break
         }
@@ -2287,6 +2295,7 @@ class combatant{
                     this.usedIntent.push(this.intent)
                 }
                 this.intent=(this.intent+a)%this.attack.length
+                this.convertIntent()
                 a=la
             }
         }
@@ -2297,6 +2306,7 @@ class combatant{
             this.usedIntent.push(this.intent)
         }
         this.intent=floor(random(0,this.attack.length))
+        this.convertIntent()
         this.battle.updateTargetting()
     }
     convertTile(target){
@@ -3152,7 +3162,7 @@ class combatant{
                     }
                 }
                 if(userCombatant.team==0&&this.battle.modded(18)){
-                    this.statusEffect('Bleed',1)
+                    this.statusEffect('Poison',1)
                 }
                 if(userCombatant.team==0&&this.battle.modded(34)){
                     if(floor(random(0,5))==0){
@@ -3522,17 +3532,17 @@ class combatant{
                 if(user>=0&&user<this.battle.combatantManager.combatants.length){
                     let userCombatant=this.battle.combatantManager.combatants[user]
                     userCombatant.lastDeal=damage
-                    if(userCombatant.tempStatus[4]!=0&&this.block==0){
-                        this.statusEffect('Bleed',userCombatant.tempStatus[4])
+                    if(userCombatant.tempStatus[4]!=0){
+                        this.statusEffect('Poison',userCombatant.tempStatus[4])
                     }
                     if(userCombatant.tempStatus[5]!=0){
                         this.statusEffect('Regeneration',userCombatant.tempStatus[5])
                     }
-                    if(userCombatant.status.main[98]>0&&this.block==0){
-                        this.statusEffect('Bleed',userCombatant.status.main[98])
+                    if(userCombatant.status.main[98]>0){
+                        this.statusEffect('Poison',userCombatant.status.main[98])
                     }
-                    if(userCombatant.status.main[100]>0&&this.block==0){
-                        this.statusEffect('Bleed',userCombatant.status.main[100])
+                    if(userCombatant.status.main[100]>0){
+                        this.statusEffect('Poison',userCombatant.status.main[100])
                     }
                     if(userCombatant.status.main[202]>0&&damage>=20){
                         this.statusEffect('Miss',userCombatant.status.main[202])
@@ -3954,7 +3964,7 @@ class combatant{
                         if(this.status.main[78]>0){
                             userCombatant.takeDamage(this.status.main[78],-1)
                         }
-                        if(this.status.main[122]>0&&userCombatant.block<=0){
+                        if(this.status.main[122]>0){
                             userCombatant.statusEffect('Bleed',this.status.main[122])
                         }
                         if(this.status.main[176]>0){
@@ -5201,6 +5211,7 @@ class combatant{
                         this.usedIntent.push(this.intent)
                     }
                     this.intent=(this.turnsAlive-1+this.accelerate)%this.attack.length
+                    this.convertIntent()
                     this.battle.updateTargetting()
                     this.status.main[610]=20
                 }
@@ -5271,7 +5282,7 @@ class combatant{
             if(this.status.main[a]!=0){
                 switch(a){
                     case 4: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,6)} break
-                    case 5: case 31: case 52: case 62: case 110: case 121: case 179: this.takeDamage(this.status.main[a],-1); break
+                    case 31: case 52: case 62: case 110: case 121: case 179: this.takeDamage(this.status.main[a],-1); break
                     case 13: case 14: case 19: case 217: this.addBlock(this.status.main[a]); break
                     case 20: this.status.main[findList('Weak',this.status.name)]+=this.status.main[a]; break
                     case 29: this.status.main[findList('Cannot Move',this.status.name)]+=this.status.main[a]; break
@@ -5337,7 +5348,7 @@ class combatant{
                     case 283: this.status.main[findList('Dexterity Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 287: this.status.main[findList('Strength in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 294: if(floor(random(0,3))==0){this.heal(this.status.main[a]);this.status.main[a]=0} break
-                    case 302: if(this.block<=0){this.status.main[findList('Bleed',this.status.name)]+=this.status.main[a]} break
+                    case 302: this.status.main[findList('Bleed',this.status.name)]+=this.status.main[a]; break
                     case 303: this.status.main[findList('Bleed Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 304: if(this.status.main[findList('Cannot Move',this.status.name)]>0){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)}} break
                     case 307: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.main+=constrain(floor(this.status.main[a]/3),0,1+this.getStatus('Wisdom'))}; break
@@ -5980,8 +5991,8 @@ class combatant{
                         this.animSet.loop+=rate
                         this.anim.arms[1-this.animSet.hand].top=24+lsin(this.animSet.loop*90)*36
                         this.anim.arms[1-this.animSet.hand].bottom=9+lsin(this.animSet.loop*90)*87
-                        this.spin.arms[1-this.animSet.hand].top=(93-lsin(this.animSet.loop*90)*48)*(this.animSet.hand*2-1)
-                        this.spin.arms[1-this.animSet.hand].bottom=(75-lsin(this.animSet.loop*90)*60)*(this.animSet.hand*2-1)
+                        this.spin.arms[1-this.animSet.hand].top=(93-lsin(this.animSet.loop*90)*48)*(1-this.animSet.hand*2)
+                        this.spin.arms[1-this.animSet.hand].bottom=(75-lsin(this.animSet.loop*90)*60)*(1-this.animSet.hand*2)
                     break
                     case 19:
                         this.animSet.loop+=rate

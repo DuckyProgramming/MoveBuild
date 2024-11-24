@@ -7336,6 +7336,19 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,0,3)
             layer.rect(-7,0,3)
         break
+        case 743:
+            layer.fill(255,125,0,fade)
+            layer.triangle(-2,-2,-2,2,4,0)
+            layer.ellipse(-3.5,0,2)
+            layer.noFill()
+            layer.stroke(40,fade)
+            layer.strokeWeight(1.5)
+            layer.ellipse(0,0,10,10)
+            layer.line(0,0,-2.3,-2.3)
+            layer.line(0,0,2.3,-2.3)
+            layer.line(0,0,-2.3,2.3)
+            layer.line(0,0,2.3,2.3)
+        break
         
     }
     //mark s
@@ -8204,15 +8217,15 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(3,0,5,0,4,-3.5)
         break
         default:
-            layer.rect(0,0,36)
+            layer.rect(0,0,26)
             layer.fill(120,fade)
-            layer.rect(0,0,24)
+            layer.rect(0,0,20)
             layer.fill(255,fade)
-            layer.rect(0,0,6)
-            layer.rect(-8,0,6)
-            layer.rect(8,0,6)
-            layer.rect(0,-8,6)
-            layer.rect(0,8,6)
+            layer.rect(0,0,4)
+            layer.rect(-6,0,4)
+            layer.rect(6,0,4)
+            layer.rect(0,-6,4)
+            layer.rect(0,6,4)
         break
     }
     layer.pop()

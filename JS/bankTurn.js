@@ -646,9 +646,7 @@ turn.prototype.update=function(){
                             if(this.timer==18){
                                 switch(this.type){
                                     case 171:
-                                        if(this.targetCombatant[a].blocked>0){
-                                            this.targetCombatant[a].statusEffect('Bleed',this.effect[1])
-                                        }
+                                        this.targetCombatant[a].statusEffect('Bleed',this.effect[1])
                                     break
                                     case 441:
                                         this.targetCombatant[a].statusEffect('Anti-Control',this.effect[1])
@@ -1524,7 +1522,7 @@ turn.prototype.update=function(){
                     }
                     if(this.timer==15){
                         this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,4,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
-                    }else if(this.timer==10*this.targetDistance+15&&this.targetCombatant.block<=0){
+                    }else if(this.timer==10*this.targetDistance+15){
                         this.targetCombatant.statusEffect('Bleed',this.effect[0])
                     }else if(this.timer>=10*this.targetDistance+25){
                         this.remove=true

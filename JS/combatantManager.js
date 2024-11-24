@@ -607,7 +607,7 @@ class combatantManager{
     damageHighest(effect,user){
         let maximum=0
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0){
+            if(this.combatants[a].team==0&&this.combatants[a].life>0){
                 maximum=max(maximum,this.combatants[a].life)
             }
         }
@@ -624,7 +624,7 @@ class combatantManager{
     damageLowest(effect,user){
         let minimum=this.combatants[this.combatants.length-1].life
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0){
+            if(this.combatants[a].team==0&&this.combatants[a].life>0){
                 minimum=min(minimum,this.combatants[a].life)
             }
         }
@@ -1063,6 +1063,16 @@ class combatantManager{
                     case 55:
                         if(this.combatants[a].id!=args[0]){
                             this.combatants[a].takeDamage(args[1],args[2])
+                        }
+                    break
+                    case 56:
+                        this.combatants[a].setIntentClass(args[0])
+                    break
+                    case 57:
+                        if(this.combatants[a].life<this.combatants[a].base.life&&this.combatants[a].block<=0){
+                            for(let b=0,lb=floor(args.length/2);b<lb;b++){
+                                this.combatants[a].statusEffect(args[b*2],args[b*2+1])
+                            }
                         }
                     break
                 }

@@ -1468,9 +1468,7 @@ class turn{
                         this.userCombatant.combo=0
                     break
                     case 58: case 419:
-                        if(this.targetCombatant.block<=0){
-                            this.targetCombatant.statusEffect('Bleed',this.effect[0])
-                        }
+                        this.targetCombatant.statusEffect('Bleed',this.effect[0])
                     break
                     case 61:
                         this.targetCombatant.statusEffect('Frail Next Turn',this.effect[0])
@@ -1553,9 +1551,7 @@ class turn{
                         }
                     break
                     case 24: case 369:
-                        if(this.targetCombatant.blocked>0){
-                            this.targetCombatant.statusEffect('Bleed',this.effect[1])
-                        }
+                        this.targetCombatant.statusEffect('Bleed',this.effect[1])
                     break
                     case 27:
                         this.targetCombatant.statusEffect('Frail Next Turn',this.effect[1])
@@ -2001,9 +1997,7 @@ class turn{
                     }
                     switch(this.type){
                         case 44:
-                            if(this.targetCombatant[a].blocked>0){
-                                this.targetCombatant[a].statusEffect('Bleed',this.effect[1])
-                            }
+                            this.targetCombatant[a].statusEffect('Bleed',this.effect[1])
                         break
                         case 53: case 60:
                             for(let b=0,lb=this.effect[1];b<lb;b++){
@@ -2291,9 +2285,7 @@ class turn{
                         }
                     break
                     case 149:
-                        if(this.targetCombatant.blocked>0){
-                            this.targetCombatant.statusEffect('Bleed',this.effect[1])
-                        }
+                        this.targetCombatant.statusEffect('Bleed',this.effect[1])
                     break
                     case 282:
                         this.userCombatant.heal(this.effect[1])

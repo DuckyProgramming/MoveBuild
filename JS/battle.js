@@ -585,6 +585,7 @@ class battle{
         }else{
             this.startTurn()
         }
+        this.cardManagers.forEach(cardManager=>cardManager.allEffect(0,48))
         if(this.encounter.class==2&&this.nodeManager.harmBoss>0){
             this.nodeManager.harmBoss=0
         }
@@ -900,26 +901,16 @@ class battle{
         }
         let extra=false
         let noDraw=false
-        if(combatant.getStatus('Extra Drawless Turn')>0){
-            combatant.status.main[findList('Extra Drawless Turn',combatant.status.name)]--
-            let lastEnergy=this.getEnergy(this.turn.main)
-            combatant.extraTurn()
-            this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main],combatant)
-            if(!variants.mtg){
-                this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0),this.turn.main)
+        if(combatant.getStatus('Extra Drawless Turn')>0||combatant.getStatus('Extra Turn')>0||combatant.getStatus('Extra Turn Play Limit Per Turn')>0&&combatant.tempStatus[5]==0){
+            if(combatant.getStatus('Extra Drawless Turn')>0){
+                combatant.status.main[findList('Extra Drawless Turn',combatant.status.name)]--
+                noDraw=true
+            }else if(combatant.getStatus('Extra Turn')>0){
+                combatant.status.main[findList('Extra Turn',combatant.status.name)]--
+            }else if(combatant.getStatus('Extra Turn Play Limit Per Turn')>0&&combatant.tempStatus[5]==0){
+                combatant.tempStatus[5]=1
+                combatant.statusEffect('Play Limit Next Turn',combatant.getStatus('Extra Turn Play Limit Per Turn'))
             }
-            if(this.energy.temp[this.turn.main]>0){
-                this.addEnergy(this.energy.temp[this.turn.main],this.turn.main)
-            }else if(this.energy.temp[this.turn.main]<0){
-                this.loseEnergy(-this.energy.temp[this.turn.main],this.turn.main)
-            }
-            this.energy.temp[this.turn.main]=0
-            this.cardManagers[this.turn.main].discard.allEffectArgs(44,[5050,5051,5163,6511])
-            this.cardManagers[this.turn.main].reserve.allEffectArgs(44,[5050,5051,5163,6511])
-            noDraw=true
-            extra=true
-        }else if(combatant.getStatus('Extra Turn')>0){
-            combatant.status.main[findList('Extra Turn',combatant.status.name)]--
             let lastEnergy=this.getEnergy(this.turn.main)
             combatant.extraTurn()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main],combatant)
@@ -937,6 +928,7 @@ class battle{
             extra=true
         }else{
             this.turn.main++
+            combatant.tempStatus[5]=0
         }
         if(this.turn.main>=this.players){
             this.tileManager.activate()
@@ -1086,9 +1078,6 @@ class battle{
                         combatant.status.main[findList('No Draw',combatant.status.name)]+=combatant.getStatus('No Draw Next Turn')
                         combatant.status.main[findList('No Draw Next Turn',combatant.status.name)]=0
                     }
-                }
-                if(this.turn.total==1){
-                    this.cardManagers[this.turn.main].allEffect(0,48)
                 }
                 if(variants.mtg){
                     this.cardManagers[this.turn.main].mtgLastColor=6
@@ -1362,6 +1351,9 @@ class battle{
                 }
                 if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Attack (E)')>0){
                     this.addSpecificEnergy(userCombatant.getStatus('2+ Cost Attack (E)'),player,6)
+                }
+                if(userCombatant.getStatus('Bleed')>0){
+                    userCombatant.takeDamage(userCombatant.getStatus('Bleed'),-1)
                 }
             break
             case 2:
