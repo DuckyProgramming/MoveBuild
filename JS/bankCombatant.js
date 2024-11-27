@@ -82,9 +82,9 @@ combatant.prototype.display=function(){
                 }
             }
             this.layer.noStroke()
-            this.layer.fill(255,200,255,this.fade*0.5)
             for(let a=0,la=this.infoAnim.faith.length;a<la;a++){
                 if(this.infoAnim.faith[a]>0){
+                    this.layer.fill(255,200,255,this.fade*0.5*this.infoAnim.faith[a])
                     this.layer.ellipse(lsin(360*(a+0.5)/la)*60,lcos(360*(a+0.5)/la)*-60,12)
                 }
             }
@@ -123,6 +123,28 @@ combatant.prototype.display=function(){
                         this.layer.point(lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18)
                     }
                 }
+            }
+            this.layer.noStroke()
+            for(let a=0,la=this.infoAnim.inspiration.length;a<la;a++){
+                if(this.infoAnim.inspiration[a]>0&&lcos(720*a/la+this.time*2)<0){
+                    this.layer.fill(255,255,100,this.fade*0.5*this.infoAnim.inspiration[a])
+                    this.layer.ellipse(lsin(720*a/la+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin(720*a/la+this.time*2)*30,3)
+                    regStar(this.layer,lsin(720*a/la+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin(720*a/la+this.time*2)*30,7,4,4,1,1,this.time+360*a/la)
+                }
+            }
+            if(this.infoAnim.fugue>0){
+                this.layer.strokeWeight(2)
+                this.layer.colorMode(HSB,360,1,1,1)
+                for(let a=0,la=30;a<la;a++){
+                    this.layer.stroke((a/la*1080+this.time)%360,0.8,1,this.fade*this.infoAnim.fugue*(lsin(a/la*720+this.time*4)*0.5+0.5))
+                    this.layer.line(
+                        lsin(a/la*360)*(abs(lsin(a/la*1260-this.time*3))*0.4+1)*30,
+                        lcos(a/la*360)*(abs(lsin(a/la*1260-this.time*3))*0.4+1)*30,
+                        lsin(a/la*360)*(abs(lsin(a/la*1260-this.time*3))*0.4+1)*40,
+                        lcos(a/la*360)*(abs(lsin(a/la*1260-this.time*3))*0.4+1)*40
+                    )
+                }
+                this.layer.colorMode(RGB,255,255,255,1)
             }
             this.layer.translate(0,48)
         }
@@ -12911,6 +12933,14 @@ combatant.prototype.display=function(){
         }
         if(this.team>0&!this.construct&&!this.support){
             this.layer.translate(0,-48)
+            this.layer.noStroke()
+            for(let a=0,la=this.infoAnim.inspiration.length;a<la;a++){
+                if(this.infoAnim.inspiration[a]>0&&lcos(720*a/la+this.time*2)>=0){
+                    this.layer.fill(255,255,100,this.fade*0.5*this.infoAnim.inspiration[a])
+                    this.layer.ellipse(lsin(720*a/la+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin(720*a/la+this.time*2)*30,3)
+                    regStar(this.layer,lsin(720*a/la+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin(720*a/la+this.time*2)*30,7,4,4,1,1,this.time+360*a/la)
+                }
+            }
             if(this.infoAnim.elemental>0){
                 this.layer.noFill()
                 this.layer.stroke(150,200,255,this.fade*this.infoAnim.elemental*0.5)

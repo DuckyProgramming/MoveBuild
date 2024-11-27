@@ -107,9 +107,14 @@ class combatant{
             block:0,blockSize:1,
             barrier:0,barrierSize:1,barrierPush:0,
             bounce:0,bounceSize:1,bouncePush:0,
-            size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],
+            size:1,description:0,upSize:false,intent:[],
             flash:[0,0,0,0],upFlash:[false,false,false,false],
-            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],elemental:0}
+            balance:0,
+            orb:0,orbSpec:[],
+            stance:[0,0,0,0,0,0,0],
+            faith:[0,0,0,0,0,0,0,0,0,0,0,0],elemental:0,
+            inspiration:[0,0,0,0,0],fugue:0,
+        }
         this.dodges=[]
         this.turnDodges=0
         this.status={
@@ -188,7 +193,7 @@ class combatant{
                 'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random','Silver Block','Mineral Block','Mineral Draw','End of Combat Lose','End of Combat Item',
                 'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw','All Damage Convert',
                 'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity','Temporary Card Play Temporary Strength','Temporary Card Play Temporary Strength Next Turn',
-                'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn',
+                'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -265,7 +270,7 @@ class combatant{
                 1,0,0,0,0,0,0,0,0,0,//72
                 0,0,2,0,0,0,0,0,0,0,//73
                 0,0,0,0,2,1,0,0,2,2,//74
-                1,0,2,0,
+                1,0,2,0,0,0,1,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -342,7 +347,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//72
                 2,2,2,2,0,2,2,2,2,2,//73
                 2,2,2,2,2,1,2,2,2,2,//74
-                2,2,2,2,
+                2,2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -354,9 +359,10 @@ class combatant{
         6-half decrement
         */
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
-        this.tempStatus=[1,0,0,0,0,0,0]
+        this.tempStatus=[1,0,0,0,0]
         //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed
-        //repeat extra turn 1
+        this.interiorStatus=[0,0]
+        //repeat extra turn 1,has done damage
         for(let a=0;a<this.status.name.length;a++){
             this.status.main.push(0)
             this.status.next.push(0)
@@ -442,10 +448,14 @@ class combatant{
         this.vision=0
         this.elemental=false
         this.wish=3
+        this.inspiration=0
+        this.fugue=0
     }
     resetInfo(){
         this.constants()
         this.resetAnim()
+        this.tempStatus=[1,0,0,0,0]
+        this.interiorStatus=[0,0]
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
             this.status.next[a]=0
@@ -461,7 +471,9 @@ class combatant{
             bounce:0,bounceSize:1,bouncePush:0,
             size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],
             flash:[0,0,0,0],upFlash:[false,false,false,false],
-            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],elemental:0}
+            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],elemental:0,
+            inspiration:[0,0,0,0,0],fugue:0,
+        }
     }
     reset(){
         this.size=this.base.size
@@ -3006,11 +3018,14 @@ class combatant{
                     damage+=3*this.battle.relicManager.active[175][userCombatant.id+1]
                 }
             }
-            if(userCombatant.status.main[49]>0&&userCombatant.status.main[204]<=0){
-                userCombatant.takeDamage(userCombatant.status.main[49],-1)
-            }
+            /*if(userCombatant.status.main[49]>0){
+                userCombatant.takeDamage(userCombatant.status.main[49])
+            }*/
             if(userCombatant.status.main[95]>0&&!userCombatant.midHeal){
                 userCombatant.heal(userCombatant.status.main[95])
+            }
+            if(userCombatant.interiorStatus[1]==0){
+                userCombatant.interiorStatus[1]=1
             }
             /*if(userCombatant.status.main[119]>0){
                 if(this.battle.turn.main<this.battle.players){
@@ -4783,6 +4798,9 @@ class combatant{
         switch(stance){
             case 2:
                 this.battle.addSpecificEnergy(variants.mtg?3:2+this.status.main[678],this.id,6)
+                if(this.status.main[745]>0){
+                    this.statusEffect('Temporary Strength',this.status.main[745])
+                }
             break
         }
     }
@@ -4937,6 +4955,9 @@ class combatant{
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
                         if(userCombatant.getStatus('Bleed Damage')>0){
                             this.takeDamage(userCombatant.getStatus('Bleed Damage'),-1)
+                        }
+                        if(userCombatant.getStatus('Bleed Attack Intent')>0){
+                            this.setIntentClass(1)
                         }
                     }
                 }
@@ -5291,6 +5312,7 @@ class combatant{
                     case 34: case 146: this.status.main[findList('Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 37: this.status.main[findList('Cannot Add Block',this.status.name)]+=this.status.main[a]; break
                     case 41: case 84: case 285: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.main+=this.status.main[a]} break
+                    case 49: if(this.interiorStatus[1]==0){this.takeDamage(this.status.main[a],-1)} break
                     case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 66: case 598: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
                     case 67: if(this.combo>0){this.comboConsumed()};this.combo=0; break
@@ -5522,6 +5544,12 @@ class combatant{
                 this.status.next[a]=0
             }
         }
+        this.tickOrbs(-1)
+        if(this.status.main[675]>0){
+            for(let a=0,la=this.status.main[675];a<la;a++){
+                this.tickOrbs(-1)
+            }
+        }
         if(this.stance>0&&this.id<this.battle.players){
             switch(this.stance){
                 case 5:
@@ -5538,12 +5566,7 @@ class combatant{
         if(this.battle.modded(32)&&this.team==0){
             this.addBlock(3)
         }
-        this.tickOrbs(-1)
-        if(this.status.main[675]>0){
-            for(let a=0,la=this.status.main[675];a<la;a++){
-                this.tickOrbs(-1)
-            }
-        }
+        this.fugue=0
         if(this.name=='Eternal Judge'&&this.life>0){
             if(this.sins.includes(0)&&this.turnsAlive%2==0){
                 for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
@@ -5588,6 +5611,7 @@ class combatant{
                 }
             }
         }
+        this.interiorStatus[1]=0
     }
     tickOrbs(type){
         let multi=1
@@ -7168,6 +7192,10 @@ class combatant{
                 this.infoAnim.faith[a]=smoothAnim(this.infoAnim.faith[a],this.faith>a,0,1,5)
             }
             this.infoAnim.elemental=smoothAnim(this.infoAnim.elemental,this.elemental,0,1,5)
+            for(let a=0,la=this.infoAnim.inspiration.length;a<la;a++){
+                this.infoAnim.inspiration[a]=smoothAnim(this.infoAnim.inspiration[a],this.inspiration>a,0,1,5)
+            }
+            this.infoAnim.fugue=smoothAnim(this.infoAnim.fugue,this.fugue>0,0,1,5)
             if(this.faith>=12&&this.infoAnim.faith[9]>=1){
                 this.faith-=12
                 this.enterStance(5)
@@ -7185,6 +7213,10 @@ class combatant{
                 if(this.status.main[659]>0&&this.id>=0&&this.id<this.battle.players){
                     this.battle.cardManagers[this.id].draw(this.status.main[659])
                 }
+            }
+            if(this.inspiration>=5){
+                this.inspiration-=5
+                this.fugue+=5
             }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)

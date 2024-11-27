@@ -3,7 +3,7 @@ types={
         {name:'Joe',moniker:'The Testbed',identifier:['Brother','Mister'],life:50,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Tutorial man!`},
         {name:'George',moniker:'The Agent',identifier:['Brother','Mister'],life:80,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:34,effect:[8]},{type:304,effect:[20]},{type:37,effect:[15,5]}],description:``},
         {name:'Lira',moniker:'The Apprentice',identifier:['Sister','Miss'],life:60,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:305,effect:[5,6]},{type:25,effect:[14]},{type:306,effect:[18]}],description:``},
-        {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:419,effect:[2]},{type:24,effect:[8,1]},{type:308,effect:[13]}],description:``},
+        {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:419,effect:[3]},{type:24,effect:[8,2]},{type:308,effect:[13]}],description:``},
         {name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:52,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:309,effect:[4]},{type:88,effect:[2]},{type:310,effect:[12,2,2]}],description:``},
         {name:'Azis',moniker:'The Executor',identifier:['Brother','Mister'],life:66,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:311,effect:[4]},{type:313,effect:[]},{type:411,effect:[14,2]}],description:``},
         {name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[0],move:{type:9,speed:1},attack:[{type:314,effect:[]},{type:315,effect:[]},{type:316,effect:[15,1]}],description:``},
@@ -43,7 +43,7 @@ types={
         {name:'Billy Beatup',life:75,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[6]}],description:`Beats you up`},
         {name:'Monkey Gangster',life:24,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:1,effect:[5]},{type:11,effect:[2]}],description:`Your occupation`},
         {name:'Slime',life:20,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[7]},{type:22,effect:[4,1,'Stuck']},{type:23,effect:[2]}],description:`Not splitting yet`},
-        {name:'Cartel',life:42,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[10]},{type:24,effect:[2,1]},{type:4,effect:[12]}],description:`A businessman`},
+        {name:'Cartel',life:42,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[10]},{type:24,effect:[2,2]},{type:4,effect:[12]}],description:`A businessman`},
         {name:'Gangster',life:40,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:4,effect:[6]}],description:`Crime man`},
         {name:'Ninja',life:32,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[4]}],description:`Wishes he was still cool`},
         {name:'Red',life:36,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[7]},{type:15,effect:[5,1]},{type:25,effect:[4]}],description:`The people`},
@@ -116,7 +116,7 @@ types={
         {name:'Destructor Bot',life:81,behavior:0,spec:[19],move:{type:0,speed:3},attack:[{type:136,effect:[32]}],description:`Has no regard for its nonexistent life`},
         {name:'Assistant Fitness Officer',life:164,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:142,effect:[2,10]},{type:28,effect:[5]},{type:143,effect:[10]}],description:`Probably uses steroids`},
         {name:'Corrupt Detective',life:96,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:141,effect:[12,1]},{type:140,effect:[10,2]},{type:12,effect:[15]}],description:`Received tax benefits`},
-        {name:'Elf Archer',life:55,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:148,effect:[3,5]},{type:149,effect:[3,1]},{type:4,effect:[8]}],description:`Not actually projectile spammer`},
+        {name:'Elf Archer',life:55,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:148,effect:[3,5]},{type:149,effect:[3,2]},{type:4,effect:[8]}],description:`Not actually projectile spammer`},
         {name:'Riot Police',life:67,behavior:0,spec:[9],move:{type:0,speed:1},attack:[{type:150,effect:[6,4]},{type:9,effect:[16]}],description:`Responds to everything except riots`},
         {name:'Reichswehr',life:43,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:151,effect:[6,1]},{type:12,effect:[10]},{type:152,effect:[2]}],description:`No historical context`},
         {name:'Louse',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:153,effect:[2]},{type:79,effect:[5]},{type:6,effect:[6]},{type:1,effect:[7]}],description:`Would rather not do anything`},
@@ -243,10 +243,10 @@ types={
         {name:'Crusader',life:127,behavior:15,spec:[0,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:6,effect:[16]},{type:344,effect:[20]},{type:376,effect:[22,1]},{type:346,effect:[22,1]},{type:347,effect:[20]}],description:`Two millenia late to the party`},
         {name:'Thoughtless',life:144,behavior:17,spec:[0],move:{type:0,speed:1},attack:[{type:147,effect:[5]},{type:404,effect:[12,1]},{type:405,effect:[9,3]},{type:83,effect:[10,1,'Trough']}],description:`No brain lol`},
         
-        {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,1]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
+        {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,2]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,2]}],description:`Gunning for a promotion`},
         {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Lazer games`},
-        {name:'Comrade',life:280,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:171,effect:[6,1]},{type:39,effect:[1,'Red']},{type:169,effect:[4]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
+        {name:'Comrade',life:280,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:171,effect:[6,2]},{type:39,effect:[1,'Red']},{type:169,effect:[4]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
         {name:'Councilman',life:270,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:174,effect:[2]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
         {name:'Gangmaster',life:305,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Gangster']},{type:205,effect:[12]},{type:206,effect:[8]},{type:39,effect:[1,'Gangster Gunner']},{type:207,effect:[1]}],description:`Legitimate businessman`},
         {name:'Daughter of Heaven',life:240,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:348,effect:[10,2,2]},{type:19,effect:[6]},{type:349,effect:[1,1]},{type:296,effect:[12]},{type:39,effect:[1,'Keystone']}],description:`Cut character POV`},
@@ -6614,7 +6614,7 @@ Removes itself in the process.`,
 Mouseover enemies to see their intent.`,
         },{name:'Bleed',mtg:0,desc:
 `Enemies with Bleed take damage whenever they intend to attack.
-Players with Bleed take damage when they play an attack card.`,
+Players with Bleed take damage when they play the first attack each turn.`,
         },{name:'Upgrade',mtg:0,desc:
 `Each card has an upgraded version that is typically better.
 Cards can be upgraded at rest sites, in events, by relics, or by other cards (usually temporary).`,
@@ -6810,8 +6810,8 @@ Unaffected by focus.`,
 Some card spend it in their effects. Others may generate it.`
         },{name:'Burn (Card)',mtg:0,desc:
 `Status, unplayable, makes you take damage at the end of your turn.`,
-        },{name:'Burn (Status)',mtg:0,desc:
-`Take damage after each hit on an enemy.`,
+        },{name:'Burn (Status Effect)',mtg:0,desc:
+`Take damage if dealing no damage on a turn.`,
         },{name:'Mortal',mtg:0,desc:
 `Lose health each turn.`,
         },{name:'Take Credit',mtg:0,desc:
@@ -6913,6 +6913,7 @@ Decrements afterward.`,
 `Each stack increases damage taken by 10%.
 Decrements each turn.`,
         },
+        //mark dict
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0
         {name:'More Elites',desc:'Elites are More Likely to Spawn'},

@@ -835,7 +835,8 @@ class combatantManager{
                 type==2&&this.combatants[a].team==0&&this.combatants[a].life>0&&!this.combatants[a].spec.includes(args[0])||
                 type==3&&this.combatants[a].construct&&this.combatants[a].life>0||
                 type==4&&types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==args[0]||
-                type==5&&this.combatants[a].construct&&this.combatants[a].team==args[0]&&this.combatants[a].name==args[1]&&this.combatants[a].life>0
+                type==5&&this.combatants[a].construct&&this.combatants[a].team==args[0]&&this.combatants[a].name==args[1]&&this.combatants[a].life>0||
+                type==6&&this.combatants[a].team==0&&this.combatants[a].life>0&&this.combatants[a].getStatus(args[0])>0
             ){
                 total++
             }
@@ -1435,6 +1436,9 @@ class combatantManager{
                         if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Attach Poison')>0){
                             this.combatants[a].statusEffect('Poison',this.combatants[values[1]].getStatus('Splash Attach Poison'))
                         }
+                    break
+                    case 9:
+                        this.combatants[a].addBlock(values[0])
                     break
                 }
                 if(

@@ -855,7 +855,8 @@ class group{
                 type==1&&(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
                 type==2&&this.cards[a].name==args[0]||
                 type==3&&this.cards[a].class==5||
-                type==4&&args[0].includes(this.cards[a].class)
+                type==4&&args[0].includes(this.cards[a].class)||
+                type==5&&this.cards[a].rarity==args[0]
             ){
                 if(this.id==2){
                     this.cards[a].deSize=true
@@ -869,6 +870,31 @@ class group{
                         a--
                         la--
                     }
+                }
+                done++
+                if(done>=value&&value>=0){
+                    a=la
+                }
+            }
+        }
+        return done
+    }
+    upgradeAbstract(type,value,args){
+        let done=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(
+                type==0&&this.cards[a].class==5&&!(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
+                type==1&&(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
+                type==2&&this.cards[a].name==args[0]||
+                type==3&&this.cards[a].class==5||
+                type==4&&args[0].includes(this.cards[a].class)||
+                type==5&&this.cards[a].rarity==args[0]
+            ){
+                if(this.id==2){
+                    this.cards[a].deSize=true
+                    this.cards[a].discardEffect.push(0)
+                }else{
+                    this.cards[a]=upgradeCard(this.cards[a])
                 }
                 done++
                 if(done>=value&&value>=0){
@@ -1150,7 +1176,7 @@ class group{
                     this.cards[a]=upgradeCard(this.cards[a])
                 break
                 case 5:
-                    this.cards[a].setCost(0,[floor(random(0,variants.mtg?6:4))])
+                    this.cards[a].setCost(0,this.cards[a].attack==6805?[0]:[floor(random(0,variants.mtg?6:4))])
                 break
                 case 6:
                     if(this.cards[a].basic&&this.cards[a].level==0){
@@ -2865,7 +2891,7 @@ class group{
             case 1565:
                 userCombatant.balance+=card.effect[0]
             break
-            case 1745: case 1943: case 2096: case 2128: case 2200: case 2465: case 6535: case 6536:
+            case 1745: case 1943: case 2096: case 2128: case 2200: case 2465: case 6535: case 6536: case 6823:
                 for(let a=0,la=card.effect[2];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
@@ -3094,6 +3120,18 @@ class group{
             break
             case 6633: case 6634:
                 this.battle.loseEnergy(card.effect[0],this.player)
+            break
+            case 6760:
+                if(variants.mtg){
+                    this.battle.addSpecificEnergy(card.effect[0],this.player,6)
+                }else{
+                    this.battle.addEnergy(card.effect[0],this.player)
+                }
+                userCombatant.inspiration+=card.effect[1]
+            break
+            case 6761: case 6762: case 6763:
+                this.battle.addSpecificEnergy(card.attack-6760,this.player,6)
+                userCombatant.inspiration+=card.effect[0]
             break
 
         }
@@ -3985,6 +4023,7 @@ class group{
                 this.battle.attackManager.edition=-1
                 this.battle.attackManager.drawn=-1
                 this.battle.attackManager.fuel=-1
+                this.battle.attackManager.fugue=this.battle.combatantManager.combatants[this.battle.attackManager.user].fugue
 
                 this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
                 this.battle.attackManager.targetDistance=0
@@ -4923,6 +4962,7 @@ class group{
                 this.battle.attackManager.edition=a.edition
                 this.battle.attackManager.drawn=a.drawn
                 this.battle.attackManager.fuel=a.fuel
+                this.battle.attackManager.fugue=userCombatant.fugue
                 this.battle.attackManager.cost=a.cost
                 if(a.getBasic(1)&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2

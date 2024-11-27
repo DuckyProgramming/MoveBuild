@@ -39,7 +39,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[17,1])],//deluxe upgrade card, no return
                     [new overlay(this.layer,this.battle,0,2,[18])],//bring in draw card, upgrade, no return
                     [new overlay(this.layer,this.battle,0,2,[19])],//bring in discard card to draw, no return,30
-                    [new overlay(this.layer,this.battle,0,2,[20])],//bring in first 3 draw card as free, no return
+                    [new overlay(this.layer,this.battle,0,2,[20,0])],//bring in first number draw card as free, no return
                     [new overlay(this.layer,this.battle,0,2,[4,1,2])],//remove card, obliterative
                     [new overlay(this.layer,this.battle,0,2,[21])],//bring in discard card, get block, no return
                     [new overlay(this.layer,this.battle,0,2,[22])],//bring in draw card, get block, no return
@@ -169,6 +169,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[102])],//bring in discard card as free and retain until played, no return
                     [new overlay(this.layer,this.battle,0,2,[103])],//make draw card free and replenish
                     [new overlay(this.layer,this.battle,0,2,[104])],//discard draw card,160
+                    [new overlay(this.layer,this.battle,0,2,[105,0])],//bring in first number draw card, no return
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

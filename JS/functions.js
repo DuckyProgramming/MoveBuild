@@ -2180,7 +2180,7 @@ function outMtgError(){
 }
 function outDupes(){
 	for(let a=0,la=types.card.length;a<la;a++){
-		for(let b=0,lb=types.card.length;b<lb;b++){
+		for(let b=a+1,lb=types.card.length;b<lb;b++){
 			if(types.card[a].name==types.card[b].name&&types.card[a].name.length>0&&a!=b){
 				console.log(types.card[a].name)
 			}
@@ -2522,7 +2522,8 @@ function mtgPlayerColor(player){
 		case 18: return [1,2,3]
 		case 19: return [3,4,5]
 		case 20: return [2,3,5]
-		case 17: return [1,3,4]
+		case 21: return [1,3,4]
+		case 22: return [2,3,4]
 		default: return [6]
 	}
 }

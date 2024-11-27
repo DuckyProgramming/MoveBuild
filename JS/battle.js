@@ -901,14 +901,14 @@ class battle{
         }
         let extra=false
         let noDraw=false
-        if(combatant.getStatus('Extra Drawless Turn')>0||combatant.getStatus('Extra Turn')>0||combatant.getStatus('Extra Turn Play Limit Per Turn')>0&&combatant.tempStatus[5]==0){
+        if(combatant.getStatus('Extra Drawless Turn')>0||combatant.getStatus('Extra Turn')>0||combatant.getStatus('Extra Turn Play Limit Per Turn')>0&&combatant.interiorStatus[0]==0){
             if(combatant.getStatus('Extra Drawless Turn')>0){
                 combatant.status.main[findList('Extra Drawless Turn',combatant.status.name)]--
                 noDraw=true
             }else if(combatant.getStatus('Extra Turn')>0){
                 combatant.status.main[findList('Extra Turn',combatant.status.name)]--
-            }else if(combatant.getStatus('Extra Turn Play Limit Per Turn')>0&&combatant.tempStatus[5]==0){
-                combatant.tempStatus[5]=1
+            }else if(combatant.getStatus('Extra Turn Play Limit Per Turn')>0&&combatant.interiorStatus[0]==0){
+                combatant.interiorStatus[0]=1
                 combatant.statusEffect('Play Limit Next Turn',combatant.getStatus('Extra Turn Play Limit Per Turn'))
             }
             let lastEnergy=this.getEnergy(this.turn.main)
@@ -928,7 +928,7 @@ class battle{
             extra=true
         }else{
             this.turn.main++
-            combatant.tempStatus[5]=0
+            combatant.interiorStatus[0]=0
         }
         if(this.turn.main>=this.players){
             this.tileManager.activate()
@@ -1336,6 +1336,11 @@ class battle{
         if(userCombatant.name=='Daiyousei'){
             userCombatant.vision++
         }
+        if(userCombatant.fugue>0){
+            userCombatant.fugue--
+            this.addSpecificEnergy(1,player,6)
+            this.cardManagers[player].draw(1)
+        }
         let effectiveCost=variants.mtg?(card.specialCost?card.cost[0]:card.cost.length):card.cost
         let xCost=variants.mtg?card.cost.includes(-3):card.cost==-1
         switch(cardClass){
@@ -1352,8 +1357,11 @@ class battle{
                 if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Attack (E)')>0){
                     this.addSpecificEnergy(userCombatant.getStatus('2+ Cost Attack (E)'),player,6)
                 }
-                if(userCombatant.getStatus('Bleed')>0){
+                if(this.cardManagers[player].hand.turnPlayed[1]==1&&userCombatant.getStatus('Bleed')>0){
                     userCombatant.takeDamage(userCombatant.getStatus('Bleed'),-1)
+                }
+                if(this.cardManagers[player].hand.turnPlayed[1]==1&&userCombatant.getStatus('Auto Follow-Up')>0){
+                    this.cardManagers[player].reserve.sendAbstract(this.cardManagers[player].hand.cards,userCombatant.getStatus('Auto Follow-Up'),10,16,[71,72])
                 }
             break
             case 2:

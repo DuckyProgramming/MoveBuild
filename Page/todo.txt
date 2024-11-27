@@ -1,28 +1,6 @@
-CARDSET #60
+CARDSET 61
 
 
-
-[fugue state]
-
-
-
-new status cards
-
-new curses
-
-
-
-BURN REWORK
-
-[idk]
-
-
-
-
-
-
-
-OPERATION DATAMINES [CANCELED, TO BE DISABLED]
 
 
 
@@ -31,19 +9,6 @@ OPERATION ICONOCLASM [DELAYED]
 
 
 {MENGER CUBE EXPERIMENT} [DELAYED]
-
-
-
-
-
-
-BLEED REWORK
-
-enemies apply bleed now apply poison
-
-
-
-
 
 
 
@@ -92,7 +57,7 @@ rare:
 death note - name 3 enemies when taken, they lose 200 health
 drug bag - when you attack gain 1 temporary strength
 servaic shard - when taken, make a card cost 1 less
-[]
+invis watch - start of combat apply 1 temporary slow to all enemies
 []
 []
 []
