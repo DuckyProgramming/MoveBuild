@@ -1128,6 +1128,11 @@ can also be used as cheap fuel for any fuel cards.`,
 `END OF TUTORIAL`,
                 ]
             break
+            default:
+                transition.trigger=true
+                transition.scene='title'
+                transition.convert=true
+            break
         }
         this.anim.pages=[]
         for(let a=0,la=this.pages.length;a<la;a++){

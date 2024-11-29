@@ -953,6 +953,8 @@ class card{
             case -123: string+=`When Drawn,\nAll Damage You Deal\nThis Turn Becomes ${effect[0]}`; break
             case -124: string+=`After an Elite\nor Boss Combat,\nBecomes Playable`; break
             case -125: string+=`After a Boss Combat,\nDuplicates`; break
+            case -126: string+=`When Drawn,\nGain ${effect[0]} Vulnerable`; break
+            case -127: string+=`At the End of Your Turn,\nSwap Draw and Discard`; break
 
             //mark n
 
@@ -1274,7 +1276,7 @@ class card{
             case 301: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscard All\nNon-Attacks in Hand`; break
             case 302: string+=`Gain ${effect[0]} Intangible\nLose ${effect[1]} Dexterity\nPer Turn`; break
             case 303: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Exhausted,\nGain ${effect[1]} Energy`; break
-            case 304: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExhuast All\nNon-Attacks in Hand`; break
+            case 304: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExhaust All\nNon-Attacks in Hand`; break
             case 305: string+=`If Target Will Attack,\nGain ${effect[0]} Strength`; break
             case 306: string+=`Retain All Block\nThis Combat`; break
             case 307: string+=`Gain ${effect[0]} Vulnerable\nGain ${effect[1]} Base Energy\nThis Combat`; break
@@ -1810,7 +1812,7 @@ class card{
             case 832: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAmplify:\nDraw ${effect[1]} More`; break
             case 833: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify:\nDeal Triple Damage`; break
             case 834: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Charge`; break
-            case 835: string+=`Exhuast Half of\nYour Discard Pile\nGain 1 Energy For\nEvery ${effect[0]} Cards Exhausted`; break
+            case 835: string+=`Exhaust Half of\nYour Discard Pile\nGain 1 Energy For\nEvery ${effect[0]} Cards Exhausted`; break
             case 836: string+=`Add ${effect[0]} Cop${effect[0]!=1?`ies`:`y`} of\nthe Last Attack\nPlayed to Hand`; break
             case 837: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Number\nof Burns in Hand\nAmplify:\nDeal Double Damage`; break
             case 838: string+=`When You Add Block,\nAdd ${effect[0]} Spark${pl(effect[0])} to Hand`; break
@@ -3698,7 +3700,7 @@ class card{
             case 2718: string+=`Set Your Knowledge\nand History to the\nHigher of the Two`; break
             case 2719: string+=`Apply ${effect[0]} Vulnerable\nIf Target Will Attack,\nApply ${effect[1]} Weak`; break
             case 2720: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Drawn,\nCosts 1 Less`; break
-            case 2721: string+=`Exhuast Non-Attacks\nAdd ${this.calculateEffect(effect[0],3)} Block\nWhere X = Number of\nCards Exhausted\nElemental Form:\nAdds Double Block`; break
+            case 2721: string+=`Exhaust Non-Attacks\nAdd ${this.calculateEffect(effect[0],3)} Block\nWhere X = Number of\nCards Exhausted\nElemental Form:\nAdds Double Block`; break
             case 2722: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Knowledge\nDeals Double Damage if\nX is 6 or More`; break
             case 2723: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nStatus Card in Hand:\nExhaust It\nGain ${effect[1]} Knowledge`; break
             case 2724: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nStatus Card in Hand:\nExhaust It\nGain ${effect[1]} Energy`; break
@@ -5870,7 +5872,7 @@ class card{
             case 4841: string+=`Discard Duplicate Cards\nIf Successful,\nGain (E) (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 4842: string+=`Discard Duplicate Cards\nIf Successful,\nGain (E) (E) (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 4843: string+=`Remove All Mana\nGain (E) (E) (E) (E) (E)\nDiscard ${effect[0]} Random Card${pl(effect[0])}`; break
-            case 4844: string+=`Exhuast Half of\nYour Discard Pile\nGain (E) For Every ${effect[0]}\nCards Exhausted`; break
+            case 4844: string+=`Exhaust Half of\nYour Discard Pile\nGain (E) For Every ${effect[0]}\nCards Exhausted`; break
             case 4845: string+=`Gain ${effect[0]} Intangible\nand (E) Next Turn`; break
             case 4846: string+=`Gain ${effect[0]} Intangible\nand (E) (E) Next Turn`; break
             case 4847: string+=`Gain ${effect[0]} Intangible\nand (E) (E) (E) Next Turn`; break
@@ -8176,6 +8178,9 @@ class card{
                 if(userCombatant.block==0){
                     userCombatant.takeDamage(this.effect[0],-1)
                 }
+            break
+            case -127:
+                this.battle.cardManagers[this.player].swap(1,3)
             break
             case 187:
                 userCombatant.takeDamage(this.effect[1],-1)

@@ -6496,91 +6496,91 @@ function setupBackground(type,layer){
 		case 12:
 			menuBackground(layer)
 			layer.fill(120)
-			layer.rect(layer.width/2-105,layer.height*0.7+150,125,125)
-			layer.rect(layer.width/2-105,layer.height*0.7+250,200,55)
-			layer.rect(layer.width/2+105,layer.height*0.7+150,125,125)
-			layer.rect(layer.width/2+105,layer.height*0.7+250,200,55)
-			for(let a=0,la=36;a<la;a++){
-				layer.rect(layer.width/2-570+a%4*380,layer.height/2-410+floor(a/4)*80,350,70)
+			layer.rect(layer.width/2-105,layer.height*0.7+190,125,125)
+			layer.rect(layer.width/2-105,layer.height*0.7+290,200,55)
+			layer.rect(layer.width/2+105,layer.height*0.7+190,125,125)
+			layer.rect(layer.width/2+105,layer.height*0.7+290,200,55)
+			for(let a=0,la=40;a<la;a++){
+				layer.rect(layer.width/2-570+a%4*380,layer.height/2-450+floor(a/4)*80,350,70)
 			}
 			layer.fill(0)
-			layer.rect(layer.width/2-105,layer.height*0.7+150,100,100)
-			layer.rect(layer.width/2-105,layer.height*0.7+250,175,30)
-			layer.rect(layer.width/2+105,layer.height*0.7+150,100,100)
-			layer.rect(layer.width/2+105,layer.height*0.7+250,175,30)
-			for(let a=0,la=36;a<la;a++){
-				layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-410+floor(a/4)*80,270,45)
-				layer.rect(layer.width/2-430+a%4*380,layer.height/2-410+floor(a/4)*80,45,45)
+			layer.rect(layer.width/2-105,layer.height*0.7+190,100,100)
+			layer.rect(layer.width/2-105,layer.height*0.7+290,175,30)
+			layer.rect(layer.width/2+105,layer.height*0.7+190,100,100)
+			layer.rect(layer.width/2+105,layer.height*0.7+290,175,30)
+			for(let a=0,la=40;a<la;a++){
+				layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-450+floor(a/4)*80,270,45)
+				layer.rect(layer.width/2-430+a%4*380,layer.height/2-450+floor(a/4)*80,45,45)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-110,layer.height*0.7+150,30,30,-30)
+			regTriangle(layer,layer.width/2-110,layer.height*0.7+190,30,30,-30)
 			layer.beginShape()
-			layer.vertex(layer.width/2+85,layer.height*0.7+120)
-			layer.vertex(layer.width/2+75,layer.height*0.7+120)
-			layer.vertex(layer.width/2+75,layer.height*0.7+130)
-			layer.vertex(layer.width/2+125,layer.height*0.7+180)
-			layer.vertex(layer.width/2+135,layer.height*0.7+180)
-			layer.vertex(layer.width/2+135,layer.height*0.7+170)
+			layer.vertex(layer.width/2+85,layer.height*0.7+160)
+			layer.vertex(layer.width/2+75,layer.height*0.7+160)
+			layer.vertex(layer.width/2+75,layer.height*0.7+170)
+			layer.vertex(layer.width/2+125,layer.height*0.7+220)
+			layer.vertex(layer.width/2+135,layer.height*0.7+220)
+			layer.vertex(layer.width/2+135,layer.height*0.7+210)
 			layer.endShape()
 			layer.beginShape()
-			layer.vertex(layer.width/2+85,layer.height*0.7+180)
-			layer.vertex(layer.width/2+75,layer.height*0.7+180)
-			layer.vertex(layer.width/2+75,layer.height*0.7+170)
-			layer.vertex(layer.width/2+125,layer.height*0.7+120)
-			layer.vertex(layer.width/2+135,layer.height*0.7+120)
-			layer.vertex(layer.width/2+135,layer.height*0.7+130)
+			layer.vertex(layer.width/2+85,layer.height*0.7+220)
+			layer.vertex(layer.width/2+75,layer.height*0.7+220)
+			layer.vertex(layer.width/2+75,layer.height*0.7+210)
+			layer.vertex(layer.width/2+125,layer.height*0.7+160)
+			layer.vertex(layer.width/2+135,layer.height*0.7+160)
+			layer.vertex(layer.width/2+135,layer.height*0.7+170)
 			layer.endShape()
 			layer.fill(255)
 			layer.textSize(20)
-			layer.text('BACK',layer.width/2-105,layer.height*0.7+250)
+			layer.text('BACK',layer.width/2-105,layer.height*0.7+290)
 			let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBSPECTRAL','JUNKYARD','SUBCARD','EVENT','VARIANT','DEVELOPER','REMOVED','BASIC','PACK','MISC']
-			for(let a=0,la=36;a<la;a++){
-				layer.text(a>=constants.playerNumber?names2[a-constants.playerNumber]:types.combatant[a+1].name.toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-410+floor(a/4)*80)
+			for(let a=0,la=40;a<la;a++){
+				layer.text(a>=constants.playerNumber?names2[a-constants.playerNumber]:types.combatant[a+1].name.toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-450+floor(a/4)*80)
 			}
-			for(let a=0,la=9;a<la;a++){
-				layer.text(a+1,layer.width/2-770,layer.height/2-410+a*80)
+			for(let a=0,la=10;a<la;a++){
+				layer.text((a+1)%10,layer.width/2-770,layer.height/2-450+a*80)
 			}
 			for(let a=0,la=4;a<la;a++){
-				layer.text(a+1,layer.width/2-590+a%4*380,layer.height/2-460)
+				layer.text(a+1,layer.width/2-590+a%4*380,layer.height/2-500)
 			}
 			layer.textSize(15)
-			layer.text('DISABLE ALL',layer.width/2+105,layer.height*0.7+250)
+			layer.text('DISABLE ALL',layer.width/2+105,layer.height*0.7+290)
 		break
 		case 13:
 			menuBackground(layer)
 			layer.fill(120)
-			layer.rect(layer.width/2,layer.height*0.7+130,125,125)
-			layer.rect(layer.width/2,layer.height*0.7+230,125,55)
-			for(let a=0,la=28;a<la;a++){
-				layer.rect(layer.width/2-570+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*80,350,70)
+			layer.rect(layer.width/2,layer.height*0.7+170,125,125)
+			layer.rect(layer.width/2,layer.height*0.7+270,125,55)
+			for(let a=0,la=32;a<la;a++){
+				layer.rect(layer.width/2-570+a%4*380,layer.height/2-370+(a>=8?60:0)+floor(a/4)*80,350,70)
 			}
 			layer.fill(0)
-			layer.rect(layer.width/2,layer.height*0.7+130,100,100)
-			layer.rect(layer.width/2,layer.height*0.7+230,100,30)
-			for(let a=0,la=28;a<la;a++){
-				layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*80,270,45)
-				layer.rect(layer.width/2-430+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*80,45,45)
+			layer.rect(layer.width/2,layer.height*0.7+170,100,100)
+			layer.rect(layer.width/2,layer.height*0.7+270,100,30)
+			for(let a=0,la=32;a<la;a++){
+				layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-370+(a>=8?60:0)+floor(a/4)*80,270,45)
+				layer.rect(layer.width/2-430+a%4*380,layer.height/2-370+(a>=8?60:0)+floor(a/4)*80,45,45)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-5,layer.height*0.7+130,30,30,-30)
+			regTriangle(layer,layer.width/2-5,layer.height*0.7+170,30,30,-30)
 			layer.fill(255)
 			layer.textSize(20)
-			layer.text('BACK',layer.width/2,layer.height*0.7+230)
+			layer.text('BACK',layer.width/2,layer.height*0.7+270)
 			let names3=['BASIC','LOCATIONS','KEYWORDS','HOTKEYS','STATUSES','ENEMIES','TACTICS','CHARACTER OVERVIEW']
-			for(let a=0,la=28;a<la;a++){
-				layer.text(a<8?names3[a]:types.combatant[a-7].name.toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*80)
+			for(let a=0,la=32;a<la;a++){
+				layer.text(a<8?names3[a]:types.combatant[a-7].name.toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-370+(a>=8?60:0)+floor(a/4)*80)
 			}
 			for(let a=0,la=7;a<la;a++){
-				layer.text(a+1,layer.width/2-770,layer.height/2-330+(a>=2?60:0)+a*80)
+				layer.text(a+1,layer.width/2-770,layer.height/2-370+(a>=2?60:0)+a*80)
 			}
 			for(let a=0,la=4;a<la;a++){
-				layer.text(a+1,layer.width/2-590+a%4*380,layer.height/2-380)
+				layer.text(a+1,layer.width/2-590+a%4*380,layer.height/2-420)
 			}
 			layer.textSize(50)
 			for(let a=0,la=10;a<la;a++){
 				layer.fill(50-50*a/la,255-105*a/la,100-100*a/la)
-				layer.text('Mechanics',layer.width/2+a*0.5,layer.height/2-400+a*0.5)
-				layer.text('Characters',layer.width/2+a*0.5,layer.height/2-180+a*0.5)
+				layer.text('Mechanics',layer.width/2+a*0.5,layer.height/2-440+a*0.5)
+				layer.text('Characters',layer.width/2+a*0.5,layer.height/2-220+a*0.5)
 			}
 		break
 		case 14:
@@ -6697,51 +6697,51 @@ function setupBackground(type,layer){
 		case 16:
 			menuBackground(layer)
 			layer.fill(120)
-			layer.rect(layer.width/2-105,layer.height*0.7+150,125,125)
-			layer.rect(layer.width/2-105,layer.height*0.7+250,200,55)
-			layer.rect(layer.width/2+105,layer.height*0.7+150,125,125)
-			layer.rect(layer.width/2+105,layer.height*0.7+250,200,55)
-			for(let a=0,la=36;a<la;a++){
-				layer.rect(layer.width/2-570+a%4*380,layer.height/2-410+floor(a/4)*80,350,70)
+			layer.rect(layer.width/2-105,layer.height*0.7+190,125,125)
+			layer.rect(layer.width/2-105,layer.height*0.7+290,200,55)
+			layer.rect(layer.width/2+105,layer.height*0.7+190,125,125)
+			layer.rect(layer.width/2+105,layer.height*0.7+290,200,55)
+			for(let a=0,la=40;a<la;a++){
+				layer.rect(layer.width/2-570+a%4*380,layer.height/2-450+floor(a/4)*80,350,70)
 			}
 			layer.fill(0)
-			layer.rect(layer.width/2-105,layer.height*0.7+150,100,100)
-			layer.rect(layer.width/2-105,layer.height*0.7+250,175,30)
-			layer.rect(layer.width/2+105,layer.height*0.7+150,100,100)
-			layer.rect(layer.width/2+105,layer.height*0.7+250,175,30)
-			for(let a=0,la=36;a<la;a++){
-				layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-410+floor(a/4)*80,270,45)
-				layer.rect(layer.width/2-430+a%4*380,layer.height/2-410+floor(a/4)*80,45,45)
+			layer.rect(layer.width/2-105,layer.height*0.7+190,100,100)
+			layer.rect(layer.width/2-105,layer.height*0.7+290,175,30)
+			layer.rect(layer.width/2+105,layer.height*0.7+190,100,100)
+			layer.rect(layer.width/2+105,layer.height*0.7+290,175,30)
+			for(let a=0,la=40;a<la;a++){
+				layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-450+floor(a/4)*80,270,45)
+				layer.rect(layer.width/2-430+a%4*380,layer.height/2-450+floor(a/4)*80,45,45)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-110,layer.height*0.7+150,30,30,-30)
+			regTriangle(layer,layer.width/2-110,layer.height*0.7+190,30,30,-30)
 			layer.beginShape()
-			layer.vertex(layer.width/2+85,layer.height*0.7+120)
-			layer.vertex(layer.width/2+75,layer.height*0.7+120)
-			layer.vertex(layer.width/2+75,layer.height*0.7+130)
-			layer.vertex(layer.width/2+125,layer.height*0.7+180)
-			layer.vertex(layer.width/2+135,layer.height*0.7+180)
-			layer.vertex(layer.width/2+135,layer.height*0.7+170)
+			layer.vertex(layer.width/2+85,layer.height*0.7+160)
+			layer.vertex(layer.width/2+75,layer.height*0.7+160)
+			layer.vertex(layer.width/2+75,layer.height*0.7+170)
+			layer.vertex(layer.width/2+125,layer.height*0.7+220)
+			layer.vertex(layer.width/2+135,layer.height*0.7+220)
+			layer.vertex(layer.width/2+135,layer.height*0.7+210)
 			layer.endShape()
 			layer.beginShape()
-			layer.vertex(layer.width/2+85,layer.height*0.7+180)
-			layer.vertex(layer.width/2+75,layer.height*0.7+180)
-			layer.vertex(layer.width/2+75,layer.height*0.7+170)
-			layer.vertex(layer.width/2+125,layer.height*0.7+120)
-			layer.vertex(layer.width/2+135,layer.height*0.7+120)
-			layer.vertex(layer.width/2+135,layer.height*0.7+130)
+			layer.vertex(layer.width/2+85,layer.height*0.7+220)
+			layer.vertex(layer.width/2+75,layer.height*0.7+220)
+			layer.vertex(layer.width/2+75,layer.height*0.7+210)
+			layer.vertex(layer.width/2+125,layer.height*0.7+160)
+			layer.vertex(layer.width/2+135,layer.height*0.7+160)
+			layer.vertex(layer.width/2+135,layer.height*0.7+170)
 			layer.endShape()
 			layer.fill(255)
 			layer.textSize(20)
-			layer.text('BACK',layer.width/2-105,layer.height*0.7+250)
-			for(let a=0,la=9;a<la;a++){
-				layer.text(a+1,layer.width/2-770,layer.height/2-410+a*80)
+			layer.text('BACK',layer.width/2-105,layer.height*0.7+290)
+			for(let a=0,la=10;a<la;a++){
+				layer.text((a+1)%10,layer.width/2-770,layer.height/2-450+a*80)
 			}
 			for(let a=0,la=4;a<la;a++){
-				layer.text(a+1,layer.width/2-590+a%4*380,layer.height/2-460)
+				layer.text(a+1,layer.width/2-590+a%4*380,layer.height/2-500)
 			}
 			layer.textSize(15)
-			layer.text('DISABLE ALL',layer.width/2+105,layer.height*0.7+250)
+			layer.text('DISABLE ALL',layer.width/2+105,layer.height*0.7+290)
 		break
 
 	}

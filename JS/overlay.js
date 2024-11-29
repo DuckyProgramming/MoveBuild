@@ -2943,18 +2943,18 @@ class overlay{
             break
             case 21:
                 this.layer.fill(160,this.fade*0.8)
-                this.layer.rect(this.layer.width/2,this.layer.height/2-150+floor(constants.playerNumber/2)*20,360,60+floor(constants.playerNumber/2)*40,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2-160+floor(constants.playerNumber/3)*20,530,60+floor(constants.playerNumber/3)*40,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
-                this.layer.text('Select Disguise Target',this.layer.width/2,this.layer.height/2-150)
+                this.layer.text('Select Disguise Target',this.layer.width/2,this.layer.height/2-160)
                 for(let a=0,la=constants.playerNumber;a<la;a++){
                     this.layer.noStroke()
                     this.layer.fill(120,this.fade)
-                    this.layer.rect(this.layer.width/2-85+a%2*170,this.layer.height/2-110+floor(a/2)*40,160,30,10)
+                    this.layer.rect(this.layer.width/2-170+a%3*170,this.layer.height/2-120+floor(a/3)*40,160,30,10)
                     this.layer.fill(0,this.fade)
                     this.layer.noStroke()
                     this.layer.textSize(16)
-                    this.layer.text(types.combatant[a+1].name,this.layer.width/2-85+a%2*170,this.layer.height/2-110+floor(a/2)*40)
+                    this.layer.text(types.combatant[a+1].name,this.layer.width/2-170+a%3*170,this.layer.height/2-120+floor(a/3)*40)
                 }
             break
             case 22:
@@ -4710,7 +4710,7 @@ class overlay{
                 break
                 case 21:
                     for(let a=0,la=constants.playerNumber;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-85+a%2*170,y:this.layer.height/2-110+floor(a/2)*40},width:160,height:30})){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-170+a%3*170,y:this.layer.height/2-120+floor(a/3)*40},width:160,height:30})){
                             this.active=false
                             switch(this.args[0]){
                                 case 0:
@@ -6119,7 +6119,7 @@ class overlay{
                             }
                         }
                     }else if(code==ENTER){
-                        if(this.suggestions.length==1){
+                        if(this.suggestions.length>=1){
                             this.execute([this.suggestions[0]])
                         }else{
                             this.active=false

@@ -2817,6 +2817,9 @@ class group{
             case -123:
                 userCombatant.statusEffect('Temporary All Damage Convert',card.effect[0])
             break
+            case -126:
+                userCombatant.statusEffect('Vulnerable',card.effect[0])
+            break
 
             //mark n
             

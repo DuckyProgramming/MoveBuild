@@ -22,8 +22,6 @@ class collectionManager{
                 this.query.list.push(a)
             }
         }
-        this.query.list.push(-8)
-        this.query.list.push(-9)
         for(let a=0,la=4;a<la;a++){
             this.anim.query.rarity.push(0)
             this.query.rarity.push(true)
@@ -188,17 +186,17 @@ class collectionManager{
                 }
             break
             case 'listQuery':
-                for(let a=0,la=36;a<la;a++){
+                for(let a=0,la=40;a<la;a++){
                     if(this.anim.query.list[a]>0){
                         this.layer.fill(255,this.anim.query.list[a])
-                        this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/2-205+floor(a/4)*40,10)
+                        this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/2-225+floor(a/4)*40,10)
                     }
                 }
                 this.layer.fill(255)
 			    this.layer.textSize(10)
                 let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBSPECTRAL','JUNKYARD','SUBCARD','EVENT','VARIANT','DEVELOPER','REMOVED','BASIC','PACK','MISC']
-                for(let a=0,la=36;a<la;a++){
-                    this.layer.text(`${a>=constants.playerNumber?names2[a-constants.playerNumber]:types.combatant[a+1].name.toUpperCase()} (${this.totals.list[a][1]}/${this.totals.list[a][0]})`,this.layer.width/2-298.75+a%4*190,this.layer.height/2-205+floor(a/4)*40)
+                for(let a=0,la=40;a<la;a++){
+                    this.layer.text(`${a>=constants.playerNumber?names2[a-constants.playerNumber]:types.combatant[a+1].name.toUpperCase()} (${this.totals.list[a][1]}/${this.totals.list[a][0]})`,this.layer.width/2-298.75+a%4*190,this.layer.height/2-225+floor(a/4)*40)
                 }
             break
         }
@@ -228,7 +226,7 @@ class collectionManager{
             break
             case 'listQuery':
                 let lists=[0,constants.playerNumber+1,constants.playerNumber+2,constants.playerNumber+3,constants.playerNumber+4,constants.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
-                for(let a=0,la=36;a<la;a++){
+                for(let a=0,la=40;a<la;a++){
                     this.anim.query.list[a]=smoothAnim(this.anim.query.list[a],this.query.list.includes(a>=constants.playerNumber?lists[a-constants.playerNumber]:a+1),0,1,5)
                 }
             break
@@ -297,8 +295,8 @@ class collectionManager{
             break
             case 'listQuery':
                 let lists=[0,constants.playerNumber+1,constants.playerNumber+2,constants.playerNumber+3,constants.playerNumber+4,constants.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
-                for(let a=0,la=36;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-205+floor(a/4)*40},width:22.5,height:22.5})){
+                for(let a=0,la=40;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-225+floor(a/4)*40},width:22.5,height:22.5})){
                         let value=a>=constants.playerNumber?lists[a-constants.playerNumber]:a+1
                         if(this.query.list.includes(value)){
                             this.query.list.splice(this.query.list.indexOf(value),1)
@@ -307,12 +305,12 @@ class collectionManager{
                         }
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7+70},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='collection'
                     this.executeQuery()
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7+70},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
                     this.query.list=[]
                 }
             break
@@ -379,9 +377,9 @@ class collectionManager{
             break
             case 'listQuery':
                 let lists=[0,constants.playerNumber+1,constants.playerNumber+2,constants.playerNumber+3,constants.playerNumber+4,constants.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
-                if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=9&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
+                if(key==' '&&int(inputs.lastKey[0])>=0&&int(inputs.lastKey[0])<=9&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
                     let index=(int(inputs.lastKey[0])+9)%10*4+int(inputs.lastKey[1])-1
-                    let value=index>=constants.playerNumber?lists[index=constants.playerNumber]:index+1
+                    let value=index>=constants.playerNumber?lists[index-constants.playerNumber]:index+1
                     if(this.query.list.includes(value)){
                         this.query.list.splice(this.query.list.indexOf(value),1)
                     }else{

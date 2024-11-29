@@ -359,7 +359,7 @@ class combatant{
         6-half decrement
         */
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
-        this.tempStatus=[1,0,0,0,0]
+        this.tempStatus=[1,0,0,0,0,0]
         //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed
         this.interiorStatus=[0,0]
         //repeat extra turn 1,has done damage
@@ -454,7 +454,7 @@ class combatant{
     resetInfo(){
         this.constants()
         this.resetAnim()
-        this.tempStatus=[1,0,0,0,0]
+        this.tempStatus=[1,0,0,0,0,0]
         this.interiorStatus=[0,0]
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -2301,17 +2301,22 @@ class combatant{
         }
     }
     setIntentClass(intentClass){
-        for(let a=0,la=this.attack.length;a<la;a++){
-            if(types.attack[this.attack[(this.intent+a)%this.attack.length].type].class==intentClass){
-                if(!this.usedIntent.includes(this.intent)){
-                    this.usedIntent.push(this.intent)
-                }
-                this.intent=(this.intent+a)%this.attack.length
-                this.convertIntent()
-                a=la
-            }
+        if(this.intent==-1){
+            this.intent=0
         }
-        this.battle.updateTargetting()
+        if(this.attack.length>0){
+            for(let a=0,la=this.attack.length;a<la;a++){
+                if(types.attack[this.attack[(this.intent+a)%this.attack.length].type].class==intentClass){
+                    if(!this.usedIntent.includes(this.intent)){
+                        this.usedIntent.push(this.intent)
+                    }
+                    this.intent=(this.intent+a)%this.attack.length
+                    this.convertIntent()
+                    a=la
+                }
+            }
+            this.battle.updateTargetting()
+        }
     }
     randomIntent(){
         if(!this.usedIntent.includes(this.intent)){

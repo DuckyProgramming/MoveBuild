@@ -23,6 +23,8 @@ types={
         {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
         {name:'',moniker:'The Placeholder',identifier:['Sister','Miss'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         {name:'',moniker:'The Placeholder',identifier:['',''],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'',moniker:'The Placeholder',identifier:['',''],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'',moniker:'The Placeholder',identifier:['',''],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -6826,7 +6828,7 @@ Using most guns costs 1 Ammo.`,
 `Resource gained through cards. Used to play Guns.`,
         },{name:'Bruise',mtg:0,desc:
 `Take 1 more damage per stack.
-Deprecates after each hit taken.`,
+Decrements after each hit taken.`,
         },{name:'Reflect',mtg:0,desc:
 `Causes the attacker to take damage instead.
 Only works if an attacker is identifiably designated.`,
@@ -7244,7 +7246,7 @@ variants={
     ],
 }
 constants={
-    playerNumber:22,orbNumber:16,
+    playerNumber:24,orbNumber:16,
     targetRadius:30,startEnergy:3,collisionDamage:4,
     sqrt2:0,sqrt3:0,trig:[[],[]],
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],

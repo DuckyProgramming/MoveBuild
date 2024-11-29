@@ -1159,7 +1159,7 @@ function intentDescription(attack,user,info){
 			case 439: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Frail\nRange 1-6\nNo Movement`
 			case 440: return `Move up to 1 Tile,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap`
 			case 441: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nApply ${info?attack.effect[1]:`?`} Anti-Control\n3 Tiles Wide\nRange 1-2`
-			case 442: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nAll Enemies\nGain ${info?attack.effect[1]:`?`} Contro`
+			case 442: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nAll Enemies\nApply ${info?attack.effect[1]:`?`} Anti-Control`
 			case 443: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nRange 1-6\nNo Movement`
 			case 444: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\n3 Tiles Wide\nRange 1-6\nNo Movement`
 			case 445: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1\nAdvance Only 1 Tile`
