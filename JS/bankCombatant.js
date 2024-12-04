@@ -5732,6 +5732,15 @@ combatant.prototype.display=function(){
                     this.layer.rect(lsin(this.anim.direction)*15.5+lcos(this.anim.direction)*4.5,this.parts.eyeLevel,lcos(this.anim.direction)*9,5,2)
                 }
             break
+            case 'Sagume':
+            break
+            case '-----':
+            break
+            case 'Lanyan':
+            break
+            case '-----':
+            break
+            //mark p
             case 'Ume':
                 if(this.trigger.display.hair.pin){
                     this.layer.noStroke()
@@ -6721,6 +6730,7 @@ combatant.prototype.display=function(){
                     }
                 }
             break
+            //mark e
             case 'Drunk Boss': case 'Enforcer': case 'Bomber Boy': case 'Chief Engineering Officer': case 'Gangmaster': case 'Paramilitary': case 'Nerfmaster': case 'Big Bounce':
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){

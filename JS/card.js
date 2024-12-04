@@ -955,6 +955,7 @@ class card{
             case -125: string+=`After a Boss Combat,\nDuplicates`; break
             case -126: string+=`When Drawn,\nGain ${effect[0]} Vulnerable`; break
             case -127: string+=`At the End of Your Turn,\nSwap Draw and Discard`; break
+            case -128: string+=`When Drawn,\nGain ${effect[0]} Frail`; break
 
             //mark n
 
@@ -7771,7 +7772,7 @@ class card{
             case 6777: string+=`Shuffle a Eureka\ninto Draw Pile`; break
             case 6778: string+=`When You Leave Calm,\nGain ${effect[0]} Temporary\nStrength`; break
             case 6779: string+=`Gain ${effect[0]} Strength\nCenter of Hand:\nGives Double Strength`; break
-            case 6780: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCenter of Hand:\nDraw ${effect[1]} Card${pl(effect[0])}\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
+            case 6780: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCenter of Hand:\nDraw ${effect[1]} Card${pl(effect[1])}\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
             case 6781: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCenter of Hand:\nNext Attack is Free`; break
             case 6782: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCenter of Hand:\nGain ${effect[1]} Temporary\nStrength`; break
             case 6783: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nCenter of Hand:\nGain ${effect[1]} Energy`; break
@@ -7808,7 +7809,7 @@ class card{
             case 6814: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nUnarmed:\nGain (E) (E)`; break
             case 6815: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nApply ${effect[2]} Burn`; break
             case 6816: string+=`Apply ${effect[0]} Burn\nin All Directions\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-            case 6817: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCenter of Hand:\nDraw ${effect[1]} Card${pl(effect[0])}`; break
+            case 6817: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCenter of Hand:\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 6818: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAll Adjacent Combatants\nGain ${effect[1]} Block`; break
             case 6819: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\nIf Target Will Attack,\nReduce Damage by ${effect[2]}`; break
             case 6820: string+=`Apply ${effect[0]} Bleed\nGain ${effect[1]} Armor`; break
@@ -7816,7 +7817,7 @@ class card{
             case 6822: string+=`Put a Card in Discard\nPile in Your Hand\nRearm From\nAdjacent Tiles`; break
             case 6823: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nUpgrade ${effect[1]} Card${pl(effect[1])}\nWhen Drawn,\nMake ${effect[2]} Cop${effect[2]!=1?`ies`:`y`}`; break
             case 6824: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nApply ${effect[1]} Bleed\nin All Directions`; break
-            case 6825: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nCenter of Hand:\nDraw ${effect[1]} Card${pl(effect[0])}`; break
+            case 6825: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nCenter of Hand:\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 6826: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCommon Card in Hand:\nUpgrade it\nGain ${effect[1]} Currency`; break
             case 6827: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd a Stride to Hand`; break
             case 6828: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\nGain ${effect[2]} Intangible`; break
@@ -7842,6 +7843,18 @@ class card{
             case 6848: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nFugue:\nGain (G)`; break
             case 6849: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nFugue:\nGain (G) (G)`; break
             case 6850: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nFugue:\nGain (E) (E)`; break
+            case 6851: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy`; break
+            case 6852: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Inspiration\nDiscards to Draw Pile\nWhen Played`; break
+            case 6853: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nLeftmost or Rightmost\nCard in hand:\nRepeat`; break
+            case 6854: string+=`Gain ${effect[0]} Armor\nApply ${effect[1]} Vulnerable`; break
+            case 6855: string+=`Target Loses ${effect[0]} Health\nin 3 Turns`; break
+            case 6856: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nApply ${effect[1]} Shock\nto a Random Enemy`; break
+            case 6857: string+=`When You Rearm,\nGain ${effect[0]} Strength`; break
+            case 6858: string+=`Push 1 Tile\nAdd a Dual Discus\nof Equivalent Level\nto Hand`; break
+            case 6859: string+=`Push 1 Tile\nAdd ${effect[0]} Shiv${pl(effect[0])} to Hand`; break
+            case 6860: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Combo`; break
+            case 6861: string+=`Heal ${this.calculateEffect(effect[0],9)} Health\nWhere X = Number\nof Plant Tiles`; break
+            case 6862: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Vanished,\nAdd to Deck:\nCard Sleeve\nWorthless Baseball Card`; break
 
             //mark p
 
@@ -8025,7 +8038,10 @@ class card{
                 extent=0
             }
         }
-        if(spec.includes(57)){
+        if(spec.includes(73)){
+            string+='\nDuplicate Twice'
+            element=false
+        }else if(spec.includes(57)){
             string+='\nDuplicate Once'
             element=false
         }
@@ -8790,6 +8806,10 @@ class card{
             case 5976: case 6103: case 6306: case 6403:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
+            break
+            case 6862:
+                this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),0,0)
+                this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),0,0)
             break
         }
     }

@@ -2820,6 +2820,9 @@ class group{
             case -126:
                 userCombatant.statusEffect('Vulnerable',card.effect[0])
             break
+            case -128:
+                userCombatant.statusEffect('Frail',card.effect[0])
+            break
 
             //mark n
             
@@ -4229,7 +4232,11 @@ class group{
                 this.cardSelectIndex=a
                 this.selfCall(34,this.cards[a])
                 this.cards[a].usable=false
-                if(this.cards[a].spec.includes(57)&&this.cards[a].attack!=1491&&options.oldDuplicate){
+                if(this.cards[a].spec.includes(73)&&this.cards[a].attack!=1491&&options.oldDuplicate){
+                    this.cards[a].spec.splice(this.cards[a].spec.indexOf(73))
+                    this.cards[a].spec.push(57)
+                    this.copySelfInput(a)
+                }else if(this.cards[a].spec.includes(57)&&this.cards[a].attack!=1491&&options.oldDuplicate){
                     this.cards[a].spec.splice(this.cards[a].spec.indexOf(57))
                     this.copySelfInput(a)
                 }else if((this.status[3]>0||this.status[25]>0&&this.cards[a].colorless()&&this.cards[a].rarity!=2||this.status[32]>0&&this.cards[a].class==1)&&this.cards[a].attack!=1491&&options.oldDuplicate){
@@ -4249,7 +4256,11 @@ class group{
                     this.cards[a].spec.includes(12)&&this.cards[a].target[0]==64
                 ){
                     this.battle.attackManager.spec=this.cards[a].spec
-                    if(this.cards[a].spec.includes(57)&&this.cards[a].attack!=1491&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
+                    if(this.cards[a].spec.includes(73)&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
+                        this.cards[a].spec.splice(this.cards[a].spec.indexOf(73))
+                        this.cards[a].spec.push(57)
+                        this.cards[a].usable=true
+                    }else if(this.cards[a].spec.includes(57)&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
                         this.cards[a].spec.splice(this.cards[a].spec.indexOf(57))
                         this.cards[a].usable=true
                     }else if(userCombatant.getStatus('Double Play')>0){
@@ -4359,8 +4370,8 @@ class group{
                                 }
                             }
                             this.add(findName('Worthless\nBaseball Card',types.card),this.cards[a].level,this.cards[a].color)
-                            this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[a].level,this.cards[a].color)
-                            this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[a].level,this.cards[a].color)
+                            this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[a].level,0)
+                            this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[a].level,0)
                         }
                     }
                     if(this.cards[a].spec.includes(12)){
@@ -4399,7 +4410,12 @@ class group{
                         mode=this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0
                         this.battle.attackManager.spec=this.cards[b].spec
                         this.target=this.cards[b].target
-                        if(this.cards[b].spec.includes(57)&&this.cards[b].attack!=1491&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
+                        if(this.cards[b].spec.includes(73)&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
+                            this.cards[b].spec.splice(this.cards[a].spec.indexOf(73))
+                            this.cards[b].spec.push(57)
+                            this.cards[b].usable=true
+                            this.cards[b].select=false
+                        }else if(this.cards[b].spec.includes(57)&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
                             this.cards[b].spec.splice(this.cards[b].spec.indexOf(57))
                             this.cards[b].usable=true
                             this.cards[b].select=false
@@ -4516,8 +4532,8 @@ class group{
                                     }
                                 }
                                 this.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
-                                this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[b].level,this.cards[b].color)
-                                this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
+                                this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[b].level,0)
+                                this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,0)
                             }
                         }
                         if(this.cards[b].spec.includes(12)&&(this.cards[b].target[0]==11||this.cards[b].target[0]==15)){
@@ -4569,7 +4585,12 @@ class group{
                             mode=this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0
                             this.battle.attackManager.spec=this.cards[b].spec
                             this.target=this.cards[b].target
-                            if(this.cards[b].spec.includes(57)&&this.cards[b].attack!=1491&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
+                            if(this.cards[b].spec.includes(73)&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
+                                this.cards[b].spec.splice(this.cards[a].spec.indexOf(73))
+                                this.cards[b].spec.push(57)
+                                this.cards[b].usable=true
+                                this.cards[b].select=false
+                            }else if(this.cards[b].spec.includes(57)&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
                                 this.cards[b].spec.splice(this.cards[b].spec.indexOf(57))
                                 this.cards[b].usable=true
                                 this.cards[b].select=false
@@ -5524,7 +5545,7 @@ class group{
                                 this.cards[a].attack==1778||this.cards[a].attack==1893||this.cards[a].attack==2053||
                                 (
                                     this.cards[a].attack==3371||this.cards[a].attack==5887||this.cards[a].attack==5888||this.cards[a].attack==5889||this.cards[a].attack==5890||
-                                    this.cards[a].attack==6434||this.cards[a].attack==6673||this.cards[a].attack==6680
+                                    this.cards[a].attack==6434||this.cards[a].attack==6673||this.cards[a].attack==6680||this.cards[a].attack==6852
                                 )&&!this.cards[a].usable||
                                 this.cards[a].spec.includes(12)&&this.cards[a].attack[this.cards[a].characteristic]==1366
                             )&&!this.cards[a].exhaust

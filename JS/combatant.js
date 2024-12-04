@@ -193,7 +193,7 @@ class combatant{
                 'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random','Silver Block','Mineral Block','Mineral Draw','End of Combat Lose','End of Combat Item',
                 'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw','All Damage Convert',
                 'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity','Temporary Card Play Temporary Strength','Temporary Card Play Temporary Strength Next Turn',
-                'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent',
+                'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent','Rearm Strength',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -270,7 +270,7 @@ class combatant{
                 1,0,0,0,0,0,0,0,0,0,//72
                 0,0,2,0,0,0,0,0,0,0,//73
                 0,0,0,0,2,1,0,0,2,2,//74
-                1,0,2,0,0,0,1,
+                1,0,2,0,0,0,1,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -347,7 +347,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//72
                 2,2,2,2,0,2,2,2,2,2,//73
                 2,2,2,2,2,1,2,2,2,2,//74
-                2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -4841,6 +4841,9 @@ class combatant{
         if(this.status.main[599]>0&&this.id>=0&&this.id<this.battle.players){
             this.battle.cardManagers[this.id].draw(this.status.main[599])
         }
+        if(this.status.main[747]>0){
+            this.statusEffect('Strength',this.status.main[747])
+        }
     }
     diceRoll(number,value){
         let effectiveValue=value+this.status.main[605]
@@ -5697,8 +5700,8 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Sagume':
-            case 'Koishi': case 'Ume':
+            case 'Sagume': case '-----': case 'Lanyan': case '-----':
+            case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -5818,8 +5821,8 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Sagume':
-            case 'Koishi': case 'Ume':
+            case 'Sagume': case '-----': case 'Lanyan': case '-----':
+            case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate

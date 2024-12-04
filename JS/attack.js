@@ -253,7 +253,8 @@ class attack{
             case 6660: case 6661: case 6666: case 6669: case 6670: case 6673: case 6675: case 6680: case 6681: case 6682: case 6684: case 6686: case 6687: case 6688: case 6690: case 6691: case 6693: case 6694: case 6699: case 6706:
             case 6707: case 6709: case 6710: case 6712: case 6713: case 6714: case 6715: case 6717: case 6718: case 6719: case 6720: case 6723: case 6724: case 6725: case 6727: case 6728: case 6729: case 6732: case 6735: case 6736:
             case 6737: case 6739: case 6741: case 6743: case 6757: case 6758: case 6759: case 6767: case 6770: case 6780: case 6781: case 6782: case 6783: case 6784: case 6785: case 6786: case 6791: case 6792: case 6793: case 6795:
-            case 6796: case 6803: case 6805: case 6815: case 6819: case 6820: case 6823: case 6828: case 6829: case 6830: case 6831: case 6832: case 6833: case 6837: case 6838: case 6840:
+            case 6796: case 6803: case 6805: case 6815: case 6819: case 6820: case 6823: case 6828: case 6829: case 6830: case 6831: case 6832: case 6833: case 6837: case 6838: case 6840: case 6852: case 6853: case 6854: case 6855:
+            case 6858: case 6859: case 6860: case 6862:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -2462,7 +2463,7 @@ class attack{
                         this.userCombatant.statusEffect('Counter',this.effect[1])
                     break
                     case 273: case 2135: case 2378: case 2770: case 3519: case 3702: case 3754: case 4024: case 4122: case 4350:
-                    case 4525: case 5045: case 5288: case 5606:
+                    case 4525: case 5045: case 5288: case 5606: case 6853:
                         this.userCombatant.addBlock(this.effect[1])
                     break
                     case 274:
@@ -4446,7 +4447,7 @@ class attack{
                     case 4059:
                         if(this.targetCombatant.life<=0){
                             switch(this.targetCombatant.name){
-                                case 'Trenchcoat Gunner': case 'Gangster Gunner': case 'Management Officer': case 'Executive': case 'Corrupt Detective': case 'Voidglass': case 'Chief Engineering Officer': case 'Pistol Biker':
+                                case 'Trenchcoat Gunner': case 'Gangster Gunner': case 'Management Officer': case 'Executive': case 'Corrupt Detective': case 'Voidglass': case 'Chief Engineering Officer': case 'Pistol Biker': case 'HVM Contractor': case 'Pistol Duck':
                                     this.userManager.hand.add(findName('Pistol',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break
@@ -4454,7 +4455,7 @@ class attack{
                                     this.userManager.hand.add(findName('Sniper',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break
-                                case 'Gangster Machinegunner': case 'Coffee Commander': case 'Gangster Machinegunner Informant':
+                                case 'Gangster Machinegunner': case 'Coffee Commander': case 'Gangster Machinegunner Informant': case 'Pinstripe':
                                     this.userManager.hand.add(findName('Triple\nTap',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break
@@ -6080,6 +6081,9 @@ class attack{
                         if(this.targetCombatant.life<=0){
                             this.userCombatant.ammo+=this.effect[1]
                         }
+                    break
+                    case 6860:
+                        this.userCombatant.combo+=this.effect[1]
                     break
 
                 }
@@ -8720,6 +8724,9 @@ class attack{
                     break
                     case 6845:
                         this.battle.cardManagers[this.player].hand.exhaustViable(this.effect[1])
+                    break
+                    case 6856:
+                        this.battle.combatantManager.randomEnemyEffect(23,['Shock',this.effect[1]])
                     break
 
                 }
@@ -13957,6 +13964,13 @@ class attack{
                     case 6802:
                         this.userCombatant.statusEffect('Armor',this.effect[0])
                         this.userManager.draw(this.effect[1])
+                    break
+                    case 6854:
+                        this.userCombatant.statusEffect('Armor',this.effect[0])
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                    break
+                    case 6857:
+                        this.userCombatant.statusEffect('Rearm Strength',this.effect[0])
                     break
 
                 }
@@ -21597,6 +21611,13 @@ class attack{
                         this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
                         this.userManager.draw(this.effect[2])
                     break
+                    case 6852:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.userCombatant.inspiration+=this.effect[1]
+                    break
+                    case 6855:
+                        this.targetCombatant.statusEffect('Lose Health in 2 Turns',this.effect[0])
+                    break
 
                 }
                 //mark 8
@@ -23727,6 +23748,9 @@ class attack{
                     break
                     case 6844:
                         this.battle.addCurrency(this.effect[0]*this.userManager.deck.numberAbstract(18,[[0]]),this.player)
+                    break
+                    case 6851:
+                        this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.user])
                     break
 
                 }
@@ -26369,6 +26393,9 @@ class attack{
                     case 6816:
                         this.battle.combatantManager.areaAbstract(2,['Burn',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                         this.userManager.draw(this.effect[1])
+                    break
+                    case 6861:
+                        this.userCombatant.heal(this.effect[0]*this.battle.tileManager.numberAbstract(0,[19]))
                     break
 
                 }

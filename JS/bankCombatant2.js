@@ -1093,6 +1093,15 @@ combatant.prototype.setupGraphics=function(direction){
             this.animSet={loop:0,flip:0,hand:0,foot:0}
             this.goal={anim:{direction:this.anim.direction}}
         break
+        case 'Sagume':
+        break
+        case '-----':
+        break
+        case 'Lanyan':
+        break
+        case '-----':
+        break
+        //mark p
         case 'Ume':
             if(graphics.combatant[20]==-1){
                 setupCombatantGraphics(20)
@@ -1237,6 +1246,7 @@ combatant.prototype.setupGraphics=function(direction){
                 }
             }
         break
+        //mark e
         case 'Drunk Boss': case 'Enforcer': case 'Bomber Boy': case 'Chief Engineering Officer': case 'Gangmaster': case 'Paramilitary': case 'Nerfmaster': case 'Big Bounce':
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                 legs:[{top:9,bottom:0,length:{top:19,bottom:19}},{top:9,bottom:0,length:{top:19,bottom:19}}],

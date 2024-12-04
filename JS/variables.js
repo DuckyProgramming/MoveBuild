@@ -21,9 +21,9 @@ types={
         {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[26]},{type:420,effect:[3]},{type:93,effect:[1]}],description:``},
         {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:``},
         {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
-        {name:'',moniker:'The Placeholder',identifier:['Sister','Miss'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'',moniker:'The Placeholder',identifier:['Sister','Miss'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},//Sagume
         {name:'',moniker:'The Placeholder',identifier:['',''],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
-        {name:'',moniker:'The Placeholder',identifier:['',''],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'',moniker:'The Placeholder',identifier:['',''],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},//Lanyan
         {name:'',moniker:'The Placeholder',identifier:['',''],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
@@ -1556,6 +1556,16 @@ types={
                 stroke:[120,50,100],
                 text:[35,20,30],
                 active:[230,200,220],
+            },{
+                fill:[105,150,120],
+                stroke:[90,130,100],
+                text:[20,40,25],
+                active:[200,230,210],
+            },{
+                fill:[220,70,70],
+                stroke:[190,55,55],
+                text:[50,25,25],
+                active:[255,175,175],
             },
             
             {
@@ -1615,7 +1625,7 @@ types={
                 stroke:[225,75,75],
                 text:[100,0,0],
                 active:[255,200,200],
-            },{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},
+            },{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},
             
             {
                 fill:[125,125,125],

@@ -684,7 +684,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			health=float(tennify(health))
 			switch(type){
 				case 4: return health==effect?tennify(effect):tennify(effect)+` (${tennify(health)})`
-				case 9: return health==effect?tennify(effect)+`X`:tennify(effect)+` (${tennify(health)})X`
+				case 9: return health==effect?(effect==1?``:tennify(effect))+`X`:tennify(effect)+` (${tennify(health)})X`
 			}
 		case 17: case 18:
 			let barrier=effect
@@ -2354,7 +2354,7 @@ function colorTest(){
 	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards=[]
 	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName('Charm\nQuark',types.card),0,0)
 	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
-	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.compact=0.56
+	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.compact=0.45
 	for(let a=0,la=constants.playerNumber+6;a<la;a++){
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(1,0,a,0)
 	}
@@ -2523,7 +2523,8 @@ function mtgPlayerColor(player){
 		case 19: return [3,4,5]
 		case 20: return [2,3,5]
 		case 21: return [1,3,4]
-		case 22: return [2,3,4]
+		case 22: return [3,4]
+		case 23: return [1,4]
 		default: return [6]
 	}
 }

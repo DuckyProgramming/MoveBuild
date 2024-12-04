@@ -1,14 +1,23 @@
-CARDSET 61
-
-[2 status cards]
-
-[character 22 production]
+CARDSET 62
 
 
 
+edge of truth - 7 damage, draw 1 card, fugue: gain 1 energy
+hexasplit - 5 damage twice, 1 cost, cost 0 this combat when discarded
+get moving - 7 damage, innate, return on shuffle
+backward dodge - gain 1 dodge, return on shuffle
+pinecone - 10 damage, when drawn add 4 block, when played lose 4 block
+alternator - 11 damage, every second time played targets a random other enemy
+destructive interference - 20 damage, when drawn, compacts
 
 
-OPERATION ICONOCLASM [DELAYED]
+
+there are still save bugs but idk bro
+
+
+
+
+OPERATION ICATHIA
 
 
 
@@ -39,7 +48,7 @@ common:
 prescription bottle - gain 1 control every 6 turns
 duck sunglasses - add 4 block each turn against elites
 critical cube - when you deal 25 or more damage, apply 1 weak
-[]
+hardened brick - when an enemy dies gain 6 block
 []
 []
 []
