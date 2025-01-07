@@ -193,7 +193,8 @@ class combatant{
                 'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random','Silver Block','Mineral Block','Mineral Draw','End of Combat Lose','End of Combat Item',
                 'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw','All Damage Convert',
                 'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity','Temporary Card Play Temporary Strength','Temporary Card Play Temporary Strength Next Turn',
-                'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent','Rearm Strength',
+                'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent','Rearm Strength','All X Cost Boost','Move Block',
+                'Base Attack Vulnerable Combat','Retain Freeze',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -270,7 +271,8 @@ class combatant{
                 1,0,0,0,0,0,0,0,0,0,//72
                 0,0,2,0,0,0,0,0,0,0,//73
                 0,0,0,0,2,1,0,0,2,2,//74
-                1,0,2,0,0,0,1,0,
+                1,0,2,0,0,0,1,0,0,0,//75
+                0,1,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -347,7 +349,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//72
                 2,2,2,2,0,2,2,2,2,2,//73
                 2,2,2,2,2,1,2,2,2,2,//74
-                2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,0,//75
+                0,1,
             ]}
         /*
         0-none
@@ -425,6 +428,7 @@ class combatant{
         this.barrier=0
         this.bounce=0
         this.lastDeal=0
+        this.highestDeal=0
         this.lastTake=0
         this.lastBlock=0
 
@@ -715,7 +719,7 @@ class combatant{
                 this.statusEffect('Dissipating',5)
             break
             case 'Spike Pillar':
-                this.statusEffect('Counter All Combat',6)
+                this.statusEffect('Counter All Combat',8)
             break
             case 'Barbed Pillar':
                 this.statusEffect('Counter Bleed All Combat',4)
@@ -3157,9 +3161,6 @@ class combatant{
                     this.block=0
                     userCombatant.status.main[471]--
                 }
-                if(userCombatant.status.main[476]>0){
-                    this.statusEffect('Poison',userCombatant.status.main[476])
-                }
                 if(userCombatant.status.main[521]>0){
                     this.statusEffect('Weak',userCombatant.status.main[521])
                     userCombatant.status.main[521]=0
@@ -3552,17 +3553,18 @@ class combatant{
                 if(user>=0&&user<this.battle.combatantManager.combatants.length){
                     let userCombatant=this.battle.combatantManager.combatants[user]
                     userCombatant.lastDeal=damage
+                    userCombatant.highestDeal=max(userCombatant.highestDeal,damage)
                     if(userCombatant.tempStatus[4]!=0){
-                        this.statusEffect('Poison',userCombatant.tempStatus[4])
+                        this.statusEffect('Bleed',userCombatant.tempStatus[4])
                     }
                     if(userCombatant.tempStatus[5]!=0){
                         this.statusEffect('Regeneration',userCombatant.tempStatus[5])
                     }
                     if(userCombatant.status.main[98]>0){
-                        this.statusEffect('Poison',userCombatant.status.main[98])
+                        this.statusEffect('Bleed',userCombatant.status.main[98])
                     }
                     if(userCombatant.status.main[100]>0){
-                        this.statusEffect('Poison',userCombatant.status.main[100])
+                        this.statusEffect('Bleed',userCombatant.status.main[100])
                     }
                     if(userCombatant.status.main[202]>0&&damage>=20){
                         this.statusEffect('Miss',userCombatant.status.main[202])
@@ -3573,6 +3575,9 @@ class combatant{
                     if(userCombatant.status.main[463]>0){
                         this.statusEffect('Lock On',userCombatant.status.main[463])
                     }
+                    if(userCombatant.status.main[476]>0){
+                        this.statusEffect('Poison',userCombatant.status.main[476])
+                    }
                     if(userCombatant.status.main[554]>0){
                         this.statusEffect('Burn',userCombatant.status.main[554])
                     }
@@ -3581,6 +3586,9 @@ class combatant{
                     }
                     if(userCombatant.status.main[724]>0){
                         this.statusEffect('Bruise',userCombatant.status.main[724])
+                    }
+                    if(userCombatant.status.main[750]>0&&this.getStatus('Vulnerable')==0){
+                        this.statusEffect('Vulnerable',userCombatant.status.main[750])
                     }
                     if(this.battle.relicManager.hasRelic(246,user)&&damage>=25){
                         this.battle.cardManagers[user].draw(this.battle.relicManager.active[246][user+1])
@@ -4200,7 +4208,9 @@ class combatant{
     endBlock(){
         if(this.status.main[119]>0){
             this.takeDamage(this.status.main[119]**2,-1)
-            this.status.main[119]=floor(this.status.main[119]/2)
+            if(this.status.main[751]<=0){
+                this.status.main[119]=floor(this.status.main[119]/2)
+            }
         }
         if(this.status.main[281]>0){
             this.statusEffect('Single Damage Up',ceil(this.block))
@@ -4283,6 +4293,9 @@ class combatant{
         }
         if(this.battle.modded(89)&&this.team>0){
             this.statusEffect('Poison',1)
+        }
+        if(this.status.main[749]>0){
+            this.addBlock(this.status.main[749])
         }
         this.takeDamage(this.status.main[191]*(this.status.main[204]>0?2:1),-1)
         this.statusEffect('Jinx',this.status.main[221])
@@ -4844,6 +4857,9 @@ class combatant{
         if(this.status.main[747]>0){
             this.statusEffect('Strength',this.status.main[747])
         }
+        if(this.id<this.battle.players){
+            this.battle.cardManagers[this.id].hand.allEffect(95)
+        }
     }
     diceRoll(number,value){
         let effectiveValue=value+this.status.main[605]
@@ -5396,7 +5412,7 @@ class combatant{
                     case 349: this.status.main[findList('Miracle in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 350: this.status.main[findList('Extra Turn',this.status.name)]+=this.status.main[a]; break
                     case 351: this.status.main[findList('Extra Turn Next Turn',this.status.name)]+=this.status.main[a]; break
-                    case 356: this.battle.combatantManager.damageHighest(this.status.main[a],this.id); break
+                    case 356: this.battle.combatantManager.highestEffect(0,[this.status.main[a],this.id]); break
                     case 359: this.status.main[findList('Temporary Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 364: this.battle.setEnergy(0,this.id); break
                     case 366: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Pristine',types.card),0,0)} break

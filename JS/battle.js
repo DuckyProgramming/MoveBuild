@@ -1140,7 +1140,7 @@ class battle{
     }
     getXBoost(player){
         let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
-        return this.relicManager.active[121][player+1]*2+userCombatant.getStatus('X Cost Boost')
+        return this.relicManager.active[121][player+1]*2+userCombatant.getStatus('X Cost Boost')+userCombatant.getStatus('All X Cost Boost')
     }
     standardColorize(card){
         return variants.mtg?(types.card[card].mtg!=undefined?copyArray(types.card[card].mtg.color):[0]):types.card[card].list

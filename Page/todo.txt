@@ -2,38 +2,176 @@ CARDSET 62
 
 
 
-edge of truth - 7 damage, draw 1 card, fugue: gain 1 energy
-hexasplit - 5 damage twice, 1 cost, cost 0 this combat when discarded
-get moving - 7 damage, innate, return on shuffle
-backward dodge - gain 1 dodge, return on shuffle
-pinecone - 10 damage, when drawn add 4 block, when played lose 4 block
-alternator - 11 damage, every second time played targets a random other enemy
-destructive interference - 20 damage, when drawn, compacts
-
-
-
 there are still save bugs but idk bro
 
 
 
 
-OPERATION ICATHIA
+
+opal - draw 1 card, 0 cost, socket (on upgrade) -> quickdraw onto a card
+
+amber '' -> retain a card
+
+garnet '' -> duplicate once a card
+
+citrine '' -> gain 1 energy next turn
+
+tourmaline '' -> gain D6 block
+
+lapislazuli '' -> innate
+
+improvements - draw 2 cards, a random card in hand gets quickdraw
+
+card enhancement - new gimmick?
+improvements - damage, a random card gains blocking 5 (5 block when played)
+spell stone - damage, adjacent cards gain blocking
+grant swiftness - damage, adjacent cards draw 1 card
+mirror curse - damage, adjacent cards deal damage to rndom enemies
+lockup - retain a card until played and make it blocking
+polishing - all attacks you currently have become blocking 2
+
+
+
+
+
+
+split eventide
+old eventide becomes whisper
+
+tough front - add block, next block gain is halved
+
+caught off guard - when drawn, gain 15 block and 2 vulnerable, when played lose the 2 vulnerable
+
+bulwark - add block equal to the number of cards in your deck / 2, retain block for 1 turn
+
+appraisal - 2 cost, draw 4 cards, make a card cost 1 less (scroll down effect)
+
+bulk up - 12 block, when taken gain 2 max hp
+
+spreading sickness - apply 1 vulnerable, apply 2 poison, 0 cost, when taken lose 2 max hp
+
+golden pickaxe - 5 damage, 1 weak, when taken gain 50 currency
+
+quantized - set your strength to 3, exhaust
+
+rolling ragnarok - deal 5 damage 6 times, exit stance
+
+guile - draw 2 cards, discard 2 cards, costs 1 more after playing
+
+cheap swipe - 6 damage, 1 vulnerable, in a stance: gain 1 energy and leave it
+
+download - gain 2 strength if target has block, gain 2 dex if target doesn't
+
+faked disappearance - 15 block, retain exhaust, add a random power to your hand, it is ethereal
+
+make the cards on donakho that add random blueprints (moving out and technical study) make them ethereal
+generally this is a thing that'll have to be implemented across cards
+(such as the ones on shiru for minerals)
+etc this must be generalizedSearched
+
+potentially shift the confuse systems on vincent
+you can choose which card to confuse
+frail flail - 0 cost, apply 1 frail, confuse the leftmost card in hand
+
+snazzle - 0 cost, draw 1 card, exhaust 1 card, become confused
+
+consolidation - gain 1 focus, gain 1 card, evoke first orb on yourself
+
+fluctuation - apply 1 weak and 1 vulnerable to all enemies, doubled if []
+
+flash forward - draw 3 cards, if you have 6 or more cards in hand, gain 1 energy
+
+meikyo shisui - gain 9 bounce, counter 9 once, draw 1 card
+
+rations - heal 6, only if no enemies are adjacent
+
+exploding aria - 6 damage to a random enemy 2 times, discard a card
+
+roulette - block, draw 2 cards, discard the leftmost card
+
+datolite - mineral card for character 23
+
+contemplate - draw 1, fuel hand for 1, fuel 2: 6 block, fuel 4: 6 block
+
+conducive - block, you may choose to exit stance
+
+planter - put a miracle on top of draw pile and give it replenish
+
+clawstrophobia - curse, take damage, claw up 1
+
+time tax - lose 1 energy for 3 turns, take another turn
+
+healtick - draw 3 cards, heal 4 health, cost decreases by 1, heal cancels after first play
+
+actual time walk - can't take any more extra turns
+
+cashout - 4 block, when etherealed gain 5 currency
+
+endless evening - 16 block, make a card in discard pile free until played (rare)
+
+gift of the dead - heal, apply mortal to all enemies
+
+immaculate - 3 block, gain 1 strength, gain 2 instead if this card costs 0
+
+spring sleep - exhaust 2 cards, add a reversal and a sharp word to draw pile
+
+[
+optional mechanism
+
+crescent moon (orb-style) - deal damage to a random enemy, but only when a card activates this orb
+destroyed after 4 uses
+full moon - same thing, but draws a card instead
+
+crescent sweep - block, manifest crescent moon
+full halo - block, manifest full moon
+tetsuzanko - damage, activate your next manifestation
+crystal moonlight - manifest a random
+moonlight barrage - barrage but this
+]
+
+[
+optional mechanism
+a full elemental system, ideally with three elements, will eventually be implemented
+until then we won't worry about it
+]
+
+fortified highland - add energy to base, amplify 2: add 2 energy to base
+mtg: add (R) to base, amplify (W) (W): add (R) (W) to base
+
+hibernation - fasting, but it gives focus
+
+rise up - 1 cost, put a card from discard pile that costs 1 or less into hand, it costs 0
+
+massless - 8 damage, innate, replenish
+
+a small step - draw 3 cards, if you have less than 3 cards in hand, 0 cost
+
+enterprising - deal 1 damage and add 1 block 3 times, 0 cost
+
+stellar forge - upgrade all skills hand, draw a card
+
+disparition - draw a card that costs X, it costs 0
+
+purple rain - if you have 6 or more cards in your hand, deal 4 splash damage and draw a card
+
+archaic meteor - 18 damage, 3 vulnerable, 3 cost, even turn: gain 3 energy
+
+[rename] - 13 damage, 2 cost, costs 1 less when rewound
+
+secretive - gain 13 block, 50%: draw a card
+
+poetic spark - musical spark but you need hand size 7
+
+swarm sentry - mini sentry but 2 uses
+
+[clover wind]
+
+spiked dust - damage, 10%: gain 1 strength, 1 dexterity, ...
+
 
 
 
 {MENGER CUBE EXPERIMENT} [DELAYED]
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -45,11 +183,7 @@ OPERATION TRAPPENJAGD
 
 common:
 
-prescription bottle - gain 1 control every 6 turns
-duck sunglasses - add 4 block each turn against elites
-critical cube - when you deal 25 or more damage, apply 1 weak
-hardened brick - when an enemy dies gain 6 block
-[]
+stuffed wallet - gain 25 currency when you play a 4+ cost card, once per combat
 []
 []
 []
@@ -60,22 +194,14 @@ hardened brick - when an enemy dies gain 6 block
 
 uncommon:
 
-dulled axe - enemies can't buffer, dodge, or take half your attacks
-common ribbon - upgrade all common cards added
-uncommon ribbon - upgrade all uncommon cards added
-rare ribbon - upgrade all rare cards added
+[]
+[]
+[]
 
 rare:
 
-death note - name 3 enemies when taken, they lose 200 health
-drug bag - when you attack gain 1 temporary strength
-servaic shard - when taken, make a card cost 1 less
-invis watch - start of combat apply 1 temporary slow to all enemies
-[]
-[]
-[]
-[]
-[]
+rod of resonance - 1 damage to every enemy for each card left in hand at the end of your turn
+geneva contravention - improved bad legal defense - kill any ally to get their reward
 []
 []
 []
@@ -83,10 +209,10 @@ invis watch - start of combat apply 1 temporary slow to all enemies
 shop:
 
 []
+[]
 
 boss:
 
-immoral elixir - gain energy each turn, lose 6 health on turn 6
 []
 []
 []
@@ -97,17 +223,28 @@ immoral elixir - gain energy each turn, lose 6 health on turn 6
 []
 
 
+
+recolor ducopo?
 
 OPERATION AEDUI
 
-[literally just make character 21]
+[make character 21]
 
-
+OPERATION ICATHIA
 
 OPERATION ROSENFELD
 
-[literally just make character 22]
+[make character 22]
+follow up
+fugue
 
+OPERATION KHIRASARA
 
+[make character 23]
+cycle - if next card is of the type, it costs 0
+
+OPERATION FERROCHROME
+
+[conceptualize character 24]
 
 

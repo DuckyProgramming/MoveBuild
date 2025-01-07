@@ -158,7 +158,15 @@ class tileManager{
         }
     }
     randomType(type){
-        this.tiles[floor(random(0,this.tiles.length))].addType(type)
+        let tiles=[]
+        for(let a=0,la=this.tiles.length;a<la;a++){
+            if(!this.tiles[a].type.includes(type)){
+                tiles.push(this.tiles[a])
+            }
+        }
+        if(tiles.length>0){
+            tiles[floor(random(0,tiles.length))].addType(type)
+        }
     }
     randomClearType(type){
         let tiles=[]

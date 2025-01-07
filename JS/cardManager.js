@@ -364,6 +364,11 @@ class cardManager{
     shuffleStart(group){
         this.getList(group).shuffleStart()
     }
+    generalShuffle(){
+        this.reserve.shuffle()
+        this.discard.allEffectArgs(44,[6866,6867])
+        this.reserve.allEffectArgs(44,[6866,6867])
+    }
     allEffect(group,effect){
         this.getList(group).allEffect(effect)
     }
@@ -551,7 +556,7 @@ class cardManager{
                     amountLeft-=this.reserve.send(this.hand.cards,0,amountLeft,[3,8,13,14,18,5,6,19,9,12][spec]).length
                     if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                         this.discard.send(this.reserve.cards,0,-1,2)
-                        this.reserve.shuffle()
+                        this.generalShuffle()
                         if(this.reserve.cards.length>0){
                             amountLeft-=this.reserve.send(this.hand.cards,0,amountLeft,[3,8,13,14,18,5,6,19,9,12][spec]).length
                         }
@@ -581,7 +586,7 @@ class cardManager{
                     }
                     if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                         this.discard.send(this.reserve.cards,0,-1,2)
-                        this.reserve.shuffle()
+                        this.generalShuffle()
                         if(this.reserve.cards.length>0){
                             result=this.reserve.send(this.hand.cards,0,amountLeft,[3,8,13,14,18,5,6,19,9,12][spec])
                             amountLeft-=result.length
@@ -611,7 +616,7 @@ class cardManager{
                 }
                 if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                     this.discard.send(this.reserve.cards,0,-1,2)
-                    this.reserve.shuffle()
+                    this.generalShuffle()
                     if(this.reserve.cards.length>0){
                         amountLeft-=this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amountLeft,this.reserve.cards.length),-1,[3,8,13,14,18,5,6,19,9,12][spec]).length()
                     }
@@ -635,9 +640,9 @@ class cardManager{
                     if(this.reserve.cards.length>0){
                         amountLeft-=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args)
                     }
-                    if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
+                    if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw&&this.discard.checkAbstract(amountLeft,variant,args)){
                         this.discard.send(this.reserve.cards,0,-1,2)
-                        this.reserve.shuffle()
+                        this.generalShuffle()
                         if(this.reserve.cards.length>0){
                             amountLeft-=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args)
                         }
@@ -697,10 +702,10 @@ class cardManager{
         }
         if(variants.cyclicDraw){
             this.discard.send(this.reserve.cards,0,-1,2)
-            this.reserve.shuffle()
+            this.generalShuffle()
         }
         if(variants.inventor){
-            this.tech.copy(this.hand.cards,0,-1,0)
+            this.tech.copy(this.hand.cards,0,-1,2)
             this.hand.cards[this.hand.cards.length-1].position.x=1200
             this.hand.cards[this.hand.cards.length-1].position.y=500
         }

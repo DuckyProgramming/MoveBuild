@@ -21,10 +21,10 @@ types={
         {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[26]},{type:420,effect:[3]},{type:93,effect:[1]}],description:``},
         {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:``},
         {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
-        {name:'',moniker:'The Placeholder',identifier:['Sister','Miss'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},//Sagume
+        {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         {name:'',moniker:'The Placeholder',identifier:['',''],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
-        {name:'',moniker:'The Placeholder',identifier:['',''],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},//Lanyan
-        {name:'',moniker:'The Placeholder',identifier:['',''],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'',moniker:'The ',identifier:['Sister','Miss'],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'',moniker:'The ',identifier:['Brother','Mister'],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -269,14 +269,14 @@ types={
         {name:'Managerial',life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
         {name:'Wall',life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
-        {name:'Spike Pillar',life:24,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
+        {name:'Spike Pillar',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
         {name:'Projector',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:230,effect:[8]}],description:`Does your job for you`},
         {name:'Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[15]}],description:`Sentry goin' up`},
         {name:'Readout',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:231,effect:[2]}],description:`Big brain augmentation`},
         {name:'Strengthener',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:232,effect:[3]}],description:`Get ripped`},
         {name:'Explosive Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:208,effect:[25]}],description:`Sentry but exploding`},
         {name:'Multiturret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:233,effect:[20]}],description:`Bullet spammer`},
-        {name:'Barbed Pillar',life:24,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
+        {name:'Barbed Pillar',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
         {name:'Gun Rack',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:234,effect:[1]}],description:`Big brain augmentation`},
         {name:'Repulse Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:235,effect:[12]}],description:`Get off my property!`},
         {name:'Machine Gun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:129,effect:[8]}],description:`More gun`},
@@ -1024,7 +1024,7 @@ types={
         {name:'Dragon Fish',internal:'Defensive Metallicize',id:229,rarity:-1,list:0,mtg:0,description:'When You Fully Block Damage,\nGain 1 Metallicize'},
 
         {name:'Painted Deck',internal:'Compact/Lose First Relic',id:230,rarity:-1,list:0,mtg:0,description:'Compact Cards in Your Hand\nWhen Taken, Lose Your First Relic'},
-        {name:'Bad Legal Defense',internal:'Medic Death Remove',id:231,rarity:1,list:0,mtg:0,description:'Remove a Card When a Medic Dies'},
+        {name:'Bad Legal Defense',internal:'Medic Death Remove',id:231,rarity:-1,list:0,mtg:0,description:'Remove a Card When a Medic Dies'},
         {name:'Mining Light',internal:'More Boss Rewards',id:232,rarity:1,list:0,mtg:0,description:'Boss Rewards Give 50% More Currency\nand 1 More Rare Card'},
         {name:'Card Buffer Advanced',internal:'Edition Deluxe Upgrades',id:233,rarity:2,list:0,mtg:0,description:'Cards You Choose to Deluxe\nUpgrade Gain Editions'},
         {name:'CSS',internal:'Energy/Visible Energy',id:234,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy,\nYou Cannot See Your Energy'},
@@ -1257,7 +1257,7 @@ types={
         {name:'Containment Shell',internal:'Red Mana/Red Spent Temporary Strength',id:440,rarity:4,list:0,mtg:2,description:'Add (R) to Base Mana,\nGain 2 Temporary Strength\nWhen You Spend (R) on an Attack',manaColor:5},
         {name:'Optic Spectra',internal:'Rainbow Mana/Mana Dump',id:441,rarity:4,list:0,mtg:2,description:'Add (E) to Base Mana,\nGain (W) (B) (K) (G) (R) Every 12 Turns',manaColor:6},
         {name:'Left Fan',internal:'Random Mana/Duplicate Power',id:442,rarity:4,list:0,mtg:2,description:'Gain a Random Mana Each Turn,\nCreate a (1) Cost Copy of the\nFirst Power Played Each Combat',manaColor:7},
-        {name:'Expensive Bag',internal:'Double Stash',id:443,rarity:3,list:0,mtg:0,description:'You May Take an Extra\nRelic at Stashes'},
+        {name:'Expensive Bag',internal:'Double Stash',id:443,rarity:2,list:0,mtg:0,description:'You May Take an Extra\nRelic at Stashes'},
         {name:'Azurite',internal:'Retain Block (B)',id:444,rarity:2,list:0,mtg:0,description:'Lose Only Half of Your Block\nat End of Turn'},
         {name:'Periwinkle Veil',internal:'First Enemy Weak',id:445,rarity:0,list:0,mtg:0,description:'Apply 2 Weak to The First\nEnemy You Attack Each Combat'},
         {name:'Sword of Hisou',internal:'Turn Splash Damage',id:446,rarity:2,list:0,mtg:0,description:'Deal 5 Splash Damage at\nthe Start of Your Turn'},
@@ -1290,6 +1290,55 @@ types={
         {name:'Nuclear Waste',internal:'3 Turn Temporary Strength',id:470,rarity:-1,list:0,mtg:0,description:'Every 3 Turns,\nGain 3 Temporary Strength'},
         {name:'Green Pentachoron',internal:'No Fatigue',id:471,rarity:4,list:0,mtg:0,description:'Never Get Fatigued Again'},
         {name:'HVM Orders',internal:'Turn 3 Free Card',id:472,rarity:-1,list:0,mtg:0,description:'The First Card You\nPlay on Turn 3 is Free'},
+
+        /*
+        {name:'Prescription Bottle',internal:'6 Turn Control',id:473,rarity:0,list:0,mtg:0,description:'Gain 1 Control Every 6 Turns'},
+        {name:'Duck Sunglasses',internal:'Elite Block',id:474,rarity:0,list:0,mtg:0,description:'During elite combats,\nGain 4 Block Per Turn'},
+        {name:'Critical Cube',internal:'25 Damage Weak',id:475,rarity:0,list:0,mtg:0,description:'Apply 1 Weak When You\nDeal 25 or More Damage'},
+        {name:'Hardened Brick',internal:'Death Block',id:476,rarity:0,list:0,mtg:0,description:'When an Enemy Dies,\nGain 6 Block'},
+        {name:'Golden Chicadee',internal:'Upgrade Currency',id:477,rarity:0,list:0,mtg:0,description:'When You Upgrade a Card Permanently,\nGain 20 Currency'},
+        {name:'',internal:'',id:478,rarity:0,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:479,rarity:0,list:0,mtg:0,description:''},
+
+        {name:'',internal:'',id:480,rarity:0,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:481,rarity:0,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:482,rarity:0,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:483,rarity:0,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:484,rarity:0,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:485,rarity:0,list:0,mtg:0,description:''},
+        {name:'Dulled Axe',internal:'Bypass Defense',id:486,rarity:1,list:0,mtg:0,description:'Ignore Enemy Buffer, Dodge,\nand Fractional Damage Reduction'},
+        {name:'Common Ribbon',internal:'Upgrade All Commons',id:487,rarity:1,list:0,mtg:0,description:'Upgrade All Common Cards Added'},
+        {name:'Uncommon Ribbon',internal:'Upgrade All Uncommons',id:488,rarity:1,list:0,mtg:0,description:'Upgrade All Uncommon Cards Added'},
+        {name:'Rare Ribbon',internal:'Upgrade All Rares',id:489,rarity:1,list:0,mtg:0,description:'Upgrade All Rare Cards Added'},
+
+        {name:'',internal:'',id:490,rarity:1,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:491,rarity:1,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:492,rarity:1,list:0,mtg:0,description:''},
+        {name:'Death Note',internal:'Named Kill',id:493,rarity:2,list:0,mtg:0,description:'When Taken, Name 3 Enemies\nWhen They Appear, They Lose 200 Health'},
+        {name:'Drug Bag',internal:'Attack Temporary Strength',id:494,rarity:2,list:0,mtg:0,description:'When You Play an Attack,\nGain 1 Temporary Strength'},
+        {name:'Servaic Shard',internal:'Single Cost Down',id:495,rarity:2,list:0,mtg:0,description:'When Taken, Choose a Card,\nIt Costs 1 Less Permanently'},
+        {name:'Invis Watch',internal:'Starting Temporary Slow',id:496,rarity:2,list:0,mtg:0,description:'On Turn 1,\nApply 1 Temporary Slow to All Enemies'},
+        {name:'Typewriter Key',internal:'Letter Card',id:497,rarity:2,list:0,mtg:0,description:'When Taken, Chose and Add\nAny Card to Deck That Starts\nWith a Randomly Generated Letter'},
+        {name:'Ship of Theseus',internal:'Remove Unremove',id:498,rarity:2,list:0,mtg:0,description:'When You Remove a Card,\nYou May Unremove a Card'},
+        {name:'',internal:'',id:499,rarity:2,list:0,mtg:0,description:''},
+
+        {name:'',internal:'',id:500,rarity:2,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:501,rarity:2,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:502,rarity:2,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:503,rarity:2,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:504,rarity:3,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:505,rarity:3,list:0,mtg:0,description:''},
+        {name:'Immoral Elixir',internal:'Energy/Turn 6 Health',id:506,rarity:4,list:0,mtg:0,description:'Gain 1 Base Energy,\nLose 6 Health on Turn 6'},
+        {name:'',internal:'',id:507,rarity:4,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:508,rarity:4,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:509,rarity:4,list:0,mtg:0,description:''},
+
+        {name:'',internal:'',id:510,rarity:4,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:511,rarity:4,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:512,rarity:4,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:513,rarity:4,list:0,mtg:0,description:''},
+        {name:'',internal:'',id:514,rarity:4,list:0,mtg:0,description:''},
+        */
 
         //mark mtg mark r
     ],item:[
@@ -3488,7 +3537,7 @@ types={
             ],ally:[
             ],
         },{
-            level:['Crushed 6'],class:0,world:1,
+            level:['Crushed 6'],class:1,world:1,
             name:'Big Bounce',
             player:{position:[[{x:4,y:1}],[{x:4,y:0},{x:5,y:2}]]},
             enemy:[
@@ -7051,7 +7100,7 @@ Decrements each turn.`,
         {name:'Reichswehr',desc:'Offcolor Cards Cost 1 More'},
         {name:'Louse',desc:'All Enemies Get 10 Block the First Time They Take Damage'},
         {name:'Fungling',desc:'Gain 1 Poison Whenever You Move'},
-        {name:'Hwurmp',desc:'Add 10 Completely Random Cards to Deck'},//90
+        {name:'Hwurmp',desc:'Add Any 10 Random Cards to Deck'},//90
         {name:'Bee',desc:'0 Cost Cards Fail 25% of the Time'},
         {name:'Beekeeper',desc:'All Enemies Spawn a Bee on Death'},
         {name:'Pixie',desc:'All Spaces Look Like Unknowns'},
@@ -7225,11 +7274,12 @@ variants={
     shortmap:false,sortmap:false,singlemap:false,initiative:false,
     prism:false,ultraprism:false,junk:false,colorshift:false,
     vanish:false,blind:false,transcend:false,overheat:false,
-    cliff:false,assault:false,unary:false,running:false,
+    cliff:false,assault:false,domain:false,running:false,
     commoners:false,business:false,quarterPool:false,close:false,
 
     collection:false,prismrule:[],
-    speedmove:false,speedcard:false,nobasicanim:false,deckbuild:false,selectCombat:false,shortermap:false,
+    speedmove:false,speedcard:false,nobasicanim:false,
+    deckbuild:false,selectCombat:false,shortermap:false,unary:false,
 
     map:[
         'mtg','mod','chaos','randomCombat',
@@ -7240,7 +7290,7 @@ variants={
         'shortmap','sortmap','singlemap','initiative',
         'prism','ultraprism','junk','colorshift',
         'vanish','blind','transcend','overheat',
-        'cliff','assault','unary','running',
+        'cliff','assault','domain','running',
         'commoners','business','quarterPool','close',
     ],names:[
         'MTG Mana','Bonus Mods','Chaos','Random Combat Maps',
@@ -7251,7 +7301,7 @@ variants={
         'Short Map','Sorted Map','Straight Map','Enemy Initiative',
         'Prism','Ultraprism','Junkyard','Colorshift',
         'All Vanishing','Silent Cards','Transcend','Overheat',
-        'Cliffs','Assault','Unary','Running Loop',
+        'Cliffs','Assault','Domain Expansion','Running Loop',
         'Commoners','Business','Quarter Pool','Close Enough',
     ],
 }

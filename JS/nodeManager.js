@@ -88,6 +88,11 @@ class nodeManager{
     setupMap(){
         this.nodes=[]
         this.scroll=this.layer.height/2-150
+        if(variants.domain){
+            for(let a=0,la=this.battle.players;a<la;a++){
+                this.battle.relicManager.addRelic(458,a)
+            }
+        }
         if(this.world==3){
             let list=[4,3,1,2]
             for(let a=0,la=4;a<la;a++){

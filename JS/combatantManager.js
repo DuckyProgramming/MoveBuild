@@ -604,7 +604,7 @@ class combatantManager{
             }
         }
     }
-    damageHighest(effect,user){
+    highestEffect(effect,args){
         let maximum=0
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0&&this.combatants[a].life>0){
@@ -618,14 +618,21 @@ class combatantManager{
             }
         }
         if(possible.length>0){
-            this.combatants[possible[floor(random(0,possible.length))]].takeDamage(effect,user)
+            switch(effect){
+                case 0:
+                    this.combatants[possible[floor(random(0,possible.length))]].takeDamage(args[0],args[1])
+                break
+                case 1:
+                    this.combatants[possible[floor(random(0,possible.length))]].statusEffect(args[0],args[1])
+                break
+            }
         }
     }
-    damageLowest(effect,user){
-        let minimum=this.combatants[this.combatants.length-1].life
+    lowestEffect(effect,args){
+        let minimum=9
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0&&this.combatants[a].life>0){
-                minimum=min(minimum,this.combatants[a].life)
+                minimum=minimum==0?this.combatants[a].life:min(minimum,this.combatants[a].life)
             }
         }
         let possible=[]
@@ -635,7 +642,14 @@ class combatantManager{
             }
         }
         if(possible.length>0){
-            this.combatants[possible[floor(random(0,possible.length))]].takeDamage(effect,user)
+            switch(effect){
+                case 0:
+                    this.combatants[possible[floor(random(0,possible.length))]].takeDamage(args[0],args[1])
+                break
+                case 1:
+                    this.combatants[possible[floor(random(0,possible.length))]].statusEffect(args[0],args[1])
+                break
+            }
         }
     }
     hasDupe(name){

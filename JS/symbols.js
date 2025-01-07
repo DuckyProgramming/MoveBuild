@@ -4076,6 +4076,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(255,75,0,fade)
             layer.quad(-5,-5,1,-1,5,5,-1,1)
             layer.quad(-1,-1,5,-5,1,1,-5,5)
+            layer.ellipse(0,6,2)
             layer.fill(200,255,255,fade)
             layer.quad(0,-4,-2,0,0,4,2,0)
         break
@@ -7389,6 +7390,49 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(138,141,207,fade)
             layer.rect(-2,0,2,12)
             layer.triangle(-1,-6,-1,-3,8,-4.5)
+        break
+        case 748:
+            layer.fill(255,175,0,fade)
+            layer.quad(-6,-6,2,-2,6,6,-2,2)
+            layer.quad(-2,-2,6,-6,2,2,-6,6)
+            layer.fill(255,75,0,fade)
+            layer.quad(-5,-5,1,-1,5,5,-1,1)
+            layer.quad(-1,-1,5,-5,1,1,-5,5)
+            layer.fill(200,255,255,fade)
+            layer.quad(0,-4,-2,0,0,4,2,0)
+        break
+        case 749:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.stroke(75,150,75,fade)
+            layer.strokeWeight(1)
+            layer.line(-5,-2,1,-2)
+            layer.line(-5,2,1,2)
+            layer.line(-5,-2,-5,2)
+            layer.line(1,-5,7,0)
+            layer.line(1,5,7,0)
+            layer.line(1,-5,1,-2)
+            layer.line(1,5,1,2)
+        break
+        case 750:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
+            layer.fill(0,150,255,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+            layer.rect(-1,-5,1,3)
+            layer.rect(1,-5,1,3)
+        break
+        case 751:
+            layer.fill(125,255,255,fade)
+            layer.rect(0,0,9,9)
+            layer.fill(175,255,255,fade)
+            layer.rect(0,0,6,6)
+            layer.fill(225,255,255,fade)
+            layer.rect(0,0,3,3)
+            layer.fill(225,fade)
+            layer.rect(-2,0,6,2)
+            layer.triangle(1,-3,1,3,5,0)
         break
 
     }
