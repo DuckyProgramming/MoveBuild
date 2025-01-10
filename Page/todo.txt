@@ -168,6 +168,16 @@ swarm sentry - mini sentry but 2 uses
 
 spiked dust - damage, 10%: gain 1 strength, 1 dexterity, ...
 
+every angle shot
+
+end of the line - blasphemy but it does 50 damage
+
+faulty wisdom - 2 strength, 2 weak, get a bunch of status cards
+
+more cycle
+
+
+
 
 
 
@@ -194,27 +204,26 @@ stuffed wallet - gain 25 currency when you play a 4+ cost card, once per combat
 
 uncommon:
 
-[]
-[]
+taraxis - reverse ataraxia (nerf ataraxia to uncommon?)
 []
 
 rare:
 
 rod of resonance - 1 damage to every enemy for each card left in hand at the end of your turn
-geneva contravention - improved bad legal defense - kill any ally to get their reward
+[]
 []
 []
 []
 
 shop:
 
-[]
+bleach - a random card in your card rewards becomes colorless
 []
 
 boss:
 
-[]
-[]
+ochre slime - gain 1 base energy, start with 1 stuck
+prince rupert's drop - gain 1 base energy until you lose health
 []
 []
 []

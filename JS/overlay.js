@@ -1090,6 +1090,23 @@ class overlay{
                             }
                         }
                     break
+                    case 55:
+                        let possible55=[]
+                        for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
+                            possible55.push(a)
+                        }
+                        for(let a=0,la=args[0];a<la;a++){
+                            if(possible55.length>0){
+                                let index=floor(random(0,possible55.length))
+                                this.cards.push(copyCard(this.battle.cardManagers[this.player].deck.cards[possible55[index]]))
+                                this.cards[a].position.x=this.layer.width/2+60-la*60+a*120
+                                this.cards[a].position.y=this.layer.height/2+20
+                                this.cards[a].size=1
+                                this.cards[a].fade=1
+                                possible55.splice(index,1)
+                            }
+                        }
+                    break
                 }
                 if(this.args[0]==0||this.args[0]==2){
                     this.cards.forEach(card=>card.nonCalc=true)

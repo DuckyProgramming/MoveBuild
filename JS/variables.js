@@ -966,7 +966,7 @@ types={
         {name:'Frozen Wisdom',internal:'Boss Remove',id:176,rarity:2,list:0,mtg:0,description:'Remove a Card After Every Boss'},
         {name:'Smith Business Card',internal:'Boss Deluxe Upgrade',id:177,rarity:2,list:0,mtg:0,description:'Deluxe Upgrade a Card\nAfter Every Boss'},
         {name:'Purple Sunflower',internal:'Discard Over Draw Energy',id:178,rarity:2,list:0,mtg:1,description:'Gain 1 Energy Per Turn When Discard Pile\nHas More Cards Than Draw Pile'},
-        {name:'Ataraxia',internal:'Extra Energy Temporary Strength',id:179,rarity:2,list:0,mtg:1,description:'Extra Energy is Converted\nto Temporary Strength'},
+        {name:'Ataraxia',internal:'Extra Energy Temporary Strength',id:179,rarity:1,list:0,mtg:1,description:'Extra Energy is Converted\nto Temporary Strength'},
 
         {name:'Glow Up',internal:'More Editions',id:180,rarity:4,list:0,mtg:1,description:'Cards are 4x More\nLikely to Have Editions'},
         {name:'Shiny Pack',internal:'3 Random Shinies',id:181,rarity:3,list:0,mtg:0,description:'When Taken, Make 3\nRandom Cards Shiny'},
@@ -1291,7 +1291,6 @@ types={
         {name:'Green Pentachoron',internal:'No Fatigue',id:471,rarity:4,list:0,mtg:0,description:'Never Get Fatigued Again'},
         {name:'HVM Orders',internal:'Turn 3 Free Card',id:472,rarity:-1,list:0,mtg:0,description:'The First Card You\nPlay on Turn 3 is Free'},
 
-        /*
         {name:'Prescription Bottle',internal:'6 Turn Control',id:473,rarity:0,list:0,mtg:0,description:'Gain 1 Control Every 6 Turns'},
         {name:'Duck Sunglasses',internal:'Elite Block',id:474,rarity:0,list:0,mtg:0,description:'During elite combats,\nGain 4 Block Per Turn'},
         {name:'Critical Cube',internal:'25 Damage Weak',id:475,rarity:0,list:0,mtg:0,description:'Apply 1 Weak When You\nDeal 25 or More Damage'},
@@ -1313,7 +1312,7 @@ types={
 
         {name:'',internal:'',id:490,rarity:1,list:0,mtg:0,description:''},
         {name:'',internal:'',id:491,rarity:1,list:0,mtg:0,description:''},
-        {name:'',internal:'',id:492,rarity:1,list:0,mtg:0,description:''},
+        {name:'Geneva Contravention',internal:'Ally Replacement',id:492,rarity:2,list:0,mtg:0,description:'When You Kill a Random Ally,\nGain its "On Survival" Effect'},
         {name:'Death Note',internal:'Named Kill',id:493,rarity:2,list:0,mtg:0,description:'When Taken, Name 3 Enemies\nWhen They Appear, They Lose 200 Health'},
         {name:'Drug Bag',internal:'Attack Temporary Strength',id:494,rarity:2,list:0,mtg:0,description:'When You Play an Attack,\nGain 1 Temporary Strength'},
         {name:'Servaic Shard',internal:'Single Cost Down',id:495,rarity:2,list:0,mtg:0,description:'When Taken, Choose a Card,\nIt Costs 1 Less Permanently'},
@@ -1338,7 +1337,6 @@ types={
         {name:'',internal:'',id:512,rarity:4,list:0,mtg:0,description:''},
         {name:'',internal:'',id:513,rarity:4,list:0,mtg:0,description:''},
         {name:'',internal:'',id:514,rarity:4,list:0,mtg:0,description:''},
-        */
 
         //mark mtg mark r
     ],item:[

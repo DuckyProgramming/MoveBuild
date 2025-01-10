@@ -1090,6 +1090,11 @@ class combatantManager{
                             }
                         }
                     break
+                    case 58:
+                        if(this.combatants[a].id!=args[2]){
+                            this.combatants[a].statusEffect(args[0],args[1])
+                        }
+                    break
                 }
             }
         }
@@ -1165,6 +1170,9 @@ class combatantManager{
                         this.battle.turnManager.turns[this.battle.turnManager.turns.length-1].auxiliary=true
                         this.battle.turnManager.loadEnemyAttack(args[0])
                     }
+                break
+                case 14:
+                    this.combatants[a].removeRandomStatus(args[0])
                 break
                 
             }
@@ -1482,7 +1490,8 @@ class combatantManager{
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(
                 this.combatants[a].life>0&&(this.combatants[a].team!=team&&legalTargetCombatant(0,0,range,{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)||this.battle.modded(121))&&
-                !(type==0&&tilePosition.y!=this.combatants[a].tilePosition.y)
+                !(type==0&&tilePosition.y!=this.combatants[a].tilePosition.y)&&
+                !(type==1&&!this.combatants[a].construct)
             ){
                 combatants.push(this.combatants[a])
             }

@@ -445,6 +445,14 @@ function arrayCompare(array1,array2){
 	}
 	return true
 }
+function arrayCompareLoose(array1,array2){
+	for(let a=0,la=array1.length;a<la;a++){
+		if(!array2.includes(array1[a])){
+			return false
+		}
+	}
+	return true
+}
 function calculateEffect(effect,user,type,player,relicManager,variant,args){
 	switch(type){
 		case 0: case 2: case 5: case 7: case 8: case 10: case 11: case 12: case 13: case 20:

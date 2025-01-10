@@ -33,7 +33,7 @@ class group{
         this.addEffect=[]
         this.finalPosition=0
         this.sendAmounts=[]
-        this.listKey=46
+        this.listKey=47
         this.listInput=[
             [0,4],
             [1,8],
@@ -77,6 +77,7 @@ class group{
             [43,52],
             [44,53],
             [45,54],
+            [46,55],
         ]
 
         this.reset()
@@ -655,6 +656,10 @@ class group{
     }
     copyIntoExhaust(amount){
         this.status[45]+=amount
+        this.generalSelfStatus()
+    }
+    transformFree(amount){
+        this.status[46]+=amount
         this.generalSelfStatus()
     }
     generalSelfStatus(){
@@ -2133,6 +2138,17 @@ class group{
                         this.cards[a].exhaust=true
                     }
                 break
+                case 61:
+                    if(a>=args[0]){
+                        this.cards[a].deSize=true
+                    }
+                break
+                case 62:
+                    if(this.cards[a].name.includes(args[1])){
+                        this.cards[a].costDown(0,[args[0]])
+                        this.cards[a].callPrimeEffect()
+                    }
+                break
             }
         }
         if(effect==9){
@@ -2158,7 +2174,7 @@ class group{
                         &&!(effect==8&&this.cards[b].spec.includes(8))
                         &&!(effect==10&&this.cards[b].spec.includes(9))
                         &&!(effect==11&&this.cards[b].spec.includes(10))
-                        &&!((effect==13||effect==50||effect==56)&&this.cards[b].attack==5612)
+                        &&!((effect==13||effect==50||effect==56||effect==74)&&this.cards[b].attack==5612)
                         &&!((effect==15||effect==20)&&(this.cards[b].effect.length==0||this.cards[b].class==3&&this.cards[b].effect==1))
                         &&!(effect==17&&(this.cards[b].attack==-66||this.cards[b].attack==1115||this.cards[b].deSize))
                         &&!(effect==18&&this.cards[b].class==3)
@@ -2557,6 +2573,10 @@ class group{
                         this.cards[index].deSize=true
                         this.cards[index].discardEffect.push(2)
                     break
+                    case 74:
+                        this.cards[index].deSize=true
+                        this.cards[index].exhaust=true
+                        return true
 
                 }
                 if(massed&&this.id!=0&&
@@ -2574,7 +2594,7 @@ class group{
                 }
             }
         }else{
-            if(effect==60){
+            if(effect==60||effect==74){
                 return false
             }
         }
@@ -2591,6 +2611,11 @@ class group{
             }
             if(this.basicChange[1]>0){
                 card.effect[0]+=this.basicChange[1]
+            }
+        }
+        if(card.getBasic(1)){
+            if(userCombatant.getStatus('Speed Strike')>0){
+                this.battle.combatantManager.randomEnemyEffect(3,[max(0,card.effect[0]+userCombatant.getStatus('Strike Boost')),userCombatant.id])
             }
         }
         switch(card.class){
@@ -3242,7 +3267,8 @@ class group{
             variant==17&&args[0].includes(this.cards[index].name)||
             variant==18&&args[0].includes(this.cards[index].edition)||
             variant==19&&this.cards[index].class!=args[0]||
-            variant==20&&this.cards[index].getBasic(args[0])
+            variant==20&&this.cards[index].getBasic(args[0])||
+            variant==21&&(variants.mtg&&!arrayCompareLoose(this.cards[index].color,this.battle.player[this.player])||!variants.mtg&&this.cards[index].color!=this.battle.player[this.player])
         )
     }
     checkAbstract(amount,variant,args){
@@ -3913,6 +3939,41 @@ class group{
                 !(userCombatant.getStatus('Free Minerals')>0&&card.spec.includes(52))
             ){
                 let calculatoryCost=variants.mtg?(card.specialCost?effectiveCost[0]:effectiveCost.length):effectiveCost
+                if(userCombatant.getStatus('Cycle Attack')>0){
+                    if(cardClass==1){
+                        effectiveCost=0
+                        calculatoryCost=0
+                    }
+                    userCombatant.status.main[findList('Cycle Attack',userCombatant.status.name)]--
+                }
+                if(userCombatant.getStatus('Cycle Defense')>0){
+                    if(cardClass==2){
+                        effectiveCost=0
+                        calculatoryCost=0
+                    }
+                    userCombatant.status.main[findList('Cycle Defense',userCombatant.status.name)]--
+                }
+                if(userCombatant.getStatus('Cycle Movement')>0){
+                    if(cardClass==3){
+                        effectiveCost=0
+                        calculatoryCost=0
+                    }
+                    userCombatant.status.main[findList('Cycle Movement',userCombatant.status.name)]--
+                }
+                if(userCombatant.getStatus('Cycle Power')>0){
+                    if(cardClass==4){
+                        effectiveCost=0
+                        calculatoryCost=0
+                    }
+                    userCombatant.status.main[findList('Cycle Power',userCombatant.status.name)]--
+                }
+                if(userCombatant.getStatus('Cycle Skill')>0){
+                    if(cardClass==11){
+                        effectiveCost=0
+                        calculatoryCost=0
+                    }
+                    userCombatant.status.main[findList('Cycle Skill',userCombatant.status.name)]--
+                }
                 if(calculatoryCost!=0&&card.colorless()&&card.rarity!=2&&userCombatant.getStatus('Temporary Free Non-Rare Colorless')>0){
                     userCombatant.status.main[findList('Temporary Free Non-Rare Colorless',userCombatant.status.name)]--
                 }else if(calculatoryCost!=0&&cardClass==1&&userCombatant.getStatus('Free Attack')>0){
@@ -3964,17 +4025,17 @@ class group{
                 userCombatant.loseHealth(2)
             }
             if(userCombatant.getStatus('No Amplify')<=0){
-                if(userCombatant.getStatus('Free Amplify')>0){
-                    this.battle.attackManager.amplify=true
-                    this.cards.forEach(card=>card.anotherAmplified())
-                    userCombatant.amplified()
-                }else if(userCombatant.getStatus('Single Free Amplify')>0){
-                    userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
-                    this.battle.attackManager.amplify=true
-                    this.cards.forEach(card=>card.anotherAmplified())
-                    userCombatant.amplified()
-                }else{
-                    if(spec.includes(27)&&variants.mtg){
+                if(spec.includes(27)&&variants.mtg){
+                    if(userCombatant.getStatus('Free Amplify')>0){
+                        this.battle.attackManager.amplify=true
+                        this.cards.forEach(card=>card.anotherAmplified())
+                        userCombatant.amplified()
+                    }else if(userCombatant.getStatus('Single Free Amplify')>0){
+                        userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
+                        this.battle.attackManager.amplify=true
+                        this.cards.forEach(card=>card.anotherAmplified())
+                        userCombatant.amplified()
+                    }else{
                         let amplifyCost=[]
                         switch(this.battle.attackManager.type){
                             case 4636: case 4639: case 4640: case 4641: case 4643: case 4644: case 4646: case 4892: case 4937: case 4938:
@@ -3993,7 +4054,7 @@ class group{
                             case 4659: case 4660: case 4661: case 4662: case 4671: case 4678: case 4800: case 4803: case 4862: case 4885:
                                 amplifyCost=[6]
                             break
-                            case 4663:
+                            case 4663: case 6946:
                                 amplifyCost=[2]
                             break
                             case 4672: case 4866:
@@ -4031,25 +4092,39 @@ class group{
                             this.cards.forEach(card=>card.anotherAmplified())
                             userCombatant.amplified()
                         }
-                    }else if(this.battle.getEnergy(this.player)>=1&&spec.includes(27)){
+                    }
+                }else if(spec.includes(27)){
+                    if(userCombatant.getStatus('Free Amplify')>0){
+                        this.cards.forEach(card=>card.anotherAmplified())
+                    }else if(userCombatant.getStatus('Single Free Amplify')>0){
+                        userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
+                        this.cards.forEach(card=>card.anotherAmplified())
+                    }else if(this.battle.getEnergy(this.player)>=1){
                         if(variants.mtg){
                             this.battle.loseSpecificEnergy(1,this.player,6)
                         }else{
                             this.battle.loseEnergy(1,this.player)
                         }
-                        this.battle.attackManager.amplify=true
                         this.cards.forEach(card=>card.anotherAmplified())
-                        userCombatant.amplified()
-                    }else if(this.battle.getEnergy(this.player)>=2&&spec.includes(28)){
+                    }
+                    this.battle.attackManager.amplify=true
+                    userCombatant.amplified()
+                }else if(spec.includes(28)){
+                    if(userCombatant.getStatus('Free Amplify')>0){
+                        this.cards.forEach(card=>card.anotherAmplified())
+                    }else if(userCombatant.getStatus('Single Free Amplify')>0){
+                        userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
+                        this.cards.forEach(card=>card.anotherAmplified())
+                    }else if(this.battle.getEnergy(this.player)>=2){
                         if(variants.mtg){
                             this.battle.loseSpecificEnergy(2,this.player,6)
                         }else{
                             this.battle.loseEnergy(2,this.player)
                         }
-                        this.battle.attackManager.amplify=true
                         this.cards.forEach(card=>card.anotherAmplified())
-                        userCombatant.amplified()
                     }
+                    this.battle.attackManager.amplify=true
+                    userCombatant.amplified()
                 }
             }
             if(this.battle.getEnergy(this.player)<0&&variants.overheat){
@@ -4104,7 +4179,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42],this.anim[45]]
+                let anim=[max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42],this.anim[45],this.anim[46]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -5298,6 +5373,13 @@ class group{
                 }
                 if(this.status[45]>0){
                     this.status[45]=0
+                }
+            break
+            case 55:
+                this.cards[a].deSize=true
+                this.cards[a].discardEffect.push(10)
+                if(this.status[46]>0){
+                    this.status[46]--
                 }
             break
         }

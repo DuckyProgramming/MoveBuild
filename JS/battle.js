@@ -1453,6 +1453,9 @@ class battle{
         if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('2+ Cost Draw'))
         }
+        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Strength')>0){
+            userCombatant.statusEffect('Strength',userCombatant.getStatus('2+ Cost Strength'))
+        }
         if(effectiveCost>=3&&userCombatant.getStatus('3+ Cost Free Discus')>0){
             for(let a=0,la=userCombatant.getStatus('3+ Cost Free Discus');a<la;a++){
                 this.cardManagers[player].hand.addAbstract(findName('Dual\nDiscus',types.card),0,0,0,[0])

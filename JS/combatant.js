@@ -194,7 +194,8 @@ class combatant{
                 'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw','All Damage Convert',
                 'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity','Temporary Card Play Temporary Strength','Temporary Card Play Temporary Strength Next Turn',
                 'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent','Rearm Strength','All X Cost Boost','Move Block',
-                'Base Attack Vulnerable Combat','Retain Freeze',
+                'Base Attack Vulnerable Combat','Retain Freeze','Orb Hold Tick','Fugue Strength','Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill','Speed Strike',
+                '2+ Cost Strength',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -272,7 +273,8 @@ class combatant{
                 0,0,2,0,0,0,0,0,0,0,//73
                 0,0,0,0,2,1,0,0,2,2,//74
                 1,0,2,0,0,0,1,0,0,0,//75
-                0,1,
+                0,1,0,0,2,2,2,2,2,1,//76
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -350,7 +352,8 @@ class combatant{
                 2,2,2,2,0,2,2,2,2,2,//73
                 2,2,2,2,2,1,2,2,2,2,//74
                 2,2,2,2,2,2,2,2,2,0,//75
-                0,1,
+                0,1,2,2,2,2,2,2,2,2,//76
+                2,
             ]}
         /*
         0-none
@@ -4346,6 +4349,9 @@ class combatant{
                     if(type==4){
                         this.orbDetail[a]=6
                     }
+                    if(this.status.main[752]>0){
+                        this.tickOrb(a)
+                    }
                     a=la
                 }
             }
@@ -4896,6 +4902,13 @@ class combatant{
             this.addBlock(this.status.main[495])
         }
         return total
+    }
+    prime(value){
+        if(this.id<this.battle.players){
+            this.battle.cardManagers[this.id].hand.allEffectArgs(62,[value,'Slash'])
+            this.battle.cardManagers[this.id].discard.allEffectArgs(44,[6965])
+            this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[6965])
+        }
     }
     clearStatus(){
         for(let a=0,la=this.status.main.length;a<la;a++){
@@ -5638,33 +5651,36 @@ class combatant{
         this.interiorStatus[1]=0
     }
     tickOrbs(type){
+        for(let a=0,la=this.orbs.length;a<la;a++){
+            if(this.orbs[a]==type||type==-1){
+                this.tickOrb(a)
+            }
+        }
+    }
+    tickOrb(a){
         let multi=1
         if(this.status.main[111]>0){
             multi=1+this.status.main[111]*0.1
         }else if(this.status.main[111]<0){
             multi=max(0.2,1+this.status.main[111]*0.1)
         }
-        for(let a=0,la=this.orbs.length;a<la;a++){
-            if(this.orbs[a]==type||type==-1){
-                switch(this.orbs[a]){
-                    case 4:
-                        this.orbDetail[a]+=3
-                    break
-                    case 5:
-                        if(this.team==0){
-                            this.battle.combatantManager.randomPlayerEffect(0,[round((4+this.status.main[593])*multi)])
-                        }else{
-                            this.battle.combatantManager.randomEnemyEffect(0,[round((4+this.status.main[593])*multi)])
-                        }
-                    break
-                    case 14:
-                        this.statusEffect('Counter All',round(4*multi))
-                    break
-                    case 15:
-                        this.addBlock(round((6+this.status.main[705])*multi))
-                    break
+        switch(this.orbs[a]){
+            case 4:
+                this.orbDetail[a]+=3
+            break
+            case 5:
+                if(this.team==0){
+                    this.battle.combatantManager.randomPlayerEffect(0,[round((4+this.status.main[593])*multi)])
+                }else{
+                    this.battle.combatantManager.randomEnemyEffect(0,[round((4+this.status.main[593])*multi)])
                 }
-            }
+            break
+            case 14:
+                this.statusEffect('Counter All',round(4*multi))
+            break
+            case 15:
+                this.addBlock(round((6+this.status.main[705])*multi))
+            break
         }
     }
     tickEarly(){
@@ -7241,6 +7257,9 @@ class combatant{
             if(this.inspiration>=5){
                 this.inspiration-=5
                 this.fugue+=5
+                if(this.status.main[753]>0){
+                    this.statusEffect('Strength',this.status.main[753])
+                }
             }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)
