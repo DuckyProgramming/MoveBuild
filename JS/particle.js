@@ -704,7 +704,7 @@ class particle{
                 this.scale=0
                 this.grav=0
             break
-            case 222: case 234: case 241:
+            case 222: case 234: case 241: case 260:
                 this.direction=args[0]
                 this.color=args[1]
                 this.colorShift=args[2]
@@ -764,7 +764,7 @@ class particle{
                 this.fade=1
                 this.scale=0
             break
-            case 235: case 242:
+            case 235: case 242: case 261:
                 this.direction=args[0]
                 this.speed=args[1]
                 this.grav=args[2]
@@ -3754,7 +3754,7 @@ class particle{
                     }
                     this.layer.strokeJoin(MITER)
                 break
-                case 222: case 223: case 234: case 235:
+                case 222: case 223: case 234: case 235: case 260: case 261:
                     this.layer.noFill()
                     this.layer.strokeJoin(ROUND)
                     for(let a=0,la=4;a<la;a++){
@@ -5148,16 +5148,16 @@ class particle{
                     this.remove=true
                 }
             break
-            case 222: case 234: case 241:
+            case 222: case 234: case 241: case 260:
                 if(this.time>this.delay){
                     this.position.x+=lsin(this.direction)*this.speed
                     this.position.y-=lcos(this.direction)*this.speed-this.grav
-                    this.grav+=0.15
+                    this.grav+=this.type==260?0.25:0.15
                     if(this.scale<1){
                         this.scale+=0.05
                     }
                     this.spin+=3
-                    if(this.time%15==14-this.delay%15){
+                    if(this.time%15==14-this.delay%15||this.type==260&&this.time%15==(22-this.delay%15)%15){
                         switch(this.type){
                             case 222:
                                 parent.particles.push(new particle(this.layer,this.position.x+random(-20,20),this.position.y+random(-20,20),223,[random(0,360),this.color,this.colorShift,random(0.3,0.5)*this.size]))
@@ -5167,6 +5167,9 @@ class particle{
                             break
                             case 241:
                                 parent.particles.push(new particle(this.layer,this.position.x+random(-20,20),this.position.y+random(-20,20),242,[this.direction,this.speed*0.25,this.grav*0.5,random(0,360),this.color,this.colorShift,random(0.3,0.5)*this.size]))
+                            break
+                            case 260:
+                                parent.particles.push(new particle(this.layer,this.position.x+random(-5,5),this.position.y+random(-5,5),261,[this.direction,this.speed*0.25,this.grav*random(0,1),random(0,360),this.color,this.colorShift,random(0.3,0.5)*this.size]))
                             break
                         }
                     }
@@ -5374,6 +5377,21 @@ class particle{
                 this.growth-=0.005
                 if(this.scale<=0){
                     this.remove=true
+                }
+            break
+            case 261:
+                this.position.y+=this.grav
+                this.grav+=0.25
+                if(!this.trigger){
+                    this.fade+=0.3
+                    if(this.fade>=3){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.3
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
                 }
             break
 

@@ -2553,6 +2553,16 @@ combatant.prototype.setupGraphics=function(direction){
             this.spin={eye:[-24,24]}
             this.goal={anim:{direction:this.anim.direction}}
         break
+        case 'Swarm Turret':
+            this.anim={direction:direction}
+            this.fades={base:1,body:1,dot:1}
+            this.graphics={arms:[{bottom:{x:0,y:-15}},{bottom:{x:0,y:-15}}]}
+            this.trigger={display:{base:true,body:true,dot:true}}
+            this.calc={int:[0,0,0,0]}
+            this.animSet={loop:0,flip:0}
+            this.goal={anim:{direction:this.anim.direction}}
+            this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,100,200],out:[0,120,240]},dot:{in:[125,125,125],out:[105,105,105]}}
+        break
         //mark n
         default:
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],

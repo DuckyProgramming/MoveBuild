@@ -23,8 +23,8 @@ types={
         {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
         {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         {name:'',moniker:'The Placeholder',identifier:['',''],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
-        {name:'',moniker:'The ',identifier:['Sister','Miss'],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
-        {name:'',moniker:'The ',identifier:['Brother','Mister'],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'',moniker:'The Placeholder',identifier:['Sister','Miss'],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'',moniker:'The Placeholder',identifier:['Brother','Mister'],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -280,7 +280,7 @@ types={
         {name:'Gun Rack',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:234,effect:[1]}],description:`Big brain augmentation`},
         {name:'Repulse Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:235,effect:[12]}],description:`Get off my property!`},
         {name:'Machine Gun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:129,effect:[8]}],description:`More gun`},
-        {name:'Miniturret',life:8,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:236,effect:[3]}],description:`Less gun`},
+        {name:'Miniturret',life:10,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:236,effect:[3]}],description:`Less gun`},
         {name:'Metal Box',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:237,effect:[1]}],description:`Turtling strat`},
         {name:'Upgrader',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:238,effect:[2]}],description:`PoV: no upgrades`},
         {name:'Transformer',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:239,effect:[2]}],description:`PoV: no good cards`},
@@ -292,6 +292,7 @@ types={
         {name:'Armored Turret',life:60,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[10]}],description:`Sentry goin' up`},
         {name:'Shotgun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:303,effect:[30,5]}],description:`Shotgun duck game?`},
         {name:'Exploding Wall',life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Pay to win`},
+        {name:'Swarm Turret',life:8,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:47,effect:[3]}],description:`Even less gun`},
 
         {name:'MobMan',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`No brain?`},
         {name:'AllyMonkey',life:24,behavior:0,spec:[17],move:{type:0,speed:2},attack:[{type:11,effect:[2]}],description:`Your best friend`},
@@ -1291,12 +1292,13 @@ types={
         {name:'Green Pentachoron',internal:'No Fatigue',id:471,rarity:4,list:0,mtg:0,description:'Never Get Fatigued Again'},
         {name:'HVM Orders',internal:'Turn 3 Free Card',id:472,rarity:-1,list:0,mtg:0,description:'The First Card You\nPlay on Turn 3 is Free'},
 
+        /*
         {name:'Prescription Bottle',internal:'6 Turn Control',id:473,rarity:0,list:0,mtg:0,description:'Gain 1 Control Every 6 Turns'},
         {name:'Duck Sunglasses',internal:'Elite Block',id:474,rarity:0,list:0,mtg:0,description:'During elite combats,\nGain 4 Block Per Turn'},
         {name:'Critical Cube',internal:'25 Damage Weak',id:475,rarity:0,list:0,mtg:0,description:'Apply 1 Weak When You\nDeal 25 or More Damage'},
         {name:'Hardened Brick',internal:'Death Block',id:476,rarity:0,list:0,mtg:0,description:'When an Enemy Dies,\nGain 6 Block'},
         {name:'Golden Chicadee',internal:'Upgrade Currency',id:477,rarity:0,list:0,mtg:0,description:'When You Upgrade a Card Permanently,\nGain 20 Currency'},
-        {name:'',internal:'',id:478,rarity:0,list:0,mtg:0,description:''},
+        {name:'Bristle',internal:'Block Break Temporary Strength',id:478,rarity:0,list:0,mtg:0,description:'When Your Block is Broken,\nGain 3 Temporary Strength'},
         {name:'',internal:'',id:479,rarity:0,list:0,mtg:0,description:''},
 
         {name:'',internal:'',id:480,rarity:0,list:0,mtg:0,description:''},
@@ -1310,7 +1312,7 @@ types={
         {name:'Uncommon Ribbon',internal:'Upgrade All Uncommons',id:488,rarity:1,list:0,mtg:0,description:'Upgrade All Uncommon Cards Added'},
         {name:'Rare Ribbon',internal:'Upgrade All Rares',id:489,rarity:1,list:0,mtg:0,description:'Upgrade All Rare Cards Added'},
 
-        {name:'',internal:'',id:490,rarity:1,list:0,mtg:0,description:''},
+        {name:'Taraxis',internal:'Extra Energy Temporary Dexterity',id:490,rarity:1,list:0,mtg:1,description:'Extra Energy is Converted\nto Temporary Dexterity'},
         {name:'',internal:'',id:491,rarity:1,list:0,mtg:0,description:''},
         {name:'Geneva Contravention',internal:'Ally Replacement',id:492,rarity:2,list:0,mtg:0,description:'When You Kill a Random Ally,\nGain its "On Survival" Effect'},
         {name:'Death Note',internal:'Named Kill',id:493,rarity:2,list:0,mtg:0,description:'When Taken, Name 3 Enemies\nWhen They Appear, They Lose 200 Health'},
@@ -1319,24 +1321,25 @@ types={
         {name:'Invis Watch',internal:'Starting Temporary Slow',id:496,rarity:2,list:0,mtg:0,description:'On Turn 1,\nApply 1 Temporary Slow to All Enemies'},
         {name:'Typewriter Key',internal:'Letter Card',id:497,rarity:2,list:0,mtg:0,description:'When Taken, Chose and Add\nAny Card to Deck That Starts\nWith a Randomly Generated Letter'},
         {name:'Ship of Theseus',internal:'Remove Unremove',id:498,rarity:2,list:0,mtg:0,description:'When You Remove a Card,\nYou May Unremove a Card'},
-        {name:'',internal:'',id:499,rarity:2,list:0,mtg:0,description:''},
+        {name:'Intercal',internal:'Any Colorless Card',id:499,rarity:2,list:0,mtg:0,description:'When Taken, Choose Any\nColorless Card to Add to Deck'},
 
-        {name:'',internal:'',id:500,rarity:2,list:0,mtg:0,description:''},
+        {name:'Protectorate Projection',internal:'Starting Buffer',id:500,rarity:2,list:0,mtg:0,description:'Gain 1 Intangible\non Turn 1'},
         {name:'',internal:'',id:501,rarity:2,list:0,mtg:0,description:''},
         {name:'',internal:'',id:502,rarity:2,list:0,mtg:0,description:''},
         {name:'',internal:'',id:503,rarity:2,list:0,mtg:0,description:''},
-        {name:'',internal:'',id:504,rarity:3,list:0,mtg:0,description:''},
+        {name:'Bleach',internal:'Colorless Deck',id:504,rarity:3,list:0,mtg:0,description:'Replace a Card Reward Option With a Colorless One'},
         {name:'',internal:'',id:505,rarity:3,list:0,mtg:0,description:''},
         {name:'Immoral Elixir',internal:'Energy/Turn 6 Health',id:506,rarity:4,list:0,mtg:0,description:'Gain 1 Base Energy,\nLose 6 Health on Turn 6'},
-        {name:'',internal:'',id:507,rarity:4,list:0,mtg:0,description:''},
-        {name:'',internal:'',id:508,rarity:4,list:0,mtg:0,description:''},
-        {name:'',internal:'',id:509,rarity:4,list:0,mtg:0,description:''},
+        {name:'Ochre Slime',internal:'Energy/Stuck',id:507,rarity:4,list:0,mtg:1,description:'Gain 1 Base Energy, Shuffle 1 Stuck\nInto Draw on Turn 1'},
+        {name:`Prince Rupert's Drop`,internal:'Safe Energy',id:508,rarity:4,list:0,mtg:0,description:'Gain 1 Base Energy,\nUntil You Get Hit Each Combat'},
+        {name:'600-Cell',internal:'Free Innate',id:509,rarity:4,list:0,mtg:0,description:'When Taken,\nMake a Card Innate and Free'},
 
         {name:'',internal:'',id:510,rarity:4,list:0,mtg:0,description:''},
         {name:'',internal:'',id:511,rarity:4,list:0,mtg:0,description:''},
         {name:'',internal:'',id:512,rarity:4,list:0,mtg:0,description:''},
         {name:'',internal:'',id:513,rarity:4,list:0,mtg:0,description:''},
         {name:'',internal:'',id:514,rarity:4,list:0,mtg:0,description:''},
+        */
 
         //mark mtg mark r
     ],item:[

@@ -170,6 +170,13 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[103])],//make draw card free and replenish
                     [new overlay(this.layer,this.battle,0,2,[104])],//discard draw card,160
                     [new overlay(this.layer,this.battle,0,2,[105,0])],//bring in first number draw card, no return
+                    [new overlay(this.layer,this.battle,0,2,[106])],//make card quickdiscard
+                    [new overlay(this.layer,this.battle,0,2,[107])],//make card add d6block
+                    [new overlay(this.layer,this.battle,0,2,[108])],//make card cycle skill
+                    [new overlay(this.layer,this.battle,0,2,[109])],//make card quickdraw
+                    [new overlay(this.layer,this.battle,0,2,[110])],//make card retain
+                    [new overlay(this.layer,this.battle,0,2,[111])],//make discard card free
+                    [new overlay(this.layer,this.battle,0,2,[112,0])],//recovery
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

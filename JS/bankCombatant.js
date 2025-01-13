@@ -9682,7 +9682,7 @@ combatant.prototype.display=function(){
                     }
                 }
             break
-            case 'Miniturret':
+            case 'Miniturret': case 'Swarm Turret':
                 if(this.trigger.display.base){
                     this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
                     this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
@@ -9693,7 +9693,11 @@ combatant.prototype.display=function(){
                         }
                     }
                     if(lcos(this.anim.direction)<=0.05){
-                        this.layer.rect(30*lsin(this.anim.direction),-15,30-15*lcos(this.anim.direction),10)
+                        if(this.name=='Swarm Turret'){
+                            this.layer.rect(25*lsin(this.anim.direction),-15,20-10*lcos(this.anim.direction),10)
+                        }else{
+                            this.layer.rect(30*lsin(this.anim.direction),-15,30-15*lcos(this.anim.direction),10)
+                        }
                     }
                 }
                 if(this.trigger.display.body){
@@ -9721,7 +9725,11 @@ combatant.prototype.display=function(){
                     this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
                     this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
                     this.layer.strokeWeight(5)
-                    this.layer.rect(30*lsin(this.anim.direction),-15,30-15*lcos(this.anim.direction),10)
+                    if(this.name=='Swarm Turret'){
+                        this.layer.rect(25*lsin(this.anim.direction),-15,20-10*lcos(this.anim.direction),10)
+                    }else{
+                        this.layer.rect(30*lsin(this.anim.direction),-15,30-15*lcos(this.anim.direction),10)
+                    }
                 }
             break
             case 'Readout':

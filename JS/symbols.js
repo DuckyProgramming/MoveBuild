@@ -3253,12 +3253,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 350:
             layer.stroke(40,fade)
             layer.strokeWeight(1.5)
-            layer.ellipse(0,0,12,12)
-            layer.line(0,0,0,-3.75)
-            layer.line(0,0,2.25,2.25)
+            layer.ellipse(0,0,10,10)
+            layer.line(0,0,0,-3.25)
+            layer.line(0,0,2,2)
             layer.fill(40,fade)
             layer.noStroke()
-            layer.ellipse(0,9,2)
+            layer.ellipse(0,8,2)
         break
         case 351:
             layer.stroke(40,fade)
@@ -7535,6 +7535,43 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.quad(-1.5,-2,-2.5,0,-1.5,2,-0.5,0)
             layer.quad(1.5,-2,2.5,0,1.5,2,0.5,0)
             layer.ellipse(0,0,1)
+        break
+        case 761:
+            layer.fill(150,175,200,fade)
+            layer.triangle(-3,-6,-5,3,-1,3)
+            layer.triangle(3,3,5,-1.5,1,-1.5)
+        break
+        case 762:
+            displayMtgManaSymbol(layer,0,0,-1,0,0.4,fade,-1,[])
+            layer.fill(30,fade)
+            layer.triangle(0,-5,-1,-7,1,-7)
+            layer.triangle(0,-7.5,-1,-9.5,1,-9.5)
+        break
+        case 763:
+            layer.stroke(40,fade)
+            layer.strokeWeight(1.5)
+            layer.ellipse(0,0,10,10)
+            layer.line(0,0,0,-3.25)
+            layer.line(0,0,2,2)
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(1)
+            layer.ellipse(0,0,14,14)
+            layer.line(-3.5*constants.sqrt2,3.5*constants.sqrt2,3.5*constants.sqrt2,-3.5*constants.sqrt2)
+        break
+        case 764:
+            layer.stroke(40,fade)
+            layer.strokeWeight(1.5)
+            layer.ellipse(0,0,10,10)
+            layer.line(0,0,0,-3.25)
+            layer.line(0,0,2,2)
+            layer.fill(40,fade)
+            layer.noStroke()
+            layer.ellipse(0,8,2)
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(1)
+            layer.noFill()
+            layer.ellipse(0,0,14,14)
+            layer.line(-3.5*constants.sqrt2,3.5*constants.sqrt2,3.5*constants.sqrt2,-3.5*constants.sqrt2)
         break
 
     }

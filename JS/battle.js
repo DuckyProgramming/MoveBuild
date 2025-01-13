@@ -88,6 +88,7 @@ class battle{
     }
     createBasic(){
         this.initialized=false
+        this.initializedConstants=false
         this.menu={combatant:[1],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[],turnTime:[],variants:[],prismrule:[],mtg:[]},mtg:{manaChoice:[],manaBase:[],manaOld:[],manaNew:[]}}
         for(let a=0,la=constants.playerNumber;a<=la;a++){
             for(let b=0,lb=2;b<lb;b++){
@@ -162,6 +163,8 @@ class battle{
 
         this.initialConstants()
         this.initialManagers()
+        this.initializedConstants=true
+
         this.tileManager=new tileManager(this.layer,this)
         this.combatantManager=new combatantManager(this.layer,this)
         this.attackManager=new attackManager(this.layer,this)
@@ -177,30 +180,11 @@ class battle{
             this.replayManager=new replayManager(this.layer,this)
         }
 
+        this.initialCombatants()
         this.initialManagersAfter()
         this.initialized=true
         
         this.initial()
-    }
-    initialManagers(){
-        this.cardManagers=[]
-        this.packManagers=[]
-        this.optionManagers=[]
-        this.perkManagers=[]
-        this.eventManagers=[]
-        for(let a=0,la=this.players;a<la;a++){
-            this.cardManagers.push(new cardManager(this.layer,this,a))
-            this.packManagers.push(new packManager(this.layer,this,a))
-            this.optionManagers.push(new optionManager(this.layer,this,a))
-            this.perkManagers.push(new perkManager(this.layer,this,a))
-            this.eventManagers.push(new eventManager(this.layer,this,a))
-            this.eventManagers[a].initial()
-        }
-        this.optionManagers.forEach(optionManager=>optionManager.assemble())
-        this.perkManagers.forEach(perkManager=>perkManager.assemble())
-    }
-    initialManagersAfter(){
-        this.cardManagers.forEach(cardManager=>cardManager.initialDeck())
     }
     initialConstants(){
         this.colorDetail=[]
@@ -236,8 +220,33 @@ class battle{
             this.stats.item.push(0)
         }
     }
-    initial(){
+    initialManagers(){
+        this.cardManagers=[]
+        this.packManagers=[]
+        this.optionManagers=[]
+        this.perkManagers=[]
+        this.eventManagers=[]
+        for(let a=0,la=this.players;a<la;a++){
+            this.cardManagers.push(new cardManager(this.layer,this,a))
+            this.packManagers.push(new packManager(this.layer,this,a))
+            this.optionManagers.push(new optionManager(this.layer,this,a))
+            this.perkManagers.push(new perkManager(this.layer,this,a))
+            this.eventManagers.push(new eventManager(this.layer,this,a))
+            this.eventManagers[a].initial()
+        }
+        this.optionManagers.forEach(optionManager=>optionManager.assemble())
+        this.perkManagers.forEach(perkManager=>perkManager.assemble())
+    }
+    initialCombatants(){
         this.combatantManager.clearCombatants()
+        for(let a=0,la=this.players;a<la;a++){
+            this.addCombatant({x:0,y:0},this.player[a],a+1,0,false)
+        }
+    }
+    initialManagersAfter(){
+        this.cardManagers.forEach(cardManager=>cardManager.initialDeck())
+    }
+    initial(){
         this.nodeManager.setupMap()
         this.resetAnim()
         if(variants.chaos){
@@ -275,9 +284,6 @@ class battle{
                     }
                 }
             }
-        }
-        for(let a=0,la=this.players;a<la;a++){
-            this.addCombatant({x:0,y:0},this.player[a],a+1,0,false)
         }
         if(variants.mtg){
             this.cardManagers.forEach(cardManager=>cardManager.mtgListing())
@@ -901,7 +907,7 @@ class battle{
         }
         let extra=false
         let noDraw=false
-        if(combatant.getStatus('Extra Drawless Turn')>0||combatant.getStatus('Extra Turn')>0||combatant.getStatus('Extra Turn Play Limit Per Turn')>0&&combatant.interiorStatus[0]==0){
+        if((combatant.getStatus('Extra Drawless Turn')>0||combatant.getStatus('Extra Turn')>0||combatant.getStatus('Extra Turn Play Limit Per Turn')>0&&combatant.interiorStatus[0]==0)&&combatant.getStatus('No Extra Turns')<=0){
             if(combatant.getStatus('Extra Drawless Turn')>0){
                 combatant.status.main[findList('Extra Drawless Turn',combatant.status.name)]--
                 noDraw=true
@@ -929,6 +935,10 @@ class battle{
         }else{
             this.turn.main++
             combatant.interiorStatus[0]=0
+        }
+        if(combatant.getStatus('No Extra Turns Next Turn')>0){
+            combatant.statusEffect('No Extra Turns',combatant.getStatus('No Extra Turns Next Turn'))
+            combatant.status.main[findList('No Extra Turns Next Turn',combatant.status.name)]=0
         }
         if(this.turn.main>=this.players){
             this.tileManager.activate()
@@ -1230,6 +1240,15 @@ class battle{
         }
         if(card.spec.includes(32)||card.spec.includes(12)&&card.reality[mode].includes(32)){
             this.quickReinforce('Inconsistent')
+        }
+        if(card.spec.includes(76)||card.spec.includes(12)&&card.reality[mode].includes(76)){
+            this.cardManagers[player].hand.discard(1)
+        }
+        if(card.spec.includes(77)||card.spec.includes(12)&&card.reality[mode].includes(77)){
+            userCombatant.addBlock(userCombatant.diceRoll(1,6))
+        }
+        if(card.spec.includes(78)||card.spec.includes(12)&&card.reality[mode].includes(78)){
+            userCombatant.statusEffect('Cycle Skill',1)
         }
         if(this.modded(101)){
             this.cardManagers[player].hand.randomEffect(0)
@@ -2272,7 +2291,7 @@ class battle{
         this.menu.mtg.manaNew[player]=copyArray(this.menu.mtg.manaBase[player][0])
     }
     addCurrency(amount,player){
-        if(player>=0&&player<this.players&&this.initialized){
+        if(player>=0&&player<this.players&&this.initializedConstants){
             let multi=(this.relicManager.hasRelic(135,player)?max(0,1-0.5*this.relicManager.active[135][player+1]):1)*(this.relicManager.hasRelic(165,player)?1+0.25*this.relicManager.active[165][player+1]:1)*(this.relicManager.hasRelic(415,player)?1+0.25*this.relicManager.active[415][player+1]:1)
             let bonus=this.relicManager.hasRelic(119,player)?20:0
             this.stats.earned[player]+=round((amount+bonus)*multi)

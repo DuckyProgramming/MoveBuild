@@ -666,12 +666,12 @@ class cardManager{
                 }
                 this.reserve.send(this.hand.cards,a,a+1,3)
                 a--
-                la--
                 total++
                 if(total>=this.drawAmount&&variants.witch){
                     a=la
                 }
             }
+            la=this.reserve.cards.length
         }
         return total
     }

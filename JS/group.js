@@ -26,14 +26,13 @@ class group{
         this.rewinds=0
         this.turnExhausts=0
         this.turnRewinds=0
-        this.retain2FuelValue=0
         this.lastMouseOver=-1
         this.lastSort=-1
         this.basicChange=[0,0]
         this.addEffect=[]
         this.finalPosition=0
         this.sendAmounts=[]
-        this.listKey=47
+        this.listKey=49
         this.listInput=[
             [0,4],
             [1,8],
@@ -78,6 +77,8 @@ class group{
             [44,53],
             [45,54],
             [46,55],
+            [47,56],
+            [48,57],
         ]
 
         this.reset()
@@ -276,7 +277,7 @@ class group{
     }
     cancel(){
         this.status=elementArray(0,this.listKey)
-        this.statusMarker=[0]
+        this.statusMarker=[0,0]
     }
     added(){
         this.cards[this.cards.length-1].callAddEffect()
@@ -630,7 +631,7 @@ class group{
     }
     retain2Fuel(amount,value){
         this.status[39]=amount
-        this.retain2FuelValue=value
+        this.statusMarker[1]=value
         this.generalSelfStatus()
     }
     duplicateSelectFree(amount){
@@ -660,6 +661,14 @@ class group{
     }
     transformFree(amount){
         this.status[46]+=amount
+        this.generalSelfStatus()
+    }
+    confuse(amount){
+        this.status[47]+=amount
+        this.generalSelfStatus()
+    }
+    retain2Foil(amount){
+        this.status[48]=amount
         this.generalSelfStatus()
     }
     generalSelfStatus(){
@@ -2662,6 +2671,15 @@ class group{
         if(card.spec.includes(65)){
             this.battle.cardManagers[this.player].drawAbstract(1,10,0,[65])
         }
+        if(card.spec.includes(74)&&!card.spec.includes(57)){
+            card.spec.push(57)
+        }
+        if(card.spec.includes(73)&&!card.spec.includes(73)){
+            card.spec.push(73)
+            if(card.spec.includes(57)){
+                card.spec.splice(card.spec.indexOf(57))
+            }
+        }
         switch(card.attack){
             case -3:
                 this.drawEffects.push([1,card.effect[0]])
@@ -3189,6 +3207,10 @@ class group{
                 card.falsed.colorDetail=card.colorDetail
                 card.falsed.target=card.target
                 card.falsed.cost=card.cost
+            break
+            case 6990:
+                userCombatant.addBlock(card.effect[1])
+                userCombatant.statusEffect('Vulnerable',card.effect[2])
             break
 
         }
@@ -4160,6 +4182,7 @@ class group{
                 this.battle.attackManager.edition=-1
                 this.battle.attackManager.drawn=-1
                 this.battle.attackManager.fuel=-1
+                this.battle.attackManager.debut=false
                 this.battle.attackManager.fugue=this.battle.combatantManager.combatants[this.battle.attackManager.user].fugue
 
                 this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
@@ -4179,7 +4202,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42],this.anim[45],this.anim[46]]
+                let anim=[max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -5117,6 +5140,7 @@ class group{
                 this.battle.attackManager.edition=a.edition
                 this.battle.attackManager.drawn=a.drawn
                 this.battle.attackManager.fuel=a.fuel
+                this.battle.attackManager.debut=a.debut
                 this.battle.attackManager.fugue=userCombatant.fugue
                 this.battle.attackManager.cost=a.cost
                 if(a.getBasic(1)&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
@@ -5314,7 +5338,7 @@ class group{
             break
             case 48:
                 this.cards[a].retain2=true
-                this.cards[a].fuel+=this.retain2FuelValue
+                this.cards[a].fuel+=this.statusMarker[1]
                 if(this.status[39]>0){
                     this.status[39]--
                 }
@@ -5380,6 +5404,19 @@ class group{
                 this.cards[a].discardEffect.push(10)
                 if(this.status[46]>0){
                     this.status[46]--
+                }
+            break
+            case 56:
+                this.cards[a].setCost(0,this.cards[a].attack==6805?(variants.mtg?[0]:0):[floor(random(0,variants.mtg?6:4))])
+                if(this.status[47]>0){
+                    this.status[47]--
+                }
+            break
+            case 57:
+                this.cards[a].retain2=true
+                this.cards[a].edition=2
+                if(this.status[48]>0){
+                    this.status[48]--
                 }
             break
         }
