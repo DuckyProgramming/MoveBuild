@@ -2102,7 +2102,7 @@ class card{
             case 1113: string+=`When Owned,\nCompact Cards`; break
             case 1114: string+=`When Owned,\nCompact Cards\nWhen Drawn,\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 1115: string+=`When Drawn,\nHeal ${this.calculateEffect(effect[0],4)} Health\nDiscard ${effect[1]}\nRandom Card${pl(effect[1])}`; break
-            case 1116: string+=`Deal Double Damage\nNext Turn\nBut All Enemies\nare Invisible`; break
+            case 1116: string+=`Deal Double Damage\nNext Turn\nAll Enemies Become\nInvisible Until Hit`; break
             case 1117: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nApply ${effect[1]} Burn\nto Everything`; break
             case 1118: string+=`Reflect Next Hit Taken`; break
             case 1119: string+=`Build an Antizone\nWith ${effect[0]}x`; break
@@ -3495,7 +3495,7 @@ class card{
             case 2514: string+=`50%:\nEdition a Card`; break
             case 2515: string+=`Upgrade a Random Card\nPermanently\nMay Deluxe Upgrade`; break
             case 2516: string+=`Add Any ${effect[0]} Random\nCard${pl(effect[0])}\nof Equivalent Level\nto Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less`; break
-            case 2517: string+=`All Cards in Hand\nCost ${effect[0]} Less Temporarily\nand are Ethereal`; break
+            case 2517: string+=`All Cards in Hand\nCost ${effect[0]} Less Temporarily\nand Have Ethereal`; break
             case 2518: string+=`Every Turn, a Random\nCard Costs ${effect[0]} Less`; break
             case 2519: string+=`Your Cable Cards\nCost 0`; break
             case 2520: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Random\nCable${pl(effect[1])} to Hand`; break
@@ -8074,6 +8074,38 @@ class card{
             case 7074: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n10%: Target Takes ${effect[1]}\nDamage Per Turn`; break
             case 7075: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas a Skill,\nAdd a Copy of\nThis Card to Hand`; break
             case 7076: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%:\nAdd a Copy of\nThis Card to Hand`; break
+            case 7077: string+=`If Target Has Less\nHealth Than You,\nIt Dies`; break
+            case 7078: string+=`Every Turn, Make\na Card Cost 1 Less`; break
+            case 7079: string+=`If You Have Weak,\nGain ${effect[0]} Strength\nIf You Have Vulnerable\nor Frail,\nGain ${effect[1]} Dexterity`; break
+            case 7080: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Weak\nWhen Etherealed,\nGain ${effect[2]} Armor`; break
+            case 7081: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nTargets' Attacks Deal ${effect[1]}\nLess Damage This Turn`; break
+            case 7082: string+=`Take Another Turn\nAll Enemies Become\nInvisible Until Hit`; break
+            case 7083: string+=`Take Another Turn\nLose ${effect[0]} Health`; break
+            case 7084: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Weak\nDraw ${effect[2]} Reversal${pl(effect[2])}\nto Hand`; break
+            case 7085: string+=`Gain ${effect[0]} Dexterity\nGain ${effect[1]} Frail\nDraw ${effect[2]} Sharp Word${pl(effect[2])}\nto Hand`; break
+            case 7086: string+=`If Target Has Less\nHealth Than the\nNumber of Cards in\nYour Deck${this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.cardManagers[this.player].deck.cards.length})`:``},\nIt Dies`; break
+            case 7087: string+=`Upgrade ${effect[0]} Random Card${pl(effect[0])}`; break
+            case 7088: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\nGain ${effect[2]} Weak\nIgnore Block`; break
+            case 7089: string+=`When Vanished,\nChoose and Add an\nUncommon Card From\nAny Character to Deck`; break
+            case 7090: string+=`When Drawn,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nin All Direction\nand Gain ${effect[1]} Energy`; break
+            case 7091: string+=`When Drawn,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nin All Direction\nand Gain (E)`; break
+            case 7092: string+=`All Cards in Hand\nCost ${effect[0]} Less Temporarily\nLose ${effect[1]} Energy\nNext Turn`; break
+            case 7093: string+=`Put the Top${effect[0]!=1?` ${effect[0]}`:``}\nCard${pl(effect[0])} in Discard Pile\nin Your Hand\nLose ${effect[1]} Health`; break
+            case 7094: string+=`Upgrade Your Hand\nGain ${effect[0]} Intangible`; break
+            case 7095: string+=`Take Another Turn\nGain ${effect[0]} Temporary\nStrength on That Turn`; break
+            case 7096: string+=`While in Your Deck,\nGain ${effect[0]} Currency\nEvery Combat`; break
+            case 7097: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have Strength,\nGain ${effect[1]} Energy`; break
+            case 7098: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have Strength,\nGain (G) (N)`; break
+            case 7099: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have Strength,\nGain (E) (G)`; break
+            case 7100: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have Strength,\nGain (E) (G) (N)`; break
+            case 7101: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Armor\nGain ${effect[2]} Vulnerable`; break
+            case 7102: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have Dodge,\nGain ${effect[1]} Energy`; break
+            case 7103: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have Dodge,\nGain (R) (N)`; break
+            case 7104: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have Dodge,\nGain (E) (R)`; break
+            case 7105: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have Dodge,\nGain (E) (E) (R)`; break
+            case 7106: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Temporary\nStrength For Each\nDodge You Have`; break
+            case 7107: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf There are no\nDefenses in Hand,\nDraw ${effect[1]} Defense${pl(effect[1])}`; break
+            case 7108: string+=`All Cards in Hand\nCost ${effect[0]} Less Temporarily\nLose ${effect[1]} Random Mana\nNext Turn`; break
 
             //mark p
 
@@ -9078,6 +9110,10 @@ class card{
                 this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),0,0)
                 this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),0,0)
             break
+            case 7089:
+                this.battle.overlayManager.overlays[3][this.player].active=true
+                this.battle.overlayManager.overlays[3][this.player].activate([0,1,12])
+            break
         }
     }
     callPullEffect(){
@@ -9244,6 +9280,9 @@ class card{
             break
             case 6710:
                 userCombatant.addBlock(this.effect[1])
+            break
+            case 7096:
+                this.battle.addCurrency(this.effect[0],this.player)
             break
         }
     }
@@ -10440,6 +10479,9 @@ class card{
             break
             case 7035:
                 this.battle.addCurrency(this.effect[1],this.player)
+            break
+            case 7080:
+                userCombatant.statusEffect('Armor',this.effect[2])
             break
         }
     }

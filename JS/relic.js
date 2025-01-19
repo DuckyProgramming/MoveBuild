@@ -3499,6 +3499,92 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('3',8,-3)
                 break
+                case '6 Turn Control':
+                break
+                case 'Elite Block':
+                break
+                case '25 Damage Weak':
+                break
+                case 'Death Block':
+                break
+                case 'Upgrade Currency':
+                break
+                case 'Block Break Temporary Strength':
+                break
+                case 'Combat Farsight':
+                break
+                case 'Shuffle Damage':
+                break
+                case 'Draw Damage':
+                break
+                case 'Injured Weak':
+                break
+                case 'Stash Heal':
+                break
+                case 'Same Card Triplicate':
+                break
+                case 'Emergency Draw':
+                break
+                case 'Bypass Defense':
+                break
+                case 'Upgrade All Commons':
+                break
+                case 'Upgrade All Uncommons':
+                break
+                case 'Upgrade All Rares':
+                break
+                case 'Extra Energy Temporary Dexterity':
+                break
+                case 'Upgrade All Offcolor':
+                break
+                case 'Ally Replacement':
+                break
+                case 'Named Kill':
+                break
+                case 'Attack Temporary Sstrength':
+                break
+                case 'Single Cost DOwn':
+                break
+                case 'Starting Temporary Slow':
+                break
+                case 'Letter Card':
+                break
+                case 'Remove Unremove':
+                break
+                case 'Unupgraded Block':
+                break
+                case 'Starting Intangible':
+                break
+                case 'Starting Cheap Power':
+                break
+                case 'Starting Random Reward':
+                break
+                case 'Extended Starting Draw':
+                break
+                case 'Colorless Deck':
+                break
+                case 'Heal Anytime':
+                break
+                case 'Energy/Turn 6 Health':
+                break
+                case 'Energy/Stuck':
+                break
+                case 'Safe Energy':
+                break
+                case 'Free Innate':
+                break
+                case 'Transform 9':
+                break
+                case 'Random Boss Relic/10 Max HP':
+                break
+                case 'Draw Up/Draft 10':
+                break
+                case 'Leftmost Energy':
+                break
+                case 'Energy/Kill Limit':
+                break
+                case 'Extra Mana Temporary Dexterity':
+                break
 
                 //mark p
             }

@@ -3212,6 +3212,14 @@ class group{
                 userCombatant.addBlock(card.effect[1])
                 userCombatant.statusEffect('Vulnerable',card.effect[2])
             break
+            case 7090:
+                this.battle.addSpecificEnergy(card.effect[1],this.player,6)
+                this.battle.combatantManager.areaAbstract(0,[card.effect[0],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+            break
+            case 7091:
+                this.battle.addSpecificEnergy(1,this.player,6)
+                this.battle.combatantManager.areaAbstract(0,[card.effect[0],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+            break
 
         }
         card.drawMark=false

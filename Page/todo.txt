@@ -8,48 +8,23 @@ there are still save bugs but idk bro
 
 new characters can't move
 
-faulty wisdom - 2 strength, 2 weak, get a bunch of status cards
-
 more cycle
 
 heel kick
 
 cherry skies
 
+terastar - damage, choose a status effect to apply
+
+[status] transient - immune to weak and vulnerable
+
+precipice
+
 
 
 OPERATION TRAPPENJAGD
 
-common:
-
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-
-uncommon:
-
-[]
-
-rare:
-
-[]
-[]
-[]
-
-shop:
-
-[]
-
-boss:
-
-[]
-[]
-[]
-[]
+[IN CONDUCT]
 
 
 
@@ -67,7 +42,7 @@ OPERATION ICATHIA
 
 OPERATION ROSENFELD
 
-[make character 22]
+[reorganize character 22]
 follow up
 fugue
 
@@ -75,10 +50,20 @@ OPERATION KHIRASARA
 
 [make character 23]
 cycle - if next card is of the type, it costs 0
+prime
+shuffle
 
 OPERATION FERROCHROME
 
-[conceptualize character 24]
+[the mathematician]
+confuse
+control
+
+
+
+AFTER
+
+runcheck every card in the game (for crashes)
 
 
 

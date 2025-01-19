@@ -7573,6 +7573,13 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,0,14,14)
             layer.line(-3.5*constants.sqrt2,3.5*constants.sqrt2,3.5*constants.sqrt2,-3.5*constants.sqrt2)
         break
+        case 765:
+            layer.fill(200,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+            layer.fill(120,135,150,fade)
+            layer.triangle(-1.5,2,-1.5,-2,-5.5,0)
+            layer.triangle(1.5,-2,1.5,2,5.5,0)
+        break
 
     }
     //mark s

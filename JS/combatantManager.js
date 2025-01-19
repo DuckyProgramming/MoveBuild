@@ -848,7 +848,7 @@ class combatantManager{
                 type==1&&this.combatants[a].team==0&&this.combatants[a].life>0||
                 type==2&&this.combatants[a].team==0&&this.combatants[a].life>0&&!this.combatants[a].spec.includes(args[0])||
                 type==3&&this.combatants[a].construct&&this.combatants[a].life>0||
-                type==4&&types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==args[0]||
+                type==4&&this.combatants[a].intent>=0&&this.combatants[a].attack.length>0&&types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==args[0]||
                 type==5&&this.combatants[a].construct&&this.combatants[a].team==args[0]&&this.combatants[a].name==args[1]&&this.combatants[a].life>0||
                 type==6&&this.combatants[a].team==0&&this.combatants[a].life>0&&this.combatants[a].getStatus(args[0])>0
             ){
