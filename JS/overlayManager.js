@@ -177,6 +177,9 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[110])],//make card retain
                     [new overlay(this.layer,this.battle,0,2,[111])],//make discard card free
                     [new overlay(this.layer,this.battle,0,2,[112,0])],//recovery
+                    [new overlay(this.layer,this.battle,0,28,[])],//death note
+                    [new overlay(this.layer,this.battle,0,8,[0,0,3])],//new card to deck, relic 497, typewriter,170
+                    [new overlay(this.layer,this.battle,0,2,[113])],//make card innate and free
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

@@ -540,6 +540,15 @@ class combatant{
                 this.battle.tileManager.tiles[tile].addType(6)
             }
         }
+        if(this.battle.relicManager.hasRelic(493,-1)){
+            for(let a=0,la=this.battle.relicManager.detail[493].length;a<la;a++){
+                for(let b=0,lb=this.battle.relicManager.detail[493][a].length;b<lb;b++){
+                    if(this.battle.relicManager.detail[493][a][b]==this.type){
+                        this.loseHealth(200)
+                    }
+                }
+            }
+        }
         if(this.team==0){
             if(this.battle.modded(20)&&floor(random(0,4))==0){
                 this.statusEffect('Invisible',999)
@@ -3029,6 +3038,30 @@ class combatant{
                 if(distTargetCombatant(0,this,userCombatant)>=2&&this.battle.relicManager.hasRelic(175,userCombatant.id)){
                     damage+=3*this.battle.relicManager.active[175][userCombatant.id+1]
                 }
+                if(this.status.main[3]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
+                    this.status.main[3]=0
+                }
+                if(this.status.main[21]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
+                    this.status.main[21]=0
+                }
+                if(this.status.main[24]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
+                    this.status.main[24]=0
+                }
+                if(this.status.main[53]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
+                    this.status.main[53]=0
+                }
+                if(this.status.main[57]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
+                    this.status.main[57]=0
+                }
+                if(this.status.main[97]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
+                    this.status.main[97]=0
+                }
+                if(this.status.main[243]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
+                    this.status.main[243]=0
+                }
+                if(this.status.main[319]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
+                    this.status.main[319]=0
+                }
             }
             /*if(userCombatant.status.main[49]>0){
                 userCombatant.takeDamage(userCombatant.status.main[49])
@@ -3596,6 +3629,9 @@ class combatant{
                     if(this.battle.relicManager.hasRelic(246,user)&&damage>=25){
                         this.battle.cardManagers[user].draw(this.battle.relicManager.active[246][user+1])
                     }
+                    if(this.battle.relicManager.hasRelic(475,user)&&damage>=25){
+                        this.statusEffect('Weak',this.battle.relicManager.active[475][user+1])
+                    }
                 }
             }
             if(hit||dodged){
@@ -4039,10 +4075,35 @@ class combatant{
                 if(this.status.main[358]>0){
                     this.heal(this.status.main[358])
                 }
-                if(this.spec.includes(16)&&this.life<=0&&user>=0&&user<this.battle.players){
+                if((this.spec.includes(13)||this.battle.relicManager.hasRelic(492,-1)&&(this.spec.includes(14)||this.spec.includes(15)||this.spec.includes(16)||this.spec.includes(21)||this.spec.includes(22)))&&this.life<=0&&user>=0&&user<this.battle.players){
+                    let prefered=floor(random(0,this.battle.overlayManager.overlays[0].length))
                     for(let a=0,la=this.battle.players;a<la;a++){
-                        this.battle.overlayManager.overlays[25][a].active=true
-                        this.battle.overlayManager.overlays[25][a].activate([0,[{type:0,value:[5]}]])
+                        let reward=this.spec.includes(16)?[{type:0,value:[5]}]:[]
+                        if(this.battle.relicManager.hasRelic(492,user)){
+                            if(this.spec.includes(13)){
+                                reward.push({type:4,value:[10]})
+                            }
+                            if(this.spec.includes(14)){
+                                reward.push({type:7,value:[1]})
+                            }
+                            if(this.spec.includes(15)&&a==prefered){
+                                reward.push({type:6,value:[1]})
+                            }
+                            if(this.spec.includes(16)){
+                                reward.push({type:0,value:[25]})
+                            }
+                            if(this.spec.includes(21)){
+                                reward.push({type:4,value:[15]})
+                                reward.push({type:0,value:[250]})
+                            }
+                            if(this.spec.includes(22)){
+                                reward.push({type:0,value:[100]})
+                            }
+                        }
+                        if(reward.length>0){
+                            this.battle.overlayManager.overlays[25][a].active=true
+                            this.battle.overlayManager.overlays[25][a].activate([0,reward])
+                        }
                     }
                 }
             }
@@ -5257,6 +5318,7 @@ class combatant{
         this.life=min(this.life,this.base.life)
     }
     loseHealth(amount){
+        let preLife=this.life
         if(this.status.main[21]>0){
             this.status.main[21]--
             this.infoAnim.upFlash[2]=true
@@ -5291,6 +5353,9 @@ class combatant{
             if(this.status.main[655]>0){
                 this.battle.combatantManager.randomEnemyEffect(23,['Poison',this.status.main[655]])
             }
+        }
+        if(this.battle.relicManager.hasRelic(482,-1)&&preLife>=this.base.life*0.25&&this.life<this.base.life*0.25){
+            this.statusEffect('Weak',999)
         }
     }
     endTurn(){
@@ -7374,7 +7439,7 @@ class combatant{
                     this.battle.cardManagers[this.battle.turn.main].hand.allEffect(111)
                 }
                 if(!this.minion){
-                    this.battle.relicManager.activate(3)
+                    this.battle.relicManager.activate(3,[this.id])
                 }
                 if(this.battle.turn.main<this.battle.players){
                     this.battle.stats.killed[this.battle.turn.main]++

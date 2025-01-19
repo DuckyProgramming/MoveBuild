@@ -3500,90 +3500,312 @@ class relic{
                     this.layer.text('3',8,-3)
                 break
                 case '6 Turn Control':
+                    displaySymbol(this.layer,-8,0,56,0,1,this.fade)
+                    displaySymbol(this.layer,7,10,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-10,5,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('6',7,1)
                 break
                 case 'Elite Block':
+                    displaySymbol(this.layer,-8,0,34,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,-2,27,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('4',8,-2)
                 break
                 case '25 Damage Weak':
+                    displaySymbol(this.layer,-8,0,18,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,24,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('25',-8,0)
+                    this.layer.text('1',10,0)
                 break
                 case 'Death Block':
+                    displaySymbol(this.layer,-8,0,22,0,0.5,this.fade)
+                    displaySymbol(this.layer,9,0,27,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('6',9,0)
                 break
                 case 'Upgrade Currency':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,17,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('20',8,0)
                 break
-                case 'Block Break Temporary Strength':
+                case 'Block Auto Counter':
+                    displaySymbol(this.layer,-8,0,27,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,38,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,0)
                 break
                 case 'Combat Farsight':
+                    displaySymbol(this.layer,-4,-10,3,0,0.3,this.fade)
+                    displaySymbol(this.layer,-4,10,3,0,0.3,this.fade)
+                    displaySymbol(this.layer,-4,0,6,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,0,107,0,1,this.fade)
                 break
                 case 'Shuffle Damage':
+                    displaySymbol(this.layer,-8,0,14,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,18,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',8,0)
                 break
                 case 'Draw Damage':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,4,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,0,18,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,0)
                 break
                 case 'Injured Weak':
+                    displaySymbol(this.layer,-8,0,2,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,24,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('<25%',-8,0)
                 break
                 case 'Stash Heal':
+                    displaySymbol(this.layer,-8,0,52,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('20',8,0)
                 break
                 case 'Same Card Triplicate':
+                    displaySymbol(this.layer,-7,-8,90,0,0.8,this.fade)
+                    displaySymbol(this.layer,-7,8,90,0,0.8,this.fade)
+                    displaySymbol(this.layer,12,0,90,0,0.8,this.fade)
+                    displaySymbol(this.layer,2,0,4,0,0.4,this.fade)
                 break
                 case 'Emergency Draw':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
                 break
                 case 'Bypass Defense':
+                    displaySymbol(this.layer,0,0,44,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,16,0,1.2,this.fade)
                 break
                 case 'Upgrade All Commons':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,17,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,-8,7,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,6,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,8,6,100,0,0.315,this.fade)
                 break
                 case 'Upgrade All Uncommons':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,17,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,-8,7,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,6,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,8,6,95,0,0.315,this.fade)
                 break
                 case 'Upgrade All Rares':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,17,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,-8,7,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,6,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,8,6,85,0,0.315,this.fade)
                 break
                 case 'Extra Energy Temporary Dexterity':
+                    displaySymbol(this.layer,-10,-3,9,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,-3,42,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,8,4,0,0.8,this.fade)
                 break
                 case 'Upgrade All Offcolor':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,17,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,-8,7,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,6,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,8,6,77,0,0.5625,this.fade)
                 break
                 case 'Ally Replacement':
+                    displaySymbol(this.layer,-10,0,169,0,0.4,this.fade)
+                    displaySymbol(this.layer,6,-9,22,0,0.3,this.fade)
+                    displaySymbol(this.layer,6,9,3,0,0.3,this.fade)
+                    displaySymbol(this.layer,6,0,6,0,0.3,this.fade)
                 break
                 case 'Named Kill':
+                    displaySymbol(this.layer,-8,0,22,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('"?"',8,0)
                 break
-                case 'Attack Temporary Sstrength':
+                case 'Attack Temporary Strength':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,18,0,0.6,this.fade)
+                    displaySymbol(this.layer,10,0,41,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',10,0)
                 break
-                case 'Single Cost DOwn':
+                case 'Single Cost Down':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,9,0,0.9,this.fade)
+                    displaySymbol(this.layer,0,0,6,0,0.6,this.fade)
                 break
-                case 'Starting Temporary Slow':
+                case 'Starting Temporary Speed Down':
+                    displaySymbol(this.layer,-6,0,170,0,1.5,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-6,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
                 break
                 case 'Letter Card':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,120,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('"?"',8,0)
                 break
                 case 'Remove Unremove':
+                    displaySymbol(this.layer,0,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,0,16,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,0,171,0,1.2,this.fade)
                 break
                 case 'Unupgraded Block':
+                    displaySymbol(this.layer,-8,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-8,0,6,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,0,27,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,0)
                 break
                 case 'Starting Intangible':
+                    displaySymbol(this.layer,-8,-2,48,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
                 break
                 case 'Starting Cheap Power':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,21,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,0,9,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
                 break
                 case 'Starting Random Reward':
+                    displaySymbol(this.layer,0,-9,28,0,0.6,this.fade)
+                    displaySymbol(this.layer,-7,6,11,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,6,37,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('50',0,-9)
+                    this.layer.text('3',-7,6)
+                    this.layer.text('10',7,6)
                 break
                 case 'Extended Starting Draw':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.text('1-5',8,-3)
                 break
                 case 'Colorless Deck':
+                    displaySymbol(this.layer,-11,0,17,0,0.3,this.fade)
+                    displaySymbol(this.layer,-11,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,11,0,57,0,0.6,this.fade)
+                    displaySymbol(this.layer,11,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,0,4,0,0.4,this.fade)
                 break
                 case 'Heal Anytime':
+                    displaySymbol(this.layer,-8,0,28,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('60',-8,0)
+                    this.layer.text('10',8,0)
                 break
                 case 'Energy/Turn 6 Health':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,10,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,-10,18,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('6',8,2)
+                    this.layer.textSize(8)
+                    this.layer.text('6',8,-10)
                 break
                 case 'Energy/Stuck':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,172,0,0.8,this.fade)
                 break
                 case 'Safe Energy':
+                    displaySymbol(this.layer,0,0,9,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,2,0,0.6,this.fade)
                 break
                 case 'Free Innate':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,9,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,58,1.5,this.fade)
                 break
-                case 'Transform 9':
+                case 'Transform 10':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,159,0,1.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('10',0,0)
                 break
                 case 'Random Boss Relic/10 Max HP':
+                    displaySymbol(this.layer,-6,-5,10,0,0.4,this.fade)
+                    displaySymbol(this.layer,10,0,1,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',-6,10)
                 break
                 case 'Draw Up/Draft 10':
+                    displaySymbol(this.layer,-8,-3,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-8,9,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,0,17,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(8)
+                    this.layer.text('10',8,0)
                 break
                 case 'Leftmost Energy':
+                    displaySymbol(this.layer,-5,0,8,0,0.5,this.fade)
+                    displaySymbol(this.layer,-15,0,5,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,-5,9,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,-5)
                 break
                 case 'Energy/Kill Limit':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,-3,22,0,0.4,this.fade)
+                    displaySymbol(this.layer,9,8,4,0,0.5,this.fade)
                 break
                 case 'Extra Mana Temporary Dexterity':
+                    displayMtgManaSymbol(this.layer,-10,-3,-1,0,0.64,this.fade,-1,[])
+                    displaySymbol(this.layer,10,-3,42,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,8,4,0,0.8,this.fade)
                 break
 
                 //mark p
@@ -3665,7 +3887,7 @@ class relic{
                         this.layer.textSize(6)
                         this.layer.text(`${10-detail}/10`,0,-16)
                     break
-                    case '6 Turn Turn':
+                    case '6 Turn Turn': case '6 Turn Control':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%6+1}/6`,0,-16)
@@ -3772,6 +3994,10 @@ class relic{
                             break
                         }
                     }
+                break
+                case 'Heal Anytime':
+                    this.battle.overlayManager.overlays[27][this.player].active=true
+                    this.battle.overlayManager.overlays[27][this.player].activate()
                 break
             }
         }

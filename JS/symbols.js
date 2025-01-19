@@ -13883,6 +13883,41 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.quad(0,0,2,4,0,6,-2,4)
             layer.quad(0,0,4,2,6,0,4,-2)
         break
+        case 169:
+            layer.stroke(0,fade)
+            layer.strokeWeight(3)
+            layer.noFill()
+            layer.ellipse(0,0,30,30)
+            layer.strokeWeight(6)
+            layer.point(-6,0)
+            layer.point(6,0)
+            layer.strokeWeight(2)
+            layer.arc(-6,0,10,10,-180,-90)
+            layer.arc(6,0,10,10,-90,0)
+        break
+        case 170:
+            layer.fill(255,225,75,fade)
+            layer.triangle(-2,-4,2,-4,0,8)
+            layer.rect(-4,0,3,3)
+        break
+        case 171:
+            layer.fill(75,fade)
+            layer.triangle(-14,0,-10,0,-12,2)
+            layer.triangle(14,0,10,0,12,-2)
+            layer.stroke(75,fade)
+            layer.noFill()
+            layer.strokeWeight(2)
+            layer.strokeCap(SQUARE)
+            layer.arc(0,0,24,24,-180,-45)
+            layer.arc(0,0,24,24,0,135)
+            layer.strokeCap(ROUND)
+        break
+        case 172:
+            layer.fill(225,fade)
+            layer.ellipse(0,2,5,5)
+            layer.ellipse(sin(120)*2,cos(120)*2,5,5)
+            layer.ellipse(-sin(120)*2,cos(120)*2,5,5)
+        break
 
     }
     layer.pop()
@@ -14053,4 +14088,8 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 166-Damage Down
 167-Block Down
 168-Storage (Citrine)
+169-Random Ally
+170-Temporary Speed Down
+171-Big Redo
+172-Cannot Move
 */

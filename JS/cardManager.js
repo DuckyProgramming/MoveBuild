@@ -540,6 +540,9 @@ class cardManager{
         }
     }
     draw(amount,spec=0){
+        if(!this.tempDraw.active){
+            this.battle.relicManager.activate(23,[amount,this.player])
+        }
         if(this.midDraw&&amount>0){
             this.reserve.drawEffects.push([5,amount])
         }else if(amount>0){
@@ -567,6 +570,9 @@ class cardManager{
         }
     }
     drawReturn(amount,spec=0){
+        if(!this.tempDraw.active){
+            this.battle.relicManager.activate(23,[amount,this.player])
+        }
         let sent=[]
         if(amount>0){
             this.hand.allEffectArgs(31,[amount])
@@ -602,6 +608,9 @@ class cardManager{
         return sent
     }
     drawBottom(amount,spec=0){
+        if(!this.tempDraw.active){
+            this.battle.relicManager.activate(23,[amount,this.player])
+        }
         if(amount>0){
             this.hand.allEffectArgs(31,[amount])
             this.battle.stats.drawn[this.player]+=amount
@@ -626,6 +635,9 @@ class cardManager{
         }
     }
     drawAbstract(amount,variant,output,args){
+        if(!this.tempDraw.active){
+            this.battle.relicManager.activate(23,[amount,this.player])
+        }
         if(amount>0){
             this.hand.allEffectArgs(31,[amount])
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
@@ -653,6 +665,9 @@ class cardManager{
         }
     }
     drawInnate(){
+        if(!this.tempDraw.active){
+            this.battle.relicManager.activate(23,[amount,this.player])
+        }
         let total=0
         for(let a=0,la=this.reserve.cards.length;a<la;a++){
             if(this.reserve.cards[a].spec.includes(3)){

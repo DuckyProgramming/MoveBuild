@@ -60185,6 +60185,20 @@ types.card=[
                 {effect:[1],attack:6763,cost:[],target:[0],spec:[4,5,62],class:8},
             ],
         },
+    },{
+        name:'Emergency\nDraw',rarity:-6,list:0,
+        levels:[
+            {effect:[2],attack:8,cost:0,target:[0],spec:[1,2],class:11},
+            {effect:[3],attack:8,cost:0,target:[0],spec:[1,2],class:11},
+            {effect:[4],attack:8,cost:0,target:[0],spec:[1,2],class:11},
+        ],mtg:{
+            rarity:-6,list:0,color:[0],
+            levels:[
+                {effect:[2],attack:8,cost:[],target:[0],spec:[1,2],class:11},
+                {effect:[3],attack:8,cost:[],target:[0],spec:[1,2],class:11},
+                {effect:[4],attack:8,cost:[],target:[0],spec:[1,2],class:11},
+            ],
+        },
     },
 
     //mark s

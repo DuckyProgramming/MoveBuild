@@ -30,6 +30,7 @@ class group{
         this.lastSort=-1
         this.basicChange=[0,0]
         this.addEffect=[]
+        this.costDownListing=[]
         this.finalPosition=0
         this.sendAmounts=[]
         this.listKey=49
@@ -145,7 +146,7 @@ class group{
                     {type:1,value:[0,0,0]},
                     {type:1,value:[0,1,0]},
                     {type:1,value:[0,1,0]},
-                    ]])
+                ]])
                 for(let a=0,la=activeList[game.ascend>=20?5:4].length;a<la;a++){
                     this.addInitial(findName(activeList[game.ascend>=20?5:4][a][0],types.card),activeList[game.ascend>=20?5:4][a][1]+level,activeList[game.ascend>=20?5:4][a][2]==-2?types.card[findName(activeList[game.ascend>=20?5:4][a][0],types.card)].list:activeList[game.ascend>=20?5:4][a][2]==-1?player:activeList[game.ascend>=20?5:4][a][2])
                 }
@@ -355,9 +356,14 @@ class group{
                         this.cards[this.cards.length-1].class==2&&this.battle.relicManager.hasRelic(13,this.player)||
                         this.cards[this.cards.length-1].class==3&&this.battle.relicManager.hasRelic(14,this.player)||
                         this.cards[this.cards.length-1].class==4&&this.battle.relicManager.hasRelic(15,this.player)||
-                        this.cards[this.cards.length-1].class==11&&this.battle.relicManager.hasRelic(311,this.player)
+                        this.cards[this.cards.length-1].class==11&&this.battle.relicManager.hasRelic(311,this.player)||
+                        this.cards[this.cards.length-1].rarity==0&&this.battle.relicManager.hasRelic(487,this.player)||
+                        this.cards[this.cards.length-1].rarity==1&&this.battle.relicManager.hasRelic(488,this.player)||
+                        this.cards[this.cards.length-1].rarity==2&&this.battle.relicManager.hasRelic(489,this.player)||
+                        this.cards[this.cards.length-1].color!=this.battle.player[this.player]&&this.battle.relicManager.hasRelic(491,this.player)
                     )){
                         this.cards[this.cards.length-1]=upgradeCard(this.cards[this.cards.length-1])
+                        this.generalUpgrade(this.cards[this.cards.length-1])
                     }
                     this.battle.relicManager.activate(5,[this.player])
                     if(types.card[type].rarity>=0||types.card[type].list>=0){
@@ -915,6 +921,7 @@ class group{
                     this.cards[a].discardEffect.push(0)
                 }else{
                     this.cards[a]=upgradeCard(this.cards[a])
+                    this.generalUpgrade(this.cards[a])
                 }
                 done++
                 if(done>=value&&value>=0){
@@ -1194,6 +1201,7 @@ class group{
                 break
                 case 4:
                     this.cards[a]=upgradeCard(this.cards[a])
+                    this.generalUpgrade(this.cards[a])
                 break
                 case 5:
                     this.cards[a].setCost(0,this.cards[a].attack==6805?[0]:[floor(random(0,variants.mtg?6:4))])
@@ -1201,6 +1209,7 @@ class group{
                 case 6:
                     if(this.cards[a].basic&&this.cards[a].level==0){
                         this.cards[a]=upgradeCard(this.cards[a])
+                        this.generalUpgrade(this.cards[a])
                     }
                 break
                 case 7:
@@ -1217,6 +1226,7 @@ class group{
                 case 9:
                     if(this.cards[a].name=='Burn'&&this.cards[a].level==0){
                         this.cards[a]=upgradeCard(this.cards[a])
+                        this.generalUpgrade(this.cards[a])
                     }
                 break
                 case 10:
@@ -1747,6 +1757,7 @@ class group{
                         if(this.cards[a].name=='Step'||this.cards[a].name=='Step-L'||this.cards[a].name=='Step-R'){
                             if(this.cards[a].level==0){
                                 this.cards[a]=upgradeCard(this.cards[a])
+                                this.generalUpgrade(this.cards[a])
                             }
                         }else{
                             this.cards[a]=this.battle.cardManagers[this.player].transformCard(this.cards[a])
@@ -2243,9 +2254,11 @@ class group{
                     break
                     case 2: case 36: case 38:
                         this.cards[index]=upgradeCard(this.cards[index])
+                        this.generalUpgrade(this.cards[index])
                     break
                     case 3: case 47:
                         this.cards[index]=unupgradeCard(this.cards[index])
+                        this.generalUpgrade(this.cards[index])
                     break
                     case 4: case 65:
                         this.copySelf(index)
@@ -2494,6 +2507,8 @@ class group{
                     break
                     case 54:
                         this.cards[index]=upgradeCard(upgradeCard(this.cards[index]))
+                        this.generalUpgrade(this.cards[index])
+                        this.generalUpgrade(this.cards[index])
                     break
                     case 56: case 73:
                         if(massed&&this.id!=0){
@@ -2553,6 +2568,7 @@ class group{
                             }
                         }
                         this.cards[index]=upgradeCard(this.cards[index])
+                        this.generalUpgrade(this.cards[index])
                         return this.cards[index].spec.includes(args[1])
                     case 68:
                         if(massed&&this.id!=0){
@@ -3382,11 +3398,13 @@ class group{
                     break
                     case 7:
                         list[list.length-1]=upgradeCard(list[list.length-1])
+                        this.generalUpgrade(list[list.length-1])
                         list[list.length-1].retain2=true
                     break
                     case 8:
                         if(list[list.length-1].level==0){
                             list[list.length-1]=upgradeCard(list[list.length-1])
+                            this.generalUpgrade(list[list.length-1])
                         }else{
                             args[1].addBarrier(args[2])
                         }
@@ -3424,6 +3442,7 @@ class group{
                     break
                     case 17:
                         list[list.length-1]=upgradeCard(list[list.length-1])
+                        this.generalUpgrade(list[list.length-1])
                     break
                 }
             }
@@ -3537,6 +3556,7 @@ class group{
             break
             case 8:
                 cardData=upgradeCard(cardData)
+                this.generalUpgrade(cardData)
                 if(this.drawEffect(cardData,sendId)){this.sendResultCancel=true}
             break
             case 9:
@@ -3546,6 +3566,7 @@ class group{
             case 10:
                 if(cardData.level<=1){
                     cardData=upgradeCard(cardData)
+                    this.generalUpgrade(cardData)
                 }
             break
             case 12:
@@ -3953,6 +3974,25 @@ class group{
                 this.cards[a].spec.splice(this.cards[a].spec.indexOf(3),1)
                 this.cards[a].additionalSpec.splice(this.cards[a].additionalSpec.indexOf(3),1)
             }
+        }
+    }
+    unInnateExpense(cardClass){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].additionalSpec.includes(3)&&(cardClass==-1||this.cards[a].class==cardClass)){
+                this.cards[a].spec.splice(this.cards[a].spec.indexOf(3),1)
+                this.cards[a].additionalSpec.splice(this.cards[a].additionalSpec.indexOf(3),1)
+                this.cards[a].setCost(2,[99])
+            }
+        }
+    }
+    unCostDown(type,args){
+        if(this.costDownListing.length>0){
+            for(let a=0,la=this.cards.length;a<la;a++){
+                if(this.cards[a].id==this.costDownListing[0]){
+                    this.cards[a].costUp(type,args)
+                }
+            }
+            this.costDownListing.splice(0,1)
         }
     }
     cost(cost,cardClass,spec,target,card){
@@ -5429,6 +5469,11 @@ class group{
             break
         }
     }
+    generalUpgrade(card){
+        if(this.battle.relicManager.hasRelic(477,this.player)&&this.id==0){
+            this.battle.addCurrency(20*this.battle.relicManager.active[477][this.player+1],this.player)
+        }
+    }
     generalExhaust(a){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(this.cards[a].purge){
@@ -5586,12 +5631,14 @@ class group{
                             if(this.cards[a].discardEffect.includes(0)){
                                 let hold=this.cards[a].discardEffect
                                 this.cards[a]=upgradeCard(this.cards[a],true)
+                                this.generalUpgrade(this.cards[a])
                                 this.cards[a].discardEffect=hold
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0),1)
                                 for(let b=0,lb=5;b<lb;b++){
                                     if(this.cards[a].discardEffect.includes(0)){
                                         let hold=this.cards[a].discardEffect
                                         this.cards[a]=upgradeCard(this.cards[a],true)
+                                        this.generalUpgrade(this.cards[a])
                                         this.cards[a].discardEffect=hold
                                         this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0),1)
                                     }else{
@@ -5644,6 +5691,7 @@ class group{
                                 let hold=this.cards[a].discardEffect
                                 this.cards[a]=this.battle.cardManagers[this.player].transformCardPrism(this.cards[a])
                                 this.cards[a]=upgradeCard(this.cards[a])
+                                this.generalUpgrade(this.cards[a])
                                 this.cards[a].discardEffect=hold
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(17),1)
                             }
@@ -5779,6 +5827,7 @@ class group{
                         }else{
                             if(this.cards[a].discardEffectBuffered.includes(0)||this.battle.relicManager.hasRelic(195,this.player)&&!this.cards[a].usable&&floor(random(0,4))==0){
                                 this.cards[a]=upgradeCard(this.cards[a])
+                                this.generalUpgrade(this.cards[a])
                                 this.cards[a].usable=false
                                 if(this.cards[a].discardEffectBuffered.includes(0)){
                                     this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(0))
@@ -5808,6 +5857,7 @@ class group{
                             }
                             if(this.battle.modded(160)&&!this.cards[a].usable){
                                 this.cards[a]=unupgradeCard(this.cards[a])
+                                this.generalUpgrade(this.cards[a])
                                 this.cards[a].usable=false
                             }
                             if(this.cards[a].usable){

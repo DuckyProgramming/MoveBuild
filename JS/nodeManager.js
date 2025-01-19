@@ -382,21 +382,30 @@ class nodeManager{
     }
     update(){
         for(let a=0,la=this.nodes.length;a<la;a++){
-            this.nodes[a].update(!(this.nodes[a].tilePosition.y==this.tilePosition.y&&this.nodes[a].complete)&&(
-                this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||
-                this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].getConnections().includes(a)||
-                this.tilePosition.y>=0&&this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2||
-                this.tilePosition.y>0&&(this.nodes[a].getConnections().includes(this.getNodeIndex(this.tilePosition.x,this.tilePosition.y))&&this.battle.relicManager.hasRelic(336,-1))
-            ),this.nodes[a].tilePosition.y<this.tilePosition.y)
+            this.nodes[a].update(
+                !(this.nodes[a].tilePosition.y==this.tilePosition.y&&this.nodes[a].complete)&&(
+                    this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||
+                    this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].getConnections(1).includes(a)||
+                    this.tilePosition.y>=0&&this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2||
+                    this.tilePosition.y>0&&(this.nodes[a].getConnections(1).includes(this.getNodeIndex(this.tilePosition.x,this.tilePosition.y))&&this.battle.relicManager.hasRelic(336,-1))
+                ),
+                !(this.nodes[a].tilePosition.y==this.tilePosition.y&&this.nodes[a].complete)&&(
+                    this.tilePosition.y==-1&&this.nodes[a].tilePosition.y<=(this.battle.relicManager.hasRelic(479,-1)?1:0)||
+                    this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].getConnections(this.battle.relicManager.hasRelic(479,-1)?2:1).includes(a)||
+                    this.tilePosition.y>=0&&this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y-(this.battle.relicManager.hasRelic(479,-1)?1:0)&&this.nodes[a].tilePosition.y<=(this.tilePosition.y+this.battle.relicManager.hasRelic(479,-1)?3:2)||
+                    this.tilePosition.y>0&&(this.nodes[a].getConnections(this.battle.relicManager.hasRelic(479,-1)?2:1).includes(this.getNodeIndex(this.tilePosition.x,this.tilePosition.y))&&this.battle.relicManager.hasRelic(336,-1))
+                ),
+                this.nodes[a].tilePosition.y<this.tilePosition.y
+            )
         }
     }
     onClick(){
         for(let a=0,la=this.nodes.length;a<la;a++){
             if(dist(inputs.rel.x,inputs.rel.y,this.nodes[a].position.x,this.nodes[a].position.y)<25&&!(this.nodes[a].tilePosition.y==this.tilePosition.y&&this.nodes[a].complete)&&(
                 this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||
-                this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].getConnections().includes(a)||
+                this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].getConnections(1).includes(a)||
                 this.tilePosition.y>=0&&this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2||
-                this.tilePosition.y>0&&(this.nodes[a].getConnections().includes(this.getNodeIndex(this.tilePosition.x,this.tilePosition.y))&&this.battle.relicManager.hasRelic(336,-1))
+                this.tilePosition.y>0&&(this.nodes[a].getConnections(1).includes(this.getNodeIndex(this.tilePosition.x,this.tilePosition.y))&&this.battle.relicManager.hasRelic(336,-1))
             )){
                 this.total++
                 if(this.nodes[a].tilePosition.y<this.tilePosition.y){

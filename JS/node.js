@@ -84,8 +84,9 @@ class node{
         this.scroll=0
         this.complete=false
         this.active=false
+        this.contain=false
 
-        this.anim={complete:0,active:0,past:0,description:0}
+        this.anim={complete:0,active:0,contain:0,past:0,description:0}
     }
     establish(x,y,baseX,baseY,tileX,tileY,type,reality,combat,connections,extraConnections,scroll,complete){
         this.position={x:x,y:y}
@@ -111,7 +112,7 @@ class node{
                 [210,195,180],this.anim.active),
                 [125,200,225],this.anim.active*this.anim.past),
                 [100,255,200],this.anim.complete*this.anim.active*this.anim.past)
-        let cap=max(this.anim.complete,this.anim.active,this.anim.description)
+        let cap=max(this.anim.complete,this.anim.active,this.type>2?0:this.anim.contain,this.anim.description)
         this.layer.push()
         this.layer.translate(this.position.x,this.position.y)
         this.layer.scale(this.size)
@@ -130,7 +131,7 @@ class node{
             this.layer.textSize(12)
             this.layer.text('Unknown',0,25)
         }else{
-            let readable=(this.complete||this.active)&&!this.battle.modded(196)
+            let readable=(this.complete||this.active||this.contain)&&!this.battle.modded(196)
             switch(type){
                 case 0:
                     this.layer.stroke(...color,this.fade)
@@ -344,14 +345,26 @@ class node{
             }
         }
     }
-    getConnections(){
-        return this.battle.relicManager.hasRelic(341,-1)?this.connections.concat(this.extraConnections):this.connections
+    getConnections(size){
+        if(size==1){
+            return this.battle.relicManager.hasRelic(341,-1)?this.connections.concat(this.extraConnections):this.connections
+        }else{
+            let baseline=this.battle.relicManager.hasRelic(341,-1)?this.connections.concat(this.extraConnections):this.connections
+            let contained=copyArray(baseline)
+            for(let a=0,la=baseline.length;a<la;a++){
+                contained.push(...this.battle.nodeManager.nodes[baseline[a]].getConnections(size-1))
+            }
+            return contained
+        }
+        return []
     }
-    update(active,past){
+    update(active,contain,past){
         this.size=smoothAnim(this.size,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<25,1,1.5,5)
         this.active=active
+        this.contain=contain
         this.anim.complete=smoothAnim(this.anim.complete,this.complete,0,1,5)
         this.anim.active=smoothAnim(this.anim.active,active,0,1,5)
+        this.anim.contain=smoothAnim(this.anim.contain,contain,0,1,5)
         this.anim.past=smoothAnim(this.anim.past,past,0,1,5)
         this.anim.description=smoothAnim(this.anim.description,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<25,0,1,5)
         if(this.scroll>0){

@@ -9352,6 +9352,10 @@ class card{
     }
     callRemoveEffect(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        if(this.battle.relicManager.hasRelic(498,this.player)){
+            this.battle.overlayManager.overlays[94][this.player].active=true
+            this.battle.overlayManager.overlays[94][this.player].activate([this.level,0])
+        }
         switch(this.attack){
             case -10:
                 userCombatant.loseMaxHP(this.effect[0])

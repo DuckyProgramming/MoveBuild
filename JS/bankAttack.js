@@ -437,7 +437,7 @@ attack.prototype.update=function(){
                 if(this.type==1515||this.type==6216||this.type==6217){
                     this.userCombatant.lowRoll()
                 }s
-            }else if(this.type==1509&&(floor(random(0,4))==0&&!this.userCombatant.luckCheck()||this.userCombatant.luckCheckFail())){
+            }else if(this.type==1509&&this.timer==1&&(floor(random(0,4))==0&&!this.userCombatant.luckCheck()||this.userCombatant.luckCheckFail())){
                 this.userCombatant.takeDamage(this.effect[1],-1)
                 this.userCombatant.lowRoll()
                 this.remove=true

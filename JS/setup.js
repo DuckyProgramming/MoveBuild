@@ -11,7 +11,7 @@ function setup(){
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[0/*,floor(random(0,21))*/]
+        current.menu.combatant=[17/*,floor(random(0,21))*/]
         current.menu.deck=[-1]
 
             //variants.mtg=true
@@ -72,10 +72,11 @@ function setup(){
                 current.modManager.addMod(237+a)
             }*/
 
-            for(let a=0,la=6;a<la;a++){
-                current.relicManager.addRandomRelic(0)
-                quickRelic(473+a,0)
+            /*for(let a=0,la=5;a<la;a++){
+                //current.relicManager.addRandomRelic(0)
+                quickRelic(510+a,0)
             }
+            current.overlayManager.closeAll()*/
 
             /*current.itemManager.addItemSlots(7,0)
             for(let a=0,la=2;a<la;a++){
