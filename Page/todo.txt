@@ -22,6 +22,71 @@ precipice
 
 [bonkception]
 
+doctrinal - scry 5, exhaust top card of draw pile
+
+star wish - gain 1 temporary strength when a card is discarded by scry
+
+draw 3 cards, exhaust a card from draw pile (and another for discard)
+
+propup - 0 cost, look at the bottom card of draw pile, you may choose to exhaust it or draw it
+
+honor - curse, when drawn all enemies heal
+
+unsatisfactory - choose a card to add to hand, and also get a random curse
+
+bind - better iron wave, retain, but when retained lose energy
+
+wakeup call - damage in all directions, if played first gain 3 temporary dexterity
+
+mallet drop - x cost attack, gain x (N) (or x energy next turn), counts a strike
+
+commoner's stand - exile basic cards in hand, retain, deal damage and gain block for each
+
+write dist - exhaust a card, 0 cost, get read disc
+read dist - unexhaust a card, 1 cost, exhaust
+
+sharpen up - gain 1 strength, gain 1 energy if you have a shiv in hand
+
+bitstream - at the end of turn, all other cards in hand get replenish (unplayable)
+
+hebetude - curse, when discarded, gain 1 weak, vulnerable, or frail
+
+sleep talk - damage 2 times, choose a common card to add to hand
+
+evolve - when the card is retained, it returns to draw pile and gains 1 evolve
+
+archaea - add block, increases with evolve
+
+protozoa - damage, increases with evolve
+
+unprofessional - dmamage to a random enemy 1 time, number of times increases with evolves
+
+protista - draw, increases with evolve
+
+rude awakening - gain strength, increases with evolve
+
+dreamblast - damage, weak, both increase with evolve
+
+deep defense - block, evolve a card
+
+taxonomic tree - when a card evolves it costs 1 less
+
+antioxidant - draw 2 cards, evolve them
+
+shattered paralysis - block, for each evolution apply weak in all directions
+
+creeper - damage, weak, when evolved costs 1 less
+
+effluvium - take another turn, when evolved costs 1 less
+
+runaway evolution - when you play an evolve card it evolves
+
+reactionary movement -  add block, choose a movement to add to hand
+
+a better tomorrow - 3 cost, either gain 2 max life or 40 currency
+
+[golden dodecahedron]
+
 
 
 OPERATION SCALENE
@@ -29,10 +94,6 @@ OPERATION SCALENE
 recolor ducopo?
 
 rainbow lattice (edition) - []
-
-OPERATION AEDUI
-
-[make character 21]
 
 OPERATION ICATHIA
 
@@ -54,6 +115,13 @@ OPERATION FERROCHROME
 [the mathematician]
 confuse
 control
+
+OPERATION CARCINOGEN
+
+[sagume boss]
+[]
+[]
+[]
 
 
 

@@ -3271,7 +3271,7 @@ class overlay{
         }
     }
     update(first,firstType){
-        this.fade=smoothAnim(this.fade,this.active&&(first==-1||firstType==this.type&&(this.type==1||this.type==4||this.type==16||this.type==20)),0,1,5)
+        this.fade=smoothAnim(this.fade,this.active&&(first==-1||firstType==this.type&&(this.type==1||this.type==4||this.type==9||this.type==16||this.type==20)),0,1,5)
         if(this.activeTimer>0){
             this.activeTimer--
             if(this.activeTimer<=0){

@@ -278,8 +278,10 @@ class overlayManager{
         let first=-1
         let firstType=-1
         for(let a=0,la=this.priority.length-1;a<la;a++){
-            if(this.priority[a][0]==this.priority[a+1][0]&&this.priority[a][1]>this.priority[a+1][1]){
-                [this.priority[a][1],this.priority[a+1][1]]=[this.priority[a+1][1],this.priority[a][1]]
+            for(let b=a+1,lb=this.priority.length;b<lb;b++){
+                if(this.priority[a][0]==this.priority[b][0]&&this.priority[a][1]>this.priority[b][1]){
+                    [this.priority[a][1],this.priority[b][1]]=[this.priority[b][1],this.priority[a][1]]
+                }
             }
         }
         for(let a=0,la=this.priority.length;a<la;a++){

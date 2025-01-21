@@ -846,11 +846,11 @@ combatant.prototype.setupGraphics=function(direction){
 
             this.color=graphics.combatant[7].color
 
-            this.parts={eyeLevel:-75,flowerLevel:[-85,-81,-84],mouth:-72,
+            this.parts={eyeLevel:-75,mouth:-72,
                 minor:15,
                 legs:[
-                    {top:{x:3,y:-33},middle:{x:0,y:0},bottom:{x:0,y:0},sandal:{back:{x:0,y:0},front:{x:0,y:0}}},
-                    {top:{x:3,y:-33},middle:{x:0,y:0},bottom:{x:0,y:0},sandal:{back:{x:0,y:0},front:{x:0,y:0}}}
+                    {top:{x:3,y:-33},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:3,y:-33},middle:{x:0,y:0},bottom:{x:0,y:0}}
                 ],arms:[
                     {top:{x:3.5,y:-57},middle:{x:0,y:0},bottom:{x:0,y:0}},
                     {top:{x:3.5,y:-57},middle:{x:0,y:0},bottom:{x:0,y:0}}
@@ -1094,10 +1094,93 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
         break
         case 'Sagume':
+            if(graphics.combatant[10]==-1){
+                setupCombatantGraphics(10)
+                graphics.combatant.splice(10,1,graphics.combatant[graphics.combatant.length-1])
+                delete graphics.combatant[graphics.combatant.length-1]
+                graphics.combatant.splice(graphics.combatant.length-1,1)
+            }
+            this.anim={direction:direction,head:direction,sword:1,mouth:{x:8,y:4,open:0},
+                eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{top:{position:{x:1,y:1},size:{x:1,y:1}},bottom:{position:{x:1,y:1},size:{x:1,y:1}}},under:{bottom:1}},
+                legs:[
+                    {top:9,bottom:0,length:{top:16.75,bottom:16.75}},
+                    {top:9,bottom:0,length:{top:16.75,bottom:16.75}}
+                ],arms:[
+                    {top:24,bottom:9,length:{top:16.75,bottom:16.75}},
+                    {top:24,bottom:9,length:{top:16.75,bottom:16.75}}
+                ]}
+
+            this.spin={
+                legs:[{top:-60,bottom:-120},{top:60,bottom:120}],
+                arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],
+                hair:{pin:66},
+                eye:[-18,18],button:0,mouth:39}
+
+            this.color=graphics.combatant[10].color
+
+            this.dress={main:[]}
+
+            for(let a=0,la=13;a<la;a++){
+                this.dress.main.push({spin:[-180+a/la*360,-120+a/la*360,-150+a/la*360],y:[0,0,20]})
+                this.dress.main.push({spin:[-153+a/la*360,-138+a/la*360,-150+a/la*360],y:[16,16,20]})
+            }
+
+            this.braid=[]
+
+            for(let a=0,la=26;a<la;a++){
+                let spin=180+a*10-la*5+5+(a<la/2?-1:1)
+				this.braid.push({spin:spin>180?spin-360:spin,rotate:a<la/2?random(-30,-20):random(20,30),size:random(1.2,1.5),down:-1.2*lcos(spin)})
+			}
+
+            this.parts={eyeLevel:-77,mouth:-73,
+                minor:15,
+                legs:[
+                    {top:{x:3,y:-33.5},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:3,y:-33.5},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                ],arms:[
+                    {top:{x:3.5,y:-59},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:3.5,y:-59},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                ],}
+
+            this.graphics={
+                legs:[
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                ],arms:[
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}
+                ]}
+
+            this.fades={eye:[1,1],mouth:1,wing:1,
+                skin:{legs:1,arms:1,body:1,head:1,button:1},
+                dress:{main:1,sleeve:1,bow:1},
+                jacket:{main:1,sleeve:1}
+            }
+
+            this.trigger={display:{mouth:true,wing:true,
+                hair:{back:true,front:true,glow:true,braid:true},eye:[true,true],
+                skin:{legs:true,arms:true,body:true,head:true,button:false},
+                dress:{main:true,sleeve:true,bow:true},
+                jacket:{main:true,sleeve:true}
+            }}
+
+            this.trigger.display.extra={damage:false}
+
+            this.calc={int:[0,0,0,0]}
+
+            this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
+
+            this.animSet={loop:0,flip:0,hand:0,foot:0}
+
+            this.goal={anim:{direction:this.anim.direction}}
+
+            //wing
+            //dress (both)
+            //jacket
         break
         case '-----':
         break
-        case 'Lanyan':
+        case '-----':
         break
         case '-----':
         break
@@ -3984,6 +4067,7 @@ combatant.prototype.setupGraphics=function(direction){
     }
 }
 combatant.prototype.minorDisplay=function(type,key){
+    let dir
     switch(this.name){
         case 'Lira':
             switch(type){
@@ -4359,7 +4443,6 @@ combatant.prototype.minorDisplay=function(type,key){
         break
         case 'Sanae':
             let colors
-            let dir
             switch(type){
                 case 0:
                     this.layer.push()
@@ -4699,6 +4782,158 @@ combatant.prototype.minorDisplay=function(type,key){
                             this.graphics.arms[key].middle.y*(0.25+a*0.2)+this.graphics.arms[key].bottom.y*(0.75-a*0.2)+1.8*lcos(dir+90),
                             this.graphics.arms[key].middle.x*(0.25+a*0.2)+this.graphics.arms[key].bottom.x*(0.75-a*0.2)-1.8*lsin(dir+90),
                             this.graphics.arms[key].middle.y*(0.25+a*0.2)+this.graphics.arms[key].bottom.y*(0.75-a*0.2)-1.8*lcos(dir+90))
+                    }
+                break
+            }
+        break
+        case 'Sagume':
+            dir=[]
+            switch(type){
+                case 0:
+                    dir.push(
+                        atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y),
+                        atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
+                    )
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.dress.sleeve),this.fade*this.fades.dress.sleeve)
+                    this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4.8)
+                    this.layer.ellipse(this.graphics.arms[key].top.x,this.graphics.arms[key].top.y,4.3)
+                    this.layer.quad(
+                        this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1-2.7*sin(dir[0]+90),
+                        this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1-2.7*cos(dir[0]+90),
+                        this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1+2.7*sin(dir[0]+90),
+                        this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1+2.7*cos(dir[0]+90),
+                        this.graphics.arms[key].middle.x+2.4*sin(dir[0]+90),
+                        this.graphics.arms[key].middle.y+2.4*cos(dir[0]+90),
+                        this.graphics.arms[key].middle.x-2.4*sin(dir[0]+90),
+                        this.graphics.arms[key].middle.y-2.4*cos(dir[0]+90)
+                    )
+                    this.layer.quad(
+                        this.graphics.arms[key].middle.x-2.4*sin(dir[1]+90),
+                        this.graphics.arms[key].middle.y-2.4*cos(dir[1]+90),
+                        this.graphics.arms[key].middle.x+2.4*sin(dir[1]+90),
+                        this.graphics.arms[key].middle.y+2.4*cos(dir[1]+90),
+                        this.graphics.arms[key].top.x+2.15*sin(dir[1]+90),
+                        this.graphics.arms[key].top.y+2.15*cos(dir[1]+90),
+                        this.graphics.arms[key].top.x-2.15*sin(dir[1]+90),
+                        this.graphics.arms[key].top.y-2.15*cos(dir[1]+90)
+                    )
+                    this.layer.fill(...this.flashColor(this.color.jacket.sleeve),this.fade*this.fades.jacket.sleeve)
+                    this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,5.1)
+                    this.layer.ellipse(this.graphics.arms[key].top.x,this.graphics.arms[key].top.y,4.5)
+                    this.layer.quad(
+                        this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25-3*sin(dir[0]+90),
+                        this.graphics.arms[key].bottom.y*0.75+this.graphics.arms[key].middle.y*0.25-3*cos(dir[0]+90),
+                        this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25+3*sin(dir[0]+90),
+                        this.graphics.arms[key].bottom.y*0.75+this.graphics.arms[key].middle.y*0.25+3*cos(dir[0]+90),
+                        this.graphics.arms[key].middle.x+2.55*sin(dir[0]+90),
+                        this.graphics.arms[key].middle.y+2.55*cos(dir[0]+90),
+                        this.graphics.arms[key].middle.x-2.55*sin(dir[0]+90),
+                        this.graphics.arms[key].middle.y-2.55*cos(dir[0]+90)
+                    )
+                    this.layer.quad(
+                        this.graphics.arms[key].middle.x-2.55*sin(dir[1]+90),
+                        this.graphics.arms[key].middle.y-2.55*cos(dir[1]+90),
+                        this.graphics.arms[key].middle.x+2.55*sin(dir[1]+90),
+                        this.graphics.arms[key].middle.y+2.55*cos(dir[1]+90),
+                        this.graphics.arms[key].top.x+2.25*sin(dir[1]+90),
+                        this.graphics.arms[key].top.y+2.25*cos(dir[1]+90),
+                        this.graphics.arms[key].top.x-2.25*sin(dir[1]+90),
+                        this.graphics.arms[key].top.y-2.25*cos(dir[1]+90)
+                    )
+                    this.layer.noFill()
+                    this.layer.stroke(...this.flashColor(this.color.dress.detail),this.fade*this.fades.dress.sleeve)
+                    this.layer.strokeWeight(0.1)
+                    for(let a=0,la=4;a<la;a++){
+                        let size=dist(
+                            this.graphics.arms[key].middle.x*0.12+this.graphics.arms[key].bottom.x*0.88,
+                            this.graphics.arms[key].middle.y*0.12+this.graphics.arms[key].bottom.y*0.88,
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85,
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85
+                        )
+                        this.layer.line(
+                            this.graphics.arms[key].middle.x*0.12+this.graphics.arms[key].bottom.x*0.88+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.12+this.graphics.arms[key].bottom.y*0.88+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+(-2.7+a/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+(-2.7+a/la*5.4)*cos(dir[0]+90)
+                        )
+                        this.layer.line(
+                            this.graphics.arms[key].middle.x*0.18+this.graphics.arms[key].bottom.x*0.82+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.18+this.graphics.arms[key].bottom.y*0.82+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+(-2.7+(a+1)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+(-2.7+(a+1)/la*5.4)*cos(dir[0]+90)
+                        )
+                        this.layer.arc(
+                            this.graphics.arms[key].middle.x*0.135+this.graphics.arms[key].bottom.x*0.865+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.135+this.graphics.arms[key].bottom.y*0.865+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            size,size,-dir[0]-90,-dir[0]+90
+                        )
+                        this.layer.arc(
+                            this.graphics.arms[key].middle.x*0.165+this.graphics.arms[key].bottom.x*0.835+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.165+this.graphics.arms[key].bottom.y*0.835+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            size,size,-dir[0]+90,-dir[0]+270
+                        )
+                    }
+                break
+                case 1:
+                    dir.push(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y))
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.dress.sleeve),this.fade*this.fades.dress.sleeve)
+                    this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4.8)
+                    this.layer.quad(
+                        this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1-2.7*sin(dir[0]+90),
+                        this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1-2.7*cos(dir[0]+90),
+                        this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1+2.7*sin(dir[0]+90),
+                        this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1+2.7*cos(dir[0]+90),
+                        this.graphics.arms[key].middle.x+2.4*sin(dir[0]+90),
+                        this.graphics.arms[key].middle.y+2.4*cos(dir[0]+90),
+                        this.graphics.arms[key].middle.x-2.4*sin(dir[0]+90),
+                        this.graphics.arms[key].middle.y-2.4*cos(dir[0]+90)
+                    )
+                    this.layer.fill(...this.flashColor(this.color.jacket.sleeve),this.fade*this.fades.jacket.sleeve)
+                    this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,5.1)
+                    this.layer.quad(
+                        this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25-3*sin(dir[0]+90),
+                        this.graphics.arms[key].bottom.y*0.75+this.graphics.arms[key].middle.y*0.25-3*cos(dir[0]+90),
+                        this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25+3*sin(dir[0]+90),
+                        this.graphics.arms[key].bottom.y*0.75+this.graphics.arms[key].middle.y*0.25+3*cos(dir[0]+90),
+                        this.graphics.arms[key].middle.x+2.55*sin(dir[0]+90),
+                        this.graphics.arms[key].middle.y+2.55*cos(dir[0]+90),
+                        this.graphics.arms[key].middle.x-2.55*sin(dir[0]+90),
+                        this.graphics.arms[key].middle.y-2.55*cos(dir[0]+90)
+                    )
+                    this.layer.noFill()
+                    this.layer.stroke(...this.flashColor(this.color.dress.detail),this.fade*this.fades.dress.sleeve)
+                    this.layer.strokeWeight(0.1)
+                    for(let a=0,la=4;a<la;a++){
+                        let size=dist(
+                            this.graphics.arms[key].middle.x*0.12+this.graphics.arms[key].bottom.x*0.88,
+                            this.graphics.arms[key].middle.y*0.12+this.graphics.arms[key].bottom.y*0.88,
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85,
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85
+                        )
+                        this.layer.line(
+                            this.graphics.arms[key].middle.x*0.12+this.graphics.arms[key].bottom.x*0.88+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.12+this.graphics.arms[key].bottom.y*0.88+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+(-2.7+a/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+(-2.7+a/la*5.4)*cos(dir[0]+90)
+                        )
+                        this.layer.line(
+                            this.graphics.arms[key].middle.x*0.18+this.graphics.arms[key].bottom.x*0.82+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.18+this.graphics.arms[key].bottom.y*0.82+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+(-2.7+(a+1)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+(-2.7+(a+1)/la*5.4)*cos(dir[0]+90)
+                        )
+                        this.layer.arc(
+                            this.graphics.arms[key].middle.x*0.135+this.graphics.arms[key].bottom.x*0.865+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.135+this.graphics.arms[key].bottom.y*0.865+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            size,size,-dir[0]-90,-dir[0]+90
+                        )
+                        this.layer.arc(
+                            this.graphics.arms[key].middle.x*0.165+this.graphics.arms[key].bottom.x*0.835+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.165+this.graphics.arms[key].bottom.y*0.835+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            size,size,-dir[0]+90,-dir[0]+270
+                        )
                     }
                 break
             }

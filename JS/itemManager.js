@@ -697,13 +697,18 @@ class itemManager{
             this.addRandomItem(player)
         }
     }
-    activateEndBattle(player,encounterClass,reward){
+    activatePreEndBattle(player,encounterClass){
         for(let a=0,la=this.items[player].length;a<la;a++){
             if(this.items[player][a].temp){
                 this.items[player][a].type=1
                 this.items[player][a].refresh()
                 this.total[player]--
             }
+        }
+        this.combatEffectiveness[player]=1
+    }
+    activateEndBattle(player,encounterClass,reward){
+        for(let a=0,la=this.items[player].length;a<la;a++){
             switch(encounterClass){
                 case 2:
                     switch(types.item[this.items[player][a].type].id){

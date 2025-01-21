@@ -1641,7 +1641,7 @@ class combatant{
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
-            case 'Certes': case 'Airi': case 'Shiru': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin':
+            case 'Certes': case 'Airi': case 'Shiru': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Sagume':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -1660,7 +1660,7 @@ class combatant{
                     this.parts.arms[g].bottom.x=this.parts.arms[g].middle.x+lsin(this.anim.arms[g].bottom)*this.anim.arms[g].length.bottom
                     this.parts.arms[g].bottom.y=this.parts.arms[g].middle.y+lcos(this.anim.arms[g].bottom)*this.anim.arms[g].length.bottom
 
-                    this.graphics.arms[g].top.x=this.parts.arms[g].top.x*lsin(this.spin.arms[g].top+this.anim.direction),
+                    this.graphics.arms[g].top.x=this.parts.arms[g].top.x*lsin((this.name=='Sagume'?-93+g*186:this.spin.arms[g].top)+this.anim.direction),
                     this.graphics.arms[g].top.y=this.parts.arms[g].top.y
                     this.graphics.arms[g].middle.x=this.parts.arms[g].middle.x*lsin(this.spin.arms[g].top+this.anim.direction),
                     this.graphics.arms[g].middle.y=this.parts.arms[g].middle.y
@@ -5507,7 +5507,7 @@ class combatant{
                     case 389: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 390: this.battle.combatantManager.allEffect(43,[this.status.main[a],this.id]); break
                     case 391: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].discard.add(findName('Prismatic\nBomb',types.card),0,0)}} break
-                    case 393: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){let index=floor(random(0,this.battle.cardManagers[this.id].deck.cards.length));this.battle.cardManagers[this.id].deck.copy(this.battle.cardManagers[this.id].hand.cards,index,index+1,1)}} break
+                    case 393: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){let index=floor(random(0,this.battle.cardManagers[this.id].deck.cards.length));this.battle.cardManagers[this.id].deck.copy(this.battle.cardManagers[this.id].hand.cards,index,index+1,0)}} break
                     case 394: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addSpecificEnergy(this.status.main[a],this.id,6)};this.status.next[findList('Energy Cycle 2 2',this.status.name)]+=this.status.main[a]; break
                     case 395: this.status.main[findList('Energy Cycle 2 1',this.status.name)]+=this.status.main[a]; break
                     case 396: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,5,2,0,[],[3])}} break
@@ -5803,7 +5803,7 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Sagume': case '-----': case 'Lanyan': case '-----':
+            case 'Sagume': case '-----': case '-----': case '-----':
             case 'Ume':
                 switch(type){
                     case 0:

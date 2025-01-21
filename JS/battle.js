@@ -2293,7 +2293,7 @@ class battle{
     addCurrency(amount,player){
         if(player>=0&&player<this.players&&this.initializedConstants){
             let multi=(this.relicManager.hasRelic(135,player)?max(0,1-0.5*this.relicManager.active[135][player+1]):1)*(this.relicManager.hasRelic(165,player)?1+0.25*this.relicManager.active[165][player+1]:1)*(this.relicManager.hasRelic(415,player)?1+0.25*this.relicManager.active[415][player+1]:1)
-            let bonus=this.relicManager.hasRelic(119,player)?20:0
+            let bonus=this.relicManager.active[119][player+1]*20
             this.stats.earned[player]+=round((amount+bonus)*multi)
             if(this.cardManagers[player].deck.hasCard(findName('Social\nSecurity Card',types.card))){
                 this.currency.ss[player]+=round((amount+bonus)*multi/2)
@@ -2866,8 +2866,9 @@ class battle{
                 if(graphics.test==-1){
                     this.graphics.combatants[0][0][0].position.x=this.layer.width/2
                     this.graphics.combatants[0][0][0].position.y=this.layer.height/2+200
+                    //this.graphics.combatants[0][0][0].anim.direction=30
                     if(game.timer%30==0){
-                        this.graphics.combatants[0][0][0].anim.direction+=15
+                        //this.graphics.combatants[0][0][0].anim.direction+=15
                     }
                     this.graphics.combatants[0][0][0].time++
                     this.graphics.combatants[0][0][0].size=4
@@ -3046,15 +3047,16 @@ class battle{
                     this.overlayManager.closeAll()
                     let prefered=floor(random(0,this.overlayManager.overlays[0].length))
                     this.cardManagers.forEach(cardManager=>cardManager.allEffectArgs(0,33,[this.encounter.class]))
+                    for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
+                        if(!(this.encounter.class==2&&this.nodeManager.world==3)){
+                            this.itemManager.activatePreEndBattle(a,this.encounter.class)
+                        }
+                    }
                     this.combatantManager.fullAllEffect(10)
                     for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
                         this.overlayManager.overlays[0][a].active=true
                         if(this.encounter.class==0&&this.relicManager.hasRelic(79,a)&&floor(random(0,5))==0){
                             this.encounter.class=1
-                        }
-                        if(variants.inventor){
-                            this.overlayManager.overlays[38][a].active=true
-                            this.overlayManager.overlays[38][a].activate()
                         }
                         let reward=[]
                         for(let b=0,lb=variants.business?0:(variants.vanish||variants.inventor||variants.commoners)?2:1;b<lb;b++){
@@ -3162,6 +3164,12 @@ class battle{
                         this.overlayManager.overlays[0][a].activate([0,reward])
                     }
                     this.relicManager.activate(1,[this.encounter.class])
+                    if(variants.inventor){
+                        for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
+                            this.overlayManager.overlays[38][a].active=true
+                            this.overlayManager.overlays[38][a].activate()
+                        }
+                    }
                 }
             break
             case 'replay':

@@ -274,6 +274,7 @@ class group{
         this.pole=1
         this.exhausts=0
         this.rewinds=0
+        this.sendAmounts=[]
         this.cancel()
     }
     cancel(){
@@ -317,6 +318,20 @@ class group{
         }
     }
     add(type,level,color,edition=0){
+        let name=types.card[type].name
+        let change=false
+        if(variants.junk){
+            switch(name){
+                case 'Strike': case 'Defend': case 'Step': case 'Bash': case 'Shield':
+                case 'Strike-': case 'Defend-': case 'Step-L': case 'Step-R': case 'Bash-': case 'Shield-':
+                    name+='_'
+                    change=true
+                break
+            }
+        }
+        if(change){
+            type=findName(name,types.card)
+        }
         this.battle.collectionManager.activate(types.card[type].name)
         game.id++
         this.lastSort=-1
@@ -3457,7 +3472,7 @@ class group{
         this.sendAmounts.push(lastIndex==-1?this.cards.length-firstIndex:lastIndex-firstIndex)
         let sendId=this.sendAmounts.length-1
         this.sent=[]
-        while(this.sent.length<this.sendAmounts[sendId]){
+        while(this.sent.length<min(100,this.sendAmounts[sendId])){
             if(firstIndex>=this.cards.length){
                 if(this.player>=0&&stage!='tier'){
                     this.battle.cardManagers[this.player].midDraw=false

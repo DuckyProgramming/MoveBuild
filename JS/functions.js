@@ -391,6 +391,24 @@ function mergeColorHSV(color1,color2,value){
 function toggle(bool){
 	return bool?false:true
 }
+function bezierArc(x,y,width,height,angle1,angle2){
+	let x1=x+lsin(angle1)*width/2
+	let y1=y-lcos(angle1)*height/2
+	let x2=x+lsin(angle2)*width/2
+	let y2=y-lcos(angle2)*height/2
+	let ax=x1-x
+	let ay=y1-y
+	let bx=x2-x
+	let by=y2-x
+	q1=ax**2+ay**2
+	q2=q1+ax*bx+ay*by
+	k2=4/3*(sqrt(2*q1*q2)-q2)/(ax*by-ay*bx)
+	x3=xc+ax-k2*ay
+	y3=yc+ay+k2*ax
+	x4=xc+bx+k2*by
+	y4=yc+by-k2*bx
+	return [x1,y1,x3,y3,x4,y4,x2,y2]
+}
 function sign(value){
 	return value<0?-1:1
 }

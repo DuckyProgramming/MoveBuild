@@ -74,7 +74,6 @@ class card{
         
         try{
             this.name=name||types.card[this.type].name
-            this.checkReplacement()
             this.list=list||(variants.mtg?types.card[this.type].mtg.list:types.card[this.type].list)
             this.rarity=variants.mtg?types.card[this.type].mtg.rarity:types.card[this.type].rarity
             this.spec=spec
@@ -349,21 +348,6 @@ class card{
             }
         }else{
             this.colorDetail=types.color.card[this.color]
-        }
-    }
-    checkReplacement(){
-        let change=false
-        if(variants.junk){
-            switch(this.name){
-                case 'Strike': case 'Defend': case 'Step': case 'Bash': case 'Shield':
-                case 'Strike-': case 'Defend-': case 'Step-L': case 'Step-R': case 'Bash-': case 'Shield-':
-                    this.name+='_'
-                    change=true
-                break
-            }
-        }
-        if(change){
-            this.type=findName(this.name,types.card)
         }
     }
     getCost(type){
@@ -7454,7 +7438,7 @@ class card{
             case 6420: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy\nGain ${effect[1]} Random Mana`; break
             case 6421: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nLose ${effect[1]} Health\nPer Skill Drawn`; break
             case 6422: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Played First,\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
-            case 6423: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Played First,\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
+            case 6423: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Played First,\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
             case 6424: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nStatus Card in Hand:\nExhaust it\nAdd a Copy of\nThis Card to Hand`; break
             case 6425: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRepeats For Each\nCurse in Deck`; break
             case 6426: string+=`Discard Your Hand\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}`; break

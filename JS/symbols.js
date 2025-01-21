@@ -8110,6 +8110,9 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
         case 20:
             layer.fill(120,160,40,fade)
         break
+        case 21:
+            layer.fill(240,200,180,fade)
+        break
         default:
             layer.fill(120,fade)
         break
@@ -8446,6 +8449,20 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(0,0,2,0,1,-6)
             layer.triangle(1,0,4,0,2.5,-4.5)
             layer.triangle(3,0,5,0,4,-3.5)
+        break
+        case 21:
+            layer.ellipse(0,0,36)
+            layer.stroke(240,200,180,fade)
+            layer.strokeWeight(3)
+            layer.noFill()
+            layer.arc(0,-9.5,19,19,90,270)
+            layer.arc(0,9.5,19,19,-90,90)
+            layer.noStroke()
+            layer.fill(240,200,180,fade)
+            layer.rect(0,-9.2,6,6)
+            layer.quad(0,-9.2-3*constants.sqrt2,-3*constants.sqrt2,-9.5,0,-9.5+3*constants.sqrt2,3*constants.sqrt2,-9.5)
+            layer.rect(0,9.2,6,6)
+            layer.quad(0,9.2-3*constants.sqrt2,-3*constants.sqrt2,9.5,0,9.5+3*constants.sqrt2,3*constants.sqrt2,9.5)
         break
         default:
             layer.rect(0,0,26)

@@ -1858,6 +1858,218 @@ function generateSprite(layer,type,direction){
 		case 71:
 			displayTrianglesBackMerge(layer,data.parts.hair.inside,direction,0,35,1,-0.045,data.color.hair.insideBack,data.color.hair.insideBack,1)
 		break
+		case 72:
+			layer.fill(...data.color.hair.front)
+			layer.stroke(...data.color.hair.front)
+			layer.strokeWeight(1)
+			layer.arc(0,0,34,34,-180,0)
+			layer.line(-17,0,17,0)
+			controlSpin(data.parts.hair.reverse,direction,0)
+			displayTrianglesFrontMerge(layer,data.parts.hair.reverse,direction,0.5,33.5,0.1,0.15,-1,-1,1)
+			layer.noErase()
+			controlSpin(data.parts.hair.main,direction,0)
+			displayTrianglesFrontMerge(layer,data.parts.hair.main,direction,0,34,1,-0.025,data.color.hair.front,data.color.hair.front,1)
+			layer.erase()
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			layer.arc(0,0,38,38,-180,0)
+			layer.line(-19,0,-19,10)
+			layer.line(19,0,19,10)
+		break
+		case 73:
+			layer.fill(...data.color.hair.back)
+			layer.stroke(...data.color.hair.back)
+			layer.strokeWeight(1)
+			layer.arc(0,0,35,34,-180,0)
+			layer.line(-17.5,0,17.5,0)
+			displayTrianglesBackMerge(layer,data.parts.hair.main,direction,0,34,1,-0.025,data.color.hair.back,data.color.hair.back,1)
+			displayTrianglesBackMerge(layer,data.parts.hair.inside,direction,0,33.5,1,-0.025,data.color.hair.insideBack,data.color.hair.insideBack,1)
+			layer.erase()
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			layer.arc(0,0,38,38,-180,0)
+			layer.line(-19,0,-19,10)
+			layer.line(19,0,19,10)
+		break
+		case 74:
+			controlSpin(data.parts.hair.inside,direction,0)
+			displayTrianglesFrontMerge(layer,data.parts.hair.inside,direction,0,33.5,1,-0.025,data.color.hair.insideFront,data.color.hair.insideFront,1)
+			layer.erase()
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			layer.arc(0,0,38,38,-180,0)
+			layer.line(-19,0,-19,10)
+			layer.line(19,0,19,10)
+		break
+		case 75:
+			layer.fill(...data.color.jacket.main)
+			layer.arc(0,0,13.5,52,-180,0)
+			layer.quad(-6.75,0,6.75,0,7.25,4,-7.25,4)
+			layer.arc(0,4,14.5,2,0,180)
+
+			layer.erase()
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			for(let a=0,la=3;a<la;a++){
+				let spin=[-20,0,20][a]
+				if(lcos(direction+spin)>0){
+					if(lsin(direction+spin)>0){
+						layer.arc(0,5,14.5*lsin(direction+spin),58,-90,0)
+					}else if(lsin(direction+spin)<0){
+						layer.arc(0,5,14.5*lsin(direction+spin),58,-180,-90)
+					}else{
+						layer.line(0,5,0,-24)
+					}
+				}
+			}
+			layer.fill(0)
+			layer.noStroke()
+			layer.ellipse(0,-24,12,5)
+			
+			let layer2=createGraphics(100,250)
+			setupLayer(layer2)
+			layer2.translate(50,125)
+			layer2.scale(5)
+
+			layer2.fill(...data.color.jacket.detail)
+			for(let a=0,la=18;a<la;a++){
+				let ls=lsin((a+0.5)/la*360+direction)
+				let lc=lcos((a+0.5)/la*360+direction)
+				if(a>=2&&a<16&&lc>0){
+					layer2.rect(7.25*ls,2.5+lc,lc*0.4,2)
+					layer2.triangle(
+						7.25*ls-lc*0.2,
+						2.25+lc,
+						7.25*ls-lc*0.2,
+						0.25+lc,
+						7.25*ls+lc*0.6,
+						2.25+lc,
+					)
+				}
+			}
+
+			layer2.noFill()
+			layer2.stroke(...data.color.jacket.detail)
+			layer2.strokeWeight(0.4)
+			layer2.arc(0,3.5,14.5,2,0,180)
+
+			layer2.strokeWeight(4.4)
+			for(let a=0,la=2;a<la;a++){
+				let spin=[-20,20][a]
+				if(lcos(direction+spin)>0&&abs(14.5*lsin(direction+spin*2))<12){
+					if(lsin(direction+spin)>0){
+						layer2.arc(0,5,14.5*lsin(direction+spin),58,-90,0)
+					}else if(lsin(direction+spin)<0){
+						layer2.arc(0,5,14.5*lsin(direction+spin),58,-180,-90)
+					}else{
+						layer2.line(0,5,0,-23.5)
+					}
+				}
+			}
+
+			layer2.erase()
+			layer2.stroke(0)
+			layer2.strokeWeight(3.6)
+			for(let a=0,la=3;a<la;a++){
+				let spin=[-20,0,20][a]
+				if(lcos(direction+spin)>0){
+					if(lsin(direction+spin)>0){
+						layer2.arc(0,5,14.5*lsin(direction+spin),58,-90,0)
+						layer2.line(7.25*lsin(direction+spin),5,7.25*lsin(direction+spin),8)
+					}else if(lsin(direction+spin)<0){
+						layer2.arc(0,5,14.5*lsin(direction+spin),58,-180,-90)
+						layer2.line(7.25*lsin(direction+spin),5,7.25*lsin(direction+spin),8)
+					}else{
+						layer2.line(0,8,0,-23.5)
+					}
+				}
+			}
+			layer2.strokeCap(SQUARE)
+			layer2.arc(0,0,17.1,55.6,-180,0)
+			layer2.line(-8.7,0,-9.1,4)
+			layer2.line(8.7,0,9.1,4)
+			layer2.strokeCap(ROUND)
+
+			layer2.strokeWeight(20)
+			layer2.arc(0,3.5,48,22.4,0,180)
+			layer2.fill(0)
+			layer2.noStroke()
+			layer2.ellipse(0,-24,12,5)
+
+
+			layer.image(layer2,-10,-25,20,50)
+		break
+		case 76:
+			layer.stroke(...data.color.wing[1])
+			layer.strokeWeight(0.5)
+			let nodes=[
+				[0,0],
+				[-20,-5],
+				[-35,-15],
+				[-40,-30]
+			]
+			let lengths=[]
+			let totalLength=0
+			for(let a=0,la=nodes.length-1;a<la;a++){
+				layer.line(nodes[a][0],nodes[a][1],nodes[a+1][0],nodes[a+1][1])
+				lengths.push(dist(nodes[a][0],nodes[a][1],nodes[a+1][0],nodes[a+1][1]))
+				totalLength+=dist(nodes[a][0],nodes[a][1],nodes[a+1][0],nodes[a+1][1])
+			}
+			for(let a=0,la=nodes.length-1;a<la;a++){
+				for(let b=0,lb=round(lengths[a]*2);b<lb;b++){
+					layer.stroke(...mergeColor(data.color.wing[0],data.color.wing[1],random(0.5,1)))
+					let rand=random(0.2,0.8)
+					layer.strokeWeight(random(0.8,1.2))
+					layer.point(
+						map((b+rand)/lb,0,1,nodes[a][0],nodes[a+1][0]),
+						map((b+rand)/lb,0,1,nodes[a][1],nodes[a+1][1])
+					)
+				}
+			}
+			layer.strokeWeight(0.6)
+			layer.noStroke()
+			for(let a=0,la=600;a<la;a++){
+				let part=0
+				let prePosition=a*2%totalLength
+				let position=prePosition
+				while(position>lengths[part]){
+					position-=lengths[part]
+					part++
+				}
+				let dir=map(
+					position/lengths[part]*(part==lengths.length-1?1.8:1),0,1,
+					part==0?-75:atan2(nodes[part][0]-nodes[part-1][0],nodes[part][1]-nodes[part-1][1]),
+					atan2(nodes[part+1][0]-nodes[part][0],nodes[part+1][1]-nodes[part][1])
+				)
+				let size=random(0.4,0.8)+(prePosition/totalLength)**2.5*2
+				let offset=random(4,6)-a/la*4
+				layer.fill(...mergeColor(data.color.wing[0],data.color.wing[1],random(0,0.2)+a/la*0.8))
+				layer.push()
+				layer.translate(
+					map(position,0,lengths[part],nodes[part][0],nodes[part+1][0]),
+					map(position,0,lengths[part],nodes[part][1],nodes[part+1][1])
+				)
+				layer.rotate(-dir-90)
+				layer.beginShape()
+				layer.vertex(-0.2,-0.25+offset*0.1)
+				layer.bezierVertex(
+					-1.2*(0.5+size*0.5),(4+offset)*size,
+					-0.6*(0.5+size*0.5),(5+offset)*size,
+					0,(6+offset)*size,
+				)
+				layer.bezierVertex(
+					0.6*(0.5+size*0.5),(5+offset)*size,
+					1.2*(0.5+size*0.5),(4+offset)*size,
+					0.2,-0.25+offset*0.1
+				)
+				layer.endShape()
+				layer.pop()
+			}
+		break
 		
 	}
 	//mark s
@@ -3415,6 +3627,110 @@ function setupCombatantGraphics(type){
 				la--
 			}
 		break
+		case 10:
+			graphics.combatant.push({
+				sprites:{detail:15,genAmount:0,animDirection:0},
+				parts:{jacket:[]},
+				color:{
+                    hair:{back:[168,146,158],front:[229,229,227],insideBack:[121,104,122],insideFront:[208,188,190],glow:[255,249,233],braid:[206,198,211]},
+                    skin:{head:[228,199,185],body:[229,199,188],legs:[238,214,186],arms:[245,233,217],button:[162,112,115]},
+                    eye:{back:[89,40,119],front:[28,6,24],glow:[237,119,141]},
+					mouth:{in:[191,125,127],out:[0,0,0]},
+					dress:{main:[99,56,99],back:[43,29,64],highlight:[68,32,68],sleeve:[71,42,96],detail:[243,237,239],bow:{out:[130,19,51],center:[[109,100,127],[112,62,65],[41,7,40]]}},
+					jacket:{main:[245,221,196],back:[118,90,113],sleeve:[234,210,174],detail:[61,45,92]},
+					wing:[[103,100,181],[231,225,227]],
+				},
+			})
+
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={main:[
+				{spin:[-14,-6,-10],y:[-6,-6,-2]},
+				{spin:[-6,2,-2],y:[-6,-6,-2]},
+				{spin:[-10,-2,-6],y:[-2,-2,-6]},
+				{spin:[-10,-2,-1],y:[-2,-2,2]},
+				{spin:[4,8,6],y:[-6,-6,-3]},
+				{spin:[8,12,10],y:[-6,-6,-3]},
+				{spin:[6,10,8],y:[-3,-3,-6]},
+				{spin:[6,10,5],y:[-3,-3,0]},
+				{spin:[-39,-27,-36],y:[-5,-5,1]},
+				{spin:[30,39,33],y:[-5,-5,1]},
+				{spin:[-72,-48,-63],y:[-2,-2,8]},
+				{spin:[-96,-69,-87],y:[0,0,11]},
+				{spin:[-111,-93,-105],y:[0,0,12.5]},
+				{spin:[-126,-93,-117],y:[0,0,13]},
+				{spin:[-156,-120,-132],y:[0,0,15]},
+				{spin:[-165,-144,-159],y:[0,0,14.5]},
+				{spin:[-186,-147,-171],y:[0,0,16]},
+				{spin:[48,72,57],y:[-2,-2,8]},
+				{spin:[69,96,78],y:[0,0,10]},
+				{spin:[96,108,99],y:[0,0,9.5]},
+				{spin:[93,126,117],y:[0,0,12]},
+				{spin:[120,156,129],y:[0,0,14.5]},
+				{spin:[147,186,165],y:[0,0,15.5]},
+			],inside:[
+				{spin:[-2,2,1],y:[-6,-6,-1]},
+				{spin:[-13.5,-7.5,-15],y:[-6,-6,-1]},
+				{spin:[7.5,10.5,13.5],y:[-6,-6,-1.5]},
+				{spin:[-57,-48,-49.5],y:[-5,-5,4]},
+				{spin:[-78,-60,-72],y:[-2,-2,6.5]},
+				{spin:[-102,-90,-99],y:[0,0,9]},
+				{spin:[-136,-109,-124],y:[0,0,11]},
+				{spin:[-162,-138,-147],y:[0,0,12.5]},
+				{spin:[-192,-176,-183],y:[0,0,13.5]},
+				{spin:[27,33,30],y:[-5,-5,1.5]},
+				{spin:[42,51,45],y:[-5,-5,3]},
+				{spin:[63,72,69],y:[-2,-2,5]},
+				{spin:[87,93,90],y:[0,0,10.5]},
+				{spin:[144,159,150],y:[0,0,13]},
+			],reverse:[
+				{spin:[-27,12,-8],y:[0,0,-5]},
+				{spin:[-12,27,8],y:[0,0,-6]},
+				{spin:[-48,-30,-36],y:[0,0,-3]},
+				{spin:[27,51,39],y:[0,0,-4]},
+			]}
+		
+			data.sprites.genAmount=360/data.sprites.detail
+
+			data.sprites.hair={frontUnder:[],front:[],back:[]}
+			data.sprites.jacket=[]
+			data.sprites.wing=[]
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.frontUnder.push(createGraphics(250,300))
+				setupLayer(data.sprites.hair.frontUnder[g])
+				data.sprites.hair.frontUnder[g].translate(125,100)
+				data.sprites.hair.frontUnder[g].scale(5)
+				generateSprite(data.sprites.hair.frontUnder[g],72,g*data.sprites.detail)
+				//console.log('Generated HFU-'+(g+1))
+
+				data.sprites.hair.front.push(createGraphics(250,300))
+				setupLayer(data.sprites.hair.front[g])
+				data.sprites.hair.front[g].translate(125,100)
+				data.sprites.hair.front[g].scale(5)
+				generateSprite(data.sprites.hair.front[g],74,g*data.sprites.detail)
+				data.sprites.hair.front[g].image(data.sprites.hair.frontUnder[g],-25,-20,50,60)
+				//console.log('Generated HF-'+(g+1))
+
+				data.sprites.hair.back.push(createGraphics(250,300))
+				setupLayer(data.sprites.hair.back[g])
+				data.sprites.hair.back[g].translate(125,100)
+				data.sprites.hair.back[g].scale(5)
+				generateSprite(data.sprites.hair.back[g],73,g*data.sprites.detail)
+				//console.log('Generated HB-'+(g+1))
+				
+				data.sprites.jacket.push(createGraphics(100,250))
+				setupLayer(data.sprites.jacket[g])
+				data.sprites.jacket[g].translate(50,125)
+				data.sprites.jacket[g].scale(5)
+				generateSprite(data.sprites.jacket[g],75,g*data.sprites.detail)
+				//console.log('Generated SGJ-'+(g+1))
+			}
+			data.sprites.wing.push(createGraphics(400,300))
+			setupLayer(data.sprites.wing[0])
+			data.sprites.wing[0].translate(350,250)
+			data.sprites.wing[0].scale(5)
+			generateSprite(data.sprites.wing[0],76,0)
+		break
 		case 20:
 			graphics.combatant.push({
 				spin:{tail:[-96,96]},
@@ -3912,6 +4228,18 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:60}]
 					p1.spin.arms=[{top:-90,bottom:-66,lock:0},{top:90,bottom:66,lock:0}]
 				break
+				case 'Sagume':
+					p1.anim.legs=[
+						{top:15,bottom:3,length:{top:16.75,bottom:16.75}},
+						{top:27,bottom:24,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:105,bottom:123,length:{top:16.75,bottom:16.75}},
+						{top:15,bottom:3,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-60},{top:30,bottom:60}]
+					p1.spin.arms=[{top:-90,bottom:12,lock:0},{top:90,bottom:84,lock:0}]
+				break
 
 			}
 			p1.size=2.5
@@ -4171,6 +4499,22 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-180,bottom:-180,lock:0},{top:-60,bottom:-45,lock:0}]
 					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+				break
+				case 'Sagume':
+					p1.parts.mouth+=3
+					p1.anim.mouth.y--
+					p1.spin.mouth+=174
+					p1.anim.direction+=75
+					p1.anim.legs=[
+						{top:9+a*6,bottom:48-a*15,length:{top:16.75,bottom:16.75}},
+						{top:3+a*6,bottom:15+a*33,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:72,bottom:177,length:{top:16.75,bottom:16.75}},
+						{top:33-a*6,bottom:21-a*3,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-60,bottom:36},{top:36,bottom:48}]
+					p1.spin.arms=[{top:-30,bottom:-12,lock:0},{top:90,bottom:105,lock:0}]
 				break
 			}
 			p1.anim.eye=[1,1]
@@ -4456,6 +4800,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
 					p1.spin.arms=[{top:-84-a*3,bottom:-60,lock:0},{top:84+a*3,bottom:12,lock:0}]
 				break
+				case 'Sagume':
+					p1.anim.mouth.y+=1.5
+					p1.parts.mouth-=0.5
+					p1.anim.legs=[
+						{top:4.5,bottom:93,length:{top:16.75,bottom:16.75}},
+						{top:4.5,bottom:93,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:102,bottom:135,length:{top:16.75,bottom:16.75}},
+						{top:12,bottom:15-a*6,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-60-a*30,bottom:-150},{top:60+a*30,bottom:165}]
+					p1.spin.arms=[{top:-21-a*15,bottom:-18,lock:0},{top:75+a*15,bottom:69+a*12,lock:0}]
+				break
 			}
 			if(p1.name!='DD-610'&&p1.name!='Vincent'&&p1.name!='Ducopo'&&p1.name!='Randy'){
 				p1.anim.eye=[1,1]
@@ -4722,6 +5080,22 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-120-a*15,lock:0},{top:60-a*15,bottom:120+a*15,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
 				break
+				case 'Sagume':
+					p1.position.y-=a*33
+					p1.parts.mouth++
+					p1.anim.mouth.y-=1.5
+					p1.spin.mouth-=12
+					p1.anim.legs=[
+						{top:6+a*3,bottom:24-a*6,length:{top:16.75,bottom:16.75}},
+						{top:6+a*3,bottom:24-a*6,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:96-a*9,bottom:123+a*12,length:{top:16.75,bottom:16.75}},
+						{top:27-a*3,bottom:36-a*21,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-45+a*27,bottom:-120+a*12},{top:60-a*15,bottom:120+a*6}]
+					p1.spin.arms=[{top:-30-a*24,bottom:-18+a*33,lock:0},{top:90,bottom:-15+a*60,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -4973,6 +5347,18 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
+				break
+				case 'Sagume':
+					p1.anim.legs=[
+						{top:12-a*1.5,bottom:-1-a*3,length:{top:16.75,bottom:16.75}},
+						{top:12-a*1.5,bottom:-1-a*3,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:123,bottom:99,length:{top:16.75,bottom:16.75}},
+						{top:24+a*3,bottom:9-a*3,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-54-a*9,bottom:-90},{top:60-a*12,bottom:96-a*6}]
+					p1.spin.arms=[{top:-63+a*9,bottom:-21+a*39,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
 				break
 			}
 			p1.size=2.5
@@ -5260,6 +5646,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:90-a*15,lock:0}]
 				break
+				case 'Sagume':
+					p1.position.y+=36
+					p1.anim.mouth.y-=0.5
+					p1.anim.legs=[
+						{top:6,bottom:93,length:{top:16.75,bottom:16.75}},
+						{top:21,bottom:84,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:81+a*15,bottom:162-a*18,length:{top:16.75,bottom:16.75}},
+						{top:21+a*12,bottom:-15-a*9,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-150-a*15,lock:0},{top:60,bottom:105+a*51,lock:0}]
+					p1.spin.arms=[{top:-72-a*15,bottom:18-a*48,lock:0},{top:90,bottom:120,lock:0}]
+				break
 			}
 			p1.size=2
 			p1.fade=1
@@ -5473,6 +5873,18 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
                     p1.anim.arms=[{top:18,bottom:-6,length:{top:17,bottom:17}},{top:36,bottom:-24,length:{top:17,bottom:17}}]
                 	p1.spin.legs=[{top:-45,bottom:-60},{top:45,bottom:60}]
 					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
+				break
+				case 'Sagume':
+					p1.anim.legs=[
+						{top:12,bottom:12,length:{top:16.75,bottom:16.75}},
+						{top:21,bottom:3,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:135,bottom:93,length:{top:16.75,bottom:16.75}},
+						{top:24,bottom:15,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-45,bottom:-72},{top:48,bottom:48}]
+					p1.spin.arms=[{top:-69,bottom:-21,lock:0},{top:93,bottom:129,lock:0}]
 				break
 			}
 			p1.size=1.5
@@ -6570,7 +6982,7 @@ function setupBackground(type,layer){
 			for(let a=0,la=32;a<la;a++){
 				layer.text(a<8?names3[a]:types.combatant[a-7].name.toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-370+(a>=8?60:0)+floor(a/4)*80)
 			}
-			for(let a=0,la=7;a<la;a++){
+			for(let a=0,la=8;a<la;a++){
 				layer.text(a+1,layer.width/2-770,layer.height/2-370+(a>=2?60:0)+a*80)
 			}
 			for(let a=0,la=4;a<la;a++){

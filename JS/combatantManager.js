@@ -629,7 +629,7 @@ class combatantManager{
         }
     }
     lowestEffect(effect,args){
-        let minimum=9
+        let minimum=0
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0&&this.combatants[a].life>0){
                 minimum=minimum==0?this.combatants[a].life:min(minimum,this.combatants[a].life)

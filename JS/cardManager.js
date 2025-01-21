@@ -556,12 +556,16 @@ class cardManager{
                     }
                 }else{
                     let amountLeft=amount
-                    amountLeft-=this.reserve.send(this.hand.cards,0,amountLeft,[3,8,13,14,18,5,6,19,9,12][spec]).length
+                    let sendId=this.reserve.sendAmounts.length
+                    let sent=this.reserve.send(this.hand.cards,0,amountLeft,[3,8,13,14,18,5,6,19,9,12][spec]).length
+                    amountLeft=this.reserve.sendAmounts[sendId]-sent
                     if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                         this.discard.send(this.reserve.cards,0,-1,2)
                         this.generalShuffle()
                         if(this.reserve.cards.length>0){
-                            amountLeft-=this.reserve.send(this.hand.cards,0,amountLeft,[3,8,13,14,18,5,6,19,9,12][spec]).length
+                            sendId=this.reserve.sendAmounts.length
+                            sent=this.reserve.send(this.hand.cards,0,amountLeft,[3,8,13,14,18,5,6,19,9,12][spec]).length
+                            amountLeft=this.reserve.sendAmounts[sendId]-sent
                         }
                     }
                     this.reserve.parseDrawEffects(this.hand)
@@ -585,8 +589,9 @@ class cardManager{
                     }
                 }else{
                     let amountLeft=amount
+                    let sendId=this.reserve.sendAmounts.length
                     let result=this.reserve.send(this.hand.cards,0,amountLeft,[3,8,13,14,18,5,6,19,9,12][spec])
-                    amountLeft-=result.length
+                    amountLeft=this.reserve.sendAmounts[sendId]-result.length
                     for(let a=0,la=result.length;a<la;a++){
                         sent.push(result[a])
                     }
@@ -594,8 +599,9 @@ class cardManager{
                         this.discard.send(this.reserve.cards,0,-1,2)
                         this.generalShuffle()
                         if(this.reserve.cards.length>0){
+                            sendId=this.reserve.sendAmounts.length
                             result=this.reserve.send(this.hand.cards,0,amountLeft,[3,8,13,14,18,5,6,19,9,12][spec])
-                            amountLeft-=result.length
+                            amountLeft=this.reserve.sendAmounts[sendId]-result.length
                             for(let a=0,la=result.length;a<la;a++){
                                 sent.push(result[a])
                             }
@@ -620,14 +626,19 @@ class cardManager{
                 }
             }else{
                 let amountLeft=amount-this.reserve.cards.length
+                let sendId=0
                 if(this.reserve.cards.length>0){
-                    amountLeft-=this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amountLeft,this.reserve.cards.length),-1,[3,8,13,14,18,5,6,19,9,12][spec]).length()
+                    sendId=this.reserve.sendAmounts.length
+                    let sent=this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amountLeft,this.reserve.cards.length),-1,[3,8,13,14,18,5,6,19,9,12][spec]).length
+                    amountLeft=this.reserve.sendAmounts[sendId]-sent
                 }
                 if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                     this.discard.send(this.reserve.cards,0,-1,2)
                     this.generalShuffle()
                     if(this.reserve.cards.length>0){
-                        amountLeft-=this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amountLeft,this.reserve.cards.length),-1,[3,8,13,14,18,5,6,19,9,12][spec]).length()
+                        sendId=this.reserve.sendAmounts.length
+                        sent=this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amountLeft,this.reserve.cards.length),-1,[3,8,13,14,18,5,6,19,9,12][spec]).length
+                        amountLeft=this.reserve.sendAmounts[sendId]-sent
                     }
                 }
                 this.reserve.parseDrawEffects(this.hand)
@@ -649,14 +660,19 @@ class cardManager{
                     }
                 }else{
                     let amountLeft=amount
+                    let sendId=0
                     if(this.reserve.cards.length>0){
-                        amountLeft-=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args)
+                        sendId=this.reserve.sendAmounts.length
+                        let sent=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args).length
+                        amountLeft=this.reserve.sendAmounts[sendId]-sent
                     }
                     if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw&&this.discard.checkAbstract(amountLeft,variant,args)){
                         this.discard.send(this.reserve.cards,0,-1,2)
                         this.generalShuffle()
                         if(this.reserve.cards.length>0){
-                            amountLeft-=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args)
+                            sendId=this.reserve.sendAmounts.length
+                            sent=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args).length
+                            amountLeft=this.reserve.sendAmounts[sendId]-sent
                         }
                     }
                     this.reserve.parseDrawEffects(this.hand)
@@ -679,15 +695,17 @@ class cardManager{
                         total++
                     break
                 }
-                this.reserve.send(this.hand.cards,a,a+1,3)
-                a--
+                this.reserve.slideSpecific(a)
+                if(this.reserve.cards[a].spec.includes(3)){
+                    a--
+                }
                 total++
                 if(total>=this.drawAmount&&variants.witch){
                     a=la
                 }
             }
-            la=this.reserve.cards.length
         }
+        this.reserve.send(this.hand.cards,0,total,3)
         return total
     }
     dropFirst(){

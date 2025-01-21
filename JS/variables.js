@@ -24,7 +24,7 @@ types={
         {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         {name:'',moniker:'The Placeholder',identifier:['',''],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         {name:'',moniker:'The Placeholder',identifier:['Sister','Miss'],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
-        {name:'',moniker:'The Placeholder',identifier:['Brother','Mister'],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'',moniker:'The Placeholder',identifier:['Brother','Mister'],life:42,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
