@@ -440,9 +440,6 @@ class battle{
         return result
     }
     setupBattle(encounter,first=true){
-        //tester(remove)
-        let timeoutError = new Error(`cardManager.setupBattle() timeout`);
-        let timer=setTimeout(()=>{throw timeoutError},100);
         let effectiveEncounter=variants.randomCombat?this.simulateCombat(encounter):encounter
         this.lastEncounter=effectiveEncounter
         this.encounter.class=effectiveEncounter.class
@@ -598,8 +595,6 @@ class battle{
         if(this.encounter.class==2&&this.nodeManager.harmBoss>0){
             this.nodeManager.harmBoss=0
         }
-        //tester(remove)
-        clearTimeout(timer);
     }
     setupRest(){
         this.optionManagers.forEach(optionManager=>optionManager.reset())
@@ -893,9 +888,6 @@ class battle{
         this.turn.time=game.turnTime
     }
     endTurn(){
-        //tester(remove)
-        let timeoutError = new Error(`cardManager.endTurn() timeout`);
-        let timer=setTimeout(()=>{throw timeoutError},50);
         let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
         combatant.endTurn()
         this.turn.endReady=false
@@ -970,8 +962,6 @@ class battle{
             }
         }
         this.updateTargetting()
-        //tester(remove)
-        clearTimeout(timer);
     }
     baselineEnergy(player,gen,combatant){
         let effectiveGen=variants.mtg?copyArray(gen):gen
@@ -1109,9 +1099,6 @@ class battle{
         this.attackManager.clear()
     }
     startTurn(){
-        //tester(remove)
-        let timeoutError = new Error(`cardManager.startTurn() timeout`);
-        let timer=setTimeout(()=>{throw timeoutError},50);
         this.turn.active=false
         if(this.modded(109)){
             this.combatantManager.allEffect(7,[this.counter.enemy-this.counter.killed-1])
@@ -1160,8 +1147,6 @@ class battle{
         }else{
             this.turn.active=true
         }
-        //tester(remove)
-        clearTimeout(timer);
     }
     getXBoost(player){
         let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]

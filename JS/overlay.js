@@ -3609,7 +3609,8 @@ class overlay{
                                 this.args[0]==64||this.args[0]==65||this.args[0]==66||this.args[0]==67||this.args[0]==68||
                                 this.args[0]==69||this.args[0]==70||this.args[0]==72||this.args[0]==76||this.args[0]==78||
                                 this.args[0]==83||this.args[0]==86||this.args[0]==87||this.args[0]==89||this.args[0]==90||
-                                this.args[0]==91||this.args[0]==106||this.args[0]==107||this.args[0]==108||this.args[0]==113
+                                this.args[0]==91||this.args[0]==106||this.args[0]==107||this.args[0]==108||this.args[0]==109||
+                                this.args[0]==110||this.args[0]==113
                             )||
                             this.page<ceil(this.battle.cardManagers[this.player].exhaust.cards.length/15)-1&&(
                                 this.args[0]==12||this.args[0]==97
@@ -3693,6 +3694,7 @@ class overlay{
                                     !(this.args[0]==65&&base.edition==6)&&
                                     !(this.args[0]==86&&base.edition==8)&&
                                     !(this.args[0]==90&&(base.spec.includes(65)||base.spec.includes(12)))&&
+                                    !((this.args[0]==106||this.args[0]==107||this.args[0]==108||this.args[0]==109||this.args[0]==110)&&base.spec.includes(12))&&
                                     !(this.args[0]==113&&(base.spec.includes(3)&&base.getCost(0)==0||base.spec.includes(12)))
                                 ){
                                     base.select=false
@@ -3719,7 +3721,7 @@ class overlay{
                                             }else{
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(base)
                                                 if(this.args[0]==17&&this.battle.relicManager.hasRelic(233,this.player)&&base.edition==0){
-                                                    base.edition=floor(random(1,7))
+                                                    this.battle.cardManagers[this.player].deck.cards[a].edition=floor(random(1,7))
                                                 }
                                                 if(this.battle.relicManager.hasRelic(477,this.player)){
                                                     this.battle.addCurrency(20*this.battle.relicManager.active[477][this.player+1],this.player)
@@ -4060,7 +4062,9 @@ class overlay{
                                         !(this.args[0]==64&&base.edition==2)&&
                                         !(this.args[0]==65&&base.edition==6)&&
                                         !(this.args[0]==86&&base.edition==8)&&
-                                        !(this.args[0]==90&&(base.spec.includes(65)||base.spec.includes(12)))
+                                        !(this.args[0]==90&&(base.spec.includes(65)||base.spec.includes(12)))&&
+                                        !((this.args[0]==106||this.args[0]==107||this.args[0]==108||this.args[0]==109||this.args[0]==110)&&base.spec.includes(12))&&
+                                        !(this.args[0]==113&&(base.spec.includes(3)&&base.getCost(0)==0||base.spec.includes(12)))
                                     ){
                                         base.select=true
                                         switch(this.args[0]){
@@ -5088,7 +5092,8 @@ class overlay{
                                 this.args[0]==64||this.args[0]==65||this.args[0]==66||this.args[0]==67||this.args[0]==68||
                                 this.args[0]==69||this.args[0]==70||this.args[0]==72||this.args[0]==76||this.args[0]==78||
                                 this.args[0]==83||this.args[0]==86||this.args[0]==87||this.args[0]==89||this.args[0]==90||
-                                this.args[0]==91||this.args[0]==106||this.args[0]==107||this.args[0]==108||this.args[0]==113
+                                this.args[0]==91||this.args[0]==106||this.args[0]==107||this.args[0]==108||this.args[0]==109||
+                                this.args[0]==110||this.args[0]==113
                             )||
                             this.page<ceil(this.battle.cardManagers[this.player].exhaust.cards.length/15)-1&&(
                                 this.args[0]==12||this.args[0]==97
@@ -5172,6 +5177,7 @@ class overlay{
                                     !(this.args[0]==65&&base.edition==6)&&
                                     !(this.args[0]==86&&base.edition==8)&&
                                     !(this.args[0]==90&&(base.spec.includes(65)||base.spec.includes(12)))&&
+                                    !((this.args[0]==106||this.args[0]==107||this.args[0]==108||this.args[0]==109||this.args[0]==110)&&base.spec.includes(12))&&
                                     !(this.args[0]==113&&(base.spec.includes(3)&&base.getCost(0)==0||base.spec.includes(12)))
                                 ){
                                     base.select=false
@@ -5198,7 +5204,7 @@ class overlay{
                                             }else{
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(base)
                                                 if(this.args[0]==17&&this.battle.relicManager.hasRelic(233,this.player)&&base.edition==0){
-                                                    base.edition=floor(random(1,7))
+                                                    this.battle.cardManagers[this.player].deck.cards[a].edition=floor(random(1,7))
                                                 }
                                                 if(this.battle.relicManager.hasRelic(477,this.player)){
                                                     this.battle.addCurrency(20*this.battle.relicManager.active[477][this.player+1],this.player)
@@ -5539,7 +5545,9 @@ class overlay{
                                         !(this.args[0]==64&&base.edition==2)&&
                                         !(this.args[0]==65&&base.edition==6)&&
                                         !(this.args[0]==86&&base.edition==8)&&
-                                        !(this.args[0]==90&&(base.spec.includes(65)||base.spec.includes(12)))
+                                        !(this.args[0]==90&&(base.spec.includes(65)||base.spec.includes(12)))&&
+                                        !((this.args[0]==106||this.args[0]==107||this.args[0]==108||this.args[0]==109||this.args[0]==110)&&base.spec.includes(12))&&
+                                        !(this.args[0]==113&&(base.spec.includes(3)&&base.getCost(0)==0||base.spec.includes(12)))
                                     ){
                                         base.select=true
                                         switch(this.args[0]){

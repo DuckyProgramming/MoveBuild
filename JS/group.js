@@ -472,6 +472,10 @@ class group{
         this.cards.splice(0,0,this.cards[index])
         this.cards.splice(index+1,1)
     }
+    slideSpecificOver(index){
+        this.cards.splice(this.cards.length,0,this.cards[index])
+        this.cards.splice(index,1)
+    }
     resetAnim(){
         this.lastSort=-1
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -5141,7 +5145,7 @@ class group{
             break
             case 27:
                 this.cards[a].deSize=true
-                this.cards[a].discardEffectBuffered.push(1)
+                this.cards[a].discardEffectBuffered.push(3)
                 if(this.status[22]>0){
                     this.status[22]--
                 }
@@ -5902,9 +5906,9 @@ class group{
                                 }
                             }
                             let triplet=false
-                            if(this.cards[a].discardEffectBuffered.includes(1)){
+                            if(this.cards[a].discardEffectBuffered.includes(3)){
                                 triplet=true
-                                this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(1))
+                                this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(3))
                             }
                             this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1,7)
                             if(triplet){

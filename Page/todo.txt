@@ -1,7 +1,6 @@
 OPERATION MANHUNT [Long-Term Unsolved Bugs]
 
 save bug?
-infinite loop draw bug?
 
 
 
@@ -9,33 +8,6 @@ CARDSET 62
 
 
 
-new characters can't move
-
-more cycle
-
-heel kick
-
-cherry skies
-
-terastar - damage, choose a status effect to apply
-
-[status] transient - immune to weak and vulnerable
-
-precipice
-
-[bonkception]
-
-doctrinal - scry 5, exhaust top card of draw pile
-
-star wish - gain 1 temporary strength when a card is discarded by scry
-
-draw 3 cards, exhaust a card from draw pile (and another for discard)
-
-propup - 0 cost, look at the bottom card of draw pile, you may choose to exhaust it or draw it
-
-honor - curse, when drawn all enemies heal
-
-unsatisfactory - choose a card to add to hand, and also get a random curse
 
 bind - better iron wave, retain, but when retained lose energy
 
@@ -86,7 +58,25 @@ runaway evolution - when you play an evolve card it evolves
 
 reactionary movement -  add block, choose a movement to add to hand
 
-a better tomorrow - 3 cost, either gain 2 max life or 40 currency
+new characters can't move
+
+more cycle
+
+heel kick
+
+cherry skies
+
+terastar - damage, choose a status effect to apply
+
+[status] transient - immune to weak and vulnerable
+
+precipice
+
+vincent can't move
+
+[bonkception]
+
+[blacklist]
 
 [golden dodecahedron]
 

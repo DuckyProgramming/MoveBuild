@@ -7236,7 +7236,7 @@ class card{
             case 6224: string+=`Gain (N) Next Turn\nWhen You Play a Power`; break
             case 6225: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nIf Last Card\nRemaining in Hand,\nTake Another Turn`; break
             case 6226: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nSee Your Draw\nPile in Order`; break
-            case 6227: string+=`Gain ${effect[0]} Wish Power\nAdd ${effect[1]} Random\nWish${effect[1]!=1?`es`:``} to Hand\n${effect[1]!=1?`They Become`:`It Becomes`} Ethereal`; break
+            case 6227: string+=`Gain ${effect[0]} Wish Power\nAdd ${effect[1]} Random\nWish${effect[1]!=1?`es`:``} to Hand\n${effect[1]!=1?`They Have`:`It Has`} Ethereal`; break
             case 6228: string+=`Apply ${effect[0]} Stun\nto a Random Enemy\nAmplify:\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
             case 6229: string+=`Apply ${effect[0]} Stun\nto a Random Enemy\nAmplify (R):\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
             case 6230: string+=`Add ${effect[0]} Miracle${pl(effect[0])}\nto Hand\nLose ${effect[1]} ${variants.mtg?`Random Mana`:`Energy`}\nNext Turn`; break
@@ -8091,6 +8091,27 @@ class card{
             case 7107: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf There are no\nDefenses in Hand,\nDraw ${effect[1]} Defense${pl(effect[1])}`; break
             case 7108: string+=`All Cards in Hand\nCost ${effect[0]} Less Temporarily\nLose ${effect[1]} Random Mana\nNext Turn`; break
             case 7109: string+=`When Exhausted,\nAdd ${this.calculateEffect(effect[0],17)} Bounce\nFor 2 Turns`; break
+
+            case 7110: string+=`Scry ${effect[0]}\nDraw ${effect[1]} Card${pl(effect[1])}\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
+            //2740
+            case 7111: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen a Card is\nDiscarded by Scry`; break
+            //2196
+            case 7112: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nExhaust a Card\nFrom Draw Pile`; break
+            //2625
+            case 7113: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nExhaust a Card\nFrom Discard Pile`; break
+            //3276
+            case 7114: string+=`Look at the Bottom\nCard of Draw Pile\nDraw it or Exhaust it`; break
+            case -132: string+=`At the End of Your Turn,\nHeal All Enemies For ${effect[0]}`; break
+            //-4,3197
+
+            case 7115: string+=`Choose a Rare Card\nof Equivalent Level\nto Add to Hand\nIt Costs 0\nAdd a Random\n(Temporary)\nCurse of Equivalent\nLevel to Hand`; break
+            //2428,6360
+            case 7116: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            //273
+
+
+
+
 
             //mark p
 
