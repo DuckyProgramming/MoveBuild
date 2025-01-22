@@ -8090,6 +8090,7 @@ class card{
             case 7106: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Temporary\nStrength For Each\nDodge You Have`; break
             case 7107: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf There are no\nDefenses in Hand,\nDraw ${effect[1]} Defense${pl(effect[1])}`; break
             case 7108: string+=`All Cards in Hand\nCost ${effect[0]} Less Temporarily\nLose ${effect[1]} Random Mana\nNext Turn`; break
+            case 7109: string+=`When Exhausted,\nAdd ${this.calculateEffect(effect[0],17)} Bounce\nFor 2 Turns`; break
 
             //mark p
 
@@ -9022,12 +9023,16 @@ class card{
             case 6962:
                 userCombatant.statusEffect('(E) Next Turn',2)
             break
-            case 6967:w
+            case 6967:
                 userCombatant.prime(this.effect[1])
             break
             case 7021:
                 this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
                 this.battle.cardManagers[this.player].draw(this.effect[1])
+            break
+            case 7109:
+                userCombatant.addBounce(this.effect[0])
+                userCombatant.statusEffect('Bounce Next Turn',this.effect[0])
             break
 
         }
@@ -12924,7 +12929,7 @@ class card{
     }
     free(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-        return userCombatant.getStatus('Free Card')>0||
+        return userCombatant.getStatus('Free Card')>0&&this.class!=13||
             userCombatant.getStatus('Free 1 Cost Card')>0&&this.getCost([0])==1||
             (userCombatant.getStatus('Free Attack')>0||userCombatant.getStatus('Cycle Attack')>0)&&this.class==1||
             (userCombatant.getStatus('Free Defense')>0||userCombatant.getStatus('Cycle Defense')>0)&&this.class==2||

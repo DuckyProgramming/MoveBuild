@@ -1,8 +1,11 @@
+OPERATION MANHUNT [Long-Term Unsolved Bugs]
+
+save bug?
+infinite loop draw bug?
+
+
+
 CARDSET 62
-
-
-
-there are still save bugs but idk bro
 
 
 
@@ -101,7 +104,6 @@ OPERATION ROSENFELD
 
 [reorganize character 22]
 follow up
-fugue
 
 OPERATION KHIRASARA
 
@@ -112,7 +114,7 @@ shuffle
 
 OPERATION FERROCHROME
 
-[the mathematician]
+[the commuduck]
 confuse
 control
 

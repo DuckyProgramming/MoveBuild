@@ -5081,7 +5081,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
 				break
 				case 'Sagume':
-					p1.position.y-=a*33
+					p1.position.y+=3-a*34
 					p1.parts.mouth++
 					p1.anim.mouth.y-=1.5
 					p1.spin.mouth-=12

@@ -31119,6 +31119,48 @@ types.card=[
                 {effect:[8],attack:7095,cost:[2,4,-1,-1,-1],target:[0],spec:[1,64],class:11},
             ],
         },
+    },{
+        name:'Double\nHelix',rarity:0,list:13,
+        levels:[
+            {effect:[7,1],attack:3770,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[11,1],attack:3770,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[14,1],attack:3770,cost:1,target:[2,1,3],spec:[0],class:1},
+        ],mtg:{
+            rarity:0,list:13,color:[4],
+            levels:[
+                {effect:[5,1],attack:3770,cost:[4],target:[2,1,3],spec:[0],class:1},
+                {effect:[8,1],attack:3770,cost:[4],target:[2,1,3],spec:[0],class:1},
+                {effect:[10,1],attack:3770,cost:[4],target:[2,1,3],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'DNA\nShotgun',rarity:1,list:13,
+        levels:[
+            {effect:[16,2,3],attack:3771,cost:2,target:[2,1,3],spec:[0],class:1},
+            {effect:[24,3,4],attack:3771,cost:2,target:[2,1,3],spec:[0],class:1},
+            {effect:[30,4,5],attack:3771,cost:2,target:[2,1,3],spec:[0],class:1},
+        ],mtg:{
+            rarity:1,list:13,color:[4],
+            levels:[
+                {effect:[20,2,3],attack:3771,cost:[4,4,-1],target:[2,1,3],spec:[0],class:1},
+                {effect:[30,3,4],attack:3771,cost:[4,4,-1],target:[2,1,3],spec:[0],class:1},
+                {effect:[36,4,6],attack:3771,cost:[4,4,-1],target:[2,1,3],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Transcription',rarity:0,list:13,
+        levels:[
+            {effect:[3],attack:1,cost:0,target:[2,1,1],spec:[74],class:1},
+            {effect:[5],attack:1,cost:0,target:[2,1,1],spec:[74],class:1},
+            {effect:[7],attack:1,cost:0,target:[2,1,1],spec:[74],class:1},
+        ],mtg:{
+            rarity:0,list:13,color:[5],
+            levels:[
+                {effect:[3],attack:1,cost:[],target:[2,1,1],spec:[74],class:1},
+                {effect:[5],attack:1,cost:[],target:[2,1,1],spec:[74],class:1},
+                {effect:[7],attack:1,cost:[],target:[2,1,1],spec:[74],class:1},
+            ],
+        },
     },
 
     //mark 13
@@ -49048,48 +49090,6 @@ types.card=[
             ],
         },
     },{
-        name:'Double\nHelix',rarity:0,list:22,
-        levels:[
-            {effect:[7,1],attack:3770,cost:1,target:[2,1,3],spec:[0],class:1},
-            {effect:[11,1],attack:3770,cost:1,target:[2,1,3],spec:[0],class:1},
-            {effect:[14,1],attack:3770,cost:1,target:[2,1,3],spec:[0],class:1},
-        ],mtg:{
-            rarity:0,list:22,color:[4],
-            levels:[
-                {effect:[5,1],attack:3770,cost:[4],target:[2,1,3],spec:[0],class:1},
-                {effect:[8,1],attack:3770,cost:[4],target:[2,1,3],spec:[0],class:1},
-                {effect:[10,1],attack:3770,cost:[4],target:[2,1,3],spec:[0],class:1},
-            ],
-        },
-    },{
-        name:'DNA\nShotgun',rarity:1,list:22,
-        levels:[
-            {effect:[16,2,3],attack:3771,cost:2,target:[2,1,3],spec:[0],class:1},
-            {effect:[24,3,4],attack:3771,cost:2,target:[2,1,3],spec:[0],class:1},
-            {effect:[30,4,5],attack:3771,cost:2,target:[2,1,3],spec:[0],class:1},
-        ],mtg:{
-            rarity:1,list:22,color:[4],
-            levels:[
-                {effect:[20,2,3],attack:3771,cost:[4,4,-1],target:[2,1,3],spec:[0],class:1},
-                {effect:[30,3,4],attack:3771,cost:[4,4,-1],target:[2,1,3],spec:[0],class:1},
-                {effect:[36,4,6],attack:3771,cost:[4,4,-1],target:[2,1,3],spec:[0],class:1},
-            ],
-        },
-    },{
-        name:'Transcription',rarity:0,list:22,
-        levels:[
-            {effect:[3],attack:1,cost:0,target:[2,1,1],spec:[74],class:1},
-            {effect:[5],attack:1,cost:0,target:[2,1,1],spec:[74],class:1},
-            {effect:[7],attack:1,cost:0,target:[2,1,1],spec:[74],class:1},
-        ],mtg:{
-            rarity:0,list:22,color:[5],
-            levels:[
-                {effect:[3],attack:1,cost:[],target:[2,1,1],spec:[74],class:1},
-                {effect:[5],attack:1,cost:[],target:[2,1,1],spec:[74],class:1},
-                {effect:[7],attack:1,cost:[],target:[2,1,1],spec:[74],class:1},
-            ],
-        },
-    },{
         name:'Trial of\nPratapana',rarity:1,list:22,
         levels:[
             {effect:[15,1],attack:5952,cost:3,target:[0],spec:[0],class:1},
@@ -52345,6 +52345,20 @@ types.card=[
                 {effect:[1,2],attack:3234,cost:[-1,-1],target:[1,1,1],spec:[0],class:3},
             ],
         },
+    },{
+        name:'Sputnik',rarity:1,list:24,
+        levels:[
+            {effect:[2,2],attack:6493,cost:1,target:[0],spec:[],class:11},
+            {effect:[3,2],attack:6493,cost:1,target:[0],spec:[],class:11},
+            {effect:[3,3],attack:6493,cost:1,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:1,list:24,color:[2],
+            levels:[
+                {effect:[2,2],attack:6493,cost:[2,2],target:[0],spec:[],class:11},
+                {effect:[3,2],attack:6493,cost:[2,2],target:[0],spec:[],class:11},
+                {effect:[3,3],attack:6493,cost:[2,2],target:[0],spec:[],class:11},
+            ],
+        },
     },
 
     //mark 24
@@ -53080,15 +53094,15 @@ types.card=[
     },{
         name:'Reversal',rarity:3,list:constants.playerNumber+1,
         levels:[
-            {effect:[18],attack:6479,cost:0,target:[0],spec:[5],class:5},
-            {effect:[27],attack:6479,cost:0,target:[0],spec:[5],class:5},
-            {effect:[33],attack:6479,cost:0,target:[0],spec:[5],class:5},
+            {effect:[12],attack:7109,cost:0,target:[0],spec:[5],class:5},
+            {effect:[18],attack:7109,cost:0,target:[0],spec:[5],class:5},
+            {effect:[22],attack:7109,cost:0,target:[0],spec:[5],class:5},
         ],mtg:{
             rarity:3,list:constants.playerNumber+1,color:[constants.playerNumber+1],
             levels:[
-                {effect:[18],attack:6479,cost:[],target:[0],spec:[5],class:5},
-                {effect:[27],attack:6479,cost:[],target:[0],spec:[5],class:5},
-                {effect:[33],attack:6479,cost:[],target:[0],spec:[5],class:5},
+                {effect:[12],attack:7109,cost:[],target:[0],spec:[5],class:5},
+                {effect:[18],attack:7109,cost:[],target:[0],spec:[5],class:5},
+                {effect:[22],attack:7109,cost:[],target:[0],spec:[5],class:5},
             ],
         },
     },{
@@ -62019,20 +62033,6 @@ types.card=[
                 {effect:[2],attack:1949,cost:[3,-1],target:[1,1,2],spec:[0],class:3},
                 {effect:[2],attack:1949,cost:[-1,-1],target:[1,1,2],spec:[0],class:3},
                 {effect:[2],attack:1949,cost:[-1],target:[1,1,2],spec:[0],class:3},
-            ],
-        },
-    },{
-        name:'Sputnik',rarity:-5,list:-1,
-        levels:[
-            {effect:[2,2],attack:6493,cost:1,target:[0],spec:[],class:11},
-            {effect:[3,2],attack:6493,cost:1,target:[0],spec:[],class:11},
-            {effect:[3,3],attack:6493,cost:1,target:[0],spec:[],class:11},
-        ],mtg:{
-            rarity:-5,list:-1,color:[2],
-            levels:[
-                {effect:[2,2],attack:6493,cost:[2,2],target:[0],spec:[],class:11},
-                {effect:[3,2],attack:6493,cost:[2,2],target:[0],spec:[],class:11},
-                {effect:[3,3],attack:6493,cost:[2,2],target:[0],spec:[],class:11},
             ],
         },
     },{
@@ -79725,6 +79725,20 @@ types.card=[
                 {effect:[1],attack:6761,cost:[],target:[0],spec:[4,5,62],class:8},
                 {effect:[1],attack:6762,cost:[],target:[0],spec:[4,5,62],class:8},
                 {effect:[1],attack:6763,cost:[],target:[0],spec:[4,5,62],class:8},
+            ],
+        },
+    },{
+        name:'Neglect',rarity:-1,list:-8,
+        levels:[
+            {effect:[18],attack:6479,cost:0,target:[0],spec:[5],class:5},
+            {effect:[27],attack:6479,cost:0,target:[0],spec:[5],class:5},
+            {effect:[33],attack:6479,cost:0,target:[0],spec:[5],class:5},
+        ],mtg:{
+            rarity:-1,list:-8,color:[constants.playerNumber+1],
+            levels:[
+                {effect:[18],attack:6479,cost:[],target:[0],spec:[5],class:5},
+                {effect:[27],attack:6479,cost:[],target:[0],spec:[5],class:5},
+                {effect:[33],attack:6479,cost:[],target:[0],spec:[5],class:5},
             ],
         },
     },

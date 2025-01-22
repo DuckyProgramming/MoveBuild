@@ -5735,7 +5735,7 @@ combatant.prototype.display=function(){
             case 'Sagume':
                 if(this.trigger.display.wing){
                     this.layer.push()
-                    this.layer.scale(lcos(this.anim.direction-12)*(0.9+0.1*lsin(this.time*4)),1)
+                    this.layer.scale(lcos(this.anim.direction)*(0.9+0.1*lsin(this.time*4)),1)
                     this.layer.image(graphics.combatant[10].sprites.wing[0],-70*this.fade,-56-50*this.fade,80*this.fade,60*this.fade)
                     this.layer.pop()
                 }

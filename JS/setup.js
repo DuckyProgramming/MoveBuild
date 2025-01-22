@@ -11,8 +11,8 @@ function setup(){
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[21,21]
-        current.menu.deck=[0,0]
+        current.menu.combatant=[21]
+        current.menu.deck=[0]
 
             //variants.mtg=true
 
@@ -45,10 +45,10 @@ function setup(){
             //current.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
             //current.create()
 
-            stage.scene='graphic'
-            graphics.test=7
+            /*stage.scene='graphic'
+            graphics.test=4
             graphics.staticBackground.clear()
-            setupBackground(graphics.test,graphics.staticBackground)
+            setupBackground(graphics.test,graphics.staticBackground)*/
 
             //quickNode(3)
             

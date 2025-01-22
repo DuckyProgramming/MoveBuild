@@ -5866,7 +5866,7 @@ class attack{
                         this.userCombatant.addBlock(this.effect[1]*this.energy*this.energy,this.user)
                     break
                     case 6465:
-                        this.userManager.drawAbstract(this.effect[1],0,0,[5,6])
+                        this.userManager.drawAbstract(this.effect[1],22,0,[[5,6]])
                     break
                     case 6477:
                         for(let a=0,la=this.effect[1];a<la;a++){
@@ -8699,7 +8699,7 @@ class attack{
                         this.battle.overlayManager.overlays[8][this.player].activate()
                     break
                     case 6466:
-                        this.userManager.drawAbstract(this.effect[1],0,0,[5,6])
+                        this.userManager.drawAbstract(this.effect[1],22,0,[[5,6]])
                     break
                     case 6470:
                         this.targetCombatant.statusEffect('Reflect',1)
@@ -17772,7 +17772,7 @@ class attack{
                     break
                     case 6529:
                         this.userCombatant.statusEffect('Pure',this.effect[0])
-                        this.userManager.drawAbstract(this.effect[1],0,0,[5,6])
+                        this.userManager.drawAbstract(this.effect[1],22,0,[[5,6]])
                     break
                     case 6544:
                         this.userCombatant.statusEffect('Retain History',999)

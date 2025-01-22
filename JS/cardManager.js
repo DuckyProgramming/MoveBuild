@@ -27,7 +27,6 @@ class cardManager{
         this.greenDiff=0
         this.carry=[0,0,0,0,0]
         this.bufferedTurn=0
-        this.midDraw=false
         this.pack=[]
 
         this.initialListing()
@@ -540,12 +539,13 @@ class cardManager{
         }
     }
     draw(amount,spec=0){
+        //tester(remove)
+        let timeoutError = new Error(`cardManager.draw() timeout`);
+        let timer=setTimeout(()=>{throw timeoutError},10);
         if(!this.tempDraw.active){
             this.battle.relicManager.activate(23,[amount,this.player])
         }
-        if(this.midDraw&&amount>0){
-            this.reserve.drawEffects.push([5,amount])
-        }else if(amount>0){
+        if(amount>0){
             this.hand.allEffectArgs(31,[amount])
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             if(userCombatant.getStatus('No Draw')<=0){
@@ -572,6 +572,8 @@ class cardManager{
                 }
             }
         }
+        //tester(remove)
+        clearTimeout(timer);
     }
     drawReturn(amount,spec=0){
         if(!this.tempDraw.active){
@@ -627,9 +629,10 @@ class cardManager{
             }else{
                 let amountLeft=amount-this.reserve.cards.length
                 let sendId=0
+                let sent=0
                 if(this.reserve.cards.length>0){
                     sendId=this.reserve.sendAmounts.length
-                    let sent=this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amountLeft,this.reserve.cards.length),-1,[3,8,13,14,18,5,6,19,9,12][spec]).length
+                    sent=this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amountLeft,this.reserve.cards.length),-1,[3,8,13,14,18,5,6,19,9,12][spec]).length
                     amountLeft=this.reserve.sendAmounts[sendId]-sent
                 }
                 if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
@@ -646,6 +649,7 @@ class cardManager{
         }
     }
     drawAbstract(amount,variant,output,args){
+        print(amount,variant,output,args)
         if(!this.tempDraw.active){
             this.battle.relicManager.activate(23,[amount,this.player])
         }
@@ -661,9 +665,10 @@ class cardManager{
                 }else{
                     let amountLeft=amount
                     let sendId=0
+                    let sent=0
                     if(this.reserve.cards.length>0){
                         sendId=this.reserve.sendAmounts.length
-                        let sent=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args).length
+                        sent=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args)
                         amountLeft=this.reserve.sendAmounts[sendId]-sent
                     }
                     if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw&&this.discard.checkAbstract(amountLeft,variant,args)){
@@ -671,7 +676,7 @@ class cardManager{
                         this.generalShuffle()
                         if(this.reserve.cards.length>0){
                             sendId=this.reserve.sendAmounts.length
-                            sent=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args).length
+                            sent=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args)
                             amountLeft=this.reserve.sendAmounts[sendId]-sent
                         }
                     }
@@ -728,6 +733,9 @@ class cardManager{
         this.discard.allEffectArgs(effect,args)
     }
     turnDraw(turn){
+        //tester(remove)
+        let timeoutError = new Error(`cardManager.turnDraw() timeout`);
+        let timer=setTimeout(()=>{throw timeoutError},20);
         this.tempDraw.active=true
         let tempDrawAmount=this.drawAmount+this.tempDraw.main-(this.battle.turn.total==1&&(variants.cyclicDraw||game.ascend>=21)?1:0)
         if(turn==1){
@@ -845,6 +853,8 @@ class cardManager{
         }
         this.hand.allEffect(103)
         this.tempDraw.active=false
+        //tester(remove)
+        clearTimeout(timer);
     }
     subFatigue(name,bypass){
         this.interval++

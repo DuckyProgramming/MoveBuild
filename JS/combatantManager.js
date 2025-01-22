@@ -1200,7 +1200,9 @@ class combatantManager{
     getRandomNonexistingPlayer(){
         let list=[]
         for(let a=0,la=constants.playerNumber;a<la;a++){
-            list.push(a+1)
+            if(types.combatant[a].attack.length>0){
+                list.push(a+1)
+            }
         }
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].type>0&&this.combatants[a].type<=constants.playerNumber&&list.includes(this.combatants[a].type)){

@@ -3289,15 +3289,15 @@ class particle{
                 break
                 case 184:
                     this.layer.rotate(this.time*-5+this.offset)
-                    this.layer.fill(175+80*this.fade,255*this.fade,255*this.fade,this.fade)
+                    this.layer.fill(...mergeColor([89,84,89],[255,255,255],this.fade),this.fade)
                     this.layer.arc(0,0,20,20,-180,0)
-                    this.layer.fill(175,0,0,this.fade)
+                    this.layer.fill(89,84,89,this.fade)
                     this.layer.arc(0,0,20,20,0,180)
                     this.layer.arc(5,0,10,10,-180,0)
-                    this.layer.fill(175+80*this.fade,255*this.fade,255*this.fade,this.fade)
+                    this.layer.fill(...mergeColor([89,84,89],[255,255,255],this.fade),this.fade)
                     this.layer.arc(-5,0,10,10,0,180)
                     this.layer.ellipse(5,0,3)
-                    this.layer.fill(175,0,0,this.fade)
+                    this.layer.fill(89,84,89,this.fade)
                     this.layer.ellipse(-5,0,3)
                 break
                 case 185:

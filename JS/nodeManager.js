@@ -13,6 +13,7 @@ class nodeManager{
         this.tilePosition={x:0,y:-1}
         this.scroll=0
         this.world=0
+        this.stashWorld=0
         this.total=0
 
         this.freeMove=0
@@ -346,6 +347,7 @@ class nodeManager{
                 }
             break
             case 6:
+                this.stashWorld++
                 if(this.world==1&&game.ascend>=23){
                     this.enterNode(args[1],y,true,args)
                 }else{

@@ -137,6 +137,9 @@ class relicManager{
         }else{
             let relics=copyArrayStack(this.listing.relic)
             let possible=[0,0,0,1,1,2]
+            for(let a=0,la=relics.length;a<la;a++){
+                relics[a]=relics[a].filter(relic=>(types.relic[relic].world[0]<=this.battle.nodeManager.stashWorld&&types.relic[relic].world[1]>=this.battle.nodeManager.stashWorld))
+            }
             for(let a=0,la=this.active[109][0]>0?5:3;a<la;a++){
                 let rarity=possible[floor(random(0,possible.length))]
                 if(relics[rarity].length==0){
@@ -174,10 +177,13 @@ class relicManager{
             }
         }else{
             let rarity=4
+            let possible=this.listing.relic[rarity].filter(relic=>(types.relic[relic].world[0]<=this.battle.nodeManager.stashWorld&&types.relic[relic].world[1]>=this.battle.nodeManager.stashWorld))
             for(let a=0,la=3;a<la;a++){
-                let index=floor(random(0,this.listing.relic[rarity].length))
-                this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2+50-la*50+a*100,this.layer.height/2-45,this.listing.relic[rarity][index],2))
-                this.listing.relic[rarity].splice(index,1)
+                let index=floor(random(0,possible.length))
+                this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2+50-la*50+a*100,this.layer.height/2-45,possible[index],2))
+                if(this.listing.relic[rarity].includes(possible[index])){
+                    this.listing.relic[rarity].splice(this.listing.relic[rarity].indexOf(possible[index]),1)
+                }
             }
         }
     }
@@ -308,8 +314,9 @@ class relicManager{
         if(this.listing.relic[rarity]==0){
             this.addRelic(findName('Menger Square',types.relic),player)
         }else{
-            let index=floor(random(0,this.listing.relic[rarity].length))
-            this.addRelic(this.listing.relic[rarity][index],player)
+            let possible=this.listing.relic[rarity].filter(relic=>(types.relic[relic].world[0]<=this.battle.nodeManager.stashWorld&&types.relic[relic].world[1]>=this.battle.nodeManager.stashWorld))
+            let index=floor(random(0,possible.length))
+            this.addRelic(possible[index],player)
         }
     }
     addRandomRelicMult(player,mult){
@@ -318,8 +325,9 @@ class relicManager{
         if(this.listing.relic[rarity]==0){
             this.addRelic(findName('Menger Square',types.relic),player)
         }else{
-            let index=floor(random(0,this.listing.relic[rarity].length))
-            let type=this.listing.relic[rarity][index]
+            let possible=this.listing.relic[rarity].filter(relic=>(types.relic[relic].world[0]<=this.battle.nodeManager.stashWorld&&types.relic[relic].world[1]>=this.battle.nodeManager.stashWorld))
+            let index=floor(random(0,possible.length))
+            let type=possible[index]
             for(let a=0,la=mult;a<la;a++){
                 this.addRelic(type,player)
             }
@@ -329,16 +337,18 @@ class relicManager{
         if(this.listing.relic[rarity]==0){
             this.addRelic(findName('Menger Square',types.relic),player)
         }else{
-            let index=floor(random(0,this.listing.relic[rarity].length))
-            this.addRelic(this.listing.relic[rarity][index],player)
+            let possible=this.listing.relic[rarity].filter(relic=>(types.relic[relic].world[0]<=this.battle.nodeManager.stashWorld&&types.relic[relic].world[1]>=this.battle.nodeManager.stashWorld))
+            let index=floor(random(0,possible.length))
+            this.addRelic(possible[index],player)
         }
     }
     addSetRelicMult(rarity,player,mult){
         if(this.listing.relic[rarity]==0){
             this.addRelic(findName('Menger Square',types.relic),player)
         }else{
-            let index=floor(random(0,this.listing.relic[rarity].length))
-            let type=this.listing.relic[rarity][index]
+            let possible=this.listing.relic[rarity].filter(relic=>(types.relic[relic].world[0]<=this.battle.nodeManager.stashWorld&&types.relic[relic].world[1]>=this.battle.nodeManager.stashWorld))
+            let index=floor(random(0,possible.length))
+            let type=possible[index]
             for(let a=0,la=mult;a<la;a++){
                 this.addRelic(type,player)
             }
@@ -347,6 +357,9 @@ class relicManager{
     makeRelicSelection(rarity){
         let list=[]
         let relics=copyArrayStack(this.listing.relic)
+        for(let a=0,la=relics.length;a<la;a++){
+            relics[a]=relics[a].filter(relic=>(types.relic[relic].world[0]<=this.battle.nodeManager.stashWorld&&types.relic[relic].world[1]>=this.battle.nodeManager.stashWorld))
+        }
         for(let a=0,la=rarity.length;a<la;a++){
             if(relics[rarity[a]].length>0){
                 let index=floor(random(0,relics[rarity[a]].length))
@@ -755,7 +768,7 @@ class relicManager{
                 this.battle.cardManagers[player].mtgListing()
                 this.battle.overlayManager.overlays[119][player].active=true
                 this.battle.overlayManager.overlays[119][player].activate([])
-                this.battle.overlayManager.overlays[119][player].args[1]=2
+                this.battle.overlayManager.overlays[119][player].args[1]=3
             break
             case 421:
                 this.battle.addSpecificEnergyBase(player,6)
@@ -2894,7 +2907,7 @@ class relicManager{
                             }
                         }
                         if(this.active[461][args[1]+1]>0){
-                            this.getPlayer(args[1]).statusEffect('Single Damage Up',2*this.active[461][args[1]+1])
+                            this.getPlayer(args[1]).statusEffect('Single Damage Up',3*this.active[461][args[1]+1])
                         }
                     break
                     case 11:

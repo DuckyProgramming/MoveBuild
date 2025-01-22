@@ -3329,7 +3329,8 @@ class group{
             variant==18&&args[0].includes(this.cards[index].edition)||
             variant==19&&this.cards[index].class!=args[0]||
             variant==20&&this.cards[index].getBasic(args[0])||
-            variant==21&&(variants.mtg&&!arrayCompareLoose(this.cards[index].color,this.battle.player[this.player])||!variants.mtg&&this.cards[index].color!=this.battle.player[this.player])
+            variant==21&&(variants.mtg&&!arrayCompareLoose(this.cards[index].color,this.battle.player[this.player])||!variants.mtg&&this.cards[index].color!=this.battle.player[this.player])||
+            variant==22&&args[0].includes(this.cards[index].class)
         )
     }
     checkAbstract(amount,variant,args){
@@ -3466,17 +3467,14 @@ class group{
     }
     send(list,firstIndex,lastIndex,spec){
         this.lastSort=-1
-        if(this.player>=0&&stage!='tier'){
-            this.battle.cardManagers[this.player].midDraw=true
-        }
         this.sendAmounts.push(lastIndex==-1?this.cards.length-firstIndex:lastIndex-firstIndex)
         let sendId=this.sendAmounts.length-1
         this.sent=[]
+        let iteration=0
+        //tester(remove)
         while(this.sent.length<min(100,this.sendAmounts[sendId])){
+            let preSent=this.sent.length
             if(firstIndex>=this.cards.length){
-                if(this.player>=0&&stage!='tier'){
-                    this.battle.cardManagers[this.player].midDraw=false
-                }
                 if(spec==23){
                     this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
                 }
@@ -3518,6 +3516,16 @@ class group{
             list[list.length-1].size=0
             delete this.cards[firstIndex]
             this.cards.splice(firstIndex,1)
+            if(this.sent.length<=preSent){
+                //tester(remove)
+                print(this.sent.length,this.cards,firstIndex,lastIndex,spec,list)
+                throw new Error("failed send");
+            }
+            if(iteration>=100){
+                //tester(remove)
+                print(this.sent.length,this.cards,firstIndex,lastIndex,spec,list)
+                throw new Error("overiteration");
+            }
             if(
                 spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
                 spec==13||spec==14||spec==16||spec==18||spec==19||spec==20||spec==21||spec==24
@@ -3531,9 +3539,6 @@ class group{
                 list[list.length-1].costDownTrigger=list[list.length-1].baseCostDownTrigger
                 list[list.length-1].costUpTrigger=list[list.length-1].baseCostUpTrigger
             }
-        }
-        if(this.player>=0&&stage!='tier'){
-            this.battle.cardManagers[this.player].midDraw=false
         }
         if(spec==23){
             this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
@@ -4071,7 +4076,7 @@ class group{
                     userCombatant.status.main[findList('Free Skill',userCombatant.status.name)]--
                 }else if(calculatoryCost==1&&userCombatant.getStatus('Free 1 Cost Card')>0){
                     userCombatant.status.main[findList('Free 1 Cost Card',userCombatant.status.name)]--
-                }else if(calculatoryCost!=0&&userCombatant.getStatus('Free Card')>0){
+                }else if(calculatoryCost!=0&&cardClass!=13&&userCombatant.getStatus('Free Card')>0){
                     userCombatant.status.main[findList('Free Card',userCombatant.status.name)]--
                 }else if(calculatoryCost!=0&&spec.includes(11)){
                     userCombatant.combo-=calculatoryCost
@@ -4228,7 +4233,6 @@ class group{
                 this.battle.attackManager.attackClass=this.cards[a].class
                 this.battle.attackManager.player=this.player
 
-                this.battle.attackManager.cost=-999
                 this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
                 this.battle.attackManager.energy=this.battle.getEnergy(this.player)+this.battle.getXBoost(this.player)
                 this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x

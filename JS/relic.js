@@ -3414,7 +3414,7 @@ class relic{
                     displaySymbol(this.layer,9,0,29,0,0.8,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('2',9,0)
+                    this.layer.text('3',9,0)
                 break
                 case 'Starting Attack':
                     displaySymbol(this.layer,-8,0,18,0,1,this.fade)
