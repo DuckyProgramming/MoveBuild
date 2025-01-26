@@ -5,13 +5,13 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    if(true){
+    if(false){
             //game.ascend=32
 
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[24]
+        current.menu.combatant=[19]
         current.menu.deck=[-1]
 
             //variants.mtg=true
@@ -68,8 +68,8 @@ function setup(){
             player(0).anim.direction=-30*/
 
             /*variants.mod=true
-            for(let a=0,la=4;a<la;a++){
-                current.modManager.addMod(237+a)
+            for(let a=0,la=1;a<la;a++){
+                current.modManager.addMod(67+a)
             }*/
 
             /*for(let a=0,la=40;a<la;a++){

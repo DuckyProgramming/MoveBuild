@@ -3988,7 +3988,16 @@ class relic{
                         battle.relicManager.detail[this.type][this.player][0]++
                         switch(this.internal){
                             case 'Store Card':
-                                battle.cardManagers[this.player].hand.cards.push(copyCard(battle.relicManager.detail[this.type][this.player][1]))
+                                let base=battle.relicManager.detail[this.type][this.player][1]
+                                battle.cardManagers[this.player].hand.cards.push(new card(
+                                    this.layer,this.battle,base.player,base.position.x,base.position.y,
+                                    findName(base.name,types.card),base.level,base.color,base.id,base.cost,
+                                    base.additionalSpec,base.name,base.list,base.effect,base.attack,
+                                    base.target,base.spec,base.cardClass,base.limit,undefined,
+                                    false,base.colorful,base.edition,base.base.cost,base.drawn,
+                                    base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
+                                    base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
+                                ))
                                 battle.cardManagers[this.player].hand.cards[battle.cardManagers[this.player].hand.cards.length-1].position.x=1200
                                 battle.cardManagers[this.player].hand.cards[battle.cardManagers[this.player].hand.cards.length-1].position.y=500
                             break

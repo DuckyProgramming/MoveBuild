@@ -33,7 +33,7 @@ class group{
         this.costDownListing=[]
         this.finalPosition=0
         this.sendAmounts=[]
-        this.listKey=49
+        this.listKey=50
         this.listInput=[
             [0,4],
             [1,8],
@@ -80,6 +80,7 @@ class group{
             [46,55],
             [47,56],
             [48,57],
+            [49,58],
         ]
 
         this.reset()
@@ -101,7 +102,7 @@ class group{
             base.target,base.spec,base.cardClass,base.limit,undefined,
             false,base.colorful,base.edition,base.base.cost,base.drawn,
             base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
-            base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger
+            base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
         )))
     }
     initialCards(type,player){
@@ -279,7 +280,7 @@ class group{
     }
     cancel(){
         this.status=elementArray(0,this.listKey)
-        this.statusMarker=[0,0]
+        this.statusMarker=[0,0,0]
     }
     added(){
         this.cards[this.cards.length-1].callAddEffect()
@@ -427,6 +428,7 @@ class group{
                     case 4:
                         for(let a=0,la=args[ticker].length;a<la;a++){
                             this.cards[this.cards.length-1].spec.push(args[ticker][a])
+                            this.cards[this.cards.length-1].additionalSpec.push(args[ticker][a])
                         }
                         ticker++
                     break
@@ -453,6 +455,9 @@ class group{
                             this.cards[this.cards.length-1].additionalSpec.push(args[ticker][a])
                         }
                         ticker++
+                    break
+                    case 12:
+                        this.cards[this.cards.length-1].costVariant(args[ticker++])
                     break
                 }
             }
@@ -694,6 +699,11 @@ class group{
     }
     retain2Foil(amount){
         this.status[48]=amount
+        this.generalSelfStatus()
+    }
+    exhaustDiscover(amount,level){
+        this.status[49]+=amount
+        this.statusMarker[2]=level
         this.generalSelfStatus()
     }
     generalSelfStatus(){
@@ -2188,6 +2198,11 @@ class group{
                         this.cards[a].callPrimeEffect()
                     }
                 break
+                case 63:
+                    if(this.cards[a].getBasic(args[0])){
+                        this.cards[a].setCost(0,[0])
+                    }
+                break
             }
         }
         if(effect==9){
@@ -3474,8 +3489,6 @@ class group{
         this.sendAmounts.push(lastIndex==-1?this.cards.length-firstIndex:lastIndex-firstIndex)
         let sendId=this.sendAmounts.length-1
         this.sent=[]
-        let iteration=0
-        //tester(remove)
         while(this.sent.length<min(100,this.sendAmounts[sendId])){
             let preSent=this.sent.length
             if(firstIndex>=this.cards.length){
@@ -3520,16 +3533,6 @@ class group{
             list[list.length-1].size=0
             delete this.cards[firstIndex]
             this.cards.splice(firstIndex,1)
-            if(this.sent.length<=preSent){
-                //tester(remove)
-                print(this.sent.length,this.cards,firstIndex,lastIndex,spec,list)
-                throw new Error("failed send");
-            }
-            if(iteration>=100){
-                //tester(remove)
-                print(this.sent.length,this.cards,firstIndex,lastIndex,spec,list)
-                throw new Error("overiteration");
-            }
             if(
                 spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
                 spec==13||spec==14||spec==16||spec==18||spec==19||spec==20||spec==21||spec==24
@@ -4254,6 +4257,7 @@ class group{
                 this.battle.attackManager.drawn=-1
                 this.battle.attackManager.fuel=-1
                 this.battle.attackManager.debut=false
+                this.battle.attackManager.evolve=-1
                 this.battle.attackManager.fugue=this.battle.combatantManager.combatants[this.battle.attackManager.user].fugue
 
                 this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
@@ -4273,7 +4277,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48]]
+                let anim=[max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -5212,6 +5216,7 @@ class group{
                 this.battle.attackManager.drawn=a.drawn
                 this.battle.attackManager.fuel=a.fuel
                 this.battle.attackManager.debut=a.debut
+                this.battle.attackManager.evolve=a.evolve
                 this.battle.attackManager.fugue=userCombatant.fugue
                 this.battle.attackManager.cost=a.cost
                 if(a.getBasic(1)&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
@@ -5488,6 +5493,17 @@ class group{
                 this.cards[a].edition=2
                 if(this.status[48]>0){
                     this.status[48]--
+                }
+            break
+            case 58:
+                if(this.cards[a].attack!=-3){
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    if(this.status[49]>0){
+                        this.status[49]--
+                    }
+                    this.battle.overlayManager.overlays[10][this.player].active=true
+                    this.battle.overlayManager.overlays[10][this.player].activate([this.statusMarker[2],[0,0],57,[],[[1,this.cards[a].class]]])
                 }
             break
         }

@@ -195,7 +195,7 @@ class combatant{
                 'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity','Temporary Card Play Temporary Strength','Temporary Card Play Temporary Strength Next Turn',
                 'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent','Rearm Strength','All X Cost Boost','Move Block',
                 'Base Attack Vulnerable Combat','Retain Freeze','Orb Hold Tick','Fugue Strength','Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill','Speed Strike',
-                '2+ Cost Strength','Half Block','Random Mana in 3 Turns','No Extra Turns','No Extra Turns Next Turn','Cost Down Per Turn','Bounce Next Turn',
+                '2+ Cost Strength','Half Block','Random Mana in 3 Turns','No Extra Turns','No Extra Turns Next Turn','Cost Down Per Turn','Bounce Next Turn','Scry Discard Block',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -274,7 +274,7 @@ class combatant{
                 0,0,0,0,2,1,0,0,2,2,//74
                 1,0,2,0,0,0,1,0,0,0,//75
                 0,1,0,0,2,2,2,2,2,1,//76
-                0,0,2,1,0,0,2,
+                0,0,2,1,0,0,2,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -353,7 +353,7 @@ class combatant{
                 2,2,2,2,2,1,2,2,2,2,//74
                 2,2,2,2,2,2,2,2,2,0,//75
                 0,1,2,2,2,2,2,2,2,2,//76
-                2,1,3,3,3,2,0,
+                2,1,3,3,3,2,0,0,
             ]}
         /*
         0-none
@@ -4118,7 +4118,7 @@ class combatant{
         }
     }
     addBlock(value){
-        if(value>0&&this.status.main[16]<=0){
+        if(value>0&&this.status.main[16]<=0&&!(this.battle.modded(67)&&floor(random(0,5))==0)){
             let block=value
             let totalDex=0
             if(this.status.main[168]>0){
@@ -5081,6 +5081,12 @@ class combatant{
                             this.statusEffect('Poison',userCombatant.getStatus('Lock On Poison'))
                         }
                     }
+                }
+                if(this.status.main[status]!=0&&!this.status.active[status]){
+                    this.status.active[status]=true
+                    this.status.size[status]=0
+                    this.status.position[status]=this.status.display.length*6
+                    this.status.display.push(status)
                 }
                 this.statusSignUpdate(status)
             }

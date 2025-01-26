@@ -705,7 +705,10 @@ class cardManager{
                 }
             }
         }
-        this.reserve.send(this.hand.cards,cap,cap+total,3)
+        for(let a=0,la=total;a<la;a++){
+            this.reserve.slideTop()
+        }
+        this.reserve.send(this.hand.cards,0,+total,3)
         return total
     }
     dropFirst(){

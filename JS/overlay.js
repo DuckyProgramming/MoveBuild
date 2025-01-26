@@ -74,7 +74,7 @@ class overlay{
                 this.card=0
                 this.cards=[]
             break
-            case 20:
+            case 20: case 29:
                 this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,variants.mtg?[]:0,0)
             break
             case 22:
@@ -1057,7 +1057,7 @@ class overlay{
                     break
                     case 49:
                         for(let a=0,la=this.options;a<la;a++){
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Guilt','Innocence'][a%2],types.card),0,constants.playerNumber+2,-1))
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Guilt','Innocence','Unproven'][a%3],types.card),0,constants.playerNumber+2,-1))
                             this.cards[a].upSize=true
                         }
                     break
@@ -1128,6 +1128,276 @@ class overlay{
                                 this.cards[a].size=1
                                 this.cards[a].fade=1
                                 possible55.splice(index,1)
+                            }
+                        }
+                    break
+                    case 56:
+                        for(let a=0,la=this.options;a<la;a++){
+                            let type=findName(['Discus of Wind\nand Thunder','Discus of\nSand and Sea','Discus of Salt\nand Steel'][a%3],types.card)
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,args[0],this.battle.standardColorize(type),-1))
+                            this.cards[a].upSize=true
+                        }
+                    break
+                    case 57:
+                        this.options=args[1][0]==13?6:3
+                        switch(args[1][0]){
+                            case 0:
+                                list=(variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]))[args[1][1]]
+                            break
+                            case 1:
+                                list=(variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[0]))[args[1][1]]
+                            break
+                            case 2: case 13:
+                                list=copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)[args[1][1]]
+                            break
+                            case 3:
+                                list=[
+                                    findName('Mixture A',types.card),
+                                    findName('Mixture B',types.card),
+                                    findName('Mixture C',types.card)
+                                ]
+                            break
+                            case 4:
+                                list=copyArrayStack(this.battle.cardManagers[this.player].listing.junk)[args[1][1]]
+                            break
+                            case 5:
+                                list=elementArray(findName('Timestamp',types.card),3)
+                            break
+                            case 6:
+                                list=[]
+                                for(let a=0,la=args[1][1].length;a<la;a++){
+                                    list.push((variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]))[3])
+                                }
+                                for(let b=0,lb=list.length;b<lb;b++){
+                                    for(let c=0,lc=list[b].length;c<lc;c++){
+                                        if((
+                                            !variants.mtg&&types.card[list[b][c]].levels[args[0]].cost!=args[1][1][b]||
+                                            variants.mtg&&types.card[list[b][c]].levels[args[0]].cost.length!=args[1][1][b]
+                                        )){
+                                            list[b].splice(c,1)
+                                            c--
+                                            lc--
+                                        }
+                                    }
+                                }
+                            break
+                            case 7:
+                                list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[1][1]])[args[1][2]]
+                            break
+                            case 8:
+                                list=[
+                                    findName('Discus of Wind\nand Thunder',types.card),
+                                    findName('Discus of\nSand and Sea',types.card),
+                                    findName('Discus of Salt\nand Steel',types.card),
+                                    findName('Discus of Light\nand Dark',types.card),
+                                    findName('Discus of Moon\nand Sky',types.card),
+                                    findName('Discus of Truth\nand Lie',types.card)
+                                ]
+                            break
+                            case 9:
+                                list=[]
+                                for(let a=0,la=args[1][1].length;a<la;a++){
+                                    list.push(copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)[3])
+                                }
+                                for(let b=0,lb=list.length;b<lb;b++){
+                                    for(let c=0,lc=list[b].length;c<lc;c++){
+                                        if((
+                                            types.card[list[b][c]].mtg.color.length!=1||
+                                            types.card[list[b][c]].mtg.color[0]!=args[1][1][b]
+                                        )){
+                                            list[b].splice(c,1)
+                                            c--
+                                            lc--
+                                        }
+                                    }
+                                }
+                            break
+                            case 10:
+                                list=[
+                                    ...(copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[1][1][0]])[args[1][2]]),
+                                    ...(copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[1][1][1]])[args[1][2]])
+                                ]
+                            break
+                            case 11:
+                                list=[
+                                    findName('1 of\nNothings',types.card),
+                                    findName('2 of\nNothings',types.card),
+                                    findName('3 of\nNothings',types.card),
+                                    findName('4 of\nNothings',types.card),
+                                    findName('5 of\nNothings',types.card),
+                                    findName('6 of\nNothings',types.card),
+                                    findName('7 of\nNothings',types.card),
+                                    findName('8 of\nNothings',types.card),
+                                    findName('9 of\nNothings',types.card),
+                                    findName('10 of\nNothings',types.card),
+                                    findName('11 of\nNothings',types.card)
+                                ]
+                            break
+                            case 12:
+                                list=[]
+                                for(let a=0,la=args[1][1].length;a<la;a++){
+                                    list.push(copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)[3])
+                                }
+                                for(let b=0,lb=list.length;b<lb;b++){
+                                    for(let c=0,lc=list[b].length;c<lc;c++){
+                                        if((
+                                            !variants.mtg&&(
+                                                types.card[list[b][c]].levels[args[0]].target[0]!=0&&types.card[list[b][c]].levels[args[0]].target[0]!=2||
+                                                types.card[list[b][c]].levels[args[0]].target[0]==2&&(
+                                                    types.card[list[b][c]].levels[args[0]].target[2]<args[1][1][b][0]||types.card[list[b][c]].levels[args[0]].target[2]>args[1][1][b][1]
+                                                )||
+                                                types.card[list[b][c]].levels[args[0]].target[0]==0&&(
+                                                    args[1][1][b][0]!=0||args[1][1][b][1]!=0
+                                                )
+                                            )||
+                                            variants.mtg&&(
+                                                types.card[list[b][c]].mtg.levels[args[0]].target[0]!=0&&types.card[list[b][c]].mtg.levels[args[0]].target[0]!=2||
+                                                types.card[list[b][c]].mtg.levels[args[0]].target[0]==2&&(
+                                                    types.card[list[b][c]].mtg.levels[args[0]].target[2]<args[1][1][b][0]||types.card[list[b][c]].mtg.levels[args[0]].target[2]>args[1][1][b][1]
+                                                )||
+                                                types.card[list[b][c]].mtg.levels[args[0]].target[0]==0&&(
+                                                    args[1][1][b][0]!=0||args[1][1][b][1]!=0
+                                                )
+                                            )
+                                        )){
+                                            list[b].splice(c,1)
+                                            c--
+                                            lc--
+                                        }
+                                    }
+                                }
+                            break
+                            default:
+                                list=[]
+                            break
+                        }
+                        for(let a=0,la=args[4].length;a<la;a++){
+                            switch(args[4][a][0]){
+                                case 0:
+                                    for(let b=0,lb=list.length;b<lb;b++){
+                                        if((
+                                            !variants.mtg&&types.card[list[b]].levels[args[0]].cost!=args[4][a][1]||
+                                            variants.mtg&&types.card[list[b]].mtg.levels[args[0]].cost.length!=args[4][a][1]
+                                        )){
+                                            list.splice(b,1)
+                                            b--
+                                            lb--
+                                        }
+                                    }
+                                break
+                                case 1:
+                                    for(let b=0,lb=list.length;b<lb;b++){
+                                        if((
+                                            !variants.mtg&&types.card[list[b]].levels[args[0]].class!=args[4][a][1]||
+                                            variants.mtg&&types.card[list[b]].mtg.levels[args[0]].class!=args[4][a][1]
+                                        )){
+                                            list.splice(b,1)
+                                            b--
+                                            lb--
+                                        }
+                                    }
+                                break
+                                case 2:
+                                    for(let b=0,lb=list.length;b<lb;b++){
+                                        if((
+                                            !variants.mtg&&!args[4][a][1].includes(types.card[list[b]].levels[args[0]].class)||
+                                            variants.mtg&&!args[4][a][1].includes(types.card[list[b]].mtg.levels[args[0]].class)
+                                        )){
+                                            list.splice(b,1)
+                                            b--
+                                            lb--
+                                        }
+                                    }
+                                break
+                                case 3:
+                                    for(let b=0,lb=list.length;b<lb;b++){
+                                        if((
+                                            !variants.mtg&&!types.card[list[b]].levels[args[0]].spec.includes(args[4][a][1])||
+                                            variants.mtg&&!types.card[list[b]].mtg.levels[args[0]].spec.includes(args[4][a][1])
+                                        )){
+                                            list.splice(b,1)
+                                            b--
+                                            lb--
+                                        }
+                                    }
+                                break
+                                case 4:
+                                    for(let b=0,lb=list.length;b<lb;b++){
+                                        let works=false
+                                        for(let c=0,lc=args[4][a][1].length;c<lc;c++){
+                                            if(types.card[list[b]].name.includes(args[4][a][1][c])){
+                                                works=true
+                                            }
+                                        }
+                                        if(!works){
+                                            list.splice(b,1)
+                                            b--
+                                            lb--
+                                        }
+                                    }
+                                break
+                                case 5:
+                                    for(let b=0,lb=list.length;b<lb;b++){
+                                        for(let c=0,lc=list[b].length;c<lc;c++){
+                                            if((
+                                                !variants.mtg&&types.card[list[b][c]].levels[args[0]].class!=args[4][a][1]||
+                                                variants.mtg&&types.card[list[b][c]].mtg.levels[args[0]].class!=args[4][a][1]
+                                            )){
+                                                list[b].splice(c,1)
+                                                c--
+                                                lc--
+                                            }
+                                        }
+                                    }
+                                break
+                            }
+                        }
+                        for(let a=0,la=this.options;a<la;a++){
+                            switch(args[1][0]){
+                                case 6: case 9: case 12:
+                                    if(list[a%list.length].length>0){
+                                        let index=floor(random(0,list[a%list.length].length))
+                                        this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[a%list.length][index],args[0],this.battle.standardColorize(list[a%list.length][index]),-1))
+                                        this.cards[a].upSize=true
+                                        if(!this.cards[a].spec.includes(1)){
+                                            this.cards[a].spec.push(1)
+                                            this.cards[a].additionalSpec.push(1)
+                                        }
+                                        if(!this.cards[a].spec.includes(4)){
+                                            this.cards[a].spec.push(4)
+                                            this.cards[a].additionalSpec.push(4)
+                                        }
+                                        if(args[3].includes(0)){
+                                            this.cards[a].setCost(0,[0])
+                                        }
+                                        if(args[3].includes(1)){
+                                            this.cards[a].costVariant(0)
+                                        }
+                                        list[a%list.length].splice(index,1)
+                                    }
+                                break
+                                default:
+                                    if(list.length>0){
+                                        let index=floor(random(0,list.length))
+                                        this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
+                                        this.cards[a].upSize=true
+                                        if(!this.cards[a].spec.includes(1)){
+                                            this.cards[a].spec.push(1)
+                                            this.cards[a].additionalSpec.push(1)
+                                        }
+                                        if(!this.cards[a].spec.includes(4)){
+                                            this.cards[a].spec.push(4)
+                                            this.cards[a].additionalSpec.push(4)
+                                        }
+                                        if(args[3].includes(0)){
+                                            this.cards[a].setCost(0,[0])
+                                        }
+                                        if(args[3].includes(1)){
+                                            this.cards[a].costVariant(0)
+                                        }
+                                        list.splice(index,1)
+                                    }
+                                break
                             }
                         }
                     break
@@ -1457,6 +1727,12 @@ class overlay{
                                 case 6264:
                                     this.cards[a].attack=[-1073,-1074][a]
                                 break
+                                case 7189:
+                                    this.cards[a].attack=[-1016,-1075][a]
+                                break
+                                case 7190:
+                                    this.cards[a].attack=[-1076,-1077][a]
+                                break
                             }
                         }
                     break
@@ -1542,6 +1818,18 @@ class overlay{
             break
             case 28:
                 this.text=''
+            break
+            case 29:
+                this.setupArgs=args
+                switch(args[0]){
+                    case 0:
+                        if(this.battle.cardManagers[this.player].reserve.cards.length>0){
+                            this.card=copyCard(this.battle.cardManagers[this.player].reserve.cards[this.battle.cardManagers[this.player].reserve.cards.length-1])
+                            this.card.position.x=this.layer.width/2
+                            this.card.position.y=this.layer.height/2-10
+                        }
+                    break
+                }
             break
         
         }
@@ -2008,6 +2296,21 @@ class overlay{
                             case -1074:
                                 this.card.costDown(0,[8])
                                 this.battle.addCurrency(args[0].effect[2],this.player)
+                            break
+                            case -1075:
+                                this.card.costDown(0,[6])
+                                this.battle.overlayManager.overlays[10][this.player].active=true
+                                this.battle.overlayManager.overlays[10][this.player].activate([args[0].level,[0,2],57,[0],[[1,4]]])
+                            break
+                            case -1076:
+                                this.card.costDown(0,[2])
+                                this.battle.overlayManager.overlays[10][this.player].active=true
+                                this.battle.overlayManager.overlays[10][this.player].activate([args[0].level,[2,1],57,[0],[]])
+                            break
+                            case -1077:
+                                this.card.costDown(0,[4])
+                                this.battle.overlayManager.overlays[10][this.player].active=true
+                                this.battle.overlayManager.overlays[10][this.player].activate([args[0].level,[2,2],57,[0],[]])
                             break
                         }
                     break
@@ -3267,6 +3570,21 @@ class overlay{
                     this.layer.text(types.combatant[this.suggestions[a]].name.replace('\n',' '),this.layer.width/2,this.layer.height/2-55+a*20)
                 }
             break
+            case 29:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2,this.layer.height/2-30,240,200,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2+95,120,40,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2+140,120,40,10)
+                this.layer.fill(0,this.fade*0.8)
+                this.layer.textSize(30)
+                this.layer.text(`View Card`,this.layer.width/2,this.layer.height/2-100)
+                this.layer.textSize(20)
+                this.layer.text(`Draw`,this.layer.width/2,this.layer.height/2+95)
+                this.layer.text(`Exhaust`,this.layer.width/2,this.layer.height/2+140)
+                this.card.fade=1
+                this.card.anim.afford=1
+                this.card.display()
+            break
             
         }
     }
@@ -3457,7 +3775,7 @@ class overlay{
                         }
                     }
                 break
-                case 20:
+                case 20: case 29:
                     this.card.size=constrain(smoothAnim(this.card.size,this.active,0,this.fade,5),0,this.fade)
                 break
                 case 22:
@@ -3671,8 +3989,8 @@ class overlay{
                             }
                             for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
                                 let base=this.battle.cardManagers[this.player].deck.cards[a]
-                                if(pointInsideBox({position:inputs.rel},base)&&base.size>0.5&&base.select&&
-                                    !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&base.spec.includes(37))&&
+                                if(pointInsideBox({position:inputs.rel},base)&&base.size>0.5&&base.select&&!base.spec.includes(81)&&
+                                    !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&(base.spec.includes(37)||base.spec.includes(80)))&&
                                     !(this.args[0]==3&&base.level>=1&&!base.spec.includes(53)&&!base.spec.includes(79))&&
                                     !(this.args[0]==4&&this.args[2]==4&&base.spec.includes(15))&&
                                     !((this.args[0]==10||this.args[0]==53||this.args[0]==54||this.args[0]==55||this.args[0]==56||this.args[0]==61)&&(base.spec.includes(3)||base.spec.includes(12)))&&
@@ -3755,7 +4073,7 @@ class overlay{
                                                         }
                                                     break
                                                     case 4:
-                                                        this.battle.relicManager.detail[465][this.player][1]=this.base
+                                                        this.battle.relicManager.detail[465][this.player][1]=this.base.save()
                                                     break
                                                 }
                                             }else{
@@ -4040,8 +4358,8 @@ class overlay{
                                 }
                                 if(a>=0&&a<la&&this.activeTimer<=0){
                                     base.select=false
-                                    if(pointInsideBox({position:inputs.rel},base)&&base.size>0.5&&this.active&&
-                                        !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&base.spec.includes(37))&&
+                                    if(pointInsideBox({position:inputs.rel},base)&&base.size>0.5&&this.active&&!base.spec.includes(81)&&
+                                        !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&(base.spec.includes(37)||base.spec.includes(80)))&&
                                         !(this.args[0]==3&&base.level>=1&&!base.spec.includes(53)&&!base.spec.includes(79))&&
                                         !(this.args[0]==4&&this.args[2]==4&&base.spec.includes(15))&&
                                         !((this.args[0]==10||this.args[0]==53||this.args[0]==54||this.args[0]==55||this.args[0]==56||this.args[0]==61)&&(base.spec.includes(3)||base.spec.includes(12)))&&
@@ -4635,6 +4953,21 @@ class overlay{
                                     (this.setupArgs[2]==2||this.setupArgs[2]==12)&&this.setupArgs[3]==1
                                 ){
                                     this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[1],[])
+                                }else if(this.setupArgs[2]==57){
+                                    if(this.setupArgs[3].includes(0)){
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,1],[[1,4],])
+                                    }else if(this.setupArgs[3].includes(1)){
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,12],[[1,4],0])
+                                    }else{
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4],[[1,4]])
+                                        if(this.setupArgs[3].includes(3)){
+                                            this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4],[[1,4]])
+                                        }
+                                    }
+                                    if(this.setupArgs[3].includes(2)){
+                                        let cardClass=constrain(this.cards[a].class-1,0,1)
+                                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][cardClass],this.setupArgs[5][cardClass])
+                                    }
                                 }else{
                                     this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
                                 }
@@ -5025,6 +5358,16 @@ class overlay{
                         this.active=false
                     }
                 break
+                case 29:
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+95},width:120,height:40})){
+                        this.active=false
+                        this.battle.cardManagers[this.player].reserve.slideTop()
+                        this.battle.cardManagers[this.player].draw(1)
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+140},width:120,height:40})){
+                        this.active=false
+                        this.battle.cardManagers[this.player].reserve.generalExhaust(this.battle.cardManagers[this.player].reserve.cards.length-1)
+                    }
+                break
             
             }
         }
@@ -5154,7 +5497,7 @@ class overlay{
                             }
                             for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
                                 let base=this.battle.cardManagers[this.player].deck.cards[a]
-                                if(key==inputs.hexadec[base.relIndex%15]&&base.size>0.5&&base.select&&
+                                if(key==inputs.hexadec[base.relIndex%15]&&base.size>0.5&&base.select&&!base.spec.includes(81)&&
                                     !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&base.spec.includes(37))&&
                                     !(this.args[0]==3&&base.level>=1&&!base.spec.includes(53)&&!base.spec.includes(79))&&
                                     !(this.args[0]==4&&this.args[2]==4&&base.spec.includes(15))&&
@@ -5238,7 +5581,7 @@ class overlay{
                                                         }
                                                     break
                                                     case 4:
-                                                        this.battle.relicManager.detail[465][this.player][1]=this.base
+                                                        this.battle.relicManager.detail[465][this.player][1]=this.base.save()
                                                     break
                                                 }
                                             }else{
@@ -5523,7 +5866,7 @@ class overlay{
                                 }
                                 if(a>=0&&a<la&&this.activeTimer<=0){
                                     base.select=false
-                                    if(key==inputs.hexadec[base.relIndex%15]&&base.size>0.5&&this.active&&
+                                    if(key==inputs.hexadec[base.relIndex%15]&&base.size>0.5&&this.active&&!base.spec.includes(81)&&
                                         !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&base.spec.includes(37))&&
                                         !(this.args[0]==3&&base.level>=1&&!base.spec.includes(53)&&!base.spec.includes(79))&&
                                         !(this.args[0]==4&&this.args[2]==4&&base.spec.includes(15))&&
@@ -6115,6 +6458,21 @@ class overlay{
                                     (this.setupArgs[2]==2||this.setupArgs[2]==12)&&this.setupArgs[3]==1
                                 ){
                                     this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[1],[])
+                                }else if(this.setupArgs[2]==57){
+                                    if(this.setupArgs[3].includes(0)){
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,1],[[1,4],])
+                                    }else if(this.setupArgs[3].includes(1)){
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,12],[[1,4],0])
+                                    }else{
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4],[[1,4]])
+                                        if(this.setupArgs[3].includes(3)){
+                                            this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4],[[1,4]])
+                                        }
+                                    }
+                                    if(this.setupArgs[3].includes(2)){
+                                        let cardClass=constrain(this.cards[a].class-1,0,1)
+                                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][cardClass],this.setupArgs[5][cardClass])
+                                    }
                                 }else{
                                     this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
                                 }
@@ -6515,6 +6873,16 @@ class overlay{
                         }else{
                             this.active=false
                         }
+                    }
+                break
+                case 29:
+                    if(code==ENTER){
+                        this.active=false
+                        this.battle.cardManagers[this.player].reserve.slideTop()
+                        this.battle.cardManagers[this.player].draw(1)
+                    }else if(code==BACKSPACE){
+                        this.active=false
+                        this.battle.cardManagers[this.player].reserve.generalExhaust(this.battle.cardManagers[this.player].reserve.cards.length-1)
                     }
                 break
             }
