@@ -117,6 +117,7 @@ class combatant{
         }
         this.dodges=[]
         this.turnDodges=0
+        this.communizers=[]
         this.status={
             main:[],name:[
                 'Double Damage','Counter','Cannot Be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
@@ -195,7 +196,8 @@ class combatant{
                 'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity','Temporary Card Play Temporary Strength','Temporary Card Play Temporary Strength Next Turn',
                 'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent','Rearm Strength','All X Cost Boost','Move Block',
                 'Base Attack Vulnerable Combat','Retain Freeze','Orb Hold Tick','Fugue Strength','Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill','Speed Strike',
-                '2+ Cost Strength','Half Block','Random Mana in 3 Turns','No Extra Turns','No Extra Turns Next Turn','Cost Down Per Turn','Bounce Next Turn','Scry Discard Block',
+                '2+ Cost Strength','Half Block','Random Mana in 3 Turns','No Extra Turns','No Extra Turns Next Turn','Cost Down Per Turn','Bounce Next Turn','Scry Discard Block','Play Evolve','Evolve Temporary Strength',
+                'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -274,7 +276,8 @@ class combatant{
                 0,0,0,0,2,1,0,0,2,2,//74
                 1,0,2,0,0,0,1,0,0,0,//75
                 0,1,0,0,2,2,2,2,2,1,//76
-                0,0,2,1,0,0,2,2,
+                0,0,2,1,0,0,0,0,1,0,//77
+                1,2,2,2,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -353,7 +356,8 @@ class combatant{
                 2,2,2,2,2,1,2,2,2,2,//74
                 2,2,2,2,2,2,2,2,2,0,//75
                 0,1,2,2,2,2,2,2,2,2,//76
-                2,1,3,3,3,2,0,0,
+                2,1,3,3,3,2,2,2,2,2,//77
+                3,2,2,2,2,
             ]}
         /*
         0-none
@@ -3632,6 +3636,9 @@ class combatant{
                     if(this.battle.relicManager.hasRelic(475,user)&&damage>=25){
                         this.statusEffect('Weak',this.battle.relicManager.active[475][user+1])
                     }
+                    if(user>=0&&user<this.battle.players){
+                        this.battle.cardManagers[user].allGroupEffectArgs(65,[7239,damage])
+                    }
                 }
             }
             if(hit||dodged){
@@ -5082,6 +5089,9 @@ class combatant{
                         }
                     }
                 }
+                if(name=='Communized'&&effectiveValue>0&&!this.communizers.includes(this.battle.turn.main)){
+                    this.communizers.push(this.battle.turn.main)
+                }
                 if(this.status.main[status]!=0&&!this.status.active[status]){
                     this.status.active[status]=true
                     this.status.size[status]=0
@@ -5355,6 +5365,7 @@ class combatant{
             if(this.id<this.battle.players){
                 this.battle.cardManagers[this.id].discard.allEffectArgs(24,[4727])
                 this.battle.cardManagers[this.id].reserve.allEffectArgs(24,[4727])
+                this.battle.cardManagers[this.id].allGroupEffectArgs(65,[7242,amount])
             }
             if(this.status.main[655]>0){
                 this.battle.combatantManager.randomEnemyEffect(23,['Poison',this.status.main[655]])
@@ -5627,6 +5638,10 @@ class combatant{
                     case 762: this.status.main[findList('Random Mana in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 765: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.costDown(this.status.main[a])} break
                     case 766: this.addBounce(this.status.main[a]); break
+                    case 771: this.status.main[findList('Energy in 3 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 772: this.status.main[findList('Energy in 4 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 773: this.status.main[findList('(E) in 3 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 774: this.status.main[findList('(E) in 4 Turns',this.status.name)]+=this.status.main[a]; break
                     
                 }
                 if(this.status.behavior[a]==6&&
@@ -7409,6 +7424,7 @@ class combatant{
                 switch(this.name){
                     case 'Medic':
                         for(let a=0,la=this.battle.players;a<la;a++){
+                            this.battle.cardManagers[a].allGroupEffectArgs(65,[7237])
                             if(this.battle.relicManager.hasRelic(231,a)){
                                 this.battle.overlayManager.overlays[25][a].active=true
                                 this.battle.overlayManager.overlays[25][a].activate([0,[]])
@@ -7471,6 +7487,14 @@ class combatant{
                 if(this.status.main[707]>0){
                     let player=this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players?this.battle.turn.main:floor(random(0,this.battle.players))
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(this.status.main[707])
+                }
+                if(this.status.main[770]>0){
+                    for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
+                        if(this.communizers.includes(a)){
+                            this.battle.cardManagers[a].deck.add(findName('Worker',types.card),0,0,0)
+                            this.battle.cardManagers[a].allGroupEffectArgs(65,[7236])
+                        }
+                    }
                 }
                 this.battle.combatantManager.dead()
                 for(let a=0,la=this.battle.players;a<la;a++){

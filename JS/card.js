@@ -8200,72 +8200,52 @@ class card{
             case 7192: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDiscover a Concoction`; break
             case 7193: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDiscover a Skill`; break
             case 7195: string+=`Next Luck-Based Card\nis Guaranteed\nGain ${effect[0]} Vulnerable`; break
-
             case 7196: string+=`Add ${this.calculateEffect(effect[0],1)}+${this.calculateEffect(effect[1],16)} Block\nWhere X = Evolve (${this.evolve})`; break
             case 7197: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Evolve (${this.evolve})`; break
             case 7198: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]!=1?`${effect[1]}`:``} Temporary\nStrength\nWhere X = Evolve (${this.evolve})`; break
             case 7199: string+=`Draw ${effect[0]}+${effect[1]!=1?`${effect[1]}`:``}X Cards\nWhere X = Evolve (${this.evolve})`; break
             case 7200: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy\n${effect[1]}+${effect[2]!=1?`${effect[2]}`:``}X Times\nWhere X = Evolve (${this.evolve})`; break
             case 7201: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nApply ${effect[2]}+${effect[3]!=1?`${effect[3]}`:``}X Weak\nWhere X = Evolve (${this.evolve})`; break
-
             case 7202: string+=`Draw and Evolve\n${effect[0]} Card${pl(effect[0])}`; break
             case 7203: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEvolve Your Hand For ${effect[1]}`; break
             case 7204: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nWhen Evolved,\nCosts 1 Less`; break
             case 7205: string+=`Take Another Turn\nWhen Evolved,\nCosts 1 Less`; break
             case 7206: string+=`When You Play\nan Evolve Card,\nEvolve it`; break
-            case 7207: string+=`When a Card Evolves,\nGain ${effect[0]} Temporary\nStrength Next Turn`; break
-
+            case 7207: string+=`When a Card Evolves,\nGain ${effect[0]} Temporary\nStrength`; break
             case 7208: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nCannot be Manually\nUpgraded`; break
-            //273
             case 7209: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nTarget Cannot Move\nFor ${effect[1]} Turn${pl(effect[1])}\nApply ${effect[2]} Communized`; break
-            //3140
             case 7210: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Communized`; break
             case 7211: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nPer Worker Drawn,\nGain ${effect[2]} Energy`; break
-            //2909
-            case 7212: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nPer Worker Drawn,\nGain (E) (E) (E)`; break
+            case 7212: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nPer Worker Drawn,\nGain (E) (E)`; break
             case 7213: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nto Any Enemy`; break
-            //1820
             case 7214: string+=`Gain ${effect[0]} Currency\nUpgrades Repeatedly\nby ${effect[1]}`; break
-            //2598
-
             case 7215: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhere X = Number of\nWorkers in Hand${effect[1]!=0?` +${effect[1]}`:``}`; break
             case 7216: string+=`Apply ${effect[0]} Communized\nIncreases by ${effect[1]}`; break
-            //1451
             case 7217: string+=`Gain ${effect[0]} Energy\nin 5 Turns\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 7218: string+=`Gain (E) (E) (E) (E) (E)\nin 5 Turns\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 7219: string+=`Apply ${effect[0]} Communized\nto All Enemies`; break
             case 7220: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} More\nCard${pl(effect[1])} Next Turn\nGain ${effect[2]} Temporary\nDexterity`; break
             case 7221: string+=`Target Loses ${effect[0]} Health\nin 2 Turns\nApply ${effect[1]} Communized`; break
-            //6591
-
             case 7222: string+=`Remove ${effect[0]} Strength\nPut a Card in Discard\nPile in Your Hand`; break
             case 7223: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDuplicate a Card\nFrom Draw Pile`; break
-            //2625
             case 7224: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nDraw ${effect[2]} Worker${pl(effect[2])}`; break
-            //118
             case 7225: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])} For\nEach Worker in Hand`; break
-            //6033
             case 7226: string+=`Remove a Card\nPermanently\nLose ${effect[0]} Currency`; break
-            //2809
             case 7227: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Item${pl(effect[1])} if\nYour Deck Contains\n40 or More Cards`; break
-            //6758
-            
             case 7228: string+=`Gain ${effect[0]} Poison\nAssign ${effect[1]}:\nGain ${effect[2]} Energy\nDraw ${effect[3]} Card${pl(effect[3])}`; break
             case 7229: string+=`Gain ${effect[0]} Poison\nAssign ${effect[1]}:\nGain (E) (E) (E)\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 7230: string+=`Gain ${effect[0]} Poison\nAssign ${effect[1]}:\nGain (E) (E) (E) (E)\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 7231: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAssign ${effect[1]}:\nHeals Double Health`; break
             case 7232: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAssign ${effect[1]}:\nGain ${effect[2]} Strength`; break
-            case 7233: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAssign ${effect[1]}:\nDraw ${effect[1]} More`; break
+            case 7233: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAssign ${effect[1]}:\nDraw ${effect[2]} More`; break
             case 7234: string+=`Make a Random Attack\nin Hand Cost 0:\nApply ${effect[0]} Communized`; break
             case 7235: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nCycle: Attack`; break
-            
             case 7236: string+=`Succession:\nAdd ${effect[0]} Worker${pl(effect[0])}\n(${effect[1]}/${effect[0]})`; break
             case 7237: string+=`Start of Combat:\nAdd ${this.calculateEffect(effect[0],1)} Block\nSuccession:\nHave a Medic Die`; break
-            case 7238: string+=`Start of Combat:\nDraw ${effect[0]} Card${pl(effect[0])}\nSuccession:\nUpgrade a Basic Card`; break
+            case 7238: string+=`Start of Combat:\nDraw ${effect[0]} Card${pl(effect[0])}\nSuccession:\nManuallly Upgrade\na Basic Card`; break
             case 7239: string+=`Start of Combat:\nNext Attack Deals\n${effect[0]} More Damage\nSuccession:\nDeal ${effect[1]} Damage\nin a Single Attack`; break
             case 7240: string+=`Start of Combat:\nHeal ${this.calculateEffect(effect[0],4)} Health\nSuccession:\nLose ${effect[1]} Currency\n(${effect[2]}/${effect[1]})`; break
             case 7241: string+=`Start of Combat:\nApply ${effect[0]} Weak\nto a Random Enemy\nSuccession:\nRemove a\nNon-Basic Card`; break
-
             case 7242: string+=`Start of Combat:\nGain ${effect[0]} Control\nSuccession:\nLose ${effect[1]} Health\n(${effect[2]}/${effect[1]})`; break
             case 7243: string+=`Start of Combat:\nUpgrade ${effect[0]} Card${pl(effect[0])}\nSuccession:\nGain ${effect[1]} Currency\n(${effect[2]}/${effect[1]})`; break
             case 7244: string+=`Passive:\nGain ${effect[0]} Base Energy`; break
@@ -8273,9 +8253,6 @@ class card{
             case 7246: string+=`Add ${effect[0]} Random\nSkill${pl(effect[0])} to Hand\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
             case 7247: string+=`Prime ${effect[0]}\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
             case 7248: string+=`Draw ${effect[0]} Worker${pl(effect[0])}\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
-            //5536,5418
-
-
 
             //mark p
 
@@ -8560,6 +8537,9 @@ class card{
         if(this.spec.includes(70)&&userCombatant.getStatus('Shiv Scatter')>0){
             this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Shiv Scatter'),userCombatant.id])
             this.exhaust=true
+        }
+        if(this.spec.includes(79)){
+            this.discardEffect.push(18)
         }
         switch(this.attack){
             case -1:
@@ -9291,7 +9271,7 @@ class card{
             break
             case 3596: case 3597: case 3598: case 3599: case 3600: case 3601: case 3602: case 3603: case 3604: case 3605:
             case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
-            case 5976: case 6103: case 6306: case 6403:
+            case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -9476,6 +9456,35 @@ class card{
             break
             case 7096:
                 this.battle.addCurrency(this.effect[0],this.player)
+            break
+            case 7237:
+                userCombatant.addBlock(this.effect[0])
+            break
+            case 7238:
+                this.battle.cardManagers[this.player].draw(this.effect[0])
+            break
+            case 7239:
+                userCombatant.statusEffect('Single Damage Up',this.effect[0])
+            break
+            case 7240:
+                userCombatant.heal(this.effect[0])
+            break
+            case 7241:
+                this.battle.combatantManager.randomEnemyEffect(23,['Weak',this.effect[0]])
+            break
+            case 7242:
+                userCombatant.statusEffect('Control',this.effect[0])
+            break
+            case 7243:
+                this.battle.cardManagers[this.player].hand.upgrade(this.effect[0])
+            break
+            case 7244:
+                this.battle.addEnergyGen(this.effect[0],this.player)
+                this.battle.addEnergy(this.effect[0],this.player)
+            break
+            case 7245:
+                this.battle.addSpecificEnergyGen(1,this.player,6)
+                this.battle.addSpecificEnergy(1,this.player,6)
             break
         }
     }
@@ -9705,6 +9714,17 @@ class card{
             break
         }
     }
+    callEvolveEffect(){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        if(userCombatant.getStatus('Evolve Temporary Strength')>0){
+            userCombatant.statusEffect((this.battle.turn.main==this.player?'Temporary Strength':'Temporary Strength Next Turn'),userCombatant.getStatus('Evolve Temporary Strength'))
+        }
+        switch(this.attack){
+            case 7204: case 7205:
+                this.costDown(0,[1])
+            break
+        }
+    }
     onIncrementCountdown(spent){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         this.battle.cardManagers[this.player].allEffectArgs(2,48,[this.id,'onIncrementAnotherCountdown',[spent]])
@@ -9903,7 +9923,7 @@ class card{
             case 118: case 619: case 1479: case 1480: case 1697: case 1740: case 1746: case 1788: case 2283: case 2471:
             case 2501: case 3198: case 3647: case 3915: case 4013: case 4178: case 4457: case 4658: case 4727: case 4771:
             case 5208: case 5559: case 5560: case 5750: case 6114: case 6334: case 6657: case 6658: case 6901: case 7027:
-            case 7028:
+            case 7028: case 7216: case 7224:
                 this.effect[0]+=this.effect[1]
             break
             case 866: case 908: case 1893: case 2356: case 2482: case 5428: case 5429: case 5430: case 5431:

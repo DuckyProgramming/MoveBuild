@@ -2301,6 +2301,7 @@ class battle{
             }else{
                 this.currency.money[player]+=round((amount+bonus)*multi)
             }
+            this.cardManagers[player].allGroupEffectArgs(65,[7243,round((amount+bonus)*multi)])
         }
     }
     loseCurrency(amount,player){
@@ -2308,6 +2309,7 @@ class battle{
             this.cardManagers[player].deck.add(findName('Debt',types.card),0,constants.playerNumber+2)
         }*/
         this.currency.money[player]-=round(amount)
+        this.cardManagers[player].allGroupEffectArgs(65,[7240,round(amount)])
     }
     modded(type){
         return !this.initialized?false:variants.mod?this.modManager.mods[type]:false

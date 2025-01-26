@@ -2203,6 +2203,152 @@ class group{
                         this.cards[a].setCost(0,[0])
                     }
                 break
+                case 64:
+                    if(this.cards[a].spec.includes(79)){
+                        this.cards[a].evolve+=args[0]
+                        this.cards[a].callEvolveEffect()
+                    }
+                break
+                case 65:
+                    if(this.cards[a].attack==args[0]){
+                        switch(args[0]){
+                            case 7236:
+                                this.cards[a].effect[1]++
+                                if(this.cards[a].effect[1]>=this.cards[a].effect[0]){
+                                    this.add(findName('Stalin',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    if(this.id==0){
+                                        this.remove(a)
+                                        a--
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        la++
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
+                            case 7237:
+                                this.add(findName('Malenkov',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                if(this.id==0){
+                                    this.remove(a)
+                                    a--
+                                }else if(this.id==2){
+                                    this.cards[a].deSize=true
+                                    this.cards[a].exhaust=true
+                                    this.cards[a].purge=true
+                                    la++
+                                }else{
+                                    this.cards.splice(a,1)
+                                    a--
+                                }
+                            break
+                            case 7238:
+                                this.add(findName('Khrushchev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                if(this.id==0){
+                                    this.remove(a)
+                                    a--
+                                }else if(this.id==2){
+                                    this.cards[a].deSize=true
+                                    this.cards[a].exhaust=true
+                                    this.cards[a].purge=true
+                                    la++
+                                }else{
+                                    this.cards.splice(a,1)
+                                    a--
+                                }
+                            break
+                            case 7239:
+                                if(args[1]>=this.cards[a].effect[1]){
+                                    this.add(findName('Brezhnev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    if(this.id==0){
+                                        this.remove(a)
+                                        a--
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        la++
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
+                            case 7240:
+                                this.cards[a].effect[2]+=round(args[1]*10)/10
+                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]){
+                                    this.add(findName('Andropov',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    if(this.id==0){
+                                        this.remove(a)
+                                        a--
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        la++
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
+                            case 7241:
+                                this.add(findName('Chernenko',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                if(this.id==0){
+                                    this.remove(a)
+                                    a--
+                                }else if(this.id==2){
+                                    this.cards[a].deSize=true
+                                    this.cards[a].exhaust=true
+                                    this.cards[a].purge=true
+                                    la++
+                                }else{
+                                    this.cards.splice(a,1)
+                                    a--
+                                }
+                            break
+                            case 7242:
+                                this.cards[a].effect[2]+=round(args[1]*10)/10
+                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]){
+                                    this.add(findName('Gorbachev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    if(this.id==0){
+                                        this.remove(a)
+                                        a--
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        la++
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
+                            case 7243:
+                                this.cards[a].effect[2]+=round(args[1]*10)/10
+                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]){
+                                    this.add(findName('Fallen\nUnion',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    if(this.id==0){
+                                        this.remove(a)
+                                        a--
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        la++
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
+                        }
+                    }
+                break
             }
         }
         if(effect==9){
@@ -2243,7 +2389,7 @@ class group{
                         &&!(effect==31&&this.cards[b].edition!=args[0])
                         &&!(effect==32&&!(this.cards[b].name==args[1]&&this.cards[b].cost>0))
                         &&!(effect==34&&(this.cards[b].retain||this.cards[b].retain2|this.cards[b].spec.includes(2)||this.cards[b].spec.includes(29)))
-                        &&!(effect==35&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(41)||this.cards[b].class!=1))
+                        &&!((effect==35||effect==75)&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(41)||this.cards[b].class!=1))
                         &&!((effect==36||effect==45||effect==71)&&(this.cards[b].level>=2||this.cards[b].class!=args[0]&&args[0]!=0||this.cards[b].spec.includes(37)))
                         &&!(effect==38&&(this.cards[b].level!=1||this.cards[b].class!=args[0]&&args[0]!=0||this.cards[b].spec.includes(37)))
                         &&!(effect==39&&this.cards[b].spec.includes(7))
@@ -2297,7 +2443,7 @@ class group{
                     case 4: case 65:
                         this.copySelf(index)
                     break
-                    case 5: case 62: case 72:
+                    case 5: case 62: case 72: case 75:
                         this.cards[index].setCost(0,[0])
                     break
                     case 6:
@@ -3479,6 +3625,12 @@ class group{
                         list[list.length-1]=upgradeCard(list[list.length-1])
                         this.generalUpgrade(list[list.length-1])
                     break
+                    case 18:
+                        if(list[list.length-1].spec.includes(79)){
+                            list[list.length-1].evolve+=args[0]
+                            list[list.length-1].callEvolveEffect()
+                        }
+                    break
                 }
             }
         }
@@ -3916,6 +4068,9 @@ class group{
     remove(index){
         let possible=!this.cards[index].spec.includes(7)&&!(this.battle.initialized&&this.battle.modded(97))
         if(possible){
+            if(this.cards[index].class!=14){
+                this.battle.cardManagers[this.player].allGroupEffectArgs(65,[7241])
+            }
             this.cards[index].callRemoveEffect()
             this.send(this.battle.cardManagers[this.player].remove.cards,index,index+1,0)
         }
@@ -5815,6 +5970,13 @@ class group{
                                 this.send(this.cards,a,a+1,2)
                                 a--
                                 la--
+                            }else if(this.cards[a].discardEffect.includes(18)){
+                                this.cards[a].discardEffect=[]
+                                this.cards[a].evolve++
+                                this.cards[a].callEvolveEffect()
+                                this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,11)
+                                a--
+                                la--
                             }else{
                                 this.cards[a].discardEffect=[]
                             }
@@ -5919,6 +6081,12 @@ class group{
                                         la--
                                         continue
                                     }
+                                }
+                            }else{
+                                let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                                if(userCombatant.getStatus('Play Evolve')>0&&this.cards[a].spec.includes(79)){
+                                    this.cards[a].evolve++
+                                    this.cards[a].callEvolveEffect()
                                 }
                             }
                             let triplet=false

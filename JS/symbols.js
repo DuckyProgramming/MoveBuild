@@ -7593,7 +7593,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(125,fade)
             layer.stroke(100,fade)
             layer.strokeWeight(1)
-            layer.rect(0,-0.5,4.5,6,1)
+            layer.rect(0,0,4.5,6,1)
             layer.noStroke()
             layer.triangle(-2,4,2,4,0,7)
             layer.stroke(240,240,160,fade)
@@ -7603,6 +7603,67 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             regTriangle(layer,0,-3,2,2,60)
             regTriangle(layer,-1.5*constants.sqrt3,1.5,2,2,60)
             regTriangle(layer,1.5*constants.sqrt3,1.5,2,2,60)
+        break
+        case 768:
+            layer.fill(255,200,50)
+            layer.rect(-3,4,2)
+            layer.triangle(-2,3,-2,5,5,4)
+            layer.triangle(-4,3,-2,5,5,-4)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+        break
+        case 769:
+            layer.fill(255,200,50)
+            layer.rect(-3,4,2)
+            layer.triangle(-2,3,-2,5,5,4)
+            layer.triangle(-4,3,-2,5,5,-4)
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
+        case 770:
+            layer.fill(225,25,25,fade)
+            regStar(layer,0,0,5,6,6,2.5,2.5,180)
+            layer.stroke(255,255,50,fade)
+            layer.noFill()
+            layer.strokeWeight(1)
+            layer.ellipse(0,0,12)
+        break
+        case 771:
+            layer.fill(200,255,255,fade)
+            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+            layer.triangle(0,-7,-1,-9,1,-9)
+            layer.triangle(0,-9.5,-1,-11.5,1,-11.5)
+            layer.triangle(0,-12,-1,-14,1,-14)
+        break
+        case 772:
+            layer.fill(200,255,255,fade)
+            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+            layer.triangle(0,-7,-1,-9,1,-9)
+            layer.triangle(0,-9.5,-1,-11.5,1,-11.5)
+            layer.triangle(0,-12,-1,-14,1,-14)
+            layer.triangle(0,-14.5,-1,-16.5,1,-16.5)
+        break
+        case 773:
+            displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
+            layer.fill(30,fade)
+            layer.triangle(0,-5,-1,-7,1,-7)
+            layer.triangle(0,-7.5,-1,-9.5,1,-9.5)
+            layer.triangle(0,-10,-1,-12,1,-12)
+        break
+        case 774:
+            displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
+            layer.fill(30,fade)
+            layer.triangle(0,-5,-1,-7,1,-7)
+            layer.triangle(0,-7.5,-1,-9.5,1,-9.5)
+            layer.triangle(0,-10,-1,-12,1,-12)
+            layer.triangle(0,-12.5,-1,-14.5,1,-14.5)
         break
 
     }
