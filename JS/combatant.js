@@ -94,11 +94,12 @@ class combatant{
         this.ally=-1
         this.blocked=0
         this.taken=0
+        this.turnTaken=0
         this.builder=0
         
         this.compression=0
         this.permanentStrength=0
-        this.carry=[0,0,0]
+        this.carry=[0,0,0,0]
 
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
         this.collect={life:this.life}
@@ -197,7 +198,7 @@ class combatant{
                 'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent','Rearm Strength','All X Cost Boost','Move Block',
                 'Base Attack Vulnerable Combat','Retain Freeze','Orb Hold Tick','Fugue Strength','Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill','Speed Strike',
                 '2+ Cost Strength','Half Block','Random Mana in 3 Turns','No Extra Turns','No Extra Turns Next Turn','Cost Down Per Turn','Bounce Next Turn','Scry Discard Block','Play Evolve','Evolve Temporary Strength',
-                'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns',
+                'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns','0 Cost Block','Charge Consume Single Damage Up','Assign Return','Assign Temporary Strength','Pity',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -277,7 +278,7 @@ class combatant{
                 1,0,2,0,0,0,1,0,0,0,//75
                 0,1,0,0,2,2,2,2,2,1,//76
                 0,0,2,1,0,0,0,0,1,0,//77
-                1,2,2,2,2,
+                1,2,2,2,2,0,0,0,0,1,//78
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -357,7 +358,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,0,//75
                 0,1,2,2,2,2,2,2,2,2,//76
                 2,1,3,3,3,2,2,2,2,2,//77
-                3,2,2,2,2,
+                3,2,2,2,2,2,2,2,2,2,//78
             ]}
         /*
         0-none
@@ -510,6 +511,9 @@ class combatant{
                     case 2:
                         this.vision+=this.carry[a]
                     break
+                    case 3:
+                        this.statusEffect('Strength',this.carry[a])
+                    break
                 }
                 this.carry[a]=0
             }
@@ -528,7 +532,7 @@ class combatant{
         this.startAnimation(0)
         this.runAnimation(0,0)
         switch(this.name){
-            case 'Donakho': case 'Ducopo':
+            case 'Donakho': case 'Ducopo': case 'Dukelis':
                 this.anim.fat=1
             break
         }
@@ -856,6 +860,17 @@ class combatant{
                 this.addBlock(game.ascend>=31?16:32)
                 this.statusEffect('Retain Block',999)
                 this.statusEffect('Fragile',1)
+            break
+            case 'Red':
+                if(this.battle.player.includes(24)){
+                    this.life=0
+                    this.statusEffect('Communized',1)
+                    for(let a=0,la=this.battle.players;a<la;a++){
+                        if(this.battle.player[a]==24){
+                            this.communizers.push(a)
+                        }
+                    }
+                }
             break
         }
         //mark b
@@ -1682,7 +1697,7 @@ class combatant{
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
-            case 'Donakho': case 'Ducopo':
+            case 'Donakho': case 'Ducopo': case 'Dukelis':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -3094,7 +3109,7 @@ class combatant{
                     if(userCombatant.tempStatus[0]!=1){
                         damage*=userCombatant.tempStatus[0]
                     }
-                    if(userCombatant.status.main[8]>0){
+                    if(userCombatant.status.main[8]>0&&userCombatant.status.main[779]<=0){
                         damage*=this.battle.modded(213)&&user<this.battle.players?0:this.status.main[426]>0?0.5:userCombatant.status.main[381]>0?1.25:0.75
                     }
                     if(userCombatant.status.main[82]>0){
@@ -3333,7 +3348,7 @@ class combatant{
                 if(this.battle.relicManager.hasRelic(56,this.id)&&damage>1&&damage<=5){
                     damage=1
                 }
-                if(this.status.main[10]>0){
+                if(this.status.main[10]>0&&this.status.main[779]<=0){
                     damage*=this.team==0&&this.battle.relicManager.hasRelic(407,0)?2:1.5
                 }
                 if(this.status.main[24]>0){
@@ -3536,13 +3551,13 @@ class combatant{
                             }
                         }
                         this.blocked=damageLeft==0&&this.block>0?0:damageLeft<damage?1:2
-                        this.taken=damageLeft
                         if(damageLeft>0){
                             this.loseHealth(damageLeft)
                             if(!this.infoAnim.upFlash[2]){
                                 this.infoAnim.upFlash[0]=true
                             }
                             this.taken=damageLeft
+                            this.turnTaken+=damageLeft
                             this.battle.relicManager.activate(6,[this.id])
                             if(this.id<this.battle.players){
                                 this.battle.stats.taken[this.id][2]+=damageLeft
@@ -3637,7 +3652,7 @@ class combatant{
                         this.statusEffect('Weak',this.battle.relicManager.active[475][user+1])
                     }
                     if(user>=0&&user<this.battle.players){
-                        this.battle.cardManagers[user].allGroupEffectArgs(65,[7239,damage])
+                        this.battle.cardManagers[user].trueAllGroupEffectArgs(65,[7239,damage])
                     }
                 }
             }
@@ -4148,7 +4163,7 @@ class combatant{
             }else if(totalDex<0){
                 block*=max(0.2,1+totalDex*0.1)
             }
-            if(this.status.main[9]>0){
+            if(this.status.main[9]>0&&this.status.main[779]<=0){
                 block*=this.battle.modded(217)&&this.id<this.battle.players?0:0.75
             }
             if(this.status.main[65]>0){
@@ -4909,6 +4924,9 @@ class combatant{
         if(this.status.main[150]>0){
             this.addBlock(this.status.main[150])
         }
+        if(this.status.main[776]>0){
+            this.statusEffect('Single Damage Up',this.status.main[776])
+        }
     }
     activateDraw(){
         this.activateHistory()
@@ -4980,6 +4998,20 @@ class combatant{
             this.battle.cardManagers[this.id].hand.allEffectArgs(62,[value,'Slash'])
             this.battle.cardManagers[this.id].discard.allEffectArgs(44,[6965])
             this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[6965])
+        }
+    }
+    assign(value){
+        if(this.battle.cardManagers[this.id].hand.numberAbstract(3,[82])>=value){
+            this.battle.cardManagers[this.id].hand.deAbstract(6,value,[82])
+            if(this.status.main[777]>0){
+                this.battle.cardManagers[this.id].exhaust.sendAbstract(this.battle.cardManagers[this.id].hand.cards,this.status.main[777],10,0,[82])
+            }
+            if(this.status.main[778]>0){
+                this.statusEffect('Temporary Strength',this.status.main[778])
+            }
+            return true
+        }else{
+            return false
         }
     }
     clearStatus(){
@@ -5365,7 +5397,7 @@ class combatant{
             if(this.id<this.battle.players){
                 this.battle.cardManagers[this.id].discard.allEffectArgs(24,[4727])
                 this.battle.cardManagers[this.id].reserve.allEffectArgs(24,[4727])
-                this.battle.cardManagers[this.id].allGroupEffectArgs(65,[7242,amount])
+                this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[7242,amount])
             }
             if(this.status.main[655]>0){
                 this.battle.combatantManager.randomEnemyEffect(23,['Poison',this.status.main[655]])
@@ -5377,6 +5409,7 @@ class combatant{
     }
     endTurn(){
         this.turnDodges=0
+        this.turnTaken=0
     }
     tick(sub){
         this.charge++
@@ -5825,7 +5858,7 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Sagume': case '-----': case '-----': case '-----':
+            case 'Sagume': case '-----': case 'Lanyan':
             case 'Ume':
                 switch(type){
                     case 0:
@@ -5883,7 +5916,7 @@ class combatant{
                     break
                 }
             break
-            case 'Donakho': case 'Ducopo':
+            case 'Donakho': case 'Ducopo': case 'Dukelis':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -5946,7 +5979,7 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Sagume': case '-----': case 'Lanyan': case '-----':
+            case 'Sagume': case '-----': case 'Lanyan':
             case 'Ume':
                 switch(type){
                     case 0:
@@ -6357,7 +6390,7 @@ class combatant{
                     break
                 }
             break
-            case 'Donakho': case 'Ducopo':
+            case 'Donakho': case 'Ducopo': case 'Dukelis':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -7424,7 +7457,7 @@ class combatant{
                 switch(this.name){
                     case 'Medic':
                         for(let a=0,la=this.battle.players;a<la;a++){
-                            this.battle.cardManagers[a].allGroupEffectArgs(65,[7237])
+                            this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[7237])
                             if(this.battle.relicManager.hasRelic(231,a)){
                                 this.battle.overlayManager.overlays[25][a].active=true
                                 this.battle.overlayManager.overlays[25][a].activate([0,[]])
@@ -7492,7 +7525,7 @@ class combatant{
                     for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
                         if(this.communizers.includes(a)){
                             this.battle.cardManagers[a].deck.add(findName('Worker',types.card),0,0,0)
-                            this.battle.cardManagers[a].allGroupEffectArgs(65,[7236])
+                            this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[7236])
                         }
                     }
                 }

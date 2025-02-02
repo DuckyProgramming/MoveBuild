@@ -22,9 +22,9 @@ types={
         {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:``},
         {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
         {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
-        {name:'',moniker:'The Placeholder',identifier:['',''],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
-        {name:'Lanyan',moniker:'The Placeholder',identifier:['Sister','Miss'],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
-        {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:42,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'Lanyan',moniker:'The Artisan',identifier:['Sister','Miss'],life:57,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},

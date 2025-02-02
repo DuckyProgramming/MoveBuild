@@ -4040,8 +4040,8 @@ class overlay{
                                                 }
                                             }else{
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(base)
-                                                if(this.battle.cardManagers[this.player].deck.cards[a].getBasic(-1)){
-                                                    this.battle.cardManagers[this.player].allGroupEffectArgs(65,[7238])
+                                                if(this.args[0]==17){
+                                                    this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[7238])
                                                 }
                                                 if(this.args[0]==17&&this.battle.relicManager.hasRelic(233,this.player)&&base.edition==0){
                                                     this.battle.cardManagers[this.player].deck.cards[a].edition=floor(random(1,7))
@@ -5562,8 +5562,8 @@ class overlay{
                                                 }
                                             }else{
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(base)
-                                                if(this.battle.cardManagers[this.player].deck.cards[a].getBasic(-1)){
-                                                    this.battle.cardManagers[this.player].allGroupEffectArgs(65,[7238])
+                                                if(this.args[0]==17){
+                                                    this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[7238])
                                                 }
                                                 if(this.args[0]==17&&this.battle.relicManager.hasRelic(233,this.player)&&base.edition==0){
                                                     this.battle.cardManagers[this.player].deck.cards[a].edition=floor(random(1,7))

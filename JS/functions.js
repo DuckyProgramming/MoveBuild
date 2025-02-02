@@ -554,7 +554,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				damage*=2
 				bonus*=2
 			}
-			if(user.status.main[8]>0){
+			if(user.status.main[8]>0&&user.status.main[779]<=0){
 				damage*=user.battle.modded(213)&&user.id<user.battle.players?0:user.status.main[381]>0?1.25:0.75
 				bonus*=user.battle.modded(213)&&user.id<user.battle.players?0:user.status.main[381]>0?1.25:0.75
 			}
@@ -673,7 +673,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			}else if(totalDex<0){
 				block*=max(0.2,1+totalDex*0.1)
 			}
-			if(user.status.main[9]>0){
+			if(user.status.main[9]>0&&user.status.main[779]<=0){
 				block*=user.battle.modded(217)&&user.id<user.battle.players?0:0.75
 			}
 			if(user.status.main[65]>0){

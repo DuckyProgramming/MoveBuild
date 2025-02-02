@@ -1182,7 +1182,17 @@ combatant.prototype.setupGraphics=function(direction){
         break
         case '-----':
         break
-        case '-----':
+        case 'Dukelis':
+            this.anim={direction:direction,fat:1,eye:[0,0],eyeStyle:[0,0],legs:[{top:24,length:{top:12.5}},{top:24,length:{top:12.5}}],arms:[{top:54,length:{top:12.5}},{top:54,length:{top:12.5}}]}
+            this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1}}
+            this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
+            this.color={eye:{back:[0,0,0],front:[30,20,0],glow:[255,255,200]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[235,145,125],body:[225,135,115],legs:[210,120,100],arms:[215,125,105]}}
+            this.parts={eyeLevel:-48,beakLevel:-41,minor:13,legs:[{top:{x:4,y:-18},middle:{x:0,y:0}},{top:{x:4,y:-18},middle:{x:0,y:0}}],arms:[{top:{x:3.75,y:-30.5},middle:{x:0,y:0}},{top:{x:3.75,y:-30.5},middle:{x:0,y:0}}]}
+            this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
+            this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true},extra:{damage:false}}}
+            this.calc={int:[0,0,0,0]}
+            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.goal={anim:{direction:this.anim.direction}}
         break
         //mark p
         case 'Ume':

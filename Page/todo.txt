@@ -1,6 +1,8 @@
-CARDSET 62
+CARDSET 63
 
 
+
+ak-47 - 
 
 glasnost - 
 
@@ -8,21 +10,11 @@ destalinization -
 
 great purge - 
 
-turnover - when you assign 2 or more, unexhaust a worker
-
-succession - rare, automatically complete your current leader
-
-[scrap 22]
-
 new characters can't move
 
 more cycle
 
 heel kick
-
-cherry skies
-
-[status] transient - immune to weak and vulnerable
 
 precipice
 
@@ -34,19 +26,45 @@ vincent can't move
 
 [golden dodecahedron]
 
-dark omen - broken card, but starts in discard pile
+the possibility of more [first time played] cards that cost down to 1
 
-[expensive watch] - george
+shattered philosophy - put a random follow-up card from discard piile into your hand, it costs 0
 
-the possibility of more debut cards
+combat ace - 1 cost, gain 1 energy when an enemy dies, gain 1 strength immediately
+
+[product displacement]
+
+go high - block, gain armor if you have a worker in hand
+
+[battle of stalingrad]
+
+false soul - damage, increases when you play a 0 cost card
+
+the wrong side - damage, recover 1
+
+shield repository - block whenever a 0-cost card is played
+
+elegant dash - dodge, recover 1
+
+soul butterfly - gain 1 energy, when played or when recovered, ethereal exhaust
+
+[fine-structure]
+
+[fallying mysts]
+
+
+
+
+
+
 
 
 
 OPERATION SCALENE
 
-recolor ducopo?
-
 rainbow lattice (edition) - []
+
+make 1 new event - get given an atatck, guess its damage
 
 OPERATION ICATHIA
 
@@ -54,6 +72,7 @@ OPERATION ROSENFELD
 
 [reorganize character 22]
 follow up
+confuse
 
 OPERATION KHIRASARA
 
@@ -65,7 +84,6 @@ shuffle
 OPERATION FERROCHROME
 
 [the commuduck]
-confuse
 control
 workers
 
@@ -73,8 +91,8 @@ OPERATION CARCINOGEN
 
 [sagume boss]
 []
-[]
-[]
+[lanyan boss]
+[dukelis boss]
 
 
 

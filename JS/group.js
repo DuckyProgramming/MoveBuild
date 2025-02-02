@@ -911,7 +911,8 @@ class group{
                 type==2&&this.cards[a].name==args[0]||
                 type==3&&this.cards[a].class==5||
                 type==4&&args[0].includes(this.cards[a].class)||
-                type==5&&this.cards[a].rarity==args[0]
+                type==5&&this.cards[a].rarity==args[0]||
+                type==6&&this.cards[a].spec.includes(args[0])
             ){
                 if(this.id==2){
                     this.cards[a].deSize=true
@@ -1820,6 +1821,9 @@ class group{
                 case 116:
                     this.cards[a].callPullEffect()
                 break
+                case 117:
+                    this.cards[a].callPostStartEffect(this.battle.encounter.class)
+                break
 
             }
         }
@@ -2210,15 +2214,18 @@ class group{
                     }
                 break
                 case 65:
-                    if(this.cards[a].attack==args[0]){
-                        switch(args[0]){
+                    if(this.cards[a].attack==args[0]||args[0]==7274){
+                        switch(this.cards[a].attack){
                             case 7236:
                                 this.cards[a].effect[1]++
-                                if(this.cards[a].effect[1]>=this.cards[a].effect[0]){
+                                if(this.cards[a].effect[1]>=this.cards[a].effect[0]||args[0]==7274){
                                     this.add(findName('Stalin',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
                                     if(this.id==0){
                                         this.remove(a)
                                         a--
+                                        if(args[0]==7274){
+                                            a=la
+                                        }
                                     }else if(this.id==2){
                                         this.cards[a].deSize=true
                                         this.cards[a].exhaust=true
@@ -2235,6 +2242,9 @@ class group{
                                 if(this.id==0){
                                     this.remove(a)
                                     a--
+                                    if(args[0]==7274){
+                                        a=la
+                                    }
                                 }else if(this.id==2){
                                     this.cards[a].deSize=true
                                     this.cards[a].exhaust=true
@@ -2250,6 +2260,9 @@ class group{
                                 if(this.id==0){
                                     this.remove(a)
                                     a--
+                                    if(args[0]==7274){
+                                        a=la
+                                    }
                                 }else if(this.id==2){
                                     this.cards[a].deSize=true
                                     this.cards[a].exhaust=true
@@ -2261,11 +2274,14 @@ class group{
                                 }
                             break
                             case 7239:
-                                if(args[1]>=this.cards[a].effect[1]){
+                                if(args[1]>=this.cards[a].effect[1]||args[0]==7274){
                                     this.add(findName('Brezhnev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
                                     if(this.id==0){
                                         this.remove(a)
                                         a--
+                                        if(args[0]==7274){
+                                            a=la
+                                        }
                                     }else if(this.id==2){
                                         this.cards[a].deSize=true
                                         this.cards[a].exhaust=true
@@ -2279,11 +2295,14 @@ class group{
                             break
                             case 7240:
                                 this.cards[a].effect[2]+=round(args[1]*10)/10
-                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]){
+                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274){
                                     this.add(findName('Andropov',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
                                     if(this.id==0){
                                         this.remove(a)
                                         a--
+                                        if(args[0]==7274){
+                                            a=la
+                                        }
                                     }else if(this.id==2){
                                         this.cards[a].deSize=true
                                         this.cards[a].exhaust=true
@@ -2300,6 +2319,9 @@ class group{
                                 if(this.id==0){
                                     this.remove(a)
                                     a--
+                                    if(args[0]==7274){
+                                        a=la
+                                    }
                                 }else if(this.id==2){
                                     this.cards[a].deSize=true
                                     this.cards[a].exhaust=true
@@ -2312,11 +2334,14 @@ class group{
                             break
                             case 7242:
                                 this.cards[a].effect[2]+=round(args[1]*10)/10
-                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]){
+                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274){
                                     this.add(findName('Gorbachev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
                                     if(this.id==0){
                                         this.remove(a)
                                         a--
+                                        if(args[0]==7274){
+                                            a=la
+                                        }
                                     }else if(this.id==2){
                                         this.cards[a].deSize=true
                                         this.cards[a].exhaust=true
@@ -2330,11 +2355,14 @@ class group{
                             break
                             case 7243:
                                 this.cards[a].effect[2]+=round(args[1]*10)/10
-                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]){
+                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274){
                                     this.add(findName('Fallen\nUnion',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
                                     if(this.id==0){
                                         this.remove(a)
                                         a--
+                                        if(args[0]==7274){
+                                            a=la
+                                        }
                                     }else if(this.id==2){
                                         this.cards[a].deSize=true
                                         this.cards[a].exhaust=true
@@ -3711,6 +3739,11 @@ class group{
         if(this.id==3&&cardData.attack==6586){
             cardData.setCost(0,[0])
         }
+        if(cardData.additionalSpec.includes(-3)){
+            cardData.additionalSpec.splice(cardData.additionalSpec.indexOf(-3))
+            cardData.deSize=true
+
+        }
         switch(spec){
             case 2:
                 if(!cardData.additionalSpec.includes(-2)&&!cardData.spec.includes(55)){
@@ -4069,7 +4102,7 @@ class group{
         let possible=!this.cards[index].spec.includes(7)&&!(this.battle.initialized&&this.battle.modded(97))
         if(possible){
             if(this.cards[index].class!=14){
-                this.battle.cardManagers[this.player].allGroupEffectArgs(65,[7241])
+                this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[7241])
             }
             this.cards[index].callRemoveEffect()
             this.send(this.battle.cardManagers[this.player].remove.cards,index,index+1,0)
@@ -5373,7 +5406,7 @@ class group{
                 this.battle.attackManager.debut=a.debut
                 this.battle.attackManager.evolve=a.evolve
                 this.battle.attackManager.fugue=userCombatant.fugue
-                this.battle.attackManager.cost=a.cost
+                this.battle.attackManager.cost=a.editCost(a.cost,1)
                 if(a.getBasic(1)&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }

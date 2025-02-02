@@ -576,6 +576,7 @@ class battle{
         this.combatantManager.reID()
         this.tileManager.activate()
         this.relicManager.activate(22,[])
+        this.cardManagers.forEach(cardManager=>cardManager.allEffect(0,117))
         if(this.modded(63)&&floor(random(0,2))==0){
             this.sendReinforce()
             this.tileManager.fire()
@@ -591,10 +592,10 @@ class battle{
         }else{
             this.startTurn()
         }
-        this.cardManagers.forEach(cardManager=>cardManager.allEffect(0,48))
         if(this.encounter.class==2&&this.nodeManager.harmBoss>0){
             this.nodeManager.harmBoss=0
         }
+        this.cardManagers.forEach(cardManager=>cardManager.allEffect(0,48))
     }
     setupRest(){
         this.optionManagers.forEach(optionManager=>optionManager.reset())
@@ -1463,6 +1464,9 @@ class battle{
         if(effectiveCost==0&&userCombatant.getStatus('0 Cost Single Damage Up')>0){
             userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('0 Cost Single Damage Up'))
         }
+        if(effectiveCost==0&&userCombatant.getStatus('0 Cost Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('0 Cost Block'))
+        }
         if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Energy')>0){
             this.addEnergy(userCombatant.getStatus('2+ Cost Energy'),player)
         }
@@ -2301,7 +2305,7 @@ class battle{
             }else{
                 this.currency.money[player]+=round((amount+bonus)*multi)
             }
-            this.cardManagers[player].allGroupEffectArgs(65,[7243,round((amount+bonus)*multi)])
+            this.cardManagers[player].trueAllGroupEffectArgs(65,[7243,round((amount+bonus)*multi)])
         }
     }
     loseCurrency(amount,player){
@@ -2309,7 +2313,7 @@ class battle{
             this.cardManagers[player].deck.add(findName('Debt',types.card),0,constants.playerNumber+2)
         }*/
         this.currency.money[player]-=round(amount)
-        this.cardManagers[player].allGroupEffectArgs(65,[7240,round(amount)])
+        this.cardManagers[player].trueAllGroupEffectArgs(65,[7240,round(amount)])
     }
     modded(type){
         return !this.initialized?false:variants.mod?this.modManager.mods[type]:false

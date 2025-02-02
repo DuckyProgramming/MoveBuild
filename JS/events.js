@@ -1869,7 +1869,7 @@ The Cycle Must Repeat.`,
             },
         ],
     },{
-        name:'The Mirror',id:58,list:0,
+        name:'The Mirror',id:58,list:-1,
         pages:[
             {
                 desc:

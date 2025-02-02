@@ -684,6 +684,7 @@ class cardManager{
             this.battle.relicManager.activate(23,[amount,this.player])
         }
         let total=0
+        let extra=0
         let cap=this.reserve.cards.length
         for(let a=0,la=cap;a<la;a++){
             if(this.reserve.cards[a].spec.includes(3)){
@@ -691,8 +692,12 @@ class cardManager{
                     this.reserve.cards[a].spec.push(31)
                 }
                 switch(this.reserve.cards[a].attack){
-                    case 3329:
-                        total++
+                    case 3329: case 4976: case 4977: case 4978:
+                        extra++
+                    break
+                    case 7276:
+                        extra--
+                        this.reserve.cards[a].additionalSpec.push(-3)
                     break
                 }
                 this.reserve.slideSpecificOver(a)
@@ -708,8 +713,8 @@ class cardManager{
         for(let a=0,la=total;a<la;a++){
             this.reserve.slideTop()
         }
-        this.reserve.send(this.hand.cards,0,+total,3)
-        return total
+        this.reserve.send(this.hand.cards,0,total,3)
+        return total+extra
     }
     dropFirst(){
         if(this.drops>0){
@@ -726,6 +731,12 @@ class cardManager{
         this.discard.allEffect(effect)
     }
     allGroupEffectArgs(effect,args){
+        this.reserve.allEffectArgs(effect,args)
+        this.hand.allEffectArgs(effect,args)
+        this.discard.allEffectArgs(effect,args)
+    }
+    trueAllGroupEffectArgs(effect,args){
+        this.deck.allEffectArgs(effect,args)
         this.reserve.allEffectArgs(effect,args)
         this.hand.allEffectArgs(effect,args)
         this.discard.allEffectArgs(effect,args)

@@ -7665,6 +7665,50 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(0,-10,-1,-12,1,-12)
             layer.triangle(0,-12.5,-1,-14.5,1,-14.5)
         break
+        case 775:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.stroke(200,255,255,fade)
+            layer.strokeWeight(1.5)
+            layer.noFill()
+            layer.ellipse(0,0,8)
+        break
+        case 776:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-2,-6,-4,3,0,3)
+            layer.ellipse(3,0,4,4)
+            layer.stroke(255,255,150,fade)
+            layer.strokeWeight(1)
+            for(let a=0,la=5;a<la;a++){
+                layer.rotate(72)
+                layer.line(0,0,0,5)
+                layer.line(0,5,-2,4)
+            }
+        break
+        case 777:
+            layer.fill(200,fade)
+            regStar(layer,0,0,5,6,6,2.5,2.5,180)
+            layer.fill(255,25,25,fade)
+            regStar(layer,0,0,5,5,5,1.5,1.5,180)
+            layer.fill(200,fade)
+            regStar(layer,0,0,5,4,4,0.5,0.5,180)
+        break
+        case 778:
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+            layer.fill(200,fade)
+            regStar(layer,0,0,5,6,6,2.5,2.5,180)
+            layer.fill(225,25,25,fade)
+            regStar(layer,0,0,5,5,5,1.5,1.5,180)
+        break
+        case 779:
+            layer.fill(225,fade)
+            layer.ellipse(0,0,10)
+            layer.fill(0,fade)
+            layer.arc(0,2,6,3,-180,0)
+        break
 
     }
     //mark s
@@ -8198,6 +8242,9 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
         case 21:
             layer.fill(240,200,180,fade)
         break
+        case 24:
+            layer.fill(210,30,15,fade)
+        break
         default:
             layer.fill(120,fade)
         break
@@ -8548,6 +8595,8 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.quad(0,-9.2-3*constants.sqrt2,-3*constants.sqrt2,-9.5,0,-9.5+3*constants.sqrt2,3*constants.sqrt2,-9.5)
             layer.rect(0,9.2,6,6)
             layer.quad(0,9.2-3*constants.sqrt2,-3*constants.sqrt2,9.5,0,9.5+3*constants.sqrt2,3*constants.sqrt2,9.5)
+        break
+        case 24:
         break
         default:
             layer.rect(0,0,26)
