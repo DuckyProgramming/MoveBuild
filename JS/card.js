@@ -8305,6 +8305,34 @@ class card{
             case 7288: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Cost Decreased,\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto a Random Enemy`; break
             case 7289: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Cost Decreased,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
 
+            case 7290: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAssign ${effect[1]}:\nGain ${effect[2]} Armor`; break
+            //2309
+            case 7291: string+=`Gain ${effect[0]} Strength\nWhen an Enemy Dies,\nGain ${effect[1]} Energy`; break
+            case 7292: string+=`Gain ${effect[0]} Strength\nWhen an Enemy Dies,\nGain (E)`; break
+            case 7293: string+=`Gain ${effect[0]} Energy\nWhen Played or\nWhen Recovered`; break
+            //41
+            case 7294: string+=`Gain (W) (N)\nWhen Played or\nWhen Recovered`; break
+            case 7295: string+=`Gain (W) (W) (N)\nWhen Played or\nWhen Recovered`; break
+            case 7296: string+=`Gain (E) (E) (W)\nWhen Played or\nWhen Recovered`; break
+            //4324-4326
+            case 7297: string+=`Remove All\nBlock of Target\nApply ${effect[0]} Vulnerable`; break
+            //924
+            case 7298: string+=`Remove All\nBlock of Target\nApply ${effect[0]} Poison`; break
+            case 7299: string+=`Put a Random Follow-Up\nFrom Discard Pile\nin Your Hand\nIt Costs 0`; break
+
+            case 7300: string+=`Gain ${effect[0]} Temporary\nStrength When You\nGain a Debuff`; break
+            case 7301: string+=`Gain ${effect[0]} Temporary\nDexterity When You\nPlay a Basic Card`; break
+            //3147
+            case 7302: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Drawn,\nGain ${effect[1]} Energy`; break
+            case 7303: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Drawn,\nGain (E)`; break
+            case 7304: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAssign ${effect[1]}:\nDeals Triple Damage\nTarget Cannot Move\nFor ${effect[2]} Turn${pl(effect[2])}`; break
+            case 7305: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto a Random Enemy`; break
+            case 7306: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nPrime ${effect[1]}`; break
+
+
+
+            
+
             //mark p
 
             //mark q

@@ -16,8 +16,6 @@ more cycle
 
 heel kick
 
-precipice
-
 vincent can't move
 
 [bonkception]
@@ -28,29 +26,26 @@ vincent can't move
 
 the possibility of more [first time played] cards that cost down to 1
 
-shattered philosophy - put a random follow-up card from discard piile into your hand, it costs 0
-
-combat ace - 1 cost, gain 1 energy when an enemy dies, gain 1 strength immediately
-
-[product displacement]
-
-go high - block, gain armor if you have a worker in hand
-
-[battle of stalingrad]
-
-false soul - damage, increases when you play a 0 cost card
-
 the wrong side - damage, recover 1
 
 shield repository - block whenever a 0-cost card is played
 
 elegant dash - dodge, recover 1
 
-soul butterfly - gain 1 energy, when played or when recovered, ethereal exhaust
-
 [fine-structure]
 
 [fallying mysts]
+
+[modern warfare]
+
+favor - counts as temporary strength and as dexterity, but only for 1 card
+idk if this will be added
+temporary strength isn't really a gimmick rn
+might be a good excuse to purge shinmy
+or to feed fernando (but not dukelis)
+[when you lose a buff] will then be of use
+only if necessary!
+
 
 
 
