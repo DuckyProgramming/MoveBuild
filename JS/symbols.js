@@ -7709,6 +7709,50 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(0,fade)
             layer.arc(0,2,6,3,-180,0)
         break
+        case 780:
+            layer.stroke(0,fade)
+            layer.strokeWeight(1)
+            layer.noFill()
+            layer.ellipse(0,0,10,10)
+            layer.line(-8/3,-2/3,-4/3,2/3)
+            layer.line(-8/3,2/3,-4/3,-2/3)
+            layer.line(8/3,-2/3,4/3,2/3)
+            layer.line(8/3,2/3,4/3,-2/3)
+            layer.noStroke()
+            layer.fill(200,255,255,fade)
+            layer.quad(-2.5,0,0,-3.125,2.5,0,0,3.125)
+            layer.fill(225,255,255,fade)
+            layer.quad(-2,0,0,-2.5,2,0,0,2.5)
+        break
+        case 781:
+            layer.stroke(0,fade)
+            layer.strokeWeight(1)
+            layer.noFill()
+            layer.ellipse(0,0,10,10)
+            layer.line(-8/3,-2/3,-4/3,2/3)
+            layer.line(-8/3,2/3,-4/3,-2/3)
+            layer.line(8/3,-2/3,4/3,2/3)
+            layer.line(8/3,2/3,4/3,-2/3)
+            displayMtgManaSymbol(layer,0,0,6,0,0.2,fade,2,[1])
+        break
+        case 782:
+            layer.fill(200,25,25,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
+        case 783:
+            layer.fill(60,fade)
+            layer.rect(0,0,4,1.2)
+            layer.rect(0,-2,7,1.2)
+            layer.rect(0,2,7,1.2)
+            layer.rect(0,-4,4,1.2)
+            layer.rect(0,4,4,1.2)
+            layer.fill(150,175,200,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
 
     }
     //mark s

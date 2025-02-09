@@ -10,13 +10,17 @@ destalinization -
 
 great purge - 
 
-new characters can't move
+
 
 more cycle
 
 heel kick
 
-vincent can't move
+the possibility of more [first time played] cards that cost down to 1
+
+more pity
+
+
 
 [bonkception]
 
@@ -24,19 +28,21 @@ vincent can't move
 
 [golden dodecahedron]
 
-the possibility of more [first time played] cards that cost down to 1
-
-the wrong side - damage, recover 1
-
-shield repository - block whenever a 0-cost card is played
-
-elegant dash - dodge, recover 1
+[shield repository]
 
 [fine-structure]
 
 [fallying mysts]
 
 [modern warfare]
+
+[crucibles of war]
+
+[donut]
+
+[commisssariat]
+
+[defector]
 
 favor - counts as temporary strength and as dexterity, but only for 1 card
 idk if this will be added
@@ -45,6 +51,12 @@ might be a good excuse to purge shinmy
 or to feed fernando (but not dukelis)
 [when you lose a buff] will then be of use
 only if necessary!
+
+[mesocyclone]
+
+[protectorate]
+
+power trip - deals more damage for each buff you have
 
 
 
@@ -66,26 +78,29 @@ OPERATION ICATHIA
 OPERATION ROSENFELD
 
 [reorganize character 22]
-follow up
+nerf yourself
+pity
 confuse
+shuffle
 
 OPERATION KHIRASARA
 
 [make character 23]
 cycle - if next card is of the type, it costs 0
 prime
-shuffle
+follow up
 
 OPERATION FERROCHROME
 
 [the commuduck]
 control
-workers
+leaders
+workers/assign
 
 OPERATION CARCINOGEN
 
 [sagume boss]
-[]
+[fernando boss]
 [lanyan boss]
 [dukelis boss]
 

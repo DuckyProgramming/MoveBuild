@@ -1544,6 +1544,9 @@ class battle{
         if(card.getBasic(-1)&&userCombatant.getStatus('Basic Temporary Strength')>0){
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Basic Temporary Strength'))
         }
+        if(card.getBasic(-1)&&userCombatant.getStatus('Basic Temporary Dexterity')>0){
+            userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Basic Temporary Dexterity'))
+        }
         if(card.getBasic(-1)&&userCombatant.getStatus('Basic Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Basic Draw'))
         }

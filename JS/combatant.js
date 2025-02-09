@@ -199,6 +199,7 @@ class combatant{
                 'Base Attack Vulnerable Combat','Retain Freeze','Orb Hold Tick','Fugue Strength','Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill','Speed Strike',
                 '2+ Cost Strength','Half Block','Random Mana in 3 Turns','No Extra Turns','No Extra Turns Next Turn','Cost Down Per Turn','Bounce Next Turn','Scry Discard Block','Play Evolve','Evolve Temporary Strength',
                 'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns','0 Cost Block','Charge Consume Single Damage Up','Assign Return','Assign Temporary Strength','Pity',
+                'Death Energy','Death (E)','Debuff Temporary Strength','Basic Temporary Dexterity',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -279,6 +280,7 @@ class combatant{
                 0,1,0,0,2,2,2,2,2,1,//76
                 0,0,2,1,0,0,0,0,1,0,//77
                 1,2,2,2,2,0,0,0,0,1,//78
+                0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -359,6 +361,7 @@ class combatant{
                 0,1,2,2,2,2,2,2,2,2,//76
                 2,1,3,3,3,2,2,2,2,2,//77
                 3,2,2,2,2,2,2,2,2,2,//78
+                2,2,2,2,
             ]}
         /*
         0-none
@@ -2394,6 +2397,12 @@ class combatant{
             for(let a=0,la=this.status.main[376];a<la;a++){
                 this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)
             }
+        }
+        if(this.status.main[780]>0&&this.id>=0&&this.id<this.battle.players){
+            this.battle.addEnergy(this.status.main[780],this.id)
+        }
+        if(this.status.main[781]>0&&this.id>=0&&this.id<this.battle.players){
+            this.battle.addSpecificEnergy(this.status.main[781],this.id,6)
         }
         if(this.id<this.battle.players){
             if(variants.hungry){
@@ -5068,7 +5077,7 @@ class combatant{
                 if(status==32){
                     this.battle.updateTargetting()
                 }
-                if((this.status.class[status]==1||this.status.class[status]==3)&&effectiveValue>0||(this.status.class[status]==0||this.status.class[status]==2)){
+                if((this.status.class[status]==1||this.status.class[status]==3)&&effectiveValue>0||(this.status.class[status]==0||this.status.class[status]==2)&&effectiveValue<0){
                     if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
                         if(userCombatant.getStatus('Debuff Damage')>0){
@@ -5081,6 +5090,9 @@ class combatant{
                     }
                     if(this.status.main[511]>0){
                         this.addBlock(this.status.main[511])
+                    }
+                    if(this.status.main[782]>0){
+                        this.statusEffect('Temporary Strength',this.status.main[782])
                     }
                 }
                 if(name=='Poison'&&effectiveValue>0){

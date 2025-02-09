@@ -5948,7 +5948,7 @@ class overlay{
                             }
                         break
                         case 5: case 11: case 19: case 21: case 31: case 34: case 39: case 40: case 42: case 46:
-                        case 52: case 77: case 79: case 99: case 101: case 102: case 111:
+                        case 52: case 77: case 79: case 99: case 101: case 102: case 111: case 112:
                             switch(this.args[0]){
                                 case 77: case 101:
                                     this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,variants.mtg?[]:0,0)

@@ -2442,6 +2442,7 @@ class group{
                         &&!(effect==70&&!this.cards[b].spec.includes(15))
                         &&!(effect==72&&this.cards[b].getCost(0)!=args[0])
                         &&!(effect==73&&(this.cards[b].attack==5612||b<args[0]))
+                        &&!(effect==76&&!this.cards[b].spec.includes(71))
                     ){
                         list.push(b)
                     }
@@ -2745,7 +2746,7 @@ class group{
                         this.cards[index].deSize=true
                         this.cards[index].discardEffect.push(0)
                         return true
-                    case 61:
+                    case 61: case 76:
                         this.send(args[0],index,index+1,4)
                     break
                     case 64:
@@ -3384,10 +3385,14 @@ class group{
             case 5942:
                 userCombatant.statusEffect('Focus',card.effect[0])
             break
-            case 5971:
-                this.battle.addEnergy(card.effect[1],this.player)
+            case 5971: case 7302:
+                if(variants.mtg){
+                    this.battle.addSpecificEnergy(card.effect[1],this.player,6)
+                }else{
+                    this.battle.addEnergy(card.effect[1],this.player)
+                }
             break
-            case 5972:
+            case 5972: case 7303:
                 this.battle.addSpecificEnergy(1,this.player,6)
             break
             case 6375: case 6376: case 6412: case 6413:

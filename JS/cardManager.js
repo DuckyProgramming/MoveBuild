@@ -365,8 +365,8 @@ class cardManager{
     }
     generalShuffle(){
         this.reserve.shuffle()
-        this.discard.allEffectArgs(44,[6866,6867])
-        this.reserve.allEffectArgs(44,[6866,6867])
+        this.discard.allEffectArgs(44,[6866,6867,7322])
+        this.reserve.allEffectArgs(44,[6866,6867,7322])
     }
     allEffect(group,effect){
         this.getList(group).allEffect(effect)
