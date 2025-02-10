@@ -262,7 +262,7 @@ class attack{
             case 7074: case 7075: case 7076: case 7077: case 7080: case 7086: case 7088: case 7116: case 7117: case 7119: case 7122: case 7128: case 7132: case 7136: case 7146: case 7160: case 7165: case 7175: case 7197: case 7201:
             case 7204: case 7208: case 7209: case 7210: case 7211: case 7212: case 7213: case 7215: case 7216: case 7221: case 7222: case 7224: case 7227: case 7232: case 7234: case 7235: case 7251: case 7255: case 7260: case 7261:
             case 7269: case 7270: case 7271: case 7276: case 7281: case 7282: case 7284: case 7288: case 7289: case 7297: case 7298: case 7304: case 7305: case 7306: case 7307: case 7312: case 7313: case 7315: case 7336: case 7337:
-            case 7338:
+            case 7338: case 7342: case 7343: case 7346: case 7349: case 7352:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -330,7 +330,7 @@ class attack{
             case 7013: case 7067: case 7097: case 7098: case 7099: case 7100: case 7101: case 7102: case 7103: case 7104:
             case 7105: case 7106: case 7107: case 7158: case 7159: case 7167: case 7182: case 7193: case 7286: case 7309:
             case 7314: case 7318: case 7319: case 7320: case 7321: case 7322: case 7323: case 7324: case 7325: case 7326:
-            case 7327: case 7328: case 7329: case 7330: case 7331: case 7332: case 7333: case 7334: case 7339:
+            case 7327: case 7328: case 7329: case 7330: case 7331: case 7332: case 7333: case 7334: case 7339: case 7348:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -2386,6 +2386,16 @@ class attack{
                         }else{
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }
+                    break
+                    case 7342:
+                        let result7342=this.userCombatant.assign(-1)
+                        if(result7342>0){
+                            this.targetCombatant.takeDamage(this.effect[0]*result7342,this.user)
+                            this.userCombatant.addBlock(this.effect[0]*result7342)
+                        }
+                    break
+                    case 7352:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.userManager.exhaust.numberAbstract(3,[82])+this.effect[1]),this.user,1)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -6174,7 +6184,7 @@ class attack{
                     case 6936:
                         this.userCombatant.statusEffect('Free Attack',1)
                     break
-                    case 6937:
+                    case 6937: case 7343:
                         this.userCombatant.statusEffect('Cycle Attack',1)
                     break
                     case 6954:
@@ -6356,6 +6366,12 @@ class attack{
                     case 7338:
                         this.userCombatant.statusEffect('Armor',this.effect[1])
                         this.userCombatant.statusEffect('Vulnerable',this.effect[2])
+                    break
+                    case 7349:
+                        if(this.limit%3==2){
+                            this.battle.overlayManager.overlays[168][this.player].active=true
+                            this.battle.overlayManager.overlays[168][this.player].activate([this.effect[1]])
+                        }
                     break
 
                 }
@@ -6888,6 +6904,9 @@ class attack{
                     break
                     case 7196:
                         this.userCombatant.addBlock(this.effect[0]+this.effect[1]*this.evolve)
+                    break
+                    case 7351:
+                        this.userCombatant.addBlock(this.effect[0]*(this.userCombatant.totalUniqueStatus(1)+this.effect[1]))
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
@@ -14892,6 +14911,12 @@ class attack{
                         this.userCombatant.statusEffect('Temporary Strength',-this.effect[0])
                         this.battle.overlayManager.overlays[10][this.player].active=true
                         this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[0],[[1,1]]])
+                    break
+                    case 7347:
+                        this.userCombatant.carry[4]++
+                    break
+                    case 7353:
+                        this.userManager.drawAbstract(this.effect[0],0,19,[4,this.effect[1]])
                     break
 
                 }
@@ -27972,7 +27997,7 @@ class attack{
                     case 6312: case 6313:
                         let result6312=[]
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            let tick6312=this.battle.combatantManager.randomEnemyEffect(24,[this.effect[0]])
+                            let tick6312=this.battle.combatantManager.randomEnemyEffect(24,[this.effect[0],this.user])
                             if(!result6312.includes(tick6312)){
                                 result6312.push(tick6312)
                             }
@@ -28175,6 +28200,27 @@ class attack{
                     case 7313:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect('Communized',this.effect[1])
+                    break
+                    case 7345:
+                        if((variants.mtg?this.cost[0]:this.cost)>=12){
+                            this.selfCall(20)
+                        }else if((variants.mtg?this.cost[0]:this.cost)>=5){
+                            this.userManager.hand.add(findName('Standardize',types.card),0,0)
+                            this.userManager.draw(this.effect[1])
+                            let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
+                            for(let a=0,la=list.length;a<la;a++){
+                                for(let b=0,lb=list[a].length;b<lb;b++){
+                                    if(list[a][b].id==this.id){
+                                        list[a][b].costDown(0,[5])
+                                    }
+                                }
+                            }
+                        }
+                    break
+                    case 7350:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.user])
+                        }
                     break
 
                 }

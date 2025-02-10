@@ -1733,6 +1733,9 @@ class overlay{
                                 case 7190:
                                     this.cards[a].attack=[-1076,-1077][a]
                                 break
+                                case 7345:
+                                    this.cards[a].attack=[-1078,-1013][a]
+                                break
                             }
                         }
                     break
@@ -2311,6 +2314,11 @@ class overlay{
                                 this.card.costDown(0,[4])
                                 this.battle.overlayManager.overlays[10][this.player].active=true
                                 this.battle.overlayManager.overlays[10][this.player].activate([args[0].level,[2,2],57,[0],[]])
+                            break
+                            case -1078:
+                                this.card.costDown(0,[5])
+                                this.battle.cardManagers[this.player].hand.add(findName('Standardize',types.card),0,0)
+                                this.battle.cardManagers[this.player].draw(args[0].effect[1])
                             break
                         }
                     break

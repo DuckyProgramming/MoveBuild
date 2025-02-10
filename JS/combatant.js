@@ -99,7 +99,7 @@ class combatant{
         
         this.compression=0
         this.permanentStrength=0
-        this.carry=[0,0,0,0]
+        this.carry=[0,0,0,0,0]
 
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
         this.collect={life:this.life}
@@ -516,6 +516,9 @@ class combatant{
                     break
                     case 3:
                         this.statusEffect('Strength',this.carry[a])
+                    break
+                    case 4:
+                        this.statusEffect('Extra Turn',this.carry[a])
                     break
                 }
                 this.carry[a]=0
@@ -5010,17 +5013,30 @@ class combatant{
         }
     }
     assign(value){
-        if(this.battle.cardManagers[this.id].hand.numberAbstract(3,[82])>=value){
-            this.battle.cardManagers[this.id].hand.deAbstract(6,value,[82])
-            if(this.status.main[777]>0){
-                this.battle.cardManagers[this.id].exhaust.sendAbstract(this.battle.cardManagers[this.id].hand.cards,this.status.main[777],10,0,[82])
+        if(value==-1){
+            let result=this.battle.cardManagers[this.id].hand.deAbstract(6,value,[82])
+            if(result>0){
+                if(this.status.main[777]>0){
+                    this.battle.cardManagers[this.id].exhaust.sendAbstract(this.battle.cardManagers[this.id].hand.cards,this.status.main[777],10,0,[82])
+                }
+                if(this.status.main[778]>0){
+                    this.statusEffect('Temporary Strength',this.status.main[778])
+                }
             }
-            if(this.status.main[778]>0){
-                this.statusEffect('Temporary Strength',this.status.main[778])
-            }
-            return true
+            return result
         }else{
-            return false
+            if(this.battle.cardManagers[this.id].hand.numberAbstract(3,[82])>=value){
+                this.battle.cardManagers[this.id].hand.deAbstract(6,value,[82])
+                if(this.status.main[777]>0){
+                    this.battle.cardManagers[this.id].exhaust.sendAbstract(this.battle.cardManagers[this.id].hand.cards,this.status.main[777],10,0,[82])
+                }
+                if(this.status.main[778]>0){
+                    this.statusEffect('Temporary Strength',this.status.main[778])
+                }
+                return true
+            }else{
+                return false
+            }
         }
     }
     clearStatus(){

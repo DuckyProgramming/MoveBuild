@@ -2199,8 +2199,8 @@ class group{
                 case 62:
                     if(this.cards[a].name.includes(args[1])){
                         this.cards[a].costDown(0,[args[0]])
-                        this.cards[a].callPrimeEffect()
                     }
+                    this.cards[a].callPrimeEffect()
                 break
                 case 63:
                     if(this.cards[a].getBasic(args[0])){
@@ -3101,7 +3101,7 @@ class group{
 
             //mark n
             
-            case 288: case 374: case 2217: case 2776: case 4078: case 5361: case 6214:
+            case 288: case 374: case 2217: case 2776: case 4078: case 5361: case 6214: case 7343:
                 for(let a=0,la=card.effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
@@ -3222,7 +3222,7 @@ class group{
                     this.battle.itemManager.addItem(findName('Mundane Dust',types.item),this.player)
                 }
             break
-            case 2822:
+            case 2822: case 7344:
                 userCombatant.vision+=card.effect[0]
             break
             case 2873: case 4450: case 4451:
@@ -3662,6 +3662,13 @@ class group{
                         if(list[list.length-1].spec.includes(79)){
                             list[list.length-1].evolve+=args[0]
                             list[list.length-1].callEvolveEffect()
+                        }
+                    break
+                    case 19:
+                        if(this.battle.cardManagers[this.player].hand.cards.length>0){
+                            for(let a=0,la=args[1];a<la;a++){
+                                this.battle.cardManagers[this.player].hand.copySelf(this.battle.cardManagers[this.player].hand.cards.length-1)
+                            }
                         }
                     break
                 }
