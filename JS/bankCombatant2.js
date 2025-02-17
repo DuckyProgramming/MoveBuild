@@ -1173,23 +1173,35 @@ combatant.prototype.setupGraphics=function(direction){
             this.animSet={loop:0,flip:0,hand:0,foot:0}
 
             this.goal={anim:{direction:this.anim.direction}}
-
-            //wing
-            //dress (both)
-            //jacket
         break
-        case '-----':
+        case 'Fernando':
+            this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
+                legs:[{top:9,bottom:0,length:{top:13,bottom:13}},{top:9,bottom:0,length:{top:13,bottom:13}}],
+                arms:[{top:24,bottom:9,length:{top:13,bottom:13}},{top:24,bottom:9,length:{top:13,bottom:13}}]}
+            this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
+            this.color={skin:{head:[240,220,180],body:[200,160,200],legs:[120,80,40],arms:[180,140,170]},overall:[125,85,45],hat:[15,30,45],glasses:[[55,45,55],[180,160,180]],button:[30,15,30],eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+            this.parts={eyeLevel:-63,mouth:-55,minor:15,
+                legs:[{top:{x:7.5,y:-26},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:7.5,y:-26},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                arms:[{top:{x:16,y:-41},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:16,y:-41},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
+            this.graphics={
+                legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
+            this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1},overall:1,hat:1,glasses:1,button:1}
+            this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},overall:true,hat:true,glasses:true,button:true,extra:{damage:false}}}
+            this.calc={int:[0,0,0,0]}
+            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.goal={anim:{direction:this.anim.direction}}
         break
         case '-----':
         break
         case 'Dukelis':
             this.anim={direction:direction,fat:1,eye:[0,0],eyeStyle:[0,0],legs:[{top:24,length:{top:12.5}},{top:24,length:{top:12.5}}],arms:[{top:54,length:{top:12.5}},{top:54,length:{top:12.5}}]}
-            this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1}}
+            this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1},helmet:1,medal:1}
             this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
-            this.color={eye:{back:[0,0,0],front:[30,20,0],glow:[255,255,200]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[235,145,125],body:[225,135,115],legs:[210,120,100],arms:[215,125,105]}}
+            this.color={eye:{back:[0,0,0],front:[30,20,0],glow:[255,255,200]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[235,145,125],body:[225,135,115],legs:[210,120,100],arms:[215,125,105]},helmet:[[100,25,25],[225,200,50]],medal:[[225,25,25],[225,225,225],[225,175,50]]}
             this.parts={eyeLevel:-48,beakLevel:-41,minor:13,legs:[{top:{x:4,y:-18},middle:{x:0,y:0}},{top:{x:4,y:-18},middle:{x:0,y:0}}],arms:[{top:{x:3.75,y:-30.5},middle:{x:0,y:0}},{top:{x:3.75,y:-30.5},middle:{x:0,y:0}}]}
             this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
-            this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true},extra:{damage:false}}}
+            this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true},helmet:true,medal:1,extra:{damage:false}}}
             this.calc={int:[0,0,0,0]}
             this.animSet={loop:0,flip:0,hand:0,foot:0}
             this.goal={anim:{direction:this.anim.direction}}

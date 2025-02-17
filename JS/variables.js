@@ -22,7 +22,7 @@ types={
         {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:``},
         {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
         {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
-        {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         

@@ -8467,6 +8467,9 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
         case 21:
             layer.fill(240,200,180,fade)
         break
+        case 22:
+            layer.fill(135,90,150,fade)
+        break
         case 24:
             layer.fill(210,30,15,fade)
         break
@@ -8821,7 +8824,31 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,9.2,6,6)
             layer.quad(0,9.2-3*constants.sqrt2,-3*constants.sqrt2,9.5,0,9.5+3*constants.sqrt2,3*constants.sqrt2,9.5)
         break
+        case 22:
+            layer.arc(0,5,10,10,-180,0)
+            layer.arc(-10,0,7.5,7.5,-45,135)
+            layer.arc(10,0,7.5,7.5,45,225)
+            for(let a=0,la=12;a<la;a++){
+                layer.quad(-3.5,-19.5,3.5,-19.5,3,-17,-3,-17)
+                layer.rotate(360/la)
+            }
+        break
         case 24:
+            layer.rect(10,0,27,6)
+            layer.noFill()
+            layer.stroke(210,30,15,fade)
+            layer.strokeWeight(4)
+            layer.ellipse(0,0,46)
+            layer.noStroke()
+            layer.fill(210,30,15,fade)
+            layer.ellipse(-8,0,30)
+            layer.fill(255,fade)
+            layer.ellipse(-8,0,14)
+            for(let a=0,la=24;a<la;a++){
+                layer.arc(-8,0,24,24,(a+0.25)/la*360,(a+0.75)/la*360)
+            }
+            layer.fill(210,30,15,fade)
+            regStar(layer,-8,0,5,6,6,2.5,2.5,180)
         break
         default:
             layer.rect(0,0,26)

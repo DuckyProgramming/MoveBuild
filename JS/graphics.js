@@ -4240,6 +4240,25 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-60},{top:30,bottom:60}]
 					p1.spin.arms=[{top:-90,bottom:12,lock:0},{top:90,bottom:84,lock:0}]
 				break
+				case 'Fernando':
+					p1.anim.legs=[
+						{top:15,bottom:9,length:{top:13,bottom:13}},
+						{top:33,bottom:24,length:{top:13,bottom:13}}
+					]
+					p1.anim.arms=[
+						{top:48,bottom:54,length:{top:13,bottom:13}},
+						{top:15,bottom:3,length:{top:13,bottom:13}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-60},{top:48,bottom:60}]
+					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:84,lock:0}]
+				break
+				case 'Dukelis':
+					p1.position.y+=10
+					p1.anim.arms[0].top=96
+					p1.anim.arms[1].top=33
+					p1.anim.legs[0].top=27
+					p1.anim.legs[1].top=36
+				break
 
 			}
 			p1.size=2.5
@@ -4515,6 +4534,25 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:36},{top:36,bottom:48}]
 					p1.spin.arms=[{top:-30,bottom:-12,lock:0},{top:90,bottom:105,lock:0}]
+				break
+				case 'Fernando':
+					p1.anim.legs=[
+						{top:12,bottom:48,length:{top:13,bottom:13}},
+						{top:12,bottom:12,length:{top:13,bottom:13}}
+					]
+					p1.anim.arms=[
+						{top:27,bottom:36,length:{top:13,bottom:13}},
+						{top:27,bottom:15,length:{top:13,bottom:13}}
+					]
+					p1.spin.legs=[{top:-90,bottom:-144},{top:90,bottom:132}]
+					p1.spin.arms=[{top:-105,bottom:-147,lock:0},{top:90,bottom:132,lock:0}]
+				break
+				case 'Dukelis':
+					p1.parts.eyeLevel++
+					p1.anim.arms[0].top=33
+					p1.anim.arms[1].top=75
+					p1.anim.legs[0].top=9
+					p1.anim.legs[1].top=33
 				break
 			}
 			p1.anim.eye=[1,1]
@@ -4814,8 +4852,28 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60-a*30,bottom:-150},{top:60+a*30,bottom:165}]
 					p1.spin.arms=[{top:-21-a*15,bottom:-18,lock:0},{top:75+a*15,bottom:69+a*12,lock:0}]
 				break
+				case 'Fernando':
+					p1.position.y-=40
+					p1.anim.legs=[
+						{top:6,bottom:15,length:{top:13,bottom:13}},
+						{top:6,bottom:15,length:{top:13,bottom:13}}
+					]
+					p1.anim.arms=[
+						{top:21,bottom:-18,length:{top:13,bottom:13}},
+						{top:21,bottom:-18,length:{top:13,bottom:13}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-105,lock:0},{top:60,bottom:105,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-84,lock:0},{top:90,bottom:84,lock:0}]
+				break
+				case 'Dukelis':
+					p1.position.y-=36
+					p1.anim.arms[0].top=105
+					p1.anim.arms[1].top=27
+					p1.anim.legs[0].top=21
+					p1.anim.legs[1].top=15
+				break
 			}
-			if(p1.name!='DD-610'&&p1.name!='Vincent'&&p1.name!='Ducopo'&&p1.name!='Randy'){
+			if(p1.name!='DD-610'&&p1.name!='Vincent'&&p1.name!='Ducopo'&&p1.name!='Randy'&&p1.name!='Dukelis'){
 				p1.anim.eye=[1,1]
 				p1.anim.eyeStyle=[2,2]
 			}
@@ -5096,6 +5154,26 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-45+a*27,bottom:-120+a*12},{top:60-a*15,bottom:120+a*6}]
 					p1.spin.arms=[{top:-30-a*24,bottom:-18+a*33,lock:0},{top:90,bottom:-15+a*60,lock:0}]
 				break
+				case 'Fernando':
+					p1.position.y-=a*30
+					p1.anim.legs=[
+						{top:12,bottom:15,length:{top:13,bottom:13}},
+						{top:12,bottom:15,length:{top:13,bottom:13}}
+					]
+					p1.anim.arms=[
+						{top:15,bottom:15,length:{top:13,bottom:13}},
+						{top:9,bottom:9,length:{top:13,bottom:13}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-105,lock:0},{top:60,bottom:105,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+				break
+				case 'Dukelis':
+					p1.anim.arms[0].top=76
+					p1.anim.arms[1].top=39
+					p1.anim.legs[0].top=18
+					p1.anim.legs[1].top=18
+					p1.position.y+=5-a*30
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -5359,6 +5437,25 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-54-a*9,bottom:-90},{top:60-a*12,bottom:96-a*6}]
 					p1.spin.arms=[{top:-63+a*9,bottom:-21+a*39,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
+				break
+				case 'Fernando':
+					p1.anim.legs=[
+						{top:3,bottom:1.5,length:{top:13,bottom:13}},
+						{top:3,bottom:1.5,length:{top:13,bottom:13}}
+					]
+					p1.anim.arms=[
+						{top:16.5,bottom:-1.5,length:{top:13,bottom:13}},
+						{top:16.5,bottom:-1.5,length:{top:13,bottom:13}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
+				break
+				case 'Dukelis':
+					p1.anim.arms[0].top=99
+					p1.anim.arms[1].top=72
+					p1.anim.legs[0].top=24
+					p1.anim.legs[1].top=21
+					p1.position.y+=5
 				break
 			}
 			p1.size=2.5
@@ -5660,6 +5757,25 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-150-a*15,lock:0},{top:60,bottom:105+a*51,lock:0}]
 					p1.spin.arms=[{top:-72-a*15,bottom:18-a*48,lock:0},{top:90,bottom:120,lock:0}]
 				break
+				case 'Fernando':
+					p1.anim.legs=[
+						{top:3,bottom:1.5,length:{top:13,bottom:13}},
+						{top:3,bottom:1.5,length:{top:13,bottom:13}}
+					]
+					p1.anim.arms=[
+						{top:7.5,bottom:4.5,length:{top:13,bottom:13}},
+						{top:7.5,bottom:4.5,length:{top:13,bottom:13}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-102,lock:0},{top:60,bottom:102,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
+				break
+				case 'Dukelis':
+					p1.anim.arms[0].top=99
+					p1.anim.arms[1].top=72
+					p1.anim.legs[0].top=24
+					p1.anim.legs[1].top=21
+					p1.position.y+=5
+				break
 			}
 			p1.size=2
 			p1.fade=1
@@ -5885,6 +6001,25 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-45,bottom:-72},{top:48,bottom:48}]
 					p1.spin.arms=[{top:-69,bottom:-21,lock:0},{top:93,bottom:129,lock:0}]
+				break
+				case 'Fernando':
+					p1.anim.legs=[
+						{top:7.5,bottom:9,length:{top:13,bottom:13}},
+						{top:33,bottom:16.5,length:{top:13,bottom:13}}
+					]
+					p1.anim.arms=[
+						{top:15,bottom:7.5,length:{top:13,bottom:13}},
+						{top:24,bottom:27,length:{top:13,bottom:13}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-102,lock:0},{top:60,bottom:102,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
+				break
+				case 'Dukelis':
+					p1.anim.arms[0].top=54
+					p1.anim.arms[1].top=45
+					p1.anim.legs[0].top=27
+					p1.anim.legs[1].top=33
+					p1.position.y-=5
 				break
 			}
 			p1.size=1.5
