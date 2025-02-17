@@ -199,7 +199,9 @@ class combatant{
                 'Base Attack Vulnerable Combat','Retain Freeze','Orb Hold Tick','Fugue Strength','Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill','Speed Strike',
                 '2+ Cost Strength','Half Block','Random Mana in 3 Turns','No Extra Turns','No Extra Turns Next Turn','Cost Down Per Turn','Bounce Next Turn','Scry Discard Block','Play Evolve','Evolve Temporary Strength',
                 'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns','0 Cost Block','Charge Consume Single Damage Up','Assign Return','Assign Temporary Strength','Pity',
-                'Death Energy','Death (E)','Debuff Temporary Strength','Basic Temporary Dexterity',
+                'Death Energy','Death (E)','Debuff Temporary Strength','Basic Temporary Dexterity','Communized Weak','Communized Vulnerable','Turn Confuse','Confuse Cost Down','Prime Draw','Cycle Draw',
+                'Recover Draw','Recover Next Turn','Recover Up','Shiv Temporary Damage Taken Up','Free War','Skill Discard Draw','Worker Draw Per Turn','Worker Boost','Assign Draw','Free Assign',
+                'Intangible Strength','Debuff Draw','"Debuff"',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -280,7 +282,9 @@ class combatant{
                 0,1,0,0,2,2,2,2,2,1,//76
                 0,0,2,1,0,0,0,0,1,0,//77
                 1,2,2,2,2,0,0,0,0,1,//78
-                0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,//79
+                0,2,0,0,1,0,0,0,0,0,//80
+                0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -361,7 +365,9 @@ class combatant{
                 0,1,2,2,2,2,2,2,2,2,//76
                 2,1,3,3,3,2,2,2,2,2,//77
                 3,2,2,2,2,2,2,2,2,2,//78
-                2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//79
+                2,2,2,2,2,2,2,2,2,2,//80
+                2,2,3,
             ]}
         /*
         0-none
@@ -5010,10 +5016,26 @@ class combatant{
             this.battle.cardManagers[this.id].hand.allEffectArgs(62,[value,'Slash'])
             this.battle.cardManagers[this.id].discard.allEffectArgs(44,[6965])
             this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[6965])
+            if(this.status.main[788]>0){
+                this.battle.cardManagers[this.id].draw(this.status.main[788])
+            }
         }
     }
     assign(value){
-        if(value==-1){
+        if(this.status.main[799]>0){
+            this.status.main[799]--
+            if(this.status.main[777]>0){
+                this.battle.cardManagers[this.id].exhaust.sendAbstract(this.battle.cardManagers[this.id].hand.cards,this.status.main[777],10,0,[82])
+            }
+            if(this.status.main[778]>0){
+                this.statusEffect('Temporary Strength',this.status.main[778])
+            }
+            if(this.status.main[798]>0){
+                this.battle.cardManagers[this.id].draw(this.status.main[798])
+            }
+            this.battle.cardManagers[this.id].allEffect(2,119)
+            return value==-1?max(1,this.battle.cardManagers[this.id].hand.numberAbstract(3,[82])):true
+        }else if(value==-1){
             let result=this.battle.cardManagers[this.id].hand.deAbstract(6,value,[82])
             if(result>0){
                 if(this.status.main[777]>0){
@@ -5022,6 +5044,10 @@ class combatant{
                 if(this.status.main[778]>0){
                     this.statusEffect('Temporary Strength',this.status.main[778])
                 }
+                if(this.status.main[798]>0){
+                    this.battle.cardManagers[this.id].draw(this.status.main[798])
+                }
+                this.battle.cardManagers[this.id].allEffect(2,119)
             }
             return result
         }else{
@@ -5033,6 +5059,10 @@ class combatant{
                 if(this.status.main[778]>0){
                     this.statusEffect('Temporary Strength',this.status.main[778])
                 }
+                if(this.status.main[798]>0){
+                    this.battle.cardManagers[this.id].draw(this.status.main[798])
+                }
+                this.battle.cardManagers[this.id].allEffect(2,119)
                 return true
             }else{
                 return false
@@ -5090,6 +5120,9 @@ class combatant{
                 if(name=='Temporary Strength'&&this.status.main[362]>0){
                     this.statusEffect('Strength',this.status.main[362])
                 }
+                if(name=='Intangible'&&this.status.main[800]>0){
+                    this.statusEffect('Strength',this.status.main[800])
+                }
                 if(status==32){
                     this.battle.updateTargetting()
                 }
@@ -5109,6 +5142,9 @@ class combatant{
                     }
                     if(this.status.main[782]>0){
                         this.statusEffect('Temporary Strength',this.status.main[782])
+                    }
+                    if(this.id<this.battle.players&&this.status.main[801]>0){
+                        this.battle.cardManagers[this.id].draw(this.status.main[801])
                     }
                 }
                 if(name=='Poison'&&effectiveValue>0){
@@ -5149,8 +5185,19 @@ class combatant{
                         }
                     }
                 }
-                if(name=='Communized'&&effectiveValue>0&&!this.communizers.includes(this.battle.turn.main)){
-                    this.communizers.push(this.battle.turn.main)
+                if(name=='Communized'&&effectiveValue>0){
+                    if(!this.communizers.includes(this.battle.turn.main)){
+                        this.communizers.push(this.battle.turn.main)
+                    }
+                    if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
+                        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
+                        if(userCombatant.getStatus('Communized Weak')>0){
+                            this.statusEffect('Weak',userCombatant.getStatus('Communized Weak'))
+                        }
+                        if(userCombatant.getStatus('Communized Vulnerable')>0){
+                            this.statusEffect('Vulnerable',userCombatant.getStatus('Communized Vulnerable'))
+                        }
+                    }
                 }
                 if(this.status.main[status]!=0&&!this.status.active[status]){
                     this.status.active[status]=true
@@ -5703,6 +5750,9 @@ class combatant{
                     case 772: this.status.main[findList('Energy in 4 Turns',this.status.name)]+=this.status.main[a]; break
                     case 773: this.status.main[findList('(E) in 3 Turns',this.status.name)]+=this.status.main[a]; break
                     case 774: this.status.main[findList('(E) in 4 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 786: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.confuse(this.status.main[a])}; break
+                    case 791: if(this.id<this.battle.players){this.battle.overlayManager.overlays[168][this.id].active=true;this.battle.overlayManager.overlays[168][this.id].activate([this.status.main[a]])} break
+                    case 796: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.spec.push([82,this.status.main[a]])} break
                     
                 }
                 if(this.status.behavior[a]==6&&
@@ -5886,7 +5936,7 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Sagume': case '-----': case 'Lanyan':
+            case 'Sagume': case 'Fernando': case 'Decratite':
             case 'Ume':
                 switch(type){
                     case 0:
@@ -6007,7 +6057,7 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Sagume': case '-----': case 'Lanyan':
+            case 'Sagume': case 'Fernando': case 'Decratite':
             case 'Ume':
                 switch(type){
                     case 0:

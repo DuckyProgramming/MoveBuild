@@ -194,7 +194,7 @@ class overlay{
                     case 67: case 82: case 87: case 90: case 92: case 93: case 98:
                         this.activated=0
                     break
-                    case 20: case 60: case 80: case 96: case 105: case 112:
+                    case 20: case 60: case 80: case 96: case 105:
                         this.args[1]=args[0]
                     break
                     case 21: case 22: this.block=args[0]; break
@@ -264,6 +264,9 @@ class overlay{
                         this.activated=0
                         this.args[1]=args[0]
                         this.args[2]=args[1]
+                    break
+                    case 112:
+                        this.args[1]=args[0]+this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Recover Up')
                     break
                 }
             break
@@ -4001,10 +4004,10 @@ class overlay{
                                 let base=this.battle.cardManagers[this.player].deck.cards[a]
                                 if(pointInsideBox({position:inputs.rel},base)&&base.size>0.5&&base.select&&!base.spec.includes(81)&&
                                     !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&(base.spec.includes(37)||base.spec.includes(80)))&&
-                                    !(this.args[0]==3&&base.level>=1&&!base.spec.includes(53)&&!base.spec.includes(79))&&
+                                    !(this.args[0]==3&&base.level>=1&&!base.spec.includes(53)&&!base.spec.includes(83))&&
                                     !(this.args[0]==4&&this.args[2]==4&&base.spec.includes(15))&&
                                     !((this.args[0]==10||this.args[0]==53||this.args[0]==54||this.args[0]==55||this.args[0]==56||this.args[0]==61)&&(base.spec.includes(3)||base.spec.includes(12)))&&
-                                    !(this.args[0]==17&&base.level>=2&&!base.spec.includes(53)&&!base.spec.includes(79))&&
+                                    !(this.args[0]==17&&base.level>=2&&!base.spec.includes(53)&&!base.spec.includes(83))&&
                                     !(this.args[0]==43&&base.base.cost<=0)&&
                                     !(this.args[0]==36&&base.rarity!=0)&&
                                     !((this.args[0]==50||this.args[0]==66)&&!base.basic)&&
@@ -4036,7 +4039,7 @@ class overlay{
                                     let edition=base.edition
                                     switch(this.args[0]){
                                         case 3: case 17:
-                                            if(base.spec.includes(79)){
+                                            if(base.spec.includes(83)){
                                                 base.callForgeEffect()
                                                 if(this.battle.cardManagers[this.player].deck.remove(a)){
                                                     this.battle.relicManager.activate(11,[this.player,cardClass])
@@ -4373,10 +4376,10 @@ class overlay{
                                     base.select=false
                                     if(pointInsideBox({position:inputs.rel},base)&&base.size>0.5&&this.active&&!base.spec.includes(81)&&
                                         !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&(base.spec.includes(37)||base.spec.includes(80)))&&
-                                        !(this.args[0]==3&&base.level>=1&&!base.spec.includes(53)&&!base.spec.includes(79))&&
+                                        !(this.args[0]==3&&base.level>=1&&!base.spec.includes(53)&&!base.spec.includes(83))&&
                                         !(this.args[0]==4&&this.args[2]==4&&base.spec.includes(15))&&
                                         !((this.args[0]==10||this.args[0]==53||this.args[0]==54||this.args[0]==55||this.args[0]==56||this.args[0]==61)&&(base.spec.includes(3)||base.spec.includes(12)))&&
-                                        !(this.args[0]==17&&base.level>=2&&!base.spec.includes(53)&&!base.spec.includes(79))&&
+                                        !(this.args[0]==17&&base.level>=2&&!base.spec.includes(53)&&!base.spec.includes(83))&&
                                         !(this.args[0]==36&&base.rarity!=0)&&
                                         !(this.args[0]==43&&base.base.cost<=0)&&
                                         !((this.args[0]==50||this.args[0]==66)&&!base.basic)&&
@@ -4400,7 +4403,7 @@ class overlay{
                                         base.select=true
                                         switch(this.args[0]){
                                             case 3: case 17:
-                                                this.card=base.spec.includes(79)?copyCard(base):upgradeCard(base)
+                                                this.card=base.spec.includes(83)?copyCard(base):upgradeCard(base)
                                                 this.card.nonCalc=true
                                                 this.card.page=this.page
                                                 this.card.size=1
@@ -4583,6 +4586,9 @@ class overlay{
                                             }
                                             a--
                                             la--
+                                            if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Recover Draw')>0){
+                                                this.battle.cardManagers[this.player].draw(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Recover Draw'))
+                                            }
                                         break
                                     }
                                     this.active=!complete
@@ -5523,10 +5529,10 @@ class overlay{
                                 let base=this.battle.cardManagers[this.player].deck.cards[a]
                                 if(key==inputs.hexadec[base.relIndex%15]&&base.size>0.5&&base.select&&!base.spec.includes(81)&&
                                     !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&base.spec.includes(37))&&
-                                    !(this.args[0]==3&&base.level>=1&&!base.spec.includes(53)&&!base.spec.includes(79))&&
+                                    !(this.args[0]==3&&base.level>=1&&!base.spec.includes(53)&&!base.spec.includes(83))&&
                                     !(this.args[0]==4&&this.args[2]==4&&base.spec.includes(15))&&
                                     !((this.args[0]==10||this.args[0]==53||this.args[0]==54||this.args[0]==55||this.args[0]==56||this.args[0]==61)&&(base.spec.includes(3)||base.spec.includes(12)))&&
-                                    !(this.args[0]==17&&base.level>=2&&!base.spec.includes(53)&&!base.spec.includes(79))&&
+                                    !(this.args[0]==17&&base.level>=2&&!base.spec.includes(53)&&!base.spec.includes(83))&&
                                     !(this.args[0]==36&&base.rarity!=0)&&
                                     !(this.args[0]==43&&base.base.cost<=0)&&
                                     !((this.args[0]==50||this.args[0]==66)&&!base.basic)&&
@@ -5558,7 +5564,7 @@ class overlay{
                                     let edition=base.edition
                                     switch(this.args[0]){
                                         case 3: case 17:
-                                            if(base.spec.includes(79)){
+                                            if(base.spec.includes(83)){
                                                 base.callForgeEffect()
                                                 if(this.battle.cardManagers[this.player].deck.remove(a)){
                                                     this.battle.relicManager.activate(11,[this.player,cardClass])
@@ -5895,10 +5901,10 @@ class overlay{
                                     base.select=false
                                     if(key==inputs.hexadec[base.relIndex%15]&&base.size>0.5&&this.active&&!base.spec.includes(81)&&
                                         !((this.args[0]==3||this.args[0]==17||this.args[0]==26||this.args[0]==91)&&base.spec.includes(37))&&
-                                        !(this.args[0]==3&&base.level>=1&&!base.spec.includes(53)&&!base.spec.includes(79))&&
+                                        !(this.args[0]==3&&base.level>=1&&!base.spec.includes(53)&&!base.spec.includes(83))&&
                                         !(this.args[0]==4&&this.args[2]==4&&base.spec.includes(15))&&
                                         !((this.args[0]==10||this.args[0]==53||this.args[0]==54||this.args[0]==55||this.args[0]==56||this.args[0]==61)&&(base.spec.includes(3)||base.spec.includes(12)))&&
-                                        !(this.args[0]==17&&base.level>=2&&!base.spec.includes(53)&&!base.spec.includes(79))&&
+                                        !(this.args[0]==17&&base.level>=2&&!base.spec.includes(53)&&!base.spec.includes(83))&&
                                         !(this.args[0]==36&&base.rarity!=0)&&
                                         !(this.args[0]==43&&base.base.cost<=0)&&
                                         !((this.args[0]==50||this.args[0]==66)&&!base.basic)&&
@@ -5922,7 +5928,7 @@ class overlay{
                                         base.select=true
                                         switch(this.args[0]){
                                             case 3: case 17:
-                                                this.card=base.spec.includes(79)?copyCard(base):upgradeCard(base)
+                                                this.card=base.spec.includes(83)?copyCard(base):upgradeCard(base)
                                                 this.card.nonCalc=true
                                                 this.card.page=this.page
                                                 this.card.size=1
@@ -6102,6 +6108,9 @@ class overlay{
                                             }
                                             a--
                                             la--
+                                            if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Recover Draw')>0){
+                                                this.battle.cardManagers[this.player].draw(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Recover Draw'))
+                                            }
                                         break
                                     }
                                     this.active=!complete

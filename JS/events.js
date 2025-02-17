@@ -5300,6 +5300,34 @@ You take all the supplies, escaping before he returns.`,
                 link:[-1],
             },
         ],
+    },{
+        name:'Guess the Damage',id:174,list:0,
+        pages:[
+            {
+                desc:
+`You enter a gameshow, seeing a giant flashing screen.
+The announcer's voice rings from around you.
+"You have the chance to win a reward, if you answer me this...
+How much damage does - deal?"`,
+                option:['','','','',''],
+                optionDesc:['','','','',''],
+                link:[2,2,2,2,2],
+            },{
+                desc:`
+"Congratulations, you're the winner!"
+You take your prize and make your getaway.`,
+                option:['Take it'],
+                optionDesc:['Gain 2 Relics'],
+                link:[-1],
+            },{
+                desc:`
+"A reused sound effect of disapproval is heard."
+Looks like you didn't win anything.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
     },/*{
         name:'',id:169,list:0,
         pages:[

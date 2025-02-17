@@ -504,6 +504,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[9]&&user.status.main[544]>0){
 				bonus+=user.status.main[544]
 			}
+			if(variant&&args[10]&&user.status.main[797]>0){
+				bonus+=user.status.main[797]
+			}
 			if(user.status.main[12]>0){
 				bonus+=user.status.main[12]
 			}
@@ -652,6 +655,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			}
 			if(variant&&args[9]&&user.status.main[544]>0){
 				bonusB+=user.status.main[544]
+			}
+			if(variant&&args[10]&&user.status.main[797]>0){
+				bonusB+=user.status.main[797]
 			}
 			if(user.status.main[168]>0){
 				bonusB+=user.status.main[168]
@@ -1946,6 +1952,11 @@ function quickDraw(){
 		quickAddFull('Think',1,0,0)
 	}
 }
+function quickPop(){
+	for(let a=0,la=100;a<la;a++){
+		quickAddFull('Strike',0,0,0)
+	}
+}
 function quickBuild(){
 	metal(100)
 	qa('Build\nTurret')
@@ -2556,8 +2567,9 @@ function mtgPlayerColor(player){
 		case 19: return [3,4,5]
 		case 20: return [2,3,5]
 		case 21: return [1,3,4]
-		case 22: return [3,4]
-		case 23: return [1,4]
+		case 22: return [1,3]
+		case 23: return [2,4]
+		case 24: return [4,5]
 		default: return [6]
 	}
 }

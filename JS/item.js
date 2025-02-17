@@ -867,6 +867,12 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('2',-9,0)
                 break
+                case 'Free Card':
+                    displaySymbol(this.layer,0,0,62,0,2.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
 
                 case '5 Strength/Burn':
                     displaySymbol(this.layer,-8,0,11,0,1,this.fade)

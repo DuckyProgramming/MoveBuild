@@ -3233,7 +3233,7 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('2',9,0)
                 break
-                case 'Blue Mana/Ice Wing':
+                case 'Blue Mana/Proxy Teleport':
                     displayMtgManaSymbol(this.layer,-9,0,2,0,0.8,this.fade,-1,[])
                     displaySymbol(this.layer,9,0,162,0,1,this.fade)
                 break

@@ -1938,7 +1938,7 @@ class relicManager{
                         }
                         if(this.active[437][args[1]+1]>0){
                             for(let a=0,la=this.active[437][args[1]+1];a<la;a++){
-                                this.battle.cardManagers[args[1]].hand.add(findName('Ice\nWing',types.card),0,0)
+                                this.battle.cardManagers[args[1]].hand.add(findName('Proxy\nTeleport',types.card),0,0)
                             }
                         }
                         if(this.active[438][args[1]+1]>0){

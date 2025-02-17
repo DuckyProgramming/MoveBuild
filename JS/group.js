@@ -285,6 +285,9 @@ class group{
     added(){
         this.cards[this.cards.length-1].callAddEffect()
         this.cards.forEach(card=>card.callAnotherAddEffect())
+        if(this.cards[this.cards.length-1].name.includes('War')>0){
+            this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[7554])
+        }
     }
     subAdded(){
         this.cards[this.cards.length-1].callSubAddEffect()
@@ -1001,7 +1004,8 @@ class group{
                 type==17&&(this.cards[a].spec.includes(12)&&(this.cards[a].effect[0].includes(args[0])||this.cards[a].effect[1].includes(args[0]))||!this.cards[a].spec.includes(12)&&this.cards[a].effect.includes(args[0]))||
                 type==18&&args[0].includes(this.cards[a].rarity)||
                 type==19&&this.cards[a].level>=args[0]||
-                type==20&&args[0].includes(this.cards[a].edition)
+                type==20&&args[0].includes(this.cards[a].edition)||
+                type==21&&!this.cards[a].deSize&&(variants.mtg&&!arrayCompareLoose(this.cards[a].color,this.battle.player[this.player])||!variants.mtg&&this.cards[a].color!=this.battle.player[this.player])
             ){
                 total++
             }
@@ -1234,7 +1238,7 @@ class group{
                     this.generalUpgrade(this.cards[a])
                 break
                 case 5:
-                    this.cards[a].setCost(0,this.cards[a].attack==6805?[0]:[floor(random(0,variants.mtg?6:4))])
+                    this.cards[a].confuse()
                 break
                 case 6:
                     if(this.cards[a].basic&&this.cards[a].level==0){
@@ -1824,6 +1828,12 @@ class group{
                 case 117:
                     this.cards[a].callPostStartEffect(this.battle.encounter.class)
                 break
+                case 118:
+                    this.cards[a].callLeaderEffect()
+                break
+                case 119:
+                    this.cards[a].callAssignEffect()
+                break
 
             }
         }
@@ -2197,7 +2207,7 @@ class group{
                     }
                 break
                 case 62:
-                    if(this.cards[a].name.includes(args[1])){
+                    if(this.cards[a].name.includes(args[1])||this.cards[a].attack==7453){
                         this.cards[a].costDown(0,[args[0]])
                     }
                     this.cards[a].callPrimeEffect()
@@ -2214,17 +2224,23 @@ class group{
                     }
                 break
                 case 65:
-                    if(this.cards[a].attack==args[0]||args[0]==7274){
+                    let changed=false
+                    if(this.cards[a].attack==args[0]||args[0]==7274||args[0]==7470){
                         switch(this.cards[a].attack){
                             case 7236:
                                 this.cards[a].effect[1]++
-                                if(this.cards[a].effect[1]>=this.cards[a].effect[0]||args[0]==7274){
-                                    this.add(findName('Stalin',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                if(this.cards[a].effect[1]>=this.cards[a].effect[0]||args[0]==7274||args[0]==7470){
+                                    if(args[0]==7470){
+                                        this.add(findName('Nicholas\nII',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }else{
+                                        this.add(findName('Stalin',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }
                                     if(this.id==0){
+                                        changed=true
                                         this.remove(a)
                                         a--
-                                        if(args[0]==7274){
-                                            a=la
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
                                         }
                                     }else if(this.id==2){
                                         this.cards[a].deSize=true
@@ -2238,12 +2254,17 @@ class group{
                                 }
                             break
                             case 7237:
-                                this.add(findName('Malenkov',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                if(args[0]==7470){
+                                    this.add(findName('Lenin',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }else{
+                                    this.add(findName('Malenkov',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }
                                 if(this.id==0){
+                                    changed=true
                                     this.remove(a)
                                     a--
-                                    if(args[0]==7274){
-                                        a=la
+                                    if(args[0]==7274||args[0]==7470){
+                                        la--
                                     }
                                 }else if(this.id==2){
                                     this.cards[a].deSize=true
@@ -2256,12 +2277,17 @@ class group{
                                 }
                             break
                             case 7238:
-                                this.add(findName('Khrushchev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                if(args[0]==7470){
+                                    this.add(findName('Stalin',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }else{
+                                    this.add(findName('Khrushchev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }
                                 if(this.id==0){
+                                    changed=true
                                     this.remove(a)
                                     a--
-                                    if(args[0]==7274){
-                                        a=la
+                                    if(args[0]==7274||args[0]==7470){
+                                        la--
                                     }
                                 }else if(this.id==2){
                                     this.cards[a].deSize=true
@@ -2274,13 +2300,18 @@ class group{
                                 }
                             break
                             case 7239:
-                                if(args[1]>=this.cards[a].effect[1]||args[0]==7274){
-                                    this.add(findName('Brezhnev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                if(args[1]>=this.cards[a].effect[1]||args[0]==7274||args[0]==7470){
+                                    if(args[0]==7470){
+                                        this.add(findName('Malenkov',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }else{
+                                        this.add(findName('Brezhnev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }
                                     if(this.id==0){
+                                        changed=true
                                         this.remove(a)
                                         a--
-                                        if(args[0]==7274){
-                                            a=la
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
                                         }
                                     }else if(this.id==2){
                                         this.cards[a].deSize=true
@@ -2295,13 +2326,18 @@ class group{
                             break
                             case 7240:
                                 this.cards[a].effect[2]+=round(args[1]*10)/10
-                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274){
-                                    this.add(findName('Andropov',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274||args[0]==7470){
+                                    if(args[0]==7470){
+                                        this.add(findName('Khrushchev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }else{
+                                        this.add(findName('Andropov',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }
                                     if(this.id==0){
+                                        changed=true
                                         this.remove(a)
                                         a--
-                                        if(args[0]==7274){
-                                            a=la
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
                                         }
                                     }else if(this.id==2){
                                         this.cards[a].deSize=true
@@ -2315,12 +2351,17 @@ class group{
                                 }
                             break
                             case 7241:
-                                this.add(findName('Chernenko',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                if(args[0]==7470){
+                                    this.add(findName('Brezhnev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }else{
+                                    this.add(findName('Chernenko',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }
                                 if(this.id==0){
+                                    changed=true
                                     this.remove(a)
                                     a--
-                                    if(args[0]==7274){
-                                        a=la
+                                    if(args[0]==7274||args[0]==7470){
+                                        la--
                                     }
                                 }else if(this.id==2){
                                     this.cards[a].deSize=true
@@ -2334,13 +2375,18 @@ class group{
                             break
                             case 7242:
                                 this.cards[a].effect[2]+=round(args[1]*10)/10
-                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274){
-                                    this.add(findName('Gorbachev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274||args[0]==7470){
+                                    if(args[0]==7470){
+                                        this.add(findName('Andropov',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }else{
+                                        this.add(findName('Gorbachev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }
                                     if(this.id==0){
+                                        changed=true
                                         this.remove(a)
                                         a--
-                                        if(args[0]==7274){
-                                            a=la
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
                                         }
                                     }else if(this.id==2){
                                         this.cards[a].deSize=true
@@ -2355,13 +2401,85 @@ class group{
                             break
                             case 7243:
                                 this.cards[a].effect[2]+=round(args[1]*10)/10
-                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274){
-                                    this.add(findName('Fallen\nUnion',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274||args[0]==7470){
+                                    if(args[0]==7470){
+                                        this.add(findName('Chernenko',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }else{
+                                        this.add(findName('Fallen\nUnion',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }
                                     if(this.id==0){
+                                        changed=true
                                         this.remove(a)
                                         a--
-                                        if(args[0]==7274){
-                                            a=la
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
+                                        }
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        la++
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
+                            case 7244:
+                                if(args[0]==7470){
+                                    this.add(findName('Gorbachev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }else{
+                                    this.add(findName('Resurgent\nUnion',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }
+                                if(this.id==0){
+                                    changed=true
+                                    this.remove(a)
+                                    a--
+                                    if(args[0]==7274||args[0]==7470){
+                                        la--
+                                    }
+                                }else if(this.id==2){
+                                    this.cards[a].deSize=true
+                                    this.cards[a].exhaust=true
+                                    this.cards[a].purge=true
+                                    la++
+                                }else{
+                                    this.cards.splice(a,1)
+                                    a--
+                                }
+                            break
+                            case 7554:
+                                if(args[0]==7470){
+                                    this.add(findName('Alexander\nIII',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }else{
+                                    this.add(findName('Lenin',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }
+                                if(this.id==0){
+                                    changed=true
+                                    this.remove(a)
+                                    a--
+                                    if(args[0]==7274||args[0]==7470){
+                                        la--
+                                    }
+                                }else if(this.id==2){
+                                    this.cards[a].deSize=true
+                                    this.cards[a].exhaust=true
+                                    this.cards[a].purge=true
+                                    la++
+                                }else{
+                                    this.cards.splice(a,1)
+                                    a--
+                                }
+                            break
+                            case 7555:
+                                if(args[0]!=7470){
+                                    this.add(findName('Nicholas\nII',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    if(this.id==0){
+                                        changed=true
+                                        this.remove(a)
+                                        a--
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
                                         }
                                     }else if(this.id==2){
                                         this.cards[a].deSize=true
@@ -2376,12 +2494,22 @@ class group{
                             break
                         }
                     }
+                    if(changed){
+                        this.allEffect(118)
+                    }
+                break
+                case 66:
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    if(this.cards[a].spec.includes(args[0])){
+                        total++
+                    }
                 break
             }
         }
         if(effect==9){
             return args[1]-total
-        }else if(effect==10||effect==12||effect==18||effect==19||effect==32||effect==43||effect==49||effect==58||effect==59){
+        }else if(effect==10||effect==12||effect==18||effect==19||effect==32||effect==43||effect==49||effect==58||effect==59||effect==66){
             return total
         }
     }
@@ -2397,7 +2525,7 @@ class group{
                         &&!((effect==0||effect==25||effect==28||effect==66)&&this.cards[b].deSize)
                         &&!((effect==1||effect==5||effect==33||effect==40||effect==48)&&(this.cards[b].getCost(1)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(55)||this.cards[b].spec.includes(59)||this.cards[b].spec.includes(60)))
                         &&!((effect==7||effect==9)&&(this.cards[b].getCost(1)<0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(55)||this.cards[b].spec.includes(59)||this.cards[b].spec.includes(60)))
-                        &&!((effect==2||effect==60||effect==67)&&(this.cards[b].level>=1||this.cards[b].class!=args[0]&&args[0]!=0||this.cards[b].spec.includes(37)))
+                        &&!((effect==2||effect==60||effect==67||effect==77)&&(this.cards[b].level>=1||this.cards[b].class!=args[0]&&args[0]!=0||this.cards[b].spec.includes(37)))
                         &&!(effect==3&&(this.cards[b].level==0||this.cards[b].class!=args[0]&&args[0]!=0||this.cards[b].spec.includes(37)))
                         &&!(effect==8&&this.cards[b].spec.includes(8))
                         &&!(effect==10&&this.cards[b].spec.includes(9))
@@ -2443,6 +2571,7 @@ class group{
                         &&!(effect==72&&this.cards[b].getCost(0)!=args[0])
                         &&!(effect==73&&(this.cards[b].attack==5612||b<args[0]))
                         &&!(effect==76&&!this.cards[b].spec.includes(71))
+                        &&!(effect==77&&(this.cards[b].effect.length<=0||this.cards[b].effect[0]>=args[1]))
                     ){
                         list.push(b)
                     }
@@ -2461,7 +2590,7 @@ class group{
                     case 1: case 35: case 63:
                         this.cards[index].costDown(0,[args[0]])
                     break
-                    case 2: case 36: case 38:
+                    case 2: case 36: case 38: case 77:
                         this.cards[index]=upgradeCard(this.cards[index])
                         this.generalUpgrade(this.cards[index])
                     break
@@ -2680,7 +2809,7 @@ class group{
                         }
                     break
                     case 43:
-                        this.cards[index].setCost(0,[floor(random(0,variants.mtg?6:4))])
+                        this.cards[index].confuse()
                     break
                     case 44:
                         this.cards[index].effect[1]*=2
@@ -3172,7 +3301,7 @@ class group{
             case 1565:
                 userCombatant.balance+=card.effect[0]
             break
-            case 1745: case 1943: case 2096: case 2128: case 2200: case 2465: case 6535: case 6536: case 6823:
+            case 1745: case 1943: case 2096: case 2128: case 2200: case 2465: case 6535: case 6536: case 6823: case 7509:
                 for(let a=0,la=card.effect[2];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
@@ -3448,6 +3577,9 @@ class group{
             case 7091:
                 this.battle.addSpecificEnergy(1,this.player,6)
                 this.battle.combatantManager.areaAbstract(0,[card.effect[0],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+            break
+            case 7514:
+                userCombatant.vision+=card.effect[1]
             break
 
         }
@@ -3810,7 +3942,7 @@ class group{
                 if(this.drawEffect(cardData,sendId)){this.sendResultCancel=true}
             break
             case 16:
-                cardData.setCost(0,[floor(random(0,variants.mtg?6:4))])
+                cardData.confuse()
             break
             case 18:
                 if(!cardData.spec.includes(9)){
@@ -3893,11 +4025,11 @@ class group{
             }
         }
     }
-    copySelf(index){
+    copySelf(index,bar=false){
         game.id++
         this.lastDuplicate.push(this.cards[index].name)
         this.cards.splice(index+1,0,copyCard(this.cards[index]))
-        if(this.id==0){
+        if(this.id==0&&!bar){
             this.cards[index+1].callAddEffect()
         }
         this.cards[index+1].id=game.id
@@ -4236,40 +4368,57 @@ class group{
                 !(userCombatant.getStatus('Free Minerals')>0&&card.spec.includes(52))
             ){
                 let calculatoryCost=variants.mtg?(card.specialCost?effectiveCost[0]:effectiveCost.length):effectiveCost
-                if(userCombatant.getStatus('Cycle Attack')>0){
-                    if(cardClass==1){
-                        effectiveCost=0
-                        calculatoryCost=0
+                if(!card.spec.includes(72)){
+                    if(userCombatant.getStatus('Cycle Attack')>0){
+                        if(cardClass==1){
+                            effectiveCost=0
+                            calculatoryCost=0
+                            if(userCombatant.getStatus('Cycle Draw')>0){
+                                this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Cycle Draw'))
+                            }
+                        }
+                        userCombatant.status.main[findList('Cycle Attack',userCombatant.status.name)]--
                     }
-                    userCombatant.status.main[findList('Cycle Attack',userCombatant.status.name)]--
-                }
-                if(userCombatant.getStatus('Cycle Defense')>0){
-                    if(cardClass==2){
-                        effectiveCost=0
-                        calculatoryCost=0
+                    if(userCombatant.getStatus('Cycle Defense')>0){
+                        if(cardClass==2){
+                            effectiveCost=0
+                            calculatoryCost=0
+                            if(userCombatant.getStatus('Cycle Draw')>0){
+                                this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Cycle Draw'))
+                            }
+                        }
+                        userCombatant.status.main[findList('Cycle Defense',userCombatant.status.name)]--
                     }
-                    userCombatant.status.main[findList('Cycle Defense',userCombatant.status.name)]--
-                }
-                if(userCombatant.getStatus('Cycle Movement')>0){
-                    if(cardClass==3){
-                        effectiveCost=0
-                        calculatoryCost=0
+                    if(userCombatant.getStatus('Cycle Movement')>0){
+                        if(cardClass==3){
+                            effectiveCost=0
+                            calculatoryCost=0
+                            if(userCombatant.getStatus('Cycle Draw')>0){
+                                this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Cycle Draw'))
+                            }
+                        }
+                        userCombatant.status.main[findList('Cycle Movement',userCombatant.status.name)]--
                     }
-                    userCombatant.status.main[findList('Cycle Movement',userCombatant.status.name)]--
-                }
-                if(userCombatant.getStatus('Cycle Power')>0){
-                    if(cardClass==4){
-                        effectiveCost=0
-                        calculatoryCost=0
+                    if(userCombatant.getStatus('Cycle Power')>0){
+                        if(cardClass==4){
+                            effectiveCost=0
+                            calculatoryCost=0
+                            if(userCombatant.getStatus('Cycle Draw')>0){
+                                this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Cycle Draw'))
+                            }
+                        }
+                        userCombatant.status.main[findList('Cycle Power',userCombatant.status.name)]--
                     }
-                    userCombatant.status.main[findList('Cycle Power',userCombatant.status.name)]--
-                }
-                if(userCombatant.getStatus('Cycle Skill')>0){
-                    if(cardClass==11){
-                        effectiveCost=0
-                        calculatoryCost=0
+                    if(userCombatant.getStatus('Cycle Skill')>0){
+                        if(cardClass==11){
+                            effectiveCost=0
+                            calculatoryCost=0
+                            if(userCombatant.getStatus('Cycle Draw')>0){
+                                this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Cycle Draw'))
+                            }
+                        }
+                        userCombatant.status.main[findList('Cycle Skill',userCombatant.status.name)]--
                     }
-                    userCombatant.status.main[findList('Cycle Skill',userCombatant.status.name)]--
                 }
                 if(calculatoryCost!=0&&card.colorless()&&card.rarity!=2&&userCombatant.getStatus('Temporary Free Non-Rare Colorless')>0){
                     userCombatant.status.main[findList('Temporary Free Non-Rare Colorless',userCombatant.status.name)]--
@@ -5449,6 +5598,10 @@ class group{
                 if(a.rarity==0&&a.class==1&&userCombatant.getStatus('Common Attack Boost')>0){
                     this.battle.attackManager.effect[0]+=userCombatant.getStatus('Common Attack Boost')
                 }
+                if(a.spec.includes(82)&&userCombatant.getStatus('Worker Boost')>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.getStatus('Worker Boost')
+                    this.battle.attackManager.effect[1]+=userCombatant.getStatus('Worker Boost')
+                }
             break
             case 35:
                 if(this.cards[a].attack!=-3){
@@ -5683,7 +5836,7 @@ class group{
                 }
             break
             case 56:
-                this.cards[a].setCost(0,this.cards[a].attack==6805?(variants.mtg?[0]:0):[floor(random(0,variants.mtg?6:4))])
+                this.cards[a].confuse()
                 if(this.status[47]>0){
                     this.status[47]--
                 }

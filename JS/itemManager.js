@@ -631,6 +631,9 @@ class itemManager{
                 this.battle.addSpecificEnergy(2*effectiveness,player,1)
                 this.battle.cardManagers[player].draw(this.battle.cardManagers[player].hand.allEffectArgs(32,[11])*effectiveness)
             break
+            case 115:
+                userCombatant.statusEffect('Free Card',effectiveness)
+            break
 
             //mark p
 

@@ -218,6 +218,7 @@ class eventManager{
             this.firstEvent=this.name
         }
         let possible
+        let correct
         switch(this.id){
             case 30:
                 if(this.battle.relicManager.hasRelic(259,this.player)){
@@ -227,7 +228,7 @@ class eventManager{
                 }
             break
             case 63:
-                let correct=floor(random(0,5))
+                correct=floor(random(0,5))
                 this.pages[0].option[correct]=types.event[this.listing.complete[0]].name
                 this.pages[0].link[correct]=1
                 let sublist=copyArray(this.listing.complete)
@@ -312,6 +313,28 @@ class eventManager{
             break
             case 166:
                 this.selection=[floor(random(0,3)),0,0]
+            break
+            case 174:
+                possible=[]
+                for(let a=0,la=this.battle.cardManagers[this.player].listing.coc[3].length;a<la;a++){
+                    if(
+                        types.card[this.battle.cardManagers[this.player].listing.coc[3][a]].levels[0].class==1&&
+                        types.card[this.battle.cardManagers[this.player].listing.coc[3][a]].levels[0].effect[0]>=5
+                    ){
+                        possible.push(this.battle.cardManagers[this.player].listing.coc[3][a])
+                    }
+                }
+                let solution=possible[floor(random(0,possible.length))]
+                correct=floor(random(0,5))
+                this.pages[0].link[correct]=1
+                this.pages[0].desc=
+`You enter a gameshow, seeing a giant flashing screen.
+The announcer's voice rings from around you.
+"You have the chance to win a reward, if you answer me this...
+How much damage does ${types.card[solution].name.replace('\n',' ')} deal?"`
+                for(let a=0,la=5;a<la;a++){
+                    this.pages[0].option[a]=types.card[solution].levels[0].effect[0]+a-correct
+                }
             break
         }
     }
@@ -2001,6 +2024,12 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                         }else if(this.page==2&&a==0){
                             this.battle.addCurrency(200,this.player)
                             userCombatant.heal(10)
+                        }
+                    break
+                    case 174:
+                        if(this.page==1&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                            this.battle.relicManager.addRandomRelic(this.player)
                         }
                     break
 

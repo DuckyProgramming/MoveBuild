@@ -1,107 +1,39 @@
-CARDSET 63
+CARDSET 66
 
 
 
-ak-47 - 
-
-glasnost - 
-
-destalinization - 
-
-great purge - 
+[fill all defecits]
 
 
-
-more cycle
-
-heel kick
-
-the possibility of more [first time played] cards that cost down to 1
-
-more pity
-
-
-
-[bonkception]
-
-[blacklist]
-
-[golden dodecahedron]
-
-[shield repository]
-
-[fine-structure]
-
-[fallying mysts]
-
-[modern warfare]
-
-[crucibles of war]
-
-[donut]
-
-[commisssariat]
-
-[defector]
-
-[mesocyclone]
-
-[protectorate]
-
-heavy industry - very large block with assign 2
-
-another duplicate on draw
-
-yayoi ally card
-
-when you prime, you draw
-
-more prime trigger base cards
-
-
-
-
-
-
-
-
-
-
-OPERATION SCALENE
-
-rainbow lattice (edition) - []
-
-make 1 new event - get given an atatck, guess its damage
 
 OPERATION ICATHIA
 
 OPERATION ROSENFELD
+FERNANDO
 
-[reorganize character 22]
-nerf yourself
-pity
+weak
+nerf yourself/pity
 confuse
-shuffle
 
 OPERATION KHIRASARA
+DECRATITE
 
-[make character 23]
 cycle - if next card is of the type, it costs 0
 prime
 follow up
 
 OPERATION FERROCHROME
+DUKELIS
 
-[the commuduck]
-control
 leaders
 workers/assign
+population
 
 OPERATION CARCINOGEN
 
 [sagume boss]
 [fernando boss]
-[lanyan boss]
+[decratite boss]
 [dukelis boss]
 
 
@@ -110,6 +42,3 @@ AFTER
 
 runcheck every card in the game (for crashes)
 
-
-
-{MENGER CUBE EXPERIMENT} [DELAYED]

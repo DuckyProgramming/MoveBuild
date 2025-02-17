@@ -23,7 +23,7 @@ types={
         {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
         {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:0,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
-        {name:'Lanyan',moniker:'The Artisan',identifier:['Sister','Miss'],life:57,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
@@ -1251,7 +1251,7 @@ types={
         {name:'Optimal Sneakers',internal:'Free Move',id:434,rarity:4,list:0,mtg:1,world:[0,3],description:'Add a Free Move\nto Hand Every Turn'},
         {name:'Purified Nebula',internal:'Neutral Mana/Colorless Cost Clear',id:435,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (N) to Base Mana,\nReplace (N) Costs With (1) Costs',manaColor:0},
         {name:'Ivory Beads',internal:'White Mana/Block Up',id:436,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (W) to Base Mana,\nIncrease All Block Added by 2',manaColor:1},
-        {name:'Ice Crystal Wing',internal:'Blue Mana/Ice Wing',id:437,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (B) to Base Mana,\nAdd an Ice Wing on Turn 1',manaColor:2},
+        {name:'Ice Crystal Wing',internal:'Blue Mana/Proxy Teleport',id:437,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (B) to Base Mana,\nAdd a Proxy Teleport on Turn 1',manaColor:2},
         {name:'Unholy Water',internal:'Black Mana/Occult',id:438,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (K) to Base Mana,\nAdd 2 Occults on Turn 1',manaColor:3},
         {name:'Toned Physique',internal:'Green Mana/3 Turn Strength',id:439,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (G) to Base Mana,\nGain 1 Strength Every 5 Turns',manaColor:4},
 
@@ -1427,7 +1427,7 @@ types={
         {name:'Surprise Coupon',internal:'3 Free Items',id:76,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Make 3 Things Free\nat the Next Shop'},
         {name:'Starter Pack',internal:'Basic Cards',id:77,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Add 1 Strike, Defend,\nand Step to Hand'},
         {name:'Equilibrium System',internal:'Retain Hand',id:78,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Retain Your Hand This Turn'},
-        {name:'Unfinished Potion',internal:'Nothings',id:79,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Add 3 1-11 of Nothings to Hand'},
+        {name:'Unfinished Potion',internal:'Nothings',id:79,rarity:-1,list:0,menu:false,temp:false,mtg:0,description:'Add 3 1-11 of Nothings to Hand'},
 
         {name:'Cup of Water',internal:'Discard All Block/Miracle',id:80,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Discard Your Hand, Add 5 Block Per\nCard Discarded, Add a Miracle to Hand'},
         {name:'Fuel Cell',internal:'Double Item',id:81,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'The Next Item Used This Combat\nHas its Effect Doubled'},
@@ -1467,6 +1467,7 @@ types={
         {name:'Mobile Tonic',internal:'2 Mana/Redraw Non-Movements',id:112,rarity:1,list:0,menu:false,temp:false,mtg:2,description:'Gain (B) (B),\nRedraw All Non-Movement Cards'},
         {name:'Skillful Tonic',internal:'2 Mana/Redraw Non-Skills',id:113,rarity:1,list:0,menu:false,temp:false,mtg:2,description:'Gain (K) (K),\nRedraw All Non-Skill Cards'},
         {name:'Powerful Tonic',internal:'2 Mana/Redraw Non-Powers',id:114,rarity:1,list:0,menu:false,temp:false,mtg:2,description:'Gain (W) (W),\nRedraw All Non-Power Cards'},
+        {name:'Ceroline',internal:'Free Card',id:115,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Next Card Played is Free'},
 
         {name:'Starflame Prototype',internal:'5 Strength/Burn',id:1001,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Gain 5 Strength,\nShuffle 5 Burns into Draw'},
         {name:'Cola',internal:'15 Heal/No Block',id:1002,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 15 HP\nCan No Longer Gain Block'},

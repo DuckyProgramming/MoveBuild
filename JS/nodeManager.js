@@ -316,6 +316,9 @@ class nodeManager{
                     this.battle.setupBattle(types.encounter[list[index]])
                     list.splice(index,1)
                 }else{
+                    for(let a=0,la=this.battle.players;a<la;a++){
+                        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[7555])
+                    }
                     transition.scene='rest'
                     this.battle.setupRest()
                 }
