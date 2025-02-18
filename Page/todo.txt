@@ -2,39 +2,32 @@ CARDSET 66
 
 
 
+[circumrotation]
+
+[glittercake]
+
+[blood pressure]
+
+[weather ball]
+
+
+
 [fill all defecits]
 
 
 
+update the dictionary
+
+
+
+
+OPERATION VEBLIKUR
+
+[new character tutorials]
+
+
+
 OPERATION ICATHIA
-
-OPERATION ROSENFELD
-FERNANDO
-
-weak
-nerf yourself/pity
-confuse
-
-OPERATION KHIRASARA
-DECRATITE
-
-cycle - if next card is of the type, it costs 0
-prime
-follow up
-
-OPERATION FERROCHROME
-DUKELIS
-
-leaders
-workers/assign
-population
-
-OPERATION CARCINOGEN
-
-[sagume boss]
-[fernando boss]
-[decratite boss]
-[dukelis boss]
 
 
 

@@ -1115,8 +1115,9 @@ class battle{
         this.turn.main=0
         this.setTurn(this.turn.total+1)
         this.turn.time=game.turnTime
-        let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
+        let combatant
         for(let a=0,la=this.energy.gen.length;a<la;a++){
+            combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)]
             let lastEnergy=this.getEnergy(this.turn.main)
             this.baselineEnergy(a,this.energy.gen[a],combatant)
             if(!variants.mtg){
@@ -1124,6 +1125,7 @@ class battle{
             }
             this.energy.temp[a]=0
         }
+        combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
         this.combatantManager.setupCombatants()
         this.combatantManager.unmoveCombatants()
         this.combatantManager.enableCombatantsAlt()

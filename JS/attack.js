@@ -260,11 +260,11 @@ class attack{
             case 6930: case 6932: case 6936: case 6937: case 6941: case 6943: case 6947: case 6951: case 6954: case 6955: case 6956: case 6957: case 6958: case 6965: case 6968: case 6971: case 6973: case 6974: case 6975: case 6976:
             case 6978: case 6979: case 6984: case 6989: case 6995: case 6996: case 6999: case 7000: case 7001: case 7002: case 7004: case 7023: case 7024: case 7027: case 7028: case 7046: case 7047: case 7063: case 7068: case 7069:
             case 7074: case 7075: case 7076: case 7077: case 7080: case 7086: case 7088: case 7116: case 7117: case 7119: case 7122: case 7128: case 7132: case 7136: case 7146: case 7160: case 7165: case 7175: case 7197: case 7201:
-            case 7204: case 7208: case 7209: case 7210: case 7211: case 7212: case 7213: case 7215: case 7216: case 7221: case 7222: case 7224: case 7227: case 7232: case 7234: case 7235: case 7251: case 7255: case 7260: case 7261:
-            case 7269: case 7270: case 7271: case 7276: case 7281: case 7282: case 7284: case 7288: case 7289: case 7297: case 7298: case 7304: case 7305: case 7306: case 7307: case 7312: case 7313: case 7315: case 7336: case 7337:
-            case 7338: case 7342: case 7343: case 7346: case 7349: case 7352: case 7354: case 7357: case 7358: case 7366: case 7368: case 7369: case 7378: case 7383: case 7385: case 7386: case 7387: case 7388: case 7389: case 7396:
-            case 7400: case 7404: case 7405: case 7406: case 7411: case 7412: case 7422: case 7438: case 7439: case 7443: case 7454: case 7455: case 7456: case 7460: case 7461: case 7463: case 7464: case 7465: case 7466: case 7467:
-            case 7468: case 7472: case 7478: case 7480: case 7482: case 7492: case 7494: case 7497: case 7498: case 7499: case 7500: case 7509: case 7510: case 7511: case 7516: case 7522: case 7523: case 7525:
+            case 7204: case 7208: case 7209: case 7210: case 7211: case 7212: case 7213: case 7215: case 7216: case 7221: case 7222: case 7224: case 7227: case 7232: case 7234: case 7235: case 7249: case 7251: case 7255: case 7260:
+            case 7261: case 7269: case 7270: case 7271: case 7276: case 7281: case 7282: case 7284: case 7288: case 7289: case 7297: case 7298: case 7304: case 7305: case 7306: case 7307: case 7312: case 7313: case 7315: case 7336:
+            case 7337: case 7338: case 7342: case 7343: case 7346: case 7349: case 7352: case 7354: case 7357: case 7358: case 7366: case 7368: case 7369: case 7378: case 7383: case 7385: case 7386: case 7387: case 7388: case 7389:
+            case 7396: case 7400: case 7404: case 7405: case 7406: case 7411: case 7412: case 7422: case 7438: case 7439: case 7443: case 7454: case 7455: case 7456: case 7460: case 7461: case 7463: case 7464: case 7465: case 7466:
+            case 7467: case 7468: case 7472: case 7478: case 7480: case 7482: case 7492: case 7494: case 7497: case 7498: case 7499: case 7500: case 7509: case 7510: case 7511: case 7516: case 7522: case 7523: case 7525:
             case 7527: case 7528: case 7532: case 7533: case 7535: case 7543: case 7550: case 7553: case 7556:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
@@ -1161,7 +1161,7 @@ class attack{
                     break
                     case 364:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
-                        this.userCombatant.loseHealth(this.effect[1])*this.energy
+                        this.userCombatant.loseHealth(this.effect[1]*this.energy)
                     break
                     case 371:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.life<this.userCombatant.base.life*0.5?2:1),this.user)
@@ -2576,7 +2576,8 @@ class attack{
                         this.userCombatant.statusEffect('Counter',this.effect[1])
                     break
                     case 273: case 2135: case 2378: case 2770: case 3519: case 3702: case 3754: case 4024: case 4122: case 4350:
-                    case 4525: case 5045: case 5288: case 5606: case 6853: case 7116: case 7117: case 7208: case 7456: case 7492:
+                    case 4525: case 5045: case 5288: case 5606: case 6853: case 7116: case 7117: case 7208: case 7249: case 7456:
+                    case 7492:
                         this.userCombatant.addBlock(this.effect[1])
                     break
                     case 274:
@@ -6246,7 +6247,7 @@ class attack{
                     break
                     case 6954:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Primed\nSlash',types.card),0,0)
+                            this.userManager.hand.add(findName('Primed\nPulse',types.card),0,0)
                         }
                         this.userCombatant.prime(this.effect[2])
                     break
@@ -6548,7 +6549,7 @@ class attack{
                     break
                     case 365:
                         this.userCombatant.addBlock(this.effect[0]*this.energy)
-                        this.userCombatant.loseHealth(this.effect[1])*this.energy
+                        this.userCombatant.loseHealth(this.effect[1]*this.energy)
                     break
                     case 377:
                         this.userCombatant.addBlock(this.effect[0]*this.userManager.numberAbstract(0,[['Fatigue','Heavy\nFatigue']]))
@@ -9209,7 +9210,7 @@ class attack{
                     break
                     case 6963:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Primed\nSlash',types.card),0,0)
+                            this.userManager.hand.add(findName('Primed\nPulse',types.card),0,0)
                         }
                     break
                     case 6966:
@@ -11339,7 +11340,7 @@ class attack{
                     break
                     case 7324:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Primed\nSlash',types.card),0,0)
+                            this.userManager.hand.add(findName('Primed\nPulse',types.card),0,0)
                         }
                     break
                     case 7325:
@@ -14948,7 +14949,7 @@ class attack{
                     case 6950:
                         this.userCombatant.statusEffect('Dodge',this.effect[0])
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Primed\nSlash',types.card),0,0)
+                            this.userManager.hand.add(findName('Primed\nPulse',types.card),0,0)
                         }
                     break
                     case 6969:
@@ -18984,14 +18985,14 @@ class attack{
                     case 6952:
                         this.userManager.hand.exhaust(this.effect[0])
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Primed\nSlash',types.card),0,0)
+                            this.userManager.hand.add(findName('Primed\nPulse',types.card),0,0)
                         }
                     break
                     case 6953:
                         this.userManager.draw(this.effect[0])
                         this.userManager.hand.exhaust(this.effect[1])
                         for(let a=0,la=this.effect[2];a<la;a++){
-                            this.userManager.hand.add(findName('Primed\nSlash',types.card),0,0)
+                            this.userManager.hand.add(findName('Primed\nPulse',types.card),0,0)
                         }
                     break
                     case 6964:
@@ -26067,7 +26068,7 @@ class attack{
                     break
                     case 6949:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.userManager.hand.add(findName('Primed\nSlash',types.card),0,0)
+                            this.userManager.hand.add(findName('Primed\nPulse',types.card),0,0)
                         }
                         this.userCombatant.prime(this.effect[1])
                     break
@@ -26077,7 +26078,7 @@ class attack{
                     break
                     case 6967:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.userManager.hand.add(findName('Primed\nSlash',types.card),0,0)
+                            this.userManager.hand.add(findName('Primed\nPulse',types.card),0,0)
                         }
                     break
                     case 6973:
@@ -29344,7 +29345,7 @@ class attack{
                     break
                     case 7057:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.add(findName('Primed\nSlash',types.card),0,0)
+                            this.userManager.hand.add(findName('Primed\nPulse',types.card),0,0)
                         }
                     break
                     case 7071:

@@ -170,7 +170,7 @@ class purchaseManager{
                         let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[0]])
                         let valid=[]
                         for(let a=0,la=this.battle.cardManagers[0].deck.cards.length;a<la;a++){
-                            if(!this.battle.cardManagers[0].deck.cards[a].basic){
+                            if(!this.battle.cardManagers[0].deck.cards[a].basic&&!this.battle.cardManagers[0].deck.cards[a].spec.includes(80)){
                                 valid.push(a)
                             }
                         }
@@ -305,7 +305,7 @@ class purchaseManager{
                             let list=variants.mtg?copyArrayStack(this.battle.cardManagers[a].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[a].listing.junk[constants.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[a].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[a].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
                             let valid=[]
                             for(let b=0,lb=this.battle.cardManagers[a].deck.cards.length;b<lb;b++){
-                                if(!this.battle.cardManagers[a].deck.cards[b].basic){
+                                if(!this.battle.cardManagers[a].deck.cards[b].basic&&!this.battle.cardManagers[a].deck.cards[b].spec.includes(80)){
                                     valid.push(b)
                                 }
                             }
@@ -377,7 +377,7 @@ class purchaseManager{
                     let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[0]])
                     let valid=[]
                     for(let a=0,la=this.battle.cardManagers[0].deck.cards.length;a<la;a++){
-                        if(!this.battle.cardManagers[0].deck.cards[a].basic){
+                        if(!this.battle.cardManagers[0].deck.cards[a].basic&&!this.battle.cardManagers[0].deck.cards[a].spec.includes(80)){
                             valid.push(a)
                         }
                     }
@@ -399,7 +399,7 @@ class purchaseManager{
                         let list=variants.mtg?copyArrayStack(this.battle.cardManagers[a].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[a].listing.junk[constants.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[a].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[a].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
                         let valid=[]
                         for(let b=0,lb=this.battle.cardManagers[a].deck.cards.length;b<lb;b++){
-                            if(!this.battle.cardManagers[a].deck.cards[b].basic){
+                            if(!this.battle.cardManagers[a].deck.cards[b].basic&&!this.battle.cardManagers[a].deck.cards[b].spec.includes(80)){
                                 valid.push(b)
                             }
                         }

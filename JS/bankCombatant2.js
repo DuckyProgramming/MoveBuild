@@ -1192,7 +1192,109 @@ combatant.prototype.setupGraphics=function(direction){
             this.animSet={loop:0,flip:0,hand:0,foot:0}
             this.goal={anim:{direction:this.anim.direction}}
         break
-        case '-----':
+        case 'Decratite':
+            this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
+                legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
+                arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
+            this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
+            this.parts={eyeLevel:-78,mouth:-70,minor:15,
+                head:[
+                    [
+                        [constants.phi,-1,0],
+                        [constants.phi,1,0],
+                        [1,0,constants.phi],
+                    ],[
+                        [constants.phi,-1,0],
+                        [constants.phi,1,0],
+                        [1,0,-constants.phi],
+                    ],[
+                        [-constants.phi,-1,0],
+                        [-constants.phi,1,0],
+                        [-1,0,constants.phi],
+                    ],[
+                        [-constants.phi,-1,0],
+                        [-constants.phi,1,0],
+                        [-1,0,-constants.phi],
+                    ],[
+                        [0,constants.phi,-1],
+                        [0,constants.phi,1],
+                        [constants.phi,1,0],
+                    ],[
+                        [0,constants.phi,-1],
+                        [0,constants.phi,1],
+                        [-constants.phi,1,0],
+                    ],[
+                        [0,-constants.phi,-1],
+                        [0,-constants.phi,1],
+                        [constants.phi,-1,0],
+                    ],[
+                        [0,-constants.phi,-1],
+                        [0,-constants.phi,1],
+                        [-constants.phi,-1,0],
+                    ],[
+                        [-1,0,constants.phi],
+                        [1,0,constants.phi],
+                        [0,constants.phi,1],
+                    ],[
+                        [-1,0,constants.phi],
+                        [1,0,constants.phi],
+                        [0,-constants.phi,1],
+                    ],[
+                        [-1,0,-constants.phi],
+                        [1,0,-constants.phi],
+                        [0,constants.phi,-1],
+                    ],[
+                        [-1,0,-constants.phi],
+                        [1,0,-constants.phi],
+                        [0,-constants.phi,-1],
+                    ],[
+                        [1,0,constants.phi],
+                        [0,constants.phi,1],
+                        [constants.phi,1,0],
+                    ],[
+                        [-1,0,constants.phi],
+                        [0,constants.phi,1],
+                        [-constants.phi,1,0],
+                    ],[
+                        [1,0,constants.phi],
+                        [0,-constants.phi,1],
+                        [constants.phi,-1,0],
+                    ],[
+                        [-1,0,constants.phi],
+                        [0,-constants.phi,1],
+                        [-constants.phi,-1,0],
+                    ],[
+                        [1,0,-constants.phi],
+                        [0,constants.phi,-1],
+                        [constants.phi,1,0],
+                    ],[
+                        [-1,0,-constants.phi],
+                        [0,constants.phi,-1],
+                        [-constants.phi,1,0],
+                    ],[
+                        [1,0,-constants.phi],
+                        [0,-constants.phi,-1],
+                        [constants.phi,-1,0],
+                    ],[
+                        [-1,0,-constants.phi],
+                        [0,-constants.phi,-1],
+                        [-constants.phi,-1,0],
+                    ],
+                ],
+                legs:[{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                arms:[{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
+            this.graphics={
+                head:[
+                ],
+                legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
+            this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
+            this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
+            this.trigger.display.extra={damage:false}
+            this.calc={int:[0,0,0,0]}
+            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.goal={anim:{direction:this.anim.direction}}
+            this.color={skin:{head:[205,200,195],body:[200,195,190],legs:[190,185,180],arms:[195,190,185],glow:[240,250,230]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
         break
         case 'Dukelis':
             this.anim={direction:direction,fat:1,eye:[0,0],eyeStyle:[0,0],legs:[{top:24,length:{top:12.5}},{top:24,length:{top:12.5}}],arms:[{top:54,length:{top:12.5}},{top:54,length:{top:12.5}}]}
@@ -5600,6 +5702,28 @@ combatant.prototype.minorDisplayGeneral=function(type,key){
                 this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5),this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
+            }else if(this.name=='Decratite'){
+                for(let c=0,lc=8;c<lc;c++){
+                    this.layer.stroke(...upColor(this.color.eye.back,50,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c]),this.fade*this.fades.eye[key])
+                    this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1)*(1-c/lc*0.5))
+                    if(this.anim.eye[key]==0){
+                        this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
+                        this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
+                    }else{
+                        this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
+                        this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2)
+                    }
+                }
+                if(this.anim.eye[key]==0&&constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1)>0){
+                    this.layer.stroke(...this.color.eye.glow,this.fade*this.fades.eye[key]/4)
+                    this.layer.strokeWeight(0.6)
+                    this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*(this.parts.minor+0.5),this.parts.eyeLevel,1.8*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),1.8*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-72,-12)
+                    if(this.anim.eyeStyle[key]==4){
+                        this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
+                        this.layer.strokeWeight(0.5)
+                        this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel,6.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),6.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-165+key*90,-105+key*90)
+                    }
+                }
             }else{
                 this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))

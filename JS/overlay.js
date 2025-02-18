@@ -3930,7 +3930,7 @@ class overlay{
                                 this.args[0]==1||this.args[0]==5||this.args[0]==11||this.args[0]==19||this.args[0]==21||
                                 this.args[0]==31||this.args[0]==34||this.args[0]==39||this.args[0]==40||this.args[0]==42||
                                 this.args[0]==46||this.args[0]==52||this.args[0]==77||this.args[0]==79||this.args[0]==101||
-                                this.args[0]==102||this.args[0]==111
+                                this.args[0]==102||this.args[0]==111||this.args[0]==112
                             )||
                             this.page<ceil(this.battle.cardManagers[this.player].deck.cards.length/15)-1&&(
                                 this.args[0]==2||this.args[0]==3||this.args[0]==4||this.args[0]==7||this.args[0]==8||
@@ -5455,7 +5455,7 @@ class overlay{
                                 this.args[0]==1||this.args[0]==5||this.args[0]==11||this.args[0]==19||this.args[0]==21||
                                 this.args[0]==31||this.args[0]==34||this.args[0]==39||this.args[0]==40||this.args[0]==42||
                                 this.args[0]==46||this.args[0]==52||this.args[0]==77||this.args[0]==79||this.args[0]==101||
-                                this.args[0]==102||this.args[0]==111
+                                this.args[0]==102||this.args[0]==111||this.args[0]==112
                             )||
                             this.page<ceil(this.battle.cardManagers[this.player].deck.cards.length/15)-1&&(
                                 this.args[0]==2||this.args[0]==3||this.args[0]==4||this.args[0]==7||this.args[0]==8||

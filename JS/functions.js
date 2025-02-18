@@ -24,6 +24,7 @@ function isInt(value){
 function setupConstants(){
 	constants.sqrt2=sqrt(2)
 	constants.sqrt3=sqrt(3)
+	constants.phi=0.5*sqrt(5)+0.5
 }
 function setupLayer(layer){
 	layer.noStroke()
@@ -843,7 +844,8 @@ function intentDescription(attack,user,info){
 			case 79: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-3`
 			case 81: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nRange 1-6\nNo Movement`
 			case 82: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\n3 Tiles Wide\nRange 1-1`
-			case 83: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nRange 1-6`
+			case 83: case 463:
+				return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nRange 1-6`
 			case 84: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\n3 Tiles Wide\nRange 1-1`
 			case 85: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n2 Tiles Forward,\n1 Tile to the Side,\nor 1 Tile Diagonally`
 			case 86: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n2 Tiles Forward,\n1 Tile to the Side,\nor 1 Tile Diagonally`
@@ -1201,7 +1203,17 @@ function intentDescription(attack,user,info){
 			case 450: return `Create Target Zigzag\nfor ${info?attack.effect[0]:`?`} Damage`
 			case 451: return `Apply ${info?attack.effect[0]:`?`} Weak\nin All Directions\nRange 1-1`
 			case 452: return `Apply ${info?attack.effect[0]:`?`} Vulnerable\nin All Directions\nRange 1-1`
-			
+			case 453: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Bounce\nRange 1-3`
+			case 454: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Weak\nRange 1-6`
+			case 455: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Vulnerable\nRange 1-6`
+			case 456: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nGain ${info?attack.effect[1]:`?`} Pity`
+			case 457: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Barrier`
+			case 458: return `All Cards Cost\n${info?attack.effect[0]:`?`} More Next Turn`
+			case 459: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} ${variants.mtg?`Random Mana`:`Energy`}\nRange 1-6`
+			case 460: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nGain ${info?attack.effect[1]:`?`} Regeneration`
+			case 461: return `Gain ${info?attack.effect[0]:`?`} Intangible\nGain ${info?attack.effect[1]:`?`} Control`
+			case 462: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAnywhere\nTarget Cannot Move\nFor ${info?attack.effect[1]:`?`} Turn${pl(attack.effect[1])}`
+
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
 			case 2: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-1`
@@ -2053,7 +2065,7 @@ Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}
 		Spectral:
 	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/20				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-20}
 		Subcard:
-	Total:${current.cardManagers[0].listing.sub.length}/80				${current.cardManagers[0].listing.sub.length-80}
+	Total:${current.cardManagers[0].listing.sub.length}/60				${current.cardManagers[0].listing.sub.length-60}
 		Ally:
 	Total:${current.cardManagers[0].listing.ally.length}/24				${current.cardManagers[0].listing.ally.length-24}
 		Disband:

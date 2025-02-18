@@ -16,15 +16,15 @@ types={
         {name:'Prehextorica',moniker:'The Retrospect',identifier:['Brother','Mister'],life:64,behavior:14,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[33]},{type:72,effect:[28,3]},{type:21,effect:[]}],description:``},
         {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:``},
         {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:``},
-        {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:339,effect:[8,8]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:``},
+        {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:457,effect:[16]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:``},
         {name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]},{type:412,effect:[15,2]},{type:413,effect:[2]}],description:``},
         {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[26]},{type:420,effect:[3]},{type:93,effect:[1]}],description:``},
         {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:``},
         {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
-        {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
-        {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
-        {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
-        {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:453,effect:[9,6]},{type:53,effect:[12,1,'Call of\nthe Heron']},{type:461,effect:[1,1]}],description:``},
+        {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:456,effect:[16,3]},{type:454,effect:[22,2]},{type:455,effect:[22,2]}],description:``},
+        {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:458,effect:[1]},{type:459,effect:[11,1]},{type:460,effect:[13,5]}],description:``},
+        {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:462,effect:[11,2]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -655,7 +655,7 @@ types={
         {name:'Daiyosuei Beam / Rewind',class:1},
         {name:'Daiyousei Beam / Draw Down',class:1},
         {name:'Injuring Daiyousei Beam',class:1},
-        {name:'Dual Discus',class:1},
+        {name:'Moriya Discus',class:1},
         {name:'Dexterity Siphon',class:1},//340
         {name:'9 Strikes / Self Intangible',class:1},
         {name:'2 Tile Shattering Strike',class:1},
@@ -769,7 +769,18 @@ types={
         {name:'Zigzag Missile',class:5},//450
         {name:'Spin Weaken',class:11},
         {name:'Spin Vulnerable',class:11},
-        
+        {name:'Dual Discus',class:1},
+        {name:'6 Tile Strike / Weak Self',class:1},
+        {name:'6 Tile Strike / Vulnerable Self',class:1},
+        {name:'Block / Pity',class:2},
+        {name:'Barrier',class:2},
+        {name:'Temporary All Cost Up',class:4},
+        {name:'6 Tile Strike / Energy Down',class:1},
+        {name:'Block / Regen',class:2},//460
+        {name:'Self Intangible / Control',class:4},
+        {name:'Targetted Strike / Cannot Move',class:5},
+        {name:'6 Tile Carding Strike',class:1},
+
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,world:[0,3],description:''},
         {name:'Leftovers',internal:'Quick Heal',id:1,rarity:0,list:0,mtg:0,world:[0,2],description:'Heal 2 HP at\nthe End of Combat'},
@@ -1038,7 +1049,7 @@ types={
         {name:'Enlightened Duck',internal:'Boss Spectral Pack',id:240,rarity:2,list:0,mtg:0,world:[0,1],description:'Open a Spectral Pack After Every Boss'},
         {name:'Jester Duck',internal:'Random Enemy Statuses',id:241,rarity:-1,list:0,mtg:0,world:[0,3],description:'All Enemies Start Combat\nWith 1 Burn, Freeze, and Shock'},
         {name:'Asphalt Block',internal:'Energy/Miss',id:242,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nGain 2 Miss on Turn 1'},
-        {name:'Radioscope',internal:'Energy/View',id:243,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nCannot See Draw, Discard, and Exhaust Piles'},
+        {name:'Radioscope',internal:'Energy/View',id:243,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nCannot See Draw, Discard,\nand Exhaust Piles'},
         {name:'Blue Raspberry',internal:'Spectral Rest',id:244,rarity:2,list:0,mtg:0,world:[0,2],description:'You Can Open Spectral\nPacks When Resting, 3 Uses'},
         {name:'The Trail',internal:'3 Cost Energy Next Turn',id:245,rarity:2,list:0,mtg:1,world:[0,3],description:'Cards Costing 3 or More\nGive 1 Energy Next Turn'},
         {name:'Spearmint',internal:'25 Damage Draw',id:246,rarity:0,list:0,mtg:0,world:[0,3],description:'Draw 1 Card When You\nDeal 25 or More Damage'},
@@ -1606,10 +1617,10 @@ types={
                 text:[35,20,30],
                 active:[230,200,220],
             },{
-                fill:[105,150,120],
-                stroke:[90,130,100],
-                text:[20,40,25],
-                active:[200,230,210],
+                fill:[225,235,215],
+                stroke:[195,205,185],
+                text:[30,32,28],
+                active:[235,240,230],
             },{
                 fill:[220,70,70],
                 stroke:[190,55,55],
@@ -7308,7 +7319,7 @@ variants={
 constants={
     playerNumber:24,orbNumber:16,
     targetRadius:30,startEnergy:3,collisionDamage:4,
-    sqrt2:0,sqrt3:0,trig:[[],[]],
+    sqrt2:0,sqrt3:0,phi:0,trig:[[],[]],
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],

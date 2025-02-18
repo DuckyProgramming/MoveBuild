@@ -3227,6 +3227,9 @@ class group{
             case -128:
                 userCombatant.statusEffect('Frail',card.effect[0])
             break
+            case -135:
+                this.battle.cardManagers[this.player].addRandomAbstract(2,0,0,1,0,[],[constants.playerNumber+1,3])
+            break
 
             //mark n
             

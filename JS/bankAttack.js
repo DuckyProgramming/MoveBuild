@@ -161,13 +161,13 @@ attack.prototype.update=function(){
         case 6957: case 6958: case 6965: case 6968: case 6976: case 6978: case 6989: case 6996: case 6999: case 7000:
         case 7001: case 7023: case 7024: case 7027: case 7028: case 7046: case 7063: case 7076: case 7080: case 7088:
         case 7116: case 7117: case 7128: case 7129: case 7160: case 7165: case 7197: case 7201: case 7204: case 7208:
-        case 7210: case 7211: case 7212: case 7215: case 7224: case 7227: case 7232: case 7235: case 7251: case 7255:
-        case 7260: case 7269: case 7276: case 7281: case 7282: case 7284: case 7288: case 7289: case 7304: case 7305:
-        case 7306: case 7307: case 7312: case 7315: case 7338: case 7342: case 7343: case 7349: case 7352: case 7357:
-        case 7358: case 7368: case 7369: case 7383: case 7385: case 7388: case 7389: case 7400: case 7422: case 7443:
-        case 7454: case 7455: case 7456: case 7463: case 7464: case 7465: case 7466: case 7467: case 7468: case 7472:
-        case 7478: case 7492: case 7494: case 7497: case 7499: case 7500: case 7509: case 7511: case 7523: case 7525:
-        case 7527: case 7528: case 7535: case 7543: case 7553: case 7556:
+        case 7210: case 7211: case 7212: case 7215: case 7224: case 7227: case 7232: case 7235: case 7249: case 7251:
+        case 7255: case 7260: case 7269: case 7276: case 7281: case 7282: case 7284: case 7288: case 7289: case 7304:
+        case 7305: case 7306: case 7307: case 7312: case 7315: case 7338: case 7342: case 7343: case 7349: case 7352:
+        case 7357: case 7358: case 7368: case 7369: case 7383: case 7385: case 7388: case 7389: case 7400: case 7422:
+        case 7443: case 7454: case 7455: case 7456: case 7463: case 7464: case 7465: case 7466: case 7467: case 7468:
+        case 7472: case 7478: case 7492: case 7494: case 7497: case 7499: case 7500: case 7509: case 7511: case 7523:
+        case 7525: case 7527: case 7528: case 7535: case 7543: case 7553: case 7556:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)

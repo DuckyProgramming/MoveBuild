@@ -11,7 +11,8 @@ turn.prototype.update=function(){
                 case 287: case 290: case 291: case 295: case 304: case 306: case 316: case 325: case 328: case 329:
                 case 332: case 335: case 342: case 343: case 353: case 369: case 372: case 373: case 374: case 375:
                 case 378: case 385: case 386: case 389: case 390: case 397: case 398: case 402: case 412: case 419:
-                case 420: case 424: case 426: case 433: case 434: case 435: case 448:
+                case 420: case 424: case 426: case 433: case 434: case 435: case 448: case 454: case 455: case 459:
+                case 463:
                     if(this.type==205&&this.timer==1){
                         this.userCombatant.goal.anim.direction=this.relativeDirection
                     }
@@ -348,7 +349,7 @@ turn.prototype.update=function(){
                 case 126: case 182: case 190: case 230: case 231: case 232: case 234: case 237: case 238: case 239:
                 case 240: case 241: case 254: case 257: case 261: case 267: case 269: case 280: case 293: case 318:
                 case 346: case 359: case 365: case 376: case 392: case 401: case 405: case 408: case 410: case 411:
-                case 438: case 442:
+                case 438: case 442: case 456: case 460:
                     if(variants.nobasicanim){
                         this.selfCall(1)
                         this.remove=true
@@ -366,12 +367,12 @@ turn.prototype.update=function(){
                 break
                 case 5: case 39: case 40: case 41: case 42: case 51: case 52: case 56: case 57: case 74:
                 case 75: case 78: case 88: case 92: case 93: case 94: case 155: case 186: case 189: case 244:
-                case 249: case 301: case 302: case 352: case 391: case 414:
+                case 249: case 301: case 302: case 352: case 391: case 414: case 458:
                     if(variants.nobasicanim){
                         this.selfCall(2)
                         this.remove=true
                     }else{
-                        if(this.userCombatant.name=='Certes'||this.userCombatant.name=='Merlin'){
+                        if(this.userCombatant.name=='Certes'||this.userCombatant.name=='Merlin'||this.userCombatant.name=='Decratite'){
                             if(this.timer==1){
                                 this.userCombatant.startAnimation(32)
                             }
@@ -411,9 +412,9 @@ turn.prototype.update=function(){
                         this.remove=true
                     }else{
                         if(this.timer==1){
-                            this.userCombatant.startAnimation(this.userCombatant.name=='Sakura'||this.userCombatant.name=='DD-610'||this.userCombatant.name=='Prehextorica'||this.userCombatant.name=='Ducopo'?29:4)
+                            this.userCombatant.startAnimation(this.userCombatant.name=='Sakura'||this.userCombatant.name=='DD-610'||this.userCombatant.name=='Prehextorica'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Sagume'?29:4)
                         }
-                        this.userCombatant.runAnimation(1/30,this.userCombatant.name=='Sakura'||this.userCombatant.name=='DD-610'||this.userCombatant.name=='Prehextorica'||this.userCombatant.name=='Ducopo'?29:4)
+                        this.userCombatant.runAnimation(1/30,this.userCombatant.name=='Sakura'||this.userCombatant.name=='DD-610'||this.userCombatant.name=='Prehextorica'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Sagume'?29:4)
                         if(this.timer==15){
                             this.selfCall(3)
                         }else if(this.timer>=30){
@@ -462,12 +463,12 @@ turn.prototype.update=function(){
                 case 18: case 25: case 26: case 43: case 46: case 63: case 70: case 109: case 159: case 167:
                 case 169: case 170: case 174: case 177: case 197: case 207: case 210: case 216: case 220: case 228:
                 case 281: case 289: case 294: case 296: case 300: case 345: case 349: case 356: case 413: case 421:
-                case 423: case 432: case 450:
+                case 423: case 432: case 450: case 461: case 462:
                     if(variants.nobasicanim){
                         this.selfCall(5)
                         this.remove=true
                     }else{
-                        let alt=this.userCombatant.name=='Lira'||this.userCombatant.name=='Shinmyoumaru'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Randy'
+                        let alt=this.userCombatant.name=='Lira'||this.userCombatant.name=='Shinmyoumaru'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Randy'||this.userCombatant.name=='Sagume'||this.userCombatant.name=='Dukelis'
                         if(this.timer==1){
                             this.userCombatant.startAnimation(alt?6:7)
                         }
@@ -3998,6 +3999,44 @@ turn.prototype.update=function(){
                         }else if(this.timer==round(this.distance/30+15)){
                             this.selfCall(4)
                         }else if(this.timer>=max(30,this.distance/30+25)){
+                            this.remove=true
+                        }
+                    }
+                break
+                case 453:
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(17)
+                    }
+                    if(this.timer<=10||this.timer>20&&this.timer<=30){
+                        this.userCombatant.runAnimation(1/20,17)
+                    }
+                    if(this.timer==15){
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,
+                            this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                            this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                        248,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
+                    }else if(this.timer==21+this.targetDistance*3||this.timer==69-this.targetDistance*3){
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.timer==69-this.targetDistance*3){
+                            this.userCombatant.addBounce(this.effect[1])
+                        }
+                    }else if(this.timer>=75){
+                        this.remove=true
+                    }
+                break
+                case 456:
+                    if(variants.nobasicanim){
+                        this.selfCall(4)
+                        this.remove=true
+                    }else{
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(5)
+                        }
+                        this.userCombatant.runAnimation(1/10,5)
+                        if(this.timer==10){
+                            current.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,73,[20]))
+                            this.userCombatant.addBarrier(this.effect[1])
+                        }else if(this.timer>=20){
                             this.remove=true
                         }
                     }

@@ -6076,7 +6076,156 @@ combatant.prototype.display=function(){
                     this.layer.pop()
                 }
             break
-            case '-----':
+            case 'Decratite':
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
+                        for(let c=0,lc=8;c<lc;c++){
+                            this.layer.stroke(...this.flashColor(upColor(this.color.skin.arms,20,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c])),this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(4*(1-c/lc*0.5))
+                            this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
+                        for(let c=0,lc=8;c<lc;c++){
+                            this.layer.stroke(...this.flashColor(upColor(this.color.skin.arms,20,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c])),this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(4*(1-c/lc*0.5))
+                            this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                    }
+                    for(let h=0;h<2;h++){
+                        if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
+                            if(this.trigger.display.skin.legs){
+                                for(let c=0,lc=8;c<lc;c++){
+                                    this.layer.stroke(...this.flashColor(upColor(this.color.skin.legs,20,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c])),this.fade*this.fades.skin.legs)
+                                    this.layer.strokeWeight(4*(1-c/lc*0.5))
+                                    this.layer.line(this.graphics.legs[g].top.x,this.graphics.legs[g].top.y,this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y)
+                                    this.layer.line(this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,this.graphics.legs[g].bottom.x,this.graphics.legs[g].bottom.y)
+                                }
+                            }
+                        }
+                    }
+                }
+                if(this.trigger.display.skin.body){
+                    this.layer.noStroke()
+                    for(let a=0,la=5;a<la;a++){
+                        for(let c=0,lc=8;c<lc;c++){
+                            if(lcos(this.anim.direction+a*72+this.time)>0){
+                                this.layer.fill(...this.flashColor(upColor(this.color.skin.body,lcos(this.anim.direction+a*72+this.time)*20,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c])),this.fade*this.fades.skin.body)
+                                this.layer.rect(8*lsin(this.anim.direction+a*72+this.time),-49,12*lcos(this.anim.direction+a*72+this.time)*(1-c/lc*0.5),20.2*(1-c/lc*0.5))
+                                this.layer.triangle(
+                                    8*lsin(this.anim.direction+a*72+this.time)*(1-c/lc*0.5*0.5)-6*lcos(this.anim.direction+a*72+this.time)*(1-c/lc*0.5),
+                                    -39+5*c/lc*0.5,
+                                    8*lsin(this.anim.direction+a*72+this.time)*(1-c/lc*0.5*0.5)+6*lcos(this.anim.direction+a*72+this.time)*(1-c/lc*0.5),
+                                    -39+5*c/lc*0.5,
+                                    8*lsin(this.anim.direction+a*72+this.time)*c/lc*0.5*0.5,-26-8*c/lc*0.5
+                                )
+                                this.layer.triangle(
+                                    8*lsin(this.anim.direction+a*72+this.time)*(1-c/lc*0.5*0.5)-6*lcos(this.anim.direction+a*72+this.time)*(1-c/lc*0.5),
+                                    -59-5*c/lc*0.5,
+                                    8*lsin(this.anim.direction+a*72+this.time)*(1-c/lc*0.5*0.5)+6*lcos(this.anim.direction+a*72+this.time)*(1-c/lc*0.5),
+                                    -59-5*c/lc*0.5,
+                                    8*lsin(this.anim.direction+a*72+this.time)*c/lc*0.5*0.5,-72+8*c/lc*0.5
+                                )
+                            }
+                        }
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
+                        for(let c=0,lc=8;c<lc;c++){
+                            this.layer.stroke(...this.flashColor(upColor(this.color.skin.arms,20,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c])),this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(4*(1-c/lc*0.5))
+                            this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                    }
+                }
+                if(this.trigger.display.skin.head){
+                    let rad=10
+                    let stack=[]
+                    for(let a=0,la=this.graphics.head.length;a<la;a++){
+                        stack.push(this.graphics.head[a][3][1])
+                    }
+                    stack=sortNumbersUnique(stack)
+                    this.layer.noFill()
+                    this.layer.strokeJoin(ROUND)
+                    this.layer.strokeWeight(1)
+                    this.layer.stroke(...this.color.skin.glow,this.fade*this.fades.skin.head)
+                    for(let a=0,la=stack.length;a<la;a++){
+                        if(stack[a]<0){
+                            for(let b=0,lb=this.graphics.head.length;b<lb;b++){
+                                if(this.graphics.head[b][3][1]==stack[a]){
+                                    this.layer.triangle(
+                                        this.graphics.head[b][0][0]*rad*1.5,
+                                        this.graphics.head[b][0][2]*rad*1.5-81,
+                                        this.graphics.head[b][1][0]*rad*1.5,
+                                        this.graphics.head[b][1][2]*rad*1.5-81,
+                                        this.graphics.head[b][2][0]*rad*1.5,
+                                        this.graphics.head[b][2][2]*rad*1.5-81
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    this.layer.noStroke()
+                    for(let a=0,la=stack.length;a<la;a++){
+                        for(let b=0,lb=this.graphics.head.length;b<lb;b++){
+                            if(this.graphics.head[b][3][1]==stack[a]){
+                                for(let c=0,lc=8;c<lc;c++){
+                                    this.layer.fill(...this.flashColor(upColor(this.color.skin.head,stack[a]*20,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c])),this.fade*this.fades.skin.head)
+                                    this.layer.triangle(
+                                        this.graphics.head[b][0][0]*rad*(1-c/lc*0.5)+this.graphics.head[b][3][0]*rad*c/lc*0.5,
+                                        this.graphics.head[b][0][2]*rad*(1-c/lc*0.5)+this.graphics.head[b][3][2]*rad*c/lc*0.5-81,
+                                        this.graphics.head[b][1][0]*rad*(1-c/lc*0.5)+this.graphics.head[b][3][0]*rad*c/lc*0.5,
+                                        this.graphics.head[b][1][2]*rad*(1-c/lc*0.5)+this.graphics.head[b][3][2]*rad*c/lc*0.5-81,
+                                        this.graphics.head[b][2][0]*rad*(1-c/lc*0.5)+this.graphics.head[b][3][0]*rad*c/lc*0.5,
+                                        this.graphics.head[b][2][2]*rad*(1-c/lc*0.5)+this.graphics.head[b][3][2]*rad*c/lc*0.5-81
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    this.layer.noFill()
+                    this.layer.stroke(...this.color.skin.glow,this.fade*this.fades.skin.head)
+                    for(let a=0,la=stack.length;a<la;a++){
+                        if(stack[a]>=0){
+                            for(let b=0,lb=this.graphics.head.length;b<lb;b++){
+                                if(this.graphics.head[b][3][1]==stack[a]){
+                                    this.layer.triangle(
+                                        this.graphics.head[b][0][0]*rad*1.5,
+                                        -this.graphics.head[b][0][2]*rad*1.5-81,
+                                        this.graphics.head[b][1][0]*rad*1.5,
+                                        -this.graphics.head[b][1][2]*rad*1.5-81,
+                                        this.graphics.head[b][2][0]*rad*1.5,
+                                        -this.graphics.head[b][2][2]*rad*1.5-81
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    this.layer.noStroke()
+                    this.layer.strokeJoin(MITER)
+                }
+                if(this.trigger.display.mouth&&lcos(this.anim.direction)>0.1){
+                    this.minorDisplayGeneral(1,0)
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
+                        for(let c=0,lc=8;c<lc;c++){
+                            this.layer.stroke(...this.flashColor(upColor(this.color.skin.arms,20,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c])),this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(4*(1-c/lc))
+                            this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                    }
+                    if(this.trigger.display.eye[g]){
+                        this.minorDisplayGeneral(0,g)
+                    }
+                }
             break
             case 'Dukelis':
                 for(let g=0;g<2;g++){
