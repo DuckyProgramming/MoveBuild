@@ -265,7 +265,7 @@ class attack{
             case 7337: case 7338: case 7342: case 7343: case 7346: case 7349: case 7352: case 7354: case 7357: case 7358: case 7366: case 7368: case 7369: case 7378: case 7383: case 7385: case 7386: case 7387: case 7388: case 7389:
             case 7396: case 7400: case 7404: case 7405: case 7406: case 7411: case 7412: case 7422: case 7438: case 7439: case 7443: case 7454: case 7455: case 7456: case 7460: case 7461: case 7463: case 7464: case 7465: case 7466:
             case 7467: case 7468: case 7472: case 7478: case 7480: case 7482: case 7492: case 7494: case 7497: case 7498: case 7499: case 7500: case 7509: case 7510: case 7511: case 7516: case 7522: case 7523: case 7525:
-            case 7527: case 7528: case 7532: case 7533: case 7535: case 7543: case 7550: case 7553: case 7556:
+            case 7527: case 7528: case 7532: case 7533: case 7535: case 7543: case 7550: case 7553: case 7556: case 7576: case 7578: case 7580: case 7584: case 7586:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -1067,6 +1067,73 @@ class attack{
                         this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
                         this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
                         this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                    }
+                }
+            break
+            case 7572:
+                this.targetCombatant=[]
+                this.direction=[]
+                this.distance=[]
+                this.relativeDirection=[]
+                this.relativeDistance=[]
+                this.targetDistance=[]
+                targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                this.targetCombatant.push(targetCombatant)
+                this.direction.push(atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y))
+                this.distance.push(sqrt((targetCombatant.position.x-this.position.x)**2+(targetCombatant.position.y-this.position.y)**2))
+                this.relativeDirection.push(atan2(targetCombatant.relativePosition.x-this.relativePosition.x,targetCombatant.relativePosition.y-this.relativePosition.y))
+                this.relativeDistance.push(sqrt((targetCombatant.relativePosition.x-this.relativePosition.x)**2+(targetCombatant.relativePosition.y-this.relativePosition.y)**2))
+                for(let a=0,la=2;a<la;a++){
+                    let offset=transformDirection(0,this.relativeDirection[0]-60+a*120)
+                    let index=this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+offset[0],this.userCombatant.tilePosition.y+offset[1])
+                    if(index>=0){
+                        targetCombatant=this.battle.combatantManager.combatants[index]
+                        this.targetCombatant.push(targetCombatant)
+                        this.direction.push(atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y))
+                        this.distance.push(sqrt((targetCombatant.position.x-this.position.x)**2+(targetCombatant.position.y-this.position.y)**2))
+                        this.relativeDirection.push(atan2(targetCombatant.relativePosition.x-this.relativePosition.x,targetCombatant.relativePosition.y-this.relativePosition.y))
+                        this.relativeDistance.push(sqrt((targetCombatant.relativePosition.x-this.relativePosition.x)**2+(targetCombatant.relativePosition.y-this.relativePosition.y)**2))
+                    }
+                }
+                for(let a=0,la=3;a<la;a++){
+                    let offset=transformDirection(0,this.relativeDirection[0]-60+a*60)
+                    let index=this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+offset[0]*2,this.userCombatant.tilePosition.y+offset[1]*2)
+                    if(index>=0){
+                        targetCombatant=this.battle.combatantManager.combatants[index]
+                        this.targetCombatant.push(targetCombatant)
+                        this.direction.push(atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y))
+                        this.distance.push(sqrt((targetCombatant.position.x-this.position.x)**2+(targetCombatant.position.y-this.position.y)**2))
+                        this.relativeDirection.push(atan2(targetCombatant.relativePosition.x-this.relativePosition.x,targetCombatant.relativePosition.y-this.relativePosition.y))
+                        this.relativeDistance.push(sqrt((targetCombatant.relativePosition.x-this.relativePosition.x)**2+(targetCombatant.relativePosition.y-this.relativePosition.y)**2))
+                    }
+                }
+            break
+            case 7579:
+                this.targetCombatant=[]
+                this.direction=[]
+                this.distance=[]
+                this.relativeDirection=[]
+                this.relativeDistance=[]
+                this.targetDistance=[]
+                targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                this.targetCombatant.push(targetCombatant)
+                this.direction.push(atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y))
+                this.distance.push(sqrt((targetCombatant.position.x-this.position.x)**2+(targetCombatant.position.y-this.position.y)**2))
+                this.relativeDirection.push(atan2(targetCombatant.relativePosition.x-this.relativePosition.x,targetCombatant.relativePosition.y-this.relativePosition.y))
+                this.relativeDistance.push(sqrt((targetCombatant.relativePosition.x-this.relativePosition.x)**2+(targetCombatant.relativePosition.y-this.relativePosition.y)**2))
+                this.targetDistance.push(distTargetCombatant(0,targetCombatant,this.userCombatant))
+                for(let a=0,la=6;a<la;a++){
+                    let offset=transformDirection(0,this.relativeDirection[0]-180)
+                    let index=this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+offset[0]*(1+a),this.userCombatant.tilePosition.y+offset[1]*(1+a))
+                    if(index>=0){
+                        targetCombatant=this.battle.combatantManager.combatants[index]
+                        this.targetCombatant.push(targetCombatant)
+                        this.direction.push(atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y))
+                        this.distance.push(sqrt((targetCombatant.position.x-this.position.x)**2+(targetCombatant.position.y-this.position.y)**2))
+                        this.relativeDirection.push(atan2(targetCombatant.relativePosition.x-this.relativePosition.x,targetCombatant.relativePosition.y-this.relativePosition.y))
+                        this.relativeDistance.push(sqrt((targetCombatant.relativePosition.x-this.relativePosition.x)**2+(targetCombatant.relativePosition.y-this.relativePosition.y)**2))
+                        this.targetDistance.push(distTargetCombatant(0,targetCombatant,this.userCombatant))
+                        a=la
                     }
                 }
             break
@@ -6517,6 +6584,10 @@ class attack{
                     case 7543:
                         this.userCombatant.addBlock(this.effect[1]*(this.userManager.hand.turnPlayed[4]))
                     break
+                    case 7578:
+                        this.userCombatant.addBlock(this.effect[1])
+                        this.userCombatant.combo+=this.effect[2]
+                    break
 
                 }
                 //mark 1s
@@ -9398,6 +9469,11 @@ class attack{
                     break
                     case 7552:
                         this.userCombatant.statusEffect('Control',this.effect[1])
+                    break
+                    case 7574:
+                        if((variants.mtg?this.cost.length:this.cost)==0){
+                            this.userCombatant.statusEffect('Counter Once',this.effect[1])
+                        }
                     break
 
                 }
@@ -15353,6 +15429,39 @@ class attack{
                         this.userCombatant.statusEffect('Weak',999)
                         this.userCombatant.statusEffect('Vulnerable',999)
                     break
+                    case 7562:
+                        this.userManager.draw(this.effect[0])
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[],[[1,1]]])
+                    break
+                    case 7563:
+                        this.userManager.draw(this.effect[0])
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[],[[1,2]]])
+                    break
+                    case 7564:
+                        this.userManager.draw(this.effect[0])
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[],[[1,3]]])
+                    break
+                    case 7565:
+                        this.userManager.draw(this.effect[0])
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[],[[1,4]]])
+                    break
+                    case 7566:
+                        this.userManager.draw(this.effect[0])
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[],[[1,11]]])
+                    break
+                    case 7567:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                        this.userCombatant.statusEffect('Dexterity',this.effect[1])
+                    break
+                    case 7575:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                        this.userCombatant.combo+=this.effect[1]
+                    break
 
                 }
                 //mark 4
@@ -19528,6 +19637,31 @@ class attack{
                             this.userManager.hand.discard(this.userManager.hand.cards.length-this.effect[0])
                         }
                     break
+                    case 7573:
+                        this.userManager.draw(this.effect[0])
+                        this.userManager.hand.exhaust(this.effect[1])
+                        this.userCombatant.statusEffect('Pure',this.effect[2])
+                    break
+                    case 7581:
+                        this.userManager.hand.discard(this.effect[0])
+                        this.userManager.hand.retain(this.effect[1])
+                    break
+                    case 7582:
+                        this.userManager.hand.discard(this.effect[0])
+                        this.userManager.hand.retain(this.effect[1])
+                        this.battle.addEnergy(this.effect[2],this.player)
+                    break
+                    case 7583:
+                        this.userManager.hand.discard(this.effect[0])
+                        this.userManager.hand.retain(this.effect[1])
+                        this.battle.addSpecificEnergy(1,this.player,1)
+                        this.battle.addSpecificEnergy(1,this.player,2)
+                    break
+                    case 7585:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,2],57,[0],[[1,4]]])
+                        this.userCombatant.loseHealth(this.effect[0])
+                    break
 
                 }
                 //mark 5
@@ -20737,6 +20871,25 @@ class attack{
                     case 7536:
                         this.userCombatant.loseHealth(this.effect[0])
                         this.battle.combatantManager.allEffect(49,[this.effect[1]])
+                    break
+                    case 7568:
+                        this.userCombatant.heal(this.effect[0])
+                        this.battle.addEnergy(this.effect[1],this.player)
+                    break
+                    case 7569:
+                        this.userCombatant.heal(this.effect[0])
+                        this.battle.addSpecificEnergy(1,this.player,0)
+                    break
+                    case 7570:
+                        this.userCombatant.statusEffect('Discus Pure',this.effect[0])
+                    break
+                    case 7571:
+                        this.userCombatant.statusEffect('Pure',this.effect[0])
+                        this.userCombatant.removeRandomStatus([1,3])
+                    break
+                    case 7587:
+                        this.userCombatant.heal(this.effect[0])
+                        this.userCombatant.combo+=this.effect[1]
                     break
 
                 }
@@ -24248,6 +24401,10 @@ class attack{
                             this.userCombatant.lowRoll()
                         }
                     break
+                    case 7584:
+                        this.targetCombatant.block=0
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
@@ -24383,6 +24540,9 @@ class attack{
                         if(abs(this.relPos[0]-this.relPos[1]/2)<=0.5){
                             this.targetCombatant.statusEffect('Burn',this.effect[1])
                         }
+                    break
+                    case 7580:
+                        this.targetCombatant.statusEffect('Cannot Move',this.effect[1])
                     break
 
                 }
@@ -28972,6 +29132,17 @@ class attack{
                     case 7493:
                         this.userManager.drawAbstract(this.effect[0],10,13,[82])
                     break
+                    case 7560:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Miracle',types.card),0,0)
+                        }
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 7561:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Vibrant',types.card),0,0)
+                        }
+                    break
 
                 }
                 //mark 12
@@ -29655,6 +29826,9 @@ class attack{
                     break
                     case 5957:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
+                    break
+                    case 7576:
+                        this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.combo,this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)

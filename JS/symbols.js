@@ -5471,13 +5471,13 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 590:
             layer.fill(255,fade)
             layer.arc(0,0,10,10,-180,0)
-            layer.fill(50,225,50,fade)
+            layer.fill(89,84,89,fade)
             layer.arc(0,0,10,10,0,180)
             layer.ellipse(2.5,0,5)
             layer.fill(255,fade)
             layer.ellipse(-2.5,0,5)
             layer.ellipse(2.5,0,1.5)
-            layer.fill(50,225,50,fade)
+            layer.fill(89,84,89,fade)
             layer.ellipse(-2.5,0,1.5)
             layer.fill(255,50,50,fade)
             layer.triangle(2,-6,4,3,0,3)
@@ -5486,13 +5486,13 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 591:
             layer.fill(255,fade)
             layer.arc(0,0,10,10,-180,0)
-            layer.fill(50,225,50,fade)
+            layer.fill(89,84,89,fade)
             layer.arc(0,0,10,10,0,180)
             layer.ellipse(2.5,0,5)
             layer.fill(255,fade)
             layer.ellipse(-2.5,0,5)
             layer.ellipse(2.5,0,1.5)
-            layer.fill(50,225,50,fade)
+            layer.fill(89,84,89,fade)
             layer.ellipse(-2.5,0,1.5)
             layer.fill(150,175,200,fade)
             layer.triangle(2,-6,4,3,0,3)
@@ -7933,6 +7933,25 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,0,10)
             layer.fill(0,fade)
             layer.arc(0,0.5,6,3,0,180)
+        break
+        case 803:
+            layer.fill(255,fade)
+            layer.arc(0,0,10,10,-180,0)
+            layer.fill(89,84,89,fade)
+            layer.arc(0,0,10,10,0,180)
+            layer.ellipse(2.5,0,5)
+            layer.fill(255,fade)
+            layer.ellipse(-2.5,0,5)
+            layer.ellipse(2.5,0,1.5)
+            layer.fill(89,84,89,fade)
+            layer.ellipse(-2.5,0,1.5)
+            layer.fill(255,255,150,fade)
+            layer.quad(-6,-6,1,-1,6,6,-1,1)
+            layer.quad(-1,-1,2,-2,1,1,-2,2)
+            layer.fill(175,100,0,fade)
+            for(let a=0,la=8;a<la;a++){
+                layer.ellipse(4*lsin(a*45),4*lcos(a*45),2.5)
+            }
         break
 
     }

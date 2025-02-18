@@ -1572,6 +1572,9 @@ class battle{
         if(card.spec.includes(54)&&userCombatant.getStatus('Discus Temporary Dexterity')>0){
             userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Discus Temporary Dexterity'))
         }
+        if(card.spec.includes(54)&&userCombatant.getStatus('Discus Pure')>0){
+            userCombatant.statusEffect('Pure',userCombatant.getStatus('Discus Pure'))
+        }
         if(xCost&&userCombatant.getStatus('X Cost Single Damage Up')>0){
             userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('X Cost Single Damage Up'))
         }

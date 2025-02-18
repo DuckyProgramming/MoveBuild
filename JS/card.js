@@ -8578,55 +8578,31 @@ class card{
             case 7557: string+=`Gain ${effect[0]} Base\nEnergy This Combat\nGain Indefinite Weak\nGain Indefinite Vulnerable`; break
             case 7558: string+=`Gain (E) at the\nStart of Your Turn\nGain Indefinite Weak\nGain Indefinite Vulnerable`; break
             case 7559: string+=`Draw or Discard\nto ${effect[0]} Card${pl(effect[0])}`; break
-
             case 7560: string+=`Add ${effect[0]} Miracle${pl(effect[0])}\nto Hand and\nDraw ${effect[1]} Card${pl(effect[1])}\nWhen Played or\nWhen Recovered`; break
             case 7561: string+=`Add ${effect[0]} Vibrant${pl(effect[0])}\nto Hand\nWhen Played or\nWhen Recovered`; break
-            //7415
             case 7562: string+=`Discover a\nCharacter Attack\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 7563: string+=`Discover a\nCharacter Defense\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 7564: string+=`Discover a\nCharacter Movement\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 7565: string+=`Discover a\nCharacter Power\nDraw ${effect[0]} Card${pl(effect[0])}`; break
             case 7566: string+=`Discover a\nCharacter Skill\nDraw ${effect[0]} Card${pl(effect[0])}`; break
-            //7139
-
             case 7567: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Dexterity`; break
             case 7568: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Energy`; break
             case 7569: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain (N)`; break
             case 7570: string+=`When You\nPlay a Discus,\nGain ${effect[0]} Pure`; break
-            //4967
-            case 7571: string+=`Gain ${effect[0]} Pure\nRemove a Random Debuff`; break
+            case 7571: string+=`Gain ${effect[0]} Pure\nRemove a Random\nDebuff From Self`; break
             case 7572: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide`; break
-            //137
             case 7573: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nExhaust ${effect[1]} Card${pl(effect[1])}\nGain ${effect[2]} Pure`; break
-            //2687
-
             case 7574: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf This Card Costs 0,\nCounter ${effect[1]} Once`; break
-            //7508
             case 7575: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Combo`; break
-            //4041
             case 7576: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],7)}\nDamage\nAdvance`; break
-            //129
             case 7577: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nin All Directions`; break
-            //3243
             case 7578: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nGain ${effect[2]} Combo`; break
-            //6675
-            //7579,222,flank shot
-
-            //7580,2610,pinning shot
             case 7581: string+=`Discard ${effect[0]} Card${pl(effect[0])}\nRetain ${effect[1]} Card${pl(effect[1])} Once`; break
             case 7582: string+=`Discard ${effect[0]} Card${pl(effect[0])}\nRetain ${effect[1]} Card${pl(effect[1])} Once\nGain ${effect[2]} Energy`; break
-            //2060-2061
             case 7583: string+=`Discard ${effect[0]} Card${pl(effect[0])}\nRetain ${effect[1]} Card${pl(effect[1])} Once\nGain (W) (B)`; break
-            //4361
-            //7584,90
             case 7585: string+=`Discover a Rare Power\nIt Costs 0\nLose ${effect[0]} Health`; break
-            //3059
             case 7586: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier\nto Any Combatant`; break
-            //3340
             case 7587: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Combo`; break
-            //1370
-
-
 
             //mark p
 
@@ -10199,6 +10175,17 @@ class card{
             break
             case 7480:
                 this.effect[1]+=this.effect[3]
+            break
+            case 7560:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Miracle',types.card),0,0)
+                }
+                this.battle.cardManagers[this.player].draw(this.effect[1])
+            break
+            case 7561:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Vibrant',types.card),0,0)
+                }
             break
         }
     }

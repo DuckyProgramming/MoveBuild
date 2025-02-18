@@ -201,7 +201,7 @@ class combatant{
                 'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns','0 Cost Block','Charge Consume Single Damage Up','Assign Return','Assign Temporary Strength','Pity',
                 'Death Energy','Death (E)','Debuff Temporary Strength','Basic Temporary Dexterity','Communized Weak','Communized Vulnerable','Turn Confuse','Confuse Cost Down','Prime Draw','Cycle Draw',
                 'Recover Draw','Recover Next Turn','Recover Up','Shiv Temporary Damage Taken Up','Free War','Skill Discard Draw','Worker Draw Per Turn','Worker Boost','Assign Draw','Free Assign',
-                'Intangible Strength','Debuff Draw','"Debuff"',
+                'Intangible Strength','Debuff Draw','"Debuff"','Discus Pure',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -284,7 +284,7 @@ class combatant{
                 1,2,2,2,2,0,0,0,0,1,//78
                 0,0,0,0,0,0,0,0,0,0,//79
                 0,2,0,0,1,0,0,0,0,0,//80
-                0,0,0,
+                0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -367,7 +367,7 @@ class combatant{
                 3,2,2,2,2,2,2,2,2,2,//78
                 2,2,2,2,2,2,2,2,2,2,//79
                 2,2,2,2,2,2,2,2,2,2,//80
-                2,2,3,
+                2,2,3,2,
             ]}
         /*
         0-none
