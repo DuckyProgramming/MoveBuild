@@ -2,13 +2,13 @@ CARDSET 67
 
 
 
-[circumrotation]
+soft spoken - all sharp words and reversals currently existing cost 1 and exhaust
 
-[glittercake]
+weather ball - damage, status based on the stance you're in
 
-[blood pressure]
+[more claws]
 
-[weather ball]
+quantum link - put a card from draw pile into hand, when drawn or when pulled
 
 
 
