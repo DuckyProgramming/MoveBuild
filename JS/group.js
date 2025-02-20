@@ -3584,6 +3584,9 @@ class group{
             case 7514:
                 userCombatant.vision+=card.effect[1]
             break
+            case 7605:
+                userCombatant.combo+=card.effect[1]
+            break
 
         }
         card.drawMark=false
@@ -3663,7 +3666,8 @@ class group{
             variant==19&&this.cards[index].class!=args[0]||
             variant==20&&this.cards[index].getBasic(args[0])||
             variant==21&&(variants.mtg&&!arrayCompareLoose(this.cards[index].color,this.battle.player[this.player])||!variants.mtg&&this.cards[index].color!=this.battle.player[this.player])||
-            variant==22&&args[0].includes(this.cards[index].class)
+            variant==22&&args[0].includes(this.cards[index].class)||
+            variant==23&&this.cards[index].name.includes(args[0])&&args[1].includes(this.cards[index].class)
         )
     }
     checkAbstract(amount,variant,args){
@@ -3805,6 +3809,9 @@ class group{
                                 this.battle.cardManagers[this.player].hand.copySelf(this.battle.cardManagers[this.player].hand.cards.length-1)
                             }
                         }
+                    break
+                    case 20:
+                        list[list.length-1].setCost(0,[floor(random(0,2))])
                     break
                 }
             }

@@ -7953,6 +7953,26 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
                 layer.ellipse(4*lsin(a*45),4*lcos(a*45),2.5)
             }
         break
+        case 804:
+            layer.fill(175,200,185,fade)
+            layer.noStroke()
+            layer.quad(0,0,-3,-3,0,-6,3,-3)
+            layer.quad(0,0,-1.2*constants.sqrt2,1.2*constants.sqrt2,0,2.4*constants.sqrt2,1.2*constants.sqrt2,1.2*constants.sqrt2)
+            layer.arc(0,2.4*constants.sqrt2,4.8,4.8,-45,225)
+            for(let a=0,la=5;a<la;a++){
+                layer.rotate(72)
+                layer.fill(...[[150,0,0],[150,175,200],[75,150,75],[255,255,200],[150,0,200]][a])
+                layer.quad(0,0,0,3,lsin(36)*5,lcos(36)*5,lsin(72)*3,lcos(72)*3)
+            }
+        break
+        case 805:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+            layer.rect(-1,-5,1,3)
+            layer.rect(1,-5,1,3)
+        break
 
     }
     //mark s

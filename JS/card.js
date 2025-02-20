@@ -8603,38 +8603,39 @@ class card{
             case 7585: string+=`Discover a Rare Power\nIt Costs 0\nLose ${effect[0]} Health`; break
             case 7586: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier\nto Any Combatant`; break
             case 7587: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Combo`; break
-
             case 7588: string+=`Each Turn, Cycle a\nRandom Card Class`; break
-            //6751
             case 7589: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy\nShuffle ${effect[1]} Prismatic\nBomb${pl(effect[1])} Into Draw Pile`; break
             case 7590: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Weak`; break
             case 7591: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Vulnerable`; break
             case 7592: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Frail`; break
             case 7593: string+=`Apply ${effect[0]} Bleed\nTarget Cannot Move\nFor ${effect[1]} Turn${pl(effect[1])}`; break
-            //6735
-
             case 7594: string+=`All Hits Apply\n${effect[0]} Weak if Target\nHas No Weak`; break
-            //6897
             case 7595: string+=`Gain ${effect[0]} Pity\nGain ${effect[1]} Weak\nGain ${effect[2]} Vulnerable\nGain ${effect[3]} Frail`; break
-            //7503
             case 7596: string+=`Gain ${effect[0]} Dexterity\nGain Strength Equal\nto Your Dexterity`; break
-            //6942
             case 7597: string+=`Gain ${effect[0]} Strength\nRetain ${effect[1]} Card${pl(effect[1])}\nUntil Played`; break
             case 7598: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`}\nRandomly 0 or 1\nTemporarily`; break
-            //261
             case 7599: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nApply ${effect[1]} Poison\nin All Directions`; break
-
             case 7600: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw and Retain Once\n${effect[1]} Cable${pl(effect[1])}`; break
-            //7373
             case 7601: string+=`Gain an Item\nGain ${effect[0]} Vulnerable`; break
-            //114
             case 7602: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDiscover a 0 ${variants.mtg?`Total\n`:``}Cost Card`; break
-            //7146
             case 7603: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscover a 0 ${variants.mtg?`Total\n`:``}Cost Card`; break
             case 7604: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nPulled:\nAdd ${this.calculateEffect(effect[1],1)} Block and\nDraw ${effect[2]} Card${pl(effect[2])}`; break
-            //5449
             case 7605: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Drawn,\nGain ${effect[1]} Combo`; break
-            //1
+            case 7606: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPopulation 50:\nGain ${effect[1]} Strength`; break
+            case 7607: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPopulation 50:\nGain ${effect[1]} Strength`; break
+            case 7608: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nPopulation 50:\nGain ${effect[1]} Strength`; break
+            case 7609: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPopulation 50:\nGain ${effect[1]} Item${pl(effect[1])}`; break
+            case 7610: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nPopulation 50:\nDraw ${effect[1]} More Card${pl(effect[1])}`; break
+            case 7611: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPopulation 50:\nDeals Double Damage`; break
+            case 7612: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nPopulation 50:\nGain ${effect[1]} Energy`; break
+            case 7613: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nPopulation 50:\nGain (R) (N)`; break
+            case 7614: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nPopulation 50:\nGain (E) (R) (N)`; break
+            case 7615: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nPopulation 50:\nGain (E) (R) (R) (N)`; break
+            case 7616: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable\nPopulation 40: Double\nPopulation 50: Triple`; break
+            case 7617: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPopulation 50:\nAdds Dobule Block`; break
+            case 7618: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPopulation 40:\nDraw ${effect[1]} Card${pl(effect[1])}\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
+            case 7619: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPopulation 50:\nUpgrade ${effect[1]} Card${pl(effect[1])}`; break
+            case 7620: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPopulation 50:\nLose ${effect[1]} Strength`; break
 
             //mark p
 
@@ -9810,6 +9811,10 @@ class card{
             case 7161:
                 this.battle.overlayManager.overlays[10][this.player].active=true
                 this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[0],[[1,1]]])
+            break
+            case 7604:
+                userCombatant.addBlock(this.effect[1])
+                this.battle.cardManagers[this.player].draw(this.effect[2])
             break
         }
     }

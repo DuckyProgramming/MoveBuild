@@ -201,7 +201,7 @@ class combatant{
                 'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns','0 Cost Block','Charge Consume Single Damage Up','Assign Return','Assign Temporary Strength','Pity',
                 'Death Energy','Death (E)','Debuff Temporary Strength','Basic Temporary Dexterity','Communized Weak','Communized Vulnerable','Turn Confuse','Confuse Cost Down','Prime Draw','Cycle Draw',
                 'Recover Draw','Recover Next Turn','Recover Up','Shiv Temporary Damage Taken Up','Free War','Skill Discard Draw','Worker Draw Per Turn','Worker Boost','Assign Draw','Free Assign',
-                'Intangible Strength','Debuff Draw','"Debuff"','Discus Pure',
+                'Intangible Strength','Debuff Draw','"Debuff"','Discus Pure','Cycle Rotation','Base Attack Weak Combat',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -284,7 +284,7 @@ class combatant{
                 1,2,2,2,2,0,0,0,0,1,//78
                 0,0,0,0,0,0,0,0,0,0,//79
                 0,2,0,0,1,0,0,0,0,0,//80
-                0,0,0,0,
+                0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -367,7 +367,7 @@ class combatant{
                 3,2,2,2,2,2,2,2,2,2,//78
                 2,2,2,2,2,2,2,2,2,2,//79
                 2,2,2,2,2,2,2,2,2,2,//80
-                2,2,3,2,
+                2,2,3,2,2,2,
             ]}
         /*
         0-none
@@ -3721,6 +3721,9 @@ class combatant{
                     if(userCombatant.status.main[750]>0&&this.getStatus('Vulnerable')==0){
                         this.statusEffect('Vulnerable',userCombatant.status.main[750])
                     }
+                    if(userCombatant.status.main[805]>0&&this.getStatus('Weak')==0){
+                        this.statusEffect('Weak',userCombatant.status.main[805])
+                    }
                     if(this.battle.relicManager.hasRelic(246,user)&&damage>=25){
                         this.battle.cardManagers[user].draw(this.battle.relicManager.active[246][user+1])
                     }
@@ -5811,6 +5814,7 @@ class combatant{
                     case 786: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.confuse(this.status.main[a])}; break
                     case 791: if(this.id<this.battle.players){this.battle.overlayManager.overlays[168][this.id].active=true;this.battle.overlayManager.overlays[168][this.id].activate([this.status.main[a]])} break
                     case 796: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.spec.push([82,this.status.main[a]])} break
+                    case 804: this.status.main[findList(['Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill'][floor(random(0,5))],this.status.name)]+=this.status.main[a]; break
                     
                 }
                 if(this.status.behavior[a]==6&&
