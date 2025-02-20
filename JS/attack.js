@@ -23921,7 +23921,7 @@ class attack{
                         this.userManager.hand.extremaEffect(2,1)
                     break
                     case 6580:
-                        if(this.targetCombatant.life<this.userCombatant.life){
+                        if(this.targetCombatant.life<this.userCombatant.base.life-this.userCombatant.life){
                             this.targetCombatant.life=0
                         }
                     break

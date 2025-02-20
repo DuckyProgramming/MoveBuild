@@ -2,21 +2,15 @@ CARDSET 68
 
 
 
-increase all population thresholds by 10
-
-
-
 soft spoken - all sharp words and reversals currently existing cost 1 and exhaust
 
 weather ball - damage, status based on the stance you're in
 
-[more claws]
+contrast - 1 cost, draw a card, if last card played was a skill pull from discard pile
 
-quantum link - put a card from draw pile into hand, when drawn or when pulled
+elegiac - 1 vulnerable to all enemies, if last card played was a skill add block
 
-prickle - apply lock on, lock on doesn't depereciate on target
-
-junkyard - boris yeltsin - lose 10 currency every room
+build mega turret
 
 [more population]
 

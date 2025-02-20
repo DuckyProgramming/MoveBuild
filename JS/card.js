@@ -7630,7 +7630,7 @@ class card{
             case 6577: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nHeal ${this.calculateEffect(effect[1],4)} Health\nGain ${effect[2]} (G) (R)\nMana Gain\nIncreases by ${effect[3]}`; break
             case 6578: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nStatus Card in Hand:\nExhaust It\nPut a Card in Discard\nPile in Your Hand`; break
             case 6579: string+=`Gain ${effect[0]} Intangible\nin 2 Turns`; break
-            case 6580: string+=`If Target Has Less\nHealth Than You,\nIt Dies`; break
+            case 6580: string+=`If Target Has Less\nHealth Than You\nAre Missing,\nIt Dies`; break
             case 6581: string+=`Gain ${effect[0]} History\nDiscard Your Hand\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 6582: string+=`Add ${this.calculateEffect(effect[0],1)} Bounce\nPut the Top${effect[1]!=1?` ${effect[1]}`:``}\nCard${pl(effect[1])} in Discard Pile\nin Your Hand`; break
             case 6583: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (E) (E) (E)\nIf You Have\nan Energy Orb`; break
@@ -8636,6 +8636,27 @@ class card{
             case 7618: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPopulation 40:\nDraw ${effect[1]} Card${pl(effect[1])}\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
             case 7619: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPopulation 50:\nUpgrade ${effect[1]} Card${pl(effect[1])}`; break
             case 7620: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPopulation 50:\nLose ${effect[1]} Strength`; break
+
+            case 7621: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Temporary\nDexterity Next Turn`; break
+            case 7622: string+=`Apply ${effect[0]} Lock On\nTarget Retains Lock On\nIndefinitely`; break
+            //6900
+            case 7623: string+=`Gain ${effect[0]} Currency\nClaw Up ${effect[1]}`; break
+            //637
+            case 7624: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Temporary\nStrength\nWhen Played or Pulled`; break
+            //5466
+            case 7625: string+=`Incremental:\nRemove a Random\nCard From Deck\nLose ${effect[0]} Currency`; break
+            //7243
+            case 7626: string+=`Lose ${effect[0]} Strength\nPut a Card in Discard\nPile in Your Hand`; break
+            //7222
+
+            case 7627: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Frail\nApply ${effect[2]} Vulnerable\nAdd a Pristine to Hand`; break
+            //3179
+            case 7628: string+=`Gain ${effect[0]} Armor\nHold ${effect[1]} Dusts Orb${pl(effect[1])}`; break
+            //6190
+            case 7629: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage\nGain ${effect[1]} Strength`; break
+            //6
+
+
 
             //mark p
 
