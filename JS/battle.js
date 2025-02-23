@@ -1507,6 +1507,9 @@ class battle{
         if(card.spec.includes(25)&&userCombatant.getStatus('Gun Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Gun Block'))
         }
+        if(card.spec.includes(25)&&userCombatant.getStatus('Gun Draw')>0){
+            this.cardManagers[player].draw(userCombatant.getStatus('Gun Draw'))
+        }
         if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Single Damage Up')>0){
             userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('2+ Cost Single Damage Up'))
         }
@@ -3543,12 +3546,18 @@ class battle{
                         }
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-105,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='variants'
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
                     variants.prismrule=[]
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+105,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                    variants.prismrule=[]
+                    for(let a=-10,la=constants.playerNumber+6;a<la;a++){
+                        variants.prismrule.push(a)
+                    }
                 }
             break
             case 'tutorial':

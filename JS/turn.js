@@ -1712,7 +1712,6 @@ class turn{
                         }else{
                             this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Block Next Turn',this.effect[0])
                         }
-                        this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,1,[this.effect[0]])
                     break
                     case 231:
                         this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].draw(this.effect[0])
@@ -1772,6 +1771,9 @@ class turn{
                     case 442:
                         this.battle.combatantManager.allEffect(6,[this.effect[0]])
                         this.battle.combatantManager.allEffect(48,['Control',this.effect[1]])
+                    break
+                    case 464:
+                        this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,1,[this.effect[0]])
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])

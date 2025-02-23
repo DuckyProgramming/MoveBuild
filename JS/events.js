@@ -3923,7 +3923,7 @@ It looks a little better than what you're used to.`,
             },
         ],
     },{
-        name:'Fairy of Sunlight',id:129,list:0,
+        name:'Fairy of Sunlight',id:129,list:-1,
         pages:[
             {
                 desc:
@@ -4776,7 +4776,7 @@ visit to the shop, it's on the house.`,
             },
         ],
     },{
-        name:'Fairy of Starlight',id:158,list:0,
+        name:'Fairy of Starlight',id:158,list:-1,
         pages:[
             {
                 desc:

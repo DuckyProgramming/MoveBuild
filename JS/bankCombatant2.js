@@ -2439,7 +2439,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
             this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[255,225,15],legs:[255,210,0],arms:[255,215,5]}}
         break
-        case 'Wall': case 'Exploding Wall':
+        case 'Wall': case 'Exploding Wall': case 'Swap Wall':
             this.anim={direction:direction}
             this.fades={body:1}
             this.trigger={display:{body:true}}
@@ -2453,6 +2453,9 @@ combatant.prototype.setupGraphics=function(direction){
                 case 'Exploding Wall':
                     this.color={in:[120,120,120],out:[100,100,100],bomb:[[180,180,180],[180,0,0]]}
                 break
+                case 'Swap Wall':
+                    this.color={in:[120,180,150],out:[100,150,125]}
+                break
             }
         break
         case 'Spike Pillar':
@@ -2464,16 +2467,23 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
             this.color={in:[200,195,190],out:[160,155,150]}
         break
-        case 'Projector':
+        case 'Projector': case 'Shieldzone':
             this.anim={direction:direction,light:1}
             this.fades={body:1,light:1}
             this.trigger={display:{body:true,light:true}}
             this.calc={int:[0,0,0,0]}
             this.animSet={loop:0,flip:0}
             this.goal={anim:{direction:this.anim.direction}}
-            this.color={in:[120,120,120],out:[100,100,100],light:[100,200,255]}
+            switch(this.name){
+                case 'Projector':
+                    this.color={in:[120,120,120],out:[100,100,100],light:[100,200,255]}
+                break
+                case 'Shieldzone':
+                    this.color={in:[120,120,120],out:[100,100,100],light:[255,100,200]}
+                break
+            }
         break
-        case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Armored Turret': case 'Shotgun':
+        case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Armored Turret': case 'Shotgun': case 'Megaturret': case 'Motor Turret': case 'Scaling Turret':
             this.anim={direction:direction}
             this.fades={base:1,body:1,dot:1}
             this.graphics={arms:[{bottom:{x:0,y:-25}},{bottom:{x:0,y:-25}}]}
@@ -2502,6 +2512,16 @@ combatant.prototype.setupGraphics=function(direction){
                 break
                 case 'Shotgun':
                     this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[200,100,0],out:[240,120,0]},dot:{in:[125,125,125],out:[105,105,105]}}
+                break
+                case 'Megaturret':
+                    this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,0,200],out:[0,0,240]},dot:{in:[125,125,125],out:[105,105,105]}}
+                    this.size*=1.5
+                break
+                case 'Motor Turret':
+                    this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[150,100,0],out:[180,120,0]},dot:{in:[125,125,125],out:[105,105,105]}}
+                break
+                case 'Scaling Turret':
+                    this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,0,200],diamond:[0,150,255],out:[0,0,240]},dot:{in:[125,125,125],out:[105,105,105]}}
                 break
             }
         break

@@ -840,6 +840,16 @@ class particle{
                 this.scale=0
                 this.growth=0.1
             break
+            case 262:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.color=args[2]
+                this.speed=10
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=0
+            break
 
         }
     }
@@ -4263,6 +4273,12 @@ class particle{
                     this.layer.fill(...this.color,this.fade)
                     regStar(this.layer,0,0,6,7.5,3,2.5,1,this.direction)
                 break
+                case 262:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(...this.color,this.fade*0.5)
+                    this.layer.ellipse(0,0,6,12)
+                    this.layer.ellipse(0,0,3,6)
+                break
 
             }
             //mark p
@@ -4459,7 +4475,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 108: case 140: case 142: case 202: case 215: case 226: case 227: case 257:
+            case 108: case 140: case 142: case 202: case 215: case 226: case 227: case 257: case 262:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,this.type==226||this.type==227?2:10)
@@ -4480,6 +4496,9 @@ class particle{
                         break
                         case 257:
                             parent.particles.push(new particle(this.layer,this.position.x,this.position.y,259,[3,[225,255,255]]))
+                        break
+                        case 262:
+                            parent.particles.push(new particle(this.layer,this.position.x,this.position.y,211,[5,this.color]))
                         break
                     }
                 }else if(this.fade<=0){

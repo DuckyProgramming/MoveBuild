@@ -283,14 +283,18 @@ class collectionManager{
                         this.query[a>=4?'class':'rarity'][a>=4?a-4:a]=!this.query[a>=4?'class':'rarity'][a>=4?a-4:a]
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7+25},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-105,y:this.layer.height*0.7+25},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='collection'
                     this.executeQuery()
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7+25},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+25},width:62.5,height:62.5})){
                     this.query.rarity=[false,false,false,false]
                     this.query.class=[false,false,false,false,false,false,false,false]
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+105,y:this.layer.height*0.7+25},width:62.5,height:62.5})){
+                    this.query.rarity=[true,true,true,true]
+                    this.query.class=[true,true,true,true,true,true,true,true]
                 }
             break
             case 'listQuery':
@@ -305,13 +309,19 @@ class collectionManager{
                         }
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-105,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='collection'
                     this.executeQuery()
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
                     this.query.list=[]
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+105,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                    this.query.list=[]
+                    for(let a=-10,la=constants.playerNumber+6;a<la;a++){
+                        this.query.list.push(a)
+                    }
                 }
             break
         }

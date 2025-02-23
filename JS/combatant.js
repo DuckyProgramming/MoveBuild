@@ -98,7 +98,7 @@ class combatant{
         this.builder=0
         
         this.compression=0
-        this.permanentStrength=0
+        this.permanent=[0,0]
         this.carry=[0,0,0,0,0]
 
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
@@ -201,7 +201,7 @@ class combatant{
                 'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns','0 Cost Block','Charge Consume Single Damage Up','Assign Return','Assign Temporary Strength','Pity',
                 'Death Energy','Death (E)','Debuff Temporary Strength','Basic Temporary Dexterity','Communized Weak','Communized Vulnerable','Turn Confuse','Confuse Cost Down','Prime Draw','Cycle Draw',
                 'Recover Draw','Recover Next Turn','Recover Up','Shiv Temporary Damage Taken Up','Free War','Skill Discard Draw','Worker Draw Per Turn','Worker Boost','Assign Draw','Free Assign',
-                'Intangible Strength','Debuff Draw','"Debuff"','Discus Pure','Cycle Rotation','Base Attack Weak Combat',
+                'Intangible Strength','Debuff Draw','"Debuff"','Discus Pure','Cycle Rotation','Base Attack Weak Combat','Retain Lock On','History Rewind Tick','Gun Draw',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -284,7 +284,7 @@ class combatant{
                 1,2,2,2,2,0,0,0,0,1,//78
                 0,0,0,0,0,0,0,0,0,0,//79
                 0,2,0,0,1,0,0,0,0,0,//80
-                0,0,0,0,0,0,
+                0,0,0,0,0,0,1,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -367,7 +367,7 @@ class combatant{
                 3,2,2,2,2,2,2,2,2,2,//78
                 2,2,2,2,2,2,2,2,2,2,//79
                 2,2,2,2,2,2,2,2,2,2,//80
-                2,2,3,2,2,2,
+                2,2,3,2,2,2,3,2,2,
             ]}
         /*
         0-none
@@ -428,7 +428,7 @@ class combatant{
             life:this.life,
             base:{life:this.base.life},
             compression:this.compression,
-            permanentStrength:this.permanentStrength,
+            permanent:this.permanent,
             carry:this.carry,
         }
         return composite
@@ -437,7 +437,7 @@ class combatant{
         this.life=composite.life
         this.base.life=composite.base.life
         this.compression=composite.compression
-        this.permanentStrength=composite.permanentStrength
+        this.permanent=composite.permanent
         this.carry=composite.carry
     }
     constants(){
@@ -505,8 +505,11 @@ class combatant{
             this.statusEffect('Armor',4)
             this.addBlock(4)
         }
-        if(this.permanentStrength>0){
-            this.statusEffect('Strength',this.permanentStrength)
+        if(this.permanent[0]>0){
+            this.statusEffect('Strength',this.permanent[0])
+        }
+        if(this.permanent[1]>0){
+            this.statusEffect('Metallicize',this.permanent[1])
         }
         for(let a=0,la=this.carry.length;a<la;a++){
             if(this.carry[a]>0){
@@ -829,7 +832,7 @@ class combatant{
             case 'Puffball':
                 this.statusEffect('Buffer',game.ascend>=31?4:2)
             break
-            case 'Brawler':
+            case 'Brawler': case 'Scaling Turret':
                 this.statusEffect('Strength Per Turn',1)
             break
             case 'Mailman':
@@ -1830,12 +1833,12 @@ class combatant{
                     this.graphics.arms[g].middle.y=this.parts.arms[g].middle.y
                 }
             break
-            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Armored Turret': case 'Shotgun': case 'Swarm Turret':
+            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Armored Turret': case 'Shotgun': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret': case 'Scaling Turret':
                 this.graphics={arms:[{bottom:{x:lsin(this.anim.direction)*40,y:-25}},{bottom:{x:lsin(this.anim.direction)*40,y:-25}}]}
             break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine': case 'Keystone': case 'Spirit of Wealth': case 'Spirit of Elegance':
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': case 'Louse': case 'Hwurmp': case 'Glimmerrer': case 'Antihwurmp': case 'Half Spikeball':
-            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall':
+            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall': case 'Shieldzone': case 'Swap Wall':
             break
             default:
                 for(let g=0;g<2;g++){
@@ -5012,6 +5015,11 @@ class combatant{
     }
     activateRewind(){
         this.activateHistory()
+        if(this.status.main[807]>0){
+            for(let a=0,la=this.status.main[807];a<la;a++){
+                this.activateHistory()
+            }
+        }
     }
     activateHistory(){
         if(this.life>0&&this.status.main[306]>0){
@@ -5829,6 +5837,7 @@ class combatant{
                 }else if(
                     (this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0||this.status.behavior[a]==4&&this.team>0)
                     &&!(a==3&&this.getStatus('Retain Dodge')>0)
+                    &&!(a==461&&this.getStatus('Retain Lock On')>0)
                 ){
                     if(this.status.main[a]>0){
                         this.status.main[a]--
@@ -6090,7 +6099,7 @@ class combatant{
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret':
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret': case 'Shieldzone': case 'Swap Wall': case 'Scaling Turret':
                 switch(type){
                     case 19:
                         this.animSet.loop=0
@@ -6955,7 +6964,7 @@ class combatant{
                 }
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret':
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret': case 'Shieldzone': case 'Swap Wall': case 'Scaling Turret':
                 switch(type){
                     case 19:
                         this.animSet.loop+=rate
@@ -7583,6 +7592,8 @@ class combatant{
                         this.battle.cardManagers[this.team-1].deAbstract(2,1,['Use Teleporter\nStart'])
                     }else if(this.name=='Teleporter End'&&this.battle.cardManagers[this.team-1].hand.lastPlayed[0].name!='Use Teleporter\nEnd'){
                         this.battle.cardManagers[this.team-1].deAbstract(2,1,['Use Teleporter\nEnd'])
+                    }else if(this.name=='Swap Wall'&&this.battle.cardManagers[this.team-1].hand.lastPlayed[0].name!='Use Teleporter\nSwap\nWall'){
+                        this.battle.cardManagers[this.team-1].deAbstract(2,1,['Use Teleporter\nSwap\nWall'])
                     }
                 }
             }

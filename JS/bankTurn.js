@@ -349,7 +349,7 @@ turn.prototype.update=function(){
                 case 126: case 182: case 190: case 230: case 231: case 232: case 234: case 237: case 238: case 239:
                 case 240: case 241: case 254: case 257: case 261: case 267: case 269: case 280: case 293: case 318:
                 case 346: case 359: case 365: case 376: case 392: case 401: case 405: case 408: case 410: case 411:
-                case 438: case 442: case 456: case 460:
+                case 438: case 442: case 456: case 460: case 464:
                     if(variants.nobasicanim){
                         this.selfCall(1)
                         this.remove=true
@@ -435,7 +435,7 @@ turn.prototype.update=function(){
                             this.userCombatant.runAnimation(1/10,5)
                         }
                         if(this.timer==15){
-                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x*this.userCombatant.size,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y*this.userCombatant.size,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
                         }else if(this.timer==5*this.targetDistance+15){
                             this.selfCall(4)
                         }else if(this.timer>=max(30,5*this.targetDistance+25)){

@@ -989,7 +989,7 @@ function intentDescription(attack,user,info){
 			case 225: return `Kill Self\nReturn Next Turn,\nHealed to Full`
 			case 228: return `Counter ${info?calculateIntent(attack.effect[0],user,0):`?`} All This Combat`
 			case 229: return `Apply ${info?calculateIntent(attack.effect[0],user,0):`?`} Take Per Turn`
-			case 230: return `Add ${info?attack.effect[0]:`?`} Block\nto Builder and\nAllied Constructs`
+			case 230: return `Add ${info?attack.effect[0]:`?`} Block\nto Builder`
 			case 231: return `Builder Draws ${info?attack.effect[0]:`?`}\nCard${pl(attack.effect[0])}`
 			case 232: return `Builder and Allied Constructs\nGain ${info?attack.effect[0]:`?`}\nTemporary Strength`
 			case 233: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTo Targets in\nAll Directions`
@@ -1213,6 +1213,7 @@ function intentDescription(attack,user,info){
 			case 460: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nGain ${info?attack.effect[1]:`?`} Regeneration`
 			case 461: return `Gain ${info?attack.effect[0]:`?`} Intangible\nGain ${info?attack.effect[1]:`?`} Control`
 			case 462: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAnywhere\nTarget Cannot Move\nFor ${info?attack.effect[1]:`?`} Turn${pl(attack.effect[1])}`
+			case 464: return `Add ${info?attack.effect[0]:`?`} Block\nto Allied Constructs`
 
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`

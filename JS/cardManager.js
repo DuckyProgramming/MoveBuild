@@ -610,6 +610,46 @@ class cardManager{
         }
         return sent
     }
+    drawReturnAbstract(amount,variant,output,args){
+        if(!this.tempDraw.active){
+            this.battle.relicManager.activate(23,[amount,this.player])
+        }
+        let sent=[]
+        if(amount>0){
+            this.hand.allEffectArgs(31,[amount])
+            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+            if(userCombatant.getStatus('No Draw')<=0){
+                this.battle.stats.drawn[this.player]+=amount
+                if(variants.witch){
+                    for(let a=0,la=amount;a<la;a++){
+                        this.hand.add(findName('Card\nSlot',types.card),0,0)
+                    }
+                }else{
+                    let amountLeft=amount
+                    let sendId=this.reserve.sendAmounts.length
+                    let result=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args)
+                    amountLeft=this.reserve.sendAmounts[sendId]-result.length
+                    for(let a=0,la=result.length;a<la;a++){
+                        sent.push(result[a])
+                    }
+                    if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
+                        this.discard.send(this.reserve.cards,0,-1,2)
+                        this.generalShuffle()
+                        if(this.reserve.cards.length>0){
+                            sendId=this.reserve.sendAmounts.length
+                            result=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args)
+                            amountLeft=this.reserve.sendAmounts[sendId]-result.length
+                            for(let a=0,la=result.length;a<la;a++){
+                                sent.push(result[a])
+                            }
+                        }
+                    }
+                    this.reserve.parseDrawEffects(this.hand)
+                }
+            }
+        }
+        return sent
+    }
     drawBottom(amount,spec=0){
         if(!this.tempDraw.active){
             this.battle.relicManager.activate(23,[amount,this.player])

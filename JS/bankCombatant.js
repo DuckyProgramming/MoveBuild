@@ -10134,7 +10134,7 @@ combatant.prototype.display=function(){
                     this.layer.line(0,0,0,-48)
                 }
             break
-            case 'Wall': case 'Exploding Wall':
+            case 'Wall': case 'Exploding Wall': case 'Swap Wall':
                 if(this.trigger.display.body){
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                     this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
@@ -10142,12 +10142,14 @@ combatant.prototype.display=function(){
                     this.layer.quad(-20,0,20,0,16,-40,-16,-40)
                     this.layer.line(-20,0,16,-40)
                     this.layer.line(20,0,-16,-40)
-                    if(this.name=='Exploding Wall'){
-                        this.layer.noStroke()
-                        this.layer.fill(this.flashColor(this.color.bomb[0])[0],this.flashColor(this.color.bomb[0])[1],this.flashColor(this.color.bomb[0])[2],this.fade*this.fades.body)
-                        this.layer.quad(-6,-20,0,-26,6,-20,0,-14)
-                        this.layer.fill(this.flashColor(this.color.bomb[1])[0],this.flashColor(this.color.bomb[1])[1],this.flashColor(this.color.bomb[1])[2],this.fade*this.fades.body)
-                        this.layer.quad(-4,-20,0,-24,4,-20,0,-16)
+                    switch(this.name){
+                        case 'Exploding Wall':
+                            this.layer.noStroke()
+                            this.layer.fill(this.flashColor(this.color.bomb[0])[0],this.flashColor(this.color.bomb[0])[1],this.flashColor(this.color.bomb[0])[2],this.fade*this.fades.body)
+                            this.layer.quad(-6,-20,0,-26,6,-20,0,-14)
+                            this.layer.fill(this.flashColor(this.color.bomb[1])[0],this.flashColor(this.color.bomb[1])[1],this.flashColor(this.color.bomb[1])[2],this.fade*this.fades.body)
+                            this.layer.quad(-4,-20,0,-24,4,-20,0,-16)
+                        break
                     }
                 }
             break
@@ -10171,7 +10173,7 @@ combatant.prototype.display=function(){
                     }
                 }
             break
-            case 'Projector':
+            case 'Projector': case 'Shieldzone':
                 if(this.trigger.display.light){
                     this.layer.fill(this.flashColor(this.color.light)[0],this.flashColor(this.color.light)[1],this.flashColor(this.color.light)[2],this.fade*this.fades.light*0.1*this.anim.light)
                     for(let a=0,la=10;a<la;a++){
@@ -10185,7 +10187,7 @@ combatant.prototype.display=function(){
                     this.layer.quad(-20,0,20,0,16,-16,-16,-16)
                 }
             break
-            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Armored Turret': case 'Shotgun':
+            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Armored Turret': case 'Shotgun': case 'Megaturret': case 'Motor Turret': case 'Scaling Turret':
                 if(this.trigger.display.base){
                     this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
                     this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
@@ -10227,6 +10229,28 @@ combatant.prototype.display=function(){
                     for(let a=0,la=4;a<la;a++){
                         if(lcos(this.anim.direction+a*90)>0){
                             this.layer.rect(20*lsin(this.anim.direction+a*90),-25,40*lcos(this.anim.direction+a*90),40)
+                        }
+                    }
+                    if(this.name=='Scaling Turret'){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.body.diamond)[0],this.flashColor(this.color.body.diamond)[1],this.flashColor(this.color.body.diamond)[2],this.fade*this.fades.body)
+                        for(let a=0,la=4;a<la;a++){
+                            if(lcos(this.anim.direction+a*90)>0){
+                                this.layer.quad(
+                                    20*lsin(this.anim.direction+a*90)-15*lcos(this.anim.direction+a*90),-25,
+                                    20*lsin(this.anim.direction+a*90),-40,
+                                    20*lsin(this.anim.direction+a*90)+15*lcos(this.anim.direction+a*90),-25,
+                                    20*lsin(this.anim.direction+a*90),-10
+                                )
+                            }
+                        }
+                        this.layer.stroke(this.flashColor(this.color.body.out)[0],this.flashColor(this.color.body.out)[1],this.flashColor(this.color.body.out)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(5)
+                        this.layer.noFill()
+                        for(let a=0,la=4;a<la;a++){
+                            if(lcos(this.anim.direction+a*90)>0){
+                                this.layer.rect(20*lsin(this.anim.direction+a*90),-25,40*lcos(this.anim.direction+a*90),40)
+                            }
                         }
                     }
                 }

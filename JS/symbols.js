@@ -7973,6 +7973,50 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(-1,-5,1,3)
             layer.rect(1,-5,1,3)
         break
+        case 806:
+            layer.stroke(225,75,25,fade)
+            layer.strokeWeight(1.5)
+            layer.point(0,0)
+            layer.ellipse(0,0,6,6)
+            layer.line(0,-3,0,-5)
+            layer.line(-3,0,-5,0)
+            layer.line(0,3,0,5)
+            layer.line(3,0,5,0)
+            layer.noStroke()
+            layer.fill(225,fade)
+            layer.rect(-2,0,6,2)
+            layer.triangle(1,-3,1,3,5,0)
+        break
+        case 807:
+            layer.fill(200,150,100,fade)
+            layer.rect(0,0,6,8)
+            layer.beginShape()
+            layer.vertex(-3,-3)
+            layer.bezierVertex(-3,-4,-2,-5,-1,-5)
+            layer.vertex(5,-5)
+            layer.bezierVertex(4,-5,3,-4,3,-3)
+            layer.endShape()
+            layer.beginShape()
+            layer.vertex(3,3)
+            layer.bezierVertex(3,4,2,5,1,5)
+            layer.vertex(-5,5)
+            layer.bezierVertex(-4,5,-3,4,-3,3)
+            layer.endShape()
+            layer.fill(200,255,100,fade)
+            layer.triangle(-0.5,4,-0.5,-4,-4,-4)
+            layer.triangle(0.5,-4,0.5,4,4,4)
+            layer.fill(80,fade)
+            layer.triangle(-2,-1.5,-2,1.5,4,0)
+        break
+        case 808:
+            layer.fill(100,fade)
+            layer.rect(-4,1,2,6)
+            layer.rect(2,-1,10,2)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+        break
 
     }
     //mark s
@@ -12992,6 +13036,13 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.ellipse(-7.5,-2.25,3,3)
             layer.ellipse(-7.5,2.25,3,3)
         break
+        case 464:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(100,200,225,fade)
+            layer.rect(0,0,4)
+        break
 
     }
     //mark i
@@ -13024,7 +13075,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 366: case 372: case 373: case 382: case 383: case 384: case 385: case 400: case 403: case 413:
             case 416: case 417: case 418: case 419: case 420: case 421: case 423: case 424: case 425: case 429:
             case 431: case 432: case 440: case 445: case 446: case 447: case 449: case 450: case 451: case 452:
-            case 457: case 458: case 463:
+            case 457: case 458: case 463: case 464:
                 layer.text(effect[0],0,0)
             break
             case 20: case 31: case 47: case 59: case 66: case 69: case 97: case 99: case 103: case 133:

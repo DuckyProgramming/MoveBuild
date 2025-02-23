@@ -1,26 +1,20 @@
-CARDSET 68
+disband most of the variants
 
+new variants:
 
+endless - when you kill rewriter restart the game but with all enemies getting huge buffs
 
-soft spoken - all sharp words and reversals currently existing cost 1 and exhaust
-
-weather ball - damage, status based on the stance you're in
-
-contrast - 1 cost, draw a card, if last card played was a skill pull from discard pile
-
-elegiac - 1 vulnerable to all enemies, if last card played was a skill add block
-
-build mega turret
-
-[more population]
-
-
-
-[fill all defecits]
+[]
 
 
 
 update the dictionary
+
+2 events
+
+wheel of whatever
+
+ducksquad - can pay to get duck backup card
 
 
 
@@ -37,4 +31,42 @@ OPERATION ICATHIA
 AFTER
 
 runcheck every card in the game (for crashes)
+
+
+
+LEGACY
+
+
+
+CARDSET 69 [GENERALIZED]
+
+ruined town - apply 5 bruise, gain 1 control
+
+murder mystery - apply bruise, draw a combo card
+
+diamond hardness but shinmy - conditional ( active wish in hand: )
+
+
+
+CARDSET 70 [RESERVE]
+
+fiery laser - damage, burn, repeat if first time played this combat
+
+cranberry trap - deal 15 splash damage each turn, until you get hit
+
+chroma - 1 of each mana
+
+warmonger - gain 1 temporary strength and 1 temporary dexterity for each enemy
+
+back to the past - discard your hand, return 4 cards from discard pile to hand
+
+glaucous - gain dexterity and next movement is free
+
+
+
+CARDSET 71 [GIMMICKAL]
+
+devil's prism - 10 damage, randomly gain 3 life, 5 currency, or a random temporary item
+death treat - apply vulnerable, add a subcard^ to hand
+
 

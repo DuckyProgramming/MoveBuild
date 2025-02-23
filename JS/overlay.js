@@ -1739,6 +1739,9 @@ class overlay{
                                 case 7345:
                                     this.cards[a].attack=[-1078,-1013][a]
                                 break
+                                case 7740:
+                                    this.cards[a].attack=[-1079,-1080][a]
+                                break
                             }
                         }
                     break
@@ -2322,6 +2325,14 @@ class overlay{
                                 this.card.costDown(0,[5])
                                 this.battle.cardManagers[this.player].hand.add(findName('Standardize',types.card),0,0)
                                 this.battle.cardManagers[this.player].draw(args[0].effect[1])
+                            break
+                            case -1079:
+                                this.card.costDown(0,[5])
+                                userCombatant.statusEffect('Dodge',args[0].effect[1])
+                            break
+                            case -1080:
+                                this.card.costDown(0,[7])
+                                userCombatant.statusEffect('Extra Turn',1)
                             break
                         }
                     break

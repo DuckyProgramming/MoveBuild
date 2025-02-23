@@ -1095,6 +1095,37 @@ class combatantManager{
                             this.combatants[a].statusEffect(args[0],args[1])
                         }
                     break
+                    case 59:
+                        if(this.combatants[a].status.main[3]>0){
+                            this.combatants[a].status.main[3]=0
+                        }
+                        if(this.combatants[a].status.main[21]>0){
+                            this.combatants[a].status.main[21]=0
+                        }
+                        if(this.combatants[a].status.main[24]>0){
+                            this.combatants[a].status.main[24]=0
+                        }
+                        if(this.combatants[a].status.main[53]>0){
+                            this.combatants[a].status.main[53]=0
+                        }
+                        if(this.combatants[a].status.main[57]>0){
+                            this.combatants[a].status.main[57]=0
+                        }
+                        if(this.combatants[a].status.main[97]>0){
+                            this.combatants[a].status.main[97]=0
+                        }
+                        if(this.combatants[a].status.main[243]>0){
+                            this.combatants[a].status.main[243]=0
+                        }
+                        if(this.combatants[a].status.main[319]>0){
+                            this.combatants[a].status.main[319]=0
+                        }
+                    break
+                    case 60:
+                        if(this.combatants[a].getStatus(args[0])>0){
+                            this.combatants[a].takeDamage(args[1],args[2])
+                        }
+                    break
                 }
             }
         }

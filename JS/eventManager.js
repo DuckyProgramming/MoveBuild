@@ -1971,7 +1971,7 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                         }else if(this.page==0&&a==2){
                             this.harm(userCombatant,8)
                         }else if(this.page==1&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Luna, Silent\nMoonlight',types.card),0,constants.playerNumber+5)
+                            this.battle.cardManagers[this.player].deck.add(findName('Luna, Silent\nMoonlight',types.card),0,0)
                         }else if(this.page==2&&a==0){
                             this.battle.overlayManager.overlays[15][this.player].active=true
                             this.battle.overlayManager.overlays[15][this.player].activate([])

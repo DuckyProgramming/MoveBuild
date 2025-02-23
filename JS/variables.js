@@ -270,7 +270,7 @@ types={
 
         {name:'Wall',life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
         {name:'Spike Pillar',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
-        {name:'Projector',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:230,effect:[8]}],description:`Does your job for you`},
+        {name:'Projector',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:230,effect:[16]}],description:`Does your job for you`},
         {name:'Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[15]}],description:`Sentry goin' up`},
         {name:'Readout',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:231,effect:[2]}],description:`Big brain augmentation`},
         {name:'Strengthener',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:232,effect:[3]}],description:`Get ripped`},
@@ -293,6 +293,11 @@ types={
         {name:'Shotgun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:303,effect:[30,5]}],description:`Shotgun duck game?`},
         {name:'Exploding Wall',life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Pay to win`},
         {name:'Swarm Turret',life:8,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:47,effect:[3]}],description:`Even less gun`},
+        {name:'Megaturret',life:64,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[25]}],description:`Chonky`},
+        {name:'Motor Turret',life:10,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:12,effect:[15]}],description:`Auto parts diff`},
+        {name:'Shieldzone',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:464,effect:[8]}],description:`Protects its friends`},
+        {name:'Swap Wall',life:36,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not the first mover`},
+        {name:'Scaling Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[15]}],description:`Sentry growin' up`},
 
         {name:'MobMan',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`No brain?`},
         {name:'AllyMonkey',life:24,behavior:0,spec:[17],move:{type:0,speed:2},attack:[{type:11,effect:[2]}],description:`Your best friend`},
@@ -780,6 +785,7 @@ types={
         {name:'Self Intangible / Control',class:4},
         {name:'Targetted Strike / Cannot Move',class:5},
         {name:'6 Tile Carding Strike',class:1},
+        {name:'Construct Block',class:2},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,world:[0,3],description:''},
