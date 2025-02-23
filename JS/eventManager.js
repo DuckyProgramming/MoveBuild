@@ -171,6 +171,7 @@ class eventManager{
                 !(this.listing.event[a]==171&&userCombatant.life>userCombatant.base.life-20)&&
                 !(this.listing.event[a]==172&&this.battle.currency.money[this.player]<50)&&
                 !(this.listing.event[a]==173&&userCombatant.life>userCombatant.base.life-10)&&
+                !(this.listing.event[a]==175&&(this.battle.currency.money[this.player]<50||userCombatant.life>userCombatant.base.life-10))&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -2030,6 +2031,18 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                         if(this.page==1&&a==0){
                             this.battle.relicManager.addRandomRelic(this.player)
                             this.battle.relicManager.addRandomRelic(this.player)
+                        }
+                    break
+                    case 175:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(50,this.player)
+                            this.battle.overlayManager.overlays[174][this.player].active=true
+                            this.battle.overlayManager.overlays[174][this.player].activate([])
+                        }
+                    break
+                    case 176:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Call\nDucksquad',types.card),0,0)
                         }
                     break
 

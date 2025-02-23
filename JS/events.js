@@ -1912,7 +1912,7 @@ You might be able to grab something before you run.`,
             },{
                 desc:`You grab the box, but you can't tell what's inside.`,
                 option:['Run'],
-                optionDesc:['Gain 2 Random Rare Cards'],
+                optionDesc:['Add 2 Random Rare Cards'],
                 link:[-1],
             },{
                 desc:`You grab the box, but you can't tell what's inside.`,
@@ -5328,8 +5328,56 @@ Looks like you didn't win anything.`,
                 link:[-1],
             },
         ],
+    },{
+        name:'Wheel of Surprise',id:175,list:0,
+        pages:[
+            {
+                desc:
+`You find a duck standing in the midst of an empty field.
+He holds what seems to be two dowsing rods, moving them around.
+"Looks like there's some treasure here!" he tells you.
+"Pay a small fee and it's yours!"`,
+                option:['Spin','Decline'],
+                optionDesc:['Lose 50 Currency',''],
+                link:[1,2],
+            },{
+                desc:`You get whatever it was that he found.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`There's no way he's being honest.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Ducksquad',id:176,list:0,
+        pages:[
+            {
+                desc:
+`A clump of ducks are hiding in the forest talking.
+When they see you, they invite you over.
+They say they're forming a local resistance force.
+One offers to induct you into the group.`,
+                option:['Join the Ducksquad','Run'],
+                optionDesc:['Add Call Ducksquad to Deck',''],
+                link:[1,2],
+            },{
+                desc:`You learn the way they communicate.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You find his proposition pointless.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
     },/*{
-        name:'',id:169,list:0,
+        name:'',id:177,list:0,
         pages:[
             {
                 desc:

@@ -1205,6 +1205,13 @@ class combatantManager{
                 case 14:
                     this.combatants[a].removeRandomStatus(args[0])
                 break
+                case 15:
+                    if(this.combatants[a].team==0){
+                        this.combatants[a].statusEffect('Strength',args[0])
+                    }else if(this.combatants[a].id<this.battle.players){
+                        this.combatants[a].statusEffect('Extra Turn',1)
+                    }
+                break
                 
             }
         }

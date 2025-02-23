@@ -7107,40 +7107,40 @@ function setupBackground(type,layer){
 		case 11:
 			menuBackground(layer)
 			layer.fill(120)
-			layer.rect(layer.width/2-105,layer.height*0.7+190,125,125)
-			layer.rect(layer.width/2-105,layer.height*0.7+290,200,55)
-			layer.rect(layer.width/2+105,layer.height*0.7+190,125,125)
-			layer.rect(layer.width/2+105,layer.height*0.7+290,200,55)
+			layer.rect(layer.width/2-105,layer.height*0.7-10,125,125)
+			layer.rect(layer.width/2-105,layer.height*0.7+90,200,55)
+			layer.rect(layer.width/2+105,layer.height*0.7-10,125,125)
+			layer.rect(layer.width/2+105,layer.height*0.7+90,200,55)
 			for(let a=0,la=variants.names.length;a<la;a++){
-				layer.rect(layer.width/2-570+a%4*380,layer.height/2-450+floor(a/4)*80,350,70)
+				layer.rect(layer.width/2-570+a%4*380,layer.height/2-250+floor(a/4)*80,350,70)
 			}
 			layer.fill(0)
-			layer.rect(layer.width/2-105,layer.height*0.7+190,100,100)
-			layer.rect(layer.width/2-105,layer.height*0.7+290,175,30)
-			layer.rect(layer.width/2+105,layer.height*0.7+190,100,100)
-			layer.rect(layer.width/2+105,layer.height*0.7+290,175,30)
+			layer.rect(layer.width/2-105,layer.height*0.7-10,100,100)
+			layer.rect(layer.width/2-105,layer.height*0.7+90,175,30)
+			layer.rect(layer.width/2+105,layer.height*0.7-10,100,100)
+			layer.rect(layer.width/2+105,layer.height*0.7+90,175,30)
 			for(let a=0,la=variants.names.length;a<la;a++){
-				layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-450+floor(a/4)*80,270,45)
-				layer.rect(layer.width/2-430+a%4*380,layer.height/2-450+floor(a/4)*80,45,45)
+				layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-250+floor(a/4)*80,270,45)
+				layer.rect(layer.width/2-430+a%4*380,layer.height/2-250+floor(a/4)*80,45,45)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-110,layer.height*0.7+190,30,30,-30)
-			layer.rect(layer.width/2+105,layer.height*0.7+190,36,36)
+			regTriangle(layer,layer.width/2-110,layer.height*0.7-10,30,30,-30)
+			layer.rect(layer.width/2+105,layer.height*0.7-10,36,36)
 			layer.fill(255)
 			layer.textSize(20)
-			layer.text('BACK',layer.width/2-105,layer.height*0.7+290)
+			layer.text('BACK',layer.width/2-105,layer.height*0.7+90)
 			for(let a=0,la=variants.names.length;a<la;a++){
-				layer.textSize(a==13?18:20)
-				layer.text(variants.names[a].toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-450+floor(a/4)*80)
+				layer.textSize(a==10?18:20)
+				layer.text(variants.names[a].toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-250+floor(a/4)*80)
 			}
-			for(let a=0,la=10;a<la;a++){
-				layer.text(a+1,layer.width/2-770,layer.height/2-450+a*80)
+			for(let a=0,la=5;a<la;a++){
+				layer.text(a+1,layer.width/2-770,layer.height/2-250+a*80)
 			}
 			for(let a=0,la=4;a<la;a++){
-				layer.text(a+1,layer.width/2-590+a%4*380,layer.height/2-500)
+				layer.text(a+1,layer.width/2-590+a%4*380,layer.height/2-300)
 			}
 			layer.textSize(15)
-			layer.text('CUSTOM ULTRAPRISM',layer.width/2+105,layer.height*0.7+290)
+			layer.text('CUSTOM ULTRAPRISM',layer.width/2+105,layer.height*0.7+90)
 		break
 		case 12:
 			menuBackground(layer)

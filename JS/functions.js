@@ -2412,12 +2412,14 @@ function colorTest(){
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(1,0,a,0)
 	}
 }
-function attackTest(type,target,startpoint){
+function attackTest(type,target,startpoint,endpoint){
 	switch(type){
 		case 0: case 1: case 2: case 3:
 			current.combatantManager.combatants[type==1?target[1]:target].setMaxHP(999999)
+			current.combatantManager.combatants[type==1?target[1]:target].statusEffect('Cannot Die',1)
+			current.combatantManager.combatants[0].statusEffect('Cannot Die',1)
 			if(variants.mtg){
-				for(let a=startpoint,la=types.card.length;a<la;a++){
+				for(let a=startpoint,la=endpoint==-1?types.card.length:endpoint;a<la;a++){
 					for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
 						if((
 								type==0&&types.card[a].mtg.levels[b].target[0]==2||
@@ -2453,7 +2455,7 @@ function attackTest(type,target,startpoint){
 					}
 				}
 			}else{
-				for(let a=startpoint,la=types.card.length;a<la;a++){
+				for(let a=startpoint,la=endpoint==-1?types.card.length:endpoint;a<la;a++){
 					for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
 						if(
 							type==0&&types.card[a].levels[b].target[0]==2||
@@ -2580,8 +2582,8 @@ function mtgPlayerColor(player){
 		case 19: return [3,4,5]
 		case 20: return [2,3,5]
 		case 21: return [1,3,4]
-		case 22: return [1,3]
-		case 23: return [2,4]
+		case 22: return [2,4]
+		case 23: return [2,3]
 		case 24: return [4,5]
 		default: return [6]
 	}

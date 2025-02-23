@@ -1454,7 +1454,7 @@ class overlay{
                                             this.cards[tick].upSize=true
                                             tick++
                                             if(variants.mtg){
-                                                if(types.card[selector].mtg.list!=mark){
+                                                if(types.card[selector].mtg.list!=mark&&types.card[selector].mtg.list>=0){
                                                     mark=types.card[selector].mtg.list
                                                     this.marks.push(floor(total/24))
                                                 }
@@ -2989,12 +2989,14 @@ class overlay{
                 this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2,240,400,10)
                 this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-225,120,40,10)
                 this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2+225,120,40,10)
+                this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2+270,120,40,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
                 this.layer.text('Stats',this.layer.width/2+225*this.posKey,this.layer.height/2-175)
                 this.layer.textSize(20)
                 this.layer.text('Close',this.layer.width/2+225*this.posKey,this.layer.height/2-225)
                 this.layer.text('Save',this.layer.width/2+225*this.posKey,this.layer.height/2+225)
+                this.layer.text('Endless',this.layer.width/2+225*this.posKey,this.layer.height/2+270)
                 this.layer.textSize(10)
                 let variantStack=''
                 for(let a=0,la=variants.map.length;a<la;a++){
@@ -3408,10 +3410,10 @@ class overlay{
                 this.layer.rect(0,0,300,300,10)
                 this.layer.fill(40,this.fade)
                 this.layer.ellipse(0,0,270)
-                this.layer.textSize(20)
+                this.layer.textSize([20,20,15][this.args[0]])
                 this.layer.rotate(this.spin)
-                for(let a=0,la=16;a<la;a++){
-                    this.layer.fill(240,120+a%2*120,0,this.fade)
+                for(let a=0,la=[16,16,8][this.args[0]];a<la;a++){
+                    this.layer.fill(200-a%2*40,180-a%2*40,160-a%2*40,this.fade)
                     this.layer.arc(0,0,260,260,-180/la,180/la)
                     this.layer.fill(0,this.fade)
                     switch(this.args[0]){
@@ -3420,6 +3422,9 @@ class overlay{
                         break
                         case 1:
                             this.layer.text(-[25,5,10,5,20,5,10,5,20,5,10,5,15,5,10,5][a],90,0)
+                        break
+                        case 2:
+                            this.layer.text(['150 Currency','Curse','Relic','Heal','Upgrade','Remove','Transform','Rare Card'][a],80,0)
                         break
                     }
                     this.layer.rotate(360/la)
@@ -3824,6 +3829,43 @@ class overlay{
                                 for(let a=0,la=16;a<la;a++){
                                     if((this.spin+360*a/la-180/la)%360<270&&(this.spin+360*a/la+180/la)%360>270){
                                         this.battle.eventManagers[this.player].harm(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)],[25,5,10,5,20,5,10,5,20,5,10,5,15,5,10,5][a])
+                                        this.active=false
+                                    }
+                                }
+                            break
+                            case 2:
+                                for(let a=0,la=8;a<la;a++){
+                                    if((this.spin+360*a/la-180/la)%360<270&&(this.spin+360*a/la+180/la)%360>270){
+                                        switch(a){
+                                            case 0:
+                                                this.battle.addCurrency(150,this.player)
+                                            break
+                                            case 1:
+                                                this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[constants.playerNumber+2,3])
+                                            break
+                                            case 2:
+                                                this.battle.relicManager.addRandomRelic(this.player)
+                                            break
+                                            case 3:
+                                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].base.life)
+                                            break
+                                            case 4:
+                                                this.battle.overlayManager.overlays[5][this.player].active=true
+                                                this.battle.overlayManager.overlays[5][this.player].activate()
+                                            break
+                                            case 5:
+                                                this.battle.overlayManager.overlays[6][this.player].active=true
+                                                this.battle.overlayManager.overlays[6][this.player].activate()
+                                            break
+                                            case 6:
+                                                this.battle.overlayManager.overlays[9][this.player].active=true
+                                                this.battle.overlayManager.overlays[9][this.player].activate()
+                                            break
+                                            case 7:
+                                                this.battle.overlayManager.overlays[3][this.player].active=true
+                                                this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
+                                            break
+                                        }
                                         this.active=false
                                     }
                                 }
@@ -5054,6 +5096,11 @@ class overlay{
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2+225},width:120,height:40})){
                         this.battle.overlayManager.overlays[51][this.player].active=true
                         this.battle.overlayManager.overlays[51][this.player].activate()
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2+270},width:120,height:40})){
+                        this.active=false
+                        transition.trigger=true
+                        transition.scene='map'
+                        this.battle.nextWorld()
                     }
                 break
                 case 5:
@@ -6572,6 +6619,11 @@ class overlay{
                 case 4:
                     if(code==ENTER){
                         this.active=false
+                    }else if(key=='e'||key=='E'){
+                        this.active=false
+                        transition.trigger=true
+                        transition.scene='map'
+                        this.battle.nextWorld()
                     }
                 break
                 case 5:

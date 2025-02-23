@@ -1,36 +1,4 @@
-disband most of the variants
-
-new variants:
-
-endless - when you kill rewriter restart the game but with all enemies getting huge buffs
-
-[]
-
-
-
-update the dictionary
-
-2 events
-
-wheel of whatever
-
-ducksquad - can pay to get duck backup card
-
-
-
-OPERATION VEBLIKUR
-
-[new character tutorials]
-
-
-
 OPERATION ICATHIA
-
-
-
-AFTER
-
-runcheck every card in the game (for crashes)
 
 
 
@@ -39,6 +7,8 @@ LEGACY
 
 
 CARDSET 69 [GENERALIZED]
+
+[1 basic card temp]
 
 ruined town - apply 5 bruise, gain 1 control
 
@@ -54,6 +24,8 @@ fiery laser - damage, burn, repeat if first time played this combat
 
 cranberry trap - deal 15 splash damage each turn, until you get hit
 
+apotheotic shield - block, trigger apotheosis
+
 chroma - 1 of each mana
 
 warmonger - gain 1 temporary strength and 1 temporary dexterity for each enemy
@@ -61,6 +33,8 @@ warmonger - gain 1 temporary strength and 1 temporary dexterity for each enemy
 back to the past - discard your hand, return 4 cards from discard pile to hand
 
 glaucous - gain dexterity and next movement is free
+x
+cerberus - damage 3 times, weak and vulnerable, heal
 
 
 

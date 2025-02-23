@@ -239,35 +239,35 @@ class attack{
             case 5433: case 5434: case 5435: case 5436: case 5437: case 5438: case 5439: case 5449: case 5451: case 5454: case 5456: case 5460: case 5462: case 5463: case 5472: case 5479: case 5485: case 5489: case 5490: case 5493:
             case 5501: case 5512: case 5517: case 5518: case 5519: case 5548: case 5551: case 5557: case 5558: case 5562: case 5564: case 5598: case 5605: case 5606: case 5615: case 5619: case 5620: case 5625: case 5628: case 5631:
             case 5633: case 5636: case 5637: case 5641: case 5644: case 5647: case 5651: case 5657: case 5658: case 5662: case 5664: case 5666: case 5668: case 5673: case 5684: case 5685: case 5690: case 5692: case 5695: case 5708:
-            case 5709: case 5716: case 5718: case 5719: case 5720: case 5721: case 5727: case 5731: case 5732: case 5740: case 5744: case 5745: case 5752: case 5759: case 5760: case 5779: case 5782: case 5783: case 5794: case 5806:
-            case 5807: case 5808: case 5809: case 5814: case 5815: case 5817: case 5818: case 5819: case 5820: case 5824: case 5828: case 5829: case 5830: case 5833: case 5836: case 5837: case 5840: case 5842: case 5852: case 5853:
-            case 5856: case 5864: case 5865: case 5868: case 5869: case 5874: case 5880: case 5885: case 5893: case 5896: case 5904: case 5907: case 5917: case 5931: case 5933: case 5940: case 5941: case 5944: case 5951: case 5954:
-            case 5957: case 5959: case 5960: case 5963: case 5967: case 5973: case 5974: case 5975: case 5994: case 5995: case 5997: case 5999: case 6000: case 6005: case 6009: case 6010: case 6011: case 6016: case 6017: case 6018:
-            case 6034: case 6041: case 6042: case 6049: case 6052: case 6053: case 6055: case 6059: case 6060: case 6067: case 6078: case 6079: case 6098: case 6099: case 6101: case 6102: case 6103: case 6104: case 6107: case 6109:
-            case 6110: case 6111: case 6118: case 6124: case 6125: case 6126: case 6130: case 6131: case 6132: case 6133: case 6136: case 6137: case 6138: case 6143: case 6144: case 6146: case 6148: case 6149: case 6150: case 6151:
-            case 6153: case 6156: case 6158: case 6159: case 6166: case 6168: case 6169: case 6172: case 6173: case 6175: case 6183: case 6191: case 6193: case 6194: case 6195: case 6196: case 6197: case 6199: case 6203: case 6205:
-            case 6210: case 6219: case 6231: case 6234: case 6238: case 6240: case 6241: case 6242: case 6245: case 6246: case 6254: case 6255: case 6265: case 6273: case 6274: case 6278: case 6279: case 6280: case 6281: case 6288:
-            case 6292: case 6293: case 6294: case 6295: case 6298: case 6299: case 6303: case 6307: case 6308: case 6317: case 6332: case 6337: case 6338: case 6342: case 6343: case 6344: case 6351: case 6352: case 6360: case 6367:
-            case 6378: case 6382: case 6384: case 6387: case 6388: case 6389: case 6390: case 6392: case 6394: case 6396: case 6401: case 6404: case 6409: case 6410: case 6418: case 6422: case 6424: case 6425: case 6432: case 6433:
-            case 6434: case 6445: case 6446: case 6452: case 6453: case 6465: case 6467: case 6477: case 6478: case 6489: case 6491: case 6492: case 6494: case 6499: case 6500: case 6503: case 6519: case 6520: case 6521: case 6523:
-            case 6524: case 6527: case 6532: case 6535: case 6536: case 6537: case 6539: case 6547: case 6548: case 6553: case 6555: case 6561: case 6565: case 6567: case 6568: case 6578: case 6580: case 6586: case 6591: case 6593:
-            case 6594: case 6595: case 6596: case 6597: case 6600: case 6609: case 6615: case 6616: case 6618: case 6641: case 6644: case 6645: case 6646: case 6649: case 6650: case 6651: case 6652: case 6654: case 6657: case 6658:
-            case 6660: case 6661: case 6666: case 6669: case 6670: case 6673: case 6675: case 6680: case 6681: case 6682: case 6684: case 6686: case 6687: case 6688: case 6690: case 6691: case 6693: case 6694: case 6699: case 6706:
-            case 6707: case 6709: case 6710: case 6712: case 6713: case 6714: case 6715: case 6717: case 6718: case 6719: case 6720: case 6723: case 6724: case 6725: case 6727: case 6728: case 6729: case 6732: case 6735: case 6736:
-            case 6737: case 6739: case 6741: case 6743: case 6757: case 6758: case 6759: case 6767: case 6770: case 6780: case 6781: case 6782: case 6783: case 6784: case 6785: case 6786: case 6791: case 6792: case 6793: case 6795:
-            case 6796: case 6803: case 6805: case 6815: case 6819: case 6820: case 6823: case 6828: case 6829: case 6830: case 6831: case 6832: case 6833: case 6837: case 6838: case 6840: case 6852: case 6853: case 6854: case 6855:
-            case 6858: case 6859: case 6860: case 6862: case 6863: case 6864: case 6865: case 6866: case 6868: case 6869: case 6884: case 6895: case 6898: case 6900: case 6903: case 6917: case 6919: case 6920: case 6923: case 6928:
-            case 6930: case 6932: case 6936: case 6937: case 6941: case 6943: case 6947: case 6951: case 6954: case 6955: case 6956: case 6957: case 6958: case 6965: case 6968: case 6971: case 6973: case 6974: case 6975: case 6976:
-            case 6978: case 6979: case 6984: case 6989: case 6995: case 6996: case 6999: case 7000: case 7001: case 7002: case 7004: case 7023: case 7024: case 7027: case 7028: case 7046: case 7047: case 7063: case 7068: case 7069:
-            case 7074: case 7075: case 7076: case 7077: case 7080: case 7086: case 7088: case 7116: case 7117: case 7119: case 7122: case 7128: case 7132: case 7136: case 7146: case 7160: case 7165: case 7175: case 7197: case 7201:
-            case 7204: case 7208: case 7209: case 7210: case 7211: case 7212: case 7213: case 7215: case 7216: case 7221: case 7222: case 7224: case 7227: case 7232: case 7234: case 7235: case 7249: case 7251: case 7255: case 7260:
-            case 7261: case 7269: case 7270: case 7271: case 7276: case 7281: case 7282: case 7284: case 7288: case 7289: case 7297: case 7298: case 7304: case 7305: case 7306: case 7307: case 7312: case 7313: case 7315: case 7336:
-            case 7337: case 7338: case 7342: case 7343: case 7346: case 7349: case 7352: case 7354: case 7357: case 7358: case 7366: case 7368: case 7369: case 7378: case 7383: case 7385: case 7386: case 7387: case 7388: case 7389:
-            case 7396: case 7400: case 7404: case 7405: case 7406: case 7411: case 7412: case 7422: case 7438: case 7439: case 7443: case 7454: case 7455: case 7456: case 7460: case 7461: case 7463: case 7464: case 7465: case 7466:
-            case 7467: case 7468: case 7472: case 7478: case 7480: case 7482: case 7492: case 7494: case 7497: case 7498: case 7499: case 7500: case 7509: case 7510: case 7511: case 7516: case 7522: case 7523: case 7525: case 7527:
-            case 7528: case 7532: case 7533: case 7535: case 7543: case 7550: case 7553: case 7556: case 7576: case 7578: case 7580: case 7584: case 7586: case 7593: case 7603: case 7605: case 7606: case 7609: case 7611: case 7616:
-            case 7618: case 7619: case 7622: case 7627: case 7630: case 7632: case 7634: case 7635: case 7636: case 7637: case 7638: case 7639: case 7665: case 7668: case 7673: case 7674: case 7676: case 7681: case 7683: case 7685:
-            case 7696: case 7697: case 7712: case 7716: case 7718: case 7719: case 7720: case 7721: case 7722: case 7723: case 7724: case 7726: case 7734: case 7735: case 7738:
+            case 5709: case 5716: case 5718: case 5719: case 5720: case 5721: case 5727: case 5731: case 5732: case 5740: case 5744: case 5745: case 5752: case 5757: case 5759: case 5760: case 5779: case 5782: case 5783: case 5794:
+            case 5806: case 5807: case 5808: case 5809: case 5814: case 5815: case 5817: case 5818: case 5819: case 5820: case 5824: case 5828: case 5829: case 5830: case 5833: case 5836: case 5837: case 5840: case 5842: case 5852:
+            case 5853: case 5856: case 5864: case 5865: case 5868: case 5869: case 5874: case 5880: case 5885: case 5893: case 5896: case 5904: case 5907: case 5917: case 5931: case 5933: case 5940: case 5941: case 5944: case 5951:
+            case 5954: case 5957: case 5959: case 5960: case 5963: case 5967: case 5973: case 5974: case 5975: case 5994: case 5995: case 5997: case 5999: case 6000: case 6005: case 6009: case 6010: case 6011: case 6016: case 6017:
+            case 6018: case 6034: case 6041: case 6042: case 6049: case 6052: case 6053: case 6055: case 6059: case 6060: case 6067: case 6078: case 6079: case 6098: case 6099: case 6101: case 6102: case 6103: case 6104: case 6107:
+            case 6109: case 6110: case 6111: case 6118: case 6124: case 6125: case 6126: case 6130: case 6131: case 6132: case 6133: case 6136: case 6137: case 6138: case 6143: case 6144: case 6146: case 6148: case 6149: case 6150:
+            case 6151: case 6153: case 6156: case 6158: case 6159: case 6166: case 6168: case 6169: case 6172: case 6173: case 6175: case 6183: case 6191: case 6193: case 6194: case 6195: case 6196: case 6197: case 6199: case 6203:
+            case 6205: case 6210: case 6219: case 6231: case 6234: case 6238: case 6240: case 6241: case 6242: case 6245: case 6246: case 6254: case 6255: case 6265: case 6273: case 6274: case 6278: case 6279: case 6280: case 6281:
+            case 6288: case 6292: case 6293: case 6294: case 6295: case 6298: case 6299: case 6303: case 6307: case 6308: case 6317: case 6332: case 6337: case 6338: case 6342: case 6343: case 6344: case 6351: case 6352: case 6360:
+            case 6367: case 6378: case 6382: case 6384: case 6387: case 6388: case 6389: case 6390: case 6392: case 6394: case 6396: case 6401: case 6404: case 6409: case 6410: case 6418: case 6422: case 6424: case 6425: case 6432:
+            case 6433: case 6434: case 6445: case 6446: case 6452: case 6453: case 6465: case 6467: case 6477: case 6478: case 6489: case 6491: case 6492: case 6494: case 6499: case 6500: case 6503: case 6519: case 6520: case 6521:
+            case 6523: case 6524: case 6527: case 6532: case 6535: case 6536: case 6537: case 6539: case 6547: case 6548: case 6553: case 6555: case 6561: case 6565: case 6567: case 6568: case 6578: case 6580: case 6586: case 6591:
+            case 6593: case 6594: case 6595: case 6596: case 6597: case 6600: case 6609: case 6615: case 6616: case 6618: case 6641: case 6644: case 6645: case 6646: case 6649: case 6650: case 6651: case 6652: case 6654: case 6657:
+            case 6658: case 6660: case 6661: case 6666: case 6669: case 6670: case 6673: case 6675: case 6680: case 6681: case 6682: case 6684: case 6686: case 6687: case 6688: case 6690: case 6691: case 6693: case 6694: case 6699:
+            case 6706: case 6707: case 6709: case 6710: case 6712: case 6713: case 6714: case 6715: case 6717: case 6718: case 6719: case 6720: case 6723: case 6724: case 6725: case 6727: case 6728: case 6729: case 6732: case 6735:
+            case 6736: case 6737: case 6739: case 6741: case 6743: case 6757: case 6758: case 6759: case 6767: case 6770: case 6780: case 6781: case 6782: case 6783: case 6784: case 6785: case 6786: case 6791: case 6792: case 6793:
+            case 6795: case 6796: case 6803: case 6805: case 6815: case 6819: case 6820: case 6823: case 6828: case 6829: case 6830: case 6831: case 6832: case 6833: case 6837: case 6838: case 6840: case 6852: case 6853: case 6854:
+            case 6855: case 6858: case 6859: case 6860: case 6862: case 6863: case 6864: case 6865: case 6866: case 6868: case 6869: case 6884: case 6895: case 6898: case 6900: case 6903: case 6917: case 6919: case 6920: case 6923:
+            case 6928: case 6930: case 6932: case 6936: case 6937: case 6941: case 6943: case 6947: case 6951: case 6954: case 6955: case 6956: case 6957: case 6958: case 6965: case 6968: case 6971: case 6973: case 6974: case 6975:
+            case 6976: case 6978: case 6979: case 6984: case 6989: case 6995: case 6996: case 6999: case 7000: case 7001: case 7002: case 7004: case 7023: case 7024: case 7027: case 7028: case 7046: case 7047: case 7063: case 7068:
+            case 7069: case 7074: case 7075: case 7076: case 7077: case 7080: case 7086: case 7088: case 7116: case 7117: case 7119: case 7122: case 7128: case 7129: case 7132: case 7136: case 7146: case 7160: case 7165: case 7175:
+            case 7197: case 7201: case 7204: case 7208: case 7209: case 7210: case 7211: case 7212: case 7213: case 7215: case 7216: case 7221: case 7222: case 7224: case 7227: case 7232: case 7234: case 7235: case 7249: case 7251:
+            case 7255: case 7260: case 7261: case 7269: case 7270: case 7271: case 7276: case 7281: case 7282: case 7284: case 7288: case 7289: case 7297: case 7298: case 7304: case 7305: case 7306: case 7307: case 7312: case 7313:
+            case 7315: case 7336: case 7337: case 7338: case 7342: case 7343: case 7346: case 7349: case 7352: case 7354: case 7357: case 7358: case 7366: case 7368: case 7369: case 7378: case 7383: case 7385: case 7386: case 7387:
+            case 7388: case 7389: case 7396: case 7400: case 7404: case 7405: case 7406: case 7411: case 7412: case 7422: case 7438: case 7439: case 7443: case 7454: case 7455: case 7456: case 7460: case 7461: case 7463: case 7464:
+            case 7465: case 7466: case 7467: case 7468: case 7472: case 7478: case 7480: case 7482: case 7492: case 7494: case 7497: case 7498: case 7499: case 7500: case 7509: case 7510: case 7511: case 7516: case 7522: case 7523:
+            case 7525: case 7527: case 7528: case 7532: case 7533: case 7535: case 7543: case 7550: case 7553: case 7556: case 7576: case 7578: case 7580: case 7584: case 7586: case 7593: case 7603: case 7605: case 7606: case 7609:
+            case 7611: case 7616: case 7618: case 7619: case 7622: case 7627: case 7630: case 7632: case 7634: case 7635: case 7636: case 7637: case 7638: case 7639: case 7665: case 7668: case 7673: case 7674: case 7676: case 7681:
+            case 7683: case 7685: case 7696: case 7697: case 7712: case 7716: case 7718: case 7719: case 7720: case 7721: case 7722: case 7723: case 7724: case 7726: case 7734: case 7735: case 7738:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -320,26 +320,26 @@ class attack{
             case 4606: case 4607: case 4608: case 4613: case 4638: case 4643: case 4691: case 4692: case 4693: case 4878:
             case 4879: case 4880: case 4948: case 5004: case 5037: case 5048: case 5049: case 5050: case 5056: case 5060:
             case 5113: case 5125: case 5126: case 5127: case 5128: case 5129: case 5130: case 5149: case 5150: case 5162:
-            case 5176: case 5177: case 5203: case 5204: case 5205: case 5207: case 5217: case 5231: case 5253: case 5302:
-            case 5303: case 5396: case 5423: case 5458: case 5467: case 5487: case 5494: case 5495: case 5523: case 5524:
-            case 5525: case 5527: case 5528: case 5529: case 5530: case 5531: case 5565: case 5566: case 5567: case 5568:
-            case 5569: case 5570: case 5571: case 5572: case 5573: case 5574: case 5575: case 5576: case 5577: case 5578:
-            case 5579: case 5580: case 5581: case 5582: case 5583: case 5584: case 5649: case 5650: case 5654: case 5655:
-            case 5656: case 5663: case 5670: case 5672: case 5784: case 5785: case 5786: case 5787: case 5827: case 5841:
-            case 5867: case 5871: case 5895: case 5992: case 6077: case 6113: case 6139: case 6140: case 6141: case 6142:
-            case 6155: case 6162: case 6184: case 6185: case 6216: case 6217: case 6283: case 6284: case 6285: case 6286:
-            case 6361: case 6395: case 6476: case 6481: case 6482: case 6483: case 6484: case 6485: case 6486: case 6487:
-            case 6491: case 6541: case 6554: case 6559: case 6583: case 6584: case 6585: case 6598: case 6601: case 6602:
-            case 6603: case 6610: case 6629: case 6664: case 6671: case 6721: case 6730: case 6744: case 6788: case 6811:
-            case 6812: case 6813: case 6814: case 6821: case 6825: case 6846: case 6847: case 6848: case 6849: case 6850:
-            case 7013: case 7067: case 7097: case 7098: case 7099: case 7100: case 7101: case 7102: case 7103: case 7104:
-            case 7105: case 7106: case 7107: case 7158: case 7159: case 7167: case 7182: case 7193: case 7286: case 7309:
-            case 7314: case 7318: case 7319: case 7320: case 7321: case 7322: case 7323: case 7324: case 7325: case 7326:
-            case 7327: case 7328: case 7329: case 7330: case 7331: case 7332: case 7333: case 7334: case 7339: case 7348:
-            case 7427: case 7428: case 7429: case 7430: case 7434: case 7440: case 7442: case 7444: case 7445: case 7446:
-            case 7447: case 7448: case 7449: case 7450: case 7451: case 7453: case 7457: case 7491: case 7504: case 7539:
-            case 7540: case 7608: case 7612: case 7613: case 7614: case 7615: case 7647: case 7648: case 7649: case 7650:
-            case 7651: case 7652: case 7653: case 7666: case 7727: case 7737:
+            case 5176: case 5177: case 5203: case 5204: case 5205: case 5206: case 5207: case 5217: case 5231: case 5253:
+            case 5302: case 5303: case 5396: case 5423: case 5458: case 5467: case 5487: case 5494: case 5495: case 5523:
+            case 5524: case 5525: case 5527: case 5528: case 5529: case 5530: case 5531: case 5565: case 5566: case 5567:
+            case 5568: case 5569: case 5570: case 5571: case 5572: case 5573: case 5574: case 5575: case 5576: case 5577:
+            case 5578: case 5579: case 5580: case 5581: case 5582: case 5583: case 5584: case 5649: case 5650: case 5654:
+            case 5655: case 5656: case 5663: case 5670: case 5672: case 5784: case 5785: case 5786: case 5787: case 5827:
+            case 5841: case 5867: case 5871: case 5895: case 5992: case 6077: case 6113: case 6139: case 6140: case 6141:
+            case 6142: case 6155: case 6162: case 6184: case 6185: case 6216: case 6217: case 6283: case 6284: case 6285:
+            case 6286: case 6361: case 6395: case 6476: case 6481: case 6482: case 6483: case 6484: case 6485: case 6486:
+            case 6487: case 6491: case 6541: case 6554: case 6559: case 6583: case 6584: case 6585: case 6598: case 6601:
+            case 6602: case 6603: case 6610: case 6629: case 6664: case 6671: case 6721: case 6730: case 6744: case 6788:
+            case 6811: case 6812: case 6813: case 6814: case 6821: case 6825: case 6846: case 6847: case 6848: case 6849:
+            case 6850: case 7013: case 7067: case 7097: case 7098: case 7099: case 7100: case 7101: case 7102: case 7103:
+            case 7104: case 7105: case 7106: case 7107: case 7158: case 7159: case 7167: case 7182: case 7193: case 7286:
+            case 7309: case 7314: case 7318: case 7319: case 7320: case 7321: case 7322: case 7323: case 7324: case 7325:
+            case 7326: case 7327: case 7328: case 7329: case 7330: case 7331: case 7332: case 7333: case 7334: case 7339:
+            case 7348: case 7427: case 7428: case 7429: case 7430: case 7434: case 7440: case 7442: case 7444: case 7445:
+            case 7446: case 7447: case 7448: case 7449: case 7450: case 7451: case 7453: case 7457: case 7491: case 7504:
+            case 7539: case 7540: case 7608: case 7612: case 7613: case 7614: case 7615: case 7647: case 7648: case 7649:
+            case 7650: case 7651: case 7652: case 7653: case 7666: case 7727: case 7737:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 

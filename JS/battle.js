@@ -577,6 +577,9 @@ class battle{
         this.tileManager.activate()
         this.relicManager.activate(22,[])
         this.cardManagers.forEach(cardManager=>cardManager.allEffect(0,117))
+        if(variants.adoration){
+            this.combatantManager.fullAllEffect(15,[2])
+        }
         if(this.modded(63)&&floor(random(0,2))==0){
             this.sendReinforce()
             this.tileManager.fire()
@@ -2493,7 +2496,7 @@ class battle{
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(this.menu.anim.variants[a]>0){
                         this.layer.fill(255,this.menu.anim.variants[a])
-                        this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/2-225+floor(a/4)*40,10)
+                        this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/2-125+floor(a/4)*40,10)
                     }
                 }
             break
@@ -3048,9 +3051,16 @@ class battle{
                                 transition.scene='victory'
                                 this.setupStats()
                             }else{
-                                transition.scene='bossstash'
-                                this.combatantManager.bossHeal()
-                                this.setupBossStash()
+                                if(variants.relicspam){
+                                    transition.scene='map'
+                                    if(options.replay){
+                                        this.replayManager.clear()
+                                    }
+                                }else{
+                                    transition.scene='bossstash'
+                                    this.combatantManager.bossHeal()
+                                    this.setupBossStash()
+                                }
                             }
                         }else{
                             transition.scene='map'
@@ -3076,7 +3086,7 @@ class battle{
                             this.encounter.class=1
                         }
                         let reward=[]
-                        for(let b=0,lb=variants.business?0:(variants.vanish||variants.inventor||variants.commoners)?2:1;b<lb;b++){
+                        for(let b=0,lb=variants.business||this.nodeManager.endless!=0?0:(variants.vanish||variants.inventor||variants.commoners)?2:1;b<lb;b++){
                             if(floor(random(0,2))==0||!this.modded(50)){
                                 switch(this.encounter.class){
                                     case 0: case 3: case 4:
@@ -3151,6 +3161,11 @@ class battle{
                                     }
                                     if(!variants.business){
                                         this.relicManager.activate(15,[a,2,reward,this.turn.total])
+                                    }
+                                    if(variants.relicspam){
+                                        for(let a=0,la=5;a<la;a++){
+                                            reward.push({type:2,value:[]})
+                                        }
                                     }
                                 }
                             break
@@ -3257,7 +3272,7 @@ class battle{
                         allClosed=false
                     }
                 }
-                if(allClosed){
+                if(allClosed&&this.nodeManager.world!=0){
                     transition.trigger=true
                     transition.scene='title'
                     this.initialized=false
@@ -3502,20 +3517,20 @@ class battle{
             break
             case 'variants':
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-225+floor(a/4)*40},width:22.5,height:22.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-125+floor(a/4)*40},width:22.5,height:22.5})){
                         variants[variants.map[a]]=toggle(variants[variants.map[a]])
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7-5},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='title'
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7-5},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='custom'
                     variants.ultraprism=true
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-300,y:this.layer.height*0.6+42.5},width:137.5,height:37.5})){
+                /*if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-300,y:this.layer.height*0.6+42.5},width:137.5,height:37.5})){
                     let keys=[floor(random(0,20)),floor(random(0,8)),floor(random(0,8)),floor(random(0,13))]
                     let subkeys=[
                         floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
@@ -3532,7 +3547,7 @@ class battle{
                     for(let a=0,la=variants.map.length;a<la;a++){
                         variants[variants.map[a]]=subkeys[a]
                     }
-                }
+                }*/
             break
             case 'custom':
                 let prismrules=[0,constants.playerNumber+1,constants.playerNumber+2,constants.playerNumber+3,constants.playerNumber+4,constants.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
@@ -3638,7 +3653,7 @@ class battle{
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:550},width:32,height:20})&&!this.relicManager.hasRelic(243,this.turn.main)){
                             this.overlayManager.overlays[147][this.turn.main].active=true
                             this.overlayManager.overlays[147][this.turn.main].activate()
-                        }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:580},width:32,height:20})&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0){
+                        }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:580},width:32,height:20})&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0&&!(this.tutorialManager.active&&this.tutorialManager.tutorial==6)){
                             this.endTurn()
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.extra[this.turn.main]*(variants.mtg?150:100),y:414},width:32,height:20})){
                             this.cardManagers[this.turn.main].hand.cancel()
@@ -3934,7 +3949,7 @@ class battle{
                 }
             break
             case 'variants':
-                if(key==' '&&int(inputs.lastKey[0])>=0&&int(inputs.lastKey[0])<=9&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
+                if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=5&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
                     let index=(int(inputs.lastKey[0])+9)%10*4+int(inputs.lastKey[1])-1
                     variants[variants.map[index]]=toggle(variants[variants.map[index]])
                 }
@@ -3947,7 +3962,7 @@ class battle{
                     transition.scene='custom'
                     variants.ultraprism=true
                 }
-                if(key=='R'){
+                /*if(key=='R'){
                     let keys=[floor(random(0,20)),floor(random(0,8)),floor(random(0,8)),floor(random(0,10))]
                     let subkeys=[
                         floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,floor(random(0,20))==0,
@@ -3964,7 +3979,7 @@ class battle{
                     for(let a=0,la=variants.map.length;a<la;a++){
                         variants[variants.map[a]]=subkeys[a]
                     }
-                }
+                }*/
             break
             case 'custom':
                 let prismrules=[0,constants.playerNumber+1,constants.playerNumber+2,constants.playerNumber+3,constants.playerNumber+4,constants.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
@@ -4048,7 +4063,7 @@ class battle{
                         }else if(key=='s'||key=='S'){
                             this.overlayManager.overlays[24][this.turn.main].active=true
                             this.overlayManager.overlays[24][this.turn.main].activate()
-                        }else if(code==ENTER&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0){
+                        }else if(code==ENTER&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0&&!(this.tutorialManager.active&&this.tutorialManager.tutorial==6)){
                             this.endTurn()
                         }else if(key=='.'&&variants.cyclicDraw){
                             this.cardManagers[this.turn.main].dropFirst()

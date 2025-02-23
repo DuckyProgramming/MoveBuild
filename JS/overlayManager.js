@@ -182,6 +182,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[113])],//make card innate and free
                     [new overlay(this.layer,this.battle,0,29,[])],//propup
                     [new overlay(this.layer,this.battle,0,2,[114,0])],//exhaust draw card, no return
+                    [new overlay(this.layer,this.battle,0,25,[2])],//wheel of surprise
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

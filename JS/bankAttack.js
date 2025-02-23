@@ -8666,24 +8666,24 @@ attack.prototype.update=function(){
                             }
                         break
                         case 5771:
-                            if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==1){
+                            if(this.lastPlayed[0].class==1){
                                 this.battle.addEnergy(this.effect[1],this.player)
                             }
                         break
                         case 5772:
-                            if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==1){
+                            if(this.lastPlayed[0].class==1){
                                 this.battle.addSpecificEnergy(1,this.player,2)
                                 this.battle.addSpecificEnergy(1,this.player,0)
                             }
                         break
                         case 5773:
-                            if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==1){
+                            if(this.lastPlayed[0].class==1){
                                 this.battle.addSpecificEnergy(1,this.player,6)
                                 this.battle.addSpecificEnergy(1,this.player,2)
                             }
                         break
                         case 5774:
-                            if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==1){
+                            if(this.lastPlayed[0].class==1){
                                 this.battle.addSpecificEnergy(2,this.player,6)
                             }
                         break
@@ -10763,13 +10763,13 @@ attack.prototype.update=function(){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 if(this.timer==5*this.targetDistance+25){
                     switch(this.type){
-                        case 4117:s
-                            if(this.lastPlayed[0][2]!=this.color){
+                        case 4117:
+                            if(this.lastPlayed[0].color!=this.color){
                                 this.userCombatant.charge+=this.effect[1]
                             }
                         break
                         case 4676:
-                            if(this.lastPlayed[0][2].includes(5)){
+                            if(this.lastPlayed[0].color.includes(5)){
                                 this.userCombatant.charge+=this.effect[1]
                             }
                         break

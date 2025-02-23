@@ -21,7 +21,7 @@ types={
         {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[26]},{type:420,effect:[3]},{type:93,effect:[1]}],description:``},
         {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:``},
         {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
-        {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:453,effect:[9,6]},{type:53,effect:[12,1,'Call of\nthe Heron']},{type:461,effect:[1,1]}],description:``},
+        {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:453,effect:[9,6]},{type:53,effect:[12,1,'Curse of\nthe Heron']},{type:461,effect:[1,1]}],description:``},
         {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:456,effect:[16,3]},{type:454,effect:[22,2]},{type:455,effect:[22,2]}],description:``},
         {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:458,effect:[1]},{type:459,effect:[11,1]},{type:460,effect:[13,5]}],description:``},
         {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:462,effect:[11,2]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:``},
@@ -1691,7 +1691,12 @@ types={
                 stroke:[225,75,75],
                 text:[100,0,0],
                 active:[255,200,200],
-            },{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},
+            },
+            
+            {},{},{},{},{},
+            {},{},{},{},{},
+            {},{},{},{},{},
+            {},{},{},{},
             
             {
                 fill:[125,125,125],
@@ -6483,6 +6488,21 @@ types={
             ],assaultReinforce:[
             ],ally:[
             ],
+        },{
+            level:['Basic 5'],class:-1,world:-1,
+            name:'TutorialSagume',
+            player:{position:[[{x:2,y:2}],[{x:0,y:0},{x:0,y:0}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'NumberDummy'},
+                {position:{x:0,y:2},name:'NumberDummy'},
+                {position:{x:2,y:4},name:'NumberDummy'},
+                {position:{x:2,y:0},name:'NumberDummy'},
+                {position:{x:4,y:2},name:'NumberDummy'},
+                {position:{x:4,y:4},name:'NumberDummy'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
         },
     ],dictionary:[
         {name:'',mtg:0,desc:``,
@@ -6955,11 +6975,8 @@ Stacks degrade by half, rounded up, each turn.`,
 `Damage deducts barrier before health. Barrier is kept between turns.
 Block is reduced before barrier when calculating hits taken.`,
         },{name:'Discus',mtg:0,desc:
-`Generatable card. Does decent damage and gives some barrier as well.
-Costs 2 to use and retains. Range 1-3.`,
-        },{name:'Lock-On',mtg:0,desc:
-`Increases damage taken by 1 per stack.
-Stacks degrade by 1 each turn.`,
+`Generatable card. Does decent damage and gives some bounce as well.
+Costs 2 to play and retains. Range 1-3.`,
         },{name:'Miss',mtg:0,desc:
 `Has a 50% chance to miss each attack.
 Decrements after each miss.`,
@@ -6990,6 +7007,30 @@ Decrements afterward.`,
         },{name:'Lock On',mtg:0,desc:
 `Each stack increases damage taken by 10%.
 Decrements each turn.`,
+        },{name:'Pity',mtg:0,desc:
+`Prevents the effect of weak, vulnerable, and frail.
+Decrements each turn.`,
+        },{name:'Cycle',mtg:0,desc:
+`If the next card played is of this class, it costs 0.
+Otherwise, remove this status.`,
+        },{name:'Recover X',mtg:0,desc:
+`Put a card from discard pile into hand and make it cost 0.
+It must cost less than or equal to X.`,
+        },{name:'Prime X',mtg:0,desc:
+`All cards containing 'Pulse' in hand cost X less.`,
+        },{name:'Follow-Up',mtg:0,desc:
+`Marks specific cards.
+When Triggered, draw the next Follow-Up card.
+It costs 0, but must be played immediately or discards.`,
+        },{name:'Communize',mtg:0,desc:
+`When an enemy with Communize dies, add a Worker to deck.
+Decrements eaach turn.`,
+        },{name:'Assign X',mtg:0,desc:
+`If you have X Workers in deck, exhaust them and
+trigger the assign effect.`,
+        },{name:'Worker',mtg:0,desc:
+`Subcard that costs 0, deals 4 damage and adds 4 block.
+Is considered classless.`,
         },
         //mark dict
     ],ascend:[
@@ -7283,43 +7324,39 @@ stage={scale:0,scene:'title',internal:{version:1.9}}
 game={player:[],deck:[],ascend:0,id:0,timer:0,animRate:1,turnTime:0,
     collisionDamage:4,dev:false,allMap:-1,theme:0,infoOff:false}
 variants={
-    mtg:false,mod:false,chaos:false,randomCombat:false,
-    lowDraw:false,cyclicDraw:false,balance:false,blackjack:false,
-    chooselose:false,compress:false,cardHold:false,polar:false,
-    inventor:false,unexpected:false,cursed:false,witch:false,
-    lowhealth:false,midhealth:false,terminal:false,hungry:false,
-    shortmap:false,sortmap:false,singlemap:false,initiative:false,
+    mtg:false,mod:false,randomCombat:false,initiative:false,
+    assault:false,business:false,domain:false,relicspam:false,
+    lowhealth:false,hungry:false,unexpected:false,adoration:false,
+    shortmap:false,singlemap:false,blind:false,overheat:false,
     prism:false,ultraprism:false,junk:false,colorshift:false,
-    vanish:false,blind:false,transcend:false,overheat:false,
-    cliff:false,assault:false,domain:false,running:false,
-    commoners:false,business:false,quarterPool:false,close:false,
 
     collection:false,prismrule:[],
+
+    chaos:false,
+    lowDraw:false,cyclicDraw:false,balance:false,blackjack:false,
+    chooselose:false,compress:false,cardHold:false,polar:false,
+    inventor:false,cursed:false,witch:false,
+    lowhealth:false,midhealth:false,terminal:false,
+    sortmap:false,
+    vanish:false,transcend:false,
+    cliff:false,running:false,
+    commoners:false,quarterPool:false,close:false,
+
     speedmove:false,speedcard:false,nobasicanim:false,
     deckbuild:false,selectCombat:false,shortermap:false,unary:false,
 
     map:[
-        'mtg','mod','chaos','randomCombat',
-        'lowDraw','cyclicDraw','balance','blackjack',
-        'chooselose','compress','cardHold','polar',
-        'inventor','unexpected','cursed','witch',
-        'lowhealth','midhealth','terminal','hungry',
-        'shortmap','sortmap','singlemap','initiative',
+        'mtg','mod','randomCombat','initiative',
+        'assault','business','domain','relicspam',
+        'lowHealth','hungry','unexpected','adoration',
+        'shortmap','singlemap','blind','overheat',
         'prism','ultraprism','junk','colorshift',
-        'vanish','blind','transcend','overheat',
-        'cliff','assault','domain','running',
-        'commoners','business','quarterPool','close',
     ],names:[
-        'MTG Mana','Bonus Mods','Chaos','Random Combat Maps',
-        '-1 Draw','Cyclic Draw','Balanced Draw','Blackjack Draw',
-        'Choose or Lose','Compression Draw','Five-Card Hold','Card Slot Draw',
-        'Card Techify','Expect the Unexpected','Cursed Mode','Polar',
-        '20% HP','50% HP','Terminal','Hungry',
-        'Short Map','Sorted Map','Straight Map','Enemy Initiative',
+        'MTG Mana','Bonus Mods','Random Combat Maps','Enemy Initiative',
+        'Assault','Business','Domain Expansion','Relic Pile',
+        'Half Health','Hungry','Expect the Unexpected','Adoration',
+        'Short Map','Straight Map','Blind','Overheat',
         'Prism','Ultraprism','Junkyard','Colorshift',
-        'All Vanishing','Silent Cards','Transcend','Overheat',
-        'Cliffs','Assault','Domain Expansion','Running Loop',
-        'Commoners','Business','Quarter Pool','Close Enough',
     ],
 }
 constants={

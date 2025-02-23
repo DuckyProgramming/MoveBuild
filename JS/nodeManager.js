@@ -19,6 +19,7 @@ class nodeManager{
         this.freeMove=0
         this.saveClass=-1
         this.harmBoss=0
+        this.endless=0
         
         this.unknownPossibilities=[]
 
@@ -69,6 +70,11 @@ class nodeManager{
     nextWorld(){
         this.tilePosition={x:0,y:-1}
         this.world++
+        if(this.world>=4){
+            this.initialListing()
+            this.world-=4
+            this.endless++
+        }
         this.setupMap()
     }
     setCombat(type,combat){

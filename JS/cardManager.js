@@ -187,7 +187,7 @@ class cardManager{
         }
         for(let a=0,la=constants.playerNumber;a<la;a++){
             if(variants.cyclicDraw){
-                let list=['Buster','Multicard','Dropbox','DeDrop','Eye\nDropper','Dropout']
+                let list=['Buster','Multicard','Dropbox','Dropshell','Eye\nDropper','Dropout']
                 for(let b=0,lb=list.length;b<lb;b++){
                     if(findName(list[b],types.card)>=0){
                         this.listing.card[a+1][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
@@ -196,7 +196,7 @@ class cardManager{
                 }
             }
             if(variants.blackjack){
-                let list=['Heat\nSink','Memory\nLeak','Ruby','Stack\nOverflow','House\nRules','Gate','Screwdriver','Gear\nGrind','Virus','Fixed\nPayout','Token\nCannon','Hitshield']
+                let list=['Heat\nSink','Precompilation','Caustic\nWeapon','Stack\nOverflow','House\nRules','Gate','Screwdriver','Gear\nGrind','Virus','Fixed\nPayout','Token\nCannon','Hitshield']
                 for(let b=0,lb=list.length;b<lb;b++){
                     if(findName(list[b],types.card)>=0){
                         this.listing.card[a+1][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))

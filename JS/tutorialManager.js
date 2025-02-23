@@ -176,7 +176,7 @@ Here, it would be: 1. Select the Strike`,
 `To choose a target, press the number keys for its coordinates,
 and press space to use the card. For this enemy, it would be: 2, 2, space.
 Kill him now.`,
-`Use the d, r, i and o keys, respectively, to view your
+`Use the D, R, I and O keys, respectively, to view your
 discard pile, draw pile, and to disable and enable viewing your relics and items.
 These are not case-sensitive on 1 player, but they are on 2 player.`,
 `Use the number keys to take rewards, from top to bottom or left to right.
@@ -334,8 +334,8 @@ enemy to play them in.`,
 `Each one has their own set of cards, colored thematically.
 Typically, you cannot get cards from another character during normal runs,
 though some variants, cards, relics, and items will give these off-color cards.`,
-`Each has distinct gimmicks for their cards but not every card serves a gimmick,
-many are just there to add more content and to provide variety.`,
+`Each has distinct gimmicks for their cards, but not every card serves a gimmick,
+as many are just there to add more content and to provide variety.`,
 `Characters also differ in maximum HP. While this does create a sort of difficulty,
 this is meant more in thematics and the characters are meant to be decently balanced.`,
 `Aside from just gimmicks, some characters are designed to encourage a specific playstyle.
@@ -569,7 +569,7 @@ they will attack anything other than other constructs and yourself.
 `Building a lot of constructs offers great utility.
 They will, however, cost metal, and there is only so much space to build.
 Constructs must also be built on empty tiles, so you cannot build while surrounded.`,
-`The builder also has minor card motif with card modification.
+`Donakho also has minor card motif with card modification.
 This covers upgrading cards temporarily or transforming them temporarily.`,
 `It's worth getting familiar with the upgraded forms of your cards to
 know when to select them to be upgraded by another card.`,
@@ -611,8 +611,8 @@ However, you cannot attack at all in Haste. Being able to leave it is very impor
 However, you deal 50% less damage in Sturdy. While it is not required,
 being able to leave Sturdy is always beneficial.`,
 `Divinity is the final stance. There are few ways to instantly enter Divinity.
-Entering divinity requires building up 10 Faith, which is gained through cards.
-When 10 Faith is gained, you lose 10 Faith and enter Divinity.`,
+Entering divinity requires building up 12 Faith, which is gained through cards.
+When 12 Faith is gained, you lose 12 Faith and enter Divinity.`,
 `You deal 3x damage in Divinity, and when you enter Divinity,
 you also gain 3 energy and draw 3 cards. Divinity is very powerful.`,
 `The final ability of Setsuna is to create cards. These cards are added by other cards.
@@ -690,9 +690,9 @@ but becomes reliant on an ammo source to remain functional.`,
 Using them often requires playing cards to get them in the right place.`,
 `As Edgar, each turn is almost played out separately, even more than in normal runs.
 Finding the right way to play the cards you get as Edgar is simple, but key.`,
-`Burn is a status that never decays. It deals 2x damage when the afflicted hits.
-Burn the enemy and block his attack, then end your turn.
-He will damage himself every time he hits you.`,
+`Burn is a status that never decays. It deals damage when the afflicted
+doesn't get a hit by the end of each turn. Avoid the enemy's attack
+to damage him with burn.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -743,10 +743,10 @@ that making purchases at shops weakens you - plan ahead!`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(30)
-                this.popups=[[],[],[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Shiru, the Huntress, is designed with playing cards in order with mind.
-Her gimmicks are: Discarding Cards, Jinx, and Silver Cards.`,
+Her gimmicks are: Discarding Cards and Silver Cards.`,
 `Selective discard refers to being able to choose a certain number of cards to discard.
 This appears as a red outline over your cards as long as discarding remains active.`,
 `Sometimes, this can be useful just to get rid of cards,
@@ -755,14 +755,8 @@ but some cards benefit from being discarded, or another card being discarded.`,
 hence the number of cards in your hand is important to keep in mind.`,
 `While many strategies can make use of selective discards, finding the right order
 to play cards in can be difficult.`,
-`Jinx is a statuses that deals damage at some point.
-It has a 1/3 chance to trigger each turn. Jinx is removed after dealing damage.
-Jinx can be applied in large numbers but won't do anything until it triggers.`,
-`End you turn until it triggers.
-Jinx is unreliable due to its randomness, but there are ways to mitigate this.
-Those include cards that take advantage of an enemy's Jinx, or just waiting.`,
 `Shiru can also make use of Silver Cards. These have a special effect that
-triggerswhen your energy is an odd number. GIven their simplicity,
+triggers when your energy is an odd number. GIven their simplicity,
 they can fit into many other builds.`,
 `A subset of Silver cards are Mineral Cards, which have their own synergies
 but still adhere to the odd-energy effects of other Silver cards.`,
@@ -826,7 +820,7 @@ when they are played or when another card is played.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
-                this.popups=[[],[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Prehextorica, the Recollection, can make use of several game mechanics.
 His gimmicks include: the turn number, and Weak.`,
@@ -845,9 +839,6 @@ so moving backward in time is difficult but rewarding.`,
 rather than having it be at a specific place.`,
 `Finally, many cards have different effects based on the parity of the turn,
 so they can be useful most of the time, but planning ahead still helps.`,
-`Prehextorica can also apply Weak to enemies.
-Aside from the base 25% damage reduction,
-enemies with Weak are susceptible to a variety of effects.`,
 `It's also possible, as Prehextorica, to take a large amount
 of extra turns. This enables you to have a lot more time to act,
 but getting the turns can be expensive in terms of energy.`,
@@ -946,7 +937,7 @@ Wisdom increases the cap on Knowledge, but more Knowledge is needed first.`,
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(40)
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=15
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
-                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[]]
                 this.pages=[
 `Sanae, the Purifier, is designed around creating a sort of balance
 between the usage of offensive and defensive cards and playstyles.
@@ -957,11 +948,6 @@ barrier is kept between turns until it is used.`,
 `Block is reduced before barrier when damage is taken so the two can be used
 in conjuncation to reduce damage. However, because of this advantage of
 barrier being retained, it is harder to gain in large amounts.`,
-`Discuses are similar to the Shivs that other characters can generate.
-The difference is that they cannot be spammed, as they cost 2 Energy to play.
-They do retain, though, so a Discus can be held until the right time to use it.`,
-`Discuses also give barrier, so decisions regarding when to use them have
-to be made off when damage and barrier are needed and when energy is available.`,
 `Scrying allows you to look at the top X cards of your draw pile.
 If you dislike the cards, you can click on them to discard them.
 Otherwise, skip so you can draw them next turn (or this turn).`,
@@ -1125,6 +1111,162 @@ for a bit of time, but more importantly can be used as fodder
 for random effects since it has mass.`,
 `Dark Matter, by virtue of being free and exhausting,
 can also be used as cheap fuel for any fuel cards.`,
+`END OF TUTORIAL`,
+                ]
+            break
+            case 28:
+                transition.scene='battle'
+                game.player=[21]
+                game.deck=[0]
+                this.battle.player=[21]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialSagume',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                for(let a=0,la=6;a<la;a++){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1-a].setMaxHP(10)
+                }
+                this.popups=[[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Sagume, the Sage, works around creating and spending cards.
+Her gimmicks include: Discuses, Status Cards, and Bounce.`,
+`Discuses are Sagume's colorless token cards.
+The difference is that they cannot be spammed, as they cost 2 Energy to play.
+They do retain, though, so a Discus can be held until the right time to use it.`,
+`Discuses also give bounce, so decisions regarding when to use them have
+to be made off when damage and bounce are needed and when energy is available.`,
+`Other than Discuses, Sagume's other creatable cards are status cards.
+These aren't playable, and must be exhausted to trigger their effects.`,
+`They can be exhausted normally through cards effects, but there is
+also the status effect Pure. If you have Pure, it will be spent when
+a status card is drawn, exhausting the card and drawing another.`,
+`It's important to not fill your deck with too many status cards
+that you can't get rid of, but if you keep them under control,
+they can provide high benefits.`,
+`Bounce is a defense application similar to block.
+However, when an enemy causes you to lose bounce to block damage,
+it will reflect the same amount to them.`,
+`END OF TUTORIAL`,
+                ]
+            break
+            case 29:
+                transition.scene='battle'
+                game.player=[22]
+                game.deck=[0]
+                this.battle.player=[22]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
+                this.popups=[[],[],[],[],[],[],[]]
+                this.pages=[
+`Fernando, the Comedian, functions around standard statuses.
+This involves applying weak and vulnerable, both to enemies,
+and sometimes to yourself.`,
+`Fernando has a lot of ways to apply weak and vulnerable to
+enemies. It often makes sense to keep these two statuses
+applied to enemies for extended periods of time.`,
+`In contrast, while there are benefits to nerfing yourself,
+weak and vulnerable will still lower your damage and defense.`,
+`Thus, as Fernando, you can gain the status Pity,
+which ticks down each turn. As long as you have some,
+you are immune to weak, vulnerable, and frail.`,
+`If you have consistent Pity, these debuffs become pointless,
+so you can stack them onto yourself without any fear.`,
+`Fernando also has minor gimmicks in the Discover keyword,
+which lets you choose a card from a selection, although
+the keyword is used on other characters' cards as well.`,
+`END OF TUTORIAL`,
+                ]
+            break
+            case 30:
+                transition.scene='battle'
+                game.player=[23]
+                game.deck=[0]
+                this.battle.player=[23]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Decratite, the Disciple, works around playing cards for free.
+His gimmicks include: Recovery, Prime, Cycle, Follow-Up`,
+`Recovery allows you to take a card from your discard pile,
+put it in your hand, and make it free. To balance this,
+Recovery can only be done up to a certain cost of card.`,
+`Prime causes all cards in your hand that contain
+the word "Pulse" in their name to cost 1 less.
+This can be repeated until they cost 0.`,
+`The token card Primed Pulse can be created.
+It retains, so it can be kept until it is
+Primed down to cost 0, then used to attack.`,
+`Cycle causes the next card played to cost 0,
+if it's of the class that's being cycled.
+Otherwise, the use of Cycle is spent for nothing.`,
+`Some cards are marked as Follow-Up attacks.
+When Follow-Up is Triggerd, the next Follow-Up card in
+the draw pile will be put in the hand.`,
+`The Follow-Up card must be played immdiately,
+as it discards if any other card is played.
+Follow-Up attacks can also be played normally otherwise.`,
+`A lot of Decratite cards synergize around costing 0.
+As seen previously, there are quite a lot of ways
+to make cards free on this character.`,
+`END OF TUTORIAL`,
+                ]
+            break
+            case 31:
+                transition.scene='battle'
+                game.player=[24]
+                game.deck=[0]
+                this.battle.player=[24]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Dukelis, the Collectivist, builds a unique kind of deck.
+His gimmicks include: Workers, Population, and Leaders.`,
+`As a character, Dukelis follows a sort of pathway,
+both through expanding your deck and switching your Leader.`,
+`You must first get Workers into your deck. To do this,
+you apply Communized to enemies. When an enemy with Communized
+dies, a Worker is added to your deck, permanently.`,
+`You can potentially communize every enemy in the game,
+but you often won't want to extend your deck too much,
+as Workers will be drawn instead of other cards.`,
+`To spend your Workers, find cards with the keyword Assign.
+This lets you spend a number of Workers for a effect.`,
+`Because your deck will often be large, you can then activte
+the Population keyword. This acts as threshold for your deck size,
+giving you an advntage if you have enough cards in your deck.`,
+`When you begin the game as Dukelis, you will be given Lenin,
+the first Leader card. Each Leader gives you incremental buffs,
+and can be succeeded after meeting a requirement.`,
+`You want to progress your Leader to gain more buffs,
+but be careful, as there are only so many leaders. After the
+last Leader, you get Fallen Union, which is a major debuff.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -1315,10 +1457,10 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Poke',types.card),0,types.card[findName('Poke',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Nondirectional\nBeam',types.card),0,types.card[findName('Nondirectional\nBeam',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Shotgun',types.card),0,types.card[findName('Shotgun',types.card)].list)
-                        this.battle.cardManagers[0].hand.add(findName('Skewed\nStrike',types.card),0,types.card[findName('Skewed\nStrike',types.card)].list)
-                        this.battle.cardManagers[0].hand.add(findName('Signature\nMove',types.card),0,types.card[findName('Signature\nMove',types.card)].list)
+                        this.battle.cardManagers[0].hand.add(findName('Calculated\nStrike',types.card),0,types.card[findName('Calculated\nStrike',types.card)].list)
                     break
                     case 5:
                         this.battle.setupBattle(types.encounter[findName('TutorialBlank',types.encounter)])
@@ -1354,10 +1496,10 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
-                        this.battle.cardManagers[0].hand.add(findName('Lightspeed',types.card),0,types.card[findName('Lightspeed',types.card)].list)
+                        this.battle.cardManagers[0].hand.add(findName('Dazzling\nSpeed',types.card),0,types.card[findName('Dazzling\nSpeed',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Blaze\nAhead',types.card),0,types.card[findName('Blaze\nAhead',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Spot\nWeakness',types.card),0,types.card[findName('Spot\nWeakness',types.card)].list)
-                        this.battle.cardManagers[0].hand.add(findName('Follow\nUp',types.card),0,types.card[findName('Follow\nUp',types.card)].list)
+                        this.battle.cardManagers[0].hand.add(findName('Sequence',types.card),0,types.card[findName('Sequence',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Clear\nUp',types.card),0,types.card[findName('Clear\nUp',types.card)].list)
                         this.battle.dropDraw(0,findName('Caffeine\nHigh',types.card),0,types.card[findName('Caffeine\nHigh',types.card)].list)
                     break
@@ -1370,7 +1512,7 @@ can also be used as cheap fuel for any fuel cards.`,
                             this.battle.cardManagers[0].hand.add(findName('Placeholder\n$colorcharacter Card',types.card),0,a+1)
                         }
                         this.battle.cardManagers[0].allEffect(2,43)
-                        this.battle.cardManagers[0].hand.compact=0.7
+                        this.battle.cardManagers[0].hand.compact=0.58
                     break
                 }
             break
@@ -1388,9 +1530,9 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Triple\nPunch',types.card),0,1)
-                        this.battle.cardManagers[0].hand.add(findName('Jerk',types.card),0,1)
+                        this.battle.cardManagers[0].hand.add(findName('Jolt',types.card),0,1)
+                        this.battle.cardManagers[0].hand.add(findName('Convulse',types.card),0,1)
                         this.battle.cardManagers[0].hand.add(findName('Virtuous\nCircle',types.card),0,1)
-                        this.battle.cardManagers[0].hand.add(findName('Combo\nJuice',types.card),0,1)
                     break
                     case 4:
                         this.battle.cardManagers[0].allEffect(2,2)
@@ -1414,7 +1556,7 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.cardManagers[0].hand.add(findName('Increment',types.card),0,2)
                     break
                     case 3:
-                        this.battle.cardManagers[0].hand.add(findName('Convect',types.card),0,2)
+                        this.battle.cardManagers[0].hand.add(findName('Relegation',types.card),0,2)
                         this.battle.cardManagers[0].hand.add(findName('Recoup',types.card),0,2)
                     break
                     case 4:
@@ -1425,8 +1567,8 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.cardManagers[0].hand.add(findName('Overgrow',types.card),0,2)
                     break
                     case 5:
-                        this.battle.cardManagers[0].hand.add(findName('Thorns',types.card),0,2)
-                        this.battle.cardManagers[0].hand.add(findName('Spring',types.card),0,2)
+                        this.battle.cardManagers[0].hand.add(findName('Grow\nThorns',types.card),0,2)
+                        this.battle.cardManagers[0].hand.add(findName('Euphonia',types.card),0,2)
                     break
                     case 6:
                         this.battle.cardManagers[0].allEffect(2,2)
@@ -1483,7 +1625,7 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.cardManagers[0].hand.add(findName('Pulsate',types.card),0,4)
                         this.battle.cardManagers[0].hand.add(findName('Endless\nStream',types.card),0,4)
                         this.battle.cardManagers[0].hand.add(findName('Endless\nStream',types.card),0,4)
-                        this.battle.cardManagers[0].hand.add(findName('Backstab',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Condensed\nBubble',types.card),0,4)
                     break
                 }
             break
@@ -1510,7 +1652,7 @@ can also be used as cheap fuel for any fuel cards.`,
                     case 8:
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Converge',types.card),0,5)
-                        this.battle.cardManagers[0].hand.add(findName('Node',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Identify',types.card),0,5)
                         this.battle.cardManagers[0].hand.add(findName('Charge',types.card),0,5)
                         this.battle.cardManagers[0].hand.add(findName('Dualcast',types.card),0,5)
                     break
@@ -1528,7 +1670,7 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.combatantManager.summonConstruct({x:1,y:1},findName('Wall',types.combatant),1,30,0)
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Breaking\nShot',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Breaking\nSwipe',types.card),0,6)
                     break
                     case 4:
                         this.battle.combatantManager.resetCombatants()
@@ -1557,7 +1699,7 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,6)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,6)
                         this.battle.cardManagers[0].hand.add(findName('Phase\nShift',types.card),0,6)
-                        this.battle.cardManagers[0].hand.add(findName('Extend',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Expansion',types.card),0,6)
                         this.battle.cardManagers[0].hand.add(findName('Materials',types.card),0,6)
                     break
                     case 8:
@@ -1580,7 +1722,7 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.cardManagers[0].hand.add(findName('Crescendo',types.card),0,7)
                         this.battle.cardManagers[0].hand.add(findName('Empty\nFist',types.card),0,7)
                     break
-                    case 2:
+                    case 3:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
@@ -1588,7 +1730,7 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,7)
                         this.battle.cardManagers[0].hand.add(findName('Crescendo',types.card),0,7)
                     break
-                    case 3:
+                    case 4:
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
@@ -1596,11 +1738,11 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.cardManagers[0].hand.add(findName('Tranquility',types.card),0,7)
                         this.battle.cardManagers[0].hand.add(findName('Empty\nFist',types.card),0,7)
                     break
-                    case 4:
+                    case 5:
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Forward',types.card),0,7)
                     break
-                    case 5:
+                    case 6:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('AttackDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
@@ -1618,11 +1760,13 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,7)
                         this.battle.cardManagers[0].hand.add(findName('Conviction',types.card),0,7)
                         this.battle.cardManagers[0].hand.add(findName('Conviction',types.card),0,7)
+                        this.battle.cardManagers[0].hand.add(findName('Conviction',types.card),0,7)
                     break
                     case 9:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(15)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(0)].enterStance(0)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Secure\nBlade',types.card),0,7)
                         this.battle.cardManagers[0].hand.add(findName('Avoidance',types.card),0,7)
@@ -1633,17 +1777,10 @@ can also be used as cheap fuel for any fuel cards.`,
                 switch(this.page){
                     case 2:
                         this.battle.cardManagers[0].hand.add(findName('Highball',types.card),0,8)
-                        this.battle.cardManagers[0].hand.add(findName('Asteroid',types.card),0,8)
+                        this.battle.cardManagers[0].hand.add(findName('Meteor\nImpact',types.card),0,8)
                         this.battle.cardManagers[0].hand.add(findName('Ampstep',types.card),0,8)
                     break
                     case 4:
-                        this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
-                        this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Wisp',types.card),0,constants.playerNumber+1)
-                    break
-                    case 5:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
@@ -1652,14 +1789,17 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.cardManagers[0].hand.add(findName('Charge\nUp',types.card),0,8)
                         this.battle.cardManagers[0].hand.add(findName('Charge\nFlare',types.card),0,8)
                     break
+                    case 5:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Wisp',types.card),0,constants.playerNumber+1)
+                    break
                     case 6:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(30)
-                        this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Leyline',types.card),0,8)
-                        this.battle.cardManagers[0].hand.add(findName('Mini-\nNeptune',types.card),0,8)
-                        this.battle.cardManagers[0].hand.add(findName('Vanilla\nRay',types.card),0,8)
+                        this.battle.cardManagers[0].hand.add(findName('Mini-Neptune',types.card),0,8)
+                        this.battle.cardManagers[0].hand.add(findName('Lime\nRay',types.card),0,8)
                     break
                 }
             break
@@ -1680,7 +1820,7 @@ can also be used as cheap fuel for any fuel cards.`,
                             this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         }
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Stacked\nStrike',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Central\nShot',types.card),0,9)
                         this.battle.cardManagers[0].hand.add(findName('Snapshot',types.card),0,9)
                         this.battle.cardManagers[0].hand.add(findName('Hit the\nSpot',types.card),0,9)
                     break
@@ -1692,7 +1832,7 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
                         this.battle.updateTargetting()
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,9)
                         this.battle.cardManagers[0].hand.add(findName('Lighter',types.card),0,9)
                         this.battle.cardManagers[0].hand.add(findName('Lighter',types.card),0,9)
                     break
@@ -1717,7 +1857,7 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(50)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Dice\nThrow',types.card),0,10)
-                        this.battle.cardManagers[0].hand.add(findName('Stun\nRoll',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Skill\nRoll',types.card),0,10)
                     break
                     case 4:
                         this.battle.cardManagers[0].allEffect(2,2)
@@ -1736,7 +1876,7 @@ can also be used as cheap fuel for any fuel cards.`,
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Habit',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Habit',types.card),0,11)
                         this.battle.cardManagers[0].hand.add(findName('Survivor',types.card),0,11)
                         this.battle.cardManagers[0].hand.add(findName('Prepared',types.card),0,11)
                     break
@@ -1748,21 +1888,13 @@ can also be used as cheap fuel for any fuel cards.`,
                     case 5:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
-                        this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Jinx',types.card),0,11)
-                        this.battle.setEnergy(99,0)
-                    break
-                    case 7:
-                        this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Silver\nDagger',types.card),0,11)
                         this.battle.cardManagers[0].hand.add(findName('Silver\nShield',types.card),0,11)
                         this.battle.setEnergy(99,0)
                     break
-                    case 8:
+                    case 6:
                         this.battle.cardManagers[0].hand.add(findName('Acanthite',types.card),0,11)
                         this.battle.cardManagers[0].hand.add(findName('Pyrargyrite',types.card),0,11)
                     break
@@ -1778,7 +1910,7 @@ can also be used as cheap fuel for any fuel cards.`,
                     break
                     case 3:
                         this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:0,y:0},findName('MoveDummy',types.combatant),30)
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('MoveDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Buzzer',types.card),0,12)
@@ -1791,7 +1923,7 @@ can also be used as cheap fuel for any fuel cards.`,
                     break
                     case 6:
                         this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:0,y:0},findName('MoveDummy',types.combatant),30)
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('USB\nCable',types.card),0,12)
@@ -1817,24 +1949,12 @@ can also be used as cheap fuel for any fuel cards.`,
                     break
                     case 4:
                         this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('MoveDummy',types.combatant),30)
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(60)
                         this.battle.cardManagers[0].hand.add(findName('Polar\nStar',types.card),0,13)
-                        this.battle.cardManagers[0].hand.add(findName('Quaternion\nStar',types.card),0,13)
-                    break
-                    case 5:
-                        this.battle.cardManagers[0].hand.add(findName('Clock\nHand',types.card),0,13)
+                        this.battle.cardManagers[0].hand.add(findName('Quaternary\nStar',types.card),0,13)
                     break
                     case 7:
-                        this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('MoveDummy',types.combatant),30)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].addBlock(5)
-                        this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Trowel',types.card),0,13)
-                        this.battle.cardManagers[0].hand.add(findName('Unearth',types.card),0,13)
-                    break
-                    case 8:
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Vault',types.card),0,13)
                         this.battle.cardManagers[0].hand.add(findName('Time\nDetective',types.card),0,13)
@@ -1900,21 +2020,13 @@ can also be used as cheap fuel for any fuel cards.`,
                     case 3:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(40)
-                        this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Discus\nTalisman',types.card),0,16)
-                        this.battle.cardManagers[0].hand.add(findName('Balanced\nDiscuses',types.card),0,16)
-                    break
-                    case 5:
-                        this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Dreamscape',types.card),0,16)
                         this.battle.dropDraw(0,findName('Defend',types.card),0,16)
                         this.battle.dropDraw(0,findName('Strike',types.card),0,16)
                     break
-                    case 6:
+                    case 4:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
@@ -1988,7 +2100,7 @@ can also be used as cheap fuel for any fuel cards.`,
                         this.battle.cardManagers[0].hand.add(findName('Cascade',types.card),0,18)
                         this.battle.cardManagers[0].hand.add(findName('Magic\nSwitch',types.card),0,18)
                     break
-                    case 5:
+                    case 4:
                         this.battle.setEnergy(99,0)
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
@@ -2090,6 +2202,151 @@ can also be used as cheap fuel for any fuel cards.`,
                     break
                 }
             break
+            case 28:
+                switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Dual\nDiscus',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Discus\nShield',types.card),0,21)
+                        this.battle.cardManagers[0].hand.add(findName('Balanced\nDiscuses',types.card),0,21)
+                    break
+                    case 3:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Sharp\nWord',types.card),0,constants.playerNumber+1)
+                        this.battle.cardManagers[0].hand.add(findName('Reversal',types.card),0,constants.playerNumber+1)
+                        this.battle.cardManagers[0].hand.add(findName('Forbidden',types.card),0,21)
+                    break
+                    case 4:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Lost\nLegacy',types.card),0,21)
+                        this.battle.cardManagers[0].hand.add(findName('Cast\nRegrets',types.card),0,21)
+                    break
+                    case 6:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:2,y:1},findName('AttackDummy',types.combatant),-30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=10
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activated=true
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(0)].block=0
+                        this.battle.updateTargetting()
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Signal',types.card),0,21)
+                    break
+                }
+            break
+            case 29:
+                switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Slammer',types.card),0,22)
+                    break
+                    case 2:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Disjoint',types.card),0,22)
+                        this.battle.cardManagers[0].hand.add(findName('Disjoint',types.card),0,22)
+                    break
+                    case 3:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Shtick',types.card),0,22)
+                        this.battle.cardManagers[0].hand.add(findName('Disjoint',types.card),0,22)
+                    break
+                    case 5:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Spilt',types.card),0,22)
+                    break
+                }
+            break
+            case 30:
+                switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Risen',types.card),0,23)
+                        this.battle.drop(0,findName('Strike',types.card),0,23)
+                    break
+                    case 2:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Waning\nPulse',types.card),0,23)
+                        this.battle.cardManagers[0].hand.add(findName('Circular\nFluctuation',types.card),0,23)
+                    break
+                    case 3:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(30)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Primed\nPulse',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName(`Heaven's\nHalo`,types.card),0,23)
+                        this.battle.cardManagers[0].hand.add(findName('Circular\nFluctuation',types.card),0,23)
+                    break
+                    case 4:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Initiate',types.card),0,23)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,23)
+                    break
+                    case 5:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Persecution',types.card),0,23)
+                        this.battle.dropDraw(0,findName('Overflowing',types.card),0,23)
+                    break
+                }
+            break
+            case 31:
+                switch(this.page){
+                    case 2:
+                        this.battle.cardManagers[0].hand.add(findName('Liberate',types.card),0,24)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,24)
+                    break
+                    case 3:
+                        this.battle.cardManagers[0].hand.add(findName('Worker',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Worker',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Worker',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Worker',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Worker',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Worker',types.card),0,0)
+                    break
+                    case 4:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Missile\nSilo',types.card),0,24)
+                        this.battle.cardManagers[0].hand.add(findName('Worker',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Worker',types.card),0,0)
+                    break
+                    case 5:
+                        this.battle.cardManagers[0].hand.add(findName('Red\nSquare',types.card),0,24)
+                    break
+                    case 6:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Lenin',types.card),0,24)
+                    break
+                    case 7:
+                        this.battle.cardManagers[0].hand.add(findName('Stalin',types.card),0,24)
+                        this.battle.cardManagers[0].hand.add(findName('Malenkov',types.card),0,24)
+                        this.battle.cardManagers[0].hand.add(findName('Khrushchev',types.card),0,24)
+                        this.battle.cardManagers[0].hand.add(findName('Brezhnev',types.card),0,24)
+                        this.battle.cardManagers[0].hand.add(findName('Andropov',types.card),0,24)
+                        this.battle.cardManagers[0].hand.add(findName('Chernenko',types.card),0,24)
+                        this.battle.cardManagers[0].hand.add(findName('Gorbachev',types.card),0,24)
+                        this.battle.cardManagers[0].hand.add(findName('Fallen\nUnion',types.card),0,24)
+                    break
+                }
+            break
+            
         }
     }
     display(){

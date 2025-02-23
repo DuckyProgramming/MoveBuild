@@ -1512,6 +1512,12 @@ class combatant{
                 this.subHealthBuff(0.8)
             }
         }
+        if(this.battle.nodeManager.endless>=1){
+            for(let a=0,la=this.battle.nodeManager.endless;a<la;a++){
+                this.subHealthBuff(10)
+                this.subAttackBuff([1,2,5],5)
+            }
+        }
         if(this.spec.includes(6)){
             this.threshold=this.life-25
         }

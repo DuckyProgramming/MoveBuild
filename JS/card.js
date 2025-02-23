@@ -2596,7 +2596,7 @@ class card{
             case 1591: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nApply ${effect[0]} Freeze`; break
             case 1592: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nApply ${effect[0]} Burn`; break
             case 1593: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nDeal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health`; break
-            case 1594: string+=`Swap With an\nAdjacent Target\nSwap Buffs and Debuffs\nTarget Will Face User\nor\nMove ${effect[0]} Tiles`; break
+            case 1594: string+=`Swap With an\nAdjacent Target\nSwap Buffs and Debuffs\nTarget Will Face User\nor\nMove ${effect[0]} Tile${pl(effect[0])}`; break
             case 1595: string+=`Pass Through an\nAdjacent Target\nApply ${effect[0]} Jinx`; break
             case 1596: string+=`Swap With a Construct`; break
             case 1597: string+=`Turn Divisible by 3:\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
@@ -12928,14 +12928,18 @@ class card{
                         this.layer.noFill()
                     }
                 }else{
-                    this.layer.fill(...colorDetail.active,this.fade*this.anim.select)
-                    this.layer.noStroke()
-                    this.layer.rect(0,0,this.width+15,this.height+15,10)
-                    this.layer.fill(...colorDetail.fill,this.fade)
-                    this.layer.stroke(...colorDetail.stroke,this.fade)
-                    this.layer.strokeWeight(5)
-                    this.layer.rect(0,0,this.width,this.height,5)
-                    this.layer.noFill()
+                    try{
+                        this.layer.fill(...colorDetail.active,this.fade*this.anim.select)
+                        this.layer.noStroke()
+                        this.layer.rect(0,0,this.width+15,this.height+15,10)
+                        this.layer.fill(...colorDetail.fill,this.fade)
+                        this.layer.stroke(...colorDetail.stroke,this.fade)
+                        this.layer.strokeWeight(5)
+                        this.layer.rect(0,0,this.width,this.height,5)
+                        this.layer.noFill()
+                    }catch(error){
+                        print(this.name)
+                    }
                 }
             }
             this.layer.strokeWeight(3)

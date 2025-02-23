@@ -4501,7 +4501,7 @@ class particle{
                             parent.particles.push(new particle(this.layer,this.position.x,this.position.y,211,[5,this.color]))
                         break
                     }
-                }else if(this.fade<=0){
+                }else if(this.fade<=0&&!this.remove){
                     this.remove=true
                     switch(this.type){
                         case 108:
