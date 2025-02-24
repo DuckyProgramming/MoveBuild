@@ -8766,7 +8766,8 @@ class card{
             case 7741: string+=`Summon in a Duck\nin a Random Location`; break
             case 7742: string+=`Gain ${effect[0]} Temporary\nStrength\nAdd a Miracle\nof Equivalent Level\nto Hand`; break
             case 7743: string+=`Gain ${effect[0]} Temporary\nStrength\nAdd a Splash\nof Equivalent Level\nto Hand`; break
-            
+            case 7744: string+=`Apply ${effect[0]} Bruise\nApply ${effect[1]} Weak`; break
+
             //mark p
 
             //mark q

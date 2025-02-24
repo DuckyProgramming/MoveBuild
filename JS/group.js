@@ -322,6 +322,9 @@ class group{
         }
     }
     add(type,level,color,edition=0){
+        if(type<0||type>=types.card.length){
+            type=0
+        }
         let name=types.card[type].name
         let change=false
         if(variants.junk){

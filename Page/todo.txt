@@ -33,7 +33,7 @@ warmonger - gain 1 temporary strength and 1 temporary dexterity for each enemy
 back to the past - discard your hand, return 4 cards from discard pile to hand
 
 glaucous - gain dexterity and next movement is free
-x
+
 cerberus - damage 3 times, weak and vulnerable, heal
 
 

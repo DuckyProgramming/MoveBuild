@@ -267,7 +267,7 @@ class attack{
             case 7465: case 7466: case 7467: case 7468: case 7472: case 7478: case 7480: case 7482: case 7492: case 7494: case 7497: case 7498: case 7499: case 7500: case 7509: case 7510: case 7511: case 7516: case 7522: case 7523:
             case 7525: case 7527: case 7528: case 7532: case 7533: case 7535: case 7543: case 7550: case 7553: case 7556: case 7576: case 7578: case 7580: case 7584: case 7586: case 7593: case 7603: case 7605: case 7606: case 7609:
             case 7611: case 7616: case 7618: case 7619: case 7622: case 7627: case 7630: case 7632: case 7634: case 7635: case 7636: case 7637: case 7638: case 7639: case 7665: case 7668: case 7673: case 7674: case 7676: case 7681:
-            case 7683: case 7685: case 7696: case 7697: case 7712: case 7716: case 7718: case 7719: case 7720: case 7721: case 7722: case 7723: case 7724: case 7726: case 7734: case 7735: case 7738:
+            case 7683: case 7685: case 7696: case 7697: case 7712: case 7716: case 7718: case 7719: case 7720: case 7721: case 7722: case 7723: case 7724: case 7726: case 7734: case 7735: case 7738: case 7744:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -2556,6 +2556,10 @@ class attack{
                         if(roll7720>=18){
                             this.userManager.hand.upgrade(this.effect[1])
                         }
+                    break
+                    case 7744:
+                        this.targetCombatant.statusEffect('Bruise',this.effect[0])
+                        this.targetCombatant.statusEffect('Weak',this.effect[1])
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)

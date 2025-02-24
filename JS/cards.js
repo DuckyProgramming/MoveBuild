@@ -5064,20 +5064,6 @@ types.card=[
             ],
         },
     },{
-        name:'Mine\nDiamonds',rarity:1,list:1,
-        levels:[
-            {effect:[10,20],attack:5745,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[15,30],attack:5745,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[18,40],attack:5745,cost:1,target:[2,1,1],spec:[0],class:1},
-        ],mtg:{
-            rarity:1,list:1,color:[1,5],
-            levels:[
-                {effect:[16,32],attack:5745,cost:[10,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[24,48],attack:5745,cost:[10,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[30,60],attack:5745,cost:[10,-1],target:[2,1,1],spec:[0],class:1},
-            ],
-        },
-    },{
         name:'Expensive\nWatch',rarity:2,list:1,
         levels:[
             {effect:[25],attack:7261,cost:9,target:[2,1,2],spec:[0,1,11],class:1},
@@ -5173,6 +5159,20 @@ types.card=[
                 {effect:[14,3],attack:7605,cost:[3],target:[2,1,1],spec:[0,11],class:1},
                 {effect:[22,3],attack:7605,cost:[3],target:[2,1,1],spec:[0,11],class:1},
                 {effect:[28,3],attack:7605,cost:[3],target:[2,1,1],spec:[0,11],class:1},
+            ],
+        },
+    },{
+        name:'Ruined\nTown',rarity:1,list:1,
+        levels:[
+            {effect:[5,1],attack:7744,cost:1,target:[2,1,1],spec:[],class:11},
+            {effect:[7,1],attack:7744,cost:1,target:[2,1,1],spec:[],class:11},
+            {effect:[9,1],attack:7744,cost:1,target:[2,1,1],spec:[],class:11},
+        ],mtg:{
+            rarity:1,list:1,color:[3,4],
+            levels:[
+                {effect:[4,1],attack:7744,cost:[14],target:[2,1,1],spec:[],class:11},
+                {effect:[6,1],attack:7744,cost:[14],target:[2,1,1],spec:[],class:11},
+                {effect:[8,1],attack:7744,cost:[14],target:[2,1,1],spec:[],class:11},
             ],
         },
     },
@@ -66016,20 +66016,6 @@ types.card=[
             ],
         },
     },{
-        name:'Electrostatic',rarity:-5,list:-1,
-        levels:[
-            {effect:[1,2],attack:6435,cost:1,target:[0],spec:[],class:11},
-            {effect:[1,3],attack:6435,cost:1,target:[0],spec:[],class:11},
-            {effect:[1,4],attack:6435,cost:1,target:[0],spec:[],class:11},
-        ],mtg:{
-            rarity:-5,list:-1,color:[1,3],
-            levels:[
-                {effect:[1,1],attack:6435,cost:[8],target:[0],spec:[],class:11},
-                {effect:[1,2],attack:6435,cost:[8],target:[0],spec:[],class:11},
-                {effect:[1,3],attack:6435,cost:[8],target:[0],spec:[],class:11},
-            ],
-        },
-    },{
         name:'Desert',rarity:-5,list:-1,
         levels:[
             {effect:[1,1],attack:6439,cost:0,target:[0],spec:[2,42],limit:2,class:11},
@@ -66545,6 +66531,20 @@ types.card=[
                 {effect:[10],attack:7625,cost:[],target:[0],spec:[41,80,81],class:14},
                 {effect:[10],attack:7625,cost:[],target:[0],spec:[41,80,81],class:14},
                 {effect:[10],attack:7625,cost:[],target:[0],spec:[41,80,81],class:14},
+            ],
+        },
+    },{
+        name:'Mine\nDiamonds',rarity:-1,list:-8,
+        levels:[
+            {effect:[10,20],attack:5745,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[15,30],attack:5745,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[18,40],attack:5745,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,5],
+            levels:[
+                {effect:[16,32],attack:5745,cost:[10,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[24,48],attack:5745,cost:[10,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[30,60],attack:5745,cost:[10,-1],target:[2,1,1],spec:[0],class:1},
             ],
         },
     },
@@ -86687,6 +86687,20 @@ types.card=[
                 {effect:[],attack:7138,cost:[],target:[0],spec:[41],class:8},
                 {effect:[],attack:7138,cost:[],target:[0],spec:[41],class:8},
                 {effect:[],attack:7138,cost:[],target:[0],spec:[41],class:8},
+            ],
+        },
+    },{
+        name:'Electrostatic',rarity:-1,list:-8,
+        levels:[
+            {effect:[1,2],attack:6435,cost:1,target:[0],spec:[],class:11},
+            {effect:[1,3],attack:6435,cost:1,target:[0],spec:[],class:11},
+            {effect:[1,4],attack:6435,cost:1,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,3],
+            levels:[
+                {effect:[1,1],attack:6435,cost:[8],target:[0],spec:[],class:11},
+                {effect:[1,2],attack:6435,cost:[8],target:[0],spec:[],class:11},
+                {effect:[1,3],attack:6435,cost:[8],target:[0],spec:[],class:11},
             ],
         },
     },
