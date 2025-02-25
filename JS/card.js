@@ -8767,6 +8767,7 @@ class card{
             case 7742: string+=`Gain ${effect[0]} Temporary\nStrength\nAdd a Miracle\nof Equivalent Level\nto Hand`; break
             case 7743: string+=`Gain ${effect[0]} Temporary\nStrength\nAdd a Splash\nof Equivalent Level\nto Hand`; break
             case 7744: string+=`Apply ${effect[0]} Bruise\nApply ${effect[1]} Weak`; break
+            case 7745: string+=`Apply ${effect[0]} Bruise\nDraw ${effect[1]} Card${pl(effect[1])}`; break
 
             //mark p
 

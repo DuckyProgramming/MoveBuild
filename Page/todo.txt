@@ -10,10 +10,6 @@ CARDSET 69 [GENERALIZED]
 
 [1 basic card temp]
 
-ruined town - apply 5 bruise, gain 1 control
-
-murder mystery - apply bruise, draw a combo card
-
 diamond hardness but shinmy - conditional ( active wish in hand: )
 
 

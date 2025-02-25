@@ -1972,15 +1972,15 @@ types.card=[
     },{
         name:'Redirector',rarity:1,list:0,
         levels:[
-            {effect:[[5],[5]],attack:[278,1033],cost:1,target:[0],spec:[12],reality:[[],[]],class:[11,11]},
-            {effect:[[7],[7]],attack:[278,1033],cost:1,target:[0],spec:[12],reality:[[],[]],class:[11,11]},
+            {effect:[[6],[6]],attack:[278,1033],cost:1,target:[0],spec:[12],reality:[[],[]],class:[11,11]},
             {effect:[[8],[8]],attack:[278,1033],cost:1,target:[0],spec:[12],reality:[[],[]],class:[11,11]},
+            {effect:[[10],[10]],attack:[278,1033],cost:1,target:[0],spec:[12],reality:[[],[]],class:[11,11]},
         ],mtg:{
             rarity:1,list:0,color:[0],
             levels:[
-                {effect:[[4],[4]],attack:[278,1033],cost:[-1],target:[0],spec:[12],reality:[[],[]],class:[11,11]},
                 {effect:[[5],[5]],attack:[278,1033],cost:[-1],target:[0],spec:[12],reality:[[],[]],class:[11,11]},
-                {effect:[[6],[6]],attack:[278,1033],cost:[-1],target:[0],spec:[12],reality:[[],[]],class:[11,11]},
+                {effect:[[7],[7]],attack:[278,1033],cost:[-1],target:[0],spec:[12],reality:[[],[]],class:[11,11]},
+                {effect:[[8],[8]],attack:[278,1033],cost:[-1],target:[0],spec:[12],reality:[[],[]],class:[11,11]},
             ],
         },
     },{
@@ -4532,20 +4532,6 @@ types.card=[
             ],
         },
     },{
-        name:'Ejector',rarity:1,list:1,
-        levels:[
-            {effect:[1,1,1],attack:3985,cost:0,target:[2,1,6],spec:[],class:11},
-            {effect:[1,2,1],attack:3985,cost:0,target:[2,1,6],spec:[],class:11},
-            {effect:[1,2,2],attack:3985,cost:0,target:[2,1,6],spec:[],class:11},
-        ],mtg:{
-            rarity:1,list:1,color:[1,3],
-            levels:[
-                {effect:[1,1,1],attack:4137,cost:[],target:[2,1,6],spec:[],class:11},
-                {effect:[1,2,1],attack:4138,cost:[],target:[2,1,6],spec:[],class:11},
-                {effect:[1,2,2],attack:4138,cost:[],target:[2,1,6],spec:[],class:11},
-            ],
-        },
-    },{
         name:'Athleticism',rarity:1,list:1,
         levels:[
             {effect:[[1],[1]],attack:[1197,1198],cost:1,target:[0],spec:[12],reality:[[],[]],class:[11,11]},
@@ -5173,6 +5159,20 @@ types.card=[
                 {effect:[4,1],attack:7744,cost:[14],target:[2,1,1],spec:[],class:11},
                 {effect:[6,1],attack:7744,cost:[14],target:[2,1,1],spec:[],class:11},
                 {effect:[8,1],attack:7744,cost:[14],target:[2,1,1],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Murder\nMystery',rarity:1,list:1,
+        levels:[
+            {effect:[4,2],attack:7745,cost:1,target:[2,1,1],spec:[],class:11},
+            {effect:[6,2],attack:7745,cost:1,target:[2,1,1],spec:[],class:11},
+            {effect:[8,2],attack:7745,cost:1,target:[2,1,1],spec:[],class:11},
+        ],mtg:{
+            rarity:1,list:1,color:[2,4],
+            levels:[
+                {effect:[6,2],attack:7745,cost:[2,4],target:[2,1,1],spec:[],class:11},
+                {effect:[9,2],attack:7745,cost:[2,4],target:[2,1,1],spec:[],class:11},
+                {effect:[11,2],attack:7745,cost:[2,4],target:[2,1,1],spec:[],class:11},
             ],
         },
     },
@@ -86701,6 +86701,20 @@ types.card=[
                 {effect:[1,1],attack:6435,cost:[8],target:[0],spec:[],class:11},
                 {effect:[1,2],attack:6435,cost:[8],target:[0],spec:[],class:11},
                 {effect:[1,3],attack:6435,cost:[8],target:[0],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Ejector',rarity:-1,list:-8,
+        levels:[
+            {effect:[1,1,1],attack:3985,cost:0,target:[2,1,6],spec:[],class:11},
+            {effect:[1,2,1],attack:3985,cost:0,target:[2,1,6],spec:[],class:11},
+            {effect:[1,2,2],attack:3985,cost:0,target:[2,1,6],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,3],
+            levels:[
+                {effect:[1,1,1],attack:4137,cost:[],target:[2,1,6],spec:[],class:11},
+                {effect:[1,2,1],attack:4138,cost:[],target:[2,1,6],spec:[],class:11},
+                {effect:[1,2,2],attack:4138,cost:[],target:[2,1,6],spec:[],class:11},
             ],
         },
     },
