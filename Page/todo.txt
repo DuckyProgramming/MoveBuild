@@ -6,37 +6,12 @@ LEGACY
 
 
 
-CARDSET 69 [GENERALIZED]
+CARDSET 71 [APRIL]
 
-[1 basic card temp]
+gohei whack but bounce
 
-diamond hardness but shinmy - conditional ( active wish in hand: )
+protospark - damage in all directions 2 times, increases by 1 time when recovered, 2 cost
 
-
-
-CARDSET 70 [RESERVE]
-
-fiery laser - damage, burn, repeat if first time played this combat
-
-cranberry trap - deal 15 splash damage each turn, until you get hit
-
-apotheotic shield - block, trigger apotheosis
-
-chroma - 1 of each mana
-
-warmonger - gain 1 temporary strength and 1 temporary dexterity for each enemy
-
-back to the past - discard your hand, return 4 cards from discard pile to hand
-
-glaucous - gain dexterity and next movement is free
-
-cerberus - damage 3 times, weak and vulnerable, heal
-
-
-
-CARDSET 71 [GIMMICKAL]
-
-devil's prism - 10 damage, randomly gain 3 life, 5 currency, or a random temporary item
-death treat - apply vulnerable, add a subcard^ to hand
+shimmering mirage - gain 1 dodge, choose between a token card and a status
 
 

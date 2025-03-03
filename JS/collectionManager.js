@@ -194,7 +194,7 @@ class collectionManager{
                 }
                 this.layer.fill(255)
 			    this.layer.textSize(10)
-                let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBSPECTRAL','JUNKYARD','SUBCARD','EVENT','VARIANT','DEVELOPER','REMOVED','BASIC','PACK','MISC']
+                let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBSPECTRAL','JUNKYARD','SUBCARD','EVENT','RESERVE','DEVELOPER','REMOVED','BASIC','PACK','MISC']
                 for(let a=0,la=40;a<la;a++){
                     this.layer.text(`${a>=constants.playerNumber?names2[a-constants.playerNumber]:types.combatant[a+1].name.toUpperCase()} (${this.totals.list[a][1]}/${this.totals.list[a][0]})`,this.layer.width/2-298.75+a%4*190,this.layer.height/2-225+floor(a/4)*40)
                 }

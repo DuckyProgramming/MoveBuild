@@ -825,6 +825,9 @@ class relicManager{
             case 511:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(10)
                 this.addSetRelic(4,player)
+            break
+            case 512:
+                this.battle.cardManagers[player].drawAmount++
                 this.battle.overlayManager.overlays[25][player].active=true
                 this.battle.overlayManager.overlays[25][player].activate([0,[
                     {type:1,value:[0,0,0]},
@@ -838,9 +841,6 @@ class relicManager{
                     {type:1,value:[0,2,0]},
                     {type:1,value:[0,2,0]},
                 ]])
-            break
-            case 512:
-                this.battle.cardManagers[player].drawAmount++
             break
 
             //mark a

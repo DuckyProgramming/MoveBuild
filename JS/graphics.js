@@ -7190,7 +7190,7 @@ function setupBackground(type,layer){
 			layer.text('BACK',layer.width/2-210,layer.height*0.7+290)
 			layer.text('DISABLE ALL',layer.width/2,layer.height*0.7+290)
 			layer.text('ENABLE ALL',layer.width/2+210,layer.height*0.7+290)
-			let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBSPECTRAL','JUNKYARD','SUBCARD','EVENT','VARIANT','DEVELOPER','REMOVED','BASIC','PACK','MISC']
+			let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBSPECTRAL','JUNKYARD','SUBCARD','EVENT','RESERVE','DEVELOPER','REMOVED','BASIC','PACK','MISC']
 			for(let a=0,la=40;a<la;a++){
 				layer.text(a>=constants.playerNumber?names2[a-constants.playerNumber]:types.combatant[a+1].name.toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-450+floor(a/4)*80)
 			}

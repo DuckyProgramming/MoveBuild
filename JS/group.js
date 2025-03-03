@@ -487,6 +487,10 @@ class group{
         this.cards.splice(this.cards.length,0,this.cards[index])
         this.cards.splice(index,1)
     }
+    slideSpecificTop(index){
+        this.cards.splice(index,0,this.cards[this.cards.length-1])
+        this.cards.splice(this.cards.length-1,1)
+    }
     resetAnim(){
         this.lastSort=-1
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -2262,7 +2266,9 @@ class group{
                                         this.cards[a].deSize=true
                                         this.cards[a].exhaust=true
                                         this.cards[a].purge=true
-                                        la++
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
                                     }else{
                                         this.cards.splice(a,1)
                                         a--
@@ -2286,7 +2292,9 @@ class group{
                                     this.cards[a].deSize=true
                                     this.cards[a].exhaust=true
                                     this.cards[a].purge=true
-                                    la++
+                                    if(args[0]!=7274&&args[0]!=7470){
+                                        la--
+                                    }
                                 }else{
                                     this.cards.splice(a,1)
                                     a--
@@ -2309,7 +2317,9 @@ class group{
                                     this.cards[a].deSize=true
                                     this.cards[a].exhaust=true
                                     this.cards[a].purge=true
-                                    la++
+                                    if(args[0]!=7274&&args[0]!=7470){
+                                        la--
+                                    }
                                 }else{
                                     this.cards.splice(a,1)
                                     a--
@@ -2333,7 +2343,9 @@ class group{
                                         this.cards[a].deSize=true
                                         this.cards[a].exhaust=true
                                         this.cards[a].purge=true
-                                        la++
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
                                     }else{
                                         this.cards.splice(a,1)
                                         a--
@@ -2359,7 +2371,9 @@ class group{
                                         this.cards[a].deSize=true
                                         this.cards[a].exhaust=true
                                         this.cards[a].purge=true
-                                        la++
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
                                     }else{
                                         this.cards.splice(a,1)
                                         a--
@@ -2383,7 +2397,9 @@ class group{
                                     this.cards[a].deSize=true
                                     this.cards[a].exhaust=true
                                     this.cards[a].purge=true
-                                    la++
+                                    if(args[0]!=7274&&args[0]!=7470){
+                                        la--
+                                    }
                                 }else{
                                     this.cards.splice(a,1)
                                     a--
@@ -2408,7 +2424,9 @@ class group{
                                         this.cards[a].deSize=true
                                         this.cards[a].exhaust=true
                                         this.cards[a].purge=true
-                                        la++
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
                                     }else{
                                         this.cards.splice(a,1)
                                         a--
@@ -2434,7 +2452,9 @@ class group{
                                         this.cards[a].deSize=true
                                         this.cards[a].exhaust=true
                                         this.cards[a].purge=true
-                                        la++
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
                                     }else{
                                         this.cards.splice(a,1)
                                         a--
@@ -2458,7 +2478,9 @@ class group{
                                     this.cards[a].deSize=true
                                     this.cards[a].exhaust=true
                                     this.cards[a].purge=true
-                                    la++
+                                    if(args[0]!=7274&&args[0]!=7470){
+                                        la--
+                                    }
                                 }else{
                                     this.cards.splice(a,1)
                                     a--
@@ -2481,7 +2503,9 @@ class group{
                                     this.cards[a].deSize=true
                                     this.cards[a].exhaust=true
                                     this.cards[a].purge=true
-                                    la++
+                                    if(args[0]!=7274&&args[0]!=7470){
+                                        la--
+                                    }
                                 }else{
                                     this.cards.splice(a,1)
                                     a--
@@ -2501,7 +2525,9 @@ class group{
                                         this.cards[a].deSize=true
                                         this.cards[a].exhaust=true
                                         this.cards[a].purge=true
-                                        la++
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
                                     }else{
                                         this.cards.splice(a,1)
                                         a--
@@ -2524,6 +2550,20 @@ class group{
                 case 67:
                     if(this.cards[a].spec.includes(args[0])&&this.cards[a].usable){
                         this.cards[a].costDown(0,[args[1]])
+                    }
+                break
+                case 68:
+                    if(this.cards[a].class==args[0]){
+                        if(this.id==2){
+                            this.cards[a].deSize=true
+                            this.cards[a].exhaust=true
+                        }else{
+                            this.generalExhaust(a)
+                            a--
+                            la--
+                        }
+                        this.add(findName('Newspaper',types.card),0,constants.playerNumber+1)
+                        this.slideSpecificTop(a)
                     }
                 break
             }
@@ -3014,8 +3054,10 @@ class group{
                 if(userCombatant.getStatus('Drawn Status Exhaust')>0){
                     this.battle.cardManagers[this.player].hand.exhaust(userCombatant.getStatus('Drawn Status Exhaust'))
                 }
-                if(userCombatant.getStatus('Pure')>0){
-                    userCombatant.status.main[findList('Pure',userCombatant.status.name)]--
+                if(userCombatant.getStatus('Pure')>0||userCombatant.getStatus('Indefinite Pure')>0){
+                    if(userCombatant.getStatus('Indefinite Pure')==0){
+                        userCombatant.status.main[findList('Pure',userCombatant.status.name)]--
+                    }
                     card.deSizeDropDraw=true
                     card.exhaust=true
                 }
@@ -3871,7 +3913,9 @@ class group{
                             break
                         }
                     break
-                    //22 is spent
+                    case 23:
+                        list[list.length-1].deSizeDropDraw=true
+                    break
                 }
             }
         }
@@ -4041,30 +4085,34 @@ class group{
     copy(list,firstIndex,lastIndex,spec){
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
-                list.push(copyCard(this.cards[firstIndex+a]))
-                list[list.length-1].position.x=1200
-                list[list.length-1].position.y=500
-                switch(spec){
-                    case 1:
-                        list[list.length-1].setCost(0,[0])
-                    break
-                    case 2:
-                        list[list.length-1].nonCalc=false
-                    break
+                if(this.cards[a].attack!=7771){
+                    list.push(copyCard(this.cards[firstIndex+a]))
+                    list[list.length-1].position.x=1200
+                    list[list.length-1].position.y=500
+                    switch(spec){
+                        case 1:
+                            list[list.length-1].setCost(0,[0])
+                        break
+                        case 2:
+                            list[list.length-1].nonCalc=false
+                        break
+                    }
                 }
             }
         }else{
             for(let a=0,la=lastIndex-firstIndex;a<la;a++){
-                list.push(copyCard(this.cards[firstIndex+a]))
-                list[list.length-1].position.x=1200
-                list[list.length-1].position.y=500
-                switch(spec){
-                    case 1:
-                        list[list.length-1].setCost(0,[0])
-                    break
-                    case 2:
-                        list[list.length-1].nonCalc=false
-                    break
+                if(this.cards[a].attack!=7771){
+                    list.push(copyCard(this.cards[firstIndex+a]))
+                    list[list.length-1].position.x=1200
+                    list[list.length-1].position.y=500
+                    switch(spec){
+                        case 1:
+                            list[list.length-1].setCost(0,[0])
+                        break
+                        case 2:
+                            list[list.length-1].nonCalc=false
+                        break
+                    }
                 }
             }
         }
@@ -4072,7 +4120,9 @@ class group{
     copyAntiInnate(list,firstIndex,lastIndex,key,spec){
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
-                if(!this.cards[firstIndex+a].spec.includes(47)&&key==0||this.cards[firstIndex+a].spec.includes(47)&&key==1){
+                if((
+                    !this.cards[firstIndex+a].spec.includes(47)&&key==0||this.cards[firstIndex+a].spec.includes(47)&&key==1
+                )&&this.cards[a].attack!=7771){
                     list.push(copyCard(this.cards[firstIndex+a]))
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
@@ -4083,7 +4133,9 @@ class group{
             }
         }else{
             for(let a=0,la=lastIndex-firstIndex;a<la;a++){
-                if(!this.cards[firstIndex+a].spec.includes(47)&&key==0||this.cards[firstIndex+a].spec.includes(47)&&key==1){
+                if((
+                    !this.cards[firstIndex+a].spec.includes(47)&&key==0||this.cards[firstIndex+a].spec.includes(47)&&key==1
+                )&&this.cards[a].attack!=7771){
                     list.push(copyCard(this.cards[firstIndex+a]))
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
@@ -6061,7 +6113,9 @@ class group{
                                 }else if(this.cards[a].deSizeDropDraw){
                                     this.cards[a].deSizeDropDraw=false
                                     this.cards[a].deSize=true
-                                    this.battle.cardManagers[this.player].draw(1)
+                                    if(this.cards[a].exhaust){
+                                        this.battle.cardManagers[this.player].draw(1)
+                                    }
                                 }else if(this.cards[a].spec.includes(68)&&this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                     this.selfCall(0,a)
                                 }
@@ -6188,6 +6242,9 @@ class group{
                                 }
                                 if(this.cards[a].callRewindEffect()){
                                     this.generalExhaust(a)
+                                }else if(this.cards[a].discardEffect.includes(19)){
+                                    this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(19))
+                                    this.send(this.cards,a,a+1,1)
                                 }else{
                                     this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,15)
                                 }

@@ -146,6 +146,13 @@ combatant.prototype.display=function(){
                 }
                 this.layer.colorMode(RGB,255,255,255,1)
             }
+            for(let a=0,la=this.infoAnim.favor.length;a<la;a++){
+                if(this.infoAnim.favor[a]>0&&lcos([0,120,240,60,180,300][a]+this.time*2)<0){
+                    this.layer.fill(125,175,255,this.fade*0.8*this.infoAnim.favor[a])
+                    this.layer.ellipse(lsin([0,120,240,60,180,300][a]+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin([0,120,240,60,180,300][a]+this.time*2)*30,4)
+                    regStar(this.layer,lsin([0,120,240,60,180,300][a]+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin([0,120,240,60,180,300][a]+this.time*2)*30,5,4,4,1.5,1.5,this.time+360*a/la)
+                }
+            }
             this.layer.translate(0,48)
         }
         switch(this.name){
@@ -13576,6 +13583,13 @@ combatant.prototype.display=function(){
                     this.layer.fill(255,255,100,this.fade*0.5*this.infoAnim.inspiration[a])
                     this.layer.ellipse(lsin(720*a/la+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin(720*a/la+this.time*2)*30,3)
                     regStar(this.layer,lsin(720*a/la+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin(720*a/la+this.time*2)*30,7,4,4,1,1,this.time+360*a/la)
+                }
+            }
+            for(let a=0,la=this.infoAnim.favor.length;a<la;a++){
+                if(this.infoAnim.favor[a]>0&&lcos([0,120,240,60,180,300][a]+this.time*2)>=0){
+                    this.layer.fill(125,175,255,this.fade*0.8*this.infoAnim.favor[a])
+                    this.layer.ellipse(lsin([0,120,240,60,180,300][a]+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin([0,120,240,60,180,300][a]+this.time*2)*30,4)
+                    regStar(this.layer,lsin([0,120,240,60,180,300][a]+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin([0,120,240,60,180,300][a]+this.time*2)*30,5,4,4,1.5,1.5,this.time+360*a/la)
                 }
             }
             if(this.infoAnim.elemental>0){

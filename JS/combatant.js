@@ -112,9 +112,10 @@ class combatant{
             flash:[0,0,0,0],upFlash:[false,false,false,false],
             balance:0,
             orb:0,orbSpec:[],
-            stance:[0,0,0,0,0,0,0],
-            faith:[0,0,0,0,0,0,0,0,0,0,0,0],elemental:0,
+            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],
+            elemental:0,
             inspiration:[0,0,0,0,0],fugue:0,
+            favor:[0,0,0,0,0,0],
         }
         this.dodges=[]
         this.turnDodges=0
@@ -201,7 +202,9 @@ class combatant{
                 'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns','0 Cost Block','Charge Consume Single Damage Up','Assign Return','Assign Temporary Strength','Pity',
                 'Death Energy','Death (E)','Debuff Temporary Strength','Basic Temporary Dexterity','Communized Weak','Communized Vulnerable','Turn Confuse','Confuse Cost Down','Prime Draw','Cycle Draw',
                 'Recover Draw','Recover Next Turn','Recover Up','Shiv Temporary Damage Taken Up','Free War','Skill Discard Draw','Worker Draw Per Turn','Worker Boost','Assign Draw','Free Assign',
-                'Intangible Strength','Debuff Draw','"Debuff"','Discus Pure','Cycle Rotation','Base Attack Weak Combat','Retain Lock On','History Rewind Tick','Gun Draw',
+                'Intangible Strength','Debuff Draw','"Debuff"','Discus Pure','Cycle Rotation','Base Attack Weak Combat','Retain Lock On','History Rewind Tick','Gun Draw','Retain Until Played Per Turn',
+                'Temporary Strength in 2 Turns','Temporary Strength in 3 Turns','Single Splash Vulnerable','Temporary Strength Cycle 3 1','Temporary Strength Cycle 3 2','Temporary Strength Cycle 3 3','Indefinite Pure','Fragile Turn Splash','Favor Per Turn','Favor Energy',
+                'Favor (E)',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -284,7 +287,9 @@ class combatant{
                 1,2,2,2,2,0,0,0,0,1,//78
                 0,0,0,0,0,0,0,0,0,0,//79
                 0,2,0,0,1,0,0,0,0,0,//80
-                0,0,0,0,0,0,1,0,0,
+                0,0,0,0,0,0,1,0,0,0,//81
+                2,2,2,2,2,2,1,0,0,0,//82
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -367,7 +372,9 @@ class combatant{
                 3,2,2,2,2,2,2,2,2,2,//78
                 2,2,2,2,2,2,2,2,2,2,//79
                 2,2,2,2,2,2,2,2,2,2,//80
-                2,2,3,2,2,2,3,2,2,
+                2,2,3,2,2,2,3,2,2,2,//81
+                0,0,2,0,0,0,2,2,2,2,//82
+                2,
             ]}
         /*
         0-none
@@ -471,6 +478,7 @@ class combatant{
         this.wish=3
         this.inspiration=0
         this.fugue=0
+        this.favor=0
     }
     resetInfo(){
         this.constants()
@@ -492,8 +500,10 @@ class combatant{
             bounce:0,bounceSize:1,bouncePush:0,
             size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],
             flash:[0,0,0,0],upFlash:[false,false,false,false],
-            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],elemental:0,
+            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],
+            elemental:0,
             inspiration:[0,0,0,0,0],fugue:0,
+            favor:[0,0,0,0,0,0],
         }
     }
     reset(){
@@ -5144,6 +5154,15 @@ class combatant{
             }
         }
     }
+    gainFavor(value){
+        this.favor+=value
+        if(this.status.main[819]>0&&this.id<this.battle.players){
+            this.battle.addEnergy(this.status.main[819],this.id)
+        }
+        if(this.status.main[820]>0&&this.id<this.battle.players){
+            this.battle.addSpecificEnergy(this.status.main[820],this.id,6)
+        }
+    }
     clearStatus(){
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -5538,6 +5557,9 @@ class combatant{
                     this.status.main[610]=20
                 }
             }
+            if(this.status.main[817]>0){
+                this.status.main[817]=0
+            }
             if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[438]>0){
                 this.battle.combatantManager.areaAbstract(0,[this.status.main[438],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
             }
@@ -5703,7 +5725,7 @@ class combatant{
                     case 371: this.status.main[findList('Dexterity in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 372: this.status.main[findList('Strength in 3 Turns',this.status.name)]+=this.status.main[a]; break
                     case 373: this.status.main[findList('Dexterity in 3 Turns',this.status.name)]+=this.status.main[a]; break
-                    case 377: case 663: this.battle.combatantManager.areaAbstract(0,[this.status.main[a],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0); break
+                    case 377: case 663: case 817: this.battle.combatantManager.areaAbstract(0,[this.status.main[a],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0); break
                     case 389: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 390: this.battle.combatantManager.allEffect(43,[this.status.main[a],this.id]); break
                     case 391: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].discard.add(findName('Prismatic\nBomb',types.card),0,0)}} break
@@ -5829,6 +5851,14 @@ class combatant{
                     case 791: if(this.id<this.battle.players){this.battle.overlayManager.overlays[168][this.id].active=true;this.battle.overlayManager.overlays[168][this.id].activate([this.status.main[a]])} break
                     case 796: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.spec.push([82,this.status.main[a]])} break
                     case 804: this.status.main[findList(['Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill'][floor(random(0,5))],this.status.name)]+=this.status.main[a]; break
+                    case 809: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.retain2(this.status.main[a])}; break
+                    case 810: this.status.main[findList('Temporary Strength Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 811: this.status.main[findList('Temporary Strength in 2 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 812: this.battle.combatantManager.areaAbstract(2,['Vulnerable',this.status.main[a]],this.tilePosition,[3,this.id],[0,1],false,0); break
+                    case 813: this.statusEffect('Temporary Strength',this.status.main[a]);this.status.next[findList('Temporary Strength Cycle 3 3',this.status.name)]+=this.status.main[a]; break
+                    case 814: this.status.main[findList('Temporary Strength Cycle 3 1',this.status.name)]+=this.status.main[a]; break
+                    case 815: this.status.main[findList('Temporary Strength Cycle 3 2',this.status.name)]+=this.status.main[a]; break
+                    case 818: this.gainFavor(this.status.main[a]); break
                     
                 }
                 if(this.status.behavior[a]==6&&
@@ -7517,6 +7547,9 @@ class combatant{
                 this.infoAnim.inspiration[a]=smoothAnim(this.infoAnim.inspiration[a],this.inspiration>a,0,1,5)
             }
             this.infoAnim.fugue=smoothAnim(this.infoAnim.fugue,this.fugue>0,0,1,5)
+            for(let a=0,la=this.infoAnim.favor.length;a<la;a++){
+                this.infoAnim.favor[a]=smoothAnim(this.infoAnim.favor[a],this.favor>a,0,1,5)
+            }
             if(this.faith>=12&&this.infoAnim.faith[9]>=1){
                 this.faith-=12
                 this.enterStance(5)
@@ -7543,6 +7576,10 @@ class combatant{
                 if(this.status.main[753]>0){
                     this.statusEffect('Strength',this.status.main[753])
                 }
+            }
+            if(this.favor>=6){
+                this.favor-=6
+                this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0)
             }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)

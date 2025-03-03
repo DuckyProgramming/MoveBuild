@@ -573,11 +573,13 @@ class overlay{
                     break
                     case 17:
                         list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
-                        for(let a=0,la=list[args[1]].length;a<la;a++){
-                            if(types.card[list[args[1]][a]].levels[args[0]].class!=args[4]){
-                                list[args[1]].splice(a,1)
-                                a--
-                                la--
+                        if(args[4]!=-1){
+                            for(let a=0,la=list[args[1]].length;a<la;a++){
+                                if(types.card[list[args[1]][a]].levels[args[0]].class!=args[4]){
+                                    list[args[1]].splice(a,1)
+                                    a--
+                                    la--
+                                }
                             }
                         }
                         for(let a=0,la=this.options;a<la;a++){
@@ -4887,7 +4889,7 @@ class overlay{
                                     let complete=true
                                     switch(this.args[0]){
                                         case 41: case 48: case 49: case 84:
-                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
                                             this.args[1]--
                                             a--
@@ -4897,7 +4899,7 @@ class overlay{
                                         case 44:
                                             this.battle.cardManagers[this.player].reserve.cards[a].setCost(0,[0])
                                             this.battle.cardManagers[this.player].reserve.cards[a].additionalSpec.push(-2)
-                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
                                             this.args[1]--
                                             a--
@@ -4905,7 +4907,7 @@ class overlay{
                                             complete=this.args[1]<=0
                                         break
                                         case 47:
-                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
                                             this.args[1]--
                                             a--
@@ -4914,7 +4916,7 @@ class overlay{
                                             complete=this.args[1]<=0
                                         break
                                         case 59:
-                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
                                             this.args[1]--
                                             a--
@@ -4923,7 +4925,7 @@ class overlay{
                                             complete=this.args[1]<=0
                                         break
                                         case 73:
-                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
                                             if(this.battle.cardManagers[this.player].reserve.cards[a].class==2){
                                                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.args[3])
                                             }
@@ -4934,7 +4936,7 @@ class overlay{
                                             complete=this.args[1]<=0
                                         break
                                         case 85:
-                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
                                             this.args[1]--
                                             a--
@@ -6413,7 +6415,7 @@ class overlay{
                                     let complete=true
                                     switch(this.args[0]){
                                         case 41: case 48: case 49: case 84:
-                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
                                             this.args[1]--
                                             a--
@@ -6423,7 +6425,7 @@ class overlay{
                                         case 44:
                                             this.battle.cardManagers[this.player].reserve.cards[a].setCost(0,[0])
                                             this.battle.cardManagers[this.player].reserve.cards[a].additionalSpec.push(-2)
-                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
                                             this.args[1]--
                                             a--
@@ -6431,7 +6433,7 @@ class overlay{
                                             complete=this.args[1]<=0
                                         break
                                         case 47:
-                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
                                             this.args[1]--
                                             a--
@@ -6440,7 +6442,7 @@ class overlay{
                                             complete=this.args[1]<=0
                                         break
                                         case 59:
-                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
                                             this.args[1]--
                                             a--
@@ -6449,7 +6451,7 @@ class overlay{
                                             complete=this.args[1]<=0
                                         break
                                         case 73:
-                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
                                             if(this.battle.cardManagers[this.player].reserve.cards[a].class==2){
                                                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.args[3])
                                             }
@@ -6460,7 +6462,7 @@ class overlay{
                                             complete=this.args[1]<=0
                                         break
                                         case 85:
-                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
                                             this.args[1]--
                                             a--

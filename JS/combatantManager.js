@@ -649,6 +649,12 @@ class combatantManager{
                 case 1:
                     this.combatants[possible[floor(random(0,possible.length))]].statusEffect(args[0],args[1])
                 break
+                case 2:
+                    let combatant=this.combatants[possible[floor(random(0,possible.length))]]
+                    if(combatant.life<args[0]){
+                        combatant.life=0
+                    }
+                break
             }
         }
     }
@@ -1501,6 +1507,9 @@ class combatantManager{
                     break
                     case 9:
                         this.combatants[a].addBlock(values[0])
+                    break
+                    case 10:
+                        this.combatants[a].statusEffect(values[0],values[1]*(this.combatants[a].life<=this.combatants[a].base.life*0.5?2:1))
                     break
                 }
                 if(
