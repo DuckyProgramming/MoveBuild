@@ -262,13 +262,13 @@ class attack{
             case 7069: case 7074: case 7075: case 7076: case 7077: case 7080: case 7086: case 7088: case 7116: case 7117: case 7119: case 7122: case 7128: case 7129: case 7132: case 7136: case 7146: case 7160: case 7165: case 7175:
             case 7197: case 7201: case 7204: case 7208: case 7209: case 7210: case 7211: case 7212: case 7213: case 7215: case 7216: case 7221: case 7222: case 7224: case 7227: case 7232: case 7234: case 7235: case 7249: case 7251:
             case 7255: case 7260: case 7261: case 7269: case 7270: case 7271: case 7276: case 7281: case 7282: case 7284: case 7288: case 7289: case 7297: case 7298: case 7304: case 7305: case 7306: case 7307: case 7312: case 7313:
-            case 7315: case 7336: case 7337: case 7338: case 7342: case 7343: case 7346: case 7349: case 7352: case 7354: case 7357: case 7358: case 7366: case 7368: case 7369: case 7378: case 7383: case 7385: case 7386: case 7387:
-            case 7388: case 7389: case 7396: case 7400: case 7404: case 7405: case 7406: case 7411: case 7412: case 7422: case 7438: case 7439: case 7443: case 7454: case 7455: case 7456: case 7460: case 7461: case 7463: case 7464:
-            case 7465: case 7466: case 7467: case 7468: case 7472: case 7478: case 7480: case 7482: case 7492: case 7494: case 7497: case 7498: case 7499: case 7500: case 7509: case 7510: case 7511: case 7516: case 7522: case 7523:
-            case 7525: case 7527: case 7528: case 7532: case 7533: case 7535: case 7543: case 7550: case 7553: case 7556: case 7576: case 7578: case 7580: case 7584: case 7586: case 7593: case 7603: case 7605: case 7606: case 7609:
-            case 7611: case 7616: case 7618: case 7619: case 7622: case 7627: case 7630: case 7632: case 7634: case 7635: case 7636: case 7637: case 7638: case 7639: case 7665: case 7668: case 7673: case 7674: case 7676: case 7681:
-            case 7683: case 7685: case 7696: case 7697: case 7712: case 7716: case 7718: case 7719: case 7720: case 7721: case 7722: case 7723: case 7724: case 7726: case 7734: case 7735: case 7738: case 7744: case 7745: case 7748:
-            case 7756: case 7760: case 7764: case 7765: case 7774: case 7775: case 7787: case 7792: case 7795: case 7796: case 7800:
+            case 7315: case 7336: case 7337: case 7338: case 7342: case 7343: case 7346: case 7349: case 7352: case 7354: case 7357: case 7358: case 7366: case 7368: case 7369: case 7372: case 7378: case 7383: case 7385: case 7386:
+            case 7387: case 7388: case 7389: case 7396: case 7400: case 7404: case 7405: case 7406: case 7411: case 7412: case 7422: case 7438: case 7439: case 7443: case 7454: case 7455: case 7456: case 7460: case 7461: case 7463:
+            case 7464: case 7465: case 7466: case 7467: case 7468: case 7472: case 7478: case 7480: case 7482: case 7492: case 7494: case 7497: case 7498: case 7499: case 7500: case 7509: case 7510: case 7511: case 7516: case 7522:
+            case 7523: case 7525: case 7527: case 7528: case 7532: case 7533: case 7535: case 7543: case 7550: case 7553: case 7556: case 7576: case 7578: case 7580: case 7584: case 7586: case 7593: case 7603: case 7605: case 7606:
+            case 7609: case 7611: case 7616: case 7618: case 7619: case 7622: case 7627: case 7630: case 7632: case 7634: case 7635: case 7636: case 7637: case 7638: case 7639: case 7665: case 7668: case 7673: case 7674: case 7676:
+            case 7681: case 7683: case 7685: case 7696: case 7697: case 7712: case 7716: case 7718: case 7719: case 7720: case 7721: case 7722: case 7723: case 7724: case 7726: case 7734: case 7735: case 7738: case 7744: case 7745:
+            case 7748: case 7756: case 7760: case 7764: case 7765: case 7774: case 7775: case 7787: case 7792: case 7795: case 7796: case 7800:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 

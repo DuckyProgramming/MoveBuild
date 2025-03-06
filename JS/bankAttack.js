@@ -164,13 +164,14 @@ attack.prototype.update=function(){
         case 7210: case 7211: case 7212: case 7215: case 7224: case 7227: case 7232: case 7235: case 7249: case 7251:
         case 7255: case 7260: case 7269: case 7276: case 7281: case 7282: case 7284: case 7288: case 7289: case 7304:
         case 7305: case 7306: case 7307: case 7312: case 7315: case 7338: case 7342: case 7343: case 7349: case 7352:
-        case 7357: case 7358: case 7368: case 7369: case 7383: case 7385: case 7388: case 7389: case 7400: case 7422:
-        case 7443: case 7454: case 7455: case 7456: case 7463: case 7464: case 7465: case 7466: case 7467: case 7468:
-        case 7472: case 7478: case 7492: case 7494: case 7497: case 7499: case 7500: case 7509: case 7511: case 7523:
-        case 7525: case 7527: case 7528: case 7535: case 7543: case 7553: case 7556: case 7578: case 7603: case 7605:
-        case 7606: case 7609: case 7611: case 7618: case 7619: case 7630: case 7632: case 7673: case 7674: case 7681:
-        case 7683: case 7697: case 7712: case 7716: case 7718: case 7719: case 7720: case 7721: case 7722: case 7736:
-        case 7744: case 7745: case 7760: case 7764: case 7765: case 7775: case 7787: case 7795: case 7796: case 7800:
+        case 7357: case 7358: case 7368: case 7369: case 7372: case 7383: case 7385: case 7388: case 7389: case 7400:
+        case 7422: case 7443: case 7454: case 7455: case 7456: case 7463: case 7464: case 7465: case 7466: case 7467:
+        case 7468: case 7472: case 7478: case 7492: case 7494: case 7497: case 7499: case 7500: case 7509: case 7511:
+        case 7523: case 7525: case 7527: case 7528: case 7535: case 7543: case 7553: case 7556: case 7578: case 7603:
+        case 7605: case 7606: case 7609: case 7611: case 7618: case 7619: case 7630: case 7632: case 7673: case 7674:
+        case 7681: case 7683: case 7697: case 7712: case 7716: case 7718: case 7719: case 7720: case 7721: case 7722:
+        case 7736: case 7744: case 7745: case 7760: case 7764: case 7765: case 7775: case 7787: case 7795: case 7796:
+        case 7800:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
