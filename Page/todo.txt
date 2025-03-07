@@ -8,10 +8,8 @@ LEGACY
 
 CARDSET 71 [APRIL]
 
-gohei whack but bounce
-
 protospark - damage in all directions 2 times, increases by 1 time when recovered, 2 cost
 
-shimmering mirage - gain 1 dodge, choose between a token card and a status
+shimmering star - gain 1 dodge, choose between a token card and a status
 
 

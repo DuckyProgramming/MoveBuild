@@ -17434,7 +17434,7 @@ types.card=[
             ],
         },
     },{
-        name:'Wingbash',rarity:1,list:7,
+        name:'Slipbash',rarity:1,list:7,
         levels:[
             {effect:[9,1,1],attack:1883,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[13,2,1],attack:1883,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -48556,20 +48556,6 @@ types.card=[
             ],
         },
     },{
-        name:'Wheel of\nMisfortune',rarity:0,list:21,
-        levels:[
-            {effect:[8],attack:6425,cost:1,target:[2,1,2],spec:[0],class:1},
-            {effect:[12],attack:6425,cost:1,target:[2,1,2],spec:[0],class:1},
-            {effect:[15],attack:6425,cost:1,target:[2,1,2],spec:[0],class:1},
-        ],mtg:{
-            rarity:0,list:21,color:[3],
-            levels:[
-                {effect:[7],attack:6425,cost:[3],target:[2,1,2],spec:[0],class:1},
-                {effect:[11],attack:6425,cost:[3],target:[2,1,2],spec:[0],class:1},
-                {effect:[14],attack:6425,cost:[3],target:[2,1,2],spec:[0],class:1},
-            ],
-        },
-    },{
         name:'Ancestral\nGrove',rarity:1,list:21,
         levels:[
             {effect:[1,1],attack:6436,cost:0,target:[0],spec:[1],class:11},
@@ -48735,6 +48721,20 @@ types.card=[
                 {effect:[19],attack:6467,cost:[3,3,-1],target:[2,1,3],spec:[0],class:1},
                 {effect:[29],attack:6467,cost:[3,3,-1],target:[2,1,3],spec:[0],class:1},
                 {effect:[36],attack:6467,cost:[3,3,-1],target:[2,1,3],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Wheel of\nMisfortune',rarity:0,list:21,
+        levels:[
+            {effect:[8],attack:6425,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[12],attack:6425,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[15],attack:6425,cost:1,target:[2,1,2],spec:[0],class:1},
+        ],mtg:{
+            rarity:0,list:21,color:[3],
+            levels:[
+                {effect:[7],attack:6425,cost:[3],target:[2,1,2],spec:[0],class:1},
+                {effect:[11],attack:6425,cost:[3],target:[2,1,2],spec:[0],class:1},
+                {effect:[14],attack:6425,cost:[3],target:[2,1,2],spec:[0],class:1},
             ],
         },
     },{
@@ -48917,20 +48917,6 @@ types.card=[
                 {effect:[1,3],attack:6482,cost:[1,-1],target:[1,1,1],spec:[0],class:3},
                 {effect:[1,5],attack:6482,cost:[1,-1],target:[1,1,1],spec:[0],class:3},
                 {effect:[1,7],attack:6482,cost:[1,-1],target:[1,1,1],spec:[0],class:3},
-            ],
-        },
-    },{
-        name:'Disengage',rarity:0,list:21,
-        levels:[
-            {effect:[1,1],attack:6483,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[1,1],attack:6483,cost:0,target:[1,1,1],spec:[0],class:3},
-            {effect:[1,1],attack:6483,cost:0,target:[1,1,1],spec:[],class:3},
-        ],mtg:{
-            rarity:0,list:-1,color:[2,3],
-            levels:[
-                {effect:[1],attack:6484,cost:[11,-1],target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:6485,cost:[11,-1],target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:6486,cost:[11,-1],target:[1,1,1],spec:[0],class:3},
             ],
         },
     },{
@@ -50051,6 +50037,20 @@ types.card=[
                 {effect:[1],attack:7785,cost:[1,5],target:[0],spec:[],class:11},
                 {effect:[1],attack:7785,cost:[1,5],target:[0],spec:[2],class:11},
                 {effect:[1],attack:7785,cost:[10],target:[0],spec:[2],class:11},
+            ],
+        },
+    },{
+        name:'Wing\nWhack',rarity:0,list:21,
+        levels:[
+            {effect:[7,3],attack:7813,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[11,3],attack:7813,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14,3],attack:7813,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:0,list:21,color:[1,3],
+            levels:[
+                {effect:[11,5],attack:7813,cost:[8,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[16,5],attack:7813,cost:[8,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[20,5],attack:7813,cost:[8,-1],target:[2,1,1],spec:[0],class:1},
             ],
         },
     },
@@ -57181,6 +57181,20 @@ types.card=[
                 {effect:[2,1],attack:7812,cost:[8],target:[0],spec:[],class:11},
                 {effect:[4,1],attack:7812,cost:[8],target:[0],spec:[],class:11},
                 {effect:[4,1],attack:7812,cost:[8],target:[0],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Disengage',rarity:0,list:-9,
+        levels:[
+            {effect:[1,1],attack:6483,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,1],attack:6483,cost:0,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,1],attack:6483,cost:0,target:[1,1,1],spec:[],class:3},
+        ],mtg:{
+            rarity:0,list:-1,color:[2,3],
+            levels:[
+                {effect:[1],attack:6484,cost:[11,-1],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:6485,cost:[11,-1],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:6486,cost:[11,-1],target:[1,1,1],spec:[0],class:3},
             ],
         },
     },

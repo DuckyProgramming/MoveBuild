@@ -171,7 +171,7 @@ attack.prototype.update=function(){
         case 7605: case 7606: case 7609: case 7611: case 7618: case 7619: case 7630: case 7632: case 7673: case 7674:
         case 7681: case 7683: case 7697: case 7712: case 7716: case 7718: case 7719: case 7720: case 7721: case 7722:
         case 7736: case 7744: case 7745: case 7760: case 7764: case 7765: case 7775: case 7787: case 7795: case 7796:
-        case 7800:
+        case 7800: case 7813:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)

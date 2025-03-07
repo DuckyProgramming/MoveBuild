@@ -8835,6 +8835,8 @@ class card{
             case 7809: string+=`When You Gain Favor,\nGain (E) (E)`; break
             case 7810: string+=`Take Another Turn\nDraw No Cards\nDuring it\nRetain Your Hand\nThis Turn`; break
             case 7812: string+=`Gain ${effect[0]} Temporary\nDexterity\nIncreases by ${effect[1]}`; break
+            case 7813: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Discarded,\nAdd ${this.calculateEffect(effect[1],17)} Bounce`; break
+            //7760
 
             //mark p
 
@@ -9261,6 +9263,9 @@ class card{
             break
             case 7760: case 7761:
                 userCombatant.addBarrier(this.effect[1])
+            break
+            case 7813:
+                userCombatant.addBounce(this.effect[1])
             break
         }
     }
