@@ -2355,7 +2355,7 @@ class overlay{
                             }
                         }
                         this.battle.cardManagers[this.player].hand.selfCall(34,args[0])
-                        if(args[0].target[0]==63||args[0].target[0]==64){
+                        if(args[0].target[0]==63||args[0].target[0]==64||args[0].target[0]==66){
                             this.battle.cardManagers[this.player].hand.selfCall(47,args[0])
                         }else{
                             this.battle.cardManagers[this.player].hand.selfCall(33,args[0])

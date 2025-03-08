@@ -8836,7 +8836,9 @@ class card{
             case 7810: string+=`Take Another Turn\nDraw No Cards\nDuring it\nRetain Your Hand\nThis Turn`; break
             case 7812: string+=`Gain ${effect[0]} Temporary\nDexterity\nIncreases by ${effect[1]}`; break
             case 7813: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Discarded,\nAdd ${this.calculateEffect(effect[1],17)} Bounce`; break
-            //7760
+            case 7814: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Temporary\nStrength`; break
+            case 7815: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Temporary\nDexterity`; break
+            case 7816: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nin All Directions\nIncreases by ${effect[1]}\nWhen Recovered`; break
 
             //mark p
 
@@ -10458,6 +10460,9 @@ class card{
                 for(let a=0,la=this.effect[0];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(findName('Vibrant',types.card),0,0)
                 }
+            break
+            case 7816:
+                this.effect[0]+=this.effect[1]
             break
         }
     }

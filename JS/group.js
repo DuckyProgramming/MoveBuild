@@ -4952,7 +4952,8 @@ class group{
                     this.cards[a].target[0]==0||
                     this.cards[a].target[0]==62&&this.battle.turn.total%2==1||
                     this.cards[a].spec.includes(12)&&this.cards[a].target[0]==63||
-                    this.cards[a].spec.includes(12)&&this.cards[a].target[0]==64
+                    this.cards[a].spec.includes(12)&&this.cards[a].target[0]==64||
+                    this.cards[a].spec.includes(12)&&this.cards[a].target[0]==66
                 ){
                     this.battle.attackManager.spec=this.cards[a].spec
                     if(this.cards[a].spec.includes(73)&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
@@ -5980,6 +5981,30 @@ class group{
                     this.battle.overlayManager.overlays[10][this.player].activate([this.statusMarker[2],[0,0],57,[],[[1,this.cards[a].class]]])
                 }
             break
+            case 59:
+                this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=round(atan2(this.battle.tileManager.tiles[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.tileManager.tiles[a].relativePosition.y-this.battle.attackManager.relativePosition.y)/60-1/2)*60+30
+                if(this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==37||this.battle.attackManager.targetInfo[0]==38||this.battle.attackManager.targetInfo[0]==39||this.battle.attackManager.targetInfo[0]==41||this.battle.attackManager.targetInfo[0]==42||this.battle.attackManager.targetInfo[0]==43){
+                    this.battle.attackManager.targetDistance=max(distTargetDiagonalCombatant(0,this.battle.tileManager.tiles[a],this.battle.attackManager),distTargetCombatant(0,this.battle.tileManager.tiles[a],this.battle.attackManager))
+                }else if(this.battle.attackManager.targetInfo[0]==12||this.battle.attackManager.targetInfo[0]==14||this.battle.attackManager.targetInfo[0]==47||this.battle.attackManager.targetInfo[0]==48){
+                    this.battle.attackManager.targetDistance=distTargetDiagonalCombatant(0,this.battle.tileManager.tiles[a],this.battle.attackManager)
+                }else{
+                    this.battle.attackManager.targetDistance=distTargetCombatant(0,this.battle.tileManager.tiles[a],this.battle.attackManager)
+                }
+                this.battle.attackManager.targetInfo[0]=0
+                this.battle.attackManager.targetClass=1
+                this.battle.attackManager.target[0]=a
+                this.target=[]
+                if(this.cardInUse!=-1){
+                    this.selfCall(42,[this.cardInUse,0])
+                }else{
+                    this.battle.attackManager.execute()
+                }
+                this.battle.updateTargetting()
+                this.lastPlayed[0]=copyCard(this.cardInUse)
+                if(this.battle.attackManager.attackClass!=0){
+                    this.lastPlayed[this.battle.attackManager.attackClass]=copyCard(this.cardInUse)
+                }
+            break
         }
     }
     generalUpgrade(card){
@@ -6454,14 +6479,14 @@ class group{
         }
     }
     onClick(scene){
-        if(this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==32||this.battle.attackManager.targetInfo[0]==60||this.battle.attackManager.targetInfo[0]==61||this.battle.attackManager.targetInfo[0]==65){
+        if(this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==32||this.battle.attackManager.targetInfo[0]==60||this.battle.attackManager.targetInfo[0]==61||this.battle.attackManager.targetInfo[0]==65||this.battle.attackManager.targetInfo[0]==66){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(this.battle.tileManager.tiles[a].occupied==0&&
                     (legalTargetCombatant(this.battle.relicManager.active[150][this.battle.attackManager.player+1]>0?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==61||this.battle.attackManager.targetInfo[0]==65)&&
                     !(this.battle.attackManager.targetInfo[0]==61&&this.battle.combatantManager.getArea(this.battle.combatantManager.combatants[this.battle.attackManager.user].team,this.battle.tileManager.tiles[a].tilePosition,1).length>0)&&
                     !(this.battle.attackManager.targetInfo[0]==65&&this.battle.combatantManager.getArea(this.battle.combatantManager.combatants[this.battle.attackManager.user].team,this.battle.tileManager.tiles[a].tilePosition,1).length==0)&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<constants.targetRadius){
-                    this.selfCall(2,a)
+                    this.selfCall(this.battle.attackManager.targetInfo[0]==66?59:2,a)
                 }
             }
         }
@@ -6877,7 +6902,7 @@ class group{
         }
     }
     onKey(scene,key,code){
-        if(this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==32||this.battle.attackManager.targetInfo[0]==60||this.battle.attackManager.targetInfo[0]==61||this.battle.attackManager.targetInfo[0]==65){
+        if(this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==32||this.battle.attackManager.targetInfo[0]==60||this.battle.attackManager.targetInfo[0]==61||this.battle.attackManager.targetInfo[0]==65||this.battle.attackManager.targetInfo[0]==66){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
                 let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
                 if(this.battle.tileManager.tiles[a].occupied==0&&
@@ -6885,7 +6910,7 @@ class group{
                     !(this.battle.attackManager.targetInfo[0]==61&&this.battle.combatantManager.getArea(this.battle.combatantManager.combatants[this.battle.attackManager.user].team,this.battle.tileManager.tiles[a].tilePosition,1).length>0)&&
                     !(this.battle.attackManager.targetInfo[0]==65&&this.battle.combatantManager.getArea(this.battle.combatantManager.combatants[this.battle.attackManager.user].team,this.battle.tileManager.tiles[a].tilePosition,1).length==0)
                 ){
-                    this.selfCall(2,a)
+                    this.selfCall(this.battle.attackManager.targetInfo[0]==66?59:2,a)
                 }
             }
         }
@@ -6896,7 +6921,7 @@ class group{
                         (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==45)&&
                         !(this.battle.attackManager.targetInfo[0]==22&&this.battle.combatantManager.combatants[a].tilePosition.y!=this.battle.attackManager.tilePosition.y)&&
                         this.battle.combatantManager.combatants[a].tilePosition.x==int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x&&this.battle.combatantManager.combatants[a].tilePosition.y==int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y){
-                        this.selfCall(this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==63?46:3,a)
+                        this.selfCall(this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==64?46:3,a)
                     }
                 }
             }

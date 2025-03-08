@@ -8,8 +8,4 @@ LEGACY
 
 CARDSET 71 [APRIL]
 
-protospark - damage in all directions 2 times, increases by 1 time when recovered, 2 cost
-
-shimmering star - gain 1 dodge, choose between a token card and a status
-
 

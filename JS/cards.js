@@ -32232,17 +32232,17 @@ types.card=[
             ],
         },
     },{
-        name:'Sterilized\nPaper',rarity:2,list:14,
+        name:'Ticking\nAway',rarity:2,list:14,
         levels:[
-            {effect:[],attack:2578,cost:0,target:[0],spec:[4,5],class:8},
-            {effect:[],attack:2578,cost:2,target:[0],spec:[1,4],class:8},
-            {effect:[],attack:2578,cost:1,target:[0],spec:[1,4],class:8},
+            {effect:[],attack:7810,cost:2,target:[0],spec:[64],class:11},
+            {effect:[],attack:7810,cost:1,target:[0],spec:[64],class:11},
+            {effect:[],attack:7810,cost:1,target:[0],spec:[2,64],class:11},
         ],mtg:{
-            rarity:2,list:14,color:[2],
+            rarity:2,list:14,color:[3,5],
             levels:[
-                {effect:[],attack:2578,cost:[],target:[0],spec:[4,5],class:8},
-                {effect:[],attack:2578,cost:[2,-1],target:[0],spec:[1,4],class:8},
-                {effect:[],attack:2578,cost:[2],target:[0],spec:[1,4],class:8},
+                {effect:[],attack:7810,cost:[3,5],target:[0],spec:[64],class:11},
+                {effect:[],attack:7810,cost:[15],target:[0],spec:[64],class:11},
+                {effect:[],attack:7810,cost:[15],target:[0],spec:[2,64],class:11},
             ],
         },
     },{
@@ -41022,20 +41022,6 @@ types.card=[
             ],
         },
     },{
-        name:'Slash\nDraw',rarity:0,list:17,
-        levels:[
-            {effect:[11,1],attack:7736,cost:1,target:[0],spec:[0,68],class:1},
-            {effect:[16,1],attack:7736,cost:1,target:[0],spec:[0,68],class:1},
-            {effect:[20,1],attack:7736,cost:1,target:[0],spec:[0,68],class:1},
-        ],mtg:{
-            rarity:0,list:17,color:[2],
-            levels:[
-                {effect:[9,1],attack:7737,cost:[2],target:[0],spec:[0,68],class:1},
-                {effect:[14,1],attack:7737,cost:[2],target:[0],spec:[0,68],class:1},
-                {effect:[18,1],attack:7737,cost:[2],target:[0],spec:[0,68],class:1},
-            ],
-        },
-    },{
         name:'High\nExpectations',rarity:1,list:17,
         levels:[
             {effect:[1,1],attack:7737,cost:1,target:[1,1,1],spec:[0],class:3},
@@ -41075,6 +41061,20 @@ types.card=[
                 {effect:[1],attack:7752,cost:[2,5,-1],target:[0],spec:[1],class:11},
                 {effect:[1],attack:7752,cost:[13,-1],target:[0],spec:[1],class:11},
                 {effect:[2],attack:7752,cost:[13,-1],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Shimmering\nPath',rarity:1,list:17,
+        levels:[
+            {effect:[[1,1],[1,1]],attack:[7814,7815],cost:1,target:[66,1,1],spec:[12],reality:[[0],[0]],class:[3,3]},
+            {effect:[[1,2],[1,2]],attack:[7814,7815],cost:1,target:[66,1,1],spec:[12],reality:[[0],[0]],class:[3,3]},
+            {effect:[[1,3],[1,3]],attack:[7814,7815],cost:1,target:[66,1,1],spec:[12],reality:[[0],[0]],class:[3,3]},
+        ],mtg:{
+            rarity:1,list:17,color:[4],
+            levels:[
+                {effect:[[1,1],[1,1]],attack:[7814,7815],cost:[4,-1],target:[66,1,1],spec:[12],reality:[[0],[0]],class:[3,3]},
+                {effect:[[1,1],[1,2]],attack:[7814,7815],cost:[4,-1],target:[66,1,1],spec:[12],reality:[[0],[0]],class:[3,3]},
+                {effect:[[1,1],[1,3]],attack:[7814,7815],cost:[4,-1],target:[66,1,1],spec:[12],reality:[[0],[0]],class:[3,3]},
             ],
         },
     },
@@ -53467,14 +53467,14 @@ types.card=[
         name:'Risen',rarity:0,list:23,
         levels:[
             {effect:[1],attack:7053,cost:2,target:[0],spec:[],class:11},
-            {effect:[1],attack:7053,cost:1,target:[0],spec:[],class:11},
-            {effect:[1],attack:7053,cost:1,target:[0],spec:[2],class:11},
+            {effect:[2],attack:7053,cost:2,target:[0],spec:[],class:11},
+            {effect:[2],attack:7053,cost:2,target:[0],spec:[2],class:11},
         ],mtg:{
             rarity:0,list:23,color:[3],
             levels:[
                 {effect:[1],attack:7053,cost:[3,-1],target:[0],spec:[],class:11},
-                {effect:[1],attack:7053,cost:[3],target:[0],spec:[],class:11},
-                {effect:[1],attack:7053,cost:[-1],target:[0],spec:[],class:11},
+                {effect:[2],attack:7053,cost:[3,-1],target:[0],spec:[],class:11},
+                {effect:[2],attack:7053,cost:[3,-1],target:[0],spec:[],class:11},
             ],
         },
     },{
@@ -54458,20 +54458,6 @@ types.card=[
             ],
         },
     },{
-        name:'Skyrim',rarity:1,list:23,
-        levels:[
-            {effect:[1,1],attack:7597,cost:1,target:[0],spec:[],class:11},
-            {effect:[1,2],attack:7597,cost:1,target:[0],spec:[],class:11},
-            {effect:[1,3],attack:7597,cost:1,target:[0],spec:[],class:11},
-        ],mtg:{
-            rarity:1,list:-1,color:[2,4],
-            levels:[
-                {effect:[1,2],attack:7597,cost:[12,-1],target:[0],spec:[],class:11},
-                {effect:[1,3],attack:7597,cost:[12,-1],target:[0],spec:[],class:11},
-                {effect:[1,4],attack:7597,cost:[12,-1],target:[0],spec:[],class:11},
-            ],
-        },
-    },{
         name:'Compose\nSpell',rarity:1,list:23,
         levels:[
             {effect:[21],attack:7667,cost:2,target:[0],spec:[1],class:2},
@@ -54539,6 +54525,20 @@ types.card=[
                 {effect:[1],attack:7730,cost:[7,-1],target:[0],spec:[],class:11},
                 {effect:[1],attack:7730,cost:[-1],target:[0],spec:[],class:11},
                 {effect:[1],attack:7730,cost:[],target:[0],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Protospark',rarity:1,list:23,
+        levels:[
+            {effect:[8,2],attack:7816,cost:2,target:[0],spec:[0],class:1},
+            {effect:[12,3],attack:7816,cost:2,target:[0],spec:[0],class:1},
+            {effect:[14,4],attack:7816,cost:2,target:[0],spec:[0],class:1},
+        ],mtg:{
+            rarity:1,list:23,color:[4,5],
+            levels:[
+                {effect:[6,2],attack:7816,cost:[4,5],target:[0],spec:[0],class:1},
+                {effect:[9,3],attack:7816,cost:[4,5],target:[0],spec:[0],class:1},
+                {effect:[10,4],attack:7816,cost:[4,5],target:[0],spec:[0],class:1},
             ],
         },
     },
@@ -57142,20 +57142,6 @@ types.card=[
             ],
         },
     },{
-        name:'Ticking\nAway',rarity:2,list:-9,
-        levels:[
-            {effect:[],attack:7810,cost:2,target:[0],spec:[64],class:11},
-            {effect:[],attack:7810,cost:1,target:[0],spec:[64],class:11},
-            {effect:[],attack:7810,cost:1,target:[0],spec:[2,64],class:11},
-        ],mtg:{
-            rarity:2,list:-9,color:[3,5],
-            levels:[
-                {effect:[],attack:7810,cost:[3,5],target:[0],spec:[64],class:11},
-                {effect:[],attack:7810,cost:[15],target:[0],spec:[64],class:11},
-                {effect:[],attack:7810,cost:[15],target:[0],spec:[2,64],class:11},
-            ],
-        },
-    },{
         name:'Thin\nOut',rarity:0,list:-9,
         levels:[
             {effect:[1,1],attack:7811,cost:0,target:[0],spec:[],class:11},
@@ -57195,6 +57181,34 @@ types.card=[
                 {effect:[1],attack:6484,cost:[11,-1],target:[1,1,1],spec:[0],class:3},
                 {effect:[1],attack:6485,cost:[11,-1],target:[1,1,1],spec:[0],class:3},
                 {effect:[1],attack:6486,cost:[11,-1],target:[1,1,1],spec:[0],class:3},
+            ],
+        },
+    },{
+        name:'Slash\nDraw',rarity:0,list:-1,
+        levels:[
+            {effect:[11,1],attack:7736,cost:1,target:[0],spec:[0,68],class:1},
+            {effect:[16,1],attack:7736,cost:1,target:[0],spec:[0,68],class:1},
+            {effect:[20,1],attack:7736,cost:1,target:[0],spec:[0,68],class:1},
+        ],mtg:{
+            rarity:0,list:-1,color:[2],
+            levels:[
+                {effect:[9,1],attack:7737,cost:[2],target:[0],spec:[0,68],class:1},
+                {effect:[14,1],attack:7737,cost:[2],target:[0],spec:[0,68],class:1},
+                {effect:[18,1],attack:7737,cost:[2],target:[0],spec:[0,68],class:1},
+            ],
+        },
+    },{
+        name:'Skyrim',rarity:1,list:-1,
+        levels:[
+            {effect:[1,1],attack:7597,cost:1,target:[0],spec:[],class:11},
+            {effect:[1,2],attack:7597,cost:1,target:[0],spec:[],class:11},
+            {effect:[1,3],attack:7597,cost:1,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:1,list:-1,color:[2,4],
+            levels:[
+                {effect:[1,2],attack:7597,cost:[12,-1],target:[0],spec:[],class:11},
+                {effect:[1,3],attack:7597,cost:[12,-1],target:[0],spec:[],class:11},
+                {effect:[1,4],attack:7597,cost:[12,-1],target:[0],spec:[],class:11},
             ],
         },
     },
@@ -87601,9 +87615,21 @@ types.card=[
                 {effect:[],attack:7772,cost:[12],target:[0],spec:[15],limit:[1],class:11},
             ],
         },
+    },{
+        name:'Sterilized\nPaper',rarity:-1,list:-8,
+        levels:[
+            {effect:[],attack:2578,cost:0,target:[0],spec:[4,5],class:8},
+            {effect:[],attack:2578,cost:2,target:[0],spec:[1,4],class:8},
+            {effect:[],attack:2578,cost:1,target:[0],spec:[1,4],class:8},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[],attack:2578,cost:[],target:[0],spec:[4,5],class:8},
+                {effect:[],attack:2578,cost:[2,-1],target:[0],spec:[1,4],class:8},
+                {effect:[],attack:2578,cost:[2],target:[0],spec:[1,4],class:8},
+            ],
+        },
     },
-
-    //
 
     //mark c
 ]

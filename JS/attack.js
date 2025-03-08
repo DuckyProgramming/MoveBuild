@@ -340,7 +340,7 @@ class attack{
             case 7348: case 7427: case 7428: case 7429: case 7430: case 7434: case 7440: case 7442: case 7444: case 7445:
             case 7446: case 7447: case 7448: case 7449: case 7450: case 7451: case 7453: case 7457: case 7491: case 7504:
             case 7539: case 7540: case 7608: case 7612: case 7613: case 7614: case 7615: case 7647: case 7648: case 7649:
-            case 7650: case 7651: case 7652: case 7653: case 7666: case 7727: case 7737: case 7777:
+            case 7650: case 7651: case 7652: case 7653: case 7666: case 7727: case 7737: case 7777: case 7814: case 7815:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -11829,6 +11829,12 @@ class attack{
                     break
                     case 7777:
                         this.userCombatant.gainFavor(this.effect[1])
+                    break
+                    case 7814:
+                        this.userCombatant.statusEffect('Temporary Strength',this.effect[1])
+                    break
+                    case 7815:
+                        this.userCombatant.statusEffect('Temporary Dexterity',this.effect[1])
                     break
 
                 }
