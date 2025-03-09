@@ -2566,6 +2566,9 @@ class group{
                         this.slideSpecificTop(a)
                     }
                 break
+                case 69:
+                    this.cards[a].callHoldOrbEffect(...args)
+                break
             }
         }
         if(effect==9){

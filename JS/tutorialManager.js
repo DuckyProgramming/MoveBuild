@@ -528,8 +528,8 @@ The shield orb adds 16 block.`,
 effects by looking through their entries in the dictionary.`,
 `You can reposition orbs when you need to, to get the best orb first.
 Click on an orb to position it as the first orb.`,
-`Orbs can be improved through focus,
-and enemies can be made weak to orbs using Node.`,
+`Aside from spamming more orbs, the effect of each
+individual orb can be improved through focus.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -1646,13 +1646,12 @@ last Leader, you get Fallen Union, which is a major debuff.`,
                     case 7:
                         this.battle.cardManagers[0].hand.add(findName('Charge',types.card),0,5)
                         this.battle.cardManagers[0].hand.add(findName('Shielding',types.card),0,5)
-                        this.battle.cardManagers[0].hand.add(findName('Darkness',types.card),0,5)
-                        this.battle.cardManagers[0].hand.add(findName('Zap',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Energize',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Detonate',types.card),0,5)
                     break
                     case 8:
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Converge',types.card),0,5)
-                        this.battle.cardManagers[0].hand.add(findName('Identify',types.card),0,5)
                         this.battle.cardManagers[0].hand.add(findName('Charge',types.card),0,5)
                         this.battle.cardManagers[0].hand.add(findName('Dualcast',types.card),0,5)
                     break

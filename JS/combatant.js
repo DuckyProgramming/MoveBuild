@@ -4560,6 +4560,10 @@ class combatant{
                     this.evoke(0,this.id,[1])
                     this.holdOrb(type)
                 }
+            }else{
+                if(this.id>=0&&this.id<this.battle.players){
+                    this.battle.cardManagers[this.id].hand.allEffectArgs(69,[type])
+                }
             }
             this.checkAnyOrb()
         }

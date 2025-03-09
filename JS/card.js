@@ -1544,7 +1544,7 @@ class card{
             case 532: string+=`Evoke All Orbs\nGain 1 Energy\nand Draw 1\nCard Each`; break
             case 533: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Focus`; break
             case 534: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Energy Orb${pl(effect[1])}`; break
-            case 535: string+=`Evoke First Orb ${effect[0]!=1?`${effect[0]}`:``}X Time${pl(effect[0])}`; break
+            case 535: string+=`Evoke First Orb ${effect[0]!=1?`${effect[0]}`:``}X Times`; break
             case 536: string+=`Hold ${effect[0]} Shield Orb${pl(effect[0])}\nHold ${effect[1]} Dark Orb${pl(effect[1])}\nHold ${effect[2]} Electric Orb${pl(effect[2])}`; break
             case 537: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Orbs Held\nThis Combat${this.player>=0&&this.player<this.battle.players&&stage.scene=='battle'&&!this.nonCalc?` (${this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].totalOrb})`:``}`; break
             case 538: string+=`Apply ${effect[0]} Node`; break
@@ -6242,10 +6242,10 @@ class card{
             case 5183: string+=`Gain (E) (E) (E) (E)\nLose ${effect[0]} Random Mana\nNext 2 Turns`; break
             case 5184: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPut a Card in\nDraw Pile on\nTop of Draw Pile`; break
             case 5185: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Temporary\nDexterity`; break
-            case 5186: string+=`Gain ${effect[0]} Energy Next Turn\nRemove a Random Debuff\nEnd Your Turn`; break
-            case 5187: string+=`Gain (E) (W) Next Turn\nRemove a Random Debuff\nEnd Your Turn`; break
-            case 5188: string+=`Gain (E) (E) (W) Next Turn\nRemove a Random Debuff\nEnd Your Turn`; break
-            case 5189: string+=`Gain (E) (E) (W) (N) Next Turn\nRemove a Random Debuff\nEnd Your Turn`; break
+            case 5186: string+=`Gain ${effect[0]} Energy Next Turn\nRemove a Random\nDebuff From Self\nEnd Your Turn`; break
+            case 5187: string+=`Gain (E) (W) Next Turn\nRemove a Random\nDebuff From Self\nEnd Your Turn`; break
+            case 5188: string+=`Gain (E) (E) (W) Next Turn\nRemove a Random\nDebuff From Self\nEnd Your Turn`; break
+            case 5189: string+=`Gain (E) (E) (W) (N) Next Turn\nRemove a Random\nDebuff From Self\nEnd Your Turn`; break
             case 5190: string+=`Scry ${effect[0]}\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[0]!=1?`They `:`It `}Duplicate${effect[0]==1?`s`:``}\nOnce When Played`; break
             case 5191: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRetain Adjacent\nCards Once`; break
             case 5192: string+=`Exit Stance\nIf You Have\nNo Stance,\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
@@ -6606,7 +6606,7 @@ class card{
             case 5555: string+=`Take Another Turn\nGain (E) (E) (E)\non That Turn\nAll Cards Cost\n${effect[0]} More on That Turn\nCosts 1 Less\nWhen a Card is Played`; break
             case 5556: string+=`Gain ${effect[0]} Dexterity\nGives ${effect[1]} More If\nYou Have Played ${effect[2]}\nSkill${pl(effect[2])} This Turn${stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players&&!this.nonCalc?`\n(Currently ${this.battle.cardManagers[this.player].hand.turnPlayed[11]})`:``}`; break
             case 5557: string+=`Apply ${effect[0]} Freeze\nApplies Double Freeze If\nYou Have Played ${effect[1]}\nSkill${pl(effect[1])} This Turn${stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players&&!this.nonCalc?`\n(Currently ${this.battle.cardManagers[this.player].hand.turnPlayed[11]})`:``}`; break
-            case 5558: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRemove a Random Debuff\nFrom Self`; break
+            case 5558: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRemove a Random\nDebuff From Self`; break
             case 5559: string+=`Gain ${effect[0]} Energy\nIncreases by ${effect[1]}`; break
             case 5560: string+=`Gain ${effect[0]} (E)\nIncreases by ${effect[1]}`; break
             case 5561: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nand Apply ${effect[1]} Weak\nin All Directions`; break
@@ -6976,7 +6976,7 @@ class card{
             case 5925: string+=`Gain (E) (E)\nNext Attack Deals\n${effect[0]} More Damage`; break
             case 5926: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDiscard ${effect[1]} Card${pl(effect[1])}\nUpgrade ${effect[2]} Card${pl(effect[2])}`; break
             case 5927: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDiscard ${effect[1]} Card${pl(effect[1])}\nDraw ${effect[2]} Mineral Card${pl(effect[2])}\n${effect[2]!=1?`They`:`It`} Cost${effect[2]==1?`s`:``} 0 Temporarily`; break
-            case 5928: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDiscard ${effect[1]} Card${pl(effect[1])}\nDraw ${effect[2]} Mineral Card${pl(effect[2])}\n${effect[2]!=1?`They`:`It`} Cost${effect[2]==1?`s`:``} 0 Temporarily\nRemove a Random Debuff`; break
+            case 5928: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDiscard ${effect[1]} Card${pl(effect[1])}\nDraw ${effect[2]} Mineral Card${pl(effect[2])}\n${effect[2]!=1?`They`:`It`} Cost${effect[2]==1?`s`:``} 0 Temporarily\nRemove a Random\nDebuff From Self`; break
             case 5929: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nHold ${effect[2]} Ice Orb${pl(effect[2])}`; break
             case 5930: string+=`Basic Orbs Deal\n${effect[0]} More Damage`; break
             case 5931: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nHold ${effect[2]} Light Orb${pl(effect[2])}\nHold ${effect[3]} Crystal Orb${pl(effect[3])}`; break
@@ -8917,6 +8917,13 @@ class card{
             case 7892: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nUpgrade ${effect[2]} Card${pl(effect[2])}`; break
             case 7893: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nReturn on Plant\nTile Creation`; break
             case 7894: string+=`Evoke All Orbs\nRehold Them`; break
+            case 7895: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Explosive Orb${pl(effect[1])}\nHold ${effect[2]} Iron Orb${pl(effect[2])}\nCosts 1 Less\nWhen You Hold an Orb`; break
+            case 7896: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Energy Orb${pl(effect[1])}\nHold ${effect[2]} Crystal Orb${pl(effect[2])}\nCosts 1 Less\nWhen You Hold an Orb`; break
+            case 7897: string+=`Hold ${effect[0]} Basic Orb${pl(effect[0])}\nIncreases by ${effect[1]}\nWhen Retained\nResets on Play`; break
+            case 7898: string+=`Hold ${effect[0]} Shield Orb${pl(effect[0])}\nIncreases by ${effect[1]}\nWhen Retained\nResets on Play`; break
+            case 7899: string+=`Hold ${effect[0]} Energy Orb${pl(effect[0])}\nand Evoke ${effect[1]}`; break
+            case 7900: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nRemove a Random\nDebuff From Self`; break
+
 
             //mark p
 
@@ -10125,6 +10132,15 @@ class card{
             break
         }
     }
+    callHoldOrbEffect(type){
+        if(type>=0){
+            switch(this.attack){
+                case 7895: case 7896:
+                    this.costDown(0,[1])
+                break
+            }
+        }
+    }
     callEvokeEffect(type){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(type>=0){
@@ -10942,6 +10958,9 @@ class card{
                     userCombatant.lowRoll()
                 }
             break
+            case 7897: case 7898:
+                this.effect[0]=this.effect[2]
+            break
         }
         if(this.battle.modded(94)&&this.battle.cardManagers[this.player].hand.turnPlayed[0]>=5){
             this.battle.cardManagers[this.player].allEffect(2,2)
@@ -11594,7 +11613,7 @@ class card{
             case 757: case 1753:
                 this.costDown(0,[1])
             break
-            case 775: case 776: case 1868: case 6875:
+            case 775: case 776: case 1868: case 6875: case 7897: case 7898:
                 this.effect[0]+=this.effect[1]
             break
             case 1403:

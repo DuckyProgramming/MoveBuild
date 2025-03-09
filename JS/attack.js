@@ -269,7 +269,7 @@ class attack{
             case 7609: case 7611: case 7616: case 7618: case 7619: case 7622: case 7627: case 7630: case 7632: case 7634: case 7635: case 7636: case 7637: case 7638: case 7639: case 7665: case 7668: case 7673: case 7674: case 7676:
             case 7681: case 7683: case 7685: case 7696: case 7697: case 7712: case 7716: case 7718: case 7719: case 7720: case 7721: case 7722: case 7723: case 7724: case 7726: case 7734: case 7735: case 7738: case 7744: case 7745:
             case 7748: case 7756: case 7760: case 7764: case 7765: case 7774: case 7775: case 7787: case 7792: case 7795: case 7796: case 7800: case 7813: case 7820: case 7826: case 7832: case 7836: case 7842: case 7843: case 7846:
-            case 7847: case 7864: case 7879: case 7890: case 7891: case 7892: case 7893: case 7894:
+            case 7847: case 7864: case 7879: case 7890: case 7891: case 7892: case 7893: case 7894: case 7895: case 7899:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -6785,6 +6785,14 @@ class attack{
                         this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
                         this.userManager.hand.upgrade(this.effect[2])
                     break
+                    case 7895:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(2)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userCombatant.holdOrb(16)
+                        }
+                    break
 
                 }
                 //mark 1s
@@ -9801,6 +9809,14 @@ class attack{
                     case 7884:
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userCombatant.holdOrb(13)
+                        }
+                    break
+                    case 7896:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(3)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userCombatant.holdOrb(14)
                         }
                     break
 
@@ -21592,6 +21608,10 @@ class attack{
                         this.userCombatant.heal(this.effect[0])
                         this.userCombatant.gainFavor(this.effect[1])
                     break
+                    case 7900:
+                        this.userCombatant.heal(this.effect[0])
+                        this.userCombatant.removeRandomStatus([1,3])
+                    break
 
                 }
                 //mark 6
@@ -27432,7 +27452,7 @@ class attack{
                     case 481:
                         this.battle.tileManager.customActivate(5,[this.effect[0]])
                     break
-                    case 490: case 5935:
+                    case 490: case 5935: case 7897:
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userCombatant.holdOrb(0)
                         }
@@ -27440,7 +27460,7 @@ class attack{
                     case 491: case 956: case 3933: case 4078:
                         this.userCombatant.evoke(0,this.targetCombatant.id,[this.effect[0]])
                     break
-                    case 492: case 6209:
+                    case 492: case 6209: case 7898:
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userCombatant.holdOrb(1)
                         }
@@ -30521,6 +30541,14 @@ class attack{
                     break
                     case 7894:
                         this.userCombatant.evoke(14,this.targetCombatant.id,[1])
+                    break
+                    case 7899:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(3)
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.subEvoke(3,0,this.targetCombatant.id)
+                        }
                     break
 
                 }
