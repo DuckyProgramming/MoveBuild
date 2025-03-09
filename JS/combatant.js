@@ -5893,29 +5893,29 @@ class combatant{
                     case 825: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(2)} break
                     
                 }
-                if(this.status.behavior[a]==6&&
-                    !(a==306&&this.getStatus('Retain History')>0)&&
-                    !(a==663&&this.getStatus('Retain Radiation')>0)
+                if(this.status.behavior[this.status.ticker[a]]==6&&
+                    !(this.status.ticker[a]==306&&this.getStatus('Retain History')>0)&&
+                    !(this.status.ticker[a]==663&&this.getStatus('Retain Radiation')>0)
                 ){
-                    if(this.status.main[a]>0){
-                        this.status.main[a]=floor(this.status.main[a]/2)
-                    }else if(this.status.main[a]<0){
-                        this.status.main[a]=ceil(this.status.main[a]/2)
+                    if(this.status.main[this.status.ticker[a]]>0){
+                        this.status.main[this.status.ticker[a]]=floor(this.status.main[this.status.ticker[a]]/2)
+                    }else if(this.status.main[this.status.ticker[a]]<0){
+                        this.status.main[this.status.ticker[a]]=ceil(this.status.main[this.status.ticker[a]]/2)
                     }
                 }else if(
-                    (this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0||this.status.behavior[a]==4&&this.team>0)
-                    &&!(a==3&&this.getStatus('Retain Dodge')>0)
-                    &&!(a==461&&this.getStatus('Retain Lock On')>0)
+                    (this.status.behavior[this.status.ticker[a]]==1||this.status.behavior[this.status.ticker[a]]==3&&this.team<=0||this.status.behavior[this.status.ticker[a]]==4&&this.team>0)
+                    &&!(this.status.ticker[a]==3&&this.getStatus('Retain Dodge')>0)
+                    &&!(this.status.ticker[a]==461&&this.getStatus('Retain Lock On')>0)
                 ){
-                    if(this.status.main[a]>0){
-                        this.status.main[a]--
-                    }else if(this.status.main[a]<0){
-                        this.status.main[a]++
+                    if(this.status.main[this.status.ticker[a]]>0){
+                        this.status.main[this.status.ticker[a]]--
+                    }else if(this.status.main[this.status.ticker[a]]<0){
+                        this.status.main[this.status.ticker[a]]++
                     }
-                }else if(this.status.behavior[a]==2){
-                    this.status.main[a]=0
+                }else if(this.status.behavior[this.status.ticker[a]]==2){
+                    this.status.main[this.status.ticker[a]]=0
                 }
-                this.statusSignUpdate(a)
+                this.statusSignUpdate(this.status.ticker[a])
             }
         }
         for(let a=0,la=this.status.next.length;a<la;a++){
