@@ -6544,7 +6544,7 @@ The amount it gives is variable.`,
 `Spend 1 Energy if possible to get a bonus effect on card.
 Amplify 2 means that 2 Energy will be spent instead.`,
         },{name:'Pristine',mtg:1,desc:
-`Generatable card. Makes another non-rare colorless card free,
+`Token card. Makes another non-rare colorless card free,
 and draws another card. Costs 0.`,
         },
 
@@ -6745,9 +6745,9 @@ Obtained in the shop, in events, by relics, and by cards (usually temporary).`,
         },{name:'Special Move',mtg:0,desc:
 `Term for any moves that are not attacks or defenses.`,
         },{name:'Shiv',mtg:0,desc:
-`Generatable card. Does a small amount of damage and is free, with Range 1-1.`,
+`Token card. Does a small amount of damage and is free, with Range 1-1.`,
         },{name:'Spark',mtg:0,desc:
-`Generatable card. Does a small amount of damage and is free, with Range 1-2.`,
+`Token card. Does a small amount of damage and is free, with Range 1-2.`,
         },{name:'Item',mtg:0,desc:
 `Grants a benefit when used. Can be sold in the shop.
 Obtained through rewards or through events.`,
@@ -6827,7 +6827,7 @@ If the Capitalist steps on it, he spawns a Bodyguard.`,
         },{name:'Targetted Spike Tile',mtg:0,desc:
 `Deals 5 damage when stepped on, to players only.`,
         },{name:'Hold Orb',mtg:0,desc:
-`Add an orb to first empty slot. If all slots are full, will evoke first orb on self.`,
+`Add an orb to first empty slot. If all slots are full, will evoke first b on self.`,
         },{name:'Evoke Orb',mtg:0,desc:
 `Spends orb, applying some sort of effect corresponding to that orb.`,
         },{name:'Minor Evoke',mtg:0,desc:
@@ -6840,16 +6840,18 @@ Does not spend the orb.`,
         },{name:'Shield Orb',mtg:0,desc:
 `On evoke, adds 16 block.`,
         },{name:'Explosive Orb',mtg:0,desc:
-`On evoke, deals 20 splash damage.`,
-        },{name:'Dark Orb',mtg:1,desc:
+`On evoke, deals 16 splash damage.`,
+        },{name:'Iron Orb',mtg:1,desc:
 `On evoke, deals 6 damage. The amount of damage increases by 3 every turn.`,
-        },{name:'Lightning Orb',mtg:0,desc:
+        },{name:'Electric Orb',mtg:0,desc:
 `On evoke, deals 8 damage. Also deals 4 damage to a random enemy every turn.`,
         },{name:'Dust Orb',mtg:0,desc:
-`On evoke, adds 12 damage. Also adds 6 block every turn.`,
+`On evoke, adds 12 block. Also adds 6 block every turn.`,
         },{name:'Light Orb',mtg:0,desc:
 `On evoke, draw 2 cards.
 Unaffected by focus.`,
+        },{name:'Dark Orb',mtg:1,desc:
+`On evoke, applies 2 Mortal.`,
         },{name:'Flame Orb',mtg:0,desc:
 `On evoke, applies 3 Burn.
 Unaffected by focus.`,
@@ -6975,7 +6977,7 @@ Stacks degrade by half, rounded up, each turn.`,
 `Damage deducts barrier before health. Barrier is kept between turns.
 Block is reduced before barrier when calculating hits taken.`,
         },{name:'Discus',mtg:0,desc:
-`Generatable card. Does decent damage and gives some bounce as well.
+`Token card. Does decent damage and gives some bounce as well.
 Costs 2 to play and retains. Range 1-3.`,
         },{name:'Miss',mtg:0,desc:
 `Has a 50% chance to miss each attack.
@@ -7360,7 +7362,7 @@ variants={
     ],
 }
 constants={
-    playerNumber:24,orbNumber:16,
+    playerNumber:24,orbNumber:17,
     targetRadius:30,startEnergy:3,collisionDamage:4,
     sqrt2:0,sqrt3:0,phi:0,trig:[[],[]],
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],

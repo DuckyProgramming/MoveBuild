@@ -6,6 +6,10 @@ LEGACY
 
 
 
-CARDSET 71 [APRIL]
+update the azis tutorial
+
+
+
+CARDSET 73 [APRIL]
 
 

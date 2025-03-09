@@ -1515,7 +1515,7 @@ class card{
             case 503: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nClaw Up ${effect[1]}`; break
             case 504: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nClaw Up ${effect[1]}\nAdvance`; break
             case 505: string+=`Hold ${effect[0]} Dark Orb${pl(effect[0])}`; break
-            case 506: string+=`Hold ${effect[0]} Lightning Orb${pl(effect[0])}`; break
+            case 506: string+=`Hold ${effect[0]} Electric Orb${pl(effect[0])}`; break
             case 507: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nGain ${effect[1]} Energy\nClaw Up ${effect[2]}`; break
             case 508: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Basic Orb${pl(effect[1])}`; break
             case 509: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Shield Orb${pl(effect[1])}`; break
@@ -1545,7 +1545,7 @@ class card{
             case 533: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Focus`; break
             case 534: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Energy Orb${pl(effect[1])}`; break
             case 535: string+=`Evoke First Orb ${effect[0]!=1?`${effect[0]}`:``}X Time${pl(effect[0])}`; break
-            case 536: string+=`Hold ${effect[0]} Shield Orb${pl(effect[0])}\nHold ${effect[1]} Dark Orb${pl(effect[1])}\nHold ${effect[2]} Lightning Orb${pl(effect[2])}`; break
+            case 536: string+=`Hold ${effect[0]} Shield Orb${pl(effect[0])}\nHold ${effect[1]} Dark Orb${pl(effect[1])}\nHold ${effect[2]} Electric Orb${pl(effect[2])}`; break
             case 537: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Orbs Held\nThis Combat${this.player>=0&&this.player<this.battle.players&&stage.scene=='battle'&&!this.nonCalc?` (${this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].totalOrb})`:``}`; break
             case 538: string+=`Apply ${effect[0]} Node`; break
             case 539: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Node`; break
@@ -1566,7 +1566,7 @@ class card{
             case 554: string+=`Hold ${effect[0]} Buff Orb${pl(effect[0])}`; break
             case 555: string+=`Hold ${effect[0]} Cop${effect[0]!=1?`ies`:`y`}\nof the Last Orb`; break
             case 556: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nRehold it ${effect[1]} Time${pl(effect[1])}`; break
-            case 557: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Times\nHold ${effect[1]} Lightning Orb${pl(effect[1])}`; break
+            case 557: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Times\nHold ${effect[1]} Electric Orb${pl(effect[1])}`; break
             case 558: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Light Orb${pl(effect[1])}`; break
             case 559: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Flame Orb${pl(effect[1])}`; break
             case 560: string+=`Hold ${effect[0]} Flame Orb${pl(effect[0])}\nHold ${effect[1]} Energy Orb${pl(effect[1])}\nHold ${effect[2]} Ice Orb${pl(effect[2])}`; break
@@ -1593,7 +1593,7 @@ class card{
             case 581: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Nerf Orb${pl(effect[1])}`; break
             case 582: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nHold ${effect[1]} Poison Orb${pl(effect[1])}`; break
             case 583: string+=`Hold ${effect[0]} Buff Orb${pl(effect[0])}\nHold ${effect[1]} Poison Orb${pl(effect[1])}\nHold ${effect[2]} Light Orb${pl(effect[2])}`; break
-            case 584: string+=`Hold ${effect[0]} Lightning Orb${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],3)} Block\nWhere X = Number\nOf Lightning Orbs`; break
+            case 584: string+=`Hold ${effect[0]} Electric Orb${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],3)} Block\nWhere X = Number\nOf Electric Orbs`; break
             case 585: string+=`Build a Wall`; break
             case 586: string+=`Gain ${effect[0]} Metal`; break
             case 587: string+=`Destroy a Construct`; break
@@ -2796,7 +2796,7 @@ class card{
             case 1794: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage if\nYou Cannot Move\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 1795: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\n75%: Gain ${effect[2]} Energy`; break
             case 1796: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\nPush 1 Tile`; break
-            case 1797: string+=`Add ${effect[0]} Random Card${pl(effect[0])}\nto Hand From These:\nBlizzard\nInferno\nLightning Bolt`; break
+            case 1797: string+=`Add ${effect[0]} Random Card${pl(effect[0])}\nto Hand From These:\nBlizzard\nInferno\nElectric Bolt`; break
             case 1798: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze\nto Any Enemy`; break
             case 1799: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nto Any Enemy`; break
             case 1800: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Shock\nto Any Enemy`; break
@@ -5134,7 +5134,7 @@ class card{
             case 4072: string+=`Advance 1 Tile\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 4073: string+=`Draw ${effect[0]} Gun${pl(effect[0])}\nGain ${effect[1]} Ammo`; break
             case 4074: string+=`Gain ${effect[0]} Temporary\nStrength When You\nSwitch Stance`; break
-            case 4075: string+=`Hold ${effect[0]} Lightning Orb${pl(effect[0])}\nTick All Lightning Orbs`; break
+            case 4075: string+=`Hold ${effect[0]} Electric Orb${pl(effect[0])}\nTick All Electric Orbs`; break
             case 4076: string+=`Move to Any\nEmpty Tile\nNot Adjacent to\na Combatant`; break
             case 4077: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}X Damage\nWhere X = Lock On\non Target`; break
             case 4078: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nWhen Drawn,\nMake ${effect[1]} Cop${effect[1]!=1?`ies`:`y`}`; break
@@ -6052,7 +6052,7 @@ class card{
             case 4993: string+=`Gain ${effect[0]} Strength\nUpgrades Repeatedly\nby ${effect[1]}`; break
             case 4994: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Fatigue${pl(effect[1])}`; break
             case 4995: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Number\nof Orbs`; break
-            case 4996: string+=`Hold ${effect[0]} Lightning Orb${pl(effect[0])}\nEach Turn`; break
+            case 4996: string+=`Hold ${effect[0]} Electric Orb${pl(effect[0])}\nEach Turn`; break
             case 4997: string+=`Every 4th Time Played,\nApply ${effect[0]} Stun\nand Exhaust\nOn Play: ${this.limit%4+1}/4`; break
             case 4998: string+=`Every 3rd Time Played,\nApply ${effect[0]} Stun\nand Exhaust\nOn Play: ${this.limit%3+1}/3`; break
             case 4999: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Removed,\nLose ${effect[1]} Health`; break
@@ -6123,7 +6123,7 @@ class card{
             case 5067: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nA Random Card in Hand\nCosts 0 Temporarily`; break
             case 5068: string+=`Add ${effect[0]} Prismatic\nBomb${pl(effect[0])} to Discard Pile\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
             case 5069: string+=`Add ${effect[0]} Prismatic\nBomb${pl(effect[0])} to Discard Pile\nDraw ${effect[1]} Card${pl(effect[1])}\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
-            case 5070: string+=`Hold ${effect[0]} Lightning Orb${pl(effect[0])}\nLightning Orbs Deal\n${effect[1]} More Passive Damage`; break
+            case 5070: string+=`Hold ${effect[0]} Electric Orb${pl(effect[0])}\nElectric Orbs Deal\n${effect[1]} More Passive Damage`; break
             case 5071: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Become`:`It Becomes`} Ethereal`; break
             case 5072: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdjacent Combatants\nTake ${effect[1]} Damage Per\nCard Played This Turn`; break
             case 5073: string+=`Gain ${effect[0]} Temporary\nDexterity\nWhen Drawn,\nIncreases by ${effect[1]}`; break
@@ -6371,7 +6371,7 @@ class card{
             case 5322: string+=`-1: Do Not Attack\nDuring Your Turn\nActive: Apply ${effect[0]} Weak\nto All Enemies`; break
             case 5323: string+=`-1: Get Hit\nActive: Apply ${effect[0]} Vulnerable\nto All Enemies`; break
             case 5324: string+=`-1: End Your Turn\nWith at Least ${effect[0]} Block\nActive: Apply ${effect[1]} Frail\nto All Enemies`; break
-            case 5325: string+=`Hold ${effect[0]} Lightning Orb${pl(effect[0])}\nDraw ${effect[1]} Skill${pl(effect[1])}`; break
+            case 5325: string+=`Hold ${effect[0]} Electric Orb${pl(effect[0])}\nDraw ${effect[1]} Skill${pl(effect[1])}`; break
             case 5326: string+=`Push 1 Tile\nGain ${effect[0]} Metal`; break
             case 5327: string+=`Gain ${effect[0]} Energy\nAdd a Stuck\nto Discard Pile`; break
             case 5328: string+=`Gain (E) (E) (E)\nAdd a Stuck\nto Discard Pile`; break
@@ -6534,7 +6534,7 @@ class card{
             case 5486: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Explosive Orb${pl(effect[1])}`; break
             case 5487: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nHold ${effect[1]} Glass Orb${pl(effect[1])}`; break
             case 5488: string+=`Apply ${effect[0]} Weak\nin All Directions\nHold ${effect[1]} Poison Orb${pl(effect[1])}`; break
-            case 5489: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Lightning Orb${pl(effect[1])}\nRange 1-1`; break
+            case 5489: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Electric Orb${pl(effect[1])}\nRange 1-1`; break
             case 5490: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Crystal Orb${pl(effect[1])}\nRange 1-1`; break
             case 5491: string+=`Hold ${effect[0]} Crystal Orb${pl(effect[0])}`; break
             case 5492: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Crystal Orb${pl(effect[1])}`; break
@@ -7253,7 +7253,7 @@ class card{
             case 6201: string+=`Hold ${effect[0]} Dust Orb${pl(effect[0])}`; break
             case 6202: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Dust Orb${pl(effect[1])}`; break
             case 6203: string+=`Hold ${effect[0]} Dust Orb${pl(effect[0])}\nand Evoke ${effect[1]}`; break
-            case 6204: string+=`Hold ${effect[0]} Dark Orb${pl(effect[0])}\nHold ${effect[1]} Lightning Orb${pl(effect[1])}\nHold ${effect[2]} Crystal Orb${pl(effect[2])}\nHold ${effect[3]} Dust Orb${pl(effect[3])}`; break
+            case 6204: string+=`Hold ${effect[0]} Dark Orb${pl(effect[0])}\nHold ${effect[1]} Electric Orb${pl(effect[1])}\nHold ${effect[2]} Crystal Orb${pl(effect[2])}\nHold ${effect[3]} Dust Orb${pl(effect[3])}`; break
             case 6205: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nHold ${effect[1]} Dual Orb${pl(effect[1])}`; break
             case 6206: string+=`Gain ${effect[0]} History\nTrigger Your History\n${effect[1]} Time${pl(effect[1])}`; break
             case 6207: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Dark Orb${pl(effect[1])}`; break
@@ -7664,7 +7664,7 @@ class card{
             case 6605: string+=`Gain ${effect[0]} Pure\nDraw ${effect[1]} Curse${pl(effect[1])}\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
             case 6606: string+=`Shuffle ${effect[0]} Reversal${pl(effect[0])}\nand ${effect[1]} Sharp Word${pl(effect[1])}\ninto Draw Pile\n${effect[0]+effect[1]!=1?`They Have`:`It Has`} Replenish`; break
             case 6607: string+=`Gain ${effect[0]} Pure\nGain ${effect[1]} Temporary\nStrength`; break
-            case 6608: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Lightning Orb${pl(effect[1])}`; break
+            case 6608: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Electric Orb${pl(effect[1])}`; break
             case 6609: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\nOverdrive ${effect[2]}:\nApply ${effect[3]} Vulnerable`; break
             case 6610: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nUpgrade the Top${effect[1]!=1?` ${effect[1]}`:``}\nCard${pl(effect[1])} in Draw Pile`; break
             case 6611: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nExhaust All Drawn\nStatus Cards and Curses`; break
@@ -8839,6 +8839,84 @@ class card{
             case 7814: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Temporary\nStrength`; break
             case 7815: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Temporary\nDexterity`; break
             case 7816: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nin All Directions\nIncreases by ${effect[1]}\nWhen Recovered`; break
+            case 7817: string+=`Gain ${effect[0]} Strength\nPer Turn`; break
+            case 7818: string+=`Gain ${effect[0]} Dexterity\nPer Turn`; break
+            case 7819: string+=`Gain ${effect[0]} Armor\nNext Attack Deals\n${effect[1]} More Damage`; break
+            case 7820: string+=`Apply ${effect[0]} Burn\nApply ${effect[1]} Weak`; break
+            case 7821: string+=`Add ${effect[0]} Primed Pulse${effect[0]!=1?`es`:``}\nto Hand\nFor Each Primed\nPulse in Hand,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 7822: string+=`Hold X${effect[0]!=0?`+${effect[0]}`:``} Shield Orbs`; break
+            case 7823: string+=`For Every (2) Spent:\nHold ${effect[0]} Shield Orb${pl(effect[0])}`; break
+            case 7824: string+=`Apply ${effect[0]} Weak\nin All Directions\nHold ${effect[1]} Crystal Orb${pl(effect[1])}`; break
+            case 7825: string+=`Apply ${effect[0]} Weak\nin All Directions\nHold ${effect[1]} Dust Orb${pl(effect[1])}`; break
+            case 7826: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nHold ${effect[1]} Shield Orb${pl(effect[1])}`; break
+            case 7827: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto a Random Enemy\nIf You Have\na Basic Orb`; break
+            case 7828: string+=`Gain ${effect[0]} Orb Slot${pl(effect[0])}\nGain ${effect[1]} Focus\nHold ${effect[2]} Basic Orb${pl(effect[2])}\nHold ${effect[3]} Shield Orb${pl(effect[3])}`; break
+            case 7829: string+=`Hold ${effect[0]} Basic Orb${pl(effect[0])}\nRetain Your Hand\nThis Turn`; break
+            case 7830: string+=`Hold ${effect[0]} Basic Orb${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}\nRetain Your Hand\nThis Turn`; break
+            case 7831: string+=`Hold ${effect[0]} Shield Orb${pl(effect[0])}\nEach Turn`; break
+            case 7832: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nApply ${effect[1]} Weak`; break
+            case 7833: string+=`Shield Orbs Add\n${effect[0]} More Block`; break
+            case 7834: string+=`Exhaust ${effect[0]} Card${pl(effect[0])}\nHold ${effect[1]} Dark Orb${pl(effect[1])}`; break
+            case 7835: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Light Orb${pl(effect[1])}`; break
+            case 7836: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Dark Orb${pl(effect[1])}`; break
+            case 7837: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nHold ${effect[1]} Dark Orb${pl(effect[1])}`; break
+            case 7838: string+=`Hold ${effect[0]} Iron Orb${pl(effect[0])}`; break
+            case 7839: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Iron Orb${pl(effect[1])}`; break
+            case 7840: string+=`Hold ${effect[0]} Electric Orb${pl(effect[0])}\nHold ${effect[1]} Dust Orb${pl(effect[1])}\nHold ${effect[2]} Crystal Orb${pl(effect[2])}\nHold ${effect[3]} Iron Orb${pl(effect[3])}`; break
+            case 7841: string+=`Hold ${effect[0]} Iron Orb${pl(effect[0])}\nIron Orbs Grow\nby ${effect[1]} More Each Turn`; break
+            case 7842: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Dust Orb${pl(effect[1])}\nRange 1-1`; break
+            case 7843: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Iron Orb${pl(effect[1])}\nRange 1-1`; break
+            case 7844: string+=`Hold ${effect[0]} Crystal Orb${pl(effect[0])}\nTick All Crystal Orbs`; break
+            case 7845: string+=`Hold ${effect[0]} Iron Orb${pl(effect[0])}\nTick All Iron Orbs`; break
+            case 7846: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nHold ${effect[2]} Electric Orb${pl(effect[2])}\nHold ${effect[3]} Crystal Orb${pl(effect[3])}`; break
+            case 7847: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nHold ${effect[2]} Dust Orb${pl(effect[2])}\nHold ${effect[3]} Iron Orb${pl(effect[3])}`; break
+            case 7848: string+=`Gain ${effect[0]} Energy\nHold ${effect[1]} Light Orb${pl(effect[1])}\nHold ${effect[2]} Crystal Orb${pl(effect[2])}`; break
+            case 7849: string+=`Gain (W) (W)\nHold ${effect[0]} Light Orb${pl(effect[0])}\nHold ${effect[1]} Crystal Orb${pl(effect[1])}`; break
+            case 7850: string+=`Gain (E) (W) (W)\nHold ${effect[0]} Light Orb${pl(effect[0])}\nHold ${effect[1]} Crystal Orb${pl(effect[1])}`; break
+            case 7851: string+=`Gain (E) (E) (W) (W)\nHold ${effect[0]} Light Orb${pl(effect[0])}\nHold ${effect[1]} Crystal Orb${pl(effect[1])}`; break
+            case 7852: string+=`Gain ${effect[0]} Energy\nHold ${effect[1]} Dark Orb${pl(effect[1])}\nHold ${effect[2]} Iron Orb${pl(effect[2])}`; break
+            case 7853: string+=`Gain (K) (G)\nHold ${effect[0]} Dark Orb${pl(effect[0])}\nHold ${effect[1]} Iron Orb${pl(effect[1])}`; break
+            case 7854: string+=`Gain (E) (K) (G)\nHold ${effect[0]} Dark Orb${pl(effect[0])}\nHold ${effect[1]} Iron Orb${pl(effect[1])}`; break
+            case 7855: string+=`Gain (E) (E) (K) (G)\nHold ${effect[0]} Dark Orb${pl(effect[0])}\nHold ${effect[1]} Iron Orb${pl(effect[1])}`; break
+            case 7856: string+=`Gain ${effect[0]} Energy\nHold ${effect[1]} Basic Orb${pl(effect[1])}\nHold ${effect[2]} Lightning Orb${pl(effect[2])}`; break
+            case 7857: string+=`Gain (R) (R)\nHold ${effect[0]} Basic Orb${pl(effect[0])}\nHold ${effect[1]} Lightning Orb${pl(effect[1])}`; break
+            case 7858: string+=`Gain (E) (R) (R)\nHold ${effect[0]} Basic Orb${pl(effect[0])}\nHold ${effect[1]} Lightning Orb${pl(effect[1])}`; break
+            case 7859: string+=`Gain (E) (E) (R) (R)\nHold ${effect[0]} Basic Orb${pl(effect[0])}\nHold ${effect[1]} Lightning Orb${pl(effect[1])}`; break
+            case 7860: string+=`Gain ${effect[0]} Energy\nHold ${effect[1]} Shield Orb${pl(effect[1])}\nHold ${effect[2]} Dust Orb${pl(effect[2])}`; break
+            case 7861: string+=`Gain (B) (B)\nHold ${effect[0]} Shield Orb${pl(effect[0])}\nHold ${effect[1]} Dust Orb${pl(effect[1])}`; break
+            case 7862: string+=`Gain (E) (B) (B)\nHold ${effect[0]} Shield Orb${pl(effect[0])}\nHold ${effect[1]} Dust Orb${pl(effect[1])}`; break
+            case 7863: string+=`Gain (E) (E) (B) (B)\nHold ${effect[0]} Shield Orb${pl(effect[0])}\nHold ${effect[1]} Dust Orb${pl(effect[1])}`; break
+            case 7864: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Dark Orb${pl(effect[1])}\nHold ${effect[2]} Crystal Orb${pl(effect[2])}\nCosts 1 Less\nWhen You Evoke an Orb`; break
+            case 7865: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Light Orb${pl(effect[1])}\nHold ${effect[2]} Iron Orb${pl(effect[2])}\nCosts 1 Less\nWhen You Evoke an Orb`; break
+            case 7866: string+=`Hold ${effect[0]} Energy Orb${pl(effect[0])}\nGain ${effect[1]} Energy\nNext 2 Turns`; break
+            case 7867: string+=`Hold ${effect[0]} Energy Orb${pl(effect[0])}\nGain (N) Next 2 Turns`; break
+            case 7868: string+=`Hold ${effect[0]} Energy Orb${pl(effect[0])}\nGain (E) Next 2 Turns`; break
+            case 7869: string+=`Hold ${effect[0]} Dust Orb${pl(effect[0])}\nEach Turn`; break
+            case 7870: string+=`Hold ${effect[0]} Dust Orb${pl(effect[0])}\nDraw ${effect[1]} Skill${pl(effect[1])}`; break
+            case 7871: string+=`Gain ${effect[0]} Armor\nHold ${effect[1]} Lightning Orb${pl(effect[1])}`; break
+            case 7872: string+=`Apply ${effect[0]} Weak\nin All Directions\nHold ${effect[1]} Iron Orb${pl(effect[1])}`; break
+            case 7873: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nHold ${effect[1]} Basic Orb${pl(effect[1])}\nHold ${effect[2]} Iron Orb${pl(effect[2])}`; break
+            case 7874: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nin All Directions\nAdd ${effect[1]!=1?`${effect[1]}`:``}X Glass Orbs`; break
+            case 7875: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Energy Orb${pl(effect[1])}`; break
+            case 7876: string+=`Hold ${effect[0]} Explosive Orb${pl(effect[0])}\nGain ${effect[1]} Energy\nNext 2 Turns`; break
+            case 7877: string+=`Hold ${effect[0]} Explosive Orb${pl(effect[0])}\nGain (N) Next 2 Turns`; break
+            case 7878: string+=`Hold ${effect[0]} Explosive Orb${pl(effect[0])}\nGain (E) Next 2 Turns`; break
+            case 7879: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nHeal ${this.calculateEffect(effect[1],4)} Health\nHold ${effect[2]} Explosive Orb${pl(effect[2])}`; break
+            case 7880: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Card${pl(effect[0])}\nPlayed ${effect[0]!=1?`are`:`is`} Duplicated\nHold ${effect[1]} Iron Orb${pl(effect[1])}`; break
+            case 7881: string+=`Hold ${effect[0]} Basic Orb${pl(effect[0])}\nHold ${effect[1]} Shield Orb${pl(effect[1])}\nHold ${effect[2]} Dark Orb${pl(effect[2])}\nHold ${effect[3]} Light Orb${pl(effect[3])}`; break
+            case 7882: string+=`Gain ${effect[0]} Orb Slot${pl(effect[0])}\nHold ${effect[1]} Basic Orb${pl(effect[1])}`; break
+            case 7883: string+=`Gain ${effect[0]} Orb Slot${pl(effect[0])}\nHold ${effect[1]} Shield Orb${pl(effect[1])}`; break
+            case 7884: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Dual Orb${pl(effect[1])}`; break
+            case 7885: string+=`Apply ${effect[0]} Vulnerable\nin All Directions\nHold ${effect[1]} Lightning Orb${pl(effect[1])}`; break
+            case 7886: string+=`Apply ${effect[0]} Vulnerable\nin All Directions\nHold ${effect[1]} Dust Orb${pl(effect[1])}`; break
+            case 7887: string+=`Hold ${effect[0]} Explosive Orb${pl(effect[0])}\nEach Turn`; break
+            case 7888: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nHold ${effect[1]} Energy Orb${pl(effect[1])}`; break
+            case 7889: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nHold ${effect[1]} Explosive Orb${pl(effect[1])}`; break
+            case 7890: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Poison\nApply ${effect[2]} Shock`; break
+            case 7891: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\nApply ${effect[2]} Shock`; break
+            case 7892: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nUpgrade ${effect[2]} Card${pl(effect[2])}`; break
+            case 7893: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nReturn on Plant\nTile Creation`; break
+            case 7894: string+=`Evoke All Orbs\nRehold Them`; break
 
             //mark p
 
@@ -10056,7 +10134,7 @@ class card{
                     this.battle.cardManagers[this.player].draw(this.effect[2])
                     this.deSize=true
                 break
-                case 5960: case 5961:
+                case 5960: case 5961: case 7864: case 7865:
                     this.costDown(0,[1])
                 break
             }
@@ -10698,7 +10776,7 @@ class card{
             case 118: case 619: case 1479: case 1480: case 1697: case 1740: case 1746: case 1788: case 2283: case 2471:
             case 2501: case 3198: case 3647: case 3915: case 4013: case 4178: case 4457: case 4658: case 4727: case 4771:
             case 5208: case 5559: case 5560: case 5750: case 6114: case 6334: case 6657: case 6658: case 6901: case 7027:
-            case 7028: case 7216: case 7224: case 7378: case 7754: case 7755: case 7811: case 7812:
+            case 7028: case 7216: case 7224: case 7378: case 7754: case 7755: case 7811: case 7812: case 7893:
                 this.effect[0]+=this.effect[1]
             break
             case 866: case 908: case 1893: case 2356: case 2482: case 5428: case 5429: case 5430: case 5431:
@@ -13614,7 +13692,7 @@ class card{
                                 this.desc=this.desc.toLowerCase()
                             }
                             this.layer.textSize(
-                                name=='Charred\nLizard'||name=='Flame of\nNirvana'||name=='First\nQuarter'||name=='Foehn'||name=='Yukari, Boundary\nof Fantasy'||name=='Keystone\nLaunch'||name=='Hakurei\nTalisman'||name=='Hakurei\nAmulet'||name=='Shizuha, Symbol\nof Loneliness'||name=='Ran,\nScheming Fox'||name==`Flandre,\nDevil's Sister`||name=='Hina, Ward\nof Misfortune'||name=='Diamond\nRing'||
+                                name=='Charred\nLizard'||name=='Flame of\nNirvana'||name=='First\nQuarter'||name=='Foehn'||name=='Yukari, Boundary\nof Fantasy'||name=='Keystone\nLaunch'||name=='Hakurei\nTalisman'||name=='Hakurei\nAmulet'||name=='Shizuha, Symbol\nof Loneliness'||name=='Ran,\nScheming Fox'||name==`Flandre,\nDevil's Sister`||name=='Hina, Ward\nof Misfortune'||name=='Diamond\nRing'||name=='Clay\nRing'||name=='Shimmering\nPath'||name=='Carbon\nRing'||
                                 !spec.includes(12)&&getIndicesOf(this.desc,'\n',true)>=8?6:7.5
                             )
                             if(spec.includes(12)){

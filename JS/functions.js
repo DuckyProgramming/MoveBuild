@@ -1406,6 +1406,9 @@ function getIndicesOf(searchString,string,caseSensitive){
     }
     return indices.length
 }
+function range(start,end){
+    return [...Array(end-start).keys()].map(a=>a+start)
+}
 function quadroArray(base){
 	return [base,base,base,base]
 }
@@ -2070,7 +2073,7 @@ Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}
 		Ally:
 	Total:${current.cardManagers[0].listing.ally.length}/24				${current.cardManagers[0].listing.ally.length-24}
 		Disband:
-	Total:${current.cardManagers[0].listing.disband.length}/1200			${current.cardManagers[0].listing.disband.length-1200}
+	Total:${current.cardManagers[0].listing.disband.length}/1500			${current.cardManagers[0].listing.disband.length-1500}
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/${constants.playerNumber*8}			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-constants.playerNumber*8}
 			`)

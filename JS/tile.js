@@ -354,6 +354,14 @@ class tile{
             this.type.push(type)
             this.anim.part.push(0)
             this.anim.upPart.push(true)
+            switch(type){
+                case 19:
+                    if(this.battle.turn.main<this.battle.players){
+                        this.battle.cardManagers[this.battle.turn.main].discard.allEffectArgs(44,[7893])
+                        this.battle.cardManagers[this.battle.turn.main].reserve.allEffectArgs(44,[7893])
+                    }
+                break
+            }
         }
     }
     display(){

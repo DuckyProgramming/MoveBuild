@@ -708,12 +708,15 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-2,4,2,4,0,7)
         break
         case 86:
-            layer.fill(255,50,50,fade)
-            layer.triangle(9,0,-4.5,-3,-4.5,3)
             for(let a=0,la=4;a<la;a++){
                 layer.fill(a*50,0,a*50,fade)
-                regStar(layer,0,0,8,6-a,6-a,3.6-a*0.6,3.6-a*0.6,0)
+                regStar(layer,0,0,8,7.5-a*1.25,7.5-a*1.25,4.5-a*0.75,4.5-a*0.75,0)
             }
+            layer.fill(220,fade)
+            layer.ellipse(0,0,6)
+            layer.fill(0,fade)
+            layer.ellipse(-1.5,-0.5,1.5)
+            layer.ellipse(1.5,-0.5,1.5)
         break
         case 87:
             layer.fill(200,fade)
@@ -6877,6 +6880,9 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.noFill()
             layer.strokeWeight(1.8)
             layer.ellipse(0,0,6,6)
+            layer.fill(100,fade)
+            layer.noStroke()
+            layer.triangle(-4,-2,-4,2,6,0)
         break
         case 702:
             layer.fill(200,255,255,fade)
@@ -8114,6 +8120,75 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,0,6)
             regStar(layer,0,0,5,6,6,2.25,2.25,36)
         break
+        case 821:
+            layer.fill(255,fade/5)
+            layer.noStroke()
+            layer.ellipse(0,0,12)
+            layer.stroke(100,255,255,fade)
+            layer.strokeWeight(1.2)
+            layer.quad(-2.4,0,0,-2.4,2.4,0,0,2.4)
+            layer.strokeWeight(0.6)
+            layer.quad(-4.2,0,0,-4.2,4.2,0,0,4.2)
+            layer.fill(100,fade)
+            layer.noStroke()
+            layer.triangle(-4,-2,-4,2,6,0)
+        break
+        case 822:
+            layer.fill(255,fade/5)
+            layer.noStroke()
+            layer.ellipse(0,0,12)
+            layer.stroke(100,255,255,fade)
+            layer.strokeWeight(1.2)
+            layer.quad(-2.4,0,0,-2.4,2.4,0,0,2.4)
+            layer.strokeWeight(0.6)
+            layer.quad(-4.2,0,0,-4.2,4.2,0,0,4.2)
+            layer.fill(100,fade)
+            layer.noStroke()
+            layer.triangle(-2,4,2,4,0,-6)
+        break
+        case 823:
+            layer.fill(255,fade/5)
+            layer.noStroke()
+            layer.ellipse(0,0,12)
+            layer.stroke(120,40,30,fade)
+            layer.strokeWeight(1.2)
+            layer.ellipse(0,0,4.8)
+            layer.strokeWeight(1.8)
+            layer.line(-3,-3,3,-3)
+            layer.line(-3,3,3,3)
+            layer.point(0,0)
+            layer.fill(100,fade)
+            layer.noStroke()
+            layer.triangle(-2,4,2,4,0,-6)
+        break
+        case 824:
+            layer.fill(255,fade/5)
+            layer.noStroke()
+            layer.ellipse(0,0,12)
+            layer.stroke(180,150,180,fade)
+            layer.strokeWeight(1.2)
+            layer.arc(0,-1.8,3.6,3.6,-180,0)
+            layer.arc(1.8,0,3.6,3.6,-90,90)
+            layer.arc(0,1.8,3.6,3.6,0,180)
+            layer.arc(-1.8,0,3.6,3.6,90,270)
+            layer.point(0,0)
+            layer.fill(100,fade)
+            layer.noStroke()
+            layer.triangle(-4,-2,-4,2,6,0)
+        break
+        case 825:
+            layer.fill(255,fade/5)
+            layer.noStroke()
+            layer.ellipse(0,0,12)
+            layer.stroke(255,100,100,fade)
+            layer.strokeWeight(1.8)
+            layer.line(-3.6,0,3.6,0)
+            layer.line(-1.2,-1.8,-1.2,1.8)
+            layer.line(1.2,-1.8,1.2,1.8)
+            layer.fill(100,fade)
+            layer.noStroke()
+            layer.triangle(-4,-2,-4,2,6,0)
+        break
 
     }
     //mark s
@@ -8459,15 +8534,22 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
                     layer.noFill()
                     layer.stroke(100,0,100,fade*typeFades[a])
                     layer.strokeWeight(1.5)
-                    layer.triangle(4,0,-6,-2,-6,2)
-                    layer.fill(255,fade*typeFades[a])
-                    layer.noStroke()
-                    layer.textSize(10)
-                    layer.text(detail,0,0)
+                    layer.beginShape()
+                    layer.vertex(0,-2.5)
+                    layer.vertex(-4.25,-4.25)
+                    layer.vertex(-2,1)
+                    layer.vertex(-3.5,4.5)
+                    layer.vertex(0,3)
+                    layer.vertex(3.5,4.5)
+                    layer.vertex(2,1)
+                    layer.vertex(4.25,-4.25)
+                    layer.endShape(CLOSE)
+                    layer.line(0,-2.5,-1.25,-5.5)
+                    layer.line(0,-2.5,1.25,-5.5)
                 break
                 case 5:
                     layer.stroke(255,175,100,fade*typeFades[a])
-                    layer.strokeWeight(3)
+                    layer.strokeWeight(2.5)
                     layer.line(-3,0,3,0)
                     layer.line(-3,0,0,-7)
                     layer.line(3,0,0,7)
@@ -8475,8 +8557,11 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
                 case 6:
                     layer.noFill()
                     layer.stroke(255,255,100,fade*typeFades[a])
-                    layer.strokeWeight(3)
+                    layer.strokeWeight(2)
                     regTriangle(layer,0,0,6,6,60)
+                    layer.line(0,0,0,6)
+                    layer.line(0,0,-3*constants.sqrt3,-3)
+                    layer.line(0,0,3*constants.sqrt3,-3)
                 break
                 case 7:
                     layer.stroke(150,0,0,fade*typeFades[a])
@@ -8542,8 +8627,8 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
                     layer.stroke(240,220,200,fade*typeFades[a])
                     layer.strokeWeight(2)
                     layer.quad(0,-6,-6,0,0,6,6,0)
-                    layer.line(-5,-5,5,5)
-                    layer.line(-5,5,5,-5)
+                    layer.line(-2,-4,-2,4)
+                    layer.line(2,-4,2,4)
                 break
                 case 15:
                     layer.noFill()
@@ -8554,6 +8639,20 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
                     layer.arc(0,3,6,6,0,180)
                     layer.arc(-3,0,6,6,90,270)
                     layer.point(0,0)
+                break
+                case 16:
+                    layer.noFill()
+                    layer.stroke(120,40,30,fade*typeFades[a])
+                    layer.strokeWeight(2)
+                    layer.ellipse(0,0,8)
+                    layer.strokeWeight(3)
+                    layer.line(-5,-5,5,-5)
+                    layer.line(-5,5,5,5)
+                    layer.point(0,0)
+                    layer.fill(255,fade*typeFades[a])
+                    layer.noStroke()
+                    layer.textSize(10)
+                    layer.text(detail,0,0)
                 break
             }
         }
@@ -8566,7 +8665,7 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
 2-Explosive
 3-Energy
 4-Dark
-5-Lightning
+5-Electric
 6-Light
 7-Flame
 8-Ice
@@ -8577,6 +8676,15 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
 13-Dual
 14-Crystal
 15-Dust
+16-Iron
+
+Basic - Shield
+Dark - Light
+Electric - Dust
+Crystal - Iron
+Explosive - Energy
+Glass
+Dual
 */
 function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
     layer.push()
