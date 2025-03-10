@@ -6529,11 +6529,8 @@ The card effects play out with X = the amount of energy.`,
         },{name:'Sludge Tile',mtg:1,desc:
 `Removes all energy when stepped on.`,
         },{name:'Energy Orb',mtg:1,desc:
-`On evoke, gain 3 energy.
+`On evoke, gain 2 energy.
 Unaffected by focus.`,
-        },{name:'Crystal Orb',mtg:1,desc:
-`On evoke, counter 8 all and gain 1 energy (energy unaffected by focus).
-Also counters 4 all each turn.`,
         },{name:'Miracle',mtg:1,desc:
 `Card that gives energy, exhausts and retains.
 Typically gives 1, but there are other versions that give more.`,
@@ -6572,9 +6569,6 @@ The card effects play out with X = the amount of mana spent.`,
         },{name:'Energy Orb',mtg:2,desc:
 `On evoke, gain (E) (E) (E).
 Unaffected by focus.`,
-        },{name:'Crystal Orb',mtg:2,desc:
-`On evoke, counter 8 all and gain (N) (mana unaffected by focus).
-Also counters 4 all each turn.`,
         },{name:'Pristine',mtg:2,desc:
 `Card that gives neutral mana, exhausts and retains.
 Typically gives 2, but there are other versions that give more.`,
@@ -6840,13 +6834,16 @@ Does not spend the orb.`,
         },{name:'Shield Orb',mtg:0,desc:
 `On evoke, adds 16 block.`,
         },{name:'Explosive Orb',mtg:0,desc:
-`On evoke, deals 16 splash damage.`,
+`On evoke, deals 16 splash damage.
+If evoked on yourself, take 4 damage. Otherwise, cannot harm yourself.`,
         },{name:'Iron Orb',mtg:1,desc:
 `On evoke, deals 6 damage. The amount of damage increases by 3 every turn.`,
         },{name:'Electric Orb',mtg:0,desc:
 `On evoke, deals 8 damage. Also deals 4 damage to a random enemy every turn.`,
         },{name:'Dust Orb',mtg:0,desc:
 `On evoke, adds 12 block. Also adds 6 block every turn.`,
+        },{name:'Crystal Orb',mtg:0,desc:
+`On evoke, counter 12 all. Also counters 6 all each turn.`,
         },{name:'Light Orb',mtg:0,desc:
 `On evoke, draw 2 cards.
 Unaffected by focus.`,

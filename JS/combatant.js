@@ -4601,10 +4601,13 @@ class combatant{
             break
             case 2:
                 this.battle.combatantManager.areaAbstract(0,[round(16*multi),-1,0],this.battle.combatantManager.combatants[target].tilePosition,[3,this.id],[0,1],false,0)
+                if(target==this.id){
+                    this.orbTake(4)
+                }
             break
             case 3:
                 if(target<this.battle.players||this.id<this.battle.players){
-                    this.battle.addSpecificEnergy(3,target>=this.battle.players?this.id:target,6)
+                    this.battle.addSpecificEnergy(variants.mtg?3:2,target>=this.battle.players?this.id:target,6)
                 }
             break
             case 4:
@@ -4660,9 +4663,6 @@ class combatant{
             break
             case 14:
                 this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(12*multi))
-                if(target<this.battle.players||this.id<this.battle.players){
-                    this.battle.addSpecificEnergy(1,target>=this.battle.players?this.id:target,0)
-                }
             break
             case 15:
                 this.battle.combatantManager.combatants[target].addBlock(round(12*multi))
@@ -4699,9 +4699,12 @@ class combatant{
             break
             case 2:
                 this.battle.combatantManager.areaAbstract(0,[round(8*multi),-1,0],this.battle.combatantManager.combatants[target].tilePosition,[3,this.id],[0,1],false,0)
+                if(target==this.id){
+                    this.orbTake(2)
+                }
             break
             case 3:
-                this.battle.addSpecificEnergy(2,target>=this.battle.players?this.id:target,6)
+                this.battle.addSpecificEnergy(variants.mtg?2:1,target>=this.battle.players?this.id:target,6)
             break
             case 4:
                 if(this.battle.combatantManager.combatants[target].id!=this.id){
@@ -4744,9 +4747,6 @@ class combatant{
             break
             case 14:
                 this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(6*multi))
-                if(target<this.battle.players||this.id<this.battle.players){
-                    this.battle.addSpecificEnergy(1,target>=this.battle.players?this.id:target,0)
-                }
             break
             case 15:
                 this.battle.combatantManager.combatants[target].addBlock(round(6*multi))
@@ -6016,7 +6016,7 @@ class combatant{
                 }
             break
             case 14:
-                this.statusEffect('Counter All',round(4*multi))
+                this.statusEffect('Counter All',round(6*multi))
             break
             case 15:
                 this.addBlock(round((6+this.status.main[705])*multi))
@@ -7565,6 +7565,7 @@ class combatant{
         this.tilePosition.y=round(this.tilePosition.y)
         if(this.life<=0&&this.status.main[137]>0){
             this.life=1
+            this.battle.updateTargetting()
         }
         if(this.team>0&&!this.construct&&!this.support){
             this.fade=smoothAnim(this.fade,this.status.main[51]<=0&&this.status.main[374]<=0,0,1,15)
