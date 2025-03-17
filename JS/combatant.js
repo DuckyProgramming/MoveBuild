@@ -3067,6 +3067,9 @@ class combatant{
         if(this.status.main[537]>0){
             this.battle.addSpecificEnergy(this.status.main[537],this.id,6)
         }
+        if(this.id<this.battle.players){
+            this.battle.cardManagers[this.id].hand.allEffectArgs(55,['callLowRollEffect',[[]]])
+        }
     }
     highRoll(){
         if(this.status.main[255]>0){

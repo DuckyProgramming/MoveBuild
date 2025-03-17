@@ -52,7 +52,7 @@ class nodeManager{
         this.freeMove=composite.freeMove
         this.saveClass=composite.saveClass
         this.harmBoss=composite.harmBoss
-        this.endless=composite.endless
+        this.endless=composite.endless||0
         this.nodes=[]
         for(let a=0,la=composite.nodes.length;a<la;a++){
             let base=composite.nodes[a]

@@ -8923,7 +8923,12 @@ class card{
             case 7898: string+=`Hold ${effect[0]} Shield Orb${pl(effect[0])}\nIncreases by ${effect[1]}\nWhen Retained\nResets on Play`; break
             case 7899: string+=`Hold ${effect[0]} Energy Orb${pl(effect[0])}\nand Evoke ${effect[1]}`; break
             case 7900: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nRemove a Random\nDebuff From Self`; break
-
+            case 7901: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Cannot Gain\nBlock For ${effect[1]} Turn${pl(effect[1])}`; break
+            case 7902: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nYou Cannot Draw More\nCards This Turn`; break
+            case 7903: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Your Draw\nPile is Empty,\nPut a Card in Discard\nPile in Your Hand`; break
+            case 7904: string+=`Gain ${effect[0]} Dexterity\nEnd Your Turn`; break
+            case 7905: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nRetain Your Hand\nThis Turn`; break
+            case 7906: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nCosts 0 When\nYou Lowroll`; break
 
             //mark p
 
@@ -9707,6 +9712,13 @@ class card{
             break
             case 1170:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.effect[0])
+            break
+        }
+    }
+    callLowRollEffect(){
+        switch(this.attack){
+            case 7906:
+                this.setCost(0,[0])
             break
         }
     }
