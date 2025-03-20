@@ -8929,6 +8929,9 @@ class card{
             case 7904: string+=`Gain ${effect[0]} Dexterity\nEnd Your Turn`; break
             case 7905: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nRetain Your Hand\nThis Turn`; break
             case 7906: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nCosts 0 When\nYou Lowroll`; break
+            case 7907: string+=`Discard Your Hand\nPut a Card in Discard\nPile in Your Hand`; break
+            case 7908: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nand Upgrade ${effect[1]} Card${pl(effect[1])}\nWhen Discarded From\nYour Hand`; break
+            case 7909: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Armor\nWhen Drawn,\nMake ${effect[2]} Cop${effect[2]!=1?`ies`:`y`}`; break
 
             //mark p
 
@@ -9627,6 +9630,10 @@ class card{
             break
             case 7398:
                 this.battle.addSpecificEnergy(1,this.player,1)
+            break
+            case 7908:
+                userCombatant.addBlock(this.effect[0])
+                this.battle.cardManagers[this.player].hand.upgrade(this.effect[1])
             break
         }
     }
