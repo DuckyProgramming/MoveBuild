@@ -453,7 +453,7 @@ attack.prototype.update=function(){
         case 7428: case 7429: case 7430: case 7434: case 7440: case 7442: case 7444: case 7445: case 7446: case 7447:
         case 7448: case 7449: case 7450: case 7451: case 7453: case 7457: case 7491: case 7504: case 7539: case 7540:
         case 7608: case 7612: case 7613: case 7614: case 7615: case 7727: case 7737: case 7777: case 7814: case 7815:
-        case 7827: case 7837:
+        case 7827: case 7837: case 7910:
             //mark 3
             if(
                 this.timer==1&&(

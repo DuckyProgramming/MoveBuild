@@ -7025,7 +7025,7 @@ It costs 0, but must be played immediately or discards.`,
 `When an enemy with Communize dies, add a Worker to deck.
 Decrements eaach turn.`,
         },{name:'Assign X',mtg:0,desc:
-`If you have X Workers in deck, exhaust them and
+`If you have X Workers in hand, exhaust them and
 trigger the assign effect.`,
         },{name:'Worker',mtg:0,desc:
 `Subcard that costs 0, deals 4 damage and adds 4 block.

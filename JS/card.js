@@ -8932,6 +8932,7 @@ class card{
             case 7907: string+=`Discard Your Hand\nPut a Card in Discard\nPile in Your Hand`; break
             case 7908: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nand Upgrade ${effect[1]} Card${pl(effect[1])}\nWhen Discarded From\nYour Hand`; break
             case 7909: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Armor\nWhen Drawn,\nMake ${effect[2]} Cop${effect[2]!=1?`ies`:`y`}`; break
+            case 7910: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nNext Skill is Free`; break
 
             //mark p
 

@@ -342,7 +342,7 @@ class attack{
             case 7446: case 7447: case 7448: case 7449: case 7450: case 7451: case 7453: case 7457: case 7491: case 7504:
             case 7539: case 7540: case 7608: case 7612: case 7613: case 7614: case 7615: case 7647: case 7648: case 7649:
             case 7650: case 7651: case 7652: case 7653: case 7666: case 7727: case 7737: case 7777: case 7814: case 7815:
-            case 7827: case 7837:
+            case 7827: case 7837: case 7910:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -11956,6 +11956,9 @@ class attack{
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userCombatant.holdOrb(4)
                         }
+                    break
+                    case 7910:
+                        this.userCombatant.statusEffect('Free Skill',1)
                     break
 
                 }
