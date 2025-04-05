@@ -1608,7 +1608,8 @@ class card{
             case 598: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Jagged Bleed\n3 Times`; break
             case 599: string+=`Apply ${effect[0]} Jagged Bleed`; break
             case 600: string+=`Deal Splash Damage\nEqual to Target\nConstruct Health`; break
-            case 601: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nUpgrade ${effect[1]} Card${pl(effect[1])}`; break
+            case 601: case 7921:
+                string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nUpgrade ${effect[1]} Card${pl(effect[1])}`; break
             case 602: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nUpgrade ${effect[1]} Card${pl(effect[1])}`; break
             case 603: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nUpgrade ${effect[1]} Card${pl(effect[1])}`; break
             case 604: string+=`Construct Gains\n${effect[0]} Regeneration`; break
@@ -8933,6 +8934,19 @@ class card{
             case 7908: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nand Upgrade ${effect[1]} Card${pl(effect[1])}\nWhen Discarded From\nYour Hand`; break
             case 7909: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Armor\nWhen Drawn,\nMake ${effect[2]} Cop${effect[2]!=1?`ies`:`y`}`; break
             case 7910: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nNext Skill is Free`; break
+            case 7911: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Removed,\nGain ${effect[1]} Currency`; break
+            case 7912: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPierces Up to 2 Targets,\nDeals Double Damage\nto the Second`; break
+            case 7913: string+=`Discard Your Hand\nDraw That Many Cards\nThey Cost 0 Temporarily`; break
+            case 7914: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCounter Push 1 Tile`; break
+            case 7915: string+=`50%: Gain ${effect[0]} Strength\n50%: Gain ${effect[1]} Dexterity`; break
+            case 7916: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nA Random One Costs\n${effect[1]} More Temporarily`; break
+            case 7917: string+=`Gain ${effect[0]} Energy\nAssign ${effect[1]}:\nReflect Next Hit Taken`; break
+            case 7918: string+=`Gain (E) (E)\nAssign ${effect[0]}:\nReflect Next Hit Taken`; break
+            case 7919: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nAfter Each Boss`; break
+            case 7920: string+=`When Vanished,\nGain ${effect[0]} Max HP`; break
+            case 7922: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnergy Divisible by 3:\nApply ${effect[1]} Poison`; break
+            case 7923: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMana Total Divisible by 3:\nApply ${effect[1]} Poison`; break
+            case 7924: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPer Enemy Below You`; break
 
             //mark p
 
@@ -9959,6 +9973,7 @@ class card{
         }
     }
     callVanishEffect(){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         switch(this.attack){
             case -102:
                 this.battle.cardManagers[this.player].hand.add(this.type,this.level,this.color,this.edition)
@@ -10015,6 +10030,9 @@ class card{
             case 7553:
                 this.battle.overlayManager.overlays[14][this.player].active=true
                 this.battle.overlayManager.overlays[14][this.player].activate()
+            break
+            case 7920:
+                userCombatant.gainMaxHP(this.effect[0])
             break
         }
     }
@@ -10339,6 +10357,11 @@ class card{
                     this.effect[1]+=this.effect[2]
                 }
             break
+            case 7919:
+                if(encounterClass==2){
+                    this.costDown(2,[1])
+                }
+            break
         }
     }
     callPurchaseEffect(purchase){
@@ -10400,6 +10423,9 @@ class card{
             case 5836:
                 this.battle.overlayManager.overlays[150][this.player].active=true
                 this.battle.overlayManager.overlays[150][this.player].activate([this.level,0])
+            break
+            case 7911:
+                this.battle.addCurrency(this.effect[1],this.player)
             break
         }
     }

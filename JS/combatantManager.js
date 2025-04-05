@@ -1547,6 +1547,19 @@ class combatantManager{
         }
         return combatants
     }
+    getAreaVarial(type,args,team,tilePosition){
+        let combatants=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(
+                this.combatants[a].life>0&&this.combatants[a].team!=team&&(
+                    type==0&&this.combatants[a].tilePosition.y>tilePosition.y
+                )
+            ){
+                combatants.push(this.combatants[a])
+            }
+        }
+        return combatants
+    }
     getAreaId(id,tilePosition,range){
         let combatants=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
