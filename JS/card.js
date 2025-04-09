@@ -8947,7 +8947,15 @@ class card{
             case 7922: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnergy Divisible by 3:\nApply ${effect[1]} Poison`; break
             case 7923: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMana Total Divisible by 3:\nApply ${effect[1]} Poison`; break
             case 7924: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPer Enemy Below You`; break
-
+            case 7925: string+=`Gain ${effect[0]} Armor\nGain ${effect[1]!=1?`${effect[1]}`:``}X Currency Where\nX = Hand Size`; break
+            case 7926: string+=`Apply ${effect[0]} Weak and\nApply ${effect[1]} Vulnerable\nto a Random Enemy`; break
+            case 7927: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nFor Each Unique\nStatus You Have`; break
+            case 7928: string+=`Discard Your Hand\nAdd That Many\nDazeds to Hand`; break
+            case 7929: string+=`Gain ${effect[0]} Armor\n50%: Draw ${effect[2]} Card${pl(effect[2])}`; break
+            case 7930: string+=`Gain ${effect[0]} Currency\nAdd ${this.calculateEffect(effect[1],1)} Block\nIf You Have No Block`; break
+            case 7931: string+=`75%: Deal ${this.calculateEffect(effect[0],0)} Damage`; break
+            case 7932: string+=`75%: Add ${this.calculateEffect(effect[0],1)} Block`; break
+            
             //mark p
 
             //mark q
