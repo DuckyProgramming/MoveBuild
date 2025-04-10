@@ -109,7 +109,7 @@ class turnManager{
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].activated&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&(
+            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].activated&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&this.battle.combatantManager.combatants[a].intent>=0&&(
                 this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].moved&&
                 this.battle.combatantManager.combatants[a].name=='Strengthener'
             )){
@@ -119,7 +119,7 @@ class turnManager{
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].activated&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&(
+            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].activated&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&this.battle.combatantManager.combatants[a].intent>=0&&(
                 this.battle.combatantManager.combatants[a].support&&!this.battle.combatantManager.combatants[a].moved||
                 this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].moved&&
                 this.battle.combatantManager.combatants[a].name!='Strengthener'

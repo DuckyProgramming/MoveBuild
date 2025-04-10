@@ -358,7 +358,7 @@ class nodeManager{
                 }
             break
             case 6:
-                this.stashWorld++
+                this.stashWorld=min(this.stashWorld,this.world)+1
                 if(this.world==1&&game.ascend>=23){
                     this.enterNode(args[1],y,true,args)
                 }else{

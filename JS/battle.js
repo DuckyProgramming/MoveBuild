@@ -393,8 +393,8 @@ class battle{
         let possible=[]
         for(let a=0,la=types.encounter.length;a<la;a++){
             if(
-                types.encounter[a].enemy.length+types.encounter[a].reinforce.length==
-                encounter.enemy.length+encounter.reinforce.length
+                types.encounter[a].enemy.length+types.encounter[a].reinforce.length==encounter.enemy.length+encounter.reinforce.length
+                &&!(types.encounter[a].name.includes('Tutorial'))
             ){
                 possible.push(a)
             }

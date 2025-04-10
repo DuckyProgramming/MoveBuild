@@ -5652,12 +5652,14 @@ class combatant{
                 }
             }
         }
-        this.status.ticker=range(0,this.status.main.length)
+        this.status.ticker=[]
         for(let a=0,la=this.status.display.length;a<la;a++){
-            if(this.status.ticker.includes(this.status.display[la-1-a])){
-                this.status.ticker.splice(this.status.ticker.indexOf(this.status.display[la-1-a]),1)
-            }
             this.status.ticker.splice(0,0,this.status.display[la-1-a])
+        }
+        for(let a=0,la=this.status.main.length;a<la;a++){
+            if(this.status.main[a]!=0&&!this.status.ticker.includes(a)){
+                this.status.ticker.push(a)
+            }
         }
         for(let a=0,la=this.status.ticker.length;a<la;a++){
             if(this.status.main[this.status.ticker[a]]!=0){
