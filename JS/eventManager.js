@@ -220,6 +220,7 @@ class eventManager{
         }
         let possible
         let correct
+        let solution
         switch(this.id){
             case 30:
                 if(this.battle.relicManager.hasRelic(259,this.player)){
@@ -325,7 +326,7 @@ class eventManager{
                         possible.push(this.battle.cardManagers[this.player].listing.coc[3][a])
                     }
                 }
-                let solution=possible[floor(random(0,possible.length))]
+                solution=possible[floor(random(0,possible.length))]
                 correct=floor(random(0,5))
                 this.pages[0].link[correct]=1
                 this.pages[0].desc=
@@ -333,6 +334,27 @@ class eventManager{
 The announcer's voice rings from around you.
 "You have the chance to win a reward, if you answer me this...
 How much damage does ${types.card[solution].name.replace('\n',' ')} deal?"`
+                for(let a=0,la=5;a<la;a++){
+                    this.pages[0].option[a]=types.card[solution].levels[0].effect[0]+a-correct
+                }
+            break
+            case 177:
+                possible=[]
+                for(let a=0,la=this.battle.cardManagers[this.player].listing.coc[3].length;a<la;a++){
+                    if(
+                        types.card[this.battle.cardManagers[this.player].listing.coc[3][a]].levels[0].class==2&&
+                        types.card[this.battle.cardManagers[this.player].listing.coc[3][a]].levels[0].effect[0]>=5
+                    ){
+                        possible.push(this.battle.cardManagers[this.player].listing.coc[3][a])
+                    }
+                }
+                solution=possible[floor(random(0,possible.length))]
+                correct=floor(random(0,5))
+                this.pages[0].link[correct]=1
+                this.pages[0].desc=
+`You find yourself faced with yet another gameshow.
+This time, you're asked to answer a single question
+for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} give?"`
                 for(let a=0,la=5;a<la;a++){
                     this.pages[0].option[a]=types.card[solution].levels[0].effect[0]+a-correct
                 }
@@ -2043,6 +2065,11 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                     case 176:
                         if(this.page==0&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Call\nDucksquad',types.card),0,0)
+                        }
+                    break
+                    case 177:
+                        if(this.page==1&&a==0){
+                            this.battle.addCurrency(400,this.player)
                         }
                     break
 

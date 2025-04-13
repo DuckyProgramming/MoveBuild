@@ -2695,7 +2695,7 @@ Who would you like to hear about?`,
             },
         ],
     },{
-        name:'Dev Intervention',id:86,list:0,
+        name:'Dev Intervention',id:86,list:-1,
         pages:[
             {
                 desc:
@@ -3052,7 +3052,7 @@ before they leave as a group down the road.`,
             },
         ],
     },{
-        name:'Fake Adventure [DISBANDED]',id:100,list:-1,
+        name:'Fake Adventure',id:100,list:-1,
         pages:[
             {
                 desc:
@@ -5371,6 +5371,33 @@ One offers to induct you into the group.`,
                 link:[-1],
             },{
                 desc:`You find his proposition pointless.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Guess the Block',id:177,list:0,
+        pages:[
+            {
+                desc:
+`You find yourself faced with yet another gameshow.
+This time, you're asked to answer a single question
+for a prize: how much block does - give?`,
+                option:['','','','',''],
+                optionDesc:['','','','',''],
+                link:[2,2,2,2,2],
+            },{
+                desc:`
+You picked the right answer and claim your prize.
+How do you know this stuff anyway?`,
+                option:['Take it'],
+                optionDesc:['Gain 400 Currency'],
+                link:[-1],
+            },{
+                desc:`
+Canned laughter is heard as a spotlight appears over you.
+You're just a bit humiliated.`,
                 option:['Leave'],
                 optionDesc:[''],
                 link:[-1],
