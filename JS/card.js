@@ -8956,6 +8956,11 @@ class card{
             case 7931: string+=`75%: Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 7932: string+=`75%: Add ${this.calculateEffect(effect[0],1)} Block`; break
             
+            case 7933: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCounter ${effect[1]} Once\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            //271
+            case 7934: string+=`Draw ${effect[0]} Attack${pl(effect[0])}\nAdd Block Equal\nto ${effect[0]!=1?`Their`:`its`} Effect`; break
+            //4014
+
             //mark p
 
             //mark q

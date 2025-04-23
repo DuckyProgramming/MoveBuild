@@ -270,7 +270,7 @@ class attack{
             case 7681: case 7683: case 7685: case 7696: case 7697: case 7712: case 7716: case 7718: case 7719: case 7720: case 7721: case 7722: case 7723: case 7724: case 7726: case 7734: case 7735: case 7738: case 7744: case 7745:
             case 7748: case 7756: case 7760: case 7764: case 7765: case 7774: case 7775: case 7787: case 7792: case 7795: case 7796: case 7800: case 7813: case 7820: case 7826: case 7832: case 7836: case 7842: case 7843: case 7846:
             case 7847: case 7864: case 7879: case 7890: case 7891: case 7892: case 7893: case 7894: case 7895: case 7899: case 7901: case 7903: case 7906: case 7909: case 7911: case 7914: case 7919: case 7921: case 7922: case 7923:
-            case 7931:
+            case 7931: case 7933:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -6819,6 +6819,10 @@ class attack{
                             this.targetCombatant.statusEffect('Poison',this.effect[1])
                         }
                     break
+                    case 7933:
+                        this.userCombatant.statusEffect('Counter Once',this.effect[1])
+                        this.userManager.draw(this.effect[2])
+                    break
 
                 }
                 //mark 1s
@@ -7401,6 +7405,14 @@ class attack{
                     case 7925:
                         this.userCombatant.statusEffect('Armor',this.effect[0])
                         this.battle.addCurrency(this.effect[1]*this.handSize,this.player)
+                    break
+                    case 7934:
+                        let result7934=this.userManager.drawReturnAbstract(this.effect[0],0,0,[1])
+                        for(let a=0,la=result7934.length;a<la;a++){
+                            if(result7934[a].effect.length>0&&result7934[a].effect[0]>0){
+                                this.userCombatant.addBlock(result7934[a].effect[0])
+                            }
+                        }
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])

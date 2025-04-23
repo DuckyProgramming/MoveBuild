@@ -3771,7 +3771,7 @@ class group{
         }
         return false
     }
-    sendAbstract(list,amount,variant,output,args){
+    sendAbstractBase(list,amount,variant,output,args){
         let total=output==22?[]:0
         switch(variant){
             case 5: case 6:
@@ -3788,6 +3788,7 @@ class group{
             return 0
         }
         this.sendAmounts.push(amount)
+        let sent=[]
         let sendId=this.sendAmounts.length-1
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -3809,6 +3810,7 @@ class group{
                     a=la
                 }
                 if(this.drawEffect(list[list.length-1],sendId)){la=0}
+                sent.push(list[list.length-1])
                 switch(output){
                     case 1:
                         list.splice(floor(random(0,list.length-1)),0,list[list.length-1])
@@ -3923,7 +3925,10 @@ class group{
                 }
             }
         }
-        return total
+        return sent
+    }
+    sendAbstract(list,amount,variant,output,args){
+        return this.sendAbstractBase(list,amount,variant,output,args).length
     }
     send(list,firstIndex,lastIndex,spec){
         this.lastSort=-1

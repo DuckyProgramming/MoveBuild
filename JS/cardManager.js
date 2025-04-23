@@ -627,7 +627,7 @@ class cardManager{
                 }else{
                     let amountLeft=amount
                     let sendId=this.reserve.sendAmounts.length
-                    let result=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args)
+                    let result=this.reserve.sendAbstractBase(this.hand.cards,amountLeft,variant,output,args)
                     amountLeft=this.reserve.sendAmounts[sendId]-result.length
                     for(let a=0,la=result.length;a<la;a++){
                         sent.push(result[a])
@@ -637,8 +637,9 @@ class cardManager{
                         this.generalShuffle()
                         if(this.reserve.cards.length>0){
                             sendId=this.reserve.sendAmounts.length
-                            result=this.reserve.sendAbstract(this.hand.cards,amountLeft,variant,output,args)
+                            result=this.reserve.sendAbstractBase(this.hand.cards,amountLeft,variant,output,args)
                             amountLeft=this.reserve.sendAmounts[sendId]-result.length
+                            print(result)
                             for(let a=0,la=result.length;a<la;a++){
                                 sent.push(result[a])
                             }
