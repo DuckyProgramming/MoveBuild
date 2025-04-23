@@ -8713,7 +8713,7 @@ class card{
             case 7688: string+=`Put a Card in Draw\nPile in Your Hand\nAdd ${effect[0]} Shiv${pl(effect[0])} to Hand`; break
             case 7689: string+=`Progress All\nQuests by ${effect[0]}`; break
             case 7690: string+=`Progress All\nQuests by X${effect[0]!=0?`+${effect[0]}`:``}`; break
-            case 7691: string+=`Fuel ${effect[0]} (${this.fuel}):\nDeal ${this.calculateEffect(effect[1],0)} Damage\nin All Directions\n${this.calculateEffect(effect[2],1)} Damage`; break
+            case 7691: string+=`Fuel ${effect[0]} (${this.fuel}):\nDeal ${this.calculateEffect(effect[1],0)} Damage\nin All Directions\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
             case 7692: string+=`Gain ${effect[0]} Glass\nShard Item${pl(effect[0])}`; break
             case 7693: string+=`Draw and Upgrade\n${effect[0]} Card${pl(effect[0])}\nCycle ${effect[0]!=1?`Their Classes`:`its Class`}`; break
             case 7694: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nin All Directions\nGain ${effect[1]!=1?`${effect[1]}`:``}X Wish Power`; break
