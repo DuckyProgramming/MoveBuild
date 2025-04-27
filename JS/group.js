@@ -3350,7 +3350,7 @@ class group{
             case 1242: case 4393: case 5468: case 5469: case 6013:
                 userCombatant.addBlock(card.effect[0])
             break
-            case 1243:
+            case 1243: case 7939:
                 this.battle.cardManagers[this.player].hand.upgrade(card.effect[0])
             break
             case 1271:

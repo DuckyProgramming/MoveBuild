@@ -173,7 +173,7 @@ attack.prototype.update=function(){
         case 7736: case 7744: case 7745: case 7760: case 7764: case 7765: case 7775: case 7787: case 7795: case 7796:
         case 7800: case 7813: case 7836: case 7842: case 7843: case 7846: case 7847: case 7864: case 7892: case 7893:
         case 7895: case 7901: case 7903: case 7906: case 7909: case 7911: case 7914: case 7919: case 7922: case 7923:
-        case 7931: case 7933:
+        case 7931: case 7933: case 7935: case 7938: case 7940:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -362,6 +362,7 @@ attack.prototype.update=function(){
         case 7675: case 7682: case 7684: case 7714: case 7725: case 7729: case 7746: case 7749: case 7750: case 7761:
         case 7767: case 7768: case 7769: case 7670: case 7773: case 7776: case 7781: case 7790: case 7819: case 7835:
         case 7839: case 7865: case 7875: case 7884: case 7896: case 7902: case 7924: case 7925: case 7932: case 7934:
+        case 7936: case 7937:
             //mark 2
             if(
                 this.timer==1&&(

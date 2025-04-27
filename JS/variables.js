@@ -1355,6 +1355,7 @@ types={
         {name:'Capstone',internal:'Leftmost Energy',id:513,rarity:4,list:0,mtg:1,world:[0,3],description:'Each Turn, Gain 1 Energy if\nYou Play the Leftmost Card First'},
         {name:'Flow Limiter',internal:'Energy/Kill Limit',id:514,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nOnly 1 Enemy Can Die Per Turn'},
         {name:'Taraxis',internal:'Extra Mana Temporary Dexterity',id:515,rarity:2,list:0,mtg:2,world:[0,3],description:'Extra Mana is Converted\nto Temporary Dexterity'},
+        {name:'Dry Tomato',internal:'Double or Half',id:516,rarity:5,list:0,mtg:0,world:[0,3],description:'When Taken, Randomly Double\nor Halve Your Currency'},
         
         //mark mtg mark r
     ],item:[

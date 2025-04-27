@@ -80,7 +80,8 @@ class relicManager{
                 (types.relic[a].list==0||this.battle.player.includes(types.relic[a].list))&&
                 (types.relic[a].mtg==0||types.relic[a].mtg==1&&!variants.mtg||types.relic[a].mtg==2&&variants.mtg)
             ){
-                this.listing.relic[types.relic[a].rarity].push(a)
+                let effectiveRarity=types.relic[a].rarity==5?3:types.relic[a].rarity
+                this.listing.relic[effectiveRarity].push(a)
             }
             this.active.push([])
             for(let b=0,lb=this.battle.players+1;b<lb;b++){
@@ -841,6 +842,13 @@ class relicManager{
                     {type:1,value:[0,2,0]},
                     {type:1,value:[0,2,0]},
                 ]])
+            break
+            case 516:
+                if(floor(random(0,2))==0){
+                    this.battle.addCurrency(this.battle.currency.money[player],player)
+                }else{
+                    this.battle.loseCurrency(floor(this.battle.currency.money[player]/2),player)
+                }
             break
 
             //mark a

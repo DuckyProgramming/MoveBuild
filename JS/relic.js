@@ -3807,6 +3807,12 @@ class relic{
                     displaySymbol(this.layer,10,-3,42,0,0.8,this.fade)
                     displaySymbol(this.layer,0,8,4,0,0.8,this.fade)
                 break
+                case 'Double or Half':
+                    displaySymbol(this.layer,0,0,28,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('x2?',0,0)
+                break
 
                 //mark p
             }

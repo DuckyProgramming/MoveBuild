@@ -8955,11 +8955,14 @@ class card{
             case 7930: string+=`Gain ${effect[0]} Currency\nAdd ${this.calculateEffect(effect[1],1)} Block\nIf You Have No Block`; break
             case 7931: string+=`75%: Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 7932: string+=`75%: Add ${this.calculateEffect(effect[0],1)} Block`; break
-            
             case 7933: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCounter ${effect[1]} Once\nDraw ${effect[2]} Card${pl(effect[2])}`; break
-            //271
             case 7934: string+=`Draw ${effect[0]} Attack${pl(effect[0])}\nAdd Block Equal\nto ${effect[0]!=1?`Their`:`its`} Effect`; break
-            //4014
+            case 7935: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Played,\nGains Replenish`; break
+            case 7936: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Played,\nGains Replenish`; break
+            case 7937: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Become`:`It Becomes`} Ethereal`; break
+            case 7938: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTriples After 2\nBosses Are Defeated\n(${this.limit}/2)`; break
+            case 7939: string+=`When Drawn,\nUpgrade ${effect[0]} Card${pl(effect[0])}`; break
+            case 7940: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nWhen You Move`; break
 
             //mark p
 
@@ -9738,6 +9741,9 @@ class card{
                     this.effect[0]+=this.effect[1]
                 }
             break
+            case 7940:
+                this.effect[0]+=this.effect[1]
+            break
         }
     }
     callInDiscardEffect(){
@@ -10375,6 +10381,14 @@ class card{
                     this.costDown(2,[1])
                 }
             break
+            case 7938:
+                if(encounterClass==2){
+                    this.limit++
+                    if(this.limit==2){
+                        this.effect[0]*=3
+                    }
+                }
+            break
         }
     }
     callPurchaseEffect(purchase){
@@ -10440,6 +10454,7 @@ class card{
             case 7911:
                 this.battle.addCurrency(this.effect[1],this.player)
             break
+            
         }
     }
     callAddEffect(){
@@ -11019,6 +11034,12 @@ class card{
             break
             case 7897: case 7898:
                 this.effect[0]=this.effect[2]
+            break
+            case 7935: case 7936:
+                if(!this.spec.includes(62)){
+                    this.spec.push(62)
+                    this.additionalSpec.push(62)
+                }
             break
         }
         if(this.battle.modded(94)&&this.battle.cardManagers[this.player].hand.turnPlayed[0]>=5){

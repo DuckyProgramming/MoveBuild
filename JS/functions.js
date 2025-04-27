@@ -1344,6 +1344,7 @@ function relicSellValue(rarity){
 		case 2: return 200
 		case 3: return 100
 		case 4: return 600
+		case 5: return 0
 	}
 }
 function copyCard(base){
