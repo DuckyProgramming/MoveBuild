@@ -135,7 +135,7 @@ class purchase{
                     break
                     case 4:
                         this.battle.cardManagers[purchaser].deck.add(this.card.type,constrain(this.battle.relicManager.active[110][purchaser+1]+this.card.level,0,types.card[this.card.type].levels.length-1),this.card.color,this.card.edition)
-                        this.battle.cardManagers[purchaser].deck.removeAbstract(9,[this.baseID])
+                        this.battle.cardManagers[purchaser].deck.removeBypassAbstract(0,[this.baseID])
                     break
                     case 5:
                         this.battle.overlayManager.overlays[3][purchaser].active=true

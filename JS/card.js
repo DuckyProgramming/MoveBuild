@@ -11911,6 +11911,7 @@ class card{
         }
     }
     triggerWish(){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         switch(this.attack){
             case 3827:
                 this.battle.cardManagers[this.player].draw(this.effect[0])
@@ -13450,13 +13451,24 @@ class card{
             }else{
                 if(this.player==-1){
                     this.layer.noStroke()
-                    switch(this.color){
-                        case constants.playerNumber+3:
-                            this.layer.fill(255,100,100,this.fade)
-                        break
-                        default:
-                            this.layer.fill(150,this.fade)
-                        break
+                    if(this.edition==5){
+                        switch(this.color){
+                            case constants.playerNumber+3:
+                                this.layer.fill(51,20,20,this.fade)
+                            break
+                            default:
+                                this.layer.fill(30,this.fade)
+                            break
+                        }
+                    }else{
+                        switch(this.color){
+                            case constants.playerNumber+3:
+                                this.layer.fill(255,100,100,this.fade)
+                            break
+                            default:
+                                this.layer.fill(150,this.fade)
+                            break
+                        }
                     }
                     this.layer.rect(0,0,3,this.height+5)
                 }

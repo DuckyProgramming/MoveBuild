@@ -2243,6 +2243,13 @@ function outDupes(){
 			}
 		}
 	}
+	for(let a=0,la=types.relic.length;a<la;a++){
+		for(let b=a+1,lb=types.relic.length;b<lb;b++){
+			if(types.relic[a].name==types.relic[b].name&&types.relic[a].name.length>0&&a!=b&&types.relic[a].mtg==types.relic[b].mtg){
+				console.log(types.relic[a].name)
+			}
+		}
+	}
 }
 function outRepeats(){
 	for(let a=0,la=types.card.length;a<la;a++){
@@ -2406,6 +2413,15 @@ function outCosts(){
 		build+=`\n`
 	}
 	console.log(build)
+}
+function uniqueArray(array){
+	for(let a=0,la=array.length;a<la;a++){
+		for(let b=a+1,lb=array.length;b<lb;b++){
+			if(array[a]==array[b]){
+				print(array[a])
+			}
+		}
+	}
 }
 function colorTest(){
 	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards=[]

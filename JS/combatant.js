@@ -479,6 +479,9 @@ class combatant{
         this.inspiration=0
         this.fugue=0
         this.favor=0
+
+        this.turnDodges=0
+        this.turnTaken=0
     }
     resetInfo(){
         this.constants()

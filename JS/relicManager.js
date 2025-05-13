@@ -185,6 +185,7 @@ class relicManager{
                 if(this.listing.relic[rarity].includes(possible[index])){
                     this.listing.relic[rarity].splice(this.listing.relic[rarity].indexOf(possible[index]),1)
                 }
+                possible.splice(index,1)
             }
         }
     }

@@ -4433,6 +4433,17 @@ class group{
             }
         }
     }
+    removeBypassAbstract(type,args){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(
+                type==0&&args[0]==this.cards[a].id
+            ){
+                this.cards[a].callRemoveEffect()
+                this.send(this.battle.cardManagers[this.player].remove.cards,a,a+1,0)
+                a=la
+            }
+        }
+    }
     unDuplicate(){
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].name==this.lastDuplicate[this.lastDuplicate.length-1]){
