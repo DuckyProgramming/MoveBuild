@@ -716,8 +716,8 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			}
 			health=float(tennify(health))
 			switch(type){
-				case 4: return health==effect?tennify(effect):tennify(effect)+` (${tennify(health)})`
-				case 9: return health==effect?(effect==1?``:tennify(effect))+`X`:tennify(effect)+` (${tennify(health)})X`
+				case 4: return health==effect?tennify(effect):tennify(effect)+`(${tennify(health)})`
+				case 9: return health==effect?(effect==1?``:tennify(effect))+`X`:tennify(effect)+`(${tennify(health)})X`
 			}
 		case 17: case 18:
 			let barrier=effect

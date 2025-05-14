@@ -185,13 +185,13 @@ class overlay{
                     break
                 }
                 switch(this.args[0]){
-                    case 3: case 17: case 77: case 91:
+                    case 3: case 17: case 77: case 81: case 91:
                         this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0)
                         this.card.nonCalc=true
                         this.activated=0
                     break
                     case 4: case 5: case 6: case 7: case 13: case 14: case 15: case 16: case 62: case 66:
-                    case 67: case 82: case 87: case 90: case 92: case 93: case 98:
+                    case 67: case 81: case 82: case 87: case 90: case 92: case 93: case 98:
                         this.activated=0
                     break
                     case 20: case 60: case 80: case 96: case 105:
@@ -1368,7 +1368,7 @@ class overlay{
                                             this.cards[a].spec.push(1)
                                             this.cards[a].additionalSpec.push(1)
                                         }
-                                        if(!this.cards[a].spec.includes(4)){
+                                        if(!this.cards[a].spec.includes(2)&&!this.cards[a].spec.includes(4)){
                                             this.cards[a].spec.push(4)
                                             this.cards[a].additionalSpec.push(4)
                                         }
@@ -1390,7 +1390,7 @@ class overlay{
                                             this.cards[a].spec.push(1)
                                             this.cards[a].additionalSpec.push(1)
                                         }
-                                        if(!this.cards[a].spec.includes(4)){
+                                        if(!this.cards[a].spec.includes(2)&&!this.cards[a].spec.includes(4)){
                                             this.cards[a].spec.push(4)
                                             this.cards[a].additionalSpec.push(4)
                                         }
