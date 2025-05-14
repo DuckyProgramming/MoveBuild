@@ -46,6 +46,12 @@ short termist - 1 cost, gain 3 temporary strength, gain 1 energy next turn
 
 angles - counter all, gain armor
 
+bad experience - 10 damage, when exhausted gain 1 strength and lose 1 health
+
+
+
+grandiose fear - 2 vulnerable, double if target is below half health
+
 
 
 CARDSET 77 [MAY]
