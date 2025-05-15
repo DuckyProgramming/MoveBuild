@@ -1357,7 +1357,7 @@ class relicManager{
                                 this.getPlayer(a).statusEffect('Buffer',this.active[21][a+1])
                             }
                             if(this.active[31][a+1]>0){
-                                this.getPlayer(a).statusEffect('Single Damage Up',8*this.active[31][a+1])
+                                this.getPlayer(a).statusEffect('Vigor',8*this.active[31][a+1])
                             }
                             if(this.active[36][a+1]>0){
                                 this.getPlayer(a).addBlock(10*this.active[36][a+1])
@@ -1403,7 +1403,7 @@ class relicManager{
                                 this.getPlayer(a).statusEffect('Strength',this.active[200][a+1]*floor(this.total[a]/10))
                             }
                             if(this.active[201][a+1]>0&&this.detail[201][a]>0){
-                                this.getPlayer(a).statusEffect('Single Damage Up',this.detail[201][a])
+                                this.getPlayer(a).statusEffect('Vigor',this.detail[201][a])
                                 this.detail[201][a]--
                             }
                             if(this.active[209][a+1]>0){
@@ -1716,7 +1716,7 @@ class relicManager{
                         this.detail[204][a]=0
                     }
                     if(this.active[227][a+1]>0&&args[0]%2==0){
-                        this.getPlayer(a).statusEffect('Single Damage Up',4*this.active[227][a+1])
+                        this.getPlayer(a).statusEffect('Vigor',4*this.active[227][a+1])
                     }
                     if(this.active[298][a+1]>0){
                         this.detail[298][a]++
@@ -2916,7 +2916,7 @@ class relicManager{
                             }
                         }
                         if(this.active[461][args[1]+1]>0){
-                            this.getPlayer(args[1]).statusEffect('Single Damage Up',3*this.active[461][args[1]+1])
+                            this.getPlayer(args[1]).statusEffect('Vigor',3*this.active[461][args[1]+1])
                         }
                     break
                     case 11:

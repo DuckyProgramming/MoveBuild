@@ -1176,7 +1176,7 @@ class group{
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.cards.length*this.battle.relicManager.active[51][this.player+1])
                 }
                 if(this.battle.relicManager.hasRelic(190,this.player)){
-                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Single Damage Up',this.cards.length*this.battle.relicManager.active[190][this.player+1])
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Vigor',this.cards.length*this.battle.relicManager.active[190][this.player+1])
                 }
                 userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             break

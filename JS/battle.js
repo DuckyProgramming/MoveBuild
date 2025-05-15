@@ -1466,8 +1466,8 @@ class battle{
                 break
             }
         }
-        if(effectiveCost==0&&userCombatant.getStatus('0 Cost Single Damage Up')>0){
-            userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('0 Cost Single Damage Up'))
+        if(effectiveCost==0&&userCombatant.getStatus('0 Cost Vigor')>0){
+            userCombatant.statusEffect('Vigor',userCombatant.getStatus('0 Cost Vigor'))
         }
         if(effectiveCost==0&&userCombatant.getStatus('0 Cost Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('0 Cost Block'))
@@ -1513,14 +1513,14 @@ class battle{
         if(card.spec.includes(25)&&userCombatant.getStatus('Gun Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Gun Draw'))
         }
-        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Single Damage Up')>0){
-            userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('2+ Cost Single Damage Up'))
+        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Vigor')>0){
+            userCombatant.statusEffect('Vigor',userCombatant.getStatus('2+ Cost Vigor'))
         }
         if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('2+ Cost Block'))
         }
-        if(effectiveCost>=3&&userCombatant.getStatus('3+ Cost Single Damage Up')>0){
-            userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('3+ Cost Single Damage Up'))
+        if(effectiveCost>=3&&userCombatant.getStatus('3+ Cost Vigor')>0){
+            userCombatant.statusEffect('Vigor',userCombatant.getStatus('3+ Cost Vigor'))
         }
         if(effectiveCost>=3&&userCombatant.getStatus('3+ Cost Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('3+ Cost Block'))
@@ -1581,8 +1581,8 @@ class battle{
         if(card.spec.includes(54)&&userCombatant.getStatus('Discus Pure')>0){
             userCombatant.statusEffect('Pure',userCombatant.getStatus('Discus Pure'))
         }
-        if(xCost&&userCombatant.getStatus('X Cost Single Damage Up')>0){
-            userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('X Cost Single Damage Up'))
+        if(xCost&&userCombatant.getStatus('X Cost Vigor')>0){
+            userCombatant.statusEffect('Vigor',userCombatant.getStatus('X Cost Vigor'))
         }
         if(xCost&&userCombatant.getStatus('X Cost Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('X Cost Block'))

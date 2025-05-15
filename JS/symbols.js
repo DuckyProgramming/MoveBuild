@@ -14800,7 +14800,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 26-Vulnerable
 27-Block
 28-Currency
-29-Single Damage Up
+29-Vigor
 30-Item
 31-Empty
 32-Rest

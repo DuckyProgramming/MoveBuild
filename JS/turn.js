@@ -27,9 +27,9 @@ class turn{
                     this.clearAttack[0]=true
                     this.userCombatant.tempStatus[0]*=2
                 }
-                if(this.userCombatant.getStatus('Single Damage Up')>0){
+                if(this.userCombatant.getStatus('Vigor')>0){
                     this.clearAttack[1]=true
-                    this.userCombatant.tempStatus[1]+=this.userCombatant.getStatus('Single Damage Up')
+                    this.userCombatant.tempStatus[1]+=this.userCombatant.getStatus('Vigor')
                 }
                 if(this.userCombatant.getStatus('Triple Damage')>0){
                     this.clearAttack[2]=true
@@ -48,9 +48,9 @@ class turn{
                     this.clearAttack[5]=true
                     this.userCombatant.tempStatus[0]*=0
                 }
-                if(this.userCombatant.getStatus('Temporary Single Damage Up')>0){
+                if(this.userCombatant.getStatus('Temporary Vigor')>0){
                     this.clearAttack[6]=true
-                    this.userCombatant.tempStatus[1]+=this.userCombatant.getStatus('Temporary Single Damage Up')
+                    this.userCombatant.tempStatus[1]+=this.userCombatant.getStatus('Temporary Vigor')
                 }
                 if(this.userCombatant.getStatus('Double Curse')>0&&floor(random(0,2))==0){
                     this.clearAttack[7]=true

@@ -54,9 +54,9 @@ class attack{
                     this.clearAttack[0]=true
                     this.userCombatant.tempStatus[0]*=2
                 }
-                if(this.userCombatant.getStatus('Single Damage Up')>0){
+                if(this.userCombatant.getStatus('Vigor')>0){
                     this.clearAttack[1]=true
-                    this.userCombatant.tempStatus[1]+=this.userCombatant.getStatus('Single Damage Up')
+                    this.userCombatant.tempStatus[1]+=this.userCombatant.getStatus('Vigor')
                 }
                 if(this.userCombatant.getStatus('Triple Damage')>0){
                     this.clearAttack[2]=true
@@ -75,9 +75,9 @@ class attack{
                     this.clearAttack[5]=true
                     this.userCombatant.tempStatus[0]*=0
                 }
-                if(this.userCombatant.getStatus('Temporary Single Damage Up')>0){
+                if(this.userCombatant.getStatus('Temporary Vigor')>0){
                     this.clearAttack[6]=true
-                    this.userCombatant.tempStatus[1]+=this.userCombatant.getStatus('Temporary Single Damage Up')
+                    this.userCombatant.tempStatus[1]+=this.userCombatant.getStatus('Temporary Vigor')
                 }
                 if(this.userCombatant.getStatus('Double Curse')>0&&floor(random(0,2))==0){
                     this.clearAttack[7]=true
@@ -270,7 +270,7 @@ class attack{
             case 7681: case 7683: case 7685: case 7696: case 7697: case 7712: case 7716: case 7718: case 7719: case 7720: case 7721: case 7722: case 7723: case 7724: case 7726: case 7734: case 7735: case 7738: case 7744: case 7745:
             case 7748: case 7756: case 7760: case 7764: case 7765: case 7774: case 7775: case 7787: case 7792: case 7795: case 7796: case 7800: case 7813: case 7820: case 7826: case 7832: case 7836: case 7842: case 7843: case 7846:
             case 7847: case 7864: case 7879: case 7890: case 7891: case 7892: case 7893: case 7894: case 7895: case 7899: case 7901: case 7903: case 7906: case 7909: case 7911: case 7914: case 7919: case 7921: case 7922: case 7923:
-            case 7931: case 7933: case 7935: case 7938: case 7940: case 7941: case 7944: case 7946: case 7949: case 7956: case 7957:
+            case 7931: case 7933: case 7935: case 7938: case 7940: case 7941: case 7944: case 7946: case 7949: case 7956: case 7957: case 7960: case 7961:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -1935,7 +1935,7 @@ class attack{
                     break
                     case 2170:
                         if(this.targetCombatant.getStatus('Weak')>0){
-                            this.userCombatant.statusEffect('Single Damage Up',this.effect[1])
+                            this.userCombatant.statusEffect('Vigor',this.effect[1])
                         }
                         this.targetCombatant.statusEffect('Weak',this.effect[0])
                     break
@@ -2596,7 +2596,7 @@ class attack{
                         this.userCombatant.statusEffect('Dodge',this.effect[1])
                     break
                     case 90:
-                        this.userCombatant.statusEffect('Single Damage Up',this.effect[1])
+                        this.userCombatant.statusEffect('Vigor',this.effect[1])
                     break
                     case 94:
                         this.userManager.hand.exhaust(this.effect[1])
@@ -3992,7 +3992,7 @@ class attack{
                     break
                     case 2504:
                         if(this.userCombatant.energyParity(this.energy)==1){
-                            this.userCombatant.statusEffect('Single Damage Up',this.effect[1])
+                            this.userCombatant.statusEffect('Vigor',this.effect[1])
                         }
                     break
                     case 2520:
@@ -5024,7 +5024,7 @@ class attack{
                         }
                     break
                     case 4425:
-                        this.userCombatant.statusEffect('Single Damage Up',this.effect[1]*this.selfCall(26))
+                        this.userCombatant.statusEffect('Vigor',this.effect[1]*this.selfCall(26))
                     break
                     case 4438:
                         if(this.lastPlayed[0].spec.includes(25)){
@@ -6554,7 +6554,7 @@ class attack{
                     break
                     case 7358:
                         if(this.userManager.deck.numberAbstract(0,[['Malenkov','Khrushchev','Brezhnev','Andropov','Chernenko','Gorbachev','Fallen\nUnion','Resurgent\nUnion']])>0){
-                            this.userCombatant.statusEffect('Single Damage Up',this.effect[1])
+                            this.userCombatant.statusEffect('Vigor',this.effect[1])
                         }
                     break
                     case 7368:
@@ -6838,6 +6838,12 @@ class attack{
                     break
                     case 7946:
                         this.userCombatant.heal(this.effect[1]*this.userManager.hand.numberAbstract(4,[[4]]))
+                    break
+                    case 7960:
+                        this.targetCombatant.statusEffect('Weak',this.effect[1]*floor(this.combo/this.effect[2]))
+                    break
+                    case 7961:
+                        this.targetCombatant.statusEffect('Bruise',this.effect[1]*this.combo)
                     break
 
                 }
@@ -7413,7 +7419,7 @@ class attack{
                     break
                     case 7819:
                         this.userCombatant.statusEffect('Armor',this.effect[0])
-                        this.userCombatant.statusEffect('Single Damage Up',this.effect[1])
+                        this.userCombatant.statusEffect('Vigor',this.effect[1])
                     break
                     case 7924:
                         this.userCombatant.addBlock(this.effect[0]*this.battle.combatantManager.getAreaVarial(0,[],this.userCombatant.team,this.userCombatant.tilePosition).length)
@@ -7433,6 +7439,9 @@ class attack{
                     case 7951:
                         this.userCombatant.statusEffect('Armor',this.effect[0])
                         this.userCombatant.statusEffect('Counter All',this.effect[1])
+                    break
+                    case 7959:
+                        this.userCombatant.addBlock(this.effect[0]*this.battle.combatantManager.getAreaVarial(1,[],this.userCombatant.team,this.userCombatant.tilePosition).length)
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
@@ -7515,7 +7524,7 @@ class attack{
                         this.userCombatant.statusEffect('Block in 2 Turns',this.effect[0])
                     break
                     case 321:
-                        this.userCombatant.statusEffect('Single Damage Up',this.effect[1])
+                        this.userCombatant.statusEffect('Vigor',this.effect[1])
                     break
                     case 354:
                         this.userCombatant.statusEffect('Counter Push Left',1)
@@ -7876,7 +7885,7 @@ class attack{
                         this.userManager.hand.add(findName('Paradigm\nShift',types.card),0,0)
                     break
                     case 2286:
-                        this.userCombatant.statusEffect('Block Single Damage Up Convert',1)
+                        this.userCombatant.statusEffect('Block Vigor Convert',1)
                     break
                     case 2289:
                         this.userCombatant.statusEffect('Retain Block',this.effect[1]*this.energy)
@@ -9088,7 +9097,7 @@ class attack{
                         this.userCombatant.statusEffect('Radiation',this.effect[2])
                     break
                     case 5922:
-                        this.userCombatant.statusEffect('Single Damage Up',this.effect[1]*this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,1).length)
+                        this.userCombatant.statusEffect('Vigor',this.effect[1]*this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,1).length)
                     break
                     case 5927:
                         this.userManager.hand.discard(this.effect[1])
@@ -10279,7 +10288,7 @@ class attack{
                         this.userCombatant.statusEffect('Combo Next Turn',-this.effect[2])
                     break
                     case 1673:
-                        this.userCombatant.statusEffect('Single Damage Up',this.effect[1])
+                        this.userCombatant.statusEffect('Vigor',this.effect[1])
                     break
                     case 1677:
                         if(this.userCombatant.stance==3){
@@ -10320,7 +10329,7 @@ class attack{
                         }
                     break
                     case 1784:
-                        this.userCombatant.statusEffect('Temporary Single Damage Up',-this.effect[1])
+                        this.userCombatant.statusEffect('Temporary Vigor',-this.effect[1])
                     break
                     case 1785:
                         this.targetTile.addType(1)
@@ -10363,7 +10372,7 @@ class attack{
                         }
                     break
                     case 2040:
-                        this.userCombatant.statusEffect('Single Damage Up',-this.effect[1])
+                        this.userCombatant.statusEffect('Vigor',-this.effect[1])
                     break
                     case 2047:
                         this.userManager.hand.exhaust(this.effect[1])
@@ -11885,7 +11894,7 @@ class attack{
                     break
                     case 7440:
                         if(this.userManager.deck.numberAbstract(0,[['Malenkov','Khrushchev','Brezhnev','Andropov','Chernenko','Gorbachev','Fallen\nUnion','Resurgent\nUnion']])>0){
-                            this.userCombatant.statusEffect('Single Damage Up',this.effect[1])
+                            this.userCombatant.statusEffect('Vigor',this.effect[1])
                         }
                     break
                     case 7442:
@@ -12319,7 +12328,7 @@ class attack{
                         this.userCombatant.statusEffect('Stance Draw',this.effect[0])
                     break
                     case 760: case 2217:
-                        this.userCombatant.statusEffect('Single Damage Up',this.effect[0])
+                        this.userCombatant.statusEffect('Vigor',this.effect[0])
                     break
                     case 761:
                         this.userCombatant.faith+=this.effect[0]
@@ -12649,7 +12658,7 @@ class attack{
                         this.userCombatant.statusEffect('Lowroll Draw',this.effect[0])
                     break
                     case 1657:
-                        this.userCombatant.statusEffect('Single Damage Up',this.effect[0])
+                        this.userCombatant.statusEffect('Vigor',this.effect[0])
                         this.userCombatant.statusEffect('Single Attack Regeneration',this.effect[1])
                     break
                     case 1658:
@@ -14611,7 +14620,7 @@ class attack{
                         this.battle.addSpecificEnergy(this.effect[0],this.player,6)
                     break
                     case 5274:
-                        this.userCombatant.statusEffect('X Cost Single Damage Up',this.effect[0])
+                        this.userCombatant.statusEffect('X Cost Vigor',this.effect[0])
                     break
                     case 5275:
                         this.userCombatant.statusEffect('X Cost Block',this.effect[0])
@@ -14623,7 +14632,7 @@ class attack{
                         this.userCombatant.statusEffect('X Cost (E)',1)
                     break
                     case 5289:
-                        this.userCombatant.statusEffect('Single Damage Up',this.effect[0])
+                        this.userCombatant.statusEffect('Vigor',this.effect[0])
                         this.userManager.draw(this.effect[1])
                     break
                     case 5304:
@@ -14931,11 +14940,11 @@ class attack{
                     break
                     case 5924:
                         this.battle.addEnergy(this.effect[0],this.player)
-                        this.userCombatant.statusEffect('Single Damage Up',this.effect[1])
+                        this.userCombatant.statusEffect('Vigor',this.effect[1])
                     break
                     case 5925:
                         this.battle.addSpecificEnergy(2,this.player,6)
-                        this.userCombatant.statusEffect('Single Damage Up',this.effect[0])
+                        this.userCombatant.statusEffect('Vigor',this.effect[0])
                     break
                     case 5937:
                         this.userCombatant.statusEffect('Evoke Block',this.effect[0])
@@ -15740,7 +15749,7 @@ class attack{
                         this.userCombatant.statusEffect('Cycle Movement',1)
                     break
                     case 7259:
-                        this.userCombatant.statusEffect('Charge Consume Single Damage Up',this.effect[0])
+                        this.userCombatant.statusEffect('Charge Consume Vigor',this.effect[0])
                     break
                     case 7265:
                         this.battle.addSpecificEnergy(2,this.player,0)
@@ -17740,7 +17749,7 @@ class attack{
                         this.userCombatant.statusEffect('No Damage Turn Next Turn',1)
                     break
                     case 3486:
-                        this.userCombatant.statusEffect('2+ Cost Single Damage Up',this.effect[0])
+                        this.userCombatant.statusEffect('2+ Cost Vigor',this.effect[0])
                     break
                     case 3487:
                         this.userCombatant.statusEffect('2+ Cost Block',this.effect[0])
@@ -17935,7 +17944,7 @@ class attack{
                     break
                     case 3850:
                         this.userManager.draw(this.effect[0],6)
-                        this.userCombatant.statusEffect('Single Damage Up',this.effect[1])
+                        this.userCombatant.statusEffect('Vigor',this.effect[1])
                     break
                     case 3852:
                         this.userManager.hand.allEffectArgs(8,[this.effect[0]])
@@ -18209,7 +18218,7 @@ class attack{
                         }
                     break
                     case 4508:
-                        this.userCombatant.statusEffect('3+ Cost Single Damage Up',this.effect[0])
+                        this.userCombatant.statusEffect('3+ Cost Vigor',this.effect[0])
                     break
                     case 4509:
                         this.userCombatant.statusEffect('3+ Cost Block',this.effect[0])
@@ -27178,7 +27187,7 @@ class attack{
                     break
                     case 6790:
                         this.userCombatant.statusEffect('Chocolate Chip',this.effect[0])
-                        this.userCombatant.statusEffect('Single Damage Up',this.effect[1])
+                        this.userCombatant.statusEffect('Vigor',this.effect[1])
                     break
                     case 6807:
                         this.userCombatant.statusEffect('Energy Next Turn',this.effect[0])
@@ -27511,10 +27520,10 @@ class attack{
             case 11:
                 switch(this.type){
                     case 1781:
-                        this.userCombatant.statusEffect('Single Damage Up',this.userCombatant.lastDeal)
+                        this.userCombatant.statusEffect('Vigor',this.userCombatant.lastDeal)
                     break
                     case 1914:
-                        this.userCombatant.statusEffect('Single Damage Up',ceil(this.userCombatant.lastTake/max(1,this.effect[0])))
+                        this.userCombatant.statusEffect('Vigor',ceil(this.userCombatant.lastTake/max(1,this.effect[0])))
                     break
                     case 2044:
                         this.userCombatant.statusEffect('Damage Up',ceil(this.userCombatant.lastTake/max(1,this.effect[0])))
@@ -28370,7 +28379,7 @@ class attack{
                         this.userCombatant.statusEffect('Cable Swap',999)
                     break
                     case 2421:
-                        this.userCombatant.statusEffect('0 Cost Single Damage Up',this.effect[0])
+                        this.userCombatant.statusEffect('0 Cost Vigor',this.effect[0])
                     break
                     case 2422:
                         this.userCombatant.statusEffect('Double Status',1)

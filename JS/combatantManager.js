@@ -1552,7 +1552,8 @@ class combatantManager{
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(
                 this.combatants[a].life>0&&this.combatants[a].team!=team&&(
-                    type==0&&this.combatants[a].tilePosition.y>tilePosition.y
+                    type==0&&this.combatants[a].tilePosition.y>tilePosition.y||
+                    type==1&&this.combatants[a].tilePosition.y<tilePosition.y
                 )
             ){
                 combatants.push(this.combatants[a])

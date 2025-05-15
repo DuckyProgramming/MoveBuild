@@ -1037,7 +1037,7 @@ types={
         {name:'SSh36',internal:'Starting Conditioning',id:224,rarity:0,list:0,mtg:0,world:[0,3],description:'Gain 1 Conditioning\non Turn 1'},
         {name:'Purple Leaf',internal:'Uncommon Attack Heal',id:225,rarity:-1,list:0,mtg:0,world:[0,3],description:'When You Play an Uncommon\nAttack, Heal 1 HP'},
         {name:'Red Paperclip',internal:'Energy/Relics',id:226,rarity:4,list:0,mtg:1,world:[1,3],description:'Gain 1 Base Energy,\nLose 3 Random Relics'},
-        {name:'Twin Pearls',internal:'Odd Turn Single Damage Up',id:227,rarity:1,list:0,mtg:0,world:[0,3],description:'Gain 4 Single Damage Up\non Even Turns'},
+        {name:'Twin Pearls',internal:'Odd Turn Vigor',id:227,rarity:1,list:0,mtg:0,world:[0,3],description:'Gain 4 Vigor\non Even Turns'},
         {name:'Writ of Mandamus',internal:'Energy/Anti-Control',id:228,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nGain 1 Anti-Control\non Turn 1'},
         {name:'Dragon Fish',internal:'Defensive Metallicize',id:229,rarity:-1,list:0,mtg:0,world:[0,3],description:'When You Fully Block Damage,\nGain 1 Metallicize'},
 

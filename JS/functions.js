@@ -2041,7 +2041,7 @@ function outListing(){
 	let box=``
 	let goal=160+160*constants.playerNumber+60+60+30+30+20
 	let actual=current.cardManagers[0].listing.allListableCard[3].length
-	let arbitrary=6400
+	let arbitrary=6666
 	for(let a=0,la=constants.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
 Common:${current.cardManagers[0].listing.card[a+1][0].length}/65				${current.cardManagers[0].listing.card[a+1][0].length-65}

@@ -4058,8 +4058,8 @@ turn.prototype.update=function(){
                         if(this.userCombatant.getStatus('Double Damage')>0&&this.clearAttack[0]){
                             this.userCombatant.status.main[findList('Double Damage',this.userCombatant.status.name)]--
                         }
-                        if(this.userCombatant.getStatus('Single Damage Up')>0&&this.clearAttack[1]){
-                            this.userCombatant.status.main[findList('Single Damage Up',this.userCombatant.status.name)]=0
+                        if(this.userCombatant.getStatus('Vigor')>0&&this.clearAttack[1]){
+                            this.userCombatant.status.main[findList('Vigor',this.userCombatant.status.name)]=0
                         }
                         if(this.userCombatant.getStatus('Triple Damage')>0&&this.clearAttack[2]){
                             this.userCombatant.status.main[findList('Triple Damage',this.userCombatant.status.name)]--
@@ -4073,8 +4073,8 @@ turn.prototype.update=function(){
                         if(this.userCombatant.getStatus('No Damage')>0&&this.clearAttack[5]){
                             this.userCombatant.status.main[findList('No Damage',this.userCombatant.status.name)]--
                         }
-                        if(this.userCombatant.getStatus('Temporary Single Damage Up')>0&&this.clearAttack[6]){
-                            this.userCombatant.status.main[findList('Temporary Single Damage Up',this.userCombatant.status.name)]--
+                        if(this.userCombatant.getStatus('Temporary Vigor')>0&&this.clearAttack[6]){
+                            this.userCombatant.status.main[findList('Temporary Vigor',this.userCombatant.status.name)]--
                         }
                         if(this.userCombatant.getStatus('Double Curse')>0&&this.clearAttack[7]){
                             this.userCombatant.status.main[findList('Double Curse',this.userCombatant.status.name)]--

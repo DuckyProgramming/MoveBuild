@@ -123,7 +123,7 @@ class combatant{
         this.status={
             main:[],name:[
                 'Double Damage','Counter','Cannot Be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
-                'Vulnerable','Retain Block','Single Damage Up','Block Next Turn','Armor','Control','Cannot Add Block','Temporary Strength','Temporary Dexterity','Metallicize',
+                'Vulnerable','Retain Block','Vigor','Block Next Turn','Armor','Control','Cannot Add Block','Temporary Strength','Temporary Dexterity','Metallicize',
                 'Weak Next Turn','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card', 'Cannot Move','Cannot Move Next Turn',
                 'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Add Block Next Turn','Counter Push','Counter Bleed',
                 'Temporary Damage Up','Temporary Draw','Currency','Strength on Hit','Weak on Kill','Vulnerable on Kill','Anti-Control','Counter Combat Turn','Distracted','Burn',
@@ -145,13 +145,13 @@ class combatant{
                 'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Chained','Fragile Heal',
                 'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
                 'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
-                'Hook','Temporary Single Damage Up','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
+                'Hook','Temporary Vigor','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
                 'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
                 'Single Damage Convert','2 Exhaust Draw','Dice Boost','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
                 '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
                 'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
-                'Heal Damage Random','Block Single Damage Up Convert','Strength in 2 Turns','Dexterity in 2 Turns','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength in 3 Turns','Free Movement','Cable Swap',
-                'Strike Block','0 Cost Single Damage Up','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy','Luck Guarantee Fail','Damage Taken Currency','Random Card Cost Less Per Turn','Luck Guarantee Turn',
+                'Heal Damage Random','Block Vigor Convert','Strength in 2 Turns','Dexterity in 2 Turns','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength in 3 Turns','Free Movement','Cable Swap',
+                'Strike Block','0 Cost Vigor','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy','Luck Guarantee Fail','Damage Taken Currency','Random Card Cost Less Per Turn','Luck Guarantee Turn',
                 'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed in 2 Turns','Cannot Move Shiv','Awakening','History','Knowledge','Wisdom','History Target All',
                 'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down','Attack Shock Turn','Take 1/4 Damage',
                 'Double Damage Without Power','Damage Taken Up to Nearest 5','Item Use Energy','Item Use Draw','Damage Taken Up to 10','10 Damage Taken Damage Down Convert','20 Damage Taken Random Debuff','Taken Damage Repeat','Item Per Turn','Block Barrier Convert',
@@ -165,7 +165,7 @@ class combatant{
                 'Burn Strength','Burn Bypass','Strike Boost','Mineral Boost','Cable Boost','Free Defenses','Exhausting Defenses','Strike Range','Skill Cost Down','Exhausting Skills',
                 'Step Draw','Cable Range','Mineral Range','Common Attack Boost','Free Cables','Construct Turn','Construct Dual Block','Metal Per Turn','All Construct Speed Up','Construct Strength',
                 'Construct Dexterity','Gun Temporary Strength','Gun Block','Turn Speed','Extra Turn Block','Turn Reversal','Deluxe Weak','Prismatic Bomb Boost','No Damage Turn Next Turn','Play Limit',
-                '2+ Cost Single Damage Up','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block','X Cost Boost','Self Health Loss Splash',variants.mtg?'Mana Gain Splash':'Energy Gain Splash',
+                '2+ Cost Vigor','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block','X Cost Boost','Self Health Loss Splash',variants.mtg?'Mana Gain Splash':'Energy Gain Splash',
                 'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw','Buff Loss Barrier','Astrology Per Turn','Construct Metal','Attack Jinx Combat','Attack Shock Combat',
                 'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
                 'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
@@ -178,13 +178,13 @@ class combatant{
                 '(E) in 3 Turns','(W) in 3 Turns','(B) in 3 Turns','(K) in 3 Turns','(G) in 3 Turns','(R) in 3 Turns','(N) in 3 Turns','Lowroll (E)','Highroll (E)','All Mana (W)',
                 'All Mana (B)','All Mana (K)','All Mana (G)','All Mana (R)','Claw Up','Metallicize All','Frail Next Turn','Retain Dodge','Counter Once Per Turn','Counter Bleed Once',
                 'Counter Bleed Once Per Turn','Counter Gun Once','Counter Gun Once Per Turn','Counter Push Combat','Attack Burn Combat','All Strength Cycle 4 1','All Strength Cycle 4 2','All Strength Cycle 4 3','All Strength Cycle 4 4','Counter Weak All Combat',
-                'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength','3+ Cost Single Damage Up','3+ Cost Block','Item Use (N)','(E) Cyscle 2 1','(E) Cycle 2 2','(W) Cycle 2 1','(W) Cycle 2 2',
+                'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength','3+ Cost Vigor','3+ Cost Block','Item Use (N)','(E) Cyscle 2 1','(E) Cycle 2 2','(W) Cycle 2 1','(W) Cycle 2 2',
                 '(B) Cycle 2 1','(B) Cycle 2 2','(K) Cycle 2 1','(K) Cycle 2 2','(G) Cycle 2 1','(G) Cycle 2 2','(R) Cycle 2 1','(R) Cycle 2 2','(N) Cycle 2 1','(N) Cycle 2 2',
                 'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn','Shuffle (E)','(E) Spend Splash','2+ Cost (E)',
                 'Discus Temporary Strength','Discus Temporary Dexterity','Electric Orb Per Turn','Electric Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn','Rearm Draw',
                 'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap','Dice Max Boost','Exhaust Block','Counter Shockwave','Frail on Kill','Mailshield',
                 'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
-                variants.mtg?'Mana Gain Temporary Strength':'Energy Gain Temporary Strength','X Cost Single Damage Up','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable',variants.mtg?'Mana Gain Splash Freeze':'Energy Gain Splash Freeze',
+                variants.mtg?'Mana Gain Temporary Strength':'Energy Gain Temporary Strength','X Cost Vigor','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable',variants.mtg?'Mana Gain Splash Freeze':'Energy Gain Splash Freeze',
                 'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost','Splash Attach Poison','Splash Boost',
                 'Basic Orb Per Turn','Calm Block Per Turn','Dark Matter Pull Fuel All','Snowflake Per Turn','Counter All Spread','Flame Orb Splash','Dark Light Orb Swap','Light Dark Orb Swap','2+ Cost Attack Energy','2+ Cost Attack (E)',
                 'Dark Matter Fuel All','Combo Spend Draw','Double Wrath Block','Turn Exhaust','Skill Draw Next Turn','Health Loss Poison Random','Free Minerals','Lose Health in 2 Turns','Lock On Bleed','Elemental Entrance Draw',
@@ -199,7 +199,7 @@ class combatant{
                 'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent','Rearm Strength','All X Cost Boost','Move Block',
                 'Base Attack Vulnerable Combat','Retain Freeze','Orb Hold Tick','Fugue Strength','Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill','Speed Strike',
                 '2+ Cost Strength','Half Block','Random Mana in 3 Turns','No Extra Turns','No Extra Turns Next Turn','Cost Down Per Turn','Bounce Next Turn','Scry Discard Block','Play Evolve','Evolve Temporary Strength',
-                'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns','0 Cost Block','Charge Consume Single Damage Up','Assign Return','Assign Temporary Strength','Pity',
+                'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns','0 Cost Block','Charge Consume Vigor','Assign Return','Assign Temporary Strength','Pity',
                 'Death Energy','Death (E)','Debuff Temporary Strength','Basic Temporary Dexterity','Communized Weak','Communized Vulnerable','Turn Confuse','Confuse Cost Down','Prime Draw','Cycle Draw',
                 'Recover Draw','Recover Next Turn','Recover Up','Shiv Temporary Damage Taken Up','Free War','Skill Discard Draw','Worker Draw Per Turn','Worker Boost','Assign Draw','Free Assign',
                 'Intangible Strength','Debuff Draw','"Debuff"','Discus Pure','Cycle Rotation','Base Attack Weak Combat','Retain Lock On','History Rewind Tick','Gun Draw','Retain Until Played Per Turn',
@@ -918,7 +918,7 @@ class combatant{
             }
             /*if(game.ascend>=27&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=28&&this.battle.encounter.class==1){
                 let randombuffs=[
-                    ['Double Damage',1],['Dodge',2],['Strength',2],['Dexterity',2],['Single Damage Up',6],
+                    ['Double Damage',1],['Dodge',2],['Strength',2],['Dexterity',2],['Vigor',6],
                     ['Retain Block',10],['Block Next Turn',10],['Armor',4],['Control',1],['Metallicize',2],
                     ['Buffer',1],['Take Half Damage',2],['Counter All',3],['Strength Per Turn',1],['Regeneration',5],
                     ['Dexterity Per Turn',1],['Strength on Hit',1],['Weak on Kill',2],['Vulnerable on Kill',2],['Single Counter Block',10],
@@ -3143,7 +3143,7 @@ class combatant{
                     userCombatant.status.main[195]=0
                 }
                 if(userCombatant.status.main[250]>0){
-                    userCombatant.statusEffect('Single Damage Up',damage)
+                    userCombatant.statusEffect('Vigor',damage)
                     damage=0
                     userCombatant.status.main[250]--
                 }
@@ -4407,7 +4407,7 @@ class combatant{
             }
         }
         if(this.status.main[281]>0){
-            this.statusEffect('Single Damage Up',ceil(this.block))
+            this.statusEffect('Vigor',ceil(this.block))
         }
         if(this.status.main[11]>0){
             this.status.main[11]--
@@ -5051,7 +5051,7 @@ class combatant{
             this.addBlock(this.status.main[150])
         }
         if(this.status.main[776]>0){
-            this.statusEffect('Single Damage Up',this.status.main[776])
+            this.statusEffect('Vigor',this.status.main[776])
         }
     }
     activateDraw(){
