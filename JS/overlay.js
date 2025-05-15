@@ -4110,6 +4110,7 @@ class overlay{
                                                 }
                                             }else{
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(base)
+                                                this.battle.cardManagers[this.player].deck.cards[a].callUpgradeEffect()
                                                 if(this.args[0]==17){
                                                     this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[7238])
                                                 }
@@ -4165,6 +4166,7 @@ class overlay{
                                             this.activeTimer=this.activated>=this.args[1]?30:0
                                             if(this.args[2]==1&&this.battle.cardManagers[this.player].deck.cards[a].level==0){
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
+                                                this.battle.cardManagers[this.player].deck.cards[a].callUpgradeEffect()
                                             }
                                             breakAfter=true
                                         break
@@ -4319,6 +4321,7 @@ class overlay{
                                         break
                                         case 78:
                                             this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(upgradeCard(this.battle.cardManagers[this.player].transformCardPrism(base)))
+                                            this.battle.cardManagers[this.player].deck.cards[a].callUpgradeEffect()
                                             this.battle.cardManagers[this.player].deck.cards[a].edition=floor(random(1,7))
                                             this.battle.cardManagers[this.player].deck.cards[a].callAddEffect()
                                             this.battle.cardManagers[this.player].deck.cards.forEach(card=>card.callAnotherAddEffect())
@@ -4327,6 +4330,7 @@ class overlay{
                                             this.activeTimer=30
                                             if(this.args[1]==1&&this.battle.cardManagers[this.player].deck.cards[a].level==0){
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
+                                                this.battle.cardManagers[this.player].deck.cards[a].callUpgradeEffect()
                                             }
                                         break
                                         case 83:
@@ -4358,6 +4362,7 @@ class overlay{
                                         case 91:
                                             if(base.level<1||base.spec.includes(53)){
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(base)
+                                                this.battle.cardManagers[this.player].deck.cards[a].callUpgradeEffect()
                                             }
                                             this.battle.cardManagers[this.player].deck.copySelf(a)
                                             this.activated++
@@ -5640,6 +5645,7 @@ class overlay{
                                                 }
                                             }else{
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(base)
+                                                this.battle.cardManagers[this.player].deck.cards[a].callUpgradeEffect()
                                                 if(this.args[0]==17){
                                                     this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[7238])
                                                 }
@@ -5695,6 +5701,7 @@ class overlay{
                                             this.activeTimer=this.activated>=this.args[1]?30:0
                                             if(this.args[2]==1&&this.battle.cardManagers[this.player].deck.cards[a].level==0){
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
+                                                this.battle.cardManagers[this.player].deck.cards[a].callUpgradeEffect()
                                             }
                                             breakAfter=true
                                         break
@@ -5849,6 +5856,7 @@ class overlay{
                                         break
                                         case 78:
                                             this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(upgradeCard(this.battle.cardManagers[this.player].transformCardPrism(base)))
+                                            this.battle.cardManagers[this.player].deck.cards[a].callUpgradeEffect()
                                             this.battle.cardManagers[this.player].deck.cards[a].edition=floor(random(1,7))
                                             this.battle.cardManagers[this.player].deck.cards[a].callAddEffect()
                                             this.battle.cardManagers[this.player].deck.cards.forEach(card=>card.callAnotherAddEffect())
@@ -5857,6 +5865,7 @@ class overlay{
                                             this.activeTimer=30
                                             if(this.args[1]==1&&this.battle.cardManagers[this.player].deck.cards[a].level==0){
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
+                                                this.battle.cardManagers[this.player].deck.cards[a].callUpgradeEffect()
                                             }
                                         break
                                         case 83:
@@ -5888,6 +5897,7 @@ class overlay{
                                         case 91:
                                             if(base.level<1||base.spec.includes(53)){
                                                 this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(base)
+                                                this.battle.cardManagers[this.player].deck.cards[a].callUpgradeEffect()
                                             }
                                             this.battle.cardManagers[this.player].deck.copySelf(a)
                                             this.activated++

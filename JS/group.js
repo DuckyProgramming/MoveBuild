@@ -1012,7 +1012,8 @@ class group{
                 type==18&&args[0].includes(this.cards[a].rarity)||
                 type==19&&this.cards[a].level>=args[0]||
                 type==20&&args[0].includes(this.cards[a].edition)||
-                type==21&&!this.cards[a].deSize&&(variants.mtg&&!arrayCompareLoose(this.cards[a].color,this.battle.player[this.player])||!variants.mtg&&this.cards[a].color!=this.battle.player[this.player])
+                type==21&&!this.cards[a].deSize&&(variants.mtg&&!arrayCompareLoose(this.cards[a].color,this.battle.player[this.player])||!variants.mtg&&this.cards[a].color!=this.battle.player[this.player])|
+                type==22&&this.cards[a].name.includes(args[0])
             ){
                 total++
             }

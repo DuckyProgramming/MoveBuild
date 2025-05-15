@@ -270,7 +270,7 @@ class attack{
             case 7681: case 7683: case 7685: case 7696: case 7697: case 7712: case 7716: case 7718: case 7719: case 7720: case 7721: case 7722: case 7723: case 7724: case 7726: case 7734: case 7735: case 7738: case 7744: case 7745:
             case 7748: case 7756: case 7760: case 7764: case 7765: case 7774: case 7775: case 7787: case 7792: case 7795: case 7796: case 7800: case 7813: case 7820: case 7826: case 7832: case 7836: case 7842: case 7843: case 7846:
             case 7847: case 7864: case 7879: case 7890: case 7891: case 7892: case 7893: case 7894: case 7895: case 7899: case 7901: case 7903: case 7906: case 7909: case 7911: case 7914: case 7919: case 7921: case 7922: case 7923:
-            case 7931: case 7933: case 7935: case 7938: case 7940:
+            case 7931: case 7933: case 7935: case 7938: case 7940: case 7941: case 7944: case 7946: case 7949: case 7956: case 7957:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -802,7 +802,7 @@ class attack{
                 }
                 this.disProcedure=0
             break
-            case 2248: case 2264:
+            case 2248: case 2264: case 7948:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -2970,7 +2970,7 @@ class attack{
                         this.userCombatant.statusEffect('Energy in 2 Turns',this.effect[1])
                     break
                     case 934:
-                        if(this.targetCombatant.life<=0&&this.battle.encounter.class>=1){
+                        if(this.targetCombatant.life<=0&&(this.battle.encounter.class==1||this.battle.encounter.class==2)){
                             this.battle.relicManager.addRandomRelic(this.player)
                         }
                     break
@@ -6823,6 +6823,22 @@ class attack{
                         this.userCombatant.statusEffect('Counter Once',this.effect[1])
                         this.userManager.draw(this.effect[2])
                     break
+                    case 7941:
+                        if(this.targetCombatant.life<=0&&(this.battle.encounter.class==1||this.battle.encounter.class==2)){
+                            this.battle.addCurrency(this.effect[1],this.player)
+                            let list7941=[this.userManager.deck.cards,this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
+                            for(let a=0,la=list7941.length;a<la;a++){
+                                for(let b=0,lb=list7941[a].length;b<lb;b++){
+                                    if(list7941[a][b].id==this.id){
+                                        list7941[a][b].effect[1]+=list7941[a][b].effect[2]
+                                    }
+                                }
+                            }
+                        }
+                    break
+                    case 7946:
+                        this.userCombatant.heal(this.effect[1]*this.userManager.hand.numberAbstract(4,[[4]]))
+                    break
 
                 }
                 //mark 1s
@@ -7413,6 +7429,10 @@ class attack{
                                 this.userCombatant.addBlock(result7934[a].effect[0])
                             }
                         }
+                    break
+                    case 7951:
+                        this.userCombatant.statusEffect('Armor',this.effect[0])
+                        this.userCombatant.statusEffect('Counter All',this.effect[1])
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
@@ -16047,6 +16067,42 @@ class attack{
                             this.userCombatant.statusEffect('Reflect',1)
                         }
                     break
+                    case 7947:
+                        this.userManager.drawAbstract(this.effect[0],0,2,[1])
+                        this.userCombatant.statusEffect('Temporary Strength',this.effect[1])
+                        this.userCombatant.loseHealth(this.effect[2])
+                    break
+                    case 7952:
+                        this.userCombatant.statusEffect('Temporary Strength',this.effect[0])
+                        this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
+                    break
+                    case 7953:
+                        this.userCombatant.statusEffect('Temporary Strength',this.effect[0])
+                        this.userCombatant.statusEffect('(W) Next Turn',1)
+                        this.userCombatant.statusEffect('(R) Next Turn',1)
+                    break
+                    case 7954:
+                        this.userCombatant.statusEffect('Temporary Strength',this.effect[0])
+                        this.userCombatant.statusEffect('(E) Next Turn',1)
+                        this.userCombatant.statusEffect('(W) Next Turn',1)
+                        this.userCombatant.statusEffect('(R) Next Turn',1)
+                    break
+                    case 7955:
+                        this.userCombatant.statusEffect('Temporary Strength',this.effect[0])
+                        this.userCombatant.statusEffect('(E) Next Turn',3)
+                    break
+                    case 7958:
+                        let result7958=this.userManager.drawReturn(this.effect[0])
+                        let total7958=0
+                        for(let a=0,la=result7958.length;a<la;a++){
+                            if(result7958[a].class==2){
+                                total7958++
+                            }
+                        }
+                        if(total7958>0){
+                            this.userCombatant.addBlock(total7958*this.effect[1])
+                        }
+                    break
 
                 }
                 //mark 4
@@ -20446,6 +20502,16 @@ class attack{
                             this.userManager.hand.add(findName('Dazed',types.card),this.level,constants.playerNumber+1)
                         }
                     break
+                    case 7942:
+                        this.userManager.drawAbstract(this.effect[0],1,0,[0])
+                        this.userManager.drawAbstract(this.effect[1],1,0,[1])
+                    break
+                    case 7945:
+                        this.userManager.draw(min(this.effect[0],this.effect[1]+1-this.handSize))
+                    break
+                    case 7950:
+                        this.userCombatant.statusEffect('Dark Matter Draw',this.effect[0])
+                    break
 
                 }
                 //mark 5
@@ -21722,6 +21788,9 @@ class attack{
                     case 7900:
                         this.userCombatant.heal(this.effect[0])
                         this.userCombatant.removeRandomStatus([1,3])
+                    break
+                    case 7957:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[0]*(this.targetCombatant.life<=this.targetCombatant.base.life*0.5?2:1))
                     break
 
                 }
@@ -26095,7 +26164,7 @@ class attack{
                         }
                     break
                     case 2871:
-                        this.battle.addCurrency(this.effect[0]*(this.battle.encounter.class>=1?2:1),this.player)
+                        this.battle.addCurrency(this.effect[0]*((this.battle.encounter.class==1||this.battle.encounter.class==2)?2:1),this.player)
                     break
                     case 2874:
                         for(let a=0,la=this.effect[0];a<la;a++){
@@ -31430,6 +31499,9 @@ class attack{
                     break
                     case 7261:
                         this.userCombatant.statusEffect('Extra Turn',1)
+                    break
+                    case 7949:
+                        this.userManager.draw(this.effect[1])
                     break
                 }
             break

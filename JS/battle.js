@@ -1602,6 +1602,9 @@ class battle{
         if(card.name=='Dark\nMatter'&&userCombatant.getStatus('Dark Matter Fuel All')>0){
             this.cardManagers[player].allEffectArgs(2,50,[userCombatant.getStatus('Dark Matter Fuel All')])
         }
+        if(card.name=='Dark\nMatter'&&userCombatant.getStatus('Dark Matter Draw')>0){
+            this.cardManagers[player].draw(userCombatant.getStatus('Dark Matter Draw'))
+        }
         if(card.spec.includes(70)&&userCombatant.getStatus('Shiv Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Shiv Block'))
         }

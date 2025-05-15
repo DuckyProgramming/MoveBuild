@@ -2,21 +2,8 @@ OPERATION ICATHIA
 
 
 
-CARDSET 76 [MAY]
+CARDSET 77 [MAY]
 
-
-
-retrace - manipulated fate, but with 0 and 1 cost
-
-recurrent learning - 8 damage, when upgraded upgrade a random card in deck
-
-time is money - take another turn OR get currency
-
-dumb draw - draw 4 cards, can't go above 10 in hand
-
-amberblast - damage, gain 1 health per power in hand
-
-treasure trove - draw 3 cards, add 1 block per [] drawn
 
 
 absorb all vigor cards
@@ -31,30 +18,6 @@ tracking - damage, if you have vigor gain weak
 mighty flash - damage, block if you have vigor, repeat if you have thick
 
 ionic link - gain vulnerable, gain vigor and harden
-
-crimson tear - lose 2 health, gain 2 temporary strength, draw an attack it costs 0
-
-
-
-shatterbeam - damage, repeat if you have a pulse in hand
-
-chunked - 2 cost, 6 range 11 damage, advance, draw 2 cards
-
-dying star - when you play dark matter draw a card
-
-short termist - 1 cost, gain 3 temporary strength, gain 1 energy next turn
-
-angles - counter all, gain armor
-
-bad experience - 10 damage, when exhausted gain 1 strength and lose 1 health
-
-
-
-grandiose fear - 2 vulnerable, double if target is below half health
-
-
-
-CARDSET 77 [MAY]
 
 
 

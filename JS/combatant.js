@@ -204,7 +204,7 @@ class combatant{
                 'Recover Draw','Recover Next Turn','Recover Up','Shiv Temporary Damage Taken Up','Free War','Skill Discard Draw','Worker Draw Per Turn','Worker Boost','Assign Draw','Free Assign',
                 'Intangible Strength','Debuff Draw','"Debuff"','Discus Pure','Cycle Rotation','Base Attack Weak Combat','Retain Lock On','History Rewind Tick','Gun Draw','Retain Until Played Per Turn',
                 'Temporary Strength in 2 Turns','Temporary Strength in 3 Turns','Single Splash Vulnerable','Temporary Strength Cycle 3 1','Temporary Strength Cycle 3 2','Temporary Strength Cycle 3 3','Indefinite Pure','Fragile Turn Splash','Favor Per Turn','Favor Energy',
-                'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn',
+                'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -289,7 +289,7 @@ class combatant{
                 0,2,0,0,1,0,0,0,0,0,//80
                 0,0,0,0,0,0,1,0,0,0,//81
                 2,2,2,2,2,2,1,0,0,0,//82
-                0,0,0,0,0,0,
+                0,0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -374,7 +374,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//80
                 2,2,3,2,2,2,3,2,2,2,//81
                 0,0,2,0,0,0,2,2,2,2,//82
-                2,2,2,2,2,2,
+                2,2,2,2,2,2,2,
             ]}
         /*
         0-none

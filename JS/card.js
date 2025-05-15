@@ -6444,8 +6444,8 @@ class card{
             case 5394: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nShuffle ${effect[1]} Foil Tile${pl(effect[1])}\ninto Draw Pile`; break
             case 5395: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nShuffle ${effect[1]} Foil Tile${pl(effect[1])}\ninto Draw Pile`; break
             case 5396: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nShuffle ${effect[1]} Foil Tile${pl(effect[1])}\ninto Draw Pile`; break
-            case 5397: string+=`Draw ${effect[0]!=1?`${effect[0]}`:``}X${effect[1]>0?`+${effect[1]}`:``} Cards\nWere X = Energy`; break
-            case 5398: string+=`Draw ${effect[0]!=1?`${effect[0]}`:``}X${effect[1]>0?`+${effect[1]}`:``} Cards\nWere X = Mana Total`; break
+            case 5397: string+=`Draw ${effect[0]!=1?`${effect[0]}`:``}X${effect[1]>0?`+${effect[1]}`:``} Cards\nWhere X = Energy`; break
+            case 5398: string+=`Draw ${effect[0]!=1?`${effect[0]}`:``}X${effect[1]>0?`+${effect[1]}`:``} Cards\nWhere X = Mana Total`; break
             case 5399: string+=`50%: Target Gains\nIndefinite Weak\n50%: Target Gains\nIndefinite Vulnerable`; break
             case 5400: string+=`When Drawn,\nPut a Card in Draw\nPile in Your Hand`; break
             case 5401: string+=`When Drawn,\nPut a Card in Draw\nPile in Your Hand\nand Add ${this.calculateEffect(effect[0],1)} Block`; break
@@ -8963,6 +8963,24 @@ class card{
             case 7938: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTriples After 2\nBosses Are Defeated\n(${this.limit}/2)`; break
             case 7939: string+=`When Drawn,\nUpgrade ${effect[0]} Card${pl(effect[0])}`; break
             case 7940: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nWhen You Move`; break
+            case 7941: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal on an\nElite or Boss Combat,\nGain ${effect[1]} Currency\nCurrency Increases by ${effect[2]}`; break
+            case 7942: string+=`Draw ${effect[0]} 0 ${variants.mtg?`Total\n`:``}Cost Card${pl(effect[0])}\nDraw ${effect[1]} 1 ${variants.mtg?`Total\n`:``}Cost Card${pl(effect[1])}`; break
+            case 7943: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Upgraded\nPermanently,\nGain ${effect[1]} Currency`; break
+            case 7944: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Upgraded\nPermanently,\nUpgrade a Random\nCard in Deck`; break
+            case 7945: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nWill Not Draw Over ${effect[1]}\nCard${pl(effect[1])} in Hand`; break
+            case 7946: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health\nPer Power in Hand`; break
+            case 7947: string+=`Draw ${effect[0]} Attack${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporarily\nGain ${effect[1]} Temporary\nStrength\nLose ${effect[2]} Health`; break
+            case 7948: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPulse in Hand:\nRepeat`; break
+            case 7949: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nAdvance`; break
+            case 7950: string+=`When You Play\na Dark Matter,\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case 7951: string+=`Gain ${effect[0]} Armor\nCounter ${effect[1]} All`; break
+            case 7952: string+=`Gain ${effect[0]} Temporary\nStrength\nGain ${effect[1]} Energy\nNext Turn`; break
+            case 7953: string+=`Gain ${effect[0]} Temporary\nStrength\nGain (W) (R) Next Turn`; break
+            case 7954: string+=`Gain ${effect[0]} Temporary\nStrength\nGain (E) (W) (R) Next Turn`; break
+            case 7955: string+=`Gain ${effect[0]} Temporary\nStrength\nGain (E) (E) (E) Next Turn`; break
+            case 7956: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Exhausted,\nGain ${effect[1]} Control`; break
+            case 7957: string+=`Apply ${effect[0]} Vulnerable\nApplies Double if\nTarget is Below\n50% Health`; break
+            case 7958: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],1)} Block\nPer Defense Drawn`; break
 
             //mark p
 
@@ -9976,6 +9994,9 @@ class card{
                 userCombatant.addBounce(this.effect[0])
                 userCombatant.statusEffect('Bounce Next Turn',this.effect[0])
             break
+            case 7956:
+                userCombatant.statusEffect('Control',this.effect[1])
+            break
 
         }
     }
@@ -10815,6 +10836,16 @@ class card{
             break
             case 7480:
                 this.effect[0]+=this.effect[2]
+            break
+        }
+    }
+    callUpgradeEffect(){
+        switch(this.attack){
+            case 7943:
+                this.battle.addCurrency(this.effect[1],this.player)
+            break
+            case 7944:
+                this.battle.cardManagers[this.player].randomEffect(0,2,[0])
             break
         }
     }

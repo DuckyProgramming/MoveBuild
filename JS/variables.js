@@ -104,7 +104,7 @@ types={
         {name:'Bush Thing',life:18,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:108,effect:[4,4]},{type:111,effect:[2]}],description:`Somewhat armored`},
         {name:'Fireball',life:40,behavior:10,spec:[],move:{type:0,speed:2},attack:[{type:112,effect:[4,2]},{type:21,effect:[]}],description:`Hurts to touch`},
         {name:'Dead Shell',life:44,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:20,effect:[6]},{type:113,effect:[8]},{type:114,effect:[5,2]}],description:`More alive then intended`},
-        {name:'Management Drone',life:75,behavior:1,spec:[0,20,19],move:{type:0,speed:1},attack:[{type:4,effect:[15]},{type:115,effect:[12]}],description:`Automated pain`},
+        {name:'Management Drone',life:75,behavior:1,spec:[0,20,19],move:{type:0,speed:1},attack:[{type:4,effect:[15]},{type:115,effect:[9]}],description:`Automated pain`},
         {name:'Executive',life:95,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:12,effect:[10]},{type:451,effect:[2]},{type:452,effect:[2]},{type:6,effect:[8]}],description:`Thinks he outsmarted you`},
         {name:'Mechanized',life:130,behavior:0,spec:[0,19],move:{type:0,speed:2},attack:[{type:124,effect:[8,1]},{type:125,effect:[12]},{type:126,effect:[6]}],description:`More machine than man`},
         {name:'Ninja Master',life:56,behavior:1,spec:[],move:{type:3,speed:1},attack:[{type:121,effect:[12]},{type:122,effect:[12]},{type:123,effect:[4]}],description:`Mastered teleportation, but not much else`},
