@@ -6,8 +6,7 @@ CARDSET 77 [MAY]
 
 
 
-absorb all vigor cards
-and create corresponding thick cards
+reate corresponding thick cards
 
 clapped - gain 3 vigor, gain 1 pity
 
@@ -18,6 +17,10 @@ tracking - damage, if you have vigor gain weak
 mighty flash - damage, block if you have vigor, repeat if you have thick
 
 ionic link - gain vulnerable, gain vigor and harden
+
+
+
+cream paper?
 
 
 

@@ -363,7 +363,7 @@ attack.prototype.update=function(){
         case 7675: case 7682: case 7684: case 7714: case 7725: case 7729: case 7746: case 7749: case 7750: case 7761:
         case 7767: case 7768: case 7769: case 7670: case 7773: case 7776: case 7781: case 7790: case 7819: case 7835:
         case 7839: case 7865: case 7875: case 7884: case 7896: case 7902: case 7924: case 7925: case 7932: case 7934:
-        case 7936: case 7937: case 7943: case 7951: case 7959:
+        case 7936: case 7937: case 7943: case 7951: case 7959: case 7967:
             //mark 2
             if(
                 this.timer==1&&(
@@ -2978,6 +2978,7 @@ attack.prototype.update=function(){
         case 7474: case 7475: case 7476: case 7490: case 7516: case 7537: case 7588: case 7589: case 7594: case 7595:
         case 7601: case 7623: case 7657: case 7687: case 7692: case 7695: case 7703: case 7704: case 7713: case 7731:
         case 7742: case 7743: case 7762: case 7766: case 7789: case 7801: case 7821: case 7926: case 7929: case 7930:
+        case 7963: case 7964: case 7965: case 7966: case 7968: case 7969:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -13282,6 +13283,25 @@ attack.prototype.update=function(){
                         this.timer=0
                     }
                 }
+            }
+        break
+        case 7962:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(32)
+                this.selfCall(19)
+            }
+            if(this.timer<=10||this.timer>30){
+                this.userCombatant.runAnimation(1/20,32)
+            }
+            if(this.timer==10){
+                current.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y-50,263,[30]))
+            }else if(this.timer==30){
+                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.userManager.hand.add(findName('Riptide',types.card),0,0)
+                }
+            }else if(this.timer>=40){
+                this.remove=true
             }
         break
 

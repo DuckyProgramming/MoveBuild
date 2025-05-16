@@ -873,6 +873,19 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('1',0,0)
                 break
+                case '35 Damage/2 Riptides':
+                    displaySymbol(this.layer,-8,0,18,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,173,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('35',-8,0)
+                    this.layer.text('2',10,0)
+                break
+                case 'Copy Card':
+                    displaySymbol(this.layer,0,0,174,0,1.2,this.fade)
+                break
+
+                //mark b
 
                 case '5 Strength/Burn':
                     displaySymbol(this.layer,-8,0,11,0,1,this.fade)
@@ -978,6 +991,9 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('4',-9,0)
                     this.layer.text('3',6,0)
+                break
+                case '9 Random Damage, 1 Energy, Draw 1': case '9 Random Damage, 1 Mana, Draw 1':
+                    displaySymbol(this.layer,0,0,133,0,2,this.fade)
                 break
 
                 //mark p

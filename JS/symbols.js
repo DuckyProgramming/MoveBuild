@@ -14770,6 +14770,21 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(sin(120)*2,cos(120)*2,5,5)
             layer.ellipse(-sin(120)*2,cos(120)*2,5,5)
         break
+        case 173:
+            layer.rotate(15)
+            for(let a=0,la=6;a<la;a++){
+                layer.fill(a%3*100,125+a%3*50,250)
+                layer.rotate(60)
+                layer.quad(0,3,0,0,sin(60)*3,cos(60)*3,sin(30)*7.5,cos(30)*7.5)
+            }
+        break
+        case 174:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(-2,-2,12,16,2)
+            layer.rect(0,0,12,16,2)
+            layer.rect(2,2,12,16,2)
+        break
 
     }
     layer.pop()
@@ -14944,4 +14959,6 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 170-Temporary Speed Down
 171-Big Redo
 172-Cannot Move
+173-Riptide
+174-Triplicate Card
 */

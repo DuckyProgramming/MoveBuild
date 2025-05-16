@@ -1438,7 +1438,7 @@ types={
 
         {name:'Pocket Oracle',internal:'Oracle',id:70,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Choose ANY Character or Colorless\nCard to Add to Hand'},
         {name:'Blinkseal',internal:'24 Damage/Limited Extra Turn',id:71,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 24 Damage, Take Another Turn\nAll Cards Cost 1 More on That Turn\nRange 1-6'},
-        {name:'Vacuum Collapse',internal:'35 Damage/2 Prismatic Bombs',id:72,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 35 Damage, Add 2\nPrismatic Bombs to Draw Pile\nRange 1-6'},
+        {name:'Vacuum Collapse',internal:'35 Damage/2 Prismatic Bombs',id:72,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Deal 35 Damage, Add 2\nPrismatic Bombs to Draw Pile\nRange 1-6'},
         {name:'Binary Die',internal:'Double or Nothing',id:73,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Randomly Duplicate a Card\nor Destroy it Permanently'},
         {name:'Replacement Papers',internal:'Edition',id:74,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Edition a Card'},
         {name:'Full Medkit',internal:'Heal All',id:75,rarity:1,list:0,menu:true,temp:false,mtg:0,description:'Heal All Health'},
@@ -1486,6 +1486,8 @@ types={
         {name:'Skillful Tonic',internal:'2 Mana/Redraw Non-Skills',id:113,rarity:1,list:0,menu:false,temp:false,mtg:2,description:'Gain (K) (K),\nRedraw All Non-Skill Cards'},
         {name:'Powerful Tonic',internal:'2 Mana/Redraw Non-Powers',id:114,rarity:1,list:0,menu:false,temp:false,mtg:2,description:'Gain (W) (W),\nRedraw All Non-Power Cards'},
         {name:'Ceroline',internal:'Free Card',id:115,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Next Card Played is Free'},
+        {name:'Vortex Collapse',internal:'35 Damage/2 Riptides',id:116,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 35 Damage, Add 2\nRiptides to Hand\nRange 1-6'},
+        {name:'Round Camera',internal:'Copy Card',id:117,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Make 3 Copies of\na Card in Hand'},
 
         {name:'Starflame Prototype',internal:'5 Strength/Burn',id:1001,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Gain 5 Strength,\nShuffle 5 Burns into Draw'},
         {name:'Cola',internal:'15 Heal/No Block',id:1002,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 15 HP\nCan No Longer Gain Block'},
@@ -1504,6 +1506,8 @@ types={
         {name:'Quality Coffee',internal:'3 Energy/Draw and Upgrade 3',id:1014,rarity:-1,list:-1,menu:false,temp:false,mtg:1,description:'Gain 3 Energy,\nDraw and Upgrade 3 Cards'},
         {name:'Energy Drink',internal:'2 Mana',id:1015,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Gain (E) (E)\nTemporary'},
         {name:'Quality Coffee',internal:'4 Mana/Draw and Upgrade 3',id:1016,rarity:-1,list:-1,menu:false,temp:false,mtg:2,description:'Gain (E) (E) (E) (E),\nDraw and Upgrade 3 Cards'},
+        {name:'Prismatic Bomb',internal:'9 Random Damage, 1 Energy, Draw 1',id:1017,rarity:-1,list:-1,menu:false,temp:true,mtg:1,description:'Deal 9 Damage to a Random Enemy,\nGain 1 Energy, Draw 1 Card'},
+        {name:'Prismatic Bomb',internal:'9 Random Damage, 1 Mana, Draw 1',id:1018,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Deal 9 Damage to a Random Enemy,\nGain (E), Draw 1 Card'},
 
         //mark i
     ],color:{

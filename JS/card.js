@@ -7296,7 +7296,7 @@ class card{
                 case -1067: string+=`-3: Gain (W) (W) (W)`; break
                 case -1068: string+=`-7: Gain ${effect[1]} Intangible`; break
             case 6244: string+=`Gain (E) at the\nStart of Your Turn\nGain ${effect[0]} Strength\nGain ${effect[1]} Dexterity\nSpawn a Management\nRobot Enemy`; break
-            case 6245: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Prismatic\nBomb${pl(effect[1])} to Discard Pile`; break
+            case 6245: string+=`Deal ${thiws.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Prismatic\nBomb${pl(effect[1])} to Discard Pile`; break
             case 6246: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Molten\nMetal Item${pl(effect[1])}`; break
             case 6247: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Glass\nShard Item${pl(effect[1])}`; break
             case 6248: string+=`Put a Card in Discard\nPile in Your Hand\nGain ${effect[0]} Random\nTemporary Item${pl(effect[0])}`; break
@@ -8113,8 +8113,8 @@ class card{
             case 7087: string+=`Upgrade ${effect[0]} Random Card${pl(effect[0])}`; break
             case 7088: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\nGain ${effect[2]} Weak\nIgnore Block`; break
             case 7089: string+=`When Vanished,\nChoose and Add an\nUncommon Card From\nAny Character to Deck`; break
-            case 7090: string+=`When Drawn,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nin All Direction\nand Gain ${effect[1]} Energy`; break
-            case 7091: string+=`When Drawn,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nin All Direction\nand Gain (E)`; break
+            case 7090: string+=`When Drawn,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nand Gain ${effect[1]} Energy`; break
+            case 7091: string+=`When Drawn,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nand Gain (E)`; break
             case 7092: string+=`All Cards in Hand\nCost ${effect[0]} Less Temporarily\nLose ${effect[1]} Energy\nNext Turn`; break
             case 7093: string+=`Put the Top${effect[0]!=1?` ${effect[0]}`:``}\nCard${pl(effect[0])} in Discard Pile\nin Your Hand\nLose ${effect[1]} Health`; break
             case 7094: string+=`Upgrade Your Hand\nGain ${effect[0]} Intangible`; break
@@ -8984,6 +8984,16 @@ class card{
             case 7959: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPer Enemy Above You`; break
             case 7960: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak For\nEvery ${effect[2]} Combo You Have`; break
             case 7961: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]!=1?`${effect[1]}`:``}X Bruise\nWhere X = Combo`; break
+            case 7962: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Riptide${pl(effect[1])} to Hand`; break
+            case 7963: string+=`Gain ${effect[0]} Prismatic\nBomb Item${pl(effect[0])}`; break
+            case 7964: string+=`Gain ${effect[0]} Prismatic\nBomb Item${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 7965: string+=`Gain ${effect[0]} Prismatic\nBomb Item${pl(effect[0])}\nAdd ${effect[1]} Void${pl(effect[1])}\nto Discard Pile`; break
+            case 7966: string+=`Gain ${effect[0]} Prismatic\nBomb Item${pl(effect[0])}\nGain ${effect[1]} Glass\nShard Item${pl(effect[1])}`; break
+            case 7967: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Exhausted,\nGain ${effect[1]} Prismatic\nBomb Item${pl(effect[1])}`; break
+            case 7968: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy\nGain ${effect[1]} Prismatic\nBomb Item${pl(effect[1])}`; break
+
+            case 7969: string+=`Gain ${effect[0]} Prismatic\nBomb Item${pl(effect[0])}\nPrismatic Bombs\nDeal ${this.calculateEffect(effect[1],14)} More Damage`; break
+            //3468
 
             //mark p
 
@@ -9999,6 +10009,11 @@ class card{
             break
             case 7956:
                 userCombatant.statusEffect('Control',this.effect[1])
+            break
+            case 7967:
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.battle.itemManager.addItem(findInternal(variants.mtg?'9 Random Damage, 1 Mana, Draw 1':'9 Random Damage, 1 Energy, Draw 1',types.item),this.player)
+                }
             break
 
         }

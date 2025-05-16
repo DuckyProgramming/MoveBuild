@@ -634,6 +634,12 @@ class itemManager{
             case 115:
                 userCombatant.statusEffect('Free Card',effectiveness)
             break
+            case 116:
+                this.battle.cardManagers[player].hand.selfCall(6,[7962,[35*effectiveness,2*effectiveness],1,[2,1,6]])
+            break
+            case 117:
+                this.battle.cardManagers[player].hand.duplicateSelect(3*effectiveness)
+            break
 
             //mark p
 
@@ -693,6 +699,25 @@ class itemManager{
             case 1016:
                 this.battle.addSpecificEnergy(4*effectiveness,player,6)
                 this.battle.cardManagers[player].draw(3*effectiveness,1)
+            break
+            case 1017: case 1018:
+                this.battle.combatantManager.randomNumberEffect(
+                    1+userCombatant.getStatus('Prismatic Bomb Targets'),
+                    0,
+                    [
+                        (9+userCombatant.getStatus('Prismatic Bomb Boost'))*effectiveness,
+                        this.player,
+                        userCombatant.getStatus('Prismatic Bomb Freeze'),
+                        userCombatant.getStatus('Prismatic Bomb Poison')
+                    ]
+                )
+                if(userCombatant.getStatus('Prismatic Bomb Items')>0){
+                    for(let a=0,la=userCombatant.getStatus('Prismatic Bomb Items');a<la;a++){
+                        this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.player)
+                    }
+                }
+                this.battle.addSpecificEnergy(effectiveness,player,6)
+                this.battle.cardManagers[player].draw(effectiveness)
             break
         }
         this.tempEffectiveness[player]=holdTempEffectiveness

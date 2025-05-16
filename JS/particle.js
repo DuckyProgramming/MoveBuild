@@ -260,7 +260,7 @@ class particle{
                 this.scale=1
                 this.trigger=false
             break
-            case 122:
+            case 122: case 263:
                 this.size=args[0]
                 this.fade=0
                 this.scale=1
@@ -4279,6 +4279,18 @@ class particle{
                     this.layer.ellipse(0,0,6,12)
                     this.layer.ellipse(0,0,3,6)
                 break
+                case 263:
+                    this.layer.fill(40,120,160,this.fade)
+                    regStar(this.layer,0,0,24,9,9,12,12,-this.time*2)
+                    this.layer.fill(60,160,200,this.fade)
+                    regStar(this.layer,0,0,24,9,9,13,13,this.time*2)
+                    this.layer.fill(160,200,240,this.fade)
+                    this.layer.ellipse(0,0,20)
+                    this.layer.fill(40,80,120,this.fade)
+                    regStar(this.layer,0,0,30,9,9,8,8,this.time)
+                    this.layer.fill(20,40,60,this.fade)
+                    regStar(this.layer,0,0,30,6,6,7,7,this.time)
+                break
 
             }
             //mark p
@@ -4576,7 +4588,7 @@ class particle{
                     }
                 }
             break
-            case 122:
+            case 122: case 263:
                 this.fade+=0.02
                 this.scale*=(0.996-this.time*0.004)
                 if(this.scale<=0){
