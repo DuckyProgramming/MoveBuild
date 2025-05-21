@@ -3376,7 +3376,7 @@ class group{
                 userCombatant.balance+=card.effect[0]
             break
             case 1745: case 1943: case 2096: case 2128: case 2200: case 2465: case 6535: case 6536: case 6823: case 7509:
-            case 7909:
+            case 7909: case 7996:
                 for(let a=0,la=card.effect[2];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }

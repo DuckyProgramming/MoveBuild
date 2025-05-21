@@ -75,9 +75,23 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(1,-3,1,3,5,0)
         break
         case 12:
-            layer.fill(255,50,50,fade)
+            /*layer.fill(255,50,50,fade)
             layer.triangle(-2,-6,-4,3,0,3)
-            layer.ellipse(3,0,4,4)
+            layer.ellipse(3,0,4,4)*/
+            layer.fill(255,50,50,fade)
+            layer.beginShape()
+            layer.vertex(-4,3)
+            layer.vertex(-7,0.75)
+            layer.vertex(-3.5,1)
+            layer.vertex(-2.75,-3.5)
+            layer.vertex(-1.25,-0.5)
+            layer.vertex(-0,-5)
+            layer.vertex(1.25,-0.5)
+            layer.vertex(2.75,-3.5)
+            layer.vertex(3.5,1)
+            layer.vertex(7,0.75)
+            layer.vertex(4,3)
+            layer.endShape()
         break
         case 13:
             layer.fill(150,175,200,fade)
@@ -8202,6 +8216,22 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,fade)
             layer.strokeWeight(1)
             layer.rect(0,0,4.5,6,1)
+        break
+        case 827:
+            layer.fill(150,175,200,fade)
+            layer.beginShape()
+            layer.vertex(-4,3)
+            layer.vertex(-7,0.75)
+            layer.vertex(-3.5,1)
+            layer.vertex(-2.75,-3.5)
+            layer.vertex(-1.25,-0.5)
+            layer.vertex(-0,-5)
+            layer.vertex(1.25,-0.5)
+            layer.vertex(2.75,-3.5)
+            layer.vertex(3.5,1)
+            layer.vertex(7,0.75)
+            layer.vertex(4,3)
+            layer.endShape()
         break
 
     }

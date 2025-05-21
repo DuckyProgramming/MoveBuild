@@ -2,25 +2,27 @@ OPERATION ICATHIA
 
 
 
-CARDSET 77 [MAY]
+CARDSET 78 [MAY]
 
 
 
-reate corresponding thick cards
+char 25: the hardener
+[shou detachment]
 
-clapped - gain 3 vigor, gain 1 pity
+more cards with [echo]
 
-highest guard - barrier, gain vigor
+the dev card rework
 
-tracking - damage, if you have vigor gain weak
-
-mighty flash - damage, block if you have vigor, repeat if you have thick
-
-ionic link - gain vulnerable, gain vigor and harden
+"upper" dev cards are the truly broken ones
+"lower" dev cards have a gameplay function
 
 
 
 cream paper?
+
+
+
+reorganize collection, ultraprism, and tutorial pages
 
 
 

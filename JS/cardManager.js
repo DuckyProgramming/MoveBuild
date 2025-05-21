@@ -4,7 +4,7 @@ class cardManager{
         this.battle=battle
         this.player=player
 
-        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[],junk:[],sub:[],ally:[],disband:[],mtg:[]}
+        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[],junk:[],sub:[],ally:[],dev:[],disband:[],mtg:[]}
 
         this.deck=new group(this.layer,this.battle,this.player,0)
         this.reserve=new group(this.layer,this.battle,this.player,1)
@@ -80,6 +80,7 @@ class cardManager{
         this.listing.junk=multiplyArray([],constants.playerNumber+2)
         this.listing.sub=[]
         this.listing.ally=[]
+        this.listing.dev=[]
         this.listing.disband=[]
         for(let a=0,la=types.card.length;a<la;a++){
             let cardData
@@ -104,6 +105,9 @@ class cardManager{
                 }
                 if(cardData.rarity==-7&&cardData.levels[0].class==9){
                     this.listing.ally.push(a)
+                }
+                if(cardData.rarity==-5&&cardData.list==-1){
+                    this.listing.dev.push(a)
                 }
                 if(cardData.rarity==-1&&cardData.list==-8){
                     this.listing.disband.push(a)
@@ -484,10 +488,27 @@ class cardManager{
                             lb--
                         }
                     break
+                    case 7:
+                        if((
+                                variants.mtg&&args[ticker]!=-1&&arrayPurge(types.card[list[b]].mtg.levels[effectiveLevel].cost,[-3]).length!=args[ticker]||
+                                variants.mtg&&args[ticker]==-1&&!types.card[list[b]].mtg.levels[effectiveLevel].cost.includes(-3)||
+                                !variants.mtg&&types.card[list[b]].levels[effectiveLevel].cost<args[ticker]
+                            )||
+                            types.card[list[b]].levels[effectiveLevel].spec.includes(5)||
+                            types.card[list[b]].levels[effectiveLevel].spec.includes(11)||
+                            types.card[list[b]].levels[effectiveLevel].spec.includes(21)||
+                            types.card[list[b]].levels[effectiveLevel].spec.includes(35)||
+                            types.card[list[b]].levels[effectiveLevel].spec.includes(41)
+                        ){
+                            list.splice(b,1)
+                            b--
+                            lb--
+                        }
+                    break
                 }
             }
             switch(filter[a]){
-                case 0: case 1: case 2: case 3: case 4: case 5: case 6:
+                case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
                     ticker++
                 break
             }

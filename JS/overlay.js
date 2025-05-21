@@ -317,9 +317,13 @@ class overlay{
                         list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
                         let effectiveRarity=variants.commoners&&floor(random(0,3))!=0?0:args[1]
                         let effectiveOptions=this.options+this.battle.relicManager.active[172][this.player+1]+this.battle.relicManager.active[458][this.player+1]+this.battle.relicManager.active[503][this.player+1]
-                        let list2=[[],[],[],[]]
+                        let list2=[]
+                        if(this.args[0]==0){
+                            list2=copyArray(this.battle.cardManagers[this.player].listing.dev)
+                        }
+                        let list3=[[],[],[],[]]
                         if(this.args[0]==0&&this.battle.relicManager.hasRelic(315,this.player)){
-                            list2=copyArrayStack(this.battle.cardManagers[this.player].listing.card[constants.playerNumber+5])
+                            list3=copyArrayStack(this.battle.cardManagers[this.player].listing.card[constants.playerNumber+5])
                         }
                         if(variants.mtg){
                             for(let a=0,la=list[effectiveRarity].length;a<la;a++){
@@ -334,11 +338,17 @@ class overlay{
                         for(let a=0,la=this.options;a<la;a++){
                             if(list[effectiveRarity].length>0){
                                 let index=0
-                                if(this.args[0]==0&&this.battle.relicManager.hasRelic(315,this.player)&&floor(random(0,30))<this.battle.relicManager.active[315][this.player+1]){
-                                    index=floor(random(0,list2[3].length))
+                                if(this.args[0]==0&&floor(random(0,3000))==0){
+                                    index=floor(random(0,list2.length))
                                     this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
-                                        list2[3][index],0,constants.playerNumber+5,-1))
-                                    list2[3].splice(index,1)
+                                        list2[index],0,constants.playerNumber+5,-1))
+                                    list2.splice(index,1)
+                                    positionKey+=120
+                                }else if(this.args[0]==0&&this.battle.relicManager.hasRelic(315,this.player)&&floor(random(0,30))<this.battle.relicManager.active[315][this.player+1]){
+                                    index=floor(random(0,list3[3].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
+                                        list3[3][index],0,constants.playerNumber+5,-1))
+                                    list3[3].splice(index,1)
                                     positionKey+=120
                                 }else{
                                     index=floor(random(0,list[effectiveRarity].length))

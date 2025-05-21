@@ -660,6 +660,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[10]&&user.status.main[797]>0){
 				bonusB+=user.status.main[797]
 			}
+			if(user.status.main[827]>0){
+				bonusB+=user.status.main[827]
+			}
 			if(user.status.main[168]>0){
 				bonusB+=user.status.main[168]
 			}
@@ -2074,7 +2077,7 @@ Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}
 		Ally:
 	Total:${current.cardManagers[0].listing.ally.length}/24				${current.cardManagers[0].listing.ally.length-24}
 		Disband:
-	Total:${current.cardManagers[0].listing.disband.length}/1500			${current.cardManagers[0].listing.disband.length-1500}
+	Total:${current.cardManagers[0].listing.disband.length}/1600			${current.cardManagers[0].listing.disband.length-1600}
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/${constants.playerNumber*8}			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-constants.playerNumber*8}
 			`)

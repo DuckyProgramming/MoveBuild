@@ -1611,7 +1611,7 @@ class battle{
         if(cardClass==1&&card.name.includes('Cable')&&userCombatant.getStatus('Cable Claw Up')>0){
             userCombatant.statusEffect('Claw Up',userCombatant.getStatus('Cable Claw Up'))
         }
-        if(card.name.includes('Silver')&&userCombatant.getStatus('Silver Block')>0){
+        if((card.name.includes('Silver')||card.spec.includes(52))&&userCombatant.getStatus('Silver Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Silver Block'))
         }
         if(card.spec.includes(52)&&userCombatant.getStatus('Mineral Block')>0){

@@ -25,6 +25,7 @@ types={
         {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:456,effect:[16,3]},{type:454,effect:[22,2]},{type:455,effect:[22,2]}],description:``},
         {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:458,effect:[1]},{type:459,effect:[11,1]},{type:460,effect:[13,5]}],description:``},
         {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:462,effect:[11,2]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:``},
+        {name:'CHAR-25',moniker:'The',identifier:['',''],life:50,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -140,7 +141,7 @@ types={
         {name:'Rusty',life:23,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:203,effect:[8]},{type:9,effect:[6]},{type:21,effect:[]}],description:`Pretty bad`},
         {name:'Thornvine',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:228,effect:[1]},{type:229,effect:[2]}],description:`Back and worse`},
         {name:'Vengeful',life:70,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:212,effect:[7]},{type:213,effect:[6]},{type:214,effect:[9]},{type:210,effect:[1]}],description:`Remember last time?`},
-        {name:'Coffee Commander',life:335,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:164,effect:[8,1,'Electrocuted']},{type:163,effect:[5,1]},{type:129,effect:[4]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
+        {name:'Coffee Commander',life:268,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:164,effect:[8,1,'Electrocuted']},{type:163,effect:[5,1]},{type:129,effect:[4]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
         {name:'Tech Support',life:166,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:208,effect:[14]},{type:209,effect:[10]},{type:29,effect:[9]}],description:`Won't fix problems`},
         {name:'Jester',life:28,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:247,effect:[2]},{type:248,effect:[1,7]}],description:`Real funny guy, you are`},
         {name:'Lalex',life:84,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:249,effect:[2]},{type:250,effect:[13,1]},{type:251,effect:[6,3]}],description:`Why is he here?`},
@@ -1637,6 +1638,11 @@ types={
                 stroke:[190,55,55],
                 text:[50,25,25],
                 active:[255,175,175],
+            },{
+                fill:[200,200,200],
+                stroke:[175,175,175],
+                text:[50,50,50],
+                active:[255,255,255],
             },
             
             {
@@ -1701,7 +1707,7 @@ types={
             {},{},{},{},{},
             {},{},{},{},{},
             {},{},{},{},{},
-            {},{},{},{},
+            {},{},{},{},{},
             
             {
                 fill:[125,125,125],
@@ -7364,7 +7370,7 @@ variants={
     ],
 }
 constants={
-    playerNumber:24,orbNumber:17,
+    playerNumber:25,orbNumber:17,
     targetRadius:30,startEnergy:3,collisionDamage:4,
     sqrt2:0,sqrt3:0,phi:0,trig:[[],[]],
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
