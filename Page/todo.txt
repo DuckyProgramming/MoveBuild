@@ -2,19 +2,11 @@ OPERATION ICATHIA
 
 
 
-CARDSET 78 [MAY]
+CARDSET 79 [MAY]
 
 
-
-char 25: the hardener
-[shou detachment]
 
 more cards with [echo]
-
-the dev card rework
-
-"upper" dev cards are the truly broken ones
-"lower" dev cards have a gameplay function
 
 
 
@@ -23,6 +15,8 @@ cream paper?
 
 
 reorganize collection, ultraprism, and tutorial pages
+
+new event card - could require ally card reorganization
 
 
 

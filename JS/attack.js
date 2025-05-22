@@ -271,7 +271,7 @@ class attack{
             case 7748: case 7756: case 7760: case 7764: case 7765: case 7774: case 7775: case 7787: case 7792: case 7795: case 7796: case 7800: case 7813: case 7820: case 7826: case 7832: case 7836: case 7842: case 7843: case 7846:
             case 7847: case 7864: case 7879: case 7890: case 7891: case 7892: case 7893: case 7894: case 7895: case 7899: case 7901: case 7903: case 7906: case 7909: case 7911: case 7914: case 7919: case 7921: case 7922: case 7923:
             case 7931: case 7933: case 7935: case 7938: case 7940: case 7941: case 7944: case 7946: case 7949: case 7956: case 7957: case 7960: case 7961: case 7962: case 7971: case 7972: case 7985: case 7990: case 7995: case 7996:
-            case 8003: case 8005: case 8006: case 8007: case 8008: case 8010: case 8013: case 8014:
+            case 8003: case 8005: case 8006: case 8007: case 8008: case 8010: case 8013: case 8014: case 8020: case 8021: case 8022: case 8025: case 8034:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -344,7 +344,7 @@ class attack{
             case 7446: case 7447: case 7448: case 7449: case 7450: case 7451: case 7453: case 7457: case 7491: case 7504:
             case 7539: case 7540: case 7608: case 7612: case 7613: case 7614: case 7615: case 7647: case 7648: case 7649:
             case 7650: case 7651: case 7652: case 7653: case 7666: case 7727: case 7737: case 7777: case 7814: case 7815:
-            case 7827: case 7837: case 7910: case 7974: case 7987: case 7988:
+            case 7827: case 7837: case 7910: case 7974: case 7987: case 7988: case 8029: case 8030: case 8031: case 8032:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -2578,6 +2578,13 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(works7971){
                             this.targetCombatant.statusEffect('Weak',this.effect[1])
+                        }
+                    break
+                    case 8025:
+                        let works8025=this.userCombatant.getStatus('Vigor')>0
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(works8025){
+                            this.battle.addCurrency(this.effect[1],this.player)
                         }
                     break
                     default:
@@ -7497,6 +7504,13 @@ class attack{
                     case 8017:
                         this.userCombatant.addBlock(floor(this.userCombatant.life/max(1,this.effect[1]))*this.effect[0])
                     break
+                    case 8026:
+                        let works8026=this.userCombatant.getStatus('Thick')>0
+                        this.userCombatant.addBlock(this.effect[0])
+                        if(works8026){
+                            this.userCombatant.statusEffect('Dodge',this.effect[1])
+                        }
+                    break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
                     break
@@ -9981,6 +9995,10 @@ class attack{
                             this.userCombatant.statusEffect('Block in 2 Turns',this.effect[1])
                         }
                     break
+                    case 8019:
+                        this.userCombatant.statusEffect('Retain Block',this.effect[1])
+                        this.userManager.draw(this.effect[2])
+                    break
 
                 }
                 //mark 2s
@@ -12118,6 +12136,28 @@ class attack{
                     case 7988:
                         if(this.targetTile.type.length>0){
                             this.userCombatant.addBlock(this.effect[1])
+                        }
+                    break
+                    case 8029:
+                        if(this.userCombatant.getStatus('Vigor')>0){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 8030:
+                        if(this.userCombatant.getStatus('Vigor')>0){
+                            this.battle.addSpecificEnergy(1,this.player,4)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 8031:
+                        if(this.userCombatant.getStatus('Vigor')>0){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,4)
+                        }
+                    break
+                    case 8032:
+                        if(this.userCombatant.getStatus('Vigor')>0){
+                            this.battle.addSpecificEnergy(2,this.player,6)
                         }
                     break
 
@@ -16249,6 +16289,10 @@ class attack{
                         this.battle.addSpecificEnergy(3,this.player,6)
                         this.userManager.draw(this.effect[0])
                         this.userCombatant.block=0
+                    break
+                    case 8023:
+                        this.userCombatant.statusEffect('Double Damage',this.effect[0])
+                        this.userCombatant.statusEffect('Vigor',this.effect[1])
                     break
 
                 }
@@ -20677,6 +20721,14 @@ class attack{
                         this.battle.overlayManager.overlays[8][this.player].active=true
                         this.battle.overlayManager.overlays[8][this.player].activate()
                     break
+                    case 8024:
+                        this.userManager.draw(this.effect[0]+(this.userCombatant.getStatus('Vigor')>0?this.effect[1]:0)+(this.userCombatant.getStatus('Thick')>0?this.effect[2]:0))
+                    break
+                    case 8027:
+                        this.userManager.draw(this.effect[0])
+                        this.userCombatant.statusEffect('Vigor',this.effect[1])
+                        this.userCombatant.statusEffect('Thick',this.effect[2])
+                    break
 
                 }
                 //mark 5
@@ -21965,6 +22017,10 @@ class attack{
                         this.userCombatant.statusEffect('Vulnerable',this.effect[0])
                         this.userCombatant.statusEffect('Vigor',this.effect[1])
                         this.userCombatant.statusEffect('Thick',this.effect[2])
+                    break
+                    case 8033:
+                        this.userCombatant.statusEffect('Intangible',this.effect[0])
+                        this.userCombatant.removeAllStatuses([1,3])
                     break
 
                 }
@@ -25535,6 +25591,14 @@ class attack{
                     case 7820:
                         this.targetCombatant.statusEffect('Burn',this.effect[0])
                         this.targetCombatant.statusEffect('Weak',this.effect[1])
+                    break
+                    case 8021:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
+                        this.userManager.draw(this.effect[1],6)
+                    break
+                    case 8022:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        this.userManager.draw(this.effect[1],6)
                     break
 
                 }
@@ -31422,6 +31486,11 @@ class attack{
                     case 7874:
                         for(let a=0,la=this.effect[1]*this.energy;a<la;a++){
                             this.userCombatant.holdOrb(12)
+                        }
+                    break
+                    case 8028:
+                        if(this.userCombatant.getStatus('Thick')>0){
+                            this.userCombatant.addBlock(this.effect[1])
                         }
                     break
 

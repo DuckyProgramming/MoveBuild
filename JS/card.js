@@ -9040,12 +9040,23 @@ class card{
             case 8015: string+=`Gain ${effect[0]} Vulnerable\nGain ${effect[1]} Vigor\nGain ${effect[2]} Thick`; break
             case 8016: string+=`Draw ${effect[0]} Basic Card${pl(effect[0])}\nPut a Card in Draw\nPile in Your Hand`; break
             case 8017: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nFor Every ${effect[1]}\nHealth You Have`; break
-
             case 8018: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Discarded\nFrom Your Hand,\nIncreases by ${effect[1]}`; break
-            //2224
-
-
-
+            case 8019: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain Block\nFor ${effect[1]} Turn${pl(effect[1])}\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 8020: string+=`Apply ${effect[0]} Weak\nMove 1 Tile Away`; break
+            case 8021: string+=`Apply ${effect[0]} Vulnerable\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 1 Less\nTemporarily`; break
+            case 8022: string+=`Apply ${effect[0]} Weak\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 1 Less\nTemporarily`; break
+            case 8023: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage\nGain ${effect[1]} Vigor`; break
+            case 8024: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDraw ${effect[1]} More Card${pl(effect[1])} if\nYou Have Vigor\nDraw ${effect[2]} More Card${pl(effect[2])} if\nYou Have Thick`; break
+            case 8025: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have Vigor,\nGain ${effect[1]} Currency`; break
+            case 8026: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf You Have Thick,\nGain ${effect[1]} Dodge`; break
+            case 8027: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Vigor\nGain ${effect[2]} Thick`; break
+            case 8028: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nIf You Have Thick,\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            case 8029: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have Vigor,\nGain ${effect[0]} Energy`; break
+            case 8030: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have Vigor,\nGain (R) (N)`; break
+            case 8031: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have Vigor,\nGain (E) (R)`; break
+            case 8032: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have Vigor,\nGain (E) (E)`; break
+            case 8033: string+=`Gain ${effect[0]} Intangible\nRemove All of\nYour Debuffs`; break
+            case 8034: string+=`Apply ${effect[0]} Vulnerable\nMove 1 Tile Away`; break
 
             //mark p
 
@@ -9602,7 +9613,7 @@ class card{
                     this.battle.cardManagers[this.player].hand.add(findName('Miracle',types.card),0,0)
                 }
             break
-            case 2224:
+            case 2224: case 8018:
                 this.effect[0]+=this.effect[1]
             break
             case 2236:
