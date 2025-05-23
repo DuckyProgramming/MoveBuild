@@ -111,9 +111,11 @@ class battle{
         for(let a=0,la=variants.names.length;a<la;a++){
             this.menu.anim.variants.push(0)
         }
-        for(let a=-10,la=constants.playerNumber+6;a<la;a++){
+        for(let a=-9,la=constants.playerNumber+6;a<la;a++){
             this.menu.anim.prismrule.push(0)
-            variants.prismrule.push(a)
+            if(a!=-6){
+                variants.prismrule.push(a)
+            }
         }
         for(let a=0,la=2;a<la;a++){
             this.menu.anim.mtg.push(0)
@@ -2349,7 +2351,7 @@ class battle{
                 }
                 for(let a=0,la=constants.playerNumber;a<=la;a++){
                     if(this.menu.anim.combatant[0][a]>0){
-                        this.layer.fill(255,this.menu.anim.combatant[0][a])
+                        this.layer.fill(240,this.menu.anim.combatant[0][a])
                         this.layer.textSize(types.combatant[a].name.length>=12?9:10)
                         this.layer.text(a==0?'000_BLANK':`0${a<10?`0`:``}${a}_${types.combatant[a].name.toUpperCase()}`,this.layer.width/2,this.layer.height*0.65)
                         this.layer.textSize(9)
@@ -2358,12 +2360,12 @@ class battle{
                 }
                 for(let a=0,la=types.deckmode.length;a<=la;a++){
                     if(this.menu.anim.deck[0][a]>0){
-                        this.layer.fill(255,this.menu.anim.deck[0][a])
+                        this.layer.fill(240,this.menu.anim.deck[0][a])
                         this.layer.textSize(types.deckmode[a].name.length>15?8:10)
                         this.layer.text(types.deckmode[a].name.toUpperCase(),this.layer.width/2,this.layer.height*0.65+80)
                     }
                 }
-                this.layer.fill(255,this.menu.anim.ascendSingle)
+                this.layer.fill(240,this.menu.anim.ascendSingle)
                 this.layer.textSize(16)
                 this.layer.text('Difficulty Options',this.layer.width/2,30)
                 this.layer.textSize(10)
@@ -2374,7 +2376,7 @@ class battle{
                         this.layer.ellipse(12.5+(this.layer.width-25)*(0.5+a)/la,102.5,10)
                     }
                     if(this.menu.anim.ascendDesc[a]>0){
-                        this.layer.fill(255,this.menu.anim.ascendDesc[a])
+                        this.layer.fill(240,this.menu.anim.ascendDesc[a])
                         this.layer.textSize(16)
                         this.layer.text(types.ascend[a].name,this.layer.width/2,30)
                         this.layer.textSize(10)
@@ -2425,7 +2427,7 @@ class battle{
                 for(let a=0,la=constants.playerNumber;a<=la;a++){
                     for(let b=0,lb=2;b<lb;b++){
                         if(this.menu.anim.combatant[b][a]>0){
-                            this.layer.fill(255,this.menu.anim.combatant[b][a])
+                            this.layer.fill(240,this.menu.anim.combatant[b][a])
                             this.layer.textSize(types.combatant[a].name.length>=12?9:10)
                             this.layer.text(a==0?'000_BLANK':`0${a<10?`0`:``}${a}_${types.combatant[a].name.toUpperCase()}`,this.layer.width/4+b*this.layer.width/2,this.layer.height*0.65)
                             this.layer.textSize(9)
@@ -2436,13 +2438,13 @@ class battle{
                 for(let a=0,la=types.deckmode.length;a<=la;a++){
                     for(let b=0,lb=2;b<lb;b++){
                         if(this.menu.anim.deck[b][a]>0){
-                            this.layer.fill(255,this.menu.anim.deck[b][a])
+                            this.layer.fill(240,this.menu.anim.deck[b][a])
                             this.layer.textSize(types.deckmode[a].name.length>20?8:10)
                             this.layer.text(types.deckmode[a].name.toUpperCase(),this.layer.width/4+b*this.layer.width/2,this.layer.height*0.65+80)
                         }
                     }
                 }
-                this.layer.fill(255,this.menu.anim.ascendSingle)
+                this.layer.fill(240,this.menu.anim.ascendSingle)
                 this.layer.textSize(16)
                 this.layer.text('Difficult Options',this.layer.width/2,30)
                 this.layer.textSize(10)
@@ -2453,7 +2455,7 @@ class battle{
                         this.layer.ellipse(12.5+(this.layer.width-25)*(0.5+a)/la,102.5,10)
                     }
                     if(this.menu.anim.ascendDesc[a]>0){
-                        this.layer.fill(255,this.menu.anim.ascendDesc[a])
+                        this.layer.fill(240,this.menu.anim.ascendDesc[a])
                         this.layer.textSize(16)
                         this.layer.text(types.ascend[a].name,this.layer.width/2,30)
                         this.layer.textSize(10)
@@ -2497,19 +2499,30 @@ class battle{
             case 'variants':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
-                    if(this.menu.anim.variants[a]>0){
-                        this.layer.fill(255,this.menu.anim.variants[a])
+                    this.layer.fill(240*this.menu.anim.variants[a])
+                    this.layer.rect(this.layer.width/2-325+a%5*162.5,this.layer.height/2-110+floor(a/5)*40,135,22.5)
+                    this.layer.fill(240*(1-this.menu.anim.variants[a]))
+                    this.layer.textSize(a==10?9:10)
+                    this.layer.text(variants.names[a].toUpperCase(),this.layer.width/2-325+a%5*162.5,this.layer.height/2-110+floor(a/5)*40)
+                    /*if(this.menu.anim.variants[a]>0){
+                        this.layer.fill(240,this.menu.anim.variants[a])
                         this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/2-125+floor(a/4)*40,10)
-                    }
+                    }*/
                 }
             break
             case 'custom':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
+                let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBSPECTRAL','JUNKYARD','SUBCARD','EVENT','DEVELOPER','REMOVED','BASIC','PACK','MISC']
+                this.layer.textSize(10)
                 for(let a=0,la=40;a<la;a++){
-                    if(this.menu.anim.prismrule[a]>0){
-                        this.layer.fill(255,this.menu.anim.prismrule[a])
+                    this.layer.fill(240*this.menu.anim.prismrule[a])
+                    this.layer.rect(this.layer.width/2-325+a%5*162.5,this.layer.height/2-195+floor(a/5)*40,135,22.5)
+                    this.layer.fill(240*(1-this.menu.anim.prismrule[a]))
+                    this.layer.text(a>=constants.playerNumber?names2[a-constants.playerNumber]:types.combatant[a+1].name.toUpperCase(),this.layer.width/2-325+a%5*162.5,this.layer.height/2-195+floor(a/5)*40)
+                    /*if(this.menu.anim.prismrule[a]>0){
+                        this.layer.fill(240,this.menu.anim.prismrule[a])
                         this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/2-225+floor(a/4)*40,10)
-                    }
+                    }*/
                 }
             break
             case 'tutorial':
@@ -3520,15 +3533,18 @@ class battle{
             break
             case 'variants':
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-125+floor(a/4)*40},width:22.5,height:22.5})){
+                    //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-125+floor(a/4)*40},width:22.5,height:22.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-325+a%5*162.5,y:this.layer.height/2-110+floor(a/5)*40},width:135,height:22.5})){
                         variants[variants.map[a]]=toggle(variants[variants.map[a]])
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7-5},width:62.5,height:62.5})){
+                //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7-5},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.7-30},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='title'
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7-5},width:62.5,height:62.5})){
+                //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7-5},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.7-30},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='custom'
                     variants.ultraprism=true
@@ -3555,7 +3571,8 @@ class battle{
             case 'custom':
                 let prismrules=[0,constants.playerNumber+1,constants.playerNumber+2,constants.playerNumber+3,constants.playerNumber+4,constants.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
                 for(let a=0,la=40;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-225+floor(a/4)*40},width:22.5,height:22.5})){
+                    //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-225+floor(a/4)*40},width:22.5,height:22.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-325+a%5*162.5,y:this.layer.height/2-195+floor(a/5)*40},width:135,height:22.5})){
                         let value=a>=constants.playerNumber?prismrules[a-constants.playerNumber]:a+1
                         if(variants.prismrule.includes(value)){
                             variants.prismrule.splice(variants.prismrule.indexOf(value),1)
@@ -3564,14 +3581,17 @@ class battle{
                         }
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-105,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-105,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-105,y:this.layer.height*0.7+45},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='variants'
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+45},width:62.5,height:62.5})){
                     variants.prismrule=[]
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+105,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+105,y:this.layer.height*0.7+95},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+105,y:this.layer.height*0.7+45},width:62.5,height:62.5})){
                     variants.prismrule=[]
                     for(let a=-10,la=constants.playerNumber+6;a<la;a++){
                         variants.prismrule.push(a)
@@ -3579,12 +3599,15 @@ class battle{
                 }
             break
             case 'tutorial':
-                for(let a=0,la=32;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-185+(a>=8?30:0)+floor(a/4)*40},width:22.5,height:22.5})){
+                for(let a=0,la=33;a<la;a++){
+                    let pos=a<8?[this.layer.width/2-243.75+a%4*162.5,this.layer.height/2-160+floor(a/4)*40]:[this.layer.width/2-325+(a-8)%5*162.5,this.layer.height/2-50+floor((a-8)/5)*40]
+                    //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-185+(a>=8?30:0)+floor(a/4)*40},width:22.5,height:22.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:pos[0],y:pos[1]},width:135,height:22.5})){
                         this.tutorialManager.setupTutorial(a)
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+85},width:62.5,height:62.5})){
+                //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+85},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+70},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='title'
                 }

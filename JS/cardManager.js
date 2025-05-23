@@ -132,28 +132,28 @@ class cardManager{
                     if(variants.prismrule.includes(-4)){
                         this.subAllList(a)
                     }
-                }else if(cardData.list==-9){
+                }/*else if(cardData.list==-9){
                     if(variants.prismrule.includes(-5)){
                         this.subAllList(a)
                     }
-                }else if(cardData.rarity==-5&&cardData.list==-1){
-                    if(variants.prismrule.includes(-6)){
+                }*/else if(cardData.rarity==-5&&cardData.list==-1){
+                    if(variants.prismrule.includes(-5)){
                         this.subAllList(a)
                     }
                 }else if(cardData.rarity==-1&&cardData.list==-8){
-                    if(variants.prismrule.includes(-7)){
+                    if(variants.prismrule.includes(-6)){
                         this.subAllList(a)
                     }
                 }else if(cardData.rarity==-2){
-                    if(variants.prismrule.includes(-8)){
+                    if(variants.prismrule.includes(-7)){
                         this.subAllList(a)
                     }
                 }else if(cardData.rarity==-3){
-                    if(variants.prismrule.includes(-9)){
+                    if(variants.prismrule.includes(-8)){
                         this.subAllList(a)
                     }
                 }else{
-                    if(variants.prismrule.includes(-10)){
+                    if(variants.prismrule.includes(-9)){
                         this.subAllList(a)
                     }
                 }

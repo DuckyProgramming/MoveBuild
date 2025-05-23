@@ -195,7 +195,9 @@ class card{
                 this.edited.costComplete=false
             }
             if(!(variants.mtg&&!this.specialCost)&&this.edited.cost!=0&&!this.edited.costComplete){
-                if(this.edited.cost>0){
+                if(this.edited.cost<=-100){
+                    this.setCost(2,[-this.edited.cost-100])
+                }else if(this.edited.cost>0){
                     this.costUp(2,[this.edited.cost])
                 }else{
                     this.costDown(2,[-this.edited.cost])
@@ -464,7 +466,39 @@ class card{
                     this.base.cost=args[0]
                 }
             break
+            case 3:
+                if(variants.mtg){
+                    remain=[[],[]]
+                    for(let a=0,la=this.cost.length;a<la;a++){
+                        if(this.cost[a]==-3){
+                            remain[0].push(this.cost[a])
+                        }
+                    }
+                    for(let a=0,la=this.base.cost.length;a<la;a++){
+                        if(this.base.cost[a]==-3){
+                            remain[1].push(this.base.cost[a])
+                        }
+                    }
+                    this.cost=this.specialCost?[args[0]]:elementArray(-1,args[0])
+                    this.base.cost=this.specialCost?[args[0]]:elementArray(-1,args[0])
+                    for(let a=0,la=remain[0].length;a<la;a++){
+                        this.cost.push(remain[0][a])
+                    }
+                    for(let a=0,la=remain[1].length;a<la;a++){
+                        this.base.cost.push(remain[1][a])
+                    }
+                }else{
+                    this.cost=args[0]
+                    this.base.cost=args[0]
+                }
+                this.edited.cost=-args[0]-100
+                this.edited.costComplete=true
+            break
         }
+        this.costDownTrigger=false
+        this.costUpTrigger=false
+        this.baseCostDownTrigger=false
+        this.baseCostUpTrigger=false
         if(variants.mtg?(this.specialCost?this.cost[0]<preCost[0]:this.cost.length<preCost.length):this.cost<preCost){
             this.costDownTrigger=true
             if(this.spec.includes(35)){
@@ -3603,7 +3637,7 @@ class card{
             case 2599: string+=`Gain ${effect[0]} Random\nTemporary Item${pl(effect[0])}`; break
             case 2600: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Random\nTemporary Item${pl(effect[1])}`; break
             case 2601: string+=`Fill All Item Slots\nWith Temporary Items`; break
-            case 2602: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile\nHas an Effect,\nGain ${effect[1]} Energy`; break
+            case 2602: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile is\na Special Tile\nGain ${effect[1]} Energy`; break
             case 2603: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} More\nCard${pl(effect[1])} Next Turn`; break
             case 2604: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAbove 75% Health:\nGain ${effect[1]} Energy`; break
             case 2605: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDamage Doubles After\nEach Boss is Defeated`; break
@@ -5574,9 +5608,9 @@ class card{
             case 4515: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Discarded\nFrom Your Hand,\nAdd ${effect[1]} Occult${pl(effect[1])} to Hand`; break
             case 4516: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nLose ${effect[1]} Random Mana\nNext Turn`; break
             case 4517: string+=`When Drawn,\nAdd ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Knowledge`; break
-            case 4518: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile\nHas an Effect,\nGain (B) (G)`; break
-            case 4519: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile\nHas an Effect,\nGain (E) (B) (G)`; break
-            case 4520: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile\nHas an Effect,\nGain (E) (B) (G) (N)`; break
+            case 4518: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile is\na Special Tile\nGain (B) (G)`; break
+            case 4519: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile is\na Special Tile\nGain (E) (B) (G)`; break
+            case 4520: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Target Tile is\na Special Tile\nGain (E) (B) (G) (N)`; break
             case 4521: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAbove 75% Health:\nGain (G) (N)`; break
             case 4522: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAbove 75% Health:\nGain (E) (G)`; break
             case 4523: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAbove 75% Health:\nGain (E) (G) (N)`; break
@@ -8678,7 +8712,7 @@ class card{
             case 7653: string+=`Build a Wall\nAnywhere`; break
             case 7654: string+=`Draw ${effect[0]} Blueprint${pl(effect[0])}\nGain Metal Equal\nto ${effect[0]==1?`its`:`Their`} Cost${pl(effect[0])}`; break
             case 7655: string+=`While in Your Deck,\nGain ${effect[0]} Metal\nEvery Combat`; break
-            case 7656: string+=`Swap With an\nAdjacent Swap Walwwl`; break
+            case 7656: string+=`Swap With an\nAdjacent Swap Wall`; break
             case 7657: string+=`Add ${effect[0]} Shiv${pl(effect[0])} to Hand\n${effect[0]!=1?`They Gain`:`It Gains`} ${effect[1]}\nDamage For Each\nExhausted Shiv`; break
             case 7658: string+=`Apply ${effect[0]} Poison\nin All Directions\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 7659: string+=`Gain ${effect[0]} Pure\nPut a Card in Draw\nPile in Your Hand\nIt Costs 0`; break
@@ -9010,7 +9044,7 @@ class card{
             case 7985: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have Block,\nApply ${effect[1]} Vulnerable`; break
             case 7986: string+=`Gain ${effect[0]} Vigor\nEnter Wrath`; break
             case 7987: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nPlace Ahead a\nSpike Tile`; break
-            case 7988: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],1)} Block\nIf You End on\na Special Tile`; break
+            case 7988: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],1)} Block\nIf Target Tile is\na Special Tile`; break
             case 7989: string+=`Reflect Next Hit Taken\nLose ${effect[0]} Health`; break
             case 7990: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${effect[1]} or More Currency:\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
             case 7991: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nFirst Time Played: (${this.debut?`Yes`:`No`})\nGain ${effect[1]} Energy`; break
@@ -12649,7 +12683,7 @@ class card{
                     }
                     this.layer.stroke(40,50,60,this.fade)
                     this.layer.noFill()
-                }else if(this.list==-9&&variants.ultraprism){
+                }else if(this.list==-9&&variants.ultraprism&&false){
                     this.layer.fill(120,110,100,this.fade*this.anim.select)
                     this.layer.noStroke()
                     this.layer.rect(0,0,this.width+15,this.height+15,10)
@@ -13191,7 +13225,7 @@ class card{
                     }
                     this.layer.stroke(90,100,110,this.fade)
                     this.layer.noFill()
-                }else if(this.list==-9&&variants.ultraprism){
+                }else if(this.list==-9&&variants.ultraprism&&false){
                     this.layer.fill(200,190,180,this.fade*this.anim.select)
                     this.layer.noStroke()
                     this.layer.rect(0,0,this.width+15,this.height+15,10)

@@ -150,8 +150,8 @@ types={
         {name:'Danger',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:255,effect:[9,1]},{type:256,effect:[9,1]}],description:`Contains... something?`},
         {name:'Carbonado Robot',life:145,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:30,effect:[16,4]},{type:257,effect:[6,1]},{type:258,effect:[6,6]}],description:`Very shiny robot`},
         {name:'Obstruction',life:87,behavior:5,spec:[0],move:{type:8,speed:1},attack:[{type:6,effect:[8]},{type:259,effect:[9]}],description:`Solving problems by not having problems`},
-        {name:'Structural Energy',life:66,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:260,effect:[10,1]},{type:261,effect:[15,1]}],description:`Not quite plutonic`},
-        {name:'Disorder Energy',life:115,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:268,effect:[10,1]},{type:269,effect:[16,1,1]}],description:`Coloration error moment`},
+        {name:'Structural Energy',life:55,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:260,effect:[10,1]},{type:261,effect:[15,1]}],description:`Not quite plutonic`},
+        {name:'Disorder Energy',life:104,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:268,effect:[10,1]},{type:269,effect:[16,1,1]}],description:`Coloration error moment`},
         {name:'Kugelblitz',life:97,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:262,effect:[8,1]},{type:263,effect:[8,1]},{type:264,effect:[9,1]},{type:265,effect:[9,1]}],description:`From the overseer`},
         {name:'Voidglass',life:155,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:12,effect:[21]},{type:266,effect:[14,2]},{type:267,effect:[24,2]}],description:`Can't see anything behind those shades`},
         {name:'Intruder',life:21,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:270,effect:[7,1]},{type:271,effect:[5,1]}],description:`Didn't ask to be let in`},
@@ -998,7 +998,7 @@ types={
         {name:'Tauball',internal:'Fragile Strength',id:188,rarity:0,list:0,mtg:0,world:[0,3],description:'Gain 3 Strength on Turn 1\n10% Chance to Break Each Battle'},
         {name:'Hallucinogen Pills',internal:'Purchase Item',id:189,rarity:1,list:0,mtg:0,world:[0,2],description:'After Purchasing From the Shop,\nGain an Item'},
         
-        {name:'Half-Full Glass',internal:'Unplayed Card Damage',id:190,rarity:0,list:0,mtg:0,world:[0,3],description:'At the End of Your Turn,\nNext Attack Deals 1 Extra Damage\nPer Unplayed Card'},
+        {name:'Half-Full Glass',internal:'Unplayed Card Damage',id:190,rarity:0,list:0,mtg:0,world:[0,3],description:'At the End of Your Turn,\nGain 1 Vigor\nPer Unplayed Card'},
         {name:'Clown Bowtie',internal:'Shop Reroll',id:191,rarity:0,list:0,mtg:0,world:[0,2],description:'You May Pay 50 Currency to\nReroll the Shop Once Per Visit'},
         {name:'Magic Rope',internal:'Last Card Retain',id:192,rarity:0,list:0,mtg:0,world:[0,3],description:'If You End You Turn With\n1 Card Left in Hand, Retain it'},
         {name:'Blue Disc',internal:'Draw Over Discard Block',id:193,rarity:0,list:0,mtg:0,world:[0,3],description:'Add 3 Block Per Turn When Draw Pile\nHas More Cards Than Discard Pile'},
@@ -1296,7 +1296,7 @@ types={
         {name:'Backtick',internal:'Any Character Card',id:459,rarity:2,list:0,mtg:0,world:[0,3],description:'When Taken, Choose Any Card\nFrom Your Color to Add to Deck'},
         
         {name:'Test 271',internal:'Energy/Damage Down/Block Down',id:460,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nReduce All Damage Dealt by 1\nReduce All Block Added by 1'},
-        {name:'Converging Stick',internal:'Status Damage Up',id:461,rarity:1,list:0,mtg:0,world:[0,3],description:'When You Draw a Status Card,\nNext Attack Deals 3 More Damage'},
+        {name:'Converging Stick',internal:'Status Damage Up',id:461,rarity:1,list:0,mtg:0,world:[0,3],description:'When You Draw a Status Card,\nGain 3 Vigor'},
         {name:'Opportunity',internal:'Starting Attack',id:462,rarity:0,list:0,mtg:0,world:[0,1],description:'On Turn 1, Add a Random Attack to Hand\nIt Costs 0 Temporary and\nHas Exhaust and Ethereal'},
         {name:'Hubris',internal:'Death Temporary Strength',id:463,rarity:1,list:0,mtg:0,world:[0,3],description:'When an Enemy Dies,\nGain 5 Temporary Strength'},
         {name:'Refills',internal:'Empty Items',id:464,rarity:1,list:0,mtg:0,world:[0,2],description:'Gain an Item at the Start of Combat\nIf You Have No Items'},
@@ -1639,10 +1639,10 @@ types={
                 text:[50,25,25],
                 active:[255,175,175],
             },{
-                fill:[200,200,200],
-                stroke:[175,175,175],
-                text:[50,50,50],
-                active:[255,255,255],
+                fill:[220,170,170],
+                stroke:[195,145,145],
+                text:[55,45,45],
+                active:[255,215,215],
             },
             
             {
@@ -7041,6 +7041,12 @@ trigger the assign effect.`,
         },{name:'Worker',mtg:0,desc:
 `Subcard that costs 0, deals 4 damage and adds 4 block.
 Is considered classless.`,
+        },{name:'Vigor',mtg:0,desc:
+`Next attack deals more damage equal to your Vigor.
+Removes itself afterward.`,
+        },{name:'Thick',mtg:0,desc:
+`Next times you add block, gain block equal to your Thick..
+Removes itself afterward.`,
         },
         //mark dict
     ],ascend:[

@@ -1270,6 +1270,9 @@ last Leader, you get Fallen Union, which is a major debuff.`,
 `END OF TUTORIAL`,
                 ]
             break
+            case 32:
+                //add later
+            break
             default:
                 transition.trigger=true
                 transition.scene='title'

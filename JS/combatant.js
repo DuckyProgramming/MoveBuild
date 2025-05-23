@@ -5607,7 +5607,7 @@ class combatant{
                 this.battle.combatantManager.randomEnemyEffect(23,['Poison',this.status.main[655]])
             }
         }
-        if(this.battle.relicManager.hasRelic(482,-1)&&preLife>=this.base.life*0.25&&this.life<this.base.life*0.25){
+        if(this.battle.relicManager.hasRelic(482,-1)&&preLife>=this.base.life*0.25&&this.life<this.base.life*0.25&&this.team==0){
             this.statusEffect('Weak',999)
         }
     }

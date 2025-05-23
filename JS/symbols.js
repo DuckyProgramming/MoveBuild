@@ -13618,9 +13618,23 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-1,3,1,3,0,7)
         break
         case 29:
-            layer.fill(255,50,50,fade)
+            /*layer.fill(255,50,50,fade)
             layer.triangle(-4,-12,-8,6,0,6)
-            layer.ellipse(6,0,8,8)
+            layer.ellipse(6,0,8,8)*/
+            layer.fill(255,50,50,fade)
+            layer.beginShape()
+            layer.vertex(-8,6)
+            layer.vertex(-14,1.5)
+            layer.vertex(-7,2)
+            layer.vertex(-5.5,-7)
+            layer.vertex(-2.5,-1)
+            layer.vertex(-0,-10)
+            layer.vertex(2.5,-1)
+            layer.vertex(5.5,-7)
+            layer.vertex(7,2)
+            layer.vertex(14,1.5)
+            layer.vertex(8,6)
+            layer.endShape()
         break
         case 30:
             layer.stroke(100,fade)

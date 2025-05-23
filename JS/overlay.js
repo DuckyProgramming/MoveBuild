@@ -5971,7 +5971,7 @@ class overlay{
                                                     base.additionalSpec.splice(base.additionalSpec.indexOf(47))
                                                 }
                                             }
-                                            base.setCost(2,[0])
+                                            base.setCost(3,[0])
                                         break
 
                                     }
