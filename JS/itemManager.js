@@ -713,7 +713,7 @@ class itemManager{
                 )
                 if(userCombatant.getStatus('Prismatic Bomb Items')>0){
                     for(let a=0,la=userCombatant.getStatus('Prismatic Bomb Items');a<la;a++){
-                        this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.player)
+                        this.addItem(findInternal(['Heal 3',variants.mtg?'2 Mana':'1 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),player)
                     }
                 }
                 this.battle.addSpecificEnergy(effectiveness,player,6)

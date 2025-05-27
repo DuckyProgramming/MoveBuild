@@ -1613,8 +1613,16 @@ class battle{
         if(cardClass==1&&card.name.includes('Cable')&&userCombatant.getStatus('Cable Claw Up')>0){
             userCombatant.statusEffect('Claw Up',userCombatant.getStatus('Cable Claw Up'))
         }
-        if((card.name.includes('Silver')||card.spec.includes(52))&&userCombatant.getStatus('Silver Block')>0){
-            userCombatant.addBlock(userCombatant.getStatus('Silver Block'))
+        if((card.name.includes('Silver')||card.spec.includes(52))){
+            if(userCombatant.getStatus('Silver Block')>0){
+                userCombatant.addBlock(userCombatant.getStatus('Silver Block'))
+            }
+            if(userCombatant.getStatus('Silver Draw')>0){
+                this.cardManagers[player].draw(userCombatant.getStatus('Silver Draw'))
+            }
+            if(userCombatant.getStatus('Silver Vigor')>0){
+                userCombatant.statusEffect('Vigor',userCombatant.getStatus('Silver Vigor'))
+            }
         }
         if(card.spec.includes(52)&&userCombatant.getStatus('Mineral Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Mineral Block'))

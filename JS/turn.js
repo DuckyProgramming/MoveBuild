@@ -147,7 +147,7 @@ class turn{
                                     ]
                                 break
                                 case 71: case 73: case 79: case 99: case 143: case 172: case 175: case 312: case 319: case 322:
-                                case 339: case 348: case 367: case 385: case 389: case 390: case 397: case 447: case 453:
+                                case 339: case 348: case 367: case 385: case 389: case 390: case 397: case 447: case 453: case 465:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -733,8 +733,8 @@ class turn{
                                                 fail=true
                                             }
                                         break
-                                        case 71: case 73: case 79: case 172: case 312: case 322: case 339: case 348:
-                                        case 367: case 99: case 385: case 389: case 390: case 397: case 447: case 453:
+                                        case 71: case 73: case 79: case 172: case 312: case 322: case 339: case 348: case 367: case 99:
+                                        case 385: case 389: case 390: case 397: case 447: case 453: case 465:
                                             if(
                                                 (a>=1&&this.targetTile[0]<0)||
                                                 (a>=2&&this.targetTile[1]<0)){
@@ -1557,7 +1557,7 @@ class turn{
                     case 27:
                         this.targetCombatant.statusEffect('Frail Next Turn',this.effect[1])
                     break
-                    case 30: case 378: case 398:
+                    case 30: case 378: case 398: case 465:
                         this.userCombatant.addBlock(this.effect[1])
                     break
                     case 67:

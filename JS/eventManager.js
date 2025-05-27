@@ -1685,7 +1685,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         if(this.page==0&&a==0){
                             this.battle.addCurrency(200,this.player)
                             transition.scene='battle'
-                            this.battle.setupBattle(types.encounter[findName('Traitor',types.encounter)])
+                            this.battle.setupBattle(types.encounter[findName('Traitor Event',types.encounter)])
                         }
                     break
                     case 135:

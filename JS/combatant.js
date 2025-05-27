@@ -116,6 +116,7 @@ class combatant{
             elemental:0,
             inspiration:[0,0,0,0,0],fugue:0,
             favor:[0,0,0,0,0,0],
+            ringing:[0,0,0,0],
         }
         this.dodges=[]
         this.turnDodges=0
@@ -204,7 +205,9 @@ class combatant{
                 'Recover Draw','Recover Next Turn','Recover Up','Shiv Temporary Damage Taken Up','Free War','Skill Discard Draw','Worker Draw Per Turn','Worker Boost','Assign Draw','Free Assign',
                 'Intangible Strength','Debuff Draw','"Debuff"','Discus Pure','Cycle Rotation','Base Attack Weak Combat','Retain Lock On','History Rewind Tick','Gun Draw','Retain Until Played Per Turn',
                 'Temporary Strength in 2 Turns','Temporary Strength in 3 Turns','Single Splash Vulnerable','Temporary Strength Cycle 3 1','Temporary Strength Cycle 3 2','Temporary Strength Cycle 3 3','Indefinite Pure','Fragile Turn Splash','Favor Per Turn','Favor Energy',
-                'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Thick',
+                'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Item Next Turn','Vigor Per Turn',
+                'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
+                'Bell','Bell Boost',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -289,7 +292,9 @@ class combatant{
                 0,2,0,0,1,0,0,0,0,0,//80
                 0,0,0,0,0,0,1,0,0,0,//81
                 2,2,2,2,2,2,1,0,0,0,//82
-                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,2,0,//83
+                0,1,1,0,0,0,0,0,0,0,//84
+                0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -374,7 +379,9 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//80
                 2,2,3,2,2,2,3,2,2,2,//81
                 0,0,2,0,0,0,2,2,2,2,//82
-                2,2,2,2,2,2,2,0,
+                2,2,2,2,2,2,2,0,2,2,//83
+                2,2,2,2,2,2,2,2,2,2,//84
+                2,2,
             ]}
         /*
         0-none
@@ -479,6 +486,7 @@ class combatant{
         this.inspiration=0
         this.fugue=0
         this.favor=0
+        this.ringing=0
 
         this.turnDodges=0
         this.turnTaken=0
@@ -507,6 +515,7 @@ class combatant{
             elemental:0,
             inspiration:[0,0,0,0,0],fugue:0,
             favor:[0,0,0,0,0,0],
+            ringing:[0,0,0,0],
         }
     }
     reset(){
@@ -1925,7 +1934,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2)
                 ]
             case 71: case 73: case 79: case 99: case 143: case 172: case 175: case 312: case 319: case 322:
-            case 339: case 348: case 367: case 385: case 389: case 390: case 397: case 447: case 453:
+            case 339: case 348: case 367: case 385: case 389: case 390: case 397: case 447: case 453: case 465:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -2611,7 +2620,7 @@ class combatant{
                             }
                         break
                         case 71: case 73: case 79: case 99: case 143: case 172: case 312: case 319: case 322: case 339:
-                        case 348: case 367: case 385: case 389: case 390: case 397: case 447: case 453:
+                        case 348: case 367: case 385: case 389: case 390: case 397: case 447: case 453: case 465:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -2835,7 +2844,7 @@ class combatant{
                         this.targetTile[0].indescriptTarget(this.activated?2:1)
                     break
                     case 71: case 73: case 79: case 99: case 143: case 172: case 312: case 339: case 348: case 367:
-                    case 385: case 389: case 390: case 397: case 447: case 453:
+                    case 385: case 389: case 390: case 397: case 447: case 453: case 465:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -3158,29 +3167,8 @@ class combatant{
                 if(distTargetCombatant(0,this,userCombatant)>=2&&this.battle.relicManager.hasRelic(175,userCombatant.id)){
                     damage+=3*this.battle.relicManager.active[175][userCombatant.id+1]
                 }
-                if(this.status.main[3]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
-                    this.status.main[3]=0
-                }
-                if(this.status.main[21]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
-                    this.status.main[21]=0
-                }
-                if(this.status.main[24]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
-                    this.status.main[24]=0
-                }
-                if(this.status.main[53]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
-                    this.status.main[53]=0
-                }
-                if(this.status.main[57]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
-                    this.status.main[57]=0
-                }
-                if(this.status.main[97]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
-                    this.status.main[97]=0
-                }
-                if(this.status.main[243]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
-                    this.status.main[243]=0
-                }
-                if(this.status.main[319]>0&&this.battle.relicManager.hasRelic(486,userCombatant.id)){
-                    this.status.main[319]=0
+                if(this.battle.relicManager.hasRelic(486,userCombatant.id)){
+                    this.clearDefenseBuff()
                 }
             }
             /*if(userCombatant.status.main[49]>0){
@@ -3583,6 +3571,9 @@ class combatant{
                     this.statusEffect('Block Next Turn',damage)
                 }else if(this.status.main[174]>0){
                     this.battle.loseCurrency(damage*this.status.main[174],this.id)
+                }else if(user>=0&&user<this.battle.combatantManager.combatants.length&&this.battle.combatantManager.combatants[user].status.main[835]>0){
+                    this.battle.combatantManager.combatants[user].status.main[835]--
+                    this.battle.combatantManager.combatants[user].statusEffect('Vigor',ceil(damage))
                 }else{
                     if(damage>0){
                         if(this.id<this.battle.players){
@@ -4243,7 +4234,7 @@ class combatant{
             }
         }
     }
-    addBlock(value){
+    addBlock(value,spec=0){
         if(value>0&&this.status.main[16]<=0&&!(this.battle.modded(67)&&floor(random(0,5))==0)){
             let block=value
             let totalDex=0
@@ -4257,8 +4248,14 @@ class combatant{
                 block-=this.status.main[187]
             }
             if(this.status.main[827]>0){
-                block+=this.status.main[827]
-                this.status.main[827]=0
+                block+=this.status.main[827]*max(1+this.status.main[838]*0.1+this.status.main[839]*0.1,0.2)
+                if(this.status.main[832]<=0&&spec!=1){
+                    if(this.status.main[834]>0){
+                        this.status.main[834]--
+                    }else{
+                        this.status.main[827]=0
+                    }
+                }
             }
             if(this.status.main[7]!=0){
                 totalDex+=this.status.main[7]
@@ -5195,10 +5192,52 @@ class combatant{
             this.battle.addSpecificEnergy(this.status.main[820],this.id,6)
         }
     }
+    bell(){
+        this.statusEffect('Bell',1)
+        let buff=this.status.main[12]*max(1+this.status.main[838]*0.1+this.status.main[839]*0.1,0.2)
+        this.status.main[12]=0
+        for(let a=0,la=this.status.main[840];a<la;a++){
+            this.battle.combatantManager.allEffect(19,[3+this.status.main[841]+buff])
+            this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y-48,264,[5,a*10]))
+        }
+    }
     clearStatus(){
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
             this.statusSignUpdate(a)
+        }
+    }
+    clearDefenseBuff(){
+        if(this.status.main[3]>0){
+            this.status.main[3]=0
+        }
+        if(this.status.main[21]>0){
+            this.status.main[21]=0
+        }
+        if(this.status.main[24]>0){
+            this.status.main[24]=0
+        }
+        if(this.status.main[53]>0){
+            this.status.main[53]=0
+        }
+        if(this.status.main[57]>0){
+            this.status.main[57]=0
+        }
+        if(this.status.main[97]>0){
+            this.status.main[97]=0
+        }
+        if(this.status.main[243]>0){
+            this.status.main[243]=0
+        }
+        if(this.status.main[319]>0){
+            this.status.main[319]=0
+        }
+    }
+    miniStatus(name,value){
+        let status=findList(name,this.status.name)
+        if(status>=0){
+            this.status.main[status]=constrain(this.status.main[status]+value,-999,999)
+            this.statusGeneralUpdate(status)
         }
     }
     statusEffect(name,value){
@@ -5325,13 +5364,7 @@ class combatant{
                         }
                     }
                 }
-                if(this.status.main[status]!=0&&!this.status.active[status]){
-                    this.status.active[status]=true
-                    this.status.size[status]=0
-                    this.status.position[status]=this.status.display.length*6
-                    this.status.display.push(status)
-                }
-                this.statusSignUpdate(status)
+                this.statusGeneralUpdate(status)
             }
         }
     }
@@ -5487,6 +5520,15 @@ class combatant{
             }
             this.status.sign[index]=-1
         }
+    }
+    statusGeneralUpdate(index){
+        if(this.status.main[index]!=0&&!this.status.active[index]){
+            this.status.active[index]=true
+            this.status.size[index]=0
+            this.status.position[index]=this.status.display.length*6
+            this.status.display.push(index)
+        }
+        this.statusSignUpdate(index)
     }
     callEndEffect(){
         if(this.status.main[365]>0){
@@ -5672,128 +5714,144 @@ class combatant{
             if(this.status.main[this.status.ticker[a]]!=0){
                 switch(this.status.ticker[a]){
                     case 4: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,6)} break
-                    case 31: case 52: case 62: case 110: case 121: case 179: this.takeDamage(this.status.main[this.status.ticker[a]],-1); break
-                    case 13: case 14: case 19: case 217: this.addBlock(this.status.main[this.status.ticker[a]]); break
-                    case 20: this.status.main[findList('Weak',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 29: this.status.main[findList('Cannot Move',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 30: case 55: this.status.main[findList('Strength',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 33: case 209: this.heal(this.status.main[this.status.ticker[a]]); break
-                    case 34: case 146: this.status.main[findList('Dexterity',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 37: this.status.main[findList('Cannot Add Block',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 41: case 84: case 285: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.main+=this.status.main[this.status.ticker[a]]} break
+                    case 31: case 52: case 62: case 110: case 121: case 179:
+                        this.takeDamage(this.status.main[this.status.ticker[a]],-1); break
+                    case 13: case 14: case 19: case 217:
+                        this.addBlock(this.status.main[this.status.ticker[a]]); break
+                    case 20: this.miniStatus('Weak',this.status.main[this.status.ticker[a]]); break
+                    case 29: this.miniStatus('Cannot Move',this.status.main[this.status.ticker[a]]); break
+                    case 30: case 55:
+                        this.miniStatus('Strength',this.status.main[this.status.ticker[a]]); break
+                    case 33: case 209:
+                        this.heal(this.status.main[this.status.ticker[a]]); break
+                    case 34: case 146:
+                        this.miniStatus('Dexterity',this.status.main[this.status.ticker[a]]); break
+                    case 37: this.miniStatus('Cannot Add Block',this.status.main[this.status.ticker[a]]); break
+                    case 41: case 84: case 285:
+                        if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.main+=this.status.main[this.status.ticker[a]]} break
                     case 49: if(this.interiorStatus[1]==0){this.takeDamage(this.status.main[this.status.ticker[a]],-1)} break
-                    case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 66: case 598: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
+                    case 58: this.miniStatus('Temporary Strength',this.status.main[this.status.ticker[a]]); break
+                    case 66: case 598:
+                        for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
                     case 67: if(this.combo>0){this.comboConsumed()};this.combo=0; break
-                    case 71: case 72: if(this.combo>0&&this.status.main[this.status.ticker[a]]<0){this.comboConsmed()};this.combo=constrain(this.combo+this.status.main[this.status.ticker[a]],0,this.comboCap); break
-                    case 81: this.status.main[findList('Energy Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 83: this.status.main[findList('Double Damage Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 71: case 72:
+                        if(this.combo>0&&this.status.main[this.status.ticker[a]]<0){this.comboConsmed()};this.combo=constrain(this.combo+this.status.main[this.status.ticker[a]],0,this.comboCap); break
+                    case 81: this.miniStatus('Energy Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 83: this.miniStatus('Double Damage Turn',this.status.main[this.status.ticker[a]]); break
                     case 85: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.discard(this.status.main[this.status.ticker[a]])}; break
-                    case 86: case 128: this.loseHealth(this.status.main[this.status.ticker[a]]); break
-                    case 88: this.status.main[findList('Intangible',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 89: this.status.main[findList('Block Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 86: case 128:
+                        this.loseHealth(this.status.main[this.status.ticker[a]]); break
+                    case 88: this.miniStatus('Intangible',this.status.main[this.status.ticker[a]]); break
+                    case 89: this.miniStatus('Block Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 107: if(this.armed){this.addBlock(this.status.main[this.status.ticker[a]])} break
                     case 113: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,0,0,[0],[3,4])}} break
                     case 116: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,0,0,[],[0])}} break
-                    case 118: this.status.main[findList('Focus',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 118: this.miniStatus('Focus',this.status.main[this.status.ticker[a]]); break
                     case 120: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Step',types.card),0,this.type)}} break
-                    case 124: case 613: this.status.main[findList('Dodge',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 124: case 613:
+                        this.miniStatus('Dodge',this.status.main[this.status.ticker[a]]); break
                     case 125: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Smite',types.card),0,0)}} break
-                    case 129: case 229: this.faith+=this.status.main[this.status.ticker[a]]; break
-                    case 130: case 235: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0)}; break
+                    case 129: case 229:
+                        this.faith+=this.status.main[this.status.ticker[a]]; break
+                    case 130: case 235:
+                        if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0)}; break
                     case 131: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0)}}; break
                     case 132: this.enterStance(1); break
                     case 133: if(this.id<this.battle.players){this.battle.cardManagers[this.id].reserve.addAbstract(findName('Insight',types.card),0,0,0,[5],[])}; break
-                    case 135: case 343: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,6)};if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergyGen(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addEnergyGen(this.status.main[this.status.ticker[a]],this.id)} break
-                    case 142: case 155: this.charge+=this.status.main[this.status.ticker[a]]; break
+                    case 135: case 343:
+                        if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,6)};if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergyGen(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addEnergyGen(this.status.main[this.status.ticker[a]],this.id)} break
+                    case 142: case 155:
+                        this.charge+=this.status.main[this.status.ticker[a]]; break
                     case 143: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Burn',types.card),0,constants.playerNumber+1)}} break
-                    case 149: this.status.main[findList('No Amplify',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 149: this.miniStatus('No Amplify',this.status.main[this.status.ticker[a]]); break
                     case 157: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,0,0,[0],[3,2])}} break
                     case 158: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,1,0,0,0,[0],[3,2])}} break
-                    case 164: this.status.main[findList('Energy in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 180: this.status.main[findList('Take Damage',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 181: this.status.main[findList('Take Damage Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 182: this.status.main[findList('Block in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 164: this.miniStatus('Energy in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 180: this.miniStatus('Take Damage',this.status.main[this.status.ticker[a]]); break
+                    case 181: this.miniStatus('Take Damage Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 182: this.miniStatus('Block in 2 Turns',this.status.main[this.status.ticker[a]]); break
                     case 189: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Conviction',types.card),0,types.card[findName('Conviction',types.card)].list)}} break
                     case 197: if(floor(random(0,3))==0){this.takeDamage(this.status.main[this.status.ticker[a]],-1);this.status.main[this.status.ticker[a]]=floor(this.status.main[this.status.ticker[a]]/2)} break
                     case 203: this.heal(this.status.main[this.status.ticker[a]]); break
-                    case 207: this.status.main[findList('Temporary Dexterity',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 212: this.status.main[findList('Half Damage Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 220: this.status.main[findList('Jinx',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 207: this.miniStatus('Temporary Dexterity',this.status.main[this.status.ticker[a]]); break
+                    case 212: this.miniStatus('Half Damage Turn',this.status.main[this.status.ticker[a]]); break
+                    case 220: this.miniStatus('Jinx',this.status.main[this.status.ticker[a]]); break
                     case 222: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.burn+=this.status.main[this.status.ticker[a]]}; break
                     case 232: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Peak',types.card),0,0)}}; break
                     case 237: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Hyperquill',types.card),0,0)}}; break
                     case 244: this.takeDamage(this.status.main[this.status.ticker[a]],-1);this.status.next[findList('Damage Cycle 3 3',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 245: this.status.main[findList('Damage Cycle 3 1',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 246: this.status.main[findList('Damage Cycle 3 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 248: this.status.main[findList('No Damage',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 245: this.miniStatus('Damage Cycle 3 1',this.status.main[this.status.ticker[a]]); break
+                    case 246: this.miniStatus('Damage Cycle 3 2',this.status.main[this.status.ticker[a]]); break
+                    case 248: this.miniStatus('No Damage',this.status.main[this.status.ticker[a]]); break
                     case 249: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.freeze+=this.status.main[this.status.ticker[a]]}; break
-                    case 259: this.status.main[findList('Vulnerable',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 262: this.status.main[findList('Luck Guarantee',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 265: this.status.main[findList('Temporary Damage Down',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 259: this.miniStatus('Vulnerable',this.status.main[this.status.ticker[a]]); break
+                    case 262: this.miniStatus('Luck Guarantee',this.status.main[this.status.ticker[a]]); break
+                    case 265: this.miniStatus('Temporary Damage Down',this.status.main[this.status.ticker[a]]); break
                     case 268: this.addBlock(this.status.main[this.status.ticker[a]]);this.status.next[findList('Block Cycle 2 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 269: this.status.main[findList('Block Cycle 2 1',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 270: this.status.main[findList('Temporary Damage Up',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 269: this.miniStatus('Block Cycle 2 1',this.status.main[this.status.ticker[a]]); break
+                    case 270: this.miniStatus('Temporary Damage Up',this.status.main[this.status.ticker[a]]); break
                     case 278: this.loseHealth(1); break
-                    case 282: this.status.main[findList('Strength Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 283: this.status.main[findList('Dexterity Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 287: this.status.main[findList('Strength in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 282: this.miniStatus('Strength Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 283: this.miniStatus('Dexterity Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 287: this.miniStatus('Strength in 2 Turns',this.status.main[this.status.ticker[a]]); break
                     case 294: if(floor(random(0,3))==0){this.heal(this.status.main[this.status.ticker[a]]);this.status.main[this.status.ticker[a]]=0} break
-                    case 302: this.status.main[findList('Bleed',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 303: this.status.main[findList('Bleed Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 302: this.miniStatus('Bleed',this.status.main[this.status.ticker[a]]); break
+                    case 303: this.miniStatus('Bleed Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 304: if(this.status.main[findList('Cannot Move',this.status.name)]>0){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)}} break
                     case 307: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.main+=constrain(floor(this.status.main[this.status.ticker[a]]/3),0,1+this.getStatus('Wisdom'))}; break
-                    case 311: this.status.main[findList('History',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 311: this.miniStatus('History',this.status.main[this.status.ticker[a]]); break
                     case 316: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[this.status.ticker[a]])}; break
-                    case 328: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.id)}} break
+                    case 328: case 828:
+                        if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.id)}} break
                     case 331: if(this.id<this.battle.players){this.battle.overlayManager.overlays[58][this.id].active=true;this.battle.overlayManager.overlays[58][this.id].activate([this.status.main[this.status.ticker[a]],0])} break
                     case 332: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Dual\nDiscus']])<=0){this.battle.cardManagers[this.id].hand.add(findName('Dual\nDiscus',types.card),0,0)}} break
-                    case 333: this.status.main[findList('Temporary Draw',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 334: this.status.main[findList('Temporary Draw Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 344: this.status.main[findList('Base Energy Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 346: this.status.main[findList('Miracle Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 333: this.miniStatus('Temporary Draw',this.status.main[this.status.ticker[a]]); break
+                    case 334: this.miniStatus('Temporary Draw Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 344: this.miniStatus('Base Energy Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 346: this.miniStatus('Miracle Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 347: if(!sub){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.combatantManager.tickSub()}} break
                     case 348: this.addBarrier(this.status.main[this.status.ticker[a]]); break
-                    case 349: this.status.main[findList('Miracle in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 350: this.status.main[findList('Extra Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 351: this.status.main[findList('Extra Turn Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 349: this.miniStatus('Miracle in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 350: this.miniStatus('Extra Turn',this.status.main[this.status.ticker[a]]); break
+                    case 351: this.miniStatus('Extra Turn Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 356: this.battle.combatantManager.highestEffect(0,[this.status.main[this.status.ticker[a]],this.id]); break
-                    case 359: this.status.main[findList('Temporary Dexterity',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 359: this.miniStatus('Temporary Dexterity',this.status.main[this.status.ticker[a]]); break
                     case 364: this.battle.setEnergy(0,this.id); break
                     case 366: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Pristine',types.card),0,0)} break
                     case 368: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Stride',types.card),0,0)}} break
-                    case 369: this.status.main[findList('Stride Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 371: this.status.main[findList('Dexterity in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 372: this.status.main[findList('Strength in 3 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 373: this.status.main[findList('Dexterity in 3 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 377: case 663: case 817: this.battle.combatantManager.areaAbstract(0,[this.status.main[this.status.ticker[a]],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0); break
-                    case 389: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 369: this.miniStatus('Stride Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 371: this.miniStatus('Dexterity in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 372: this.miniStatus('Strength in 3 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 373: this.miniStatus('Dexterity in 3 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 377: case 663: case 817:
+                        this.battle.combatantManager.areaAbstract(0,[this.status.main[this.status.ticker[a]],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0); break
+                    case 389: this.miniStatus('Temporary Strength',this.status.main[this.status.ticker[a]]); break
                     case 390: this.battle.combatantManager.allEffect(43,[this.status.main[this.status.ticker[a]],this.id]); break
                     case 391: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].discard.add(findName('Prismatic\nBomb',types.card),0,0)}} break
                     case 393: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){let index=floor(random(0,this.battle.cardManagers[this.id].deck.cards.length));this.battle.cardManagers[this.id].deck.copy(this.battle.cardManagers[this.id].hand.cards,index,index+1,0)}} break
                     case 394: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,6)};this.status.next[findList('Energy Cycle 2 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 395: this.status.main[findList('Energy Cycle 2 1',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 395: this.miniStatus('Energy Cycle 2 1',this.status.main[this.status.ticker[a]]); break
                     case 396: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,5,2,0,[],[3])}} break
                     case 397: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[this.status.ticker[a]])} break
                     case 417: this.metal+=this.status.main[this.status.ticker[a]]; break
                     case 423: this.battle.setTurn(this.battle.turn.total+this.status.main[this.status.ticker[a]]); break
-                    case 428: this.status.main[findList('No Damage Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 428: this.miniStatus('No Damage Turn',this.status.main[this.status.ticker[a]]); break
                     case 435: if(this.id<this.battle.players){this.battle.overlayManager.overlays[46][this.id].active=true;this.battle.overlayManager.overlays[46][this.id].activate([this.status.main[this.status.ticker[a]]])} break
                     case 440: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[1]+=this.status.main[this.status.ticker[a]]} break
                     case 441: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,2,2,[0],[3,11,1,[[1]]])}} break
                     case 446: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Astrology']])<=0){this.battle.cardManagers[this.id].hand.add(findName('Astrology',types.card),0,0)}} break
                     case 450: this.ammo+=this.status.main[this.status.ticker[a]]; break
                     case 452: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,1,0,[],[0,0])}} break
-                    case 466: this.status.main[findList('Temporary All Cost Up',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 468: this.status.main[findList('Buffer',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 477: this.status.main[findList('Counter Once',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 487: this.status.main[findList('Play Limit',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 466: this.miniStatus('Temporary All Cost Up',this.status.main[this.status.ticker[a]]); break
+                    case 468: this.miniStatus('Buffer',this.status.main[this.status.ticker[a]]); break
+                    case 477: this.miniStatus('Counter Once',this.status.main[this.status.ticker[a]]); break
+                    case 487: this.miniStatus('Play Limit',this.status.main[this.status.ticker[a]]); break
                     case 488: this.wish+=this.status.main[this.status.ticker[a]]; break
-                    case 491: this.status.main[findList('Lose Health',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 491: this.miniStatus('Lose Health',this.status.main[this.status.ticker[a]]); break
                     case 493: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.exhaustViable(this.status.main[this.status.ticker[a]])}; break
                     case 496: this.vision+=this.status.main[this.status.ticker[a]]; break
-                    case 497: this.status.main[findList('Knowledge',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 498: this.status.main[findList('Knowledge Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 497: this.miniStatus('Knowledge',this.status.main[this.status.ticker[a]]); break
+                    case 498: this.miniStatus('Knowledge Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 501: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseSpecificEnergy(-this.status.main[this.status.ticker[a]],this.id,6)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,6)} break
                     case 502: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseSpecificEnergy(-this.status.main[this.status.ticker[a]],this.id,1)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,1)} break
                     case 503: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseSpecificEnergy(-this.status.main[this.status.ticker[a]],this.id,2)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,2)} break
@@ -5802,107 +5860,110 @@ class combatant{
                     case 506: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseSpecificEnergy(-this.status.main[this.status.ticker[a]],this.id,5)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,5)} break
                     case 507: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseSpecificEnergy(-this.status.main[this.status.ticker[a]],this.id,0)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,0)} break
                     case 509: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.free+=this.status.main[this.status.ticker[a]]} break
-                    case 517: this.status.main[findList('Invisible',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 517: this.miniStatus('Invisible',this.status.main[this.status.ticker[a]]); break
                     case 518: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id,6)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,-1)} break
-                    case 523: this.status.main[findList('(E) Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 524: this.status.main[findList('(W) Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 525: this.status.main[findList('(B) Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 526: this.status.main[findList('(K) Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 527: this.status.main[findList('(G) Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 528: this.status.main[findList('(R) Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 529: this.status.main[findList('(N) Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 530: this.status.main[findList('(E) in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 531: this.status.main[findList('(W) in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 532: this.status.main[findList('(B) in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 533: this.status.main[findList('(K) in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 534: this.status.main[findList('(G) in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 535: this.status.main[findList('(R) in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 536: this.status.main[findList('(N) in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 523: this.miniStatus('(E) Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 524: this.miniStatus('(W) Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 525: this.miniStatus('(B) Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 526: this.miniStatus('(K) Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 527: this.miniStatus('(G) Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 528: this.miniStatus('(R) Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 529: this.miniStatus('(N) Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 530: this.miniStatus('(E) in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 531: this.miniStatus('(W) in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 532: this.miniStatus('(B) in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 533: this.miniStatus('(K) in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 534: this.miniStatus('(G) in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 535: this.miniStatus('(R) in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 536: this.miniStatus('(N) in 2 Turns',this.status.main[this.status.ticker[a]]); break
                     case 545: this.battle.combatantManager.allEffect(6,[this.status.main[this.status.ticker[a]]]); break
-                    case 546: this.status.main[findList('Frail',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 548: this.status.main[findList('Counter Once',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 550: this.status.main[findList('Counter Bleed Once',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 552: this.status.main[findList('Counter Gun Once',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 546: this.miniStatus('Frail',this.status.main[this.status.ticker[a]]); break
+                    case 548: this.miniStatus('Counter Once',this.status.main[this.status.ticker[a]]); break
+                    case 550: this.miniStatus('Counter Bleed Once',this.status.main[this.status.ticker[a]]); break
+                    case 552: this.miniStatus('Counter Gun Once',this.status.main[this.status.ticker[a]]); break
                     case 555: this.battle.combatantManager.allEffect(48,['Strength',this.status.main[this.status.ticker[a]]]);this.status.next[findList('All Strength Cycle 4 4',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 556: this.status.main[findList('All Strength Cycle 4 1',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 557: this.status.main[findList('All Strength Cycle 4 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 558: this.status.main[findList('All Strength Cycle 4 3',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 561: this.status.main[findList('Protected Invisible',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 556: this.miniStatus('All Strength Cycle 4 1',this.status.main[this.status.ticker[a]]); break
+                    case 557: this.miniStatus('All Strength Cycle 4 2',this.status.main[this.status.ticker[a]]); break
+                    case 558: this.miniStatus('All Strength Cycle 4 3',this.status.main[this.status.ticker[a]]); break
+                    case 561: this.miniStatus('Protected Invisible',this.status.main[this.status.ticker[a]]); break
                     case 566: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,6)};this.status.next[findList('(E) Cycle 2 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 567: this.status.main[findList('(E) Cycle 2 1',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 567: this.miniStatus('(E) Cycle 2 1',this.status.main[this.status.ticker[a]]); break
                     case 568: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,1)};this.status.next[findList('(W) Cycle 2 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 569: this.status.main[findList('(W) Cycle 2 1',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 569: this.miniStatus('(W) Cycle 2 1',this.status.main[this.status.ticker[a]]); break
                     case 570: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,2)};this.status.next[findList('(B) Cycle 2 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 571: this.status.main[findList('(B) Cycle 2 1',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 571: this.miniStatus('(B) Cycle 2 1',this.status.main[this.status.ticker[a]]); break
                     case 572: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,3)};this.status.next[findList('(K) Cycle 2 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 573: this.status.main[findList('(K) Cycle 2 1',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 573: this.miniStatus('(K) Cycle 2 1',this.status.main[this.status.ticker[a]]); break
                     case 574: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,4)};this.status.next[findList('(G) Cycle 2 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 575: this.status.main[findList('(G) Cycle 2 1',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 575: this.miniStatus('(G) Cycle 2 1',this.status.main[this.status.ticker[a]]); break
                     case 576: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,5)};this.status.next[findList('(R) Cycle 2 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 577: this.status.main[findList('(R) Cycle 2 1',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 577: this.miniStatus('(R) Cycle 2 1',this.status.main[this.status.ticker[a]]); break
                     case 578: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,0)};this.status.next[findList('(N) Cycle 2 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 579: this.status.main[findList('(N) Cycle 2 1',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 579: this.miniStatus('(N) Cycle 2 1',this.status.main[this.status.ticker[a]]); break
                     case 581: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id);this.battle.loseEnergyGen(-this.status.main[this.status.ticker[a]],this.id)}else{this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,6);this.battle.addSpecificEnergyGen(this.status.main[this.status.ticker[a]],this.id,6)} break
-                    case 582: this.status.main[findList('Base (E) Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 582: this.miniStatus('Base (E) Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 586: if(this.status.main[this.status.ticker[a]]<0){this.battle.loseEnergy(-this.status.main[this.status.ticker[a]],this.id);this.battle.loseEnergyGen(-this.status.main[this.status.ticker[a]],this.id)}else{let roll=floor(random(0,7));this.battle.addSpecificEnergy(this.status.main[this.status.ticker[a]],this.id,roll);this.battle.addSpecificEnergyGen(this.status.main[this.status.ticker[a]],this.id,roll)} break
                     case 592: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(5)} break
                     case 596: this.battle.combatantManager.allEffect(48,['Burn',this.status.main[this.status.ticker[a]]]); break
                     case 597: this.battle.combatantManager.allEffect(48,['Freeze',this.status.main[this.status.ticker[a]]]); break
                     case 600: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.retain(this.status.main[this.status.ticker[a]])}; break
-                    case 612: this.status.main[findList('Counter Push Once',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 614: this.status.main[findList('Dodge',this.status.name)]+=this.status.main[this.status.ticker[a]];this.status.next[findList('Dodge Cycle 2 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 615: this.status.main[findList('Dodge Cycle 2 1',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 619: this.status.main[findList('Random Mana Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 612: this.miniStatus('Counter Push Once',this.status.main[this.status.ticker[a]]); break
+                    case 614: this.miniStatus('Dodge',this.status.main[this.status.ticker[a]]);this.status.next[findList('Dodge Cycle 2 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 615: this.miniStatus('Dodge Cycle 2 1',this.status.main[this.status.ticker[a]]); break
+                    case 619: this.miniStatus('Random Mana Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 627: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.exhaustRandom+=this.status.main[this.status.ticker[a]]} break
-                    case 630: case 654: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[11]+=this.status.main[this.status.ticker[a]]} break
+                    case 630: case 654:
+                        if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[11]+=this.status.main[this.status.ticker[a]]} break
                     case 633: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[3]+=this.status.main[this.status.ticker[a]]} break
                     case 634: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.dropDrawShuffle(this.id,findName('Dark\nMatter',types.card),0,0)}} break
                     case 640: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(0)} break
                     case 641: if(this.stance==2){this.addBlock(this.status.main[this.status.ticker[a]])} break
                     case 643: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Snowflake',types.card),0,0)} break
                     case 653: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.exhaust(this.status.main[this.status.ticker[a]])} break
-                    case 657: this.status.main[findList('Lose Health Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 657: this.miniStatus('Lose Health Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 661: if(this.charge<=5){this.addBlock(this.status.main[this.status.ticker[a]])} break
-                    case 665: this.status.main[findList('Radiation',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 665: this.miniStatus('Radiation',this.status.main[this.status.ticker[a]]); break
                     case 668: this.enterStance(2); break
                     case 684: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.duplicateSelect(this.status.main[this.status.ticker[a]])} break
-                    case 690: if(this.status.main[findList('Control',this.status.name)]==0){this.status.main[findList('Control',this.status.name)]+=this.status.main[this.status.ticker[a]]} break
+                    case 690: if(this.status.main[findName('Control',this.status.name)]==0){this.miniStatus('Control',this.status.main[this.status.ticker[a]])} break
                     case 691: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].addRandomAbstract(2,0,0,2,2,[4],[3,4,1,[[1]]])}} break
                     case 694: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.spec.push([25,this.status.main[this.status.ticker[a]]])} break
                     case 695: this.battle.combatantManager.allEffect(48,['Shock',this.status.main[this.status.ticker[a]]]); break
                     case 701: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(3)} break
-                    case 706: this.status.main[findList('Armor',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 709: this.status.main[findList('Free Card',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 706: this.miniStatus('Armor',this.status.main[this.status.ticker[a]]); break
+                    case 709: this.miniStatus('Free Card',this.status.main[this.status.ticker[a]]); break
                     case 710: if(this.id<this.battle.players){this.battle.overlayManager.overlays[8][this.id].active=true;this.battle.overlayManager.overlays[8][this.id].activate()} break
                     case 720: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.drop(this.id,findName('Moriya\nTalisman',types.card),0,0)}} break
-                    case 723: this.status.main[findList('Counter Shockwave Once',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 723: this.miniStatus('Counter Shockwave Once',this.status.main[this.status.ticker[a]]); break
                     case 730: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].reserve.drawEffect(this.battle.cardManagers[this.id].hand.addReturn(findName('Reversal',types.card),0,constants.playerNumber+1))}} break
                     case 731: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].reserve.drawEffect(this.battle.cardManagers[this.id].hand.addReturn(findName('Sharp\nWord',types.card),0,constants.playerNumber+1))}} break
                     case 733: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].reserve.drawEffect(this.battle.cardManagers[this.id].hand.addReturn(findName('Shining\nMoon',types.card),0,constants.playerNumber+1))}} break
-                    case 734: this.status.main[findList('Intangible Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 739: this.status.main[findList('Temporary Card Play Temporary Strength',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 762: this.status.main[findList('Random Mana in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 734: this.miniStatus('Intangible Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 739: this.miniStatus('Temporary Card Play Temporary Strength',this.status.main[this.status.ticker[a]]); break
+                    case 762: this.miniStatus('Random Mana in 2 Turns',this.status.main[this.status.ticker[a]]); break
                     case 765: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.costDown(this.status.main[this.status.ticker[a]])} break
                     case 766: this.addBounce(this.status.main[this.status.ticker[a]]); break
-                    case 771: this.status.main[findList('Energy in 3 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 772: this.status.main[findList('Energy in 4 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 773: this.status.main[findList('(E) in 3 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 774: this.status.main[findList('(E) in 4 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 771: this.miniStatus('Energy in 3 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 772: this.miniStatus('Energy in 4 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 773: this.miniStatus('(E) in 3 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 774: this.miniStatus('(E) in 4 Turns',this.status.main[this.status.ticker[a]]); break
                     case 786: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.confuse(this.status.main[this.status.ticker[a]])}; break
                     case 791: if(this.id<this.battle.players){this.battle.overlayManager.overlays[168][this.id].active=true;this.battle.overlayManager.overlays[168][this.id].activate([this.status.main[this.status.ticker[a]]])} break
                     case 796: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.spec.push([82,this.status.main[this.status.ticker[a]]])} break
-                    case 804: this.status.main[findList(['Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill'][floor(random(0,5))],this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 804: this.miniStatus(['Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill'][floor(random(0,5))],this.status.main[this.status.ticker[a]]); break
                     case 809: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.retain2(this.status.main[this.status.ticker[a]])}; break
-                    case 810: this.status.main[findList('Temporary Strength Next Turn',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 811: this.status.main[findList('Temporary Strength in 2 Turns',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 810: this.miniStatus('Temporary Strength Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 811: this.miniStatus('Temporary Strength in 2 Turns',this.status.main[this.status.ticker[a]]); break
                     case 812: this.battle.combatantManager.areaAbstract(2,['Vulnerable',this.status.main[this.status.ticker[a]]],this.tilePosition,[3,this.id],[0,1],false,0); break
                     case 813: this.statusEffect('Temporary Strength',this.status.main[this.status.ticker[a]]);this.status.next[findList('Temporary Strength Cycle 3 3',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 814: this.status.main[findList('Temporary Strength Cycle 3 1',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
-                    case 815: this.status.main[findList('Temporary Strength Cycle 3 2',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 814: this.miniStatus('Temporary Strength Cycle 3 1',this.status.main[this.status.ticker[a]]); break
+                    case 815: this.miniStatus('Temporary Strength Cycle 3 2',this.status.main[this.status.ticker[a]]); break
                     case 818: this.gainFavor(this.status.main[this.status.ticker[a]]); break
                     case 821: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(1)} break
                     case 824: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(15)} break
                     case 825: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(2)} break
+                    case 829: this.miniStatus('Vigor',this.status.main[this.status.ticker[a]]); break
+                    case 830: this.miniStatus('Vigil',this.status.main[this.status.ticker[a]]); break
                     
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6&&
@@ -5928,6 +5989,20 @@ class combatant{
                     this.status.main[this.status.ticker[a]]=0
                 }
                 this.statusSignUpdate(this.status.ticker[a])
+            }
+        }
+        if(this.status.main[831]>0){
+            if(this.status.main[833]>0){
+                this.status.main[833]--
+            }else{
+                this.status.main[12]=0
+            }
+        }
+        if(this.status.main[832]>0){
+            if(this.status.main[834]>0){
+                this.status.main[834]--
+            }else{
+                this.status.main[827]=0
             }
         }
         for(let a=0,la=this.status.next.length;a<la;a++){
@@ -6087,7 +6162,7 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Sagume': case 'Fernando': case 'Decratite':
+            case 'Sagume': case 'Fernando': case 'Decratite': case 'Meri':
             case 'Ume':
                 switch(type){
                     case 0:
@@ -6208,7 +6283,7 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Sagume': case 'Fernando': case 'Decratite':
+            case 'Sagume': case 'Fernando': case 'Decratite': case 'Meri':
             case 'Ume':
                 switch(type){
                     case 0:
@@ -7595,6 +7670,9 @@ class combatant{
             for(let a=0,la=this.infoAnim.favor.length;a<la;a++){
                 this.infoAnim.favor[a]=smoothAnim(this.infoAnim.favor[a],this.favor>a,0,1,5)
             }
+            for(let a=0,la=this.infoAnim.ringing.length;a<la;a++){
+                this.infoAnim.ringing[a]=smoothAnim(this.infoAnim.ringing[a],this.ringing>a,0,1,5)
+            }
             if(this.faith>=12&&this.infoAnim.faith[9]>=1){
                 this.faith-=12
                 this.enterStance(5)
@@ -7625,6 +7703,10 @@ class combatant{
             if(this.favor>=6){
                 this.favor-=6
                 this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0)
+            }
+            if(this.ringing>=4){
+                this.ringing-=4
+                this.bell()
             }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)

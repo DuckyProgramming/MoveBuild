@@ -3169,7 +3169,11 @@ class relicManager{
                     if(this.relics[a].player==args[0]&&this.relics[a].type!=0){
                         if(index>=args[1]*30&&index<args[1]*30+30){
                             if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2-150+position%6*60,this.layer.height/2-120+floor(position/6)*60)<20&&this.active[this.relics[a].type][args[0]+1]>0&&!(variants.mtg&&this.relics[a].rarity==4)){
-                                this.battle.addCurrency(this.relics[a].value*(1+this.active[307][this.relics[a].player+1]*0.5),this.relics[a].player)
+                                this.battle.addCurrency(this.relics[a].value*(1+this.active[307][this.relics[a].player+1]*0.5)*(
+                                    this.relics[a].rarity==0&&this.hasRelic(302,this.relics[a].player)||
+                                    this.relics[a].rarity==1&&this.hasRelic(303,this.relics[a].player)||
+                                    this.relics[a].rarity==2&&this.hasRelic(304,this.relics[a].player)||
+                                    this.relics[a].rarity==3&&this.hasRelic(305,this.relics[a].player)?0.5:1),this.relics[a].player)
                                 this.loseRelic(this.relics[a].type,args[0])
                             }
                             position++

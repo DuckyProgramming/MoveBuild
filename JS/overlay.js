@@ -1388,6 +1388,9 @@ class overlay{
                                         if(args[3].includes(1)){
                                             this.cards[a].costVariant(0)
                                         }
+                                        if(args[3].includes(4)){
+                                            this.cards[a].setCost(0,[2])
+                                        }
                                         list[a%list.length].splice(index,1)
                                     }
                                 break
@@ -1409,6 +1412,9 @@ class overlay{
                                         }
                                         if(args[3].includes(1)){
                                             this.cards[a].costVariant(0)
+                                        }
+                                        if(args[3].includes(4)){
+                                            this.cards[a].setCost(0,[2])
                                         }
                                         list.splice(index,1)
                                     }
@@ -3201,7 +3207,7 @@ class overlay{
             break
             case 12:
                 this.layer.fill(160,this.fade*0.8)
-                this.layer.rect(this.layer.width/2,this.layer.height/2+100,360,560,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2+100,300,560,10)
                 this.layer.rect(this.layer.width/2,this.layer.height/2-205,120,40,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
@@ -3211,11 +3217,11 @@ class overlay{
                 for(let a=0,la=this.battle.nodeManager.listing.static[this.world][2].length;a<la;a++){
                     this.layer.noStroke()
                     this.layer.fill(120,this.fade)
-                    this.layer.rect(this.layer.width/2,this.layer.height/2-105+a*50,340,40,10)
+                    this.layer.rect(this.layer.width/2,this.layer.height/2-110+a*40,280,30,10)
                     this.layer.fill(0,this.fade)
                     this.layer.noStroke()
-                    this.layer.textSize(18)
-                    this.layer.text(types.encounter[this.battle.nodeManager.listing.static[this.world][2][a]].name,this.layer.width/2,this.layer.height/2-105+a*50)
+                    this.layer.textSize(15)
+                    this.layer.text(types.encounter[this.battle.nodeManager.listing.static[this.world][2][a]].name,this.layer.width/2,this.layer.height/2-110+a*40)
                 }
             break
             case 13:
@@ -5059,9 +5065,11 @@ class overlay{
                                     this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[1],[])
                                 }else if(this.setupArgs[2]==57){
                                     if(this.setupArgs[3].includes(0)){
-                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,1],[[1,4],])
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,1],[[1,4]])
                                     }else if(this.setupArgs[3].includes(1)){
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,12],[[1,4],0])
+                                    }else if(this.setupArgs[3].includes(4)){
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,13],[[1,4]])
                                     }else{
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4],[[1,4]])
                                         if(this.setupArgs[3].includes(3)){
@@ -5236,7 +5244,7 @@ class overlay{
                 break
                 case 12:
                     for(let a=0,la=this.battle.nodeManager.listing.static[this.world][2].length;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-105+a*50},width:340,height:40})){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-110+a*40},width:280,height:40})){
                             this.active=false
                             this.battle.nodeManager.setCombat(2,this.battle.nodeManager.listing.static[this.world][2][a])
                         }
@@ -6591,9 +6599,11 @@ class overlay{
                                     this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[1],[])
                                 }else if(this.setupArgs[2]==57){
                                     if(this.setupArgs[3].includes(0)){
-                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,1],[[1,4],])
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,1],[[1,4]])
                                     }else if(this.setupArgs[3].includes(1)){
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,12],[[1,4],0])
+                                    }else if(this.setupArgs[3].includes(4)){
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,13],[[1,4]])
                                     }else{
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4],[[1,4]])
                                         if(this.setupArgs[3].includes(3)){

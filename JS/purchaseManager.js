@@ -22,11 +22,11 @@ class purchaseManager{
     generalizedListing(type){
         switch(type){
             case 0:
-                return variants.business?[[80,100],[180,225],[400,500]]:[[80,100],[120,150],[200,250]]
+                return variants.business?[[80,100],[180,225],[480,600]]:[[80,100],[120,150],[240,300]]
             case 1:
                 return variants.business?[[100,125],[240,360],[600,750]]:[[100,125],[160,240],[400,500]]
             case 2:
-                return variants.business?[[160,200],[360,450],[600,750],[280,350]]:[[160,200],[240,300],[400,500],[200,250]]
+                return variants.business?[[144,180],[324,405],[540,675],[252,315]]:[[144,180],[216,270],[360,450],[180,225]]
         }
     }
     setup(type){

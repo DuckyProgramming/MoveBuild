@@ -3,21 +3,41 @@ OPERATION ICATHIA
 
 
 
-CARDSET 79 [MAY]
+CARDSET 80 [MAY]
 
 
 
-more cards with [echo]
+ally upgrade - based on ally draw
+
+interval ringing - 1 ringing per turn
 
 
 
-cream paper?
+1 subcard at some point
+
+1 new event
 
 
 
-reorganize collection, ultraprism, and tutorial pages
+GIMMICK STORAGE SPACE
 
-new event card - could require ally card reorganization
+[temporary resonance]
 
 
 
+MERI - 01
+
+cards
+
+junkyard counterparts
+
+MERI - 02
+
+tutorial
+-h traitor boss
+
+
+
+1 new boss
+duck from apocaducks
+shotgun and pistol

@@ -348,7 +348,7 @@ class nodeManager{
                     transition.scene='event'
                     this.battle.setupSpecificEvent(findName('Placeholder Event',types.event))
                 }else{
-                    if(args[1]==5){
+                    if(args==undefined||args[1]==5){
                         this.battle.relicManager.activate(7,[type])
                         transition.scene='event'
                         this.battle.setupEvent()

@@ -509,7 +509,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				bonus+=user.status.main[797]
 			}
 			if(user.status.main[12]>0){
-				bonus+=user.status.main[12]
+				bonus+=user.status.main[12]*max(1+user.status.main[838]*0.1+user.status.main[839]*0.1,0.2)
 			}
 			if(user.status.main[40]>0){
 				bonus+=user.status.main[40]
@@ -661,7 +661,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				bonusB+=user.status.main[797]
 			}
 			if(user.status.main[827]>0){
-				bonusB+=user.status.main[827]
+				bonusB+=user.status.main[827]*max(1+user.status.main[838]*0.1+user.status.main[839]*0.1,0.2)
 			}
 			if(user.status.main[168]>0){
 				bonusB+=user.status.main[168]
@@ -1217,6 +1217,7 @@ function intentDescription(attack,user,info){
 			case 461: return `Gain ${info?attack.effect[0]:`?`} Intangible\nGain ${info?attack.effect[1]:`?`} Control`
 			case 462: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAnywhere\nTarget Cannot Move\nFor ${info?attack.effect[1]:`?`} Turn${pl(attack.effect[1])}`
 			case 464: return `Add ${info?attack.effect[0]:`?`} Block\nto Allied Constructs`
+			case 465: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Block\nRange 1-3`
 
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
@@ -2005,7 +2006,7 @@ function quickItem(type,player){
 }
 function outEncounter(){
 	console.log(`
-Total:${current.nodeManager.listing.static[0][0].length+current.nodeManager.listing.static[0][1].length+current.nodeManager.listing.static[0][2].length+current.nodeManager.listing.static[0][3].length+current.nodeManager.listing.static[1][0].length+current.nodeManager.listing.static[1][1].length+current.nodeManager.listing.static[1][2].length+current.nodeManager.listing.static[2][0].length+current.nodeManager.listing.static[2][1].length+current.nodeManager.listing.static[2][2].length+current.nodeManager.listing.static[3][1].length+current.nodeManager.listing.static[3][2].length}/166
+Total:${current.nodeManager.listing.static[0][0].length+current.nodeManager.listing.static[0][1].length+current.nodeManager.listing.static[0][2].length+current.nodeManager.listing.static[0][3].length+current.nodeManager.listing.static[1][0].length+current.nodeManager.listing.static[1][1].length+current.nodeManager.listing.static[1][2].length+current.nodeManager.listing.static[2][0].length+current.nodeManager.listing.static[2][1].length+current.nodeManager.listing.static[2][2].length+current.nodeManager.listing.static[3][1].length+current.nodeManager.listing.static[3][2].length}/172
 \nWorld 1:
 Easies:${current.nodeManager.listing.static[0][3].length}/12
 (${current.nodeManager.listing.name[0][3].join(',')})
@@ -2013,13 +2014,13 @@ Enemies:${current.nodeManager.listing.static[0][0].length}/24
 (${current.nodeManager.listing.name[0][0].join(',')})
 Elites:${current.nodeManager.listing.static[0][1].length}/12
 (${current.nodeManager.listing.name[0][1].join(',')})
-Bosses:${current.nodeManager.listing.static[0][2].length}/8
+Bosses:${current.nodeManager.listing.static[0][2].length}/10
 (${current.nodeManager.listing.name[0][2].join(',')})
 Total:${current.nodeManager.listing.static[0][0].length+current.nodeManager.listing.static[0][1].length+current.nodeManager.listing.static[0][2].length+current.nodeManager.listing.static[0][3].length}/56
 \nWorld 2:
 Enemies:${current.nodeManager.listing.static[1][0].length}/32
 (${current.nodeManager.listing.name[1][0].join(',')})
-Elites:${current.nodeManager.listing.static[1][1].length}/12
+Elites:${current.nodeManager.listing.static[1][1].length}/16
 (${current.nodeManager.listing.name[1][1].join(',')})
 Bosses:${current.nodeManager.listing.static[1][2].length}/8
 (${current.nodeManager.listing.name[1][2].join(',')})
@@ -2042,42 +2043,42 @@ Total:${current.nodeManager.listing.static[3][1].length+current.nodeManager.list
 }
 function outListing(){
 	let box=``
-	let goal=160+160*constants.playerNumber+60+60+30+30+20
+	let goal=160+160*constants.playerNumber+64+64+40+32+24
 	let actual=current.cardManagers[0].listing.allListableCard[3].length
 	let arbitrary=6666
 	for(let a=0,la=constants.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
-Common:${current.cardManagers[0].listing.card[a+1][0].length}/65				${current.cardManagers[0].listing.card[a+1][0].length-65}
-Uncommon:${current.cardManagers[0].listing.card[a+1][1].length}/65				${current.cardManagers[0].listing.card[a+1][1].length-65}
-Rare:${current.cardManagers[0].listing.card[a+1][2].length}/30					${current.cardManagers[0].listing.card[a+1][2].length-30}
+Common:${current.cardManagers[0].listing.card[a+1][0].length}/64				${current.cardManagers[0].listing.card[a+1][0].length-64}
+Uncommon:${current.cardManagers[0].listing.card[a+1][1].length}/64				${current.cardManagers[0].listing.card[a+1][1].length-64}
+Rare:${current.cardManagers[0].listing.card[a+1][2].length}/32					${current.cardManagers[0].listing.card[a+1][2].length-32}
 	Total:${current.cardManagers[0].listing.card[a+1][3].length}/160\n`
 	}
 	console.log(`Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
 Listed Cards: ${actual}/${goal}		${actual-goal}
 		Colorless:
-Common:${current.cardManagers[0].listing.card[0][0].length}/65				${current.cardManagers[0].listing.card[0][0].length-65}
-Uncommon:${current.cardManagers[0].listing.card[0][1].length}/65				${current.cardManagers[0].listing.card[0][1].length-65}
-Rare:${current.cardManagers[0].listing.card[0][2].length}/30					${current.cardManagers[0].listing.card[0][2].length-30}
+Common:${current.cardManagers[0].listing.card[0][0].length}/64				${current.cardManagers[0].listing.card[0][0].length-64}
+Uncommon:${current.cardManagers[0].listing.card[0][1].length}/64				${current.cardManagers[0].listing.card[0][1].length-64}
+Rare:${current.cardManagers[0].listing.card[0][2].length}/32					${current.cardManagers[0].listing.card[0][2].length-32}
 	Total:${current.cardManagers[0].listing.card[0][3].length}/160
 ${box}		Status:
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length}/60				${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length-60}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length}/64				${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length-64}
 		Curse:
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+2][3].length}/60				${current.cardManagers[0].listing.card[constants.playerNumber+2][3].length-60}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+2][3].length}/64				${current.cardManagers[0].listing.card[constants.playerNumber+2][3].length-64}
 		Partnership:
-Common:${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length}/10				${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length-10}
-Uncommon:${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length}/10				${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-10}
-Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}/10					${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length-10}
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+3][3].length}/30
+Common:${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length}/16				${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length-16}
+Uncommon:${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length}/16				${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-16}
+Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}/8					${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length-8}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+3][3].length}/40
 		Tarot:
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length}/30				${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length-30}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length}/32				${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length-32}
 		Spectral:
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/20				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-20}
+	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/24				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-24}
 		Subcard:
-	Total:${current.cardManagers[0].listing.sub.length}/60				${current.cardManagers[0].listing.sub.length-60}
+	Total:${current.cardManagers[0].listing.sub.length}/64				${current.cardManagers[0].listing.sub.length-64}
 		Ally:
 	Total:${current.cardManagers[0].listing.ally.length}/24				${current.cardManagers[0].listing.ally.length-24}
 		Disband:
-	Total:${current.cardManagers[0].listing.disband.length}/1600			${current.cardManagers[0].listing.disband.length-1600}
+	Total:${current.cardManagers[0].listing.disband.length}/1666			${current.cardManagers[0].listing.disband.length-1666}
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/${constants.playerNumber*8}			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-constants.playerNumber*8}
 			`)
@@ -2605,9 +2606,10 @@ function mtgPlayerColor(player){
 		case 19: return [3,4,5]
 		case 20: return [2,3,5]
 		case 21: return [1,3,4]
-		case 22: return [2,4]
-		case 23: return [2,3]
-		case 24: return [4,5]
+		case 22: return [2,3,4]
+		case 23: return [1,2,5]
+		case 24: return [2,4,5]
+		case 25: return [1,3,5]
 		default: return [6]
 	}
 }

@@ -3819,7 +3819,12 @@ class relic{
             if(value){
                 this.layer.fill(230,230,210,this.fade)
                 this.layer.textSize(12)
-                this.layer.text(variants.mtg&&this.rarity==4?'X':this.value,0,29)
+                this.layer.text(variants.mtg&&this.rarity==4?'X':this.value*(
+                    this.rarity==0&&this.battle.relicManager.hasRelic(302,this.player)||
+                    this.rarity==1&&this.battle.relicManager.hasRelic(303,this.player)||
+                    this.rarity==2&&this.battle.relicManager.hasRelic(304,this.player)||
+                    this.rarity==3&&this.battle.relicManager.hasRelic(305,this.player)
+                    ?0.5:1),0,29)
             }
             if(active>1){
                 this.layer.fill(0,this.fade)

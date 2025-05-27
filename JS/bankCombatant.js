@@ -153,6 +153,16 @@ combatant.prototype.display=function(){
                     regStar(this.layer,lsin([0,120,240,60,180,300][a]+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin([0,120,240,60,180,300][a]+this.time*2)*30,5,4,4,1.5,1.5,this.time+360*a/la)
                 }
             }
+            this.layer.rotate(this.time)
+            for(let a=0,la=this.infoAnim.ringing.length;a<la;a++){
+                this.layer.rotate(120)
+                if(this.infoAnim.ringing[a]>0){
+                    this.layer.fill(200,180,100,this.fade*this.infoAnim.ringing[a])
+                    this.layer.rect(0,-12,1.5,24)
+                    this.layer.quad(0,-20,-2.5,-24,0,-36,2.5,-24)
+                }
+            }
+            this.layer.rotate(-this.time-480)
             this.layer.translate(0,48)
         }
         switch(this.name){

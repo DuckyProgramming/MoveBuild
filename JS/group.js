@@ -465,6 +465,9 @@ class group{
                     case 12:
                         this.cards[this.cards.length-1].costVariant(args[ticker++])
                     break
+                    case 13:
+                        this.cards[this.cards.length-1].setCost(2,[2])
+                    break
                 }
             }
         }
@@ -1012,8 +1015,9 @@ class group{
                 type==18&&args[0].includes(this.cards[a].rarity)||
                 type==19&&this.cards[a].level>=args[0]||
                 type==20&&args[0].includes(this.cards[a].edition)||
-                type==21&&!this.cards[a].deSize&&(variants.mtg&&!arrayCompareLoose(this.cards[a].color,this.battle.player[this.player])||!variants.mtg&&this.cards[a].color!=this.battle.player[this.player])|
-                type==22&&this.cards[a].name.includes(args[0])
+                type==21&&!this.cards[a].deSize&&(variants.mtg&&!arrayCompareLoose(this.cards[a].color,this.battle.player[this.player])||!variants.mtg&&this.cards[a].color!=this.battle.player[this.player])||
+                type==22&&this.cards[a].name.includes(args[0])||
+                type==23&&(this.cards[a].name.includes(args[0])||this.cards[a].spec.includes(args[1]))
             ){
                 total++
             }
@@ -1855,6 +1859,11 @@ class group{
                         this.cards[a].setCost(2,[1])
                     }
                 break
+                case 121:
+                    if(this.cards[a].spec.includes(67)&&this.cards[a].usable){
+                        this.cards[a].setCost(0,[0])
+                    }
+                break
 
             }
         }
@@ -2569,6 +2578,18 @@ class group{
                 break
                 case 69:
                     this.cards[a].callHoldOrbEffect(...args)
+                break
+                case 70:
+                    if(this.cards[a].class==args[0]){
+                        if(this.id==2){
+                            this.cards[a].deSize=true
+                            this.cards[a].exhaust=true
+                        }else{
+                            this.generalExhaust(a)
+                            a--
+                            la--
+                        }
+                    }
                 break
             }
         }
@@ -3442,7 +3463,7 @@ class group{
                 )
                 if(userCombatant.getStatus('Prismatic Bomb Items')>0){
                     for(let a=0,la=userCombatant.getStatus('Prismatic Bomb Items');a<la;a++){
-                        this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.player)
+                        this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'2 Mana':'1 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.player)
                     }
                 }
                 if(card.attack==4451){
@@ -3746,7 +3767,8 @@ class group{
             variant==20&&this.cards[index].getBasic(args[0])||
             variant==21&&(variants.mtg&&!arrayCompareLoose(this.cards[index].color,this.battle.player[this.player])||!variants.mtg&&this.cards[index].color!=this.battle.player[this.player])||
             variant==22&&args[0].includes(this.cards[index].class)||
-            variant==23&&this.cards[index].name.includes(args[0])&&args[1].includes(this.cards[index].class)
+            variant==23&&this.cards[index].name.includes(args[0])&&args[1].includes(this.cards[index].class)||
+            variant==24&&(this.cards[index].name.includes(args[0])||this.cards[index].spec.includes(args[1]))
         )
     }
     checkAbstract(amount,variant,args){
@@ -3922,6 +3944,9 @@ class group{
                     break
                     case 23:
                         list[list.length-1].deSizeDropDraw=true
+                    break
+                    case 24:
+                        list[list.length-1].edition=args[2]
                     break
                 }
             }

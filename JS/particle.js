@@ -850,6 +850,12 @@ class particle{
                 this.size=1
                 this.scale=0
             break
+            case 264:
+                this.size=args[0]
+                this.fade=1
+                this.scale=0
+                this.delay=args[1]
+            break
 
         }
     }
@@ -4291,6 +4297,12 @@ class particle{
                     this.layer.fill(20,40,60,this.fade)
                     regStar(this.layer,0,0,30,6,6,7,7,this.time)
                 break
+                case 264:
+                    this.layer.stroke(180,160,120,this.fade)
+                    this.layer.strokeWeight(2)
+                    this.layer.noFill()
+                    this.layer.ellipse(0,0,60,60)
+                break
 
             }
             //mark p
@@ -4984,7 +4996,7 @@ class particle{
                     }
                 }
             break
-            case 199: case 206: case 252:
+            case 199: case 206: case 252: 
                 this.fade-=0.05
                 this.scale+=0.2-this.fade*0.2
                 if(this.fade<=0){
@@ -5420,6 +5432,15 @@ class particle{
                     }
                 }else{
                     this.fade-=0.3
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
+                }
+            break
+            case 264:
+                if(this.time>this.delay){
+                    this.fade-=0.025
+                    this.scale+=0.2-this.fade*0.1
                     if(this.fade<=0){
                         this.remove=true
                     }

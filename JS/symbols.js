@@ -8233,6 +8233,206 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.vertex(4,3)
             layer.endShape()
         break
+        case 828:
+            layer.stroke(60,fade)
+            layer.strokeWeight(0.5)
+            layer.rect(-2,-2,3,3)
+            layer.rect(2,-2,3,3)
+            layer.rect(-2,2,3,3)
+            layer.rect(2,2,3,3)
+            layer.rect(0,0,9,9)
+            layer.noStroke()
+            layer.fill(60,fade)
+            layer.rect(0,6.5,2)
+        break
+        case 829:
+            layer.fill(255,50,50,fade)
+            layer.beginShape()
+            layer.vertex(-4,3)
+            layer.vertex(-7,0.75)
+            layer.vertex(-3.5,1)
+            layer.vertex(-2.75,-3.5)
+            layer.vertex(-1.25,-0.5)
+            layer.vertex(-0,-5)
+            layer.vertex(1.25,-0.5)
+            layer.vertex(2.75,-3.5)
+            layer.vertex(3.5,1)
+            layer.vertex(7,0.75)
+            layer.vertex(4,3)
+            layer.endShape()
+            layer.fill(180,fade)
+            layer.triangle(-2,-1.5,-2,1.5,4,0)
+        break
+        case 830:
+            layer.fill(150,175,200,fade)
+            layer.beginShape()
+            layer.vertex(-4,3)
+            layer.vertex(-7,0.75)
+            layer.vertex(-3.5,1)
+            layer.vertex(-2.75,-3.5)
+            layer.vertex(-1.25,-0.5)
+            layer.vertex(-0,-5)
+            layer.vertex(1.25,-0.5)
+            layer.vertex(2.75,-3.5)
+            layer.vertex(3.5,1)
+            layer.vertex(7,0.75)
+            layer.vertex(4,3)
+            layer.endShape()
+            layer.fill(180,fade)
+            layer.triangle(-2,-1.5,-2,1.5,4,0)
+        break
+        case 831:
+            layer.fill(255,50,50,fade)
+            layer.beginShape()
+            layer.vertex(-4,3)
+            layer.vertex(-7,0.75)
+            layer.vertex(-3.5,1)
+            layer.vertex(-2.75,-3.5)
+            layer.vertex(-1.25,-0.5)
+            layer.vertex(-0,-5)
+            layer.vertex(1.25,-0.5)
+            layer.vertex(2.75,-3.5)
+            layer.vertex(3.5,1)
+            layer.vertex(7,0.75)
+            layer.vertex(4,3)
+            layer.endShape()
+            layer.fill(60,fade)
+            layer.rect(0,0,4)
+            layer.triangle(-2.5,-2,-2.5,2,-4.5,-2)
+            layer.triangle(2.5,2,2.5,-2,4.5,2)
+        break
+        case 832:
+            layer.fill(150,175,200,fade)
+            layer.beginShape()
+            layer.vertex(-4,3)
+            layer.vertex(-7,0.75)
+            layer.vertex(-3.5,1)
+            layer.vertex(-2.75,-3.5)
+            layer.vertex(-1.25,-0.5)
+            layer.vertex(-0,-5)
+            layer.vertex(1.25,-0.5)
+            layer.vertex(2.75,-3.5)
+            layer.vertex(3.5,1)
+            layer.vertex(7,0.75)
+            layer.vertex(4,3)
+            layer.endShape()
+            layer.fill(60,fade)
+            layer.rect(0,0,4)
+            layer.triangle(-2.5,-2,-2.5,2,-4.5,-2)
+            layer.triangle(2.5,2,2.5,-2,4.5,2)
+        break
+        case 833:
+            layer.fill(255,50,50,fade)
+            layer.beginShape()
+            layer.vertex(-4,3)
+            layer.vertex(-7,0.75)
+            layer.vertex(-3.5,1)
+            layer.vertex(-2.75,-3.5)
+            layer.vertex(-1.25,-0.5)
+            layer.vertex(-0,-5)
+            layer.vertex(1.25,-0.5)
+            layer.vertex(2.75,-3.5)
+            layer.vertex(3.5,1)
+            layer.vertex(7,0.75)
+            layer.vertex(4,3)
+            layer.endShape()
+            layer.fill(225,fade)
+            layer.rect(-2,0,6,2)
+            layer.triangle(1,-3,1,3,5,0)
+        break
+        case 834:
+            layer.fill(150,175,200,fade)
+            layer.beginShape()
+            layer.vertex(-4,3)
+            layer.vertex(-7,0.75)
+            layer.vertex(-3.5,1)
+            layer.vertex(-2.75,-3.5)
+            layer.vertex(-1.25,-0.5)
+            layer.vertex(-0,-5)
+            layer.vertex(1.25,-0.5)
+            layer.vertex(2.75,-3.5)
+            layer.vertex(3.5,1)
+            layer.vertex(7,0.75)
+            layer.vertex(4,3)
+            layer.endShape()
+            layer.fill(225,fade)
+            layer.rect(-2,0,6,2)
+            layer.triangle(1,-3,1,3,5,0)
+        break
+        case 835:
+            layer.fill(240,150,60,fade)
+            layer.ellipse(-2,-3.5,4)
+            layer.beginShape()
+            layer.vertex(-2+constants.sqrt2,-3.5-constants.sqrt2)
+            layer.vertex(-2-constants.sqrt2,-3.5+constants.sqrt2)
+            layer.vertex(0.5,0.5)
+            layer.vertex(-3,5.5)
+            layer.vertex(3,0.5)
+            layer.endShape()
+        break
+        case 836:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.fill(225,fade)
+            layer.rect(0,0,1,10)
+            layer.arc(-1.5,0,4,10,90,270)
+            layer.arc(1.5,0,4,10,-90,90)
+        break
+        case 837:
+            layer.fill(255,50,50,fade)
+            layer.beginShape()
+            layer.vertex(-4,3)
+            layer.vertex(-7,0.75)
+            layer.vertex(-3.5,1)
+            layer.vertex(-2.75,-3.5)
+            layer.vertex(-1.25,-0.5)
+            layer.vertex(-0,-5)
+            layer.vertex(1.25,-0.5)
+            layer.vertex(2.75,-3.5)
+            layer.vertex(3.5,1)
+            layer.vertex(7,0.75)
+            layer.vertex(4,3)
+            layer.endShape()
+            layer.fill(225,fade)
+            layer.rect(0,0,1,10)
+            layer.arc(-1.5,0,4,10,90,270)
+            layer.arc(1.5,0,4,10,-90,90)
+        break
+        case 838:
+            layer.rotate(-45)
+            layer.fill(200,fade)
+            layer.rect(0,0,3,10,1.5)
+            layer.fill(240,240,160,fade)
+            layer.rect(-3.5,0,2,8,1)
+            layer.rect(3.5,0,2,8,1)
+        break
+        case 839:
+            layer.fill(240,240,160,fade)
+            layer.rect(0,8,3)
+            layer.rotate(-45)
+            layer.rect(-3.5,0,2,8,1)
+            layer.rect(3.5,0,2,8,1)
+            layer.fill(200,fade)
+            layer.rect(0,0,3,10,1.5)
+        break
+        case 840:
+            layer.fill(200,180,100,fade)
+            layer.ellipse(0,0,9)
+            layer.fill(0,fade)
+            layer.ellipse(0,0,3)
+            layer.rect(0,1.5,1,3,0.5)
+        break
+        case 841:
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,-6,-3,3,3,3)
+            layer.fill(200,180,100,fade)
+            layer.ellipse(0,0,6)
+            layer.fill(0,fade)
+            layer.ellipse(0,0,2)
+            layer.rect(0,1,2/3,2,1/3)
+        break
 
     }
     //mark s
@@ -13292,6 +13492,15 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.fill(100,200,225,fade)
             layer.rect(0,0,4)
         break
+        case 465:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+            layer.rect(-5.5,0,1,6)
+            layer.rect(-7,0,1,6)
+        break
 
     }
     //mark i
@@ -13356,7 +13565,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 376: case 378: case 386: case 387: case 388: case 389: case 390: case 392: case 395: case 396:
             case 397: case 398: case 399: case 401: case 402: case 404: case 405: case 408: case 409: case 411:
             case 412: case 427: case 428: case 430: case 433: case 438: case 439: case 442: case 454: case 455:
-            case 456: case 459: case 460: case 461: case 462:
+            case 456: case 459: case 460: case 461: case 462: case 465:
                 layer.text(`${effect[0]}|${effect[1]}`,0,0)
             break
             case 21:

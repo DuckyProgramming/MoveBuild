@@ -1132,6 +1132,10 @@ class combatantManager{
                             this.combatants[a].takeDamage(args[1],args[2])
                         }
                     break
+                    case 61:
+                        this.combatants[a].heal(args[0])
+                        this.combatants[a].statusEffect(args[1],args[2])
+                    break
                 }
             }
         }

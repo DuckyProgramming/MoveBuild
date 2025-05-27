@@ -25,7 +25,7 @@ types={
         {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:456,effect:[16,3]},{type:454,effect:[22,2]},{type:455,effect:[22,2]}],description:``},
         {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:458,effect:[1]},{type:459,effect:[11,1]},{type:460,effect:[13,5]}],description:``},
         {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:462,effect:[11,2]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:``},
-        {name:'CHAR-25',moniker:'The',identifier:['',''],life:50,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'Meri',moniker:'The Whisper',identifier:['Sister','Miss'],life:49,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -236,7 +236,7 @@ types={
         {name:'Keystone',life:62,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:350,effect:[12,1,'Dazed']},{type:351,effect:[12,1,'Dazed']}],description:`100% casualty rate`},
         {name:'Paramilitary',life:60,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:403,effect:[10]}],description:`"Faction"`},
         
-        {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
+        {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:40,effect:[3]},{type:39,effect:[2,'Duckforce']},{type:41,effect:[6]},{type:465,effect:[10,10]},{type:42,effect:[6]}],description:`Duck leader`},
         {name:'Slime Boss',life:90,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[12]},{type:55,effect:[2]}],description:`Very fat slime`},
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
         {name:'Donu',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
@@ -787,6 +787,7 @@ types={
         {name:'Targetted Strike / Cannot Move',class:5},
         {name:'6 Tile Carding Strike',class:1},
         {name:'Construct Block',class:2},
+        {name:'3 Tile Strike / Block',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,world:[0,3],description:''},
@@ -1323,7 +1324,7 @@ types={
         {name:'Dumpling',internal:'Stash Heal',id:483,rarity:0,list:0,mtg:0,world:[0,2],description:'When You Enter a Stash,\nHeal 20 Health'},
         {name:'Opaque Marble',internal:'Same Card Triplicate',id:484,rarity:2,list:0,mtg:0,world:[0,3],description:'When You Play 2 of\nthe Same Card in a Row,\nAdd an Ethereal Third Copy to Hand\n1 Use Per Turn'},
         {name:'Walkie Talkie',internal:'Emergency Draw',id:485,rarity:2,list:0,mtg:0,world:[0,3],description:'Add an Emergency Draw\non Turn 1'},
-        {name:'Dulled Axe',internal:'Bypass Defense',id:486,rarity:1,list:0,mtg:0,world:[0,2],description:'Remove All Enemy Buffer, Dodge,\nand Fractional Damage Reduction\nWhen You Hit Them'},
+        {name:'Dulled Axe',internal:'Bypass Defense',id:486,rarity:1,list:0,mtg:0,world:[0,2],description:'Remove All Enemy Buffer, Dodge,\nand Damage Reduction\nWhen You Hit Them'},
         {name:'Common Ribbon',internal:'Upgrade All Commons',id:487,rarity:1,list:0,mtg:0,world:[0,2],description:'Upgrade All Common Cards Added'},
         {name:'Uncommon Ribbon',internal:'Upgrade All Uncommons',id:488,rarity:1,list:0,mtg:0,world:[0,2],description:'Upgrade All Uncommon Cards Added'},
         {name:'Rare Ribbon',internal:'Upgrade All Rares',id:489,rarity:1,list:0,mtg:0,world:[0,2],description:'Upgrade All Rare Cards Added'},
@@ -1639,10 +1640,10 @@ types={
                 text:[50,25,25],
                 active:[255,175,175],
             },{
-                fill:[220,170,170],
-                stroke:[195,145,145],
+                fill:[220,170,180],
+                stroke:[195,145,155],
                 text:[55,45,45],
-                active:[255,215,215],
+                active:[255,215,225],
             },
             
             {
@@ -3338,6 +3339,15 @@ types={
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
             ],
         },{
+            name:'Traitor2 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Looped 3',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
@@ -4106,7 +4116,7 @@ types={
             ],
         },{
             level:['Traitor 5'],class:0,world:-1,
-            name:'Traitor',
+            name:'Traitor Event',
             player:{position:[[{x:5,y:2}],[{x:5,y:2},{x:5,y:1}]]},
             enemy:[
                 {position:{x:1,y:0},name:'-h Traitor'},
@@ -6514,6 +6524,16 @@ types={
             ],assaultReinforce:[
             ],ally:[
             ],
+        },{
+            level:['Traitor2 5'],class:2,world:0,
+            name:'The Traitor',
+            player:{position:[[{x:3,y:3}],[{x:3,y:2},{x:2,y:3}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'-h Traitor'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
         },
     ],dictionary:[
         {name:'',mtg:0,desc:``,
@@ -6653,10 +6673,10 @@ When it reaches 0, card is exhausted and removed from deck (permanently).`,
         },{name:'Ethereal',mtg:0,desc:
 `A card with ethereal will exhaust itself if it is left in the hand and discarded at the end of the turn.`,
         },{name:'Strength',mtg:0,desc:
-`Deal 20% more damage for every positive stack and 10% less per negative stack.
+`Deal 10% more damage for every positive stack and 10% less per negative stack.
 Does not decrement.`,
         },{name:'Dexterity',mtg:0,desc:
-`Add 20% more block for every positive stack and 10% less per negative stack.
+`Add 10% more block for every positive stack and 10% less per negative stack.
 Does not decrement.`,
         },{name:'Focus',mtg:0,desc:
 `Orbs are 20% more effective for every positive stack and 10% less per negative stack.
@@ -7044,9 +7064,24 @@ Is considered classless.`,
         },{name:'Vigor',mtg:0,desc:
 `Next attack deals more damage equal to your Vigor.
 Removes itself afterward.`,
-        },{name:'Thick',mtg:0,desc:
-`Next times you add block, gain block equal to your Thick..
+        },{name:'Vigil',mtg:0,desc:
+`Next times you add block, gain block equal to your Vigil.
 Removes itself afterward.`,
+        },{name:'Threshold',mtg:0,desc:
+`If damage dealt is above a value, trigger an additional effect.`,
+        },{name:'Feint',mtg:0,desc:
+`The next attack deals no damage but gives Vigor equal to its damage.
+Decrements afterward.`,
+        },{name:'Resonance',mtg:0,desc:
+`Vigor and vigil have 10% more effect for every positive stack and 10% less per negative stack.
+Does not decrement.`,
+        },{name:'Ringing',mtg:0,desc:
+`When you gain 4 Ringing, lose it and gain 1 Bell.
+Does not decrement.`,
+        },{name:'Bell',mtg:0,desc:
+`When you gain Bell, deal 3 damage to each enemy once per Bell you have.
+This attack is not affected by most statuses but is affected by Vigor.
+Does not decrement.`,
         },
         //mark dict
     ],ascend:[
