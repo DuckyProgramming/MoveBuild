@@ -445,7 +445,8 @@ class attack{
             break
             case 145: case 146: case 147: case 148: case 158: case 159: case 160: case 162: case 353: case 4252:
             case 4253: case 4254: case 5133: case 5134: case 5138: case 5139: case 5140: case 5142: case 6470: case 8155:
-            case 8157:
+            case 8157: case 8177: case 8179: case 8180: case 8181: case 8182: case 8183: case 8184: case 8185: case 8186: 
+            case 8187: case 8188: case 8189:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.battle.players-1-this.userCombatant.id]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -10231,6 +10232,9 @@ class attack{
                     case 8170:
                         this.userCombatant.ringing+=this.effect[1]
                     break
+                    case 8180:
+                        this.targetCombatant.addBlock(this.effect[1])
+                    break
 
                 }
                 //mark 2s
@@ -16689,6 +16693,9 @@ class attack{
                     case 8171:
                         this.userCombatant.statusEffect('Strength',this.effect[0])
                         this.userCombatant.ringing+=this.effect[1]
+                    break
+                    case 8178:
+                        this.battle.cardManagers[this.battle.players-1-this.player].hand.transform(this.effect[0])
                     break
 
                 }
@@ -25800,6 +25807,41 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.userCombatant.statusEffect('Resonance',this.effect[1])
                     break
+                    case 8177:
+                        this.userManager.draw(this.effect[0])
+                        this.battle.cardManagers[this.battle.players-1-this.player].tempDraw.main+=this.effect[1]
+                    break
+                    case 8179:
+                        this.userCombatant.heal(this.effect[1])
+                        this.targetCombatant.heal(this.effect[0])
+                    break
+                    case 8181:
+                        this.battle.addEnergy(this.effect[0],this.player)
+                        this.targetCombatant.statusEffect('Energy Next Turn',this.effect[1])
+                    break
+                    case 8182:
+                        this.battle.addSpecificEnergy(1,this.player,6)
+                        this.targetCombatant.statusEffect('(E) Next Turn',1)
+                    break
+                    case 8183:
+                        this.battle.addSpecificEnergy(1,this.player,6)
+                        this.targetCombatant.statusEffect('(E) Next Turn',2)
+                    break
+                    case 8184:
+                        this.battle.addSpecificEnergy(2,this.player,6)
+                        this.targetCombatant.statusEffect('(E) Next Turn',2)
+                    break
+                    case 8185:
+                        this.targetCombatant.gainMaxHP(this.effect[0])
+                    break
+                    case 8188:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                        this.targetCombatant.statusEffect('Strength',this.effect[1])
+                    break
+                    case 8189:
+                        this.userCombatant.statusEffect('Dexterity',this.effect[0])
+                        this.targetCombatant.statusEffect('Dexterity',this.effect[1])
+                    break
 
                 }
                 //mark 8
@@ -28376,6 +28418,10 @@ class attack{
                         this.userManager.draw(this.effect[0])
                         this.userCombatant.statusEffect('Regeneration',this.effect[1])
                         this.userCombatant.statusEffect('Poison',this.effect[2])
+                    break
+                    case 8190:
+                        this.battle.addCurrency(this.effect[0],this.player)
+                        this.battle.addCurrency(this.effect[0],this.battle.players-1-this.player)
                     break
 
                 }
@@ -31635,6 +31681,19 @@ class attack{
                     break
                     case 8174:
                         this.targetCombatant.takeDamage(this.effect[0],this.player)
+                        this.userCombatant.ringing+=this.effect[1]
+                    break
+                    case 8186:
+                        this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[0]],this.targetCombatant.tilePosition,[3,this.targetCombatant.id],[0,1],false,0)
+                    break
+                    case 8187:
+                        this.battle.combatantManager.areaAbstract(2,['Vulnerable',this.effect[0]],this.targetCombatant.tilePosition,[3,this.targetCombatant.id],[0,1],false,0)
+                    break
+                    case 8191:
+                        this.userCombatant.statusEffect('Ringing Per Turn',this.effect[0])
+                    break
+                    case 8192:
+                        this.userCombatant.statusEffect('Ringing Per Turn',this.effect[0])
                         this.userCombatant.ringing+=this.effect[1]
                     break
 

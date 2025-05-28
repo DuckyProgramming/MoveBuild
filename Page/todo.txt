@@ -2,14 +2,9 @@ OPERATION ICATHIA
 
 
 
-
 CARDSET 80 [MAY]
 
-
-
-ally upgrade - based on ally draw
-
-interval ringing - 1 ringing per turn
+CARDSET 81 [MAY]
 
 
 

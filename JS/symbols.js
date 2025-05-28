@@ -8433,6 +8433,16 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,0,2)
             layer.rect(0,1,2/3,2,1/3)
         break
+        case 842:
+            layer.fill(200,180,100,fade)
+            for(let a=0,la=3;a<la;a++){
+                layer.rotate(120)
+                layer.rect(0,-2.4,0.3,4.8)
+                layer.quad(0,-4,-0.5,-4.8,0,-7.2,0.5,-4.8)
+            }
+            layer.fill(180,fade)
+            layer.triangle(-2,-1.5,-2,1.5,4,0)
+        break
 
     }
     //mark s

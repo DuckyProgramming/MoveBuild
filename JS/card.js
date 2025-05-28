@@ -3409,7 +3409,7 @@ class card{
             case 2370: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Weak\nIf You Move 2 Tiles`; break
             case 2371: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Weak\nIf You Move 1 Tile`; break
             case 2372: string+=`First ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nAfter The Next One\nDeal${effect[0]==1?`s`:``} Double Damage`; break
-            case 2373: string+=`Gain ${effect[0]} Strength\nIn 3 Turns`; break
+            case 2373: string+=`Gain ${effect[0]} Strength\nin 3 Turns`; break
             case 2374: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nGain ${effect[1]} Control`; break
             case 2375: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nGain ${effect[1]} Buffer`; break
             case 2376: string+=`Next Movement is Free`; break
@@ -9233,6 +9233,23 @@ class card{
             case 8174: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nGain ${effect[1]} Ringing`; break
             case 8175: string+=`Exhaust ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Ringing`; break
             case 8176: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Ringing`; break
+            case 8177: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAlly Draws ${effect[1]} More\nCard${pl(effect[1])} on Their Turn`; break
+            case 8178: string+=`Ally Transforms ${effect[0]} Card${pl(effect[0])}\non Their Turn`; break
+            case 8179: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nHeal ${effect[1]} Health\nto Ally`; break
+            case 8180: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Block\nto Ally`; break
+            case 8181: string+=`Gain ${effect[0]} Energy\nAlly Gains ${effect[1]} Energy\non Their Turn`; break
+            case 8182: string+=`Gain (E)\nAlly Gains (E)\non Their Turn`; break
+            case 8183: string+=`Gain (E)\nAlly Gains (E) (E)\non Their Turn`; break
+            case 8184: string+=`Gain (E) (E)\nAlly Gains (E) (E)\non Their Turn`; break
+            case 8185: string+=`Ally Gains ${effect[0]} Max Health`; break
+            case 8186: string+=`Apply ${effect[0]} Weak\nin All Directions\nAround Ally`; break
+            case 8187: string+=`Apply ${effect[0]} Vulnerable\nin All Directions\nAround Ally`; break
+            case 8188: string+=`Gain ${effect[0]} Strength\nAlly Gains ${effect[1]} Strength`; break
+            case 8189: string+=`Gain ${effect[0]} Dexterity\nAlly Gains ${effect[1]} Dexterity`; break
+            case 8190: string+=`Gain ${effect[0]} Currency\nAlly Gains ${effect[1]} Currency`; break
+
+            case 8191: string+=`Gain ${effect[0]} Ringing\nPer Turn`; break
+            case 8192: string+=`Gain ${effect[0]} Ringing\nPer Turn\nGain ${effect[1]} Ringing`; break
 
             //mark p
 
