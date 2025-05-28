@@ -171,7 +171,7 @@ class overlay{
                     case 53: case 54: case 55: case 56: case 57: case 61: case 64: case 65: case 66: case 67:
                     case 68: case 69: case 70: case 72: case 75: case 76: case 78: case 81: case 82: case 83:
                     case 86: case 87: case 89: case 90: case 91: case 92: case 93: case 98: case 106: case 107:
-                    case 108: case 109: case 110: case 113:
+                    case 108: case 109: case 110: case 113: case 115:
                         this.battle.cardManagers[this.player].deck.resetAnim()
                     break
                     case 12: case 97:
@@ -2862,6 +2862,7 @@ class overlay{
                     case 112: this.title=`Recover ${this.args[1]}`; break
                     case 113: this.title='Make a Card Free and Innate'; break
                     case 114: this.title='Duplicate a Card From Draw Pile'; break
+                    case 115: this.title='Duplicate an Uncommon Card'; break
                     default: this.title=''; break
                 }
                 this.layer.fill(160,this.fade*0.8)
@@ -2897,7 +2898,7 @@ class overlay{
                     case 76: case 77: case 78: case 79: case 80: case 81: case 82: case 83: case 84: case 85:
                     case 86: case 89: case 90: case 91: case 92: case 93: case 94: case 95: case 96: case 97:
                     case 98: case 99: case 100: case 101: case 102: case 103: case 104: case 105: case 106: case 107:
-                    case 108: case 109: case 110: case 111: case 112: case 113: case 114:
+                    case 108: case 109: case 110: case 111: case 112: case 113: case 114: case 115:
                         this.layer.text('Skip',this.layer.width/2,this.layer.height/2+225); break
                 }
                 switch(this.args[0]){
@@ -2943,6 +2944,7 @@ class overlay{
                     case 92: case 93:
                         this.battle.cardManagers[this.player].deck.display('overlay',[12,this.page,1]); break
                     case 98: this.battle.cardManagers[this.player].deck.display('overlay',[13,this.page,2]); break
+                    case 115: this.battle.cardManagers[this.player].deck.display('overlay',[10,this.page,1]); break
 
                 }
                 switch(this.args[0]){
@@ -3718,7 +3720,7 @@ class overlay{
                         case 53: case 54: case 55: case 56: case 61: case 75:
                             this.page=constrain(this.page,0,ceil(this.battle.cardManagers[this.player].deck.sorted.length/15)-1)
                         break
-                        case 36: case 81: case 82:
+                        case 36: case 81: case 82: case 115:
                             this.page=constrain(this.page,0,ceil(this.battle.cardManagers[this.player].deck.finalPosition/15)-1)
                         break
                     }
@@ -3738,7 +3740,7 @@ class overlay{
                         case 53: case 54: case 55: case 56: case 57: case 61: case 64: case 65: case 66: case 67:
                         case 68: case 69: case 70: case 72: case 75: case 76: case 78: case 81: case 82: case 83:
                         case 86: case 87: case 89: case 90: case 91: case 92: case 93: case 98: case 106: case 107:
-                        case 108: case 109: case 110: case 113:
+                        case 108: case 109: case 110: case 113: case 115:
                             this.battle.cardManagers[this.player].deck.update('overlay',[this.page])
                         break
                         case 12: case 97:
@@ -3771,7 +3773,7 @@ class overlay{
                         case 53: case 54: case 55: case 56: case 57: case 61: case 64: case 65: case 66: case 67:
                         case 68: case 69: case 70: case 72: case 75: case 76: case 78: case 81: case 82: case 83:
                         case 86: case 87: case 89: case 90: case 91: case 92: case 93: case 98: case 106: case 107:
-                        case 108: case 109: case 110: case 113:
+                        case 108: case 109: case 110: case 113: case 115:
                             for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
                                 this.battle.cardManagers[this.player].deck.cards[a].size=constrain(this.battle.cardManagers[this.player].deck.cards[a].size,0,this.fade)
                             }
@@ -4036,7 +4038,7 @@ class overlay{
                             )||
                             this.page<ceil(this.battle.cardManagers[this.player].deck.finalPosition/15)-1&&(
                                 this.args[0]==36||this.args[0]==81||this.args[0]==82||this.args[0]==92||this.args[0]==93||
-                                this.args[0]==98
+                                this.args[0]==98||this.args[0]==115
                             )
                         )){
                             this.page++
@@ -4069,7 +4071,7 @@ class overlay{
                         case 54: case 55: case 56: case 57: case 61: case 64: case 65: case 66: case 67: case 68:
                         case 69: case 70: case 72: case 75: case 76: case 78: case 81: case 82: case 83: case 86:
                         case 87: case 89: case 90: case 91: case 92: case 93: case 98: case 106: case 107: case 108:
-                        case 109: case 110: case 113:
+                        case 109: case 110: case 113: case 115:
                             switch(this.args[0]){
                                 case 3: case 17: case 43: case 75: case 89: case 91:
                                     this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,variants.mtg?[]:0,0)
@@ -4186,7 +4188,7 @@ class overlay{
                                             }
                                             breakAfter=true
                                         break
-                                        case 8:
+                                        case 8: case 115:
                                             this.battle.cardManagers[this.player].deck.copySelf(a)
                                         break
                                         case 10: case 53: case 54: case 55: case 56: case 61:
@@ -5573,7 +5575,7 @@ class overlay{
                             )||
                             this.page<ceil(this.battle.cardManagers[this.player].deck.finalPosition/15)-1&&(
                                 this.args[0]==36||this.args[0]==81||this.args[0]==82||this.args[0]==92||this.args[0]==93||
-                                this.args[0]==98
+                                this.args[0]==98||this.args[0]==115
                             )
                         )){
                             this.page++
@@ -5606,7 +5608,7 @@ class overlay{
                         case 54: case 55: case 56: case 57: case 61: case 64: case 65: case 66: case 67: case 68:
                         case 69: case 70: case 72: case 75: case 76: case 78: case 81: case 82: case 83: case 86:
                         case 87: case 89: case 90: case 91: case 92: case 93: case 98: case 106: case 107: case 108:
-                        case 109: case 110: case 113:
+                        case 109: case 110: case 113: case 115:
                             switch(this.args[0]){
                                 case 3: case 17: case 43: case 75: case 89: case 91:
                                     this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,variants.mtg?[]:0,0)
@@ -5723,7 +5725,7 @@ class overlay{
                                             }
                                             breakAfter=true
                                         break
-                                        case 8:
+                                        case 8: case 115:
                                             this.battle.cardManagers[this.player].deck.copySelf(a)
                                         break
                                         case 10: case 53: case 54: case 55: case 56: case 61:

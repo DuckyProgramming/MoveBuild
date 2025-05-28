@@ -1317,6 +1317,9 @@ class battle{
                 case 8:
                     this.cardManagers[player].hand.randomEffect(0,[])
                 break
+                case 9:
+                    this.loseCurrency(25,player)
+                break
             }
         }else{
             switch(card.edition){
@@ -1357,6 +1360,9 @@ class battle{
                 break
                 case 8:
                     this.cardManagers[player].addRandomAbstract(2,0,0,0,7,[],[3,[1]])
+                break
+                case 9:
+                    this.addCurrency(25,player)
                 break
             }
         }

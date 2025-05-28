@@ -207,7 +207,7 @@ class combatant{
                 'Temporary Strength in 2 Turns','Temporary Strength in 3 Turns','Single Splash Vulnerable','Temporary Strength Cycle 3 1','Temporary Strength Cycle 3 2','Temporary Strength Cycle 3 3','Indefinite Pure','Fragile Turn Splash','Favor Per Turn','Favor Energy',
                 'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Item Next Turn','Vigor Per Turn',
                 'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
-                'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block',
+                'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block','Bell Weak','Bell Vulnerable',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -294,7 +294,7 @@ class combatant{
                 2,2,2,2,2,2,1,0,0,0,//82
                 0,0,0,0,0,0,0,0,2,0,//83
                 0,1,1,0,0,0,0,0,0,2,//84
-                0,0,0,0,2,2,2,0,
+                0,0,0,0,2,2,2,0,0,0,//85
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -381,7 +381,7 @@ class combatant{
                 0,0,2,0,0,0,2,2,2,2,//82
                 2,2,2,2,2,2,2,0,2,2,//83
                 2,2,2,2,2,2,2,2,2,2,//84
-                2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//85
             ]}
         /*
         0-none
@@ -5204,6 +5204,12 @@ class combatant{
         this.statusEffect('Bell',1)
         let value=3+this.status.main[841]+this.status.main[12]*max(1+this.status.main[838]*0.1+this.status.main[839]*0.1,0.2)
         this.status.main[12]=0
+        if(this.status.main[848]>0){
+            this.battle.combatantManager.allEffect(48,['Weak',this.status.main[848]])
+        }
+        if(this.status.main[849]>0){
+            this.battle.combatantManager.allEffect(48,['Vulnerable',this.status.main[849]])
+        }
         for(let a=0,la=this.status.main[840];a<la;a++){
             this.battle.combatantManager.allEffect(19,[value])
             this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y-48,264,[5,a*10]))

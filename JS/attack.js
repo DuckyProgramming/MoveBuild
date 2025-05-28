@@ -276,7 +276,7 @@ class attack{
             case 8003: case 8005: case 8006: case 8007: case 8008: case 8010: case 8013: case 8014: case 8020: case 8021: case 8022: case 8025: case 8034: case 8036: case 8044: case 8045: case 8048: case 8049: case 8051: case 8054:
             case 8055: case 8056: case 8064: case 8065: case 8072: case 8074: case 8075: case 8076: case 8077: case 8078: case 8079: case 8080: case 8081: case 8086: case 8087: case 8088: case 8089: case 8091: case 8094: case 8095:
             case 8096: case 8101: case 8102: case 8103: case 8104: case 8109: case 8110: case 8119: case 8120: case 8121: case 8122: case 8123: case 8140: case 8145: case 8146: case 8153: case 8154: case 8164: case 8166: case 8167:
-            case 8173: case 8174: case 8194: case 8196: case 8197: case 8199: case 8200: case 8201: case 8204:
+            case 8173: case 8174: case 8194: case 8196: case 8197: case 8199: case 8200: case 8201: case 8204: case 8218:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -351,6 +351,7 @@ class attack{
             case 7650: case 7651: case 7652: case 7653: case 7666: case 7727: case 7737: case 7777: case 7814: case 7815:
             case 7827: case 7837: case 7910: case 7974: case 7987: case 7988: case 8029: case 8030: case 8031: case 8032:
             case 8066: case 8067: case 8083: case 8107: case 8129: case 8130: case 8131: case 8132: case 8176: case 8202:
+            case 8219: case 8225:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -10268,6 +10269,10 @@ class attack{
                     case 8203:
                         this.userCombatant.statusEffect('Retain Block',this.effect[1]*(this.battle.counter.enemy-this.battle.counter.killed))
                     break
+                    case 8214:
+                        this.userCombatant.statusEffect('Temporary Resonance Next Turn',this.effect[1])
+                        this.userCombatant.statusEffect('Temporary Draw',this.effect[2])
+                    break
 
                 }
                 //mark 2s
@@ -12465,6 +12470,9 @@ class attack{
                     break
                     case 8202:
                         this.userCombatant.statusEffect('Cannot Be Pushed',1)
+                    break
+                    case 8225:
+                        this.userCombatant.statusEffect('Resonance',this.effect[1])
                     break
 
                 }
@@ -16746,6 +16754,14 @@ class attack{
                     case 8208:
                         this.userCombatant.statusEffect('Retain Vigil',this.effect[0])
                         this.userManager.draw(this.effect[1])
+                    break
+                    case 8216:
+                        this.userCombatant.statusEffect('Temporary Resonance Next Turn',this.effect[0])
+                        this.userManager.hand.rebound(1)
+                    break
+                    case 8224:
+                        this.userCombatant.statusEffect('Resonance',this.effect[0])
+                        this.userCombatant.statusEffect('Turn Exhaust',this.effect[1])
                     break
 
                 }
@@ -21289,6 +21305,16 @@ class attack{
                     case 8175:
                         this.userManager.hand.exhaust(this.effect[0])
                         this.userCombatant.ringing+=this.effect[1]
+                    break
+                    case 8217:
+                        this.userManager.draw(this.effect[0])
+                        this.userCombatant.statusEffect('Temporary Resonance',this.effect[1])
+                    break
+                    case 8222:
+                        this.userCombatant.multiplyStatus('Vigor',this.effect[0])
+                    break
+                    case 8223:
+                        this.userCombatant.multiplyStatus('Vigil',this.effect[0])
                     break
 
                 }
@@ -31776,6 +31802,16 @@ class attack{
                             this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,constants.playerNumber+1)
                         }
                     break
+                    case 8215:
+                        this.userCombatant.ringing+=this.effect[0]
+                        this.userCombatant.statusEffect('Feint',this.effect[1])
+                    break
+                    case 8220:
+                        this.userCombatant.statusEffect('Bell Weak',this.effect[0])
+                    break
+                    case 8221:
+                        this.userCombatant.statusEffect('Bell Vulnerable',this.effect[0])
+                    break
 
                 }
                 //mark 12
@@ -32434,7 +32470,7 @@ class attack{
                     case 3673:
                         this.battle.overlayManager.overlays[107][this.player].active=true
                         this.battle.overlayManager.overlays[107][this.player].activate()
-                    break
+                    
                     case 4625:
                         this.battle.overlayManager.overlays[3][this.player].active=true
                         this.battle.overlayManager.overlays[3][this.player].activate([0,'ally',43])
@@ -32442,6 +32478,19 @@ class attack{
                     case 8209:
                         this.userManager.randomEffect(0,2,[0])
                         this.userManager.randomEffect(0,38,[0])
+                    break
+                    case 8211:
+                        this.battle.itemManager.addItemSlots(1,this.player)
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.itemManager.addSetItem(2,this.player)
+                        }
+                    break
+                    case 8212:
+                        this.userManager.deck.randomEffect(30,[9])
+                    break
+                    case 8213:
+                        this.battle.overlayManager.overlays[175][this.player].active=true
+                        this.battle.overlayManager.overlays[175][this.player].activate([])
                     break
                 }
             break

@@ -7854,6 +7854,32 @@ function setupEdition(type,layer,width){
 				}
 			}
 		break
+		case 9:
+			for(let a=0,la=layer.width/(5*constants.sqrt3);a<la;a++){
+				for(let b=0,lb=layer.height/5;b<lb;b++){
+					let pos=[layer.width*(a+0.5)/la,layer.height*(b+0.25+a%2*0.5)/lb]
+					let key=[random(160,200),random(40,80)]
+					layer.fill(key[0]+key[1],key[0]+key[1]*0.8,key[0],0.5)
+					regTriangle(layer,pos[0]-5/6*constants.sqrt3*(b%2*2-1),pos[1],10/3*constants.sqrt3,10/3*constants.sqrt3,b*60+30)
+				}
+			}
+			for(let a=0,la=layer.width/15;a<la;a++){
+				for(let b=0,lb=layer.height/20;b<lb;b++){
+					let pos=[layer.width*(a+0.5+random(-0.2,0.2))/la,layer.height*(b+0.25+a%2*0.5+random(-0.2,0.2))/lb]
+					let size=random(6,8)
+					let direction=random(0,72)
+					let key=[random(160,200),0]
+					for(let c=0,lc=5;c<lc;c++){
+						key[1]=random(40,80)
+						layer.fill(key[0]+key[1],key[0]+key[1]*0.8,key[0],0.25)
+						layer.triangle(pos[0],pos[1],pos[0]+size*lsin(direction+c/lc*360),pos[1]+size*lcos(direction+c/lc*360),pos[0]+size*lsin(direction+(c+1)/lc*360),pos[1]+size*lcos(direction+(c+1)/lc*360))
+						key[1]=random(40,80)
+						layer.fill(key[0]+key[1],key[0]+key[1]*0.8,key[0],0.25)
+						layer.triangle(pos[0]+size*lsin(direction+(c+0.5)/lc*360),pos[1]+size*lcos(direction+(c+0.5)/lc*360),pos[0]+size*lsin(direction+c/lc*360),pos[1]+size*lcos(direction+c/lc*360),pos[0]+size*lsin(direction+(c+1)/lc*360),pos[1]+size*lcos(direction+(c+1)/lc*360))
+					}
+				}
+			}
+		break
 	}
 }
 function setupSingleEditionGraphic(edition,width){
@@ -7889,7 +7915,7 @@ function setupGraphics(){
 		setupLayer(graphics.overlays[a])
 		setupOverlay(a,graphics.overlays[a])
 	}
-	for(let a=0,la=8;a<la;a++){
+	for(let a=0,la=9;a<la;a++){
 		graphics.edition.push([[90,createGraphics(200,150)]])
 		setupLayer(graphics.edition[a][0][1])
 		setupEdition(a+1,graphics.edition[a][0][1],90)

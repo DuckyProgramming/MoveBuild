@@ -5023,6 +5023,7 @@ class group{
                             this.cards[a].class==11&&userCombatant.getStatus('Exhausting Skills')>0||
                             this.cards[a].spec.includes(1)||
                             this.cards[a].spec.includes(55)||
+                            this.cards[a].edition==9||
                             (
                                 this.cards[a].spec.includes(5)||
                                 this.cards[a].spec.includes(41)
@@ -5179,6 +5180,7 @@ class group{
                                 (this.cards[b].class==2||this.cards[b].spec.includes(12)&&this.cards[b].class[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0]==2)&&userCombatant.getStatus('Exhausting Defenses')>0||
                                 (this.cards[b].class==11||this.cards[b].spec.includes(12)&&this.cards[b].class[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0]==11)&&userCombatant.getStatus('Skills')>0||
                                 this.cards[b].spec.includes(1)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(1)||
+                                this.cards[b].edition==9||
                                 (
                                     this.cards[b].spec.includes(5)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(5)||
                                     this.cards[b].spec.includes(41)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(41)
@@ -5354,6 +5356,7 @@ class group{
                                     (this.cards[b].class==2||this.cards[b].spec.includes(12)&&this.cards[b].class[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0]==2)&&userCombatant.getStatus('Exhausting Defenses')>0||
                                     (this.cards[b].class==11||this.cards[b].spec.includes(12)&&this.cards[b].class[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0]==11)&&userCombatant.getStatus('Exhausting Skills')>0||
                                     this.cards[b].spec.includes(1)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(1)||
+                                    this.cards[b].edition==9||
                                     (
                                         this.cards[b].spec.includes(5)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(5)||
                                         this.cards[b].spec.includes(41)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(41)

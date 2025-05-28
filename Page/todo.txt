@@ -2,23 +2,27 @@ OPERATION ICATHIA
 
 
 
-CARDSET 81 [MAY]
+CARDSET 83 [MAY]
 
 
-
-new spectrals (3)
-
-[gain an item slot with a rare item in it]
-
-yuuka fervor cards
 
 ringing gaming
 
-more temporary resonance
+
+
+announcement shell - grenade but gain 1 ringing
+
+gain 1 ringing, apply large nerf to one enemy
+
+[damage, when drawn, gain vigor]
+[vigil counterpart]
+
+[3 movements]
 
 
 
-1 subcard at some point
+
+5 subcards at some point
 
 1 new event
 

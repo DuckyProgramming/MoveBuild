@@ -9270,6 +9270,24 @@ class card{
             case 8208: string+=`Retain Vigil ${effect[0]} Time${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 8209: string+=`Upgrade a Random\nCard Permanently\nDeluxe Upgrade a\nRandom Upgraded\nCard Permanently`; break
             case 8210: string+=`Remove Effects on\nOwn Tile`; break
+            case 8211: string+=`Gain an Item Slot\nGain ${effect[0]} Random\nRare Item${pl(effect[0])}`; break
+            case 8212: string+=`Make a Random Card\nin Deck Golden`; break
+            case 8213: string+=`Duplicate an Uncommon\nCard Permanently`; break
+            case 8214: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext Turn,\nGain ${effect[1]} Temporary\nResonance and Draw\n${effect[2]} More Card${pl(effect[2])}`; break
+            case 8215: string+=`Gain ${effect[0]} Ringing\nFeint ${effect[1]}`; break
+            case 8216: string+=`Gain ${effect[0]} Temporary\nResonance Next Turn\nNext Card Played\nReturns to the\nTop of Draw Pile`; break
+            case 8217: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Temporary\nResonance\nBoth Increase by ${effect[2]}`; break
+            case 8218: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nGain ${effect[1]} Ringing`; break
+            case 8219: string+=`Move to Any\nEmpty Tile\nGain ${effect[0]} Ringing`; break
+            case 8220: string+=`Bell Applies ${effect[0]} Weak`; break
+            case 8221: string+=`Bell Applies ${effect[0]} Vulnerable`; break
+            case 8222: string+=`Multiply Your Vigor by ${effect[0]}`; break
+            case 8223: string+=`Multiply Your Vigil by ${effect[0]}`; break
+            case 8224: string+=`Gain ${effect[0]} Resonance\nExhaust ${effect[1]} Card${pl(effect[1])}\nEach Turn`; break
+            case 8225: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Resonance`; break
+
+
+
 
             //mark p
 
@@ -11205,7 +11223,7 @@ class card{
             case 866: case 908: case 1893: case 2356: case 2482: case 5428: case 5429: case 5430: case 5431: case 8056:
                 this.effect[1]+=this.effect[2]
             break
-            case 937: case 7750:
+            case 937: case 7750: case 8217:
                 this.effect[0]+=this.effect[2]
                 this.effect[1]+=this.effect[2]
             break
@@ -13696,7 +13714,7 @@ class card{
                 this.layer.strokeWeight(2)
                 this.layer.ellipse(this.width/2-7.5,-this.height/2+7.5,5)
             }
-            if(this.edition>=1&&this.edition<=8){
+            if(this.edition>=1&&this.edition<=9){
                 if(this.width==90){
                     this.layer.image(graphics.edition[this.edition-1][0][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
                     if(this.battle.relicManager.hasRelic(249,this.player)&&this.edition==4){
@@ -14322,6 +14340,9 @@ class card{
                                     case 8:
                                         this.layer.text(`Glitched: Discard a Random Card`,0,this.height/2)
                                     break
+                                    case 9:
+                                        this.layer.text(`Golden: -25 Currency and Exhaust`,0,this.height/2)
+                                    break
                                 }
                             }else{
                                 switch(this.edition){
@@ -14366,6 +14387,9 @@ class card{
                                     break
                                     case 8:
                                         this.layer.text(`Glitched: Random Exhausting Card`,0,this.height/2)
+                                    break
+                                    case 9:
+                                        this.layer.text(`Golden: 25 Currency and Exhaust`,0,this.height/2)
                                     break
                                 }
                             }
