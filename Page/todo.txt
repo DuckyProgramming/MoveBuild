@@ -2,21 +2,25 @@ OPERATION ICATHIA
 
 
 
-CARDSET 80 [MAY]
-
 CARDSET 81 [MAY]
+
+
+
+new spectrals (3)
+
+[gain an item slot with a rare item in it]
+
+yuuka fervor cards
+
+ringing gaming
+
+more temporary resonance
 
 
 
 1 subcard at some point
 
 1 new event
-
-
-
-GIMMICK STORAGE SPACE
-
-[temporary resonance]
 
 
 

@@ -1016,6 +1016,9 @@ class card{
             case -133: string+=`At the End of Your Turn,\nGain ${effect[0]} Weak,\nVulnerable, or Frail`; break
             case -134: string+=`Discard Your Hand\nWhen an Enemy Dies`; break
             case -135: string+=`When Drawn,\nAdd a Random Status\nCard of Equivalent\nLevel to Hand`; break
+            case -136: string+=`When Drawn,\nTake Double Damage\nFor ${effect[0]} Turn${pl(effect[0])}`; break
+            case -137: string+=`Make a Card\nCost 1 More\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+            case -138: string+=`Make ${effect[0]} Card${pl(effect[0])}\nCost 1 More\nDraw ${effect[1]} Card${pl(effect[1])}`; break
 
             //mark n
 
@@ -2330,7 +2333,7 @@ class card{
             case 1286: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Increases\nby ${effect[1]} Permanently`; break
             case 1287: string+=`Your Next ${effect[0]!=1?`${effect[0]} } Exhausts`:`Exhaust`}\nReturn${effect[0]==1?`s`:``} to Draw Instead\nand Duplicate${effect[0]==1?`s`:``} the Card`; break
             case 1288: string+=`If Last Card\nRemaining in Hand,\nApply ${effect[0]} Miss`; break
-            case 1289: string+=`Deluxe Upgrade\na Card`; break
+            case 1289: string+=`Deluxe Upgrade a\nCard Permanently`; break
             case 1290: string+=`Enter a Rest Site`; break
             case 1291: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose Random ${variants.mtg?`Mana`:`Energy`}\nFrom Remaining`; break
             case 1292: string+=`Tech Goes Here`; break
@@ -9247,9 +9250,26 @@ class card{
             case 8188: string+=`Gain ${effect[0]} Strength\nAlly Gains ${effect[1]} Strength`; break
             case 8189: string+=`Gain ${effect[0]} Dexterity\nAlly Gains ${effect[1]} Dexterity`; break
             case 8190: string+=`Gain ${effect[0]} Currency\nAlly Gains ${effect[1]} Currency`; break
-
             case 8191: string+=`Gain ${effect[0]} Ringing\nPer Turn`; break
             case 8192: string+=`Gain ${effect[0]} Ringing\nPer Turn\nGain ${effect[1]} Ringing`; break
+            case 8193: string+=`Gain ${effect[0]} Temporary\nResonance`; break
+            case 8194: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nThreshold ${effect[1]}:\nIncreases by ${effect[2]}`; break
+            case 8195: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Played First,\nFeint ${effect[1]}`; break
+            case 8196: string+=`Apply ${effect[0]} Vulnerable\nGain ${effect[1]} Vigor`; break
+            case 8197: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext Threshold is\nAlways Activated`; break
+            case 8198: string+=`Feint ${effect[0]}`; break
+            case 8199: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nThreshold ${effect[1]}:\nGain ${effect[2]} Energy`; break
+            case 8200: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nThreshold ${effect[1]}:\nGain (G) (G) (G)`; break
+            case 8201: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nThreshold ${effect[1]}:\nGain (E) (E) (E)`; break
+            case 8202: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nYou Cannot be Pushed\nThis Turn`; break
+            case 8203: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain Block For\n${effect[1]} Turn${pl(effect[1])} Per Enemy`; break
+            case 8204: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Temporary\nResonance Next 3 Turns`; break
+            case 8205: string+=`Bell Gives Block\nEquivalent to its Damage`; break
+            case 8206: string+=`Gain ${effect[0]} Ringing\nShuffle ${effect[1]} Dazed${pl(effect[1])}\ninto Draw Pile`; break
+            case 8207: string+=`Retain Vigor ${effect[0]} Time${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 8208: string+=`Retain Vigil ${effect[0]} Time${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 8209: string+=`Upgrade a Random\nCard Permanently\nDeluxe Upgrade a\nRandom Upgraded\nCard Permanently`; break
+            case 8210: string+=`Remove Effects on\nOwn Tile`; break
 
             //mark p
 

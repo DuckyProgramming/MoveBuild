@@ -3322,6 +3322,9 @@ class group{
             case -135:
                 this.battle.cardManagers[this.player].addRandomAbstract(2,0,0,1,0,[],[constants.playerNumber+1,3])
             break
+            case -136:
+                userCombatant.statusEffect('Take Double Damage Turn',card.effect[0])
+            break
 
             //mark n
             

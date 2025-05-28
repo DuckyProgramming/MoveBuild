@@ -207,7 +207,7 @@ class combatant{
                 'Temporary Strength in 2 Turns','Temporary Strength in 3 Turns','Single Splash Vulnerable','Temporary Strength Cycle 3 1','Temporary Strength Cycle 3 2','Temporary Strength Cycle 3 3','Indefinite Pure','Fragile Turn Splash','Favor Per Turn','Favor Energy',
                 'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Item Next Turn','Vigor Per Turn',
                 'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
-                'Bell','Bell Boost','Ringing Per Turn',
+                'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -293,8 +293,8 @@ class combatant{
                 0,0,0,0,0,0,1,0,0,0,//81
                 2,2,2,2,2,2,1,0,0,0,//82
                 0,0,0,0,0,0,0,0,2,0,//83
-                0,1,1,0,0,0,0,0,0,0,//84
-                0,0,0,
+                0,1,1,0,0,0,0,0,0,2,//84
+                0,0,0,0,2,2,2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -381,7 +381,7 @@ class combatant{
                 0,0,2,0,0,0,2,2,2,2,//82
                 2,2,2,2,2,2,2,0,2,2,//83
                 2,2,2,2,2,2,2,2,2,2,//84
-                2,2,2,
+                2,2,2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -4975,6 +4975,14 @@ class combatant{
             return false
         }
     }
+    thresholdCheck(){
+        if(this.status.main[843]>0){
+            this.status.main[843]--
+            return true
+        }else{
+            return false
+        }
+    }
     retainAllEnergy(){
         if(this.status.main[464]>0){
             this.status.main[464]--
@@ -5194,11 +5202,14 @@ class combatant{
     }
     bell(){
         this.statusEffect('Bell',1)
-        let buff=this.status.main[12]*max(1+this.status.main[838]*0.1+this.status.main[839]*0.1,0.2)
+        let value=3+this.status.main[841]+this.status.main[12]*max(1+this.status.main[838]*0.1+this.status.main[839]*0.1,0.2)
         this.status.main[12]=0
         for(let a=0,la=this.status.main[840];a<la;a++){
-            this.battle.combatantManager.allEffect(19,[3+this.status.main[841]+buff])
+            this.battle.combatantManager.allEffect(19,[value])
             this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y-48,264,[5,a*10]))
+        }
+        if(this.status.main[847]>0){
+            this.addBlock(value*this.status.main[840]*this.status.main[847])
         }
     }
     clearStatus(){
@@ -5236,7 +5247,7 @@ class combatant{
     miniStatus(name,value){
         let status=findList(name,this.status.name)
         if(status>=0){
-            this.status.main[status]=constrain(this.status.main[status]+value,-999,999)
+            this.status.next[status]=constrain(this.status.next[status]+value,-999,999)
             this.statusGeneralUpdate(status)
         }
     }
@@ -5965,6 +5976,9 @@ class combatant{
                     case 829: this.miniStatus('Vigor',this.status.main[this.status.ticker[a]]); break
                     case 830: this.miniStatus('Vigil',this.status.main[this.status.ticker[a]]); break
                     case 842: this.ringing+=this.status.main[this.status.ticker[a]]; break
+                    case 844: this.miniStatus('Temporary Resonance',this.status.main[this.status.ticker[a]]); break
+                    case 845: this.miniStatus('Temporary Resonance Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 846: this.miniStatus('Temporary Resonance in 2 Turns',this.status.main[this.status.ticker[a]]); break
                     
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6&&
