@@ -4664,7 +4664,7 @@ class group{
                             case 4642: case 4645:
                                 amplifyCost=[1,5]
                             break
-                            case 4650: case 6000: case 6229:
+                            case 4650: case 6000: case 6229: case 8257:
                                 amplifyCost=[5]
                             break
                             case 4659: case 4660: case 4661: case 4662: case 4671: case 4678: case 4800: case 4803: case 4862: case 4885:

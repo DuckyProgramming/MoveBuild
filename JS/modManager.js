@@ -75,8 +75,11 @@ class modManager{
                 this.battle.setupBattle(types.encounter[findName('Management Ambush',types.encounter)])
             break
             case 145:
-                this.battle.cardManagers.forEach(cardManager=>cardManager.deck.add(findName('Cornucopia',types.card),0,0))
-                this.battle.cardManagers.forEach(cardManager=>cardManager.deck.add(findName('Divine\nSword',types.card),0,0))
+                for(let a=0,la=this.battle.players;a<la;a++){
+                    this.battle.addCurrency(777,this.player)
+                }
+                //this.battle.cardManagers.forEach(cardManager=>cardManager.deck.add(findName('Cornucopia',types.card),0,0))
+                //this.battle.cardManagers.forEach(cardManager=>cardManager.deck.add(findName('Divine\nSword',types.card),0,0))
             break
             case 146:
                 for(let a=0,la=5;a<la;a++){

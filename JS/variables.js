@@ -269,7 +269,7 @@ types={
         
         {name:'Managerial',life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
-        {name:'Wall',life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
+        {name:'Wall',life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
         {name:'Spike Pillar',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
         {name:'Projector',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:230,effect:[16]}],description:`Does your job for you`},
         {name:'Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[15]}],description:`Sentry goin' up`},
@@ -297,8 +297,9 @@ types={
         {name:'Megaturret',life:64,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[25]}],description:`Chonky`},
         {name:'Motor Turret',life:10,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:12,effect:[15]}],description:`Auto parts diff`},
         {name:'Shieldzone',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:464,effect:[8]}],description:`Protects its friends`},
-        {name:'Swap Wall',life:36,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not the first mover`},
+        {name:'Swap Wall',life:30,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not the first mover`},
         {name:'Scaling Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[15]}],description:`Sentry growin' up`},
+        {name:'Swarm Wall',life:40,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Primal wall nut`},
 
         {name:'MobMan',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`No brain?`},
         {name:'AllyMonkey',life:24,behavior:0,spec:[17],move:{type:0,speed:2},attack:[{type:11,effect:[2]}],description:`Your best friend`},
@@ -7264,7 +7265,7 @@ Does not decrement.`,
         {name:'Rewriter',desc:'Every Combat Spawns Glitched Tiles'},
         {name:'Jester',desc:'Every Turn, Randomly Get Burned, Frozen, or Shocked'},
         {name:'Managerial',desc:'Immediately Fight 12 Management Robots'},
-        {name:'Luck',desc:'Add Cornucopia and Divine Sword to Deck'},
+        {name:'Luck',desc:'Gain 777 Currency'},
         {name:'Developer',desc:'Add 1-5 of Nothings to Deck'},
         {name:'Pareidolia',desc:'Copy Every Non-Boss Enemy, Copies Get 1 HP'},
         {name:'Marx',desc:'All Cards Become Classless'},

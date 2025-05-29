@@ -4,21 +4,7 @@ OPERATION ICATHIA
 
 CARDSET 83 [MAY]
 
-
-
-ringing gaming
-
-
-
-announcement shell - grenade but gain 1 ringing
-
-gain 1 ringing, apply large nerf to one enemy
-
-[damage, when drawn, gain vigor]
-[vigil counterpart]
-
-[3 movements]
-
+CARDSET 84 [MAY]
 
 
 

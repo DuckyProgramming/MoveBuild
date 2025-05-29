@@ -208,7 +208,8 @@ class combatant{
                 'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Item Next Turn','Vigor Per Turn',
                 'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
                 'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block','Bell Weak','Bell Vulnerable',
-            ],next:[],display:[],active:[],position:[],size:[],sign:[],
+                'Buff Loss Block',
+            ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
                 1,0,0,2,0,0,1,2,2,0,//2
@@ -295,6 +296,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,2,0,//83
                 0,1,1,0,0,0,0,0,0,2,//84
                 0,0,0,0,2,2,2,0,0,0,//85
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -382,6 +384,7 @@ class combatant{
                 2,2,2,2,2,2,2,0,2,2,//83
                 2,2,2,2,2,2,2,2,2,2,//84
                 2,2,2,2,2,2,2,2,2,2,//85
+                2,
             ]}
         /*
         0-none
@@ -1866,7 +1869,7 @@ class combatant{
             break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine': case 'Keystone': case 'Spirit of Wealth': case 'Spirit of Elegance':
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': case 'Louse': case 'Hwurmp': case 'Glimmerrer': case 'Antihwurmp': case 'Half Spikeball':
-            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall': case 'Shieldzone': case 'Swap Wall':
+            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall': case 'Shieldzone': case 'Swap Wall': case 'Swarm Wall':
             break
             default:
                 for(let g=0;g<2;g++){
@@ -4247,13 +4250,13 @@ class combatant{
             if(this.status.main[187]>0){
                 block-=this.status.main[187]
             }
-            if(this.status.main[827]>0){
+            if(this.status.main[827]>0&&this.status.misc[0]>0){
                 block+=this.status.main[827]*max(1+this.status.main[838]*0.1+this.status.main[839]*0.1,0.2)
                 if(this.status.main[832]<=0&&spec!=1){
                     if(this.status.main[834]>0){
                         this.status.main[834]--
                     }else{
-                        this.status.main[827]=0
+                        this.status.misc[0]=2
                     }
                 }
             }
@@ -5200,9 +5203,9 @@ class combatant{
             this.battle.addSpecificEnergy(this.status.main[820],this.id,6)
         }
     }
-    bell(){
+    bell(mult){
         this.statusEffect('Bell',1)
-        let value=3+this.status.main[841]+this.status.main[12]*max(1+this.status.main[838]*0.1+this.status.main[839]*0.1,0.2)
+        let value=(3+this.status.main[841]+this.status.main[12]*max(1+this.status.main[838]*0.1+this.status.main[839]*0.1,0.2))*mult
         this.status.main[12]=0
         if(this.status.main[848]>0){
             this.battle.combatantManager.allEffect(48,['Weak',this.status.main[848]])
@@ -5518,22 +5521,36 @@ class combatant{
     }
     statusSignUpdate(index){
         if(this.status.main[index]==0&&this.status.sign[index]!=0){
-            if((
+            if(
                 (this.status.class[index]==0||this.status.class[index]==2)&&this.status.sign[index]==1||
                 (this.status.class[index]==1||this.status.class[index]==3)&&this.status.sign[index]==-1
-                )&&this.status.main[445]>0
             ){
-                this.addBarrier(this.status.main[445])
+                if(this.status.main[445]>0){
+                    this.addBarrier(this.status.main[445])
+                }
+                if(this.status.main[850]>0){
+                    this.addBlock(this.status.main[850])
+                }
             }
             this.status.sign[index]=0
         }else if(this.status.main[index]>0&&this.status.sign[index]!=1){
-            if((this.status.class[index]==1||this.status.class[index]==3)&&this.status.sign[index]==-1&&this.status.main[445]>0){
-                this.addBarrier(this.status.main[445])
+            if((this.status.class[index]==1||this.status.class[index]==3)&&this.status.sign[index]==-1){
+                if(this.status.main[445]>0){
+                    this.addBarrier(this.status.main[445])
+                }
+                if(this.status.main[850]>0){
+                    this.addBlock(this.status.main[850])
+                }
             }
             this.status.sign[index]=1
         }else if(this.status.main[index]<0&&this.status.sign[index]!=-1){
-            if((this.status.class[index]==0||this.status.class[index]==2)&&this.status.sign[index]==1&&this.status.main[445]>0){
-                this.addBarrier(this.status.main[445])
+            if((this.status.class[index]==0||this.status.class[index]==2)&&this.status.sign[index]==1){
+                if(this.status.main[445]>0){
+                    this.addBarrier(this.status.main[445])
+                }
+                if(this.status.main[850]>0){
+                    this.addBlock(this.status.main[850])
+                }
             }
             this.status.sign[index]=-1
         }
@@ -6275,7 +6292,7 @@ class combatant{
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret': case 'Shieldzone': case 'Swap Wall': case 'Scaling Turret':
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret': case 'Shieldzone': case 'Swap Wall': case 'Scaling Turret': case 'Swarm Wall':
                 switch(type){
                     case 19:
                         this.animSet.loop=0
@@ -7140,7 +7157,7 @@ class combatant{
                 }
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret': case 'Shieldzone': case 'Swap Wall': case 'Scaling Turret':
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret': case 'Shieldzone': case 'Swap Wall': case 'Scaling Turret': case 'Swarm Wall':
                 switch(type){
                     case 19:
                         this.animSet.loop+=rate
@@ -7727,7 +7744,7 @@ class combatant{
             }
             if(this.ringing>=4){
                 this.ringing-=4
-                this.bell()
+                this.bell(1)
             }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)

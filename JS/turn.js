@@ -19,6 +19,11 @@ class turn{
         this.directive='turn'
     }
     base(){
+        this.clearValue=[0,0]
+        if(this.userCombatant.getStatus('Vigil')!=0){
+            this.userCombatant.status.misc[0]=1
+            this.clearValue[1]=this.userCombatant.getStatus('Vigil')
+        }
         switch(this.attackClass){
             case 1:
                 this.userCombatant.tempStatus=[1,0,0,0,0,0]
@@ -27,9 +32,10 @@ class turn{
                     this.clearAttack[0]=true
                     this.userCombatant.tempStatus[0]*=2
                 }
-                if(this.userCombatant.getStatus('Vigor')>0){
+                if(this.userCombatant.getStatus('Vigor')!=0){
                     this.clearAttack[1]=true
-                    this.userCombatant.tempStatus[1]+=this.userCombatant.getStatus('Vigor')
+                    this.clearValue[0]=this.userCombatant.getStatus('Vigor')
+                    this.userCombatant.tempStatus[1]+=this.userCombatant.getStatus('Vigor')*max(1+this.userCombatant.getStatus('Resonance')*0.1+this.userCombatant.getStatus('Temporary Resonance')*0.1,0.2)
                 }
                 if(this.userCombatant.getStatus('Triple Damage')>0){
                     this.clearAttack[2]=true

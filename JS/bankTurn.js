@@ -4065,13 +4065,22 @@ turn.prototype.update=function(){
                 if(this.userCombatant.aggressor){
                     this.userCombatant.aggressor=false
                 }
+                if(this.userCombatant.getStatus('Vigil')!=0&&this.userCombatant.status.misc[0]==2){
+                    this.userCombatant.status.main[findList('Vigil',this.userCombatant.status.name)]-=this.clearValue[1]
+                    this.userCombatant.status.misc[0]=0
+                }
+                this.userCombatant.status.misc[0]=0
                 switch(this.attackClass){
                     case 1:
                         if(this.userCombatant.getStatus('Double Damage')>0&&this.clearAttack[0]){
                             this.userCombatant.status.main[findList('Double Damage',this.userCombatant.status.name)]--
                         }
-                        if(this.userCombatant.getStatus('Vigor')>0&&this.clearAttack[1]){
-                            this.userCombatant.status.main[findList('Vigor',this.userCombatant.status.name)]=0
+                        if(this.userCombatant.getStatus('Vigor')!=0&&this.clearAttack[1]&&this.type!=8072&&this.userCombatant.getStatus('Vigor Tickrule')<=0){
+                            if(this.userCombatant.getStatus('Retain Vigor')>0){
+                                this.userCombatant.status.main[findList('Retain Vigor',this.userCombatant.status.name)]--
+                            }else{
+                                this.userCombatant.status.main[findList('Vigor',this.userCombatant.status.name)]-=this.clearValue[0]
+                            }
                         }
                         if(this.userCombatant.getStatus('Triple Damage')>0&&this.clearAttack[2]){
                             this.userCombatant.status.main[findList('Triple Damage',this.userCombatant.status.name)]--

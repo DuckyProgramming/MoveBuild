@@ -508,7 +508,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[10]&&user.status.main[797]>0){
 				bonus+=user.status.main[797]
 			}
-			if(user.status.main[12]>0){
+			if(user.status.main[12]!=0){
 				bonus+=user.status.main[12]*max(1+user.status.main[838]*0.1+user.status.main[839]*0.1,0.2)
 			}
 			if(user.status.main[40]>0){
@@ -660,7 +660,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[10]&&user.status.main[797]>0){
 				bonusB+=user.status.main[797]
 			}
-			if(user.status.main[827]>0){
+			if(user.status.main[827]!=0){
 				bonusB+=user.status.main[827]*max(1+user.status.main[838]*0.1+user.status.main[839]*0.1,0.2)
 			}
 			if(user.status.main[168]>0){
@@ -2074,7 +2074,7 @@ Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}
 		Spectral:
 	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/24				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-24}
 		Subcard:
-	Total:${current.cardManagers[0].listing.sub.length}/64				${current.cardManagers[0].listing.sub.length-64}
+	Total:${current.cardManagers[0].listing.sub.length}/48				${current.cardManagers[0].listing.sub.length-48}
 		Ally:
 	Total:${current.cardManagers[0].listing.ally.length}/24				${current.cardManagers[0].listing.ally.length-24}
 		Disband:

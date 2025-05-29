@@ -2439,7 +2439,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
             this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[255,225,15],legs:[255,210,0],arms:[255,215,5]}}
         break
-        case 'Wall': case 'Exploding Wall': case 'Swap Wall':
+        case 'Wall': case 'Exploding Wall': case 'Swap Wall': case 'Swarm Wall':
             this.anim={direction:direction}
             this.fades={body:1}
             this.trigger={display:{body:true}}
@@ -2455,6 +2455,9 @@ combatant.prototype.setupGraphics=function(direction){
                 break
                 case 'Swap Wall':
                     this.color={in:[120,180,150],out:[100,150,125]}
+                break
+                case 'Swarm Wall':
+                    this.color={in:[120,120,160],out:[100,100,140]}
                 break
             }
         break
@@ -2561,7 +2564,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
             this.color={in:[120,120,120],out:[100,100,100],gun:[40,40,40]}
         break
-        case 'Miniturret':
+        case 'Miniturret': case 'Swarm Turret':
             this.anim={direction:direction}
             this.fades={base:1,body:1,dot:1}
             this.graphics={arms:[{bottom:{x:0,y:-15}},{bottom:{x:0,y:-15}}]}
@@ -2569,7 +2572,14 @@ combatant.prototype.setupGraphics=function(direction){
             this.calc={int:[0,0,0,0]}
             this.animSet={loop:0,flip:0}
             this.goal={anim:{direction:this.anim.direction}}
-            this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,0,200],out:[0,0,240]},dot:{in:[125,125,125],out:[105,105,105]}}
+            switch(this.name){
+                case 'Miniturret':
+                    this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,0,200],out:[0,0,240]},dot:{in:[125,125,125],out:[105,105,105]}}
+                break
+                case 'Swarm Turret':
+                    this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,100,200],out:[0,120,240]},dot:{in:[125,125,125],out:[105,105,105]}}
+                break
+            }
         break
         case 'Metal Box':
             this.anim={direction:direction,light:1}
@@ -2779,16 +2789,6 @@ combatant.prototype.setupGraphics=function(direction){
             this.anim={direction:direction,eye:[0,0],body:[1,1]}
             this.spin={eye:[-24,24]}
             this.goal={anim:{direction:this.anim.direction}}
-        break
-        case 'Swarm Turret':
-            this.anim={direction:direction}
-            this.fades={base:1,body:1,dot:1}
-            this.graphics={arms:[{bottom:{x:0,y:-15}},{bottom:{x:0,y:-15}}]}
-            this.trigger={display:{base:true,body:true,dot:true}}
-            this.calc={int:[0,0,0,0]}
-            this.animSet={loop:0,flip:0}
-            this.goal={anim:{direction:this.anim.direction}}
-            this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,100,200],out:[0,120,240]},dot:{in:[125,125,125],out:[105,105,105]}}
         break
         //mark n
         default:

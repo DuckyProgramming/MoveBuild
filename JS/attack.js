@@ -46,16 +46,20 @@ class attack{
         this.position={x:this.userCombatant.position.x,y:this.userCombatant.position.y}
         this.relativePosition={x:this.userCombatant.relativePosition.x,y:this.userCombatant.relativePosition.y}
         this.tilePosition={x:this.userCombatant.tilePosition.x,y:this.userCombatant.tilePosition.y}
+        this.clearValue=[0,0]
+        if(this.userCombatant.getStatus('Vigil')!=0){
+            this.userCombatant.status.misc[0]=1
+            this.clearValue[1]=this.userCombatant.getStatus('Vigil')
+        }
         switch(this.attackClass){
             case 1:
                 this.userCombatant.tempStatus=[1,0,0,0,0,0]
                 this.clearAttack=[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
-                this.clearValue=[0]
                 if(this.userCombatant.getStatus('Double Damage')>0){
                     this.clearAttack[0]=true
                     this.userCombatant.tempStatus[0]*=2
                 }
-                if(this.userCombatant.getStatus('Vigor')>0){
+                if(this.userCombatant.getStatus('Vigor')!=0){
                     this.clearAttack[1]=true
                     this.clearValue[0]=this.userCombatant.getStatus('Vigor')
                     this.userCombatant.tempStatus[1]+=this.userCombatant.getStatus('Vigor')*max(1+this.userCombatant.getStatus('Resonance')*0.1+this.userCombatant.getStatus('Temporary Resonance')*0.1,0.2)
@@ -276,7 +280,8 @@ class attack{
             case 8003: case 8005: case 8006: case 8007: case 8008: case 8010: case 8013: case 8014: case 8020: case 8021: case 8022: case 8025: case 8034: case 8036: case 8044: case 8045: case 8048: case 8049: case 8051: case 8054:
             case 8055: case 8056: case 8064: case 8065: case 8072: case 8074: case 8075: case 8076: case 8077: case 8078: case 8079: case 8080: case 8081: case 8086: case 8087: case 8088: case 8089: case 8091: case 8094: case 8095:
             case 8096: case 8101: case 8102: case 8103: case 8104: case 8109: case 8110: case 8119: case 8120: case 8121: case 8122: case 8123: case 8140: case 8145: case 8146: case 8153: case 8154: case 8164: case 8166: case 8167:
-            case 8173: case 8174: case 8194: case 8196: case 8197: case 8199: case 8200: case 8201: case 8204: case 8218:
+            case 8173: case 8174: case 8194: case 8196: case 8197: case 8199: case 8200: case 8201: case 8204: case 8218: case 8226: case 8231: case 8242: case 8243: case 8244: case 8245: case 8246: case 8252: case 8254: case 8255:
+            case 8256: case 8257: case 8258: case 8260:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -351,7 +356,8 @@ class attack{
             case 7650: case 7651: case 7652: case 7653: case 7666: case 7727: case 7737: case 7777: case 7814: case 7815:
             case 7827: case 7837: case 7910: case 7974: case 7987: case 7988: case 8029: case 8030: case 8031: case 8032:
             case 8066: case 8067: case 8083: case 8107: case 8129: case 8130: case 8131: case 8132: case 8176: case 8202:
-            case 8219: case 8225:
+            case 8219: case 8225: case 8230: case 8233: case 8234: case 8237: case 8238: case 8239: case 8240: case 8251:
+            case 8253: case 8259:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -7089,6 +7095,51 @@ class attack{
                             this.battle.addSpecificEnergy(3,this.player,6)
                         }
                     break
+                    case 8243:
+                        if(this.userCombatant.getStatus('Temporary Resonance')>0){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                            this.userManager.draw(this.effect[2])
+                        }
+                    break
+                    case 8244:
+                        if(this.userCombatant.getStatus('Temporary Resonance')>0){
+                            this.battle.addSpecificEnergy(1,this.player,3)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 8245:
+                        if(this.userCombatant.getStatus('Temporary Resonance')>0){
+                            this.battle.addSpecificEnergy(2,this.player,3)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 8246:
+                        if(this.userCombatant.getStatus('Temporary Resonance')>0){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,3)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 8254:
+                        this.targetCombatant.statusEffect('Strength',this.effect[1])
+                        this.userCombatant.statusEffect('Strength',-this.effect[2])
+                    break
+                    case 8258:
+                        if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&this.userCombatant.check10()){
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userManager.hand.add(findName('Miracle',types.card),0,0)
+                            }
+                            this.userCombatant.highRoll()
+                        }else{
+                            this.userCombatant.lowRoll()
+                        }
+                    break
+                    case 8260:
+                        if(this.limit%2==1){
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
 
                 }
                 //mark 1s
@@ -10273,6 +10324,16 @@ class attack{
                         this.userCombatant.statusEffect('Temporary Resonance Next Turn',this.effect[1])
                         this.userCombatant.statusEffect('Temporary Draw',this.effect[2])
                     break
+                    case 8247:
+                        this.userCombatant.statusEffect('Counter Once',this.effect[1])
+                        this.userCombatant.statusEffect('Vigil',this.effect[2])
+                    break
+                    case 8248:
+                        this.userCombatant.statusEffect('Vigor',-this.effect[1])
+                    break
+                    case 8249:
+                        this.userCombatant.statusEffect('Vigil',-this.effect[1])
+                    break
 
                 }
                 //mark 2s
@@ -12473,6 +12534,36 @@ class attack{
                     break
                     case 8225:
                         this.userCombatant.statusEffect('Resonance',this.effect[1])
+                    break
+                    case 8230:
+                        this.userManager.allEffect(2,4)
+                    break
+                    case 8233:
+                        this.userCombatant.statusEffect('Temporary Resonance',this.effect[1])
+                    break
+                    case 8237:
+                        if(this.debut){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 8238:
+                        if(this.debut){
+                            this.battle.addSpecificEnergy(2,this.player,2)
+                        }
+                    break
+                    case 8239:
+                        this.userCombatant.statusEffect('Free Threshold',1)
+                    break
+                    case 8240:
+                        this.userManager.hand.retain(this.effect[1])
+                    break
+                    case 8251:
+                        if(this.debut){
+                            this.battle.loseEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 8253:
+                        this.userCombatant.statusEffect('Vigil',-this.effect[1])
                     break
 
                 }
@@ -16762,6 +16853,19 @@ class attack{
                     case 8224:
                         this.userCombatant.statusEffect('Resonance',this.effect[0])
                         this.userCombatant.statusEffect('Turn Exhaust',this.effect[1])
+                    break
+                    case 8227:
+                        this.userCombatant.statusEffect('Vigor',this.effect[0])
+                        this.userCombatant.ringing+=this.effect[1]
+                    break
+                    case 8228:
+                        this.userCombatant.statusEffect('Vigil',this.effect[0])
+                        this.userCombatant.ringing+=this.effect[1]
+                    break
+                    case 8241:
+                        this.userCombatant.statusEffect('Extra Turn',1)
+                        this.userCombatant.statusEffect('Retain Vigor',this.effect[0])
+                        this.userCombatant.statusEffect('Retain Vigil',this.effect[1])
                     break
 
                 }
@@ -21315,6 +21419,14 @@ class attack{
                     break
                     case 8223:
                         this.userCombatant.multiplyStatus('Vigil',this.effect[0])
+                    break
+                    case 8235:
+                        this.userManager.draw(this.effect[0],1)
+                        this.userCombatant.statusEffect('Vigor',this.effect[1])
+                    break
+                    case 8236:
+                        this.userManager.draw(this.effect[0],1)
+                        this.userCombatant.statusEffect('Vigil',this.effect[1])
                     break
 
                 }
@@ -25935,6 +26047,18 @@ class attack{
                         this.userCombatant.statusEffect('Temporary Resonance in 2 Turns',this.effect[1])
                         this.userCombatant.statusEffect('Temporary Resonance in 3 Turns',this.effect[1])
                     break
+                    case 8256: case 8257:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.amplify){
+                            this.battle.combatantManager.randomEnemyEffect(18,[this.effect[1],this.user,this.targetCombatant.id])
+                        }
+                    break
+                    case 8259:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Swarm Wall',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
 
                 }
                 //mark 8
@@ -26279,6 +26403,10 @@ class attack{
                     case 8196:
                         this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
                         this.userCombatant.statusEffect('Vigor',this.effect[1])
+                    break
+                    case 8255:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
+                        this.battle.combatantManager.randomEnemyEffect(18,[this.effect[1],this.user,this.targetCombatant.id])
                     break
 
                 }
@@ -31811,6 +31939,12 @@ class attack{
                     break
                     case 8221:
                         this.userCombatant.statusEffect('Bell Vulnerable',this.effect[0])
+                    break
+                    case 8229:
+                        this.userCombatant.bell(2)
+                    break
+                    case 8261:
+                        this.userCombatant.statusEffect('Buff Loss Block',this.effect[0])
                     break
 
                 }

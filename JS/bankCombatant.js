@@ -10151,7 +10151,7 @@ combatant.prototype.display=function(){
                     this.layer.line(0,0,0,-48)
                 }
             break
-            case 'Wall': case 'Exploding Wall': case 'Swap Wall':
+            case 'Wall': case 'Exploding Wall': case 'Swap Wall': case 'Swarm Wall':
                 if(this.trigger.display.body){
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                     this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
@@ -10166,6 +10166,11 @@ combatant.prototype.display=function(){
                             this.layer.quad(-6,-20,0,-26,6,-20,0,-14)
                             this.layer.fill(this.flashColor(this.color.bomb[1])[0],this.flashColor(this.color.bomb[1])[1],this.flashColor(this.color.bomb[1])[2],this.fade*this.fades.body)
                             this.layer.quad(-4,-20,0,-24,4,-20,0,-16)
+                        break
+                        case 'Swap Wall':
+                            this.layer.strokeWeight(2)
+                            this.layer.ellipse(0,-22,12)
+                            this.layer.ellipse(0,-22,6)
                         break
                     }
                 }

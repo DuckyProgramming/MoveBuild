@@ -8447,7 +8447,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(240,150,60,fade)
             layer.rect(0,-3,6,1.5)
             layer.triangle(0,-1.5,-2.5,2.5,2.5,2.5)
-            layer.fill(255,fade)
+            layer.fill(200,255,255,fade)
             layer.quad(-1.5,0,0,-2,1.5,0,0,2)
         break
         case 844:
@@ -8510,6 +8510,18 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(0,fade)
             layer.ellipse(0,0,2)
             layer.rect(0,1,2/3,2,1/3)
+        break
+        case 850:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-3,3,3,3,0,-6)
+            layer.noFill()
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(0.5)
+            layer.ellipse(0,0,8)
+            layer.line(-2*constants.sqrt2,2*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
         break
 
     }
