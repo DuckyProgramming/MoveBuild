@@ -281,7 +281,7 @@ class attack{
             case 8055: case 8056: case 8064: case 8065: case 8072: case 8074: case 8075: case 8076: case 8077: case 8078: case 8079: case 8080: case 8081: case 8086: case 8087: case 8088: case 8089: case 8091: case 8094: case 8095:
             case 8096: case 8101: case 8102: case 8103: case 8104: case 8109: case 8110: case 8119: case 8120: case 8121: case 8122: case 8123: case 8140: case 8145: case 8146: case 8153: case 8154: case 8164: case 8166: case 8167:
             case 8173: case 8174: case 8194: case 8196: case 8197: case 8199: case 8200: case 8201: case 8204: case 8218: case 8226: case 8231: case 8242: case 8243: case 8244: case 8245: case 8246: case 8252: case 8254: case 8255:
-            case 8256: case 8257: case 8258: case 8260:
+            case 8256: case 8257: case 8258: case 8260: case 8262:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -4096,7 +4096,7 @@ class attack{
                     case 2623:
                         this.userCombatant.balance=9
                     break
-                    case 2646:
+                    case 2646: case 8262:
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.hand.add(findName('Shiv',types.card),0,0)
                         }

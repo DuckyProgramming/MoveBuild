@@ -2,25 +2,18 @@ OPERATION ICATHIA
 
 
 
-CARDSET 83 [MAY]
-
-CARDSET 84 [MAY]
+CARDSET 84 [OPERATION 6666]
 
 
-
-5 subcards at some point
 
 1 new event
 
 
 
-MERI - 01
-
-cards
-
-junkyard counterparts
-
 MERI - 02
+
+icon
+graphics
 
 tutorial
 -h traitor boss

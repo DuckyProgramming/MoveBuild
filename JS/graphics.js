@@ -3731,6 +3731,101 @@ function setupCombatantGraphics(type){
 			data.sprites.wing[0].scale(5)
 			generateSprite(data.sprites.wing[0],76,0)
 		break
+		case 11:
+			graphics.combatant.push({
+				sprites:{detail:15,genAmount:0,animDirection:0},
+				parts:{jacket:[]},
+				color:{
+                    hair:{back:[50,50,70],front:[70,70,90],insideBack:[40,40,60],insideFront:[60,60,80],glow:[245,230,245]},
+                    skin:{head:[223,214,197],body:[200,186,177],legs:[224,234,243],arms:[235,233,221]},
+                    eye:{back:[203,183,210],front:[65,76,108],glow:[222,227,223]},
+					mouth:{in:[191,125,127],out:[0,0,0]},
+					dress:{main:[137,106,172],sleeve:[134,135,192],stripe:[160,172,198],highlight:[188,207,221],bow:[253,253,253],tie:[112,59,127]},
+					shoe:[165,89,116],
+					bell:[[200,180,100],[0,0,0]],
+				},
+			})
+
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={main:[],inside:[],reverse:[],reverseInside:[]}
+
+			for(let a=0,la=12;a<la;a++){
+				let zonal=[random(-180/la,-60/la),random(-60/la,60/la),random(60/la,180/la)]
+				let scale=8.5-lcos(a/la*360)*10-lcos(a/la*360)*abs(lcos(a/la*360))*2.5+random(-0.2,0.2)
+				if(scale>0){
+					data.parts.hair.main.push({spin:[a/la*360-180/la,a/la*360,a/la*360+zonal[0]],y:[0,0,scale/2]})
+					data.parts.hair.main.push({spin:[a/la*360,a/la*360+180/la,a/la*360+zonal[2]],y:[0,0,scale/2]})
+					data.parts.hair.main.push({spin:[a/la*360+zonal[0],a/la*360+zonal[2],a/la*360],y:[scale/2,scale/2,0]})
+					data.parts.hair.main.push({spin:[a/la*360+zonal[0],a/la*360+zonal[2],a/la*360+zonal[1]],y:[scale/2,scale/2,scale]})
+				}else{
+					data.parts.hair.reverse.push({spin:[a/la*360-180/la-max(0,-6-scale*4),a/la*360,a/la*360+zonal[0]],y:[0,0,scale/2-0.5]})
+					data.parts.hair.reverse.push({spin:[a/la*360,a/la*360+180/la+max(0,-6-scale*4),a/la*360+zonal[2]],y:[0,0,scale/2-0.5]})
+					data.parts.hair.reverse.push({spin:[a/la*360+zonal[0],a/la*360+zonal[2],a/la*360],y:[scale/2-0.5,scale/2-0.5,0]})
+					data.parts.hair.reverse.push({spin:[a/la*360+zonal[0],a/la*360+zonal[2],a/la*360+zonal[1]],y:[scale/2-0.5,scale/2-0.5,scale-1]})
+				}
+
+				zonal=[random(-180/la,-30/la),random(-90/la,90/la),random(30/la,180/la)]
+				scale=6.5-lcos((a+0.5)/la*360)*9-lcos((a+0.5)/la*360)*abs(lcos((a+0.5)/la*360))*2.25+random(-0.2,0.2)
+				if(scale>0){
+					data.parts.hair.inside.push({spin:[(a+0.5)/la*360-180/la,(a+0.5)/la*360,(a+0.5)/la*360+zonal[0]],y:[0,0,scale/2]})
+					data.parts.hair.inside.push({spin:[(a+0.5)/la*360,(a+0.5)/la*360+180/la,(a+0.5)/la*360+zonal[2]],y:[0,0,scale/2]})
+					data.parts.hair.inside.push({spin:[(a+0.5)/la*360+zonal[0],(a+0.5)/la*360+zonal[2],(a+0.5)/la*360],y:[scale/2,scale/2,0]})
+					data.parts.hair.inside.push({spin:[(a+0.5)/la*360+zonal[0],(a+0.5)/la*360+zonal[2],(a+0.5)/la*360+zonal[1]],y:[scale/2,scale/2,scale]})
+				}else{
+					data.parts.hair.reverseInside.push({spin:[(a+0.5)/la*360-180/la-max(0,-6-scale*4),(a+0.5)/la*360,(a+0.5)/la*360+zonal[0]],y:[0,0,scale/2-1]})
+					data.parts.hair.reverseInside.push({spin:[(a+0.5)/la*360,(a+0.5)/la*360+180/la+max(0,-6-scale*4),(a+0.5)/la*360+zonal[2]],y:[0,0,scale/2-1]})
+					data.parts.hair.reverseInside.push({spin:[(a+0.5)/la*360+zonal[0],(a+0.5)/la*360+zonal[2],(a+0.5)/la*360],y:[scale/2-1,scale/2-1,0]})
+					data.parts.hair.reverseInside.push({spin:[(a+0.5)/la*360+zonal[0],(a+0.5)/la*360+zonal[2],(a+0.5)/la*360+zonal[1]],y:[scale/2-1,scale/2-1,scale-2]})
+				}
+			}
+		
+			data.sprites.genAmount=360/data.sprites.detail
+
+			data.sprites.hair={preBack:[],preFront:[],insideBack:[],insideFront:[],back:[],front:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.insideFront.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.insideFront[g])
+				data.sprites.hair.insideFront[g].translate(100,100)
+				data.sprites.hair.insideFront[g].scale(5)
+				generateSprite(data.sprites.hair.insideFront[g],70,g*data.sprites.detail)
+				//console.log('Generated HIF-'+(g+1))
+				data.sprites.hair.insideBack.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.insideBack[g])
+				data.sprites.hair.insideBack[g].translate(100,100)
+				data.sprites.hair.insideBack[g].scale(5)
+				generateSprite(data.sprites.hair.insideBack[g],71,g*data.sprites.detail)
+				//console.log('Generated HIB-'+(g+1))
+				data.sprites.hair.preFront.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.preFront[g])
+				data.sprites.hair.preFront[g].translate(100,100)
+				data.sprites.hair.preFront[g].scale(5)
+				generateSprite(data.sprites.hair.preFront[g],68,g*data.sprites.detail)
+				//console.log('Generated HF-'+(g+1))
+				data.sprites.hair.preBack.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.preBack[g])
+				data.sprites.hair.preBack[g].translate(100,100)
+				data.sprites.hair.preBack[g].scale(5)
+				generateSprite(data.sprites.hair.preBack[g],69,g*data.sprites.detail)
+				//console.log('Generated HB-'+(g+1))
+				data.sprites.hair.front.push(createGraphics(200,300))
+				data.sprites.hair.front[g].image(data.sprites.hair.insideFront[g],0,0,200,300)
+				data.sprites.hair.front[g].image(data.sprites.hair.preFront[g],0,0,200,300)
+				data.sprites.hair.back.push(createGraphics(200,300))
+				data.sprites.hair.back[g].image(data.sprites.hair.insideBack[g],0,0,200,300)
+				data.sprites.hair.back[g].image(data.sprites.hair.preBack[g],0,0,200,300)
+			}
+			for(let a=0,la=data.sprites.hair.insideFront.length;a<la;a++){
+				delete data.sprites.hair.insideFront[a]
+				a--
+				la--
+			}
+			for(let a=0,la=data.sprites.hair.insideBack.length;a<la;a++){
+				delete data.sprites.hair.insideBack[a]
+				a--
+				la--
+			}
+		break
 		case 20:
 			graphics.combatant.push({
 				spin:{tail:[-96,96]},
@@ -4277,6 +4372,22 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.legs[0].top=27
 					p1.anim.legs[1].top=36
 				break
+				case 'Meri':
+					p1.position.x-=20-a*20
+					p1.anim.mouth.y++
+					p1.anim.eye=[1,1]
+					p1.anim.eyeStyle=[1,1]
+					p1.anim.legs=[
+						{top:21,bottom:15,length:{top:16.25,bottom:16.25}},
+						{top:6,bottom:9,length:{top:16.25,bottom:16.25}}
+					]
+					p1.anim.arms=[
+						{top:24,bottom:-6,length:{top:16.25,bottom:16.25}},
+						{top:24,bottom:-6,length:{top:16.25,bottom:16.25}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:30,bottom:75,lock:0}]
+					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
+				break
 
 			}
 			p1.size=2.5
@@ -4587,6 +4698,23 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.arms[1].top=75
 					p1.anim.legs[0].top=9
 					p1.anim.legs[1].top=33
+				break
+				case 'Meri':
+					p1.parts.mouth+=2.5
+					p1.spin.mouth+=156
+					p1.anim.mouth.x--
+					p1.anim.mouth.y--
+					p1.trigger.display.dress.bow=false
+					p1.anim.legs=[
+						{top:27-a*9,bottom:-63+a*6,length:{top:16.25,bottom:16.5}},
+						{top:-30-a*9,bottom:-39-a*15,length:{top:16.25,bottom:16.5}}
+					]
+					p1.anim.arms=[
+						{top:27,bottom:9,length:{top:16.25,bottom:16.25}},
+						{top:42+a*15,bottom:54+a*12,length:{top:16.25,bottom:16.25}}
+					]
+					p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
 				break
 			}
 			p1.anim.eye=[1,1]
@@ -4920,6 +5048,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.legs[0].top=21
 					p1.anim.legs[1].top=15
 				break
+				case 'Meri':
+					p1.position.y+=30
+					p1.anim.mouth.y+=0.5
+					p1.anim.legs=[
+						{top:36,bottom:57,length:{top:16.25,bottom:16.25}},
+						{top:36+a*12,bottom:57-a*24,length:{top:16.25,bottom:16.25}}
+					]
+					p1.anim.arms=[
+						{top:24,bottom:54-a*6,length:{top:16.25,bottom:16.25}},
+						{top:24,bottom:-6-a*6,length:{top:16.25,bottom:16.25}}
+					]
+					p1.spin.legs=[{top:-45+a*5,bottom:-15-a*5,lock:0},{top:120+a*5,bottom:150-a*12,lock:0}]
+					p1.spin.arms=[{top:-75+a*6,bottom:-12-a*9,lock:0},{top:75-a*6,bottom:30+a*15,lock:0}]
+				break
 			}
 			if(p1.name!='DD-610'&&p1.name!='Vincent'&&p1.name!='Ducopo'&&p1.name!='Randy'&&p1.name!='Dukelis'){
 				p1.anim.eye=[1,1]
@@ -5235,6 +5377,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.legs[1].top=18
 					p1.position.y+=5-a*30
 				break
+				case 'Meri':
+					p1.position.y+=-2+a*42
+					p1.anim.mouth.y-=0.5
+					p1.anim.legs=[
+						{top:6+a*36,bottom:3+a*54,length:{top:16.25,bottom:16.25-a*3}},
+						{top:6+a*36,bottom:3+a*54,length:{top:16.25,bottom:16.25-a*3}}
+					]
+					p1.anim.arms=[
+						{top:15+a*9,bottom:6-a*3,length:{top:16.25,bottom:16.25}},
+						{top:27-a*3,bottom:-12-a*39,length:{top:16.25,bottom:16.25}}
+					]
+					p1.spin.legs=[{top:-60+a*45,bottom:-120+a*45,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -5532,6 +5688,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.legs[0].top=24
 					p1.anim.legs[1].top=21
 					p1.position.y+=5
+				break
+				case 'Meri':
+					p1.anim.mouth.y+=0.25
+					p1.anim.legs=[
+						{top:6-a*3,bottom:3,length:{top:16.25,bottom:16.25}},
+						{top:6-a*3,bottom:3,length:{top:16.25,bottom:16.25}}
+					]
+					p1.anim.arms=[
+						{top:15+a*3,bottom:45-a*51,length:{top:16.25,bottom:16.25}},
+						{top:15-a*3,bottom:-6+a*51,length:{top:16.25,bottom:16.25}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-75+a*15,bottom:-15+a*60,lock:0},{top:60+a*6,bottom:66-a*60,lock:0}]
 				break
 			}
 			p1.size=2.5
@@ -5868,6 +6037,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.legs[1].top=21
 					p1.position.y+=5
 				break
+				case 'Meri':
+					p1.anim.mouth.y+=0.5
+					p1.parts.mouth-=0.5
+					p1.anim.legs=[
+						{top:6,bottom:3,length:{top:16.25,bottom:16.25}},
+						{top:6,bottom:3,length:{top:16.25,bottom:16.25}}
+					]
+					p1.anim.arms=[
+						{top:24+a*6,bottom:36-a*12,length:{top:16.25,bottom:16.25}},
+						{top:18-a*6,bottom:24+a*18,length:{top:16.25,bottom:16.25}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-90,lock:0},{top:60,bottom:90,lock:0}]
+					p1.spin.arms=[{top:-78,bottom:-120+a*60,lock:0},{top:78,bottom:55-a*30,lock:0}]
+				break
 			}
 			p1.size=2
 			p1.fade=1
@@ -6122,6 +6305,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.legs[0].top=27
 					p1.anim.legs[1].top=33
 					p1.position.y-=5
+				break
+				case 'Meri':
+					p1.anim.mouth.y-=0.5
+					p1.anim.legs=[
+						{top:12,bottom:-3,length:{top:16.25,bottom:16.25}},
+						{top:15,bottom:-6,length:{top:16.25,bottom:16.25}}
+					]
+					p1.anim.arms=[
+						{top:36,bottom:-45,length:{top:16.25,bottom:16.25}},
+						{top:27,bottom:9,length:{top:16.25,bottom:16.25}}
+					]
+					p1.spin.legs=[{top:-30,bottom:-60,lock:0},{top:30,bottom:30,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
 				break
 			}
 			p1.size=1.5

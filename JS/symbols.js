@@ -9098,6 +9098,9 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
         case 24:
             layer.fill(210,30,15,fade)
         break
+        case 25:
+            layer.fill(240,135,150,fade)
+        break
         default:
             layer.fill(120,fade)
         break
@@ -9488,6 +9491,18 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             }
             layer.fill(210,30,15,fade)
             regStar(layer,-8,0,5,6,6,2.5,2.5,180)
+        break
+        case 25:
+            layer.stroke(255)
+            layer.strokeWeight(4)
+            layer.line(0,16,lsin(-48)*20,18-lcos(-48)*20)
+            layer.line(0,16,lsin(-16)*20,18-lcos(-16)*20)
+            layer.line(0,16,lsin(16)*20,18-lcos(16)*20)
+            layer.line(0,16,lsin(48)*20,18-lcos(48)*20)
+            layer.line(lsin(-48)*20+lsin(16)*20,18-lcos(-48)*20-lcos(16)*20,lsin(-48)*20,18-lcos(-48)*20)
+            layer.line(lsin(-48)*20+lsin(16)*20,18-lcos(-48)*20-lcos(16)*20,lsin(16)*20,18-lcos(16)*20)
+            layer.line(lsin(48)*20+lsin(-16)*20,18-lcos(48)*20-lcos(-16)*20,lsin(48)*20,18-lcos(48)*20)
+            layer.line(lsin(48)*20+lsin(-16)*20,18-lcos(48)*20-lcos(-16)*20,lsin(-16)*20,18-lcos(-16)*20)
         break
         default:
             layer.rect(0,0,26)
