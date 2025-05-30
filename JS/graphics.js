@@ -3740,7 +3740,7 @@ function setupCombatantGraphics(type){
                     skin:{head:[223,214,197],body:[200,186,177],legs:[224,234,243],arms:[235,233,221]},
                     eye:{back:[203,183,210],front:[65,76,108],glow:[222,227,223]},
 					mouth:{in:[191,125,127],out:[0,0,0]},
-					dress:{main:[137,106,172],sleeve:[134,135,192],stripe:[160,172,198],highlight:[188,207,221],bow:[253,253,253],tie:[112,59,127]},
+					dress:{main:[137,106,172],over:[122,92,163],sleeve:[154,135,192],stripe:[170,182,208],highlight:[188,207,221],bow:[253,253,253],tie:[112,59,127]},
 					shoe:[165,89,116],
 					bell:[[200,180,100],[0,0,0]],
 				},
@@ -3752,7 +3752,7 @@ function setupCombatantGraphics(type){
 
 			for(let a=0,la=12;a<la;a++){
 				let zonal=[random(-180/la,-60/la),random(-60/la,60/la),random(60/la,180/la)]
-				let scale=8.5-lcos(a/la*360)*10-lcos(a/la*360)*abs(lcos(a/la*360))*2.5+random(-0.2,0.2)
+				let scale=8.5-lcos(a/la*360)*9-lcos(a/la*360)*abs(lcos(a/la*360))*3.5+random(-0.2,0.2)
 				if(scale>0){
 					data.parts.hair.main.push({spin:[a/la*360-180/la,a/la*360,a/la*360+zonal[0]],y:[0,0,scale/2]})
 					data.parts.hair.main.push({spin:[a/la*360,a/la*360+180/la,a/la*360+zonal[2]],y:[0,0,scale/2]})
@@ -3766,7 +3766,7 @@ function setupCombatantGraphics(type){
 				}
 
 				zonal=[random(-180/la,-30/la),random(-90/la,90/la),random(30/la,180/la)]
-				scale=6.5-lcos((a+0.5)/la*360)*9-lcos((a+0.5)/la*360)*abs(lcos((a+0.5)/la*360))*2.25+random(-0.2,0.2)
+				scale=6.5-lcos((a+0.5)/la*360)*8-lcos((a+0.5)/la*360)*abs(lcos((a+0.5)/la*360))*3.25+random(-0.2,0.2)
 				if(scale>0){
 					data.parts.hair.inside.push({spin:[(a+0.5)/la*360-180/la,(a+0.5)/la*360,(a+0.5)/la*360+zonal[0]],y:[0,0,scale/2]})
 					data.parts.hair.inside.push({spin:[(a+0.5)/la*360,(a+0.5)/la*360+180/la,(a+0.5)/la*360+zonal[2]],y:[0,0,scale/2]})

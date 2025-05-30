@@ -155,14 +155,14 @@ combatant.prototype.display=function(){
             }
             this.layer.rotate(this.time)
             for(let a=0,la=this.infoAnim.ringing.length;a<la;a++){
-                this.layer.rotate(120)
+                this.layer.rotate(72)
                 if(this.infoAnim.ringing[a]>0){
                     this.layer.fill(200,180,100,this.fade*this.infoAnim.ringing[a])
                     this.layer.rect(0,-12,1.5,24)
                     this.layer.quad(0,-20,-2.5,-24,0,-36,2.5,-24)
                 }
             }
-            this.layer.rotate(-this.time-480)
+            this.layer.rotate(-this.time-432)
             this.layer.translate(0,48)
         }
         switch(this.name){
@@ -6486,17 +6486,17 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.dress.main){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.dress.highlight),this.fade*this.fades.dress.main)
-                    for(let a=0,la=24;a<la;a++){
+                    for(let a=0,la=18;a<la;a++){
                         if(lcos(a/la*360)>0){
                             this.layer.push()
-                            this.layer.translate(14*lsin((a-0.2)/la*360),-24.5+4*lcos((a-0.2)/la*360))
-                            this.layer.rotate(-15*lsin(lsin((a-0.2)/la*360)*90))
-                            this.layer.ellipse(0,0,2.5*lcos((a-0.2)/la*360),3.5)
+                            this.layer.translate(13.75*lsin((a-0.2)/la*360),-24.5+4*lcos((a-0.2)/la*360))
+                            this.layer.rotate(-18*lsin(lsin((a-0.2)/la*360)*90))
+                            this.layer.ellipse(0,0,3.25*lcos((a-0.2)/la*360),4.5)
                             this.layer.pop()
                             this.layer.push()
-                            this.layer.translate(14*lsin((a+0.2)/la*360),-24.5+4*lcos((a+0.2)/la*360))
-                            this.layer.rotate(-15*lsin(lsin((a+0.2)/la*360)*90))
-                            this.layer.ellipse(0,0,2.5*lcos((a+0.2)/la*360),3.5)
+                            this.layer.translate(13.75*lsin((a+0.2)/la*360),-24.5+4*lcos((a+0.2)/la*360))
+                            this.layer.rotate(-18*lsin(lsin((a+0.2)/la*360)*90))
+                            this.layer.ellipse(0,0,3.25*lcos((a+0.2)/la*360),4.5)
                             this.layer.pop()
                         }
                     }
@@ -6505,14 +6505,31 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(0,-24,28,8)
                     this.layer.arc(0,-44,12,40,-180,0)
                     this.layer.ellipse(0,-44,12,2)
+                    this.layer.fill(...this.flashColor(this.color.dress.over),this.fade*this.fades.dress.main)
+                    for(let a=0,la=15;a<la;a++){
+                        if(lcos((a-0.16)/la*360)>0){
+                            this.layer.triangle(
+                                6*lsin((a-0.16)/la*360),-45.5+lcos((a-0.16)/la*360)*2,
+                                14*lsin((a-0.24)/la*360),-24+4*sqrt(1-lsin((a-0.24)/la*360)**2),
+                                14*lsin((a-0.08)/la*360),-24+4*sqrt(1-lsin((a-0.08)/la*360)**2)
+                            )
+                        }
+                        if(lcos((a+0.16)/la*360)>0){
+                            this.layer.triangle(
+                                6*lsin((a+0.16)/la*360),-45.5+lcos((a+0.16)/la*360)*2,
+                                14*lsin((a+0.24)/la*360),-24+4*sqrt(1-lsin((a+0.24)/la*360)**2),
+                                14*lsin((a+0.08)/la*360),-24+4*sqrt(1-lsin((a+0.08)/la*360)**2)
+                            )
+                        }
+                    }
                     this.layer.fill(...this.flashColor(this.color.skin.body),this.fade*this.fades.skin.body)
                     this.layer.ellipse(0,-62.75,4,2.5)
                     this.layer.fill(...this.flashColor(this.color.dress.stripe),this.fade*this.fades.dress.main)
                     this.layer.beginShape()
-                    this.layer.vertex(-13,-26.5)
-                    this.layer.bezierVertex(-8,-23,8,-23,13,-26.5)
-                    this.layer.vertex(13.3,-25.75)
-                    this.layer.bezierVertex(8.1,-22.25,-8.1,-22.25,-13.3,-25.75)
+                    this.layer.vertex(-13.5,-25.25)
+                    this.layer.bezierVertex(-9.4,-21.25,9.4,-21.25,13.5,-25.25)
+                    this.layer.vertex(13.7,-24.75)
+                    this.layer.bezierVertex(9.5,-20.5,-9.5,-20.5,-13.7,-24.75)
                     this.layer.endShape()
                 }
                 if(this.trigger.display.dress.bow&&lcos(this.spin.bow+this.anim.direction)>0){

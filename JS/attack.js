@@ -281,7 +281,7 @@ class attack{
             case 8055: case 8056: case 8064: case 8065: case 8072: case 8074: case 8075: case 8076: case 8077: case 8078: case 8079: case 8080: case 8081: case 8086: case 8087: case 8088: case 8089: case 8091: case 8094: case 8095:
             case 8096: case 8101: case 8102: case 8103: case 8104: case 8109: case 8110: case 8119: case 8120: case 8121: case 8122: case 8123: case 8140: case 8145: case 8146: case 8153: case 8154: case 8164: case 8166: case 8167:
             case 8173: case 8174: case 8194: case 8196: case 8197: case 8199: case 8200: case 8201: case 8204: case 8218: case 8226: case 8231: case 8242: case 8243: case 8244: case 8245: case 8246: case 8252: case 8254: case 8255:
-            case 8256: case 8257: case 8258: case 8260: case 8262:
+            case 8256: case 8257: case 8258: case 8260: case 8262: case 8263: case 8264: case 8265:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -6469,7 +6469,7 @@ class attack{
                         if(this.userCombatant.stance!=0){
                             this.battle.addEnergy(2,this.player,6)
                             this.userCombatant.enterStance(0)
-                        }c
+                        }
                     break
                     case 7023:
                         if(this.energy%3==0){
@@ -6502,6 +6502,9 @@ class attack{
                     case 7076:
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
                             this.userManager.hand.add(findName('Viewpoint',types.card),this.level,this.color,this.edition)
+                            this.userCombatant.highRoll()
+                        }else{
+                            this.userCombatant.lowRoll()
                         }
                     break
                     case 7088:
@@ -18765,8 +18768,8 @@ class attack{
                         this.userCombatant.statusEffect('Balance Energy',this.effect[0])
                     break
                     case 4001:
-                        if(this.userCombatant.stance>=1&&this.userCombatant.stance<=4||this.userCombatant.stance==6){
-                            this.userManager.hand.add(findName(['','Instant\nWrath','Instant\nCalm','Instant\nHaste','Instant\nSturdy','','Instant\nDepression'][this.userCombatant.stance],types.card),0,0)
+                        if(this.userCombatant.stance>=1&&this.userCombatant.stance<=4){
+                            this.userManager.hand.add(findName(['','Instant\nWrath','Instant\nCalm','Instant\nHaste','Instant\nSturdy'][this.userCombatant.stance],types.card),0,0)
                         }
                         this.userCombatant.enterStance(0)
                     break
@@ -28648,6 +28651,15 @@ class attack{
                         this.battle.addCurrency(this.effect[0],this.player)
                         this.battle.addCurrency(this.effect[0],this.battle.players-1-this.player)
                     break
+                    case 8264:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                    break
+                    case 8265:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                        this.userManager.draw(this.effect[2])
+                    break
 
                 }
                 //mark 11
@@ -32604,7 +32616,7 @@ class attack{
                     case 3673:
                         this.battle.overlayManager.overlays[107][this.player].active=true
                         this.battle.overlayManager.overlays[107][this.player].activate()
-                    
+                    break
                     case 4625:
                         this.battle.overlayManager.overlays[3][this.player].active=true
                         this.battle.overlayManager.overlays[3][this.player].activate([0,'ally',43])

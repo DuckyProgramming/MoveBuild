@@ -116,7 +116,7 @@ class combatant{
             elemental:0,
             inspiration:[0,0,0,0,0],fugue:0,
             favor:[0,0,0,0,0,0],
-            ringing:[0,0,0,0],
+            ringing:[0,0,0,0,0,0],
         }
         this.dodges=[]
         this.turnDodges=0
@@ -518,7 +518,7 @@ class combatant{
             elemental:0,
             inspiration:[0,0,0,0,0],fugue:0,
             favor:[0,0,0,0,0,0],
-            ringing:[0,0,0,0],
+            ringing:[0,0,0,0,0,0],
         }
     }
     reset(){
@@ -5205,17 +5205,23 @@ class combatant{
     }
     bell(mult){
         this.statusEffect('Bell',1)
-        let value=(3+this.status.main[841]+this.status.main[12]*max(1+this.status.main[838]*0.1+this.status.main[839]*0.1,0.2))*mult
-        this.status.main[12]=0
+        let value=(9+this.status.main[841]+this.status.main[12]*max(1+this.status.main[838]*0.1+this.status.main[839]*0.1,0.2))*mult
+        if(this.status.main[831]<=0){
+            if(this.status.main[833]>0){
+                this.status.main[833]--
+            }else{
+                this.status.main[12]=0
+            }
+        }
+        for(let a=0,la=this.status.main[840];a<la;a++){
+            this.battle.combatantManager.allEffect(19,[value])
+            this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y-48,264,[5,a*10]))
+        }
         if(this.status.main[848]>0){
             this.battle.combatantManager.allEffect(48,['Weak',this.status.main[848]])
         }
         if(this.status.main[849]>0){
             this.battle.combatantManager.allEffect(48,['Vulnerable',this.status.main[849]])
-        }
-        for(let a=0,la=this.status.main[840];a<la;a++){
-            this.battle.combatantManager.allEffect(19,[value])
-            this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y-48,264,[5,a*10]))
         }
         if(this.status.main[847]>0){
             this.addBlock(value*this.status.main[840]*this.status.main[847])
@@ -7742,8 +7748,8 @@ class combatant{
                 this.favor-=6
                 this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0)
             }
-            if(this.ringing>=4){
-                this.ringing-=4
+            if(this.ringing>=6){
+                this.ringing-=6
                 this.bell(1)
             }
             if(this.life<=0){

@@ -1711,7 +1711,7 @@ class relic{
                     displaySymbol(this.layer,5,-10,1,0,0.4,this.fade)
                     displaySymbol(this.layer,5,10,1,0,0.4,this.fade)
                 break
-                case 'Odd Turn Vigor':
+                case 'Even Turn Vigor':
                     displaySymbol(this.layer,-8,0,29,0,1,this.fade)
                     displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
                     displaySymbol(this.layer,8,-4,86,0,1,this.fade)

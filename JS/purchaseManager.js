@@ -342,11 +342,11 @@ class purchaseManager{
             case 1:
                 if(this.battle.players==1){
                     let group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,3,3]
-                    let cost=[[128,160],[192,240],[320,400],[160,200]]
+                    let cost=[[96,120],[144,180],[240,300],[120,150]]
                     let list=this.battle.relicManager.makeRelicSelection(group)
                     let index=floor(random(0,group.length))
                     for(let a=0,la=group.length;a<la;a++){
-                        let price=round(random(cost[group[a]][0],cost[group[a]][1]))
+                        let price=list[a]==516?0:round(random(cost[group[a]][0],cost[group[a]][1]))
                         this.purchases.push(new purchase(this.layer,this.battle,0,200+(a%6)*100,200+floor(a/6)*100,3,
                             [this.battle.relicManager.hasRelic(85,-1)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],0)?0.5:1)*(this.battle.relicManager.hasRelic(345,0)?2:1)],
                             [list[a]],
@@ -355,11 +355,11 @@ class purchaseManager{
                     }
                 }else{
                     let group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,3,3]
-                    let cost=[[128,160],[192,240],[320,400],[160,200]]
+                    let cost=[[96,120],[144,180],[240,300],[120,150]]
                     let list=this.battle.relicManager.makeRelicSelection(group)
                     let index=floor(random(0,group.length))
                     for(let a=0,la=group.length;a<la;a++){
-                        let price=round(random(cost[group[a]][0],cost[group[a]][1]))
+                        let price=list[a]==516?0:round(random(cost[group[a]][0],cost[group[a]][1]))
                         this.purchases.push(new purchase(this.layer,this.battle,-1,200+(a%6)*100,200+floor(a/6)*100,3,
                             [
                                 this.battle.relicManager.hasRelic(85,0)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],0)?0.5:1)*(this.battle.relicManager.hasRelic(345,0)?2:1),

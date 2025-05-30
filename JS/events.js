@@ -2095,8 +2095,8 @@ opened and revealing a space-like dimension beyond.
 They appear suddenly and you've never seen something
 like this before. Do you dare to enter?`,
                 option:['Enter the Left Door','Enter the Right Door','Leave'],
-                optionDesc:['Make a Card Erratic, Become Cursed - Bozo','Make a Card Negative, Become Cursed - Backfire',''],
-                link:[1,1,2],
+                optionDesc:['Make a Card Erratic','Make a Card Negative',''],
+                link:[1,1,3],
             },{
                 desc:
 `Entering the door, everything fades to black.
@@ -2106,6 +2106,16 @@ you see another door in space, and waste no
 time leaving this strange world.`,
                 option:['Leave'],
                 optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`Entering the door, everything fades to black.
+Around you, you see nothing but tiny explosions in every
+which way, slowly approaching you with no way out.
+Another door appears as they near you, and you
+take your opportunity to escape.`,
+                option:['Leave'],
+                optionDesc:['Become Cursed - Backfire'],
                 link:[-1],
             },{
                 desc:'As your turn to leave, the doors disappear.',

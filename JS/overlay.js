@@ -2832,7 +2832,7 @@ class overlay{
                     case 75: this.title=`Double Effect and Cost of ${['an Attack','a Defense'][this.args[1]]}`; break
                     case 76: this.title='Duplicate a Card, it Costs 1 More'; break
                     case 77: case 101: this.title='Upgrade a Card From Discard Pile'; break
-                    case 78: this.title='Transform a card Into Any Random Double Upgraded Card With an Edition'; break
+                    case 78: this.title='Transform a Card Into Any Random Double Upgraded Card With an Edition'; break
                     case 79: this.title='Put a Card From Discard Pile in Hand and Make it Duplicate Once'; break
                     case 80: this.title=`Exhaust a Card From the First ${this.args[1]} in Draw Pile`; break
                     case 81: this.title='Remove a Curse'; break
@@ -3388,18 +3388,22 @@ class overlay{
             break
             case 21:
                 this.layer.fill(160,this.fade*0.8)
-                this.layer.rect(this.layer.width/2,this.layer.height/2-160+floor(constants.playerNumber/3)*20,530,60+floor(constants.playerNumber/3)*40,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2-120+floor(constants.playerNumber/5)*20,770,60+floor(constants.playerNumber/5)*40,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
-                this.layer.text('Select Disguise Target',this.layer.width/2,this.layer.height/2-160)
+                this.layer.text('Select Disguise Target',this.layer.width/2,this.layer.height/2-120)
                 for(let a=0,la=constants.playerNumber;a<la;a++){
                     this.layer.noStroke()
                     this.layer.fill(120,this.fade)
-                    this.layer.rect(this.layer.width/2-170+a%3*170,this.layer.height/2-120+floor(a/3)*40,160,30,10)
+                    this.layer.rect(this.layer.width/2-300+a%5*150,this.layer.height/2-80+floor(a/5)*40,140,30,10)
                     this.layer.fill(0,this.fade)
-                    this.layer.noStroke()
-                    this.layer.textSize(16)
-                    this.layer.text(types.combatant[a+1].name,this.layer.width/2-170+a%3*170,this.layer.height/2-120+floor(a/3)*40)
+                    this.layer.textSize(15)
+                    this.layer.text(types.combatant[a+1].name,this.layer.width/2-300+a%5*150,this.layer.height/2-80+floor(a/5)*40)
+                    if(a+1==this.battle.player[this.player]){
+                        this.layer.stroke(40,this.fade)
+                        this.layer.strokeWeight(3)
+                        this.layer.line(this.layer.width/2-360+a%5*150,this.layer.height/2-70+floor(a/5)*40,this.layer.width/2-240+a%5*150,this.layer.height/2-90+floor(a/5)*40)
+                    }
                 }
             break
             case 22:
@@ -5393,7 +5397,7 @@ class overlay{
                 break
                 case 21:
                     for(let a=0,la=constants.playerNumber;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-170+a%3*170,y:this.layer.height/2-120+floor(a/3)*40},width:160,height:30})){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-300+a%5*150,y:this.layer.height/2-80+floor(a/5)*40},width:160,height:30})&&a+1!=this.battle.player[this.player]){
                             this.active=false
                             switch(this.args[0]){
                                 case 0:
@@ -6914,7 +6918,7 @@ class overlay{
                 break
                 case 21:
                     for(let a=0,la=constants.playerNumber;a<la;a++){
-                        if(key==inputs.hexadec[a]&&this.active){
+                        if(key==inputs.hexadec[a]&&this.active&&a+1!=this.battle.player[this.player]){
                             this.active=false
                             switch(this.args[0]){
                                 case 0:

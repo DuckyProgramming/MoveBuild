@@ -10,10 +10,7 @@ CARDSET 84 [OPERATION 6666]
 
 
 
-MERI - 02
-
-icon
-graphics
+MERI - 03
 
 tutorial
 -h traitor boss

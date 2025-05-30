@@ -5741,7 +5741,7 @@ class group{
                 this.battle.attackManager.debut=a.debut
                 this.battle.attackManager.evolve=a.evolve
                 this.battle.attackManager.fugue=userCombatant.fugue
-                this.battle.attackManager.cost=a.editCost(a.cost,1)
+                this.battle.attackManager.cost=a.cost
                 if(a.getBasic(1)&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }

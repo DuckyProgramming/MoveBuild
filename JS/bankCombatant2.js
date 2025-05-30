@@ -1333,14 +1333,14 @@ combatant.prototype.setupGraphics=function(direction){
 
             this.color=graphics.combatant[11].color
 
-            this.parts={eyeLevel:-76,mouth:-71.75,
+            this.parts={eyeLevel:-75.75,mouth:-71.75,
                 minor:15,
                 legs:[
                     {top:{x:3,y:-32.5},middle:{x:0,y:0},bottom:{x:0,y:0}},
                     {top:{x:3,y:-32.5},middle:{x:0,y:0},bottom:{x:0,y:0}}
                 ],arms:[
-                    {top:{x:3.25,y:-58},middle:{x:0,y:0},bottom:{x:0,y:0}},
-                    {top:{x:3.25,y:-58},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                    {top:{x:3.25,y:-57.5},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:3.25,y:-57.5},middle:{x:0,y:0},bottom:{x:0,y:0}}
                 ],}
 
             this.graphics={
@@ -5199,48 +5199,30 @@ combatant.prototype.minorDisplay=function(type,key){
                         this.graphics.arms[key].top.y-2.1*cos(dir+90)
                     )
                     this.layer.fill(...this.flashColor(this.color.dress.highlight),this.fade*this.fades.dress.sleeve)
-                    this.layer.quad(
-                        this.graphics.arms[key].top.x*0.9+this.graphics.arms[key].middle.x*0.1-2.625*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.9+this.graphics.arms[key].middle.y*0.1-2.625*cos(dir+90),
-                        this.graphics.arms[key].top.x*0.9+this.graphics.arms[key].middle.x*0.1+2.625*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.9+this.graphics.arms[key].middle.y*0.1+2.625*cos(dir+90),
-                        this.graphics.arms[key].top.x+2.2*sin(dir+90),
-                        this.graphics.arms[key].top.y+2.2*cos(dir+90),
-                        this.graphics.arms[key].top.x-2.2*sin(dir+90),
-                        this.graphics.arms[key].top.y-2.2*cos(dir+90)
-                    )
-                    this.layer.triangle(
-                        this.graphics.arms[key].top.x*0.85+this.graphics.arms[key].middle.x*0.15+2.925*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.85+this.graphics.arms[key].middle.y*0.15+2.925*cos(dir+90),
-                        this.graphics.arms[key].top.x*0.9+this.graphics.arms[key].middle.x*0.1+2.625*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.9+this.graphics.arms[key].middle.y*0.1+2.625*cos(dir+90),
-                        this.graphics.arms[key].top.x*0.9+this.graphics.arms[key].middle.x*0.1+1.75*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.9+this.graphics.arms[key].middle.y*0.1+1.75*cos(dir+90)
-                    )
-                    this.layer.triangle(
-                        this.graphics.arms[key].top.x*0.85+this.graphics.arms[key].middle.x*0.15-2.925*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.85+this.graphics.arms[key].middle.y*0.15-2.925*cos(dir+90),
-                        this.graphics.arms[key].top.x*0.9+this.graphics.arms[key].middle.x*0.1-2.625*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.9+this.graphics.arms[key].middle.y*0.1-2.625*cos(dir+90),
-                        this.graphics.arms[key].top.x*0.9+this.graphics.arms[key].middle.x*0.1-1.75*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.9+this.graphics.arms[key].middle.y*0.1-1.75*cos(dir+90)
-                    )
-                    this.layer.triangle(
-                        this.graphics.arms[key].top.x*0.85+this.graphics.arms[key].middle.x*0.15+0.975*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.85+this.graphics.arms[key].middle.y*0.15+0.975*cos(dir+90),
-                        this.graphics.arms[key].top.x*0.9+this.graphics.arms[key].middle.x*0.1+1.75*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.9+this.graphics.arms[key].middle.y*0.1+1.75*cos(dir+90),
-                        this.graphics.arms[key].top.x*0.9+this.graphics.arms[key].middle.x*0.1,
-                        this.graphics.arms[key].top.y*0.9+this.graphics.arms[key].middle.y*0.1
-                    )
-                    this.layer.triangle(
-                        this.graphics.arms[key].top.x*0.85+this.graphics.arms[key].middle.x*0.15-0.975*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.85+this.graphics.arms[key].middle.y*0.15-0.975*cos(dir+90),
-                        this.graphics.arms[key].top.x*0.9+this.graphics.arms[key].middle.x*0.1-1.5*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.9+this.graphics.arms[key].middle.y*0.1-1.5*cos(dir+90),
-                        this.graphics.arms[key].top.x*0.9+this.graphics.arms[key].middle.x*0.1,
-                        this.graphics.arms[key].top.y*0.9+this.graphics.arms[key].middle.y*0.1
-                    )
+                    this.layer.beginShape()
+                    let set=[
+                        [0,1],
+                        [0.225,1],
+                        [0.175,2/3],
+                        [0.225,1/3],
+                        [0.175,0],
+                        [0.225,-1/3],
+                        [0.175,-2/3],
+                        [0.225,-1],
+                        [0,-1],
+                    ]
+                    for(let a=0,la=set.length;a<la;a++){
+                        this.layer.vertex(
+                            this.graphics.arms[key].top.x*(1-set[a][0])+
+                            this.graphics.arms[key].middle.x*set[a][0]+
+                            (2.15+1.75*set[a][0])*set[a][1]*sin(dir+90),
+                            this.graphics.arms[key].top.y*(1-set[a][0])+
+                            this.graphics.arms[key].middle.y*set[a][0]+
+                            (2.15+1.75*set[a][0])*set[a][1]*cos(dir+90)
+                        )
+                    }
+                    this.layer.endShape()
+                    this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.dress.highlight),this.fade*this.fades.dress.sleeve)
                     this.layer.quad(
                         this.graphics.arms[key].top.x*0.2+this.graphics.arms[key].middle.x*0.8+2.1*sin(dir+90),
@@ -5273,39 +5255,31 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.translate(this.graphics.arms[key].top.x,this.graphics.arms[key].top.y)
                     this.layer.rotate(-dir)
                     this.layer.arc(0,0,4.6,4.2,0,180)
+                    this.layer.ellipse(0,0,4.6,0.4)
                     this.layer.pop()
-                    this.layer.triangle(
-                        this.graphics.arms[key].top.x*0.95+this.graphics.arms[key].middle.x*0.05+2.55*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.95+this.graphics.arms[key].middle.y*0.05+2.55*cos(dir+90),
-                        this.graphics.arms[key].top.x+2.25*sin(dir+90),
-                        this.graphics.arms[key].top.y+2.25*cos(dir+90),
-                        this.graphics.arms[key].top.x+1.5*sin(dir+90),
-                        this.graphics.arms[key].top.y+1.5*cos(dir+90)
-                    )
-                    this.layer.triangle(
-                        this.graphics.arms[key].top.x*0.95+this.graphics.arms[key].middle.x*0.05-2.55*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.95+this.graphics.arms[key].middle.y*0.05-2.55*cos(dir+90),
-                        this.graphics.arms[key].top.x-2.25*sin(dir+90),
-                        this.graphics.arms[key].top.y-2.25*cos(dir+90),
-                        this.graphics.arms[key].top.x-1.5*sin(dir+90),
-                        this.graphics.arms[key].top.y-1.5*cos(dir+90)
-                    )
-                    this.layer.triangle(
-                        this.graphics.arms[key].top.x*0.95+this.graphics.arms[key].middle.x*0.05+0.85*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.95+this.graphics.arms[key].middle.y*0.05+0.85*cos(dir+90),
-                        this.graphics.arms[key].top.x+1.5*sin(dir+90),
-                        this.graphics.arms[key].top.y+1.5*cos(dir+90),
-                        this.graphics.arms[key].top.x,
-                        this.graphics.arms[key].top.y
-                    )
-                    this.layer.triangle(
-                        this.graphics.arms[key].top.x*0.95+this.graphics.arms[key].middle.x*0.05-0.85*sin(dir+90),
-                        this.graphics.arms[key].top.y*0.95+this.graphics.arms[key].middle.y*0.05-0.85*cos(dir+90),
-                        this.graphics.arms[key].top.x-1.5*sin(dir+90),
-                        this.graphics.arms[key].top.y-1.5*cos(dir+90),
-                        this.graphics.arms[key].top.x,
-                        this.graphics.arms[key].top.y
-                    )
+                    this.layer.beginShape()
+                    set=[
+                        [0,1],
+                        [0.16,1],
+                        [0.11,2/3],
+                        [0.16,1/3],
+                        [0.11,0],
+                        [0.16,-1/3],
+                        [0.11,-2/3],
+                        [0.16,-1],
+                        [0,-1],
+                    ]
+                    for(let a=0,la=set.length;a<la;a++){
+                        this.layer.vertex(
+                            this.graphics.arms[key].top.x*(1-set[a][0])+
+                            this.graphics.arms[key].middle.x*set[a][0]+
+                            (2.2+2*set[a][0])*set[a][1]*sin(dir+90),
+                            this.graphics.arms[key].top.y*(1-set[a][0])+
+                            this.graphics.arms[key].middle.y*set[a][0]+
+                            (2.2+2*set[a][0])*set[a][1]*cos(dir+90)
+                        )
+                    }
+                    this.layer.endShape()
                 break
             }
         break

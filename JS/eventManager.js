@@ -1003,7 +1003,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         }
                     break
                     case 64:
-                        if(this.page>=1&&this.page<=3&&a>=0&&a<=2){
+                        if(this.page>=1&&this.page<=3&&a>=0&&a<=2){moveb
                             this.battle.overlayManager.overlays[3][this.player].active=true
                             this.battle.overlayManager.overlays[3][this.player].activate([0,3,31,[1,2,-99][this.page-1],[1,2,11][a]])
                         }
@@ -1012,10 +1012,16 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         if(this.page==0&&a==0){
                             this.battle.overlayManager.overlays[88][this.player].active=true
                             this.battle.overlayManager.overlays[88][this.player].activate()
-                            this.battle.cardManagers[this.player].deck.add(findName('Bozo',types.card),0,constants.playerNumber+2)
+                            if(floor(random(0,2))==0){
+                                tempPage++
+                            }
                         }else if(this.page==0&&a==1){
                             this.battle.overlayManager.overlays[52][this.player].active=true
                             this.battle.overlayManager.overlays[52][this.player].activate()
+                            if(floor(random(0,2))==0){
+                                tempPage++
+                            }
+                        }else if(this.page==2){
                             this.battle.cardManagers[this.player].deck.add(findName('Backfire',types.card),0,constants.playerNumber+2)
                         }
                     break

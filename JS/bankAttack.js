@@ -3022,7 +3022,7 @@ attack.prototype.update=function(){
         case 7601: case 7623: case 7657: case 7687: case 7692: case 7695: case 7703: case 7704: case 7713: case 7731:
         case 7742: case 7743: case 7762: case 7766: case 7789: case 7801: case 7821: case 7926: case 7929: case 7930:
         case 7963: case 7964: case 7965: case 7966: case 7968: case 7969: case 7984: case 8035: case 8046: case 8094:
-        case 8095: case 8105: case 8113: case 8190:
+        case 8095: case 8105: case 8113: case 8190: case 8264: case 8265:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -5892,13 +5892,20 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 825:
+        case 825: case 8263:
             if(this.timer==1){
                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*(1+1/this.targetDistance)-this.userCombatant.tilePosition.x/this.targetDistance,this.targetCombatant.tilePosition.y*(1+1/this.targetDistance)-this.userCombatant.tilePosition.y/this.targetDistance)
                 this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                 this.userCombatant.startAnimation(3)
             }else if(this.timer==10&&this.userCombatant.stance==4){
-                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                switch(this.type){
+                    case 825:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    break
+                    case 8263:
+                        this.userCombatant.addBlock(this.effect[0])
+                    break
+                }
             }
             if(this.timer<=20){
                 this.userCombatant.runAnimation(1/10,3)
