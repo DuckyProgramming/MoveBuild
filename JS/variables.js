@@ -25,7 +25,7 @@ types={
         {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:456,effect:[16,3]},{type:454,effect:[22,2]},{type:455,effect:[22,2]}],description:``},
         {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:458,effect:[1]},{type:459,effect:[11,1]},{type:460,effect:[13,5]}],description:``},
         {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:462,effect:[11,2]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:``},
-        {name:'Meri',moniker:'The Whisper',identifier:['Sister','Miss'],life:49,behavior:0,spec:[0],move:{type:0,speed:0},attack:[],description:``},
+        {name:'Meri',moniker:'The Whisper',identifier:['Sister','Miss'],life:49,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:466,effect:[5]},{type:467,effect:[5]},{type:465,effect:[10,10]}],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -245,6 +245,7 @@ types={
         {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:200,effect:[8]},{type:425,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
         {name:'Crusader',life:127,behavior:15,spec:[0,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:6,effect:[16]},{type:344,effect:[20]},{type:376,effect:[22,1]},{type:346,effect:[22,1]},{type:347,effect:[20]}],description:`Two millenia late to the party`},
         {name:'Thoughtless',life:144,behavior:17,spec:[0],move:{type:0,speed:1},attack:[{type:147,effect:[5]},{type:404,effect:[12,1]},{type:405,effect:[9,3]},{type:83,effect:[10,1,'Trough']}],description:`No brain lol`},
+        {name:'The Looker',life:125,behavior:19,spec:[0],move:{type:0,speed:1},attack:[{type:21,effect:[]},{type:468,effect:[7,2]},{type:405,effect:[8,8]},{type:117,effect:[10]}],description:`Does he see?`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,2]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,2]}],description:`Gunning for a promotion`},
@@ -789,6 +790,9 @@ types={
         {name:'6 Tile Carding Strike',class:1},
         {name:'Construct Block',class:2},
         {name:'3 Tile Strike / Block',class:1},
+        {name:'Vigor',class:4},
+        {name:'Vigil',class:4},
+        {name:'2 Tile 3 Spread Strike / Vulnerable',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,world:[0,3],description:''},
@@ -3520,6 +3524,16 @@ types={
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Barred 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
         },
 
         /*{
@@ -3566,6 +3580,16 @@ types={
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Barred 5'],class:2,world:0,
+            name:'The Looker',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'The Looker'},
             ],reinforce:[
             ],assaultReinforce:[
             ],ally:[
@@ -7109,7 +7133,7 @@ Does not decrement.`,
         {name:'Bad Cards',desc:'Basic Cards are Worse'},//20
         {name:'Slow Start',desc:'Draw 1 Less Card on Turn 1'},
         {name:'Broke',desc:'Start With No Currency'},
-        {name:'Mimic',desc:'The Second Prize is an Elite'},
+        {name:'Mimic',desc:'The Second Stash is an Elite'},
         {name:'Dazed Deck',desc:'Every 4 Turns, Shuffle a Dazed into Your Draw Pile'},
         {name:'Start More Cursed',desc:'Start With Pride'},
         {name:'Badlands',desc:'Battles Start With Randomly Positioned Obstacles'},

@@ -3787,7 +3787,7 @@ attack.prototype.update=function(){
         case 2228: case 2653: case 2711: case 2765: case 2813: case 3007: case 3336: case 3488: case 3577: case 3634:
         case 3635: case 4105: case 4857: case 5114: case 5757: case 6168: case 6175: case 6396: case 6732: case 6743:
         case 6865: case 6971: case 7132: case 7346: case 7396: case 7404: case 7636: case 7637: case 7638: case 7639:
-        case 7879: case 8003: case 8218:
+        case 7879: case 8003: case 8218: case 8266:
             if(
                 this.type==1815&&this.energy!=0||
                 this.type==4857&&this.mtgEnergy.length!=0
@@ -4007,6 +4007,9 @@ attack.prototype.update=function(){
                             break
                             case 8218:
                                 this.userCombatant.ringing+=this.effect[1]
+                            break
+                            case 8266:
+                                this.battle.attackManager.endAfter=true
                             break
                         }
                     }

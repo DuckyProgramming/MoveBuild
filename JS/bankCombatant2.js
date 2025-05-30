@@ -2857,6 +2857,19 @@ combatant.prototype.setupGraphics=function(direction){
             this.spin={eye:[-24,24]}
             this.goal={anim:{direction:this.anim.direction}}
         break
+        case 'The Looker':
+            this.anim={direction:direction,eye:[0,0],legs:[{top:24,length:{top:15}},{top:24,length:{top:15}}],arms:[{top:54,length:{top:15}},{top:54,length:{top:15}}]}
+            this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1},shield:0}
+            this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
+            this.parts={eyeLevel:-56,beakLevel:-49,legs:[{top:{x:5,y:-21},middle:{x:0,y:0}},{top:{x:5,y:-21},middle:{x:0,y:0}}],arms:[{top:{x:4,y:-36},middle:{x:0,y:0}},{top:{x:4,y:-36},middle:{x:0,y:0}}]}
+            this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}]}
+            this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true}}}
+            this.calc={int:[0,0,0,0]}
+            this.animSet={loop:0,flip:0,run:0}
+            this.goal={anim:{direction:this.anim.direction}}
+            this.color={skin:{out:[25,25,25],in:[55,55,55]},eye:{back:[25,25,25],in:[25,25,25],glow:[255,255,255]}}
+            this.progress=2
+        break
         //mark n
         default:
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],

@@ -1271,7 +1271,54 @@ last Leader, you get Fallen Union, which is a major debuff.`,
                 ]
             break
             case 32:
-                //add later
+                transition.scene='battle'
+                game.player=[25]
+                game.deck=[0]
+                this.battle.player=[25]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
+                this.popups=[[],[],[],[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Meri, the Whisper, is designed around setting up.
+Her gimmicks include: Vigor/Vigil/Resonance,
+Thresholds, Feint, and Bell.`,
+`Vigor is a status effect that adds damage to the next attack.
+it's a flat value, so vigor is equivalent to damage usually.
+However, for a multi-hit attack, the vigor will apply to each hit.`,
+`Vigil is the counterpart to Vigor for block.
+Just like with Vigor, adding block multiple times with one card
+will benefit more from Vigil than single blocks.`,
+`Resonance is an effect similar to Strength or Dexterity.
+It boosts the effect of Vigor and Vigil by 10% per stack.
+It can come in permanent and temporary forms.`,
+`Often times, you'll want to use Vigor and Vigil to set up.
+For example, you can gain Vigor over time without attacking,
+and then, when you gain Resonance, use it for one large attack.`,
+`Thresholds are another way to take advantage of Vigor.
+These attacks give additional effects if they do enough damage.
+Get the damage to that value by using Vigor and Resonance.`,
+`Another way to gain Vigor is Feint, a status effect.
+Each feint makes one of your hits deal no damage,
+but gives its damage to you as Vigor instead.`,
+`Feinting temporarily slows down your damage but lets
+you save it up as Vigor for a larger attack.`,
+`A way to take advantage of your Vigor is Bell.
+To activate Bell, you have to first gain 6 Ringing.
+When you do, it is spent to give you 1 Bell.`,
+`When you gain Bell, you deal 9 damage to each enemy
+one per stack of Bell you have. Bell is thus a clean
+source of damage that scales on its own.`,
+`To get the best results out of Bell, however,
+it helps to raise its damage by stacking Vigor.`,
+`END OF TUTORIAL`,
+                ]
             break
             default:
                 transition.trigger=true
@@ -2345,6 +2392,48 @@ last Leader, you get Fallen Union, which is a major debuff.`,
                         this.battle.cardManagers[0].hand.add(findName('Chernenko',types.card),0,24)
                         this.battle.cardManagers[0].hand.add(findName('Gorbachev',types.card),0,24)
                         this.battle.cardManagers[0].hand.add(findName('Fallen\nUnion',types.card),0,24)
+                    break
+                }
+            break
+            case 32:
+                switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Wreathed',types.card),0,25)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,25)
+                    break
+                    case 2:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Encase',types.card),0,25)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,25)
+                    break
+                    case 3:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Focus\nSound',types.card),0,25)
+                        this.battle.cardManagers[0].hand.add(findName('Wreathed',types.card),0,25)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,25)
+                    break
+                    case 5:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Wreathed',types.card),0,25)
+                        this.battle.cardManagers[0].hand.add(findName('Injure',types.card),0,25)
+                    break
+                    case 6:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Prepared\nFeint',types.card),0,25)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,25)
+                    break
+                    case 8:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Reverberation',types.card),0,25)
+                    break
+                    case 9:
+                        this.battle.cardManagers[0].hand.add(findName('Reverberation',types.card),0,25)
+                        this.battle.cardManagers[0].hand.add(findName('Reverberation',types.card),0,25)
+                        this.battle.cardManagers[0].hand.add(findName('Reverberation',types.card),0,25)
+                        this.battle.cardManagers[0].hand.add(findName('Reverberation',types.card),0,25)
+                    break
+                    case 10:
+                        this.battle.cardManagers[0].hand.add(findName('Danger\nIncoming',types.card),0,25)
                     break
                 }
             break

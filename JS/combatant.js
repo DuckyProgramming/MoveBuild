@@ -951,6 +951,9 @@ class combatant{
                 this.subAttackBuff([1,2,5],1.2)
             }
             if(game.ascend>=31){
+                if(this.type<=costants.playerNumber){
+                    this.subHealthBuff(1.2)
+                }
                 switch(this.name){
                     case 'Human':
                         this.subAttackTypeSwitch([[0,1,38,[]]])
@@ -1497,6 +1500,9 @@ class combatant{
                     case 'Pinstripe':
                         this.subAttackTypeSwitch([[2,446,446,[1.5]]])
                     break
+                    case 'The Looker':
+                        this.subAttackTypeSwitch([[2,177,177,[1.25]]])
+                    break
 
                     //mark 31
                 }
@@ -1823,7 +1829,7 @@ class combatant{
                     ]
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck': case 'The Looker':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -1988,7 +1994,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,150)[0],this.tilePosition.y+transformDirection(0,150)[1])
                 ]
             case 28: case 44: case 53: case 105: case 146: case 168: case 171: case 288: case 357: case 360:
-            case 381: case 387: case 388: case 404: case 409:
+            case 381: case 387: case 388: case 404: case 409: case 468:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -2433,6 +2439,15 @@ class combatant{
                                 break
                             }
                         break
+                        case 19:
+                            if(this.status.main[14]>0){
+                                this.progress=0
+                                this.intent=3
+                            }else{
+                                this.intent=this.progress
+                                this.progress++
+                            }
+                        break
                     }
                     this.convertIntent()
                 }
@@ -2656,7 +2671,7 @@ class combatant{
                         case 259: case 264: case 265: case 278: case 288: case 291: case 292: case 308: case 330: case 350:
                         case 351: case 357: case 360: case 368: case 379: case 381: case 384: case 387: case 388: case 395:
                         case 396: case 403: case 404: case 409: case 415: case 417: case 418: case 441: case 449: case 451:
-                        case 452:
+                        case 452: case 468:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -2875,7 +2890,7 @@ class combatant{
                     case 222: case 255: case 256: case 259: case 264: case 265: case 278: case 288: case 291: case 292:
                     case 308: case 330: case 350: case 351: case 357: case 360: case 368: case 379: case 381: case 384:
                     case 387: case 388: case 395: case 396: case 404: case 409: case 415: case 417: case 418: case 441:
-                    case 449: case 451: case 452:
+                    case 449: case 451: case 452: case 468:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(this.targetTile[b].tilePosition.x>=0){
                                 this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
@@ -3538,6 +3553,11 @@ class combatant{
             }
             if(this.status.main[14]>0){
                 this.status.main[14]--
+                if(this.status.main[14]<=0&&this.name=='The Looker'){
+                    this.progress=0
+                    this.setIntent(0)
+                    this.battle.updateTargetting()
+                }
             }
             if(this.status.main[217]>0){
                 this.status.main[217]--
@@ -6280,7 +6300,7 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck': case 'The Looker':
             case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Slimoid': case 'Big Slimoid': case 'Rainbow Slime': case 'Big Rainbow Slime':
             case 'Modicum': case 'Rock Golem': case 'Shield Particle':  case 'Bush Thing': case 'Fireball': case 'Fungling': case 'Bee': case 'Pixie': case 'Darkblot': case 'Lead Brick':  case 'Golden Duck': case 'Puffball': case 'Graphite Block':
                 switch(type){
@@ -6851,13 +6871,16 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck': case 'The Looker':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
                         for(let g=0;g<2;g++){
                             this.spin.legs[g].top=(-90+lsin((this.animSet.loop+this.animSet.flip)*180)*75)*(g*2-1)
                             this.spin.arms[g].top=(-90+lsin((this.animSet.loop+this.animSet.flip)*180)*60)*(g*2-1)
+                        }
+                        if(this.name=='The Looker'){
+                            this.animSet.run+=rate
                         }
                     break
                     case 1:
@@ -8316,6 +8339,11 @@ class combatant{
                         this.layer,this.position.x+random(-30,30),this.position.y+random(-30,5),197,
                         [0,random(0.4,0.6),this.color]))
                 }
+            break
+            case 'The Looker':
+                this.fades.shield=smoothAnim(this.fades.shield,this.status.main[14]>0,0,1,15)
+                this.move.type=this.status.main[14]>0?1:0
+                this.move.speed=this.status.main[14]>0?2:1
             break
         }
     }

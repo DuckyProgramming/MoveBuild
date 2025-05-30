@@ -406,7 +406,7 @@ turn.prototype.update=function(){
                 break
                 case 9: case 28: case 44: case 53: case 60: case 64: case 82: case 84: case 85: case 105:
                 case 114: case 124: case 153: case 204: case 259: case 264: case 265: case 278: case 288: case 308:
-                case 330: case 368: case 379: case 387: case 388: case 395: case 404: case 409: case 449:
+                case 330: case 368: case 379: case 387: case 388: case 395: case 404: case 409: case 449: case 468:
                     if(variants.nobasicanim){
                         this.selfCall(3)
                         this.remove=true
@@ -463,12 +463,12 @@ turn.prototype.update=function(){
                 case 18: case 25: case 26: case 43: case 46: case 63: case 70: case 109: case 159: case 167:
                 case 169: case 170: case 174: case 177: case 197: case 207: case 210: case 216: case 220: case 228:
                 case 281: case 289: case 294: case 296: case 300: case 345: case 349: case 356: case 413: case 421:
-                case 423: case 432: case 450: case 461: case 462:
+                case 423: case 432: case 450: case 461: case 462: case 466: case 467:
                     if(variants.nobasicanim){
                         this.selfCall(5)
                         this.remove=true
                     }else{
-                        let alt=this.userCombatant.name=='Lira'||this.userCombatant.name=='Shinmyoumaru'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Randy'||this.userCombatant.name=='Sagume'||this.userCombatant.name=='Dukelis'
+                        let alt=this.userCombatant.name=='Lira'||this.userCombatant.name=='Shinmyoumaru'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Randy'||this.userCombatant.name=='Sagume'||this.userCombatant.name=='Dukelis'||this.userCombatant.name=='Meri'
                         if(this.timer==1){
                             this.userCombatant.startAnimation(alt?6:7)
                         }
@@ -1118,7 +1118,7 @@ turn.prototype.update=function(){
                 case 117: case 135: case 154: case 175: case 195: case 319: case 344: case 347: case 403: case 440:
                     if(this.timer==1){
                         this.procedure[0]=0
-                        if(this.type==175||this.type==319||this.type==403||this.type==440){
+                        if(this.type==175||this.type==319||this.type==403||this.type==440||this.userCombatant.name=='The Looker'){
                             this.userCombatant.startAnimation(0)
                         }
                     }
@@ -1146,7 +1146,7 @@ turn.prototype.update=function(){
                         }
                     }
                     if(!this.remove){
-                        if(this.type==175||this.type==319||this.type==403||this.type==440){
+                        if(this.type==175||this.type==319||this.type==403||this.type==440||this.userCombatant.name=='The Looker'){
                             this.userCombatant.runAnimation(1/10,0)
                         }
                         this.userCombatant.moveTile(this.direction,this.distance/(10*distTargetCombatant(0,this,this.targetTile)))

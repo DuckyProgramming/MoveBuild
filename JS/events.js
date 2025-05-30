@@ -5413,6 +5413,49 @@ You're just a bit humiliated.`,
                 link:[-1],
             },
         ],
+    },{
+        name:'The Gulch',id:178,list:0,
+        pages:[
+            {
+                desc:
+`On the side of the road, you find a thin but fairly
+deep-looking gulch. On the other side, you see a box,
+guessing it probably contains something useful.
+You doubt you can make the jump, but there's a chance
+you could make it across if you jump well.`,
+                option:['Jump','Look Around','Leave'],
+                optionDesc:['','',''],
+                link:[2,1,4],
+            },{
+                desc:
+`As you ponder the situation, a wayward traveler happens
+to cross nearby. Asking him if he has anything to help
+you get across, he offers to give you some materials.
+For a price, of course.`,
+                option:['Buy a Cable','Buy a Steel Beam','Refuse'],
+                optionDesc:['Lose 50 Currency','Lose 150 Currency',''],
+                link:[2,2,4],
+            },{
+                desc:`
+You manage to reach the other side successfully.
+You grab the box and keep its contents.`,
+                option:['Take it'],
+                optionDesc:['Gain 1 Relic'],
+                link:[-1],
+            },{
+                desc:`
+You try to get across, but without success.
+Falling in, you're decently injured.`,
+                option:['Get Out'],
+                optionDesc:['Lose 10 Health'],
+                link:[-1],
+            },{
+                desc:`You give up on getting across and make your exit.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
     },/*{
         name:'',id:177,list:0,
         pages:[

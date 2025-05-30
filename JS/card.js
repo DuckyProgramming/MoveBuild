@@ -9325,6 +9325,7 @@ class card{
             case 8263: string+=`Push 1 Tile\nSturdy: Add ${this.calculateEffect(effect[0],1)} Block`; break
             case 8264: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable\nto Any Enemy`; break
             case 8265: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable\nto Any Enemy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 8266: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nEnd Your Turn`; break
             
             //mark p
 

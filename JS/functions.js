@@ -1218,6 +1218,9 @@ function intentDescription(attack,user,info){
 			case 462: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAnywhere\nTarget Cannot Move\nFor ${info?attack.effect[1]:`?`} Turn${pl(attack.effect[1])}`
 			case 464: return `Add ${info?attack.effect[0]:`?`} Block\nto Allied Constructs`
 			case 465: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Block\nRange 1-3`
+			case 466: return `Gain ${info?attack.effect[0]:`?`} Vigor`
+			case 467: return `Gain ${info?attack.effect[0]:`?`} Vigil`
+			case 468: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Vulnerable\n3 Tiles Wide\nRange 1-2`
 
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
@@ -2016,7 +2019,7 @@ Elites:${current.nodeManager.listing.static[0][1].length}/12
 (${current.nodeManager.listing.name[0][1].join(',')})
 Bosses:${current.nodeManager.listing.static[0][2].length}/10
 (${current.nodeManager.listing.name[0][2].join(',')})
-Total:${current.nodeManager.listing.static[0][0].length+current.nodeManager.listing.static[0][1].length+current.nodeManager.listing.static[0][2].length+current.nodeManager.listing.static[0][3].length}/56
+Total:${current.nodeManager.listing.static[0][0].length+current.nodeManager.listing.static[0][1].length+current.nodeManager.listing.static[0][2].length+current.nodeManager.listing.static[0][3].length}/58
 \nWorld 2:
 Enemies:${current.nodeManager.listing.static[1][0].length}/32
 (${current.nodeManager.listing.name[1][0].join(',')})
@@ -2024,7 +2027,7 @@ Elites:${current.nodeManager.listing.static[1][1].length}/16
 (${current.nodeManager.listing.name[1][1].join(',')})
 Bosses:${current.nodeManager.listing.static[1][2].length}/8
 (${current.nodeManager.listing.name[1][2].join(',')})
-Total:${current.nodeManager.listing.static[1][0].length+current.nodeManager.listing.static[1][1].length+current.nodeManager.listing.static[1][2].length}/52
+Total:${current.nodeManager.listing.static[1][0].length+current.nodeManager.listing.static[1][1].length+current.nodeManager.listing.static[1][2].length}/56
 \nWorld 3:
 Enemies:${current.nodeManager.listing.static[2][0].length}/32
 (${current.nodeManager.listing.name[2][0].join(',')})

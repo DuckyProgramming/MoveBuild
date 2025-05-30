@@ -327,7 +327,7 @@ class overlay{
                         }
                         if(variants.mtg){
                             for(let a=0,la=list[effectiveRarity].length;a<la;a++){
-                                if(types.card[list[effectiveRarity][a]].mtg.list==-1&&types.card[list[effectiveRarity][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
+                                if(types.card[list[effectiveRarity][a]].mtg.list==-1&&types.card[list[effectiveRarity][a]].mtg.color[0]!=0&&floor(random(0,10))!=0){
                                     list[effectiveRarity].splice(a,1)
                                     a--
                                     la--
