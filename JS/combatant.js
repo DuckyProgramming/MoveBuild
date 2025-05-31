@@ -478,14 +478,14 @@ class combatant{
         this.totalOrb=0
         this.totalOrbClass=[]
         this.lastOrb=0
-        this.metal=3
+        this.metal=this.name=='Donakho'?3:0
         this.stance=0
         this.faith=0
         this.charge=0
-        this.ammo=3
+        this.ammo=this.name=='Edgar'?3:0
         this.vision=0
         this.elemental=false
-        this.wish=3
+        this.wish=this.name=='Shinmyoumaru'?3:0
         this.inspiration=0
         this.fugue=0
         this.favor=0

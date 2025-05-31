@@ -9326,7 +9326,36 @@ class card{
             case 8264: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable\nto Any Enemy`; break
             case 8265: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable\nto Any Enemy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 8266: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nEnd Your Turn`; break
-            
+            case 8267: string+=`Take Another Turn\nGain ${effect[0]} Mortal`; break
+            case 8268: string+=`Trigger Follow-Up\nDiscard When a\nCard is Played`; break
+            case 8269: string+=`Apply ${effect[0]} Stun\nEnd Your Turn`; break
+            case 8270: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFirst Time Played: (${this.debut?`Yes`:`No`})\nGain ${effect[1]} Energy`; break
+            case 8271: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFirst Time Played: (${this.debut?`Yes`:`No`})\nGain (B) (B)`; break
+            case 8272: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDecreases by ${effect[1]}\nLose ${effect[2]} Health`; break
+            case 8273: string+=`Gain ${effect[0]} Strength\nGives Double Strength\nIf You Have ${effect[1]}\nor More Combo`; break
+            case 8274: string+=`Discover a 1 ${variants.mtg?`Total\n`:``}Cost Card\nIt Costs 0\nGain ${effect[0]} Energy\nNext Turn`; break
+            case 8275: string+=`Discover a 1 ${variants.mtg?`Total\n`:``}Cost Card\nIt Costs 0\nGain (N) Next Turn`; break
+            case 8276: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 8277: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 8278: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 8279: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 8280: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Poison\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 8281: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Apply ${effect[1]} Freeze\n50%: Draw ${effect[2]} Card${pl(effect[2])}`; break
+            case 8282: string+=`Create ${effect[0]} Plant Tile${pl(effect[0])}\nin ${effect[0]==1?`a `:``}Random Location${pl(effect[0])}`; break
+            case 8283: string+=`Gain ${effect[0]} Dexterity\nRemove All of\nYour Debuffs`; break
+            case 8284: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDiscover a Blueprint`; break
+            case 8285: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nHaste:\nGain ${effect[1]} Energy`; break
+            case 8286: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nHaste:\nGain (B)`; break
+            case 8287: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nHaste:\nGain (B) (B)`; break
+            case 8288: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nHaste:\nGain (E) (E)`; break
+            case 8289: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Metal\nIf You Have No Metal\nOtherwise,\nGain ${effect[2]} Metal`; break
+            case 8290: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Shock\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 8291: string+=`Discover a Claw\nIt Costs 0\nClaw Up ${effect[0]}`; break
+            case 8292: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nCreate 1 Plant Tile\nUnder Self`; break
+            case 8293: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Poison\nCreate 1 Plant Tile\nUnder Target`; break
+            case 8294: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bruise\nRepeat if First\nCard Played`; break
+            case 8295: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nCreate a Rearmament\nPoint on Target Tile`; break
+
             //mark p
 
             //mark q
@@ -11255,7 +11284,7 @@ class card{
         }
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         switch(this.attack){
-            case 107: case 255: case 2617: case 2665: case 4765: case 5272: case 5273:
+            case 107: case 255: case 2617: case 2665: case 4765: case 5272: case 5273: case 8272:
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)
             break
             case 108: case 1635: case 2419: case 4455: case 5166: case 5606: case 5654: case 6078:
@@ -11535,7 +11564,7 @@ class card{
                         this.exhaust=true
                     }
                 break
-                case 52: case 220: case 594: case 1508: case 3914: case 7530: case 7531:
+                case 52: case 220: case 594: case 1508: case 3914: case 7530: case 7531: case 8268:
                     this.deSize=true
                 break
                 case 56:
