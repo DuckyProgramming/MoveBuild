@@ -9355,6 +9355,13 @@ class card{
             case 8293: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Poison\nCreate 1 Plant Tile\nUnder Target`; break
             case 8294: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bruise\nRepeat if First\nCard Played`; break
             case 8295: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nCreate a Rearmament\nPoint on Target Tile`; break
+            case 8296: string+=`Gain ${effect[0]} Strength and\n${effect[1]} Dexterity Per Turn`; break
+            case 8297: string+=`Convert Your Block\nInto Temporary Strength`; break
+            case 8298: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter Equal to\nHalf Your Block`; break
+            case 8299: string+=`Remove a Card\nPermanently\nLose ${effect[0]} Max Health`; break
+            case 8300: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAt the Start of Combat,\nGain ${effect[1]} Temporary\nStrength`; break
+            case 8301: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nFor Each 0 Cost\nCard Drawn,\nGain ${effect[1]} Energy`; break
+            case 8302: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nFor Each 0 Total\nCost Card Drawn,\nGain (E)`; break
 
             //mark p
 
@@ -10716,6 +10723,9 @@ class card{
             break
             case 7655:
                 userCombatant.metal+=this.effect[0]
+            break
+            case 8300:
+                userCombatant.statusEffect('Temporary Strength',this.effect[1])
             break
         }
     }

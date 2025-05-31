@@ -2,7 +2,9 @@ OPERATION ICATHIA
 
 
 
-CARDSET 84 [OPERATION 6666]
+CARDSET 86 [OPERATION 6666]
+
+rage strike - 6 damage, increases by 6 when blocked
 
 
 

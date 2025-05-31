@@ -282,7 +282,7 @@ class attack{
             case 8096: case 8101: case 8102: case 8103: case 8104: case 8109: case 8110: case 8119: case 8120: case 8121: case 8122: case 8123: case 8140: case 8145: case 8146: case 8153: case 8154: case 8164: case 8166: case 8167:
             case 8173: case 8174: case 8194: case 8196: case 8197: case 8199: case 8200: case 8201: case 8204: case 8218: case 8226: case 8231: case 8242: case 8243: case 8244: case 8245: case 8246: case 8252: case 8254: case 8255:
             case 8256: case 8257: case 8258: case 8260: case 8262: case 8263: case 8264: case 8265: case 8266: case 8269: case 8270: case 8271: case 8272: case 8276: case 8277: case 8278: case 8279: case 8280: case 8281: case 8290:
-            case 8293: case 8294: case 8295:
+            case 8293: case 8294: case 8295: case 8300:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -10358,6 +10358,9 @@ class attack{
                     case 8289:
                         this.userCombatant.metal+=this.userCombatant.metal==0?this.effect[1]:this.effect[2]
                     break
+                    case 8298:
+                        this.userCombatant.statusEffect('Counter',round(this.userCombatant.block*0.5))
+                    break
 
                 }
                 //mark 2s
@@ -15786,15 +15789,15 @@ class attack{
                         }
                     break
                     case 6421:
-                        let result6412=this.userManager.drawReturn(this.effect[0])
-                        let total6412=0
-                        for(let a=0,la=result6412.length;a<la;a++){
-                            if(result6412[a].class==11){
-                                total6412++
+                        let result6421=this.userManager.drawReturn(this.effect[0])
+                        let total6421=0
+                        for(let a=0,la=result6421.length;a<la;a++){
+                            if(result6421[a].class==11){
+                                total6421++
                             }
                         }
-                        if(total6412>0){
-                            this.userCombatant.loseHealth(total6412*this.effect[1])
+                        if(total6421>0){
+                            this.userCombatant.loseHealth(total6421*this.effect[1])
                         }
                     break
                     case 6426:
@@ -16931,6 +16934,14 @@ class attack{
                     case 8283:
                         this.userCombatant.statusEffect('Dexterity',this.effect[0])
                         this.userCombatant.removeAllStatuses([1,3])
+                    break
+                    case 8296:
+                        this.userCombatant.statusEffect('Strength Per Turn',this.effect[0])
+                        this.userCombatant.statusEffect('Dexterity Per Turn',this.effect[0])
+                    break
+                    case 8297:
+                        this.userCombatant.statusEffect('Temporary Strength',round(this.userCombatant.block))
+                        this.userCombatant.block=0
                     break
 
                 }
@@ -21508,6 +21519,35 @@ class attack{
                         let index8292=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)
                         if(index8292>=0){
                             this.battle.tileManager.tiles[index8292].addType(19)
+                        }
+                    break
+                    case 8299:
+                        this.battle.overlayManager.overlays[6][this.player].active=true
+                        this.battle.overlayManager.overlays[6][this.player].activate([0,3,1])
+                        this.userCombatant.loseMaxHP(this.effect[0])
+                    break
+                    case 8301:
+                        let result8301=this.userManager.drawReturn(this.effect[0])
+                        let total8301=0
+                        for(let a=0,la=result8301.length;a<la;a++){
+                            if(result8301[a].getCost(0)==0){
+                                total8301++
+                            }
+                        }
+                        if(total8301>0){
+                            this.battle.addEnergy(this.effect[1]*total8301,this.player)
+                        }
+                    break
+                    case 8302:
+                        let result8302=this.userManager.drawReturn(this.effect[0])
+                        let total8302=0
+                        for(let a=0,la=result8302.length;a<la;a++){
+                            if(result8302[a].getCost(0)==0){
+                                total8302++
+                            }
+                        }
+                        if(total8302>0){
+                            this.battle.addSpecificEnergy(total8301,this.player,6)
                         }
                     break
 
