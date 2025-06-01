@@ -9362,6 +9362,16 @@ class card{
             case 8300: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAt the Start of Combat,\nGain ${effect[1]} Temporary\nStrength`; break
             case 8301: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nFor Each 0 Cost\nCard Drawn,\nGain ${effect[1]} Energy`; break
             case 8302: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nFor Each 0 Total\nCost Card Drawn,\nGain (E)`; break
+            case 8303: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nIncreases by ${effect[1]}`; break
+            case 8304: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Attack${pl(effect[1])}\nAdvance`; break
+            case 8305: string+=`Take ${effect[0]} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            case 8306: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health\nGain ${effect[2]} Vulnerable`; break
+            case 8307: string+=`Gain ${effect[0]} Intangible\nLose ${effect[1]} Health`; break
+            case 8308: string+=`Target Takes ${effect[0]} Damage\nWhen You Play a Skill`; break
+            case 8309: string+=`Target Gains\nIndefinite Weak,\nVulnerable, and Frail`; break
+            case 8310: string+=`Apply ${effect[0]} Burn\nIf You Have Played\nMore Than ${effect[1]} Card${effect[1]>0?`s`:``}\nThis Turn,\nNext ${effect[2]!=1?`${effect[2]} `:``}Attack${pl(effect[2])}\nDeal${effect[2]==1?`s`:``} Double Damage`; break
+            case 8311: string+=`Target Below 50% Health:\nNext ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage`; break
+            case 8312: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Armor\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
 
             //mark p
 

@@ -8523,6 +8523,16 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,0,8)
             layer.line(-2*constants.sqrt2,2*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
         break
+        case 851:
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(1)
+            regStar(layer,0,0,8,5,5,3,3,0,0)
+            layer.stroke(150,0,200,fade)
+            layer.strokeWeight(0.5)
+            regPoly(layer,0,0,6,4,4,30)
+            layer.line(-10/3,-2/3*constants.sqrt3,10/3,-2/3*constants.sqrt3)
+            layer.line(-10/3,2/3*constants.sqrt3,10/3,2/3*constants.sqrt3)
+        break
 
     }
     //mark s

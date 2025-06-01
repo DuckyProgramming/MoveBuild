@@ -208,7 +208,7 @@ class combatant{
                 'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Item Next Turn','Vigor Per Turn',
                 'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
                 'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block','Bell Weak','Bell Vulnerable',
-                'Buff Loss Block',
+                'Buff Loss Block','Take Per Skill Played Combat',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -296,7 +296,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,2,0,//83
                 0,1,1,0,0,0,0,0,0,2,//84
                 0,0,0,0,2,2,2,0,0,0,//85
-                0,
+                0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -384,7 +384,7 @@ class combatant{
                 2,2,2,2,2,2,2,0,2,2,//83
                 2,2,2,2,2,2,2,2,2,2,//84
                 2,2,2,2,2,2,2,2,2,2,//85
-                2,
+                2,3,
             ]}
         /*
         0-none
@@ -2567,6 +2567,9 @@ class combatant{
         }
         if(this.status.main[562]>0&&cardClass==4){
             this.statusEffect('Strength',this.status.main[562])
+        }
+        if(this.status.main[851]>0&&cardClass==11){
+            this.takeDamage(this.status.main[851],-1)
         }
         if(this.name=='Eternal Judge'&&this.battle.turn.main<this.battle.players){
             if(this.sins.includes(4)){

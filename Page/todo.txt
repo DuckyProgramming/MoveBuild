@@ -4,8 +4,6 @@ OPERATION ICATHIA
 
 CARDSET 86 [OPERATION 6666]
 
-rage strike - 6 damage, increases by 6 when blocked
-
 
 
 PURGE LISTING
