@@ -7385,6 +7385,7 @@ Does not decrement.`,
         {name:'Nerfmaster',desc:'When You Get Nerfed, Gain 1 Weak'},
         {name:'Big Bounce',desc:'Enemies Have a 10% Chance to be Tripled but Pushed Back 1 Turn'},
         {name:'Pinstripe',desc:'When an Enemy Dies, Take 2 Damage'},//240
+        {name:'The Looker',desc:'Relic Images Look Wrong'},
 
         //mark mod
     ],deckmode:[

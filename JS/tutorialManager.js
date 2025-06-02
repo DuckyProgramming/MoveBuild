@@ -127,7 +127,7 @@ They may be an event, which vary by quality.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
-                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Cards will often have attributes attached to them.
 You may have seen some of them already (such as Fatigue).`,
@@ -145,8 +145,14 @@ End your turn now, it should stay in your hand.`,
 As in, each battle, you can play it immediately.`,
 `Ethereal cards are exhausted if they remain in your hand when your turn ends.
 End your turn, the card should disappear, and not appear in your discard pile.`,
+`Quickdraw cards, when played, draw 1 additional card.
+Drawing cards usually have this effect in their card text,
+so Quickdraw is used only as an attribute added by upgrade.`,
 `Unplayable cards can't be played from your hand.
-Sometimes, they have passive effects, other times, they are useless.`,
+Sometimes, they have passive effects, other times, they do nothing.`,
+`Unplayable cards aren't the same as cards known as "bricks",
+which is a common term used to refer to any card that is useless,
+even if that card could be played.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -225,22 +231,24 @@ Weaken this enemy and test if he deals less damage.`,
 `Vulnerable causes the afflicted to take 50% more damage.
 Stacks of vulnerable extend the duration, but not the effect.
 Make this enemy vulnerable, and do extra damage using the Strike.`,
-`An enemy's turn can be completely skipped, such as with Stun.
-Stun this enemy, and end your turn. He won't get a turn.`,
+`The third base debuff is Frail, which reduces block gain by 25%.
+Because many enemies don't gain block, Frail's utility is limited.`,
 `Strength is designed to buff yourself. For each stack, you get +10% damage.
 Stacks of strength never decay, and last until the end of combat.
 Use strength to deal more damage using the strike.`,
 `Dexterity is similar to strength, but gives +10% more block for each stack.
 They also never decay. Use dexterity to get more block from the defend,
 and tank the enemy's attack.`,
-`Buffer is a special status effect that completely eliminates the next time
-you lose health. Buffer can used to avoid a lot of life loss, but be
-careful, as it can be wasted by small amounts of damage.`,
+`These are the basic, general status effects, but there are many more.
+Some are shared by characters, while others are character-specific.
+Furthermore, some are very specific and are rarely seen.`,
 `Keep in mind that you can read the text of unfamiliar status effects by
 mouseover on a character. The names of most status effects are self-explanatory.`,
 `Some more status effects may be explained in the character tutorials.
 Those characters often have status effects that they use often.`,
-`Additional information may be found in the dictionary.`,
+`Additional information may be found in the dictionary.
+There, you can search up any unfamiliar status effect,
+and discover what it does.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -1393,7 +1401,17 @@ it helps to raise its damage by stacking Vigor.`,
                     break
                     case 7:
                         this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Strike But\nQuickdraw',types.card),0,0)
+                    break
+                    case 8:
+                        this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Placeholder\nUnplayable',types.card),0,0)
+                    break
+                    case 9:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        for(let a=0,la=6;a<la;a++){
+                            this.battle.cardManagers[0].hand.add(findName('-h Brick',types.card),0,0)
+                        }
                     break
                 }
             break
@@ -1427,7 +1445,7 @@ it helps to raise its damage by stacking Vigor.`,
                     break
                     case 3:
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Apply\nStun',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Apply\nFrail',types.card),0,0)
                     break
                     case 4:
                         this.battle.cardManagers[0].allEffect(2,2)
@@ -1438,10 +1456,6 @@ it helps to raise its damage by stacking Vigor.`,
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Get\nDexterity',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,0)
-                    break
-                    case 6:
-                        this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Get\nBuffer',types.card),0,0)
                     break
                 }
             break
@@ -1562,7 +1576,7 @@ it helps to raise its damage by stacking Vigor.`,
                             this.battle.cardManagers[0].hand.add(findName('Placeholder\n$colorcharacter Card',types.card),0,a+1)
                         }
                         this.battle.cardManagers[0].allEffect(2,43)
-                        this.battle.cardManagers[0].hand.compact=0.58
+                        this.battle.cardManagers[0].hand.compact=0.56
                     break
                 }
             break

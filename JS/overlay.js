@@ -1760,6 +1760,15 @@ class overlay{
                                 case 7740:
                                     this.cards[a].attack=[-1079,-1080][a]
                                 break
+                                case 8313:
+                                    this.cards[a].attack=[-1081,-1013][a]
+                                break
+                                case 8314:
+                                    this.cards[a].attack=[-1082,-1083][a]
+                                break
+                                case 8315:
+                                    this.cards[a].attack=[-1084,-1085][a]
+                                break
                             }
                         }
                     break
@@ -2351,6 +2360,30 @@ class overlay{
                             case -1080:
                                 this.card.costDown(0,[7])
                                 userCombatant.statusEffect('Extra Turn',1)
+                            break
+                            case -1081:
+                                this.card.costDown(0,[4])
+                                this.battle.cardManagers[this.player].hand.add(findName('Standardize',types.card),0,0)
+                                this.battle.cardManagers[this.player].draw(args[0].effect[1])
+                            break
+                            case -1082:
+                                this.card.costDown(0,[3])
+                                this.battle.cardManagers[this.player].draw(args[0].effect[1])
+                                this.battle.cardManagers[this.player].allEffect(2,5)
+                            break
+                            case -1083:
+                                this.card.costDown(0,[9])
+                                this.battle.overlayManager.overlays[3][this.player].active=true
+                                this.battle.overlayManager.overlays[3][this.player].activate([0,floor(random(0,1.5)),12])
+                            break
+                            case -1084:
+                                this.card.costDown(0,[5])
+                                this.battle.combatantManager.allEffect(48,['Vulnerable',999])
+                            break
+                            case -1085:
+                                this.card.costDown(0,[12])
+                                this.battle.overlayManager.overlays[62][this.player].active=true
+                                this.battle.overlayManager.overlays[62][this.player].activate()
                             break
                         }
                     break

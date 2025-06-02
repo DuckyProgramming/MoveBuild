@@ -1119,7 +1119,8 @@ class card{
             case 82: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nMay Target\nThrough Obstructions`; break
             case 83: case 1196:
                 string+=`Apply ${effect[0]} Stun`; break
-            case 86: string+=`Apply ${effect[0]} Frail`; break
+            case 86: case 8319:
+                string+=`Apply ${effect[0]} Frail`; break
             case 87: string+=`Move to Any Tile\nDestroy its\nOccupants`; break
             case 88: string+=`Deal ${this.calculateEffect(effect[0],5)} Damage`; break
             case 89: case 3645: case 7584:
@@ -9372,6 +9373,20 @@ class card{
             case 8310: string+=`Apply ${effect[0]} Burn\nIf You Have Played\nMore Than ${effect[1]} Card${effect[1]>0?`s`:``}\nThis Turn,\nNext ${effect[2]!=1?`${effect[2]} `:``}Attack${pl(effect[2])}\nDeal${effect[2]==1?`s`:``} Double Damage`; break
             case 8311: string+=`Target Below 50% Health:\nNext ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage`; break
             case 8312: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Armor\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
+            case 8313: string+=`+1: Exhaust ${effect[0]} Card${pl(effect[0])}\n-4: Add a Standardize\nto Hand\nDraw ${effect[1]} Card${pl(effect[1])}\n-12: Remove a Card\nPermanently`; break
+                case -1081: string+=`-4: Add a Standardize\nto Hand\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 8314: string+=`+1: Apply ${effect[0]} Frail\nto a Random Enemy\n-3: Draw ${effect[1]} Card${pl(effect[1])}\nBecome Confused\n-9: Gain a Card Reward\nFrom Any Character`; break
+                case -1082: string+=`-3: Draw ${effect[1]} Card${pl(effect[1])}\nBecome Confused`; break
+                case -1083: string+=`-9: Gain a Card Reward\nFrom Any Character`; break
+            case 8315: string+=`+1: Bomb a Random\nTile For ${effect[0]} Damage\n-8: Apply Indefinite\nVulnerable to\nAll Enemies\n-12: Make a Card\nCost 1 Less Permanently`; break
+                case -1084: string+=`-8: Apply Indefinite\nVulnerable to\nAll Enemies`; break
+                case -1085: string+=`-12: Make a Card\nCost 1 Less Permanently`; break
+            case 8316: string+=`Put a Card in Draw\nPile in Your Hand\nGain ${effect[0]} Shock`; break
+            case 8317: string+=`Discover a Gun\nIt Costs 0\nGain ${effect[0]} Ammo`; break
+            case 8318: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscover a 0 ${variants.mtg?`Total\n`:``}Cost Card`; break
+            case 8320: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable\nAmplify: Double Both`; break
+            case 8321: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable\nAmplify (K): Double Both`; break
+            case 8322: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nApply ${effect[1]} Burn\nand ${effect[2]} Freeze\nin All Directions\nNext Attack is Free\nNext Defense is Free`; break
 
             //mark p
 
@@ -11388,7 +11403,7 @@ class card{
             case 3382: case 3383: case 3390: case 3395: case 3396: case 3397: case 3568: case 3569: case 3584: case 3585:
             case 3586: case 3689: case 3724: case 3725: case 3726: case 3727: case 3908: case 3909: case 4626: case 4627:
             case 4628: case 4629: case 4630: case 4631: case 4632: case 5164: case 5543: case 5544: case 6243: case 6262:
-            case 6263: case 6264: case 7189: case 7190: case 7345: case 7740:
+            case 6263: case 6264: case 7189: case 7190: case 7345: case 7740: case 8313: case 8314: case 8315:
                 if(!this.spec.includes(55)){
                     this.discardEffect.push(13)
                 }
@@ -12359,6 +12374,15 @@ class card{
                         this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
                     }
                 break
+                case 8313:
+                    this.battle.cardManagers[this.player].hand.exhaust(this.effect[0])
+                break
+                case 8314:
+                    this.battle.combatantManager.randomEnemyEffect(23,['Frail',this.effect[0]])
+                break
+                case 8315:
+                    this.battle.tileManager.fireRandom(0,this.effect[0])
+                break
 
             }
         }else if(this.spec.includes(60)){
@@ -12952,7 +12976,7 @@ class card{
                     this.layer.stroke(40,50,60,this.fade)
                     this.layer.strokeWeight(5)
                     this.layer.rect(0,0,this.width,this.height,5)
-                    if(this.type<findName('-h Prison',types.card)){
+                    if(this.type>findName('-h Prison',types.card)||true){
                         this.layer.noStroke()
                         this.layer.fill(50,50,225,this.fade)
                         this.layer.quad(
@@ -13494,7 +13518,7 @@ class card{
                     this.layer.stroke(90,100,110,this.fade)
                     this.layer.strokeWeight(5)
                     this.layer.rect(0,0,this.width,this.height,5)
-                    if(this.type<findName('-h Prison',types.card)){
+                    if(this.type>findName('-h Prison',types.card)){
                         this.layer.noStroke()
                         this.layer.fill(200,200,25,this.fade)
                         this.layer.quad(

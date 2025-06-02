@@ -54,7 +54,8 @@ class relic{
                 this.layer.fill(150,this.fade)
                 this.layer.rect(0,0,2,40)
             }
-            switch(this.internal){
+            let internal=this.battle.modded(241)?types.relic[this.type==0?0:(this.type+10)%(types.relic.length-1)+1].internal:this.internal
+            switch(internal){
                 case '':
                     displaySymbol(this.layer,0,0,1,0,1,this.fade)
                     this.layer.fill(0,this.fade)

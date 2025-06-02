@@ -4642,15 +4642,12 @@ class group{
             }
             if(userCombatant.getStatus('No Amplify')<=0){
                 if(spec.includes(27)&&variants.mtg){
+                    let success=false
                     if(userCombatant.getStatus('Free Amplify')>0){
-                        this.battle.attackManager.amplify=true
-                        this.cards.forEach(card=>card.anotherAmplified())
-                        userCombatant.amplified()
+                        success=true
                     }else if(userCombatant.getStatus('Single Free Amplify')>0){
                         userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
-                        this.battle.attackManager.amplify=true
-                        this.cards.forEach(card=>card.anotherAmplified())
-                        userCombatant.amplified()
+                        success=true
                     }else{
                         let amplifyCost=[]
                         switch(this.battle.attackManager.type){
@@ -4691,6 +4688,9 @@ class group{
                             case 4869:
                                 amplifyCost=[1,1,1]
                             break
+                            case 8321:
+                                amplifyCost=[3]
+                            break
                             default:
                                 amplifyCost=[-1]
                             break
@@ -4704,43 +4704,54 @@ class group{
                             }
                             this.battle.updateEnergyCrystal()
                             this.battle.mtgCost(amplifyCost,this.player,effectiveCards)
-                            this.battle.attackManager.amplify=true
-                            this.cards.forEach(card=>card.anotherAmplified())
-                            userCombatant.amplified()
+                            success=true
                         }
                     }
-                }else if(spec.includes(27)){
-                    if(userCombatant.getStatus('Free Amplify')>0){
+                    if(success){
                         this.cards.forEach(card=>card.anotherAmplified())
+                        this.battle.attackManager.amplify=true
+                        userCombatant.amplified()
+                    }
+                }else if(spec.includes(27)){
+                    let success=false
+                    if(userCombatant.getStatus('Free Amplify')>0){
+                        success=true
                     }else if(userCombatant.getStatus('Single Free Amplify')>0){
                         userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
-                        this.cards.forEach(card=>card.anotherAmplified())
+                        success=true
                     }else if(this.battle.getEnergy(this.player)>=1){
                         if(variants.mtg){
                             this.battle.loseSpecificEnergy(1,this.player,6)
                         }else{
                             this.battle.loseEnergy(1,this.player)
                         }
-                        this.cards.forEach(card=>card.anotherAmplified())
+                        success=true
                     }
-                    this.battle.attackManager.amplify=true
-                    userCombatant.amplified()
-                }else if(spec.includes(28)){
-                    if(userCombatant.getStatus('Free Amplify')>0){
+                    if(success){
                         this.cards.forEach(card=>card.anotherAmplified())
+                        this.battle.attackManager.amplify=true
+                        userCombatant.amplified()
+                    }
+                }else if(spec.includes(28)){
+                    let success=false
+                    if(userCombatant.getStatus('Free Amplify')>0){
+                        success=true
                     }else if(userCombatant.getStatus('Single Free Amplify')>0){
                         userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
-                        this.cards.forEach(card=>card.anotherAmplified())
+                        success=true
                     }else if(this.battle.getEnergy(this.player)>=2){
                         if(variants.mtg){
                             this.battle.loseSpecificEnergy(2,this.player,6)
                         }else{
                             this.battle.loseEnergy(2,this.player)
                         }
-                        this.cards.forEach(card=>card.anotherAmplified())
+                        success=true
                     }
-                    this.battle.attackManager.amplify=true
-                    userCombatant.amplified()
+                    if(success){
+                        this.cards.forEach(card=>card.anotherAmplified())
+                        this.battle.attackManager.amplify=true
+                        userCombatant.amplified()
+                    }
                 }
             }
             if(this.battle.getEnergy(this.player)<0&&variants.overheat){

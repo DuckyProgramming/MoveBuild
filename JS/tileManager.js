@@ -222,6 +222,9 @@ class tileManager{
             }
         }
     }
+    fireRandom(type,power){
+        this.tiles[floor(random(0,this.tiles.length))].fire[type]+=power
+    }
     fireRow(type,power,row){
         for(let a=0,la=this.tiles.length;a<la;a++){
             if(this.tiles[a].tilePosition.x==row){
