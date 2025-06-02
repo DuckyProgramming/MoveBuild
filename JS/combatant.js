@@ -951,7 +951,7 @@ class combatant{
                 this.subAttackBuff([1,2,5],1.2)
             }
             if(game.ascend>=31){
-                if(this.type<=costants.playerNumber){
+                if(this.type<=constants.playerNumber){
                     this.subHealthBuff(1.2)
                 }
                 switch(this.name){
