@@ -2442,8 +2442,9 @@ function colorTest(){
 function attackTest(type,target,startpoint,endpoint){
 	switch(type){
 		case 0: case 1: case 2: case 3:
-			current.combatantManager.combatants[type==1?target[1]:target].setMaxHP(999999)
+			current.combatantManager.combatants[type==1?target[1]:target].setMaxHP(9999999999999)
 			current.combatantManager.combatants[type==1?target[1]:target].statusEffect('Cannot Die',1)
+			current.combatantManager.combatants[0].setMaxHP(9999999999999)
 			current.combatantManager.combatants[0].statusEffect('Cannot Die',1)
 			if(variants.mtg){
 				for(let a=startpoint,la=endpoint==-1?types.card.length:endpoint;a<la;a++){
