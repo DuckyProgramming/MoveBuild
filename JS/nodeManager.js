@@ -76,6 +76,7 @@ class nodeManager{
             this.initialListing()
             this.world-=4
             this.endless++
+            this.endlessTrigger=true
         }
         this.setupMap()
     }

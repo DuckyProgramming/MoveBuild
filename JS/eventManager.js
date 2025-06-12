@@ -593,7 +593,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                     break
                     case 21:
                         if(this.page==0&&a==0){
-                            this.battle.addCurrency(275,this.player)
+                            this.battle.addCurrency(300,this.player)
                         }else if(this.page==1&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Doubt',types.card),0,constants.playerNumber+2)
                         }

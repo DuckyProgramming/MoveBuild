@@ -3304,10 +3304,19 @@ class battle{
                         allClosed=false
                     }
                 }
-                if(allClosed&&this.nodeManager.world!=0){
-                    transition.trigger=true
-                    transition.scene='title'
-                    this.initialized=false
+                if(allClosed){
+                    let endless=false
+                    for(let a=0,la=this.overlayManager.overlays[11].length;a<la;a++){
+                        if(this.overlayManager.overlays[11][a].endlessTrigger){
+                            this.overlayManager.overlays[11][a].endlessTrigger=false
+                            endless=true
+                        }
+                    }
+                    if(!endless){
+                        transition.trigger=true
+                        transition.scene='title'
+                        this.initialized=false
+                    }
                 }
             break
             case 'stash':  case 'bossstash':

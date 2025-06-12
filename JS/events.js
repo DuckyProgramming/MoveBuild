@@ -587,7 +587,7 @@ tells you to keep it safe, but to never give it to anybody.
 Seeing your confused expression,
 he tries to hand you some money as thanks.`,
                 option:['Take it','Decline'],
-                optionDesc:['Gain 275 Currency',''],
+                optionDesc:['Gain 300 Currency',''],
                 link:[1,2],
             },{
                 desc:
