@@ -2260,7 +2260,7 @@ class relicManager{
                     }
                 }
                 if(this.active[514][0]>0){
-                    this.battle.combatantManager.allEffect(58,['Cannot Die',1,args[0]])
+                    this.battle.combatantManager.allEffect(62,['Cannot Die',1,args[0]])
                 }
                 if(this.battle.modded(15)){
                     for(let a=0,la=this.battle.players;a<la;a++){

@@ -10477,7 +10477,7 @@ class card{
             break
             case 3596: case 3597: case 3598: case 3599: case 3600: case 3601: case 3602: case 3603: case 3604: case 3605:
             case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
-            case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275:
+            case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break

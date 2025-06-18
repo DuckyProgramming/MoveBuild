@@ -1136,6 +1136,11 @@ class combatantManager{
                         this.combatants[a].heal(args[0])
                         this.combatants[a].statusEffect(args[1],args[2])
                     break
+                    case 62:
+                        if(this.combatants[a].id!=args[2]&&this.combatants[a].life>0){
+                            this.combatants[a].statusEffect(args[0],args[1])
+                        }
+                    break
                 }
             }
         }

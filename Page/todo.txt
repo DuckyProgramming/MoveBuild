@@ -1,7 +1,46 @@
-OPERATION ICATHIA
+CARDSET 87 [AUGUST]
+
+miserly - 15 damage, 1 strength, exhaust
+
+wanders - 5 damage and draw a card, repeat next turn
+
+incandescent firefly - damage in all directions, [condition]: counter 5 all
+
+abberate [dev] - copy a card in deck, one copy costs 1 more and the other copies 1 less
+
+flash weaken [colorless] - apply 1 weak, draw a card
+[vulnerable counterpart]
 
 
 
-CARDSET 87 [IDK]
+stardust rhapsody - discover a card each turn
+
+primarium - 8 damage, apply 2 vulnerable if there's only one enemy
+
+ironwood - iron wave, but when played for the first time, doubles both stats and doubles cost
+
+octarine core - gain 1 artifact gain 1 buffer
+
+detachment pulse - 6 damage, 6 block, first time played: heal 1 health
+
+lonely bound - draw a card, draw 1 more if you have a debuff
+
+
+
+reaching peak [colorless] - deal 10 damage, or deal 20 damage and exhaust
+[block counterpart]
+
+cycle of life - put a card in discard in hand, rewind a card
+
+scythe of roaming spirits - damage, if fatal heal 1 health and increase damage by 1 permanently
+
+reluctant discipline - gain 3 temporary strength, amplify: repeat for 2 more turns
+
+building block - 0 cost, gain 2 armor, upgrade a random card, exhaust
+
+
+
+CARDSET 88 [ENDSIEG]
+
 
 
