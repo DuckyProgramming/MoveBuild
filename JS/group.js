@@ -2227,7 +2227,7 @@ class group{
                 break
                 case 60:
                     if(args[0].includes(this.cards[a].id)){
-                        this.cards[a].deSizeDropDraw=true
+                        this.cards[a].deSizeDrop=true
                         this.cards[a].exhaust=true
                     }
                 break

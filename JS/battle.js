@@ -574,6 +574,7 @@ class battle{
             let tile=this.tileManager.getRandomTilePosition()
             if(tile!=-1){
                 this.addCombatant(tile,findName('Bodyguard',types.combatant),0,0,false)
+                this.counter.enemy++
                 this.combatantManager.recount()
             }
         }

@@ -20356,13 +20356,13 @@ class attack{
                     break
                     case 6611:
                         let result6611=this.userManager.drawReturn(this.effect[0])
-                        let discards=[]
+                        let exhausts=[]
                         for(let a=0,la=result6611.length;a<la;a++){
-                            if(result6611[a].class=5||result6611[a].class==6){
-                                discards.push(result6611[a].id)
+                            if(result6611[a].class==5||result6611[a].class==6){
+                                exhausts.push(result6611[a].id)
                             }
                         }
-                        this.userManager.hand.allEffectArgs(60,[discards])
+                        this.userManager.hand.allEffectArgs(60,[exhausts])
                     break
                     case 6617:
                         this.battle.overlayManager.overlays[8][this.player].active=true

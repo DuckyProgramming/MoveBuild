@@ -1,5 +1,11 @@
 CARDSET 87 [AUGUST]
 
+
+
+rainbow wing maybe cooked
+
+
+
 miserly - 15 damage, 1 strength, exhaust
 
 wanders - 5 damage and draw a card, repeat next turn
@@ -37,6 +43,13 @@ scythe of roaming spirits - damage, if fatal heal 1 health and increase damage b
 reluctant discipline - gain 3 temporary strength, amplify: repeat for 2 more turns
 
 building block - 0 cost, gain 2 armor, upgrade a random card, exhaust
+
+go to jail - send target to a random location and they can't move for 1 turn
+^ when upgraded, gives currency
+
+
+
+roll with advantage - when you roll dice, take the higher of two rollss
 
 
 
