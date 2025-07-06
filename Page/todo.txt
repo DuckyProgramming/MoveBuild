@@ -2,10 +2,6 @@ CARDSET 87 [AUGUST]
 
 
 
-rainbow wing maybe cooked
-
-
-
 miserly - 15 damage, 1 strength, exhaust
 
 wanders - 5 damage and draw a card, repeat next turn

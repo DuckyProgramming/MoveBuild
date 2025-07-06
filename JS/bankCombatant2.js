@@ -1080,7 +1080,7 @@ combatant.prototype.setupGraphics=function(direction){
                 legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
                 arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
             this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
-            this.color={skin:{head:[240,220,40],body:[225,205,35],legs:[205,195,30],arms:[215,185,30]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},belt:[40,45,40],goggles:[[40,40,35],[240,240,240]],mark:[80,80,20],band:[100,95,80]}
+            this.color={skin:{head:[240,220,40],body:[225,205,35],legs:[205,195,30],arms:[215,185,30]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},belt:[40,45,40],goggles:[[40,40,35],[240,240,240],[50,30,10]],mark:[80,80,20],band:[100,95,80]}
             this.parts={eyeLevel:-78,mouth:-70,minor:15,
                 legs:[{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}}],
                 arms:[{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}}]}

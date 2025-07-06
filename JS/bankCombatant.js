@@ -5676,6 +5676,16 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
+                if(this.trigger.display.belt){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.belt),this.fade*this.fades.belt)
+                    for(let a=0,la=10;a<la;a++){
+                        if(lcos((a+0.5)/la*360+this.anim.direction)>0){
+                            this.layer.rect(lsin((a+0.5)/la*360+this.anim.direction)*6.5,-48,lcos((a+0.5)/la*360+this.anim.direction),2)
+                            this.layer.rect(lsin((a+0.5)/la*360+this.anim.direction)*6.5,-48,lcos((a+0.5)/la*360+this.anim.direction)*3,1)
+                        }
+                    }
+                }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
                         this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms)
@@ -5697,16 +5707,6 @@ combatant.prototype.display=function(){
                         this.layer.rotate(45)
                         this.layer.rect(0,0,1,3)
                         this.layer.pop()
-                    }
-                }
-                if(this.trigger.display.belt){
-                    this.layer.noStroke()
-                    this.layer.fill(...this.flashColor(this.color.belt),this.fade*this.fades.belt)
-                    for(let a=0,la=10;a<la;a++){
-                        if(lcos((a+0.5)/la*360+this.anim.direction)>0){
-                            this.layer.rect(lsin((a+0.5)/la*360+this.anim.direction)*6.5,-48,lcos((a+0.5)/la*360+this.anim.direction),2)
-                            this.layer.rect(lsin((a+0.5)/la*360+this.anim.direction)*6.5,-48,lcos((a+0.5)/la*360+this.anim.direction)*3,1)
-                        }
                     }
                 }
                 if(this.trigger.display.skin.head){
@@ -5742,8 +5742,12 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.trigger.display.goggles&&lcos(this.anim.direction)>=0){
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.goggles[2]),this.fade*this.fades.goggles)
+                    this.layer.rect(lsin(this.anim.direction)*15.5-lcos(this.anim.direction)*4.5,this.parts.eyeLevel,lcos(this.anim.direction)*9,5,2)
+                    this.layer.rect(lsin(this.anim.direction)*15.5+lcos(this.anim.direction)*4.5,this.parts.eyeLevel,lcos(this.anim.direction)*9,5,2)
                     this.layer.stroke(...this.flashColor(this.color.goggles[0]),this.fade)
-                    this.layer.fill(...this.flashColor(this.color.goggles[1]),this.fade*this.fades.goggles)
+                    this.layer.fill(...this.flashColor(this.color.goggles[1]),this.fade*this.fades.goggles*0.6)
                     this.layer.strokeWeight(1.5)
                     this.layer.rect(lsin(this.anim.direction)*15.5-lcos(this.anim.direction)*4.5,this.parts.eyeLevel,lcos(this.anim.direction)*9,5,2)
                     this.layer.rect(lsin(this.anim.direction)*15.5+lcos(this.anim.direction)*4.5,this.parts.eyeLevel,lcos(this.anim.direction)*9,5,2)
