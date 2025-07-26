@@ -12311,11 +12311,11 @@ class attack{
                         this.userCombatant.statusEffect('Cycle Skill',1)
                     break
                     case 7320:
-                        this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                        this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[1]],this.targetTile.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                         this.userCombatant.statusEffect('Weak',this.effect[2])
                     break
                     case 7321:
-                        this.battle.combatantManager.areaAbstract(2,['Vulnerable',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                        this.battle.combatantManager.areaAbstract(2,['Vulnerable',this.effect[1]],this.targetTile.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                         this.userCombatant.statusEffect('Vulnerable',this.effect[2])
                     break
                     case 7323:
@@ -28770,6 +28770,9 @@ class attack{
                         this.userCombatant.statusEffect('Armor',this.effect[0])
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
                             this.userManager.draw(this.effect[2])
+                            this.userCombatant.highRoll()
+                        }else{
+                            this.userCombatant.lowRoll()
                         }
                     break
                     case 7930:

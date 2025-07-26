@@ -1,3 +1,6 @@
+
+
+
 CARDSET 87 [AUGUST]
 
 
@@ -46,6 +49,10 @@ go to jail - send target to a random location and they can't move for 1 turn
 
 
 roll with advantage - when you roll dice, take the higher of two rollss
+
+
+
+
 
 
 

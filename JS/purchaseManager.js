@@ -26,7 +26,9 @@ class purchaseManager{
             case 1:
                 return variants.business?[[100,125],[240,360],[600,750]]:[[100,125],[160,240],[400,500]]
             case 2:
-                return variants.business?[[144,180],[324,405],[540,675],[252,315]]:[[144,180],[216,270],[360,450],[180,225]]
+                return variants.business?[[96,120],[216,270],[360,450],[168,210]]:[[96,120],[144,180],[240,300],[120,150]]
+            case 3:
+                return variants.business?[[96,120],[216,270],[360,450],[168,210]]:[[96,120],[144,180],[240,300],[120,150]]
         }
     }
     setup(type){
@@ -342,7 +344,7 @@ class purchaseManager{
             case 1:
                 if(this.battle.players==1){
                     let group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,3,3]
-                    let cost=[[96,120],[144,180],[240,300],[120,150]]
+                    let cost=this.generalizedListing(3)
                     let list=this.battle.relicManager.makeRelicSelection(group)
                     let index=floor(random(0,group.length))
                     for(let a=0,la=group.length;a<la;a++){
@@ -350,12 +352,12 @@ class purchaseManager{
                         this.purchases.push(new purchase(this.layer,this.battle,0,200+(a%6)*100,200+floor(a/6)*100,3,
                             [this.battle.relicManager.hasRelic(85,-1)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],0)?0.5:1)*(this.battle.relicManager.hasRelic(345,0)?2:1)],
                             [list[a]],
-                            group[a]+20
+                            group[a]+14
                         ))
                     }
                 }else{
                     let group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,3,3]
-                    let cost=[[96,120],[144,180],[240,300],[120,150]]
+                    let cost=this.generalizedListing(3)
                     let list=this.battle.relicManager.makeRelicSelection(group)
                     let index=floor(random(0,group.length))
                     for(let a=0,la=group.length;a<la;a++){
@@ -366,7 +368,7 @@ class purchaseManager{
                                 this.battle.relicManager.hasRelic(85,1)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],1)?0.5:1)*(this.battle.relicManager.hasRelic(345,1)?2:1)
                             ],
                             [list[a]],
-                            group[a]+20
+                            group[a]+14
                         ))
                     }
                 }

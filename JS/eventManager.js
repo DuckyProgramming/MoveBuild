@@ -150,7 +150,7 @@ class eventManager{
                 !(this.listing.event[a]==142&&this.battle.nodeManager.world!=1)&&
                 !(this.listing.event[a]==143&&this.battle.nodeManager.world!=2)&&
                 !(this.listing.event[a]==144&&(this.battle.nodeManager.world!=1||userCombatant.life<5))&&
-                !(this.listing.event[a]==145&&this.battle.nodeManager.world!=0)&&
+                !(this.listing.event[a]==145&&this.battle.nodeManager.world!=1)&&
                 !(this.listing.event[a]==146&&(this.battle.nodeManager.world!=0||this.battle.currency.money[this.player]<50))&&
                 !(this.listing.event[a]==147&&userCombatant.life<12)&&
                 !(this.listing.event[a]==148&&(this.battle.currency.money[this.player]<100||userCombatant.life<11))&&
