@@ -5958,8 +5958,8 @@ class group{
                 }
             break
             case 49:
-                this.cards[a].setCost(0,[0])
                 if(!this.cards[a].spec.includes(15)){
+                    this.cards[a].setCost(0,[0])
                     if(this.status[40]>0){
                         for(let b=0,lb=this.status[40];b<lb;b++){
                             this.copySelf(a)

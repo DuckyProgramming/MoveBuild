@@ -678,7 +678,7 @@ class itemManager{
             break
             case 1010:
                 for(let a=0,la=effectiveness;a<la;a++){
-                    this.battle.cardManagers[player].addRandomAbstract(2,0,0,0,1,[],[3,1])
+                    this.battle.cardManagers[player].addRandomAbstract(2,0,0,0,2,[],[3,1,[[1,4]]])
                 }
             break
             case 1012:

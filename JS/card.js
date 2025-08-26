@@ -9367,7 +9367,7 @@ class card{
             case 8304: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Attack${pl(effect[1])}\nAdvance`; break
             case 8305: string+=`Take ${effect[0]} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
             case 8306: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health\nGain ${effect[2]} Vulnerable`; break
-            case 8307: string+=`Gain ${effect[0]} Intangible\nLose ${effect[1]} Health`; break
+            case 8307: string+=`Gain ${effect[0]} ${effect[1]} Health`; break
             case 8308: string+=`Target Takes ${effect[0]} Damage\nWhen You Play a Skill`; break
             case 8309: string+=`Target Gains\nIndefinite Weak,\nVulnerable, and Frail`; break
             case 8310: string+=`Apply ${effect[0]} Burn\nIf You Have Played\nMore Than ${effect[1]} Card${effect[1]>0?`s`:``}\nThis Turn,\nNext ${effect[2]!=1?`${effect[2]} `:``}Attack${pl(effect[2])}\nDeal${effect[2]==1?`s`:``} Double Damage`; break
@@ -9387,6 +9387,11 @@ class card{
             case 8320: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable\nAmplify: Double Both`; break
             case 8321: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable\nAmplify (K): Double Both`; break
             case 8322: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nApply ${effect[1]} Burn\nand ${effect[2]} Freeze\nin All Directions\nNext Attack is Free\nNext Defense is Free`; break
+            case 8323: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Strike${pl(effect[1])}`; break
+            case 8324: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Defend${pl(effect[1])}`; break
+            case 8325: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Strength`; break
+            case 8326: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nRepeat Next Turn`; break
+            case 8327: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable if\nOnly 1 Enemy is Alive`; break
 
             //mark p
 

@@ -525,6 +525,7 @@ class cardManager{
                     this.getList(group).addAbstract(type,level,color,edition,[args[ticker++]],[])
                 break
                 case 2:
+                    print(args,ticker)
                     let process=[args[ticker],copyArray(args[ticker+1])]
                     ticker+=2
                     this.getList(group).addAbstract(type,level,color,edition,[process[0],4],process[1])

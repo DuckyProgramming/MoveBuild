@@ -1,28 +1,25 @@
-
-
-
 CARDSET 87 [AUGUST]
 
 
 
-miserly - 15 damage, 1 strength, exhaust
+CARDSET 88 [ENDSIEG]
 
-wanders - 5 damage and draw a card, repeat next turn
+
+
+replace sigil it kinda sucks
+make a card cost 1 less permanently, make another cost 1 more
+
+
 
 incandescent firefly - damage in all directions, [condition]: counter 5 all
-
-abberate [dev] - copy a card in deck, one copy costs 1 more and the other copies 1 less
 
 flash weaken [colorless] - apply 1 weak, draw a card
 [vulnerable counterpart]
 
 
 
-stardust rhapsody - discover a card each turn
-
-primarium - 8 damage, apply 2 vulnerable if there's only one enemy
-
 ironwood - iron wave, but when played for the first time, doubles both stats and doubles cost
+
 
 octarine core - gain 1 artifact gain 1 buffer
 
@@ -48,15 +45,20 @@ go to jail - send target to a random location and they can't move for 1 turn
 
 
 
-roll with advantage - when you roll dice, take the higher of two rollss
+roll with advantage - when you roll dice, take the higher of two roll
+
+instant strike - flash strike, but draw only if the first card played this turn
+
+etude - lose 1 health, gain 1 strength, repeat next turn
+
+kaleidoscopic dazzle - lose 2 health, deal 12 damage if all directions, if fatal, gain 2 max health
 
 
 
 
 
 
-
-CARDSET 88 [ENDSIEG]
+CARDSET 89 [ENDSIEG]
 
 
 

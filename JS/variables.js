@@ -195,7 +195,7 @@ types={
         {name:'Half Spikeball',life:35,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:417,effect:[10]},{type:418,effect:[10]}],description:`Poor rotational alignment`},
         {name:'Graphite Block',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:426,effect:[1]},{type:30,effect:[6,6]},{type:396,effect:[6,6]}],description:`Can be made into a packager`},
         {name:'Zombie Duck',life:10,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[6]},{type:1,effect:[5]}],description:`You again?`},
-        {name:'Pistol Duck',life:30,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:236,effect:[4]}],description:`Brought a gun to... a gun fight?`},
+        {name:'Pistol Duck',life:30,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:236,effect:[3]}],description:`Brought a gun to... a gun fight?`},
         {name:'Hit Squad',life:36,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[12]},{type:427,effect:[9,1]},{type:428,effect:[9,1]}],description:`Take him out!`},
         {name:'Old Konaian',life:45,behavior:1,spec:[1],move:{type:14,speed:1},attack:[{type:429,effect:[13]},{type:430,effect:[9,2]}],description:`Classic style`},
         {name:'Caporegime',life:37,behavior:3,spec:[0],move:{type:12,speed:1},attack:[{type:431,effect:[2,'Hit Squad']},{type:21,effect:[1]}],description:`Won't do it himself`},
@@ -1505,7 +1505,7 @@ types={
         {name:'Caffeine Pill',internal:'Draw 2',id:1007,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards\nTemporary'},
         {name:'Attack Dust',internal:'1 Strength',id:1008,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength\nTemporary'},
         {name:'Defense Dust',internal:'1 Dexterity',id:1009,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Dexterity\nTemporary'},
-        {name:'Mystery Box',internal:'1 Free Card',id:1010,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add 1 Random Free Card\nto Your Hand\nTemporary'},
+        {name:'Mystery Box',internal:'1 Free Card',id:1010,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add a Random Free Card to Hand\nIt Has Exhaust and Ethereal\nTemporary'},
         
         {name:'Mundane Dust',internal:'Nothing',id:1011,rarity:-1,list:-1,menu:false,temp:true,mtg:0,description:'No Effect'},
         {name:'Cream Paper',internal:'Sanae Card',id:1012,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Choose a Sanae Card\nto Add to Deck'},
