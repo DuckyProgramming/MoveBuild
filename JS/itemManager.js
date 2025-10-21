@@ -652,7 +652,7 @@ class itemManager{
             case 1002:
                 userCombatant.heal(15*effectiveness)
                 if(stage.scene=='battle'){
-                    userCombatant.statusEffect('Cannot Add Block',99)
+                    userCombatant.statusEffect('Cannot Add Block',999)
                 }
             break
             case 1003:

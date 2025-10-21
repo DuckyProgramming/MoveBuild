@@ -69,5 +69,47 @@
                 {effect:[1,3],attack:7345,cost:[2,4,-1],target:[0],spec:[],class:9},
             ],
         },
+    },{
+        name:'Old\nClarity',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:318,cost:1,target:[0],spec:[32],class:4},
+            {effect:[2],attack:318,cost:1,target:[0],spec:[32],class:4},
+            {effect:[2],attack:318,cost:1,target:[0],spec:[3,32],class:4},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2,5],
+            levels:[
+                {effect:[1],attack:318,cost:[2,5],target:[0],spec:[32],class:4},
+                {effect:[2],attack:318,cost:[2,5],target:[0],spec:[32],class:4},
+                {effect:[2],attack:318,cost:[2,5],target:[0],spec:[3,32],class:4},
+            ],
+        },
+    },{
+        name:'Old After\nImage',rarity:-1,list:-8,
+        levels:[
+            {effect:[2],attack:254,cost:1,target:[0],spec:[32],class:4},
+            {effect:[2],attack:254,cost:1,target:[0],spec:[3,32],class:4},
+            {effect:[3],attack:254,cost:1,target:[0],spec:[3,32],class:4},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1],
+            levels:[
+                {effect:[2],attack:254,cost:[1,-1],target:[0],spec:[32],class:4},
+                {effect:[2],attack:254,cost:[1,-1],target:[0],spec:[3,32],class:4},
+                {effect:[3],attack:254,cost:[1,-1],target:[0],spec:[3,32],class:4},
+            ],
+        },
+    },{
+        name:'Old Binary\nStars',rarity:-1,list:-8,
+        levels:[
+            {effect:[],attack:1236,cost:1,target:[0],spec:[32],class:11},
+            {effect:[],attack:1236,cost:1,target:[0],spec:[32],class:11},
+            {effect:[],attack:1236,cost:1,target:[0],spec:[32],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,3],
+            levels:[
+                {effect:[],attack:1236,cost:[8,-1],target:[0],spec:[32],class:11},
+                {effect:[],attack:1236,cost:[8,-1],target:[0],spec:[32],class:11},
+                {effect:[],attack:1236,cost:[8,-1],target:[0],spec:[32],class:11},
+            ],
+        },
     },
 ]

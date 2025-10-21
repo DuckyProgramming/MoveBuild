@@ -6351,7 +6351,7 @@ class card{
             case 5253: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto a Random Enemy\nAdd ${this.calculateEffect(effect[2],1)} Block\nDraw ${effect[3]} Card${pl(effect[3])}`; break
             case 5254: string+=`When You Are Hit,\nHold ${effect[0]} Dual Orb${pl(effect[0])}\nand Exhausts Self`; break
             case 5255: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Number\nof ${variants.mtg?`Basic Attacks`:`Strikes`} Removed`; break
-            case 5256: string+=`Add ${this.calculateEffect(effect[0],1)}+${this.calculateEffect(effect[1],16)} Block\nWhere X = Number\nof ${variants.mtg?`Basic Defenses`:`Defend`} Removed`; break
+            case 5256: string+=`Add ${this.calculateEffect(effect[0],1)}+${this.calculateEffect(effect[1],16)} Block\nWhere X = Number\nof ${variants.mtg?`Basic Defenses`:`Defends`} Removed`; break
             case 5257: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Played First,\nGain ${effect[1]} Energy`; break
             case 5258: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Played First,\nGain (N)`; break
             case 5259: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Played First,\nGain (E)`; break
@@ -9392,6 +9392,12 @@ class card{
             case 8325: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Strength`; break
             case 8326: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nRepeat Next Turn`; break
             case 8327: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable if\nOnly 1 Enemy is Alive`; break
+            case 8328: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nCosts 1 Less Temporarily\nWhen You Exhaust a\nNon-Fatigue Status Card`; break
+            case 8329: string+=`Gain ${effect[0]} Temporary\nDexterity\nGain ${effect[1]} Energy\nNext Turn`; break
+            case 8330: string+=`Gain ${effect[0]} Temporary\nDexterity\nGain (W) (G) Next Turn`; break
+            case 8331: string+=`Gain ${effect[0]} Temporary\nDexterity\nGain (E) (W) (G) Next Turn`; break
+            case 8332: string+=`Gain ${effect[0]} Temporary\nDexterity\nGain (E) (E) (E) Next Turn`; break
+            case 8333: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Played First,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
 
             //mark p
 
@@ -10434,6 +10440,11 @@ class card{
             break
             case 6401: case 6531:
                 if(card.class==5||card.class==6){
+                    this.costDown(0,[1])
+                }
+            break
+            case 8328:
+                if(card.class==5&&!card.name.includes('Fatigue')){
                     this.costDown(0,[1])
                 }
             break

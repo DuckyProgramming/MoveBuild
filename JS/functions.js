@@ -2258,6 +2258,37 @@ function outDupes(){
 		}
 	}
 }
+function outReuse(){
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+			if(
+				types.card[a].levels[b].attack!=0&&
+				types.card[a].levels[b].attack!=1&&
+				types.card[a].levels[b].attack!=2&&
+				types.card[a].levels[b].attack!=3&&
+				types.card[a].levels[b].attack!=8&&
+				types.card[a].levels[b].attack!=10&&
+				types.card[a].levels[b].attack!=41&&
+				types.card[a].levels[b].attack!=42&&
+				types.card[a].levels[b].attack!=54&&
+				types.card[a].levels[b].attack!=113&&
+				types.card[a].levels[b].attack!=484&&
+				types.card[a].levels[b].attack!=485&&
+				types.card[a].levels[b].attack!=1513&&
+				types.card[a].levels[b].attack!=1514&&
+				types.card[a].levels[b].attack!=6706
+			){
+				for(let c=a+1,lc=types.card.length;c<lc;c++){
+					for(let d=0,ld=types.card[c].levels.length;d<ld;d++){
+						if(types.card[a].levels[b].attack==types.card[c].levels[d].attack&&a!=c){
+							console.log(types.card[a].name,types.card[c].name)
+						}
+					}
+				}
+			}
+		}
+	}
+}
 function outRepeats(){
 	for(let a=0,la=types.card.length;a<la;a++){
 		for(let b=0,lb=types.card.length;b<lb;b++){

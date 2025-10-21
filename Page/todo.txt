@@ -1,7 +1,3 @@
-CARDSET 87 [AUGUST]
-
-
-
 CARDSET 88 [ENDSIEG]
 
 
@@ -19,7 +15,6 @@ flash weaken [colorless] - apply 1 weak, draw a card
 
 
 ironwood - iron wave, but when played for the first time, doubles both stats and doubles cost
-
 
 octarine core - gain 1 artifact gain 1 buffer
 
@@ -47,14 +42,20 @@ go to jail - send target to a random location and they can't move for 1 turn
 
 roll with advantage - when you roll dice, take the higher of two roll
 
-instant strike - flash strike, but draw only if the first card played this turn
-
 etude - lose 1 health, gain 1 strength, repeat next turn
 
 kaleidoscopic dazzle - lose 2 health, deal 12 damage if all directions, if fatal, gain 2 max health
 
+singularity - get a lightning orb and tick it for each exhausted card
+
+binocular - draw 3 cards, gain 1 energy per movement drawn
+
+quilted - add block, steal up to 5 block from every enemy
 
 
+
+remove some boss relics that are stupid
+cosmic gown - gain 1 energy each turn if you have below 90% health
 
 
 

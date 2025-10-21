@@ -1004,7 +1004,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         }
                     break
                     case 64:
-                        if(this.page>=1&&this.page<=3&&a>=0&&a<=2){moveb
+                        if(this.page>=1&&this.page<=3&&a>=0&&a<=2){
                             this.battle.overlayManager.overlays[3][this.player].active=true
                             this.battle.overlayManager.overlays[3][this.player].activate([0,3,31,[1,2,-99][this.page-1],[1,2,11][a]])
                         }

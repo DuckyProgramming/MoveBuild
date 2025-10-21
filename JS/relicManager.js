@@ -1478,9 +1478,6 @@ class relicManager{
                                 this.getPlayer(a).statusEffect('Damage Down',this.active[460][a+1])
                                 this.getPlayer(a).statusEffect('Block Down',this.active[460][a+1])
                             }
-                            if(this.active[500][a+1]>0){
-                                this.getPlayer(a).statusEffect('Intangible',this.active[500][a+1])
-                            }
                             if(this.active[502][a+1]>0){
                                 if(floor(random(0,3))==0){
                                     this.getPlayer(a).statusEffect('Strength',3*this.active[502][a+1])
@@ -1580,10 +1577,6 @@ class relicManager{
                             if(this.active[41][a+1]>0){
                                 this.getPlayer(a).addBlock(16*this.active[41][a+1])
                             }
-                            if(this.active[309][a+1]>0){
-                                this.getPlayer(a).statusEffect('Temporary Strength',5*this.active[309][a+1])
-                                this.getPlayer(a).statusEffect('Temporary Dexterity',5*this.active[309][a+1])
-                            }
                             if(this.active[348][a+1]>0){
                                 this.getPlayer(a).heal(2*this.active[348][a+1])
                             }
@@ -1596,12 +1589,6 @@ class relicManager{
                         for(let a=0,la=this.battle.players;a<la;a++){
                             if(this.active[112][a+1]>0){
                                 this.getPlayer(a).addBlock(24*this.active[112][a+1])
-                            }
-                            if(this.active[348][a+1]>0){
-                                this.getPlayer(a).statusEffect('Temporary Strength',3*this.active[348][a+1])
-                            }
-                            if(this.active[380][a+1]>0){
-                                this.getPlayer(a).statusEffect('Temporary Strength',3*this.active[380][a+1])
                             }
                             if(this.active[472][a+1]>0){
                                 this.getPlayer(a).statusEffect('Free Card',this.active[472][a+1])
@@ -1641,10 +1628,6 @@ class relicManager{
                     break
                     case 6:
                         for(let a=0,la=this.battle.players;a<la;a++){
-                            if(this.active[248][a+1]>0){
-                                this.getPlayer(a).statusEffect('Temporary Strength',4*this.active[248][a+1])
-                                this.getPlayer(a).addBlock(20*this.active[248][a+1])
-                            }
                             if(this.active[506][a+1]>0){
                                 this.getPlayer(a).loseHealth(6*this.active[506][a+1])
                             }
@@ -1653,14 +1636,6 @@ class relicManager{
                     case 7:
                         if(this.active[174][0]>0){
                             this.battle.combatantManager.allEffect(19,[52*this.active[174][0]])
-                        }
-                    break
-                    case 9:
-                        for(let a=0,la=this.battle.players;a<la;a++){
-                            if(this.active[248][a+1]>0){
-                                this.getPlayer(a).statusEffect('Temporary Strength',4*this.active[248][a+1])
-                                this.getPlayer(a).addBlock(20*this.active[248][a+1])
-                            }
                         }
                     break
                     case 10:
@@ -1928,7 +1903,7 @@ class relicManager{
                             }
                         }
                         if(this.active[401][args[1]+1]>0){
-                            this.battle.cardManagers[a].draw(this.active[401][args[1]+1])
+                            this.battle.cardManagers[args[1]].draw(this.active[401][args[1]+1])
                         }
                         if(this.active[402][args[1]+1]>0){
                             for(let a=0,la=2*this.active[402][args[1]+1];a<la;a++){
@@ -1970,6 +1945,9 @@ class relicManager{
                                 this.battle.cardManagers[args[1]].hand.add(findName('Emergency\nDraw',types.card),0,0)
                             }
                         }
+                        if(this.active[500][args[1]+1]>0){
+                            this.getPlayer(args[1]).statusEffect('Intangible',this.active[500][args[1]+1])
+                        }
                         if(this.active[501][args[1]+1]>0){
                             this.battle.cardManagers[args[1]].drawAbstract(this.active[501][args[1]+1],0,3,[4])
                         }
@@ -2008,16 +1986,26 @@ class relicManager{
                                 }
                             }
                         }
+                        if(this.active[309][args[1]+1]>0){
+                            this.getPlayer(args[1]).statusEffect('Temporary Strength',5*this.active[309][args[1]+1])
+                            this.getPlayer(args[1]).statusEffect('Temporary Dexterity',5*this.active[309][args[1]+1])
+                        }
                         if(this.active[369][args[1]+1]>0){
                             this.battle.addSpecificEnergy(3*this.active[369][args[1]+1],args[1],0)
                         }
                         if(this.active[401][args[1]+1]>0){
-                            this.battle.cardManagers[a].draw(this.active[401][args[1]+1])
+                            this.battle.cardManagers[args[1]+1].draw(this.active[401][args[1]+1])
                         }
                     break
                     case 3:
                         if(this.active[401][args[1]+1]>0){
-                            this.battle.cardManagers[a].draw(this.active[401][args[1]+1])
+                            this.battle.cardManagers[args[1]+1].draw(this.active[401][args[1]+1])
+                        }
+                        if(this.active[348][args[1]+1]>0){
+                            this.getPlayer(args[1]).statusEffect('Temporary Strength',3*this.active[348][args[1]+1])
+                        }
+                        if(this.active[380][args[1]+1]>0){
+                            this.getPlayer(args[1]).statusEffect('Temporary Strength',3*this.active[380][args[1]+1])
                         }
                     break
                     case 4:
@@ -2030,6 +2018,12 @@ class relicManager{
                         }
                         if(this.battle.modded(233)){
                             this.battle.combatantManager.allEffect(48,['Take Credit',1])
+                        }
+                    break
+                    case 6: case 9:
+                        if(this.active[248][args[1]+1]>0){
+                            this.getPlayer(args[1]).statusEffect('Temporary Strength',4*this.active[248][args[1]+1])
+                            this.getPlayer(args[1]).addBlock(20*this.active[248][args[1]+1])
                         }
                     break
                 }
