@@ -1,0 +1,69 @@
+CARDSET 88 [ENDSIEG]
+
+
+
+replace sigil it kinda sucks
+make a card cost 1 less permanently, make another cost 1 more
+
+
+
+spare wood - when you enter a rest time, gain 3 max hp
+
+
+
+incandescent firefly - damage in all directions, [condition]: counter 5 all
+
+flash weaken [colorless] - apply 1 weak, draw a card
+[vulnerable counterpart]
+
+
+
+ironwood - iron wave, but when played for the first time, doubles both stats and doubles cost
+
+octarine core - gain 1 artifact gain 1 buffer
+
+detachment pulse - 6 damage, 6 block, first time played: heal 1 health
+
+lonely bound - draw a card, draw 1 more if you have a debuff
+
+
+
+reaching peak [colorless] - deal 10 damage, or deal 20 damage and exhaust
+[block counterpart]
+
+cycle of life - put a card in discard in hand, rewind a card
+
+scythe of roaming spirits - damage, if fatal heal 1 health and increase damage by 1 permanently
+
+reluctant discipline - gain 3 temporary strength, amplify: repeat for 2 more turns
+
+building block - 0 cost, gain 2 armor, upgrade a random card, exhaust
+
+go to jail - send target to a random location and they can't move for 1 turn
+^ when upgraded, gives currency
+
+
+
+roll with advantage - when you roll dice, take the higher of two roll
+
+etude - lose 1 health, gain 1 strength, repeat next turn
+
+kaleidoscopic dazzle - lose 2 health, deal 12 damage if all directions, if fatal, gain 2 max health
+
+singularity - get a lightning orb and tick it for each exhausted card
+
+binocular - draw 3 cards, gain 1 energy per movement drawn
+
+quilted - add block, steal up to 5 block from every enemy
+
+
+
+remove some boss relics that are stupid
+cosmic gown - gain 1 energy each turn if you have below 90% health
+
+
+
+CARDSET 89 [ENDSIEG]
+
+
+
