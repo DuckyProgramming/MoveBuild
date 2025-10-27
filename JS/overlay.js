@@ -1432,7 +1432,7 @@ class overlay{
                 this.battle.combatantManager.combatants[this.player].infoAnim.life=0
             break
             case 8:
-                if(this.cards.length==0||args[0]!=this.cards[0].level){
+                if(this.cards.length==0||args[0]!=this.cards[0].level||this.args[2]==3){
                     this.cards=[]
                     this.marks=[]
                     this.taken=0
@@ -1443,7 +1443,7 @@ class overlay{
                         case 0: case 1: case 2: case 3:
                             switch(this.args[2]){
                                 case 0:
-                                    list=copyArray(this.battle.cardManagers[this.player].listing.coc)[3]
+                                    list=copyArray(this.battle.cardManagers[this.player].listing.coc[3])
                                 break
                                 case 1:
                                     list=copyArray(this.battle.cardManagers[this.player].listing.disband)
@@ -1452,7 +1452,7 @@ class overlay{
                                     list=copyArray(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3])
                                 break
                                 case 3:
-                                    list=copyArray(this.battle.cardManagers[this.player].listing.allPlayerCard)[3]
+                                    list=copyArray(this.battle.cardManagers[this.player].listing.allPlayerCard[3])
                                     let rand='abcdefghijklmnopqrstuvwxyz'[floor(random(0,26))]
                                     for(let a=0,la=list.length;a<la;a++){
                                         if(types.card[list[a]].name[0].toLowerCase()!=rand){

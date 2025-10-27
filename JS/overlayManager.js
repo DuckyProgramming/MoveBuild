@@ -178,7 +178,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[111])],//make discard card free
                     [new overlay(this.layer,this.battle,0,2,[112,0])],//recovery
                     [new overlay(this.layer,this.battle,0,28,[])],//death note
-                    [new overlay(this.layer,this.battle,0,8,[0,0,3])],//new card to deck, relic 497, typewriter,170
+                    [new overlay(this.layer,this.battle,0,8,[0,-1,3])],//new card to deck, relic 497, typewriter,170
                     [new overlay(this.layer,this.battle,0,2,[113])],//make card innate and free
                     [new overlay(this.layer,this.battle,0,29,[])],//propup
                     [new overlay(this.layer,this.battle,0,2,[114,0])],//exhaust draw card, no return
