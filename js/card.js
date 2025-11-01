@@ -8500,7 +8500,7 @@ class card{
             case 7434: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nCannot Deal Damage\nFor the Rest\nof This Turn`; break
             case 7435: string+=`Take Another Turn\nCannot Deal Damage\non That Turn`; break
             case 7436: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Weak\nDraw ${effect[2]} Card${pl(effect[2])}`; break
-            case 7437: string+=`Gain ${effect[0]} Dexterity\nGain ${effect[2]} Vulnerable\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 7437: string+=`Gain ${effect[0]} Dexterity\nGain ${effect[1]} Vulnerable\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 7438: string+=`Apply ${effect[0]} Vulnerable\nCycle: Attack\nRange ${target[1]}-${this.calculateEffect(target[2],19)}`; break
             case 7439: string+=`Apply ${effect[0]} Weak\nCycle: Defense\nRange ${target[1]}-${this.calculateEffect(target[2],19)}`; break
             case 7440: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Your Leader\nis Post-Stalin,\nGain ${effect[1]} Vigor`; break

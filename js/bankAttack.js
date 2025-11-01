@@ -1,6 +1,10 @@
 attack.prototype.update=function(){
-    if(variants.mtg&&this.timer==0){
-        this.battle.relicManager.activate(21,[this])
+    if(this.timer==0){
+        if(variants.mtg){
+            this.battle.relicManager.activate(21,[this])
+        }else{
+            this.battle.turnManager.auxiliary=false
+        }
     }
     this.timer++
     switch(this.type){

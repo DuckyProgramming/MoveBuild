@@ -1791,6 +1791,32 @@ types={
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Shiftdown 7',
+            map:[
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Character 9',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Crushed 4',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1}],
@@ -6479,6 +6505,34 @@ types={
             ],ally:[
             ],
         },{
+            level:['Shiftdown 7'],class:-1,world:-1,
+            name:'TutorialCharacter',
+            player:{position:[[{x:6,y:9}],[{x:5,y:9},{x:7,y:9}]]},
+            enemy:[
+                {position:{x:2,y:4},name:'George'},
+                {position:{x:3,y:4},name:'Lira'},
+                {position:{x:4,y:4},name:'Sakura'},
+                {position:{x:5,y:4},name:'Certes'},
+                {position:{x:2,y:5},name:'Azis'},
+                {position:{x:3,y:5},name:'Donakho'},
+                {position:{x:4,y:5},name:'Setsuna'},
+                {position:{x:5,y:5},name:'Edgar'},
+                {position:{x:6,y:5},name:'Shiru'},
+                {position:{x:2,y:6},name:'DD-610'},
+                {position:{x:3,y:6},name:'Prehextorica'},
+                {position:{x:4,y:6},name:'Vincent'},
+                {position:{x:5,y:6},name:'Ducopo'},
+                {position:{x:6,y:6},name:'Randy'},
+                {position:{x:7,y:6},name:'Fernando'},
+                {position:{x:2,y:7},name:'Decratite'},
+                {position:{x:3,y:7},name:'Dukelis'},
+                {position:{x:7,y:7},name:'Meri'},
+                {position:{x:8,y:7},name:'Shinmyoumaru'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
             level:['Basic 5'],class:-1,world:-1,
             name:'TutorialHotkey',
             player:{position:[[{x:2,y:2}],[{x:0,y:0},{x:0,y:0}]]},
@@ -7437,6 +7491,7 @@ variants={
     ],
 }
 constants={
+    autoExec:-1,
     playerNumber:25,orbNumber:17,
     targetRadius:30,startEnergy:3,collisionDamage:4,
     sqrt2:0,sqrt3:0,phi:0,trig:[[],[]],

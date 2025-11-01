@@ -17,4 +17,7 @@ function draw(){
     image(graphics.main,width/2-stage.scale*graphics.main.width/2,height/2-stage.scale*graphics.main.height/2,stage.scale*graphics.main.width,stage.scale*graphics.main.height)
     updateMouse(graphics.main)
     game.timer++
+    if(constants.autoExec!=-1&&game.timer%8==0){
+        constants.autoExec()
+    }
 }
