@@ -2,6 +2,25 @@ CARDSET 88 [ENDSIEG]
 
 
 
+the minesweeper:
+you can add mines to cards
+mines have no cosmetic effect on cards (you can't see them)
+you can play mine cards without any problem
+different mine types like basic mine->20 damage to all adjacent enemies, block mine-> 30 block, etc
+
+some cards will detect mines
+detector cards tell you info like how many adjacent mines of each type, how many in hand total, etc
+some detect cards may retaain but some won't because that just doesn't work
+upon use, detector cards become an "info card" that stays in your hand but only holds the original info and never changes
+playing the info card exhausts it and removes it
+detector cards can cost 1 or 0 idk
+
+some cards will sweep mines
+this is a pick cards effect like upgrade or retain once
+triggers mine effect
+
+
+
 replace sigil it kinda sucks
 make a card cost 1 less permanently, make another cost 1 more
 
@@ -37,16 +56,12 @@ scythe of roaming spirits - damage, if fatal heal 1 health and increase damage b
 
 reluctant discipline - gain 3 temporary strength, amplify: repeat for 2 more turns
 
-building block - 0 cost, gain 2 armor, upgrade a random card, exhaust
-
 go to jail - send target to a random location and they can't move for 1 turn
 ^ when upgraded, gives currency
 
 
 
 roll with advantage - when you roll dice, take the higher of two roll
-
-etude - lose 1 health, gain 1 strength, repeat next turn
 
 kaleidoscopic dazzle - lose 2 health, deal 12 damage if all directions, if fatal, gain 2 max health
 
@@ -55,6 +70,10 @@ singularity - get a lightning orb and tick it for each exhausted card
 binocular - draw 3 cards, gain 1 energy per movement drawn
 
 quilted - add block, steal up to 5 block from every enemy
+
+
+
+the fighting spirit - exhaust a card, then draw to 6
 
 
 

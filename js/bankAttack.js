@@ -184,7 +184,7 @@ attack.prototype.update=function(){
         case 8101: case 8102: case 8103: case 8109: case 8110: case 8119: case 8120: case 8121: case 8140: case 8145:
         case 8146: case 8166: case 8167: case 8173: case 8194: case 8197: case 8199: case 8200: case 8201: case 8243:
         case 8244: case 8245: case 8246: case 8252: case 8254: case 8258: case 8260: case 8262: case 8270: case 8271:
-        case 8272: case 8300: case 8303: case 8323: case 8325: case 8326: case 8327: case 8328: case 8333:
+        case 8272: case 8300: case 8303: case 8323: case 8325: case 8326: case 8327: case 8328: case 8333: case 8335:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -475,7 +475,7 @@ attack.prototype.update=function(){
         case 7827: case 7837: case 7910: case 7974: case 7987: case 7988: case 8029: case 8030: case 8031: case 8032:
         case 8066: case 8067: case 8083: case 8129: case 8130: case 8131: case 8132: case 8176: case 8202: case 8225:
         case 8230: case 8233: case 8237: case 8238: case 8239: case 8240: case 8251: case 8253: case 8285: case 8286:
-        case 8287: case 8288:
+        case 8287: case 8288: case 8334:
             //mark 3
             if(
                 this.timer==1&&(
@@ -995,7 +995,7 @@ attack.prototype.update=function(){
         case 8111: case 8112: case 8125: case 8126: case 8127: case 8149: case 8150: case 8151: case 8152: case 8159:
         case 8160: case 8171: case 8178: case 8193: case 8198: case 8207: case 8208: case 8216: case 8224: case 8227:
         case 8228: case 8241: case 8267: case 8268: case 8273: case 8274: case 8275: case 8283: case 8296: case 8297:
-        case 8329: case 8330: case 8331: case 8332:
+        case 8329: case 8330: case 8331: case 8332: case 8337:
             //mark 4
             if(
                 this.timer==1&&(
@@ -3074,7 +3074,7 @@ attack.prototype.update=function(){
         case 7601: case 7623: case 7657: case 7687: case 7692: case 7695: case 7703: case 7704: case 7713: case 7731:
         case 7742: case 7743: case 7762: case 7766: case 7789: case 7801: case 7821: case 7926: case 7929: case 7930:
         case 7963: case 7964: case 7965: case 7966: case 7968: case 7969: case 7984: case 8035: case 8046: case 8094:
-        case 8095: case 8105: case 8113: case 8190: case 8264: case 8265: case 8282: case 8320: case 8321:
+        case 8095: case 8105: case 8113: case 8190: case 8264: case 8265: case 8282: case 8320: case 8321: case 8336:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||

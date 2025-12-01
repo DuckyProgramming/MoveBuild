@@ -9398,6 +9398,10 @@ class card{
             case 8331: string+=`Gain ${effect[0]} Temporary\nDexterity\nGain (E) (W) (G) Next Turn`; break
             case 8332: string+=`Gain ${effect[0]} Temporary\nDexterity\nGain (E) (E) (E) Next Turn`; break
             case 8333: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Played First,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 8334: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf No Enemies Will Attack,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 8335: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Movement${pl(effect[1])}\nPer Communized Enemy`; break
+            case 8336: string+=`Gain ${effect[0]} Armor\nUpgrade ${effect[1]} Random\nCard${pl(effect[1])} in Hand`; break
+            case 8337: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Dexterity\nLose ${effect[2]} Health\nRepeat Next Turn`; break
 
             //mark p
 
@@ -13709,7 +13713,7 @@ class card{
                         this.layer.rect(0,0,this.width,this.height,5)
                         this.layer.noFill()
                     }catch(error){
-                        print(this.name)
+                        print(error,this.name)
                     }
                 }
             }

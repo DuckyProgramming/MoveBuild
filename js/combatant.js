@@ -205,7 +205,7 @@ class combatant{
                 'Recover Draw','Recover Next Turn','Recover Up','Shiv Temporary Damage Taken Up','Free War','Skill Discard Draw','Worker Draw Per Turn','Worker Boost','Assign Draw','Free Assign',
                 'Intangible Strength','Debuff Draw','"Debuff"','Discus Pure','Cycle Rotation','Base Attack Weak Combat','Retain Lock On','History Rewind Tick','Gun Draw','Retain Until Played Per Turn',
                 'Temporary Strength in 2 Turns','Temporary Strength in 3 Turns','Single Splash Vulnerable','Temporary Strength Cycle 3 1','Temporary Strength Cycle 3 2','Temporary Strength Cycle 3 3','Indefinite Pure','Fragile Turn Splash','Favor Per Turn','Favor Energy',
-                'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Item Next Turn','Vigor Per Turn',
+                'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Temporary Item Next Turn','Vigor Per Turn',
                 'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
                 'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block','Bell Weak','Bell Vulnerable',
                 'Buff Loss Block','Take Per Skill Played Combat',
@@ -5865,7 +5865,7 @@ class combatant{
                     case 311: this.miniStatus('History',this.status.main[this.status.ticker[a]]); break
                     case 316: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[this.status.ticker[a]])}; break
                     case 328: case 828:
-                        if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.id)}} break
+                        if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'2 Mana':'1 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.id)}} break
                     case 331: if(this.id<this.battle.players){this.battle.overlayManager.overlays[58][this.id].active=true;this.battle.overlayManager.overlays[58][this.id].activate([this.status.main[this.status.ticker[a]],0])} break
                     case 332: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Dual\nDiscus']])<=0){this.battle.cardManagers[this.id].hand.add(findName('Dual\nDiscus',types.card),0,0)}} break
                     case 333: this.miniStatus('Temporary Draw',this.status.main[this.status.ticker[a]]); break
