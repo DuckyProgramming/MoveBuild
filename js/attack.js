@@ -283,7 +283,7 @@ class attack{
             case 8173: case 8174: case 8194: case 8196: case 8197: case 8199: case 8200: case 8201: case 8204: case 8218: case 8226: case 8231: case 8242: case 8243: case 8244: case 8245: case 8246: case 8252: case 8254: case 8255:
             case 8256: case 8257: case 8258: case 8260: case 8262: case 8263: case 8264: case 8265: case 8266: case 8269: case 8270: case 8271: case 8272: case 8276: case 8277: case 8278: case 8279: case 8280: case 8281: case 8290:
             case 8293: case 8294: case 8295: case 8300: case 8303: case 8304: case 8306: case 8308: case 8309: case 8310: case 8311: case 8318: case 8319: case 8320: case 8321: case 8323: case 8325: case 8326: case 8327: case 8328:
-            case 8333: case 8335:
+            case 8333: case 8335: case 8342:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -359,7 +359,7 @@ class attack{
             case 7827: case 7837: case 7910: case 7974: case 7987: case 7988: case 8029: case 8030: case 8031: case 8032:
             case 8066: case 8067: case 8083: case 8107: case 8129: case 8130: case 8131: case 8132: case 8176: case 8202:
             case 8219: case 8225: case 8230: case 8233: case 8234: case 8237: case 8238: case 8239: case 8240: case 8251:
-            case 8253: case 8259: case 8285: case 8286: case 8287: case 8288: case 8334:
+            case 8253: case 8259: case 8285: case 8286: case 8287: case 8288: case 8334: case 8343:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -12670,6 +12670,10 @@ class attack{
                         if(this.battle.combatantManager.numberAbstract(4,[1])==0){
                             this.userManager.draw(this.effect[1])
                         }
+                    break
+                    case 8343:
+                        this.userManager.drawAbstract(this.effect[1],20,0,[1])
+                        this.userManager.drawAbstract(this.effect[2],20,0,[2])
                     break
 
                 }
@@ -28941,6 +28945,14 @@ class attack{
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.randomEffect(2,45,[0])
                         }
+                    break
+                    case 8341:
+                        this.userCombatant.statusEffect('Strike Lock On',this.effect[0])
+                        this.userManager.drawAbstract(this.effect[1],20,0,[1])
+                    break
+                    case 8342:
+                        this.targetCombatant.statusEffect('Lock On',this.effect[0])
+                        this.userManager.drawAbstract(this.effect[1],20,0,[1])
                     break
 
                 }

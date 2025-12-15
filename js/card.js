@@ -9402,7 +9402,13 @@ class card{
             case 8335: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Movement${pl(effect[1])}\nPer Communized Enemy`; break
             case 8336: string+=`Gain ${effect[0]} Armor\nUpgrade ${effect[1]} Random\nCard${pl(effect[1])} in Hand`; break
             case 8337: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Dexterity\nLose ${effect[2]} Health\nRepeat Next Turn`; break
-
+            case 8338: string+=`Draw ${effect[0]} Strike${pl(effect[0])}\nand Retain ${effect[0]===1?`it`:`Them`} Once`; break
+            case 8339: string+=`Draw ${effect[0]} Strike${pl(effect[0])}\nand Retain ${effect[0]===1?`it`:`Them`}\nUntil Played`; break
+            case 8340: string+=`Draw and Upgrade\n${effect[0]} Strike${pl(effect[0])}\nand Retain ${effect[0]===1?`it`:`Them`}\nUntil Played`; break
+            case 8341: string+=`Strikes Apply ${effect[0]} Lock On\nDraw ${effect[1]} Strike${pl(effect[1])}`; break
+            case 8342: string+=`Apply ${effect[0]} Lock On\nDraw ${effect[1]} Strike${pl(effect[1])}`; break
+            case 8343: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Strike${pl(effect[1])}\nDraw ${effect[2]} Defend${pl(effect[2])}`; break
+            
             //mark p
 
             //mark q
@@ -11436,7 +11442,7 @@ class card{
             break
             case 3827: case 3828: case 3829: case 3830: case 3831: case 3832: case 3833: case 3834: case 3835: case 3836:
             case 3873: case 3874: case 3875: case 4124: case 4125: case 4126: case 4127: case 4128: case 4129: case 4770:
-            case 4972: case 5002: case 5003: case 5080:
+            case 4972: case 5002: case 5003: case 5080: case 8338: case 8339: case 8340:
                 if(this.spec.includes(60)){
                     this.discardEffectBuffered.push(1)
                 }else{
@@ -12503,6 +12509,15 @@ class card{
                 for(let a=0,la=this.effect[0];a<la;a++){
                     this.battle.cardManagers[this.player].hand.addAbstract(findName('Strike',types.card),this.level,this.color,0,[9],[])
                 }
+            break
+            case 8338:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[0],20,5,[1])
+            break
+            case 8339:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[0],20,13,[1])
+            break
+            case 8340:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[0],20,7,[1])
             break
         }
     }
