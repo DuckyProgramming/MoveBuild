@@ -1434,6 +1434,9 @@ function multiplyArray(base,number){
 	}
 	return result
 }
+function randin(array){
+    return array[floor(random(0,array.length))]
+}
 function copyArray(base){
 	/*let list=[]
 	for(let a=0,la=base.length;a<la;a++){
@@ -2349,11 +2352,16 @@ function outUniqueEffects(){
 }
 function outRelic(){
 	console.log(`Common: ${current.relicManager.listing.relic[0].length}
-	Uncommon: ${current.relicManager.listing.relic[1].length}
-	Rare: ${current.relicManager.listing.relic[2].length}
-	Shop: ${current.relicManager.listing.relic[3].length}
-	Boss: ${current.relicManager.listing.relic[4].length}
-	`)
+Uncommon: ${current.relicManager.listing.relic[1].length}
+Rare: ${current.relicManager.listing.relic[2].length}
+Shop: ${current.relicManager.listing.relic[3].length}
+Boss: ${current.relicManager.listing.relic[4].length}`)
+}
+function outItem(){
+	console.log(`Common: ${current.itemManager.listing.item[0].length}
+Uncommon: ${current.itemManager.listing.item[1].length}
+Rare: ${current.itemManager.listing.item[2].length}
+Temp: ${current.itemManager.listing.item[3].length}`)
 }
 function outClass(){
 	let totals=[]

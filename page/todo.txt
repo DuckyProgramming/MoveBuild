@@ -21,11 +21,6 @@ triggers mine effect
 
 
 
-replace sigil it kinda sucks
-make a card cost 1 less permanently, make another cost 1 more
-
-
-
 spare wood - when you enter a rest time, gain 3 max hp
 
 

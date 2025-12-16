@@ -7675,7 +7675,7 @@ attack.prototype.update=function(){
         case 2527: case 2528: case 2529: case 2530: case 2531: case 2532: case 2533: case 2534: case 2535:
         case 2536: case 2537: case 2538: case 2539: case 2540: case 2541: case 2542: case 2556: case 2557:
         case 3409: case 3462: case 3564: case 3565: case 3566: case 3673: case 4625: case 8209: case 8211:
-        case 8212: case 8213:
+        case 8212: case 8213: case 8344:
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
             }else{
@@ -12309,18 +12309,18 @@ attack.prototype.update=function(){
                 switch(this.type){
                     case 5853:
                         this.userManager.draw(this.effect[0])
-                        this.targetCombatant.setIntentClass(1)
+                        this.targetCombatant.setIntentClass([1,5])
                     break
                     case 6103:
-                        this.targetCombatant.setIntentClass(1)
+                        this.targetCombatant.setIntentClass([1,5])
                     break
                     case 6193:
                         this.targetCombatant.block=0
-                        this.targetCombatant.setIntentClass(1)
+                        this.targetCombatant.setIntentClass([1,5])
                     break
                     case 6255:
                         this.userCombatant.heal(this.effect[0])
-                        this.targetCombatant.setIntentClass(1)
+                        this.targetCombatant.setIntentClass([1,5])
                     break
                 }
             }else if(this.timer>=20){
@@ -12558,11 +12558,11 @@ attack.prototype.update=function(){
                 switch(this.type){
                     case 6255:
                         this.userCombatant.heal(this.effect[0])
-                        this.targetCombatant.setIntentClass(1)
+                        this.targetCombatant.setIntentClass([1,5])
                     break
                     case 6832:
                         this.userCombatant.statusEffect('Temporary Strength',this.effect[0])
-                        this.targetCombatant.setIntentClass(1)
+                        this.targetCombatant.setIntentClass([1,5])
                     break
                 }
             }else if(this.timer>=20){

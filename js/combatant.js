@@ -2472,6 +2472,24 @@ class combatant{
             this.battle.updateTargetting()
         }
     }
+    setIntentClassMultiple(intentClass){
+        if(this.intent==-1){
+            this.intent=0
+        }
+        if(this.attack.length>0){
+            for(let a=0,la=this.attack.length;a<la;a++){
+                if(intentClass.includes(types.attack[this.attack[(this.intent+a)%this.attack.length].type].class)){
+                    if(!this.usedIntent.includes(this.intent)){
+                        this.usedIntent.push(this.intent)
+                    }
+                    this.intent=(this.intent+a)%this.attack.length
+                    this.convertIntent()
+                    a=la
+                }
+            }
+            this.battle.updateTargetting()
+        }
+    }
     randomIntent(){
         if(!this.usedIntent.includes(this.intent)){
             this.usedIntent.push(this.intent)
@@ -3183,7 +3201,7 @@ class combatant{
                     damage*=max(0.2,1+totalStr*0.1)
                 }
                 if(this.block>0&&this.battle.relicManager.hasRelic(69,userCombatant.id)){
-                    damage+=4
+                    damage+=4*this.battle.relicManager.active[175][userCombatant.id+1]
                 }
                 if(distTargetCombatant(0,this,userCombatant)>=2&&this.battle.relicManager.hasRelic(175,userCombatant.id)){
                     damage+=3*this.battle.relicManager.active[175][userCombatant.id+1]
@@ -4371,6 +4389,8 @@ class combatant{
                 if(this.id<this.battle.players){
                     this.battle.stats.block[this.id]+=block
                     this.battle.relicManager.activate(18,[block,this.id])
+                }else if(this.battle.relicManager.hasRelic(518,-1)){
+                    this.loseHealth(this.battle.relicManager.active[518][0])
                 }
             }
         }
@@ -5376,7 +5396,7 @@ class combatant{
                             this.takeDamage(userCombatant.getStatus('Bleed Damage'),-1)
                         }
                         if(userCombatant.getStatus('Bleed Attack Intent')>0){
-                            this.setIntentClass(1)
+                            this.setIntentClass([1,5])
                         }
                     }
                 }

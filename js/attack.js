@@ -5993,7 +5993,7 @@ class attack{
                         }
                     break
                     case 6194:
-                        this.targetCombatant.setIntentClass(1)
+                        this.targetCombatant.setIntentClass([1,5])
                     break
                     case 6195:
                         if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
@@ -8596,7 +8596,7 @@ class attack{
                         }
                     break
                     case 3191:
-                        this.targetCombatant.setIntentClass(1)
+                        this.targetCombatant.setIntentClass([1,5])
                     break
                     case 3204:
                         if(this.userManager.hand.turnPlayed[0]<=1){
@@ -32977,6 +32977,10 @@ class attack{
                     case 8213:
                         this.battle.overlayManager.overlays[175][this.player].active=true
                         this.battle.overlayManager.overlays[175][this.player].activate([])
+                    break
+                    case 8344:
+                        this.battle.overlayManager.overlays[176][this.player].active=true
+                        this.battle.overlayManager.overlays[176][this.player].activate()
                     break
                 }
             break

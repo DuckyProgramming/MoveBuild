@@ -9408,7 +9408,8 @@ class card{
             case 8341: string+=`Strikes Apply ${effect[0]} Lock On\nDraw ${effect[1]} Strike${pl(effect[1])}`; break
             case 8342: string+=`Apply ${effect[0]} Lock On\nDraw ${effect[1]} Strike${pl(effect[1])}`; break
             case 8343: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Strike${pl(effect[1])}\nDraw ${effect[2]} Defend${pl(effect[2])}`; break
-            
+            case 8344: string+=`Make a Card Cost 1\nLess Permanently\nMake a Card Cost 1\nMore Permanently`; break
+
             //mark p
 
             //mark q

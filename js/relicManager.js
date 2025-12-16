@@ -94,7 +94,7 @@ class relicManager{
                 case 321: case 323: case 324: case 336: case 343: case 352: case 361: case 364: case 365: case 366:
                 case 367: case 368: case 370: case 374: case 378: case 383: case 384: case 389: case 399: case 414:
                 case 439: case 441: case 442: case 450: case 452: case 453: case 457: case 459: case 468: case 470:
-                case 473: case 497: case 508:
+                case 473: case 497: case 508: case 521:
                     this.detail.push([])
                     for(let b=0,lb=this.battle.players;b<lb;b++){
                         this.detail[this.detail.length-1].push(0)
@@ -1487,6 +1487,9 @@ class relicManager{
                                     this.battle.addCurrency(50*this.active[502][a+1],a)
                                 }
                             }
+                            if(this.active[520][a+1]>0){
+                                this.getPlayer(a).statusEffect('Vigor',ceil((this.getPlayer(a).base.life-this.getPlayer(a).life)*0.5*this.active[520][a+1]))
+                            }
                             if(this.active[122][a+1]>0){
                                 this.getPlayer(a).statusEffect('Control',this.active[122][a+1])
                             }
@@ -1593,6 +1596,9 @@ class relicManager{
                             if(this.active[472][a+1]>0){
                                 this.getPlayer(a).statusEffect('Free Card',this.active[472][a+1])
                             }
+                            if(this.active[519][a+1]>0){
+                                this.getPlayer(a).statusEffect('Retain Block',this.active[519][a+1])
+                            }
                         }
                         if(this.battle.modded(60)){
                             this.battle.combatantManager.allEffect(3,[3])
@@ -1692,6 +1698,9 @@ class relicManager{
                     }
                     if(this.active[227][a+1]>0&&args[0]%2==0){
                         this.getPlayer(a).statusEffect('Vigor',4*this.active[227][a+1])
+                    }
+                    if(this.active[517][a+1]>0&&args[0]%2==1){
+                        this.getPlayer(a).statusEffect('Vigor',4*this.active[517][a+1])
                     }
                     if(this.active[298][a+1]>0){
                         this.detail[298][a]++
@@ -1807,7 +1816,7 @@ class relicManager{
                         }
                         if(this.active[38][args[1]+1]>0&&this.detail[38][args[1]]==1){
                             this.detail[38][args[1]]=0
-                            this.battle.addSpecificEnergy(2*this.active[38][args[1]+1],args[1],6)
+                            this.battle.addSpecificEnergy(3*this.active[38][args[1]+1],args[1],6)
                         }
                         if(this.active[52][args[1]+1]>0){
                             for(let a=0,la=4*this.active[52][args[1]+1];a<la;a++){
@@ -1823,7 +1832,7 @@ class relicManager{
                         }
                         if(this.active[93][args[1]+1]>0&&this.detail[93][args[1]]==1){
                             this.detail[93][args[1]]=0
-                            this.battle.addSpecificEnergy(2*this.active[93][args[1]+1],args[1],6)
+                            this.battle.addSpecificEnergy(3*this.active[93][args[1]+1],args[1],6)
                         }
                         if(this.active[126][args[1]+1]>0){
                             this.battle.overlayManager.overlays[10][args[1]].active=true
@@ -2679,12 +2688,15 @@ class relicManager{
                     }
                 }
             break
-            case 8://skipping card [player]
+            case 8://skipping card [player,cards]
                 if(this.active[49][args[0]+1]>0){
                     this.getPlayer(args[0]).gainMaxHP(2*this.active[49][args[0]+1])
                 }
                 if(this.active[101][args[0]+1]>0){
                     this.battle.addCurrency(10*this.active[101][args[0]+1],args[0])
+                }
+                if(this.active[521][args[0]+1]>0){
+                    this.detail[521][args[0]]=1
                 }
             break
             case 9://end of player turn [turn,player]

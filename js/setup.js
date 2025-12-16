@@ -72,11 +72,11 @@ function setup(){
                 current.modManager.addMod(67+a)
             }*/
 
-            /*for(let a=0,la=40;a<la;a++){
+            for(let a=0,la=4;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(473+a,0)
+                quickRelic(518+a,0)
             }
-            current.overlayManager.closeAll()*/
+            current.overlayManager.closeAll()
 
             /*current.itemManager.addItemSlots(7,0)
             for(let a=0,la=2;a<la;a++){
