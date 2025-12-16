@@ -7,7 +7,7 @@ class relicManager{
         this.layer=layer
         this.battle=battle
         
-        this.listing={relic:variants.mtg?[[],[],[],[],[]]:[[],[],[],[],[]]}
+        this.listing={relic:[[],[],[],[],[]],all:[[],[],[],[],[]]}
         this.active=[]
         this.detail=[]
 
@@ -82,6 +82,7 @@ class relicManager{
             ){
                 let effectiveRarity=types.relic[a].rarity==5?3:types.relic[a].rarity
                 this.listing.relic[effectiveRarity].push(a)
+                this.listing.all[effectiveRarity].push(a)
             }
             this.active.push([])
             for(let b=0,lb=this.battle.players+1;b<lb;b++){
@@ -505,7 +506,7 @@ class relicManager{
                 this.battle.cardManagers[player].allEffect(0,109)
             break
             case 155:
-                this.battle.cardManagers[player].drawAmount+=2
+                this.battle.cardManagers[player].drawAmount++
             break
             case 156:
                 this.battle.cardManagers[player].drawAmount+=3
@@ -970,7 +971,7 @@ class relicManager{
                 this.battle.cardManagers[player].allEffect(0,108)
             break
             case 155:
-                this.battle.cardManagers[player].drawAmount-=2
+                this.battle.cardManagers[player].drawAmount--
             break
             case 156:
                 this.battle.cardManagers[player].drawAmount-=3
@@ -2220,7 +2221,7 @@ class relicManager{
                 if(this.active[470][args[1]+1]>0){
                     this.detail[470][args[1]]++
                     if(this.detail[470]%3==2){
-                        this.getPlayer(a).statusEffect('Temporary Strength',this.active[470][a+1]*3)
+                        this.getPlayer(args[1]).statusEffect('Temporary Strength',this.active[470][args[1]+1]*3)
                     }
                 }
                 if(this.active[484][args[1]+1]>0){
@@ -2228,6 +2229,9 @@ class relicManager{
                 }
                 if(this.active[508][args[1]+1]>0&&this.detail[508][args[1]]==0){
                     this.battle.addSpecificEnergy(this.active[508][args[1]+1],args[1],6)
+                }
+                if(this.active[522][args[1]+1]>0&&this.getPlayer(args[1]).life<this.getPlayer(args[1]).base.life*0.9){
+                    this.battle.addSpecificEnergy(this.active[522][args[1]+1],args[1],6)
                 }
                 if(this.battle.modded(143)){
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].statusEffect(['Burn','Freeze','Shock'][floor(random(0,3))],1)

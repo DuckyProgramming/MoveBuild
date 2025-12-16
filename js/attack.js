@@ -10751,7 +10751,7 @@ class attack{
                         this.userCombatant.loseHealth(this.effect[1])
                     break
                     case 1582:
-                        this.battle.combatantManager.areaAbstract(2,['Poison',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                        this.battle.combatantManager.areaAbstract(2,['Poison',this.effect[1]],this.targetTile.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 1583:
                         this.userCombatant.statusEffect('Single Attack Strength',this.effect[1])

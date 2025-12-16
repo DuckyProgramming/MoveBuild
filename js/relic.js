@@ -1180,8 +1180,7 @@ class relic{
                     this.layer.text('?',0,14)
                 break
                 case 'Basic Draw':
-                    displaySymbol(this.layer,-8,-2,8,0,0.8,this.fade)
-                    displaySymbol(this.layer,8,-2,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,-4,8,0,0.8,this.fade)
                     displaySymbol(this.layer,0,10,4,0,0.6,this.fade)
                 break
                 case 'Confused Draw':
@@ -3851,6 +3850,13 @@ class relic{
                     displaySymbol(this.layer,-6,0,8,0,0.8,this.fade)
                     displaySymbol(this.layer,-6,0,17,0,0.4,this.fade)
                     displaySymbol(this.layer,11,0,88,0,0.8,this.fade)
+                break
+                case 'Nonfull Health Energy':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('<90%',10,0)
                 break
 
                 //mark p

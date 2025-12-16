@@ -965,7 +965,7 @@ types={
         {name:'Shattered Chains',internal:'Difficulty Energy',id:152,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 2 Energy Every Turn\non Elite and Boss Combats'},
         {name:'Meal Plan',internal:'Large Quick Heal',id:153,rarity:4,list:0,mtg:1,world:[0,2],description:'Heal 10 HP at\nthe End of Combat'},
         {name:'?! Block',internal:'Transform Basic',id:154,rarity:-1,list:0,mtg:1,world:[0,3],description:'When Taken, Transform All\nBasic Attacks and Defenses,\nand Upgrade All Basic Movements'},
-        {name:'Lightbulb',internal:'Basic Draw',id:155,rarity:4,list:0,mtg:1,world:[0,3],description:'Draw 2 More\nCards Every Turn'},
+        {name:'Lightbulb',internal:'Basic Draw',id:155,rarity:4,list:0,mtg:1,world:[0,3],description:'Draw 1 More\nCard Every Turn'},
         {name:'Golden Eye',internal:'Confused Draw',id:156,rarity:-1,list:0,mtg:1,world:[0,3],description:'Draw 3 More Cards Every Turn,\nStart Combat Confused'},
         {name:'Platinum Spoon',internal:'Much Better Items',id:157,rarity:-1,list:0,mtg:1,world:[0,2],description:'Items are 5x More Effective'},
         {name:'Holy Water',internal:'3 Starting Miracles',id:158,rarity:4,list:0,mtg:1,world:[0,3],description:'Add 3 Miracles\non Turn 1'},
@@ -1188,7 +1188,7 @@ types={
         {name:'Virtuous Duck',internal:'Double First Attack',id:355,rarity:2,list:0,mtg:0,world:[0,3],description:'The First Attack Each Combat\nDeals Double Damage'},
         {name:'Congestion Control',internal:'Protocol',id:356,rarity:4,list:0,mtg:1,world:[0,3],description:'Shuffle 1 Protocol Into\nDraw on Turn 1'},
         {name:'Tactical Conductor',internal:'Cheap Skills',id:357,rarity:2,list:0,mtg:1,world:[0,3],description:'Skills Have a 50%\nChance to Cost 1 Less\nTemporarily When Drawn'},
-        {name:'Blackened Nebula',internal:'Energy/Colorless',id:358,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nAll Colorless Cards Cost 1 More'},
+        {name:'Blackened Nebula',internal:'Energy/Colorless',id:358,rarity:-1,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nAll Colorless Cards Cost 1 More'},
         {name:'Malicious Flame',internal:'Power Draw',id:359,rarity:2,list:0,mtg:0,world:[0,3],description:'When a Power is Played,\nDraw 1 Card'},
 
         {name:'Lantern',internal:'First Turn Mana',id:360,rarity:0,list:0,mtg:2,world:[0,3],description:'Gain (K) (K) on\nTurn 1'},
@@ -1369,6 +1369,7 @@ types={
 
         {name:'Accusatory Arrow',internal:'Missing Health Vigor',id:520,rarity:1,list:0,mtg:0,world:[0,3],description:'At the Start of Combat,\nGain Vigor Equal to Half\nof Your Missing Health'},
         {name:'Archducal Hat',internal:'Skip Edition',id:521,rarity:2,list:0,mtg:0,world:[0,3],description:'When You Skip a Card Reward,\nThe Next Card Reward Will Have an Edition'},
+        {name:'Cosmic Gown',internal:'Nonfull Health Energy',id:522,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy Each Turn\nIf You Are Below 90% Health'},
         
         //mark mtg mark r
     ],item:[
