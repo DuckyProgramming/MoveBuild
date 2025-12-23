@@ -9409,7 +9409,15 @@ class card{
             case 8342: string+=`Apply ${effect[0]} Lock On\nDraw ${effect[1]} Strike${pl(effect[1])}`; break
             case 8343: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Strike${pl(effect[1])}\nDraw ${effect[2]} Defend${pl(effect[2])}`; break
             case 8344: string+=`Make a Card Cost 1\nLess Permanently\nMake a Card Cost 1\nMore Permanently`; break
+            case 8345: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],17)} Barrier\nIf You Have Intangible,\nDouble Both`; break
+            case 8346: string+=`Duplicate Your Hand\nCopies are Ethereal\nCannot Duplicate Itself`; break
+            case 8347: string+=`All Cards in Hand\nGain Random Editions`; break
+            case 8348: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Discarded\nin Any Way,\nAdd ${this.calculateEffect(effect[1],17)} Barrier`; break
+            case 8349: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Discarded\nin Any Way,\nAdd ${this.calculateEffect(effect[1],17)} Barrier`; break
+            case 8350: string+=`Apply ${effect[0]} Stun\nto Any Enemy`; break
 
+            case 8351: string+=`Apply ${effect[0]} Stun\nApply ${effect[1]} Shock\nFor 3 Turns`; break
+            
             //mark p
 
             //mark q
@@ -9835,7 +9843,7 @@ class card{
             case 7738:
                 userCombatant.statusEffect('Strength',this.effect[1])
             break
-            case 7760: case 7761:
+            case 7760: case 7761: case 8348: case 8349:
                 userCombatant.addBarrier(this.effect[1])
             break
             case 7813:
@@ -9890,6 +9898,9 @@ class card{
             break
             case 7773:
                 return this.effect[1]
+            case 8348: case 8349:
+                userCombatant.addBarrier(this.effect[1])
+            break
         }
         return 0
     }
@@ -10119,6 +10130,9 @@ class card{
             case 7908:
                 userCombatant.addBlock(this.effect[0])
                 this.battle.cardManagers[this.player].hand.upgrade(this.effect[1])
+            break
+            case 8348: case 8349:
+                userCombatant.addBarrier(this.effect[1])
             break
         }
     }

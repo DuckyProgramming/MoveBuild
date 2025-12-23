@@ -185,6 +185,7 @@ attack.prototype.update=function(){
         case 8146: case 8166: case 8167: case 8173: case 8194: case 8197: case 8199: case 8200: case 8201: case 8243:
         case 8244: case 8245: case 8246: case 8252: case 8254: case 8258: case 8260: case 8262: case 8270: case 8271:
         case 8272: case 8300: case 8303: case 8323: case 8325: case 8326: case 8327: case 8328: case 8333: case 8335:
+        case 8348:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -377,7 +378,7 @@ attack.prototype.update=function(){
         case 7983: case 7989: case 7991: case 7992: case 8002: case 8011: case 8017: case 8018: case 8019: case 8026:
         case 8037: case 8038: case 8039: case 8040: case 8042: case 8050: case 8073: case 8082: case 8090: case 8124:
         case 8141: case 8143: case 8144: case 8163: case 8170: case 8180: case 8195: case 8203: case 8214: case 8247:
-        case 8248: case 8249: case 8250: case 8289: case 8298: case 8305: case 8312: case 8322: case 8324:
+        case 8248: case 8249: case 8250: case 8289: case 8298: case 8305: case 8312: case 8322: case 8324: case 8349:
             //mark 2
             if(
                 this.timer==1&&(
@@ -1145,7 +1146,7 @@ attack.prototype.update=function(){
         case 8118: case 8128: case 8133: case 8135: case 8136: case 8137: case 8138: case 8139: case 8142: case 8147:
         case 8148: case 8156: case 8158: case 8161: case 8162: case 8165: case 8169: case 8175: case 8217: case 8222:
         case 8223: case 8235: case 8236: case 8284: case 8291: case 8292: case 8299: case 8301: case 8302: case 8307:
-        case 8311: case 8316: case 8317:
+        case 8311: case 8316: case 8317: case 8346:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -1302,7 +1303,7 @@ attack.prototype.update=function(){
         case 7297: case 7298: case 7416: case 7488: case 7503: case 7512: case 7514: case 7515: case 7518: case 7536:
         case 7568: case 7569: case 7570: case 7571: case 7587: case 7590: case 7591: case 7592: case 7640: case 7669:
         case 7670: case 7671: case 7779: case 7900: case 7957: case 8004: case 8015: case 8033: case 8096: case 8108:
-        case 8210:
+        case 8210: case 8347:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||
@@ -2277,7 +2278,7 @@ attack.prototype.update=function(){
         case 7649: case 7650: case 7651: case 7685: case 7723: case 7724: case 7748: case 7756: case 8005: case 8010:
         case 8013: case 8049: case 8056: case 8122: case 8155: case 8157: case 8164: case 8177: case 8179: case 8181:
         case 8182: case 8183: case 8184: case 8185: case 8188: case 8189: case 8204: case 8256: case 8257: case 8259:
-        case 8293: case 8308: case 8309:
+        case 8293: case 8308: case 8309: case 8351:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -4982,7 +4983,7 @@ attack.prototype.update=function(){
         case 7881: case 7882: case 7883: case 7885: case 7886: case 7887: case 7894: case 7897: case 7898: case 7899:
         case 7997: case 8009: case 8168: case 8172: case 8174: case 8186: case 8187: case 8191: case 8192: case 8205:
         case 8206: case 8215: case 8220: case 8221: case 8229: case 8261: case 8269: case 8295: case 8313: case 8314:
-        case 8315:
+        case 8315: case 8350:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
@@ -8630,7 +8631,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 3150:
+        case 3150: case 8345:
             if(variants.nobasicanim){
                 this.selfCall(9)
                 this.remove=true
@@ -13402,7 +13403,7 @@ attack.prototype.update=function(){
             if(variants.nobasicanim){
                 this.selfCall(0)
                 this.procedure[0]++
-                if(this.procedure[0]>=(this.procedure[1]?2:1)){
+                if(this.procedure[0]>=this.procedure[1]){
                     this.remove=true
                 }else{
                     this.timer=0
@@ -13416,7 +13417,7 @@ attack.prototype.update=function(){
                     this.selfCall(0)
                 }else if(this.timer>=30){
                     this.procedure[0]++
-                    if(this.procedure[0]>=(this.procedure[1]?2:1)){
+                    if(this.procedure[0]>=this.procedure[1]){
                         this.remove=true
                     }else{
                         this.timer=0

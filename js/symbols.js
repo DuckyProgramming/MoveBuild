@@ -8533,6 +8533,31 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.line(-10/3,-2/3*constants.sqrt3,10/3,-2/3*constants.sqrt3)
             layer.line(-10/3,2/3*constants.sqrt3,10/3,2/3*constants.sqrt3)
         break
+        case 852:
+            layer.fill(255,255,50,fade)
+            layer.beginShape()
+            layer.vertex(0.4,-8)
+            layer.vertex(-3.2,1.2)
+            layer.vertex(0.2,1.2)
+            layer.vertex(-0.4,8)
+            layer.vertex(3.2,-1.2)
+            layer.vertex(-0.4,-1.2)
+            layer.endShape()
+            layer.triangle(0,-9,-1,-11.5,1,-11.5)
+        break
+        case 853:
+            layer.fill(255,255,50,fade)
+            layer.beginShape()
+            layer.vertex(0.4,-8)
+            layer.vertex(-3.2,1.2)
+            layer.vertex(0.2,1.2)
+            layer.vertex(-0.4,8)
+            layer.vertex(3.2,-1.2)
+            layer.vertex(-0.4,-1.2)
+            layer.endShape()
+            layer.triangle(0,-9,-1,-11.5,1,-11.5)
+            layer.triangle(0,-12,-1,-14.5,1,-14.5)
+        break
 
     }
     //mark s

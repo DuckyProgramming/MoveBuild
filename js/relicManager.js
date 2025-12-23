@@ -1609,6 +1609,9 @@ class relicManager{
                         if(this.battle.modded(168)){
                             this.battle.combatantManager.allEffect(29,[1])
                         }
+                        if(this.battle.modded(233)){
+                            this.battle.combatantManager.allEffect(48,['Take Credit',1])
+                        }
                     break
                     case 5:
                         for(let a=0,la=this.battle.players;a<la;a++){
@@ -2025,9 +2028,6 @@ class relicManager{
                             }else{
                                 this.battle.cardManagers[args[1]].hand.duplicate(3*this.active[207][args[1]+1])
                             }
-                        }
-                        if(this.battle.modded(233)){
-                            this.battle.combatantManager.allEffect(48,['Take Credit',1])
                         }
                     break
                     case 6: case 9:

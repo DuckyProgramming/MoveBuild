@@ -76,7 +76,7 @@ class modManager{
             break
             case 145:
                 for(let a=0,la=this.battle.players;a<la;a++){
-                    this.battle.addCurrency(777,this.player)
+                    this.battle.addCurrency(777,a)
                 }
                 //this.battle.cardManagers.forEach(cardManager=>cardManager.deck.add(findName('Cornucopia',types.card),0,0))
                 //this.battle.cardManagers.forEach(cardManager=>cardManager.deck.add(findName('Divine\nSword',types.card),0,0))

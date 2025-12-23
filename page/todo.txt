@@ -1,4 +1,10 @@
-CARDSET 88 [ENDSIEG]
+CARDSET 89 [ENDSIEG]
+
+
+
+in general sanae has too many uninteresting scry cards
+idk what the solution is though
+more cards that you want to scry into i guess
 
 
 
@@ -25,7 +31,7 @@ spare wood - when you enter a rest time, gain 3 max hp
 
 
 
-incandescent firefly - damage in all directions, [condition]: counter 5 all
+incandescent firefly - damage in all directions, overdrive 1: counter 5 all
 
 flash weaken [colorless] - apply 1 weak, draw a card
 [vulnerable counterpart]

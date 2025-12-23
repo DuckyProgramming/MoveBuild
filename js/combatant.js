@@ -208,7 +208,7 @@ class combatant{
                 'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Temporary Item Next Turn','Vigor Per Turn',
                 'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
                 'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block','Bell Weak','Bell Vulnerable',
-                'Buff Loss Block','Take Per Skill Played Combat',
+                'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -296,7 +296,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,2,0,//83
                 0,1,1,0,0,0,0,0,0,2,//84
                 0,0,0,0,2,2,2,0,0,0,//85
-                0,0,
+                0,0,2,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -384,7 +384,7 @@ class combatant{
                 2,2,2,2,2,2,2,0,2,2,//83
                 2,2,2,2,2,2,2,2,2,2,//84
                 2,2,2,2,2,2,2,2,2,2,//85
-                2,3,
+                2,3,1,1,
             ]}
         /*
         0-none
@@ -6051,6 +6051,8 @@ class combatant{
                     case 844: this.miniStatus('Temporary Resonance',this.status.main[this.status.ticker[a]]); break
                     case 845: this.miniStatus('Temporary Resonance Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 846: this.miniStatus('Temporary Resonance in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 852: this.miniStatus('Shock',this.status.main[this.status.ticker[a]]); break
+                    case 853: this.miniStatus('Shock Next Turn',this.status.main[this.status.ticker[a]]); break
                     
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6&&

@@ -283,7 +283,7 @@ class attack{
             case 8173: case 8174: case 8194: case 8196: case 8197: case 8199: case 8200: case 8201: case 8204: case 8218: case 8226: case 8231: case 8242: case 8243: case 8244: case 8245: case 8246: case 8252: case 8254: case 8255:
             case 8256: case 8257: case 8258: case 8260: case 8262: case 8263: case 8264: case 8265: case 8266: case 8269: case 8270: case 8271: case 8272: case 8276: case 8277: case 8278: case 8279: case 8280: case 8281: case 8290:
             case 8293: case 8294: case 8295: case 8300: case 8303: case 8304: case 8306: case 8308: case 8309: case 8310: case 8311: case 8318: case 8319: case 8320: case 8321: case 8323: case 8325: case 8326: case 8327: case 8328:
-            case 8333: case 8335: case 8342:
+            case 8333: case 8335: case 8342: case 8345: case 8348: case 8350: case 8351:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -21659,6 +21659,9 @@ class attack{
                         this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[0],[[3,25]]])
                         this.userCombatant.ammo+=this.effect[0]
                     break
+                    case 8346:
+                        this.userManager.hand.allEffect(122)
+                    break
 
                 }
                 //mark 5
@@ -22970,6 +22973,9 @@ class attack{
                     break
                     case 8210:
                         this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)].clearTypes()
+                    break
+                    case 8347:
+                        this.userManager.hand.allEffect(123)
                     break
 
                 }
@@ -26319,6 +26325,12 @@ class attack{
                         this.targetCombatant.statusEffect('Vulnerable',999)
                         this.targetCombatant.statusEffect('Frail',999)
                     break
+                    case 8351:
+                        this.targetCombatant.statusEffect('Stun',this.effect[0])
+                        this.targetCombatant.statusEffect('Shock',this.effect[1])
+                        this.targetCombatant.statusEffect('Shock Next Turn',this.effect[1])
+                        this.targetCombatant.statusEffect('Shock in 2 Turns',this.effect[1])
+                    break
 
                 }
                 //mark 8
@@ -26726,7 +26738,7 @@ class attack{
                         }
                         this.userManager.hand.discard(this.effect[0])
                     break
-                    case 3150:
+                    case 3150: case 8345:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.getStatus('Intangible')>0?2:1),this.user,1)
                     break
                     case 5994:
@@ -26894,6 +26906,9 @@ class attack{
                     break
                     case 7580:
                         this.targetCombatant.statusEffect('Cannot Move',this.effect[1])
+                    break
+                    case 8345:
+                        this.userCombatant.addBarrier(this.effect[1]*(this.userCombatant.getStatus('Intangible')>0?2:1))
                     break
 
                 }
@@ -32297,6 +32312,9 @@ class attack{
                         }else if((variants.mtg?this.cost[0]:this.cost)>=8){
                             this.battle.combatantManager.allEffect(48,['Vulnerable',999])
                         }
+                    break
+                    case 8350:
+                        this.targetCombatant.statusEffect('Stun',this.effect[0])
                     break
 
                 }

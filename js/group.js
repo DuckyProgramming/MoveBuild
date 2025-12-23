@@ -1864,6 +1864,16 @@ class group{
                         this.cards[a].setCost(0,[0])
                     }
                 break
+                case 122:
+                    if(this.cards[a].name!='LXIV - The\nStack'){
+                        this.copySelfInputAbstract(a,0)
+                    }
+                break
+                case 123:
+                    if(this.cards[a].edition==0){
+                        this.cards[a].edition=floor(random(1,7))
+                    }
+                break
 
             }
         }
@@ -4229,6 +4239,24 @@ class group{
             this.cards[this.cards.length-1].callAddEffect()
         }
         this.cards[this.cards.length-1].id=game.id
+    }
+    copySelfInputAbstract(index,spec){
+        game.id++
+        this.cards.splice(this.cards.length,0,copyCard(this.cards[index]))
+        this.cards[this.cards.length-1].position.x=1200
+        this.cards[this.cards.length-1].position.y=500
+        if(this.id==0){
+            this.cards[this.cards.length-1].callAddEffect()
+        }
+        this.cards[this.cards.length-1].id=game.id
+        switch(spec){
+            case 0:
+                if(!this.cards[this.cards.length-1].spec.includes(4)){
+                    this.cards[this.cards.length-1].spec.push(4)
+                    this.cards[this.cards.length-1].additionalSpec.push(4)
+                }
+            break
+        }
     }
     postCopyAbstract(type){
         game.id++
