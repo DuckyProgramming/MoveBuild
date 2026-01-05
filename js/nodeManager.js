@@ -68,6 +68,10 @@ class nodeManager{
                 this.listing.name[types.encounter[a].world][types.encounter[a].class].push(types.encounter[a].name)
             }
         }
+        if(game.ascend>=33){
+            this.listing.encounter[3][2]=[findName('-h Rewriter',types.encounter)]
+            this.listing.static[3][2]=[findName('-h Rewriter',types.encounter)]
+        }
     }
     nextWorld(){
         this.tilePosition={x:0,y:-1}

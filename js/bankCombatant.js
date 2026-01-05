@@ -11205,7 +11205,7 @@ combatant.prototype.display=function(){
                     this.layer.fill(...this.flashColor(this.color.skin.body),this.fade*this.fades.skin.body)
                     this.layer.ellipse(0,-48,13,39)
                     this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
-                    this.layer.arc(0,-48,16,40,-180,0)
+                    this.layer.arc(0,-48,14,40,-180,0)
                 }
                 if(this.trigger.display.logo&&lcos(this.anim.direction)>0){
                     this.layer.noStroke()

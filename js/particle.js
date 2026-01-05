@@ -669,7 +669,7 @@ class particle{
                 this.speed=15
                 this.velocity={x:lsin(this.direction)*this.speed,y:lcos(this.direction)*this.speed}
             break
-            case 211: case 228: case 259:
+            case 211: case 228: case 259: case 266:
                 this.size=args[0]
                 this.color=args[1]
                 this.direction=random(0,360)
@@ -855,6 +855,13 @@ class particle{
                 this.fade=1
                 this.scale=0
                 this.delay=args[1]
+            break
+            case 265:
+                this.size=1
+                this.scale=1
+                this.shocks=[]
+                this.loops=[]
+                this.fade=0
             break
 
         }
@@ -4303,6 +4310,57 @@ class particle{
                     this.layer.noFill()
                     this.layer.ellipse(0,0,60,60)
                 break
+                case 265:
+                    this.layer.fill(215,205,185,this.fade)
+                    this.layer.ellipse(0,0,110)
+                    for(let a=0,la=this.loops.length;a<la;a++){
+                        this.layer.stroke(210,185+this.loops[a].color*25,135+this.loops[a].color*75,this.loops[a].fade)
+                        this.layer.strokeWeight(10)
+                        let width=sqrt(4900-this.loops[a].height**2)
+                        if(lcos(this.loops[a].direction)<=0&&lcos(this.loops[a].direction+this.loops[a].width)<=0){
+                            this.layer.line(width*lsin(this.loops[a].direction),this.loops[a].height,width*lsin(this.loops[a].direction+this.loops[a].width),this.loops[a].height)
+                        }else if(lcos(this.loops[a].direction)<=0&&lcos(this.loops[a].direction+this.loops[a].width)>0){
+                            this.layer.line(width*lsin(this.loops[a].direction),this.loops[a].height,-width,this.loops[a].height)
+                        }else if(lcos(this.loops[a].direction)>0&&lcos(this.loops[a].direction+this.loops[a].width)<=0){
+                            this.layer.line(width,this.loops[a].height,width*lsin(this.loops[a].direction+this.loops[a].width),this.loops[a].height)
+                        }
+                    }
+                    this.layer.noStroke()
+                    for(let a=0,la=this.shocks.length;a<la;a++){
+                        this.layer.fill(255,230+this.shocks[a].color*25,180+this.shocks[a].color*75,this.shocks[a].fade)
+                        this.layer.rotate(this.shocks[a].direction)
+                        for(let b=0,lb=20;b<lb;b++){
+                            this.layer.quad(
+                                b*(1-b*0.025)*this.shocks[a].swivel*(b%2*2-1)-b/lb*this.shocks[a].width,-this.shocks[a].height-b*this.shocks[a].bar,
+                                b*(1-b*0.025)*this.shocks[a].swivel*(b%2*2-1)+b/lb*this.shocks[a].width,-this.shocks[a].height-b*this.shocks[a].bar,
+                                (b+1)*(1-(b+1)*0.025)*this.shocks[a].swivel*((b+1)%2*2-1)+(b+1)/lb*this.shocks[a].width,-this.shocks[a].height-(b+1)*this.shocks[a].bar,
+                                (b+1)*(1-(b+1)*0.025)*this.shocks[a].swivel*((b+1)%2*2-1)-(b+1)/lb*this.shocks[a].width,-this.shocks[a].height-(b+1)*this.shocks[a].bar
+                            )
+                        }
+                        this.layer.rotate(-this.shocks[a].direction)
+                    }
+                    for(let a=0,la=this.loops.length;a<la;a++){
+                        this.layer.stroke(255,230+this.loops[a].color*25,180+this.loops[a].color*75,this.loops[a].fade)
+                        this.layer.strokeWeight(10)
+                        let width=sqrt(4900-this.loops[a].height**2)
+                        if(lcos(this.loops[a].direction)>0&&lcos(this.loops[a].direction+this.loops[a].width)>0){
+                            this.layer.line(width*lsin(this.loops[a].direction),this.loops[a].height,width*lsin(this.loops[a].direction+this.loops[a].width),this.loops[a].height)
+                        }else if(lcos(this.loops[a].direction)>0&&lcos(this.loops[a].direction+this.loops[a].width)<=0){
+                            this.layer.line(width*lsin(this.loops[a].direction),this.loops[a].height,width,this.loops[a].height)
+                        }else if(lcos(this.loops[a].direction)<=0&&lcos(this.loops[a].direction+this.loops[a].width)>0){
+                            this.layer.line(-width,this.loops[a].height,width*lsin(this.loops[a].direction+this.loops[a].width),this.loops[a].height)
+                        }
+                    }
+                    this.layer.noStroke()
+                    this.layer.fill(255,245,225,this.fade)
+                    this.layer.ellipse(0,0,150)
+                break
+                case 266:
+                    this.layer.noFill()
+                    this.layer.stroke(...this.color,this.fade)
+                    this.layer.strokeWeight(1)
+                    this.layer.ellipse(0,0,20,8)
+                break
 
             }
             //mark p
@@ -5444,6 +5502,61 @@ class particle{
                     if(this.fade<=0){
                         this.remove=true
                     }
+                }
+            break
+            case 265:
+                for(let a=0,la=this.shocks.length;a<la;a++){
+                    this.shocks[a].fade-=0.1
+                    if(this.shocks[a].fade<=0){
+                        this.shocks.splice(a,1)
+                        a--
+                        la--
+                    }
+                }
+                for(let a=0,la=this.loops.length;a<la;a++){
+                    this.loops[a].direction+=this.loops[a].speed
+                    if(this.loops[a].fade<1&&this.time<750){
+                        this.loops[a].fade+=1/30
+                    }
+                }
+                if(this.time<480){
+                    if(this.time%2==0){
+                        this.shocks.push({direction:random(0,360),width:random(8,16),bar:random(60,120),swivel:random(6,12)*(floor(random(0,2))*2-1),fade:1,height:random(0,20),color:random(0,1)})
+                        this.loops.push({direction:random(0,360),speed:random(1,3),width:random(15,60),fade:0,height:random(-70,70),color:random(0,1)})
+                    }
+                }else if(this.time<660){
+                    if(this.time%2==0){
+                        this.shocks.push({direction:random(0,360),width:random(8,16),bar:random(60,120),swivel:random(6,12)*(floor(random(0,2))*2-1),fade:1,height:random(0,20),color:random(0,1)})
+                        if(this.time<540){
+                            this.loops.push({direction:random(0,360),speed:random(1,3),width:random(15,60),fade:0,height:random(-70,70),color:random(0,1)})
+                        }
+                    }
+                    this.fade+=1/270
+                }else if(this.time>=750&&this.time<765){
+                    if(this.time==750){
+                        for(let a=0,la=this.loops.length;a<la;a++){
+                            this.loops[a].fade=0.5
+                        }
+                    }
+                    for(let a=0,la=this.loops.length;a<la;a++){
+                        this.loops[a].fade-=0.1
+                        if(this.loops[a].fade<=0){
+                            this.loops.splice(a,1)
+                            a--
+                            la--
+                        }
+                    }
+                    this.fade-=2/45
+                    this.scale+=0.25
+                }else if(this.time>=765){
+                    this.remove=true
+                }
+            break
+            case 266:
+                this.fade-=0.04
+                this.scale+=0.025*(this.fade+1)
+                if(this.fade<=0){
+                    this.remove=true
                 }
             break
 

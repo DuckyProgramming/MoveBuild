@@ -1,12 +1,24 @@
 CARDSET 89 [ENDSIEG]
 
-
+idea: replace dazed deck with:
+shuffle discard into draw during turn => fatigued for 1
 
 in general sanae has too many uninteresting scry cards
 idk what the solution is though
 more cards that you want to scry into i guess
 
+concentrated divinity - 1 strength 1 dexterity, 2 cost, cost 1 less when scryed
+barrier deployment - gain a bit of block and some barrier, gain energy first time this is played
+lifegiver - heal target for 20 and then stun them, 0 cost exhaust
 
+
+DIFF 33
+
+what if you fought rewriter and eternal judge
+... at the same time?
+
+
+CHAR 26
 
 the minesweeper:
 you can add mines to cards
@@ -25,9 +37,15 @@ some cards will sweep mines
 this is a pick cards effect like upgrade or retain once
 triggers mine effect
 
+the reservist:
+"reserve" is a card effect like discard or rewind that puts cards in a special pile
+each turn you can pick a card from that pile to put into hand (if its size is more than 0)
 
+also you can get promoted i guess?
 
 spare wood - when you enter a rest time, gain 3 max hp
+
+retrograde reinforcement - double block, then lose 10
 
 
 
@@ -45,6 +63,10 @@ octarine core - gain 1 artifact gain 1 buffer
 detachment pulse - 6 damage, 6 block, first time played: heal 1 health
 
 lonely bound - draw a card, draw 1 more if you have a debuff
+
+scroll creation - get a miracle, 2 cost, but get 1 energy first time played
+
+atmospheric reach - take an extra turn, discover a rare card
 
 
 
@@ -71,6 +93,8 @@ singularity - get a lightning orb and tick it for each exhausted card
 binocular - draw 3 cards, gain 1 energy per movement drawn
 
 quilted - add block, steal up to 5 block from every enemy
+
+pressing buttons - 9 damage, if fatal every enemy takes 18 damage
 
 
 

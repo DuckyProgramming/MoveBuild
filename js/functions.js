@@ -1221,6 +1221,8 @@ function intentDescription(attack,user,info){
 			case 466: return `Gain ${info?attack.effect[0]:`?`} Vigor`
 			case 467: return `Gain ${info?attack.effect[0]:`?`} Vigil`
 			case 468: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Vulnerable\n3 Tiles Wide\nRange 1-2`
+			case 469: return `???`
+			case 470: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTargets Gain ${info?attack.effect[1]:`?`}\nLess Block\n3 Tiles Wide\nRange 1-1`
 
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`

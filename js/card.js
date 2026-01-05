@@ -9415,8 +9415,8 @@ class card{
             case 8348: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Discarded\nin Any Way,\nAdd ${this.calculateEffect(effect[1],17)} Barrier`; break
             case 8349: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Discarded\nin Any Way,\nAdd ${this.calculateEffect(effect[1],17)} Barrier`; break
             case 8350: string+=`Apply ${effect[0]} Stun\nto Any Enemy`; break
-
             case 8351: string+=`Apply ${effect[0]} Stun\nApply ${effect[1]} Shock\nFor 3 Turns`; break
+            case 8352: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto a Random Enemy\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
             
             //mark p
 

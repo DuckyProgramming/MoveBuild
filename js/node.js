@@ -56,7 +56,7 @@ class node{
                 this.combat=0
             break
         }
-        this.base()
+        this.components()
     }
     save(){
         let composite={
@@ -73,7 +73,7 @@ class node{
         }
         return composite
     }
-    base(){
+    components(){
         this.base={position:{x:this.position.x,y:this.position.y}}
 
         this.connections=[]
@@ -132,6 +132,7 @@ class node{
             this.layer.text('Unknown',0,25)
         }else{
             let readable=(this.complete||this.active||this.contain)&&!this.battle.modded(196)
+            let name
             switch(type){
                 case 0:
                     this.layer.stroke(...color,this.fade)
@@ -143,16 +144,20 @@ class node{
                     this.layer.point(6,0)
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
-                    if(readable&&types.encounter[this.combat].name.length>15){
-                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*4.2+13.5:30.5,15,3)
+                    name=types.encounter[this.combat].name
+                    if(name.substr(0,2)=='-h'){
+                        name=name.substr(2)
+                    }
+                    if(readable&&name.length>15){
+                        this.layer.rect(0,24.5,readable?name.length*4.2+13.5:30.5,15,3)
                         this.layer.fill(...color,this.fade*cap)
                         this.layer.textSize(9)
-                        this.layer.text(readable?types.encounter[this.combat].name:'Battle',0,25)
+                        this.layer.text(readable?name:'Battle',0,25)
                     }else{
-                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*5.6+18:42,16,3)
+                        this.layer.rect(0,24.5,readable?name.length*5.6+18:42,16,3)
                         this.layer.fill(...color,this.fade*cap)
                         this.layer.textSize(12)
-                        this.layer.text(readable?types.encounter[this.combat].name:'Battle',0,25)
+                        this.layer.text(readable?name:'Battle',0,25)
                     }
                 break
                 case 1:
@@ -170,16 +175,20 @@ class node{
                     this.layer.triangle(13,-7,7,-13,16,-16)
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
-                    if(readable&&types.encounter[this.combat].name.length>15){
-                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*4.2+13.5:30.5,15,3)
+                    name=types.encounter[this.combat].name
+                    if(name.substr(0,2)=='-h'){
+                        name=name.substr(2)
+                    }
+                    if(readable&&name.length>15){
+                        this.layer.rect(0,24.5,readable?name.length*4.2+13.5:30.5,15,3)
                         this.layer.fill(...color,this.fade*cap)
                         this.layer.textSize(9)
-                        this.layer.text(readable?types.encounter[this.combat].name:'Elite',0,25)
+                        this.layer.text(readable?name:'Elite',0,25)
                     }else{
-                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*5.6+18:35,16,3)
+                        this.layer.rect(0,24.5,readable?name.length*5.6+18:35,16,3)
                         this.layer.fill(...color,this.fade*cap)
                         this.layer.textSize(12)
-                        this.layer.text(readable?types.encounter[this.combat].name:'Elite',0,25)
+                        this.layer.text(readable?name:'Elite',0,25)
                     }
                 break
                 case 2:
@@ -208,7 +217,11 @@ class node{
                     this.layer.rect(0,52,36,20,3)
                     this.layer.fill(...color,this.fade)
                     this.layer.textSize(15)
-                    this.layer.text(types.encounter[this.combat].name,0,52)
+                    name=types.encounter[this.combat].name
+                    if(name.substr(0,2)=='-h'){
+                        name=name.substr(2)
+                    }
+                    this.layer.text(name,0,52)
                 break
                 case 3:
                     this.layer.stroke(...color,this.fade)

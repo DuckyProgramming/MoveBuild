@@ -359,7 +359,7 @@ class attack{
             case 7827: case 7837: case 7910: case 7974: case 7987: case 7988: case 8029: case 8030: case 8031: case 8032:
             case 8066: case 8067: case 8083: case 8107: case 8129: case 8130: case 8131: case 8132: case 8176: case 8202:
             case 8219: case 8225: case 8230: case 8233: case 8234: case 8237: case 8238: case 8239: case 8240: case 8251:
-            case 8253: case 8259: case 8285: case 8286: case 8287: case 8288: case 8334: case 8343:
+            case 8253: case 8259: case 8285: case 8286: case 8287: case 8288: case 8334: case 8343: case 8352:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -5993,7 +5993,7 @@ class attack{
                         }
                     break
                     case 6194:
-                        this.targetCombatant.setIntentClass([1,5])
+                        this.targetCombatant.setIntentClassMultiple([1,5])
                     break
                     case 6195:
                         if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
@@ -8596,7 +8596,7 @@ class attack{
                         }
                     break
                     case 3191:
-                        this.targetCombatant.setIntentClass([1,5])
+                        this.targetCombatant.setIntentClassMultiple([1,5])
                     break
                     case 3204:
                         if(this.userManager.hand.turnPlayed[0]<=1){
@@ -12674,6 +12674,10 @@ class attack{
                     case 8343:
                         this.userManager.drawAbstract(this.effect[1],20,0,[1])
                         this.userManager.drawAbstract(this.effect[2],20,0,[2])
+                    break
+                    case 8352:
+                        this.battle.combatantManager.randomEnemyEffect(3,[this.effect[1],this.user])
+                        this.userCombatant.addBlock(this.effect[2])
                     break
 
                 }

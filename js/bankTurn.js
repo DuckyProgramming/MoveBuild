@@ -407,14 +407,15 @@ turn.prototype.update=function(){
                 case 9: case 28: case 44: case 53: case 60: case 64: case 82: case 84: case 85: case 105:
                 case 114: case 124: case 153: case 204: case 259: case 264: case 265: case 278: case 288: case 308:
                 case 330: case 368: case 379: case 387: case 388: case 395: case 404: case 409: case 449: case 468:
+                case 470:
                     if(variants.nobasicanim){
                         this.selfCall(3)
                         this.remove=true
                     }else{
                         if(this.timer==1){
-                            this.userCombatant.startAnimation(this.userCombatant.name=='Sakura'||this.userCombatant.name=='DD-610'||this.userCombatant.name=='Prehextorica'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Sagume'?29:4)
+                            this.userCombatant.startAnimation(this.userCombatant.name=='Sakura'||this.userCombatant.name=='Shiru'||this.userCombatant.name=='DD-610'||this.userCombatant.name=='Prehextorica'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Sagume'?29:4)
                         }
-                        this.userCombatant.runAnimation(1/30,this.userCombatant.name=='Sakura'||this.userCombatant.name=='DD-610'||this.userCombatant.name=='Prehextorica'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Sagume'?29:4)
+                        this.userCombatant.runAnimation(1/30,this.userCombatant.name=='Sakura'||this.userCombatant.name=='Shiru'||this.userCombatant.name=='DD-610'||this.userCombatant.name=='Prehextorica'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Sagume'?29:4)
                         if(this.timer==15){
                             this.selfCall(3)
                         }else if(this.timer>=30){
@@ -4051,6 +4052,56 @@ turn.prototype.update=function(){
                         current.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,65,[20]))
                     }else if(this.timer>=30){
                         this.remove=true
+                    }
+                break
+                case 469:
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(8)
+                        this.procedure[0]=game.animRate
+                        game.animRate=1
+                    }
+                    if(this.timer<=15||this.timer>885){
+                        this.userCombatant.runAnimation(1/30,8)
+                    }
+                    if(this.timer==15){
+                        for(let a=0,la=8;a<la;a++){
+                            this.battle.tileManager.randomClearType(2)
+                        }
+                    }
+                    if(this.timer==45){
+                        this.battle.tileManager.tiles.push(new tile(
+                            this.battle.layer,this.battle,
+                            this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].position.x*2-this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-2].position.x,
+                            this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].position.y*2-this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-2].position.y,
+                            this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].relativePosition.x*2-this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-2].relativePosition.x,
+                            this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].relativePosition.y*2-this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-2].relativePosition.y,
+                            this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].tilePosition.x*2-this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-2].tilePosition.x,
+                            this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].tilePosition.y*2-this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-2].tilePosition.y,
+                            this.battle.tileManager.offset,[]
+                        ))
+                        this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].fade=0
+                        this.targetTile=this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1]
+                    }
+                    if(this.timer==60){
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetTile.position.x,this.targetTile.position.y,266,[50,[50,50,50]]))
+                    }
+                    if(this.timer>=45&&this.timer<75){
+                        this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].fade+=1/30
+                    }
+                    if(this.timer==90){
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].position.x,this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].position.y-50,265))
+                    }
+                    if(this.timer==840){
+                        this.battle.combatantManager.summonCombatantDefinite(this.targetTile.tilePosition,findName('Eternal Judge',types.combatant),this.userCombatant.direction+180)
+                    }
+                    if(this.timer==900){
+                        this.remove=true
+                        game.animRate=this.procedure[0]
+                        if(this.userCombatant.spec.includes(2)){
+                            this.userCombatant.spec.splice(this.userCombatant.spec.indexOf(2))
+                        }
+                        this.userCombatant.spec.push(12)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].spec.push(12)
                     }
                 break
 

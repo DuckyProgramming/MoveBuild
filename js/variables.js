@@ -11,7 +11,7 @@ types={
         {name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:44,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:320,effect:[15,2]},{type:321,effect:[10,2,'Burn',2]},{type:322,effect:[10]}],description:``},
         {name:'Edgar',moniker:'The Disgraced CEO',identifier:['Brother','Mister'],life:76,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:303,effect:[25,5]},{type:323,effect:[1]},{type:324,effect:[2]}],description:``},
         {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:74,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:410,effect:[15]},{type:128,effect:[7,1,'Invoice']}],description:``},
-        {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:327,effect:[24]},{type:328,effect:[17,2]},{type:329,effect:[14,1]}],description:``},
+        {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:470,effect:[20,3]},{type:328,effect:[17,2]},{type:329,effect:[14,1]}],description:``},
         {name:'DD-610',moniker:'The Paradigm',identifier:['Friend','Robot'],life:72,behavior:0,spec:[0,19],move:{type:0,speed:1},attack:[{type:330,effect:[4]},{type:331,effect:[19,1]},{type:332,effect:[16,8]}],description:``},
         {name:'Prehextorica',moniker:'The Retrospect',identifier:['Brother','Mister'],life:64,behavior:14,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[33]},{type:72,effect:[28,3]},{type:21,effect:[]}],description:``},
         {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:``},
@@ -793,6 +793,8 @@ types={
         {name:'Vigor',class:4},
         {name:'Vigil',class:4},
         {name:'2 Tile 3 Spread Strike / Vulnerable',class:1},
+        {name:'Ruination',class:4},
+        {name:'3 Spread Strike / Block Down',class:1},//470
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,world:[0,3],description:''},
@@ -3012,6 +3014,17 @@ types={
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Short Cord 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
             name:'Gate1 7',
             map:[
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
@@ -3615,6 +3628,31 @@ types={
                 {position:{x:2,y:2},name:'Duck'},
             ],reinforce:[
             ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Short Cord 7'],class:2,world:-1,
+            name:'-h Rewriter',
+            player:{position:[[{x:5,y:5}],[{x:5,y:6},{x:6,y:5}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Rewriter'},
+                {position:{x:0,y:2},name:'Nil'},
+                {position:{x:2,y:0},name:'Nil'},
+                {position:{x:1,y:4},name:'Glitch'},
+                {position:{x:4,y:1},name:'Glitch'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:6},name:'Nil',turn:5},
+                {position:{x:6,y:3},name:'Nil',turn:5},
+                {position:{x:0,y:3},name:'Nil',turn:7},
+                {position:{x:3,y:0},name:'Nil',turn:7},
+                {position:{x:0,y:0},name:'Glitch',turn:10},
+                {position:{x:1,y:0},name:'Glitch',turn:10},
+                {position:{x:2,y:0},name:'Glitch',turn:10},
+                {position:{x:0,y:1},name:'Glitch',turn:10},
+                {position:{x:0,y:2},name:'Glitch',turn:10},
+                {position:{x:5,y:6},name:'Glitched Giant',turn:16},
+                {position:{x:6,y:5},name:'Glitched Giant',turn:16},
             ],ally:[
             ],
         },{
@@ -7204,6 +7242,7 @@ Does not decrement.`,
         {name:'Ultimate',desc:'The Final Boss is Far Worse'},//30
         {name:'Unfair',desc:'All Enemies Have Their Unique Strengths Enhanced'},
         {name:'Brutal',desc:'Every Enemy is Buffed Heavily'},
+        {name:'Ruination',desc:'???'},
     ],mod:[
         {name:'Duck',desc:'Get Dazed Every 3 Turns'},//0
         {name:'Bouncer',desc:'Enemies Have a 50% Chance to be Doubled but Pushed Back 1 Turn'},

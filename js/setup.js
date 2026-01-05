@@ -6,7 +6,7 @@ function setup(){
     current=new battle(graphics.main,game.player)
 
     if(false){
-            //game.ascend=32
+            game.ascend=33
 
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
@@ -25,10 +25,14 @@ function setup(){
         current.startGame()
 
         transition.trigger=false
+
+        current.nodeManager.world=3
         
         game.dev=true
         stage.scene='battle'
         current.setupBattle(types.encounter[1])
+
+        fight('-h Rewriter')
 
         //game.animRate=4
 
@@ -72,11 +76,11 @@ function setup(){
                 current.modManager.addMod(67+a)
             }*/
 
-            for(let a=0,la=4;a<la;a++){
+            /*for(let a=0,la=4;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
                 quickRelic(518+a,0)
             }
-            current.overlayManager.closeAll()
+            current.overlayManager.closeAll()*/
 
             /*current.itemManager.addItemSlots(7,0)
             for(let a=0,la=2;a<la;a++){

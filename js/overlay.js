@@ -3269,7 +3269,11 @@ class overlay{
                     this.layer.fill(0,this.fade)
                     this.layer.noStroke()
                     this.layer.textSize(15)
-                    this.layer.text(types.encounter[this.battle.nodeManager.listing.static[this.world][2][a]].name,this.layer.width/2,this.layer.height/2-110+a*40)
+                    let name=types.encounter[this.battle.nodeManager.listing.static[this.world][2][a]].name
+                    if(name.substr(0,2)=='-h'){
+                        name=name.substr(2)
+                    }
+                    this.layer.text(name,this.layer.width/2,this.layer.height/2-110+a*40)
                 }
             break
             case 13:
