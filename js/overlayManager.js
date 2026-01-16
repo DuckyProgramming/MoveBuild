@@ -186,6 +186,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[115])],//duplicate uncommon card, no return
                     [new overlay(this.layer,this.battle,0,2,[116,1])],//deck card cost down, open 177
                     [new overlay(this.layer,this.battle,0,2,[117,1])],//deck card cost up
+                    [new overlay(this.layer,this.battle,0,2,[4,1,5])],//remove, edition transfer
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

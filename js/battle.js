@@ -1071,16 +1071,18 @@ class battle{
                 }
             }
             if(this.turn.total==1){
-                if(this.encounter.name=='Rewriter'){
-                    this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
-                }
-                if(this.encounter.name=='Duck Hunt'){
-                    for(let a=0,la=3;a<la;a++){
-                        this.dropDrawShuffle(this.turn.main,findName('Hunting\nRifle',types.card),0,0)
-                    }
-                }
-                if(this.encounter.name=='Shield Prison Guard'){
-                    this.cardManagers[this.turn.main].hand.add(findName('Handcuffed',types.card),0,constants.playerNumber+1)
+                switch(this.encounter.name){
+                    case 'Rewriter': case '-h Rewriter':
+                        this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
+                    break
+                    case 'Duck Hunt':
+                        for(let a=0,la=3;a<la;a++){
+                            this.dropDrawShuffle(this.turn.main,findName('Hunting\nRifle',types.card),0,0)
+                        }
+                    break
+                    case 'Shield Prison Guard':
+                        this.cardManagers[this.turn.main].hand.add(findName('Handcuffed',types.card),0,constants.playerNumber+1)
+                    break
                 }
                 this.cardManagers[this.turn.main].switchCheck()
                 if(variants.witch){

@@ -6855,7 +6855,7 @@ function setupBackground(type,layer){
                 d=random(0.6,1)
                 e=random(0.8,1)
                 g=random(0,2)
-                for(let f=0,lf=20;f<lf;f++){
+                for(let f=0,lf=10;f<lf;f++){
                     layer.fill(mergeColor([100,110,120],[90,95,100],f/lf+g))
                     layer.ellipse(b,c,120*d*(1-f/lf),90*d*e*(1-f/lf))
                 }
@@ -6864,12 +6864,12 @@ function setupBackground(type,layer){
                 layer.fill(150+50*a/la,225+25*a/la,200+25*a/la)
                 layer.rect(layer.width/2,a+0.5,layer.width,2)
             }
-			for(let a=0,la=200;a<la;a++){
-                b=random(0,10)**2.5*2
+			for(let a=0,la=100;a<la;a++){
+                b=random(1,10)**2.5*2
                 c=random(0.6,1)
                 e=random(220,240)
                 f=random(0,layer.width)
-                for(let d=0,ld=20;d<ld;d++){
+                for(let d=0,ld=10;d<ld;d++){
                     layer.fill(e,0.025)
                     layer.ellipse(f,b,c*400*(1-d/ld),c*240*(1-d/ld))
                 }
@@ -6877,7 +6877,7 @@ function setupBackground(type,layer){
 			for(let a=0,la=20;a<=la;a++){
 				c=a==0?random(300,600):d
 				d=random(300,600)+a%2*200
-				for(let b=0,lb=20;b<lb;b++){
+				for(let b=0,lb=3;b<lb;b++){
 					layer.fill(150-50*(a-b/lb)/la)
 					layer.quad(
 						layer.width*(a-b/lb)/la,lerp(d,c,b/lb),
@@ -6890,7 +6890,7 @@ function setupBackground(type,layer){
 			for(let a=0,la=20;a<=la;a++){
 				c=a==0?random(450,750):d
 				d=random(450,750)+a%2*200
-				for(let b=0,lb=20;b<lb;b++){
+				for(let b=0,lb=3;b<lb;b++){
 					layer.fill(100-50*(a-b/lb)/la)
 					layer.quad(
 						layer.width*(a+0.5-b/lb)/la,lerp(d,c,b/lb),
@@ -6900,10 +6900,10 @@ function setupBackground(type,layer){
 					)
 				}
 			}
-			for(let a=0,la=60;a<la;a++){
+			/*for(let a=0,la=60;a<la;a++){
 				layer.fill(0,1-sqrt(a/la))
 				layer.rect(layer.width/2,a,layer.width,2)
-			}
+			}*/
 		break
 		case 6:
 			for(let a=0,la=layer.height;a<la;a++){

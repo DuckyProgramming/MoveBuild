@@ -26,7 +26,7 @@ reach the end. You've learned some, but you feel weakened.`,
                 link:[-1],
             },{
                 desc:`You leave, knowing it isn't worth the risk.`,
-                option:['Exit'],
+                option:['Exit'],    
                 optionDesc:[''],
                 link:[-1],
             },
@@ -556,7 +556,7 @@ you and offers his services.
 Supposedly, he specializes in healing,
 but he doesn't bother to explain how.`,
                 option:['Heal','Purify','Refuse'],
-                optionDesc:['Lose 35 Currency','Lose 50 Currency',''],
+                optionDesc:['Lose 35 Currency','Lose 105 Currency',''],
                 link:[1,2,3],
             },{
                 desc:`A warm golden light envelops your body and dissipates.`,
@@ -701,7 +701,7 @@ takes your money with him as the two leave.`,
             },
         ],
     },{
-        name:'Library',id:25,list:0,
+        name:'Library',id:25,list:-1,
         pages:[
             {
                 desc:
@@ -930,7 +930,7 @@ begging for money. When he sees you, he runs up to you.
 "Please, can you spare some coin?
 I have things I can trade..."`,
                 option:['Donate','Rob','Leave'],
-                optionDesc:['Lose 50 Currency','',''],
+                optionDesc:['Lose 75 Currency','',''],
                 link:[1,2,4],
             },{
                 desc:`You hand him some of your money while he gives you a relic.`,
@@ -1003,7 +1003,7 @@ Images of occurrences began to flow between your mind
 and reality, manifesting themselves in real forms.
 The sensation is quickly fleeting. What do you do?`,
                 option:['I am Smart','I am Rich','I am Strong'],
-                optionDesc:['Upgrade All Cards','Gain 999 Currency','Gain 20 Max Health'],
+                optionDesc:['Deluxe Upgrade All Cards','Gain 999 Currency','Gain 25 Max Health'],
                 link:[1,2,3],
             },{
                 desc:`Can it really be this easy?`,
@@ -1043,6 +1043,11 @@ you begin to see a distant memory from within.`,
                 option:['Accept the Memories'],
                 optionDesc:['Add 1 Rare Colorless Card'],
                 link:[-1],
+            },{
+                desc:`A flash of thought jumps through your mind...\nand then there's nothing.`,
+                option:[`Guess it didn't work`],
+                optionDesc:[''],
+                link:[-1],
             },
         ],
     },{
@@ -1068,7 +1073,7 @@ Things are beginning to make sense now.
 "Maybe those voices were right after all.
 Things do seem to make so much more sense now.`,
                 option:['Get Out'],
-                optionDesc:['Gain 2 Madness, Lose 10 Max Health'],
+                optionDesc:['Add 2 Madness to Deck, Lose 6 Max Health'],
                 link:[-1],
             },{
                 desc:
@@ -1087,7 +1092,7 @@ through the mental pain and ignore it.`,
 Slowly, you are able to retrace your steps,
 reorient yourself, and make it out.`,
                 option:['Get Out'],
-                optionDesc:['Lose 5 Max Health'],
+                optionDesc:['Lose 4 Max Health'],
                 link:[-1],
             },
         ],
@@ -1384,7 +1389,7 @@ Disappointing.`,
 The spirits continue dancing.
 You feel slightly warmer from their presence.`,
                 option:['Leave'],
-                optionDesc:['Heal 5 HP'],
+                optionDesc:['Heal 5 Health'],
                 link:[-1],
             },{
                 desc:
@@ -1392,7 +1397,7 @@ You feel slightly warmer from their presence.`,
 The spirits dance around you excitedly,
 filling you with a sense of warmth.`,
                 option:['Leave'],
-                optionDesc:['Heal All HP'],
+                optionDesc:['Heal All Health'],
                 link:[-1],
             },{
                 desc:
@@ -1400,7 +1405,15 @@ filling you with a sense of warmth.`,
 The spirits dance around you excitedly before merging into you,
 filling you with warmth and strength.`,
                 option:['Leave'],
-                optionDesc:['Heal All HP, Gain 10 Max HP'],
+                optionDesc:['Heal All Health, Gain 10 Max Health'],
+                link:[-1],
+            },{
+                desc:
+`You throw it in, but nothing happens, at first.
+But then, the fire seems to grow in size...
+and explodes in your face.`,
+                option:['Leave'],
+                optionDesc:['Lose 10 Health'],
                 link:[-1],
             },
         ],
@@ -1418,7 +1431,7 @@ You're liking the place, when he looks over you again.
 He reconsiders the final time. "Fine, what service would you like?"
 You could take one of the services, but you would rather punch him.`,
                 option:['Adjustments','Cleanup','Punch Him'],
-                optionDesc:['Lose 40 Currency','Lose 60 Currency',''],
+                optionDesc:['Lose 40 Currency','Lose 80 Currency',''],
                 link:[1,2,3],
             },{
                 desc:
@@ -1446,7 +1459,7 @@ He recoils from the collision. You leave, feeling satisfied.`,
             },
         ],
     },{
-        name:'Mystery Gift',id:46,list:0,
+        name:'Mystery Gift',id:46,list:-1,
         pages:[
             {
                 desc:
@@ -1568,12 +1581,12 @@ as the ball begins rolling toward you.`,
 `The full force of the rolling ball nearly flattens you,
 but you're able to bring it to a stop.`,
                 option:['Ouch'],
-                optionDesc:['Lose 16 Health'],
+                optionDesc:['Lose 30 Health'],
                 link:[-1],
             },{
                 desc:`The ball rolls over you and ends up at the end of the hall.`,
                 option:['Ouch'],
-                optionDesc:['Lose 4 Max Health'],
+                optionDesc:['Lose 5 Max Health'],
                 link:[-1],
             },{
                 desc:`You get out of the way, but your foot appears broken...`,
@@ -1583,7 +1596,7 @@ but you're able to bring it to a stop.`,
             },
         ],
     },{
-        name:'Bootlegging',id:50,list:0,
+        name:'Bootlegging',id:50,list:-1,
         pages:[
             {
                 desc:
@@ -1619,7 +1632,7 @@ and pulls out a bottle containing suspicious brown liquid.
             },
         ],
     },{
-        name:'Investments',id:51,list:0,
+        name:'Investments',id:51,list:-1,
         pages:[
             {
                 desc:
@@ -1702,7 +1715,7 @@ takes a chunk out of you.`,
             },
         ],
     },{
-        name:'Notes',id:53,list:0,
+        name:'Notes',id:53,list:-1,
         pages:[
             {
                 desc:
@@ -2223,7 +2236,7 @@ basic cards are sometimes the best.`,
 DuckTek copyright!" he says. "It's a good thing I
 made a counterweapon to their machines!"`,
                 option:['Take the Weapon','Beat Him Up','Sneak Away'],
-                optionDesc:['','Lose 6 HP',''],
+                optionDesc:['','Lose 6 Health',''],
                 link:[1,2,3],
             },{
                 desc:'You take the gun and he quickly shows you how to use it.',
@@ -2448,7 +2461,7 @@ recognizable insignia - they're from the moon.
 One notices you and steps over, interested.
 "Would you like something from our supply?"`,
                 option:['Take a Lunar Peach','Take Some Lunar Soil','Decline'],
-                optionDesc:['Gain 16 Max HP, Become Cursed - Lunar Night','Add 2 Lunar Soils to Deck',''],
+                optionDesc:['Gain 16 Max Health, Become Cursed - Lunar Night','Lose 8 Health, Add 2 Lunar Soils to Deck',''],
                 link:[1,2,3],
             },{
                 desc:
@@ -2527,7 +2540,7 @@ the lantern, but where did the darkness really go?`,
             },
         ],
     },{
-        name:'Simulated Violence',id:79,list:0,
+        name:'Simulated Violence',id:79,list:-1,
         pages:[
             {
                 desc:
@@ -2556,7 +2569,7 @@ more, and you take your change to escape.`,
             },
         ],
     },{
-        name:'Ghostly Dream',id:80,list:0,
+        name:'Ghostly Dream',id:80,list:-1,
         pages:[
             {
                 desc:
@@ -2599,7 +2612,7 @@ Suddenly one of them notices you and pulls you over.
             },{
                 desc:'He hands you a little money for the help.',
                 option:['Leave'],
-                optionDesc:['Gain 5 Currency'],
+                optionDesc:['Gain 25 Currency'],
                 link:[-1],
             },{
                 desc:'You leave them to argue.',
@@ -2654,7 +2667,7 @@ their materials, at least as much as you can carry.`,
 unknown god. It's empty at the moment, but it couldn't
 hurt to stay for a little while.`,
                 option:['Sacrifice','Donate','Leave'],
-                optionDesc:['Lose 10 Max HP','Lose 25 Currency',''],
+                optionDesc:['Lose 14 Max Health','Lose 25 Currency',''],
                 link:[1,2,3],
             },{
                 desc:
@@ -3062,7 +3075,7 @@ before they leave as a group down the road.`,
             },
         ],
     },{
-        name:'Fake Adventure',id:100,list:-1,
+        name:'Faker Adventure',id:100,list:-1,
         pages:[
             {
                 desc:
@@ -3169,7 +3182,7 @@ recquisition the rest... certainly that's impossible.`,
             },
         ],
     },{
-        name:'Cissni Peak',id:103,list:0,
+        name:'Cissni Peak',id:103,list:-1,
         pages:[
             {
                 desc:
@@ -3330,7 +3343,7 @@ crossing further downriver.`,
 `You manage to repair the crossing.
 The others toss you a few coins as thanks.`,
                 option:['Cross'],
-                optionDesc:['Gain 35 Currency'],
+                optionDesc:['Gain 70 Currency'],
                 link:[-1],
             },{
                 desc:`You reach the other crossing and cross successfully.`,
@@ -3349,13 +3362,21 @@ It looks like they're sitting across from each other
 at desks, each using a computer. Perhaps there's
 something that's making them all so excited?`,
                 option:['Enter','Run Away'],
-                optionDesc:['Gain a Relic - Gaming Console, Become Cursed - Gamer',''],
-                link:[1,2],
+                optionDesc:['Gain a Relic - Gaming Console',''],
+                link:[1,3],
             },{
                 desc:
 `You leave hours later a changed person.
 You might even see yourself returning there later.
 You've learned some things... but at what cost?`,
+                option:['Leave'],
+                optionDesc:['Become Cursed - Gamer'],
+                link:[-1],
+            },{
+                desc:
+`You leave hours later a changed person.
+You might even see yourself returning there later.
+You've learned some things, it's been a great time.`,
                 option:['Leave'],
                 optionDesc:[''],
                 link:[-1],
@@ -3534,7 +3555,7 @@ but you're able to fill it with trash to your heart's content.`,
 lose your grip and begin falling towards the ground.`,
                 option:['Fall Through a Window','Attempt a Three-Point Landing','Hit the Ground'],
                 optionDesc:['','Lose 15 Health','Lose 5 Health'],
-                link:[1,2,3],
+                link:[1,2,4],
             },{
                 desc:
 `You manage to get inside the nearby building,
@@ -3546,6 +3567,11 @@ but the speed of the fall makes you dizzy.`,
                 desc:'You look great, but injure your leg.',
                 option:['Get up'],
                 optionDesc:['Remove a Card'],
+                link:[-1],
+            },{
+                desc:'You fail the landing and faceplant.',
+                option:['Get up'],
+                optionDesc:[''],
                 link:[-1],
             },{
                 desc:'You hit the ground hard.',
@@ -3711,7 +3737,7 @@ Guess I'll spend it all while I'm down here!"`,
             },
         ],
     },{
-        name:'Rice Farm',id:122,list:0,
+        name:'Rice Farm',id:122,list:-1,
         pages:[
             {
                 desc:
@@ -3822,7 +3848,7 @@ You wish the Fairy of Winter would actually do something...`,
 you spot a cloud of fireflies buzzing around seemingly nothing.
 They don't notice as you approach their position.`,
                 option:['Collect One','Watch Them','Eat Them'],
-                optionDesc:['Gain a Relic - Bottled Firefly','Add a Rare Card','Gain 5 Max HP'],
+                optionDesc:['Gain a Relic - Bottled Firefly','Add a Rare Card','Gain 5 Max Health'],
                 link:[1,2,3],
             },{
                 desc:
@@ -3923,7 +3949,7 @@ It looks a little better than what you're used to.`,
             },{
                 desc:'You get handed your scone. It looks pretty decent.',
                 option:['Eat it'],
-                optionDesc:['Gain 3 Max HP'],
+                optionDesc:['Gain 3 Max Health'],
                 link:[-1],
             },{
                 desc:`You don't feel like having anything.`,
@@ -4951,7 +4977,7 @@ the vault. Within, you find rows upon rows of barrels,
 each labelled with "Nuclear Waste".
 You don't feel so good...`,
                 option:['Take Nuclear Waste','Run'],
-                optionDesc:['Lose 5 Max HP','Lose 1 Max HP'],
+                optionDesc:['Lose 5 Max Health','Lose 1 Max Health'],
                 link:[3,4],
             },{
                 desc:
@@ -5164,7 +5190,7 @@ A couple of blocks are lowered down, covered in spinning numbers.`,
             },
         ],
     },{
-        name:'Drill Zone',id:169,list:0,
+        name:'Drill Zone',id:169,list:-1,
         pages:[
             {
                 desc:
@@ -5198,7 +5224,7 @@ The ducks return to carry more rocks.`,
                 desc:
 `You are informed of a policy change on the planet.
 Apparently, Management planetary military governor
-Belich Conoro has, in cooperation with the former nobility,
+Kirt Kodrax has, in cooperation with the former nobility,
 decreed that only owners of property can participate
 in the electoral process from now on.
 You might end up without your vote.`,

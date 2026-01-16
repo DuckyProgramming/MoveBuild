@@ -1163,7 +1163,7 @@ class overlay{
                         }
                     break
                     case 57:
-                        this.options=args[1][0]==13?6:3
+                        this.options=args[1][0]==13||args[1][0]==14||args[1][0]==15?6:3
                         switch(args[1][0]){
                             case 0:
                                 list=(variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]))[args[1][1]]
@@ -1205,7 +1205,7 @@ class overlay{
                                     }
                                 }
                             break
-                            case 7:
+                            case 7: case 14:
                                 list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[1][1]])[args[1][2]]
                             break
                             case 8:
@@ -1290,6 +1290,10 @@ class overlay{
                                         }
                                     }
                                 }
+                            break
+                            case 15:
+                                list=[]
+                                args[1][1].forEach(arg=>list.push(findName(arg,types.card)))
                             break
                             default:
                                 list=[]
@@ -1383,13 +1387,15 @@ class overlay{
                                         let index=floor(random(0,list[a%list.length].length))
                                         this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[a%list.length][index],args[0],this.battle.standardColorize(list[a%list.length][index]),-1))
                                         this.cards[a].upSize=true
-                                        if(!this.cards[a].spec.includes(1)){
-                                            this.cards[a].spec.push(1)
-                                            this.cards[a].additionalSpec.push(1)
-                                        }
-                                        if(!this.cards[a].spec.includes(2)&&!this.cards[a].spec.includes(4)){
-                                            this.cards[a].spec.push(4)
-                                            this.cards[a].additionalSpec.push(4)
+                                        if(args[1][0]!=14&&args[1][0]!=15){
+                                            if(!this.cards[a].spec.includes(1)){
+                                                this.cards[a].spec.push(1)
+                                                this.cards[a].additionalSpec.push(1)
+                                            }
+                                            if(!this.cards[a].spec.includes(2)&&!this.cards[a].spec.includes(4)){
+                                                this.cards[a].spec.push(4)
+                                                this.cards[a].additionalSpec.push(4)
+                                            }
                                         }
                                         if(args[3].includes(0)){
                                             this.cards[a].setCost(0,[0])
@@ -1408,13 +1414,15 @@ class overlay{
                                         let index=floor(random(0,list.length))
                                         this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
                                         this.cards[a].upSize=true
-                                        if(!this.cards[a].spec.includes(1)){
-                                            this.cards[a].spec.push(1)
-                                            this.cards[a].additionalSpec.push(1)
-                                        }
-                                        if(!this.cards[a].spec.includes(2)&&!this.cards[a].spec.includes(4)){
-                                            this.cards[a].spec.push(4)
-                                            this.cards[a].additionalSpec.push(4)
+                                        if(args[1][0]!=14&&args[1][0]!=15){
+                                            if(!this.cards[a].spec.includes(1)){
+                                                this.cards[a].spec.push(1)
+                                                this.cards[a].additionalSpec.push(1)
+                                            }
+                                            if(!this.cards[a].spec.includes(2)&&!this.cards[a].spec.includes(4)){
+                                                this.cards[a].spec.push(4)
+                                                this.cards[a].additionalSpec.push(4)
+                                            }
                                         }
                                         if(args[3].includes(0)){
                                             this.cards[a].setCost(0,[0])
@@ -1777,6 +1785,12 @@ class overlay{
                                 break
                                 case 8315:
                                     this.cards[a].attack=[-1084,-1085][a]
+                                break
+                                case 8354:
+                                    this.cards[a].attack=[-1086,-1001][a]
+                                break
+                                case 8355:
+                                    this.cards[a].attack=[-1087,-1088][a]
                                 break
                             }
                         }
@@ -2393,6 +2407,20 @@ class overlay{
                                 this.card.costDown(0,[12])
                                 this.battle.overlayManager.overlays[62][this.player].active=true
                                 this.battle.overlayManager.overlays[62][this.player].activate()
+                            break
+                            case -1086:
+                                this.card.costDown(0,[3])
+                                userCombatant.statusEffect('Take Half Damage',args[0].effect[1])
+                            break
+                            case -1087:
+                                this.card.costDown(0,[3])
+                                for(let a=0,la=args[0].effect[2];a<la;a++){
+                                    this.battle.cardManagers[this.player].hand.add(findName('Riptide',types.card),0,0)
+                                }
+                            break
+                            case -1088:
+                                this.card.costDown(0,[6])
+                                this.battle.cardManagers[this.player].hand.selfCall(6,[2951,[args[0].effect[3],args[0].effect[4]],1,[5]])
                             break
                         }
                     break
@@ -4211,7 +4239,7 @@ class overlay{
                                                 breakAfter=true
                                                 switch(this.args[2]){
                                                     case 1:
-                                                        this.battle.eventManagers[this.player].page=basic||cardClass==6?3:rarity==2?6:rarity==1?5:4
+                                                        this.battle.eventManagers[this.player].page=cardClass==6?7:basic?3:rarity==2?6:rarity==1?5:4
                                                     break
                                                     case 2:
                                                         this.battle.cardManagers[this.player].deck.removeAbstract(0,[type])
@@ -4223,6 +4251,15 @@ class overlay{
                                                     break
                                                     case 4:
                                                         this.battle.relicManager.detail[465][this.player][1]=this.base.save()
+                                                    break
+                                                    case 5:
+                                                        if(base.rarity>=0&&base.rarity<=3&&base.list>=0){
+                                                            this.battle.overlayManager.overlays[3][this.player].active=true
+                                                            this.battle.overlayManager.overlays[3][this.player].activate([0,[14,base.list,base.rarity],57,[],[]])
+                                                        }else if(base.rarity==-2){
+                                                            this.battle.overlayManager.overlays[3][this.player].active=true
+                                                            this.battle.overlayManager.overlays[3][this.player].activate([0,[15,['Filler','Strike','Defend','Step','Bash','Shield']],57,[],[]])
+                                                        }
                                                     break
                                                 }
                                             }else{
@@ -5145,6 +5182,8 @@ class overlay{
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,12],[[1,4],0])
                                     }else if(this.setupArgs[3].includes(4)){
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,13],[[1,4]])
+                                    }else if(this.setupArgs[1][0]==14||this.setupArgs[1][0]==15){
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[],[])
                                     }else{
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4],[[1,4]])
                                         if(this.setupArgs[3].includes(3)){
@@ -6696,6 +6735,8 @@ class overlay{
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,12],[[1,4],0])
                                     }else if(this.setupArgs[3].includes(4)){
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,13],[[1,4]])
+                                    }else if(this.setupArgs[1][0]==14||this.setupArgs[1][0]==15){
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[],[])
                                     }else{
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4],[[1,4]])
                                         if(this.setupArgs[3].includes(3)){

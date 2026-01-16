@@ -208,7 +208,7 @@ class combatant{
                 'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Temporary Item Next Turn','Vigor Per Turn',
                 'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
                 'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block','Bell Weak','Bell Vulnerable',
-                'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns',
+                'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -296,7 +296,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,2,0,//83
                 0,1,1,0,0,0,0,0,0,2,//84
                 0,0,0,0,2,2,2,0,0,0,//85
-                0,0,2,2,
+                0,0,2,2,1,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -384,7 +384,7 @@ class combatant{
                 2,2,2,2,2,2,2,0,2,2,//83
                 2,2,2,2,2,2,2,2,2,2,//84
                 2,2,2,2,2,2,2,2,2,2,//85
-                2,3,1,1,
+                2,3,1,1,2,
             ]}
         /*
         0-none
@@ -1139,7 +1139,7 @@ class combatant{
                     break
                     case 'Prison Guard':
                         this.move.type=2
-                        this.statusEffect('Metallicize',4)
+                        this.statusEffect('Metallicize',3)
                     break
                     case 'Lightspeed':
                         this.move.speed++
@@ -1445,7 +1445,7 @@ class combatant{
                     break
                     case 'Guard':
                         this.spec.push(0)
-                        this.statusEffect('Metallicize',3)
+                        this.statusEffect('Strength in 3 Turns',2)
                     break
                     case 'Bar Security':
                         this.statusEffect('Counter Push Once Per Turn',6)
@@ -1470,11 +1470,11 @@ class combatant{
                     break
                     case 'Prison Guard Gunner':
                         this.move.type=12
-                        this.statusEffect('Metallicize',4)
+                        this.statusEffect('Metallicize',3)
                     break
                     case 'Shield Prison Guard':
-                        this.statusEffect('Metallicize',4)
-                        this.statusEffect('Armor',4)
+                        this.statusEffect('Metallicize',3)
+                        this.statusEffect('Armor',3)
                     break
                     case 'Half Spikeball':
                         this.addBlock(8)
@@ -5150,41 +5150,45 @@ class combatant{
             this.battle.cardManagers[this.id].hand.allEffect(95)
         }
     }
-    diceRoll(number,value){
-        let effectiveValue=value+this.status.main[605]
-        let total=0
-        let average=0
-        let roll=0
-        let luckCheck=false
-        let luckCheckFail=false
-        if(this.status.main[473]>0){
-            number+=this.status.main[473]
-            this.status.main[473]=0
-        }
-        if(this.status.main[261]>0){
-            luckCheck=true
+    diceRoll(number,value,first=true){
+        if(this.status.main[854]>0&&first){
+            return max(this.diceRoll(number,value,false),this.diceRoll(number,value,false))
         }else{
-            luckCheck=this.luckCheck()
-            if(!luckCheck){
-                luckCheckFail=this.luckCheckFail()
+            let effectiveValue=value+this.status.main[605]
+            let total=0
+            let average=0
+            let roll=0
+            let luckCheck=false
+            let luckCheckFail=false
+            if(this.status.main[473]>0){
+                number+=this.status.main[473]
+                this.status.main[473]=0
             }
-        }
-        for(let a=0,la=number;a<la;a++){
-            roll=(luckCheck?effectiveValue:luckCheckFail?1:1+floor(random(0,effectiveValue)))+this.status.main[252]
-            total+=roll
-            average+=(1+value)/2+this.status.main[252]
-            this.battle.particleManager.createNumber(41,this.position.x,this.position.y,roll)
-        }
-        if(total<average*0.8){
-            this.lowRoll()
-        }else if(total>average*1.2){
-            this.highRoll()
+            if(this.status.main[261]>0){
+                luckCheck=true
+            }else{
+                luckCheck=this.luckCheck()
+                if(!luckCheck){
+                    luckCheckFail=this.luckCheckFail()
+                }
+            }
+            for(let a=0,la=number;a<la;a++){
+                roll=(luckCheck?effectiveValue:luckCheckFail?1:1+floor(random(0,effectiveValue)))+this.status.main[252]
+                total+=roll
+                average+=(1+value)/2+this.status.main[252]
+                this.battle.particleManager.createNumber(41,this.position.x,this.position.y,roll)
+            }
+            if(total<average*0.8){
+                this.lowRoll()
+            }else if(total>average*1.2){
+                this.highRoll()
 
+            }
+            if(this.status.main[495]>0){
+                this.addBlock(this.status.main[495])
+            }
+            return total
         }
-        if(this.status.main[495]>0){
-            this.addBlock(this.status.main[495])
-        }
-        return total
     }
     prime(value){
         if(this.id<this.battle.players){

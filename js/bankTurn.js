@@ -4060,7 +4060,7 @@ turn.prototype.update=function(){
                         this.procedure[0]=game.animRate
                         game.animRate=1
                     }
-                    if(this.timer<=15||this.timer>885){
+                    if(this.timer<=15||this.timer>945){
                         this.userCombatant.runAnimation(1/30,8)
                     }
                     if(this.timer==15){
@@ -4091,17 +4091,21 @@ turn.prototype.update=function(){
                     if(this.timer==90){
                         this.battle.particleManager.particles.push(new particle(this.battle.layer,this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].position.x,this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].position.y-50,265))
                     }
-                    if(this.timer==840){
+                    if(this.timer==900){
                         this.battle.combatantManager.summonCombatantDefinite(this.targetTile.tilePosition,findName('Eternal Judge',types.combatant),this.userCombatant.direction+180)
                     }
-                    if(this.timer==900){
+                    if(this.timer==960){
                         this.remove=true
                         game.animRate=this.procedure[0]
                         if(this.userCombatant.spec.includes(2)){
                             this.userCombatant.spec.splice(this.userCombatant.spec.indexOf(2))
                         }
                         this.userCombatant.spec.push(12)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].spec.push(12)
+                        this.targetCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1]
+                        if(this.targetCombatant.spec.includes(2)){
+                            this.targetCombatant.spec.splice(this.targetCombatant.spec.indexOf(2))
+                        }
+                        this.targetCombatant.spec.push(12)
                     }
                 break
 

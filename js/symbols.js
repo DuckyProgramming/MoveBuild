@@ -8558,6 +8558,20 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(0,-9,-1,-11.5,1,-11.5)
             layer.triangle(0,-12,-1,-14.5,1,-14.5)
         break
+        case 854:
+            layer.fill(225,fade)
+            layer.rect(-3,0,10,10,2)
+            layer.fill(40,fade)
+            layer.ellipse(-6,0,2)
+            layer.ellipse(-6,-3,2)
+            layer.ellipse(-6,3,2)
+            layer.ellipse(0,0,2)
+            layer.ellipse(0,-3,2)
+            layer.ellipse(0,3,2)
+            layer.fill(80,fade)
+            layer.ellipse(5,-2,3)
+            layer.ellipse(5,2,3)
+        break
 
     }
     //mark s

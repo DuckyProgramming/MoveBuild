@@ -1141,6 +1141,10 @@ class combatantManager{
                             this.combatants[a].statusEffect(args[0],args[1])
                         }
                     break
+                    case 63:
+                        args[0].addBlock(min(this.combatants[a].block,args[1]))
+                        this.combatants[a].block=max(0,this.combatants[a].block-args[1])
+                    break
                 }
             }
         }

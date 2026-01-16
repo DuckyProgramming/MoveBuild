@@ -311,6 +311,23 @@ class relicManager{
         }
         return result
     }
+    getRandomRelicRarity(player,amount,rarity){
+        let list=[]
+        let result=[]
+        for(let a=1,la=this.active.length;a<la;a++){
+            if(this.active[a][player+1]>0&&rarity.includes(types.relic[a].rarity)){
+                list.push(a)
+            }
+        }
+        for(let a=0,la=amount;a<la;a++){
+            if(list.length>0){
+                let index=floor(random(0,list.length))
+                result.push(list[index])
+                list.splice(index,1)
+            }
+        }
+        return result
+    }
     addRandomRelic(player){
         let possible=[0,0,0,1,1,2]
         let rarity=possible[floor(random(0,possible.length))]
@@ -2875,6 +2892,9 @@ class relicManager{
                 }
                 if(this.active[480][args[1]+1]>0){
                     this.battle.combatantManager.randomEnemyEffect(3,[5*this.active[480][args[1]+1],this.getPlayer(args[1]).id])
+                }
+                if(game.ascend>=24){
+                    this.battle.cardManagers[args[1]].fatigue(false,true)
                 }
             break
             case 17://gain energy [amount,player]

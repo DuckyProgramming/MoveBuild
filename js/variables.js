@@ -40,7 +40,7 @@ types={
         {name:'Goon',life:45,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:14,effect:[4,1,'Hurt']},{type:4,effect:[12]}],description:`Bars you from life`},
         {name:'Slaver',life:46,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:15,effect:[7,2]},{type:17,effect:[2,1]}],description:`Former policeman`},
         {name:'Fungal Duck',life:26,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:18,effect:[1]}],description:`Default enemy design`},
-        {name:'Orb Walker',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[15]},{type:22,effect:[10,1,'Dazed']}],description:`Why he so overpowered?`},
+        {name:'Orb Walker',life:81,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[12]},{type:22,effect:[8,1,'Dazed']}],description:`Why he so overpowered?`},
         {name:'Pointy',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[5]}],description:`Stabby gaming`},
         {name:'Romeo',life:40,behavior:3,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:15,effect:[10,2]},{type:21,effect:[]}],description:`Kinda useless`},
         {name:'Billy Beatup',life:75,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[6]}],description:`Beats you up`},
@@ -1157,7 +1157,7 @@ types={
         {name:'Ducky Donka Ticket',internal:'Rest Max HP',id:325,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 2 Max HP When\nEntering a Rest Site'},
         {name:'Ducky McDuff Ticket',internal:'Shop Max HP',id:326,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 2 Max HP When\nEntering a Shop'},
         {name:'Bottled Firefly',internal:'6 Card 3 Damage All',id:327,rarity:-1,list:0,mtg:0,world:[0,3],description:'Deal 3 Damage to All Enemies\nAfter Playing 6 Cards,\nTriggers Once Per Turn'},
-        {name:'Death Butterflies',internal:'First Enemy Mortal',id:328,rarity:-1,list:0,mtg:0,world:[0,3],description:'The First Enemy\nYou Attack Each Combat\nGains 3 Mortality'},
+        {name:'Death Butterflies',internal:'First Enemy Mortal',id:328,rarity:-1,list:0,mtg:0,world:[0,3],description:'The First Enemy\nYou Attack Each Combat\nGains 3 Mortal'},
         {name:'Ghostblade',internal:'First Enemy Remove Block',id:329,rarity:-1,list:0,mtg:0,world:[0,3],description:'The First Enemy With Block\nYou Attack Each Combat\nLoses All Block'},
 
         {name:'Asagian Charm',internal:'Low Health Permanent Strength',id:330,rarity:-1,list:0,mtg:0,world:[0,3],description:'When You Start Your Turn Below 5 Health,\nGain 1 Strength Permanently\nDestroys Self Afterward'},
@@ -4269,8 +4269,8 @@ types={
             enemy:[
                 {position:{x:0,y:0},name:'Gangster'},
                 {position:{x:4,y:5},name:'Gangster'},
-                {position:{x:1,y:5},name:'Gangster Gunner'},
-                {position:{x:3,y:0},name:'Gangster Assassin'},
+                {position:{x:0,y:5},name:'Gangster Gunner'},
+                {position:{x:4,y:0},name:'Gangster Assassin'},
             ],reinforce:[
             ],assaultReinforce:[
                 {position:{x:4,y:3},name:'Gangster Machinegunner',turn:3},
@@ -7233,7 +7233,7 @@ Does not decrement.`,
         {name:'Slow Start',desc:'Draw 1 Less Card on Turn 1'},
         {name:'Broke',desc:'Start With No Currency'},
         {name:'Mimic',desc:'The Second Stash is an Elite'},
-        {name:'Dazed Deck',desc:'Every 4 Turns, Shuffle a Dazed into Your Draw Pile'},
+        {name:'Weary',desc:'Become Fatigued When You Shuffle Your Draw Pile'},
         {name:'Start More Cursed',desc:'Start With Pride'},
         {name:'Badlands',desc:'Battles Start With Randomly Positioned Obstacles'},
         {name:'Enemy Scaling',desc:'Normal Enemies Scale Their Damage'},

@@ -862,6 +862,7 @@ class particle{
                 this.shocks=[]
                 this.loops=[]
                 this.fade=0
+                this.dark=0
             break
 
         }
@@ -4311,10 +4312,10 @@ class particle{
                     this.layer.ellipse(0,0,60,60)
                 break
                 case 265:
-                    this.layer.fill(215,205,185,this.fade)
+                    this.layer.fill(215-this.dark*160,205-this.dark*150,185-this.dark*120,this.fade)
                     this.layer.ellipse(0,0,110)
                     for(let a=0,la=this.loops.length;a<la;a++){
-                        this.layer.stroke(210,185+this.loops[a].color*25,135+this.loops[a].color*75,this.loops[a].fade)
+                        this.layer.stroke(210-this.dark*160,185+this.loops[a].color*25-this.dark*150,135+this.loops[a].color*75-this.dark*120,this.loops[a].fade)
                         this.layer.strokeWeight(10)
                         let width=sqrt(4900-this.loops[a].height**2)
                         if(lcos(this.loops[a].direction)<=0&&lcos(this.loops[a].direction+this.loops[a].width)<=0){
@@ -4327,7 +4328,7 @@ class particle{
                     }
                     this.layer.noStroke()
                     for(let a=0,la=this.shocks.length;a<la;a++){
-                        this.layer.fill(255,230+this.shocks[a].color*25,180+this.shocks[a].color*75,this.shocks[a].fade)
+                        this.layer.fill(255-this.dark*160,230+this.shocks[a].color*25-this.dark*150,180+this.shocks[a].color*75-this.dark*120,this.shocks[a].fade)
                         this.layer.rotate(this.shocks[a].direction)
                         for(let b=0,lb=20;b<lb;b++){
                             this.layer.quad(
@@ -4340,7 +4341,7 @@ class particle{
                         this.layer.rotate(-this.shocks[a].direction)
                     }
                     for(let a=0,la=this.loops.length;a<la;a++){
-                        this.layer.stroke(255,230+this.loops[a].color*25,180+this.loops[a].color*75,this.loops[a].fade)
+                        this.layer.stroke(255-this.dark*160,230+this.loops[a].color*25-this.dark*150,180+this.loops[a].color*75-this.dark*120,this.loops[a].fade)
                         this.layer.strokeWeight(10)
                         let width=sqrt(4900-this.loops[a].height**2)
                         if(lcos(this.loops[a].direction)>0&&lcos(this.loops[a].direction+this.loops[a].width)>0){
@@ -4352,7 +4353,7 @@ class particle{
                         }
                     }
                     this.layer.noStroke()
-                    this.layer.fill(255,245,225,this.fade)
+                    this.layer.fill(255-this.dark*160,245-this.dark*150,225-this.dark*120,this.fade)
                     this.layer.ellipse(0,0,150)
                 break
                 case 266:
@@ -5515,7 +5516,7 @@ class particle{
                 }
                 for(let a=0,la=this.loops.length;a<la;a++){
                     this.loops[a].direction+=this.loops[a].speed
-                    if(this.loops[a].fade<1&&this.time<750){
+                    if(this.loops[a].fade<1&&this.time<810){
                         this.loops[a].fade+=1/30
                     }
                 }
@@ -5527,13 +5528,15 @@ class particle{
                 }else if(this.time<660){
                     if(this.time%2==0){
                         this.shocks.push({direction:random(0,360),width:random(8,16),bar:random(60,120),swivel:random(6,12)*(floor(random(0,2))*2-1),fade:1,height:random(0,20),color:random(0,1)})
-                        if(this.time<540){
+                        if(this.time<600){
                             this.loops.push({direction:random(0,360),speed:random(1,3),width:random(15,60),fade:0,height:random(-70,70),color:random(0,1)})
                         }
                     }
                     this.fade+=1/270
-                }else if(this.time>=750&&this.time<765){
-                    if(this.time==750){
+                }else if(this.time>=720&&this.time<780){
+                    this.dark+=1/60
+                }else if(this.time>=810&&this.time<825){
+                    if(this.time==810){
                         for(let a=0,la=this.loops.length;a<la;a++){
                             this.loops[a].fade=0.5
                         }
@@ -5548,7 +5551,7 @@ class particle{
                     }
                     this.fade-=2/45
                     this.scale+=0.25
-                }else if(this.time>=765){
+                }else if(this.time>=825){
                     this.remove=true
                 }
             break

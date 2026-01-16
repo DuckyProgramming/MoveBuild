@@ -103,7 +103,7 @@ class cardManager{
                 if(cardData.rarity==-6){
                     this.listing.sub.push(a)
                 }
-                if(cardData.rarity==-7&&cardData.levels[0].class==9){
+                if(cardData.levels[0].class==9){
                     this.listing.ally.push(a)
                 }
                 if(cardData.rarity==-5&&cardData.list==-1){
@@ -894,9 +894,9 @@ class cardManager{
             this.randomEffect(2,7,[userCombatant.getStatus('Random Card Cost More Next Turn')])
             userCombatant.status.main[findList('Random Card Cost More Next Turn',userCombatant.status.name)]=0
         }
-        if(turn%4==0&&game.ascend>=24){
+        /*if(turn%4==0&&game.ascend>=24){
             this.reserve.addAbstract(findName('Dazed',types.card),0,constants.playerNumber+1,0,[5],[])
-        }
+        }*/
         if(turn%3==0&&this.battle.modded(0)){
             this.battle.drop(this.player,findName('Dazed',types.card),0,constants.playerNumber+1)
         }
@@ -921,67 +921,63 @@ class cardManager{
         this.hand.allEffect(103)
         this.tempDraw.active=false
     }
-    subFatigue(name,bypass){
+    subFatigue(name,bypass,reserve){
         this.interval++
         let override=true
         if((this.numberAbstract(3,[43])<10||this.interval%2==0||bypass||override)&&!this.battle.relicManager.hasRelic(471,this.player)){
-            if(this.battle.relicManager.hasRelic(286,this.player)){
-                this.reserve.add(findName(name,types.card),0,constants.playerNumber+1)
-                this.reserve.cards[this.reserve.cards.length-1].spec.push(43)
-            }else{
-                this.discard.add(findName(name,types.card),0,constants.playerNumber+1)
-                this.discard.cards[this.discard.cards.length-1].spec.push(43)
-            }
+            let set=this.battle.relicManager.hasRelic(286,this.player)||reserve?'reserve':'discard'
+            this[set].add(findName(name,types.card),0,constants.playerNumber+1)
+            this[set].cards[this[set].cards.length-1].spec.push(43)
             this.drop.addDrop(findName(name,types.card),0,constants.playerNumber+1)
             this.drop.cards[this.drop.cards.length-1].spec.push(43)
-            if(this.battle.modded(61)&&!this.discard.cards[this.discard.cards.length-1].spec.includes(33)){
-                this.discard.cards[this.discard.cards.length-1].spec.push(33)
-                this.discard.cards[this.discard.cards.length-1].additionalSpec.push(33)
+            if(this.battle.modded(61)&&!this[set].cards[this[set].cards.length-1].spec.includes(33)){
+                this[set].cards[this[set].cards.length-1].spec.push(33)
+                this[set].cards[this[set].cards.length-1].additionalSpec.push(33)
                 this.drop.cards[this.drop.cards.length-1].spec.push(33)
             }
             if(this.battle.modded(120)){
-                this.discard.cards[this.discard.cards.length-1].attack=-35
+                this[set].cards[this[set].cards.length-1].attack=-35
                 this.drop.cards[this.drop.cards.length-1].attack=-35
             }
-            if(this.battle.modded(210)&&!this.discard.cards[this.discard.cards.length-1].spec.includes(2)){
-                this.discard.cards[this.discard.cards.length-1].spec.push(2)
-                this.discard.cards[this.discard.cards.length-1].additionalSpec.push(2)
+            if(this.battle.modded(210)&&!this[set].cards[this[set].cards.length-1].spec.includes(2)){
+                this[set].cards[this[set].cards.length-1].spec.push(2)
+                this[set].cards[this[set].cards.length-1].additionalSpec.push(2)
                 this.drop.cards[this.drop.cards.length-1].spec.push(2)
             }
-            if(this.battle.modded(211)&&this.discard.cards[this.discard.cards.length-1].spec.includes(1)){
-                this.discard.cards[this.discard.cards.length-1].spec.splice(this.discard.cards[this.discard.cards.length-1].spec.indexOf(1),1)
-                this.discard.cards[this.discard.cards.length-1].spec.push(42)
-                this.discard.cards[this.discard.cards.length-1].additionalSpec.push(42)
-                this.discard.cards[this.discard.cards.length-1].limit=2
+            if(this.battle.modded(211)&&this[set].cards[this[set].cards.length-1].spec.includes(1)){
+                this[set].cards[this[set].cards.length-1].spec.splice(this[set].cards[this[set].cards.length-1].spec.indexOf(1),1)
+                this[set].cards[this[set].cards.length-1].spec.push(42)
+                this[set].cards[this[set].cards.length-1].additionalSpec.push(42)
+                this[set].cards[this[set].cards.length-1].limit=2
                 this.drop.cards[this.drop.cards.length-1].spec.splice(this.drop.cards[this.drop.cards.length-1].spec.indexOf(1),1)
                 this.drop.cards[this.drop.cards.length-1].spec.push(42)
                 this.drop.cards[this.drop.cards.length-1].limit=2
             }
             if(this.battle.relicManager.hasRelic(142,this.player)){
-                this.discard.cards[this.discard.cards.length-1].costUp(2,[1])
+                this[set].cards[this[set].cards.length-1].costUp(2,[1])
                 this.drop.cards[this.drop.cards.length-1].costUp(2,[1])
             }
             if(this.battle.relicManager.hasRelic(167,this.player)&&floor(random(0,4))<this.battle.relicManager.active[167][this.player+1]){
-                this.discard.cards[this.discard.cards.length-1].costDown(2,[1])
+                this[set].cards[this[set].cards.length-1].costDown(2,[1])
                 this.drop.cards[this.drop.cards.length-1].costDown(2,[1])
             }
         }
     }
-    fatigue(bypass=false){
+    fatigue(bypass=false,reserve=false){
         if(this.battle.relicManager.hasRelic(108,this.player)&&this.battle.relicManager.detail[108][this.player]==0){
             this.battle.relicManager.detail[108][this.player]=1
         }else{
             if(this.battle.modded(30)||this.battle.modded(65)){
                 if(this.battle.modded(30)){
                     for(let a=0,la=1+floor(random(0,2));a<la;a++){
-                        this.subFatigue('Spiked',bypass)
+                        this.subFatigue('Spiked',bypass,reserve)
                     }
                 }
                 if(this.battle.modded(65)){
-                    this.subFatigue('Burn',bypass)
+                    this.subFatigue('Burn',bypass,reserve)
                 }
             }else{
-                this.subFatigue('Fatigue',bypass)
+                this.subFatigue('Fatigue',bypass,reserve)
             }
         }
     }

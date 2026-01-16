@@ -2083,8 +2083,6 @@ Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}
 	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/24				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-24}
 		Subcard:
 	Total:${current.cardManagers[0].listing.sub.length}/48				${current.cardManagers[0].listing.sub.length-48}
-		Ally:
-	Total:${current.cardManagers[0].listing.ally.length}/24				${current.cardManagers[0].listing.ally.length-24}
 		Disband:
 	Total:${current.cardManagers[0].listing.disband.length}/1666			${current.cardManagers[0].listing.disband.length-1666}
 		Junkyard:

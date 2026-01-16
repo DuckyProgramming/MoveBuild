@@ -6,7 +6,7 @@ function setup(){
     current=new battle(graphics.main,game.player)
 
     if(false){
-            game.ascend=33
+            //game.ascend=33
 
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
@@ -26,13 +26,13 @@ function setup(){
 
         transition.trigger=false
 
-        current.nodeManager.world=3
+        //current.nodeManager.world=3
         
         game.dev=true
         stage.scene='battle'
         current.setupBattle(types.encounter[1])
 
-        fight('-h Rewriter')
+        //fight('-h Rewriter')
 
         //game.animRate=4
 

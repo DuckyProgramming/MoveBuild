@@ -1234,7 +1234,7 @@ class relic{
                     displaySymbol(this.layer,0,12,4,0,0.8,this.fade)
                 break
                 case 'No Heal':
-                    displaySymbol(this.layer,0,0,2,0,1,this.fade)
+                    displaySymbol(this.layer,0,0,2,0,0.8,this.fade)
                     displaySymbol(this.layer,0,0,16,0,1.2,this.fade)
                 break
                 case 'Rarer Rewards':

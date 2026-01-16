@@ -1,41 +1,25 @@
+
+lehman brothers - get the stocks item, but adds an event to the pool that deletes all your money
+
+new event - the besieger - before you stands a bastion fort of modern design
+
+adding another ally event like bowler duck
+
+redesigning ally CARD events
+[new 3 fairies, replace existing luna event]
+[iku]
+
++6
+
+
+
 CARDSET 89 [ENDSIEG]
 
-idea: replace dazed deck with:
-shuffle discard into draw during turn => fatigued for 1
+[in progress]
 
-in general sanae has too many uninteresting scry cards
-idk what the solution is though
-more cards that you want to scry into i guess
-
-concentrated divinity - 1 strength 1 dexterity, 2 cost, cost 1 less when scryed
-barrier deployment - gain a bit of block and some barrier, gain energy first time this is played
-lifegiver - heal target for 20 and then stun them, 0 cost exhaust
-
-
-DIFF 33
-
-what if you fought rewriter and eternal judge
-... at the same time?
 
 
 CHAR 26
-
-the minesweeper:
-you can add mines to cards
-mines have no cosmetic effect on cards (you can't see them)
-you can play mine cards without any problem
-different mine types like basic mine->20 damage to all adjacent enemies, block mine-> 30 block, etc
-
-some cards will detect mines
-detector cards tell you info like how many adjacent mines of each type, how many in hand total, etc
-some detect cards may retaain but some won't because that just doesn't work
-upon use, detector cards become an "info card" that stays in your hand but only holds the original info and never changes
-playing the info card exhausts it and removes it
-detector cards can cost 1 or 0 idk
-
-some cards will sweep mines
-this is a pick cards effect like upgrade or retain once
-triggers mine effect
 
 the reservist:
 "reserve" is a card effect like discard or rewind that puts cards in a special pile
@@ -43,66 +27,15 @@ each turn you can pick a card from that pile to put into hand (if its size is mo
 
 also you can get promoted i guess?
 
-spare wood - when you enter a rest time, gain 3 max hp
-
-retrograde reinforcement - double block, then lose 10
 
 
+CARDSET 90 [ENDSIEG]
 
-incandescent firefly - damage in all directions, overdrive 1: counter 5 all
-
-flash weaken [colorless] - apply 1 weak, draw a card
-[vulnerable counterpart]
+continuum - prod but it does more damage and gives 1 energy on play, rare
 
 
 
-ironwood - iron wave, but when played for the first time, doubles both stats and doubles cost
 
-octarine core - gain 1 artifact gain 1 buffer
-
-detachment pulse - 6 damage, 6 block, first time played: heal 1 health
-
-lonely bound - draw a card, draw 1 more if you have a debuff
-
-scroll creation - get a miracle, 2 cost, but get 1 energy first time played
-
-atmospheric reach - take an extra turn, discover a rare card
-
-
-
-reaching peak [colorless] - deal 10 damage, or deal 20 damage and exhaust
-[block counterpart]
-
-cycle of life - put a card in discard in hand, rewind a card
-
-scythe of roaming spirits - damage, if fatal heal 1 health and increase damage by 1 permanently
-
-reluctant discipline - gain 3 temporary strength, amplify: repeat for 2 more turns
-
-go to jail - send target to a random location and they can't move for 1 turn
-^ when upgraded, gives currency
-
-
-
-roll with advantage - when you roll dice, take the higher of two roll
-
-kaleidoscopic dazzle - lose 2 health, deal 12 damage if all directions, if fatal, gain 2 max health
-
-singularity - get a lightning orb and tick it for each exhausted card
-
-binocular - draw 3 cards, gain 1 energy per movement drawn
-
-quilted - add block, steal up to 5 block from every enemy
-
-pressing buttons - 9 damage, if fatal every enemy takes 18 damage
-
-
-
-the fighting spirit - exhaust a card, then draw to 6
-
-
-
-CARDSET 89 [ENDSIEG]
 
 
 

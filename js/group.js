@@ -33,7 +33,7 @@ class group{
         this.costDownListing=[]
         this.finalPosition=0
         this.sendAmounts=[]
-        this.listKey=50
+        this.listKey=51
         this.listInput=[
             [0,4],
             [1,8],
@@ -81,6 +81,7 @@ class group{
             [47,56],
             [48,57],
             [49,58],
+            [50,61],
         ]
 
         this.reset()
@@ -719,6 +720,10 @@ class group{
         this.statusMarker[2]=level
         this.generalSelfStatus()
     }
+    compactRetain(amount){
+        this.status[50]=amount
+        this.generalSelfStatus()
+    }
     generalSelfStatus(){
         if(variants.mtg){
             this.battle.mtgUnmark(this.player)
@@ -1017,7 +1022,8 @@ class group{
                 type==20&&args[0].includes(this.cards[a].edition)||
                 type==21&&!this.cards[a].deSize&&(variants.mtg&&!arrayCompareLoose(this.cards[a].color,this.battle.player[this.player])||!variants.mtg&&this.cards[a].color!=this.battle.player[this.player])||
                 type==22&&this.cards[a].name.includes(args[0])||
-                type==23&&(this.cards[a].name.includes(args[0])||this.cards[a].spec.includes(args[1]))
+                type==23&&(this.cards[a].name.includes(args[0])||this.cards[a].spec.includes(args[1]))||
+                type==24&&this.cards[a].energyAfford
             ){
                 total++
             }
@@ -4835,7 +4841,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48]]
+                let anim=[max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48],this.anim[50]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -5510,13 +5516,9 @@ class group{
             case 5:
                 this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
                 this.battle.attackManager.energy=this.battle.getEnergy(this.player)+this.battle.getXBoost(this.player)
-                this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
-                this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
-                this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
-                this.battle.attackManager.relativePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.y
-                this.battle.attackManager.tilePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.x
-                this.battle.attackManager.tilePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.y
+                this.selfCall(60)
                 this.battle.attackManager.combo=this.battle.combatantManager.combatants[this.battle.attackManager.user].combo
+                this.battle.attackManager.fugue=this.battle.combatantManager.combatants[this.battle.attackManager.user].fugue
                 this.battle.updateTargetting()
             break
             case 6:
@@ -6094,6 +6096,23 @@ class group{
                 this.lastPlayed[0]=copyCard(this.cardInUse)
                 if(this.battle.attackManager.attackClass!=0){
                     this.lastPlayed[this.battle.attackManager.attackClass]=copyCard(this.cardInUse)
+                }
+            break
+            case 60:
+                this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
+                this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
+                this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
+                this.battle.attackManager.relativePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.y
+                this.battle.attackManager.tilePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.x
+                this.battle.attackManager.tilePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.y
+            break
+            case 61:
+                this.cards[a].retain2=true
+                if(!this.cards[a].spec.includes(34)){
+                    this.cards[a].spec.push(34)
+                }
+                if(this.status[50]>0){
+                    this.status[50]--
                 }
             break
         }
