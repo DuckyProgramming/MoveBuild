@@ -57,7 +57,7 @@ class nodeManager{
         for(let a=0,la=composite.nodes.length;a<la;a++){
             let base=composite.nodes[a]
             this.nodes.push(new node(this.layer,this.battle))
-            this.nodes[this.nodes.length-1].establish(base.position.x,base.position.y,base.base.position.x,base.base.position.y,base.tilePosition.x,base.tilePosition.y,base.type,base.reality,base.combat,base.connections,base.extraConnections,base.scroll,base.complete)
+            this.nodes[this.nodes.length-1].establish(base.position.x,base.position.y,base.base.position.x,base.base.position.y,base.tilePosition.x,base.tilePosition.y,base.type,base.readable,base.reality,base.combat,base.connections,base.extraConnections,base.scroll,base.complete)
         }
     }
     initialListing(){
@@ -98,6 +98,13 @@ class nodeManager{
             }
         }
         return -1
+    }
+    revealAll(types){
+        for(let a=0,la=this.nodes.length;a<la;a++){
+            if(types.includes(this.nodes[a].type)){
+                this.nodes[a].readable=true
+            }
+        }
     }
     setupMap(){
         this.nodes=[]

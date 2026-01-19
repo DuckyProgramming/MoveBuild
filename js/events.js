@@ -902,7 +902,7 @@ what shall be the price?"`,
 `"Maybe this will help?"
 A card appears in your hand.`,
                 option:['Done'],
-                optionDesc:['Gain 1 Uncommon Colorless Card'],
+                optionDesc:['Add an Uncommon Colorless Card'],
                 link:[0],
             },{
                 desc:
@@ -1036,12 +1036,12 @@ you begin to see a distant memory from within.`,
             },{
                 desc:`A flash of thought jumps through your mind.`,
                 option:['Accept the Memories'],
-                optionDesc:['Add 1 Uncommon Colorless Card'],
+                optionDesc:['Add an Uncommon Colorless Card'],
                 link:[-1],
             },{
                 desc:`A flash of thought jumps through your mind.`,
                 option:['Accept the Memories'],
-                optionDesc:['Add 1 Rare Colorless Card'],
+                optionDesc:['Add a Rare Colorless Card'],
                 link:[-1],
             },{
                 desc:`A flash of thought jumps through your mind...\nand then there's nothing.`,
@@ -3161,7 +3161,7 @@ At least the Management was kind enough not to demolish this one
 like the rest. It's not a beautiful place, filled with broken pieces
 of wood and a creeping greenish smoke. Clearly there's not much
 left here, but you feel an odd peace in such a strange place.`,
-                option:['Pay Respects','Steal'],
+                option:['Wander Around','Take Something'],
                 optionDesc:['Add a Final Rest to Deck','Gain a Relic'],
                 link:[1,2],
             },{
@@ -3737,7 +3737,7 @@ Guess I'll spend it all while I'm down here!"`,
             },
         ],
     },{
-        name:'Rice Farm',id:122,list:-1,
+        name:'Rice Valley',id:122,list:-1,
         pages:[
             {
                 desc:
@@ -5113,7 +5113,7 @@ He asks if you'd like to switch to door %3 or stay with door %a.`,
             },
         ],
     },{
-        name:'Fairy of Moonlight',id:167,list:0,
+        name:'Fairy of Moonlight',id:167,list:-1,
         pages:[
             {
                 desc:
@@ -5466,7 +5466,7 @@ For a price, of course.`,
 You manage to reach the other side successfully.
 You grab the box and keep its contents.`,
                 option:['Take it'],
-                optionDesc:['Gain 1 Relic'],
+                optionDesc:['Gain a Relic'],
                 link:[-1],
             },{
                 desc:`
@@ -5482,7 +5482,646 @@ Falling in, you're decently injured.`,
                 link:[-1],
             },
         ],
-    },/*{
+    },{
+        name:'Rice Farm',id:179,list:0,
+        pages:[
+            {
+                desc:
+`Off the road, you run into a rice farm. It looks like any
+other farm, but just on the road, a girl sits in a wooden stall
+surrounded by bags of rice. She calls you over as you arrive.
+"Would you like some?" she asks you with a smile.`,
+                option:['Buy Some Rice','Raid the Farm','Decline'],
+                optionDesc:['Lose 50 Currency, Heal to Full','Gain an Item',''],
+                link:[1,2,3],
+            },{
+                desc:
+`It's a nice meal, even though it's mostly just rice.
+You can tell how much manual labor goes into making it, though.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`You manage to steal several bags of rice.
+Unfortunately, you're not sure if you know how to cook it.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`She's cute, but you don't need rice right now.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Battle Site',id:180,list:0,
+        pages:[
+            {
+                desc:
+`You arrive too late to participate in a battle.
+The field is covered in bodies from both sides.
+You can barely even tell who the victor of the combat was.`,
+                option:['Pay Respects','Rob the Bodies'],
+                optionDesc:['Lose 1 Currency','Gain 200 Currency'],
+                link:[1,2],
+            },{
+                desc:
+`You leave a coin for the fallen and make your exit.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`Going through the remaining bodies, you find plenty of things of value.
+As you leave, you feel a little bad... but not that bad.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`Going through the remaining bodies, you find plenty of things of value.
+As you leave, you feel a little bad... more like... really bad.`,
+                option:['Leave'],
+                optionDesc:['Become Cursed - Spoilage'],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Three Fairies',id:181,list:0,
+        pages:[
+            {
+                desc:
+`On a dark night out, the sounds of birds around you
+suddenly seem to fade away, drowned out by some imperceivable
+force. Unable to move, you look up at the sky, but your eyes
+seem to be overwhelmed by incredibly bright lights, coming both
+from the stars above you and from the horizon in all directions,
+and from the seeming distance the moon looks to be from you.
+And as you stare, three fairies appear from behind
+the trees, snickering as you stand there. It seems that each
+one is creating one part of the phenoma you see.`,
+                option:['Focus on the Horizon',`Focus on the Moon`,'Focus on the Stars'],
+                optionDesc:['','',''],
+                link:[1,2,3],
+            },{
+                desc:
+`As you focus your attention on the horizon and its glow,
+one of the fairies leave the rest and begins to approach you`,
+                option:['Attack Her',`Don't Move`,'Snap Out of it'],
+                optionDesc:['Lose 12 Max Health','Become Cursed - Direct Sunlight','Lose 8 Health'],
+                link:[4,5,6],
+            },{
+                desc:
+`As you focus your attention on the moon and the silence around it,
+one of the fairies leave the rest and begins to approach you`,
+                option:['Attack Her',`Don't Move`,'Snap Out of it'],
+                optionDesc:['Lose 12 Max Health','Become Cursed - Moon Stillness','Lose 8 Health'],
+                link:[7,8,9],
+            },{
+                desc:
+`As you focus your attention on the bright light of the stars,
+one of the fairies leave the rest and begins to approach you`,
+                option:['Attack Her',`Don't Move`,'Snap Out of it'],
+                optionDesc:['Lose 12 Max Health','Become Cursed - Starry Glare','Lose 8 Health'],
+                link:[10,11,12],
+            },{
+                desc:
+`Using all your power, you manage to collect some of the sunlight
+within you, despite feeling your body melting around you as it happens.
+When it's all over, the fairy remains there, impressed by your ability.
+"You're good with this stuff! Wanna be a team?"`,
+                option:['Accept','Decline'],
+                optionDesc:['Add Sunny, Glowing Sunlight (Ally Card) to Deck',''],
+                link:[13,14],
+            },{
+                desc:
+`Allowing the sunlight to become part of you, you feel strengthened.
+But it also feels as if the sunlight is still there within...`,
+                option:['Leave'],
+                optionDesc:['Deluxe Upgrade 2 Cards'],
+                link:[-1],
+            },{
+                desc:
+`You manage to block as much of the sunlight as you can,
+but you still get burned a little, though you can also feel
+some of the power now coursing through you.
+By the time you open your eyes again, the fairy is long gone.`,
+                option:['Leave'],
+                optionDesc:['Upgrade 2 Cards'],
+                link:[-1],
+            },{
+                desc:
+`Breaking free from the pull of the sky, you chase the
+fairy down, managing to catch her after some time.
+"You're pretty good at this!" she tells you.
+"Why not take me with you?"`,
+                option:['Accept','Decline'],
+                optionDesc:['Add Luna, Silent Moonlight (Ally Card) to Deck',''],
+                link:[13,14],
+            },{
+                desc:
+`You stand there for what seems to be the entire night.
+By morning, you're able to move again.
+You're not sure what happened, but it was
+a pretty mesmerizing experience.`,
+                option:['Leave'],
+                optionDesc:['Remove 3 Cards'],
+                link:[-1],
+            },{
+                desc:
+`Shaking yourself free from the trap, you make your getaway.
+You don't feel quite the same, but at least you got out
+of there without too much injury.`,
+                option:['Leave'],
+                optionDesc:['Remove a Card'],
+                link:[-1],
+            },{
+                desc:
+`After what seems to be hours of pursuing her, she
+finally tires out, giving you a chance to catch up.
+"Got you there!" she says. "You're pretty strong though,
+I give you that. Want to be a team?"`,
+                option:['Accept','Decline'],
+                optionDesc:['Add Star, Showering Starlight (Ally Card) to Deck',''],
+                link:[13,14],
+            },{
+                desc:
+`You could've been standing there for just a few minutes,
+or maybe it was multiple hours of staring.
+Regardless, you finally snap out of it, drained.`,
+                option:['Leave'],
+                optionDesc:['Transform 3 Cards'],
+                link:[-1],
+            },{
+                desc:
+`The glow from above becomes unbearable, but
+you refuse to look up or pursue her into the trees.
+You hope this nightmare will end soon, and it does,
+with everything seemingly returning to normal.`,
+                option:['Leave'],
+                optionDesc:['Transform a Card'],
+                link:[-1],
+            },{
+                desc:
+`She's following you around now.
+She's not the most reliable ally to have, that's for sure.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You don't care to entertain this prospect.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Isolated Post',id:182,list:0,
+        pages:[
+            {
+                desc:
+`You encounter an outpost in a clearing in the forest,
+manned by what seems to be a single rebel. He claims that
+he's heard from a friend that a Management raid is expected.
+He asks for your support in stopping the attack.`,
+                option:['Help Him','Go Elsewhere'],
+                optionDesc:['',''],
+                link:[1,3],
+            },{
+                desc:
+`The Management force arrives fast, but he spots them in time.
+It's just a few auxiliaries, nothing too much for you to handle.
+They retreat once they recognize success is impossible.
+After the assault, the rebel finds something they left behind.
+Not knowing what to do, he gives it to you.`,
+                option:['Take it'],
+                optionDesc:['Gain a Relic'],
+                link:[-1],
+            },{
+                desc:
+`The Management force arrives before you get a chance to react.
+And when the battle starts, he doen't provide much help.
+You both get away, but not without some injuries.`,
+                option:['Leave'],
+                optionDesc:['Become Cursed - Minor Injury'],
+                link:[-1],
+            },{
+                desc:`You leave him to fend for himself.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Lost Officer',id:183,list:0,
+        pages:[
+            {
+                desc:
+`Along the road, you see a broken-down vehicle and its occupant.
+From his insignia, you can tell he's a fairly low-ranking officer.
+At this distance, you can't even tell if he's armed.`,
+                option:['Attack Him','Ignore Him'],
+                optionDesc:['',''],
+                link:[1,3],
+            },{
+                desc:
+`When you approach, he pulls out his gun and tries to fire.
+You dodge the bullet, but it looks like you'll have to fight.`,
+                option:['Fight'],
+                optionDesc:['Start Fight'],
+                link:[-2],
+            },{
+                desc:
+`When you approach, he pulls out his gun and tries to fire.
+Nothing happens. He's out of ammo.
+You capture him without incident.`,
+                option:['Kill Him','Ransom Him','Exchange Him','Let Him Go'],
+                optionDesc:['Upgrade a Card','Gain 125 Currency','Add a Character Card',''],
+                link:[4,5,6,7],
+            },{
+                desc:`You aren't going to take that risk.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You kill him easily and dispose of the body.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You manage to get plenty of money for his return.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You exchange him for some rebel expertise.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You got nothing. Why did you do that?`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Local Informants',id:184,list:0,
+        pages:[
+            {
+                desc:
+`In some slums, you find that the people there know
+a lot more about local movements than they let on.
+Maybe if you pay them, they'll let you
+in on their observations.`,
+                option:['Management Intel','Local Intel','Decline'],
+                optionDesc:['Lose 150 Currency','Lose 75 Currency',''],
+                link:[1,2,3],
+            },{
+                desc:
+`They tell you about the local dispositions of everything
+that might come to endanger you in the future.`,
+                option:['Listen'],
+                optionDesc:['Reveal All Combats This World'],
+                link:[-1],
+            },{
+                desc:
+`They tell you a little about the local geography
+and the locations of several points of interest,
+filling out the empty areas on your maps.`,
+                option:['Listen'],
+                optionDesc:['Reveal All Unknowns This World'],
+                link:[-1],
+            },{
+                desc:`You just aren't all that interested.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'The Envoy',id:185,list:0,
+        pages:[
+            {
+                desc:
+`The weather today is particularly horrible. Storm clouds
+are everywhere, the horizon matted by frequent lightning.
+But this is a rare opportunity. Only when visibility is so
+poor can Alexis Angle's messenger get onto Konai safely.
+Plenty of rebels, even the higher-ups, are there to greet her.
+You only get one chance to talk to her. What do you ask for?`,
+                option:['A Gift','Future Support','A Companion'],
+                optionDesc:['','',''],
+                link:[1,2,3],
+            },{
+                desc:
+`"You're in luck!" she tells you.
+"I've brought something from Alexis just for you!"`,
+                option:['Take it'],
+                optionDesc:['Gain a Relic'],
+                link:[-1],
+            },{
+                desc:
+`She sighs, "I can't promise anything right now."
+"As you know, Alexis isn't exactly the most punctual guy.
+And I don't think you're anything close to his principal concern.
+But I'll make sure to put in a good word for you!"
+You're not fully convinced, but you hope Angle will have your
+back when you need it most.`,
+                option:['Leave'],
+                optionDesc:['The Final Boss Loses 250 Health'],
+                link:[-1],
+            },{
+                desc:
+`"I'm a little busy, you know"... she starts,
+but then stops for a moment to reconsider.
+"You know what, Alexis never did anything for me anyway.
+Maybe it's time I spent a little more time on the surface."`,
+                option:['Accept','Decline'],
+                optionDesc:['Add Iku, Sky Envoy (Ally Card) to Deck',''],
+                link:[4,5,],
+            },{
+                desc:`Rebel leadership won't be happy about this...`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You're having second thoughts about this...`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'The Veteran',id:186,list:0,
+        pages:[
+            {
+                desc:
+`You come across a lone campfire in the darkness,
+with a shadowy figure sitting beside it. As you approach,
+you see that the fiture is an old man, seemingly with nothing
+to do, yet he wears a uniform that can only mean one thing:
+This man was once a colonel in the Management army.
+WIth some convincing, he might be wiling to help you.`,
+                option:['Try to Convince Him','Bribe Him','Ignore Him'],
+                optionDesc:['','Lose 50 currency',''],
+                link:[1,2,3],
+            },{
+                desc:`He's not at all convinced by your speech.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`You get him to be sympathetic to the cause.
+He's too old to go with you, but maybe he has
+something of value for you to learn.`,
+                option:['Talk'],
+                optionDesc:['Add an Uncommon Colorless Card'],
+                link:[-1],
+            },{
+                desc:`You're disinterested in what might be an enemy.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Leyman Brothers',id:187,list:0,
+        pages:[
+            {
+                desc:
+`You walk into an unknown building. On the inside,
+the proprietor asks if you are here to invest.
+You tell him that you're a traveler,
+but he replies that his business are everywhere,
+so you'll be able to take money out anywhere.
+He tells you that his deals are always backed
+by "very credible" investment bankers, the
+so-called Leyman Brothers of "great renown".`,
+                option:['Invest','Decline'],
+                optionDesc:['Lose 100 Currency',''],
+                link:[1,2],
+            },{
+                desc:
+`You hand over your money and he adds your information to a list.
+You hope this was the right decision.`,
+                option:['Worth it'],
+                optionDesc:['Gain a Relic - Stocks'],
+                link:[-1],
+            },{
+                desc:`It's too risky to be putting your money into things right now.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Great Recession',id:188,list:-1,
+        pages:[
+            {
+                desc:
+`The stocks went into the ground. They're worthless now.
+You're completely screwed.`,
+                option:['Suffer'],
+                optionDesc:['Lose All Currency, Lose Relic - Stocks'],
+                link:[1,2],
+            },{
+                desc:`Guess it wasn't worth the risk.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Management Fort',id:189,list:0,
+        pages:[
+            {
+                desc:
+`You come across a group of rebel soldiers standing around outside
+what appears to be a very small Management fort. It doesn't look that
+dangerous, but the rebel commander warns you that the defenders,
+however many there are, aren't to be underestimated.`,
+                option:['Join the Siege','Leave'],
+                optionDesc:['',''],
+                link:[1,2],
+            },{
+                desc:
+`You set up camp outside the fort and join the besiegers.
+The commander tells you that the problem is the walls;
+until they're breached, no assault can go forward.
+Artillery would help with this, but unfortunately,
+they don't have any with them. They do, however,
+have plenty of explosives.`,
+                option:['Try to Bomb the Walls','Pay Somebody Else','Wait for Artillery','Give Up'],
+                optionDesc:['Lose 5 Health','Lose 40 Currency','Remove a Random Card',''],
+                link:[4,4,4,3],
+            },{
+                desc:`Seems like too risky an enterprise for your liking.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You lose interest in completing the siege, it's hopeless.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`After your efforts, a breach has finally been opened in the walls.
+But even though an assault is possible, doesn't mean it will work.`,
+                option:['Into the Breach!','Pay Somebody Else','Wait and Starve the Defenders','Give Up'],
+                optionDesc:['Lose 5 Health','Lose 40 Currency','Remove a Random Card',''],
+                link:[6,6,6,3],
+            },{
+                desc:`You lose interest in completing the siege, it's hopeless.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`The flag of surrender appears atop the fort.
+The siege has been a success. You capture numerous weapons
+and their stores of valuables.`,
+                option:['Victory!'],
+                optionDesc:['Gain a Rare Card and a Rare Relic'],
+                link:[-1],
+            },{
+                desc:`The attempt fails, the defenders are still standing.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[4],
+            },{
+                desc:
+`You fail to break through the defenses.
+Worse, in the time that it took, they rebuilt the walls.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[10],
+            },{
+                desc:`You try your best, but the walls hold firm.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[10],
+            },{
+                desc:
+`The siege continues. The troops are restless.
+How do you intend to proceed?`,
+                option:['Try to Bomb the Walls','Pay Somebody Else','Wait for Artillery','Give Up'],
+                optionDesc:['Lose 5 Health','Lose 40 Currency','Remove a Random Card',''],
+                link:[4,4,4,3],
+            },
+        ],
+    },{
+        name:'Failed Siege',id:190,list:0,
+        pages:[
+            {
+                desc:
+`A rebel commander meets you outside what look to be a
+strongly held Management position, with towering walls.
+He tells you that the fort is pointless to besiege. His men
+have already tried and failed, with most of them captured.
+The enemy commander, however has offered to let them free.
+For a price, of course.`,
+                option:['Pay the Ransom','Besiege the Fort Anyway','Leave'],
+                optionDesc:['Lose 150 Currency, Add a Rare Character Card','',''],
+                link:[11,12,2],
+            },{
+                desc:
+`The redoubts are taken, but the walls remain.
+Until they're breached, no assault can go forward.
+Artillery would help with this, but unfortunately,
+the rebels don't have any with them. They do, however,
+have plenty of explosives.`,
+                option:['Try to Bomb the Walls','Pay Somebody Else','Wait for Artillery','Give Up'],
+                optionDesc:['Lose 5 Health','Lose 40 Currency','Remove a Random Card',''],
+                link:[4,4,4,3],
+            },{
+                desc:`Seems like too risky an enterprise for your liking.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You lose interest in completing the siege, it's hopeless.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`After your efforts, a breach has finally been opened in the walls.
+But even though an assault is possible, doesn't mean it will work.`,
+                option:['Into the Breach!','Pay Somebody Else','Wait and Starve the Defenders','Give Up'],
+                optionDesc:['Lose 5 Health','Lose 40 Currency','Remove a Random Card',''],
+                link:[6,6,6,3],
+            },{
+                desc:`You lose interest in completing the siege, it's hopeless.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`The flag of surrender appears atop the fort.
+The siege has been a success. You capture numerous weapons
+and their stores of valuables.`,
+                option:['Victory!'],
+                optionDesc:['Gain a Rare Card, Rare Character Card and a Rare Relic'],
+                link:[-1],
+            },{
+                desc:`The attempt fails, the defenders are still standing.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[4],
+            },{
+                desc:
+`You fail to break through the defenses.
+Worse, in the time that it took, they rebuilt the walls.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[10],
+            },{
+                desc:`You try your best, but the walls hold firm.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[10],
+            },{
+                desc:
+`The siege continues. The troops are restless.
+How do you intend to proceed?`,
+                option:['Try to Bomb the Walls','Pay Somebody Else','Wait for Artillery','Give Up'],
+                optionDesc:['Lose 5 Health','Lose 40 Currency','Remove a Random Card',''],
+                link:[4,4,4,3],
+            },{
+                desc:
+`The exchange is complete. You're a bit poorer,
+but at least those rebels are free an the fort
+can be once again ignored.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`You set up camp outside the fort and join the besiegers.
+First, you need to sieze the redoubts guarding the main fort.`,
+                option:['Rush Them','Pay Somebody Else','Send in Everything','Give Up'],
+                optionDesc:['Lose 10 Health','Lose 80 Currency','Become Cursed - Blind Aggression',''],
+                link:[1,1,1,3],
+            },{
+                desc:`The attack fails. The redoubts still stand.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[14],
+            },{
+                desc:`The redoubts guard the fort from direct attack.`,
+                option:['Rush Them','Pay Somebody Else','Send in Everything','Give Up'],
+                optionDesc:['Lose 10 Health','Lose 80 Currency','Become Cursed - Blind Aggression',''],
+                link:[1,1,1,3],
+            },
+        ],
+    },
+    
+    /*{
         name:'',id:177,list:0,
         pages:[
             {

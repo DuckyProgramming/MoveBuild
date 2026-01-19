@@ -211,6 +211,7 @@ types={
         {name:'Nerfmaster',life:116,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:449,effect:[15]},{type:48,effect:[16]},{type:448,effect:[3,3,3]}],description:`Nerfed entire characters`},
         {name:'Big Bounce',life:81,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:10,effect:[12]},{type:447,effect:[10]},{type:39,effect:[1,'Bouncer']}],description:`Bounces you hard`},
         {name:'Pinstripe',life:123,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:444,effect:[3]},{type:445,effect:[13]},{type:446,effect:[9]}],description:`Purchased a machine gun`},
+        {name:'Lost Management Officer',life:44,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[2]},{type:81,effect:[8,3,'Dazed']}],description:`Wishes his subordinates were here`},
         
         {name:'Prisoner Informant',life:28,behavior:1,spec:[22],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Whose side is he on?`},
         {name:'Gangster Machinegunner Informant',life:48,behavior:1,spec:[0,22],move:{type:1,speed:1},attack:[{type:129,effect:[3]}],description:`It goes to the top`},
@@ -940,7 +941,7 @@ types={
         {name:'Card Rack',internal:'Card Hold',id:128,rarity:-1,list:0,mtg:0,world:[0,3],description:'All Cards\nHave Retain'},
         {name:'Mechanical Eye',internal:'View Draw',id:129,rarity:-1,list:0,mtg:0,world:[0,3],description:'Draw Pile Cards Are\nViewed in Order'},
 
-        {name:'Stapler',internal:'Innate Card',id:130,rarity:-1,list:0,mtg:0,world:[1,3],description:'When Taken, Make a Card Innate'},
+        {name:'Fogbank',internal:'Innate Card',id:130,rarity:-1,list:0,mtg:0,world:[1,3],description:'When Taken, Make a Card Innate'},
         {name:'Concave Star',internal:'Energy/Card Choice',id:131,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy, Have 1\nLess Card to Choose From'},
         {name:'Coffee Filter',internal:'Energy/Rest Heal',id:132,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nCannot Heal at Rest'},
         {name:'Diffused Anvil',internal:'Energy/Rest Upgrade',id:133,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nCannot Upgrade at Rest'},
@@ -1524,6 +1525,7 @@ types={
         {name:'Quality Coffee',internal:'4 Mana/Draw and Upgrade 3',id:1016,rarity:-1,list:-1,menu:false,temp:false,mtg:2,description:'Gain (E) (E) (E) (E),\nDraw and Upgrade 3 Cards'},
         {name:'Prismatic Bomb',internal:'9 Random Damage, 1 Energy, Draw 1',id:1017,rarity:-1,list:-1,menu:false,temp:true,mtg:1,description:'Deal 9 Damage to a Random Enemy,\nGain 1 Energy, Draw 1 Card'},
         {name:'Prismatic Bomb',internal:'9 Random Damage, 1 Mana, Draw 1',id:1018,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Deal 9 Damage to a Random Enemy,\nGain (E), Draw 1 Card'},
+        {name:'Rice',internal:'5 Heal/1 Strength',id:1019,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 5 HP\nGain 1 Strength'},
 
         //mark i
     ],color:{
@@ -3580,6 +3582,15 @@ types={
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Road 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:-1},{type:-1},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
         },
 
         /*{
@@ -3626,6 +3637,16 @@ types={
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Road 5'],class:0,world:-1,
+            name:'Lost Management Officer',
+            player:{position:[[{x:0,y:0}],[{x:0,y:0},{x:1,y:0}]]},
+            enemy:[
+                {position:{x:3,y:3},name:'Lost Management Officer'},
             ],reinforce:[
             ],assaultReinforce:[
             ],ally:[

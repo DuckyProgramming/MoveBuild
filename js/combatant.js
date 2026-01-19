@@ -1094,7 +1094,7 @@ class combatant{
                         this.removeAttack(10)
                         this.statusEffect('Metallicize All',3)
                     break
-                    case 'Management Officer':
+                    case 'Management Officer': case 'Lost Management Officer':
                         this.subAttackTypeSwitch([[2,26,26,[2]]])
                     break
                     case 'Management Special Forces':

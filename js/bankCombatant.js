@@ -12407,7 +12407,7 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if((this.name=='Management Officer'||this.name=='Management Caller'||this.name=='Comrade')&&this.trigger.display.badge&&lcos(this.anim.direction+36)>0){
+                if((this.name=='Management Officer'||this.name=='Management Caller'||this.name=='Comrade'||this.name=='Lost Management Officer')&&this.trigger.display.badge&&lcos(this.anim.direction+36)>0){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.badge[0])[0],this.flashColor(this.color.badge[0])[1],this.flashColor(this.color.badge[0])[2],this.fade*this.fades.badge)
                     this.layer.ellipse(lsin(this.anim.direction+36)*6,-57,5*lcos(this.anim.direction+36),5)
@@ -12426,7 +12426,7 @@ combatant.prototype.display=function(){
                     this.layer.fill(this.flashColor(this.color.badge[1])[0],this.flashColor(this.color.badge[1])[1],this.flashColor(this.color.badge[1])[2],this.fade*this.fades.badge)
                     regTriangle(this.layer,lsin(this.anim.direction+36)*6,-57,2*lcos(this.anim.direction+36),2,60)
                 }
-                if((this.name=='Bouncer'||this.name=='Drunk'||this.name=='Management Officer'||this.name=='Management Caller'||this.name=='Deployer'||this.name=='Chief Deployer')&&this.trigger.display.belt){
+                if((this.name=='Bouncer'||this.name=='Drunk'||this.name=='Management Officer'||this.name=='Management Caller'||this.name=='Deployer'||this.name=='Chief Deployer'||this.name=='Lost Management Officer')&&this.trigger.display.belt){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.belt),this.fade*this.fades.belt)
                     this.layer.rect(0,-45,14,3)
@@ -13918,6 +13918,14 @@ combatant.prototype.display=function(){
                     this.layer.fill(255,this.fade)
                     this.layer.textSize(12)
                     this.layer.text(this.combo,0,-115.5)
+                }
+                if(this.name=='Lost Management Officer'&&this.trigger.display.glasses&&lcos(this.anim.direction)>0){
+                    this.layer.fill(this.color.glasses[1][0],this.color.glasses[1][1],this.color.glasses[1][2],this.fade*this.fades.glasses/5)
+                    this.layer.stroke(this.color.glasses[0][0],this.color.glasses[0][1],this.color.glasses[0][2],this.fade*this.fades.glasses)
+                    this.layer.strokeWeight(1)
+                    this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*-5,-75.5,6*lcos(this.anim.direction),3)
+                    this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*5,-77,6*lcos(this.anim.direction),3)
+                    this.layer.line(lsin(this.anim.direction)*15+lcos(this.anim.direction)*2,-77,lsin(this.anim.direction)*15-lcos(this.anim.direction)*2,-75.5)
                 }
             break
         }

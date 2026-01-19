@@ -2610,10 +2610,60 @@ class overlay{
                         break
                         case 1:
                             this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,120,40,10)
-                            this.layer.fill(this.battle.colorDetail[this.player].fill[0],this.battle.colorDetail[this.player].fill[1],this.battle.colorDetail[this.player].fill[2],this.fade*this.rewards[a].fade)
-                            this.layer.stroke(this.battle.colorDetail[this.player].stroke[0],this.battle.colorDetail[this.player].stroke[1],this.battle.colorDetail[this.player].stroke[2],this.fade*this.rewards[a].fade)
-                            this.layer.strokeWeight(3)
-                            this.layer.rect(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,24,32,5)
+                            if(this.rewards[a].value[2]==12){
+                                this.layer.push()
+                                this.layer.translate(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,0)
+
+                                this.layer.strokeWeight(3)
+                                this.layer.fill(types.color.card[12].fill)
+                                this.layer.stroke(types.color.card[12].stroke)
+                                this.layer.rect(-5,0,14,32,3)
+                                this.layer.fill(types.color.card[14].fill)
+                                this.layer.stroke(types.color.card[14].stroke)
+                                this.layer.rect(5,0,14,32,3)
+
+                                this.layer.noStroke()
+                                this.layer.fill(types.color.card[12].stroke)
+                                this.layer.rect(-3,0,6,35)
+                                this.layer.fill(types.color.card[14].stroke)
+                                this.layer.rect(3,0,6,35)
+                                this.layer.fill(types.color.card[12].fill)
+                                this.layer.rect(-3,0,6,29)
+                                this.layer.fill(types.color.card[14].fill)
+                                this.layer.rect(3,0,6,29)
+
+                                this.layer.translate(-18,0)
+                                this.layer.noStroke()
+                                this.gradient=[new p5.LinearGradient(15,30),new p5.LinearGradient(15,30)]
+                                this.gradient[0].colors(
+                                    0.0,color(types.color.card[12].stroke[0],types.color.card[12].stroke[1],types.color.card[12].stroke[2]),
+                                    0.2,color(types.color.card[9].stroke[0],types.color.card[9].stroke[1],types.color.card[9].stroke[2]),
+                                    0.4,color(types.color.card[13].stroke[0],types.color.card[13].stroke[1],types.color.card[13].stroke[2]),
+                                    0.6,color(types.color.card[15].stroke[0],types.color.card[15].stroke[1],types.color.card[15].stroke[2]),
+                                    0.8,color(types.color.card[constants.playerNumber+5].stroke[0],types.color.card[constants.playerNumber+5].stroke[1],types.color.card[16].stroke[2]),
+                                    1.0,color(types.color.card[14].stroke[0],types.color.card[14].stroke[1],types.color.card[14].stroke[2])
+                                )
+                                this.gradient[1].colors(
+                                    0.0,color(types.color.card[12].fill[0],types.color.card[12].fill[1],types.color.card[12].fill[2]),
+                                    0.2,color(types.color.card[9].fill[0],types.color.card[9].fill[1],types.color.card[9].fill[2]),
+                                    0.4,color(types.color.card[13].fill[0],types.color.card[13].fill[1],types.color.card[13].fill[2]),
+                                    0.6,color(types.color.card[15].fill[0],types.color.card[15].fill[1],types.color.card[15].fill[2]),
+                                    0.8,color(types.color.card[constants.playerNumber+5].fill[0],types.color.card[constants.playerNumber+5].fill[1],types.color.card[constants.playerNumber+5].fill[2]),
+                                    1.0,color(types.color.card[14].fill[0],types.color.card[14].fill[1],types.color.card[14].fill[2])
+                                )
+
+                                this.layer.fillGradient(this.gradient[0])
+                                this.layer.rect(18,0,27,35,4.5)
+                                this.layer.fillGradient(this.gradient[1])
+                                this.layer.rect(18,0,21,29,1.5)
+
+                                this.layer.pop()
+                            }else{
+                                this.layer.fill(this.battle.colorDetail[this.player].fill[0],this.battle.colorDetail[this.player].fill[1],this.battle.colorDetail[this.player].fill[2],this.fade*this.rewards[a].fade)
+                                this.layer.stroke(this.battle.colorDetail[this.player].stroke[0],this.battle.colorDetail[this.player].stroke[1],this.battle.colorDetail[this.player].stroke[2],this.fade*this.rewards[a].fade)
+                                this.layer.strokeWeight(3)
+                                this.layer.rect(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,24,32,3)
+                            }
                             this.layer.fill(0,this.fade*this.rewards[a].fade)
                             this.layer.noStroke()
                             this.layer.textSize(16)

@@ -997,7 +997,7 @@ class relicManager{
                 this.battle.itemManager.effectiveness[player]/=5
             break
             case 159:
-                this.battle.itemManager.loseRandom(player)
+                this.battle.itemManager.loseRandomRelic(player)
                 this.battle.loseCurrency(300,player)
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(10)
                 this.battle.cardManagers[player].deck.removeAbstract(3,[2])
@@ -1195,7 +1195,7 @@ class relicManager{
             break
             case 388:
                 for(let a=0,la=this.battle.itemManager.items[player].length;a<la;a++){
-                    this.battle.itemManager.loseRandom(player)
+                    this.battle.itemManager.loseRandomRelic(player)
                 }
             break
             case 390:
@@ -1331,7 +1331,7 @@ class relicManager{
             }
         }
     }
-    loseRandom(player){
+    loseRandomRelic(player){
         let possible=[]
         for(let a=0,la=this.relics.length;a<la;a++){
             if(this.relics[a].player==player&&this.active[this.relics[a].type][player+1]>0&&this.relics[a].active&&this.relics[a].type>0){

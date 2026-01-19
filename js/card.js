@@ -988,7 +988,7 @@ class card{
             case -105: string+=`When Drawn,\nDiscard All Powers`; break
             case -106: string+=`At the End of Your Turn,\nDouble All Your Debuffs`; break
             case -107: string+=`When Drawn,\nAdd a Hurt to Hand`; break
-            case -108: string+=`When You Play ${effect[0]}\nCards This Turn,\nPlace This Card\nOn Top of Darw Pile`; break
+            case -108: string+=`When You Play ${effect[0]}\nCards This Turn,\nPlace This Card\nOn Top of Draw Pile`; break
             case -109: string+=`At the End of Your Turn,\nTake ${effect[0]} Damage\nFor Every ${effect[1]}\nCurrency You Have`; break
             case -110: string+=`When Removed,\nSet Currency to ${effect[0]}`; break
             case -111: string+=`Gain ${effect[0]} Weak\nWhen an Enemy Dies`; break

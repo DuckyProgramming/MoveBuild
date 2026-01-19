@@ -3120,7 +3120,7 @@ combatant.prototype.setupGraphics=function(direction){
                     this.trigger.display.helmet=true
                     this.trigger.display.visor=true
                 break
-                case 'Management Officer':
+                case 'Management Officer': case 'Lost Management Officer':
                     this.color={skin:{head:[240,220,180],body:[100,100,100],legs:[95,95,95],arms:[95,95,95]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     this.color.belt=[60,60,60]
                     this.color.badge=[[50,50,200],[75,75,225]]
