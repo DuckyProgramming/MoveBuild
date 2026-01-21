@@ -9465,6 +9465,8 @@ class card{
             case 8395: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nIf You Are Debuffed,\nGain (N) (N) (N)`; break
             case 8396: string+=`Gain ${effect[0]} Weak\nDiscover a Card\nand Retain it`; break
             case 8397: string+=`Gain ${effect[0]} Frail\nDraw ${effect[1]} More Card${pl(effect[1])}\nNext 3 Turns`; break
+            case 8398: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Pity\nGain ${effect[2]} Weak\nGain ${effect[3]} Vulnerable\nGain ${effect[4]} Frail`; break
+            case 8399: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]} When\nYou Are Debuffed`; break
 
             //mark p
 
@@ -9963,6 +9965,15 @@ class card{
             break
             case 6674:
                 this.costDown(0,[1])
+            break
+        }
+    }
+    callStatusEffect(statusClass){
+        switch(this.attack){
+            case 8399:
+                if(statusClass==1||statusClass==3){
+                    this.effect[0]+=this.effect[1]
+                }
             break
         }
     }

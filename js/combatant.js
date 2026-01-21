@@ -5371,6 +5371,9 @@ class combatant{
                 if(status==32){
                     this.battle.updateTargetting()
                 }
+                if(this.id>=0&&this.id<this.battle.players){
+                    this.battle.cardManagers[this.id].allEffectArgs(2,55,['callStatusEffect',[this.status.class[status]]])
+                }
                 if((this.status.class[status]==1||this.status.class[status]==3)&&effectiveValue>0||(this.status.class[status]==0||this.status.class[status]==2)&&effectiveValue<0){
                     if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
