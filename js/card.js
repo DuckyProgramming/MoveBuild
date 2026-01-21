@@ -9457,6 +9457,14 @@ class card{
             case 8387: string+=`Discard Your Hand\nShuffle ${effect[0]} Moriya Talisman${pl(effect[0])}\ninto Draw Pile Each`; break
             case 8388: string+=`Gain ${effect[0]} Intangible\nCosts 0 Until Played\nWhen Discarded by Scry`; break
             case 8389: string+=`Push 1 Tile\nDraw ${effect[0]} Basic Card${pl(effect[0])}`; break
+            case 8390: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nReturn on Shuffle`; break
+            case 8391: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain (R)\nReturn on Shuffle`; break
+            case 8392: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain (E)\nReturn on Shuffle`; break
+            case 8393: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nIf You Are Debuffed,\nGain ${effect[2]} Energy`; break
+            case 8394: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nIf You Are Debuffed,\nGain (N) (N)`; break
+            case 8395: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nIf You Are Debuffed,\nGain (N) (N) (N)`; break
+            case 8396: string+=`Gain ${effect[0]} Weak\nDiscover a Card\nand Retain it`; break
+            case 8397: string+=`Gain ${effect[0]} Frail\nDraw ${effect[1]} More Card${pl(effect[1])}\nNext 3 Turns`; break
 
             //mark p
 

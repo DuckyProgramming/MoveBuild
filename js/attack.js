@@ -284,7 +284,7 @@ class attack{
             case 8256: case 8257: case 8258: case 8260: case 8262: case 8263: case 8264: case 8265: case 8266: case 8269: case 8270: case 8271: case 8272: case 8276: case 8277: case 8278: case 8279: case 8280: case 8281: case 8290:
             case 8293: case 8294: case 8295: case 8300: case 8303: case 8304: case 8306: case 8308: case 8309: case 8310: case 8311: case 8318: case 8319: case 8320: case 8321: case 8323: case 8325: case 8326: case 8327: case 8328:
             case 8333: case 8335: case 8342: case 8345: case 8348: case 8350: case 8351: case 8356: case 8357: case 8363: case 8366: case 8368: case 8369: case 8377: case 8378: case 8380: case 8381: case 8382: case 8385: case 8386:
-            case 8389:
+            case 8389: case 8390: case 8391: case 8392:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -2705,7 +2705,7 @@ class attack{
                     case 137:
                         this.userCombatant.statusEffect('Strength Next Turn',this.effect[1])
                     break
-                    case 155: case 7281:
+                    case 155: case 7281: case 8390:
                         this.battle.addEnergy(this.effect[1],this.player)
                     break
                     case 156:
@@ -4883,7 +4883,7 @@ class attack{
                             this.battle.addSpecificEnergy(1,this.player,6)
                         }
                     break
-                    case 4204:
+                    case 4204: case 8391:
                         this.battle.addSpecificEnergy(1,this.player,5)
                     break
                     case 4206:
@@ -6282,7 +6282,7 @@ class attack{
                             this.userManager.draw(this.effect[2])
                         }
                     break
-                    case 6690:
+                    case 6690: case 8392:
                         this.battle.addSpecificEnergy(1,this.player,6)
                     break
                     case 6694:
@@ -10459,6 +10459,24 @@ class attack{
                         this.userCombatant.addBarrier(this.effect[1])
                         if(this.debut){
                             this.battle.addEnergy(1,this.player,6)
+                        }
+                    break
+                    case 8393:
+                        this.userManager.draw(this.effect[1])
+                        if(this.userCombatant.totalUniqueStatus(1)>0){
+                            this.battle.addEnergy(this.effect[2],this.player)
+                        }
+                    break
+                    case 8394:
+                        this.userManager.draw(this.effect[1])
+                        if(this.userCombatant.totalUniqueStatus(1)>0){
+                            this.battle.addSpecificEnergy(2,this.player,0)
+                        }
+                    break
+                    case 8395:
+                        this.userManager.draw(this.effect[1])
+                        if(this.userCombatant.totalUniqueStatus(1)>0){
+                            this.battle.addSpecificEnergy(3,this.player,0)
                         }
                     break
 
@@ -21784,6 +21802,12 @@ class attack{
                             this.battle.dropDrawShuffle(this.player,findName('Moriya\nTalisman',types.card),0,0)
                         }
                     break
+                    case 8397:
+                        this.userCombatant.statusEffect('Frail',this.effect[0])
+                        this.userCombatant.statusEffect('Temporary Draw',this.effect[1])
+                        this.userCombatant.statusEffect('Temporary Draw Next Turn',this.effect[1])
+                        this.userCombatant.statusEffect('Temporary Draw in 2 Turns',this.effect[1])
+                    break
 
                 }
                 //mark 5
@@ -29117,6 +29141,11 @@ class attack{
                         if(this.userManager.hand.turnPlayed[0]>=this.effect[1]+1){
                             this.userManager.draw(this.effect[2])
                         }
+                    break
+                    case 8396:
+                        this.userCombatant.statusEffect('Weak',this.effect[0])
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[5],[]])
                     break
 
                 }

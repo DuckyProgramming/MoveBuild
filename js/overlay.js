@@ -1406,6 +1406,10 @@ class overlay{
                                         if(args[3].includes(4)){
                                             this.cards[a].setCost(0,[2])
                                         }
+                                        if(args[3].includes(5)&&!this.cards[a].spec.includes(2)){
+                                            this.cards[a].spec.push(2)
+                                            this.cards[a].additionalSpec.push(2)
+                                        }
                                         list[a%list.length].splice(index,1)
                                     }
                                 break
@@ -1432,6 +1436,10 @@ class overlay{
                                         }
                                         if(args[3].includes(4)){
                                             this.cards[a].setCost(0,[2])
+                                        }
+                                        if(args[3].includes(5)&&!this.cards[a].spec.includes(2)){
+                                            this.cards[a].spec.push(2)
+                                            this.cards[a].additionalSpec.push(2)
                                         }
                                         list.splice(index,1)
                                     }
@@ -5232,6 +5240,8 @@ class overlay{
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,12],[[1,4],0])
                                     }else if(this.setupArgs[3].includes(4)){
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,13],[[1,4]])
+                                    }else if(this.setupArgs[3].includes(5)){
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4],[[1,2,4]])
                                     }else if(this.setupArgs[1][0]==14||this.setupArgs[1][0]==15){
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[],[])
                                     }else{
@@ -6785,6 +6795,8 @@ class overlay{
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,12],[[1,4],0])
                                     }else if(this.setupArgs[3].includes(4)){
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4,13],[[1,4]])
+                                    }else if(this.setupArgs[3].includes(5)){
+                                        this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[4],[[1,2,4]])
                                     }else if(this.setupArgs[1][0]==14||this.setupArgs[1][0]==15){
                                         this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[],[])
                                     }else{
