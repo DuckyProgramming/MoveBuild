@@ -1,5 +1,13 @@
 class card{
-    constructor(layer,battle,player,x,y,type,level,color,id,cost,additionalSpec,name,list,effect,attack,target,spec,cardClass,limit,falsed,retain2=false,colorful=false,edition,baseCost,drawn,fuel,editedCost,editedCostComplete,nonCalc,costDownTrigger,costUpTrigger,baseCostDownTrigger,baseCostUpTrigger,debut,evolve){
+    constructor(
+        layer,battle,player,x,y,
+        type,level,color,id,cost,
+        additionalSpec,name,list,effect,attack,
+        target,spec,cardClass,limit,falsed,
+        retain2=false,colorful=false,edition,baseCost,drawn,
+        fuel,editedCost,editedCostComplete,nonCalc,costDownTrigger,
+        costUpTrigger,baseCostDownTrigger,baseCostUpTrigger,debut,evolve
+    ){
         this.layer=layer
         this.battle=battle
         this.player=player
@@ -9467,6 +9475,18 @@ class card{
             case 8397: string+=`Gain ${effect[0]} Frail\nDraw ${effect[1]} More Card${pl(effect[1])}\nNext 3 Turns`; break
             case 8398: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Pity\nGain ${effect[2]} Weak\nGain ${effect[3]} Vulnerable\nGain ${effect[4]} Frail`; break
             case 8399: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]} When\nYou Are Debuffed`; break
+            case 8400: string+=`Move to Any\nEmpty Tile\nDestroys Teleporter Used`; break
+            case 8401: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf You Have No\nEmpty Orb Slots,\nGain ${effect[1]} Orb Slot${pl(effect[1])}`; break
+            case 8402: string+=`When Drawn,\nNext ${effect[0]!=1?`${effect[0]} `:``}Card${pl(effect[0])}\nPlayed ${effect[0]!=1?`are`:`is`} Duplicated`; break
+            case 8403: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nDebuffs on Target\nApply ${effect[1]} Weak`; break
+            case 8404: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Energy\nPer Adjacent Attack`; break
+            case 8405: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain (N) Energy\nPer Adjacent Attack`; break
+            case 8406: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain (G) Energy\nPer Adjacent Attack`; break
+            case 8407: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain (E) Energy\nPer Adjacent Attack`; break
+            case 8408: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nAdd a Ripped Wave\nof Equivalent Card\nto Discard`; break
+            case 8409: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRedraw All Non-\nMovements in Hand`; break
+            case 8410: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nGain (B) (N)`; break
+            case 8411: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Temporary\nStrength\nPulled:\nTrigger Effect`; break
 
             //mark p
 
@@ -10728,6 +10748,10 @@ class card{
                 this.battle.cardManagers[this.player].draw(this.effect[2])
             break
             case 7624:
+                this.battle.cardManagers[this.player].draw(this.effect[0])
+                userCombatant.statusEffect('Temporary Strength',this.effect[1])
+            break
+            case 8411:
                 this.battle.cardManagers[this.player].draw(this.effect[0])
                 userCombatant.statusEffect('Temporary Strength',this.effect[1])
             break

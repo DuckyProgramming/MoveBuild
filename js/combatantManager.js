@@ -1316,7 +1316,7 @@ class combatantManager{
         }else{
             this.combatants[this.combatants.length-1].activated=true
         }
-        if(!options.oldUnbuild&&this.combatants[this.combatants.length-1].move.speed==0&&this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players){
+        if(!options.oldUnbuild&&(this.combatants[this.combatants.length-1].move.speed==0||this.combatants[this.combatants.length-1].name=='Motor Turret')&&this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players){
             if(this.battle.cardManagers[this.battle.turn.main].hand.numberAbstract(0,[['Unbuild']])==0){
                 this.battle.cardManagers[this.battle.turn.main].hand.add(findName('Unbuild',types.card),0,0)
             }

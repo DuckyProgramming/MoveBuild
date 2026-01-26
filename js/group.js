@@ -1893,7 +1893,7 @@ class group{
     }
     allEffectArgs(effect,args){
         let total=0
-        if(effect==3||effect==10||effect==12||effect==18||effect==19||effect==32||effect==43||effect==49){
+        if(effect==3||effect==10||effect==12||effect==18||effect==19||effect==32||effect==43||effect==49||effect==71){
             total=0
         }else if(effect==9){
             total=args[1]
@@ -2607,11 +2607,17 @@ class group{
                         }
                     }
                 break
+                case 71:
+                    if(this.cards[a].usable&&this.cards[a].class!=args[0]&&!this.cards[a].spec.includes(12)){
+                        this.cards[a].deSize=true
+                        total++
+                    }
+                break
             }
         }
         if(effect==9){
             return args[1]-total
-        }else if(effect==10||effect==12||effect==18||effect==19||effect==32||effect==43||effect==49||effect==58||effect==59||effect==66){
+        }else if(effect==10||effect==12||effect==18||effect==19||effect==32||effect==43||effect==49||effect==58||effect==59||effect==66||effect==71){
             return total
         }
     }
@@ -3704,7 +3710,10 @@ class group{
             break
             case 7699:
                 userCombatant.enterStance(2)
-                userCombatant.addBlock(this.effect[0])
+                userCombatant.addBlock(card.effect[0])
+            break
+            case 8402:
+                this.battle.cardManagers[this.player].hand.duplicate(card.effect[0])
             break
 
         }

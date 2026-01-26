@@ -1117,6 +1117,7 @@ turn.prototype.update=function(){
                     }
                 break
                 case 117: case 135: case 154: case 175: case 195: case 319: case 344: case 347: case 403: case 440:
+                case 471:
                     if(this.timer==1){
                         this.procedure[0]=0
                         if(this.type==175||this.type==319||this.type==403||this.type==440||this.userCombatant.name=='The Looker'){
@@ -1185,8 +1186,17 @@ turn.prototype.update=function(){
                         }
                         this.procedure[0]++
                     }
-                    if(this.remove&&this.type==319){
-                        this.userCombatant.stance=3
+                    if(this.remove){
+                        switch(this.type){
+                            case 319:
+                                this.userCombatant.stance=3
+                            break
+                            case 471:
+                                this.remove=false
+                                this.type=87
+                                this.timer=0
+                            break
+                        }
                     }
                 break
                 case 118:

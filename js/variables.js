@@ -20,12 +20,12 @@ types={
         {name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]},{type:412,effect:[15,2]},{type:413,effect:[2]}],description:``},
         {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[26]},{type:420,effect:[3]},{type:93,effect:[1]}],description:``},
         {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:``},
-        {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
-        {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:453,effect:[9,6]},{type:53,effect:[12,1,'Curse of\nthe Heron']},{type:461,effect:[1,1]}],description:``},
-        {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:456,effect:[16,3]},{type:454,effect:[22,2]},{type:455,effect:[22,2]}],description:``},
-        {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:458,effect:[1]},{type:459,effect:[11,1]},{type:460,effect:[13,5]}],description:``},
-        {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:462,effect:[11,2]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:``},
-        {name:'Meri',moniker:'The Whisper',identifier:['Sister','Miss'],life:49,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:466,effect:[5]},{type:467,effect:[5]},{type:465,effect:[10,10]}],description:``},
+        {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[6]},{type:424,effect:[20]}],description:``},
+        {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:453,effect:[9,6]},{type:53,effect:[12,1,'Curse of\nthe Heron']},{type:461,effect:[1,1]}],description:``},
+        {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:55,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:456,effect:[16,3]},{type:454,effect:[22,2]},{type:455,effect:[22,2]}],description:``},
+        {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:458,effect:[1]},{type:459,effect:[11,1]},{type:460,effect:[13,5]}],description:``},
+        {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:462,effect:[11,2]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:``},
+        {name:'Meri',moniker:'The Whisper',identifier:['Sister','Miss'],life:49,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:466,effect:[5]},{type:467,effect:[5]},{type:465,effect:[10,10]}],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -224,7 +224,7 @@ types={
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         {name:'Flame',life:5,behavior:5,spec:[],move:{type:0,speed:2},attack:[{type:22,effect:[2,1,'Burn']},{type:6,effect:[4]}],description:`Very annoying`},
-        {name:'Hexaghost Orb',life:16,behavior:5,spec:[],move:{type:0,speed:0},attack:[{type:54,effect:[4,1,'Burn']},{type:4,effect:[4]},{type:70,effect:[10]}],description:`Should probably kill it`},
+        {name:'Hexaghost Orb',life:16,behavior:5,spec:[],move:{type:0,speed:0},attack:[{type:54,effect:[4,1,'Burn']},{type:4,effect:[6]},{type:70,effect:[5]}],description:`Should probably kill it`},
         {name:'Bodyguard',life:45,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[10]},{type:77,effect:[3]},{type:13,effect:[4,1,'Concussion']}],description:`Paid to die`},
         {name:'Bronze Orb C',life:33,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:78,effect:[5]}],description:`Circuitry simulator`},
         {name:'Bronze Orb A',life:27,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:80,effect:[5]}],description:`Goes for the kill`},
@@ -238,15 +238,15 @@ types={
         {name:'Paramilitary',life:60,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:403,effect:[10]}],description:`"Faction"`},
         
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:40,effect:[3]},{type:39,effect:[2,'Duckforce']},{type:41,effect:[6]},{type:465,effect:[10,10]},{type:42,effect:[6]}],description:`Duck leader`},
-        {name:'Slime Boss',life:90,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[12]},{type:55,effect:[2]}],description:`Very fat slime`},
+        {name:'Slime Boss',life:90,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:403,effect:[11]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[12]},{type:55,effect:[2]}],description:`Very fat slime`},
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
         {name:'Donu',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[6]}],description:`It's just shapes`},
-        {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,1]},{type:39,effect:[2,'Flame']},{type:73,effect:[8,1,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
+        {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,1]},{type:39,effect:[2,'Flame']},{type:73,effect:[8,1,'Burn']},{type:74,effect:[1,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:200,effect:[8]},{type:425,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
-        {name:'Crusader',life:127,behavior:15,spec:[0,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:6,effect:[16]},{type:344,effect:[20]},{type:376,effect:[22,1]},{type:346,effect:[22,1]},{type:347,effect:[20]}],description:`Two millenia late to the party`},
+        {name:'Crusader',life:127,behavior:15,spec:[0,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:6,effect:[16]},{type:344,effect:[20]},{type:72,effect:[22,1]},{type:48,effect:[22]},{type:347,effect:[20]}],description:`Two millenia late to the party`},
         {name:'Thoughtless',life:144,behavior:17,spec:[0],move:{type:0,speed:1},attack:[{type:147,effect:[5]},{type:404,effect:[12,1]},{type:405,effect:[9,3]},{type:83,effect:[10,1,'Trough']}],description:`No brain lol`},
-        {name:'The Looker',life:125,behavior:19,spec:[0],move:{type:0,speed:1},attack:[{type:21,effect:[]},{type:468,effect:[7,2]},{type:405,effect:[8,8]},{type:117,effect:[10]}],description:`Does he see?`},
+        {name:'The Looker',life:125,behavior:19,spec:[0],move:{type:0,speed:1},attack:[{type:21,effect:[]},{type:468,effect:[7,2]},{type:405,effect:[8,8]},{type:471,effect:[10]}],description:`Does he see?`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,2]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,2]}],description:`Gunning for a promotion`},
@@ -285,19 +285,19 @@ types={
         {name:'Machine Gun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:129,effect:[8]}],description:`More gun`},
         {name:'Miniturret',life:10,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:236,effect:[3]}],description:`Less gun`},
         {name:'Metal Box',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:237,effect:[1]}],description:`Turtling strat`},
-        {name:'Upgrader',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:238,effect:[2]}],description:`PoV: no upgrades`},
-        {name:'Transformer',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:239,effect:[2]}],description:`PoV: no good cards`},
-        {name:'Doubler',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:240,effect:[1]}],description:`PoV: only 1 copy`},
-        {name:'Exhauster',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:241,effect:[1,1]}],description:`PoV: too many bad cards`},
-        {name:'Teleporter Start',life:5,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`When entrance and exit both start with E`},
-        {name:'Teleporter End',life:5,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Copy pasted man`},
+        {name:'Upgrader',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:238,effect:[2]}],description:`PoV: no upgrades`},
+        {name:'Transformer',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:239,effect:[2]}],description:`PoV: no good cards`},
+        {name:'Doubler',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:240,effect:[1]}],description:`PoV: only 1 copy`},
+        {name:'Exhauster',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:241,effect:[1,1]}],description:`PoV: too many bad cards`},
+        {name:'Teleporter Start',life:6,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`When entrance and exit both start with E`},
+        {name:'Teleporter End',life:6,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Copy pasted man`},
         {name:'Mirror Shield',life:36,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
         {name:'Armored Turret',life:60,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[10]}],description:`Sentry goin' up`},
         {name:'Shotgun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:303,effect:[30,5]}],description:`Shotgun duck game?`},
         {name:'Exploding Wall',life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Pay to win`},
         {name:'Swarm Turret',life:8,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:47,effect:[3]}],description:`Even less gun`},
-        {name:'Megaturret',life:64,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[25]}],description:`Chonky`},
-        {name:'Motor Turret',life:10,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:12,effect:[15]}],description:`Auto parts diff`},
+        {name:'Megaturret',life:64,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[30]}],description:`Chonky`},
+        {name:'Motor Turret',life:12,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:12,effect:[15]}],description:`Auto parts diff`},
         {name:'Shieldzone',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:464,effect:[8]}],description:`Protects its friends`},
         {name:'Swap Wall',life:30,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not the first mover`},
         {name:'Scaling Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[15]}],description:`Sentry growin' up`},
@@ -796,6 +796,7 @@ types={
         {name:'2 Tile 3 Spread Strike / Vulnerable',class:1},
         {name:'Ruination',class:4},
         {name:'3 Spread Strike / Block Down',class:1},//470
+        {name:'Shockwave Drive',class:5},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,world:[0,3],description:''},
@@ -2406,6 +2407,15 @@ types={
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:[]}],
+                [{type:-1},{type:[]},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Lesser Randhole 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:-1},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
@@ -5448,11 +5458,11 @@ types={
             ],ally:[
             ],
         },{
-            level:['Slime 7'],class:2,world:0,
+            level:['Basic 7'],class:2,world:0,
             name:'Slime Boss',
             player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
             enemy:[
-                {position:{x:2,y:2},name:'Slime Boss'},
+                {position:{x:1,y:1},name:'Slime Boss'},
             ],reinforce:[
             ],assaultReinforce:[
                 {position:{x:5,y:5},name:'Slime',turn:8},
@@ -5613,7 +5623,7 @@ types={
             ],ally:[
             ],
         },{
-            level:['Randhole 5'],class:1,world:0,
+            level:['Lesser Randhole 5'],class:1,world:0,
             name:'Prison Guard',
             player:{position:[[{x:2,y:2}],[{x:2,y:2},{x:0,y:0}]]},
             enemy:[

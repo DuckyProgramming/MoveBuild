@@ -840,7 +840,7 @@ class combatant{
                 this.statusEffect('Counter Bleed Once',1)
             break
             case 'Crusader':
-                this.statusEffect('Armor',game.ascend>=31?20:10)
+                this.statusEffect('Armor',game.ascend>=31?15:10)
             break
             case 'Exploding Wall':
                 this.statusEffect('Numeric Explode on Death',20)
@@ -865,7 +865,7 @@ class combatant{
             break
             case 'Thoughtless':
                 if(!this.battle.modded(195)){
-                    this.statusEffect('Intent Change Threshold',20)
+                    this.statusEffect('Intent Change Threshold',game.ascend>=31?30:20)
                 }
                 this.accelerate=0
             break
@@ -1139,7 +1139,7 @@ class combatant{
                     break
                     case 'Prison Guard':
                         this.move.type=2
-                        this.statusEffect('Metallicize',3)
+                        this.statusEffect('Metallicize',1)
                     break
                     case 'Lightspeed':
                         this.move.speed++
@@ -1379,10 +1379,10 @@ class combatant{
                         this.behavior=9
                     break
                     case 'Hexaghost Orb':
-                        this.subAttackTypeSwitch([[2,22,22,[1,2]]])
+                        this.subAttackTypeSwitch([[2,54,54,[1,2]]])
                     break
                     case 'Flame':
-                        this.subAttackTypeSwitch([[2,54,54,[1,2]]])
+                        this.subAttackTypeSwitch([[2,22,22,[1,2]]])
                     break
                     case 'Buried':
                         this.subAttackTypeSwitch([[0,1,9,[]],[0,2,19,[]],[0,3,7,[]],[0,4,10,[]]])
@@ -1514,7 +1514,8 @@ class combatant{
             if(game.ascend>=33){
                 switch(this.name){
                     case 'Rewriter':
-                        this.subAttackTypeSwitch([[0,244,469]])
+                        this.behavior=8
+                        this.addAttack(469,[])
                     break
                 }
             }
@@ -1596,6 +1597,7 @@ class combatant{
                         &&this.attack[a].type!=57
                         &&this.attack[a].type!=120
                         &&this.attack[a].type!=155
+                        &&this.attack[a].type!=189
                         &&this.attack[a].type!=300
                         &&this.attack[a].type!=391
                     ){
@@ -1980,7 +1982,7 @@ class combatant{
             case 320: case 321: case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353:
             case 358: case 361: case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420:
             case 425: case 427: case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455:
-            case 459: case 463:
+            case 459: case 463: case 471:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -2699,7 +2701,7 @@ class combatant{
                         case 259: case 264: case 265: case 278: case 288: case 291: case 292: case 308: case 330: case 350:
                         case 351: case 357: case 360: case 368: case 379: case 381: case 384: case 387: case 388: case 395:
                         case 396: case 403: case 404: case 409: case 415: case 417: case 418: case 441: case 449: case 451:
-                        case 452: case 468: case 470:
+                        case 452: case 468: case 470: case 471:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -2967,7 +2969,7 @@ class combatant{
                             }
                         }
                     break
-                    case 117: case 135: case 154:
+                    case 117: case 135: case 154: case 471:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -4533,9 +4535,7 @@ class combatant{
             this.relativePosition.x=tile.relativePosition.x
             this.relativePosition.y=tile.relativePosition.y
             if(this.spec.includes(5)){
-                if(tile>=0){
-                    tile.addType(6)
-                }
+                tile.addType(6)
             }
             this.battle.combatantManager.sort()
         }
@@ -6347,7 +6347,7 @@ class combatant{
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
                     break
-                    case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 10: case 19:
+                    case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 9: case 10: case 19:
                         this.animSet.loop=0
                     break
                 }
@@ -6957,6 +6957,10 @@ class combatant{
                         for(let g=0;g<2;g++){
                             this.spin.arms[g].top+=rate*180
                         }
+                    break
+                    case 9:
+                        this.animSet.loop+=rate
+                        this.offset.position.y=lsin(this.animSet.loop*180)*-20
                     break
                     case 10: case 19:
                         this.animSet.loop+=rate
@@ -7642,7 +7646,7 @@ class combatant{
                                 case 3: this.layer.text('Immune to Spikes and Mines',40,305+a*10); break
                                 case 4: this.layer.text('Immune to Traps',40,305+a*10); break
                                 case 5: this.layer.text('Slimes Tiles Moved On',40,305+a*10); break
-                                case 6: this.layer.text('Spawns Slimes Every 20 HP Lost',40,305+a*10); break
+                                case 6: this.layer.text('Spawns Slimes Every 25 HP Lost',40,305+a*10); break
                                 case 7: this.layer.text('Auto-Attacks Line of Sight',40,305+a*10); break
                                 case 8: this.layer.text('Attacks When You Play a Card',40,305+a*10); break
                                 case 9: this.layer.text('Untargettable From Front',40,305+a*10); break

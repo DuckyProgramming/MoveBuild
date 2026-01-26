@@ -1,16 +1,25 @@
 CHAR 26
 
-the reservist:
+the royal recruit:
+
+skill tree:
+you start as a recruit - you have basic cards and only use the reserve gimmick
+-
+--
+--
+-
+--
+--
+- artillerist - cards let you call in damage, and each turn an enemy gains 1 vulnerable
+--
+--
+
 "reserve" is a card effect like discard or rewind that puts cards in a special pile
 each turn you can pick a card from that pile to put into hand (if its size is more than 0)
-
-also you can get promoted i guess?
-
-
-
-CARDSET 91 [ENDSIEG]
+this is a relatively minor mechanic
 
 
 
+CARDSET 92 [ENDSIEG]
 
 

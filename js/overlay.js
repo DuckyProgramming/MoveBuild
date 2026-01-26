@@ -143,9 +143,11 @@ class overlay{
                         switch(this.rewards[this.rewards.length-1].type){
                             case 2:
                                 let list=this.battle.relicManager.listing.relic[[0,0,0,1,1,2][floor(random(0,6))]]
-                                let index=floor(random(0,list.length))
-                                this.rewards[this.rewards.length-1].relic=new relic(this.layer,this.battle,0,0,0,list[index],0.8)
-                                list.splice(index,1)
+                                let subList=list.filter(relic=>(types.relic[relic].world[0]<=this.battle.nodeManager.stashWorld&&types.relic[relic].world[1]>=this.battle.nodeManager.stashWorld))
+                                let index=floor(random(0,subList.length))
+                                this.rewards[this.rewards.length-1].relic=new relic(this.layer,this.battle,0,0,0,subList[index],0.8)
+                                print(list.indexOf(subList[index]),list[list.indexOf(subList[index])])
+                                list.splice(list.indexOf(subList[index]),1)
                             break
                             case 3:
                                 this.rewards[this.rewards.length-1].item=new item(this.layer,this.battle,0,0,0,0,0,this.battle.itemManager.makeRandom(),0.8)

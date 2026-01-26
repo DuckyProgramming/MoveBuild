@@ -571,7 +571,8 @@ class turn{
                             if(
                                 this.type==78||this.type==117||this.type==135||this.type==154||this.type==162||
                                 this.type==175||this.type==243||this.type==296||this.type==319||this.type==323||
-                                this.type==324||this.type==347||this.type==403||this.type==440||this.type==462
+                                this.type==324||this.type==347||this.type==403||this.type==440||this.type==462||
+                                this.type==471
                             ){
                                 this.direction=this.userCombatant.goal.anim.direction
                             }else if(this.type==344){
