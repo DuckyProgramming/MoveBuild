@@ -3858,6 +3858,13 @@ class relic{
                     this.layer.textSize(6)
                     this.layer.text('<90%',10,0)
                 break
+                case 'Energy/Bombed':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,175,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('10',9,-2)
+                break
 
                 //mark p
             }

@@ -1362,7 +1362,7 @@ types={
 
         {name:'Transformer 5000',internal:'Transform 10',id:510,rarity:4,list:0,mtg:1,world:[0,2],description:'When Taken, Transform 10 Cards'},
         {name:'Replicating Cake',internal:'Random Boss Relic/10 Max HP',id:511,rarity:4,list:0,mtg:1,world:[0,3],description:'When Taken, Gain a Random Boss Relic\nand Gain 10 Max HP'},
-        {name:'Draft Card',internal:'Draw Up/Draft 10',id:512,rarity:4,list:0,mtg:1,world:[0,2],description:'Draw 1 More Card Per Turn\nWhen Taken, Receive 10 Card Rewards'},
+        {name:'Draft Card',internal:'Draw Up/Draft 10',id:512,rarity:-1,list:0,mtg:1,world:[0,2],description:'Draw 1 More Card Per Turn\nWhen Taken, Receive 10 Card Rewards'},
         {name:'Capstone',internal:'Leftmost Energy',id:513,rarity:4,list:0,mtg:1,world:[0,3],description:'Each Turn, Gain 1 Energy if\nYou Play the Leftmost Card First'},
         {name:'Flow Limiter',internal:'Energy/Kill Limit',id:514,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nOnly 1 Enemy Can Die Per Turn'},
         {name:'Taraxis',internal:'Extra Mana Temporary Dexterity',id:515,rarity:2,list:0,mtg:2,world:[0,3],description:'Extra Mana is Converted\nto Temporary Dexterity'},
@@ -1374,6 +1374,7 @@ types={
         {name:'Accusatory Arrow',internal:'Missing Health Vigor',id:520,rarity:1,list:0,mtg:0,world:[0,3],description:'At the Start of Combat,\nGain Vigor Equal to Half\nof Your Missing Health'},
         {name:'Archducal Hat',internal:'Skip Edition',id:521,rarity:2,list:0,mtg:0,world:[0,3],description:'When You Skip a Card Reward,\nThe Next Card Reward Will Have an Edition'},
         {name:'Cosmic Gown',internal:'Nonfull Health Energy',id:522,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy Each Turn\nIf You Are Below 90% Health'},
+        {name:'Firing Beacon',internal:'Energy/Bombed',id:523,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nA Target Zone is Placed\non You For 10 Damage\nEvery 3 Turns'},
         
         //mark mtg mark r
     ],item:[

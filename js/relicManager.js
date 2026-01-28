@@ -95,7 +95,7 @@ class relicManager{
                 case 321: case 323: case 324: case 336: case 343: case 352: case 361: case 364: case 365: case 366:
                 case 367: case 368: case 370: case 374: case 378: case 383: case 384: case 389: case 399: case 414:
                 case 439: case 441: case 442: case 450: case 452: case 453: case 457: case 459: case 468: case 470:
-                case 473: case 497: case 508: case 521:
+                case 473: case 497: case 508: case 521: case 523:
                     this.detail.push([])
                     for(let b=0,lb=this.battle.players;b<lb;b++){
                         this.detail[this.detail.length-1].push(0)
@@ -495,6 +495,7 @@ class relicManager{
             case 146: case 147: case 148: case 170: case 222: case 228: case 234: case 242: case 243: case 280:
             case 281: case 282: case 284: case 285: case 286: case 287: case 288: case 289: case 306: case 335:
             case 339: case 340: case 347: case 358: case 451: case 460: case 466: case 506: case 507: case 514:
+            case 523:
                 //mark e
                 this.battle.addEnergyBase(player)
             break
@@ -968,6 +969,7 @@ class relicManager{
             case 146: case 147: case 148: case 170: case 222: case 228: case 234: case 242: case 243: case 280:
             case 281: case 282: case 284: case 285: case 286: case 287: case 288: case 289: case 306: case 335:
             case 339: case 340: case 347: case 358: case 451: case 460: case 466: case 506: case 507: case 514:
+            case 523:
                 //mark e
                 this.battle.loseEnergyBase(player)
             break
@@ -2249,6 +2251,12 @@ class relicManager{
                 }
                 if(this.active[522][args[1]+1]>0&&this.getPlayer(args[1]).life<this.getPlayer(args[1]).base.life*0.9){
                     this.battle.addSpecificEnergy(this.active[522][args[1]+1],args[1],6)
+                }
+                if(this.active[523][args[1]+1]>0){
+                    this.detail[523][args[1]]++
+                    if(this.detail[523]%3==2){
+                        this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.getPlayer(args[1]).tilePosition.x,this.getPlayer(args[1]).tilePosition.y)].fire[0]+=10*this.active[523][args[1]+1]
+                    }
                 }
                 if(this.battle.modded(143)){
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].statusEffect(['Burn','Freeze','Shock'][floor(random(0,3))],1)

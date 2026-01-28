@@ -21,5 +21,3 @@ this is a relatively minor mechanic
 
 
 CARDSET 92 [ENDSIEG]
-
-

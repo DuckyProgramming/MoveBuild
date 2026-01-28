@@ -2011,7 +2011,7 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                         }else if(this.page==1&&a==1){
                             tempPage=this.selection[1]==this.selection[0]?2:3
                         }else if(this.page==2&&a==0){
-                            this.battle.addCurrency(500,this.player)
+                            this.battle.addCurrency(300,this.player)
                         }
                     break
                     case 167:

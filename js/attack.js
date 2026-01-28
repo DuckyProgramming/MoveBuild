@@ -6930,7 +6930,7 @@ class attack{
                         }
                     break
                     case 7995:
-                        this.userManager.draw(this.effect[0],5)
+                        this.userManager.draw(this.effect[1],5)
                     break
                     case 8006:
                         if(this.relPos[0]==3){

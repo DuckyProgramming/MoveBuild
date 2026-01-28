@@ -5103,7 +5103,7 @@ He asks if you'd like to switch to door %3 or stay with door %a.`,
             },{
                 desc:`Opening your door, you find the money.`,
                 option:['Win'],
-                optionDesc:['Gain 500 Currency'],
+                optionDesc:['Gain 300 Currency'],
                 link:[-1],
             },{
                 desc:`Opening your door, you find nothing.`,

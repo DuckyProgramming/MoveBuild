@@ -15270,6 +15270,12 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,0,12,16,2)
             layer.rect(2,2,12,16,2)
         break
+        case 175:
+            layer.stroke(255,50,50,fade)
+            layer.strokeWeight(2)
+            layer.line(-8,-4,0,6)
+            layer.line(8,-4,0,6)
+        break
 
     }
     layer.pop()
@@ -15446,4 +15452,5 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 172-Cannot Move
 173-Riptide
 174-Triplicate Card
+175-Bombed
 */
