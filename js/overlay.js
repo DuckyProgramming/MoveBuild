@@ -146,7 +146,6 @@ class overlay{
                                 let subList=list.filter(relic=>(types.relic[relic].world[0]<=this.battle.nodeManager.stashWorld&&types.relic[relic].world[1]>=this.battle.nodeManager.stashWorld))
                                 let index=floor(random(0,subList.length))
                                 this.rewards[this.rewards.length-1].relic=new relic(this.layer,this.battle,0,0,0,subList[index],0.8)
-                                print(list.indexOf(subList[index]),list[list.indexOf(subList[index])])
                                 list.splice(list.indexOf(subList[index]),1)
                             break
                             case 3:

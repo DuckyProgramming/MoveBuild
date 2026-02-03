@@ -1,3 +1,197 @@
+types.loading=[
+    `The pointless fact that the Management was founded in 0 MCY is often repeated.`,
+    `The Human Empire was established out of a unified Terra in the late 22nd century TCE.`,
+    `The Human Empire suffered from adverse financial incentives and dominating inequality.`,
+    `The Management was first formed from a conglomeration of corporations known as RekTrek Technologies.`,
+    `The Management's name was coined following the Managerial takeover, in which lower-ranking officials took control.`,
+    `The board of RekTrek Technologies was overthrown and disbanded during the Managerial Takeover.`,
+    `RekTrek Technologies initially gained territory via a border march contract which saw it take responsibility for defenses.`,
+    `Managers recieve their epithet only after leaving office. With current disputes, this creates much confusion.`,
+    `The Operator is the secretive leader of the Council of 26. He is said to be a Management defector.`,
+    `While not that tall, Konai's Grand Escarpment has discouraged settlement of the lower valleys.`,
+    //10
+
+    `The Humanic Wars, while a moment of triumph for the huams, were in reality a mass extinction event.`,
+    `After the Great Humanic War, Management forces occupied the core, ignoring orders from imperial admirals.`,
+    `While it has been mostly erased, sources referring to the Admiral-Manager by his original name can still be found.`,
+    `Class Admiral Hethzeroslaj Paullusthz won the Grand Coalition War, but you won't find his name in history books.`,
+    `The Management Patriotic War's name could've been a little less on the nose, but the then-Manager made his decision.`,
+    `General Alexis Ambrose Angle is known for his nickname "Triple A" and for being miserable to work with.`,
+    `Governor Kirt Kodrax was appointed by the Reconstructor-Manager himself. He's disappointed in his own performance.`,
+    `The Anchor-Manager established the current Manager categorization, placing himself as a Middle-Middle Manager.`,
+    `The Admiral-Manager's first reign lasted an incredible 393 years, but with many ups and downs.`,
+    `The Lawyer-Manager and Reformer-Manager were rivals for their entire careers, until the former's deposition.`,
+    //20
+
+    `The Management Executor department operates from their headquarters on one of Origin's moons.`,
+    `Since its discovery, Origin became the Management capital because of its large size.`,
+    `The Logistician-Manager, while a talented man, had the most short and miserable reign of all of them.`,
+    `The "Early Managers" were the first 13 rulers following the Managerial takeover.`,
+    `The Admiral-Manager annexed Konai, Orofos, and other holdouts so he could claim to be the "final unifier".`,
+    `Project Godhood produced only a single final product, though some prototypes escaped. It has since shut down.`,
+    `Discovering magic was a huge moment for Konai's future, but has not necessarily been to its benefit.`,
+    `Konai got its start as a Human Empire colony an broke free as imperial authority declined across the galaxy.`,
+    `The first King of Konai, Konsta I, was no magician, which was one key reason that he was well-trusted.`,
+    `Konsta I founded many of Konai's institutions with his own money, yet nevertheless had plenty of cash left to hoard.`,
+    //30
+
+    `After defeating Lexio II at the Arioscape, Grand Admiral Leibzo returned to a hero's welcome, but was then exiled.`,
+    `Maximilian Liyos disappeared after he supposedly masterminded the deposition of the Lawyer-Manager.`,
+    `Lexio II expected to be able to resupply at the Arioscape, but underestimated the speed of Management fighters.`,
+    `Enric III "The Dark" had no choice but to confirm the Management's suzerainty after his father Lexio's death.`,
+    `Konai under Management vassalage was constrained and economically backwards, but only due to their own faults.`,
+    `Governor Kirt Kodrax received the nickname "The Constructionist" for his love of fortifications.`,
+    `Gordon Vorynx saved Rueso from its first siege, earning a promotion to Brigadier and command over the Konai garrison.`,
+    `The town of Daistilia and nine other villages form the League of Ten Communes to defend their neutrality.`,
+    `The Minzi Bridge was built to span the Inland Sea, something that Konai's royal engineers never accomplished.`,
+    `The Inland Sea's poor weather renders it often impassable. This works out in the Management's favor.`,
+    //40
+
+    `Power to Rueso has been intermittent after Randy detonated the Stanis Generator Installation.`,
+    `Management engineers gave up their attempt to build the so-called "Failed Road" to Hinokizuka Peak.`,
+    `The House of Konsta claims immense lands, but their real holdings and estates are greatly reduced.`,
+    `The House of Konsta still claims the throne of Konai via its current head, "Queen" Jovina III.`,
+    `Konai's geography contains two "artificial wonders", the Arioscape and the Valosian Beach.`,
+    `The two "artificial wonders" were both created as a result of the debris from the Battle of the Arioscape.`,
+    `The Arioscape is inhabitable again, but only a single flower, the Solonia, grows there.`,
+    `The wreck of the Valos lies on its namesake beach, leaking prototype starflame shells into the water.`,
+    `While many ducks remain wild, those that have integrated into society are stereotyped as hard-working.`,
+    `The Operator believes that at least 5% of all rebels who joined since Lira's altercation are traitors.`,
+    //50
+
+    `Management directors and Executives operate individual departments or agencies as part of the bureaucracy.`,
+    `At one point, it was proposed that the Management should have its name pluralized. This never caught on.`,
+    `L, M, and B were the codenames of the three chief advisors to the Admiral-Manager. All were purged.`,
+    `The XMF, or X-Military Force, was an autonomous elite branch of the Management Military until its disbandment.`,
+    `The later reign of the Admiral-Manager saw weaker governance. Some executives event built personal fleets on his watch.`,
+    `The Management was once victim to a major public scare over ever-growing disorder, the so-called "Discord".`,
+    `Management executives meet every week on Origin to discuss the budget and active production programs.`,
+    `The XMF was disbanded after a PR stunt in which its commander exploded an entire moon for the love of the game.`,
+    `The cult of the Lunar Servants was annihilated by the Admiral-Manager in battle. Only one member remains.`,
+    `While L, M, and B met their fates, the fourth advisor, Supreme Admiral "DY", had a highly successful career.`,
+    //60
+
+    `The Management Supreme Admiral used to command the 1st Fleet, but in modern times the title is now administrative.`,
+    `Director Ledis of Operation Godhood received a commendation for his efforts. Many expected far worse.`,
+    `"I regret having ever worked with Alexis Angle. How can such a popular man be so abrasive?" - Admiral Schenn`,
+    `"As you begin your new lives, think about this: Do you love the Management?" - Executive of Corrections`,
+    `"If you can't trust the most powerful, good luck with those that have less.' - Class General Bahgge`,
+    `"Without it, we are lost to the abyss ahead. There's nothing left for us." - The Lawyer-Manager`,
+    `The Salassan Archipelago, isolated and with miserable weather, makes a good prison location for the Management.`,
+    `The Operator assigned each member of the Council of 26 a custom symbol of their own design.`,
+    `George and the Operator go way back, having graduated from the same class at the MMIS academy.`,
+    `The Admiral-Manager's economic policies were a copy-paste of his predecessor's, but were effective.`,
+    //70
+
+    `The Admiral-Manager cares so little about the Konai sector that he appointed Alexis Angle as general.`,
+    `The three informal factions in Management politics are nicknamed "violence", "conservatism", and "pedantry".`,
+    `Konsta I defeated the warlords primarily through the use of mercenaries, rather than Konaian soldiers.`,
+    `Officially, the Admiral-Manager retired at 480 and died at 500, though we now know that wasn't true.`,
+    `As the leader of the "pedantry" faction, the Reformer-Manager began his reign with numerous promises.`,
+    `The "violence" faction initially formed a little more than a cult of personality for the Admiral-Manager.`,
+    `The Humanic Wars pitted the various human factions against a series of alien coalitions.`,
+    `The Operator contacted various local rebel leaders and organized them with Lira's reputation as leverage.`,
+    `Grand Admiral Leibzo of the Management commanded a small detachment at the Battle of the Arioscape.`,
+    `The Ridge of Toil divides western and northern Konai, acting as a major rebel supply hub.`,
+    //80
+
+    `High Value Metrics, or HVM, is the largest but least innovative small arms manufacturer in the galaxy.`,
+    `The Management places much importance on combat training, even for support staff like janitors.`,
+    `Despite its reputation, the Management in reality functions more like a dictatorship than a corporation.`,
+    `Management officers often get honorary titles like "Assistant Patrol Officer" that have no actual authority.`,
+    `Movebuild is a dramatization of the Konai rebellion. Take everything with a pinch of salt!`,
+    `After Edgar's deposition, Adrian Kane served briefly as HVM's CEO, delivering Management orders.`,
+    `Arguably, for regular people, the so-called "neutral" communes of Konai are some of the most dangerous.`,
+    `Hinokizuka Peak of the Charchallan Range is Konai's tallest mountain, though it's small for the galaxy.`,
+    `All but two residents of the communes of Hinokizuka Peak were killed by a Management mountaineering expedition.`,
+    `Only a few variants of serrulata are still cultivated on the cliffs above Daistilia.`,
+    //90
+
+    `The slot next to the Lawyer-Manager's statue at the Supreme Court of Justice remains empty years later.`,
+    `The Audric Codex was written by a retired Management Executive to document her career and routine.`,
+    `The Management has never had an official flag but has always been identifiable from its logo on everything.`,
+    `Early Konaian warlords sometimes declared their own nations, but none were well documented.`,
+    `The Reformer-Manager preferred constructing lesser projects like the Cantor Dust rather than superweapons.`,
+    `Like many other contractors for the Management, HVM keeps private military forces to defend its installations.`,
+    `The ducks of the Markovo zone have revolted at least ten times in recent memory, each resulting in failure.`,
+    `The city of Rueso, Konai's current capital, was founded in royal times but promoted by the Management.`,
+    `Rueso's rebel cells are numerous, but are surrounded by Management bunkers and hemmed in by patrols.`,
+    `While the Arioscape is terrible for long-term habitation, it does contain a fairly impressive mining industry.`,
+    //100
+
+    `The planet of Konai has two patron fairies, "The One Who Remembers" and "The One Who Forgets", Dai and Kio.`,
+    `Southern and western Konai venerate Dai as their patron fairy, while the east and south venerate Kio.`,
+    `Since Konsta I, all Konaian royals have refused to openly practice magic, which is looked down upon in leaders.`,
+    `Many defectors from the Reformer-Manager to the Admiral-Manager accuse each other of being more treacherous.`,
+    `The second survivor of the Hinokizuka commune was rescued by a Management officer and became the Daughter of Heaven.`,
+    `"Fortress Rueso", the former command of Gordon Vorynx, composes a fortress battalion and a mixed support regiment.`,
+    `The first battalion of the Konai garrison division was destroyed early, forcing a major change of plans.`,
+    `Many believe the Admiral-Manager became depressed in his late career after his old military friends died.`,
+    `The Lawyer-Manager's reputation was hurt by scandals, but he took it too far when he fired an old rival.`,
+    `The budgetary failings of the Reformer-Manager resulted in a large but frail Management military.`,
+    //110
+
+    `The Aggressor-Manager's clearly incorrect claims about the progress of the war caused his credibility to collapse.`,
+    `Where the single product of Operation Godhood actually went is still unknown centuries later.`,
+    `The secession of most Outer Rim and Farlands territories was barely avoided by the Anchor-Manager.`,
+    `The Grand Coalition War was comparably shorter than its predecessor, the Sisters War, with few casualties.`,
+    `Three times in his life did the Admiral-Manager occupy Terra, each time more brutal than the last.`,
+    `When the Management cooperated with other human polities during the Humanic Wars, their gains were meager.`,
+    `The Southern Cradle, around which the Human Empire developed, was rich in resources, but they were squandered.`,
+    `The Manager always carries around the Code Cylinder, which unlocks almost everything in the Management.`,
+    `The former duck assemblies, formed by their treaty of vassalage, were mostly dissolved by the Lawyer-Manager.`,
+    `The Management logo is officially rendered in blue on a grey background, but is often seen in other colors too.`,
+    //120
+
+    /*``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    //130
+
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    //140
+
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,*/
+    //150
+
+    /*
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    */
+]
 types.event=[
     {
         name:'',id:0,list:-1,
@@ -1836,9 +2030,7 @@ dashing between cars to get off the bridge.`,
                 optionDesc:['','Start Fight'],
                 link:[1,-2],
             },{
-                desc:`
-"40", he answers.
-"Standard Management currency."`,
+                desc:`"40 bits", he answers.`,
                 option:['Pay up','Attack Him'],
                 optionDesc:['Lose 40 Currency','Start Fight'],
                 link:[2,-2],
@@ -5086,8 +5278,8 @@ Want a spin?"`,
             {
                 desc:
 `On a gameshow, your placed in front of three doors.
-One of them contains 500 Standard Management Currency,
-and the other two have no prizes at all behind them.
+One of them contains 500 bits, and the other
+two have no prizes at all behind them.
 The host, one Monty Hall, offers you a choice.`,
                 option:['Choose Door 1','Choose Door 2','Choose Door 3'],
                 optionDesc:['','',''],
@@ -5262,7 +5454,7 @@ He's looks heavy and unsafe to touch though.`,
             },{
                 desc:
 `You bring him to the hospital, and he thanks you with some money.
-But you think you might've cought something from him...`,
+But you think you might've caught something from him...`,
                 option:['Leave'],
                 optionDesc:[''],
                 link:[-1],

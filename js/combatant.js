@@ -886,7 +886,7 @@ class combatant{
                 this.statusEffect('Metallicize',game.ascend>=31?10:6)
             break
             case 'Zombie Duck':
-                this.statusEffect('Revive',game.ascend>=31?3:2)
+                this.statusEffect('Revive',game.ascend>=31?2:1)
             break
             case 'Graphite Block':
                 this.statusEffect('Armor',game.ascend>=31?16:8)

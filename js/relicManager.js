@@ -60,6 +60,7 @@ class relicManager{
             this.relics.push(new relic(this.layer,this.battle,0,0,0,0,0))
             this.relics[this.relics.length-1].establish(base.player,base.position.x,base.position.y,base.type,base.size,base.active)
         }
+        this.genRelicData(this.active.length)
     }
     initialListing(){
         for(let a=0,la=5;a<la;a++){
@@ -74,7 +75,18 @@ class relicManager{
                 }
             }
         }
-        for(let a=0,la=types.relic.length;a<la;a++){
+        this.genRelicData(0)
+        for(let a=0,la=this.battle.players;a<la;a++){
+            this.complete.push(0)
+            this.position.push(0)
+            this.total.push(0)
+            this.overTotal.push(0)
+            this.up.push(false)
+            this.lost.push([])
+        }
+    }
+    genRelicData(base){
+        for(let a=base,la=types.relic.length;a<la;a++){
             if(
                 types.relic[a].rarity>=0&&
                 (types.relic[a].list==0||this.battle.player.includes(types.relic[a].list))&&
@@ -117,14 +129,6 @@ class relicManager{
                     this.detail.push(-1)
                 break
             }
-        }
-        for(let a=0,la=this.battle.players;a<la;a++){
-            this.complete.push(0)
-            this.position.push(0)
-            this.total.push(0)
-            this.overTotal.push(0)
-            this.up.push(false)
-            this.lost.push([])
         }
     }
     setupStash(){
@@ -1954,7 +1958,7 @@ class relicManager{
                         }
                         if(this.active[437][args[1]+1]>0){
                             for(let a=0,la=this.active[437][args[1]+1];a<la;a++){
-                                this.battle.cardManagers[args[1]].hand.add(findName('Proxy\nTeleport',types.card),0,0)
+                                this.battle.cardManagers[args[1]].hand.addAbstract(findName('Teleport',types.card),0,0,0,[0,4],[[4]])
                             }
                         }
                         if(this.active[438][args[1]+1]>0){

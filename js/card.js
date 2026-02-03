@@ -9487,7 +9487,9 @@ class card{
             case 8409: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRedraw All Non-\nMovements in Hand`; break
             case 8410: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nGain (B) (N)`; break
             case 8411: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Temporary\nStrength\nPulled:\nTrigger Effect`; break
-
+            case 8412: string+=`Construct Gains\n${effect[0]} Strength`; break
+            case 8413: string+=`Construct Gains\n${effect[0]} Strength\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            
             //mark p
 
             //mark q

@@ -284,7 +284,7 @@ class attack{
             case 8256: case 8257: case 8258: case 8260: case 8262: case 8263: case 8264: case 8265: case 8266: case 8269: case 8270: case 8271: case 8272: case 8276: case 8277: case 8278: case 8279: case 8280: case 8281: case 8290:
             case 8293: case 8294: case 8295: case 8300: case 8303: case 8304: case 8306: case 8308: case 8309: case 8310: case 8311: case 8318: case 8319: case 8320: case 8321: case 8323: case 8325: case 8326: case 8327: case 8328:
             case 8333: case 8335: case 8342: case 8345: case 8348: case 8350: case 8351: case 8356: case 8357: case 8363: case 8366: case 8368: case 8369: case 8377: case 8378: case 8380: case 8381: case 8382: case 8385: case 8386:
-            case 8389: case 8390: case 8391: case 8392: case 8399: case 8400: case 8403: case 8408: case 8409: case 8410:
+            case 8389: case 8390: case 8391: case 8392: case 8399: case 8400: case 8403: case 8408: case 8409: case 8410: case 8412: case 8413:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -7883,6 +7883,13 @@ class attack{
                     case 8305:
                         this.userCombatant.takeDamage(this.effect[0],-1)
                         this.userCombatant.addBlock(this.effect[1])
+                    break
+                    case 8412:
+                        this.targetCombatant.statusEffect('Strength',this.effect[0])
+                    break
+                    case 8413:
+                        this.targetCombatant.statusEffect('Strength',this.effect[0])
+                        this.userManager.draw(this.effect[1])
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])

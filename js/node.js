@@ -90,7 +90,7 @@ class node{
 
         this.anim={complete:0,active:0,contain:0,past:0,description:0}
     }
-    establish(x,y,baseX,baseY,tileX,tileY,type,reality,combat,connections,extraConnections,scroll,complete){
+    establish(x,y,baseX,baseY,tileX,tileY,type,readable,reality,combat,connections,extraConnections,scroll,complete){
         this.position={x:x,y:y}
         this.base.position={x:baseX,y:baseY}
         this.tilePosition={x:tileX,y:tileY}

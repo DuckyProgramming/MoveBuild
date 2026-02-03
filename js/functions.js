@@ -39,12 +39,27 @@ function displayTransition(layer,transition){
 	layer.rect(transition.anim*layer.width/4,layer.height/2,transition.anim*layer.width/2,layer.height)
 	layer.rect(layer.width-transition.anim*layer.width/4,layer.height/2,transition.anim*layer.width/2,layer.height)
 	layer.rect(layer.width/2,transition.anim*layer.height/4,layer.width,transition.anim*layer.height/2)
-	layer.rect(layer.width/2,layer.height-transition.anim*layer.height/4,layer.width,transition.anim*layer.height/2)
+	layer.rect(layer.width/2,layer.height-max(transition.anim*layer.height/4,transition.bump.anim*10),layer.width,max(transition.anim*layer.height/2,transition.bump.anim*20))
+	if(transition.anim<=0&&transition.trigger){
+		if(transition.anim<=0&&transition.trigger){
+			switch(transition.scene){
+				case `rest`: case `victory`: case `defeat`: case `stash`: case `bossstash`: case `event`: case `pack`: case `perk`:
+					transition.loading=randin(types.loading)
+				break
+				default:
+					transition.loading=``
+				break
+			}
+		}
+	}
+	layer.fill(255,transition.bump.anim*2)
+	layer.textSize(12)
+	layer.text(transition.loading,layer.width/2,layer.height-min(10,transition.anim*layer.height/2+transition.bump.anim*25-15))
 	if(transition.trigger){
-		if(variants.speedmove){
-			transition.anim=round(transition.anim*5+1)/5
-		}else{
-			transition.anim=round(transition.anim*10+1)/10
+		switch(transition.scene){
+			case `rest`: case `victory`: case `defeat`: case `stash`: case `bossstash`: case `event`: case `pack`: case `perk`:
+				transition.bump.trigger=true
+			break
 		}
 		if(transition.anim>=1.1){
 			transition.trigger=false
@@ -54,6 +69,9 @@ function displayTransition(layer,transition){
 				transition.convert=false
 				current.convert(stage.scene)
 			}
+			setTimeout(()=>{
+				transition.bump.trigger=false
+			},2500)
 			switch(stage.scene){
 				case 'title':
 					graphics.staticBackground.clear()
@@ -124,14 +142,26 @@ function displayTransition(layer,transition){
 					setupBackground(5,graphics.staticBackground)
 				break
 			}
+		}else if(transition.anim<1.1){
+			if(variants.speedmove){
+				transition.anim=round(transition.anim*5+1)/5
+			}else{
+				transition.anim=round(transition.anim*10+1)/10
+			}
 		}
-	}
-	else if(transition.anim>0){
+	}else if(transition.anim>0){
 		if(variants.speedmove){
 			transition.anim=round(transition.anim*5-1)/5
 		}else{
 			transition.anim=round(transition.anim*10-1)/10
 		}
+	}
+	if(transition.bump.trigger){
+		if(transition.bump.anim<1.1){
+			transition.bump.anim=round(transition.bump.anim*10+1)/10
+		}
+	}else if(transition.bump.anim>0){
+		transition.bump.anim=round(transition.bump.anim*10-1)/10
 	}
 }
 function regTriangle(layer,x,y,radiusX,radiusY,direction){
@@ -391,6 +421,12 @@ function mergeColorHSV(color1,color2,value){
 }
 function toggle(bool){
 	return bool?false:true
+}
+function last(array){
+    return array[array.length-1]
+}
+function lastKey(array,key){
+    return array[array.length-key]
 }
 function bezierArc(x,y,width,height,angle1,angle2){
 	let x1=x+lsin(angle1)*width/2
@@ -2500,6 +2536,9 @@ function outCosts(){
 		build+=`\n`
 	}
 	console.log(build)
+}
+function outDescription(){
+	print(types.combatant.reduce((acc,combatant)=>`${acc}${combatant.description.replaceAll(`\n`,` `)}\n`,``))
 }
 function uniqueArray(array){
 	for(let a=0,la=array.length;a<la;a++){
