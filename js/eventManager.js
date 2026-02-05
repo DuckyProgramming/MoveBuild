@@ -1400,9 +1400,9 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         }
                     break
                     case 107:
-                        if((this.page==0||this.page==2)&a==0&&this.battle.currency.money[this.player]>=5){
+                        if((this.page==0||this.page==4)&a==0&&this.battle.currency.money[this.player]>=5){
                             this.battle.loseCurrency(5,this.player)
-                            if(floor(random(0,4))!=0){
+                            if(floor(random(0,8))!=0){
                                 tempPage++
                             }
                         }else if(this.page==1&&a==0){

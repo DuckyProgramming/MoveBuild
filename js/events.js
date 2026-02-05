@@ -11,7 +11,7 @@ types.loading=[
     `While not that tall, Konai's Grand Escarpment has discouraged settlement of the lower valleys.`,
     //10
 
-    `The Humanic Wars, while a moment of triumph for the huams, were in reality a mass extinction event.`,
+    `The Humanic Wars, while a moment of triumph for the humans, were in reality a mass extinction event.`,
     `After the Great Humanic War, Management forces occupied the core, ignoring orders from imperial admirals.`,
     `While it has been mostly erased, sources referring to the Admiral-Manager by his original name can still be found.`,
     `Class Admiral Hethzeroslaj Paullusthz won the Grand Coalition War, but you won't find his name in history books.`,
@@ -143,41 +143,101 @@ types.loading=[
     `The Management logo is officially rendered in blue on a grey background, but is often seen in other colors too.`,
     //120
 
-    /*``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
+    `After its mayor declared permanent neutrality, Daistilia maintains a permanent militia to protect itself.`,
+    `The plateaus over Daistilia are inhabited by the sect of bloom magicians, sociable but often avoided anyway.`,
+    `Even the most dedicated magic users in Konai despise the old warlords and recognize the misery they caused.`,
+    `The Admiral-Manager, now a mechanical husk of a man, is hardly charismatic, but his reputation precedes him.`,
+    `Alexis Angle sends an envoy to meet with the rebels on Konai whenever the weather isn't clear and he feels like it.`,
+    `While he didn't invest in megaprojects, general deficit spending during the Reformer-Manager's reign was high.`,
+    `The Royalists support the return to the throne of the legitimate Jovina III from the House of Konsta.`,
+    `"Fortress Rueso" contains several coastal artillery units that lock down rebel operations on the Inland Sea.`,
+    `After significant rebel sabotage, the Rothon Aerofort is no longer usable for Management aircraft.`,
+    `Unlike Daistilia, which recruited a militia, the slightly smaller town of Reptisa has failed to become neutral.`,
     //130
 
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
+    `It's said that the Gustfelled Plateau is where the exiled, rebel and Management alike, go on Konai.`,
+    `East Konai is full of rolling agricultural valleys and thus is nearly impossible for the Management to hold.`,
+    `In dispersing the Hinokizuka commune, the expedition suffered only a single casualty but were forced to leave.`,
+    `The Erebean Descent leads into the peninsula of the same name, difficult for vehicles but traversable on foot.`,
+    `The Royalists mostly remain in the north, where the House of Konsta still holds at couple estates.`,
+    `Council and Royalist rebels have clashed a few times in the past, though the Operator has secured peace recently.`,
+    `Adjacent to Hinokizuka Peak are the Ring Mountains, most of which are shorter and more temperate.`,
+    `The Valosian Beach is considered sacred by some groups due to its spectacular beauty and for its history.`,
+    `Swimming near the wreck of the Valos is highly hazardous, but the sand nearby is safe to walk on.`,
+    `When Lexio II's ship went down, he refused to take an escape pod. He was lucky that he landed on safe ground.`,
     //140
 
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,*/
+    `The placing of Management soldiers in garrisons has greatly improved their combat performance on Konai.`,
+    `The average Management soldier is a conscript, but morale is high from the quality lodging and food.`,
+    `The Operator's real name remains unknown. Likely, only the MMIS could ever find it out, from old records.`,
+    `The Operator is believed to be from Origin, but this is is unconfirmed. He refused to comment on the matter.`,
+    `King Beli III of Konai founded the First University using money earned by the liquidation of noble estates.`,
+    `HVM troops were allowed to guard their various armories on Konai, as Vorynx wanted to free up his regulars.`,
+    `After Orofos was cleared by Management soldiers, some of the remaining clans were resettled across the galaxy.`,
+    `The Management's communications have been mostly defunct during the rebellion, except via road couriers.`,
+    `Management soldiers on Konai are mostly garrison troops and light artillerists, as well as a few demolitionists.`,
+    `A few high-profile bombings have occurred during the rebellion. Neither side has taken responsibility for them.`,
     //150
+
+    `The Admiral-Manager's early reign was marred by political purges. They slowed down by his later years.`,
+    `Project Godhood was founded on the notion that control over life was the true final frontier for humanity.`,
+    `Luvocorp is a small contractor for the Management responsible for building the engines of their ships.`,
+    `Grand Admiral Splavus and the 189th Fleet assaulted the rebels on Sanctity, but failed to prevent their escape.`,
+    `During the later years of the Reformer-Manager's reign, various funds began siphoning funding from the treasury.`,
+    `Konai is often symbolized by its twin moons, but the symbol is now overly associated with the royals.`,
+    `Other than in the Arioscape, Konai's mining industry is small in scale compared to other planets.`,
+    `The Management keeps the planetary archives on the edge or Rueso, an easy but unimportant target.`,
+    `Konaian literature is considered culturally important at home, but on other planets, it's seen as rudimentary.`,
+    `The royals of Konai once built five castles to defend the realm. All fell into disrepair and only one remains.`,
+    //160
+
+    `Executrix, a moon of Origin, is where many of the administrative tasks of the Management are carried out.`,
+    `The standard Management fighter, the SCT, is frequently updated but at its core is a very old design.`,
+    `The Operator has always refused to negotiate personally with the Management, citing their past treachery.`,
+    `While some on Konai venerate her, when Kio does appear, all fear the onset of poverty she brings.`,
+    `Various experimental versions of the SCT fighter have been constructed, but not with too much success.`,
+    `Management listening bugs aren't impossible to find, but trying to do so can drive one insane.`,
+    `Pending transport to the Salassan Archipelago, rebel prisoners are held temporarily in Fortress Rueso.`,
+    `The Management Supreme Court of Justice is so important that most cases held there are show trials.`,
+    `Randy's antics have taught Management engineers the dangers of overreliance on nuclear power.`,
+    `For every fort and castle the royals erected on Konai, Kirt Kodrax's forces have built ten or more.`,
+    //170
+
+    `Management fortifications are numerous and have small garrisons, but have impressively intricate designs.`,
+    `The Management Executive responsible for writing the Audric Codex also sponsored the failed SCT Bow project.`,
+    `Lira heavily despises the look her propaganda role has forced her into, having since outgrown it.`,
+    `The "Meeting of Five" of the Operator, George, Lira, Sakura, and Setsuna saw the founding of the Council.`,
+    `Wild ducks on Konai are spread out geographically and travel in small groups or sometimes individually.`,
+    `Somber Falls is a wide region known for its waterfalls that even out the slope of the Great Escarpment.`,
+    `The Rueso underground is filled with well-surveilled technical corridors connecting infrastructure.`,
+    `Management artillery is mostly collected in Rueso's supply caches, as it's proven ineffective over the war.`,
+    `The Management has struggled to find quality officers on Konai as the talented prefer serving elsewhere.`,
+    `Kirt Kodrax has resided in Rueso ever since the governor's mansion outside was infiltrated by rebels.`,
+    //180
+
+    `Since the failure of Project Duality, the Management has been much more careful building superweapons.`,
+    `Gordon Vorynx, who was not an architect, built the "Awful Tower" as a monument to commemorate past battles.`,
+    `The Management was severely embarrassed after their strike forces took 24 hours to sieze 2 fortresses.`,
+    `Gambling on Konai is legal but socially looked down upon. This didn't stop Chip from arriving on the planet.`,
+    `The Operator reported wished to establish the Council much sooner, but couldn't until the "Meeting of Five".`,
+    `All Management soldiers are equipped with tactical visors, with their actual use rate being about 75%.`,
+    `Konai's fairies are eternal and are functionally immortal in that they reconstitute after death.`,
+    `The rebels have besieged Rueso twice. The first was more successful but both attempts ended in defeat.`,
+    `Ducks working in agriculture typically despise it. The Markovo zone also sees unrest, despite being industrial.`,
+    `Non-yellow ducks mostly come from different branches of the same species that have since intermixed.`,
+    //190
+
+    `Attempts by the Management to rebuild Rueso and clear out remnants of the aristocracy have failed.`,
+    `The Reformer-Manager attempted to improve the economy by expanding control over contractors like HVM.`,
+    `Formerly hostile relations saw the Operator and several council members accuse the royalists of cowardice.`,
+    `According to legend, the death of a single nameless rebel caused the inciting incident of the rebellion.`,
+    `Other than defending Rueso, Gordon Vorynx's other claim to fame was dispersing the black markets in the city.`,
+    `The twin fairies of Konai have alternated being the more relevant, with Dai currently holding that mantle.`,
+    `Dai is proud to have her name in a town and two villages and her likeness in the House of Konsta's seal.`,
+    `Between Reptisa and Rueso lies a rough no man's land that Management soldiers use to rotate out troops.`,
+    `Many people on Konai with minor magical affinity never pursue it if they don't have familial reasons.`,
+    `Except for the shallow waters near the Erebean Peninsula, the Inland Sea's sides slope steeply.`,
+    //200
 
     /*
     ``,
@@ -1107,7 +1167,7 @@ An relic appears in your hand.`,
                 link:[0],
             },{
                 desc:
-`"Right behind you.
+`"Right behind you."
 You see the door behind you has opened.`,
                 option:['Leave'],
                 optionDesc:[''],
@@ -1238,7 +1298,9 @@ you begin to see a distant memory from within.`,
                 optionDesc:['Add a Rare Colorless Card'],
                 link:[-1],
             },{
-                desc:`A flash of thought jumps through your mind...\nand then there's nothing.`,
+                desc:
+`A flash of thought jumps through your mind...
+and then there's nothing.`,
                 option:[`Guess it didn't work`],
                 optionDesc:[''],
                 link:[-1],
@@ -1684,7 +1746,7 @@ it quickly devours it and hands you a box.`,
             {
                 desc:
 `The Management has announced a massive
-weapons test at the Masurian Lake.
+weapons test at the Inland Sea.
 The test is safe for viewers at 20 kilometers,
 and it has been announced that all are welcome to view it.
 A typical show of force for the Management, they want
@@ -3504,18 +3566,20 @@ cheap side, so maybe it's worth giving it a shot?`,
                 optionDesc:['Upgrade a Card'],
                 link:[-1],
             },{
-                desc:
-`You miss the target.
-The proprietor asks if you'd like another attempt.`,
-                option:['Try Again','Decline'],
-                optionDesc:['Lose 5 Currency',''],
-                link:[1,3],
+                desc:`You miss the target.`,
+                option:['Unlucky'],
+                optionDesc:[''],
+                link:[4],
             },{
-                desc:
-`You decide it's not worth the money.`,
+                desc:`You decide it's not worth the money.`,
                 option:['Exit'],
                 optionDesc:[''],
                 link:[-1],
+            },{
+                desc:`The proprietor asks if you'd like another attempt.`,
+                option:['Try Again','Decline'],
+                optionDesc:['Lose 5 Currency',''],
+                link:[1,3],
             },
         ],
     },{
@@ -3642,7 +3706,7 @@ bodies and the remnants of destroyed fighters.`,
             },{
                 desc:
 `Getting deep underground, you and the other survivors
-successfully wait out the attacks until the fighters
+successfully wait out the attacks until the fightefrs
 run out of ammunition and withdraw. But it looks
 like a lot of rebels didn't make it out alive...`,
                 option:['Exit'],
