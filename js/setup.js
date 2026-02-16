@@ -6,7 +6,7 @@ function setup(){
     current=new battle(graphics.main,game.player)
 
     if(false){
-            //game.ascend=33
+            game.ascend=33
 
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/

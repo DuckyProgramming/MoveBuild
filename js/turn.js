@@ -1933,7 +1933,7 @@ class turn{
                         this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Temporary Draw',-this.effect[0])
                     break
                     case 93:
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect(variants.mtg?'Random Mana Next Turn':'Energy Next Turn',this.effect[0])
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect(variants.mtg?'Random Mana Next Turn':'Energy Next Turn',-this.effect[0])
                     break
                     case 94:
                         this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Anti-Control',this.effect[0])

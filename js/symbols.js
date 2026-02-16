@@ -15276,6 +15276,33 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.line(-8,-4,0,6)
             layer.line(8,-4,0,6)
         break
+        case 176:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(-2,-2,12,16,2)
+            layer.rect(0,0,12,16,2)
+            layer.rect(2,2,12,16,2)
+            layer.strokeWeight(1)
+            layer.rect(0,-4.5,2)
+            layer.point(0,0)
+            layer.point(-1,-1)
+            layer.point(-1,1)
+            layer.point(1,-1)
+            layer.point(1,1)
+            layer.line(0,3,0,5)
+            layer.line(-1,4,1,4)
+        break
+        case 177:
+            for(let a=0,la=4;a<la;a++){
+                layer.fill(a*50,0,a*50,fade)
+                regStar(layer,0,0,8,7.5-a*1.25,7.5-a*1.25,4.5-a*0.75,4.5-a*0.75,0)
+            }
+            layer.fill(220,fade)
+            layer.ellipse(0,0,6)
+            layer.fill(0,fade)
+            layer.ellipse(-1.5,-0.5,1.5)
+            layer.ellipse(1.5,-0.5,1.5)
+        break
 
     }
     layer.pop()
@@ -15453,4 +15480,6 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 173-Riptide
 174-Triplicate Card
 175-Bombed
+176-Trioerratic
+177-Mortal
 */

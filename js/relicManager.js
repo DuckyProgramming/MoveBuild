@@ -682,8 +682,8 @@ class relicManager{
                 }
             break
             case 297:
-                this.battle.overlayManager.overlays[78][player].active=true
-                this.battle.overlayManager.overlays[78][player].activate()
+                this.battle.overlayManager.overlays[179][player].active=true
+                this.battle.overlayManager.overlays[179][player].activate()
             break
             case 300:
                 this.battle.purchaseManager.costChange(player,5,0.5)

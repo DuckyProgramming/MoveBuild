@@ -2440,7 +2440,7 @@ class relic{
                 case 'First Enemy Mortal':
                     displaySymbol(this.layer,-8,-4,3,0,0.5,this.fade)
                     displaySymbol(this.layer,-8,10,120,0,1,this.fade)
-                    displaySymbol(this.layer,8,2,148,0,1.2,this.fade)
+                    displaySymbol(this.layer,8,2,177,0,1.2,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('3',8,2)
@@ -3864,6 +3864,9 @@ class relic{
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(6)
                     this.layer.text('10',9,-2)
+                break
+                case 'Trioerratic':
+                    displaySymbol(this.layer,0,0,176,0,1.2,this.fade)
                 break
 
                 //mark p
