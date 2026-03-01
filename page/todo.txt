@@ -4,20 +4,88 @@ the royal recruit:
 
 skill tree:
 you start as a recruit - you have basic cards and only use the reserve gimmick
--
---
---
--
---
---
-- artillerist - cards let you call in damage, and each turn an enemy gains 1 vulnerable
---
---
 
 "reserve" is a card effect like discard or rewind that puts cards in a special pile
 each turn you can pick a card from that pile to put into hand (if its size is more than 0)
 this is a relatively minor mechanic
 
+^ this idea fucking sucks
 
+
+
+slightly less bad ideas:
+
+the astronomical unit - you are 2
+but like they share a space
+and phase between animation states
+
+50% of lira lol
+
+50% of merlin lol
+
+
+
+decent ideas:
+
+50% of merlin (skill combo) + colorless build
+effectiveness of pristine greatly reduced, now no longer draws a card and is like 1 temp dex or smth ass
+deploy half the general reserve to replace destroyed colorless cards
+
+
+
+hexenkessel #F8DE7E
+
+
+
+pick character by typing letter
 
 CARDSET 92 [ENDSIEG]
+
+sheer effort - 2 cost, draw a card it costs 0, exhaust any number of cards, retain
+
+cozy camper - gain 1 energy if your next card played is an attack
+
+stratagem - 0 cost rare, gain 1 energy, discover an attack, defense, or movement
+
+[colorless] librarian - 3 cost, damage and block equal to your deck size, retain
+
+spring cleaning - exhaust 1 card and draw a card now or gain 1 pure, 1 cost retain
+
+
+
+stolen valor - damage, if fatal, gain 2 strength and redraw your hand
+
+spawncamp - 10 damage, if target just spawned and it's not turn 1, deal triple
+
+war guide - draw 2 cards, draw a movement
+
+evasive maneuvers - gain 1 dodge, redraw all defenses in hand
+
+
+
+[colorless uncommon] path of totality - 1 cost,
+world 1: deal 10 damage
+world 2: add 15 block
+world 3: draw 3 cards
+world 4: all of them
+
+
+
+hollow meteor - damage, get a pristine if in the center of hand
+
+
+
+rename coffee from donakho
+
+new coffee - gain 1 energy, coffee
+coffee keyword - when played more than once per turn, lose 3 life
+
+white coffee - exhaust a card, draw a card, coffee
+
+dark coffee - apply 1 vuln to all enemies, coffee
+
+coffee break - block, when played first time get coffee (if not obvious, this card is an analogue)
+
+
+
+
