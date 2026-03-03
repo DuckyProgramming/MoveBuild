@@ -156,7 +156,7 @@ class battle{
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],barrier:[],bounce:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
         this.lastEncounter=types.encounter[0]
         
-        this.turn={main:0,total:0,time:0,accelerate:0,endReady:false,active:false}
+        this.turn={main:0,swivel:floor(random(0,2)),total:0,time:0,accelerate:0,endReady:false,active:false}
         this.counter={enemy:0,killed:0,tooltip:0}
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
@@ -452,7 +452,7 @@ class battle{
         for(let a=0,la=this.energy.base.length;a<la;a++){
             this.energy.gen[a]=variants.mtg?copyArray(this.energy.base[a]):this.energy.base[a]
         }
-        this.turn={main:0,total:0,time:0,accelerate:0,active:false}
+        this.turn={main:0,swivel:floor(random(0,2)),total:0,time:0,accelerate:0,active:false}
         this.counter={enemy:0,killed:0}
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
@@ -942,7 +942,11 @@ class battle{
             this.cardManagers[this.turn.main].reserve.allEffectArgs(44,[5050,5051,5163,6511])
             extra=true
         }else{
-            this.turn.main++
+            if(this.players==2){
+                this.turn.main=this.turn.main==this.turn.swivel?1-this.turn.main:this.turn.main>=2?this.turn.main+1:2
+            }else{
+                this.turn.main++
+            }
             combatant.interiorStatus[0]=0
         }
         if(combatant.getStatus('No Extra Turns Next Turn')>0){
@@ -1122,7 +1126,7 @@ class battle{
                 this.quickReinforce('Management Robot')
             }
         }
-        this.turn.main=0
+        this.turn.main=this.turn.swivel
         this.setTurn(this.turn.total+1)
         this.turn.time=game.turnTime
         let combatant
