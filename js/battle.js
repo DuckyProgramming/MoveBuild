@@ -1126,7 +1126,7 @@ class battle{
                 this.quickReinforce('Management Robot')
             }
         }
-        this.turn.main=this.turn.swivel
+        this.turn.main=this.players==2?this.turn.swivel:0
         this.setTurn(this.turn.total+1)
         this.turn.time=game.turnTime
         let combatant
