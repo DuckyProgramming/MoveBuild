@@ -13,6 +13,10 @@ this is a relatively minor mechanic
 
 
 
+shiru ug
+
+
+
 slightly less bad ideas:
 
 the astronomical unit - you are 2
@@ -61,6 +65,18 @@ war guide - draw 2 cards, draw a movement
 
 evasive maneuvers - gain 1 dodge, redraw all defenses in hand
 
+triangulation - damage, repeat twice if target has vulnerable, otherwise apply vulnerable
+
+buffet - rare exhaust - gain 1 energy, draw a 1 cost card, it costs 0
+
+
+
+hashkey - add 6 block, draw a card the next 2 times you attack
+
+datamining - exhaust a card, draw 2 more next turn, retain
+
+ferrous end - no defenses in hand: apply 99 weak
+
 
 
 [colorless uncommon] path of totality - 1 cost,
@@ -85,7 +101,6 @@ white coffee - exhaust a card, draw a card, coffee
 dark coffee - apply 1 vuln to all enemies, coffee
 
 coffee break - block, when played first time get coffee (if not obvious, this card is an analogue)
-
 
 
 

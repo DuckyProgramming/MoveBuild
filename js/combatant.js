@@ -420,6 +420,7 @@ class combatant{
 
         this.intent=-1
         this.usedIntent=[]
+        this.completedIntent=[]
         this.activated=this.construct
         this.target=0
         for(let a=0,la=this.orbs.length;a<la;a++){
@@ -1514,7 +1515,7 @@ class combatant{
             if(game.ascend>=33){
                 switch(this.name){
                     case 'Rewriter':
-                        this.behavior=8
+                        this.behavior=20
                         this.addAttack(469,[])
                     break
                 }
@@ -2456,6 +2457,9 @@ class combatant{
                                 this.intent=this.progress
                                 this.progress++
                             }
+                        break
+                        case 20:
+                            this.intent=!this.completedIntent.includes(this.attack.length-1)?this.attack.length-1:(this.turnsAlive-2)%(this.attack.length-1)
                         break
                     }
                     this.convertIntent()
@@ -5410,7 +5414,7 @@ class combatant{
                             this.takeDamage(userCombatant.getStatus('Bleed Damage'),-1)
                         }
                         if(userCombatant.getStatus('Bleed Attack Intent')>0){
-                            this.setIntentClass([1,5])
+                            this.setIntentClassMultiple([1,5])
                         }
                     }
                 }

@@ -510,7 +510,7 @@ function arrayCompareLoose(array1,array2){
 }
 function calculateEffect(effect,user,type,player,relicManager,variant,args){
 	switch(type){
-		case 0: case 2: case 5: case 7: case 8: case 10: case 11: case 12: case 13: case 20:
+		case 0: case 2: case 5: case 7: case 8: case 10: case 11: case 12: case 13: case 20: case 22:
 			let damage=effect
 			let bonus=0
 			let totalStr=0
@@ -544,7 +544,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[10]&&user.status.main[797]>0){
 				bonus+=user.status.main[797]
 			}
-			if(user.status.main[12]!=0){
+			if(user.status.main[12]!=0&&type!=22){
 				bonus+=user.status.main[12]*max(1+user.status.main[838]*0.1+user.status.main[839]*0.1,0.2)
 			}
 			if(user.status.main[40]>0){
@@ -671,7 +671,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				bonus*=3
 			}
 			switch(type){
-				case 0: return damage==effect&&bonus==0?tennify(effect):tennify(effect)+`(${tennify(damage+bonus)})`
+				case 0: case 22: return damage==effect&&bonus==0?tennify(effect):tennify(effect)+`(${tennify(damage+bonus)})`
 				case 2: return (damage==effect?(effect==1?``:tennify(effect))+'X':tennify(effect)+`(${tennify(damage)})X`)+(bonus>0?`(+${tennify(bonus)})`:``)
 				case 5: return (damage==effect?(effect==1?``:tennify(effect))+'XX':tennify(effect)+`(${tennify(damage)})XX`)+(bonus>0?`(+${tennify(bonus)})`:``)
 				case 7: return effect==1?(damage==effect?`Combo`:`1(${tennify(damage)})*Combo`):(damage==effect?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(damage)})*Combo`)

@@ -4124,6 +4124,7 @@ turn.prototype.update=function(){
                 break
             }
             if(this.remove){
+                this.userCombatant.completedIntent.push(this.userCombatant.intent)
                 if(this.mover){
                     this.userCombatant.moved=true
                 }

@@ -8278,7 +8278,7 @@ class card{
             case 7205: string+=`Take Another Turn\nWhen Evolved,\nCosts 1 Less`; break
             case 7206: string+=`When You Play\nan Evolve Card,\nEvolve it`; break
             case 7207: string+=`When a Card Evolves,\nGain ${effect[0]} Temporary\nStrength`; break
-            case 7208: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nCannot be Manually\nUpgraded`; break
+            case 7208: string+=`Deal ${this.calculateEffect(effect[0],22)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nCannot be Manually\nUpgraded`; break
             case 7209: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nTarget Cannot Move\nFor ${effect[1]} Turn${pl(effect[1])}\nApply ${effect[2]} Communized`; break
             case 7210: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Communized`; break
             case 7211: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nPer Worker Drawn,\nGain ${effect[2]} Energy`; break
