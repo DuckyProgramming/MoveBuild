@@ -9175,15 +9175,23 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,0,10)
         break
         case 2:
-            layer.rotate(45)
-            layer.ellipse(0,0,32,42)
-            layer.stroke(125,200,125,fade)
+            //layer.rotate(45)
+            //layer.ellipse(0,0,32,42)
+            /*layer.stroke(125,200,125,fade)
             layer.strokeWeight(3)
             layer.line(0,17,0,-8)
             layer.line(0,10,-8,5)
             layer.line(0,10,8,5)
             layer.line(0,0,-6,-3.75)
-            layer.line(0,0,6,-3.75)
+            layer.line(0,0,6,-3.75)*/
+            layer.rotate(36)
+            layer.ellipse(0,0,24,42)
+            layer.fill(125,200,125,fade)
+            layer.triangle(0,-18,-1.5,24,1.5,24)
+            for(let a=0,la=4;a<la;a++){
+                layer.triangle(0,15-a*8.4+a*a*0.3,0,12-a*7.95+a*a*0.3,-10+a*1.8,4.5-a*6.9+a*a*0.3)
+                layer.triangle(0,15-a*8.4+a*a*0.3,0,12-a*7.95+a*a*0.3,10-a*1.8,4.5-a*6.9+a*a*0.3)
+            }
             layer.rotate(-45)
         break
         case 3:

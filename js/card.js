@@ -3902,7 +3902,7 @@ class card{
             case 2842: string+=`Damage Dealt to\nTarget is Rounded Up\nto the Nearest 5\nTargets Any Enemy`; break
             case 2843: string+=`Gain ${effect[0]} Random\nTemporary Item${pl(effect[0])}\nShuffle a Dazed\ninto Draw Pile`; break
             case 2844: string+=`Next Item Used\nHas Double Effect\nLose ${effect[0]} Health`; break
-            case 2845: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Caffeine\nPill Item${pl(effect[1])}`; break
+            case 2845: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Granola\nBar Item${pl(effect[1])}`; break
             case 2846: string+=`All Items Used\nThis Combat\nGive ${effect[0]} Energy`; break
             case 2847: string+=`Gain ${effect[0]} Currency\nApply ${effect[1]} Strength`; break
             case 2848: string+=`Gain ${effect[0]} Attack\nDust Item${pl(effect[0])}\nGain ${effect[1]} Defense\nDust Item${pl(effect[1])}`; break
@@ -7873,7 +7873,7 @@ class card{
             case 6801: string+=`Gain ${effect[0]} Strength\nFugue: Gain ${effect[1]} Dexterity`; break
             case 6802: string+=`Gain ${effect[0]} Armor\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 6803: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n5 Cards in Hand:\nDeals Double Damage`; break
-            case 6804: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Caffeine\nPill Item${pl(effect[1])}`; break
+            case 6804: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Granola\nBar Item${pl(effect[1])}`; break
             case 6805: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 When Confused`; break
             case 6806: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDivinity:\nAdd a Miracle to Hand`; break
             case 6807: string+=`Gain ${effect[0]} Energy\nNext Turn\nCounter ${effect[1]} Once`; break
@@ -8384,7 +8384,7 @@ class card{
             case 7311: string+=`Gain ${effect[0]} Control\nRecovery ${effect[1]}`; break
             case 7312: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Recovered,\nMake ${effect[1]} Cop${effect[1]!=1?`ies`:`y`}`; break
             case 7313: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nApply ${effect[1]} Communized`; break
-            case 7314: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Caffeine\nPill Item${pl(effect[1])}`; break
+            case 7314: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Granola\nBar Item${pl(effect[1])}`; break
             case 7315: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nConfuse ${effect[1]} Card${pl(effect[1])}`; break
             case 7316: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nConfuse ${effect[1]} Card${pl(effect[1])}`; break
             case 7317: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nConfuse ${effect[1]} Card${pl(effect[1])}`; break
@@ -9483,13 +9483,67 @@ class card{
             case 8405: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain (N) Energy\nPer Adjacent Attack`; break
             case 8406: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain (G) Energy\nPer Adjacent Attack`; break
             case 8407: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain (E) Energy\nPer Adjacent Attack`; break
-            case 8408: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nAdd a Ripped Wave\nof Equivalent Card\nto Discard`; break
+            case 8408: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nAdd a Ripped Wave\nof Equivalent Level\nto Discard`; break
             case 8409: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRedraw All Non-\nMovements in Hand`; break
             case 8410: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nGain (B) (N)`; break
             case 8411: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Temporary\nStrength\nPulled:\nTrigger Effect`; break
             case 8412: string+=`Construct Gains\n${effect[0]} Strength`; break
             case 8413: string+=`Construct Gains\n${effect[0]} Strength\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             
+            case 8414: string+=`Lose ${effect[0]} Caffeine`; break
+            //3430
+            case 8415: string+=`Gain ${effect[0]} Energy\nGain ${effect[1]} Caffeine`; break
+            case 8416: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}\nGain ${effect[2]} Caffeine`; break
+            //41
+            case 8417: string+=`Gain (N) (N)\nGain ${effect[0]} Caffeine`; break
+            case 8418: string+=`Gain (N) (N) (N)\nGain ${effect[0]} Caffeine`; break
+            case 8419: string+=`Gain (N) (N) (N) (N)\nGain ${effect[0]} Caffeine`; break
+            //3975-3977
+            case 8420: string+=`Gain ${effect[0]} Buffer\nGain ${effect[1]} Caffeine`; break
+            //913
+            case 8421: string+=`Upgrade ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Temporary\nStrength\nGain ${effect[2]} Caffeine`; break
+            //3718
+            case 8422: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Caffeine\nGain ${effect[2]} Temporary\nStrength\nPer Card Played While\nThis Card is in Your Hand`; break
+            //5749
+            case 8423: string+=`Upgrade ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Caffeine\nFirst Time Played: (${this.debut?`Yes`:`No`})\nHeal ${this.calculateEffect(effect[2],4)} Healt\nCosts 1 Less`; break
+            //7033
+
+            case 8424: string+=`Hold ${effect[0]} Basic Orb${pl(effect[0])}\nReturn When You\nEvoke a Shield Orb`; break
+            //5935
+            case 8425: string+=`Hold ${effect[0]} Shield Orb${pl(effect[0])}\nReturn When You\nEvoke a Basic Orb`; break
+            //6209
+            case 8426: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n${effect[1]} Countdown${pl(effect[1])} in Hand:\nAdds Double Block`; break
+            //3412
+            case 8427: string+=`Apply ${effect[0]} Vulnerable\nApplies Double Vulnerable\nIf You Have Played ${effect[1]}\nSkill${pl(effect[1])} This Turn${stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players&&!this.nonCalc?`\n(Currently ${this.battle.cardManagers[this.player].hand.turnPlayed[11]})`:``}`; break
+            //5557
+            case 8428: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze\nIf Last Card Played\nWas a Countdown,\nRepeat`; break
+            //6394
+            case 8429: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Triple Damage if\nTarget Spawned Last Turn`; break
+            //4098
+
+            case 8430: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Pristine to Hand\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 8431: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Communized\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            //8279
+            case 8432: string+=`Gain ${effect[0]} Ringing\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+            case 8433: string+=`Draw ${effect[0]} Skill${pl(effect[0])}\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+            //7247
+            case 8434: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Card${pl(effect[1])}\nGain ${effect[2]} Caffeine`; break
+            case 8435: string+=`Apply ${effect[0]} Weak\nand ${effect[1]} Vulnerable\nto All Enemies\nGain ${effect[2]} Caffeine`; break
+            //8415
+
+            case 8436: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand`; break
+            //3093
+            case 8437: string+=`Discover a Colorless Card`; break
+            //7144
+            case 8438: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable\nAdd a Pristine to Hand`; break
+            //7627
+
+
+
+
+
+
+
             //mark p
 
             //mark q

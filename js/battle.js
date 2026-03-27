@@ -2384,7 +2384,7 @@ class battle{
                 for(let a=0,la=types.deckmode.length;a<=la;a++){
                     if(this.menu.anim.deck[0][a]>0){
                         this.layer.fill(240,this.menu.anim.deck[0][a])
-                        this.layer.textSize(types.deckmode[a].name.length>15?8:10)
+                        this.layer.textSize(types.deckmode[a].name.length>18?7:10)
                         this.layer.text(types.deckmode[a].name.toUpperCase(),this.layer.width/2,this.layer.height*0.65+80)
                     }
                 }
@@ -3917,13 +3917,21 @@ class battle{
                         this.setupMtgManaChoice(0)
                     }
                 }
-                if(key=='a'||key=='A'){
+                for(let a=0,la=constants.playerNumber;a<la;a++){
+                    if(key.toLowerCase()==`abcdefghijklmnopqrstuvwxyz`[a]){
+                        this.menu.combatant[0]=a+1
+                        if(variants.mtg){
+                            this.setupMtgManaChoice(0)
+                        }
+                    }
+                }
+                if(key=='['){
                     this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length-1)%types.deckmode.length
                 }
-                if(key=='d'||key=='D'){
+                if(key==']'){
                     this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length+1)%types.deckmode.length
                 }
-                if(key=='r'||key=='R'){
+                if(key=='\\'){
                     let remaining=[]
                     for(let a=0,la=constants.playerNumber;a<la;a++){
                         if(this.menu.combatant[0]!=a+1){
@@ -3956,25 +3964,33 @@ class battle{
             break
             case 'menu2':
                 for(let a=0,la=2;a<la;a++){
-                    if(code==LEFT_ARROW&&a==0||(key=='a'||key=='A')&&a==1){
+                    if(code==LEFT_ARROW&&(a==0&&inputs.lastKey[1]!=`Shift`||a==1&&inputs.lastKey[1]==`Shift`)){
                         this.menu.combatant[a]=(this.menu.combatant[a]+constants.playerNumber-2)%constants.playerNumber+1
                         if(variants.mtg){
                             this.setupMtgManaChoice(a)
                         }
                     }
-                    if(code==RIGHT_ARROW&&a==0||(key=='d'||key=='D')&&a==1){
+                    if(code==RIGHT_ARROW&&(a==0&&inputs.lastKey[1]!=`Shift`||a==1&&inputs.lastKey[1]==`Shift`)){
                         this.menu.combatant[a]=this.menu.combatant[a]%constants.playerNumber+1
                         if(variants.mtg){
                             this.setupMtgManaChoice(a)
                         }
                     }
-                    if(key==','&&a==0||(key=='z'||key=='Z')&&a==1){
+                    for(let b=0,lb=constants.playerNumber;b<lb;b++){
+                        if(key==[`abcdefghijklmnopqrstuvwxyz`,`ABCDEFGHIJKLMNOPQRSTUVWXYZ`][a][b]){
+                            this.menu.combatant[a]=b+1
+                            if(variants.mtg){
+                                this.setupMtgManaChoice(0)
+                            }
+                        }
+                    }
+                    if(key=='['&&a==0||key=='{'&&a==1){
                         this.menu.deck[a]=(this.menu.deck[a]+types.deckmode.length-1)%types.deckmode.length
                     }
-                    if(key=='/'&&a==0||(key=='c'||key=='C')&&a==1){
+                    if(key==']'&&a==0||key=='}'&&a==1){
                         this.menu.deck[a]=(this.menu.deck[a]+types.deckmode.length+1)%types.deckmode.length
                     }
-                    if(key=='r'&&a==0||key=='R'&&a==1){
+                    if(key=='\\'&&a==0||key=='|'&&a==1){
                         let remaining=[]
                         for(let b=0,lb=constants.playerNumber;b<lb;b++){
                             if(this.menu.combatant[a]!=b+1){

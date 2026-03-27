@@ -6,12 +6,12 @@ function setup(){
     current=new battle(graphics.main,game.player)
 
     if(false){
-            game.ascend=33
+            //game.ascend=33
 
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[1]
+        current.menu.combatant=[26]
         current.menu.deck=[-1]
 
             //variants.mtg=true

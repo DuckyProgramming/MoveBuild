@@ -26,6 +26,7 @@ types={
         {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:458,effect:[1]},{type:459,effect:[11,1]},{type:460,effect:[13,5]}],description:`Eternal guardian force of Somber Falls,\nconvinced to leave by its endless quiet.\nImagined that the rest of Konai,\nwhile decidedly not home, might\njust have something actually going on.`},
         {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:462,effect:[11,2]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:`Told tales of the glorious past\nrevolutions by elder duck farmers,\nhe hopes to carry on their work.\nBut with the Management clamping down,\nhe had to join with the council.`},
         {name:'Meri',moniker:'The Whisper',identifier:['Sister','Miss'],life:49,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:466,effect:[5]},{type:467,effect:[5]},{type:465,effect:[10,10]}],description:`Chief courier of the council,\nchosen personally by the Operator\nto act as the main liaison between\nrural rebels and their much weaker\ncounterparts holed up in Rueso.`},
+        {name:'Menessa',moniker:'The Emissary',identifier:['Sister','Miss'],life:46,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -1514,7 +1515,7 @@ types={
         {name:'Energy Drink',internal:'1 Energy',id:1004,rarity:3,list:0,menu:false,temp:true,mtg:1,description:'Gain 1 Energy\nTemporary'},
         {name:'Glass Shard',internal:'5 Damage',id:1005,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 5 Damage\nRange 1-3'},
         {name:'Molten Metal',internal:'10 Block',id:1006,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add 10 Block\nTemporary'},
-        {name:'Caffeine Pill',internal:'Draw 2',id:1007,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards\nTemporary'},
+        {name:'Granola Bar',internal:'Draw 2',id:1007,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards\nTemporary'},
         {name:'Attack Dust',internal:'1 Strength',id:1008,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength\nTemporary'},
         {name:'Defense Dust',internal:'1 Dexterity',id:1009,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Dexterity\nTemporary'},
         {name:'Mystery Box',internal:'1 Free Card',id:1010,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add a Random Free Card to Hand\nIt Has Exhaust and Ethereal\nTemporary'},
@@ -1662,6 +1663,11 @@ types={
                 stroke:[195,145,155],
                 text:[55,45,45],
                 active:[255,215,225],
+            },{
+                fill:[248,222,126],
+                stroke:[228,202,106],
+                text:[70,60,30],
+                active:[235,225,205],
             },
             
             {
@@ -1727,6 +1733,7 @@ types={
             {},{},{},{},{},
             {},{},{},{},{},
             {},{},{},{},{},
+            {},
             
             {
                 fill:[125,125,125],
@@ -7570,7 +7577,7 @@ variants={
 }
 constants={
     autoExec:-1,
-    playerNumber:25,orbNumber:17,
+    playerNumber:26,orbNumber:17,
     targetRadius:30,startEnergy:3,collisionDamage:4,
     sqrt2:0,sqrt3:0,phi:0,trig:[[],[]],
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
@@ -7585,6 +7592,6 @@ constants={
 options={damage:false,alt:false,replay:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false,devGen:false}
 graphics={main:0,backgroundGen:17,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],paperball:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false,loading:``,bump:{trigger:false,anim:0}}
-inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}
+inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:[],hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0
 la=0;lb=0;lc=0;ld=0;le=0;lf=0;lg=0;lh=0;li=0;lj=0;lk=0;ll=0;lm=0;ln=0;lo=0;lp=0

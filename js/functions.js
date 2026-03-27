@@ -41,15 +41,13 @@ function displayTransition(layer,transition){
 	layer.rect(layer.width/2,transition.anim*layer.height/4,layer.width,transition.anim*layer.height/2)
 	layer.rect(layer.width/2,layer.height-max(transition.anim*layer.height/4,transition.bump.anim*10),layer.width,max(transition.anim*layer.height/2,transition.bump.anim*20))
 	if(transition.anim<=0&&transition.trigger){
-		if(transition.anim<=0&&transition.trigger){
-			switch(transition.scene){
-				case `rest`: case `victory`: case `defeat`: case `stash`: case `bossstash`: case `event`: case `pack`: case `perk`:
-					transition.loading=randin(types.loading)
-				break
-				default:
-					transition.loading=``
-				break
-			}
+		switch(transition.scene){
+			case `rest`: case `victory`: case `defeat`: case `stash`: case `bossstash`: case `event`: case `pack`: case `perk`:
+				transition.loading=randin(types.loading)
+			break
+			default:
+				transition.loading=``
+			break
 		}
 	}
 	layer.fill(255,transition.bump.anim*2)
@@ -59,6 +57,9 @@ function displayTransition(layer,transition){
 		switch(transition.scene){
 			case `rest`: case `victory`: case `defeat`: case `stash`: case `bossstash`: case `event`: case `pack`: case `perk`:
 				transition.bump.trigger=true
+			break
+			default:
+				transition.bump.trigger=false
 			break
 		}
 		if(transition.anim>=1.1){
@@ -2733,6 +2734,7 @@ function mtgPlayerColor(player){
 		case 23: return [1,2,5]
 		case 24: return [2,4,5]
 		case 25: return [1,3,5]
+		case 26: return [0,3]
 		default: return [6]
 	}
 }
