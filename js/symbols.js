@@ -8572,6 +8572,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(5,-2,3)
             layer.ellipse(5,2,3)
         break
+        case 855:
+            layer.stroke(150,90,0,fade)
+            layer.strokeWeight(2)
+            regPoly(layer,-3,0,6,4,4,0)
+            regPoly(layer,3.5,0,5,4,4,90)
+        break
 
     }
     //mark s

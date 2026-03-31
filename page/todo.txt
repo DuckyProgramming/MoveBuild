@@ -19,29 +19,23 @@ sheer effort - 2 cost, draw a card it costs 0, exhaust any number of cards, reta
 
 cozy camper - gain 1 energy if your next card played is an attack
 
-spring cleaning - exhaust 1 card and draw a card now or gain 1 pure, 1 cost retain
+spring cleaning - exhaust 1 card and draw a card now or gain 1 pure, 1 cost retai
+
+hashkey - add 6 block, draw a card the next 2 times you attack
+
+datamining - exhaust a card, draw 2 more next turn, retain
+
+transphobia - when you transform a card gain 8 blockn
 
 
 
 stolen valor - damage, if fatal, gain 2 strength and redraw your hand
-
-war guide - draw 2 cards, draw a movement
 
 evasive maneuvers - gain 1 dodge, redraw all defenses in hand
 
 triangulation - damage, repeat twice if target has vulnerable, otherwise apply vulnerable
 
 buffet - rare exhaust - gain 1 energy, draw a 1 cost card, it costs 0
-
-
-
-hashkey - add 6 block, draw a card the next 2 times you attack
-
-datamining - exhaust a card, draw 2 more next turn, retain
-
-ferrous end - no defenses in hand: apply 99 weak
-
-transphobia - when you transform a card gain 8 block
 
 
 
@@ -88,34 +82,6 @@ anvil - unplayable, when manually upgraded during combat instead deal 10 damage 
 magnet - 12 damage, steal up to 3 block from adjacent enemies
 
 doomsayer - 11 damage in all directions, triggers when discarded by scry
-
-
-
-[colorless uncommon] path of totality - 1 cost,
-world 1: deal 10 damage
-world 2: add 15 block
-world 3: draw 3 cards
-world 4: all of them
-
-[colorless]:
-
-tunnel - damage, if fatal, gain 1 free move (pick any room, can't pick back though like nav)
-
-congratulations - damage, if you are at full health gain 1 energy draw 1 card
-
-
-
-altercation buffed to 3 -> colorless
-log out free -> colorless
-continuum -> colorless (no change)
-
-stratagem - 0 cost rare, gain 1 energy, discover an attack, defense, or movement
-
-[colorless] librarian - 3 cost, damage and block equal to your deck size, retain
-
-
-
-[traffic cone]
 
 
 

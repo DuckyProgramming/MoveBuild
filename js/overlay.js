@@ -1164,7 +1164,7 @@ class overlay{
                         }
                     break
                     case 57:
-                        this.options=args[1][0]==13||args[1][0]==14||args[1][0]==15?6:3
+                        this.options=args[1][0]==13||args[1][0]==14||args[1][0]==15?6:args[1][0]==16?4:3
                         switch(args[1][0]){
                             case 0:
                                 list=(variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]))[args[1][1]]
@@ -1296,6 +1296,21 @@ class overlay{
                                 list=[]
                                 args[1][1].forEach(arg=>list.push(findName(arg,types.card)))
                             break
+                            case 16:
+                                list=[]
+                                for(let a=0,la=args[1][1].length;a<la;a++){
+                                    list.push((variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]))[3])
+                                }
+                                for(let b=0,lb=list.length;b<lb;b++){
+                                    for(let c=0,lc=list[b].length;c<lc;c++){
+                                        if(types.card[list[b][c]].levels[args[0]].class!=args[1][1][b]){
+                                            list[b].splice(c,1)
+                                            c--
+                                            lc--
+                                        }
+                                    }
+                                }
+                            break
                             default:
                                 list=[]
                             break
@@ -1383,33 +1398,33 @@ class overlay{
                         }
                         for(let a=0,la=this.options;a<la;a++){
                             switch(args[1][0]){
-                                case 6: case 9: case 12:
+                                case 6: case 9: case 12: case 16:
                                     if(list[a%list.length].length>0){
                                         let index=floor(random(0,list[a%list.length].length))
                                         this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[a%list.length][index],args[0],this.battle.standardColorize(list[a%list.length][index]),-1))
-                                        this.cards[a].upSize=true
+                                        last(this.cards).upSize=true
                                         if(args[1][0]!=14&&args[1][0]!=15){
-                                            if(!this.cards[a].spec.includes(1)){
-                                                this.cards[a].spec.push(1)
-                                                this.cards[a].additionalSpec.push(1)
+                                            if(!last(this.cards).spec.includes(1)){
+                                                last(this.cards).spec.push(1)
+                                                last(this.cards).additionalSpec.push(1)
                                             }
-                                            if(!this.cards[a].spec.includes(2)&&!this.cards[a].spec.includes(4)){
-                                                this.cards[a].spec.push(4)
-                                                this.cards[a].additionalSpec.push(4)
+                                            if(!last(this.cards).spec.includes(2)&&!last(this.cards).spec.includes(4)){
+                                                last(this.cards).spec.push(4)
+                                                last(this.cards).additionalSpec.push(4)
                                             }
                                         }
                                         if(args[3].includes(0)){
-                                            this.cards[a].setCost(0,[0])
+                                            last(this.cards).setCost(0,[0])
                                         }
                                         if(args[3].includes(1)){
-                                            this.cards[a].costVariant(0)
+                                            last(this.cards).costVariant(0)
                                         }
                                         if(args[3].includes(4)){
-                                            this.cards[a].setCost(0,[2])
+                                            last(this.cards).setCost(0,[2])
                                         }
-                                        if(args[3].includes(5)&&!this.cards[a].spec.includes(2)){
-                                            this.cards[a].spec.push(2)
-                                            this.cards[a].additionalSpec.push(2)
+                                        if(args[3].includes(5)&&!last(this.cards).spec.includes(2)){
+                                            last(this.cards).spec.push(2)
+                                            last(this.cards).additionalSpec.push(2)
                                         }
                                         list[a%list.length].splice(index,1)
                                     }
@@ -1418,29 +1433,29 @@ class overlay{
                                     if(list.length>0){
                                         let index=floor(random(0,list.length))
                                         this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
-                                        this.cards[a].upSize=true
+                                        last(this.cards).upSize=true
                                         if(args[1][0]!=14&&args[1][0]!=15){
-                                            if(!this.cards[a].spec.includes(1)){
-                                                this.cards[a].spec.push(1)
-                                                this.cards[a].additionalSpec.push(1)
+                                            if(!last(this.cards).spec.includes(1)){
+                                                last(this.cards).spec.push(1)
+                                                last(this.cards).additionalSpec.push(1)
                                             }
-                                            if(!this.cards[a].spec.includes(2)&&!this.cards[a].spec.includes(4)){
-                                                this.cards[a].spec.push(4)
-                                                this.cards[a].additionalSpec.push(4)
+                                            if(!last(this.cards).spec.includes(2)&&!last(this.cards).spec.includes(4)){
+                                                last(this.cards).spec.push(4)
+                                                last(this.cards).additionalSpec.push(4)
                                             }
                                         }
                                         if(args[3].includes(0)){
-                                            this.cards[a].setCost(0,[0])
+                                            last(this.cards).setCost(0,[0])
                                         }
                                         if(args[3].includes(1)){
-                                            this.cards[a].costVariant(0)
+                                            last(this.cards).costVariant(0)
                                         }
                                         if(args[3].includes(4)){
-                                            this.cards[a].setCost(0,[2])
+                                            last(this.cards).setCost(0,[2])
                                         }
-                                        if(args[3].includes(5)&&!this.cards[a].spec.includes(2)){
-                                            this.cards[a].spec.push(2)
-                                            this.cards[a].additionalSpec.push(2)
+                                        if(args[3].includes(5)&&!last(this.cards).spec.includes(2)){
+                                            last(this.cards).spec.push(2)
+                                            last(this.cards).additionalSpec.push(2)
                                         }
                                         list.splice(index,1)
                                     }
@@ -1927,7 +1942,7 @@ class overlay{
                         this.battle.overlayManager.overlays[26][this.player].activate(args.value)
                     break
                     case 6:
-                        this.battle.nodeManager.freeMove=1
+                        this.battle.nodeManager.freeMove[0]=1
                     break
                     case 7:
                         this.battle.overlayManager.overlays[28][this.player].active=true

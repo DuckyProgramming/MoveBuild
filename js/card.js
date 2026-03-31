@@ -1959,8 +1959,8 @@ class card{
             case 903: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExhaust ${effect[1]} Card${pl(effect[1])}\nAdd a Burn to Hand`; break
             case 904: string+=`All Attacks in\nHand Cost 0 Temporarily\nLose ${effect[0]} Temporary\nStrength`; break
             case 905: string+=`Apply ${effect[0]} Vulnerable\nAmplify:\nAffects All Enemies`; break
-            case 906: string+=`Target Gains\nIndefinite Weak`; break
-            case 907: string+=`Target Gains\nIndefinite Vulnerable`; break
+            case 906: string+=`Apply Indefinite Weak`; break
+            case 907: string+=`Apply Indefinite Vulnerable`; break
             case 908: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${effect[1]} Time${pl(effect[1])}\nAmount of Times\nIncreases by ${effect[2]}`; break
             case 909: string+=`Return Your Hand\nto Draw Pile\nAdd That Many\nRandom Cards to\nYour Hand`; break
             case 910: string+=`Return Your Hand\nto Draw Pile\nAdd That Many\nRandom Upgraded Cards\nto Hand`; break
@@ -8202,7 +8202,8 @@ class card{
             case 7130: string+=`All Basic Cards\nin Hand Cost 0\nTemporarily`; break
             case 7131: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Discarded\nFrom Your Hand,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 7132: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nDiscover a Common Card\nIt Costs 0`; break
-            case 7133: string+=`Discover a Character Card\nIt Costs 0`; break
+            case 7133: case 8442:
+                string+=`Discover a Character Card\nIt Costs 0`; break
             case 7134: string+=`Discover a Mixture`; break
             case 7135: string+=`Discover a 1 ${variants.mtg?`Total\n`:``}Cost Card\nIt Costs 0`; break
             case 7136: string+=`Apply ${effect[0]} Vulnerable\nIf Played First,\nDiscover a Skill\nIt Costs 0`; break
@@ -9489,55 +9490,45 @@ class card{
             case 8411: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Temporary\nStrength\nPulled:\nTrigger Effect`; break
             case 8412: string+=`Construct Gains\n${effect[0]} Strength`; break
             case 8413: string+=`Construct Gains\n${effect[0]} Strength\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-            
             case 8414: string+=`Lose ${effect[0]} Caffeine`; break
-            //3430
             case 8415: string+=`Gain ${effect[0]} Energy\nGain ${effect[1]} Caffeine`; break
             case 8416: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}\nGain ${effect[2]} Caffeine`; break
-            //41
             case 8417: string+=`Gain (N) (N)\nGain ${effect[0]} Caffeine`; break
             case 8418: string+=`Gain (N) (N) (N)\nGain ${effect[0]} Caffeine`; break
             case 8419: string+=`Gain (N) (N) (N) (N)\nGain ${effect[0]} Caffeine`; break
-            //3975-3977
             case 8420: string+=`Gain ${effect[0]} Buffer\nGain ${effect[1]} Caffeine`; break
-            //913
             case 8421: string+=`Upgrade ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Temporary\nStrength\nGain ${effect[2]} Caffeine`; break
-            //3718
             case 8422: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Caffeine\nGain ${effect[2]} Temporary\nStrength\nPer Card Played While\nThis Card is in Your Hand`; break
-            //5749
-            case 8423: string+=`Upgrade ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Caffeine\nFirst Time Played: (${this.debut?`Yes`:`No`})\nHeal ${this.calculateEffect(effect[2],4)} Healt\nCosts 1 Less`; break
-            //7033
-
+            case 8423: string+=`Upgrade ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Caffeine\nFirst Time Played: (${this.debut?`Yes`:`No`})\nHeal ${this.calculateEffect(effect[2],4)} Health\nCosts 1 Less`; break
             case 8424: string+=`Hold ${effect[0]} Basic Orb${pl(effect[0])}\nReturn When You\nEvoke a Shield Orb`; break
-            //5935
             case 8425: string+=`Hold ${effect[0]} Shield Orb${pl(effect[0])}\nReturn When You\nEvoke a Basic Orb`; break
-            //6209
             case 8426: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n${effect[1]} Countdown${pl(effect[1])} in Hand:\nAdds Double Block`; break
-            //3412
             case 8427: string+=`Apply ${effect[0]} Vulnerable\nApplies Double Vulnerable\nIf You Have Played ${effect[1]}\nSkill${pl(effect[1])} This Turn${stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players&&!this.nonCalc?`\n(Currently ${this.battle.cardManagers[this.player].hand.turnPlayed[11]})`:``}`; break
-            //5557
             case 8428: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze\nIf Last Card Played\nWas a Countdown,\nRepeat`; break
-            //6394
             case 8429: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Triple Damage if\nTarget Spawned Last Turn`; break
-            //4098
-
             case 8430: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Pristine to Hand\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 8431: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Communized\nDraw ${effect[2]} Card${pl(effect[2])}`; break
-            //8279
             case 8432: string+=`Gain ${effect[0]} Ringing\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
             case 8433: string+=`Draw ${effect[0]} Skill${pl(effect[0])}\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
-            //7247
-            case 8434: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Card${pl(effect[1])}\nGain ${effect[2]} Caffeine`; break
+            case 8434: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nExhaust ${effect[1]} Card${pl(effect[1])}\nGain ${effect[2]} Caffeine`; break
             case 8435: string+=`Apply ${effect[0]} Weak\nand ${effect[1]} Vulnerable\nto All Enemies\nGain ${effect[2]} Caffeine`; break
-            //8415
-
             case 8436: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand`; break
-            //3093
             case 8437: string+=`Discover a Colorless Card`; break
-            //7144
-            case 8438: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable\nAdd a Pristine to Hand`; break
-            //7627
-
+            case 8438: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Frail\nAdd a Pristine to Hand`; break
+            case 8439: string+=`Apply ${effect[0]} Freeze\nApply ${effect[1]} Vulnerable`; break
+            case 8440: string+=`Apply ${effect[0]} Freeze\nIf Target is\nBelow 50% Health,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 8441: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze\nRepeat if First\nCard Played`; break
+            case 8443: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDraw ${effect[1]} Attack${pl(effect[1])}`; break
+            case 8444: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDraw ${effect[1]} Defense${pl(effect[1])}`; break
+            case 8445: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDraw ${effect[1]} Movement${pl(effect[1])}`; break
+            case 8446: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nWhen Removed,\nGain ${effect[1]} Metallicize\nPermanently`; break
+            case 8447: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nGain a Minor Free Move`; break
+            case 8448: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Your Health is Full,\nGain ${effect[1]} Energy and\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 8449: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Your Health is Full,\nGain (E) and\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+            case 8450: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nPopulation 50: Repeat\nAssign ${effect[2]}: Repeat`; break
+            case 8451: string+=`Discover an Attack,\nDefense, Movement or Skill\nIt Costs 0`; break
+            case 8452: string+=`World 1: Deal ${this.calculateEffect(effect[0],0)} Damage\nWorld 2: Add ${this.calculateEffect(effect[1],1)} Block\nWorld 3: Draw ${effect[2]} Card${pl(effect[2])}\nWorld 4: Trigger All`; break
+            case 8453: string+=`No Defenses in Hand:\nApply Indefinite Weak`; break
 
 
 
@@ -10654,7 +10645,8 @@ class card{
             break
             case 3596: case 3597: case 3598: case 3599: case 3600: case 3601: case 3602: case 3603: case 3604: case 3605:
             case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
-            case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275:
+            case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275: case 8432:
+            case 8433:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -11083,6 +11075,9 @@ class card{
             break
             case 8036:
                 this.battle.itemManager.addItemSlots(1,this.player)
+            break
+            case 8446:
+                userCombatant.permanent[1]+=this.effect[1]
             break
             
         }
@@ -11598,7 +11593,7 @@ class card{
             break
             case 3827: case 3828: case 3829: case 3830: case 3831: case 3832: case 3833: case 3834: case 3835: case 3836:
             case 3873: case 3874: case 3875: case 4124: case 4125: case 4126: case 4127: case 4128: case 4129: case 4770:
-            case 4972: case 5002: case 5003: case 5080: case 8338: case 8339: case 8340:
+            case 4972: case 5002: case 5003: case 5080: case 8338: case 8339: case 8340: case 8442:
                 if(this.spec.includes(60)){
                     this.discardEffectBuffered.push(1)
                 }else{
@@ -11662,7 +11657,7 @@ class card{
             case 6925:
                 this.effect[0]=0
             break
-            case 7033: case 7255:
+            case 7033: case 7255: case 8423:
                 if(this.debut){
                     this.costDown(2,[1])
                 }
@@ -12207,6 +12202,9 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
+                case 8422:
+                    userCombatant.statusEffect('Temporary Strength',this.effect[2])
+                break
                 
             }
         }
@@ -12674,6 +12672,10 @@ class card{
             break
             case 8340:
                 this.battle.cardManagers[this.player].drawAbstract(this.effect[0],20,7,[1])
+            break
+            case 8442:
+                this.battle.overlayManager.overlays[10][this.player].active=true
+                this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[0],[]])
             break
         }
     }

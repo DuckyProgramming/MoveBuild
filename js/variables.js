@@ -7245,6 +7245,8 @@ Does not decrement.`,
 `When you gain Bell, deal 7 damage to each enemy once per Bell you have.
 This attack is not affected by most statuses but is affected by Vigor.
 Does not decrement.`,
+        },{name:'Caffeine',mtg:0,desc:
+`When you gain 3 Caffeine, lose 3 Caffeine and lose 3 health.`,
         },
         //mark dict
     ],ascend:[
@@ -7429,7 +7431,7 @@ Does not decrement.`,
         {name:'Jester',desc:'Every Turn, Randomly Get Burned, Frozen, or Shocked'},
         {name:'Managerial',desc:'Immediately Fight 12 Management Robots'},
         {name:'Luck',desc:'Gain 777 Currency'},
-        {name:'Developer',desc:'Add 1-5 of Nothings to Deck'},
+        //{name:'Developer',desc:'Add 1-5 of Nothings to Deck'},
         {name:'Pareidolia',desc:'Copy Every Non-Boss Enemy, Copies Get 1 HP'},
         {name:'Marx',desc:'All Cards Become Classless'},
         {name:'Duplicity',desc:'Remove All Duplicate Non-Basic Cards'},

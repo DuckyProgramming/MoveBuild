@@ -208,7 +208,7 @@ class combatant{
                 'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Temporary Item Next Turn','Vigor Per Turn',
                 'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
                 'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block','Bell Weak','Bell Vulnerable',
-                'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage',
+                'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage','Caffeine',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -296,7 +296,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,2,0,//83
                 0,1,1,0,0,0,0,0,0,2,//84
                 0,0,0,0,2,2,2,0,0,0,//85
-                0,0,2,2,1,
+                0,0,2,2,1,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -384,7 +384,7 @@ class combatant{
                 2,2,2,2,2,2,2,0,2,2,//83
                 2,2,2,2,2,2,2,2,2,2,//84
                 2,2,2,2,2,2,2,2,2,2,//85
-                2,3,1,1,2,
+                2,3,1,1,2,1,
             ]}
         /*
         0-none
@@ -1722,7 +1722,7 @@ class combatant{
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
-            case 'Certes': case 'Airi': case 'Shiru': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Sagume': case 'Meri':
+            case 'Certes': case 'Airi': case 'Shiru': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Sagume': case 'Meri': case 'Menessa':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -4643,12 +4643,12 @@ class combatant{
             this.battle.cardManagers[this.id].hand.allEffectArgs(51,[type])
             switch(type){
                 case 0:
-                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935])
-                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935])
+                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935,8425])
+                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935,8425])
                 break
                 case 1:
-                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[6209])
-                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[6209])
+                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[6209,8424])
+                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[6209,8424])
                 break
             }
         }
@@ -4746,8 +4746,8 @@ class combatant{
         if(this.id>=0&&this.id<this.battle.players){
             this.battle.cardManagers[this.id].hand.allEffect(115,[])
             if(type==0){
-                this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935])
-                this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935])
+                this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935,8425])
+                this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935,8425])
             }
         }
         if(this.status.main[674]>0&&type>=0){
@@ -6269,7 +6269,7 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Sagume': case 'Fernando': case 'Decratite': case 'Meri':
+            case 'Sagume': case 'Fernando': case 'Decratite': case 'Meri': case 'Menessa':
             case 'Ume':
                 switch(type){
                     case 0:
@@ -6390,7 +6390,7 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Sagume': case 'Fernando': case 'Decratite': case 'Meri':
+            case 'Sagume': case 'Fernando': case 'Decratite': case 'Meri': case 'Menessa':
             case 'Ume':
                 switch(type){
                     case 0:
@@ -7821,6 +7821,10 @@ class combatant{
             if(this.ringing>=6){
                 this.ringing-=6
                 this.bell(1)
+            }
+            if(this.status.main[findList('Caffeine',this.status.name)]>=3){
+                this.status.main[findList('Caffeine',this.status.name)]-=3
+                this.loseHealth(3)
             }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)
