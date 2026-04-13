@@ -250,7 +250,8 @@ class nodeManager{
             this.battle.stats.node[0]++
             this.battle.stats.node[1+type]++
             for(let a=0,la=this.battle.players;a<la;a++){
-                this.battle.cardManagers[a].allEffect(0,62)
+                this.battle.cardManagers[a].deck.allEffectArgs(55,['callNodeEffect',[type]])
+                //this.battle.cardManagers[a].allEffect(0,62)
             }
             if(variants.terminal){
                 for(let a=0,la=this.battle.players;a<la;a++){

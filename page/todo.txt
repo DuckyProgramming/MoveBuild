@@ -1,87 +1,37 @@
-pin refinement
-
-
-
 CHAR 26
 
 
+CARDSET 94 [MENESSA III]
 
-decent ideas:
+refurbish shock pull
 
-50% of merlin (skill combo) + colorless build
-deploy half the general reserve to replace destroyed colorless cards
+migrate 0 cost synergy to menessa
+restructure make some early menessa cards
 
+george -1 uncommon
+lira -1 common -1 rare
+sakura -1 uncommon
+certes -1 uncommon
+azis -1 common -2 uncommon
+donakho -2 uncommon
+airi +1 common -1 uncommon
+edgar +1 common -1 uncommon
+chip -1 uncommon
+shiru -1 uncommon
+vincent -1 uncommon
+sanae -2 uncommon
+ducopo -1 common
+fernando -1 common, -1 rare
+dukelis +1 common -1 uncommon
 
-
-CARDSET 92 [ENDSIEG]
-
-sheer effort - 2 cost, draw a card it costs 0, exhaust any number of cards, retain
-
-cozy camper - gain 1 energy if your next card played is an attack
-
-spring cleaning - exhaust 1 card and draw a card now or gain 1 pure, 1 cost retai
-
-hashkey - add 6 block, draw a card the next 2 times you attack
-
-datamining - exhaust a card, draw 2 more next turn, retain
-
-transphobia - when you transform a card gain 8 blockn
-
-
-
-stolen valor - damage, if fatal, gain 2 strength and redraw your hand
-
-evasive maneuvers - gain 1 dodge, redraw all defenses in hand
-
-triangulation - damage, repeat twice if target has vulnerable, otherwise apply vulnerable
-
-buffet - rare exhaust - gain 1 energy, draw a 1 cost card, it costs 0
+defeicts:
+merlin
+sagume
+menessa
 
 
 
-
-wind force - discover a 0 cost card, it gains echo
-
-training arc - gain 1 strength, exhaust, increases by 1 after played 20 times
-
-pick fight - swap target with a random enemy if possible, apply 1 vulnerable
-
-into the night - apply 1 stun, add void to discard pool
-
-final form - add 3 random powers of any color to hand, they cost 0
-
-long game - gain temporary strength equal to turn number (check this doesn't already exist)
-
-
-
-food for thought - heal 2, when added, gain 2 card rewards
-
-ball game - add a card below to hand, 0 cost
-basketball - 8 damage echo retain, 1 cost
-baseball - 8 damage draw 1 retain, 1 cost
-bowling ball - 8 damage in all directions retain, 1 cost
-
-escape clause - add 10 block, if target is debuffed, put a card from discard to hand, exhaust
-
-hollow meteor - damage, get a pristine if in the center of hand
-
-insult to injury (returns) - when you deal 20 or more damage apply 1 weak 1 vulnerable 1 frail
-
-party vanguard - 2 cost, deal 10 damage, all common cards in hand cost 1 less
-
-
-
-tax policy - either gain 25 currency or gain 5 health and lose 25 currency
-
-veils - 2 cost, 12 block draw 2, when you pass a shop gain 20 currency
-
-large frame - 1 temp strength, 1 temp dex, gain 2 max hp when added, retain
-
-anvil - unplayable, when manually upgraded during combat instead deal 10 damage to a random enemy
-
-magnet - 12 damage, steal up to 3 block from adjacent enemies
-
-doomsayer - 11 damage in all directions, triggers when discarded by scry
+CARDSET 95 [ENDSIEG]
 
 
 
@@ -91,3 +41,6 @@ boss 26
 
 icon 26
 
+
+
+do the thing where i check the cards don't crash

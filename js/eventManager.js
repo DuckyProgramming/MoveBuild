@@ -1582,7 +1582,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                                         this.battle.overlayManager.overlays[3][this.player].activate([0,floor(random(0,2)),0])
                                     break
                                     case 5:
-                                        this.battle.relicManager.addSetRelic(this.player,0)
+                                        this.battle.relicManager.addSetRelic(0,this.player)
                                     break
                                     case 6:
                                         this.battle.overlayManager.overlays[5][this.player].active=true

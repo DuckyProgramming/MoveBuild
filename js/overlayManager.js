@@ -188,6 +188,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[117,1])],//deck card cost up
                     [new overlay(this.layer,this.battle,0,2,[4,1,5])],//remove, edition transfer
                     [new overlay(this.layer,this.battle,0,2,[118])],//polychrome edition and double duplicate, no return
+                    [new overlay(this.layer,this.battle,0,2,[119,0,1])],//bring in rare draw card, no return,180
+                    [new overlay(this.layer,this.battle,0,2,[120])],//transform draw card to specific, no return
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

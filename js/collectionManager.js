@@ -109,7 +109,7 @@ class collectionManager{
                 for(let c=0,lc=names[a][b].length;c<lc;c++){
                     let selector=findName(names[a][b][c],types.card)
                     this.cards.push(new card(this.layer,this.battle,0,this.layer.width/2-350+tick%8*100,this.layer.height/2-200+floor(tick/8)%3*130,selector,this.level,this.battle.standardColorize(selector),-1))
-                    if(!this.known.includes(names[a][b][c])){
+                    if(!this.known.includes(names[a][b][c])&&!game.dev){
                         this.cards[this.cards.length-1].blind=true
                     }else{
                         this.totals.query[0]++

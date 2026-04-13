@@ -2050,7 +2050,7 @@ As he continually speeds up, you begin to get worried.
 This is exacerbated when he starts swerving through traffic.
 It is at that moment you realize that the
 other cars are driving the other way.`,
-                option:['Grab the Wheel','Hope for the Best','Jump out the door'],
+                option:['Grab the Wheel','Hope for the Best','Jump Out the Door'],
                 optionDesc:['','',''],
                 link:[1,2,3],
             },{

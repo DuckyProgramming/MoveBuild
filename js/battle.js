@@ -1648,6 +1648,9 @@ class battle{
         if(userCombatant.getStatus('Temporary Card Play Temporary Strength')>0){
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Temporary Card Play Temporary Strength'))
         }
+        if(card.name=='Pristine'&&userCombatant.getStatus('Pristine Draw')>0){
+            this.cardManagers[player].draw(userCombatant.getStatus('Pristine Draw'))
+        }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])
     }

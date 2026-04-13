@@ -596,8 +596,8 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				bonus*=2
 			}
 			if(user.status.main[8]>0&&user.status.main[779]<=0){
-				damage*=user.battle.modded(213)&&user.id<user.battle.players?0:user.status.main[381]>0?1.25:0.75
-				bonus*=user.battle.modded(213)&&user.id<user.battle.players?0:user.status.main[381]>0?1.25:0.75
+				damage*=(user.battle.modded(213)&&user.id<user.battle.players?0:user.status.main[381]>0?1.25:0.75)**(1+user.status.main[859]/100)
+				bonus*=(user.battle.modded(213)&&user.id<user.battle.players?0:user.status.main[381]>0?1.25:0.75)**(1+user.status.main[859]/100)
 			}
 			if(user.status.main[82]>0){
 				damage*=2
@@ -2289,11 +2289,11 @@ Total: ${count[a][1][3]}\n`
 function outMtgError(){
 	for(let a=0,la=types.card.length;a<la;a++){
 		if(types.card[a].list>=0&&types.card[a].mtg.list>=0&&types.card[a].list!=types.card[a].mtg.list){
-			console.log(types.card[a].name)
+			console.log(types.card[a].name,`A`)
 		}
 		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
 			if(types.card[a].mtg.levels[b].cost==undefined){
-				console.log(types.card[a].name)
+				console.log(types.card[a].name,`B`)
 			}
 			if(
 				!types.card[a].mtg.levels[b].spec.includes(11)&&
@@ -2318,7 +2318,7 @@ function outMtgError(){
 					types.card[a].mtg.levels[b].cost.includes(15)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(5))||
 					types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
 			)){
-				console.log(types.card[a].name)
+				console.log(types.card[a].name,`C`)
 			}
 		}
 	}

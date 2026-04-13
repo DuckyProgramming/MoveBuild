@@ -560,10 +560,10 @@ class cardManager{
         }
     }
     draw(amount,spec=0){
-        if(!this.tempDraw.active){
-            this.battle.relicManager.activate(23,[amount,this.player])
-        }
         if(amount>0){
+            if(!this.tempDraw.active){
+                this.battle.relicManager.activate(23,[amount,this.player])
+            }
             this.hand.allEffectArgs(31,[amount])
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             if(userCombatant.getStatus('No Draw')<=0){

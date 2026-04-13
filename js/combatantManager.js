@@ -313,7 +313,7 @@ class combatantManager{
                 this.combatants[a].markTarget()
             }
             if(
-                (this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62||this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==64)&&
+                (this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62||this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==64||this.battle.attackManager.targetInfo[0]==67)&&
                 this.combatants[a].life>0&&(this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team||(this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==64)&&this.combatants[a].tilePosition.x==this.battle.attackManager.tilePosition.x&&this.combatants[a].tilePosition.y==this.battle.attackManager.tilePosition.y)&&
                 !((this.combatants[a].spec.includes(9)||this.battle.modded(86)&&this.battle.turn.total<=2)&&abs(this.combatants[a].goal.anim.direction-atan2(this.combatants[this.battle.attackManager.player].relativePosition.x-this.combatants[a].relativePosition.x,this.combatants[this.battle.attackManager.player].relativePosition.y-this.combatants[a].relativePosition.y))<30)&&
                 !(this.battle.attackManager.targetInfo[0]==22&&this.combatants[a].tilePosition.y!=this.battle.attackManager.tilePosition.y)&&
@@ -1145,6 +1145,9 @@ class combatantManager{
                         args[0].addBlock(min(this.combatants[a].block,args[1]))
                         this.combatants[a].block=max(0,this.combatants[a].block-args[1])
                     break
+                    case 64:
+                        this.combatants[a].statusEffect(args[0],this.combatants[a].getStatus(args[1]))
+                    break
                 }
             }
         }
@@ -1523,6 +1526,11 @@ class combatantManager{
                     break
                     case 10:
                         this.combatants[a].statusEffect(values[0],values[1]*(this.combatants[a].life<=this.combatants[a].base.life*0.5?2:1))
+                    break
+                    case 11:
+                        values[4].addBlock(min(this.combatants[a].block,values[1]))
+                        this.combatants[a].block=max(0,this.combatants[a].block-values[1])
+                        this.combatants[a].takeDamage(values[0],values[2],values[3])
                     break
                 }
                 if(

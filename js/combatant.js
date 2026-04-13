@@ -208,7 +208,8 @@ class combatant{
                 'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Temporary Item Next Turn','Vigor Per Turn',
                 'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
                 'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block','Bell Weak','Bell Vulnerable',
-                'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage','Caffeine',
+                'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage','Caffeine','20 Damage Weak','20 Damage Vulnerable','20 Damage Frail','Weak Boost',
+                'Vulnerable Boost','Duplicate Cycle 3 1','Duplicate Cycle 3 2','Duplicate Cycle 3 3',`Turn Transform`,'Temporary Focus','Pristine Draw',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -296,7 +297,8 @@ class combatant{
                 0,0,0,0,0,0,0,0,2,0,//83
                 0,1,1,0,0,0,0,0,0,2,//84
                 0,0,0,0,2,2,2,0,0,0,//85
-                0,0,2,2,1,0,
+                0,0,2,2,1,0,0,0,0,0,//86
+                0,2,2,2,0,2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -384,7 +386,8 @@ class combatant{
                 2,2,2,2,2,2,2,0,2,2,//83
                 2,2,2,2,2,2,2,2,2,2,//84
                 2,2,2,2,2,2,2,2,2,2,//85
-                2,3,1,1,2,1,
+                2,3,1,1,2,1,2,2,2,2,//86
+                2,2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -2320,7 +2323,10 @@ class combatant{
         }
     }
     convertIntent(){
-        if(types.attack[this.attack[this.intent].type].class==1&&this.status.main[5]>0){
+        if((
+            types.attack[this.attack[this.intent].type].class==1||
+            types.attack[this.attack[this.intent].type].class==5
+        )&&this.status.main[5]>0){
             this.takeDamage(this.status.main[5])
         }
     }
@@ -3251,7 +3257,8 @@ class combatant{
                         damage*=userCombatant.tempStatus[0]
                     }
                     if(userCombatant.status.main[8]>0&&userCombatant.status.main[779]<=0){
-                        damage*=this.battle.modded(213)&&user<this.battle.players?0:this.status.main[426]>0?0.5:userCombatant.status.main[381]>0?1.25:0.75
+                        damage*=(this.battle.modded(213)&&user<this.battle.players?0:this.status.main[426]>0?0.5:userCombatant.status.main[381]>0?1.25:0.75)
+                            **(1+userCombatant.status.main[859]/100)
                     }
                     if(userCombatant.status.main[82]>0){
                         damage*=2
@@ -3490,7 +3497,8 @@ class combatant{
                     damage=1
                 }
                 if(this.status.main[10]>0&&this.status.main[779]<=0){
-                    damage*=this.team==0&&this.battle.relicManager.hasRelic(407,0)?2:1.5
+                    damage*=1+(this.team==0&&this.battle.relicManager.hasRelic(407,0)?1:0.5)*
+                        (1+this.status.main[860]/100)
                 }
                 if(this.status.main[24]>0){
                     damage*=0.5
@@ -3796,6 +3804,15 @@ class combatant{
                     }
                     if(userCombatant.status.main[805]>0&&this.getStatus('Weak')==0){
                         this.statusEffect('Weak',userCombatant.status.main[805])
+                    }
+                    if(userCombatant.status.main[856]>0&&damage>=20){
+                        this.statusEffect('Weak',userCombatant.status.main[856])
+                    }
+                    if(userCombatant.status.main[857]>0&&damage>=20){
+                        this.statusEffect('Vulnerable',userCombatant.status.main[857])
+                    }
+                    if(userCombatant.status.main[858]>0&&damage>=20){
+                        this.statusEffect('Frail',userCombatant.status.main[858])
                     }
                     if(this.battle.relicManager.hasRelic(246,user)&&damage>=25){
                         this.battle.cardManagers[user].draw(this.battle.relicManager.active[246][user+1])
@@ -4634,10 +4651,11 @@ class combatant{
     }
     subEvoke(type,detail,target){
         let multi=1
-        if(this.status.main[111]>0){
-            multi=1+this.status.main[111]*0.1
-        }else if(this.status.main[111]<0){
-            multi=max(0.2,1+this.status.main[111]*0.1)
+        let totalFocus=this.status.main[111]+this.status.main[865]
+        if(totalFocus>0){
+            multi=1+totalFocus*0.2
+        }else if(totalFocus<0){
+            multi=max(0.2,1+totalFocus*0.1)
         }
         if(this.id>=0&&this.id<this.battle.players){
             this.battle.cardManagers[this.id].hand.allEffectArgs(51,[type])
@@ -4738,10 +4756,11 @@ class combatant{
     }
     subMinorEvoke(type,detail,target){
         let multi=1
-        if(this.status.main[111]>0){
-            multi=1+this.status.main[111]*0.2
-        }else if(this.status.main[111]<0){
-            multi=max(0.2,1+this.status.main[111]*0.1)
+        let totalFocus=this.status.main[111]+this.status.main[865]
+        if(totalFocus>0){
+            multi=1+totalFocus*0.2
+        }else if(totalFocus<0){
+            multi=max(0.2,1+totalFocus*0.1)
         }
         if(this.id>=0&&this.id<this.battle.players){
             this.battle.cardManagers[this.id].hand.allEffect(115,[])
@@ -4822,10 +4841,11 @@ class combatant{
     }
     alternateEvoke(type,detail,target){
         let multi=1
-        if(this.status.main[111]>0){
-            multi=1+this.status.main[111]*0.2
-        }else if(this.status.main[111]<0){
-            multi=max(0.2,1+this.status.main[111]*0.1)
+        let totalFocus=this.status.main[111]+this.status.main[865]
+        if(totalFocus>0){
+            multi=1+totalFocus*0.2
+        }else if(totalFocus<0){
+            multi=max(0.2,1+totalFocus*0.1)
         }
         switch(type){
             case 1:
@@ -5695,9 +5715,11 @@ class combatant{
         }
     }
     gainMaxHP(amount){
-        if(this.life>0&&amount>0){
+        if(amount>0){
             this.base.life+=amount
-            this.life+=amount
+            if(this.life>0){
+                this.life+=amount
+            }
         }
     }
     setMaxHP(amount){
@@ -5745,6 +5767,7 @@ class combatant{
                 this.battle.cardManagers[this.id].discard.allEffectArgs(24,[4727])
                 this.battle.cardManagers[this.id].reserve.allEffectArgs(24,[4727])
                 this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[7242,amount])
+                this.battle.cardManagers[this.id].hand.allEffectArgs(55,['callHealthLossEffect',[amount]])
             }
             if(this.status.main[655]>0){
                 this.battle.combatantManager.randomEnemyEffect(23,['Poison',this.status.main[655]])
@@ -6071,6 +6094,10 @@ class combatant{
                     case 846: this.miniStatus('Temporary Resonance in 2 Turns',this.status.main[this.status.ticker[a]]); break
                     case 852: this.miniStatus('Shock',this.status.main[this.status.ticker[a]]); break
                     case 853: this.miniStatus('Shock Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 861: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.duplicate(this.status.main[this.status.ticker[a]])};this.status.next[findList('Duplicate Cycle 3 3',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 862: this.miniStatus('Duplicate Cycle 3 1',this.status.main[this.status.ticker[a]]); break
+                    case 863: this.miniStatus('Duplicate Cycle 3 2',this.status.main[this.status.ticker[a]]); break
+                    case 864: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.transform(this.status.main[this.status.ticker[a]])}; break
                     
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6&&
@@ -6196,10 +6223,11 @@ class combatant{
     }
     tickOrb(a){
         let multi=1
-        if(this.status.main[111]>0){
-            multi=1+this.status.main[111]*0.1
-        }else if(this.status.main[111]<0){
-            multi=max(0.2,1+this.status.main[111]*0.1)
+        let totalFocus=this.status.main[111]+this.status.main[865]
+        if(totalFocus>0){
+            multi=1+totalFocus*0.2
+        }else if(totalFocus<0){
+            multi=max(0.2,1+totalFocus*0.1)
         }
         switch(this.orbs[a]){
             case 5:
