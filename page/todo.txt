@@ -3,31 +3,49 @@ CHAR 26
 
 CARDSET 94 [MENESSA III]
 
-refurbish shock pull
-
 migrate 0 cost synergy to menessa
-restructure make some early menessa cards
+restructure some early menessa cards
+so they cost 0 now
 
-george -1 uncommon
-lira -1 common -1 rare
-sakura -1 uncommon
-certes -1 uncommon
-azis -1 common -2 uncommon
-donakho -2 uncommon
-airi +1 common -1 uncommon
-edgar +1 common -1 uncommon
 chip -1 uncommon
 shiru -1 uncommon
 vincent -1 uncommon
 sanae -2 uncommon
-ducopo -1 common
+ducopo -1 common -1 rare
 fernando -1 common, -1 rare
-dukelis +1 common -1 uncommon
 
-defeicts:
+
+
+defecits:
 merlin
 sagume
 menessa
+
+donakho 3 commons 1 are
+
+
+
+merlin movements
+
+colorless movement + power
+
+menessa powers x5
+
+dexterity-related powers to counteract vincent scaling
+
+the diagonal
+
+
+
+restore albedo in some way
+nigredo as the opposite
+
+philosopher's stone - shattered philosophy but its a rare card
+
+
+
+[scary bullets]
+[rocket launcher that can fire diagonally]
 
 
 

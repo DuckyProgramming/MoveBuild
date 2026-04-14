@@ -9630,6 +9630,15 @@ class card{
             case 8552: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDiscover a Common Card`; break
             case 8553: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nWhen Manually Upgraded`; break
 
+            case 8554: string+=`Apply ${effect[0]} Strength\nTarget Loses ${effect[1]} Health\nDraw ${effect[2]} Skill${pl(effect[2])}`; break
+            //3985
+            case 8555: string+=`Hold ${effect[0]} Cop${effect[0]!=1?`ies`:`y`}\nof the Opposing Orb\nto the Last Orb`; break
+            //555
+            case 8556: string+=`Apply ${effect[0]} Random Debuff\nAdd a Random\nToken Card to Hand`; break
+            //272,7627
+
+            
+
             //mark p
 
             //mark q
@@ -13308,7 +13317,7 @@ class card{
                     this.layer.stroke(40,50,60,this.fade)
                     this.layer.strokeWeight(5)
                     this.layer.rect(0,0,this.width,this.height,5)
-                    if(this.type>findName('-h Prison',types.card)||true){
+                    if(this.type<findName('-h Prison',types.card)){
                         this.layer.noStroke()
                         this.layer.fill(50,50,225,this.fade)
                         this.layer.quad(
@@ -13850,7 +13859,7 @@ class card{
                     this.layer.stroke(90,100,110,this.fade)
                     this.layer.strokeWeight(5)
                     this.layer.rect(0,0,this.width,this.height,5)
-                    if(this.type>findName('-h Prison',types.card)){
+                    if(this.type<findName('-h Prison',types.card)){
                         this.layer.noStroke()
                         this.layer.fill(200,200,25,this.fade)
                         this.layer.quad(

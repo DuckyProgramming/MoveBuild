@@ -5809,7 +5809,7 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.dress.main){
                     controlSpin(this.dress.main,this.anim.direction)
                     this.layer.fill(...this.flashColor(this.color.dress.back),this.fade*this.fades.dress.main)
-                    displayTrianglesBackMerge(this.layer,this.dress.main,this.anim.direction,-41,12,1,0.2,this.color.dress.back,this.color.dress.back,this.fade*this.fades.dress.main)
+                    displayTrianglesBackMerge3D(this.layer,this.dress.main,this.anim.direction,-41,12,1,0.2,this.color.dress.back,this.color.dress.back,this.fade*this.fades.dress.main,0.2)
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=0&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.6){
@@ -5878,7 +5878,7 @@ combatant.prototype.display=function(){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.dress.main),this.fade*this.fades.dress.main)
                     this.layer.arc(0,-41,13,52,-180,0)
-                    displayTrianglesFrontMerge(this.layer,this.dress.main,this.anim.direction,-41,12,1,0.2,this.color.dress.main,this.color.dress.main,this.fade*this.fades.dress.main)
+                    displayTrianglesFrontMerge3D(this.layer,this.dress.main,this.anim.direction,-41,12,1,0.2,this.color.dress.main,this.color.dress.main,this.fade*this.fades.dress.main,0.2)
                     this.layer.noFill()
                     this.layer.stroke(...this.flashColor(this.color.dress.highlight),this.fade*this.fades.dress.main)
                     for(let a=0,la=4;a<la;a++){
