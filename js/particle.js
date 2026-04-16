@@ -49,7 +49,7 @@ class particle{
                 this.scale=1
                 this.size=0
             break
-            case 5: case 8:
+            case 5: case 8: case 267:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=16/3
@@ -4362,6 +4362,15 @@ class particle{
                     this.layer.strokeWeight(1)
                     this.layer.ellipse(0,0,20,8)
                 break
+                case 267:
+                    this.layer.rotate(this.time*3)
+                    this.layer.fill(240,this.fade)
+                    this.layer.rect(0,0,10,8,2)
+                    this.layer.stroke(240,this.fade)
+                    this.layer.strokeWeight(1)
+                    this.layer.noFill()
+                    this.layer.rect(6,0,4,6,2)
+                break
 
             }
             //mark p
@@ -4390,7 +4399,7 @@ class particle{
             case 1: case 4: case 5: case 6: case 7: case 8: case 11: case 14: case 16: case 18:
             case 19: case 20: case 21: case 32: case 35: case 39: case 42: case 43: case 44: case 47:
             case 48: case 49: case 50: case 78: case 79: case 82: case 83: case 89: case 98: case 105:
-            case 111: case 113: case 131: case 160: case 201:
+            case 111: case 113: case 131: case 160: case 201: case 267:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2,0,1,5)

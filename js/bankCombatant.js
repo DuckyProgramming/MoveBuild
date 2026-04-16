@@ -10746,7 +10746,7 @@ combatant.prototype.display=function(){
                     this.layer.line(20,0,-20,-25)
                 }
             break
-            case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster':
+            case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor': case 'Discounter':
                 if(this.trigger.display.body){
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                     this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)

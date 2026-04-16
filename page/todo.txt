@@ -1,51 +1,30 @@
-CHAR 26
+cCHAR 26
 
 
 CARDSET 94 [MENESSA III]
 
-migrate 0 cost synergy to menessa
-restructure some early menessa cards
-so they cost 0 now
-
-chip -1 uncommon
-shiru -1 uncommon
-vincent -1 uncommon
-sanae -2 uncommon
-ducopo -1 common -1 rare
-fernando -1 common, -1 rare
 
 
-
-defecits:
-merlin
-sagume
-menessa
-
-donakho 3 commons 1 are
-
-
+CARDSET 95 [MENESSA IV]
 
 merlin movements
 
+much movements
+
 colorless movement + power
 
+1 curse - sleep loss - lose 6 health when you don't heal at a rest
+
 menessa powers x5
+[reread the lore]
 
-dexterity-related powers to counteract vincent scaling
+[gaslight]
 
-the diagonal
+[apple zoo]
 
+toric toughness - 10 block now, 5 next turn, 10 in 2 turns
 
-
-restore albedo in some way
-nigredo as the opposite
-
-philosopher's stone - shattered philosophy but its a rare card
-
-
-
-[scary bullets]
-[rocket launcher that can fire diagonally]
+5 new coffee cards
 
 
 

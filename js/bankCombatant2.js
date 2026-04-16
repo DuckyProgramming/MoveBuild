@@ -2678,7 +2678,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
             this.color={in:[120,120,120],out:[100,100,100],metal:[140,120,160]}
         break
-        case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster':
+        case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor': case 'Discounter':
             this.anim={direction:direction,light:1}
             this.fades={body:1}
             this.trigger={display:{body:true}}
@@ -2697,6 +2697,12 @@ combatant.prototype.setupGraphics=function(direction){
                 break
                 case 'Exhauster':
                     this.color={in:[120,120,120],out:[100,100,100],lightIn:[100,255,255],lightOut:[25,255,255]}
+                break
+                case 'Compactor':
+                    this.color={in:[120,120,120],out:[100,100,100],lightIn:[255,175,100],lightOut:[225,125,25]}
+                break
+                case 'Discounter':
+                    this.color={in:[120,120,120],out:[100,100,100],lightIn:[100,255,175],lightOut:[25,225,125]}
                 break
             }
         break

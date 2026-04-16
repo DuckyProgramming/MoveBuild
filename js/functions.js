@@ -1261,6 +1261,8 @@ function intentDescription(attack,user,info){
 			case 469: return `???`
 			case 470: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTargets Gain ${info?attack.effect[1]:`?`}\nLess Block\n3 Tiles Wide\nRange 1-1`
 			case 471: return `Move to End of Board,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap\nDeal Damage Again\nand Push 1 Tile\n in All Directions`
+			case 472: return `Builder Compacts ${info?attack.effect[0]:`?`}\nCard${pl(attack.effect[0])}`
+			case 473: return `Builder Makes ${info?attack.effect[0]:`?`} Card${pl(attack.effect[0])}\nCost 1 Less`
 
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
@@ -3143,4 +3145,26 @@ function hybridRecurse(depth,mana,cost,spent,priority,variant){
 }
 function total7(list){
 	return list[0]+list[1]+list[2]+list[3]+list[4]+list[5]+list[6]
+}
+function antiOrb(orb){
+	switch(orb){
+		case 0: return 1
+		case 1: return 0
+		case 2: return 3
+		case 3: return 2
+		case 4: return 6
+		case 5: return 15
+		case 6: return 4
+		case 7: return 8
+		case 8: return 7
+		case 9: return 10
+		case 10: return 9
+		case 11: return 17
+		case 12: return 13
+		case 13: return 12
+		case 14: return 16
+		case 15: return 5
+		case 16: return 14
+		case 17: return 11
+	}
 }

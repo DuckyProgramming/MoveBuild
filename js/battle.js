@@ -1445,6 +1445,9 @@ class battle{
                 if(userCombatant.getStatus('Skill Temporary Strength')>0){
                     userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Skill Temporary Strength'))
                 }
+                if(userCombatant.getStatus('Skill Temporary Dexterity')>0){
+                    userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Skill Temporary Dexterity'))
+                }
                 if(userCombatant.getStatus('Skill Draw')>0){
                     this.cardManagers[player].draw(userCombatant.getStatus('Skill Draw'))
                 }

@@ -209,7 +209,8 @@ class combatant{
                 'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
                 'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block','Bell Weak','Bell Vulnerable',
                 'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage','Caffeine','20 Damage Weak','20 Damage Vulnerable','20 Damage Frail','Weak Boost',
-                'Vulnerable Boost','Duplicate Cycle 3 1','Duplicate Cycle 3 2','Duplicate Cycle 3 3',`Turn Transform`,'Temporary Focus','Pristine Draw',
+                'Vulnerable Boost','Duplicate Cycle 3 1','Duplicate Cycle 3 2','Duplicate Cycle 3 3',`Turn Transform`,'Temporary Focus','Pristine Draw','Skill Temporary Dexterity','Double Damage Cycle 3 1','Double Damage Cycle 3 2',
+                'Double Damage Cycle 3 3',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -298,7 +299,8 @@ class combatant{
                 0,1,1,0,0,0,0,0,0,2,//84
                 0,0,0,0,2,2,2,0,0,0,//85
                 0,0,2,2,1,0,0,0,0,0,//86
-                0,2,2,2,0,2,0,
+                0,2,2,2,0,2,0,0,2,2,//87
+                2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -387,7 +389,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//84
                 2,2,2,2,2,2,2,2,2,2,//85
                 2,3,1,1,2,1,2,2,2,2,//86
-                2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//87
+                2,
             ]}
         /*
         0-none
@@ -1888,7 +1891,7 @@ class combatant{
             break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine': case 'Keystone': case 'Spirit of Wealth': case 'Spirit of Elegance':
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': case 'Louse': case 'Hwurmp': case 'Glimmerrer': case 'Antihwurmp': case 'Half Spikeball':
-            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall': case 'Shieldzone': case 'Swap Wall': case 'Swarm Wall':
+            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall': case 'Shieldzone': case 'Swap Wall': case 'Swarm Wall': case 'Compactor': case 'Discounter':
             break
             default:
                 for(let g=0;g<2;g++){
@@ -4587,11 +4590,23 @@ class combatant{
                 this.anyOrb=true
             }
         }
+        let count=elementArray(0,constants.orbNumber)
+        this.orbs.forEach(orb=>count[orb]++)
+        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8620,count[0]])
+        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8606,count[4]])
+        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8607,count[6]])
+        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8608,count[5]])
+        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8609,count[16]])
+        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8610,count.filter(value=>value>0).length])
     }
     clearOrbs(){
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.orbs[a]=-1
         }
+        this.checkAnyOrb()
+    }
+    allOrb(orbType){
+        this.orbs.forEach((orb,index,arr)=>arr[index]=orbType)
         this.checkAnyOrb()
     }
     replaceOrb(start,end){
@@ -4600,6 +4615,10 @@ class combatant{
                 this.orbs[a]=end
             }
         }
+        this.checkAnyOrb()
+    }
+    replaceAllOrb(end){
+        this.orbs.forEach((orb,index,arr)=>{if(orb>0){arr[index]=end}})
         this.checkAnyOrb()
     }
     newOrb(){
@@ -4752,6 +4771,12 @@ class combatant{
             case 16:
                 this.battle.combatantManager.combatants[target].orbTake(round(detail*multi*playerMulti),-1)
             break
+            case 17:
+                this.battle.combatantManager.combatants[target].orbTake(round(36*multi*playerMulti),-1)
+                if(this.id<this.battle.players){
+                    this.battle.addCurrency(round(10*multi*playerMulti),this.id)
+                }
+            break
         }
     }
     subMinorEvoke(type,detail,target){
@@ -4836,6 +4861,12 @@ class combatant{
             break
             case 16:
                 this.battle.combatantManager.combatants[target].orbTake(round(detail*multi*playerMulti/2),-1)
+            break
+            case 17:
+                this.battle.combatantManager.combatants[target].orbTake(round(18*multi*playerMulti),-1)
+                if(this.id<this.battle.players){
+                    this.battle.addCurrency(round(5*multi*playerMult),this.id)
+                }
             break
         }
     }
@@ -5014,6 +5045,14 @@ class combatant{
                 for(let a=0,la=this.orbs.length;a<la;a++){
                     if(this.orbs[a]>=0){
                         this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                    }
+                }
+            break
+            case 15:
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    if(this.orbs[a]>=0){
+                        this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                        this.orbs[a]=antiOrb(this.orbs[a])
                     }
                 }
             break
@@ -6098,6 +6137,9 @@ class combatant{
                     case 862: this.miniStatus('Duplicate Cycle 3 1',this.status.main[this.status.ticker[a]]); break
                     case 863: this.miniStatus('Duplicate Cycle 3 2',this.status.main[this.status.ticker[a]]); break
                     case 864: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.transform(this.status.main[this.status.ticker[a]])}; break
+                    case 868: this.statusEffect('Double Damage',this.status.main[this.status.ticker[a]]);this.status.next[findList('Double Damage Cycle 3 3',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 869: this.miniStatus('Double Damage Cycle 3 1',this.status.main[this.status.ticker[a]]); break
+                    case 870: this.miniStatus('Double Damage Cycle 3 2',this.status.main[this.status.ticker[a]]); break
                     
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6&&
@@ -6385,7 +6427,7 @@ class combatant{
                 }
             break
             case 'Orb Walker': case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Louse': case 'Hwurmp': case 'Glimmerrer': case 'Antihwurmp': case 'Host': case 'Host Drone': case 'Thornvine': case 'Keystone': case 'Spirit of Wealth': case 'Spirit of Elegance': case 'Half Spikeball':
-            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster':
+            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor': case 'Discounter':
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
@@ -7236,7 +7278,7 @@ class combatant{
                     break
                 }
             break
-            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster':
+            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor': case 'Discounter':
                 switch(type){
                     case 19:
                         this.animSet.loop+=rate

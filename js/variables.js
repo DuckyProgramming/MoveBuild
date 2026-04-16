@@ -290,6 +290,8 @@ types={
         {name:'Transformer',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:239,effect:[2]}],description:`POV: no good cards`},
         {name:'Doubler',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:240,effect:[1]}],description:`POV: only 1 copy`},
         {name:'Exhauster',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:241,effect:[1,1]}],description:`POV: too many bad cards`},
+        {name:'Compactor',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:472,effect:[1]}],description:`POV: hand size limits`},
+        {name:'Discounter',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:473,effect:[1]}],description:`POV: no money`},
         {name:'Teleporter Start',life:6,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`When entrance and exit both start with E`},
         {name:'Teleporter End',life:6,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Copy pasted man`},
         {name:'Mirror Shield',life:36,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
@@ -798,6 +800,9 @@ types={
         {name:'Ruination',class:4},
         {name:'3 Spread Strike / Block Down',class:1},//470
         {name:'Shockwave Drive',class:5},
+        {name:'Builder Compact',class:4},
+        {name:'Builder Discount',class:4},
+
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,world:[0,3],description:''},
@@ -7579,7 +7584,7 @@ variants={
 }
 constants={
     autoExec:-1,
-    playerNumber:26,orbNumber:17,
+    playerNumber:26,orbNumber:18,
     targetRadius:30,startEnergy:3,collisionDamage:4,
     sqrt2:0,sqrt3:0,phi:0,trig:[[],[]],
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],

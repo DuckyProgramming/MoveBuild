@@ -349,7 +349,7 @@ turn.prototype.update=function(){
                 case 126: case 182: case 190: case 230: case 231: case 232: case 234: case 237: case 238: case 239:
                 case 240: case 241: case 254: case 257: case 261: case 267: case 269: case 280: case 293: case 318:
                 case 346: case 359: case 365: case 376: case 392: case 401: case 405: case 408: case 410: case 411:
-                case 438: case 442: case 456: case 460: case 464:
+                case 438: case 442: case 456: case 460: case 464: case 472: case 473:
                     if(variants.nobasicanim){
                         this.selfCall(1)
                         this.remove=true

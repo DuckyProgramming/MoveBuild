@@ -1782,6 +1782,12 @@ class turn{
                     case 464:
                         this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,1,[this.effect[0]])
                     break
+                    case 472:
+                        this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.compactify(this.effect[0])
+                    break
+                    case 473:
+                        this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.costDown(this.effect[0])
+                    break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
                         switch(this.type){

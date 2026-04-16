@@ -8575,8 +8575,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 855:
             layer.stroke(150,90,0,fade)
             layer.strokeWeight(1.6)
-            regPoly(layer,-2.4,0,4.8,3.2,3.2,0)
-            regPoly(layer,2.8,0,4,3.2,3.2,90)
+            regPoly(layer,-2.4,0,6,3.2,3.2,0)
+            regPoly(layer,2.8,0,5,3.2,3.2,90)
         break
         case 856:
             layer.fill(200,0,0,fade)
@@ -8683,6 +8683,38 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(100,fade)
             layer.strokeWeight(1)
             layer.rect(0,0,4.5,6,1)
+        break
+        case 867:
+            layer.fill(150,0,200,fade)
+            layer.quad(-5,-0.5,5,-0.5,2.5,-2.5*constants.sqrt3,-2.5,-2.5*constants.sqrt3)
+            layer.quad(-5,0.5,5,0.5,2.5,2.5*constants.sqrt3,-2.5,2.5*constants.sqrt3)
+            layer.fill(150,175,200,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
+        case 868:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-3,-6,-5,3,-1,3)
+            layer.triangle(3,-6,5,3,1,3)
+            layer.fill(240,fade)
+            layer.quad(0,-4.5,-1.5,-6,0,-7.5,1.5,-6)
+        break
+        case 869:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-3,-6,-5,3,-1,3)
+            layer.triangle(3,-6,5,3,1,3)
+            layer.fill(240,fade)
+            layer.rect(0,0,1,8)
+            layer.quad(0,-4.5,-1.5,-6,0,-7.5,1.5,-6)
+        break
+        case 870:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-3,-6,-5,3,-1,3)
+            layer.triangle(3,-6,5,3,1,3)
+            layer.fill(240,fade)
+            layer.rect(-0.75,0,1,8)
+            layer.rect(0.75,0,1,8)
+            layer.quad(0,-4.5,-1.5,-6,0,-7.5,1.5,-6)
         break
 
     }
@@ -9149,6 +9181,16 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
                     layer.textSize(10)
                     layer.text(detail,0,0)
                 break
+                case 17:
+                    layer.fill(240,180,0,fade*typeFades[a]*0.5)
+                    layer.quad(-4,-1,-3,-5,3,-5,4,-1)
+                    layer.quad(-8.5,3,-7.5,-1,-1.5,-1,-0.5,3)
+                    layer.quad(8.5,3,7.5,-1,1.5,-1,0.5,3)
+                    layer.fill(240,210,30,fade*typeFades[a]*0.5)
+                    layer.quad(-0.5,-3,0,-5,3,-5,3.5,-3)
+                    layer.quad(-5,1,-4.5,-1,-1.5,-1,-1,1)
+                    layer.quad(8,1,7.5,-1,4.5,-1,4,1)
+                break
             }
         }
     }
@@ -9172,14 +9214,15 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
 14-Crystal
 15-Dust
 16-Iron
+17-Gold
 
 Basic - Shield
 Dark - Light
 Electric - Dust
 Crystal - Iron
 Explosive - Energy
-Glass
-Dual
+Glass - Dual
+Poison - Gold
 */
 function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
     layer.push()

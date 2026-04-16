@@ -33,7 +33,7 @@ class group{
         this.costDownListing=[]
         this.finalPosition=0
         this.sendAmounts=[]
-        this.listKey=51
+        this.listKey=52
         this.listInput=[
             [0,4],
             [1,8],
@@ -82,6 +82,7 @@ class group{
             [48,57],
             [49,58],
             [50,61],
+            [51,62],
         ]
 
         this.reset()
@@ -722,6 +723,10 @@ class group{
     }
     compactRetain(amount){
         this.status[50]=amount
+        this.generalSelfStatus()
+    }
+    compactify(amount){
+        this.status[51]=amount
         this.generalSelfStatus()
     }
     generalSelfStatus(){
@@ -2560,6 +2565,44 @@ class group{
                                     }
                                 }
                             break
+                            case 8606: case 8607: case 8608: case 8609: case 8610: case 8620:
+                                if(args[1]>=this.cards[a].effect[0]){
+                                    let name=''
+                                    switch(this.cards[a].attack){
+                                        case 8606:
+                                            name='Nigredo'
+                                        break
+                                        case 8607:
+                                            name='Albedo'
+                                        break
+                                        case 8608:
+                                            name='Citrinitas'
+                                        break
+                                        case 8609:
+                                            name='Rubedo'
+                                        break
+                                        case 8610:
+                                            name=`Philosopher's\nStone`
+                                        break
+                                        case 8620:
+                                            name='Materia\nPrima'
+                                        break
+                                    }
+                                    this.add(findName(name,types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    if(this.id==0){
+                                        changed=true
+                                        this.remove(a)
+                                        a--
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
                         }
                     }
                     if(changed){
@@ -2616,6 +2659,11 @@ class group{
                 case 72:
                     if(this.cards[a].rarity==args[0]&&this.cards[a].getCost(0)>0){
                         this.cards[a].costDown(0,[1])
+                    }
+                break
+                case 73:
+                    if(this.cards[a].spec.includes(args[0])){
+                        this.cards[a].effect[0]+=args[1]
                     }
                 break
             }
@@ -3628,7 +3676,7 @@ class group{
                 }
                 userCombatant.statusEffect('Strength',card.effect[1])
             break
-            case 5622:
+            case 5622: case 8562:
                 this.battle.combatantManager.areaAbstract(0,[card.effect[0],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
             break
             case 5757:
@@ -3985,6 +4033,14 @@ class group{
                     break
                     case 24:
                         list[list.length-1].edition=args[2]
+                    break
+                    case 25:
+                        if(list[list.length-1].level==0){
+                            list[list.length-1]=upgradeCard(list[list.length-1])
+                            this.generalUpgrade(list[list.length-1])
+                        }else{
+                            args[1].deAbstract(1,args[2],[])
+                        }
                     break
                 }
             }
@@ -4860,7 +4916,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48],this.anim[50]]
+                let anim=[max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48],this.anim[50],this.anim[51]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -4999,6 +5055,21 @@ class group{
                     case 13:
                         for(let a=0,la=this.cards.length;a<la;a++){
                             if(this.cards[a].rarity==args[2]){
+                                this.cards[a].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
+                                this.cards[a].fade=1
+                                this.cards[a].relIndex=position
+                                this.cards[a].position.x=this.layer.width/2-200+position%5*100
+                                this.cards[a].position.y=this.layer.height/2-130+floor(position/5)%3*130
+                                this.cards[a].anim.afford=1
+                                this.cards[a].display(this.id==0)
+                                position++
+                                this.finalPosition=position
+                            }
+                        }
+                    break
+                    case 14:
+                        for(let a=0,la=this.cards.length;a<la;a++){
+                            if(this.cards[a].getCost(0)==args[2]){
                                 this.cards[a].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
                                 this.cards[a].fade=1
                                 this.cards[a].relIndex=position
@@ -6142,6 +6213,14 @@ class group{
                 }
                 if(this.status[50]>0){
                     this.status[50]--
+                }
+            break
+            case 62:
+                if(!this.cards[a].spec.includes(34)){
+                    this.cards[a].spec.push(34)
+                }
+                if(this.status[51]>0){
+                    this.status[51]--
                 }
             break
         }
