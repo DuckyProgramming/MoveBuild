@@ -19,7 +19,7 @@ class cardManager{
 
         this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.cyclicDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0)-(variants.compress?1:0)-(variants.unexpected?1:0)+(variants.polar?1:0)-(variants.cardHold?1:0))
         this.drawBoost=0
-        this.tempDraw={active:false,main:0,freeze:0,burn:0,free:0,exhaustRandom:0,class:[0,0,0,0,0,0,0,0,0,0,0,0],spec:[]}
+        this.tempDraw={active:false,main:0,freeze:0,burn:0,free:0,exhaustRandom:0,quickdrawRandom:0,class:[0,0,0,0,0,0,0,0,0,0,0,0],spec:[]}
         this.tempCostDown=0
         this.baseDrops=variants.cyclicDraw?3:0
         this.drops=0
@@ -869,6 +869,9 @@ class cardManager{
                 this.drawAbstract(this.tempDraw.spec[a][1],10,0,[this.tempDraw.spec[a][0]])
             }
         }
+        for(let a=0,la=this.tempDraw.quickdrawRandom;a<la;a++){
+            this.randomEffect(2,79,[22])
+        }
         if(this.tempCostDown>0){
             for(let a=0,la=this.tempCostDown;a<la;a++){
                 this.randomEffect(2,1,[1])
@@ -879,6 +882,7 @@ class cardManager{
         this.tempDraw.burn=0
         this.tempDraw.free=0
         this.tempDraw.exhaustRandom=0
+        this.tempDraw.quickdrawRandom=0
         this.tempDraw.class=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.tempDraw.spec=[]
         this.tempCostDown=0

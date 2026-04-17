@@ -33,7 +33,7 @@ class group{
         this.costDownListing=[]
         this.finalPosition=0
         this.sendAmounts=[]
-        this.listKey=52
+        this.listKey=53
         this.listInput=[
             [0,4],
             [1,8],
@@ -83,6 +83,7 @@ class group{
             [49,58],
             [50,61],
             [51,62],
+            [52,63],
         ]
 
         this.reset()
@@ -729,6 +730,10 @@ class group{
         this.status[51]=amount
         this.generalSelfStatus()
     }
+    rewindUpgrade(amount){
+        this.status[52]+=amount
+        this.generalSelfStatus()
+    }
     generalSelfStatus(){
         if(variants.mtg){
             this.battle.mtgUnmark(this.player)
@@ -1028,7 +1033,8 @@ class group{
                 type==21&&!this.cards[a].deSize&&(variants.mtg&&!arrayCompareLoose(this.cards[a].color,this.battle.player[this.player])||!variants.mtg&&this.cards[a].color!=this.battle.player[this.player])||
                 type==22&&this.cards[a].name.includes(args[0])||
                 type==23&&(this.cards[a].name.includes(args[0])||this.cards[a].spec.includes(args[1]))||
-                type==24&&this.cards[a].energyAfford
+                type==24&&this.cards[a].energyAfford||
+                type==25&&(this.cards[a].name.includes(args[0])||this.cards[a].spec.includes(args[1]))
             ){
                 total++
             }
@@ -2734,6 +2740,7 @@ class group{
                         &&!(effect==76&&!this.cards[b].spec.includes(71))
                         &&!(effect==77&&(this.cards[b].effect.length<=0||this.cards[b].effect[0]>=args[1]))
                         &&!(effect==78&&!this.cards[b].spec.includes(60))
+                        &&!(effect==79&&this.cards[b].spec.includes(args[0]))
                     ){
                         list.push(b)
                     }
@@ -3104,6 +3111,10 @@ class group{
                         return true
                     case 78:
                         this.cards[index].triggerWish()
+                    break
+                    case 79:
+                        this.cards[index].spec.push(args[0])
+                        this.cards[index].additionalSpec.push(args[0])
                     break
 
                 }
@@ -4916,7 +4927,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48],this.anim[50],this.anim[51]]
+                let anim=[max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),this.anim[37],this.anim[38],this.anim[39],this.anim[40],this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48],this.anim[50],this.anim[51],this.anim[52]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -5883,6 +5894,15 @@ class group{
                 this.battle.attackManager.evolve=a.evolve
                 this.battle.attackManager.fugue=userCombatant.fugue
                 this.battle.attackManager.cost=a.cost
+                if(
+                    userCombatant.getStatus('Cycle Attack')>0&&a.class===1||
+                    userCombatant.getStatus('Cycle Defense')>0&&a.class===2||
+                    userCombatant.getStatus('Cycle Movement')>0&&a.class===3||
+                    userCombatant.getStatus('Cycle Power')>0&&a.class===4||
+                    userCombatant.getStatus('Cycle Skill')>0&&a.class==11
+                ){
+                    this.battle.attackManager.cost=0
+                }
                 if(a.getBasic(1)&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }
@@ -6033,6 +6053,15 @@ class group{
                 this.battle.attackManager.targetInfo=copyArray(a.target)
                 this.battle.attackManager.targetDistance=0
                 this.battle.attackManager.cost=a.cost
+                if(
+                    userCombatant.getStatus('Cycle Attack')>0&&a.class===1||
+                    userCombatant.getStatus('Cycle Defense')>0&&a.class===2||
+                    userCombatant.getStatus('Cycle Movement')>0&&a.class===3||
+                    userCombatant.getStatus('Cycle Power')>0&&a.class===4||
+                    userCombatant.getStatus('Cycle Skill')>0&&a.class==11
+                ){
+                    this.battle.attackManager.cost=0
+                }
                 a.select=true
                 if(userCombatant.getStatus('Strike Range')>0&&a.getBasic(1)){
                     this.battle.attackManager.targetInfo[2]+=userCombatant.getStatus('Strike Range')
@@ -6221,6 +6250,14 @@ class group{
                 }
                 if(this.status[51]>0){
                     this.status[51]--
+                }
+            break
+            case 63:
+                this.cards[a].deSize=true
+                this.cards[a].discardEffect.push(0)
+                this.cards[a].discardEffect.push(6)
+                if(this.status[52]>0){
+                    this.status[52]--
                 }
             break
         }

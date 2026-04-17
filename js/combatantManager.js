@@ -1453,7 +1453,8 @@ class combatantManager{
         let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=diagonal?distTargetDiagonalCombatant(0,{tilePosition:tilePosition},this.combatants[a]):distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&((
+            if(this.combatants[a].life>0&&(
+                (
                     targetter[0]==0||
                     targetter[0]==1&&this.combatants[a].team!=targetter[1]||
                     targetter[0]==2&&this.combatants[a].team==targetter[1]||
@@ -1462,13 +1463,16 @@ class combatantManager{
                     targetter[0]==5&&this.combatants[a].id!=targetter[1]&&this.combatants[a].block<=0||
                     targetter[0]==6&&this.combatants[a].id==targetter[1]&&this.combatants[a].block<=0||
                     targetter[0]==7&&(this.combatants[a].team<=0||this.combatants[a].team>this.battle.players)
-                )&&distance>=range[0]&&distance<=range[1]
-                &&!(effect==0&&distance>0&&!(
-                    diagonal&&legalTargetDiagonalCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)||
-                    !diagonal&&legalTargetCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)
-                ))
-                ||this.battle.modded(121))
-            ){
+                )&&(
+                    effect==12&&this.combatants[a].team==0||
+                    distance>=range[0]&&distance<=range[1]
+                    &&!(effect==0&&distance>0&&!(
+                        diagonal&&legalTargetDiagonalCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)||
+                        !diagonal&&legalTargetCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)
+                    ))
+                    ||this.battle.modded(121)
+                )
+            )){
                 switch(effect){
                     case 0:
                         if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Boost')>0){
@@ -1531,6 +1535,17 @@ class combatantManager{
                         values[4].addBlock(min(this.combatants[a].block,values[1]))
                         this.combatants[a].block=max(0,this.combatants[a].block-values[1])
                         this.combatants[a].takeDamage(values[0],values[2],values[3])
+                    break
+                    case 12:
+                        if(
+                            diagonal&&legalTargetDiagonalCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)||
+                            !diagonal&&legalTargetCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)
+                        ){
+                            this.combatants[a].takeDamage(values[0],values[1],values[2])
+                        }else{
+                            this.combatants[a].statusEffect(values[3],values[4])
+                            this.combatants[a].statusEffect(values[5],values[6])
+                        }
                     break
                 }
                 if(

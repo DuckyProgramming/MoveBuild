@@ -1394,6 +1394,18 @@ class overlay{
                                         }
                                     }
                                 break
+                                case 6:
+                                    for(let b=0,lb=list.length;b<lb;b++){
+                                        if((
+                                            !variants.mtg&&types.card[list[b]].levels[args[0]].cost!=-1||
+                                            variants.mtg&&!types.card[list[b]].mtg.levels[args[0]].cost.includes(-3)
+                                        )){
+                                            list.splice(b,1)
+                                            b--
+                                            lb--
+                                        }
+                                    }
+                                break
                             }
                         }
                         for(let a=0,la=this.options;a<la;a++){

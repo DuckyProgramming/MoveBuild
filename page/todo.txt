@@ -1,34 +1,40 @@
-cCHAR 26
+CHAR 26
 
 
-CARDSET 94 [MENESSA III]
+CARDSET 96 [MENESSA V]
 
 
 
-CARDSET 95 [MENESSA IV]
+split lilies of murder
 
-merlin movements
+merlin movements x2
 
-much movements
+colorless movement x1
 
-colorless movement + power
+menessa powers x3
+menessa movement x1
 
-1 curse - sleep loss - lose 6 health when you don't heal at a rest
-
-menessa powers x5
-[reread the lore]
+extra turn rare for menessa
 
 [gaslight]
 
 [apple zoo]
 
-toric toughness - 10 block now, 5 next turn, 10 in 2 turns
+2 (or maybe 3) new coffee cards
+[moka]
+[instant coffee]
 
-5 new coffee cards
+honored tower
+
+group project - draw 1 card, deal half damage next turn, target deals half damage next turn
+
+[white rainbow]
+
+1 cool discover
 
 
 
-CARDSET 95 [ENDSIEG]
+CARDSET 97 [ENDSIEG]
 
 
 

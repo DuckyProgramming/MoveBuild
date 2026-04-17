@@ -34,7 +34,7 @@ class particle{
             case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120: case 121:
             case 126: case 135: case 136: case 139: case 152: case 154: case 155: case 156: case 163: case 164:
             case 168: case 169: case 170: case 173: case 192: case 193: case 195: case 196: case 199: case 206:
-            case 225: case 244: case 252:
+            case 225: case 244: case 252: case 268:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -4371,6 +4371,43 @@ class particle{
                     this.layer.noFill()
                     this.layer.rect(6,0,4,6,2)
                 break
+                case 268:
+                    this.layer.rotate(this.position.x+this.position.y)
+                    this.layer.fill(210,210,240,this.fade)
+                    for(let a=0,la=36;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.beginShape()
+                        this.layer.vertex(0,3+5*abs(lcos(a/la*10*180)))
+                        this.layer.bezierVertex(
+                            -1,3.75+5*abs(lcos(a/la*10*180)),
+                            -1,4.25+5*abs(lcos(a/la*10*180)),
+                            0,5+5*abs(lcos(a/la*10*180))
+                        )
+                        this.layer.bezierVertex(
+                            1,4.25+5*abs(lcos(a/la*10*180)),
+                            1,3.75+5*abs(lcos(a/la*10*180)),
+                            0,3+5*abs(lcos(a/la*10*180))
+                        )
+                        this.layer.endShape()
+                    }
+                    this.layer.fill(240,this.fade)
+                    for(let a=0,la=36;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.beginShape()
+                        this.layer.vertex(0,3+5*abs(lcos(a/la*10*180)))
+                        this.layer.bezierVertex(
+                            -0.75,3.75+5*abs(lcos(a/la*10*180)),
+                            -0.75,4.25+5*abs(lcos(a/la*10*180)),
+                            0,5+5*abs(lcos(a/la*10*180))
+                        )
+                        this.layer.bezierVertex(
+                            0.75,4.25+5*abs(lcos(a/la*10*180)),
+                            0.75,3.75+5*abs(lcos(a/la*10*180)),
+                            0,3+5*abs(lcos(a/la*10*180))
+                        )
+                        this.layer.endShape()
+                    }
+                break
 
             }
             //mark p
@@ -5567,6 +5604,13 @@ class particle{
             case 266:
                 this.fade-=0.04
                 this.scale+=0.025*(this.fade+1)
+                if(this.fade<=0){
+                    this.remove=true
+                }
+            break
+            case 268:
+                this.fade-=0.025
+                this.scale+=0.06-this.fade*0.06
                 if(this.fade<=0){
                     this.remove=true
                 }

@@ -1050,7 +1050,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         if(this.page==0&&a==0){
                             this.battle.loseCurrency(40,this.player)
                         }else if(this.page==1&&a==0){
-                            this.battle.nodeManager.freeMove+=2
+                            this.battle.nodeManager.freeMove[0]+=2
                         }
                     break
                     case 68:

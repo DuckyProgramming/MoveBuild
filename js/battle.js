@@ -1410,6 +1410,9 @@ class battle{
                 if(userCombatant.getStatus('Defense Draw')>0){
                     this.cardManagers[player].draw(userCombatant.getStatus('Defense Draw'))
                 }
+                if(this.cardManagers[player].hand.lastPlayed[0].class==11&&userCombatant.getStatus('Skill to Defense Draw Skill')>0){
+                    this.cardManagers[player].drawAbstract(userCombatant.getStatus('Skill to Defense Draw Skill'),0,0,[11])
+                }
             break
             case 3:
                 if(userCombatant.getStatus('Double Damage Without Movement')>0){
@@ -1653,6 +1656,9 @@ class battle{
         }
         if(card.name=='Pristine'&&userCombatant.getStatus('Pristine Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Pristine Draw'))
+        }
+        if(card.spec.includes(84)&&userCombatant.getStatus('Coffee Draw')>0){
+            this.cardManagers[player].draw(userCombatant.getStatus('Coffee Draw'))
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])

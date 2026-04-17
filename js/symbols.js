@@ -8716,6 +8716,44 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0.75,0,1,8)
             layer.quad(0,-4.5,-1.5,-6,0,-7.5,1.5,-6)
         break
+        case 871:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(0.8)
+            layer.rect(0,-2,3.6,4.8,0.8)
+            layer.noStroke()
+            layer.fill(200,fade)
+            layer.triangle(0,3,-6,3,-3,1)
+            layer.triangle(0,3,6,3,3,1)
+        break
+        case 872:
+            layer.stroke(150,0,200,fade)
+            layer.strokeWeight(0.5)
+            regPoly(layer,0,0,6,4,4,30)
+            layer.line(-10/3,-2/3*constants.sqrt3,10/3,-2/3*constants.sqrt3)
+            layer.line(-10/3,2/3*constants.sqrt3,10/3,2/3*constants.sqrt3)
+            layer.scale(0.6)
+            layer.noStroke()
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.stroke(150,0,200,fade)
+            layer.strokeWeight(0.5)
+            layer.noFill()
+            regPoly(layer,0,0,6,4,4,30)
+            layer.line(-10/3,-2/3*constants.sqrt3,10/3,-2/3*constants.sqrt3)
+            layer.line(-10/3,2/3*constants.sqrt3,10/3,2/3*constants.sqrt3)
+        break
+        case 873:
+            layer.stroke(150,90,0,fade)
+            layer.strokeWeight(1.6)
+            regPoly(layer,-2.4,0,6,3.2,3.2,0)
+            regPoly(layer,2.8,0,5,3.2,3.2,90)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+        break
 
     }
     //mark s
