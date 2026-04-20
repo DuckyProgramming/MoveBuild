@@ -8324,24 +8324,30 @@ class combatant{
                 }
             }
         }
-        if(abs(this.anim.direction-this.goal.anim.direction)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction-360)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction+360)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction-720)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction+720)<=15*game.animRate){
-            this.anim.direction=this.goal.anim.direction
-        }else if(
-            this.anim.direction>this.goal.anim.direction&&this.anim.direction<this.goal.anim.direction+180||
-            this.anim.direction>this.goal.anim.direction-360&&this.anim.direction<this.goal.anim.direction-180||
-            this.anim.direction>this.goal.anim.direction+360&&this.anim.direction<this.goal.anim.direction+540||
-            this.anim.direction>this.goal.anim.direction-720&&this.anim.direction<this.goal.anim.direction-540||
-            this.anim.direction>this.goal.anim.direction+720&&this.anim.direction<this.goal.anim.direction+900){
-            this.anim.direction-=15*game.animRate
-        }else if(
-            this.anim.direction<this.goal.anim.direction&&this.anim.direction>this.goal.anim.direction-180||
-            this.anim.direction<this.goal.anim.direction+360&&this.anim.direction>this.goal.anim.direction+180||
-            this.anim.direction<this.goal.anim.direction-360&&this.anim.direction>this.goal.anim.direction-540||
-            this.anim.direction<this.goal.anim.direction+720&&this.anim.direction>this.goal.anim.direction+540||
-            this.anim.direction<this.goal.anim.direction-720&&this.anim.direction>this.goal.anim.direction-900){
-            this.anim.direction+=15*game.animRate
+        if(options.spin){
+            if(this.time%15==0){
+                this.anim.direction+=15
+            }
         }else{
-            this.anim.direction+=15*game.animRate*(floor(random(0,2)*2-1))
+            if(abs(this.anim.direction-this.goal.anim.direction)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction-360)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction+360)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction-720)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction+720)<=15*game.animRate){
+                this.anim.direction=this.goal.anim.direction
+            }else if(
+                this.anim.direction>this.goal.anim.direction&&this.anim.direction<this.goal.anim.direction+180||
+                this.anim.direction>this.goal.anim.direction-360&&this.anim.direction<this.goal.anim.direction-180||
+                this.anim.direction>this.goal.anim.direction+360&&this.anim.direction<this.goal.anim.direction+540||
+                this.anim.direction>this.goal.anim.direction-720&&this.anim.direction<this.goal.anim.direction-540||
+                this.anim.direction>this.goal.anim.direction+720&&this.anim.direction<this.goal.anim.direction+900){
+                this.anim.direction-=15*game.animRate
+            }else if(
+                this.anim.direction<this.goal.anim.direction&&this.anim.direction>this.goal.anim.direction-180||
+                this.anim.direction<this.goal.anim.direction+360&&this.anim.direction>this.goal.anim.direction+180||
+                this.anim.direction<this.goal.anim.direction-360&&this.anim.direction>this.goal.anim.direction-540||
+                this.anim.direction<this.goal.anim.direction+720&&this.anim.direction>this.goal.anim.direction+540||
+                this.anim.direction<this.goal.anim.direction-720&&this.anim.direction>this.goal.anim.direction-900){
+                this.anim.direction+=15*game.animRate
+            }else{
+                this.anim.direction+=15*game.animRate*(floor(random(0,2)*2-1))
+            }
         }
         if(this.anim.direction>180){
             this.anim.direction-=360

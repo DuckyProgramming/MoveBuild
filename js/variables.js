@@ -7596,7 +7596,7 @@ constants={
     HG2:[[-2,0],[-1,0],[0,2],[0,1],[-1,1],[2,0],[1,0],[0,-2],[0,-1],[1,-1]],
     HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]
 }
-options={damage:false,alt:false,replay:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false,devGen:false}
+options={damage:false,alt:false,replay:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false,devGen:false,spin:false}
 graphics={main:0,backgroundGen:17,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],paperball:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false,loading:``,bump:{trigger:false,anim:0}}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:[],hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}

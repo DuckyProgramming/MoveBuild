@@ -1376,25 +1376,71 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
         break
         case 'Menessa':
-            this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
-                legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
-                arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
-            this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
-            this.parts={eyeLevel:-78,mouth:-70,minor:15,
-                legs:[{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}}],
-                arms:[{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
+            if(graphics.combatant[12]==-1){
+                setupCombatantGraphics(12)
+                graphics.combatant.splice(12,1,graphics.combatant[graphics.combatant.length-1])
+                delete graphics.combatant[graphics.combatant.length-1]
+                graphics.combatant.splice(graphics.combatant.length-1,1)
+            }
+            this.anim={direction:direction,head:direction,mouth:{x:8,y:3,open:0},
+                eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1}},
+                legs:[
+                    {top:9,bottom:0,length:{top:16.75,bottom:16.75}},
+                    {top:9,bottom:0,length:{top:16.75,bottom:16.75}}
+                ],arms:[
+                    {top:24,bottom:9,length:{top:16.75,bottom:16.75}},
+                    {top:24,bottom:9,length:{top:16.75,bottom:16.75}}
+                ]}
+
+            this.spin={
+                legs:[{top:-60,bottom:-120},{top:60,bottom:120}],
+                arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],
+                eye:[-18,18],button:0,mouth:27,
+                hair:{bow:[-108,108],pin:54},bow:0}
+
+            this.color=graphics.combatant[12].color
+
+            this.parts={eyeLevel:-77.25,mouth:-72.75,
+                minor:15,
+                legs:[
+                    {top:{x:3,y:-33.5},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:3,y:-33.5},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                ],arms:[
+                    {top:{x:3.45,y:-58.5},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:3.45,y:-58.5},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                ],}
+
             this.graphics={
-                legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
-                arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
-            this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
-            this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
+                legs:[
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                ],arms:[
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}
+                ]}
+
+            this.fades={eye:[1,1],mouth:1,hair:{bow:1,pin:1},
+                skin:{legs:1,arms:1,body:1,head:1,button:1},
+                dress:{main:1,sleeve:1,bow:1},
+                shoe:1,
+            }
+
+            this.trigger={display:{mouth:true,
+                hair:{back:true,front:true,glow:true,bow:true,pin:true},eye:[true,true],
+                skin:{legs:true,arms:true,body:true,head:true,button:true},
+                dress:{main:true,sleeve:true,bow:true},
+                shoe:true,
+            }}
+
             this.trigger.display.extra={damage:false}
+
             this.calc={int:[0,0,0,0]}
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
-            this.goal={anim:{direction:this.anim.direction}}
-            this.color={skin:{head:[240,220,180],body:[200,200,200],legs:[195,195,195],arms:[205,205,205]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
 
             this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
+
+            this.animSet={loop:0,flip:0,hand:0,foot:0}
+
+            this.goal={anim:{direction:this.anim.direction}}
         break
         //mark p
         case 'Ume':
@@ -5320,6 +5366,85 @@ combatant.prototype.minorDisplay=function(type,key){
                         )
                     }
                     this.layer.endShape()
+                break
+            }
+        break
+        case 'Menessa':
+            switch(type){
+                case 0:
+                    let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.dress.sleeve),this.fade*this.fades.dress.sleeve)
+                    this.layer.beginShape()
+                    this.layer.quad(
+                        this.graphics.arms[key].middle.x+2*sin(dir+90),
+                        this.graphics.arms[key].middle.y+2*cos(dir+90),
+                        this.graphics.arms[key].middle.x*0.25+this.graphics.arms[key].bottom.x*0.75+6*sin(dir+90),
+                        this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75+6*cos(dir+90),
+                        this.graphics.arms[key].middle.x*0.25+this.graphics.arms[key].bottom.x*0.75-6*sin(dir+90),
+                        this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75-6*cos(dir+90),
+                        this.graphics.arms[key].middle.x-2*sin(dir+90),
+                        this.graphics.arms[key].middle.y-2*cos(dir+90)
+                    )
+                    this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4)
+
+                    this.layer.push()
+                    this.layer.translate(
+                        this.graphics.arms[key].middle.x*0.25+this.graphics.arms[key].bottom.x*0.75,
+                        this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75
+                    )
+                    this.layer.rotate(-dir)
+                    this.layer.arc(0,0,12,2,-180,0)
+                    this.layer.ellipse(0,0,12,1)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.ellipse(-4.875+a*1.95,-1+0.15*abs(a-2.5)**2,2,1.5)
+                    }
+                    this.layer.pop()
+                    this.layer.endShape()
+
+                    dir=atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
+                    this.layer.quad(
+                        this.graphics.arms[key].middle.x-2*sin(dir+90),
+                        this.graphics.arms[key].middle.y-2*cos(dir+90),
+                        this.graphics.arms[key].middle.x+2*sin(dir+90),
+                        this.graphics.arms[key].middle.y+2*cos(dir+90),
+                        this.graphics.arms[key].top.x+2.1*sin(dir+90),
+                        this.graphics.arms[key].top.y+2.1*cos(dir+90),
+                        this.graphics.arms[key].top.x-2.1*sin(dir+90),
+                        this.graphics.arms[key].top.y-2.1*cos(dir+90)
+                    )
+                    this.layer.fill(...this.flashColor(this.color.dress.main),this.fade*this.fades.dress.sleeve)
+                    this.layer.beginShape()
+                    let set=[
+                        [0,1],
+                        [0.48,1],
+                        [0.52,2/3],
+                        [0.5,1/3],
+                        [0.54,0],
+                        [0.5,-1/3],
+                        [0.52,-2/3],
+                        [0.48,-1],
+                        [0,-1],
+                    ]
+                    for(let a=0,la=set.length;a<la;a++){
+                        this.layer.vertex(
+                            this.graphics.arms[key].top.x*(1-set[a][0])+
+                            this.graphics.arms[key].middle.x*set[a][0]+
+                            (2.4+3*set[a][0])*set[a][1]*sin(dir+90),
+                            this.graphics.arms[key].top.y*(1-set[a][0])+
+                            this.graphics.arms[key].middle.y*set[a][0]+
+                            (2.4+3*set[a][0])*set[a][1]*cos(dir+90)
+                        )
+                    }
+                    this.layer.endShape()
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.dress.main),this.fade*this.fades.dress.sleeve)
+                    this.layer.push()
+                    this.layer.translate(this.graphics.arms[key].top.x,this.graphics.arms[key].top.y)
+                    this.layer.rotate(-dir)
+                    this.layer.arc(0,0,4.8,4.2,0,180)
+                    this.layer.ellipse(0,0,4.8,0.4)
+                    this.layer.pop()
                 break
             }
         break

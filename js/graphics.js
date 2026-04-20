@@ -603,6 +603,128 @@ function displayTrianglesFrontMerge(layer,parts,direction,base,width,weight,slan
 	}
 	layer.strokeJoin(MITER)
 }
+function displayTrianglesFrontMergeDown(layer,parts,direction,base,width,weight,slant,color1,color2,fade){
+	layer.strokeWeight(weight)
+	layer.strokeJoin(ROUND)
+	let g=0
+	let lg=parts.length
+	for(let part of parts){
+		g++
+		if(color1==-1){
+			layer.fill(0,fade)
+			layer.stroke(0,fade)
+			layer.erase(fade,fade)
+		}else{
+			layer.fill(...mergeColor(color1,color2,g/lg))
+			layer.stroke(...mergeColor(color1,color2,g/lg))
+		}
+		let reality=[
+			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
+			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
+			part.spin[2]+direction
+		]
+		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
+		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
+		if(c[0]>=0){
+			if(c[1]>=0){
+				if(c[2]>=0){
+					layer.triangle(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0],
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]
+					)
+					layer.rect(
+						0.5*(s[0]+s[1])*(width/2+part.y[0]*slant),
+						5,
+						abs(s[0]-s[1])*(width/2+part.y[0]*slant),
+						10,
+					)
+				}
+			}else{
+				if(c[2]>=0){
+					let inter=[
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[0]-reality[1]):
+						abs(90-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[1]-reality[2]):
+						abs(90-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.quad(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0],
+						width/2+cut[0]*slant,base+cut[0],
+						width/2+cut[1]*slant,base+cut[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]
+					)
+				}else{
+					let inter=[
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[1]):
+						abs(90-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[2]):
+						abs(90-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.triangle(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0],
+						width/2+cut[0]*slant,base+cut[0],
+						width/2+cut[1]*slant,base+cut[1]
+					)
+				}
+			}
+		}else{
+			if(c[1]>=0){
+				if(c[2]>=0){
+					let inter=[
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[1]):
+						abs(270-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[2]):
+						abs(270-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.quad(
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1],
+						-width/2-cut[0]*slant,base+cut[0],
+						-width/2-cut[1]*slant,base+cut[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]
+					)
+				}else{
+					let inter=[
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[0]-reality[1]):
+						abs(270-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[1]-reality[2]):
+						abs(270-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.triangle(
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1],
+						-width/2-cut[0]*slant,base+cut[0],
+						-width/2-cut[1]*slant,base+cut[1]
+					)
+				}
+			}
+		}
+	}
+	layer.strokeJoin(MITER)
+}
 function displayTrianglesBackMerge3D(layer,parts,direction,base,width,weight,slant,color1,color2,fade,plane){
 	layer.strokeWeight(weight)
 	layer.strokeJoin(ROUND)
@@ -2621,6 +2743,67 @@ function generateSprite(layer,type,direction){
                 ticker++
 			}
 		break
+		case 77:
+			layer.fill(...data.color.hair.insideFront)
+			layer.stroke(...data.color.hair.insideFront)
+			layer.strokeWeight(1)
+			layer.arc(0,0,34,33,-180,0)
+			layer.line(-17,0,17,0)
+			controlSpin(data.parts.hair.inside,direction,0)
+			displayTrianglesFrontMerge(layer,data.parts.hair.inside,direction,0,34,0.5,0.0225,data.color.hair.insideFront,data.color.hair.insideFront,1)
+			controlSpin(data.parts.hair.reverseInside,direction,0)
+			displayTrianglesFrontMergeDown(layer,data.parts.hair.reverseInside,direction,0.5,33.5,0.1,0.1,-1,-1,1)
+			layer.erase()
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			layer.arc(0,0,37,37,-180,0)
+			layer.line(-18.5,0,-19.5,20)
+			layer.line(18.5,0,19.5,20)
+		break
+		case 78:
+			displayTrianglesBackMerge(layer,data.parts.hair.inside,direction,0,34,0.5,0.045,data.color.hair.insideBack,data.color.hair.insideBack,1)
+			layer.erase()
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			layer.arc(0,0,37,37,-180,0)
+			layer.line(-18.5,0,-19.5,20)
+			layer.line(18.5,0,19.5,20)
+		break
+		case 79:
+			layer.fill(...data.color.hair.front)
+			layer.stroke(...data.color.hair.front)
+			layer.strokeWeight(1)
+			layer.arc(0,0,34,34,-180,0)
+			layer.line(-17,0,17,0)
+			controlSpin(data.parts.hair.main,direction,0)
+			displayTrianglesFrontMerge(layer,data.parts.hair.main,direction,0,34,0.5,0.025,data.color.hair.front,data.color.hair.front,1)
+			controlSpin(data.parts.hair.reverse,direction,0)
+			displayTrianglesFrontMergeDown(layer,data.parts.hair.reverse,direction,0.5,33.5,0.1,0.15,-1,-1,1)
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			layer.arc(0,0,37,37,-180,0)
+			layer.line(-18.5,0,-19.5,20)
+			layer.line(18.5,0,19.5,20)
+		break
+		case 80:
+			layer.fill(...data.color.hair.back)
+			layer.stroke(...data.color.hair.back)
+			layer.strokeWeight(1)
+			layer.arc(0,0,35,34,-180,0)
+			layer.line(-17.5,0,17.5,0)
+			displayTrianglesBackMerge(layer,data.parts.hair.main,direction,0,34,0.5,0.025,data.color.hair.back,data.color.hair.back,1)
+			controlSpin(data.parts.hair.reverse,direction,0)
+			displayTrianglesBackMerge(layer,data.parts.hair.reverse,direction,0.5,33.5,0.1,0.15,-1,-1,1)
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			layer.arc(0,0,37,37,-180,0)
+			layer.line(-18.5,0,-19.5,20)
+			layer.line(18.5,0,19.5,20)
+		break
 		
 	}
 	//mark s
@@ -4285,7 +4468,7 @@ function setupCombatantGraphics(type){
 		case 11:
 			graphics.combatant.push({
 				sprites:{detail:15,genAmount:0,animDirection:0},
-				parts:{jacket:[]},
+				parts:{},
 				color:{
                     hair:{back:[50,50,70],front:[70,70,90],insideBack:[40,40,60],insideFront:[60,60,80],glow:[245,230,245]},
                     skin:{head:[223,214,197],body:[200,186,177],legs:[224,234,243],arms:[235,233,221]},
@@ -4358,6 +4541,111 @@ function setupCombatantGraphics(type){
 				data.sprites.hair.preBack[g].translate(100,100)
 				data.sprites.hair.preBack[g].scale(5)
 				generateSprite(data.sprites.hair.preBack[g],69,g*data.sprites.detail)
+				//console.log('Generated HB-'+(g+1))
+				data.sprites.hair.front.push(createGraphics(200,300))
+				data.sprites.hair.front[g].image(data.sprites.hair.insideFront[g],0,0,200,300)
+				data.sprites.hair.front[g].image(data.sprites.hair.preFront[g],0,0,200,300)
+				data.sprites.hair.back.push(createGraphics(200,300))
+				data.sprites.hair.back[g].image(data.sprites.hair.insideBack[g],0,0,200,300)
+				data.sprites.hair.back[g].image(data.sprites.hair.preBack[g],0,0,200,300)
+			}
+			for(let a=0,la=data.sprites.hair.insideFront.length;a<la;a++){
+				delete data.sprites.hair.insideFront[a]
+				a--
+				la--
+			}
+			for(let a=0,la=data.sprites.hair.insideBack.length;a<la;a++){
+				delete data.sprites.hair.insideBack[a]
+				a--
+				la--
+			}
+		break
+		case 12:
+			graphics.combatant.push({
+				sprites:{detail:15,genAmount:0,animDirection:0},
+				parts:{},
+				color:{
+                    hair:{back:[143,106,77],front:[209,170,123],insideBack:[156,128,105],insideFront:[192,150,101],glow:[236,203,159],bow:[62,61,62]},
+                    skin:{head:[252,231,227],body:[248,208,197],legs:[244,214,207],arms:[255,231,227],button:[227,176,165]},
+                    eye:{back:[211,28,29],front:[71,0,0],glow:[202,168,193]},
+					mouth:{in:[191,125,127],out:[0,0,0]},
+					dress:{main:[236,231,233],over:[220,208,209],sleeve:[232,217,217],bow:[39,39,39]},
+					shoe:{main:[53,52,51],bow:[95,94,93]},
+				},
+			})
+
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={main:[],inside:[],reverse:[],reverseInside:[]}
+
+			for(let a=0,la=20;a<la;a++){
+				let zonal=[random(-180/la,30/la),random(-90/la,90/la)]
+				zonal.push(zonal[0]+random(120,150)/la)
+				let bar=random(0.4,0.6)
+				let scale=4.5+(lcos(a/la*360)>0.5?(-lcos(a/la*360)+0.5)*20:lcos(a/la*240+60)*-15)
+				let init=(a+random(-0.1,0.1))/la*360
+				let width=random(180,240)+a%2*30
+				let mult=abs(scale)/10+(scale<0?0.75:0.25)
+				zonal=zonal.map(num=>num*mult)
+				if(scale>0){
+					data.parts.hair.main.push({spin:[init-width/la,init,init+zonal[0]],y:[0,0,scale*bar]})
+					data.parts.hair.main.push({spin:[init,init+width/la,init+zonal[2]],y:[0,0,scale*bar]})
+					data.parts.hair.main.push({spin:[init+zonal[0],init+zonal[2],init],y:[scale*bar,scale*bar,0]})
+					data.parts.hair.main.push({spin:[init+zonal[0],init+zonal[2],init+zonal[1]],y:[scale*bar,scale*bar,scale]})
+				}else{
+					data.parts.hair.reverse.push({spin:[init-width/la-max(0,-6-scale*4),init,init+zonal[0]],y:[0,0,scale*bar-0.5]})
+					data.parts.hair.reverse.push({spin:[init,init+width/la+max(0,-6-scale*4),init+zonal[2]],y:[0,0,scale*bar-0.5]})
+					data.parts.hair.reverse.push({spin:[init+zonal[0],init+zonal[2],init],y:[scale*bar-0.5,scale*bar-0.5,0]})
+					data.parts.hair.reverse.push({spin:[init+zonal[0],init+zonal[2],init+zonal[1]],y:[scale*bar-0.5,scale*bar-0.5,scale-1]})
+				}
+
+				zonal=[random(-180/la,0),random(-60/la,60/la)]
+				zonal.push(zonal[0]+random(150,180)/la)
+				scale=2.5+(lcos(a/la*360)>0.5?(-lcos(a/la*360)+0.5)*20:lcos(a/la*240+60)*-15)
+				init=(a+random(0.4,0.6))/la*360
+				width=random(180,240)
+				mult=abs(scale)/10+(scale<0?0.75:0.25)
+				zonal=zonal.map(num=>num*mult)
+				if(scale>0){
+					data.parts.hair.inside.push({spin:[init-width/la,init,init+zonal[0]],y:[0,0,scale*bar]})
+					data.parts.hair.inside.push({spin:[init,init+width/la,init+zonal[2]],y:[0,0,scale*bar]})
+					data.parts.hair.inside.push({spin:[init+zonal[0],init+zonal[2],init],y:[scale*bar,scale*bar,0]})
+					data.parts.hair.inside.push({spin:[init+zonal[0],init+zonal[2],init+zonal[1]],y:[scale*bar,scale*bar,scale]})
+				}else{
+					data.parts.hair.reverseInside.push({spin:[init-width/la-max(0,-6-scale*4),init,init+zonal[0]],y:[0,0,scale*bar-1]})
+					data.parts.hair.reverseInside.push({spin:[init,init+width/la+max(0,-6-scale*4),init+zonal[2]],y:[0,0,scale*bar-1]})
+					data.parts.hair.reverseInside.push({spin:[init+zonal[0],init+zonal[2],init],y:[scale*bar-1,scale*bar-1,0]})
+					data.parts.hair.reverseInside.push({spin:[init+zonal[0],init+zonal[2],init+zonal[1]],y:[scale*bar-1,scale*bar-1,scale-2]})
+				}
+			}
+		
+			data.sprites.genAmount=360/data.sprites.detail
+
+			data.sprites.hair={preBack:[],preFront:[],insideBack:[],insideFront:[],back:[],front:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.insideFront.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.insideFront[g])
+				data.sprites.hair.insideFront[g].translate(100,100)
+				data.sprites.hair.insideFront[g].scale(5)
+				generateSprite(data.sprites.hair.insideFront[g],77,g*data.sprites.detail)
+				//console.log('Generated HIF-'+(g+1))
+				data.sprites.hair.insideBack.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.insideBack[g])
+				data.sprites.hair.insideBack[g].translate(100,100)
+				data.sprites.hair.insideBack[g].scale(5)
+				generateSprite(data.sprites.hair.insideBack[g],78,g*data.sprites.detail)
+				//console.log('Generated HIB-'+(g+1))
+				data.sprites.hair.preFront.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.preFront[g])
+				data.sprites.hair.preFront[g].translate(100,100)
+				data.sprites.hair.preFront[g].scale(5)
+				generateSprite(data.sprites.hair.preFront[g],79,g*data.sprites.detail)
+				//console.log('Generated HF-'+(g+1))
+				data.sprites.hair.preBack.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.preBack[g])
+				data.sprites.hair.preBack[g].translate(100,100)
+				data.sprites.hair.preBack[g].scale(5)
+				generateSprite(data.sprites.hair.preBack[g],80,g*data.sprites.detail)
 				//console.log('Generated HB-'+(g+1))
 				data.sprites.hair.front.push(createGraphics(200,300))
 				data.sprites.hair.front[g].image(data.sprites.hair.insideFront[g],0,0,200,300)
@@ -6900,8 +7188,9 @@ function setupGeneralGraphics(){
 	32-33 Setsuna Bow
 	34-35 Setsuna Flower
 	36 Daiyousei Bow
+	37 Menessa Pin
 	*/
-	for(let a=0,la=37;a<la;a++){
+	for(let a=0,la=38;a<la;a++){
 		switch(a){
 			case 9: case 11:
 				graphics.minor.push(createGraphics(160,240))
@@ -7187,8 +7476,18 @@ function setupGeneralGraphics(){
 		graphics.minor[36].rotate(-120)
 		graphics.minor[36].quad(0,0,48-a/la*24,-9+a/la*9,42-a/la*12,0,48-a/la*24,9-a/la*9)
 		graphics.minor[36].rotate(60)
-
 	}
+	graphics.minor[37].translate(80,80)
+	graphics.minor[37].fill(255,255,228)
+	graphics.minor[37].ellipse(-30,0,80,80)
+	graphics.minor[37].ellipse(30,0,80,80)
+	graphics.minor[37].fill(255,232,167)
+	graphics.minor[37].ellipse(-25,0,60,60)
+	graphics.minor[37].ellipse(25,0,60,60)
+	graphics.minor[37].erase()
+	graphics.minor[37].ellipse(-50,0,50,50)
+	graphics.minor[37].ellipse(50,0,50,50)
+
 }
 function setupBackground(type,layer){
 	switch(type){

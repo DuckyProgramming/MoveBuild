@@ -325,7 +325,8 @@ class battle{
                 a==8&&this.player.includes(17)||
                 a==9&&this.player.includes(18)||
                 a==10&&this.player.includes(21)||
-                a==11&&this.player.includes(25)
+                a==11&&this.player.includes(25)||
+                a==12&&this.player.includes(26)
             ){
                 setupCombatantGraphics(a)
             }else{
