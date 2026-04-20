@@ -8754,6 +8754,64 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(1)
             layer.rect(0,0,4.5,6,1)
         break
+        case 874:
+            layer.stroke(150,0,200,fade)
+            layer.strokeWeight(0.5)
+            regPoly(layer,0,0,6,4,4,30)
+            layer.line(-10/3,-2/3*constants.sqrt3,10/3,-2/3*constants.sqrt3)
+            layer.line(-10/3,2/3*constants.sqrt3,10/3,2/3*constants.sqrt3)
+            layer.scale(0.6)
+            layer.noStroke()
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
+            layer.stroke(150,0,200,fade)
+            layer.strokeWeight(0.5)
+            layer.noFill()
+            regPoly(layer,0,0,6,4,4,30)
+            layer.line(-10/3,-2/3*constants.sqrt3,10/3,-2/3*constants.sqrt3)
+            layer.line(-10/3,2/3*constants.sqrt3,10/3,2/3*constants.sqrt3)
+        break
+        case 875:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
+            layer.stroke(150,90,0,fade)
+            layer.strokeWeight(1.6)
+            regPoly(layer,-2.4,0,6,3.2,3.2,0)
+            regPoly(layer,2.8,0,5,3.2,3.2,90)
+        break
+        case 876:
+            layer.stroke(150,90,0,fade)
+            layer.strokeWeight(1.6)
+            regPoly(layer,-2.4,0,6,3.2,3.2,0)
+            regPoly(layer,2.8,0,5,3.2,3.2,90)
+            layer.stroke(150,fade)
+            layer.strokeWeight(2)
+            layer.line(-4,-4,4,4)
+        break
+        case 877:
+            layer.stroke(150,90,0,fade)
+            layer.strokeWeight(1.6)
+            regPoly(layer,-2.4,0,6,3.2,3.2,0)
+            regPoly(layer,2.8,0,5,3.2,3.2,90)
+            layer.scale(0.8)
+            layer.noStroke()
+            layer.fill(200,fade)
+            layer.ellipse(0,0,11)
+            layer.fill(150,fade)
+            layer.triangle(0,0,-6,0,0,-6)
+            layer.triangle(0,0,6,0,0,6)
+            layer.fill(125,fade)
+            layer.triangle(0,0,-6,0,0,6)
+            layer.triangle(0,0,6,0,0,-6)
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            }
+        break
 
     }
     //mark s

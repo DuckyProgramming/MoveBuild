@@ -1311,10 +1311,17 @@ class overlay{
                                     }
                                 }
                             break
+                            case 17:
+                                list=[]
+                                for(let a=0,la=this.options;a<la;a++){
+                                    list.push(copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)[args[1][1]])
+                                }
+                            break
                             default:
                                 list=[]
                             break
                         }
+                        let tempCard
                         for(let a=0,la=args[4].length;a<la;a++){
                             switch(args[4][a][0]){
                                 case 0:
@@ -1406,11 +1413,35 @@ class overlay{
                                         }
                                     }
                                 break
+                                case 7:
+                                    tempCard=new card(this.layer,this.battle,this.player,1200,500,0,0,0,game.id)
+                                    for(let b=0,lb=list.length;b<lb;b++){
+                                        let tempDesc=tempCard.description(types.card[list[b]].levels[args[0]].attack,types.card[list[b]].levels[args[0]].effect,types.card[list[b]].levels[args[0]].spec,types.card[list[b]].levels[args[0]].target)
+                                        if(args[4][a][1].some(unit=>!tempDesc.includes(unit))){
+                                            list.splice(b,1)
+                                            b--
+                                            lb--
+                                        }
+                                    }
+                                break
+                                case 8:
+                                    tempCard=new card(this.layer,this.battle,this.player,1200,500,0,0,0,game.id)
+                                    for(let b=0,lb=list.length;b<lb;b++){
+                                        for(let c=0,lc=list[b].length;c<lc;c++){
+                                            let tempDesc=tempCard.description(types.card[list[b][c]].levels[args[0]].attack,types.card[list[b][c]].levels[args[0]].effect,types.card[list[b][c]].levels[args[0]].spec,types.card[list[b][c]].levels[args[0]].target)
+                                            if(args[4][a][1][b].every(set=>set.some(unit=>!tempDesc.includes(unit)))){
+                                                list[b].splice(c,1)
+                                                c--
+                                                lc--
+                                            }
+                                        }
+                                    }
+                                break
                             }
                         }
                         for(let a=0,la=this.options;a<la;a++){
                             switch(args[1][0]){
-                                case 6: case 9: case 12: case 16:
+                                case 6: case 9: case 12: case 16: case 17:
                                     if(list[a%list.length].length>0){
                                         let index=floor(random(0,list[a%list.length].length))
                                         this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[a%list.length][index],args[0],this.battle.standardColorize(list[a%list.length][index]),-1))

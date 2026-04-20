@@ -2552,7 +2552,7 @@ on the wall with details about each upcoming stop.`,
             },
         ],
     },{
-        name:'Too Lucky',id:72,list:0,
+        name:'Too Lucky',id:72,list:-1,
         pages:[
             {
                 desc:

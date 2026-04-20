@@ -753,12 +753,18 @@ class cardManager{
                     this.reserve.cards[a].spec.push(31)
                 }
                 switch(this.reserve.cards[a].attack){
-                    case 3329: case 4976: case 4977: case 4978:
-                        extra++
+                    case 3329:
+                        extra+=this.reserve.cards[a].effect[2]
+                    break
+                    case 4976: case 4977: case 4978:
+                        extra+=this.reserve.cards[a].effect[1]
                     break
                     case 7276:
-                        extra--
+                        extra-=this.reserve.cards[a].effect[1]
                         this.reserve.cards[a].additionalSpec.push(-3)
+                    break
+                    case 8687:
+                        extra-=this.reserve.cards[a].effect[1]
                     break
                 }
                 this.reserve.slideSpecificOver(a)

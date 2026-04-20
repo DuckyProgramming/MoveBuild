@@ -485,6 +485,11 @@ class group{
         this.cards.splice(0,0,this.cards[this.cards.length-1])
         this.cards.splice(this.cards.length-1,1)
     }
+    slideTop2(){
+        this.cards.splice(0,0,this.cards[this.cards.length-1])
+        this.cards.splice(0,0,this.cards[this.cards.length-2])
+        this.cards.splice(this.cards.length-2,2)
+    }
     slideSpecific(index){
         this.cards.splice(0,0,this.cards[index])
         this.cards.splice(index+1,1)
@@ -1034,7 +1039,8 @@ class group{
                 type==22&&this.cards[a].name.includes(args[0])||
                 type==23&&(this.cards[a].name.includes(args[0])||this.cards[a].spec.includes(args[1]))||
                 type==24&&this.cards[a].energyAfford||
-                type==25&&(this.cards[a].name.includes(args[0])||this.cards[a].spec.includes(args[1]))
+                type==25&&(this.cards[a].name.includes(args[0])||this.cards[a].spec.includes(args[1]))||
+                type==26&&args[0].includes(this.cards[a].class)&&args[1]!=this.cards[a].id
             ){
                 total++
             }
@@ -2672,6 +2678,11 @@ class group{
                         this.cards[a].effect[0]+=args[1]
                     }
                 break
+                case 74:
+                    if(this.cards[a].class==args[0]){
+                        this.cards[a].retain2=true
+                    }
+                break
             }
         }
         if(effect==9){
@@ -2741,6 +2752,7 @@ class group{
                         &&!(effect==77&&(this.cards[b].effect.length<=0||this.cards[b].effect[0]>=args[1]))
                         &&!(effect==78&&!this.cards[b].spec.includes(60))
                         &&!(effect==79&&this.cards[b].spec.includes(args[0]))
+                        &&!(effect==80&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(41)||this.cards[b].class!=1||this.cards[b].id==args[1]))
                     ){
                         list.push(b)
                     }
@@ -2770,7 +2782,7 @@ class group{
                     case 4: case 65:
                         this.copySelf(index)
                     break
-                    case 5: case 62: case 72: case 75:
+                    case 5: case 62: case 72: case 75: case 80:
                         this.cards[index].setCost(0,[0])
                     break
                     case 6:
@@ -3411,6 +3423,9 @@ class group{
             case -136:
                 userCombatant.statusEffect('Take Double Damage Turn',card.effect[0])
             break
+            case -141:
+                this.battle.cardManagers[this.player].hand.add(findName('Spiked',types.card),0,constants.playerNumber+1)
+            break
 
             //mark n
             
@@ -3486,7 +3501,7 @@ class group{
                 userCombatant.balance+=card.effect[0]
             break
             case 1745: case 1943: case 2096: case 2128: case 2200: case 2465: case 6535: case 6536: case 6823: case 7509:
-            case 7909: case 7996:
+            case 7909: case 7996: case 8701:
                 for(let a=0,la=card.effect[2];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }

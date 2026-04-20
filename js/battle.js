@@ -1405,6 +1405,9 @@ class battle{
                 if(this.cardManagers[player].hand.turnPlayed[1]==1&&userCombatant.getStatus('Auto Follow-Up')>0){
                     this.cardManagers[player].reserve.sendAbstract(this.cardManagers[player].hand.cards,userCombatant.getStatus('Auto Follow-Up'),10,16,[71,72])
                 }
+                if(this.cardManagers[player].hand.lastPlayed[0].class==11&&userCombatant.getStatus('Skill to Attack Draw Skill')>0){
+                    this.cardManagers[player].drawAbstract(userCombatant.getStatus('Skill to Attack Draw Skill'),0,0,[11])
+                }
             break
             case 2:
                 if(userCombatant.getStatus('Defense Draw')>0){
@@ -1659,6 +1662,9 @@ class battle{
         }
         if(card.spec.includes(84)&&userCombatant.getStatus('Coffee Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Coffee Draw'))
+        }
+        if(card.spec.includes(84)&&userCombatant.getStatus('Coffee Splash')>0){
+            this.combatantManager.areaAbstract(0,[userCombatant.getStatus('Coffee Splash'),userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])

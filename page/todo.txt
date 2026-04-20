@@ -1,40 +1,22 @@
 CHAR 26
 
 
-CARDSET 96 [MENESSA V]
-
-
-
-split lilies of murder
-
-merlin movements x2
-
-colorless movement x1
-
-menessa powers x3
-menessa movement x1
-
-extra turn rare for menessa
-
-[gaslight]
-
-[apple zoo]
-
-2 (or maybe 3) new coffee cards
-[moka]
-[instant coffee]
-
-honored tower
-
-group project - draw 1 card, deal half damage next turn, target deals half damage next turn
-
-[white rainbow]
-
-1 cool discover
-
-
-
 CARDSET 97 [ENDSIEG]
+
+
+
+[1 marker card]
+
+merge the paper ball events
+
+lunar emissary event gives colorless pack
+
+online shopping:
+pay 0 - get a junkyard card reward
+pay 50 - get a normal card reward
+pay 250 - get a rare card reward
+
+the matching event from slay the spire
 
 
 
@@ -46,4 +28,10 @@ icon 26
 
 
 
-do the thing where i check the cards don't crash
+crusader
+
+
+
+bgs
+
+rainmeter

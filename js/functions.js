@@ -2133,7 +2133,7 @@ function outListing(){
 	let box=``
 	let goal=160+160*constants.playerNumber+64+64+40+32+24
 	let actual=current.cardManagers[0].listing.allListableCard[3].length
-	let arbitrary=6666
+	let arbitrary=7000//6666
 	for(let a=0,la=constants.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
 Common:${current.cardManagers[0].listing.card[a+1][0].length}/64				${current.cardManagers[0].listing.card[a+1][0].length-64}
@@ -2562,6 +2562,7 @@ function colorTest(){
 	}
 }
 function attackTest(type,target,startpoint,endpoint){
+	let lim=0//7500
 	switch(type){
 		case 0: case 1: case 2: case 3:
 			current.combatantManager.combatants[type==1?target[1]:target].setMaxHP(9999999999999)
@@ -2577,6 +2578,7 @@ function attackTest(type,target,startpoint,endpoint){
 								type==2&&types.card[a].mtg.levels[b].target[0]==5||
 								type==3&&types.card[a].mtg.levels[b].target[0]==0
 							)&&types.card[a].mtg.levels[b].attack!=types.card[a].levels[b].attack
+							&&types.card[a].mtg.levels[b].attack>=lim
 						){
 							current.attackManager.type=types.card[a].mtg.levels[b].attack
 							current.attackManager.player=0
@@ -2607,11 +2609,12 @@ function attackTest(type,target,startpoint,endpoint){
 			}else{
 				for(let a=startpoint,la=endpoint==-1?types.card.length:endpoint;a<la;a++){
 					for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
-						if(
-							type==0&&types.card[a].levels[b].target[0]==2||
-							type==1&&types.card[a].levels[b].target[0]==1||
-							type==2&&types.card[a].levels[b].target[0]==5||
-							type==3&&types.card[a].levels[b].target[0]==0
+						if((
+								type==0&&types.card[a].levels[b].target[0]==2||
+								type==1&&types.card[a].levels[b].target[0]==1||
+								type==2&&types.card[a].levels[b].target[0]==5||
+								type==3&&types.card[a].levels[b].target[0]==0
+							)&&types.card[a].levels[b].attack>=lim
 						){
 							current.attackManager.type=types.card[a].levels[b].attack
 							current.attackManager.player=0
@@ -2736,7 +2739,7 @@ function mtgPlayerColor(player){
 		case 23: return [1,2,5]
 		case 24: return [2,4,5]
 		case 25: return [1,3,5]
-		case 26: return [0,3]
+		case 26: return [0,2,3]
 		default: return [6]
 	}
 }
