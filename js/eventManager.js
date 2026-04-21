@@ -98,7 +98,7 @@ class eventManager{
                 !(this.listing.event[a]==73&&this.battle.nodeManager.world==0)&&
                 !(this.listing.event[a]==74&&userCombatant.life<9)&&
                 !(this.listing.event[a]==75&&(userCombatant.life>userCombatant.base.life-20||this.battle.currency.money[this.player]<35))&&
-                !(this.listing.event[a]==76&&userCombatant.life<9)&&
+                !(this.listing.event[a]==76&&userCombatant.life<9||userCombatant.base.life<17)&&
                 !(this.listing.event[a]==77&&this.battle.currency.money[this.player]<50)&&
                 !(this.listing.event[a]==78&&(userCombatant.life<21||this.battle.cardManagers[this.player].deck.numberAbstract(9,[[2]])<4))&&
                 !(this.listing.event[a]==79&&userCombatant.life<27)&&
@@ -168,7 +168,7 @@ class eventManager{
                 !(this.listing.event[a]==169&&this.battle.currency.money[this.player]<40)&&
                 !(this.listing.event[a]==170&&this.battle.currency.money[this.player]<300)&&
                 !(this.listing.event[a]==171&&userCombatant.life>userCombatant.base.life-20)&&
-                !((this.listing.event[a]==172||this.listing.event[a]==191)&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==172&&this.battle.currency.money[this.player]<50)&&
                 !(this.listing.event[a]==173&&userCombatant.life>userCombatant.base.life-10)&&
                 !(this.listing.event[a]==175&&(this.battle.currency.money[this.player]<50||userCombatant.life>userCombatant.base.life-10))&&
                 !(this.listing.event[a]==178&&(this.battle.currency.money[this.player]<150||userCombatant.life<11))&&
@@ -182,6 +182,9 @@ class eventManager{
                 !(this.listing.event[a]==187&&(this.battle.currency.money[this.player]<100||this.battle.nodeManager.world>=2))&&
                 !(this.listing.event[a]==189&&(this.battle.currency.money[this.player]<100||userCombatant.life<21))&&
                 !(this.listing.event[a]==190&&(this.battle.currency.money[this.player]<200||userCombatant.life<41))&&
+                !(this.listing.event[a]==191&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==192&&userCombatant.life<9||userCombatant.base.life<17)&&
+                !(this.listing.event[a]==193&&this.battle.currency.money[this.player]<250)&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -2407,6 +2410,30 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                             this.battle.cardManagers[this.player].deck.add(findName('Ferrero',types.card),0,0)
                         }else if(this.page==3&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Lindt',types.card),0,0)
+                        }
+                    break
+                    case 192:
+                        if(this.page==0&&a==0){
+                            userCombatant.gainMaxHP(16)
+                            this.battle.cardManagers[this.player].deck.add(findName('Multitudes',types.card),0,constants.playerNumber+2)
+                        }else if(this.page==0&&a==1){
+                            this.harm(userCombatant,8)
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,3,15])
+                        }
+                    break
+                    case 193:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,constants.playerNumber+1,58])
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(50,this.player)
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,1,0])
+                        }else if(this.page==0&&a==2){
+                            this.battle.loseCurrency(250,this.player)
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
                         }
                     break
 

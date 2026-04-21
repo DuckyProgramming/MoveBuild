@@ -1263,6 +1263,9 @@ function intentDescription(attack,user,info){
 			case 471: return `Move to End of Board,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap\nDeal Damage Again\nand Push 1 Tile\n in All Directions`
 			case 472: return `Builder Compacts ${info?attack.effect[0]:`?`}\nCard${pl(attack.effect[0])}`
 			case 473: return `Builder Makes ${info?attack.effect[0]:`?`} Card${pl(attack.effect[0])}\nCost 1 Less`
+			case 474: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nDraw ${info?attack.effect[0]:`?`} Less\nCard${pl(attack.effect[0])} Next Turn`
+			case 475: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDraw ${info?attack.effect[1]:`?`} Less\nCard${pl(attack.effect[1])} Next Turn\nRange 1-6`
+			case 476: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nApply ${info?attack.effect[2]:`?`} Frail\n2 Tiles Forward,\n1 Tile to the Side,\nor 1 Tile Diagonally`
 
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`

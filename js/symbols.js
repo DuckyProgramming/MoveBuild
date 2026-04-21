@@ -14008,6 +14008,50 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(6,0,0,-3,0,3)
             layer.triangle(10.5,0,4.5,-3,4.5,3)
         break
+        case 472:
+            layer.fill(200,fade)
+            layer.stroke(120,135,150,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,6,8,1)
+        break
+        case 473:
+            layer.fill(200,fade)
+            layer.stroke(255,175,255,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,6,8,1)
+        break
+        case 474:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(200,fade)
+            layer.stroke(175,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,6,8,1)
+        break
+        case 475:
+            layer.fill(200,fade)
+            layer.stroke(175,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,6,8,1)
+            layer.noStroke()
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+            layer.ellipse(-7.5,-2.25,3,3)
+            layer.ellipse(-7.5,2.25,3,3)
+        break
+        case 476:
+            layer.fill(150,175,200,fade)
+            layer.triangle(-2,6,-4,-3,0,-3)
+            layer.fill(200,0,5,fade)
+            layer.triangle(2,6,4,-3,0,-3)
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-2,-4.5,2)
+            layer.triangle(9,-4,-4.5,-2,-4.5,2)
+            layer.triangle(9,4,-4.5,-2,-4.5,2)
+            layer.triangle(3,-6,-4.5,-2,-4.5,2)
+            layer.triangle(3,6,-4.5,-2,-4.5,2)
+        break
 
     }
     //mark i
@@ -14072,7 +14116,8 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 376: case 378: case 386: case 387: case 388: case 389: case 390: case 392: case 395: case 396:
             case 397: case 398: case 399: case 401: case 402: case 404: case 405: case 408: case 409: case 411:
             case 412: case 427: case 428: case 430: case 433: case 438: case 439: case 442: case 454: case 455:
-            case 456: case 459: case 460: case 461: case 462: case 465: case 468: case 470:
+            case 456: case 459: case 460: case 461: case 462: case 465: case 468: case 470: case 474: case 475:
+            case 476:
                 layer.text(`${effect[0]}|${effect[1]}`,0,0)
             break
             case 21:
@@ -14097,7 +14142,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 188:
                 layer.text(`${effect[0]}xR`,0,0)
             break
-            case 190: case 269: case 379: case 434: case 435: case 448:
+            case 190: case 269: case 379: case 434: case 435: case 448: case 476:
                 layer.text(`${effect[0]}|${effect[1]}|${effect[2]}`,0,0)
             break
             case 207:

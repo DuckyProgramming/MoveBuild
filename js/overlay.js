@@ -1510,6 +1510,17 @@ class overlay{
                             }
                         }
                     break
+                    case 58:
+                        list=copyArray(this.battle.cardManagers[this.player].listing.junk[args[1]])
+                        for(let a=0,la=this.options;a<la;a++){
+                            if(list.length>0){
+                                let index=floor(random(0,list.length))
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
+                                this.cards[this.cards.length-1].upSize=true
+                                list.splice(index,1)
+                            }
+                        }
+                    break
                 }
                 if(this.args[0]==0||this.args[0]==2){
                     this.cards.forEach(card=>card.nonCalc=true)

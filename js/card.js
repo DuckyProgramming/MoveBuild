@@ -9794,6 +9794,7 @@ class card{
             case 8713: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Miracle${pl(effect[1])} to Hand\nPristine in Hand:\nGain (N) (N)`; break
             case 8714: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nDiscover a Character Skill\nOptions Have Draw,\nEnergy, and Buffs`; break
             case 8715: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nExhausted Pristines`; break
+            case 8716: string+=`Add ${effect[0]} Pristine${pl(effect[0])} to Hand\nWhen a Non-Pristine\nSkill is Played\nWith This Card\nin Your Hand`; break
             
             //mark p
 
@@ -12548,6 +12549,13 @@ class card{
                 case 8574:
                     if(cardClass==7){
                         this.effect[1]+=this.effect[2]
+                    }
+                break
+                case 8716:
+                    if(cardClass==11&&card.name!='Pristine'){
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.cardManagers[this.player].hand.add(findName('Pristine',types.card),0,0)
+                        }
                     }
                 break
                 

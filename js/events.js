@@ -2705,7 +2705,7 @@ fast for her to catch.`,
             },
         ],
     },{
-        name:'Lunar Emissary',id:76,list:- 1,
+        name:'Lunar Emissary',id:76,list:-1,
         pages:[
             {
                 desc:
@@ -6410,6 +6410,63 @@ Eventually you'll get to eating them.`,
             },{
                 desc:`You're not will to waste money right now.`,
                 option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Admiralic Visit',id:192,list:0,
+        pages:[
+            {
+                desc:
+`A rarely seen ship touches down ahead of you.
+It's an SCT shuttle, which should've been phased out long ago.
+The door swings open, and from it appears a few officers.
+Their badges are distinctive: they're the Admiral-Manager's men.
+Seeing you're on their side, they offer you to take something.`,
+                option:['Take Some Lifejuice','Take Some Weapons','Decline'],
+                optionDesc:['Gain 16 Max Health, Become Cursed - Multitudes','Lose 8 Health, Open a Colorless Pack',''],
+                link:[1,2,3],
+            },{
+                desc:
+`You take the Lifejuice and drink the whole vial.
+While you feel stronger, at the same time you feel weaker.
+At least you know this won't become a habit.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:'You take a look at the offerings in their arsenal.',
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`You decline, and the group goes on their way.
+Maybe you'll encounter another group like this.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Shopping',id:193,list:0,
+        pages:[
+            {
+                desc:
+`With some time to spare, you go shopping for once.
+It seems like there's quite a few places you might go to.
+But while you have some time. it's only enoguh to visit one.
+Though, maybe something will be worth buying?`,
+                option:['Buy from Metu','Buy from Seabay','Buy from Zamazor'],
+                optionDesc:['Add a Junkyard Card','Lose 50 Currency, Add an Uncommon Card','Lose 250 Currency, Add a Rare Card'],
+                link:[1,1,1],
+            },{
+                desc:
+`You go on the site and look around the catalog.
+Maybe you'll come back here in the future.
+If you have enough time, that is.`,
+                option:['Leave'],
                 optionDesc:[''],
                 link:[-1],
             },

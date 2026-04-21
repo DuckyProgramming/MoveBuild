@@ -6,22 +6,9 @@ CARDSET 97 [ENDSIEG]
 
 
 
-[1 marker card]
-
-lunar emissary event gives colorless pack
-
-online shopping:
-pay 0 - get a junkyard card reward
-pay 50 - get a normal card reward
-pay 250 - get a rare card reward
+[1 marker card] [ice9]
 
 the matching event from slay the spire
-
-
-
-boss 26
-
-scenes 26
 
 
 

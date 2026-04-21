@@ -12,7 +12,7 @@ turn.prototype.update=function(){
                 case 332: case 335: case 342: case 343: case 353: case 369: case 372: case 373: case 374: case 375:
                 case 378: case 385: case 386: case 389: case 390: case 397: case 398: case 402: case 412: case 419:
                 case 420: case 424: case 426: case 433: case 434: case 435: case 448: case 454: case 455: case 459:
-                case 463: case 465:
+                case 463: case 465: case 475:
                     if(this.type==205&&this.timer==1){
                         this.userCombatant.goal.anim.direction=this.relativeDirection
                     }
@@ -349,7 +349,7 @@ turn.prototype.update=function(){
                 case 126: case 182: case 190: case 230: case 231: case 232: case 234: case 237: case 238: case 239:
                 case 240: case 241: case 254: case 257: case 261: case 267: case 269: case 280: case 293: case 318:
                 case 346: case 359: case 365: case 376: case 392: case 401: case 405: case 408: case 410: case 411:
-                case 438: case 442: case 456: case 460: case 464: case 472: case 473:
+                case 438: case 442: case 456: case 460: case 464: case 472: case 473: case 474:
                     if(variants.nobasicanim){
                         this.selfCall(1)
                         this.remove=true
@@ -407,15 +407,15 @@ turn.prototype.update=function(){
                 case 9: case 28: case 44: case 53: case 60: case 64: case 82: case 84: case 85: case 105:
                 case 114: case 124: case 153: case 204: case 259: case 264: case 265: case 278: case 288: case 308:
                 case 330: case 368: case 379: case 387: case 388: case 395: case 404: case 409: case 449: case 468:
-                case 470:
+                case 470: case 476:
                     if(variants.nobasicanim){
                         this.selfCall(3)
                         this.remove=true
                     }else{
                         if(this.timer==1){
-                            this.userCombatant.startAnimation(this.userCombatant.name=='Sakura'||this.userCombatant.name=='Shiru'||this.userCombatant.name=='DD-610'||this.userCombatant.name=='Prehextorica'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Sagume'?29:4)
+                            this.userCombatant.startAnimation(this.userCombatant.name=='Sakura'||this.userCombatant.name=='Shiru'||this.userCombatant.name=='DD-610'||this.userCombatant.name=='Prehextorica'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Sagume'||this.userCombatant.name=='Menessa'?29:4)
                         }
-                        this.userCombatant.runAnimation(1/30,this.userCombatant.name=='Sakura'||this.userCombatant.name=='Shiru'||this.userCombatant.name=='DD-610'||this.userCombatant.name=='Prehextorica'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Sagume'?29:4)
+                        this.userCombatant.runAnimation(1/30,this.userCombatant.name=='Sakura'||this.userCombatant.name=='Shiru'||this.userCombatant.name=='DD-610'||this.userCombatant.name=='Prehextorica'||this.userCombatant.name=='Ducopo'||this.userCombatant.name=='Sagume'||this.userCombatant.name=='Menessa'?29:4)
                         if(this.timer==15){
                             this.selfCall(3)
                         }else if(this.timer>=30){

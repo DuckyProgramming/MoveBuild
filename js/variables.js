@@ -26,7 +26,7 @@ types={
         {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:458,effect:[1]},{type:459,effect:[11,1]},{type:460,effect:[13,5]}],description:`Eternal guardian force of Somber Falls,\nconvinced to leave by its endless quiet.\nImagined that the rest of Konai,\nwhile decidedly not home, might\njust have something actually going on.`},
         {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:462,effect:[11,2]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:`Told tales of the glorious past\nrevolutions by elder duck farmers,\nhe hopes to carry on their work.\nBut with the Management clamping down,\nhe had to join with the council.`},
         {name:'Meri',moniker:'The Whisper',identifier:['Sister','Miss'],life:49,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:466,effect:[5]},{type:467,effect:[5]},{type:465,effect:[10,10]}],description:`Chief courier of the council,\nchosen personally by the Operator\nto act as the main liaison between\nrural rebels and their much weaker\ncounterparts holed up in Rueso.`},
-        {name:'Menessa',moniker:'The Emissary',identifier:['Sister','Miss'],life:46,behavior:0,spec:[0],move:{type:0,speed:1},attack:[                                                                                      ],description:`Harpist from the West of Konai,\nfrom an early age looking up to Jovina III.\nNow enrolled in the Konaian First\nUniversity, hoping to catch the\neye of some prominent patrons.`},
+        {name:'Menessa',moniker:'The Emissary',identifier:['Sister','Miss'],life:46,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:474,effect:[9,2]},{type:475,effect:[12,2]},{type:476,effect:[8,1,1]}],description:`Harpist from the West of Konai,\nfrom an early age looking up to Jovina III.\nNow enrolled in the Konaian First\nUniversity, hoping to catch the\neye of some prominent patrons.`},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -802,7 +802,9 @@ types={
         {name:'Shockwave Drive',class:5},
         {name:'Builder Compact',class:4},
         {name:'Builder Discount',class:4},
-
+        {name:'Block / Draw Down',class:2},
+        {name:'6 Tile Strike / Draw Down',class:1},
+        {name:'Crescent Strike / Weak / Frail',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,world:[0,3],description:''},

@@ -6750,7 +6750,7 @@ combatant.prototype.display=function(){
                                 this.layer.bezierVertex(0.6,3,-0.6,3,-1.25,0.25)
                                 this.layer.endShape()
                                 this.layer.pop()
-                                if(lcos(this.anim.direction)<0){
+                                if(lcos(this.anim.direction)<=0){
                                     this.layer.push()
                                     this.layer.translate(this.graphics.legs[h].bottom.x*0.96+this.graphics.legs[h].middle.x*0.04,this.graphics.legs[h].bottom.y*0.96+this.graphics.legs[h].middle.y*0.04+1)
                                     this.layer.scale(2)
@@ -6778,19 +6778,20 @@ combatant.prototype.display=function(){
                                 this.layer.fill(...color,this.fade*this.fades.shoe)
                                 this.layer.noStroke()
                                 this.layer.push()
-                                this.layer.translate(this.graphics.legs[h].bottom.x*0.95+this.graphics.legs[h].middle.x*0.05,this.graphics.legs[h].bottom.y*0.95+this.graphics.legs[h].middle.y*0.05+1)
+                                this.layer.translate(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
                                 this.layer.scale(2)
                                 this.layer.rotate(-this.anim.direction)
                                 this.layer.arc(0,0.125,2,1.75,-180,0)
+                                this.layer.ellipse(0,0.125,2,1)
                                 this.layer.beginShape()
                                 this.layer.vertex(-1,0.125)
                                 this.layer.vertex(1,0.125)
                                 this.layer.bezierVertex(0.75,2,-0.75,2,-1,0.25)
                                 this.layer.endShape()
                                 this.layer.pop()
-                                if(lcos(this.anim.direction)>=0){
+                                if(lcos(this.anim.direction)>0){
                                     this.layer.push()
-                                    this.layer.translate(this.graphics.legs[h].bottom.x*0.96+this.graphics.legs[h].middle.x*0.04,this.graphics.legs[h].bottom.y*0.96+this.graphics.legs[h].middle.y*0.04+1)
+                                    this.layer.translate(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y+0.125)
                                     this.layer.scale(2)
                                     this.layer.rotate(-this.anim.direction)
                                     this.layer.translate(0,1.8)
@@ -6862,8 +6863,10 @@ combatant.prototype.display=function(){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.dress.main),this.fade*this.fades.dress.main)
                     this.layer.arc(0,-48,13,34,-180,0)
+                    this.layer.ellipse(0,-48,13,1)
                     this.layer.quad(-6.5,-48,6.5,-48,13.5,-27,-13.5,-27)
                     this.layer.arc(0,-27,27,8,0,180)
+                    this.layer.ellipse(0,-27,27,1)
                     for(let a=0,la=25;a<la;a++){
                         if(lcos((a+0.5)/la*360+this.anim.direction)>0){
                             this.layer.push()

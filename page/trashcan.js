@@ -55,5 +55,19 @@
                 {effect:[],attack:1947,cost:[],target:[9],spec:[1,2],limit:-1,class:11},
             ],
         },
+    },{
+        name:'Joseph\nJ. Joker',rarity:-1,list:-8,
+        levels:[
+            {effect:[25],attack:1384,cost:0,target:[0],spec:[42],limit:5,class:11},
+            {effect:[15],attack:1384,cost:0,target:[0],spec:[42],limit:5,class:11},
+            {effect:[10],attack:1384,cost:0,target:[0],spec:[42],limit:5,class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[0],
+            levels:[
+                {effect:[25],attack:1384,cost:[],target:[0],spec:[42],limit:5,class:11},
+                {effect:[15],attack:1384,cost:[],target:[0],spec:[42],limit:5,class:11},
+                {effect:[10],attack:1384,cost:[],target:[0],spec:[42],limit:5,class:11},
+            ],
+        },
     },
 ]

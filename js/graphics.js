@@ -5231,6 +5231,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:30,bottom:75,lock:0}]
 					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
 				break
+				case 'Menessa':
+					p1.anim.legs=[
+						{top:24,bottom:12,length:{top:16.75,bottom:16.75}},
+						{top:27,bottom:6,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:24,bottom:15+a*60,length:{top:16.75,bottom:16.75}},
+						{top:24,bottom:15,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-60},{top:45,bottom:75}]
+					p1.spin.arms=[{top:-36,bottom:6+a*36,lock:0},{top:90,bottom:24,lock:0}]
+					p1.position.x+=40
+				break
 
 			}
 			p1.size=2.5
@@ -5558,6 +5571,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
 					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+				break
+				case 'Menessa':
+					p1.parts.mouth+=3
+					p1.anim.mouth.y++
+					p1.spin.mouth+=192
+					p1.anim.legs=[
+						{top:9+a*6,bottom:48-a*15,length:{top:16.75,bottom:16.75}},
+						{top:3+a*6,bottom:15+a*33,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:117,bottom:177+a*15,length:{top:16.75,bottom:16.75}},
+						{top:48-a*15,bottom:66-a*30,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-150},{top:36,bottom:90}]
+					p1.spin.arms=[{top:-30,bottom:-12,lock:0},{top:90,bottom:105,lock:0}]
 				break
 			}
 			p1.anim.eye=[1,1]
@@ -5905,6 +5933,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-45+a*5,bottom:-15-a*5,lock:0},{top:120+a*5,bottom:150-a*12,lock:0}]
 					p1.spin.arms=[{top:-75+a*6,bottom:-12-a*9,lock:0},{top:75-a*6,bottom:30+a*15,lock:0}]
 				break
+				case 'Menessa':
+					p1.anim.mouth.y+=1.5
+					p1.parts.mouth-=0.5
+					p1.position.y+=2
+					p1.anim.legs=[
+						{top:12,bottom:69,length:{top:16.75,bottom:16.75}},
+						{top:27,bottom:93,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:102,bottom:135,length:{top:16.75,bottom:16.75}},
+						{top:6,bottom:33-a*3,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-90-a*30,bottom:-90},{top:60+a*30,bottom:150}]
+					p1.spin.arms=[{top:-75-a*15,bottom:-60,lock:0},{top:90+a*15,bottom:69+a*12,lock:0}]
+				break
 			}
 			if(p1.name!='DD-610'&&p1.name!='Vincent'&&p1.name!='Ducopo'&&p1.name!='Randy'&&p1.name!='Dukelis'){
 				p1.anim.eye=[1,1]
@@ -6234,6 +6277,22 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60+a*45,bottom:-120+a*45,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
 				break
+				case 'Menessa':
+					p1.position.y+=3-a*24
+					p1.parts.mouth++
+					p1.anim.mouth.y-=0.5
+					p1.spin.mouth-=3
+					p1.anim.legs=[
+						{top:9+a*15,bottom:18+a*24,length:{top:16.75,bottom:16.75}},
+						{top:12+a*15,bottom:18+a*6,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:18+a*12,bottom:27-a*15,length:{top:16.75,bottom:16.75}},
+						{top:21,bottom:45-a*9,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-45+a*27,bottom:-120+a*24},{top:60-a*15,bottom:105-a*36}]
+					p1.spin.arms=[{top:-75,bottom:-12-a*105,lock:0},{top:75,bottom:12+a*60,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -6544,6 +6603,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-75+a*15,bottom:-15+a*60,lock:0},{top:60+a*6,bottom:66-a*60,lock:0}]
+				break
+				case 'Menessa':
+					p1.position.y-=0.5
+					p1.anim.legs=[
+						{top:6-a*1.5,bottom:-1-a*1.5,length:{top:16.75,bottom:16.75}},
+						{top:6-a*1.5,bottom:-1-a*1.5,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:105+a*18,bottom:174,length:{top:16.75,bottom:16.75}},
+						{top:24+a*3,bottom:9-a*3,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-54-a*9,bottom:-90},{top:60-a*6,bottom:96-a*6}]
+					p1.spin.arms=[{top:-90,bottom:-48+a*24,lock:0},{top:90,bottom:60-a*18,lock:0}]
 				break
 			}
 			p1.size=2.5
@@ -6894,6 +6966,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-90,lock:0},{top:60,bottom:90,lock:0}]
 					p1.spin.arms=[{top:-78,bottom:-120+a*60,lock:0},{top:78,bottom:55-a*30,lock:0}]
 				break
+				case 'Menessa':
+					p1.position.y-=1.5
+					p1.anim.mouth.y+=0.5
+					p1.parts.mouth-=0.25
+					p1.anim.legs=[
+						{top:3,bottom:6,length:{top:16.75,bottom:16.75}},
+						{top:3+a*6,bottom:6,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:6,bottom:-15,length:{top:16.75,bottom:16.75}},
+						{top:6,bottom:-15,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-150-a*15,lock:0},{top:60,bottom:105-a*30,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-90,lock:0},{top:105,bottom:90,lock:0}]
+				break
 			}
 			p1.size=2
 			p1.fade=1
@@ -7161,6 +7248,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-30,bottom:-60,lock:0},{top:30,bottom:30,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
+				break
+				case 'Menessa':
+					p1.anim.mouth.x-=0.25
+					p1.anim.mouth.y-=0.25
+					p1.anim.legs=[
+						{top:12,bottom:12,length:{top:16.75,bottom:16.75}},
+						{top:21,bottom:3,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:15+a*15,bottom:15+a*9,length:{top:16.75,bottom:16.75}},
+						{top:36,bottom:75,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-45,bottom:-72},{top:48,bottom:48}]
+					p1.spin.arms=[{top:-84,bottom:-54,lock:0},{top:27,bottom:-36,lock:0}]
 				break
 			}
 			p1.size=1.5
