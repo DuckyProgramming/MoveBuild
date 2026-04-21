@@ -300,7 +300,7 @@ class combatant{
                 0,0,0,0,2,2,2,0,0,0,//85
                 0,0,2,2,1,0,0,0,0,0,//86
                 0,2,2,2,0,2,0,0,2,2,//87
-                2,0,0,0,0,0,2,2,
+                2,0,0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -389,8 +389,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//84
                 2,2,2,2,2,2,2,2,2,2,//85
                 2,3,1,1,2,1,2,2,2,2,//86
-                2,2,2,2,2,2,2,2,2,2,//87
-                2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,0,0,//87
+                0,2,2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -497,6 +497,7 @@ class combatant{
         this.fugue=0
         this.favor=0
         this.ringing=0
+        this.caffeine=0
 
         this.turnDodges=0
         this.turnTaken=0
@@ -7686,6 +7687,17 @@ class combatant{
             this.layer.textSize(12)
             this.layer.text(this.wish,0,-14)
         }
+        if(this.name=='Menessa'&&!this.graphic&&this.team>0&&this.team>0&&scene=='battle'){
+            this.layer.noFill()
+            this.layer.stroke(150,90,0,this.fade)
+            this.layer.strokeWeight(2)
+            regPoly(this.layer,-3,-12,6,4,4,0)
+            regPoly(this.layer,3.5,-12,5,4,4,90)
+            this.layer.noStroke()
+            this.layer.fill(240,220,200,this.fade)
+            this.layer.textSize(12)
+            this.layer.text(this.caffeine,0,-11.5)
+        }
     }
     displayInfo(scene){
         switch(scene){
@@ -7916,8 +7928,8 @@ class combatant{
                 this.ringing-=6
                 this.bell(1)
             }
-            if(this.status.main[findList('Caffeine',this.status.name)]>=3+this.status.main[findList('Caffeine Tolerance',this.status.name)]){
-                this.status.main[findList('Caffeine',this.status.name)]-=3+this.status.main[findList('Caffeine Tolerance',this.status.name)]
+            if(this.caffeine>=3+this.status.main[findList('Caffeine Tolerance',this.status.name)]){
+                this.caffeine-=3+this.status.main[findList('Caffeine Tolerance',this.status.name)]
                 this.loseHealth(3)
             }
             if(this.life<=0){

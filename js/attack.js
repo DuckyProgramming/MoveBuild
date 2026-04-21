@@ -10691,7 +10691,7 @@ class attack{
                         }
                     break
                     case 8422:
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
                     case 8462:
                         this.userCombatant.statusEffect('Counter',this.effect[1]*this.battle.turn.total)
@@ -10715,7 +10715,7 @@ class attack{
                     case 8543:
                         this.userManager.draw(this.effect[1])
                         this.userCombatant.statusEffect('Temporary Strength',this.effect[2])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[3])
+                        this.userCombatant.caffeine+=this.effect[3]
                     break
                     case 8551:
                         this.battle.overlayManager.overlays[10][this.player].active=true
@@ -10731,7 +10731,7 @@ class attack{
                         this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[0],[[3,84]]])
                     break
                     case 8621:
-                        if(this.userCombatant.getStatus('Caffeine')>0){
+                        if(this.userCombatant.caffeine>0){
                             this.userCombatant.statusEffect('Counter Once',this.effect[2])
                         }
                     break
@@ -17526,30 +17526,30 @@ class attack{
                     break
                     case 8415:
                         this.battle.addEnergy(this.effect[0],this.player)
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
                     case 8416:
                         this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[2])
+                        this.userCombatant.caffeine+=this.effect[2]
                     break
                     case 8417: case 8418: case 8419:
                         this.battle.addEnergy(this.type-8415,this.player,0)
-                        this.userCombatant.statusEffect('Caffeine',this.effect[0])
+                        this.userCombatant.caffeine+=this.effect[0]
                     break
                     case 8421:
                         this.userManager.hand.upgrade(this.effect[0])
                         this.userCombatant.statusEffect('Temporary Strength',this.effect[1])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[2])
+                        this.userCombatant.caffeine+=this.effect[2]
                     break
                     case 8434:
                         this.userManager.draw(this.effect[0])
                         this.userManager.hand.exhaust(this.effect[1])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[2])
+                        this.userCombatant.caffeine+=this.effect[2]
                     break
                     case 8435:
                         this.battle.combatantManager.allEffect(48,['Weak',this.effect[0],`Vulnerable`,this.effect[1]])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[2])
+                        this.userCombatant.caffeine+=this.effect[2]
                     break
                     case 8459:
                         this.userCombatant.statusEffect('Dodge',this.effect[0])
@@ -17644,11 +17644,11 @@ class attack{
                     break
                     case 8541:
                         this.userCombatant.statusEffect('Strength',this.effect[0])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
                     case 8542:
                         this.userCombatant.statusEffect('Dexterity',this.effect[0])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
                     case 8544:
                         this.battle.addEnergyGen(this.effect[0],this.player)
@@ -17669,27 +17669,27 @@ class attack{
                     case 8585:
                         this.userManager.draw(this.effect[0])
                         this.userCombatant.statusEffect('Energy in 2 Turns',this.effect[1])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[2])
+                        this.userCombatant.caffeine+=this.effect[2]
                     break
                     case 8586:
                         this.userManager.draw(this.effect[0])
                         this.userCombatant.statusEffect('(K) in 2 Turns',1)
                         this.userCombatant.statusEffect('(N) in 2 Turns',1)
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
                     case 8587:
                         this.userManager.draw(this.effect[0])
                         this.userCombatant.statusEffect('(E) in 2 Turns',1)
                         this.userCombatant.statusEffect('(K) in 2 Turns',1)
                         this.userCombatant.statusEffect('(N) in 2 Turns',1)
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
                     case 8588:
                         this.userManager.draw(this.effect[0])
                         this.userCombatant.statusEffect('(E) in 2 Turns',1)
                         this.userCombatant.statusEffect('(K) in 2 Turns',2)
                         this.userCombatant.statusEffect('(N) in 2 Turns',1)
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
                     case 8619:
                         this.userCombatant.metal+=this.effect[0]
@@ -22473,14 +22473,14 @@ class attack{
                     break
                     case 8420:
                         this.userCombatant.statusEffect('Buffer',this.effect[0])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
                     case 8433:
                         this.userManager.drawAbstract(this.effect[0],0,0,[11])
                     break
                     case 8437:
                         this.battle.overlayManager.overlays[10][this.player].active=true
-                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[1,3],57,[0],[]])
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[1,3],57,[],[]])
                     break
                     case 8443:
                         this.userManager.draw(this.effect[0])
@@ -22617,7 +22617,7 @@ class attack{
                         this.userManager.drawAbstract(this.effect[0],-1,25,[0,this.userManager,this.effect[1]])
                     break
                     case 8616:
-                        this.userManager.draw(this.effect[0]+this.effect[1]*this.userCombatant.getStatus('Caffeine'))
+                        this.userManager.draw(this.effect[0]+this.effect[1]*this.userCombatant.caffeine)
                     break
                     case 8624:
                         this.userManager.deck.randomEffect(9,[1])
@@ -24005,7 +24005,7 @@ class attack{
                     break
                     case 8423:
                         this.userManager.hand.upgrade(this.effect[0])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                         if(this.debut){
                             this.userCombatant.heal(this.effect[2])
                         }
@@ -24034,7 +24034,7 @@ class attack{
                     case 8548:
                         this.userCombatant.heal(this.effect[0])
                         this.userManager.drawAbstract(this.effect[1],0,0,[3])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[2])
+                        this.userCombatant.caffeine+=this.effect[2]
                     break
                     case 8559:
                         this.userManager.draw(this.effect[0])
@@ -24081,7 +24081,7 @@ class attack{
                     case 8622:
                         this.userCombatant.statusEffect('Armor',this.effect[0])
                         this.userManager.drawAbstract(this.effect[1],0,0,[3])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[2])
+                        this.userCombatant.caffeine+=this.effect[2]
                     break
                     case 8660:
                         this.targetCombatant.status.main[findList('Control',this.targetCombatant.status.name)]=0
@@ -24092,12 +24092,12 @@ class attack{
                     break
                     case 8710:
                         this.userManager.hand.allEffectArgs(34,[1])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[0])
+                        this.userCombatant.caffeine+=this.effect[0]
                     break
                     case 8711:
                         this.userManager.hand.allEffectArgs(34,[1])
                         this.userManager.draw(this.effect[0])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
                     case 8714:
                         this.userCombatant.heal(this.effect[0])
@@ -27406,7 +27406,7 @@ class attack{
                         this.targetCombatant.statusEffect('Metallicize',this.effect[0])
                     break
                     case 8157:
-                        this.targetCombatant.statusEffect('Intangible',this.effect[0])
+                        this.targetCombatant.statusEffect('Intangible Next Turn',this.effect[0])
                     break
                     case 8164:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -30268,15 +30268,15 @@ class attack{
                     break
                     case 8652:
                         this.battle.combatantManager.allEffect(48,['Weak',this.effect[0]])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
                     case 8653:
                         this.battle.combatantManager.allEffect(48,['Vulnerable',this.effect[0]])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
                     case 8673:
                         this.userCombatant.statusEffect('Vigor',this.effect[0]*(this.lastPlayed[0].class==1?2:1))
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
                     case 8694:
                         this.battle.dropDraw(this.player,findName('Snowflake',types.card),0,0)
@@ -33806,7 +33806,7 @@ class attack{
                     break
                     case 8672:
                         this.battle.combatantManager.allEffect(49,[this.effect[0]])
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
                     case 8674:
                         this.userCombatant.statusEffect('Skill to Attack Draw Skill',this.effect[0])
@@ -34290,7 +34290,7 @@ class attack{
                         this.userManager.drawAbstract(this.effect[1],10,0,[4])
                     break
                     case 8701:
-                        this.userCombatant.statusEffect('Caffeine',this.effect[1])
+                        this.userCombatant.caffeine+=this.effect[1]
                     break
 
                 }

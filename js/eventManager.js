@@ -168,7 +168,7 @@ class eventManager{
                 !(this.listing.event[a]==169&&this.battle.currency.money[this.player]<40)&&
                 !(this.listing.event[a]==170&&this.battle.currency.money[this.player]<300)&&
                 !(this.listing.event[a]==171&&userCombatant.life>userCombatant.base.life-20)&&
-                !(this.listing.event[a]==172&&this.battle.currency.money[this.player]<50)&&
+                !((this.listing.event[a]==172||this.listing.event[a]==191)&&this.battle.currency.money[this.player]<50)&&
                 !(this.listing.event[a]==173&&userCombatant.life>userCombatant.base.life-10)&&
                 !(this.listing.event[a]==175&&(this.battle.currency.money[this.player]<50||userCombatant.life>userCombatant.base.life-10))&&
                 !(this.listing.event[a]==178&&(this.battle.currency.money[this.player]<150||userCombatant.life<11))&&
@@ -2394,6 +2394,19 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                             }
                         }else if((this.page==12||this.page==14)&&a==2){
                             this.battle.cardManagers[this.player].deck.add(findName('Blind\nAggression',types.card),0,constants.playerNumber+2)
+                        }
+                    break
+                    case 191:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(25,this.player)
+                        }else if(this.page==0&&(a==1||a==2)){
+                            this.battle.loseCurrency(50,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Paper\nBall',types.card),0,0)
+                        }else if(this.page==2&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Ferrero',types.card),0,0)
+                        }else if(this.page==3&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Lindt',types.card),0,0)
                         }
                     break
 

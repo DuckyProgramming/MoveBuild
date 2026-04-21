@@ -49,17 +49,17 @@ function setup(){
             //current.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
             //current.create()
 
-            /*stage.scene='graphic'
-            graphics.test=7
+            stage.scene='graphic'
+            graphics.test=0
             graphics.staticBackground.clear()
-            setupBackground(graphics.test,graphics.staticBackground)*/
+            setupBackground(graphics.test,graphics.staticBackground)
 
             //quickNode(3)
             
             /*transition.trigger=true
             transition.scene='bossstash'*/
             
-            /*player(0).size=4
+            /*player(0).size=5
             player(0).offset.position.y+=150
             game.infoOff=true*/
 

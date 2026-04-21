@@ -11220,7 +11220,7 @@ class card{
                 userCombatant.statusEffect('Temporary Strength',this.effect[1])
             break
             case 8582:
-                userCombatant.statusEffect('Caffeine',this.effect[1])
+                userCombatant.caffeine+=this.effect[1]
             break
             case 8583: case 8654:
                 userCombatant.loseHealth(this.effect[1])

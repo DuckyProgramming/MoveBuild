@@ -2705,7 +2705,7 @@ fast for her to catch.`,
             },
         ],
     },{
-        name:'Lunar Emissary',id:76,list:0,
+        name:'Lunar Emissary',id:76,list:- 1,
         pages:[
             {
                 desc:
@@ -4361,7 +4361,7 @@ only being freed as it passes.`,
             },
         ],
     },{
-        name:'Paper Ball Shop',id:132,list:0,
+        name:'Paper Ball Shop',id:132,list:-1,
         pages:[
             {
                 desc:
@@ -5532,7 +5532,7 @@ It's not much, but it'll do.`,
             },
         ],
     },{
-        name:'Chocolate Factory',id:172,list:0,
+        name:'Chocolater Factory',id:172,list:-1,
         pages:[
             {
                 desc:
@@ -6373,6 +6373,45 @@ First, you need to sieze the redoubts guarding the main fort.`,
                 option:['Rush Them','Pay Somebody Else','Send in Everything','Give Up'],
                 optionDesc:['Lose 10 Health','Lose 80 Currency','Become Cursed - Blind Aggression',''],
                 link:[1,1,1,3],
+            },
+        ],
+    },{
+        name:'Chocolate Factory',id:191,list:0,
+        pages:[
+            {
+                desc:
+`You enter a chocolate shop, seeing the many pieces
+of chocolate on offer. They look to be from two different
+brands. Maybe you should make a purchase?`,
+                option:['Buy a Wrapper','Buy Ferrero','Buy Lindt','Decline'],
+                optionDesc:['Lose 25 Currency','Lose 50 Currency','Lose 50 Currency',''],
+                link:[1,2,3],
+            },{
+                desc:
+`You grab a pile of empty wrappers and pay the price.
+They're somewhat shiny, but why did you do this?`,
+                option:['Take it'],
+                optionDesc:['Add a Paper Ball to Deck'],
+                link:[-1],
+            },{
+                desc:
+`You grab some shiny chocolate balls and pay the price.
+You'll eat them at some point.`,
+                option:['Take it'],
+                optionDesc:['Add a Ferrero to Deck'],
+                link:[-1],
+            },{
+                desc:
+`You grab some shiny chocolate balls and pay the price.
+Eventually you'll get to eating them.`,
+                option:['Take it'],
+                optionDesc:['Add a Lindt to Deck'],
+                link:[-1],
+            },{
+                desc:`You're not will to waste money right now.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
             },
         ],
     },

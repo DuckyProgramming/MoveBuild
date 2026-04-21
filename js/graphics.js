@@ -4569,7 +4569,11 @@ function setupCombatantGraphics(type){
                     skin:{head:[252,231,227],body:[248,208,197],legs:[244,214,207],arms:[255,231,227],button:[227,176,165]},
                     eye:{back:[211,28,29],front:[71,0,0],glow:[202,168,193]},
 					mouth:{in:[191,125,127],out:[0,0,0]},
-					dress:{main:[236,231,233],over:[220,208,209],sleeve:[232,217,217],bow:[39,39,39]},
+					dress:{
+						main:[236,231,233],over:[220,213,212],back:[196,169,171],
+						sleeve:[232,217,217],sleeveOver:[222,207,209],sleeveBack:[177,139,139],
+						bow:[39,39,39],flaps:[62,63,62],pocket:[216,194,191]
+					},
 					shoe:{main:[53,52,51],bow:[95,94,93]},
 				},
 			})
@@ -7485,8 +7489,8 @@ function setupGeneralGraphics(){
 	graphics.minor[37].ellipse(-25,0,60,60)
 	graphics.minor[37].ellipse(25,0,60,60)
 	graphics.minor[37].erase()
-	graphics.minor[37].ellipse(-50,0,50,50)
-	graphics.minor[37].ellipse(50,0,50,50)
+	graphics.minor[37].ellipse(-45,0,55,55)
+	graphics.minor[37].ellipse(45,0,55,55)
 
 }
 function setupBackground(type,layer){

@@ -1,13 +1,12 @@
 CHAR 26
 
 
+
 CARDSET 97 [ENDSIEG]
 
 
 
 [1 marker card]
-
-merge the paper ball events
 
 lunar emissary event gives colorless pack
 
@@ -21,8 +20,6 @@ the matching event from slay the spire
 
 
 boss 26
-
-icon 26
 
 scenes 26
 
