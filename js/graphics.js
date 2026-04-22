@@ -7293,9 +7293,10 @@ function setupGeneralGraphics(){
 	32-33 Setsuna Bow
 	34-35 Setsuna Flower
 	36 Daiyousei Bow
-	37 Menessa Pin
+	37-38 Menessa Pin
+	39 XOR
 	*/
-	for(let a=0,la=39;a<la;a++){
+	for(let a=0,la=40;a<la;a++){
 		switch(a){
 			case 9: case 11:
 				graphics.minor.push(createGraphics(160,240))
@@ -7309,7 +7310,7 @@ function setupGeneralGraphics(){
 			case 26:
 				graphics.minor.push(createGraphics(80,80))
 			break
-			case 38:
+			case 39:
 				graphics.minor.push(createGraphics(90,120))
 			break
 			default:
@@ -7585,35 +7586,58 @@ function setupGeneralGraphics(){
 		graphics.minor[36].quad(0,0,48-a/la*24,-9+a/la*9,42-a/la*12,0,48-a/la*24,9-a/la*9)
 		graphics.minor[36].rotate(60)
 	}
-	graphics.minor[37].translate(80,80)
-	graphics.minor[37].fill(255,255,228)
-	graphics.minor[37].ellipse(-30,0,80,80)
-	graphics.minor[37].ellipse(30,0,80,80)
-	graphics.minor[37].fill(255,232,167)
-	graphics.minor[37].ellipse(-25,0,60,60)
-	graphics.minor[37].ellipse(25,0,60,60)
+	let gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80)]
+	gradient[0].colors(
+		0.00,color(255,255,228),
+		1.00,color(255,232,167)
+	)
+	gradient[1].colors(
+		0.00,color(255,232,167),
+		1.00,color(255,255,228)
+	)
+	graphics.minor[37].translate(0,40)
+	graphics.minor[37].fillGradient(gradient[0])
+	graphics.minor[37].arc(55,40,100,100,-180,0)
 	graphics.minor[37].erase()
-	graphics.minor[37].ellipse(-45,0,55,55)
-	graphics.minor[37].ellipse(45,0,55,55)
-	graphics.minor[38].scale(3/2)
+	graphics.minor[37].arc(45,40,81,81,-180,0)
+	graphics.minor[37].noErase()
+	graphics.minor[37].fillGradient(gradient[1])
+	graphics.minor[37].arc(105,40,100,100,0,180)
+	graphics.minor[37].erase()
+	graphics.minor[37].arc(115,40,81,81,0,180)
+
+	graphics.minor[38].translate(0,40)
+	graphics.minor[38].fillGradient(gradient[0])
+	graphics.minor[38].arc(55,40,100,100,0,180)
+	graphics.minor[38].erase()
+	graphics.minor[38].arc(45,40,81,81,0,180)
+	graphics.minor[38].noErase()
+	graphics.minor[38].fillGradient(gradient[1])
+	graphics.minor[38].arc(105,40,100,100,-180,0)
+	graphics.minor[38].erase()
+	graphics.minor[38].arc(115,40,81,81,-180,0)
+
+	graphics.minor[37].image(graphics.minor[38],0,-40)
+
+	graphics.minor[39].scale(3/2)
 	for(let a=0,la=60;a<la;a++){
 		for(let b=0,lb=80;b<lb;b++){
 			let c=((a^b)%(5*7*11*13))^(((a+20)^b)%(5*7*11*13))*2
 			if(c%5==0){
-				graphics.minor[38].fill(230,211,227)
-				graphics.minor[38].rect(a+0.5,b+0.5,1,1)
+				graphics.minor[39].fill(230,211,227)
+				graphics.minor[39].rect(a+0.5,b+0.5,1,1)
 			}
 			if(c%7==0){
-				graphics.minor[38].fill(192,190,215)
-				graphics.minor[38].rect(a+0.5,b+0.5,1,1)
+				graphics.minor[39].fill(192,190,215)
+				graphics.minor[39].rect(a+0.5,b+0.5,1,1)
 			}
 			if(c%11==0){
-				graphics.minor[38].fill(133,147,205)
-				graphics.minor[38].rect(a+0.5,b+0.5,1,1)
+				graphics.minor[39].fill(133,147,205)
+				graphics.minor[39].rect(a+0.5,b+0.5,1,1)
 			}
 			if(c%13==0){
-				graphics.minor[38].fill(177,122,195)
-				graphics.minor[38].rect(a+0.5,b+0.5,1,1)
+				graphics.minor[39].fill(177,122,195)
+				graphics.minor[39].rect(a+0.5,b+0.5,1,1)
 			}
 		}
 	}
