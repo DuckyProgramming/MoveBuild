@@ -6,7 +6,7 @@ function setup(){
     current=new battle(graphics.main,game.player)
 
     if(false){
-            //game.ascend=32
+            //game.ascend=33
 
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
@@ -25,10 +25,16 @@ function setup(){
         current.startGame()
 
         transition.trigger=false
+
+        //current.nodeManager.world=3
         
         game.dev=true
         stage.scene='battle'
         current.setupBattle(types.encounter[1])
+
+        //event('Matching Game')
+
+        //fight('-h Rewriter')
 
         //game.animRate=4
 
@@ -46,7 +52,7 @@ function setup(){
             //current.create()
 
             /*stage.scene='graphic'
-            graphics.test=7
+            graphics.test=0
             graphics.staticBackground.clear()
             setupBackground(graphics.test,graphics.staticBackground)*/
 
@@ -55,9 +61,9 @@ function setup(){
             /*transition.trigger=true
             transition.scene='bossstash'*/
             
-            //player(0).size=5
-            //player(0).offset.position.y+=150
-            //game.infoOff=true
+            /*player(0).size=5
+            player(0).offset.position.y+=150
+            game.infoOff=true*/
 
             /*transition.trigger=true
             transition.scene='event'
@@ -72,9 +78,9 @@ function setup(){
                 current.modManager.addMod(67+a)
             }*/
 
-            /*for(let a=0,la=40;a<la;a++){
+            /*for(let a=0,la=4;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(473+a,0)
+                quickRelic(518+a,0)
             }
             current.overlayManager.closeAll()*/
 

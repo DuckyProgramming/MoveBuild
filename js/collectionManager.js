@@ -48,36 +48,36 @@ class collectionManager{
             if(cardData.rarity>=0&&cardData.list>=0&&cardData.list<=constants.playerNumber+5){
                 sublist=cardData.list
                 resultlist=cardData.list==0?constants.playerNumber:cardData.list<=constants.playerNumber?cardData.list-1:cardData.list
-            }else if(cardData.rarity<0&&cardData.list==constants.playerNumber+5){
+            }/*else if(cardData.rarity<0&&cardData.list==constants.playerNumber+5){
                 sublist=-1
                 resultlist=constants.playerNumber+6
-            }else if(cardData.rarity==-10){
+            }*/else if(cardData.rarity==-10){
+                sublist=-1
+                resultlist=constants.playerNumber+6
+            }else if(cardData.rarity==-6){
                 sublist=-2
                 resultlist=constants.playerNumber+7
-            }else if(cardData.rarity==-6){
+            }else if(cardData.rarity==-8){
                 sublist=-3
                 resultlist=constants.playerNumber+8
-            }else if(cardData.rarity==-8){
+            }/*else if(cardData.list==-9){
                 sublist=-4
                 resultlist=constants.playerNumber+9
-            }/*else if(cardData.list==-9){
-                sublist=-5
-                resultlist=constants.playerNumber+10
             }*/else if(cardData.rarity==-5&&cardData.list==-1){
+                sublist=-4
+                resultlist=constants.playerNumber+9
+            }else if(cardData.rarity==-1&&cardData. list==-8){
                 sublist=-5
                 resultlist=constants.playerNumber+10
-            }else if(cardData.rarity==-1&&cardData.list==-8){
+            }else if(cardData.rarity==-2){
                 sublist=-6
                 resultlist=constants.playerNumber+11
-            }else if(cardData.rarity==-2){
+            }else if(cardData.rarity==-3){
                 sublist=-7
                 resultlist=constants.playerNumber+12
-            }else if(cardData.rarity==-3){
+            }else{
                 sublist=-8
                 resultlist=constants.playerNumber+13
-            }else{
-                sublist=-9
-                resultlist=constants.playerNumber+14
             }
             this.totals.list[resultlist][0]++
             if(this.knownKey[a]){
@@ -109,7 +109,7 @@ class collectionManager{
                 for(let c=0,lc=names[a][b].length;c<lc;c++){
                     let selector=findName(names[a][b][c],types.card)
                     this.cards.push(new card(this.layer,this.battle,0,this.layer.width/2-350+tick%8*100,this.layer.height/2-200+floor(tick/8)%3*130,selector,this.level,this.battle.standardColorize(selector),-1))
-                    if(!this.known.includes(names[a][b][c])){
+                    if(!this.known.includes(names[a][b][c])&&!game.dev){
                         this.cards[this.cards.length-1].blind=true
                     }else{
                         this.totals.query[0]++
@@ -194,7 +194,7 @@ class collectionManager{
                 /*for(let a=0,la=4;a<la;a++){
                     if(this.anim.query.rarity[a]>0){
                         this.layer.fill(255,this.anim.query.rarity[a])
-                        this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/2-65+floor(a/4)*40,10)
+                        this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/s2-65+floor(a/4)*40,10)
                     }
                 }
                 for(let a=0,la=8;a<la;a++){
@@ -205,7 +205,7 @@ class collectionManager{
                 }*/
             break
             case 'listQuery':
-                let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBSPECTRAL','JUNKYARD','SUBCARD','EVENT','DEVELOPER','REMOVED','BASIC','PACK','MISC']
+                let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','JUNKYARD','SUBCARD','EVENT'/*,'RESERVE'*/,'DEVELOPER','REMOVED','BASIC','PACK','MISC']
 			    this.layer.textSize(10)
                 for(let a=0,la=40;a<la;a++){
                     this.layer.fill(240*this.anim.query.list[a])

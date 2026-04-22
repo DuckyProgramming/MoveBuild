@@ -39,12 +39,28 @@ function displayTransition(layer,transition){
 	layer.rect(transition.anim*layer.width/4,layer.height/2,transition.anim*layer.width/2,layer.height)
 	layer.rect(layer.width-transition.anim*layer.width/4,layer.height/2,transition.anim*layer.width/2,layer.height)
 	layer.rect(layer.width/2,transition.anim*layer.height/4,layer.width,transition.anim*layer.height/2)
-	layer.rect(layer.width/2,layer.height-transition.anim*layer.height/4,layer.width,transition.anim*layer.height/2)
+	layer.rect(layer.width/2,layer.height-max(transition.anim*layer.height/4,transition.bump.anim*10),layer.width,max(transition.anim*layer.height/2,transition.bump.anim*20))
+	if(transition.anim<=0&&transition.trigger){
+		switch(transition.scene){
+			case `rest`: case `victory`: case `defeat`: case `stash`: case `bossstash`: case `event`: case `pack`: case `perk`:
+				transition.loading=randin(types.loading)
+			break
+			default:
+				transition.loading=``
+			break
+		}
+	}
+	layer.fill(255,transition.bump.anim*2)
+	layer.textSize(12)
+	layer.text(transition.loading,layer.width/2,layer.height-min(10,transition.anim*layer.height/2+transition.bump.anim*25-15))
 	if(transition.trigger){
-		if(variants.speedmove){
-			transition.anim=round(transition.anim*5+1)/5
-		}else{
-			transition.anim=round(transition.anim*10+1)/10
+		switch(transition.scene){
+			case `rest`: case `victory`: case `defeat`: case `stash`: case `bossstash`: case `event`: case `pack`: case `perk`:
+				transition.bump.trigger=true
+			break
+			default:
+				transition.bump.trigger=false
+			break
 		}
 		if(transition.anim>=1.1){
 			transition.trigger=false
@@ -54,6 +70,9 @@ function displayTransition(layer,transition){
 				transition.convert=false
 				current.convert(stage.scene)
 			}
+			setTimeout(()=>{
+				transition.bump.trigger=false
+			},2500)
 			switch(stage.scene){
 				case 'title':
 					graphics.staticBackground.clear()
@@ -124,14 +143,26 @@ function displayTransition(layer,transition){
 					setupBackground(5,graphics.staticBackground)
 				break
 			}
+		}else if(transition.anim<1.1){
+			if(variants.speedmove){
+				transition.anim=round(transition.anim*5+1)/5
+			}else{
+				transition.anim=round(transition.anim*10+1)/10
+			}
 		}
-	}
-	else if(transition.anim>0){
+	}else if(transition.anim>0){
 		if(variants.speedmove){
 			transition.anim=round(transition.anim*5-1)/5
 		}else{
 			transition.anim=round(transition.anim*10-1)/10
 		}
+	}
+	if(transition.bump.trigger){
+		if(transition.bump.anim<1.1){
+			transition.bump.anim=round(transition.bump.anim*10+1)/10
+		}
+	}else if(transition.bump.anim>0){
+		transition.bump.anim=round(transition.bump.anim*10-1)/10
 	}
 }
 function regTriangle(layer,x,y,radiusX,radiusY,direction){
@@ -392,6 +423,12 @@ function mergeColorHSV(color1,color2,value){
 function toggle(bool){
 	return bool?false:true
 }
+function last(array){
+    return array[array.length-1]
+}
+function lastKey(array,key){
+    return array[array.length-key]
+}
 function bezierArc(x,y,width,height,angle1,angle2){
 	let x1=x+lsin(angle1)*width/2
 	let y1=y-lcos(angle1)*height/2
@@ -474,7 +511,7 @@ function arrayCompareLoose(array1,array2){
 }
 function calculateEffect(effect,user,type,player,relicManager,variant,args){
 	switch(type){
-		case 0: case 2: case 5: case 7: case 8: case 10: case 11: case 12: case 13: case 20:
+		case 0: case 2: case 5: case 7: case 8: case 10: case 11: case 12: case 13: case 20: case 22:
 			let damage=effect
 			let bonus=0
 			let totalStr=0
@@ -508,7 +545,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[10]&&user.status.main[797]>0){
 				bonus+=user.status.main[797]
 			}
-			if(user.status.main[12]!=0){
+			if(user.status.main[12]!=0&&type!=22){
 				bonus+=user.status.main[12]*max(1+user.status.main[838]*0.1+user.status.main[839]*0.1,0.2)
 			}
 			if(user.status.main[40]>0){
@@ -559,8 +596,8 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				bonus*=2
 			}
 			if(user.status.main[8]>0&&user.status.main[779]<=0){
-				damage*=user.battle.modded(213)&&user.id<user.battle.players?0:user.status.main[381]>0?1.25:0.75
-				bonus*=user.battle.modded(213)&&user.id<user.battle.players?0:user.status.main[381]>0?1.25:0.75
+				damage*=(user.battle.modded(213)&&user.id<user.battle.players?0:user.status.main[381]>0?1.25:0.75)**(1+user.status.main[859]/100)
+				bonus*=(user.battle.modded(213)&&user.id<user.battle.players?0:user.status.main[381]>0?1.25:0.75)**(1+user.status.main[859]/100)
 			}
 			if(user.status.main[82]>0){
 				damage*=2
@@ -635,7 +672,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				bonus*=3
 			}
 			switch(type){
-				case 0: return damage==effect&&bonus==0?tennify(effect):tennify(effect)+`(${tennify(damage+bonus)})`
+				case 0: case 22: return damage==effect&&bonus==0?tennify(effect):tennify(effect)+`(${tennify(damage+bonus)})`
 				case 2: return (damage==effect?(effect==1?``:tennify(effect))+'X':tennify(effect)+`(${tennify(damage)})X`)+(bonus>0?`(+${tennify(bonus)})`:``)
 				case 5: return (damage==effect?(effect==1?``:tennify(effect))+'XX':tennify(effect)+`(${tennify(damage)})XX`)+(bonus>0?`(+${tennify(bonus)})`:``)
 				case 7: return effect==1?(damage==effect?`Combo`:`1(${tennify(damage)})*Combo`):(damage==effect?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(damage)})*Combo`)
@@ -1221,6 +1258,14 @@ function intentDescription(attack,user,info){
 			case 466: return `Gain ${info?attack.effect[0]:`?`} Vigor`
 			case 467: return `Gain ${info?attack.effect[0]:`?`} Vigil`
 			case 468: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Vulnerable\n3 Tiles Wide\nRange 1-2`
+			case 469: return `???`
+			case 470: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTargets Gain ${info?attack.effect[1]:`?`}\nLess Block\n3 Tiles Wide\nRange 1-1`
+			case 471: return `Move to End of Board,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap\nDeal Damage Again\nand Push 1 Tile\n in All Directions`
+			case 472: return `Builder Compacts ${info?attack.effect[0]:`?`}\nCard${pl(attack.effect[0])}`
+			case 473: return `Builder Makes ${info?attack.effect[0]:`?`} Card${pl(attack.effect[0])}\nCost 1 Less`
+			case 474: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nDraw ${info?attack.effect[0]:`?`} Less\nCard${pl(attack.effect[0])} Next Turn`
+			case 475: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDraw ${info?attack.effect[1]:`?`} Less\nCard${pl(attack.effect[1])} Next Turn\nRange 1-6`
+			case 476: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nApply ${info?attack.effect[2]:`?`} Frail\n2 Tiles Forward,\n1 Tile to the Side,\nor 1 Tile Diagonally`
 
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
@@ -1355,15 +1400,39 @@ function relicSellValue(rarity){
 	}
 }
 function copyCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve)
+	return new card(
+		base.layer,base.battle,base.player,base.position.x,base.position.y,
+		base.type,base.level,base.color,base.id,base.cost,
+		base.additionalSpec,base.name,base.list,base.effect,base.attack,
+		base.target,base.spec,base.cardClass,base.limit,base.falsed,
+		base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,
+		base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
+		base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
+	)
 }
 function copyCardNew(base){
 	game.id++
-	return new card(base.layer,base.battle,base.player,1200,500,base.type,base.level,base.color,game.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve)
+	return new card(
+		base.layer,base.battle,base.player,1200,500,
+		base.type,base.level,base.color,game.id,base.cost,
+		base.additionalSpec,base.name,base.list,base.effect,base.attack,
+		base.target,base.spec,base.cardClass,base.limit,base.falsed,
+		base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,
+		base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
+		base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
+	)
 }
 function copyCardNewAbstract(base,type,args){
 	game.id++
-	let result=new card(base.layer,base.battle,base.player,1200,500,base.type,base.level,base.color,game.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve)
+	let result=new card(
+		base.layer,base.battle,base.player,1200,500,
+		base.type,base.level,base.color,game.id,base.cost,
+		base.additionalSpec,base.name,base.list,base.effect,base.attack,
+		base.target,base.spec,base.cardClass,base.limit,base.falsed,
+		base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,
+		base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
+		base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
+	)
 	switch(type){
 		case 0:
 			result.cost=copyArray(args[0])
@@ -1379,7 +1448,15 @@ function upgradeCard(base,nonlimiting=false){
 	if(base.spec.includes(37)){
 		return copyCard(base)
 	}else{
-		let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.fuel,base.edited.cost,false,base.nonCalc,undefined,base.costDownTrigger,base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve)
+		let result=new card(
+			base.layer,base.battle,base.player,base.position.x,base.position.y,
+			base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,
+			base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,
+			undefined,undefined,undefined,undefined,base.falsed,
+			base.retain2,base.colorful,base.edition,undefined,base.drawn,
+			base.fuel,base.edited.cost,false,base.nonCalc,base.costDownTrigger,
+			base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
+		)
 		if(base.attack==1352||nonlimiting){
 			result.limit=base.limit
 		}
@@ -1390,7 +1467,15 @@ function unupgradeCard(base,nonlimiting=false){
 	if(base.spec.includes(37)){
 		return copyCard(base)
 	}else{
-		let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.fuel,base.edited.cost,false,base.nonCalc,undefined,base.costDownTrigger,base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve)
+		let result=new card(
+			base.layer,base.battle,base.player,base.position.x,base.position.y,
+			base.type,max(0,base.level-1),base.color,base.id,null,
+			base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,
+			undefined,undefined,undefined,undefined,base.falsed,
+			base.retain2,base.colorful,base.edition,undefined,base.drawn,
+			base.fuel,base.edited.cost,false,base.nonCalc,base.costDownTrigger,
+			base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
+		)
 		if(base.attack==1352||nonlimiting){
 			result.limit=base.limit
 		}
@@ -1433,6 +1518,9 @@ function multiplyArray(base,number){
 		result.push(copyArray(base))
 	}
 	return result
+}
+function randin(array){
+    return array[floor(random(0,array.length))]
 }
 function copyArray(base){
 	/*let list=[]
@@ -2048,7 +2136,7 @@ function outListing(){
 	let box=``
 	let goal=160+160*constants.playerNumber+64+64+40+32+24
 	let actual=current.cardManagers[0].listing.allListableCard[3].length
-	let arbitrary=6666
+	let arbitrary=7000//6666
 	for(let a=0,la=constants.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
 Common:${current.cardManagers[0].listing.card[a+1][0].length}/64				${current.cardManagers[0].listing.card[a+1][0].length-64}
@@ -2078,8 +2166,6 @@ Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}
 	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/24				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-24}
 		Subcard:
 	Total:${current.cardManagers[0].listing.sub.length}/48				${current.cardManagers[0].listing.sub.length-48}
-		Ally:
-	Total:${current.cardManagers[0].listing.ally.length}/24				${current.cardManagers[0].listing.ally.length-24}
 		Disband:
 	Total:${current.cardManagers[0].listing.disband.length}/1666			${current.cardManagers[0].listing.disband.length-1666}
 		Junkyard:
@@ -2208,11 +2294,11 @@ Total: ${count[a][1][3]}\n`
 function outMtgError(){
 	for(let a=0,la=types.card.length;a<la;a++){
 		if(types.card[a].list>=0&&types.card[a].mtg.list>=0&&types.card[a].list!=types.card[a].mtg.list){
-			console.log(types.card[a].name)
+			console.log(types.card[a].name,`A`)
 		}
 		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
 			if(types.card[a].mtg.levels[b].cost==undefined){
-				console.log(types.card[a].name)
+				console.log(types.card[a].name,`B`)
 			}
 			if(
 				!types.card[a].mtg.levels[b].spec.includes(11)&&
@@ -2237,7 +2323,7 @@ function outMtgError(){
 					types.card[a].mtg.levels[b].cost.includes(15)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(5))||
 					types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
 			)){
-				console.log(types.card[a].name)
+				console.log(types.card[a].name,`C`)
 			}
 		}
 	}
@@ -2348,12 +2434,17 @@ function outUniqueEffects(){
 	console.log(list.length)
 }
 function outRelic(){
-	console.log(`Common: ${current.relicManager.listing.relic[0].length}
-	Uncommon: ${current.relicManager.listing.relic[1].length}
-	Rare: ${current.relicManager.listing.relic[2].length}
-	Shop: ${current.relicManager.listing.relic[3].length}
-	Boss: ${current.relicManager.listing.relic[4].length}
-	`)
+	console.log(`Common: ${current.relicManager.listing.relic[0].length}/${current.relicManager.listing.all[0].length}
+Uncommon: ${current.relicManager.listing.relic[1].length}/${current.relicManager.listing.all[1].length}
+Rare: ${current.relicManager.listing.relic[2].length}/${current.relicManager.listing.all[2].length}
+Shop: ${current.relicManager.listing.relic[3].length}/${current.relicManager.listing.all[3].length}
+Boss: ${current.relicManager.listing.relic[4].length}/${current.relicManager.listing.all[4].length}`)
+}
+function outItem(){
+	console.log(`Common: ${current.itemManager.listing.item[0].length}
+Uncommon: ${current.itemManager.listing.item[1].length}
+Rare: ${current.itemManager.listing.item[2].length}
+Temp: ${current.itemManager.listing.item[3].length}`)
 }
 function outClass(){
 	let totals=[]
@@ -2452,6 +2543,9 @@ function outCosts(){
 	}
 	console.log(build)
 }
+function outDescription(){
+	print(types.combatant.reduce((acc,combatant)=>`${acc}${combatant.description.replaceAll(`\n`,` `)}\n`,``))
+}
 function uniqueArray(array){
 	for(let a=0,la=array.length;a<la;a++){
 		for(let b=a+1,lb=array.length;b<lb;b++){
@@ -2471,6 +2565,7 @@ function colorTest(){
 	}
 }
 function attackTest(type,target,startpoint,endpoint){
+	let lim=0//7500
 	switch(type){
 		case 0: case 1: case 2: case 3:
 			current.combatantManager.combatants[type==1?target[1]:target].setMaxHP(9999999999999)
@@ -2486,6 +2581,7 @@ function attackTest(type,target,startpoint,endpoint){
 								type==2&&types.card[a].mtg.levels[b].target[0]==5||
 								type==3&&types.card[a].mtg.levels[b].target[0]==0
 							)&&types.card[a].mtg.levels[b].attack!=types.card[a].levels[b].attack
+							&&types.card[a].mtg.levels[b].attack>=lim
 						){
 							current.attackManager.type=types.card[a].mtg.levels[b].attack
 							current.attackManager.player=0
@@ -2516,11 +2612,12 @@ function attackTest(type,target,startpoint,endpoint){
 			}else{
 				for(let a=startpoint,la=endpoint==-1?types.card.length:endpoint;a<la;a++){
 					for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
-						if(
-							type==0&&types.card[a].levels[b].target[0]==2||
-							type==1&&types.card[a].levels[b].target[0]==1||
-							type==2&&types.card[a].levels[b].target[0]==5||
-							type==3&&types.card[a].levels[b].target[0]==0
+						if((
+								type==0&&types.card[a].levels[b].target[0]==2||
+								type==1&&types.card[a].levels[b].target[0]==1||
+								type==2&&types.card[a].levels[b].target[0]==5||
+								type==3&&types.card[a].levels[b].target[0]==0
+							)&&types.card[a].levels[b].attack>=lim
 						){
 							current.attackManager.type=types.card[a].levels[b].attack
 							current.attackManager.player=0
@@ -2645,6 +2742,7 @@ function mtgPlayerColor(player){
 		case 23: return [1,2,5]
 		case 24: return [2,4,5]
 		case 25: return [1,3,5]
+		case 26: return [0,2,3]
 		default: return [6]
 	}
 }
@@ -3053,4 +3151,26 @@ function hybridRecurse(depth,mana,cost,spent,priority,variant){
 }
 function total7(list){
 	return list[0]+list[1]+list[2]+list[3]+list[4]+list[5]+list[6]
+}
+function antiOrb(orb){
+	switch(orb){
+		case 0: return 1
+		case 1: return 0
+		case 2: return 3
+		case 3: return 2
+		case 4: return 6
+		case 5: return 15
+		case 6: return 4
+		case 7: return 8
+		case 8: return 7
+		case 9: return 10
+		case 10: return 9
+		case 11: return 17
+		case 12: return 13
+		case 13: return 12
+		case 14: return 16
+		case 15: return 5
+		case 16: return 14
+		case 17: return 11
+	}
 }

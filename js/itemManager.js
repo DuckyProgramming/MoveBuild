@@ -719,6 +719,12 @@ class itemManager{
                 this.battle.addSpecificEnergy(effectiveness,player,6)
                 this.battle.cardManagers[player].draw(effectiveness)
             break
+            case 1019:
+                userCombatant.heal(5*effectiveness)
+                if(stage.scene=='battle'){
+                    userCombatant.statusEffect('Strength',effectiveness)
+                }
+            break
         }
         this.tempEffectiveness[player]=holdTempEffectiveness
         if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,100))<(100-100*0.5**this.battle.relicManager.active[80][player+1])&&!types.item[type].temp){

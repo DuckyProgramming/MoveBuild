@@ -1,31 +1,32 @@
 types={
     combatant:[
-        {name:'Joe',moniker:'The Testbed',identifier:['Brother','Mister'],life:50,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Tutorial man!`},
-        {name:'George',moniker:'The Agent',identifier:['Brother','Mister'],life:80,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:34,effect:[8]},{type:304,effect:[20]},{type:37,effect:[15,5]}],description:``},
-        {name:'Lira',moniker:'The Apprentice',identifier:['Sister','Miss'],life:60,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:305,effect:[5,6]},{type:25,effect:[14]},{type:306,effect:[18]}],description:``},
-        {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:419,effect:[3]},{type:24,effect:[8,2]},{type:308,effect:[13]}],description:``},
-        {name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:52,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:309,effect:[4]},{type:88,effect:[2]},{type:310,effect:[12,2,2]}],description:``},
-        {name:'Azis',moniker:'The Executor',identifier:['Brother','Mister'],life:66,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:311,effect:[4]},{type:313,effect:[]},{type:411,effect:[14,2]}],description:``},
-        {name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[0],move:{type:9,speed:1},attack:[{type:314,effect:[]},{type:315,effect:[]},{type:316,effect:[15,1]}],description:``},
-        {name:'Setsuna',moniker:'The Duelist',identifier:['Sister','Miss'],life:68,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:317,effect:[12]},{type:318,effect:[42]},{type:319,effect:[12]}],description:``},
-        {name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:44,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:320,effect:[15,2]},{type:321,effect:[10,2,'Burn',2]},{type:322,effect:[10]}],description:``},
-        {name:'Edgar',moniker:'The Disgraced CEO',identifier:['Brother','Mister'],life:76,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:303,effect:[25,5]},{type:323,effect:[1]},{type:324,effect:[2]}],description:``},
-        {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:74,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:410,effect:[15]},{type:128,effect:[7,1,'Invoice']}],description:``},
-        {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:327,effect:[24]},{type:328,effect:[17,2]},{type:329,effect:[14,1]}],description:``},
-        {name:'DD-610',moniker:'The Paradigm',identifier:['Friend','Robot'],life:72,behavior:0,spec:[0,19],move:{type:0,speed:1},attack:[{type:330,effect:[4]},{type:331,effect:[19,1]},{type:332,effect:[16,8]}],description:``},
-        {name:'Prehextorica',moniker:'The Retrospect',identifier:['Brother','Mister'],life:64,behavior:14,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[33]},{type:72,effect:[28,3]},{type:21,effect:[]}],description:``},
-        {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:``},
-        {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:``},
-        {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:457,effect:[16]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:``},
-        {name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]},{type:412,effect:[15,2]},{type:413,effect:[2]}],description:``},
-        {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[26]},{type:420,effect:[3]},{type:93,effect:[1]}],description:``},
-        {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:``},
-        {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[8]},{type:424,effect:[20]}],description:``},
-        {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:453,effect:[9,6]},{type:53,effect:[12,1,'Curse of\nthe Heron']},{type:461,effect:[1,1]}],description:``},
-        {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:55,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:456,effect:[16,3]},{type:454,effect:[22,2]},{type:455,effect:[22,2]}],description:``},
-        {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:458,effect:[1]},{type:459,effect:[11,1]},{type:460,effect:[13,5]}],description:``},
-        {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:462,effect:[11,2]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:``},
-        {name:'Meri',moniker:'The Whisper',identifier:['Sister','Miss'],life:49,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:466,effect:[5]},{type:467,effect:[5]},{type:465,effect:[10,10]}],description:``},
+        {name:'Joe',moniker:'The Testbed',identifier:['Brother','Mister'],life:50,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Commander of the rebels in Reptisa\nlong before the Operator came along.\nIn the first siege of Rueso,\nhe gave his life for the cause.\nHis sacrifice was in vain.`},
+        {name:'George',moniker:'The Agent',identifier:['Brother','Mister'],life:80,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:34,effect:[8]},{type:304,effect:[20]},{type:37,effect:[15,5]}],description:`Former agent with the MMIS on Origin,\nand participant at the "Meeting of Five".\nClose to the Operator, he gets\nthe rare luxury to pick which\nobfuscated tasks he gets.`},
+        {name:'Lira',moniker:'The Apprentice',identifier:['Sister','Miss'],life:60,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:305,effect:[5,6]},{type:25,effect:[14]},{type:306,effect:[18]}],description:`The spark that set the second\nphase of the rebellion ablaze.\nAfter the "Meeting of Five" and\nher major propaganda role,\nshe just wants this all over with.`},
+        {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:419,effect:[3]},{type:24,effect:[8,2]},{type:308,effect:[13]}],description:`One of the last heirs to the\npractices of the Daistilian plateaus,\nparticipant in the "Meeting of Five",\ndistrustful of the Operator but\nwith too much at stake to leave.`},
+        {name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:52,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:309,effect:[4]},{type:88,effect:[2]},{type:310,effect:[12,2,2]}],description:`Possibly the first coming of Discord,\nthe eternal enemy of the Management.\nTasked with the elimination of all\ngalactic-level systems of governance,\nbut starting where it's easy.`},
+        {name:'Azis',moniker:'The Executor',identifier:['Brother','Mister'],life:66,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:311,effect:[4]},{type:313,effect:[]},{type:411,effect:[14,2]}],description:`Resident of the Swamp of Constance\nand Master of the so-called "Orbs",\nhe once served the Management as a\nsecurity contractor but switched sides\nopportunistically to join the "winners".`},
+        {name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[0],move:{type:9,speed:1},attack:[{type:314,effect:[]},{type:315,effect:[]},{type:316,effect:[15,1]}],description:`Duck flown in by Management programs\nto aid in reconstruction of the\nStanis Generator Installation.\nAfter being offered a better chance\nby Randy, he switched sides fast.`},
+        {name:'Setsuna',moniker:'The Duelist',identifier:['Sister','Miss'],life:68,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:317,effect:[12]},{type:318,effect:[42]},{type:319,effect:[12]}],description:`Once just a simple trainee, dragged\ninto war by her younger sister Lira.\nShe would do anything to protect\nher, becoming a key member despite\nher reluctance at the "Meeting of Five".`},
+        {name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:44,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:320,effect:[15,2]},{type:321,effect:[10,2,'Burn',2]},{type:322,effect:[10]}],description:`Student at the Konaian First\nUniversity, so depressed by her\nstudies that she fell into a trance\nand awakened a lost magical source.\nQuit school immediately after that.`},
+        {name:'Edgar',moniker:'The Disgraced CEO',identifier:['Brother','Mister'],life:76,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:303,effect:[25,5]},{type:323,effect:[1]},{type:324,effect:[2]}],description:`The 153rd CEO of High Value Metrics,\ndeposed by the board's chairman\nafter Management disagreements.\nNow out to reclaim his company,\nand arming fellow rebels on the way.`},
+        {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:74,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:410,effect:[15]},{type:128,effect:[7,1,'Invoice']}],description:`Gambler from a foreign planet,\ndeeply in debt to a Management officer.\nEscaped to Konai to scrape together\nsome cash to pay it off, but got\ncaught up in the rebellion instead.`},
+        {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:470,effect:[20,3]},{type:328,effect:[17,2]},{type:329,effect:[14,1]}],description:`One of the last survivors from the\nHinokizuka commune dispersed by Management\nforces. Adopted by a rebel operative\nand inducted into the organization,\nshe hopes to prove her capabilities.`},
+        {name:'DD-610',moniker:'The Paradigm',identifier:['Friend','Robot'],life:72,behavior:0,spec:[0,19],move:{type:0,speed:1},attack:[{type:330,effect:[4]},{type:331,effect:[19,1]},{type:332,effect:[16,8]}],description:`Prototype bot passed over for\nproduction in favor of higher-performance\nmodels and discarded, found by\nDonakho and repaired for a new fight.\nReady for revenge over the other bots.`},
+        {name:'Prehextorica',moniker:'The Retrospect',identifier:['Brother','Mister'],life:64,behavior:14,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[33]},{type:72,effect:[28,3]},{type:21,effect:[]}],description:`The last of a near-extinct species,\nspending his last days in a state\nof sorrow over his people's fate.\nOut to attack the dominant power\njust to leave some kind of legacy behind.`},
+        {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:`Tenured professor with the Konaian\nFirst University, gave up on work after\nreceiving terrible paychecks to\ncook product instead. After being\ncaught, he quickly escaped to the rebels.`},
+        {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:`The "One Who Remembers", one of the\ntwo patron fairies of Konai, and\nself-proclaimed "Great Fairy".\nWorking with the council just because\nit's more interesting if they win.`},
+        {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:457,effect:[16]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:`Priestess maintaining a small presence\non the lower slopes of Hinokizuka.\nAfter being driven away by the\nsects higher up on the mountain, she found\na new source of much-needed faith.`},
+        {name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]},{type:412,effect:[15,2]},{type:413,effect:[2]}],description:`Younger sister of the claimant to\nthe Konaian throne Jovina III,\ndissatisfied with her sister's\nconciliatory approach and desperate to\nprove the efficacy of the alternative.`},
+        {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[26]},{type:420,effect:[3]},{type:93,effect:[1]}],description:`A ghost of a long-dead musical\ntradition on Konai, attempting to\nreclaim this lost ground for the arts.\nAwakened to return by great upheaval;\nthis is the chance to make a change.`},
+        {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:`Wild duck looking for somewhere\nsafe to settle, never finding somewhere\njsut right for his tastes.\nHaving surveyed most of Konai's landscapes,\nhe now sells that service to the rebels.`},
+        {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[6]},{type:424,effect:[20]}],description:`Technician hired by the Management to\nmaintain industrial hardware, but\nfound that destroying things was\nmuch more fun. On the run after his stunt\nat the Stanis Generator Installation.`},
+        {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:453,effect:[9,6]},{type:53,effect:[12,1,'Curse of\nthe Heron']},{type:461,effect:[1,1]}],description:`Scavenger from the Arioscape,\nonce of the Wipers but forced\nto migrate by the lack of resources.\nBlessed with luck and the will to\nsurvive, the council took her in.`},
+        {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:55,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:456,effect:[16,3]},{type:454,effect:[22,2]},{type:455,effect:[22,2]}],description:`Never really though he was funny,\nbut couldn't find another career option.\nBrought down by awful viewership\nand endless self-doubt, he decided\nto fight the system instead.`},
+        {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:458,effect:[1]},{type:459,effect:[11,1]},{type:460,effect:[13,5]}],description:`Eternal guardian force of Somber Falls,\nconvinced to leave by its endless quiet.\nImagined that the rest of Konai,\nwhile decidedly not home, might\njust have something actually going on.`},
+        {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:462,effect:[11,2]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:`Told tales of the glorious past\nrevolutions by elder duck farmers,\nhe hopes to carry on their work.\nBut with the Management clamping down,\nhe had to join with the council.`},
+        {name:'Meri',moniker:'The Whisper',identifier:['Sister','Miss'],life:49,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:466,effect:[5]},{type:467,effect:[5]},{type:465,effect:[10,10]}],description:`Chief courier of the council,\nchosen personally by the Operator\nto act as the main liaison between\nrural rebels and their much weaker\ncounterparts holed up in Rueso.`},
+        {name:'Menessa',moniker:'The Emissary',identifier:['Sister','Miss'],life:46,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:474,effect:[9,2]},{type:475,effect:[12,2]},{type:476,effect:[8,1,1]}],description:`Harpist from the West of Konai,\nfrom an early age looking up to Jovina III.\nNow enrolled in the Konaian First\nUniversity, hoping to catch the\neye of some prominent patrons.`},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -40,7 +41,7 @@ types={
         {name:'Goon',life:45,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:14,effect:[4,1,'Hurt']},{type:4,effect:[12]}],description:`Bars you from life`},
         {name:'Slaver',life:46,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:15,effect:[7,2]},{type:17,effect:[2,1]}],description:`Former policeman`},
         {name:'Fungal Duck',life:26,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:18,effect:[1]}],description:`Default enemy design`},
-        {name:'Orb Walker',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[15]},{type:22,effect:[10,1,'Dazed']}],description:`Why he so overpowered?`},
+        {name:'Orb Walker',life:81,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[12]},{type:22,effect:[8,1,'Dazed']}],description:`Why is he so overpowered?`},
         {name:'Pointy',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[5]}],description:`Stabby gaming`},
         {name:'Romeo',life:40,behavior:3,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:15,effect:[10,2]},{type:21,effect:[]}],description:`Kinda useless`},
         {name:'Billy Beatup',life:75,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[6]}],description:`Beats you up`},
@@ -163,7 +164,7 @@ types={
         {name:'Anomaly',life:93,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:281,effect:[5,1]},{type:2,effect:[6]},{type:282,effect:[6,8]}],description:`Actually kinda fragile`},
         {name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
         {name:'Concentric',life:177,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunaria in never spawning`},
-        {name:'Embodimental Destabilization',life:202,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[2,2,2,2]}],description:`This is getting out of hand!`},
+        {name:'Embodimental Destabilization',life:121,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[2,2,2,2]}],description:`This is getting out of hand!`},
         {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[15]},{type:300,effect:[2]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
         {name:'Golden Duck',life:38,behavior:16,spec:[],move:{type:0,speed:3},attack:[{type:21,effect:[]},{type:68,effect:[]}],description:`Why is this thing alive?`},
         {name:'Management Shotgunner',life:146,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:364,effect:[24,3,1,'Electrocuted']},{type:365,effect:[7,2]}],description:`At least he doesn't OHKO`},
@@ -194,8 +195,8 @@ types={
         {name:'Shield Prison Guard',life:62,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:399,effect:[8,10]},{type:353,effect:[12,1]}],description:`Not as good as riot police`},
         {name:'Half Spikeball',life:35,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:417,effect:[10]},{type:418,effect:[10]}],description:`Poor rotational alignment`},
         {name:'Graphite Block',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:426,effect:[1]},{type:30,effect:[6,6]},{type:396,effect:[6,6]}],description:`Can be made into a packager`},
-        {name:'Zombie Duck',life:10,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[6]},{type:1,effect:[5]}],description:`You again?`},
-        {name:'Pistol Duck',life:30,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:236,effect:[3]}],description:`Brought a gun to... a gun fight?`},
+        {name:'Zombie Duck',life:10,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[6]},{type:31,effect:[3]}],description:`You again?`},
+        {name:'Pistol Duck',life:24,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:236,effect:[3]}],description:`Brought a gun to... a gun fight?`},
         {name:'Hit Squad',life:36,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[12]},{type:427,effect:[9,1]},{type:428,effect:[9,1]}],description:`Take him out!`},
         {name:'Old Konaian',life:45,behavior:1,spec:[1],move:{type:14,speed:1},attack:[{type:429,effect:[13]},{type:430,effect:[9,2]}],description:`Classic style`},
         {name:'Caporegime',life:37,behavior:3,spec:[0],move:{type:12,speed:1},attack:[{type:431,effect:[2,'Hit Squad']},{type:21,effect:[1]}],description:`Won't do it himself`},
@@ -211,6 +212,7 @@ types={
         {name:'Nerfmaster',life:116,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:449,effect:[15]},{type:48,effect:[16]},{type:448,effect:[3,3,3]}],description:`Nerfed entire characters`},
         {name:'Big Bounce',life:81,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:10,effect:[12]},{type:447,effect:[10]},{type:39,effect:[1,'Bouncer']}],description:`Bounces you hard`},
         {name:'Pinstripe',life:123,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:444,effect:[3]},{type:445,effect:[13]},{type:446,effect:[9]}],description:`Purchased a machine gun`},
+        {name:'Lost Management Officer',life:44,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[2]},{type:81,effect:[8,3,'Dazed']}],description:`Wishes his subordinates were here`},
         
         {name:'Prisoner Informant',life:28,behavior:1,spec:[22],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Whose side is he on?`},
         {name:'Gangster Machinegunner Informant',life:48,behavior:1,spec:[0,22],move:{type:1,speed:1},attack:[{type:129,effect:[3]}],description:`It goes to the top`},
@@ -223,7 +225,7 @@ types={
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         {name:'Flame',life:5,behavior:5,spec:[],move:{type:0,speed:2},attack:[{type:22,effect:[2,1,'Burn']},{type:6,effect:[4]}],description:`Very annoying`},
-        {name:'Hexaghost Orb',life:16,behavior:5,spec:[],move:{type:0,speed:0},attack:[{type:54,effect:[4,1,'Burn']},{type:4,effect:[4]},{type:70,effect:[10]}],description:`Should probably kill it`},
+        {name:'Hexaghost Orb',life:16,behavior:5,spec:[],move:{type:0,speed:0},attack:[{type:54,effect:[4,1,'Burn']},{type:4,effect:[6]},{type:70,effect:[5]}],description:`Should probably kill it`},
         {name:'Bodyguard',life:45,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[10]},{type:77,effect:[3]},{type:13,effect:[4,1,'Concussion']}],description:`Paid to die`},
         {name:'Bronze Orb C',life:33,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:78,effect:[5]}],description:`Circuitry simulator`},
         {name:'Bronze Orb A',life:27,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:80,effect:[5]}],description:`Goes for the kill`},
@@ -231,25 +233,25 @@ types={
         {name:'Soul',life:80,behavior:1,spec:[],move:{type:2,speed:2},attack:[{type:252,effect:[2]},{type:215,effect:[4,1]}],description:`Stolen`},
         {name:'Glitch',life:15,behavior:5,spec:[],move:{type:6,speed:1},attack:[{type:6,effect:[8]},{type:9,effect:[12]}],description:`Intended`},
         {name:'Glitched Giant',life:125,behavior:5,spec:[],move:{type:4,speed:1},attack:[{type:79,effect:[12]},{type:28,effect:[18]}],description:`Not intended`},
-        {name:'Nil',life:91,behavior:5,spec:[0],move:{type:1,speed:1},attack:[{type:196,effect:[12,1,'Electrocuted']},{type:198,effect:[11,1]},{type:197,effect:[3]},{type:146,effect:[5]}],description:`My iq`},
+        {name:'Nil',life:91,behavior:5,spec:[0],move:{type:1,speed:1},attack:[{type:196,effect:[12,1,'Electrocuted']},{type:198,effect:[11,1]},{type:197,effect:[3]},{type:146,effect:[5]}],description:`My IQ`},
         {name:'Buried',life:34,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[11]},{type:2,effect:[3]},{type:3,effect:[10]},{type:4,effect:[6]},{type:225,effect:[]}],description:`Stuck in the ground`},
         {name:'Keystone',life:62,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:350,effect:[12,1,'Dazed']},{type:351,effect:[12,1,'Dazed']}],description:`100% casualty rate`},
         {name:'Paramilitary',life:60,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:403,effect:[10]}],description:`"Faction"`},
         
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:40,effect:[3]},{type:39,effect:[2,'Duckforce']},{type:41,effect:[6]},{type:465,effect:[10,10]},{type:42,effect:[6]}],description:`Duck leader`},
-        {name:'Slime Boss',life:90,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[12]},{type:55,effect:[2]}],description:`Very fat slime`},
+        {name:'Slime Boss',life:90,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:403,effect:[11]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[12]},{type:55,effect:[2]}],description:`Very fat slime`},
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
         {name:'Donu',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[6]}],description:`It's just shapes`},
-        {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,1]},{type:39,effect:[2,'Flame']},{type:73,effect:[8,1,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
+        {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,1]},{type:39,effect:[2,'Flame']},{type:73,effect:[8,1,'Burn']},{type:74,effect:[1,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:200,effect:[8]},{type:425,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
-        {name:'Crusader',life:127,behavior:15,spec:[0,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:6,effect:[16]},{type:344,effect:[20]},{type:376,effect:[22,1]},{type:346,effect:[22,1]},{type:347,effect:[20]}],description:`Two millenia late to the party`},
+        {name:'Crusader',life:127,behavior:15,spec:[0,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:6,effect:[16]},{type:344,effect:[20]},{type:72,effect:[22,1]},{type:48,effect:[22]},{type:347,effect:[20]}],description:`Two millennia late to the party`},
         {name:'Thoughtless',life:144,behavior:17,spec:[0],move:{type:0,speed:1},attack:[{type:147,effect:[5]},{type:404,effect:[12,1]},{type:405,effect:[9,3]},{type:83,effect:[10,1,'Trough']}],description:`No brain lol`},
-        {name:'The Looker',life:125,behavior:19,spec:[0],move:{type:0,speed:1},attack:[{type:21,effect:[]},{type:468,effect:[7,2]},{type:405,effect:[8,8]},{type:117,effect:[10]}],description:`Does he see?`},
+        {name:'The Looker',life:125,behavior:19,spec:[0],move:{type:0,speed:1},attack:[{type:21,effect:[]},{type:468,effect:[7,2]},{type:405,effect:[8,8]},{type:471,effect:[10]}],description:`Does he see?`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,2]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,2]}],description:`Gunning for a promotion`},
-        {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Lazer games`},
+        {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Laser games`},
         {name:'Comrade',life:280,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:171,effect:[6,2]},{type:39,effect:[1,'Red']},{type:169,effect:[4]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
         {name:'Councilman',life:270,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:174,effect:[2]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
         {name:'Gangmaster',life:305,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Gangster']},{type:205,effect:[12]},{type:206,effect:[8]},{type:39,effect:[1,'Gangster Gunner']},{type:207,effect:[1]}],description:`Legitimate businessman`},
@@ -259,7 +261,7 @@ types={
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Concussion']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2,19],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
         {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:144,effect:[19,2]},{type:145,effect:[14,2,'Electrocuted']},{type:146,effect:[24]},{type:147,effect:[9]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
-        {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:2},attack:[{type:178,effect:[12,1,'Shrapnel']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,2,'Burn']}],description:`Classic warcriminal`},
+        {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:2},attack:[{type:178,effect:[12,1,'Shrapnel']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,2,'Burn']}],description:`Classic war criminal`},
         {name:'Purge X02',life:500,behavior:0,spec:[0,2,19],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:32,effect:[20,2,'Void']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
         {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[2]}],description:`From the sky~`},
         {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[17,2]},{type:354,effect:[9,2]},{type:355,effect:[7,2]}],description:`Doxxed literally everybody`},
@@ -284,19 +286,21 @@ types={
         {name:'Machine Gun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:129,effect:[8]}],description:`More gun`},
         {name:'Miniturret',life:10,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:236,effect:[3]}],description:`Less gun`},
         {name:'Metal Box',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:237,effect:[1]}],description:`Turtling strat`},
-        {name:'Upgrader',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:238,effect:[2]}],description:`PoV: no upgrades`},
-        {name:'Transformer',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:239,effect:[2]}],description:`PoV: no good cards`},
-        {name:'Doubler',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:240,effect:[1]}],description:`PoV: only 1 copy`},
-        {name:'Exhauster',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:241,effect:[1,1]}],description:`PoV: too many bad cards`},
-        {name:'Teleporter Start',life:5,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`When entrance and exit both start with E`},
-        {name:'Teleporter End',life:5,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Copy pasted man`},
+        {name:'Upgrader',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:238,effect:[2]}],description:`POV: no upgrades`},
+        {name:'Transformer',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:239,effect:[2]}],description:`POV: no good cards`},
+        {name:'Doubler',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:240,effect:[1]}],description:`POV: only 1 copy`},
+        {name:'Exhauster',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:241,effect:[1,1]}],description:`POV: too many bad cards`},
+        {name:'Compactor',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:472,effect:[1]}],description:`POV: hand size limits`},
+        {name:'Discounter',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:473,effect:[1]}],description:`POV: no money`},
+        {name:'Teleporter Start',life:6,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`When entrance and exit both start with E`},
+        {name:'Teleporter End',life:6,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Copy pasted man`},
         {name:'Mirror Shield',life:36,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
         {name:'Armored Turret',life:60,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[10]}],description:`Sentry goin' up`},
         {name:'Shotgun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:303,effect:[30,5]}],description:`Shotgun duck game?`},
         {name:'Exploding Wall',life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Pay to win`},
         {name:'Swarm Turret',life:8,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:47,effect:[3]}],description:`Even less gun`},
-        {name:'Megaturret',life:64,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[25]}],description:`Chonky`},
-        {name:'Motor Turret',life:10,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:12,effect:[15]}],description:`Auto parts diff`},
+        {name:'Megaturret',life:64,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[30]}],description:`Chonky`},
+        {name:'Motor Turret',life:12,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:12,effect:[15]}],description:`Auto parts diff`},
         {name:'Shieldzone',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:464,effect:[8]}],description:`Protects its friends`},
         {name:'Swap Wall',life:30,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not the first mover`},
         {name:'Scaling Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[15]}],description:`Sentry growin' up`},
@@ -304,7 +308,7 @@ types={
 
         {name:'MobMan',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`No brain?`},
         {name:'AllyMonkey',life:24,behavior:0,spec:[17],move:{type:0,speed:2},attack:[{type:11,effect:[2]}],description:`Your best friend`},
-        {name:'Antizone',life:100,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Basically indistructable`},
+        {name:'Antizone',life:100,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Basically indestructable`},
         {name:'L',life:6,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:136,effect:[6]}],description:`LOBSTER!`},
         {name:'Fat Duck',life:40,behavior:2,spec:[17],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:109,effect:[5]}],description:`Hamburger`},
         {name:'Man',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Small brain?`},
@@ -313,7 +317,7 @@ types={
         
         {name:'Medic',life:20,behavior:0,spec:[13],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not a combat man`},
         {name:'Smith',life:20,behavior:0,spec:[14],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Walking rest site`},
-        {name:'Navigator',life:20,behavior:0,spec:[15],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Where we droppin boys`},
+        {name:'Navigator',life:20,behavior:0,spec:[15],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Where we droppin' boys`},
         {name:'Rich Kid',life:20,behavior:0,spec:[16],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Still barely pays you`},
         {name:'Rebel Negotiator',life:20,behavior:0,spec:[21],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Comes in peace?`},
         
@@ -793,6 +797,14 @@ types={
         {name:'Vigor',class:4},
         {name:'Vigil',class:4},
         {name:'2 Tile 3 Spread Strike / Vulnerable',class:1},
+        {name:'Ruination',class:4},
+        {name:'3 Spread Strike / Block Down',class:1},//470
+        {name:'Shockwave Drive',class:5},
+        {name:'Builder Compact',class:4},
+        {name:'Builder Discount',class:4},
+        {name:'Block / Draw Down',class:2},
+        {name:'6 Tile Strike / Draw Down',class:1},
+        {name:'Crescent Strike / Weak / Frail',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,world:[0,3],description:''},
@@ -836,7 +848,7 @@ types={
         {name:'Power Magazine',internal:'Upgrade Random Powers',id:35,rarity:0,list:0,mtg:0,world:[2,3],description:'When Taken, Upgrade\n2 Random Powers'},
         {name:'Metal Pipe',internal:'Starting Block',id:36,rarity:0,list:0,mtg:0,world:[0,3],description:'Add 10 Block\non Turn 1'},
         {name:'Soda Bottle',internal:'No Attack Energy',id:37,rarity:1,list:0,mtg:1,world:[0,3],description:'When You Do Not Attack,\nGain 1 Energy Next Turn'},
-        {name:'Regal Pillow',internal:'Rest Energy',id:38,rarity:0,list:0,mtg:1,world:[0,2],description:'Gain 2 Energy\nAfter Resting'},
+        {name:'Regal Pillow',internal:'Rest Energy',id:38,rarity:0,list:0,mtg:1,world:[0,2],description:'Gain 3 Energy\nAfter Resting'},
         {name:'Red Card',internal:'Damage Taken Draw',id:39,rarity:0,list:0,mtg:0,world:[0,3],description:'Draw 3 Cards the First\nTime You Take Damage Each Combat'},
 
         {name:'Yellow Card',internal:'Card Add Currency',id:40,rarity:0,list:0,mtg:0,world:[0,2],description:'Gain 20 Currency\nWhen a Card is Added'},
@@ -869,7 +881,7 @@ types={
         {name:'Cheese Sauce',internal:'Better Rest Heal',id:65,rarity:0,list:0,mtg:0,world:[0,2],description:'Heal 10 More\nHealth When Resting'},
         {name:'Poisoned Potato',internal:'Cancel Curse',id:66,rarity:0,list:0,mtg:0,world:[0,2],description:'Remove the Next\nCurse Added'},
         {name:'Recursive Pouch',internal:'Large Bag',id:67,rarity:0,list:0,mtg:0,world:[0,2],description:'When Taken,\nAdd 2 Item Slots'},
-        {name:'Oricalchum',internal:'Base Block',id:68,rarity:0,list:0,mtg:0,world:[0,3],description:'If You End Your Turn\nWith No Block, Add 6 Block'},
+        {name:'Orichalcum',internal:'Base Block',id:68,rarity:0,list:0,mtg:0,world:[0,3],description:'If You End Your Turn\nWith No Block, Add 6 Block'},
         {name:'Wire Cutter',internal:'Block Damage',id:69,rarity:0,list:0,mtg:0,world:[0,3],description:'Deal 4 More Damage\nto Enemies With Block'},
 
         {name:'Tin Can',internal:'3 Turn Draw',id:70,rarity:0,list:0,mtg:0,world:[0,3],description:'Draw 1 Card\nEvery 3 Turns'},
@@ -897,7 +909,7 @@ types={
         {name:'Cracked Urn',internal:'8 Turn Intangible',id:90,rarity:2,list:0,mtg:0,world:[0,3],description:'Every 8 Turns,\nGain 1 Intangible'},
         {name:'Swear Jar',internal:'No Shop Currency',id:91,rarity:0,list:0,mtg:0,world:[0,2],description:'Gain 20 Currency Every Node\nUntil Your Enter a Shop'},
         {name:'Meatball Ticket',internal:'Shop Heal',id:92,rarity:0,list:0,mtg:0,world:[0,2],description:'Heal 10 HP When\nYou Enter a Shop'},
-        {name:'Top Hat',internal:'Shop Energy',id:93,rarity:0,list:0,mtg:1,world:[0,2],description:'Gain 2 Energy After\nEntering a Shop'},
+        {name:'Top Hat',internal:'Shop Energy',id:93,rarity:0,list:0,mtg:1,world:[0,2],description:'Gain 3 Energy After\nEntering a Shop'},
         {name:'Coal Ball',internal:'Death Strength',id:94,rarity:0,list:0,mtg:0,world:[0,3],description:'When an Enemy Dies,\nGain 1 Strength'},
         {name:'Snowball',internal:'Death Dexterity',id:95,rarity:0,list:0,mtg:0,world:[0,3],description:'When an Enemy Dies,\nGain 1 Dexterity'},
         {name:'Tax Paperwork',internal:'Weak Elites',id:96,rarity:0,list:0,mtg:0,world:[0,2],description:'Enemies in Elite\nCombats Lose 20% HP'},
@@ -938,7 +950,7 @@ types={
         {name:'Card Rack',internal:'Card Hold',id:128,rarity:-1,list:0,mtg:0,world:[0,3],description:'All Cards\nHave Retain'},
         {name:'Mechanical Eye',internal:'View Draw',id:129,rarity:-1,list:0,mtg:0,world:[0,3],description:'Draw Pile Cards Are\nViewed in Order'},
 
-        {name:'Stapler',internal:'Innate Card',id:130,rarity:-1,list:0,mtg:0,world:[1,3],description:'When Taken, Make a Card Innate'},
+        {name:'Fogbank',internal:'Innate Card',id:130,rarity:-1,list:0,mtg:0,world:[1,3],description:'When Taken, Make a Card Innate'},
         {name:'Concave Star',internal:'Energy/Card Choice',id:131,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy, Have 1\nLess Card to Choose From'},
         {name:'Coffee Filter',internal:'Energy/Rest Heal',id:132,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nCannot Heal at Rest'},
         {name:'Diffused Anvil',internal:'Energy/Rest Upgrade',id:133,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nCannot Upgrade at Rest'},
@@ -965,7 +977,7 @@ types={
         {name:'Shattered Chains',internal:'Difficulty Energy',id:152,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 2 Energy Every Turn\non Elite and Boss Combats'},
         {name:'Meal Plan',internal:'Large Quick Heal',id:153,rarity:4,list:0,mtg:1,world:[0,2],description:'Heal 10 HP at\nthe End of Combat'},
         {name:'?! Block',internal:'Transform Basic',id:154,rarity:-1,list:0,mtg:1,world:[0,3],description:'When Taken, Transform All\nBasic Attacks and Defenses,\nand Upgrade All Basic Movements'},
-        {name:'Lightbulb',internal:'Basic Draw',id:155,rarity:4,list:0,mtg:1,world:[0,3],description:'Draw 2 More\nCards Every Turn'},
+        {name:'Lightbulb',internal:'Basic Draw',id:155,rarity:4,list:0,mtg:1,world:[0,3],description:'Draw 1 More\nCard Every Turn'},
         {name:'Golden Eye',internal:'Confused Draw',id:156,rarity:-1,list:0,mtg:1,world:[0,3],description:'Draw 3 More Cards Every Turn,\nStart Combat Confused'},
         {name:'Platinum Spoon',internal:'Much Better Items',id:157,rarity:-1,list:0,mtg:1,world:[0,2],description:'Items are 5x More Effective'},
         {name:'Holy Water',internal:'3 Starting Miracles',id:158,rarity:4,list:0,mtg:1,world:[0,3],description:'Add 3 Miracles\non Turn 1'},
@@ -1006,7 +1018,7 @@ types={
         
         {name:'Half-Full Glass',internal:'Unplayed Card Damage',id:190,rarity:0,list:0,mtg:0,world:[0,3],description:'At the End of Your Turn,\nGain 1 Vigor\nPer Unplayed Card'},
         {name:'Clown Bowtie',internal:'Shop Reroll',id:191,rarity:0,list:0,mtg:0,world:[0,2],description:'You May Pay 50 Currency to\nReroll the Shop Once Per Visit'},
-        {name:'Magic Rope',internal:'Last Card Retain',id:192,rarity:0,list:0,mtg:0,world:[0,3],description:'If You End You Turn With\n1 Card Left in Hand, Retain it'},
+        {name:'Magic Rope',internal:'Last Card Retain',id:192,rarity:-1,list:0,mtg:0,world:[0,3],description:'If You End You Turn With\n1 Card Left in Hand, Retain it'},
         {name:'Blue Disc',internal:'Draw Over Discard Block',id:193,rarity:0,list:0,mtg:0,world:[0,3],description:'Add 3 Block Per Turn When Draw Pile\nHas More Cards Than Discard Pile'},
         {name:'Golf Club',internal:'Rare Draw',id:194,rarity:1,list:0,mtg:0,world:[0,3],description:'Draw 1 Card When You\nPlay a Rare Card'},
         {name:'Space Ball',internal:'Upgrade Played Card',id:195,rarity:1,list:0,mtg:0,world:[0,3],description:'25% Chance to Upgrade\nPlayed Cards Temporarily'},
@@ -1028,7 +1040,7 @@ types={
 
         {name:'To The Moon',internal:'1000 Currency Currency Per Node',id:210,rarity:3,list:0,mtg:0,world:[1,2],description:'Gain 40 Currency Every Node\nWhen You Have 1000 Currency or More'},
         {name:'Brainstorm',internal:'Copy First Relic',id:211,rarity:-1,list:0,mtg:0,world:[0,3],description:'When Sold, Copy Your\nFirst Owned Relic'},
-        {name:'Faceless Face',internal:'Movement Remove Currency',id:212,rarity:1,list:0,mtg:0,world:[0,2],description:'Gain 400 Currency When\na Movement Card is Removed'},
+        {name:'Faceless Face',internal:'Movement Remove Currency',id:212,rarity:-1,list:0,mtg:0,world:[0,2],description:'Gain 400 Currency When\na Movement Card is Removed'},
         {name:'Shiny Button',internal:'Energy/Shinies',id:213,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nFind No Editions and\nLose Existing Editions'},
         {name:'Auto Arm',internal:'Energy/Unupgrade',id:214,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nWhen Taken, Unupgrade 5 Random Cards'},
         {name:'Cartomancer',internal:'Random Arcana',id:215,rarity:3,list:0,mtg:0,world:[0,3],description:'When Taken, Add a Random\nArcana to Deck'},
@@ -1121,7 +1133,7 @@ types={
         {name:'Massive Donut',internal:'Random Double Upgrade',id:294,rarity:4,list:0,mtg:1,world:[2,3],description:'When Taken, Deluxe Upgrade\n10 Random Upgraded Cards'},
         {name:'Ring of Suffering',internal:'3 Attack Strength/3 Defense Dexterity',id:295,rarity:4,list:0,mtg:1,world:[0,3],description:'Every 3 Attacks Played, Gain 1 Strength\nEvery 3 Defenses Played, Gain 1 Dexterity'},
         {name:'Truffle',internal:'Energy Bump',id:296,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Energy After Playing 3 Cards,\nTriggers Once Per Turn'},
-        {name:'Centrosome',internal:'Triochrome',id:297,rarity:4,list:0,mtg:1,world:[2,3],description:'When Taken, Make a Card Polychrome\nand Duplicate it 2 Times'},
+        {name:'Centrosome',internal:'Trioerratic',id:297,rarity:4,list:0,mtg:1,world:[2,3],description:'When Taken, Make a Card Erratic\nand Duplicate it 2 Times'},
         {name:'Stopwatch',internal:'6 Turn Turn',id:298,rarity:4,list:0,mtg:1,world:[0,3],description:'Every 6 Turns,\nTake Another Turn'},
         {name:'Assembly Line',internal:'Duplicate Per Turn',id:299,rarity:4,list:0,mtg:1,world:[2,3],description:'The First Card Played\nEach Turn is Duplicated'},
 
@@ -1155,7 +1167,7 @@ types={
         {name:'Ducky Donka Ticket',internal:'Rest Max HP',id:325,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 2 Max HP When\nEntering a Rest Site'},
         {name:'Ducky McDuff Ticket',internal:'Shop Max HP',id:326,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 2 Max HP When\nEntering a Shop'},
         {name:'Bottled Firefly',internal:'6 Card 3 Damage All',id:327,rarity:-1,list:0,mtg:0,world:[0,3],description:'Deal 3 Damage to All Enemies\nAfter Playing 6 Cards,\nTriggers Once Per Turn'},
-        {name:'Death Butterflies',internal:'First Enemy Mortal',id:328,rarity:-1,list:0,mtg:0,world:[0,3],description:'The First Enemy\nYou Attack Each Combat\nGains 3 Mortality'},
+        {name:'Death Butterflies',internal:'First Enemy Mortal',id:328,rarity:-1,list:0,mtg:0,world:[0,3],description:'The First Enemy\nYou Attack Each Combat\nGains 3 Mortal'},
         {name:'Ghostblade',internal:'First Enemy Remove Block',id:329,rarity:-1,list:0,mtg:0,world:[0,3],description:'The First Enemy With Block\nYou Attack Each Combat\nLoses All Block'},
 
         {name:'Asagian Charm',internal:'Low Health Permanent Strength',id:330,rarity:-1,list:0,mtg:0,world:[0,3],description:'When You Start Your Turn Below 5 Health,\nGain 1 Strength Permanently\nDestroys Self Afterward'},
@@ -1184,11 +1196,11 @@ types={
         {name:'Traffic Cone',internal:'Replenish Card',id:351,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken, Make a Card Replenish'},
         {name:'Boredom',internal:'3 Turn Duplicate',id:352,rarity:2,list:0,mtg:0,world:[0,3],description:'Duplicate the Next Card\nPlayed Every 3 Turns'},
         {name:'Big Cube',internal:'25 Block Draw',id:353,rarity:0,list:0,mtg:0,world:[0,3],description:'Draw 1 Card When You\nAdd 25 or More Block'},
-        {name:'Breccia',internal:'Double Shiny',id:354,rarity:0,list:0,mtg:0,world:[0,2],description:'Shiny Editions Heal Double Health'},
+        {name:'Breccia',internal:'Double Shiny',id:354,rarity:-1,list:0,mtg:0,world:[0,2],description:'Shiny Editions Heal Double Health'},
         {name:'Virtuous Duck',internal:'Double First Attack',id:355,rarity:2,list:0,mtg:0,world:[0,3],description:'The First Attack Each Combat\nDeals Double Damage'},
         {name:'Congestion Control',internal:'Protocol',id:356,rarity:4,list:0,mtg:1,world:[0,3],description:'Shuffle 1 Protocol Into\nDraw on Turn 1'},
         {name:'Tactical Conductor',internal:'Cheap Skills',id:357,rarity:2,list:0,mtg:1,world:[0,3],description:'Skills Have a 50%\nChance to Cost 1 Less\nTemporarily When Drawn'},
-        {name:'Blackened Nebula',internal:'Energy/Colorless',id:358,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nAll Colorless Cards Cost 1 More'},
+        {name:'Blackened Nebula',internal:'Energy/Colorless',id:358,rarity:-1,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nAll Colorless Cards Cost 1 More'},
         {name:'Malicious Flame',internal:'Power Draw',id:359,rarity:2,list:0,mtg:0,world:[0,3],description:'When a Power is Played,\nDraw 1 Card'},
 
         {name:'Lantern',internal:'First Turn Mana',id:360,rarity:0,list:0,mtg:2,world:[0,3],description:'Gain (K) (K) on\nTurn 1'},
@@ -1218,8 +1230,8 @@ types={
         {name:'Tactical Conductor',internal:'Cheap Skills (M)',id:382,rarity:2,list:0,mtg:2,world:[0,3],description:'Skills Cost 1 Less'},
         {name:'Ice Cube',internal:'First Block Energy',id:383,rarity:1,list:0,mtg:1,world:[0,3],description:'Gain 2 Energy the First Time\nYou Gain Block Each Combat'},
         {name:'Ice Cube',internal:'First Block Mana',id:384,rarity:2,list:0,mtg:2,world:[0,3],description:'Gain (B) the First Time\nYou Gain Block Each Turn'},
-        {name:'Vinyl',internal:'Status Draw Energy',id:385,rarity:2,list:0,mtg:1,world:[0,3],description:'Gain 1 Energy When You Draw a\nStatus Card Other Than Fatigue'},
-        {name:'Vinyl',internal:'Status Draw Mana',id:386,rarity:1,list:0,mtg:2,world:[0,3],description:'Gain (K) When You Draw a\nStatus Card Other Than Fatigue'},
+        {name:'Vinyl',internal:'Status Draw Energy',id:385,rarity:-1,list:0,mtg:1,world:[0,3],description:'Gain 1 Energy When You Draw a\nStatus Card Other Than Fatigue'},
+        {name:'Vinyl',internal:'Status Draw Mana',id:386,rarity:-1,list:0,mtg:2,world:[0,3],description:'Gain (K) When You Draw a\nStatus Card Other Than Fatigue'},
         {name:'Ticket to Hell',internal:'Health Loss Draw',id:387,rarity:2,list:0,mtg:0,world:[0,3],description:'When You Lose Health,\nDraw 1 Card'},
         {name:'Super Mushroom',internal:'Random Rare Items',id:388,rarity:1,list:0,mtg:0,world:[0,2],description:'When Taken, Fill All Item\nSlots With Rare Items'},
         {name:'Bass Drum',internal:'Same Color Temporary Strength',id:389,rarity:1,list:0,mtg:2,world:[0,3],description:'When You Play a Card That is the\nSame Color as the Last One Played,\nGain 2 Temporary Strength'},
@@ -1275,7 +1287,7 @@ types={
         {name:'Optimal Sneakers',internal:'Free Move',id:434,rarity:4,list:0,mtg:1,world:[0,3],description:'Add a Free Move\nto Hand Every Turn'},
         {name:'Purified Nebula',internal:'Neutral Mana/Colorless Cost Clear',id:435,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (N) to Base Mana,\nReplace (N) Costs With (1) Costs',manaColor:0},
         {name:'Ivory Beads',internal:'White Mana/Block Up',id:436,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (W) to Base Mana,\nIncrease All Block Added by 2',manaColor:1},
-        {name:'Ice Crystal Wing',internal:'Blue Mana/Proxy Teleport',id:437,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (B) to Base Mana,\nAdd a Proxy Teleport on Turn 1',manaColor:2},
+        {name:'Ice Crystal Wing',internal:'Blue Mana/Proxy Teleport',id:437,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (B) to Base Mana,\nAdd a 0 Cost Ethereal Teleport on Turn 1',manaColor:2},
         {name:'Unholy Water',internal:'Black Mana/Occult',id:438,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (K) to Base Mana,\nAdd 2 Occults on Turn 1',manaColor:3},
         {name:'Toned Physique',internal:'Green Mana/3 Turn Strength',id:439,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (G) to Base Mana,\nGain 1 Strength Every 5 Turns',manaColor:4},
 
@@ -1284,7 +1296,7 @@ types={
         {name:'Left Fan',internal:'Random Mana/Duplicate Power',id:442,rarity:4,list:0,mtg:2,world:[0,3],description:'Gain a Random Mana Each Turn,\nCreate a (1) Cost Copy of the\nFirst Power Played Each Combat',manaColor:7},
         {name:'Expensive Bag',internal:'Double Stash',id:443,rarity:2,list:0,mtg:0,world:[0,1],description:'You May Take an Extra\nRelic at Stashes'},
         {name:'Azurite',internal:'Retain Block (B)',id:444,rarity:2,list:0,mtg:0,world:[0,3],description:'Lose Only Half of Your Block\nat End of Turn'},
-        {name:'Periwinkle Veil',internal:'First Enemy Weak',id:445,rarity:0,list:0,mtg:0,world:[0,3],description:'Apply 2 Weak to The First\nEnemy You Attack Each Combat'},
+        {name:'Periwinkle Veil',internal:'First Enemy Weak',id:445,rarity:0,list:0,mtg:0,world:[0,3],description:'Apply 2 Weak to the First\nEnemy You Attack Each Combat'},
         {name:'Sword of Hisou',internal:'Turn Splash Damage',id:446,rarity:2,list:0,mtg:0,world:[0,3],description:'Deal 5 Splash Damage at\nthe Start of Your Turn'},
         {name:'Preserved Insect',internal:'Boss Debuff',id:447,rarity:0,list:0,mtg:0,world:[0,2],description:'Enemies in Boss Combats Gain\n2 Weak, Vulnerable, and Frail\non Turn 1'},
         {name:'Nimble Fabric',internal:'Extended Initiative',id:448,rarity:1,list:0,mtg:0,world:[0,3],description:'You Can Add Initiatives\nto Hand on Turn 2'},
@@ -1325,7 +1337,7 @@ types={
 
         {name:'Roller Bearing',internal:'Shuffle Damage',id:480,rarity:0,list:0,mtg:0,world:[0,3],description:'When You Shuffle Your Draw Pile,\nDeal 5 Damage to a Random Enemy'},
         {name:'Ice Tray',internal:'Draw Damage',id:481,rarity:0,list:0,mtg:0,world:[0,3],description:'When You Draw a Card\nOther Than During the Draw Step,\nDeal 1 Damage to a Random Enemy'},
-        {name:'Schlafli Symbol',internal:'Injured Weak',id:482,rarity:1,list:0,mtg:0,world:[0,3],description:'When an Enemy Goes Below 25% Health,\nIt Becomes Indefinitely Weak'},
+        {name:'Schlafli Symbol',internal:'Injured Weak',id:482,rarity:-1,list:0,mtg:0,world:[0,3],description:'When an Enemy Goes Below 25% Health,\nIt Becomes Indefinitely Weak'},
         {name:'Dumpling',internal:'Stash Heal',id:483,rarity:0,list:0,mtg:0,world:[0,2],description:'When You Enter a Stash,\nHeal 20 Health'},
         {name:'Opaque Marble',internal:'Same Card Triplicate',id:484,rarity:2,list:0,mtg:0,world:[0,3],description:'When You Play 2 of\nthe Same Card in a Row,\nAdd an Ethereal Third Copy to Hand\n1 Use Per Turn'},
         {name:'Walkie Talkie',internal:'Emergency Draw',id:485,rarity:2,list:0,mtg:0,world:[0,3],description:'Add an Emergency Draw\non Turn 1'},
@@ -1358,11 +1370,19 @@ types={
 
         {name:'Transformer 5000',internal:'Transform 10',id:510,rarity:4,list:0,mtg:1,world:[0,2],description:'When Taken, Transform 10 Cards'},
         {name:'Replicating Cake',internal:'Random Boss Relic/10 Max HP',id:511,rarity:4,list:0,mtg:1,world:[0,3],description:'When Taken, Gain a Random Boss Relic\nand Gain 10 Max HP'},
-        {name:'Draft Card',internal:'Draw Up/Draft 10',id:512,rarity:4,list:0,mtg:1,world:[0,2],description:'Draw 1 More Card Per Turn\nWhen Taken, Receive 10 Card Rewards'},
+        {name:'Draft Card',internal:'Draw Up/Draft 10',id:512,rarity:-1,list:0,mtg:1,world:[0,2],description:'Draw 1 More Card Per Turn\nWhen Taken, Receive 10 Card Rewards'},
         {name:'Capstone',internal:'Leftmost Energy',id:513,rarity:4,list:0,mtg:1,world:[0,3],description:'Each Turn, Gain 1 Energy if\nYou Play the Leftmost Card First'},
         {name:'Flow Limiter',internal:'Energy/Kill Limit',id:514,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nOnly 1 Enemy Can Die Per Turn'},
         {name:'Taraxis',internal:'Extra Mana Temporary Dexterity',id:515,rarity:2,list:0,mtg:2,world:[0,3],description:'Extra Mana is Converted\nto Temporary Dexterity'},
         {name:'Dry Tomato',internal:'Double or Half',id:516,rarity:5,list:0,mtg:0,world:[0,3],description:'When Taken, Randomly Double\nor Halve Your Currency'},
+        {name:'Half Cent',internal:'Odd Turn Vigor',id:517,rarity:1,list:0,mtg:0,world:[0,3],description:'Gain 4 Vigor\non Odd Turns'},
+        {name:'Tri-Bagel',internal:'Enemy Block Life Loss',id:518,rarity:0,list:0,mtg:0,world:[0,3],description:'When an Enemy Gains Block,\nIt Loses 1 Health'},
+        {name:'Glueball',internal:'Turn 3 Block Retain',id:519,rarity:0,list:0,mtg:0,world:[0,3],description:'On Turn 3,\nRetain Block For 1 Turn'},
+
+        {name:'Accusatory Arrow',internal:'Missing Health Vigor',id:520,rarity:1,list:0,mtg:0,world:[0,3],description:'At the Start of Combat,\nGain Vigor Equal to Half\nof Your Missing Health'},
+        {name:'Archducal Hat',internal:'Skip Edition',id:521,rarity:2,list:0,mtg:0,world:[0,3],description:'When You Skip a Card Reward,\nThe Next Card Reward Will Have an Edition'},
+        {name:'Cosmic Gown',internal:'Nonfull Health Energy',id:522,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy Each Turn\nIf You Are Below 90% Health'},
+        {name:'Firing Beacon',internal:'Energy/Bombed',id:523,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nA Target Zone is Placed\non You For 10 Damage\nEvery 3 Turns'},
         
         //mark mtg mark r
     ],item:[
@@ -1502,7 +1522,7 @@ types={
         {name:'Energy Drink',internal:'1 Energy',id:1004,rarity:3,list:0,menu:false,temp:true,mtg:1,description:'Gain 1 Energy\nTemporary'},
         {name:'Glass Shard',internal:'5 Damage',id:1005,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 5 Damage\nRange 1-3'},
         {name:'Molten Metal',internal:'10 Block',id:1006,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add 10 Block\nTemporary'},
-        {name:'Caffeine Pill',internal:'Draw 2',id:1007,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards\nTemporary'},
+        {name:'Granola Bar',internal:'Draw 2',id:1007,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards\nTemporary'},
         {name:'Attack Dust',internal:'1 Strength',id:1008,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength\nTemporary'},
         {name:'Defense Dust',internal:'1 Dexterity',id:1009,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Dexterity\nTemporary'},
         {name:'Mystery Box',internal:'1 Free Card',id:1010,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add a Random Free Card to Hand\nIt Has Exhaust and Ethereal\nTemporary'},
@@ -1515,6 +1535,7 @@ types={
         {name:'Quality Coffee',internal:'4 Mana/Draw and Upgrade 3',id:1016,rarity:-1,list:-1,menu:false,temp:false,mtg:2,description:'Gain (E) (E) (E) (E),\nDraw and Upgrade 3 Cards'},
         {name:'Prismatic Bomb',internal:'9 Random Damage, 1 Energy, Draw 1',id:1017,rarity:-1,list:-1,menu:false,temp:true,mtg:1,description:'Deal 9 Damage to a Random Enemy,\nGain 1 Energy, Draw 1 Card'},
         {name:'Prismatic Bomb',internal:'9 Random Damage, 1 Mana, Draw 1',id:1018,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Deal 9 Damage to a Random Enemy,\nGain (E), Draw 1 Card'},
+        {name:'Rice',internal:'5 Heal/1 Strength',id:1019,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 5 HP\nGain 1 Strength'},
 
         //mark i
     ],color:{
@@ -1649,6 +1670,11 @@ types={
                 stroke:[195,145,155],
                 text:[55,45,45],
                 active:[255,215,225],
+            },{
+                fill:[248,222,126],
+                stroke:[228,202,106],
+                text:[70,60,30],
+                active:[235,225,205],
             },
             
             {
@@ -1714,6 +1740,7 @@ types={
             {},{},{},{},{},
             {},{},{},{},{},
             {},{},{},{},{},
+            {},
             
             {
                 fill:[125,125,125],
@@ -1789,6 +1816,32 @@ types={
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Shiftdown 7',
+            map:[
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Character 9',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Crushed 4',
@@ -2369,6 +2422,15 @@ types={
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:[]}],
+                [{type:-1},{type:[]},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Lesser Randhole 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:-1},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
@@ -2979,6 +3041,17 @@ types={
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Short Cord 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
             name:'Gate1 7',
             map:[
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
@@ -3534,6 +3607,15 @@ types={
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Road 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:-1},{type:-1},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
         },
 
         /*{
@@ -3582,6 +3664,41 @@ types={
                 {position:{x:2,y:2},name:'Duck'},
             ],reinforce:[
             ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Road 5'],class:0,world:-1,
+            name:'Lost Management Officer',
+            player:{position:[[{x:0,y:0}],[{x:0,y:0},{x:1,y:0}]]},
+            enemy:[
+                {position:{x:3,y:3},name:'Lost Management Officer'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Short Cord 7'],class:2,world:-1,
+            name:'-h Rewriter',
+            player:{position:[[{x:5,y:5}],[{x:5,y:6},{x:6,y:5}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Rewriter'},
+                {position:{x:0,y:2},name:'Nil'},
+                {position:{x:2,y:0},name:'Nil'},
+                {position:{x:1,y:4},name:'Glitch'},
+                {position:{x:4,y:1},name:'Glitch'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:6},name:'Nil',turn:5},
+                {position:{x:6,y:3},name:'Nil',turn:5},
+                {position:{x:0,y:3},name:'Nil',turn:7},
+                {position:{x:3,y:0},name:'Nil',turn:7},
+                {position:{x:0,y:0},name:'Glitch',turn:10},
+                {position:{x:1,y:0},name:'Glitch',turn:10},
+                {position:{x:2,y:0},name:'Glitch',turn:10},
+                {position:{x:0,y:1},name:'Glitch',turn:10},
+                {position:{x:0,y:2},name:'Glitch',turn:10},
+                {position:{x:5,y:6},name:'Glitched Giant',turn:16},
+                {position:{x:6,y:5},name:'Glitched Giant',turn:16},
             ],ally:[
             ],
         },{
@@ -4198,8 +4315,8 @@ types={
             enemy:[
                 {position:{x:0,y:0},name:'Gangster'},
                 {position:{x:4,y:5},name:'Gangster'},
-                {position:{x:1,y:5},name:'Gangster Gunner'},
-                {position:{x:3,y:0},name:'Gangster Assassin'},
+                {position:{x:0,y:5},name:'Gangster Gunner'},
+                {position:{x:4,y:0},name:'Gangster Assassin'},
             ],reinforce:[
             ],assaultReinforce:[
                 {position:{x:4,y:3},name:'Gangster Machinegunner',turn:3},
@@ -5356,11 +5473,11 @@ types={
             ],ally:[
             ],
         },{
-            level:['Slime 7'],class:2,world:0,
+            level:['Basic 7'],class:2,world:0,
             name:'Slime Boss',
             player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
             enemy:[
-                {position:{x:2,y:2},name:'Slime Boss'},
+                {position:{x:1,y:1},name:'Slime Boss'},
             ],reinforce:[
             ],assaultReinforce:[
                 {position:{x:5,y:5},name:'Slime',turn:8},
@@ -5521,7 +5638,7 @@ types={
             ],ally:[
             ],
         },{
-            level:['Randhole 5'],class:1,world:0,
+            level:['Lesser Randhole 5'],class:1,world:0,
             name:'Prison Guard',
             player:{position:[[{x:2,y:2}],[{x:2,y:2},{x:0,y:0}]]},
             enemy:[
@@ -6479,6 +6596,34 @@ types={
             ],ally:[
             ],
         },{
+            level:['Shiftdown 7'],class:-1,world:-1,
+            name:'TutorialCharacter',
+            player:{position:[[{x:6,y:9}],[{x:5,y:9},{x:7,y:9}]]},
+            enemy:[
+                {position:{x:2,y:4},name:'George'},
+                {position:{x:3,y:4},name:'Lira'},
+                {position:{x:4,y:4},name:'Sakura'},
+                {position:{x:5,y:4},name:'Certes'},
+                {position:{x:2,y:5},name:'Azis'},
+                {position:{x:3,y:5},name:'Donakho'},
+                {position:{x:4,y:5},name:'Setsuna'},
+                {position:{x:5,y:5},name:'Edgar'},
+                {position:{x:6,y:5},name:'Shiru'},
+                {position:{x:2,y:6},name:'DD-610'},
+                {position:{x:3,y:6},name:'Prehextorica'},
+                {position:{x:4,y:6},name:'Vincent'},
+                {position:{x:5,y:6},name:'Ducopo'},
+                {position:{x:6,y:6},name:'Randy'},
+                {position:{x:7,y:6},name:'Fernando'},
+                {position:{x:2,y:7},name:'Decratite'},
+                {position:{x:3,y:7},name:'Dukelis'},
+                {position:{x:7,y:7},name:'Meri'},
+                {position:{x:8,y:7},name:'Shinmyoumaru'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
             level:['Basic 5'],class:-1,world:-1,
             name:'TutorialHotkey',
             player:{position:[[{x:2,y:2}],[{x:0,y:0},{x:0,y:0}]]},
@@ -7107,6 +7252,8 @@ Does not decrement.`,
 `When you gain Bell, deal 7 damage to each enemy once per Bell you have.
 This attack is not affected by most statuses but is affected by Vigor.
 Does not decrement.`,
+        },{name:'Caffeine',mtg:0,desc:
+`When you gain 3 Caffeine, lose 3 Caffeine and lose 3 health.`,
         },
         //mark dict
     ],ascend:[
@@ -7134,7 +7281,7 @@ Does not decrement.`,
         {name:'Slow Start',desc:'Draw 1 Less Card on Turn 1'},
         {name:'Broke',desc:'Start With No Currency'},
         {name:'Mimic',desc:'The Second Stash is an Elite'},
-        {name:'Dazed Deck',desc:'Every 4 Turns, Shuffle a Dazed into Your Draw Pile'},
+        {name:'Weary',desc:'Become Fatigued When You Shuffle Your Draw Pile'},
         {name:'Start More Cursed',desc:'Start With Pride'},
         {name:'Badlands',desc:'Battles Start With Randomly Positioned Obstacles'},
         {name:'Enemy Scaling',desc:'Normal Enemies Scale Their Damage'},
@@ -7143,6 +7290,7 @@ Does not decrement.`,
         {name:'Ultimate',desc:'The Final Boss is Far Worse'},//30
         {name:'Unfair',desc:'All Enemies Have Their Unique Strengths Enhanced'},
         {name:'Brutal',desc:'Every Enemy is Buffed Heavily'},
+        {name:'Ruination',desc:'???'},
     ],mod:[
         {name:'Duck',desc:'Get Dazed Every 3 Turns'},//0
         {name:'Bouncer',desc:'Enemies Have a 50% Chance to be Doubled but Pushed Back 1 Turn'},
@@ -7290,7 +7438,7 @@ Does not decrement.`,
         {name:'Jester',desc:'Every Turn, Randomly Get Burned, Frozen, or Shocked'},
         {name:'Managerial',desc:'Immediately Fight 12 Management Robots'},
         {name:'Luck',desc:'Gain 777 Currency'},
-        {name:'Developer',desc:'Add 1-5 of Nothings to Deck'},
+        //{name:'Developer',desc:'Add 1-5 of Nothings to Deck'},
         {name:'Pareidolia',desc:'Copy Every Non-Boss Enemy, Copies Get 1 HP'},
         {name:'Marx',desc:'All Cards Become Classless'},
         {name:'Duplicity',desc:'Remove All Duplicate Non-Basic Cards'},
@@ -7437,7 +7585,8 @@ variants={
     ],
 }
 constants={
-    playerNumber:25,orbNumber:17,
+    autoExec:-1,
+    playerNumber:26,orbNumber:18,
     targetRadius:30,startEnergy:3,collisionDamage:4,
     sqrt2:0,sqrt3:0,phi:0,trig:[[],[]],
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
@@ -7449,9 +7598,9 @@ constants={
     HG2:[[-2,0],[-1,0],[0,2],[0,1],[-1,1],[2,0],[1,0],[0,-2],[0,-1],[1,-1]],
     HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]
 }
-options={damage:false,alt:false,replay:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false,devGen:false}
+options={damage:false,alt:false,replay:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false,devGen:false,spin:false}
 graphics={main:0,backgroundGen:17,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],paperball:[],proxyBattle:0,test:0}
-transition={trigger:false,anim:0,scene:stage.scene,convert:false}
-inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}
+transition={trigger:false,anim:0,scene:stage.scene,convert:false,loading:``,bump:{trigger:false,anim:0}}
+inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:[],hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0
 la=0;lb=0;lc=0;ld=0;le=0;lf=0;lg=0;lh=0;li=0;lj=0;lk=0;ll=0;lm=0;ln=0;lo=0;lp=0

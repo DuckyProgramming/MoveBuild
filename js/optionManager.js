@@ -85,6 +85,7 @@ class optionManager{
     }
     triggerOption(type){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        this.battle.cardManagers[this.player].deck.allEffectArgs(55,['callRestOptionEffect',[type]])
         switch(type){
             case 0:
                 this.selections+=10

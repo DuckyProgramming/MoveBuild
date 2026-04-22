@@ -1375,6 +1375,80 @@ combatant.prototype.setupGraphics=function(direction){
 
             this.goal={anim:{direction:this.anim.direction}}
         break
+        case 'Menessa':
+            if(graphics.combatant[12]==-1){
+                setupCombatantGraphics(12)
+                graphics.combatant.splice(12,1,graphics.combatant[graphics.combatant.length-1])
+                delete graphics.combatant[graphics.combatant.length-1]
+                graphics.combatant.splice(graphics.combatant.length-1,1)
+            }
+            this.anim={direction:direction,head:direction,mouth:{x:8,y:3,open:0},
+                eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1}},
+                legs:[
+                    {top:9,bottom:0,length:{top:16.75,bottom:16.75}},
+                    {top:9,bottom:0,length:{top:16.75,bottom:16.75}}
+                ],arms:[
+                    {top:24,bottom:9,length:{top:16.75,bottom:16.75}},
+                    {top:24,bottom:9,length:{top:16.75,bottom:16.75}}
+                ]}
+
+            this.dress={top:[
+                {spin:[0,90,27],height:6},
+                {spin:[-90,0,-27],height:6},
+                {spin:[90,180,153],height:6},
+                {spin:[-180,-90,-153],height:6}
+            ]}
+
+            this.spin={
+                legs:[{top:-60,bottom:-120},{top:60,bottom:120}],
+                arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],
+                eye:[-18,18],button:0,mouth:27,
+                hair:{bow:[-108,108],pin:54},bow:0}
+
+            this.color=graphics.combatant[12].color
+
+            this.parts={eyeLevel:-77.25,mouth:-72.75,
+                minor:15,
+                legs:[
+                    {top:{x:3,y:-33.5},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:3,y:-33.5},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                ],arms:[
+                    {top:{x:3.45,y:-58.5},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:3.45,y:-58.5},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                ],}
+
+            this.graphics={
+                legs:[
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                ],arms:[
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},
+                    {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}
+                ]}
+
+            this.fades={eye:[1,1],mouth:1,hair:{bow:1,pin:1},
+                skin:{legs:1,arms:1,body:1,head:1,button:1},
+                dress:{main:1,sleeve:1,bow:1},
+                shoe:1,pocket:1,
+            }
+
+            this.trigger={display:{mouth:true,
+                hair:{back:true,front:true,glow:true,bow:true,pin:true},eye:[true,true],
+                skin:{legs:true,arms:true,body:true,head:true,button:true},
+                dress:{main:true,sleeve:true,bow:true},
+                shoe:true,pocket:true,
+            }}
+
+            this.trigger.display.extra={damage:false}
+
+            this.calc={int:[0,0,0,0]}
+
+            this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
+
+            this.animSet={loop:0,flip:0,hand:0,foot:0}
+
+            this.goal={anim:{direction:this.anim.direction}}
+        break
         //mark p
         case 'Ume':
             if(graphics.combatant[20]==-1){
@@ -2657,7 +2731,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
             this.color={in:[120,120,120],out:[100,100,100],metal:[140,120,160]}
         break
-        case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster':
+        case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor': case 'Discounter':
             this.anim={direction:direction,light:1}
             this.fades={body:1}
             this.trigger={display:{body:true}}
@@ -2676,6 +2750,12 @@ combatant.prototype.setupGraphics=function(direction){
                 break
                 case 'Exhauster':
                     this.color={in:[120,120,120],out:[100,100,100],lightIn:[100,255,255],lightOut:[25,255,255]}
+                break
+                case 'Compactor':
+                    this.color={in:[120,120,120],out:[100,100,100],lightIn:[255,175,100],lightOut:[225,125,25]}
+                break
+                case 'Discounter':
+                    this.color={in:[120,120,120],out:[100,100,100],lightIn:[100,255,175],lightOut:[25,225,125]}
                 break
             }
         break
@@ -3120,7 +3200,7 @@ combatant.prototype.setupGraphics=function(direction){
                     this.trigger.display.helmet=true
                     this.trigger.display.visor=true
                 break
-                case 'Management Officer':
+                case 'Management Officer': case 'Lost Management Officer':
                     this.color={skin:{head:[240,220,180],body:[100,100,100],legs:[95,95,95],arms:[95,95,95]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     this.color.belt=[60,60,60]
                     this.color.badge=[[50,50,200],[75,75,225]]
@@ -5293,6 +5373,138 @@ combatant.prototype.minorDisplay=function(type,key){
                         )
                     }
                     this.layer.endShape()
+                break
+            }
+        break
+        case 'Menessa':
+            let dir
+            switch(type){
+                case 0:
+                    dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.dress.sleeve),this.fade*this.fades.dress.sleeve)
+                    this.layer.beginShape()
+                    this.layer.quad(
+                        this.graphics.arms[key].middle.x+2*sin(dir+90),
+                        this.graphics.arms[key].middle.y+2*cos(dir+90),
+                        this.graphics.arms[key].middle.x*0.25+this.graphics.arms[key].bottom.x*0.75+6*sin(dir+90),
+                        this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75+6*cos(dir+90),
+                        this.graphics.arms[key].middle.x*0.25+this.graphics.arms[key].bottom.x*0.75-6*sin(dir+90),
+                        this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75-6*cos(dir+90),
+                        this.graphics.arms[key].middle.x-2*sin(dir+90),
+                        this.graphics.arms[key].middle.y-2*cos(dir+90)
+                    )
+                    this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4)
+                    this.layer.endShape()
+
+                    this.layer.push()
+                    this.layer.translate(
+                        this.graphics.arms[key].middle.x*0.25+this.graphics.arms[key].bottom.x*0.75,
+                        this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75
+                    )
+                    this.layer.rotate(-dir)
+                    this.layer.arc(0,0,12,2,-180,0)
+                    this.layer.ellipse(0,0,12,1)
+                    /*for(let a=0,la=6;a<la;a++){
+                        this.layer.ellipse(-4.875+a*1.95,-0.8+0.1*abs(a-2.5)**2,2.25,1.5)
+                    }*/
+                    for(let a=0,la=17;a<la;a++){
+                        if(lcos(a/la*360+this.anim.direction)>0){
+                            this.layer.push()
+                            this.layer.translate(lsin(a/la*360+this.anim.direction)*5.9,-abs(lcos(a/la*360+this.anim.direction)))
+                            this.layer.rotate(20*lsin(a/la*360+this.anim.direction))
+                            this.layer.ellipse(0,0,2.4*lcos(a/la*360+this.anim.direction),1.6)
+                            this.layer.pop()
+                        }
+                    }
+                    this.layer.pop()
+
+                    let len=dist(
+                        this.graphics.arms[key].middle.x,
+                        this.graphics.arms[key].middle.y,
+                        this.graphics.arms[key].middle.x*0.25+this.graphics.arms[key].bottom.x*0.75,
+                        this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75
+                    )
+                    this.layer.push()
+                    this.layer.translate(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y)
+                    this.layer.rotate(-dir)
+                    this.layer.fill(...this.flashColor(this.color.dress.sleeveOver),this.fade*this.fades.dress.main)
+                    for(let a=0,la=17;a<la;a++){
+                        if(lcos((a+0.5)/la*360+this.anim.direction)>0){
+                            this.layer.quad(
+                                2*lsin((a+0.5)/la*360+this.anim.direction),-lcos((a+0.5)/la*360+this.anim.direction)*0.5,
+                                5.6*lsin((a+0.35)/la*360+this.anim.direction),-len*0.9-abs(lcos((a+0.35)/la*360+this.anim.direction)),
+                                6*lsin((a+0.5)/la*360+this.anim.direction),-len-abs(lcos((a+0.5)/la*360+this.anim.direction)),
+                                5.6*lsin((a+0.65)/la*360+this.anim.direction),-len*0.9-abs(lcos((a+0.65)/la*360+this.anim.direction))
+                            )
+                        }
+                    }
+                    this.layer.pop()
+
+                    dir=atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
+                    this.layer.quad(
+                        this.graphics.arms[key].middle.x-2*sin(dir+90),
+                        this.graphics.arms[key].middle.y-2*cos(dir+90),
+                        this.graphics.arms[key].middle.x+2*sin(dir+90),
+                        this.graphics.arms[key].middle.y+2*cos(dir+90),
+                        this.graphics.arms[key].top.x+2.1*sin(dir+90),
+                        this.graphics.arms[key].top.y+2.1*cos(dir+90),
+                        this.graphics.arms[key].top.x-2.1*sin(dir+90),
+                        this.graphics.arms[key].top.y-2.1*cos(dir+90)
+                    )
+                    this.layer.fill(...this.flashColor(this.color.dress.main),this.fade*this.fades.dress.sleeve)
+                    this.layer.beginShape()
+                    let set=[
+                        [0,1],
+                        [0.48,1],
+                        [0.52,2/3],
+                        [0.5,1/3],
+                        [0.54,0],
+                        [0.5,-1/3],
+                        [0.52,-2/3],
+                        [0.48,-1],
+                        [0,-1],
+                    ]
+                    for(let a=0,la=set.length;a<la;a++){
+                        this.layer.vertex(
+                            this.graphics.arms[key].top.x*(1-set[a][0])+
+                            this.graphics.arms[key].middle.x*set[a][0]+
+                            (2.4+3*set[a][0])*set[a][1]*sin(dir+90),
+                            this.graphics.arms[key].top.y*(1-set[a][0])+
+                            this.graphics.arms[key].middle.y*set[a][0]+
+                            (2.4+3*set[a][0])*set[a][1]*cos(dir+90)
+                        )
+                    }
+                    this.layer.endShape()
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.dress.main),this.fade*this.fades.dress.sleeve)
+                    this.layer.push()
+                    this.layer.translate(this.graphics.arms[key].top.x,this.graphics.arms[key].top.y)
+                    this.layer.rotate(-dir)
+                    this.layer.arc(0,0,4.8,4.2,0,180)
+                    this.layer.ellipse(0,0,4.8,0.4)
+                    this.layer.pop()
+                break
+                case 1:
+                    dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                    this.layer.noStroke()
+                    this.layer.fill(...this.flashColor(this.color.dress.sleeveBack),this.fade*this.fades.dress.sleeve)
+                    this.layer.push()
+                    this.layer.translate(
+                        this.graphics.arms[key].middle.x*0.25+this.graphics.arms[key].bottom.x*0.75,
+                        this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75
+                    )
+                    this.layer.rotate(-dir)
+                    for(let a=0,la=17;a<la;a++){
+                        if(lcos(a/la*360+this.anim.direction)<=0){
+                            this.layer.push()
+                            this.layer.translate(lsin(a/la*360+this.anim.direction)*5.9,-abs(lcos(a/la*360+this.anim.direction)))
+                            this.layer.rotate(20*lsin(a/la*360+this.anim.direction))
+                            this.layer.ellipse(0,0,2.4*lcos(a/la*360+this.anim.direction),1.6)
+                            this.layer.pop()
+                        }
+                    }
+                    this.layer.pop()
                 break
             }
         break

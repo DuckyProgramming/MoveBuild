@@ -16,7 +16,7 @@ class nodeManager{
         this.stashWorld=0
         this.total=0
 
-        this.freeMove=0
+        this.freeMove=[0,0]
         this.saveClass=-1
         this.harmBoss=0
         this.endless=0
@@ -57,7 +57,7 @@ class nodeManager{
         for(let a=0,la=composite.nodes.length;a<la;a++){
             let base=composite.nodes[a]
             this.nodes.push(new node(this.layer,this.battle))
-            this.nodes[this.nodes.length-1].establish(base.position.x,base.position.y,base.base.position.x,base.base.position.y,base.tilePosition.x,base.tilePosition.y,base.type,base.reality,base.combat,base.connections,base.extraConnections,base.scroll,base.complete)
+            this.nodes[this.nodes.length-1].establish(base.position.x,base.position.y,base.base.position.x,base.base.position.y,base.tilePosition.x,base.tilePosition.y,base.type,base.readable,base.reality,base.combat,base.connections,base.extraConnections,base.scroll,base.complete)
         }
     }
     initialListing(){
@@ -67,6 +67,10 @@ class nodeManager{
                 this.listing.static[types.encounter[a].world][types.encounter[a].class].push(a)
                 this.listing.name[types.encounter[a].world][types.encounter[a].class].push(types.encounter[a].name)
             }
+        }
+        if(game.ascend>=33){
+            this.listing.encounter[3][2]=[findName('-h Rewriter',types.encounter)]
+            this.listing.static[3][2]=[findName('-h Rewriter',types.encounter)]
         }
     }
     nextWorld(){
@@ -94,6 +98,13 @@ class nodeManager{
             }
         }
         return -1
+    }
+    revealAll(types){
+        for(let a=0,la=this.nodes.length;a<la;a++){
+            if(types.includes(this.nodes[a].type)){
+                this.nodes[a].readable=true
+            }
+        }
     }
     setupMap(){
         this.nodes=[]
@@ -239,7 +250,8 @@ class nodeManager{
             this.battle.stats.node[0]++
             this.battle.stats.node[1+type]++
             for(let a=0,la=this.battle.players;a<la;a++){
-                this.battle.cardManagers[a].allEffect(0,62)
+                this.battle.cardManagers[a].deck.allEffectArgs(55,['callNodeEffect',[type]])
+                //this.battle.cardManagers[a].allEffect(0,62)
             }
             if(variants.terminal){
                 for(let a=0,la=this.battle.players;a<la;a++){
@@ -400,13 +412,15 @@ class nodeManager{
                 !(this.nodes[a].tilePosition.y==this.tilePosition.y&&this.nodes[a].complete)&&(
                     this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||
                     this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].getConnections(1).includes(a)||
-                    this.tilePosition.y>=0&&this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2||
+                    this.tilePosition.y>=0&&this.freeMove[0]>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2||
+                    this.tilePosition.y>=0&&this.freeMove[1]>0&&this.nodes[a].tilePosition.y==this.tilePosition.y+1||
                     this.tilePosition.y>0&&(this.nodes[a].getConnections(1).includes(this.getNodeIndex(this.tilePosition.x,this.tilePosition.y))&&this.battle.relicManager.hasRelic(336,-1))
                 ),
                 !(this.nodes[a].tilePosition.y==this.tilePosition.y&&this.nodes[a].complete)&&(
                     this.tilePosition.y==-1&&this.nodes[a].tilePosition.y<=(this.battle.relicManager.hasRelic(479,-1)?1:0)||
                     this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].getConnections(this.battle.relicManager.hasRelic(479,-1)?2:1).includes(a)||
-                    this.tilePosition.y>=0&&this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y-(this.battle.relicManager.hasRelic(479,-1)?1:0)&&this.nodes[a].tilePosition.y<=(this.tilePosition.y+this.battle.relicManager.hasRelic(479,-1)?3:2)||
+                    this.tilePosition.y>=0&&this.freeMove[0]>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y-(this.battle.relicManager.hasRelic(479,-1)?1:0)&&this.nodes[a].tilePosition.y<=(this.tilePosition.y+this.battle.relicManager.hasRelic(479,-1)?3:2)||
+                    this.tilePosition.y>=0&&this.freeMove[1]>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y+1-(this.battle.relicManager.hasRelic(479,-1)?1:0)&&this.nodes[a].tilePosition.y<=(this.tilePosition.y+this.battle.relicManager.hasRelic(479,-1)?2:1)||
                     this.tilePosition.y>0&&(this.nodes[a].getConnections(this.battle.relicManager.hasRelic(479,-1)?2:1).includes(this.getNodeIndex(this.tilePosition.x,this.tilePosition.y))&&this.battle.relicManager.hasRelic(336,-1))
                 ),
                 this.nodes[a].tilePosition.y<this.tilePosition.y
@@ -418,7 +432,8 @@ class nodeManager{
             if(dist(inputs.rel.x,inputs.rel.y,this.nodes[a].position.x,this.nodes[a].position.y)<25&&!(this.nodes[a].tilePosition.y==this.tilePosition.y&&this.nodes[a].complete)&&(
                 this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||
                 this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].getConnections(1).includes(a)||
-                this.tilePosition.y>=0&&this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2||
+                this.tilePosition.y>=0&&this.freeMove[0]>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2||
+                this.tilePosition.y>=0&&this.freeMove[1]>0&&this.nodes[a].tilePosition.y==this.tilePosition.y+1||
                 this.tilePosition.y>0&&(this.nodes[a].getConnections(1).includes(this.getNodeIndex(this.tilePosition.x,this.tilePosition.y))&&this.battle.relicManager.hasRelic(336,-1))
             )){
                 this.total++
@@ -442,8 +457,10 @@ class nodeManager{
                     this.scrollDown(this.nodes[a].base.position.y)
                     this.tilePosition.x=this.nodes[a].tilePosition.x
                     this.tilePosition.y=this.nodes[a].tilePosition.y
-                    if(this.freeMove>0){
-                        this.freeMove--
+                    for(let a=0,la=this.freeMove.length;a<la;a++){
+                        if(this.freeMove[a]>0){
+                            this.freeMove[a]--
+                        }
                     }
                     if(!this.nodes[a].complete){
                         this.nodes[a].complete=true
@@ -464,7 +481,7 @@ class nodeManager{
             if((int(key)+9)%10==this.nodes[a].tilePosition.x&&!(this.nodes[a].tilePosition.y==this.tilePosition.y&&this.nodes[a].complete)&&(
                 this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||
                 this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a)||
-                this.tilePosition.y>=0&&this.freeMove>0&&this.nodes[a].tilePosition.y==this.tilePosition.y+1
+                this.tilePosition.y>=0&&(this.freeMove[0]>0||this.freeMove[1]>0)&&this.nodes[a].tilePosition.y==this.tilePosition.y+1
             )){
                 this.total++
                 if(this.nodes[a].tilePosition.y<this.tilePosition.y){
@@ -487,8 +504,10 @@ class nodeManager{
                     this.scrollDown(this.nodes[a].base.position.y)
                     this.tilePosition.x=this.nodes[a].tilePosition.x
                     this.tilePosition.y=this.nodes[a].tilePosition.y
-                    if(this.freeMove>0){
-                        this.freeMove--
+                    for(let a=0,la=this.freeMove.length;a<la;a++){
+                        if(this.freeMove[a]>0){
+                            this.freeMove[a]--
+                        }
                     }
                     if(!this.nodes[a].complete){
                         this.nodes[a].complete=true

@@ -124,7 +124,7 @@ class attackManager{
         }else if(this.finalAfter){
             this.finalAfter=false
             this.battle.nodeManager.world=3
-            this.battle.setupBattle(types.encounter[findName(['Rewriter','Eternal Judge'][floor(random(0,2))],types.encounter)])
+            this.battle.setupBattle(types.encounter[findName(game.ascend>=33?'-h Rewriter':['Rewriter','Eternal Judge'][floor(random(0,2))],types.encounter)])
         }
     }
     update(){

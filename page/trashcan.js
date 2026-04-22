@@ -56,59 +56,31 @@
             ],
         },
     },{
-        name:'Minimal\nContributor',rarity:-1,list:-8,
+        name:'Mixtape',rarity:-1,list:-8,
         levels:[
-            {effect:[1,1],attack:7345,cost:3,target:[0],spec:[],class:9},
-            {effect:[1,2],attack:7345,cost:3,target:[0],spec:[],class:9},
-            {effect:[1,3],attack:7345,cost:3,target:[0],spec:[],class:9},
+            {effect:[1],attack:1683,cost:0,target:[2,1,2],spec:[],class:11},
+            {effect:[2],attack:1683,cost:0,target:[2,1,2],spec:[],class:11},
+            {effect:[3],attack:1683,cost:0,target:[2,1,2],spec:[],class:11},
         ],mtg:{
-            rarity:-1,list:-8,color:[2,4],
+            rarity:-1,list:-8,color:[3],
             levels:[
-                {effect:[1,1],attack:7345,cost:[2,4,-1],target:[0],spec:[],class:9},
-                {effect:[1,2],attack:7345,cost:[2,4,-1],target:[0],spec:[],class:9},
-                {effect:[1,3],attack:7345,cost:[2,4,-1],target:[0],spec:[],class:9},
+                {effect:[1],attack:1683,cost:[],target:[2,1,2],spec:[],class:11},
+                {effect:[2],attack:1683,cost:[],target:[2,1,2],spec:[],class:11},
+                {effect:[3],attack:1683,cost:[],target:[2,1,2],spec:[],class:11},
             ],
         },
     },{
-        name:'Old\nClarity',rarity:-1,list:-8,
+        name:'Muddle',rarity:-1,list:-8,
         levels:[
-            {effect:[1],attack:318,cost:1,target:[0],spec:[32],class:4},
-            {effect:[2],attack:318,cost:1,target:[0],spec:[32],class:4},
-            {effect:[2],attack:318,cost:1,target:[0],spec:[3,32],class:4},
+            {effect:[20,2],attack:1662,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[28,2],attack:1662,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[32,3],attack:1662,cost:0,target:[2,1,2],spec:[],class:1},
         ],mtg:{
-            rarity:-1,list:-8,color:[2,5],
+            rarity:-1,list:-8,color:[3],
             levels:[
-                {effect:[1],attack:318,cost:[2,5],target:[0],spec:[32],class:4},
-                {effect:[2],attack:318,cost:[2,5],target:[0],spec:[32],class:4},
-                {effect:[2],attack:318,cost:[2,5],target:[0],spec:[3,32],class:4},
-            ],
-        },
-    },{
-        name:'Old After\nImage',rarity:-1,list:-8,
-        levels:[
-            {effect:[2],attack:254,cost:1,target:[0],spec:[32],class:4},
-            {effect:[2],attack:254,cost:1,target:[0],spec:[3,32],class:4},
-            {effect:[3],attack:254,cost:1,target:[0],spec:[3,32],class:4},
-        ],mtg:{
-            rarity:-1,list:-8,color:[1],
-            levels:[
-                {effect:[2],attack:254,cost:[1,-1],target:[0],spec:[32],class:4},
-                {effect:[2],attack:254,cost:[1,-1],target:[0],spec:[3,32],class:4},
-                {effect:[3],attack:254,cost:[1,-1],target:[0],spec:[3,32],class:4},
-            ],
-        },
-    },{
-        name:'Old Binary\nStars',rarity:-1,list:-8,
-        levels:[
-            {effect:[],attack:1236,cost:1,target:[0],spec:[32],class:11},
-            {effect:[],attack:1236,cost:1,target:[0],spec:[32],class:11},
-            {effect:[],attack:1236,cost:1,target:[0],spec:[32],class:11},
-        ],mtg:{
-            rarity:-1,list:-8,color:[1,3],
-            levels:[
-                {effect:[],attack:1236,cost:[8,-1],target:[0],spec:[32],class:11},
-                {effect:[],attack:1236,cost:[8,-1],target:[0],spec:[32],class:11},
-                {effect:[],attack:1236,cost:[8,-1],target:[0],spec:[32],class:11},
+                {effect:[20,2],attack:1662,cost:[],target:[2,1,2],spec:[],class:1},
+                {effect:[28,2],attack:1662,cost:[],target:[2,1,2],spec:[],class:1},
+                {effect:[32,3],attack:1662,cost:[],target:[2,1,2],spec:[],class:1},
             ],
         },
     },

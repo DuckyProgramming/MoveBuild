@@ -195,7 +195,7 @@ class combatant{
                 'Control Base','Random Free Exhausting Ethereal Card Per Turn','Attack Freeze Combat','Blueprint Cost Down','Gun Draw Next Turn','Shock All Per Turn','Amplify Poison All','No Draw Next Turn','Energy Gain Energy','Energy Gain (E)',
                 'Cable Claw Up','Energy Orb Per Turn','Basic Energy','Basic (E)','Bleed Damage','Dust Orb Boost','Armor Per Turn','Max Health Gift','Fragile','Free Card Per Turn',
                 'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random','Silver Block','Mineral Block','Mineral Draw','End of Combat Lose','End of Combat Item',
-                'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockswwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw','All Damage Convert',
+                'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw','All Damage Convert',
                 'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity','Temporary Card Play Temporary Strength','Temporary Card Play Temporary Strength Next Turn',
                 'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent','Rearm Strength','All X Cost Boost','Move Block',
                 'Base Attack Vulnerable Combat','Retain Freeze','Orb Hold Tick','Fugue Strength','Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill','Speed Strike',
@@ -205,10 +205,12 @@ class combatant{
                 'Recover Draw','Recover Next Turn','Recover Up','Shiv Temporary Damage Taken Up','Free War','Skill Discard Draw','Worker Draw Per Turn','Worker Boost','Assign Draw','Free Assign',
                 'Intangible Strength','Debuff Draw','"Debuff"','Discus Pure','Cycle Rotation','Base Attack Weak Combat','Retain Lock On','History Rewind Tick','Gun Draw','Retain Until Played Per Turn',
                 'Temporary Strength in 2 Turns','Temporary Strength in 3 Turns','Single Splash Vulnerable','Temporary Strength Cycle 3 1','Temporary Strength Cycle 3 2','Temporary Strength Cycle 3 3','Indefinite Pure','Fragile Turn Splash','Favor Per Turn','Favor Energy',
-                'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Item Next Turn','Vigor Per Turn',
+                'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Temporary Item Next Turn','Vigor Per Turn',
                 'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
                 'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block','Bell Weak','Bell Vulnerable',
-                'Buff Loss Block','Take Per Skill Played Combat',
+                'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage','Caffeine','20 Damage Weak','20 Damage Vulnerable','20 Damage Frail','Weak Boost',
+                'Vulnerable Boost','Duplicate Cycle 3 1','Duplicate Cycle 3 2','Duplicate Cycle 3 3',`Turn Transform`,'Temporary Focus','Pristine Draw','Skill Temporary Dexterity','Double Damage Cycle 3 1','Double Damage Cycle 3 2',
+                'Double Damage Cycle 3 3','Random Quickdraw Gain Per Turn','Skill to Defense Draw Skill','Coffee Draw','Skill to Attack Draw Skill','Coffee Splash','Caffeine Tolerance','Pristine Reduction Free Attack',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -296,7 +298,9 @@ class combatant{
                 0,0,0,0,0,0,0,0,2,0,//83
                 0,1,1,0,0,0,0,0,0,2,//84
                 0,0,0,0,2,2,2,0,0,0,//85
-                0,0,
+                0,0,2,2,1,0,0,0,0,0,//86
+                0,2,2,2,0,2,0,0,2,2,//87
+                2,0,0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -384,7 +388,9 @@ class combatant{
                 2,2,2,2,2,2,2,0,2,2,//83
                 2,2,2,2,2,2,2,2,2,2,//84
                 2,2,2,2,2,2,2,2,2,2,//85
-                2,3,
+                2,3,1,1,2,1,2,2,2,2,//86
+                2,2,2,2,2,2,2,2,0,0,//87
+                0,2,2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -420,6 +426,7 @@ class combatant{
 
         this.intent=-1
         this.usedIntent=[]
+        this.completedIntent=[]
         this.activated=this.construct
         this.target=0
         for(let a=0,la=this.orbs.length;a<la;a++){
@@ -490,6 +497,7 @@ class combatant{
         this.fugue=0
         this.favor=0
         this.ringing=0
+        this.caffeine=0
 
         this.turnDodges=0
         this.turnTaken=0
@@ -840,7 +848,7 @@ class combatant{
                 this.statusEffect('Counter Bleed Once',1)
             break
             case 'Crusader':
-                this.statusEffect('Armor',game.ascend>=31?20:10)
+                this.statusEffect('Armor',game.ascend>=31?15:10)
             break
             case 'Exploding Wall':
                 this.statusEffect('Numeric Explode on Death',20)
@@ -865,7 +873,7 @@ class combatant{
             break
             case 'Thoughtless':
                 if(!this.battle.modded(195)){
-                    this.statusEffect('Intent Change Threshold',20)
+                    this.statusEffect('Intent Change Threshold',game.ascend>=31?30:20)
                 }
                 this.accelerate=0
             break
@@ -886,7 +894,7 @@ class combatant{
                 this.statusEffect('Metallicize',game.ascend>=31?10:6)
             break
             case 'Zombie Duck':
-                this.statusEffect('Revive',game.ascend>=31?3:2)
+                this.statusEffect('Revive',game.ascend>=31?2:1)
             break
             case 'Graphite Block':
                 this.statusEffect('Armor',game.ascend>=31?16:8)
@@ -1094,7 +1102,7 @@ class combatant{
                         this.removeAttack(10)
                         this.statusEffect('Metallicize All',3)
                     break
-                    case 'Management Officer':
+                    case 'Management Officer': case 'Lost Management Officer':
                         this.subAttackTypeSwitch([[2,26,26,[2]]])
                     break
                     case 'Management Special Forces':
@@ -1139,7 +1147,7 @@ class combatant{
                     break
                     case 'Prison Guard':
                         this.move.type=2
-                        this.statusEffect('Metallicize',4)
+                        this.statusEffect('Metallicize',1)
                     break
                     case 'Lightspeed':
                         this.move.speed++
@@ -1379,10 +1387,10 @@ class combatant{
                         this.behavior=9
                     break
                     case 'Hexaghost Orb':
-                        this.subAttackTypeSwitch([[2,22,22,[1,2]]])
+                        this.subAttackTypeSwitch([[2,54,54,[1,2]]])
                     break
                     case 'Flame':
-                        this.subAttackTypeSwitch([[2,54,54,[1,2]]])
+                        this.subAttackTypeSwitch([[2,22,22,[1,2]]])
                     break
                     case 'Buried':
                         this.subAttackTypeSwitch([[0,1,9,[]],[0,2,19,[]],[0,3,7,[]],[0,4,10,[]]])
@@ -1445,7 +1453,7 @@ class combatant{
                     break
                     case 'Guard':
                         this.spec.push(0)
-                        this.statusEffect('Metallicize',3)
+                        this.statusEffect('Strength in 3 Turns',2)
                     break
                     case 'Bar Security':
                         this.statusEffect('Counter Push Once Per Turn',6)
@@ -1470,11 +1478,11 @@ class combatant{
                     break
                     case 'Prison Guard Gunner':
                         this.move.type=12
-                        this.statusEffect('Metallicize',4)
+                        this.statusEffect('Metallicize',3)
                     break
                     case 'Shield Prison Guard':
-                        this.statusEffect('Metallicize',4)
-                        this.statusEffect('Armor',4)
+                        this.statusEffect('Metallicize',3)
+                        this.statusEffect('Armor',3)
                     break
                     case 'Half Spikeball':
                         this.addBlock(8)
@@ -1510,6 +1518,14 @@ class combatant{
             if(game.ascend>=32){
                 this.subHealthBuff(1.2)
                 this.subAttackBuff([1,2,5],1.2)
+            }
+            if(game.ascend>=33){
+                switch(this.name){
+                    case 'Rewriter':
+                        this.behavior=20
+                        this.addAttack(469,[])
+                    break
+                }
             }
             if(this.battle.players>1){
                 this.subHealthBuff(1.5)
@@ -1589,6 +1605,7 @@ class combatant{
                         &&this.attack[a].type!=57
                         &&this.attack[a].type!=120
                         &&this.attack[a].type!=155
+                        &&this.attack[a].type!=189
                         &&this.attack[a].type!=300
                         &&this.attack[a].type!=391
                     ){
@@ -1712,7 +1729,7 @@ class combatant{
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
-            case 'Certes': case 'Airi': case 'Shiru': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Sagume': case 'Meri':
+            case 'Certes': case 'Airi': case 'Shiru': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Sagume': case 'Meri': case 'Menessa':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -1875,7 +1892,7 @@ class combatant{
             break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine': case 'Keystone': case 'Spirit of Wealth': case 'Spirit of Elegance':
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': case 'Louse': case 'Hwurmp': case 'Glimmerrer': case 'Antihwurmp': case 'Half Spikeball':
-            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall': case 'Shieldzone': case 'Swap Wall': case 'Swarm Wall':
+            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall': case 'Shieldzone': case 'Swap Wall': case 'Swarm Wall': case 'Compactor': case 'Discounter':
             break
             default:
                 for(let g=0;g<2;g++){
@@ -1957,7 +1974,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*4,this.tilePosition.y+transformBase[1]*4)
                 ]
             case 9: case 60: case 64: case 69: case 82: case 84: case 95: case 104: case 114: case 124:
-            case 153: case 264: case 265: case 278: case 308: case 330: case 368: case 395: case 441:
+            case 153: case 264: case 265: case 278: case 308: case 330: case 368: case 395: case 441: case 470:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction-60)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction-60)[1]),
@@ -1973,7 +1990,7 @@ class combatant{
             case 320: case 321: case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353:
             case 358: case 361: case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420:
             case 425: case 427: case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455:
-            case 459: case 463:
+            case 459: case 463: case 471: case 475:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -2039,7 +2056,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,90)[0]*2,this.tilePosition.y+transformDirection(0,90)[1]*2),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,150)[0]*2,this.tilePosition.y+transformDirection(0,150)[1]*2)
                 ]
-            case 85: case 86: case 379:
+            case 85: case 86: case 379: case 476:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction-60)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction-60)[1]),
@@ -2310,7 +2327,10 @@ class combatant{
         }
     }
     convertIntent(){
-        if(types.attack[this.attack[this.intent].type].class==1&&this.status.main[5]>0){
+        if((
+            types.attack[this.attack[this.intent].type].class==1||
+            types.attack[this.attack[this.intent].type].class==5
+        )&&this.status.main[5]>0){
             this.takeDamage(this.status.main[5])
         }
     }
@@ -2448,6 +2468,9 @@ class combatant{
                                 this.progress++
                             }
                         break
+                        case 20:
+                            this.intent=!this.completedIntent.includes(this.attack.length-1)?this.attack.length-1:(this.turnsAlive-2)%(this.attack.length-1)
+                        break
                     }
                     this.convertIntent()
                 }
@@ -2461,6 +2484,24 @@ class combatant{
         if(this.attack.length>0){
             for(let a=0,la=this.attack.length;a<la;a++){
                 if(types.attack[this.attack[(this.intent+a)%this.attack.length].type].class==intentClass){
+                    if(!this.usedIntent.includes(this.intent)){
+                        this.usedIntent.push(this.intent)
+                    }
+                    this.intent=(this.intent+a)%this.attack.length
+                    this.convertIntent()
+                    a=la
+                }
+            }
+            this.battle.updateTargetting()
+        }
+    }
+    setIntentClassMultiple(intentClass){
+        if(this.intent==-1){
+            this.intent=0
+        }
+        if(this.attack.length>0){
+            for(let a=0,la=this.attack.length;a<la;a++){
+                if(intentClass.includes(types.attack[this.attack[(this.intent+a)%this.attack.length].type].class)){
                     if(!this.usedIntent.includes(this.intent)){
                         this.usedIntent.push(this.intent)
                     }
@@ -2629,7 +2670,7 @@ class combatant{
                         case 112: case 137: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223:
                         case 224: case 248: case 250: case 253: case 258: case 260: case 272: case 273: case 275: case 276:
                         case 277: case 297: case 298: case 299: case 310: case 317: case 325: case 329: case 342: case 343:
-                        case 354: case 374: case 375: case 382: case 383: case 386: case 394: case 433: case 435:
+                        case 354: case 374: case 375: case 382: case 383: case 386: case 394: case 433: case 435: case 475:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -2674,7 +2715,7 @@ class combatant{
                         case 259: case 264: case 265: case 278: case 288: case 291: case 292: case 308: case 330: case 350:
                         case 351: case 357: case 360: case 368: case 379: case 381: case 384: case 387: case 388: case 395:
                         case 396: case 403: case 404: case 409: case 415: case 417: case 418: case 441: case 449: case 451:
-                        case 452: case 468:
+                        case 452: case 468: case 470: case 471: case 476:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -2843,7 +2884,7 @@ class combatant{
                     case 137: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223: case 224:
                     case 248: case 250: case 253: case 258: case 260: case 272: case 273: case 275: case 276: case 277:
                     case 297: case 298: case 299: case 310: case 317: case 325: case 329: case 335: case 342: case 343:
-                    case 354: case 374: case 375: case 382: case 383: case 386: case 394: case 433: case 435:
+                    case 354: case 374: case 375: case 382: case 383: case 386: case 394: case 433: case 435: case 475:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -2893,7 +2934,7 @@ class combatant{
                     case 222: case 255: case 256: case 259: case 264: case 265: case 278: case 288: case 291: case 292:
                     case 308: case 330: case 350: case 351: case 357: case 360: case 368: case 379: case 381: case 384:
                     case 387: case 388: case 395: case 396: case 404: case 409: case 415: case 417: case 418: case 441:
-                    case 449: case 451: case 452: case 468:
+                    case 449: case 451: case 452: case 468: case 470: case 476:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(this.targetTile[b].tilePosition.x>=0){
                                 this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
@@ -2942,7 +2983,7 @@ class combatant{
                             }
                         }
                     break
-                    case 117: case 135: case 154:
+                    case 117: case 135: case 154: case 471:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -3183,7 +3224,7 @@ class combatant{
                     damage*=max(0.2,1+totalStr*0.1)
                 }
                 if(this.block>0&&this.battle.relicManager.hasRelic(69,userCombatant.id)){
-                    damage+=4
+                    damage+=4*this.battle.relicManager.active[175][userCombatant.id+1]
                 }
                 if(distTargetCombatant(0,this,userCombatant)>=2&&this.battle.relicManager.hasRelic(175,userCombatant.id)){
                     damage+=3*this.battle.relicManager.active[175][userCombatant.id+1]
@@ -3220,7 +3261,8 @@ class combatant{
                         damage*=userCombatant.tempStatus[0]
                     }
                     if(userCombatant.status.main[8]>0&&userCombatant.status.main[779]<=0){
-                        damage*=this.battle.modded(213)&&user<this.battle.players?0:this.status.main[426]>0?0.5:userCombatant.status.main[381]>0?1.25:0.75
+                        damage*=(this.battle.modded(213)&&user<this.battle.players?0:this.status.main[426]>0?0.5:userCombatant.status.main[381]>0?1.25:0.75)
+                            **(1+userCombatant.status.main[859]/100)
                     }
                     if(userCombatant.status.main[82]>0){
                         damage*=2
@@ -3459,7 +3501,8 @@ class combatant{
                     damage=1
                 }
                 if(this.status.main[10]>0&&this.status.main[779]<=0){
-                    damage*=this.team==0&&this.battle.relicManager.hasRelic(407,0)?2:1.5
+                    damage*=1+(this.team==0&&this.battle.relicManager.hasRelic(407,0)?1:0.5)*
+                        (1+this.status.main[860]/100)
                 }
                 if(this.status.main[24]>0){
                     damage*=0.5
@@ -3766,6 +3809,15 @@ class combatant{
                     if(userCombatant.status.main[805]>0&&this.getStatus('Weak')==0){
                         this.statusEffect('Weak',userCombatant.status.main[805])
                     }
+                    if(userCombatant.status.main[856]>0&&damage>=20){
+                        this.statusEffect('Weak',userCombatant.status.main[856])
+                    }
+                    if(userCombatant.status.main[857]>0&&damage>=20){
+                        this.statusEffect('Vulnerable',userCombatant.status.main[857])
+                    }
+                    if(userCombatant.status.main[858]>0&&damage>=20){
+                        this.statusEffect('Frail',userCombatant.status.main[858])
+                    }
                     if(this.battle.relicManager.hasRelic(246,user)&&damage>=25){
                         this.battle.cardManagers[user].draw(this.battle.relicManager.active[246][user+1])
                     }
@@ -3995,7 +4047,7 @@ class combatant{
                                     this.status.main[611]=0
                                 }
                                 if(this.status.main[722]>0&&distance>=0&&distance<=1){
-                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,87,[this.status.main[607]],this.id,false))
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,87,[this.status.main[722]],this.id,false))
                                     this.status.main[722]=0
                                 }
                             }else{
@@ -4371,6 +4423,8 @@ class combatant{
                 if(this.id<this.battle.players){
                     this.battle.stats.block[this.id]+=block
                     this.battle.relicManager.activate(18,[block,this.id])
+                }else if(this.battle.relicManager.hasRelic(518,-1)){
+                    this.loseHealth(this.battle.relicManager.active[518][0])
                 }
             }
         }
@@ -4506,9 +4560,7 @@ class combatant{
             this.relativePosition.x=tile.relativePosition.x
             this.relativePosition.y=tile.relativePosition.y
             if(this.spec.includes(5)){
-                if(tile>=0){
-                    tile.addType(6)
-                }
+                tile.addType(6)
             }
             this.battle.combatantManager.sort()
         }
@@ -4539,11 +4591,23 @@ class combatant{
                 this.anyOrb=true
             }
         }
+        let count=elementArray(0,constants.orbNumber)
+        this.orbs.forEach(orb=>count[orb]++)
+        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8620,count[0]])
+        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8606,count[4]])
+        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8607,count[6]])
+        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8608,count[5]])
+        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8609,count[16]])
+        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8610,count.filter(value=>value>0).length])
     }
     clearOrbs(){
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.orbs[a]=-1
         }
+        this.checkAnyOrb()
+    }
+    allOrb(orbType){
+        this.orbs.forEach((orb,index,arr)=>arr[index]=orbType)
         this.checkAnyOrb()
     }
     replaceOrb(start,end){
@@ -4552,6 +4616,10 @@ class combatant{
                 this.orbs[a]=end
             }
         }
+        this.checkAnyOrb()
+    }
+    replaceAllOrb(end){
+        this.orbs.forEach((orb,index,arr)=>{if(orb>0){arr[index]=end}})
         this.checkAnyOrb()
     }
     newOrb(){
@@ -4603,21 +4671,22 @@ class combatant{
     }
     subEvoke(type,detail,target){
         let multi=1
-        if(this.status.main[111]>0){
-            multi=1+this.status.main[111]*0.1
-        }else if(this.status.main[111]<0){
-            multi=max(0.2,1+this.status.main[111]*0.1)
+        let totalFocus=this.status.main[111]+this.status.main[865]
+        if(totalFocus>0){
+            multi=1+totalFocus*0.2
+        }else if(totalFocus<0){
+            multi=max(0.2,1+totalFocus*0.1)
         }
         if(this.id>=0&&this.id<this.battle.players){
             this.battle.cardManagers[this.id].hand.allEffectArgs(51,[type])
             switch(type){
                 case 0:
-                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935])
-                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935])
+                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935,8425])
+                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935,8425])
                 break
                 case 1:
-                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[6209])
-                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[6209])
+                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[6209,8424])
+                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[6209,8424])
                 break
             }
         }
@@ -4703,20 +4772,27 @@ class combatant{
             case 16:
                 this.battle.combatantManager.combatants[target].orbTake(round(detail*multi*playerMulti),-1)
             break
+            case 17:
+                this.battle.combatantManager.combatants[target].orbTake(round(36*multi*playerMulti),-1)
+                if(this.id<this.battle.players){
+                    this.battle.addCurrency(round(10*multi*playerMulti),this.id)
+                }
+            break
         }
     }
     subMinorEvoke(type,detail,target){
         let multi=1
-        if(this.status.main[111]>0){
-            multi=1+this.status.main[111]*0.2
-        }else if(this.status.main[111]<0){
-            multi=max(0.2,1+this.status.main[111]*0.1)
+        let totalFocus=this.status.main[111]+this.status.main[865]
+        if(totalFocus>0){
+            multi=1+totalFocus*0.2
+        }else if(totalFocus<0){
+            multi=max(0.2,1+totalFocus*0.1)
         }
         if(this.id>=0&&this.id<this.battle.players){
             this.battle.cardManagers[this.id].hand.allEffect(115,[])
             if(type==0){
-                this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935])
-                this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935])
+                this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935,8425])
+                this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935,8425])
             }
         }
         if(this.status.main[674]>0&&type>=0){
@@ -4787,14 +4863,21 @@ class combatant{
             case 16:
                 this.battle.combatantManager.combatants[target].orbTake(round(detail*multi*playerMulti/2),-1)
             break
+            case 17:
+                this.battle.combatantManager.combatants[target].orbTake(round(18*multi*playerMulti),-1)
+                if(this.id<this.battle.players){
+                    this.battle.addCurrency(round(5*multi*playerMult),this.id)
+                }
+            break
         }
     }
     alternateEvoke(type,detail,target){
         let multi=1
-        if(this.status.main[111]>0){
-            multi=1+this.status.main[111]*0.2
-        }else if(this.status.main[111]<0){
-            multi=max(0.2,1+this.status.main[111]*0.1)
+        let totalFocus=this.status.main[111]+this.status.main[865]
+        if(totalFocus>0){
+            multi=1+totalFocus*0.2
+        }else if(totalFocus<0){
+            multi=max(0.2,1+totalFocus*0.1)
         }
         switch(type){
             case 1:
@@ -4803,7 +4886,7 @@ class combatant{
             case 2:
                 this.battle.combatantManager.combatants[target].orbTake(round(50*multi),-1)
             break
-            case 9:w
+            case 9:
                 this.battle.combatantManager.combatants[target].statusEffect('Double Damage',round(4))
             break
             case 10:
@@ -4966,6 +5049,14 @@ class combatant{
                     }
                 }
             break
+            case 15:
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    if(this.orbs[a]>=0){
+                        this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                        this.orbs[a]=antiOrb(this.orbs[a])
+                    }
+                }
+            break
         }
         this.checkAnyOrb()
     }
@@ -5123,41 +5214,45 @@ class combatant{
             this.battle.cardManagers[this.id].hand.allEffect(95)
         }
     }
-    diceRoll(number,value){
-        let effectiveValue=value+this.status.main[605]
-        let total=0
-        let average=0
-        let roll=0
-        let luckCheck=false
-        let luckCheckFail=false
-        if(this.status.main[473]>0){
-            number+=this.status.main[473]
-            this.status.main[473]=0
-        }
-        if(this.status.main[261]>0){
-            luckCheck=true
+    diceRoll(number,value,first=true){
+        if(this.status.main[854]>0&&first){
+            return max(this.diceRoll(number,value,false),this.diceRoll(number,value,false))
         }else{
-            luckCheck=this.luckCheck()
-            if(!luckCheck){
-                luckCheckFail=this.luckCheckFail()
+            let effectiveValue=value+this.status.main[605]
+            let total=0
+            let average=0
+            let roll=0
+            let luckCheck=false
+            let luckCheckFail=false
+            if(this.status.main[473]>0){
+                number+=this.status.main[473]
+                this.status.main[473]=0
             }
-        }
-        for(let a=0,la=number;a<la;a++){
-            roll=(luckCheck?effectiveValue:luckCheckFail?1:1+floor(random(0,effectiveValue)))+this.status.main[252]
-            total+=roll
-            average+=(1+value)/2+this.status.main[252]
-            this.battle.particleManager.createNumber(41,this.position.x,this.position.y,roll)
-        }
-        if(total<average*0.8){
-            this.lowRoll()
-        }else if(total>average*1.2){
-            this.highRoll()
+            if(this.status.main[261]>0){
+                luckCheck=true
+            }else{
+                luckCheck=this.luckCheck()
+                if(!luckCheck){
+                    luckCheckFail=this.luckCheckFail()
+                }
+            }
+            for(let a=0,la=number;a<la;a++){
+                roll=(luckCheck?effectiveValue:luckCheckFail?1:1+floor(random(0,effectiveValue)))+this.status.main[252]
+                total+=roll
+                average+=(1+value)/2+this.status.main[252]
+                this.battle.particleManager.createNumber(41,this.position.x,this.position.y,roll)
+            }
+            if(total<average*0.8){
+                this.lowRoll()
+            }else if(total>average*1.2){
+                this.highRoll()
 
+            }
+            if(this.status.main[495]>0){
+                this.addBlock(this.status.main[495])
+            }
+            return total
         }
-        if(this.status.main[495]>0){
-            this.addBlock(this.status.main[495])
-        }
-        return total
     }
     prime(value){
         if(this.id<this.battle.players){
@@ -5340,6 +5435,9 @@ class combatant{
                 if(status==32){
                     this.battle.updateTargetting()
                 }
+                if(this.id>=0&&this.id<this.battle.players){
+                    this.battle.cardManagers[this.id].allEffectArgs(2,55,['callStatusEffect',[this.status.class[status]]])
+                }
                 if((this.status.class[status]==1||this.status.class[status]==3)&&effectiveValue>0||(this.status.class[status]==0||this.status.class[status]==2)&&effectiveValue<0){
                     if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
@@ -5376,7 +5474,7 @@ class combatant{
                             this.takeDamage(userCombatant.getStatus('Bleed Damage'),-1)
                         }
                         if(userCombatant.getStatus('Bleed Attack Intent')>0){
-                            this.setIntentClass(1)
+                            this.setIntentClassMultiple([1,5])
                         }
                     }
                 }
@@ -5466,6 +5564,29 @@ class combatant{
             this.status.main[status]=max(0,this.status.main[status])
         }
         this.statusSignUpdate(status)
+    }
+    totalStatus(buff){
+        let total=0
+        for(let a=0,la=this.status.main.length;a<la;a++){
+            switch(buff){
+                case 0:
+                    if(this.status.main[a]>0&&(this.status.class[a]==0||this.status.class[a]==2)||this.status.main[a]<0&&(this.status.class[a]==1||this.status.class[a]==3)){
+                        total+=this.status.main[a]
+                    }
+                break
+                case 1:
+                    if(this.status.main[a]<0&&(this.status.class[a]==0||this.status.class[a]==2)||this.status.main[a]>0&&(this.status.class[a]==1||this.status.class[a]==3)){
+                        total+=this.status.main[a]
+                    }
+                break
+                case 2:
+                    if(this.status.main[a]!=0){
+                        total+=this.status.main[a]
+                    }
+                break
+            }
+        }
+        return total
     }
     totalUniqueStatus(buff){
         let total=0
@@ -5657,9 +5778,11 @@ class combatant{
         }
     }
     gainMaxHP(amount){
-        if(this.life>0&&amount>0){
+        if(amount>0){
             this.base.life+=amount
-            this.life+=amount
+            if(this.life>0){
+                this.life+=amount
+            }
         }
     }
     setMaxHP(amount){
@@ -5707,6 +5830,7 @@ class combatant{
                 this.battle.cardManagers[this.id].discard.allEffectArgs(24,[4727])
                 this.battle.cardManagers[this.id].reserve.allEffectArgs(24,[4727])
                 this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[7242,amount])
+                this.battle.cardManagers[this.id].hand.allEffectArgs(55,['callHealthLossEffect',[amount]])
             }
             if(this.status.main[655]>0){
                 this.battle.combatantManager.randomEnemyEffect(23,['Poison',this.status.main[655]])
@@ -5865,7 +5989,7 @@ class combatant{
                     case 311: this.miniStatus('History',this.status.main[this.status.ticker[a]]); break
                     case 316: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[this.status.ticker[a]])}; break
                     case 328: case 828:
-                        if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'3 Mana':'2 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.id)}} break
+                        if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'2 Mana':'1 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.id)}} break
                     case 331: if(this.id<this.battle.players){this.battle.overlayManager.overlays[58][this.id].active=true;this.battle.overlayManager.overlays[58][this.id].activate([this.status.main[this.status.ticker[a]],0])} break
                     case 332: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Dual\nDiscus']])<=0){this.battle.cardManagers[this.id].hand.add(findName('Dual\nDiscus',types.card),0,0)}} break
                     case 333: this.miniStatus('Temporary Draw',this.status.main[this.status.ticker[a]]); break
@@ -6031,6 +6155,16 @@ class combatant{
                     case 844: this.miniStatus('Temporary Resonance',this.status.main[this.status.ticker[a]]); break
                     case 845: this.miniStatus('Temporary Resonance Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 846: this.miniStatus('Temporary Resonance in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 852: this.miniStatus('Shock',this.status.main[this.status.ticker[a]]); break
+                    case 853: this.miniStatus('Shock Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 861: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.duplicate(this.status.main[this.status.ticker[a]])};this.status.next[findList('Duplicate Cycle 3 3',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 862: this.miniStatus('Duplicate Cycle 3 1',this.status.main[this.status.ticker[a]]); break
+                    case 863: this.miniStatus('Duplicate Cycle 3 2',this.status.main[this.status.ticker[a]]); break
+                    case 864: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.transform(this.status.main[this.status.ticker[a]])}; break
+                    case 868: this.statusEffect('Double Damage',this.status.main[this.status.ticker[a]]);this.status.next[findList('Double Damage Cycle 3 3',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 869: this.miniStatus('Double Damage Cycle 3 1',this.status.main[this.status.ticker[a]]); break
+                    case 870: this.miniStatus('Double Damage Cycle 3 2',this.status.main[this.status.ticker[a]]); break
+                    case 871: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.quickdrawRandom+=this.status.main[this.status.ticker[a]]}; break
                     
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6&&
@@ -6156,10 +6290,11 @@ class combatant{
     }
     tickOrb(a){
         let multi=1
-        if(this.status.main[111]>0){
-            multi=1+this.status.main[111]*0.1
-        }else if(this.status.main[111]<0){
-            multi=max(0.2,1+this.status.main[111]*0.1)
+        let totalFocus=this.status.main[111]+this.status.main[865]
+        if(totalFocus>0){
+            multi=1+totalFocus*0.2
+        }else if(totalFocus<0){
+            multi=max(0.2,1+totalFocus*0.1)
         }
         switch(this.orbs[a]){
             case 5:
@@ -6229,7 +6364,7 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Sagume': case 'Fernando': case 'Decratite': case 'Meri':
+            case 'Sagume': case 'Fernando': case 'Decratite': case 'Meri': case 'Menessa':
             case 'Ume':
                 switch(type){
                     case 0:
@@ -6311,13 +6446,13 @@ class combatant{
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
                     break
-                    case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 10: case 19:
+                    case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 9: case 10: case 19:
                         this.animSet.loop=0
                     break
                 }
             break
             case 'Orb Walker': case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Louse': case 'Hwurmp': case 'Glimmerrer': case 'Antihwurmp': case 'Host': case 'Host Drone': case 'Thornvine': case 'Keystone': case 'Spirit of Wealth': case 'Spirit of Elegance': case 'Half Spikeball':
-            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster':
+            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor': case 'Discounter':
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
@@ -6350,7 +6485,7 @@ class combatant{
         switch(this.name){
             case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip':
             case 'Shiru': case 'DD-610': case 'Prehextorica': case 'Vincent': case 'Daiyousei': case 'Sanae': case 'Shinmyoumaru': case 'Merlin': case 'Randy':
-            case 'Sagume': case 'Fernando': case 'Decratite': case 'Meri':
+            case 'Sagume': case 'Fernando': case 'Decratite': case 'Meri': case 'Menessa':
             case 'Ume':
                 switch(type){
                     case 0:
@@ -6922,6 +7057,10 @@ class combatant{
                             this.spin.arms[g].top+=rate*180
                         }
                     break
+                    case 9:
+                        this.animSet.loop+=rate
+                        this.offset.position.y=lsin(this.animSet.loop*180)*-20
+                    break
                     case 10: case 19:
                         this.animSet.loop+=rate
                         this.size=this.base.size*(1-lsin(this.animSet.loop*180))
@@ -7164,7 +7303,7 @@ class combatant{
                     break
                 }
             break
-            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster':
+            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor': case 'Discounter':
                 switch(type){
                     case 19:
                         this.animSet.loop+=rate
@@ -7548,6 +7687,17 @@ class combatant{
             this.layer.textSize(12)
             this.layer.text(this.wish,0,-14)
         }
+        if(this.name=='Menessa'&&!this.graphic&&this.team>0&&this.team>0&&scene=='battle'){
+            this.layer.noFill()
+            this.layer.stroke(150,90,0,this.fade)
+            this.layer.strokeWeight(2)
+            regPoly(this.layer,-3,-12,6,4,4,0)
+            regPoly(this.layer,3.5,-12,5,4,4,90)
+            this.layer.noStroke()
+            this.layer.fill(240,220,200,this.fade)
+            this.layer.textSize(12)
+            this.layer.text(this.caffeine,0,-11.5)
+        }
     }
     displayInfo(scene){
         switch(scene){
@@ -7606,7 +7756,7 @@ class combatant{
                                 case 3: this.layer.text('Immune to Spikes and Mines',40,305+a*10); break
                                 case 4: this.layer.text('Immune to Traps',40,305+a*10); break
                                 case 5: this.layer.text('Slimes Tiles Moved On',40,305+a*10); break
-                                case 6: this.layer.text('Spawns Slimes Every 20 HP Lost',40,305+a*10); break
+                                case 6: this.layer.text('Spawns Slimes Every 25 HP Lost',40,305+a*10); break
                                 case 7: this.layer.text('Auto-Attacks Line of Sight',40,305+a*10); break
                                 case 8: this.layer.text('Attacks When You Play a Card',40,305+a*10); break
                                 case 9: this.layer.text('Untargettable From Front',40,305+a*10); break
@@ -7777,6 +7927,10 @@ class combatant{
             if(this.ringing>=6){
                 this.ringing-=6
                 this.bell(1)
+            }
+            if(this.caffeine>=3+this.status.main[findList('Caffeine Tolerance',this.status.name)]){
+                this.caffeine-=3+this.status.main[findList('Caffeine Tolerance',this.status.name)]
+                this.loseHealth(3)
             }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)
@@ -8182,24 +8336,30 @@ class combatant{
                 }
             }
         }
-        if(abs(this.anim.direction-this.goal.anim.direction)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction-360)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction+360)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction-720)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction+720)<=15*game.animRate){
-            this.anim.direction=this.goal.anim.direction
-        }else if(
-            this.anim.direction>this.goal.anim.direction&&this.anim.direction<this.goal.anim.direction+180||
-            this.anim.direction>this.goal.anim.direction-360&&this.anim.direction<this.goal.anim.direction-180||
-            this.anim.direction>this.goal.anim.direction+360&&this.anim.direction<this.goal.anim.direction+540||
-            this.anim.direction>this.goal.anim.direction-720&&this.anim.direction<this.goal.anim.direction-540||
-            this.anim.direction>this.goal.anim.direction+720&&this.anim.direction<this.goal.anim.direction+900){
-            this.anim.direction-=15*game.animRate
-        }else if(
-            this.anim.direction<this.goal.anim.direction&&this.anim.direction>this.goal.anim.direction-180||
-            this.anim.direction<this.goal.anim.direction+360&&this.anim.direction>this.goal.anim.direction+180||
-            this.anim.direction<this.goal.anim.direction-360&&this.anim.direction>this.goal.anim.direction-540||
-            this.anim.direction<this.goal.anim.direction+720&&this.anim.direction>this.goal.anim.direction+540||
-            this.anim.direction<this.goal.anim.direction-720&&this.anim.direction>this.goal.anim.direction-900){
-            this.anim.direction+=15*game.animRate
+        if(options.spin){
+            if(this.time%15==0){
+                this.anim.direction+=15
+            }
         }else{
-            this.anim.direction+=15*game.animRate*(floor(random(0,2)*2-1))
+            if(abs(this.anim.direction-this.goal.anim.direction)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction-360)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction+360)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction-720)<=15*game.animRate||abs(this.anim.direction-this.goal.anim.direction+720)<=15*game.animRate){
+                this.anim.direction=this.goal.anim.direction
+            }else if(
+                this.anim.direction>this.goal.anim.direction&&this.anim.direction<this.goal.anim.direction+180||
+                this.anim.direction>this.goal.anim.direction-360&&this.anim.direction<this.goal.anim.direction-180||
+                this.anim.direction>this.goal.anim.direction+360&&this.anim.direction<this.goal.anim.direction+540||
+                this.anim.direction>this.goal.anim.direction-720&&this.anim.direction<this.goal.anim.direction-540||
+                this.anim.direction>this.goal.anim.direction+720&&this.anim.direction<this.goal.anim.direction+900){
+                this.anim.direction-=15*game.animRate
+            }else if(
+                this.anim.direction<this.goal.anim.direction&&this.anim.direction>this.goal.anim.direction-180||
+                this.anim.direction<this.goal.anim.direction+360&&this.anim.direction>this.goal.anim.direction+180||
+                this.anim.direction<this.goal.anim.direction-360&&this.anim.direction>this.goal.anim.direction-540||
+                this.anim.direction<this.goal.anim.direction+720&&this.anim.direction>this.goal.anim.direction+540||
+                this.anim.direction<this.goal.anim.direction-720&&this.anim.direction>this.goal.anim.direction-900){
+                this.anim.direction+=15*game.animRate
+            }else{
+                this.anim.direction+=15*game.animRate*(floor(random(0,2)*2-1))
+            }
         }
         if(this.anim.direction>180){
             this.anim.direction-=360

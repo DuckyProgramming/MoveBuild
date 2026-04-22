@@ -995,6 +995,14 @@ class item{
                 case '9 Random Damage, 1 Energy, Draw 1': case '9 Random Damage, 1 Mana, Draw 1':
                     displaySymbol(this.layer,0,0,133,0,2,this.fade)
                 break
+                case '5 Heal/1 Strength':
+                    displaySymbol(this.layer,-8,0,2,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,11,0,0.8,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('5',-8,0)
+                    this.layer.text('1',8,0)
+                break
 
                 //mark p
             }

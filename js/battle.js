@@ -156,7 +156,7 @@ class battle{
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],barrier:[],bounce:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
         this.lastEncounter=types.encounter[0]
         
-        this.turn={main:0,total:0,time:0,accelerate:0,endReady:false,active:false}
+        this.turn={main:0,swivel:floor(random(0,2)),total:0,time:0,accelerate:0,endReady:false,active:false}
         this.counter={enemy:0,killed:0,tooltip:0}
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
@@ -325,7 +325,8 @@ class battle{
                 a==8&&this.player.includes(17)||
                 a==9&&this.player.includes(18)||
                 a==10&&this.player.includes(21)||
-                a==11&&this.player.includes(25)
+                a==11&&this.player.includes(25)||
+                a==12&&this.player.includes(26)
             ){
                 setupCombatantGraphics(a)
             }else{
@@ -452,7 +453,7 @@ class battle{
         for(let a=0,la=this.energy.base.length;a<la;a++){
             this.energy.gen[a]=variants.mtg?copyArray(this.energy.base[a]):this.energy.base[a]
         }
-        this.turn={main:0,total:0,time:0,accelerate:0,active:false}
+        this.turn={main:0,swivel:floor(random(0,2)),total:0,time:0,accelerate:0,active:false}
         this.counter={enemy:0,killed:0}
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
@@ -942,7 +943,11 @@ class battle{
             this.cardManagers[this.turn.main].reserve.allEffectArgs(44,[5050,5051,5163,6511])
             extra=true
         }else{
-            this.turn.main++
+            if(this.players==2){
+                this.turn.main=this.turn.main==this.turn.swivel?1-this.turn.main:this.turn.main>=2?this.turn.main+1:2
+            }else{
+                this.turn.main++
+            }
             combatant.interiorStatus[0]=0
         }
         if(combatant.getStatus('No Extra Turns Next Turn')>0){
@@ -1071,16 +1076,18 @@ class battle{
                 }
             }
             if(this.turn.total==1){
-                if(this.encounter.name=='Rewriter'){
-                    this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
-                }
-                if(this.encounter.name=='Duck Hunt'){
-                    for(let a=0,la=3;a<la;a++){
-                        this.dropDrawShuffle(this.turn.main,findName('Hunting\nRifle',types.card),0,0)
-                    }
-                }
-                if(this.encounter.name=='Shield Prison Guard'){
-                    this.cardManagers[this.turn.main].hand.add(findName('Handcuffed',types.card),0,constants.playerNumber+1)
+                switch(this.encounter.name){
+                    case 'Rewriter': case '-h Rewriter':
+                        this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
+                    break
+                    case 'Duck Hunt':
+                        for(let a=0,la=3;a<la;a++){
+                            this.dropDrawShuffle(this.turn.main,findName('Hunting\nRifle',types.card),0,0)
+                        }
+                    break
+                    case 'Shield Prison Guard':
+                        this.cardManagers[this.turn.main].hand.add(findName('Handcuffed',types.card),0,constants.playerNumber+1)
+                    break
                 }
                 this.cardManagers[this.turn.main].switchCheck()
                 if(variants.witch){
@@ -1120,7 +1127,7 @@ class battle{
                 this.quickReinforce('Management Robot')
             }
         }
-        this.turn.main=0
+        this.turn.main=this.players==2?this.turn.swivel:0
         this.setTurn(this.turn.total+1)
         this.turn.time=game.turnTime
         let combatant
@@ -1399,10 +1406,16 @@ class battle{
                 if(this.cardManagers[player].hand.turnPlayed[1]==1&&userCombatant.getStatus('Auto Follow-Up')>0){
                     this.cardManagers[player].reserve.sendAbstract(this.cardManagers[player].hand.cards,userCombatant.getStatus('Auto Follow-Up'),10,16,[71,72])
                 }
+                if(this.cardManagers[player].hand.lastPlayed[0].class==11&&userCombatant.getStatus('Skill to Attack Draw Skill')>0){
+                    this.cardManagers[player].drawAbstract(userCombatant.getStatus('Skill to Attack Draw Skill'),0,0,[11])
+                }
             break
             case 2:
                 if(userCombatant.getStatus('Defense Draw')>0){
                     this.cardManagers[player].draw(userCombatant.getStatus('Defense Draw'))
+                }
+                if(this.cardManagers[player].hand.lastPlayed[0].class==11&&userCombatant.getStatus('Skill to Defense Draw Skill')>0){
+                    this.cardManagers[player].drawAbstract(userCombatant.getStatus('Skill to Defense Draw Skill'),0,0,[11])
                 }
             break
             case 3:
@@ -1438,6 +1451,9 @@ class battle{
             case 11:
                 if(userCombatant.getStatus('Skill Temporary Strength')>0){
                     userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Skill Temporary Strength'))
+                }
+                if(userCombatant.getStatus('Skill Temporary Dexterity')>0){
+                    userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Skill Temporary Dexterity'))
                 }
                 if(userCombatant.getStatus('Skill Draw')>0){
                     this.cardManagers[player].draw(userCombatant.getStatus('Skill Draw'))
@@ -1641,6 +1657,15 @@ class battle{
         }
         if(userCombatant.getStatus('Temporary Card Play Temporary Strength')>0){
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Temporary Card Play Temporary Strength'))
+        }
+        if(card.name=='Pristine'&&userCombatant.getStatus('Pristine Draw')>0){
+            this.cardManagers[player].draw(userCombatant.getStatus('Pristine Draw'))
+        }
+        if(card.spec.includes(84)&&userCombatant.getStatus('Coffee Draw')>0){
+            this.cardManagers[player].draw(userCombatant.getStatus('Coffee Draw'))
+        }
+        if(card.spec.includes(84)&&userCombatant.getStatus('Coffee Splash')>0){
+            this.combatantManager.areaAbstract(0,[userCombatant.getStatus('Coffee Splash'),userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])
@@ -2378,7 +2403,7 @@ class battle{
                 for(let a=0,la=types.deckmode.length;a<=la;a++){
                     if(this.menu.anim.deck[0][a]>0){
                         this.layer.fill(240,this.menu.anim.deck[0][a])
-                        this.layer.textSize(types.deckmode[a].name.length>15?8:10)
+                        this.layer.textSize(types.deckmode[a].name.length>18?7:10)
                         this.layer.text(types.deckmode[a].name.toUpperCase(),this.layer.width/2,this.layer.height*0.65+80)
                     }
                 }
@@ -2465,7 +2490,7 @@ class battle{
                 this.layer.textSize(16)
                 this.layer.text('Difficult Options',this.layer.width/2,30)
                 this.layer.textSize(10)
-                this.layer.text('Mouseover 0-30 to Learn More',this.layer.width/2,62.5)
+                this.layer.text('Mouseover 0-32 to Learn More',this.layer.width/2,62.5)
                 for(let a=0,la=types.ascend.length;a<la;a++){
                     if(this.menu.anim.ascend[a]>0){
                         this.layer.fill(255,0,0,this.menu.anim.ascend[a])
@@ -3911,13 +3936,21 @@ class battle{
                         this.setupMtgManaChoice(0)
                     }
                 }
-                if(key=='a'||key=='A'){
+                for(let a=0,la=constants.playerNumber;a<la;a++){
+                    if(key.toLowerCase()==`abcdefghijklmnopqrstuvwxyz`[a]){
+                        this.menu.combatant[0]=a+1
+                        if(variants.mtg){
+                            this.setupMtgManaChoice(0)
+                        }
+                    }
+                }
+                if(key=='['){
                     this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length-1)%types.deckmode.length
                 }
-                if(key=='d'||key=='D'){
+                if(key==']'){
                     this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length+1)%types.deckmode.length
                 }
-                if(key=='r'||key=='R'){
+                if(key=='\\'){
                     let remaining=[]
                     for(let a=0,la=constants.playerNumber;a<la;a++){
                         if(this.menu.combatant[0]!=a+1){
@@ -3950,25 +3983,33 @@ class battle{
             break
             case 'menu2':
                 for(let a=0,la=2;a<la;a++){
-                    if(code==LEFT_ARROW&&a==0||(key=='a'||key=='A')&&a==1){
+                    if(code==LEFT_ARROW&&(a==0&&inputs.lastKey[1]!=`Shift`||a==1&&inputs.lastKey[1]==`Shift`)){
                         this.menu.combatant[a]=(this.menu.combatant[a]+constants.playerNumber-2)%constants.playerNumber+1
                         if(variants.mtg){
                             this.setupMtgManaChoice(a)
                         }
                     }
-                    if(code==RIGHT_ARROW&&a==0||(key=='d'||key=='D')&&a==1){
+                    if(code==RIGHT_ARROW&&(a==0&&inputs.lastKey[1]!=`Shift`||a==1&&inputs.lastKey[1]==`Shift`)){
                         this.menu.combatant[a]=this.menu.combatant[a]%constants.playerNumber+1
                         if(variants.mtg){
                             this.setupMtgManaChoice(a)
                         }
                     }
-                    if(key==','&&a==0||(key=='z'||key=='Z')&&a==1){
+                    for(let b=0,lb=constants.playerNumber;b<lb;b++){
+                        if(key==[`abcdefghijklmnopqrstuvwxyz`,`ABCDEFGHIJKLMNOPQRSTUVWXYZ`][a][b]){
+                            this.menu.combatant[a]=b+1
+                            if(variants.mtg){
+                                this.setupMtgManaChoice(0)
+                            }
+                        }
+                    }
+                    if(key=='['&&a==0||key=='{'&&a==1){
                         this.menu.deck[a]=(this.menu.deck[a]+types.deckmode.length-1)%types.deckmode.length
                     }
-                    if(key=='/'&&a==0||(key=='c'||key=='C')&&a==1){
+                    if(key==']'&&a==0||key=='}'&&a==1){
                         this.menu.deck[a]=(this.menu.deck[a]+types.deckmode.length+1)%types.deckmode.length
                     }
-                    if(key=='r'&&a==0||key=='R'&&a==1){
+                    if(key=='\\'&&a==0||key=='|'&&a==1){
                         let remaining=[]
                         for(let b=0,lb=constants.playerNumber;b<lb;b++){
                             if(this.menu.combatant[a]!=b+1){

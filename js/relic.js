@@ -351,7 +351,7 @@ class relic{
                     displaySymbol(this.layer,0,10,32,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('2',0,-6)
+                    this.layer.text('3',0,-6)
                 break
                 case 'Damage Taken Draw':
                     displaySymbol(this.layer,-8,0,33,0,1,this.fade)
@@ -758,7 +758,7 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('$',-8,0)
                     this.layer.textSize(10)
-                    this.layer.text('2',6,0)
+                    this.layer.text('3',6,0)
                 break
                 case 'Death Strength':
                     displaySymbol(this.layer,-8,0,22,0,0.5,this.fade)
@@ -1180,8 +1180,7 @@ class relic{
                     this.layer.text('?',0,14)
                 break
                 case 'Basic Draw':
-                    displaySymbol(this.layer,-8,-2,8,0,0.8,this.fade)
-                    displaySymbol(this.layer,8,-2,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,-4,8,0,0.8,this.fade)
                     displaySymbol(this.layer,0,10,4,0,0.6,this.fade)
                 break
                 case 'Confused Draw':
@@ -1235,7 +1234,7 @@ class relic{
                     displaySymbol(this.layer,0,12,4,0,0.8,this.fade)
                 break
                 case 'No Heal':
-                    displaySymbol(this.layer,0,0,2,0,1,this.fade)
+                    displaySymbol(this.layer,0,0,2,0,0.8,this.fade)
                     displaySymbol(this.layer,0,0,16,0,1.2,this.fade)
                 break
                 case 'Rarer Rewards':
@@ -1715,7 +1714,7 @@ class relic{
                 case 'Even Turn Vigor':
                     displaySymbol(this.layer,-8,0,29,0,1,this.fade)
                     displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
-                    displaySymbol(this.layer,8,-4,86,0,1,this.fade)
+                    displaySymbol(this.layer,8,-4,87,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('4',-8,0)
@@ -2441,7 +2440,7 @@ class relic{
                 case 'First Enemy Mortal':
                     displaySymbol(this.layer,-8,-4,3,0,0.5,this.fade)
                     displaySymbol(this.layer,-8,10,120,0,1,this.fade)
-                    displaySymbol(this.layer,8,2,148,0,1.2,this.fade)
+                    displaySymbol(this.layer,8,2,177,0,1.2,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('3',8,2)
@@ -3683,7 +3682,7 @@ class relic{
                 break
                 case 'Unupgraded Block':
                     displaySymbol(this.layer,-8,0,8,0,0.8,this.fade)
-                    displaySymbol(this.layer,-8,0,6,0,0.8,this.fade)
+                    displaySymbol(this.layer,-8,0,6,0,0.48,this.fade)
                     displaySymbol(this.layer,8,0,27,0,0.8,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
@@ -3813,6 +3812,61 @@ class relic{
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('x2?',0,0)
+                break
+                case 'Odd Turn Vigor':
+                    displaySymbol(this.layer,-8,0,29,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,-4,86,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('4',-8,0)
+                break
+                case 'Enemy Block Life Loss':
+                    displaySymbol(this.layer,-8,0,27,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,3,0,0.3,this.fade)
+                    displaySymbol(this.layer,10,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('-1',10,0)
+                break
+                case 'Turn 3 Block Retain':
+                    displaySymbol(this.layer,-8,0,74,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('3',8,-3)
+                break
+                case 'Missing Health Vigor':
+                    displaySymbol(this.layer,-8,0,29,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(8)
+                    this.layer.text('<100%',0,0)
+                break
+                case 'Skip Edition':
+                    displaySymbol(this.layer,-6,0,16,0,0.8,this.fade)
+                    displaySymbol(this.layer,-6,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-6,0,17,0,0.4,this.fade)
+                    displaySymbol(this.layer,11,0,88,0,0.8,this.fade)
+                break
+                case 'Nonfull Health Energy':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('<90%',10,0)
+                break
+                case 'Energy/Bombed':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,175,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('10',9,-2)
+                break
+                case 'Trioerratic':
+                    displaySymbol(this.layer,0,0,176,0,1.2,this.fade)
                 break
 
                 //mark p

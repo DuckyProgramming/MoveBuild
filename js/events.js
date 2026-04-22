@@ -1,3 +1,257 @@
+types.loading=[
+    `The pointless fact that the Management was founded in 0 MCY is often repeated.`,
+    `The Human Empire was established out of a unified Terra in the late 22nd century TCE.`,
+    `The Human Empire suffered from adverse financial incentives and dominating inequality.`,
+    `The Management was first formed from a conglomeration of corporations known as RekTrek Technologies.`,
+    `The Management's name was coined following the Managerial takeover, in which lower-ranking officials took control.`,
+    `The board of RekTrek Technologies was overthrown and disbanded during the Managerial Takeover.`,
+    `RekTrek Technologies initially gained territory via a border march contract which saw it take responsibility for defenses.`,
+    `Managers recieve their epithet only after leaving office. With current disputes, this creates much confusion.`,
+    `The Operator is the secretive leader of the Council of 26. He is said to be a Management defector.`,
+    `While not that tall, Konai's Grand Escarpment has discouraged settlement of the lower valleys.`,
+    //10
+
+    `The Humanic Wars, while a moment of triumph for the humans, were in reality a mass extinction event.`,
+    `After the Great Humanic War, Management forces occupied the core, ignoring orders from imperial admirals.`,
+    `While it has been mostly erased, sources referring to the Admiral-Manager by his original name can still be found.`,
+    `Class Admiral Hethzeroslaj Paullusthz won the Grand Coalition War, but you won't find his name in history books.`,
+    `The Management Patriotic War's name could've been a little less on the nose, but the then-Manager made his decision.`,
+    `General Alexis Ambrose Angle is known for his nickname "Triple A" and for being miserable to work with.`,
+    `Governor Kirt Kodrax was appointed by the Reconstructor-Manager himself. He's disappointed in his own performance.`,
+    `The Anchor-Manager established the current Manager categorization, placing himself as a Middle-Middle Manager.`,
+    `The Admiral-Manager's first reign lasted an incredible 393 years, but with many ups and downs.`,
+    `The Lawyer-Manager and Reformer-Manager were rivals for their entire careers, until the former's deposition.`,
+    //20
+
+    `The Management Executor department operates from their headquarters on one of Origin's moons.`,
+    `Since its discovery, Origin became the Management capital because of its large size.`,
+    `The Logistician-Manager, while a talented man, had the most short and miserable reign of all of them.`,
+    `The "Early Managers" were the first 13 rulers following the Managerial takeover.`,
+    `The Admiral-Manager annexed Konai, Orofos, and other holdouts so he could claim to be the "final unifier".`,
+    `Project Godhood produced only a single final product, though some prototypes escaped. It has since shut down.`,
+    `Discovering magic was a huge moment for Konai's future, but has not necessarily been to its benefit.`,
+    `Konai got its start as a Human Empire colony an broke free as imperial authority declined across the galaxy.`,
+    `The first King of Konai, Konsta I, was no magician, which was one key reason that he was well-trusted.`,
+    `Konsta I founded many of Konai's institutions with his own money, yet nevertheless had plenty of cash left to hoard.`,
+    //30
+
+    `After defeating Lexio II at the Arioscape, Grand Admiral Leibzo returned to a hero's welcome, but was then exiled.`,
+    `Maximilian Liyos disappeared after he supposedly masterminded the deposition of the Lawyer-Manager.`,
+    `Lexio II expected to be able to resupply at the Arioscape, but underestimated the speed of Management fighters.`,
+    `Enric III "The Dark" had no choice but to confirm the Management's suzerainty after his father Lexio's death.`,
+    `Konai under Management vassalage was constrained and economically backwards, but only due to their own faults.`,
+    `Governor Kirt Kodrax received the nickname "The Constructionist" for his love of fortifications.`,
+    `Gordon Vorynx saved Rueso from its first siege, earning a promotion to Brigadier and command over the Konai garrison.`,
+    `The town of Daistilia and nine other villages form the League of Ten Communes to defend their neutrality.`,
+    `The Minzi Bridge was built to span the Inland Sea, something that Konai's royal engineers never accomplished.`,
+    `The Inland Sea's poor weather renders it often impassable. This works out in the Management's favor.`,
+    //40
+
+    `Power to Rueso has been intermittent after Randy detonated the Stanis Generator Installation.`,
+    `Management engineers gave up their attempt to build the so-called "Failed Road" to Hinokizuka Peak.`,
+    `The House of Konsta claims immense lands, but their real holdings and estates are greatly reduced.`,
+    `The House of Konsta still claims the throne of Konai via its current head, "Queen" Jovina III.`,
+    `Konai's geography contains two "artificial wonders", the Arioscape and the Valosian Beach.`,
+    `The two "artificial wonders" were both created as a result of the debris from the Battle of the Arioscape.`,
+    `The Arioscape is inhabitable again, but only a single flower, the Solonia, grows there.`,
+    `The wreck of the Valos lies on its namesake beach, leaking prototype starflame shells into the water.`,
+    `While many ducks remain wild, those that have integrated into society are stereotyped as hard-working.`,
+    `The Operator believes that at least 5% of all rebels who joined since Lira's altercation are traitors.`,
+    //50
+
+    `Management directors and Executives operate individual departments or agencies as part of the bureaucracy.`,
+    `At one point, it was proposed that the Management should have its name pluralized. This never caught on.`,
+    `L, M, and B were the codenames of the three chief advisors to the Admiral-Manager. All were purged.`,
+    `The XMF, or X-Military Force, was an autonomous elite branch of the Management Military until its disbandment.`,
+    `The later reign of the Admiral-Manager saw weaker governance. Some executives event built personal fleets on his watch.`,
+    `The Management was once victim to a major public scare over ever-growing disorder, the so-called "Discord".`,
+    `Management executives meet every week on Origin to discuss the budget and active production programs.`,
+    `The XMF was disbanded after a PR stunt in which its commander exploded an entire moon for the love of the game.`,
+    `The cult of the Lunar Servants was annihilated by the Admiral-Manager in battle. Only one member remains.`,
+    `While L, M, and B met their fates, the fourth advisor, Supreme Admiral "DY", had a highly successful career.`,
+    //60
+
+    `The Management Supreme Admiral used to command the 1st Fleet, but in modern times the title is now administrative.`,
+    `Director Ledis of Operation Godhood received a commendation for his efforts. Many expected far worse.`,
+    `"I regret having ever worked with Alexis Angle. How can such a popular man be so abrasive?" - Admiral Schenn`,
+    `"As you begin your new lives, think about this: Do you love the Management?" - Executive of Corrections`,
+    `"If you can't trust the most powerful, good luck with those that have less.' - Class General Bahgge`,
+    `"Without it, we are lost to the abyss ahead. There's nothing left for us." - The Lawyer-Manager`,
+    `The Salassan Archipelago, isolated and with miserable weather, makes a good prison location for the Management.`,
+    `The Operator assigned each member of the Council of 26 a custom symbol of their own design.`,
+    `George and the Operator go way back, having graduated from the same class at the MMIS academy.`,
+    `The Admiral-Manager's economic policies were a copy-paste of his predecessor's, but were effective.`,
+    //70
+
+    `The Admiral-Manager cares so little about the Konai sector that he appointed Alexis Angle as general.`,
+    `The three informal factions in Management politics are nicknamed "violence", "conservatism", and "pedantry".`,
+    `Konsta I defeated the warlords primarily through the use of mercenaries, rather than Konaian soldiers.`,
+    `Officially, the Admiral-Manager retired at 480 and died at 500, though we now know that wasn't true.`,
+    `As the leader of the "pedantry" faction, the Reformer-Manager began his reign with numerous promises.`,
+    `The "violence" faction initially formed a little more than a cult of personality for the Admiral-Manager.`,
+    `The Humanic Wars pitted the various human factions against a series of alien coalitions.`,
+    `The Operator contacted various local rebel leaders and organized them with Lira's reputation as leverage.`,
+    `Grand Admiral Leibzo of the Management commanded a small detachment at the Battle of the Arioscape.`,
+    `The Ridge of Toil divides western and northern Konai, acting as a major rebel supply hub.`,
+    //80
+
+    `High Value Metrics, or HVM, is the largest but least innovative small arms manufacturer in the galaxy.`,
+    `The Management places much importance on combat training, even for support staff like janitors.`,
+    `Despite its reputation, the Management in reality functions more like a dictatorship than a corporation.`,
+    `Management officers often get honorary titles like "Assistant Patrol Officer" that have no actual authority.`,
+    `Movebuild is a dramatization of the Konai rebellion. Take everything with a pinch of salt!`,
+    `After Edgar's deposition, Adrian Kane served briefly as HVM's CEO, delivering Management orders.`,
+    `Arguably, for regular people, the so-called "neutral" communes of Konai are some of the most dangerous.`,
+    `Hinokizuka Peak of the Charchallan Range is Konai's tallest mountain, though it's small for the galaxy.`,
+    `All but two residents of the communes of Hinokizuka Peak were killed by a Management mountaineering expedition.`,
+    `Only a few variants of serrulata are still cultivated on the cliffs above Daistilia.`,
+    //90
+
+    `The slot next to the Lawyer-Manager's statue at the Supreme Court of Justice remains empty years later.`,
+    `The Audric Codex was written by a retired Management Executive to document her career and routine.`,
+    `The Management has never had an official flag but has always been identifiable from its logo on everything.`,
+    `Early Konaian warlords sometimes declared their own nations, but none were well documented.`,
+    `The Reformer-Manager preferred constructing lesser projects like the Cantor Dust rather than superweapons.`,
+    `Like many other contractors for the Management, HVM keeps private military forces to defend its installations.`,
+    `The ducks of the Markovo zone have revolted at least ten times in recent memory, each resulting in failure.`,
+    `The city of Rueso, Konai's current capital, was founded in royal times but promoted by the Management.`,
+    `Rueso's rebel cells are numerous, but are surrounded by Management bunkers and hemmed in by patrols.`,
+    `While the Arioscape is terrible for long-term habitation, it does contain a fairly impressive mining industry.`,
+    //100
+
+    `The planet of Konai has two patron fairies, "The One Who Remembers" and "The One Who Forgets", Dai and Kio.`,
+    `Southern and western Konai venerate Dai as their patron fairy, while the east and south venerate Kio.`,
+    `Since Konsta I, all Konaian royals have refused to openly practice magic, which is looked down upon in leaders.`,
+    `Many defectors from the Reformer-Manager to the Admiral-Manager accuse each other of being more treacherous.`,
+    `The second survivor of the Hinokizuka commune was rescued by a Management officer and became the Daughter of Heaven.`,
+    `"Fortress Rueso", the former command of Gordon Vorynx, composes a fortress battalion and a mixed support regiment.`,
+    `The first battalion of the Konai garrison division was destroyed early, forcing a major change of plans.`,
+    `Many believe the Admiral-Manager became depressed in his late career after his old military friends died.`,
+    `The Lawyer-Manager's reputation was hurt by scandals, but he took it too far when he fired an old rival.`,
+    `The budgetary failings of the Reformer-Manager resulted in a large but frail Management military.`,
+    //110
+
+    `The Aggressor-Manager's clearly incorrect claims about the progress of the war caused his credibility to collapse.`,
+    `Where the single product of Operation Godhood actually went is still unknown centuries later.`,
+    `The secession of most Outer Rim and Farlands territories was barely avoided by the Anchor-Manager.`,
+    `The Grand Coalition War was comparably shorter than its predecessor, the Sisters War, with few casualties.`,
+    `Three times in his life did the Admiral-Manager occupy Terra, each time more brutal than the last.`,
+    `When the Management cooperated with other human polities during the Humanic Wars, their gains were meager.`,
+    `The Southern Cradle, around which the Human Empire developed, was rich in resources, but they were squandered.`,
+    `The Manager always carries around the Code Cylinder, which unlocks almost everything in the Management.`,
+    `The former duck assemblies, formed by their treaty of vassalage, were mostly dissolved by the Lawyer-Manager.`,
+    `The Management logo is officially rendered in blue on a grey background, but is often seen in other colors too.`,
+    //120
+
+    `After its mayor declared permanent neutrality, Daistilia maintains a permanent militia to protect itself.`,
+    `The plateaus over Daistilia are inhabited by the sect of bloom magicians, sociable but often avoided anyway.`,
+    `Even the most dedicated magic users in Konai despise the old warlords and recognize the misery they caused.`,
+    `The Admiral-Manager, now a mechanical husk of a man, is hardly charismatic, but his reputation precedes him.`,
+    `Alexis Angle sends an envoy to meet with the rebels on Konai whenever the weather isn't clear and he feels like it.`,
+    `While he didn't invest in megaprojects, general deficit spending during the Reformer-Manager's reign was high.`,
+    `The Royalists support the return to the throne of the legitimate Jovina III from the House of Konsta.`,
+    `"Fortress Rueso" contains several coastal artillery units that lock down rebel operations on the Inland Sea.`,
+    `After significant rebel sabotage, the Rothon Aerofort is no longer usable for Management aircraft.`,
+    `Unlike Daistilia, which recruited a militia, the slightly smaller town of Reptisa has failed to become neutral.`,
+    //130
+
+    `It's said that the Gustfelled Plateau is where the exiled, rebel and Management alike, go on Konai.`,
+    `East Konai is full of rolling agricultural valleys and thus is nearly impossible for the Management to hold.`,
+    `In dispersing the Hinokizuka commune, the expedition suffered only a single casualty but were forced to leave.`,
+    `The Erebean Descent leads into the peninsula of the same name, difficult for vehicles but traversable on foot.`,
+    `The Royalists mostly remain in the north, where the House of Konsta still holds at couple estates.`,
+    `Council and Royalist rebels have clashed a few times in the past, though the Operator has secured peace recently.`,
+    `Adjacent to Hinokizuka Peak are the Ring Mountains, most of which are shorter and more temperate.`,
+    `The Valosian Beach is considered sacred by some groups due to its spectacular beauty and for its history.`,
+    `Swimming near the wreck of the Valos is highly hazardous, but the sand nearby is safe to walk on.`,
+    `When Lexio II's ship went down, he refused to take an escape pod. He was lucky that he landed on safe ground.`,
+    //140
+
+    `The placing of Management soldiers in garrisons has greatly improved their combat performance on Konai.`,
+    `The average Management soldier is a conscript, but morale is high from the quality lodging and food.`,
+    `The Operator's real name remains unknown. Likely, only the MMIS could ever find it out, from old records.`,
+    `The Operator is believed to be from Origin, but this is is unconfirmed. He refused to comment on the matter.`,
+    `King Beli III of Konai founded the First University using money earned by the liquidation of noble estates.`,
+    `HVM troops were allowed to guard their various armories on Konai, as Vorynx wanted to free up his regulars.`,
+    `After Orofos was cleared by Management soldiers, some of the remaining clans were resettled across the galaxy.`,
+    `The Management's communications have been mostly defunct during the rebellion, except via road couriers.`,
+    `Management soldiers on Konai are mostly garrison troops and light artillerists, as well as a few demolitionists.`,
+    `A few high-profile bombings have occurred during the rebellion. Neither side has taken responsibility for them.`,
+    //150
+
+    `The Admiral-Manager's early reign was marred by political purges. They slowed down by his later years.`,
+    `Project Godhood was founded on the notion that control over life was the true final frontier for humanity.`,
+    `Luvocorp is a small contractor for the Management responsible for building the engines of their ships.`,
+    `Grand Admiral Splavus and the 189th Fleet assaulted the rebels on Sanctity, but failed to prevent their escape.`,
+    `During the later years of the Reformer-Manager's reign, various funds began siphoning funding from the treasury.`,
+    `Konai is often symbolized by its twin moons, but the symbol is now overly associated with the royals.`,
+    `Other than in the Arioscape, Konai's mining industry is small in scale compared to other planets.`,
+    `The Management keeps the planetary archives on the edge or Rueso, an easy but unimportant target.`,
+    `Konaian literature is considered culturally important at home, but on other planets, it's seen as rudimentary.`,
+    `The royals of Konai once built five castles to defend the realm. All fell into disrepair and only one remains.`,
+    //160
+
+    `Executrix, a moon of Origin, is where many of the administrative tasks of the Management are carried out.`,
+    `The standard Management fighter, the SCT, is frequently updated but at its core is a very old design.`,
+    `The Operator has always refused to negotiate personally with the Management, citing their past treachery.`,
+    `While some on Konai venerate her, when Kio does appear, all fear the onset of poverty she brings.`,
+    `Various experimental versions of the SCT fighter have been constructed, but not with too much success.`,
+    `Management listening bugs aren't impossible to find, but trying to do so can drive one insane.`,
+    `Pending transport to the Salassan Archipelago, rebel prisoners are held temporarily in Fortress Rueso.`,
+    `The Management Supreme Court of Justice is so important that most cases held there are show trials.`,
+    `Randy's antics have taught Management engineers the dangers of overreliance on nuclear power.`,
+    `For every fort and castle the royals erected on Konai, Kirt Kodrax's forces have built ten or more.`,
+    //170
+
+    `Management fortifications are numerous and have small garrisons, but have impressively intricate designs.`,
+    `The Management Executive responsible for writing the Audric Codex also sponsored the failed SCT Bow project.`,
+    `Lira heavily despises the look her propaganda role has forced her into, having since outgrown it.`,
+    `The "Meeting of Five" of the Operator, George, Lira, Sakura, and Setsuna saw the founding of the Council.`,
+    `Wild ducks on Konai are spread out geographically and travel in small groups or sometimes individually.`,
+    `Somber Falls is a wide region known for its waterfalls that even out the slope of the Great Escarpment.`,
+    `The Rueso underground is filled with well-surveilled technical corridors connecting infrastructure.`,
+    `Management artillery is mostly collected in Rueso's supply caches, as it's proven ineffective over the war.`,
+    `The Management has struggled to find quality officers on Konai as the talented prefer serving elsewhere.`,
+    `Kirt Kodrax has resided in Rueso ever since the governor's mansion outside was infiltrated by rebels.`,
+    //180
+
+    `Since the failure of Project Duality, the Management has been much more careful building superweapons.`,
+    `Gordon Vorynx, who was not an architect, built the "Awful Tower" as a monument to commemorate past battles.`,
+    `The Management was severely embarrassed after their strike forces took 24 hours to sieze 2 fortresses.`,
+    `Gambling on Konai is legal but socially looked down upon. This didn't stop Chip from arriving on the planet.`,
+    `The Operator reported wished to establish the Council much sooner, but couldn't until the "Meeting of Five".`,
+    `All Management soldiers are equipped with tactical visors, with their actual use rate being about 75%.`,
+    `Konai's fairies are eternal and are functionally immortal in that they reconstitute after death.`,
+    `The rebels have besieged Rueso twice. The first was more successful but both attempts ended in defeat.`,
+    `Ducks working in agriculture typically despise it. The Markovo zone also sees unrest, despite being industrial.`,
+    `Non-yellow ducks mostly come from different branches of the same species that have since intermixed.`,
+    //190
+
+    `Attempts by the Management to rebuild Rueso and clear out remnants of the aristocracy have failed.`,
+    `The Reformer-Manager attempted to improve the economy by expanding control over contractors like HVM.`,
+    `Formerly hostile relations saw the Operator and several council members accuse the royalists of cowardice.`,
+    `According to legend, the death of a single nameless rebel caused the inciting incident of the rebellion.`,
+    `Other than defending Rueso, Gordon Vorynx's other claim to fame was dispersing the black markets in the city.`,
+    `The twin fairies of Konai have alternated being the more relevant, with Dai currently holding that mantle.`,
+    `Dai is proud to have her name in a town and two villages and her likeness in the House of Konsta's seal.`,
+    `Between Reptisa and Rueso lies a rough no man's land that Management soldiers use to rotate out troops.`,
+    `Many people on Konai with minor magical affinity never pursue it if they don't have familial reasons.`,
+    `Except for the shallow waters near the Erebean Peninsula, the Inland Sea's sides slope steeply.`,
+    //200
+
+    /*
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    */
+]
 types.event=[
     {
         name:'',id:0,list:-1,
@@ -26,7 +280,7 @@ reach the end. You've learned some, but you feel weakened.`,
                 link:[-1],
             },{
                 desc:`You leave, knowing it isn't worth the risk.`,
-                option:['Exit'],
+                option:['Exit'],    
                 optionDesc:[''],
                 link:[-1],
             },
@@ -556,7 +810,7 @@ you and offers his services.
 Supposedly, he specializes in healing,
 but he doesn't bother to explain how.`,
                 option:['Heal','Purify','Refuse'],
-                optionDesc:['Lose 35 Currency','Lose 50 Currency',''],
+                optionDesc:['Lose 35 Currency','Lose 105 Currency',''],
                 link:[1,2,3],
             },{
                 desc:`A warm golden light envelops your body and dissipates.`,
@@ -701,7 +955,7 @@ takes your money with him as the two leave.`,
             },
         ],
     },{
-        name:'Library',id:25,list:0,
+        name:'Library',id:25,list:-1,
         pages:[
             {
                 desc:
@@ -902,7 +1156,7 @@ what shall be the price?"`,
 `"Maybe this will help?"
 A card appears in your hand.`,
                 option:['Done'],
-                optionDesc:['Gain 1 Uncommon Colorless Card'],
+                optionDesc:['Add an Uncommon Colorless Card'],
                 link:[0],
             },{
                 desc:
@@ -913,7 +1167,7 @@ An relic appears in your hand.`,
                 link:[0],
             },{
                 desc:
-`"Right behind you.
+`"Right behind you."
 You see the door behind you has opened.`,
                 option:['Leave'],
                 optionDesc:[''],
@@ -930,7 +1184,7 @@ begging for money. When he sees you, he runs up to you.
 "Please, can you spare some coin?
 I have things I can trade..."`,
                 option:['Donate','Rob','Leave'],
-                optionDesc:['Lose 50 Currency','',''],
+                optionDesc:['Lose 75 Currency','',''],
                 link:[1,2,4],
             },{
                 desc:`You hand him some of your money while he gives you a relic.`,
@@ -1003,7 +1257,7 @@ Images of occurrences began to flow between your mind
 and reality, manifesting themselves in real forms.
 The sensation is quickly fleeting. What do you do?`,
                 option:['I am Smart','I am Rich','I am Strong'],
-                optionDesc:['Upgrade All Cards','Gain 999 Currency','Gain 20 Max Health'],
+                optionDesc:['Deluxe Upgrade All Cards','Gain 999 Currency','Gain 25 Max Health'],
                 link:[1,2,3],
             },{
                 desc:`Can it really be this easy?`,
@@ -1036,12 +1290,19 @@ you begin to see a distant memory from within.`,
             },{
                 desc:`A flash of thought jumps through your mind.`,
                 option:['Accept the Memories'],
-                optionDesc:['Add 1 Uncommon Colorless Card'],
+                optionDesc:['Add an Uncommon Colorless Card'],
                 link:[-1],
             },{
                 desc:`A flash of thought jumps through your mind.`,
                 option:['Accept the Memories'],
-                optionDesc:['Add 1 Rare Colorless Card'],
+                optionDesc:['Add a Rare Colorless Card'],
+                link:[-1],
+            },{
+                desc:
+`A flash of thought jumps through your mind...
+and then there's nothing.`,
+                option:[`Guess it didn't work`],
+                optionDesc:[''],
                 link:[-1],
             },
         ],
@@ -1068,7 +1329,7 @@ Things are beginning to make sense now.
 "Maybe those voices were right after all.
 Things do seem to make so much more sense now.`,
                 option:['Get Out'],
-                optionDesc:['Gain 2 Madness, Lose 10 Max Health'],
+                optionDesc:['Add 2 Madness to Deck, Lose 6 Max Health'],
                 link:[-1],
             },{
                 desc:
@@ -1087,7 +1348,7 @@ through the mental pain and ignore it.`,
 Slowly, you are able to retrace your steps,
 reorient yourself, and make it out.`,
                 option:['Get Out'],
-                optionDesc:['Lose 5 Max Health'],
+                optionDesc:['Lose 4 Max Health'],
                 link:[-1],
             },
         ],
@@ -1384,7 +1645,7 @@ Disappointing.`,
 The spirits continue dancing.
 You feel slightly warmer from their presence.`,
                 option:['Leave'],
-                optionDesc:['Heal 5 HP'],
+                optionDesc:['Heal 5 Health'],
                 link:[-1],
             },{
                 desc:
@@ -1392,7 +1653,7 @@ You feel slightly warmer from their presence.`,
 The spirits dance around you excitedly,
 filling you with a sense of warmth.`,
                 option:['Leave'],
-                optionDesc:['Heal All HP'],
+                optionDesc:['Heal All Health'],
                 link:[-1],
             },{
                 desc:
@@ -1400,7 +1661,15 @@ filling you with a sense of warmth.`,
 The spirits dance around you excitedly before merging into you,
 filling you with warmth and strength.`,
                 option:['Leave'],
-                optionDesc:['Heal All HP, Gain 10 Max HP'],
+                optionDesc:['Heal All Health, Gain 10 Max Health'],
+                link:[-1],
+            },{
+                desc:
+`You throw it in, but nothing happens, at first.
+But then, the fire seems to grow in size...
+and explodes in your face.`,
+                option:['Leave'],
+                optionDesc:['Lose 10 Health'],
                 link:[-1],
             },
         ],
@@ -1418,7 +1687,7 @@ You're liking the place, when he looks over you again.
 He reconsiders the final time. "Fine, what service would you like?"
 You could take one of the services, but you would rather punch him.`,
                 option:['Adjustments','Cleanup','Punch Him'],
-                optionDesc:['Lose 40 Currency','Lose 60 Currency',''],
+                optionDesc:['Lose 40 Currency','Lose 80 Currency',''],
                 link:[1,2,3],
             },{
                 desc:
@@ -1446,7 +1715,7 @@ He recoils from the collision. You leave, feeling satisfied.`,
             },
         ],
     },{
-        name:'Mystery Gift',id:46,list:0,
+        name:'Mystery Gift',id:46,list:-1,
         pages:[
             {
                 desc:
@@ -1477,7 +1746,7 @@ it quickly devours it and hands you a box.`,
             {
                 desc:
 `The Management has announced a massive
-weapons test at the Masurian Lake.
+weapons test at the Inland Sea.
 The test is safe for viewers at 20 kilometers,
 and it has been announced that all are welcome to view it.
 A typical show of force for the Management, they want
@@ -1568,12 +1837,12 @@ as the ball begins rolling toward you.`,
 `The full force of the rolling ball nearly flattens you,
 but you're able to bring it to a stop.`,
                 option:['Ouch'],
-                optionDesc:['Lose 16 Health'],
+                optionDesc:['Lose 30 Health'],
                 link:[-1],
             },{
                 desc:`The ball rolls over you and ends up at the end of the hall.`,
                 option:['Ouch'],
-                optionDesc:['Lose 4 Max Health'],
+                optionDesc:['Lose 5 Max Health'],
                 link:[-1],
             },{
                 desc:`You get out of the way, but your foot appears broken...`,
@@ -1583,7 +1852,7 @@ but you're able to bring it to a stop.`,
             },
         ],
     },{
-        name:'Bootlegging',id:50,list:0,
+        name:'Bootlegging',id:50,list:-1,
         pages:[
             {
                 desc:
@@ -1619,7 +1888,7 @@ and pulls out a bottle containing suspicious brown liquid.
             },
         ],
     },{
-        name:'Investments',id:51,list:0,
+        name:'Investments',id:51,list:-1,
         pages:[
             {
                 desc:
@@ -1702,7 +1971,7 @@ takes a chunk out of you.`,
             },
         ],
     },{
-        name:'Notes',id:53,list:0,
+        name:'Notes',id:53,list:-1,
         pages:[
             {
                 desc:
@@ -1781,7 +2050,7 @@ As he continually speeds up, you begin to get worried.
 This is exacerbated when he starts swerving through traffic.
 It is at that moment you realize that the
 other cars are driving the other way.`,
-                option:['Grab the Wheel','Hope for the Best','Jump out the door'],
+                option:['Grab the Wheel','Hope for the Best','Jump Out the Door'],
                 optionDesc:['','',''],
                 link:[1,2,3],
             },{
@@ -1823,9 +2092,7 @@ dashing between cars to get off the bridge.`,
                 optionDesc:['','Start Fight'],
                 link:[1,-2],
             },{
-                desc:`
-"40", he answers.
-"Standard Management currency."`,
+                desc:`"40 bits", he answers.`,
                 option:['Pay up','Attack Him'],
                 optionDesc:['Lose 40 Currency','Start Fight'],
                 link:[2,-2],
@@ -2223,7 +2490,7 @@ basic cards are sometimes the best.`,
 DuckTek copyright!" he says. "It's a good thing I
 made a counterweapon to their machines!"`,
                 option:['Take the Weapon','Beat Him Up','Sneak Away'],
-                optionDesc:['','Lose 6 HP',''],
+                optionDesc:['','Lose 6 Health',''],
                 link:[1,2,3],
             },{
                 desc:'You take the gun and he quickly shows you how to use it.',
@@ -2285,7 +2552,7 @@ on the wall with details about each upcoming stop.`,
             },
         ],
     },{
-        name:'Too Lucky',id:72,list:0,
+        name:'Too Lucky',id:72,list:-1,
         pages:[
             {
                 desc:
@@ -2438,7 +2705,7 @@ fast for her to catch.`,
             },
         ],
     },{
-        name:'Lunar Emissary',id:76,list:0,
+        name:'Lunar Emissary',id:76,list:-1,
         pages:[
             {
                 desc:
@@ -2448,7 +2715,7 @@ recognizable insignia - they're from the moon.
 One notices you and steps over, interested.
 "Would you like something from our supply?"`,
                 option:['Take a Lunar Peach','Take Some Lunar Soil','Decline'],
-                optionDesc:['Gain 16 Max HP, Become Cursed - Lunar Night','Add 2 Lunar Soils to Deck',''],
+                optionDesc:['Gain 16 Max Health, Become Cursed - Lunar Night','Lose 8 Health, Add 2 Lunar Soils to Deck',''],
                 link:[1,2,3],
             },{
                 desc:
@@ -2527,7 +2794,7 @@ the lantern, but where did the darkness really go?`,
             },
         ],
     },{
-        name:'Simulated Violence',id:79,list:0,
+        name:'Simulated Violence',id:79,list:-1,
         pages:[
             {
                 desc:
@@ -2556,7 +2823,7 @@ more, and you take your change to escape.`,
             },
         ],
     },{
-        name:'Ghostly Dream',id:80,list:0,
+        name:'Ghostly Dream',id:80,list:-1,
         pages:[
             {
                 desc:
@@ -2599,7 +2866,7 @@ Suddenly one of them notices you and pulls you over.
             },{
                 desc:'He hands you a little money for the help.',
                 option:['Leave'],
-                optionDesc:['Gain 5 Currency'],
+                optionDesc:['Gain 25 Currency'],
                 link:[-1],
             },{
                 desc:'You leave them to argue.',
@@ -2654,7 +2921,7 @@ their materials, at least as much as you can carry.`,
 unknown god. It's empty at the moment, but it couldn't
 hurt to stay for a little while.`,
                 option:['Sacrifice','Donate','Leave'],
-                optionDesc:['Lose 10 Max HP','Lose 25 Currency',''],
+                optionDesc:['Lose 14 Max Health','Lose 25 Currency',''],
                 link:[1,2,3],
             },{
                 desc:
@@ -3062,7 +3329,7 @@ before they leave as a group down the road.`,
             },
         ],
     },{
-        name:'Fake Adventure',id:100,list:-1,
+        name:'Faker Adventure',id:100,list:-1,
         pages:[
             {
                 desc:
@@ -3148,7 +3415,7 @@ At least the Management was kind enough not to demolish this one
 like the rest. It's not a beautiful place, filled with broken pieces
 of wood and a creeping greenish smoke. Clearly there's not much
 left here, but you feel an odd peace in such a strange place.`,
-                option:['Pay Respects','Steal'],
+                option:['Wander Around','Take Something'],
                 optionDesc:['Add a Final Rest to Deck','Gain a Relic'],
                 link:[1,2],
             },{
@@ -3169,7 +3436,7 @@ recquisition the rest... certainly that's impossible.`,
             },
         ],
     },{
-        name:'Cissni Peak',id:103,list:0,
+        name:'Cissni Peak',id:103,list:-1,
         pages:[
             {
                 desc:
@@ -3299,18 +3566,20 @@ cheap side, so maybe it's worth giving it a shot?`,
                 optionDesc:['Upgrade a Card'],
                 link:[-1],
             },{
-                desc:
-`You miss the target.
-The proprietor asks if you'd like another attempt.`,
-                option:['Try Again','Decline'],
-                optionDesc:['Lose 5 Currency',''],
-                link:[1,3],
+                desc:`You miss the target.`,
+                option:['Unlucky'],
+                optionDesc:[''],
+                link:[4],
             },{
-                desc:
-`You decide it's not worth the money.`,
+                desc:`You decide it's not worth the money.`,
                 option:['Exit'],
                 optionDesc:[''],
                 link:[-1],
+            },{
+                desc:`The proprietor asks if you'd like another attempt.`,
+                option:['Try Again','Decline'],
+                optionDesc:['Lose 5 Currency',''],
+                link:[1,3],
             },
         ],
     },{
@@ -3330,7 +3599,7 @@ crossing further downriver.`,
 `You manage to repair the crossing.
 The others toss you a few coins as thanks.`,
                 option:['Cross'],
-                optionDesc:['Gain 35 Currency'],
+                optionDesc:['Gain 70 Currency'],
                 link:[-1],
             },{
                 desc:`You reach the other crossing and cross successfully.`,
@@ -3349,13 +3618,21 @@ It looks like they're sitting across from each other
 at desks, each using a computer. Perhaps there's
 something that's making them all so excited?`,
                 option:['Enter','Run Away'],
-                optionDesc:['Gain a Relic - Gaming Console, Become Cursed - Gamer',''],
-                link:[1,2],
+                optionDesc:['Gain a Relic - Gaming Console',''],
+                link:[1,3],
             },{
                 desc:
 `You leave hours later a changed person.
 You might even see yourself returning there later.
 You've learned some things... but at what cost?`,
+                option:['Leave'],
+                optionDesc:['Become Cursed - Gamer'],
+                link:[-1],
+            },{
+                desc:
+`You leave hours later a changed person.
+You might even see yourself returning there later.
+You've learned some things, it's been a great time.`,
                 option:['Leave'],
                 optionDesc:[''],
                 link:[-1],
@@ -3429,7 +3706,7 @@ bodies and the remnants of destroyed fighters.`,
             },{
                 desc:
 `Getting deep underground, you and the other survivors
-successfully wait out the attacks until the fighters
+successfully wait out the attacks until the fightefrs
 run out of ammunition and withdraw. But it looks
 like a lot of rebels didn't make it out alive...`,
                 option:['Exit'],
@@ -3534,7 +3811,7 @@ but you're able to fill it with trash to your heart's content.`,
 lose your grip and begin falling towards the ground.`,
                 option:['Fall Through a Window','Attempt a Three-Point Landing','Hit the Ground'],
                 optionDesc:['','Lose 15 Health','Lose 5 Health'],
-                link:[1,2,3],
+                link:[1,2,4],
             },{
                 desc:
 `You manage to get inside the nearby building,
@@ -3546,6 +3823,11 @@ but the speed of the fall makes you dizzy.`,
                 desc:'You look great, but injure your leg.',
                 option:['Get up'],
                 optionDesc:['Remove a Card'],
+                link:[-1],
+            },{
+                desc:'You fail the landing and faceplant.',
+                option:['Get up'],
+                optionDesc:[''],
                 link:[-1],
             },{
                 desc:'You hit the ground hard.',
@@ -3711,7 +3993,7 @@ Guess I'll spend it all while I'm down here!"`,
             },
         ],
     },{
-        name:'Rice Farm',id:122,list:0,
+        name:'Rice Valley',id:122,list:-1,
         pages:[
             {
                 desc:
@@ -3822,7 +4104,7 @@ You wish the Fairy of Winter would actually do something...`,
 you spot a cloud of fireflies buzzing around seemingly nothing.
 They don't notice as you approach their position.`,
                 option:['Collect One','Watch Them','Eat Them'],
-                optionDesc:['Gain a Relic - Bottled Firefly','Add a Rare Card','Gain 5 Max HP'],
+                optionDesc:['Gain a Relic - Bottled Firefly','Add a Rare Card','Gain 5 Max Health'],
                 link:[1,2,3],
             },{
                 desc:
@@ -3923,7 +4205,7 @@ It looks a little better than what you're used to.`,
             },{
                 desc:'You get handed your scone. It looks pretty decent.',
                 option:['Eat it'],
-                optionDesc:['Gain 3 Max HP'],
+                optionDesc:['Gain 3 Max Health'],
                 link:[-1],
             },{
                 desc:`You don't feel like having anything.`,
@@ -4079,7 +4361,7 @@ only being freed as it passes.`,
             },
         ],
     },{
-        name:'Paper Ball Shop',id:132,list:0,
+        name:'Paper Ball Shop',id:132,list:-1,
         pages:[
             {
                 desc:
@@ -4951,7 +5233,7 @@ the vault. Within, you find rows upon rows of barrels,
 each labelled with "Nuclear Waste".
 You don't feel so good...`,
                 option:['Take Nuclear Waste','Run'],
-                optionDesc:['Lose 5 Max HP','Lose 1 Max HP'],
+                optionDesc:['Lose 5 Max Health','Lose 1 Max Health'],
                 link:[3,4],
             },{
                 desc:
@@ -5060,8 +5342,8 @@ Want a spin?"`,
             {
                 desc:
 `On a gameshow, your placed in front of three doors.
-One of them contains 500 Standard Management Currency,
-and the other two have no prizes at all behind them.
+One of them contains 500 bits, and the other
+two have no prizes at all behind them.
 The host, one Monty Hall, offers you a choice.`,
                 option:['Choose Door 1','Choose Door 2','Choose Door 3'],
                 optionDesc:['','',''],
@@ -5077,7 +5359,7 @@ He asks if you'd like to switch to door %3 or stay with door %a.`,
             },{
                 desc:`Opening your door, you find the money.`,
                 option:['Win'],
-                optionDesc:['Gain 500 Currency'],
+                optionDesc:['Gain 300 Currency'],
                 link:[-1],
             },{
                 desc:`Opening your door, you find nothing.`,
@@ -5087,7 +5369,7 @@ He asks if you'd like to switch to door %3 or stay with door %a.`,
             },
         ],
     },{
-        name:'Fairy of Moonlight',id:167,list:0,
+        name:'Fairy of Moonlight',id:167,list:-1,
         pages:[
             {
                 desc:
@@ -5164,7 +5446,7 @@ A couple of blocks are lowered down, covered in spinning numbers.`,
             },
         ],
     },{
-        name:'Drill Zone',id:169,list:0,
+        name:'Drill Zone',id:169,list:-1,
         pages:[
             {
                 desc:
@@ -5198,7 +5480,7 @@ The ducks return to carry more rocks.`,
                 desc:
 `You are informed of a policy change on the planet.
 Apparently, Management planetary military governor
-Belich Conoro has, in cooperation with the former nobility,
+Kirt Kodrax has, in cooperation with the former nobility,
 decreed that only owners of property can participate
 in the electoral process from now on.
 You might end up without your vote.`,
@@ -5236,7 +5518,7 @@ He's looks heavy and unsafe to touch though.`,
             },{
                 desc:
 `You bring him to the hospital, and he thanks you with some money.
-But you think you might've cought something from him...`,
+But you think you might've caught something from him...`,
                 option:['Leave'],
                 optionDesc:[''],
                 link:[-1],
@@ -5250,7 +5532,7 @@ It's not much, but it'll do.`,
             },
         ],
     },{
-        name:'Chocolate Factory',id:172,list:0,
+        name:'Chocolater Factory',id:172,list:-1,
         pages:[
             {
                 desc:
@@ -5440,7 +5722,7 @@ For a price, of course.`,
 You manage to reach the other side successfully.
 You grab the box and keep its contents.`,
                 option:['Take it'],
-                optionDesc:['Gain 1 Relic'],
+                optionDesc:['Gain a Relic'],
                 link:[-1],
             },{
                 desc:`
@@ -5456,7 +5738,767 @@ Falling in, you're decently injured.`,
                 link:[-1],
             },
         ],
-    },/*{
+    },{
+        name:'Rice Farm',id:179,list:0,
+        pages:[
+            {
+                desc:
+`Off the road, you run into a rice farm. It looks like any
+other farm, but just on the road, a girl sits in a wooden stall
+surrounded by bags of rice. She calls you over as you arrive.
+"Would you like some?" she asks you with a smile.`,
+                option:['Buy Some Rice','Raid the Farm','Decline'],
+                optionDesc:['Lose 50 Currency, Heal to Full','Gain an Item',''],
+                link:[1,2,3],
+            },{
+                desc:
+`It's a nice meal, even though it's mostly just rice.
+You can tell how much manual labor goes into making it, though.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`You manage to steal several bags of rice.
+Unfortunately, you're not sure if you know how to cook it.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`She's cute, but you don't need rice right now.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Battle Site',id:180,list:0,
+        pages:[
+            {
+                desc:
+`You arrive too late to participate in a battle.
+The field is covered in bodies from both sides.
+You can barely even tell who the victor of the combat was.`,
+                option:['Pay Respects','Rob the Bodies'],
+                optionDesc:['Lose 1 Currency','Gain 200 Currency'],
+                link:[1,2],
+            },{
+                desc:
+`You leave a coin for the fallen and make your exit.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`Going through the remaining bodies, you find plenty of things of value.
+As you leave, you feel a little bad... but not that bad.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`Going through the remaining bodies, you find plenty of things of value.
+As you leave, you feel a little bad... more like... really bad.`,
+                option:['Leave'],
+                optionDesc:['Become Cursed - Spoilage'],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Three Fairies',id:181,list:0,
+        pages:[
+            {
+                desc:
+`On a dark night out, the sounds of birds around you
+suddenly seem to fade away, drowned out by some imperceivable
+force. Unable to move, you look up at the sky, but your eyes
+seem to be overwhelmed by incredibly bright lights, coming both
+from the stars above you and from the horizon in all directions,
+and from the seeming distance the moon looks to be from you.
+And as you stare, three fairies appear from behind
+the trees, snickering as you stand there. It seems that each
+one is creating one part of the phenoma you see.`,
+                option:['Focus on the Horizon',`Focus on the Moon`,'Focus on the Stars'],
+                optionDesc:['','',''],
+                link:[1,2,3],
+            },{
+                desc:
+`As you focus your attention on the horizon and its glow,
+one of the fairies leave the rest and begins to approach you`,
+                option:['Attack Her',`Don't Move`,'Snap Out of it'],
+                optionDesc:['Lose 12 Max Health','Become Cursed - Direct Sunlight','Lose 8 Health'],
+                link:[4,5,6],
+            },{
+                desc:
+`As you focus your attention on the moon and the silence around it,
+one of the fairies leave the rest and begins to approach you`,
+                option:['Attack Her',`Don't Move`,'Snap Out of it'],
+                optionDesc:['Lose 12 Max Health','Become Cursed - Moon Stillness','Lose 8 Health'],
+                link:[7,8,9],
+            },{
+                desc:
+`As you focus your attention on the bright light of the stars,
+one of the fairies leave the rest and begins to approach you`,
+                option:['Attack Her',`Don't Move`,'Snap Out of it'],
+                optionDesc:['Lose 12 Max Health','Become Cursed - Starry Glare','Lose 8 Health'],
+                link:[10,11,12],
+            },{
+                desc:
+`Using all your power, you manage to collect some of the sunlight
+within you, despite feeling your body melting around you as it happens.
+When it's all over, the fairy remains there, impressed by your ability.
+"You're good with this stuff! Wanna be a team?"`,
+                option:['Accept','Decline'],
+                optionDesc:['Add Sunny, Glowing Sunlight (Ally Card) to Deck',''],
+                link:[13,14],
+            },{
+                desc:
+`Allowing the sunlight to become part of you, you feel strengthened.
+But it also feels as if the sunlight is still there within...`,
+                option:['Leave'],
+                optionDesc:['Deluxe Upgrade 2 Cards'],
+                link:[-1],
+            },{
+                desc:
+`You manage to block as much of the sunlight as you can,
+but you still get burned a little, though you can also feel
+some of the power now coursing through you.
+By the time you open your eyes again, the fairy is long gone.`,
+                option:['Leave'],
+                optionDesc:['Upgrade 2 Cards'],
+                link:[-1],
+            },{
+                desc:
+`Breaking free from the pull of the sky, you chase the
+fairy down, managing to catch her after some time.
+"You're pretty good at this!" she tells you.
+"Why not take me with you?"`,
+                option:['Accept','Decline'],
+                optionDesc:['Add Luna, Silent Moonlight (Ally Card) to Deck',''],
+                link:[13,14],
+            },{
+                desc:
+`You stand there for what seems to be the entire night.
+By morning, you're able to move again.
+You're not sure what happened, but it was
+a pretty mesmerizing experience.`,
+                option:['Leave'],
+                optionDesc:['Remove 3 Cards'],
+                link:[-1],
+            },{
+                desc:
+`Shaking yourself free from the trap, you make your getaway.
+You don't feel quite the same, but at least you got out
+of there without too much injury.`,
+                option:['Leave'],
+                optionDesc:['Remove a Card'],
+                link:[-1],
+            },{
+                desc:
+`After what seems to be hours of pursuing her, she
+finally tires out, giving you a chance to catch up.
+"Got you there!" she says. "You're pretty strong though,
+I give you that. Want to be a team?"`,
+                option:['Accept','Decline'],
+                optionDesc:['Add Star, Showering Starlight (Ally Card) to Deck',''],
+                link:[13,14],
+            },{
+                desc:
+`You could've been standing there for just a few minutes,
+or maybe it was multiple hours of staring.
+Regardless, you finally snap out of it, drained.`,
+                option:['Leave'],
+                optionDesc:['Transform 3 Cards'],
+                link:[-1],
+            },{
+                desc:
+`The glow from above becomes unbearable, but
+you refuse to look up or pursue her into the trees.
+You hope this nightmare will end soon, and it does,
+with everything seemingly returning to normal.`,
+                option:['Leave'],
+                optionDesc:['Transform a Card'],
+                link:[-1],
+            },{
+                desc:
+`She's following you around now.
+She's not the most reliable ally to have, that's for sure.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You don't care to entertain this prospect.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Isolated Post',id:182,list:0,
+        pages:[
+            {
+                desc:
+`You encounter an outpost in a clearing in the forest,
+manned by what seems to be a single rebel. He claims that
+he's heard from a friend that a Management raid is expected.
+He asks for your support in stopping the attack.`,
+                option:['Help Him','Go Elsewhere'],
+                optionDesc:['',''],
+                link:[1,3],
+            },{
+                desc:
+`The Management force arrives fast, but he spots them in time.
+It's just a few auxiliaries, nothing too much for you to handle.
+They retreat once they recognize success is impossible.
+After the assault, the rebel finds something they left behind.
+Not knowing what to do, he gives it to you.`,
+                option:['Take it'],
+                optionDesc:['Gain a Relic'],
+                link:[-1],
+            },{
+                desc:
+`The Management force arrives before you get a chance to react.
+And when the battle starts, he doen't provide much help.
+You both get away, but not without some injuries.`,
+                option:['Leave'],
+                optionDesc:['Become Cursed - Minor Injury'],
+                link:[-1],
+            },{
+                desc:`You leave him to fend for himself.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Lost Officer',id:183,list:0,
+        pages:[
+            {
+                desc:
+`Along the road, you see a broken-down vehicle and its occupant.
+From his insignia, you can tell he's a fairly low-ranking officer.
+At this distance, you can't even tell if he's armed.`,
+                option:['Attack Him','Ignore Him'],
+                optionDesc:['',''],
+                link:[1,3],
+            },{
+                desc:
+`When you approach, he pulls out his gun and tries to fire.
+You dodge the bullet, but it looks like you'll have to fight.`,
+                option:['Fight'],
+                optionDesc:['Start Fight'],
+                link:[-2],
+            },{
+                desc:
+`When you approach, he pulls out his gun and tries to fire.
+Nothing happens. He's out of ammo.
+You capture him without incident.`,
+                option:['Kill Him','Ransom Him','Exchange Him','Let Him Go'],
+                optionDesc:['Upgrade a Card','Gain 125 Currency','Add a Character Card',''],
+                link:[4,5,6,7],
+            },{
+                desc:`You aren't going to take that risk.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You kill him easily and dispose of the body.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You manage to get plenty of money for his return.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You exchange him for some rebel expertise.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You got nothing. Why did you do that?`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Local Informants',id:184,list:0,
+        pages:[
+            {
+                desc:
+`In some slums, you find that the people there know
+a lot more about local movements than they let on.
+Maybe if you pay them, they'll let you
+in on their observations.`,
+                option:['Management Intel','Local Intel','Decline'],
+                optionDesc:['Lose 150 Currency','Lose 75 Currency',''],
+                link:[1,2,3],
+            },{
+                desc:
+`They tell you about the local dispositions of everything
+that might come to endanger you in the future.`,
+                option:['Listen'],
+                optionDesc:['Reveal All Combats This World'],
+                link:[-1],
+            },{
+                desc:
+`They tell you a little about the local geography
+and the locations of several points of interest,
+filling out the empty areas on your maps.`,
+                option:['Listen'],
+                optionDesc:['Reveal All Unknowns This World'],
+                link:[-1],
+            },{
+                desc:`You just aren't all that interested.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'The Envoy',id:185,list:0,
+        pages:[
+            {
+                desc:
+`The weather today is particularly horrible. Storm clouds
+are everywhere, the horizon matted by frequent lightning.
+But this is a rare opportunity. Only when visibility is so
+poor can Alexis Angle's messenger get onto Konai safely.
+Plenty of rebels, even the higher-ups, are there to greet her.
+You only get one chance to talk to her. What do you ask for?`,
+                option:['A Gift','Future Support','A Companion'],
+                optionDesc:['','',''],
+                link:[1,2,3],
+            },{
+                desc:
+`"You're in luck!" she tells you.
+"I've brought something from Alexis just for you!"`,
+                option:['Take it'],
+                optionDesc:['Gain a Relic'],
+                link:[-1],
+            },{
+                desc:
+`She sighs, "I can't promise anything right now."
+"As you know, Alexis isn't exactly the most punctual guy.
+And I don't think you're anything close to his principal concern.
+But I'll make sure to put in a good word for you!"
+You're not fully convinced, but you hope Angle will have your
+back when you need it most.`,
+                option:['Leave'],
+                optionDesc:['The Final Boss Loses 250 Health'],
+                link:[-1],
+            },{
+                desc:
+`"I'm a little busy, you know"... she starts,
+but then stops for a moment to reconsider.
+"You know what, Alexis never did anything for me anyway.
+Maybe it's time I spent a little more time on the surface."`,
+                option:['Accept','Decline'],
+                optionDesc:['Add Iku, Sky Envoy (Ally Card) to Deck',''],
+                link:[4,5,],
+            },{
+                desc:`Rebel leadership won't be happy about this...`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You're having second thoughts about this...`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'The Veteran',id:186,list:0,
+        pages:[
+            {
+                desc:
+`You come across a lone campfire in the darkness,
+with a shadowy figure sitting beside it. As you approach,
+you see that the fiture is an old man, seemingly with nothing
+to do, yet he wears a uniform that can only mean one thing:
+This man was once a colonel in the Management army.
+WIth some convincing, he might be wiling to help you.`,
+                option:['Try to Convince Him','Bribe Him','Ignore Him'],
+                optionDesc:['','Lose 50 currency',''],
+                link:[1,2,3],
+            },{
+                desc:`He's not at all convinced by your speech.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`You get him to be sympathetic to the cause.
+He's too old to go with you, but maybe he has
+something of value for you to learn.`,
+                option:['Talk'],
+                optionDesc:['Add an Uncommon Colorless Card'],
+                link:[-1],
+            },{
+                desc:`You're disinterested in what might be an enemy.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Leyman Brothers',id:187,list:0,
+        pages:[
+            {
+                desc:
+`You walk into an unknown building. On the inside,
+the proprietor asks if you are here to invest.
+You tell him that you're a traveler,
+but he replies that his business are everywhere,
+so you'll be able to take money out anywhere.
+He tells you that his deals are always backed
+by "very credible" investment bankers, the
+so-called Leyman Brothers of "great renown".`,
+                option:['Invest','Decline'],
+                optionDesc:['Lose 100 Currency',''],
+                link:[1,2],
+            },{
+                desc:
+`You hand over your money and he adds your information to a list.
+You hope this was the right decision.`,
+                option:['Worth it'],
+                optionDesc:['Gain a Relic - Stocks'],
+                link:[-1],
+            },{
+                desc:`It's too risky to be putting your money into things right now.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Great Recession',id:188,list:-1,
+        pages:[
+            {
+                desc:
+`The stocks went into the ground. They're worthless now.
+You're completely screwed.`,
+                option:['Suffer'],
+                optionDesc:['Lose All Currency, Lose Relic - Stocks'],
+                link:[1,2],
+            },{
+                desc:`Guess it wasn't worth the risk.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Management Fort',id:189,list:0,
+        pages:[
+            {
+                desc:
+`You come across a group of rebel soldiers standing around outside
+what appears to be a very small Management fort. It doesn't look that
+dangerous, but the rebel commander warns you that the defenders,
+however many there are, aren't to be underestimated.`,
+                option:['Join the Siege','Leave'],
+                optionDesc:['',''],
+                link:[1,2],
+            },{
+                desc:
+`You set up camp outside the fort and join the besiegers.
+The commander tells you that the problem is the walls;
+until they're breached, no assault can go forward.
+Artillery would help with this, but unfortunately,
+they don't have any with them. They do, however,
+have plenty of explosives.`,
+                option:['Try to Bomb the Walls','Pay Somebody Else','Wait for Artillery','Give Up'],
+                optionDesc:['Lose 5 Health','Lose 40 Currency','Remove a Random Card',''],
+                link:[4,4,4,3],
+            },{
+                desc:`Seems like too risky an enterprise for your liking.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You lose interest in completing the siege, it's hopeless.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`After your efforts, a breach has finally been opened in the walls.
+But even though an assault is possible, doesn't mean it will work.`,
+                option:['Into the Breach!','Pay Somebody Else','Wait and Starve the Defenders','Give Up'],
+                optionDesc:['Lose 5 Health','Lose 40 Currency','Remove a Random Card',''],
+                link:[6,6,6,3],
+            },{
+                desc:`You lose interest in completing the siege, it's hopeless.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`The flag of surrender appears atop the fort.
+The siege has been a success. You capture numerous weapons
+and their stores of valuables.`,
+                option:['Victory!'],
+                optionDesc:['Gain a Rare Card and a Rare Relic'],
+                link:[-1],
+            },{
+                desc:`The attempt fails, the defenders are still standing.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[4],
+            },{
+                desc:
+`You fail to break through the defenses.
+Worse, in the time that it took, they rebuilt the walls.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[10],
+            },{
+                desc:`You try your best, but the walls hold firm.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[10],
+            },{
+                desc:
+`The siege continues. The troops are restless.
+How do you intend to proceed?`,
+                option:['Try to Bomb the Walls','Pay Somebody Else','Wait for Artillery','Give Up'],
+                optionDesc:['Lose 5 Health','Lose 40 Currency','Remove a Random Card',''],
+                link:[4,4,4,3],
+            },
+        ],
+    },{
+        name:'Failed Siege',id:190,list:0,
+        pages:[
+            {
+                desc:
+`A rebel commander meets you outside what look to be a
+strongly held Management position, with towering walls.
+He tells you that the fort is pointless to besiege. His men
+have already tried and failed, with most of them captured.
+The enemy commander, however has offered to let them free.
+For a price, of course.`,
+                option:['Pay the Ransom','Besiege the Fort Anyway','Leave'],
+                optionDesc:['Lose 150 Currency, Add a Rare Character Card','',''],
+                link:[11,12,2],
+            },{
+                desc:
+`The redoubts are taken, but the walls remain.
+Until they're breached, no assault can go forward.
+Artillery would help with this, but unfortunately,
+the rebels don't have any with them. They do, however,
+have plenty of explosives.`,
+                option:['Try to Bomb the Walls','Pay Somebody Else','Wait for Artillery','Give Up'],
+                optionDesc:['Lose 5 Health','Lose 40 Currency','Remove a Random Card',''],
+                link:[4,4,4,3],
+            },{
+                desc:`Seems like too risky an enterprise for your liking.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You lose interest in completing the siege, it's hopeless.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`After your efforts, a breach has finally been opened in the walls.
+But even though an assault is possible, doesn't mean it will work.`,
+                option:['Into the Breach!','Pay Somebody Else','Wait and Starve the Defenders','Give Up'],
+                optionDesc:['Lose 5 Health','Lose 40 Currency','Remove a Random Card',''],
+                link:[6,6,6,3],
+            },{
+                desc:`You lose interest in completing the siege, it's hopeless.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`The flag of surrender appears atop the fort.
+The siege has been a success. You capture numerous weapons
+and their stores of valuables.`,
+                option:['Victory!'],
+                optionDesc:['Gain a Rare Card, Rare Character Card and a Rare Relic'],
+                link:[-1],
+            },{
+                desc:`The attempt fails, the defenders are still standing.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[4],
+            },{
+                desc:
+`You fail to break through the defenses.
+Worse, in the time that it took, they rebuilt the walls.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[10],
+            },{
+                desc:`You try your best, but the walls hold firm.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[10],
+            },{
+                desc:
+`The siege continues. The troops are restless.
+How do you intend to proceed?`,
+                option:['Try to Bomb the Walls','Pay Somebody Else','Wait for Artillery','Give Up'],
+                optionDesc:['Lose 5 Health','Lose 40 Currency','Remove a Random Card',''],
+                link:[4,4,4,3],
+            },{
+                desc:
+`The exchange is complete. You're a bit poorer,
+but at least those rebels are free an the fort
+can be once again ignored.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`You set up camp outside the fort and join the besiegers.
+First, you need to sieze the redoubts guarding the main fort.`,
+                option:['Rush Them','Pay Somebody Else','Send in Everything','Give Up'],
+                optionDesc:['Lose 10 Health','Lose 80 Currency','Become Cursed - Blind Aggression',''],
+                link:[1,1,1,3],
+            },{
+                desc:`The attack fails. The redoubts still stand.`,
+                option:['Try Again'],
+                optionDesc:[''],
+                link:[14],
+            },{
+                desc:`The redoubts guard the fort from direct attack.`,
+                option:['Rush Them','Pay Somebody Else','Send in Everything','Give Up'],
+                optionDesc:['Lose 10 Health','Lose 80 Currency','Become Cursed - Blind Aggression',''],
+                link:[1,1,1,3],
+            },
+        ],
+    },{
+        name:'Chocolate Factory',id:191,list:0,
+        pages:[
+            {
+                desc:
+`You enter a chocolate shop, seeing the many pieces
+of chocolate on offer. They look to be from two different
+brands. Maybe you should make a purchase?`,
+                option:['Buy a Wrapper','Buy Ferrero','Buy Lindt','Decline'],
+                optionDesc:['Lose 25 Currency','Lose 50 Currency','Lose 50 Currency',''],
+                link:[1,2,3],
+            },{
+                desc:
+`You grab a pile of empty wrappers and pay the price.
+They're somewhat shiny, but why did you do this?`,
+                option:['Take it'],
+                optionDesc:['Add a Paper Ball to Deck'],
+                link:[-1],
+            },{
+                desc:
+`You grab some shiny chocolate balls and pay the price.
+You'll eat them at some point.`,
+                option:['Take it'],
+                optionDesc:['Add a Ferrero to Deck'],
+                link:[-1],
+            },{
+                desc:
+`You grab some shiny chocolate balls and pay the price.
+Eventually you'll get to eating them.`,
+                option:['Take it'],
+                optionDesc:['Add a Lindt to Deck'],
+                link:[-1],
+            },{
+                desc:`You're not will to waste money right now.`,
+                option:['Exit'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Admiralic Visit',id:192,list:0,
+        pages:[
+            {
+                desc:
+`A rarely seen ship touches down ahead of you.
+It's an SCT shuttle, which should've been phased out long ago.
+The door swings open, and from it appears a few officers.
+Their badges are distinctive: they're the Admiral-Manager's men.
+Seeing you're on their side, they offer you to take something.`,
+                option:['Take Some Lifejuice','Take Some Weapons','Decline'],
+                optionDesc:['Gain 16 Max Health, Become Cursed - Multitudes','Lose 8 Health, Open a Colorless Pack',''],
+                link:[1,2,3],
+            },{
+                desc:
+`You take the Lifejuice and drink the whole vial.
+While you feel stronger, at the same time you feel weaker.
+At least you know this won't become a habit.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:'You take a look at the offerings in their arsenal.',
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`You decline, and the group goes on their way.
+Maybe you'll encounter another group like this.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Shopping',id:193,list:0,
+        pages:[
+            {
+                desc:
+`With some time to spare, you go shopping for once.
+It seems like there's quite a few places you might go to.
+But while you have some time, it's only enough to visit one.
+Though, maybe something will be worth buying?`,
+                option:['Buy from Metu','Buy from Seabay','Buy from Zamazor'],
+                optionDesc:['Add a Junkyard Card','Lose 50 Currency, Add an Uncommon Card','Lose 250 Currency, Add a Rare Card'],
+                link:[1,1,1],
+            },{
+                desc:
+`You go on the site and look around the catalog.
+Maybe you'll come back here in the future.
+If you have enough time, that is.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Matching Game',id:194,list:0,
+        pages:[
+            {
+                desc:
+`As you pass through town, several ducks jump you
+from all directions. You prepare for battle,
+but they have a different proposition than combat.
+They offer you the change to win some cards, for free!
+But the cards may not be the ones you want...`,
+                option:['Play','Decline'],
+                optionDesc:['',''],
+                link:[1,2],
+            },{
+                desc:`You try to earn some prizes from the game.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You fear what the game could entail.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },
+    
+    /*{
         name:'',id:177,list:0,
         pages:[
             {

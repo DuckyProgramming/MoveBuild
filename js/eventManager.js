@@ -33,10 +33,6 @@ class eventManager{
         for(let a=0,la=types.event.length;a<la;a++){
             if(types.event[a].list==0){
                 this.listing.event.push(a)
-                if(variants.mtg&&types.event[a].id==70){
-                    this.listing.event.push(a)
-                    this.listing.event.push(a)
-                }
             }
         }
     }
@@ -49,7 +45,8 @@ class eventManager{
                 effectiveEnergy[this.battle.energy.base[this.player][a]]++
             }
         }
-        for(let a=0,la=this.listing.event.length;a<la;a++){if(
+        for(let a=0,la=this.listing.event.length;a<la;a++){
+            if(
                 !(this.listing.event[a]==1&&userCombatant.life<5)&&
                 !(this.listing.event[a]==2&&(userCombatant.life<21||userCombatant.life>userCombatant.base.life-20))&&
                 !(this.listing.event[a]==3&&(userCombatant.life<14||this.battle.relicManager.total[this.player]<1))&&
@@ -61,7 +58,7 @@ class eventManager{
                 !(this.listing.event[a]==12&&userCombatant.life<16)&&
                 !(this.listing.event[a]==13&&this.battle.cardManagers[this.player].deck.numberAbstract(14,[[6],7])<=0)&&
                 !(this.listing.event[a]==19&&userCombatant.life<13)&&
-                !(this.listing.event[a]==20&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==20&&this.battle.currency.money[this.player]<105)&&
                 !(this.listing.event[a]==22&&this.battle.cardManagers[this.player].deck.numberAbstract(8,[])<=0)&&
                 !(this.listing.event[a]==24&&this.battle.currency.money[this.player]<50)&&
                 !(this.listing.event[a]==25&&userCombatant.life>userCombatant.base.life-25)&&
@@ -69,10 +66,10 @@ class eventManager{
                 !(this.listing.event[a]==27&&userCombatant.life<51)&&
                 !(this.listing.event[a]==28&&this.battle.nodeManager.world!=0)&&
                 !(this.listing.event[a]==30&&userCombatant.life<25)&&
-                !(this.listing.event[a]==31&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==31&&this.battle.currency.money[this.player]<75)&&
                 !(this.listing.event[a]==32&&this.battle.cardManagers[this.player].deck.numberAbstract(9,[[1]])<4)&&
                 !(this.listing.event[a]==33&&this.battle.nodeManager.world!=2)&&
-                !(this.listing.event[a]==35&&userCombatant.base.life<11)&&
+                !(this.listing.event[a]==35&&userCombatant.base.life<7)&&
                 !(this.listing.event[a]==36&&userCombatant.life<7)&&
                 !(this.listing.event[a]==37&&(userCombatant.life<12||this.battle.currency.money[this.player]<25))&&
                 !(this.listing.event[a]==38&&this.battle.nodeManager.world!=0)&&
@@ -80,12 +77,13 @@ class eventManager{
                 !(this.listing.event[a]==40&&(this.battle.nodeManager.world!=0||this.battle.currency.money[this.player]<100))&&
                 !(this.listing.event[a]==41&&userCombatant.life>userCombatant.base.life-10)&&
                 !(this.listing.event[a]==42&&userCombatant.life<26)&&
+                !(this.listing.event[a]==44&&userCombatant.life<11)&&
                 !(this.listing.event[a]==43&&this.battle.currency.money[this.player]<250)&&
-                !(this.listing.event[a]==45&&this.battle.currency.money[this.player]<60)&&
+                !(this.listing.event[a]==45&&this.battle.currency.money[this.player]<80)&&
                 !(this.listing.event[a]==46&&this.battle.relicManager.total[this.player]<1)&&
                 !(this.listing.event[a]==47&&(userCombatant.life>userCombatant.base.life-6||!this.battle.itemManager.hasEmpty(this.player)))&&
                 !(this.listing.event[a]==48&&(this.battle.nodeManager.world!=1||this.battle.currency.money[this.player]<125))&&
-                !(this.listing.event[a]==49&&(userCombatant.life<17||userCombatant.base.life<5))&&
+                !(this.listing.event[a]==49&&(userCombatant.life<36||userCombatant.base.life<6))&&
                 !(this.listing.event[a]==50&&!this.battle.itemManager.hasEmpty(this.player))&&
                 !(this.listing.event[a]==51&&this.battle.currency.money[this.player]<100)&&
                 !(this.listing.event[a]==52&&userCombatant.life<13)&&
@@ -100,22 +98,23 @@ class eventManager{
                 !(this.listing.event[a]==73&&this.battle.nodeManager.world==0)&&
                 !(this.listing.event[a]==74&&userCombatant.life<9)&&
                 !(this.listing.event[a]==75&&(userCombatant.life>userCombatant.base.life-20||this.battle.currency.money[this.player]<35))&&
+                !(this.listing.event[a]==76&&userCombatant.life<9||userCombatant.base.life<17)&&
                 !(this.listing.event[a]==77&&this.battle.currency.money[this.player]<50)&&
                 !(this.listing.event[a]==78&&(userCombatant.life<21||this.battle.cardManagers[this.player].deck.numberAbstract(9,[[2]])<4))&&
                 !(this.listing.event[a]==79&&userCombatant.life<27)&&
                 !(this.listing.event[a]==81&&(this.battle.cardManagers[this.player].deck.numberAbstract(4,[[1]])<=4||this.battle.cardManagers[this.player].deck.numberAbstract(4,[[2]])<=4))&&
-                !(this.listing.event[a]==84&&(userCombatant.base.life<11||this.battle.currency.money[this.player]<25))&&
+                !(this.listing.event[a]==84&&(userCombatant.base.life<15||this.battle.currency.money[this.player]<25))&&
                 !(this.listing.event[a]==85&&this.battle.currency.money[this.player]<75)&&
                 !(this.listing.event[a]==86&&this.battle.currency.money[this.player]<150)&&
                 !(this.listing.event[a]==87&&userCombatant.life<16)&&
-                !(this.listing.event[a]==88&&this.battle.relicManager.total[this.player]<1)&&
+                !(this.listing.event[a]==88&&this.battle.relicManager.getRandomRelicRarity([this.player],1,[0,1,2,3]).length<1)&&
                 !(this.listing.event[a]==89&&userCombatant.life<31)&&
                 !(this.listing.event[a]==90&&this.battle.currency.money[this.player]<125)&&
                 !(this.listing.event[a]==92&&this.battle.cardManagers[this.player].deck.numberAbstract(14,[[6],7])<=0)&&
                 !(this.listing.event[a]==93&&this.battle.currency.money[this.player]<60)&&
                 !(this.listing.event[a]==94&&(this.battle.currency.money[this.player]<200||this.battle.nodeManager.world!=2))&&
                 !(this.listing.event[a]==97&&this.battle.currency.money[this.player]<65)&&
-                !(this.listing.event[a]==99&&this.battle.currency.money[this.player]<40)&&
+                !(this.listing.event[a]==99&&(this.battle.currency.money[this.player]<40||this.battle.nodeManager.world!=0))&&
                 !(this.listing.event[a]==100&&(userCombatant.life<16||this.battle.currency.money[this.player]<40))&&
                 !(this.listing.event[a]==103&&userCombatant.life>userCombatant.base.life-7)&&
                 !(this.listing.event[a]==104&&this.battle.nodeManager.world!=2)&&
@@ -165,7 +164,7 @@ class eventManager{
                 !(this.listing.event[a]==162&&userCombatant.base.life<6)&&
                 !(this.listing.event[a]==163&&(userCombatant.life>userCombatant.base.life-15||this.battle.currency.money[this.player]<25))&&
                 !(this.listing.event[a]==165&&userCombatant.life<26)&&
-                !(this.listing.event[a]==167&&(userCombatant.life<9||userCombatant.base.life<13))&&
+                !(this.listing.event[a]==167&&(userCombatant.life<9||userCombatant.base.life<13||this.battle.nodeManager.world>=2))&&
                 !(this.listing.event[a]==169&&this.battle.currency.money[this.player]<40)&&
                 !(this.listing.event[a]==170&&this.battle.currency.money[this.player]<300)&&
                 !(this.listing.event[a]==171&&userCombatant.life>userCombatant.base.life-20)&&
@@ -173,6 +172,19 @@ class eventManager{
                 !(this.listing.event[a]==173&&userCombatant.life>userCombatant.base.life-10)&&
                 !(this.listing.event[a]==175&&(this.battle.currency.money[this.player]<50||userCombatant.life>userCombatant.base.life-10))&&
                 !(this.listing.event[a]==178&&(this.battle.currency.money[this.player]<150||userCombatant.life<11))&&
+                !(this.listing.event[a]==179&&(this.battle.currency.money[this.player]<50||userCombatant.life>userCombatant.base.life-10||!this.battle.itemManager.hasEmpty(this.player)))&&
+                !(this.listing.event[a]==180&&this.battle.currency.money[this.player]<1)&&
+                !(this.listing.event[a]==181&&(userCombatant.life<9||userCombatant.base.life<13||this.battle.nodeManager.world>=2))&&
+                !(this.listing.event[a]==183&&this.battle.nodeManager.world!=0)&&
+                !(this.listing.event[a]==184&&this.battle.nodeManager.tilePosition.y>=10)&&
+                !(this.listing.event[a]==185&&this.battle.nodeManager.world!=2)&&
+                !(this.listing.event[a]==186&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==187&&(this.battle.currency.money[this.player]<100||this.battle.nodeManager.world>=2))&&
+                !(this.listing.event[a]==189&&(this.battle.currency.money[this.player]<100||userCombatant.life<21))&&
+                !(this.listing.event[a]==190&&(this.battle.currency.money[this.player]<200||userCombatant.life<41))&&
+                !(this.listing.event[a]==191&&this.battle.currency.money[this.player]<50)&&
+                !(this.listing.event[a]==192&&userCombatant.life<9||userCombatant.base.life<17)&&
+                !(this.listing.event[a]==193&&this.battle.currency.money[this.player]<250)&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -280,7 +292,7 @@ class eventManager{
                 }
             break
             case 88:
-                this.selection=this.battle.relicManager.getRandomRelic(this.player,1)[0]
+                this.selection=this.battle.relicManager.getRandomRelicRarity(this.player,1,[0,1,2,3])[0]
                 this.pages[0].optionDesc[0]=`Lose Relic - ${types.relic[this.selection].name}`
                 this.pages[0].optionDesc[1]=`Lose Relic - ${types.relic[this.selection].name}`
             break
@@ -440,7 +452,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                     break
                     case 3:
                         if(this.page==1&&a==0){
-                            this.battle.relicManager.loseRandom(this.player)
+                            this.battle.relicManager.loseRandomRelic(this.player)
                         }else if(this.page==2&&a==0){
                             this.battle.cardManagers[this.player].randomEffect(0,21,[])
                             this.battle.cardManagers[this.player].randomEffect(0,21,[])
@@ -583,7 +595,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         if(this.page==0&&a==0){
                             this.battle.loseCurrency(35,this.player)
                         }else if(this.page==0&&a==1){
-                            this.battle.loseCurrency(50,this.player)
+                            this.battle.loseCurrency(105,this.player)
                         }else if(this.page==1&&a==0){
                             userCombatant.heal(15)
                         }else if(this.page==2&&a==0){
@@ -675,13 +687,13 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                     break
                     case 30:
                         if(this.page==0&&a<2){
-                            if(userCombatant.life<=0){
+                            if(userCombatant.life<=8){
                                 tempPage=-this.pages[this.page].link[a]
                             }else{
                                 userCombatant.loseHealth(8)
                             }
                         }else if(this.page==0&&a==2){
-                            if(userCombatant.life<=0){
+                            if(userCombatant.life<=24){
                                 tempPage=-this.pages[this.page].link[a]
                             }else{
                                 userCombatant.loseHealth(24)
@@ -697,7 +709,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                     break
                     case 31:
                         if(this.page==0&&a==0){
-                            this.battle.loseCurrency(50,this.player)
+                            this.battle.loseCurrency(75,this.player)
                         }else if(this.page==0&&a==1&&floor(random(0,2))==0){
                             tempPage++
                         }else if((this.page==1||this.page==2)&&a==0){
@@ -723,7 +735,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         }else if(this.page==0&&a==1){
                             this.battle.addCurrency(999,this.player)
                         }else if(this.page==0&&a==2){
-                            userCombatant.gainMaxHP(20)
+                            userCombatant.gainMaxHP(25)
                         }else if(this.page==1&&a==0){
                             this.battle.relicManager.addRelic(findInternal('No Heal',types.relic),this.player)
                         }else if(this.page==2&&a==0){
@@ -734,7 +746,9 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         }
                     break
                     case 34:
-                        if(this.page==1&&a==0){
+                        if(this.page==0&&a==1&&floor(random(0,2))==0){
+                            tempPage++
+                        }else if(this.page==1&&a==0){
                             this.battle.overlayManager.overlays[3][this.player].active=true
                             this.battle.overlayManager.overlays[3][this.player].activate([0,1,1])
                         }else if(this.page==2&&a==0){
@@ -746,11 +760,11 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         if(this.page==1&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Madness',types.card),0,0)
                             this.battle.cardManagers[this.player].deck.add(findName('Madness',types.card),0,0)
-                            this.harmMax(userCombatant,10)
+                            this.harmMax(userCombatant,6)
                         }else if(this.page==2&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Writhe',types.card),0,constants.playerNumber+2)
                         }else if(this.page==3&&a==0){
-                            this.harmMax(userCombatant,5)
+                            this.harmMax(userCombatant,4)
                         }
                     break
                     case 36:
@@ -834,13 +848,15 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         }else if(this.page==6&&a==0){
                             userCombatant.heal(userCombatant.base.life)
                             userCombatant.gainMaxHP(10)
+                        }else if(this.page==7&&a==0){
+                            this.harm(userCombatant,10)
                         }
                     break
                     case 45:
                         if(this.page==0&&a==0){
                             this.battle.loseCurrency(40,this.player)
                         }else if(this.page==0&&a==1){
-                            this.battle.loseCurrency(60,this.player)
+                            this.battle.loseCurrency(80,this.player)
                         }else if(this.page==1&&a==0){
                             this.battle.cardManagers[this.player].randomEffect(0,2,[0])
                             this.battle.cardManagers[this.player].randomEffect(0,2,[0])
@@ -880,9 +896,9 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         if(this.page==0&&a==0){
                             this.battle.relicManager.addRelic(findInternal('More Currency',types.relic),this.player)
                         }else if(this.page==3&&a==0){
-                            this.harm(userCombatant,16)
+                            this.harm(userCombatant,30)
                         }else if(this.page==4&&a==0){
-                            this.harmMax(userCombatant,4)
+                            this.harmMax(userCombatant,5)
                         }else if(this.page==5&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Injury',types.card),0,constants.playerNumber+2)
                         }
@@ -1037,7 +1053,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         if(this.page==0&&a==0){
                             this.battle.loseCurrency(40,this.player)
                         }else if(this.page==1&&a==0){
-                            this.battle.nodeManager.freeMove+=2
+                            this.battle.nodeManager.freeMove[0]+=2
                         }
                     break
                     case 68:
@@ -1132,6 +1148,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                             userCombatant.gainMaxHP(16)
                             this.battle.cardManagers[this.player].deck.add(findName('Lunar\nNight',types.card),0,constants.playerNumber+2)
                         }else if(this.page==0&&a==1){
+                            this.harm(userCombatant,8)
                             this.battle.cardManagers[this.player].deck.add(findName('Lunar\nSoil',types.card),0,0)
                             this.battle.cardManagers[this.player].deck.add(findName('Lunar\nSoil',types.card),0,0)
                         }
@@ -1177,7 +1194,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                             this.battle.cardManagers[this.player].randomEffect(0,52,[2])
                             this.battle.cardManagers[this.player].randomEffect(0,52,[2])
                         }else if(this.page==1&&a==0){
-                            this.battle.addCurrency(5,this.player)
+                            this.battle.addCurrency(25,this.player)
                         }
                     break
                     case 82:
@@ -1194,7 +1211,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                     break
                     case 84:
                         if(this.page==0&&a==0){
-                            this.harmMax(userCombatant,10)
+                            this.harmMax(userCombatant,14)
                         }else if(this.page==0&&a==1){
                             this.battle.loseCurrency(25,this.player)
                         }else if(this.page==1&&a==0){
@@ -1386,9 +1403,9 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         }
                     break
                     case 107:
-                        if((this.page==0||this.page==2)&a==0&&this.battle.currency.money[this.player]>=5){
+                        if((this.page==0||this.page==4)&a==0&&this.battle.currency.money[this.player]>=5){
                             this.battle.loseCurrency(5,this.player)
-                            if(floor(random(0,4))!=0){
+                            if(floor(random(0,8))!=0){
                                 tempPage++
                             }
                         }else if(this.page==1&&a==0){
@@ -1400,12 +1417,16 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         if(this.page==0&&a==0){
                             this.battle.cardManagers[this.player].randomEffect(0,21)
                         }else if(this.page==1&&a==0){
-                            this.battle.addCurrency(35,this.player)
+                            this.battle.addCurrency(70,this.player)
                         }
                     break
                     case 109:
                         if(this.page==0&&a==0){
                             this.battle.relicManager.addRelic(findInternal('Glitched Cards',types.relic),this.player)
+                            if(floor(random(0,4))!=0){
+                                tempPage=1
+                            }
+                        }else if(this.page==1&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Gamer',types.card),0,constants.playerNumber+2)
                         }
                     break
@@ -1460,6 +1481,9 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                     case 115:
                         if(this.page==0&&a==1){
                             this.harm(userCombatant,15)
+                            if(floor(random(0,2))==0){
+                                tempPage++
+                            }
                         }else if(this.page==0&&a==2){
                             this.harm(userCombatant,5)
                         }else if(this.page==1&&a==0){
@@ -1561,7 +1585,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                                         this.battle.overlayManager.overlays[3][this.player].activate([0,floor(random(0,2)),0])
                                     break
                                     case 5:
-                                        this.battle.relicManager.addSetRelic(this.player,0)
+                                        this.battle.relicManager.addSetRelic(0,this.player)
                                     break
                                     case 6:
                                         this.battle.overlayManager.overlays[5][this.player].active=true
@@ -1705,7 +1729,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                         if(this.page==0&&a==0){
                             tempPage=floor(random(0,4))
                         }else if(this.page==1&&a==0){
-                            this.battle.relicManager.addRelic(findInternal('First Enemy Lose Health Per Turn',types.relic),this.player)
+                            this.battle.relicManager.addRelic(findInternal('First Enemy Mortal',types.relic),this.player)
                         }else if(this.page==2&&a==0){
                             this.battle.relicManager.addRelic(findInternal('First Enemy Remove Block',types.relic),this.player)
                         }else if(this.page==3&&a==0){
@@ -1990,7 +2014,7 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                         }else if(this.page==1&&a==1){
                             tempPage=this.selection[1]==this.selection[0]?2:3
                         }else if(this.page==2&&a==0){
-                            this.battle.addCurrency(500,this.player)
+                            this.battle.addCurrency(300,this.player)
                         }
                     break
                     case 167:
@@ -2096,6 +2120,326 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                             this.battle.relicManager.addRandomRelic(this.player)
                         }else if(this.page==3&&a==0){
                             userCombatant.loseHealth(10)
+                        }
+                    break
+                    case 179:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(50,this.player)
+                            userCombatant.heal(userCombatant.base.life)
+                        }else if(this.page==0&&a==1){
+                            this.battle.itemManager.addItem(findName('Rice',types.item),this.player)
+                        }
+                    break
+                    case 180:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(1,this.player)
+                        }else if(this.page==0&&a==1){
+                            this.battle.addCurrency(200,this.player)
+                            if(floor(random(0,2))==0){
+                                tempPage++
+                            }
+                        }else if(this.page==3&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Spoilage',types.card),0,constants.playerNumber+2)
+                        }
+                    break
+                    case 181:
+                        if(this.page==1&&a==0||this.page==2&&a==0||this.page==3&&a==0){
+                            this.harmMax(userCombatant,12)
+                        }else if(this.page==1&&a==1){
+                            this.battle.cardManagers[this.player].deck.add(findName('Direct\nSunlight',types.card),0,constants.playerNumber+2)
+                        }else if(this.page==2&&a==1){
+                            this.battle.cardManagers[this.player].deck.add(findName('Moon\nStillness',types.card),0,constants.playerNumber+2)
+                        }else if(this.page==3&&a==1){
+                            this.battle.cardManagers[this.player].deck.add(findName('Starry\nGlare',types.card),0,constants.playerNumber+2)
+                        }else if(this.page==1&&a==2||this.page==2&&a==2||this.page==3&&a==2){
+                            this.harm(userCombatant,8)
+                        }else if(this.page==4&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Sunny, Glowing\nSunlight',types.card),0,constants.playerNumber+5)
+                        }else if(this.page==7&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Luna, Silent\nMoonlight',types.card),0,constants.playerNumber+5)
+                        }else if(this.page==10&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Star, Showering\nStarlight',types.card),0,constants.playerNumber+5)
+                        }else if(this.page==5&&a==0){
+                            this.battle.overlayManager.overlays[104][this.player].active=true
+                            this.battle.overlayManager.overlays[104][this.player].activate([])
+                            this.battle.overlayManager.overlays[104][this.player].args[1]=2
+                        }else if(this.page==6&&a==0){
+                            this.battle.overlayManager.overlays[103][this.player].active=true
+                            this.battle.overlayManager.overlays[103][this.player].activate([])
+                            this.battle.overlayManager.overlays[103][this.player].args[1]=2
+                        }else if(this.page==8&&a==0){
+                            this.battle.overlayManager.overlays[15][this.player].active=true
+                            this.battle.overlayManager.overlays[15][this.player].activate([])
+                            this.battle.overlayManager.overlays[15][this.player].args[1]=3
+                        }else if(this.page==9&&a==0){
+                            this.battle.overlayManager.overlays[6][this.player].active=true
+                            this.battle.overlayManager.overlays[6][this.player].activate([])
+                        }else if(this.page==11&&a==0){
+                            this.battle.overlayManager.overlays[119][this.player].active=true
+                            this.battle.overlayManager.overlays[119][this.player].activate([])
+                            this.battle.overlayManager.overlays[119][this.player].args[1]=3
+                        }else if(this.page==12&&a==0){
+                            this.battle.overlayManager.overlays[9][this.player].active=true
+                            this.battle.overlayManager.overlays[9][this.player].activate([])
+                        }
+                    break
+                    case 182:
+                        if(this.page==0&&a==0&&floor(random(0,2))==0){
+                            tempPage++
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Minor\nInjury',types.card),0,constants.playerNumber+2)
+                        }
+                    break
+                    case 183:
+                        if(this.page==0&&a==0&&floor(random(0,2))==0){
+                            tempPage++
+                        }else if(this.page==1&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Lost Management Officer',types.encounter)])
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[5][this.player].active=true
+                            this.battle.overlayManager.overlays[5][this.player].activate()
+                        }else if(this.page==2&&a==1){
+                            this.battle.addCurrency(125,this.player)
+                        }else if(this.page==2&&a==2){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,3,12])
+                        }
+                    break
+                    case 184:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(150,this.player)
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(75,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.nodeManager.revealAll([0,1])
+                        }else if(this.page==2&&a==0){
+                            this.battle.nodeManager.revealAll([5])
+                        }
+                    break
+                    case 185:
+                        if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Innate Card',types.relic),this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.combatantManager.finalBossSwitch+=250
+                        }else if(this.page==3&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Iku, Sky\nEnvoy',types.card),0,constants.playerNumber+5)
+                        }
+                    break
+                    case 186:
+                        if(this.page==0&&a==0&&floor(random(0,2))==0){
+                            tempPage++
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(50,this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,1,1])
+                        }
+                    break
+                    case 187:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(100,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Currency Per Node',types.relic),this.player)
+                            this.listing.event.push(findName('Great Recession',types.event))
+                        }
+                    break
+                    case 188:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(this.battle.currency.money[this.player],this.player)
+                            if(this.battle.relicManager.hasRelic(findInternal('Currency Per Node',types.relic),this.player)){
+                                this.battle.relicManager.loseRelic(findInternal('Currency Per Node',types.relic),this.player)
+                            }
+                        }
+                    break
+                    case 189:
+                        if((this.page==1||this.page==10)&&a==0){
+                            if(userCombatant.life<=5){
+                                tempPage=this.page-this.pages[this.page].link[a]
+                            }else{
+                                userCombatant.loseHealth(5)
+                                if(floor(random(0,2))==0){
+                                    tempPage+=9-this.pages[this.page].link[a]
+                                }
+                            }
+                        }else if((this.page==1||this.page==10)&&a==1){
+                            if(this.battle.currency.money[this.player]<40){
+                                tempPage=this.page-this.pages[this.page].link[a]
+                            }else{
+                                this.battle.loseCurrency(40,this.player)
+                                if(floor(random(0,2))==0){
+                                    tempPage+=9-this.pages[this.page].link[a]
+                                }
+                            }
+                        }else if((this.page==1||this.page==10)&&a==2){
+                            this.battle.cardManagers[this.player].randomEffect(0,21,[])
+                            if(floor(random(0,2))==0){
+                                tempPage+=9-this.pages[this.page].link[a]
+                            }
+                        }else if(this.page==4&&a==0){
+                            if(userCombatant.life<=5){
+                                tempPage=this.page-this.pages[this.page].link[a]
+                            }else{
+                                userCombatant.loseHealth(5)
+                                if(floor(random(0,3))==0){
+                                    tempPage+=2
+                                }else if(floor(random(0,2))==0){
+                                    tempPage++
+                                }
+                            }
+                        }else if(this.page==4&&a==1){
+                            if(this.battle.currency.money[this.player]<40){
+                                tempPage=this.page-this.pages[this.page].link[a]
+                            }else{
+                                this.battle.loseCurrency(40,this.player)
+                                if(floor(random(0,3))==0){
+                                    tempPage+=2
+                                }else if(floor(random(0,2))==0){
+                                    tempPage++
+                                }
+                            }
+                        }else if(this.page==4&&a==2){
+                            this.battle.cardManagers[this.player].randomEffect(0,21,[])
+                            if(floor(random(0,3))==0){
+                                tempPage+=2
+                            }else if(floor(random(0,2))==0){
+                                tempPage++
+                            }
+                        }else if(this.page==6&&a==0){
+                            this.battle.relicManager.addSetRelic(2,this.player)
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
+                        }
+                    break
+                    case 190:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(150,this.player)
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,2,12])
+                        }else if((this.page==1||this.page==10)&&a==0){
+                            if(userCombatant.life<=5){
+                                tempPage=this.page-this.pages[this.page].link[a]
+                            }else{
+                                userCombatant.loseHealth(5)
+                                if(floor(random(0,2))==0){
+                                    tempPage+=9-this.pages[this.page].link[a]
+                                }
+                            }
+                        }else if((this.page==1||this.page==10)&&a==1){
+                            if(this.battle.currency.money[this.player]<40){
+                                tempPage=this.page-this.pages[this.page].link[a]
+                            }else{
+                                this.battle.loseCurrency(40,this.player)
+                                if(floor(random(0,2))==0){
+                                    tempPage+=9-this.pages[this.page].link[a]
+                                }
+                            }
+                        }else if((this.page==1||this.page==10)&&a==2){
+                            this.battle.cardManagers[this.player].randomEffect(0,21,[])
+                            if(floor(random(0,2))==0){
+                                tempPage+=9-this.pages[this.page].link[a]
+                            }
+                        }else if(this.page==4&&a==0){
+                            if(userCombatant.life<=5){
+                                tempPage=this.page-this.pages[this.page].link[a]
+                            }else{
+                                userCombatant.loseHealth(5)
+                                if(floor(random(0,3))==0){
+                                    tempPage+=2
+                                }else if(floor(random(0,2))==0){
+                                    tempPage++
+                                }
+                            }
+                        }else if(this.page==4&&a==1){
+                            if(this.battle.currency.money[this.player]<40){
+                                tempPage=this.page-this.pages[this.page].link[a]
+                            }else{
+                                this.battle.loseCurrency(40,this.player)
+                                if(floor(random(0,3))==0){
+                                    tempPage+=2
+                                }else if(floor(random(0,2))==0){
+                                    tempPage++
+                                }
+                            }
+                        }else if(this.page==4&&a==2){
+                            this.battle.cardManagers[this.player].randomEffect(0,21,[])
+                            if(floor(random(0,3))==0){
+                                tempPage+=2
+                            }else if(floor(random(0,2))==0){
+                                tempPage++
+                            }
+                        }else if(this.page==6&&a==0){
+                            this.battle.relicManager.addSetRelic(2,this.player)
+                            this.battle.overlayManager.overlays[25][a].active=true
+                            this.battle.overlayManager.overlays[25][a].activate([0,[
+                                {type:1,value:[0,2,0]},
+                                {type:1,value:[0,2,12]},
+                            ]])
+                        }else if((this.page==12||this.page==14)&&a==0){
+                            if(userCombatant.life<=10){
+                                tempPage=this.page-this.pages[this.page].link[a]
+                            }else{
+                                userCombatant.loseHealth(10)
+                                if(floor(random(0,2))==0){
+                                    tempPage+=12
+                                }
+                            }
+                        }else if((this.page==12||this.page==14)&&a==1){
+                            if(this.battle.currency.money[this.player]<80){
+                                tempPage=this.page-this.pages[this.page].link[a]
+                            }else{
+                                this.battle.loseCurrency(80,this.player)
+                                if(floor(random(0,2))==0){
+                                    tempPage+=12
+                                }
+                            }
+                        }else if((this.page==12||this.page==14)&&a==2){
+                            this.battle.cardManagers[this.player].deck.add(findName('Blind\nAggression',types.card),0,constants.playerNumber+2)
+                        }
+                    break
+                    case 191:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(25,this.player)
+                        }else if(this.page==0&&(a==1||a==2)){
+                            this.battle.loseCurrency(50,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Paper\nBall',types.card),0,0)
+                        }else if(this.page==2&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Ferrero',types.card),0,0)
+                        }else if(this.page==3&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Lindt',types.card),0,0)
+                        }
+                    break
+                    case 192:
+                        if(this.page==0&&a==0){
+                            userCombatant.gainMaxHP(16)
+                            this.battle.cardManagers[this.player].deck.add(findName('Multitudes',types.card),0,constants.playerNumber+2)
+                        }else if(this.page==0&&a==1){
+                            this.harm(userCombatant,8)
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,3,15])
+                        }
+                    break
+                    case 193:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,constants.playerNumber+1,58])
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(50,this.player)
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,1,0])
+                        }else if(this.page==0&&a==2){
+                            this.battle.loseCurrency(250,this.player)
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
+                        }
+                    break
+                    case 194:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[184][this.player].active=true
+                            this.battle.overlayManager.overlays[184][this.player].activate([])
                         }
                     break
 

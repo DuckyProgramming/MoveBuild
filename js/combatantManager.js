@@ -313,7 +313,7 @@ class combatantManager{
                 this.combatants[a].markTarget()
             }
             if(
-                (this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62||this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==64)&&
+                (this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62||this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==64||this.battle.attackManager.targetInfo[0]==67)&&
                 this.combatants[a].life>0&&(this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team||(this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==64)&&this.combatants[a].tilePosition.x==this.battle.attackManager.tilePosition.x&&this.combatants[a].tilePosition.y==this.battle.attackManager.tilePosition.y)&&
                 !((this.combatants[a].spec.includes(9)||this.battle.modded(86)&&this.battle.turn.total<=2)&&abs(this.combatants[a].goal.anim.direction-atan2(this.combatants[this.battle.attackManager.player].relativePosition.x-this.combatants[a].relativePosition.x,this.combatants[this.battle.attackManager.player].relativePosition.y-this.combatants[a].relativePosition.y))<30)&&
                 !(this.battle.attackManager.targetInfo[0]==22&&this.combatants[a].tilePosition.y!=this.battle.attackManager.tilePosition.y)&&
@@ -1141,6 +1141,16 @@ class combatantManager{
                             this.combatants[a].statusEffect(args[0],args[1])
                         }
                     break
+                    case 63:
+                        args[0].addBlock(min(this.combatants[a].block,args[1]))
+                        this.combatants[a].block=max(0,this.combatants[a].block-args[1])
+                    break
+                    case 64:
+                        this.combatants[a].statusEffect(args[0],this.combatants[a].getStatus(args[1]))
+                    break
+                    case 65:
+                        this.combatants[a].loseHealth(this.combatants[a].totalStatus(1))
+                    break
                 }
             }
         }
@@ -1312,7 +1322,7 @@ class combatantManager{
         }else{
             this.combatants[this.combatants.length-1].activated=true
         }
-        if(!options.oldUnbuild&&this.combatants[this.combatants.length-1].move.speed==0&&this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players){
+        if(!options.oldUnbuild&&(this.combatants[this.combatants.length-1].move.speed==0||this.combatants[this.combatants.length-1].name=='Motor Turret')&&this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players){
             if(this.battle.cardManagers[this.battle.turn.main].hand.numberAbstract(0,[['Unbuild']])==0){
                 this.battle.cardManagers[this.battle.turn.main].hand.add(findName('Unbuild',types.card),0,0)
             }
@@ -1446,7 +1456,8 @@ class combatantManager{
         let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=diagonal?distTargetDiagonalCombatant(0,{tilePosition:tilePosition},this.combatants[a]):distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].life>0&&((
+            if(this.combatants[a].life>0&&(
+                (
                     targetter[0]==0||
                     targetter[0]==1&&this.combatants[a].team!=targetter[1]||
                     targetter[0]==2&&this.combatants[a].team==targetter[1]||
@@ -1455,13 +1466,16 @@ class combatantManager{
                     targetter[0]==5&&this.combatants[a].id!=targetter[1]&&this.combatants[a].block<=0||
                     targetter[0]==6&&this.combatants[a].id==targetter[1]&&this.combatants[a].block<=0||
                     targetter[0]==7&&(this.combatants[a].team<=0||this.combatants[a].team>this.battle.players)
-                )&&distance>=range[0]&&distance<=range[1]
-                &&!(effect==0&&distance>0&&!(
-                    diagonal&&legalTargetDiagonalCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)||
-                    !diagonal&&legalTargetCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)
-                ))
-                ||this.battle.modded(121))
-            ){
+                )&&(
+                    effect==12&&this.combatants[a].team==0||
+                    distance>=range[0]&&distance<=range[1]
+                    &&!(effect==0&&distance>0&&!(
+                        diagonal&&legalTargetDiagonalCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)||
+                        !diagonal&&legalTargetCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)
+                    ))
+                    ||this.battle.modded(121)
+                )
+            )){
                 switch(effect){
                     case 0:
                         if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Boost')>0){
@@ -1519,6 +1533,22 @@ class combatantManager{
                     break
                     case 10:
                         this.combatants[a].statusEffect(values[0],values[1]*(this.combatants[a].life<=this.combatants[a].base.life*0.5?2:1))
+                    break
+                    case 11:
+                        values[4].addBlock(min(this.combatants[a].block,values[1]))
+                        this.combatants[a].block=max(0,this.combatants[a].block-values[1])
+                        this.combatants[a].takeDamage(values[0],values[2],values[3])
+                    break
+                    case 12:
+                        if(
+                            diagonal&&legalTargetDiagonalCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)||
+                            !diagonal&&legalTargetCombatant(0,range[0],range[1],{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)
+                        ){
+                            this.combatants[a].takeDamage(values[0],values[1],values[2])
+                        }else{
+                            this.combatants[a].statusEffect(values[3],values[4])
+                            this.combatants[a].statusEffect(values[5],values[6])
+                        }
                     break
                 }
                 if(

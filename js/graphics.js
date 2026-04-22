@@ -603,6 +603,646 @@ function displayTrianglesFrontMerge(layer,parts,direction,base,width,weight,slan
 	}
 	layer.strokeJoin(MITER)
 }
+function displayTrianglesFrontMergeDown(layer,parts,direction,base,width,weight,slant,color1,color2,fade){
+	layer.strokeWeight(weight)
+	layer.strokeJoin(ROUND)
+	let g=0
+	let lg=parts.length
+	for(let part of parts){
+		g++
+		if(color1==-1){
+			layer.fill(0,fade)
+			layer.stroke(0,fade)
+			layer.erase(fade,fade)
+		}else{
+			layer.fill(...mergeColor(color1,color2,g/lg))
+			layer.stroke(...mergeColor(color1,color2,g/lg))
+		}
+		let reality=[
+			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
+			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
+			part.spin[2]+direction
+		]
+		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
+		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
+		if(c[0]>=0){
+			if(c[1]>=0){
+				if(c[2]>=0){
+					layer.triangle(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0],
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]
+					)
+					layer.rect(
+						0.5*(s[0]+s[1])*(width/2+part.y[0]*slant),
+						5,
+						abs(s[0]-s[1])*(width/2+part.y[0]*slant),
+						10,
+					)
+				}
+			}else{
+				if(c[2]>=0){
+					let inter=[
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[0]-reality[1]):
+						abs(90-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[1]-reality[2]):
+						abs(90-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.quad(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0],
+						width/2+cut[0]*slant,base+cut[0],
+						width/2+cut[1]*slant,base+cut[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]
+					)
+				}else{
+					let inter=[
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[1]):
+						abs(90-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[2]):
+						abs(90-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.triangle(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0],
+						width/2+cut[0]*slant,base+cut[0],
+						width/2+cut[1]*slant,base+cut[1]
+					)
+				}
+			}
+		}else{
+			if(c[1]>=0){
+				if(c[2]>=0){
+					let inter=[
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[1]):
+						abs(270-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[2]):
+						abs(270-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.quad(
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1],
+						-width/2-cut[0]*slant,base+cut[0],
+						-width/2-cut[1]*slant,base+cut[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]
+					)
+				}else{
+					let inter=[
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[0]-reality[1]):
+						abs(270-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[1]-reality[2]):
+						abs(270-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.triangle(
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1],
+						-width/2-cut[0]*slant,base+cut[0],
+						-width/2-cut[1]*slant,base+cut[1]
+					)
+				}
+			}
+		}
+	}
+	layer.strokeJoin(MITER)
+}
+function displayTrianglesBackMerge3D(layer,parts,direction,base,width,weight,slant,color1,color2,fade,plane){
+	layer.strokeWeight(weight)
+	layer.strokeJoin(ROUND)
+	let g=0
+	let lg=parts.length
+	for(let part of parts){
+		g++
+		if(color1==-1){
+			layer.fill(0,fade)
+			layer.stroke(0,fade)
+			layer.erase(fade,fade)
+		}else{
+			layer.fill(...mergeColor(color1,color2,g/lg))
+			layer.stroke(...mergeColor(color1,color2,g/lg))
+		}
+		let reality=[
+			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
+			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
+			part.spin[2]+direction
+		]
+		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
+		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
+		if(c[0]<0){
+			if(c[1]<0){
+				if(c[2]<0){
+					layer.triangle(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*part.y[0]*slant,
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*part.y[1]*slant,
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*part.y[2]*slant,
+					)
+				}
+			}else{
+				if(c[2]<0){
+					let inter=[
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[0]-reality[1]):
+						abs(270-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[1]-reality[2]):
+						abs(270-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.quad(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*part.y[0]*slant,
+						-width/2-cut[0]*slant,base+cut[0],
+						-width/2-cut[1]*slant,base+cut[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*part.y[2]*slant,
+					)
+				}else{
+					let inter=[
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[1]):
+						abs(270-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[2]):
+						abs(270-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.triangle(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*part.y[0]*slant,
+						-width/2-cut[0]*slant,base+cut[0],
+						-width/2-cut[1]*slant,base+cut[1]
+					)
+				}
+			}
+		}else{
+			if(c[1]<0){
+				if(c[2]<0){
+					let inter=[
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[1]):
+						abs(90-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[2]):
+						abs(90-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.quad(
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*part.y[1]*slant,
+						width/2+cut[0]*slant,base+cut[0],
+						width/2+cut[1]*slant,base+cut[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*part.y[2]*slant,
+					)
+				}else{
+					let inter=[
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[0]-reality[1]):
+						abs(90-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[1]-reality[2]):
+						abs(90-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.triangle(
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*part.y[1]*slant,
+						width/2+cut[0]*slant,base+cut[0],
+						width/2+cut[1]*slant,base+cut[1]
+					)
+				}
+			}
+		}
+	}
+	layer.strokeJoin(MITER)
+}
+function displayTrianglesFrontMerge3D(layer,parts,direction,base,width,weight,slant,color1,color2,fade,plane){
+	layer.strokeWeight(weight)
+	layer.strokeJoin(ROUND)
+	let g=0
+	let lg=parts.length
+	for(let part of parts){
+		g++
+		if(color1==-1){
+			layer.fill(0,fade)
+			layer.stroke(0,fade)
+			layer.erase(fade,fade)
+		}else{
+			layer.fill(...mergeColor(color1,color2,g/lg))
+			layer.stroke(...mergeColor(color1,color2,g/lg))
+		}
+		let reality=[
+			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
+			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
+			part.spin[2]+direction
+		]
+		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
+		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
+		if(c[0]>=0){
+			if(c[1]>=0){
+				if(c[2]>=0){
+					layer.triangle(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*part.y[0]*slant,
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*part.y[1]*slant,
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*part.y[2]*slant,
+					)
+				}
+			}else{
+				if(c[2]>=0){
+					let inter=[
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[0]-reality[1]):
+						abs(90-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[1]-reality[2]):
+						abs(90-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.quad(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*part.y[0]*slant,
+						width/2+cut[0]*slant,base+cut[0],
+						width/2+cut[1]*slant,base+cut[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*part.y[2]*slant,
+					)
+				}else{
+					let inter=[
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[1]):
+						abs(90-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[2]):
+						abs(90-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.triangle(
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*part.y[0]*slant,
+						width/2+cut[0]*slant,base+cut[0],
+						width/2+cut[1]*slant,base+cut[1]
+					)
+				}
+			}
+		}else{
+			if(c[1]>=0){
+				if(c[2]>=0){
+					let inter=[
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[1]):
+						abs(270-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[2]):
+						abs(270-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.quad(
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*part.y[1]*slant,
+						-width/2-cut[0]*slant,base+cut[0],
+						-width/2-cut[1]*slant,base+cut[1],
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*part.y[2]*slant,
+					)
+				}else{
+					let inter=[
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[0]-reality[1]):
+						abs(270-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[1]-reality[2]):
+						abs(270-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					layer.triangle(
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*part.y[1]*slant,
+						-width/2-cut[0]*slant,base+cut[0],
+						-width/2-cut[1]*slant,base+cut[1]
+					)
+				}
+			}
+		}
+	}
+	layer.strokeJoin(MITER)
+}
+/*function displayTrianglesBackMerge3D(layer,parts,direction,base,width,weight,slant,color1,color2,fade,plane){
+	layer.strokeWeight(weight)
+	layer.strokeJoin(ROUND)
+	let g=0
+	let lg=parts.length
+	for(let part of parts){
+		g++
+		if(color1==-1){
+			layer.fill(0,fade)
+			layer.stroke(0,fade)
+			layer.erase(fade,fade)
+		}else{
+			layer.fill(...mergeColor(color1,color2,g/lg))
+			layer.stroke(...mergeColor(color1,color2,g/lg))
+		}
+		let reality=[
+			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
+			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
+			part.spin[2]+direction
+		]
+		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
+		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
+		if(c[0]<0){
+			if(c[1]<0){
+				if(c[2]<0){
+					xs=[
+						s[0]*(width/2+part.y[0]*slant),
+						s[1]*(width/2+part.y[1]*slant),
+						s[2]*(width/2+part.y[2]*slant)
+					]
+					layer.triangle(
+						xs[0],base+part.y[0]+xs[0]*plane,
+						xs[1],base+part.y[1]+xs[1]*plane,
+						xs[2],base+part.y[2]+xs[2]*plane
+					)
+				}
+			}else{
+				if(c[2]<0){
+					let inter=[
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[0]-reality[1]):
+						abs(270-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[1]-reality[2]):
+						abs(270-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					let xs=[
+						s[0]*(width/2+part.y[0]*slant),
+						-width/2-cut[0]*slant,
+						-width/2-cut[1]*slant,
+						s[2]*(width/2+part.y[2]*slant)
+					]
+					layer.quad(
+						xs[0],base+part.y[0]+xs[0]*plane,
+						xs[1],base+cut[0]+xs[1]*plane,
+						xs[2],base+cut[1]+xs[2]*plane,
+						xs[3],base+part.y[2]+xs[3]*plane
+					)
+				}else{
+					let inter=[
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[1]):
+						abs(270-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[2]):
+						abs(270-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					let xs=[
+						s[0]*(width/2+part.y[0]*slant),
+						-width/2-cut[0]*slant,
+						-width/2-cut[1]*slant
+					]
+					layer.triangle(
+						xs[0],base+part.y[0]+xs[0]*plane,
+						xs[1],base+cut[0]+xs[1]*plane,
+						xs[2],base+cut[1]+xs[2]*plane
+					)
+				}
+			}
+		}else{
+			if(c[1]<0){
+				if(c[2]<0){
+					let inter=[
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[1]):
+						abs(90-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[2]):
+						abs(90-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					let xs=[
+						s[1]*(width/2+part.y[1]*slant),
+						width/2+cut[0]*slant,
+						width/2+cut[1]*slant,
+						s[2]*(width/2+part.y[2]*slant)
+					]
+					layer.quad(
+						xs[0],base+part.y[1]+xs[0]*plane,
+						xs[1],base+cut[0]+xs[1]*plane,
+						xs[2],base+cut[1]+xs[2]*plane,
+						xs[3],base+part.y[2]+xs[3]*plane
+					)
+				}else{
+					let inter=[
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[0]-reality[1]):
+						abs(90-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[1]-reality[2]):
+						abs(90-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					let xs=[
+						s[1]*(width/2+part.y[1]*slant),
+						width/2+cut[0]*slant,
+						width/2+cut[1]*slant
+					]
+					layer.triangle(
+						xs[0],base+part.y[1]+xs[0]*plane,
+						xs[1],base+cut[0]+xs[1]*plane,
+						xs[2],base+cut[1]+xs[2]*plane
+					)
+				}
+			}
+		}
+	}
+	layer.strokeJoin(MITER)
+}
+function displayTrianglesFrontMerge3D(layer,parts,direction,base,width,weight,slant,color1,color2,fade,plane){
+	layer.strokeWeight(weight)
+	layer.strokeJoin(ROUND)
+	let g=0
+	let lg=parts.length
+	for(let part of parts){
+		g++
+		if(color1==-1){
+			layer.fill(0,fade)
+			layer.stroke(0,fade)
+			layer.erase(fade,fade)
+		}else{
+			layer.fill(...mergeColor(color1,color2,g/lg))
+			layer.stroke(...mergeColor(color1,color2,g/lg))
+		}
+		let reality=[
+			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
+			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
+			part.spin[2]+direction
+		]
+		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
+		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
+		if(c[0]>=0){
+			if(c[1]>=0){
+				if(c[2]>=0){
+					let xs=[
+						s[0]*(width/2+part.y[0]*slant),
+						s[1]*(width/2+part.y[1]*slant),
+						s[2]*(width/2+part.y[2]*slant)
+					]
+					layer.triangle(
+						xs[0],base+part.y[0]+xs[0]*plane,
+						xs[1],base+part.y[1]+xs[1]*plane,
+						xs[2],base+part.y[2]+xs[2]*plane
+					)
+				}
+			}else{
+				if(c[2]>=0){
+					let inter=[
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[0]-reality[1]):
+						abs(90-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<-90?
+						abs(-270-reality[1])/abs(reality[1]-reality[2]):
+						abs(90-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					let xs=[
+						s[0]*(width/2+part.y[0]*slant),
+						width/2+cut[0]*slant,
+						width/2+cut[1]*slant,
+						s[2]*(width/2+part.y[2]*slant)
+					]
+					layer.quad(
+						xs[0],base+part.y[0]+xs[0]*plane,
+						xs[1],base+cut[0]+xs[1]*plane,
+						xs[2],base+cut[1]+xs[2]*plane,
+						xs[3],base+part.y[2]+xs[3]*plane
+					)
+				}else{
+					let inter=[
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[1]):
+						abs(90-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<-90?
+						abs(-270-reality[0])/abs(reality[0]-reality[2]):
+						abs(90-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					let xs=[
+						s[0]*(width/2+part.y[0]*slant),
+						width/2+cut[0]*slant,
+						width/2+cut[1]*slant
+					]
+					layer.triangle(
+						xs[0],base+part.y[0]+xs[0]*plane,
+						xs[1],base+cut[0]+xs[1]*plane,
+						xs[2],base+cut[1]+xs[2]*plane
+					)
+				}
+			}
+		}else{
+			if(c[1]>=0){
+				if(c[2]>=0){
+					let inter=[
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[1]):
+						abs(270-reality[0])/abs(reality[0]-reality[1]),
+						reality[0]<90?
+						abs(-90-reality[0])/abs(reality[0]-reality[2]):
+						abs(270-reality[0])/abs(reality[0]-reality[2])
+					]
+					let cut=[
+						part.y[0]*(1-inter[0])+part.y[1]*inter[0],
+						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					let xs=[
+						s[1]*(width/2+part.y[1]*slant),
+						-width/2-cut[0]*slant,
+						-width/2-cut[1]*slant,
+						s[2]*(width/2+part.y[2]*slant)
+					]
+					layer.quad(
+						xs[0],base+part.y[1]+xs[0]*plane,
+						xs[1],base+cut[0]+xs[1]*plane,
+						xs[2],base+cut[1]+xs[2]*plane,
+						xs[3],base+part.y[2]+xs[3]*plane
+					)
+				}else{
+					let inter=[
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[0]-reality[1]):
+						abs(270-reality[1])/abs(reality[0]-reality[1]),
+						reality[1]<90?
+						abs(-90-reality[1])/abs(reality[1]-reality[2]):
+						abs(270-reality[1])/abs(reality[1]-reality[2])
+					]
+					let cut=[
+						part.y[1]*(1-inter[0])+part.y[0]*inter[0],
+						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
+					]
+					let xs=[
+						s[1]*(width/2+part.y[1]*slant),
+						-width/2-cut[0]*slant,
+						-width/2-cut[1]*slant
+					]
+					layer.triangle(
+						xs[0],base+part.y[1]+xs[0]*plane,
+						xs[1],base+cut[0]+xs[1]*plane,
+						xs[2],base+cut[1]+xs[2]*plane
+					)
+				}
+			}
+		}
+	}
+	layer.strokeJoin(MITER)
+}*/
 function controlSpin(set,direction,spec){
 	for(let g=0,lg=set.length;g<lg;g++){
 		if(set[g].spin[0]>set[g].spin[1]&&spec==1){
@@ -2019,17 +2659,6 @@ function generateSprite(layer,type,direction){
 				lengths.push(dist(nodes[a][0],nodes[a][1],nodes[a+1][0],nodes[a+1][1]))
 				totalLength+=dist(nodes[a][0],nodes[a][1],nodes[a+1][0],nodes[a+1][1])
 			}
-			for(let a=0,la=nodes.length-1;a<la;a++){
-				for(let b=0,lb=round(lengths[a]*2);b<lb;b++){
-					layer.stroke(...mergeColor(data.color.wing[0],data.color.wing[1],random(0.5,1)))
-					let rand=random(0.2,0.8)
-					layer.strokeWeight(random(0.8,1.2))
-					layer.point(
-						map((b+rand)/lb,0,1,nodes[a][0],nodes[a+1][0]),
-						map((b+rand)/lb,0,1,nodes[a][1],nodes[a+1][1])
-					)
-				}
-			}
 			layer.strokeWeight(0.6)
 			layer.noStroke()
 			for(let a=0,la=600;a<la;a++){
@@ -2045,30 +2674,135 @@ function generateSprite(layer,type,direction){
 					part==0?-75:atan2(nodes[part][0]-nodes[part-1][0],nodes[part][1]-nodes[part-1][1]),
 					atan2(nodes[part+1][0]-nodes[part][0],nodes[part+1][1]-nodes[part][1])
 				)
-				let size=random(0.4,0.8)+(prePosition/totalLength)**2.5*2
+				let size=random(0.4,0.6)+sin(a*5)*0.1+(prePosition/totalLength)**2.5*2
 				let offset=random(4,6)-a/la*4
-				layer.fill(...mergeColor(data.color.wing[0],data.color.wing[1],random(0,0.2)+a/la*0.8))
 				layer.push()
 				layer.translate(
-					map(position,0,lengths[part],nodes[part][0],nodes[part+1][0]),
-					map(position,0,lengths[part],nodes[part][1],nodes[part+1][1])
+					map(position,0,lengths[part],nodes[part][0],nodes[part+1][0])-(nodes[part+1][1]-nodes[part][1])*0.05*sin(position/lengths[part]*180),
+					map(position,0,lengths[part],nodes[part][1],nodes[part+1][1])+(nodes[part+1][0]-nodes[part][0])*0.05*sin(position/lengths[part]*180)
 				)
 				layer.rotate(-dir-90)
-				layer.beginShape()
-				layer.vertex(-0.2,-0.25+offset*0.1)
-				layer.bezierVertex(
-					-1.2*(0.5+size*0.5),(4+offset)*size,
-					-0.6*(0.5+size*0.5),(5+offset)*size,
-					0,(6+offset)*size,
-				)
-				layer.bezierVertex(
-					0.6*(0.5+size*0.5),(5+offset)*size,
-					1.2*(0.5+size*0.5),(4+offset)*size,
-					0.2,-0.25+offset*0.1
-				)
-				layer.endShape()
+                let col=mergeColor(data.color.wing[0],data.color.wing[1],random(0,0.2)+a/la*0.8)
+                for(let b=0,lb=10;b<lb;b++){
+                    let trueSize=size+b/lb*0.25
+                    layer.fill(...col,(1-b/lb)*0.5)
+                    layer.beginShape()
+                    layer.vertex(-0.2,-0.25+offset*0.1)
+                    layer.bezierVertex(
+                        -1.2*(0.5+trueSize*0.5),(4+offset)*trueSize,
+                        -0.6*(0.5+trueSize*0.5),(5+offset)*trueSize,
+                        0,(6+offset)*trueSize,
+                    )
+                    layer.bezierVertex(
+                        0.6*(0.5+trueSize*0.5),(5+offset)*trueSize,
+                        1.2*(0.5+trueSize*0.5),(4+offset)*trueSize,
+                        0.2,-0.25+offset*0.1
+                    )
+                    layer.endShape()
+                }
+                let gradient=new p5.LinearGradient(0,2)
+                gradient.colors(
+                    0.0,
+                    color(...col),
+                    1.0,
+                    color(col[0]-100,col[1]-100,col[2]-40)
+                )
+                layer.fillGradient(gradient)
+                layer.beginShape()
+                layer.vertex(-0.2,-0.25+offset*0.1)
+                layer.bezierVertex(
+                    -1.2*(0.5+size*0.5),(4+offset)*size,
+                    -0.6*(0.5+size*0.5),(5+offset)*size,
+                    0,(6+offset)*size,
+                )
+                layer.bezierVertex(
+                    0.6*(0.5+size*0.5),(5+offset)*size,
+                    1.2*(0.5+size*0.5),(4+offset)*size,
+                    0.2,-0.25+offset*0.1
+                )
+                layer.endShape()
 				layer.pop()
 			}
+            let ticker=0
+			for(let a=0,la=nodes.length-1;a<la;a++){
+				for(let b=0,lb=round(lengths[a]*2);b<lb;b++){
+                    let col=mergeColor(data.color.wing[0],data.color.wing[1],random(0.5,0.6)+0.2*(1+sin(ticker*15)))
+					let rand=random(0.2,0.8)
+                    let size=random(0.8,1.2)
+                    let position=(b+rand)/lb
+                    let pos=[
+                        map(position,0,1,nodes[a][0],nodes[a+1][0])-(nodes[a+1][1]-nodes[a][1])*0.05*sin(position*180)+random(-0.25,0.25),
+						map(position,0,1,nodes[a][1],nodes[a+1][1])+(nodes[a+1][0]-nodes[a][0])*0.05*sin(position*180)+random(-0.25,0.25)
+                    ]
+                    for(let c=0,lc=10;c<lc;c++){
+                        layer.stroke(...col,(1-c/lc)*0.5)
+                        layer.strokeWeight(size*(0.25+c/lc))
+                        layer.point(pos[0],pos[1])
+                    }
+				}
+                ticker++
+			}
+		break
+		case 77:
+			layer.fill(...data.color.hair.insideFront)
+			layer.stroke(...data.color.hair.insideFront)
+			layer.strokeWeight(1)
+			layer.arc(0,0,34,33,-180,0)
+			layer.line(-17,0,17,0)
+			controlSpin(data.parts.hair.inside,direction,0)
+			displayTrianglesFrontMerge(layer,data.parts.hair.inside,direction,0,34,0.5,0.0225,data.color.hair.insideFront,data.color.hair.insideFront,1)
+			controlSpin(data.parts.hair.reverseInside,direction,0)
+			displayTrianglesFrontMergeDown(layer,data.parts.hair.reverseInside,direction,0.5,33.5,0.1,0.1,-1,-1,1)
+			layer.erase()
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			layer.arc(0,0,37,37,-180,0)
+			layer.line(-18.5,0,-19.5,20)
+			layer.line(18.5,0,19.5,20)
+		break
+		case 78:
+			displayTrianglesBackMerge(layer,data.parts.hair.inside,direction,0,34,0.5,0.045,data.color.hair.insideBack,data.color.hair.insideBack,1)
+			layer.erase()
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			layer.arc(0,0,37,37,-180,0)
+			layer.line(-18.5,0,-19.5,20)
+			layer.line(18.5,0,19.5,20)
+		break
+		case 79:
+			layer.fill(...data.color.hair.front)
+			layer.stroke(...data.color.hair.front)
+			layer.strokeWeight(1)
+			layer.arc(0,0,34,34,-180,0)
+			layer.line(-17,0,17,0)
+			controlSpin(data.parts.hair.main,direction,0)
+			displayTrianglesFrontMerge(layer,data.parts.hair.main,direction,0,34,0.5,0.025,data.color.hair.front,data.color.hair.front,1)
+			controlSpin(data.parts.hair.reverse,direction,0)
+			displayTrianglesFrontMergeDown(layer,data.parts.hair.reverse,direction,0.5,33.5,0.1,0.15,-1,-1,1)
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			layer.arc(0,0,37,37,-180,0)
+			layer.line(-18.5,0,-19.5,20)
+			layer.line(18.5,0,19.5,20)
+		break
+		case 80:
+			layer.fill(...data.color.hair.back)
+			layer.stroke(...data.color.hair.back)
+			layer.strokeWeight(1)
+			layer.arc(0,0,35,34,-180,0)
+			layer.line(-17.5,0,17.5,0)
+			displayTrianglesBackMerge(layer,data.parts.hair.main,direction,0,34,0.5,0.025,data.color.hair.back,data.color.hair.back,1)
+			controlSpin(data.parts.hair.reverse,direction,0)
+			displayTrianglesBackMerge(layer,data.parts.hair.reverse,direction,0.5,33.5,0.1,0.15,-1,-1,1)
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(3)
+			layer.arc(0,0,37,37,-180,0)
+			layer.line(-18.5,0,-19.5,20)
+			layer.line(18.5,0,19.5,20)
 		break
 		
 	}
@@ -3734,7 +4468,7 @@ function setupCombatantGraphics(type){
 		case 11:
 			graphics.combatant.push({
 				sprites:{detail:15,genAmount:0,animDirection:0},
-				parts:{jacket:[]},
+				parts:{},
 				color:{
                     hair:{back:[50,50,70],front:[70,70,90],insideBack:[40,40,60],insideFront:[60,60,80],glow:[245,230,245]},
                     skin:{head:[223,214,197],body:[200,186,177],legs:[224,234,243],arms:[235,233,221]},
@@ -3807,6 +4541,115 @@ function setupCombatantGraphics(type){
 				data.sprites.hair.preBack[g].translate(100,100)
 				data.sprites.hair.preBack[g].scale(5)
 				generateSprite(data.sprites.hair.preBack[g],69,g*data.sprites.detail)
+				//console.log('Generated HB-'+(g+1))
+				data.sprites.hair.front.push(createGraphics(200,300))
+				data.sprites.hair.front[g].image(data.sprites.hair.insideFront[g],0,0,200,300)
+				data.sprites.hair.front[g].image(data.sprites.hair.preFront[g],0,0,200,300)
+				data.sprites.hair.back.push(createGraphics(200,300))
+				data.sprites.hair.back[g].image(data.sprites.hair.insideBack[g],0,0,200,300)
+				data.sprites.hair.back[g].image(data.sprites.hair.preBack[g],0,0,200,300)
+			}
+			for(let a=0,la=data.sprites.hair.insideFront.length;a<la;a++){
+				delete data.sprites.hair.insideFront[a]
+				a--
+				la--
+			}
+			for(let a=0,la=data.sprites.hair.insideBack.length;a<la;a++){
+				delete data.sprites.hair.insideBack[a]
+				a--
+				la--
+			}
+		break
+		case 12:
+			graphics.combatant.push({
+				sprites:{detail:15,genAmount:0,animDirection:0},
+				parts:{},
+				color:{
+                    hair:{back:[143,106,77],front:[209,170,123],insideBack:[156,128,105],insideFront:[192,150,101],glow:[236,203,159],bow:[62,61,62]},
+                    skin:{head:[252,231,227],body:[248,208,197],legs:[244,214,207],arms:[255,231,227],button:[227,176,165]},
+                    eye:{back:[211,108,109],front:[71,0,0],glow:[202,168,193]},
+					mouth:{in:[191,125,127],out:[0,0,0]},
+					dress:{
+						main:[236,231,233],over:[220,213,212],back:[196,169,171],
+						sleeve:[232,217,217],sleeveOver:[222,207,209],sleeveBack:[177,139,139],
+						bow:[39,39,39],flaps:[62,63,62],pocket:[216,194,191]
+					},
+					shoe:{main:[53,52,51],bow:[95,94,93]},
+				},
+			})
+
+			data=graphics.combatant[graphics.combatant.length-1]
+
+			data.parts.hair={main:[],inside:[],reverse:[],reverseInside:[]}
+
+			for(let a=0,la=20;a<la;a++){
+				let zonal=[random(-180/la,30/la),random(-90/la,90/la)]
+				zonal.push(zonal[0]+random(120,150)/la)
+				let bar=random(0.4,0.6)
+				let scale=4.5+(lcos(a/la*360)>0.5?(-lcos(a/la*360)+0.5)*20:lcos(a/la*240+60)*-15)
+				let init=(a+random(-0.1,0.1))/la*360
+				let width=random(180,240)+a%2*30
+				let mult=abs(scale)/10+(scale<0?0.75:0.25)
+				zonal=zonal.map(num=>num*mult)
+				if(scale>0){
+					data.parts.hair.main.push({spin:[init-width/la,init,init+zonal[0]],y:[0,0,scale*bar]})
+					data.parts.hair.main.push({spin:[init,init+width/la,init+zonal[2]],y:[0,0,scale*bar]})
+					data.parts.hair.main.push({spin:[init+zonal[0],init+zonal[2],init],y:[scale*bar,scale*bar,0]})
+					data.parts.hair.main.push({spin:[init+zonal[0],init+zonal[2],init+zonal[1]],y:[scale*bar,scale*bar,scale]})
+				}else{
+					data.parts.hair.reverse.push({spin:[init-width/la-max(0,-6-scale*4),init,init+zonal[0]],y:[0,0,scale*bar-0.5]})
+					data.parts.hair.reverse.push({spin:[init,init+width/la+max(0,-6-scale*4),init+zonal[2]],y:[0,0,scale*bar-0.5]})
+					data.parts.hair.reverse.push({spin:[init+zonal[0],init+zonal[2],init],y:[scale*bar-0.5,scale*bar-0.5,0]})
+					data.parts.hair.reverse.push({spin:[init+zonal[0],init+zonal[2],init+zonal[1]],y:[scale*bar-0.5,scale*bar-0.5,scale-1]})
+				}
+
+				zonal=[random(-180/la,0),random(-60/la,60/la)]
+				zonal.push(zonal[0]+random(150,180)/la)
+				scale=2.5+(lcos(a/la*360)>0.5?(-lcos(a/la*360)+0.5)*20:lcos(a/la*240+60)*-15)
+				init=(a+random(0.4,0.6))/la*360
+				width=random(180,240)
+				mult=abs(scale)/10+(scale<0?0.75:0.25)
+				zonal=zonal.map(num=>num*mult)
+				if(scale>0){
+					data.parts.hair.inside.push({spin:[init-width/la,init,init+zonal[0]],y:[0,0,scale*bar]})
+					data.parts.hair.inside.push({spin:[init,init+width/la,init+zonal[2]],y:[0,0,scale*bar]})
+					data.parts.hair.inside.push({spin:[init+zonal[0],init+zonal[2],init],y:[scale*bar,scale*bar,0]})
+					data.parts.hair.inside.push({spin:[init+zonal[0],init+zonal[2],init+zonal[1]],y:[scale*bar,scale*bar,scale]})
+				}else{
+					data.parts.hair.reverseInside.push({spin:[init-width/la-max(0,-6-scale*4),init,init+zonal[0]],y:[0,0,scale*bar-1]})
+					data.parts.hair.reverseInside.push({spin:[init,init+width/la+max(0,-6-scale*4),init+zonal[2]],y:[0,0,scale*bar-1]})
+					data.parts.hair.reverseInside.push({spin:[init+zonal[0],init+zonal[2],init],y:[scale*bar-1,scale*bar-1,0]})
+					data.parts.hair.reverseInside.push({spin:[init+zonal[0],init+zonal[2],init+zonal[1]],y:[scale*bar-1,scale*bar-1,scale-2]})
+				}
+			}
+		
+			data.sprites.genAmount=360/data.sprites.detail
+
+			data.sprites.hair={preBack:[],preFront:[],insideBack:[],insideFront:[],back:[],front:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.hair.insideFront.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.insideFront[g])
+				data.sprites.hair.insideFront[g].translate(100,100)
+				data.sprites.hair.insideFront[g].scale(5)
+				generateSprite(data.sprites.hair.insideFront[g],77,g*data.sprites.detail)
+				//console.log('Generated HIF-'+(g+1))
+				data.sprites.hair.insideBack.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.insideBack[g])
+				data.sprites.hair.insideBack[g].translate(100,100)
+				data.sprites.hair.insideBack[g].scale(5)
+				generateSprite(data.sprites.hair.insideBack[g],78,g*data.sprites.detail)
+				//console.log('Generated HIB-'+(g+1))
+				data.sprites.hair.preFront.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.preFront[g])
+				data.sprites.hair.preFront[g].translate(100,100)
+				data.sprites.hair.preFront[g].scale(5)
+				generateSprite(data.sprites.hair.preFront[g],79,g*data.sprites.detail)
+				//console.log('Generated HF-'+(g+1))
+				data.sprites.hair.preBack.push(createGraphics(200,300))
+				setupLayer(data.sprites.hair.preBack[g])
+				data.sprites.hair.preBack[g].translate(100,100)
+				data.sprites.hair.preBack[g].scale(5)
+				generateSprite(data.sprites.hair.preBack[g],80,g*data.sprites.detail)
 				//console.log('Generated HB-'+(g+1))
 				data.sprites.hair.front.push(createGraphics(200,300))
 				data.sprites.hair.front[g].image(data.sprites.hair.insideFront[g],0,0,200,300)
@@ -4388,6 +5231,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:30,bottom:75,lock:0}]
 					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
 				break
+				case 'Menessa':
+					p1.anim.legs=[
+						{top:24,bottom:12,length:{top:16.75,bottom:16.75}},
+						{top:27,bottom:6,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:24,bottom:15+a*60,length:{top:16.75,bottom:16.75}},
+						{top:24,bottom:15,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-60},{top:45,bottom:75}]
+					p1.spin.arms=[{top:-36,bottom:6+a*36,lock:0},{top:90,bottom:24,lock:0}]
+					p1.position.x+=40
+				break
 
 			}
 			p1.size=2.5
@@ -4715,6 +5571,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
 					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+				break
+				case 'Menessa':
+					p1.parts.mouth+=3
+					p1.anim.mouth.y++
+					p1.spin.mouth+=192
+					p1.anim.legs=[
+						{top:9+a*6,bottom:48-a*15,length:{top:16.75,bottom:16.75}},
+						{top:3+a*6,bottom:15+a*33,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:117,bottom:177+a*15,length:{top:16.75,bottom:16.75}},
+						{top:48-a*15,bottom:66-a*30,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-150},{top:36,bottom:90}]
+					p1.spin.arms=[{top:-30,bottom:-12,lock:0},{top:90,bottom:105,lock:0}]
 				break
 			}
 			p1.anim.eye=[1,1]
@@ -5062,6 +5933,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-45+a*5,bottom:-15-a*5,lock:0},{top:120+a*5,bottom:150-a*12,lock:0}]
 					p1.spin.arms=[{top:-75+a*6,bottom:-12-a*9,lock:0},{top:75-a*6,bottom:30+a*15,lock:0}]
 				break
+				case 'Menessa':
+					p1.anim.mouth.y+=1.5
+					p1.parts.mouth-=0.5
+					p1.position.y+=2
+					p1.anim.legs=[
+						{top:12,bottom:69,length:{top:16.75,bottom:16.75}},
+						{top:27,bottom:93,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:102,bottom:135,length:{top:16.75,bottom:16.75}},
+						{top:6,bottom:33-a*3,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-90-a*30,bottom:-90},{top:60+a*30,bottom:150}]
+					p1.spin.arms=[{top:-75-a*15,bottom:-60,lock:0},{top:90+a*15,bottom:69+a*12,lock:0}]
+				break
 			}
 			if(p1.name!='DD-610'&&p1.name!='Vincent'&&p1.name!='Ducopo'&&p1.name!='Randy'&&p1.name!='Dukelis'){
 				p1.anim.eye=[1,1]
@@ -5391,6 +6277,22 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60+a*45,bottom:-120+a*45,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
 				break
+				case 'Menessa':
+					p1.position.y+=3-a*24
+					p1.parts.mouth++
+					p1.anim.mouth.y-=0.5
+					p1.spin.mouth-=3
+					p1.anim.legs=[
+						{top:9+a*15,bottom:18+a*24,length:{top:16.75,bottom:16.75}},
+						{top:12+a*15,bottom:18+a*6,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:18+a*12,bottom:27-a*15,length:{top:16.75,bottom:16.75}},
+						{top:21,bottom:45-a*9,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-45+a*27,bottom:-120+a*24},{top:60-a*15,bottom:105-a*36}]
+					p1.spin.arms=[{top:-75,bottom:-12-a*105,lock:0},{top:75,bottom:12+a*60,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -5701,6 +6603,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-75+a*15,bottom:-15+a*60,lock:0},{top:60+a*6,bottom:66-a*60,lock:0}]
+				break
+				case 'Menessa':
+					p1.position.y-=0.5
+					p1.anim.legs=[
+						{top:6-a*1.5,bottom:-1-a*1.5,length:{top:16.75,bottom:16.75}},
+						{top:6-a*1.5,bottom:-1-a*1.5,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:105+a*18,bottom:174,length:{top:16.75,bottom:16.75}},
+						{top:24+a*3,bottom:9-a*3,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-54-a*9,bottom:-90},{top:60-a*6,bottom:96-a*6}]
+					p1.spin.arms=[{top:-90,bottom:-48+a*24,lock:0},{top:90,bottom:60-a*18,lock:0}]
 				break
 			}
 			p1.size=2.5
@@ -6051,6 +6966,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-90,lock:0},{top:60,bottom:90,lock:0}]
 					p1.spin.arms=[{top:-78,bottom:-120+a*60,lock:0},{top:78,bottom:55-a*30,lock:0}]
 				break
+				case 'Menessa':
+					p1.position.y-=1.5
+					p1.anim.mouth.y+=0.5
+					p1.parts.mouth-=0.25
+					p1.anim.legs=[
+						{top:3,bottom:6,length:{top:16.75,bottom:16.75}},
+						{top:3+a*6,bottom:6,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:6,bottom:-15,length:{top:16.75,bottom:16.75}},
+						{top:6,bottom:-15,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-150-a*15,lock:0},{top:60,bottom:105-a*30,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-90,lock:0},{top:105,bottom:90,lock:0}]
+				break
 			}
 			p1.size=2
 			p1.fade=1
@@ -6319,6 +7249,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-30,bottom:-60,lock:0},{top:30,bottom:30,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
 				break
+				case 'Menessa':
+					p1.anim.mouth.x-=0.25
+					p1.anim.mouth.y-=0.25
+					p1.anim.legs=[
+						{top:12,bottom:12,length:{top:16.75,bottom:16.75}},
+						{top:21,bottom:3,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:15+a*15,bottom:15+a*9,length:{top:16.75,bottom:16.75}},
+						{top:36,bottom:75,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-45,bottom:-72},{top:48,bottom:48}]
+					p1.spin.arms=[{top:-84,bottom:-54,lock:0},{top:27,bottom:-36,lock:0}]
+				break
 			}
 			p1.size=1.5
 			p1.fade=1
@@ -6349,8 +7293,9 @@ function setupGeneralGraphics(){
 	32-33 Setsuna Bow
 	34-35 Setsuna Flower
 	36 Daiyousei Bow
+	37 Menessa Pin
 	*/
-	for(let a=0,la=37;a<la;a++){
+	for(let a=0,la=39;a<la;a++){
 		switch(a){
 			case 9: case 11:
 				graphics.minor.push(createGraphics(160,240))
@@ -6363,6 +7308,9 @@ function setupGeneralGraphics(){
 			break
 			case 26:
 				graphics.minor.push(createGraphics(80,80))
+			break
+			case 38:
+				graphics.minor.push(createGraphics(90,120))
 			break
 			default:
 				graphics.minor.push(createGraphics(160,160))
@@ -6636,7 +7584,38 @@ function setupGeneralGraphics(){
 		graphics.minor[36].rotate(-120)
 		graphics.minor[36].quad(0,0,48-a/la*24,-9+a/la*9,42-a/la*12,0,48-a/la*24,9-a/la*9)
 		graphics.minor[36].rotate(60)
-
+	}
+	graphics.minor[37].translate(80,80)
+	graphics.minor[37].fill(255,255,228)
+	graphics.minor[37].ellipse(-30,0,80,80)
+	graphics.minor[37].ellipse(30,0,80,80)
+	graphics.minor[37].fill(255,232,167)
+	graphics.minor[37].ellipse(-25,0,60,60)
+	graphics.minor[37].ellipse(25,0,60,60)
+	graphics.minor[37].erase()
+	graphics.minor[37].ellipse(-45,0,55,55)
+	graphics.minor[37].ellipse(45,0,55,55)
+	graphics.minor[38].scale(3/2)
+	for(let a=0,la=60;a<la;a++){
+		for(let b=0,lb=80;b<lb;b++){
+			let c=((a^b)%(5*7*11*13))^(((a+20)^b)%(5*7*11*13))*2
+			if(c%5==0){
+				graphics.minor[38].fill(230,211,227)
+				graphics.minor[38].rect(a+0.5,b+0.5,1,1)
+			}
+			if(c%7==0){
+				graphics.minor[38].fill(192,190,215)
+				graphics.minor[38].rect(a+0.5,b+0.5,1,1)
+			}
+			if(c%11==0){
+				graphics.minor[38].fill(133,147,205)
+				graphics.minor[38].rect(a+0.5,b+0.5,1,1)
+			}
+			if(c%13==0){
+				graphics.minor[38].fill(177,122,195)
+				graphics.minor[38].rect(a+0.5,b+0.5,1,1)
+			}
+		}
 	}
 }
 function setupBackground(type,layer){
@@ -6855,7 +7834,7 @@ function setupBackground(type,layer){
                 d=random(0.6,1)
                 e=random(0.8,1)
                 g=random(0,2)
-                for(let f=0,lf=20;f<lf;f++){
+                for(let f=0,lf=10;f<lf;f++){
                     layer.fill(mergeColor([100,110,120],[90,95,100],f/lf+g))
                     layer.ellipse(b,c,120*d*(1-f/lf),90*d*e*(1-f/lf))
                 }
@@ -6864,12 +7843,12 @@ function setupBackground(type,layer){
                 layer.fill(150+50*a/la,225+25*a/la,200+25*a/la)
                 layer.rect(layer.width/2,a+0.5,layer.width,2)
             }
-			for(let a=0,la=200;a<la;a++){
-                b=random(0,10)**2.5*2
+			for(let a=0,la=100;a<la;a++){
+                b=random(1,10)**2.5*2
                 c=random(0.6,1)
                 e=random(220,240)
                 f=random(0,layer.width)
-                for(let d=0,ld=20;d<ld;d++){
+                for(let d=0,ld=10;d<ld;d++){
                     layer.fill(e,0.025)
                     layer.ellipse(f,b,c*400*(1-d/ld),c*240*(1-d/ld))
                 }
@@ -6877,7 +7856,7 @@ function setupBackground(type,layer){
 			for(let a=0,la=20;a<=la;a++){
 				c=a==0?random(300,600):d
 				d=random(300,600)+a%2*200
-				for(let b=0,lb=20;b<lb;b++){
+				for(let b=0,lb=3;b<lb;b++){
 					layer.fill(150-50*(a-b/lb)/la)
 					layer.quad(
 						layer.width*(a-b/lb)/la,lerp(d,c,b/lb),
@@ -6890,7 +7869,7 @@ function setupBackground(type,layer){
 			for(let a=0,la=20;a<=la;a++){
 				c=a==0?random(450,750):d
 				d=random(450,750)+a%2*200
-				for(let b=0,lb=20;b<lb;b++){
+				for(let b=0,lb=3;b<lb;b++){
 					layer.fill(100-50*(a-b/lb)/la)
 					layer.quad(
 						layer.width*(a+0.5-b/lb)/la,lerp(d,c,b/lb),
@@ -6900,10 +7879,10 @@ function setupBackground(type,layer){
 					)
 				}
 			}
-			for(let a=0,la=60;a<la;a++){
+			/*for(let a=0,la=60;a<la;a++){
 				layer.fill(0,1-sqrt(a/la))
 				layer.rect(layer.width/2,a,layer.width,2)
-			}
+			}*/
 		break
 		case 6:
 			for(let a=0,la=layer.height;a<la;a++){

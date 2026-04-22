@@ -34,7 +34,7 @@ class particle{
             case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120: case 121:
             case 126: case 135: case 136: case 139: case 152: case 154: case 155: case 156: case 163: case 164:
             case 168: case 169: case 170: case 173: case 192: case 193: case 195: case 196: case 199: case 206:
-            case 225: case 244: case 252:
+            case 225: case 244: case 252: case 268: case 269:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -49,7 +49,7 @@ class particle{
                 this.scale=1
                 this.size=0
             break
-            case 5: case 8:
+            case 5: case 8: case 267:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=16/3
@@ -342,7 +342,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 144: case 240: case 249:
+            case 144: case 240: case 249: case 270:
                 this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
                 this.position3={x:args[2]-this.position.x,y:args[3]-this.position.y}
                 this.direction=atan2(this.position2.x,-this.position2.y)
@@ -669,7 +669,7 @@ class particle{
                 this.speed=15
                 this.velocity={x:lsin(this.direction)*this.speed,y:lcos(this.direction)*this.speed}
             break
-            case 211: case 228: case 259:
+            case 211: case 228: case 259: case 266:
                 this.size=args[0]
                 this.color=args[1]
                 this.direction=random(0,360)
@@ -855,6 +855,14 @@ class particle{
                 this.fade=1
                 this.scale=0
                 this.delay=args[1]
+            break
+            case 265:
+                this.size=1
+                this.scale=1
+                this.shocks=[]
+                this.loops=[]
+                this.fade=0
+                this.dark=0
             break
 
         }
@@ -4303,6 +4311,126 @@ class particle{
                     this.layer.noFill()
                     this.layer.ellipse(0,0,60,60)
                 break
+                case 265:
+                    this.layer.fill(215-this.dark*160,205-this.dark*150,185-this.dark*120,this.fade)
+                    this.layer.ellipse(0,0,110)
+                    for(let a=0,la=this.loops.length;a<la;a++){
+                        this.layer.stroke(210-this.dark*160,185+this.loops[a].color*25-this.dark*150,135+this.loops[a].color*75-this.dark*120,this.loops[a].fade)
+                        this.layer.strokeWeight(10)
+                        let width=sqrt(4900-this.loops[a].height**2)
+                        if(lcos(this.loops[a].direction)<=0&&lcos(this.loops[a].direction+this.loops[a].width)<=0){
+                            this.layer.line(width*lsin(this.loops[a].direction),this.loops[a].height,width*lsin(this.loops[a].direction+this.loops[a].width),this.loops[a].height)
+                        }else if(lcos(this.loops[a].direction)<=0&&lcos(this.loops[a].direction+this.loops[a].width)>0){
+                            this.layer.line(width*lsin(this.loops[a].direction),this.loops[a].height,-width,this.loops[a].height)
+                        }else if(lcos(this.loops[a].direction)>0&&lcos(this.loops[a].direction+this.loops[a].width)<=0){
+                            this.layer.line(width,this.loops[a].height,width*lsin(this.loops[a].direction+this.loops[a].width),this.loops[a].height)
+                        }
+                    }
+                    this.layer.noStroke()
+                    for(let a=0,la=this.shocks.length;a<la;a++){
+                        this.layer.fill(255-this.dark*160,230+this.shocks[a].color*25-this.dark*150,180+this.shocks[a].color*75-this.dark*120,this.shocks[a].fade)
+                        this.layer.rotate(this.shocks[a].direction)
+                        for(let b=0,lb=20;b<lb;b++){
+                            this.layer.quad(
+                                b*(1-b*0.025)*this.shocks[a].swivel*(b%2*2-1)-b/lb*this.shocks[a].width,-this.shocks[a].height-b*this.shocks[a].bar,
+                                b*(1-b*0.025)*this.shocks[a].swivel*(b%2*2-1)+b/lb*this.shocks[a].width,-this.shocks[a].height-b*this.shocks[a].bar,
+                                (b+1)*(1-(b+1)*0.025)*this.shocks[a].swivel*((b+1)%2*2-1)+(b+1)/lb*this.shocks[a].width,-this.shocks[a].height-(b+1)*this.shocks[a].bar,
+                                (b+1)*(1-(b+1)*0.025)*this.shocks[a].swivel*((b+1)%2*2-1)-(b+1)/lb*this.shocks[a].width,-this.shocks[a].height-(b+1)*this.shocks[a].bar
+                            )
+                        }
+                        this.layer.rotate(-this.shocks[a].direction)
+                    }
+                    for(let a=0,la=this.loops.length;a<la;a++){
+                        this.layer.stroke(255-this.dark*160,230+this.loops[a].color*25-this.dark*150,180+this.loops[a].color*75-this.dark*120,this.loops[a].fade)
+                        this.layer.strokeWeight(10)
+                        let width=sqrt(4900-this.loops[a].height**2)
+                        if(lcos(this.loops[a].direction)>0&&lcos(this.loops[a].direction+this.loops[a].width)>0){
+                            this.layer.line(width*lsin(this.loops[a].direction),this.loops[a].height,width*lsin(this.loops[a].direction+this.loops[a].width),this.loops[a].height)
+                        }else if(lcos(this.loops[a].direction)>0&&lcos(this.loops[a].direction+this.loops[a].width)<=0){
+                            this.layer.line(width*lsin(this.loops[a].direction),this.loops[a].height,width,this.loops[a].height)
+                        }else if(lcos(this.loops[a].direction)<=0&&lcos(this.loops[a].direction+this.loops[a].width)>0){
+                            this.layer.line(-width,this.loops[a].height,width*lsin(this.loops[a].direction+this.loops[a].width),this.loops[a].height)
+                        }
+                    }
+                    this.layer.noStroke()
+                    this.layer.fill(255-this.dark*160,245-this.dark*150,225-this.dark*120,this.fade)
+                    this.layer.ellipse(0,0,150)
+                break
+                case 266:
+                    this.layer.noFill()
+                    this.layer.stroke(...this.color,this.fade)
+                    this.layer.strokeWeight(1)
+                    this.layer.ellipse(0,0,20,8)
+                break
+                case 267:
+                    this.layer.rotate(this.time*3)
+                    this.layer.fill(240,this.fade)
+                    this.layer.rect(0,0,10,8,2)
+                    this.layer.stroke(240,this.fade)
+                    this.layer.strokeWeight(1)
+                    this.layer.noFill()
+                    this.layer.rect(6,0,4,6,2)
+                break
+                case 268:
+                    this.layer.rotate(this.position.x+this.position.y)
+                    this.layer.fill(210,210,240,this.fade)
+                    for(let a=0,la=36;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.beginShape()
+                        this.layer.vertex(0,3+5*abs(lcos(a/la*10*180)))
+                        this.layer.bezierVertex(
+                            -1,3.75+5*abs(lcos(a/la*10*180)),
+                            -1,4.25+5*abs(lcos(a/la*10*180)),
+                            0,5+5*abs(lcos(a/la*10*180))
+                        )
+                        this.layer.bezierVertex(
+                            1,4.25+5*abs(lcos(a/la*10*180)),
+                            1,3.75+5*abs(lcos(a/la*10*180)),
+                            0,3+5*abs(lcos(a/la*10*180))
+                        )
+                        this.layer.endShape()
+                    }
+                    this.layer.fill(240,this.fade)
+                    for(let a=0,la=36;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.beginShape()
+                        this.layer.vertex(0,3+5*abs(lcos(a/la*10*180)))
+                        this.layer.bezierVertex(
+                            -0.75,3.75+5*abs(lcos(a/la*10*180)),
+                            -0.75,4.25+5*abs(lcos(a/la*10*180)),
+                            0,5+5*abs(lcos(a/la*10*180))
+                        )
+                        this.layer.bezierVertex(
+                            0.75,4.25+5*abs(lcos(a/la*10*180)),
+                            0.75,3.75+5*abs(lcos(a/la*10*180)),
+                            0,3+5*abs(lcos(a/la*10*180))
+                        )
+                        this.layer.endShape()
+                    }
+                break
+                case 269:
+                    this.layer.rotate(this.position.x+this.position.y)
+                    this.layer.fill(240,40,80,this.fade)
+                    for(let a=0,la=24;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.ellipse(0,5+5*abs(lcos(a/la*5*180)),0.8,3)
+                    }
+                    this.layer.fill(180,30,60,this.fade)
+                    for(let a=0,la=24;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.ellipse(0,5+5*abs(lcos(a/la*5*180)),0.48,1.8)
+                    }
+                break
+                case 270:
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.stroke(160+a*20,this.fade)
+                        this.layer.strokeWeight(3)
+                        this.layer.line((-16+a*4)*lcos(this.direction)+lsin(this.direction)*(40-a*10),(-16+a*4)*lsin(this.direction)-lcos(this.direction)*(40-a*10),lsin(this.direction)*900+(-16+a*4)*lcos(this.direction),-lcos(this.direction)*900+(-16+a*4)*lsin(this.direction))
+                        if(a!=4){
+                            this.layer.line((16-a*4)*lcos(this.direction)+lsin(this.direction)*(40-a*10),(16-a*4)*lsin(this.direction)-lcos(this.direction)*(40-a*10),lsin(this.direction)*900+(16-a*4)*lcos(this.direction),-lcos(this.direction)*900+(16-a*4)*lsin(this.direction))
+                        }
+                    }
+                break
 
             }
             //mark p
@@ -4331,7 +4459,7 @@ class particle{
             case 1: case 4: case 5: case 6: case 7: case 8: case 11: case 14: case 16: case 18:
             case 19: case 20: case 21: case 32: case 35: case 39: case 42: case 43: case 44: case 47:
             case 48: case 49: case 50: case 78: case 79: case 82: case 83: case 89: case 98: case 105:
-            case 111: case 113: case 131: case 160: case 201:
+            case 111: case 113: case 131: case 160: case 201: case 267:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2,0,1,5)
@@ -4345,7 +4473,7 @@ class particle{
             case 95: case 97: case 99: case 103: case 104: case 110: case 114: case 115: case 116: case 117:
             case 118: case 119: case 120: case 121: case 126: case 152: case 154: case 155: case 156: case 168:
             case 169: case 170: case 173: case 192: case 193: case 196: case 211: case 212: case 225: case 228:
-            case 233: case 259:
+            case 233: case 259: case 269:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){
@@ -4380,7 +4508,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 15: case 22: case 24: case 25: case 26: case 38: case 67:
+            case 15: case 22: case 24: case 25: case 26: case 38: case 67: case 270:
                 this.fade-=1/30
                 if(this.fade<=0){
                     this.remove=true
@@ -5444,6 +5572,70 @@ class particle{
                     if(this.fade<=0){
                         this.remove=true
                     }
+                }
+            break
+            case 265:
+                for(let a=0,la=this.shocks.length;a<la;a++){
+                    this.shocks[a].fade-=0.1
+                    if(this.shocks[a].fade<=0){
+                        this.shocks.splice(a,1)
+                        a--
+                        la--
+                    }
+                }
+                for(let a=0,la=this.loops.length;a<la;a++){
+                    this.loops[a].direction+=this.loops[a].speed
+                    if(this.loops[a].fade<1&&this.time<810){
+                        this.loops[a].fade+=1/30
+                    }
+                }
+                if(this.time<480){
+                    if(this.time%2==0){
+                        this.shocks.push({direction:random(0,360),width:random(8,16),bar:random(60,120),swivel:random(6,12)*(floor(random(0,2))*2-1),fade:1,height:random(0,20),color:random(0,1)})
+                        this.loops.push({direction:random(0,360),speed:random(1,3),width:random(15,60),fade:0,height:random(-70,70),color:random(0,1)})
+                    }
+                }else if(this.time<660){
+                    if(this.time%2==0){
+                        this.shocks.push({direction:random(0,360),width:random(8,16),bar:random(60,120),swivel:random(6,12)*(floor(random(0,2))*2-1),fade:1,height:random(0,20),color:random(0,1)})
+                        if(this.time<600){
+                            this.loops.push({direction:random(0,360),speed:random(1,3),width:random(15,60),fade:0,height:random(-70,70),color:random(0,1)})
+                        }
+                    }
+                    this.fade+=1/270
+                }else if(this.time>=720&&this.time<780){
+                    this.dark+=1/60
+                }else if(this.time>=810&&this.time<825){
+                    if(this.time==810){
+                        for(let a=0,la=this.loops.length;a<la;a++){
+                            this.loops[a].fade=0.5
+                        }
+                    }
+                    for(let a=0,la=this.loops.length;a<la;a++){
+                        this.loops[a].fade-=0.1
+                        if(this.loops[a].fade<=0){
+                            this.loops.splice(a,1)
+                            a--
+                            la--
+                        }
+                    }
+                    this.fade-=2/45
+                    this.scale+=0.25
+                }else if(this.time>=825){
+                    this.remove=true
+                }
+            break
+            case 266:
+                this.fade-=0.04
+                this.scale+=0.025*(this.fade+1)
+                if(this.fade<=0){
+                    this.remove=true
+                }
+            break
+            case 268:
+                this.fade-=0.025
+                this.scale+=0.06-this.fade*0.06
+                if(this.fade<=0){
+                    this.remove=true
                 }
             break
 

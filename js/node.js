@@ -5,6 +5,7 @@ class node{
         this.position={x:x,y:y}
         this.tilePosition={x:tileX,y:tileY}
         this.type=type
+        this.readable=false
         let index=0
         switch(this.type){
             case 0:
@@ -56,7 +57,7 @@ class node{
                 this.combat=0
             break
         }
-        this.base()
+        this.components()
     }
     save(){
         let composite={
@@ -64,6 +65,7 @@ class node{
             base:{position:this.base.position},
             tilePosition:this.tilePosition,
             type:this.type,
+            readable:this.readable,
             reality:this.reality,
             combat:this.combat,
             connections:this.connections,
@@ -73,7 +75,7 @@ class node{
         }
         return composite
     }
-    base(){
+    components(){
         this.base={position:{x:this.position.x,y:this.position.y}}
 
         this.connections=[]
@@ -88,11 +90,12 @@ class node{
 
         this.anim={complete:0,active:0,contain:0,past:0,description:0}
     }
-    establish(x,y,baseX,baseY,tileX,tileY,type,reality,combat,connections,extraConnections,scroll,complete){
+    establish(x,y,baseX,baseY,tileX,tileY,type,readable,reality,combat,connections,extraConnections,scroll,complete){
         this.position={x:x,y:y}
         this.base.position={x:baseX,y:baseY}
         this.tilePosition={x:tileX,y:tileY}
         this.type=type
+        this.readable=readable
         this.reality=reality
         this.combat=combat
         this.connections=connections
@@ -131,7 +134,8 @@ class node{
             this.layer.textSize(12)
             this.layer.text('Unknown',0,25)
         }else{
-            let readable=(this.complete||this.active||this.contain)&&!this.battle.modded(196)
+            let readable=(this.complete||this.active||this.contain)&&!this.battle.modded(196)||this.readable
+            let name
             switch(type){
                 case 0:
                     this.layer.stroke(...color,this.fade)
@@ -143,16 +147,20 @@ class node{
                     this.layer.point(6,0)
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
-                    if(readable&&types.encounter[this.combat].name.length>15){
-                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*4.2+13.5:30.5,15,3)
+                    name=types.encounter[this.combat].name
+                    if(name.substr(0,2)=='-h'){
+                        name=name.substr(2)
+                    }
+                    if(readable&&name.length>15){
+                        this.layer.rect(0,24.5,readable?name.length*4.2+13.5:30.5,15,3)
                         this.layer.fill(...color,this.fade*cap)
                         this.layer.textSize(9)
-                        this.layer.text(readable?types.encounter[this.combat].name:'Battle',0,25)
+                        this.layer.text(readable?name:'Battle',0,25)
                     }else{
-                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*5.6+18:42,16,3)
+                        this.layer.rect(0,24.5,readable?name.length*5.6+18:42,16,3)
                         this.layer.fill(...color,this.fade*cap)
                         this.layer.textSize(12)
-                        this.layer.text(readable?types.encounter[this.combat].name:'Battle',0,25)
+                        this.layer.text(readable?name:'Battle',0,25)
                     }
                 break
                 case 1:
@@ -170,16 +178,20 @@ class node{
                     this.layer.triangle(13,-7,7,-13,16,-16)
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
-                    if(readable&&types.encounter[this.combat].name.length>15){
-                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*4.2+13.5:30.5,15,3)
+                    name=types.encounter[this.combat].name
+                    if(name.substr(0,2)=='-h'){
+                        name=name.substr(2)
+                    }
+                    if(readable&&name.length>15){
+                        this.layer.rect(0,24.5,readable?name.length*4.2+13.5:30.5,15,3)
                         this.layer.fill(...color,this.fade*cap)
                         this.layer.textSize(9)
-                        this.layer.text(readable?types.encounter[this.combat].name:'Elite',0,25)
+                        this.layer.text(readable?name:'Elite',0,25)
                     }else{
-                        this.layer.rect(0,24.5,readable?types.encounter[this.combat].name.length*5.6+18:35,16,3)
+                        this.layer.rect(0,24.5,readable?name.length*5.6+18:35,16,3)
                         this.layer.fill(...color,this.fade*cap)
                         this.layer.textSize(12)
-                        this.layer.text(readable?types.encounter[this.combat].name:'Elite',0,25)
+                        this.layer.text(readable?name:'Elite',0,25)
                     }
                 break
                 case 2:
@@ -208,7 +220,11 @@ class node{
                     this.layer.rect(0,52,36,20,3)
                     this.layer.fill(...color,this.fade)
                     this.layer.textSize(15)
-                    this.layer.text(types.encounter[this.combat].name,0,52)
+                    name=types.encounter[this.combat].name
+                    if(name.substr(0,2)=='-h'){
+                        name=name.substr(2)
+                    }
+                    this.layer.text(name,0,52)
                 break
                 case 3:
                     this.layer.stroke(...color,this.fade)
@@ -256,7 +272,7 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,48,14,3)
-                    if(this.battle.relicManager.hasRelic(98,-1)){
+                    if(this.battle.relicManager.hasRelic(98,-1)||this.readable){
                         let term=this.reality>=0&&this.reality<=2?types.encounter[this.combat].name:['','','','Rest','Shop','Event'][this.reality]
                         if(readable&&term.length>15){
                             this.layer.rect(0,24.5,readable?term.length*4.2+13.5:30.5,15,3)
