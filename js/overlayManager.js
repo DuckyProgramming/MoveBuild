@@ -192,6 +192,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[120])],//transform draw card to specific, no return
                     [new overlay(this.layer,this.battle,0,2,[121,0,1])],//bring in discard card that costs 0, no return
                     [new overlay(this.layer,this.battle,0,2,[122,1])],//draw card cost down
+                    [new overlay(this.layer,this.battle,0,30,[])],//matching game
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

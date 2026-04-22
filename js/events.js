@@ -6456,7 +6456,7 @@ Maybe you'll encounter another group like this.`,
                 desc:
 `With some time to spare, you go shopping for once.
 It seems like there's quite a few places you might go to.
-But while you have some time. it's only enoguh to visit one.
+But while you have some time, it's only enough to visit one.
 Though, maybe something will be worth buying?`,
                 option:['Buy from Metu','Buy from Seabay','Buy from Zamazor'],
                 optionDesc:['Add a Junkyard Card','Lose 50 Currency, Add an Uncommon Card','Lose 250 Currency, Add a Rare Card'],
@@ -6466,6 +6466,31 @@ Though, maybe something will be worth buying?`,
 `You go on the site and look around the catalog.
 Maybe you'll come back here in the future.
 If you have enough time, that is.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Matching Game',id:194,list:0,
+        pages:[
+            {
+                desc:
+`As you pass through town, several ducks jump you
+from all directions. You prepare for battle,
+but they have a different proposition than combat.
+They offer you the change to win some cards, for free!
+But the cards may not be the ones you want...`,
+                option:['Play','Decline'],
+                optionDesc:['',''],
+                link:[1,2],
+            },{
+                desc:`You try to earn some prizes from the game.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You fear what the game could entail.`,
                 option:['Leave'],
                 optionDesc:[''],
                 link:[-1],

@@ -9795,7 +9795,8 @@ class card{
             case 8714: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nDiscover a Character Skill\nOptions Have Draw,\nEnergy, and Buffs`; break
             case 8715: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nExhausted Pristines`; break
             case 8716: string+=`Add ${effect[0]} Pristine${pl(effect[0])} to Hand\nWhen a Non-Pristine\nSkill is Played\nWith This Card\nin Your Hand`; break
-            
+            //8717 and 8718 are taken
+
             //mark p
 
             //mark q
@@ -13495,6 +13496,39 @@ class card{
                         this.layer.rect(-this.width/2-3+(a+1)/(la+1)*(this.width+6),0,5,this.height)
                     }
                     this.layer.noFill()
+                }else if(this.attack==8717){
+                    this.layer.fill(10,30,40,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(8,21,35,this.fade)
+                    this.layer.stroke(5,18,32,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.fill(255,this.fade)
+                    this.layer.noStroke()
+                    this.layer.textSize(30)
+                    this.layer.text(':(',-25,-35)
+                    this.layer.textSize(10)
+                    this.layer.textAlign(LEFT,CENTER)
+                    this.layer.text('This card ran into a problem and needs to restart.',10,10,this.width-10)
+                    this.layer.textAlign(CENTER,CENTER)
+                    this.layer.textSize(4)
+                    this.layer.text('EXITED WITH ERROR CODE 0',0,45)
+                    this.layer.noFill()
+                }else if(this.attack==8718){
+                    this.layer.fill(20,25,30,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(0,this.fade)
+                    this.layer.rect(0,0,this.width,this.height)
+                    this.layer.rotate(180)
+                    this.layer.image(graphics.minor[38],-this.width*0.5,-this.height*0.5,this.width,this.height)
+                    this.layer.rotate(-180)
+                    this.layer.noFill()
+                    this.layer.stroke(20,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.noFill()
                 }else if(this.colorful){
                     this.layer.fill(255,150,255,this.fade*this.anim.select)
                     this.layer.noStroke()
@@ -14036,6 +14070,37 @@ class card{
                     for(let a=0,la=this.width/15-1;a<la;a++){
                         this.layer.rect(-this.width/2-3+(a+1)/(la+1)*(this.width+6),0,5,this.height)
                     }
+                    this.layer.noFill()
+                }else if(this.attack==8717){
+                    this.layer.fill(50,150,200,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(31,103,177,this.fade)
+                    this.layer.stroke(26,88,162,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.fill(255,this.fade)
+                    this.layer.noStroke()
+                    this.layer.textSize(30)
+                    this.layer.text(':(',-25,-35)
+                    this.layer.textSize(10)
+                    this.layer.textAlign(LEFT,CENTER)
+                    this.layer.text('This card ran into a problem and needs to restart.',10,10,this.width-10)
+                    this.layer.textAlign(CENTER,CENTER)
+                    this.layer.textSize(4)
+                    this.layer.text('EXITED WITH ERROR CODE 0',0,45)
+                    this.layer.noFill()
+                }else if(this.attack==8718){
+                    this.layer.fill(255,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(240,this.fade)
+                    this.layer.rect(0,0,this.width,this.height)
+                    this.layer.image(graphics.minor[38],-this.width*0.5,-this.height*0.5,this.width,this.height)
+                    this.layer.noFill()
+                    this.layer.stroke(225,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
                     this.layer.noFill()
                 }else if(this.colorful){
                     this.layer.fill(255,255,150,this.fade*this.anim.select)
@@ -15268,7 +15333,10 @@ class card{
         return effectiveCost
     }
     colorless(){
-        return this.color==0&&!this.colorful&&this.attack!=1328&&this.attack!=1330&&this.attack!=1393&&this.attack!=1615&&this.attack!=2064&&this.attack!=3454&&this.attack!=3459&&this.attack!=3460&&this.attack!=-1031&&this.attack!=-1032&&this.attack!=4225&&this.attack!=3629&&this.attack!=3630&&this.attack!=3631&&!(this.attack>=3694&&this.attack<=3699)&&this.attack!=3753&&this.attack!=3754&&this.attack!=4048&&this.attack!=4223&&this.attack!=4224&&this.attack!=5992&&this.list!=-8&&!(this.list==-9&&variants.ultraprism)
+        return this.color==0&&!this.colorful&&!(this.list==-9&&variants.ultraprism)&&
+            this.attack!=1328&&this.attack!=1330&&this.attack!=1393&&this.attack!=1615&&this.attack!=2064&&this.attack!=3454&&this.attack!=3459&&this.attack!=3460&&this.attack!=-1031&&this.attack!=-1032&&
+            this.attack!=4225&&this.attack!=3629&&this.attack!=3630&&this.attack!=3631&&!(this.attack>=3694&&this.attack<=3699)&&this.attack!=3753&&this.attack!=3754&&this.attack!=4048&&this.attack!=4223&&
+            this.attack!=4224&&this.attack!=5992&&this.attack!=8717&&this.attack!=8718&&this.list!=-8
     }
     getBasic(cardClass){
         return this.basic&&(this.class==cardClass||cardClass==-1)||this.attack==5045&&(cardClass==1||cardClass==2||cardClass==-1)||(this.attack==6928||this.attack==7128||this.attack==7129)&&(cardClass==1||cardClass==-1)

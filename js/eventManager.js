@@ -2436,6 +2436,12 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                             this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
                         }
                     break
+                    case 194:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[184][this.player].active=true
+                            this.battle.overlayManager.overlays[184][this.player].activate([])
+                        }
+                    break
 
                 }
                 if(!cut){

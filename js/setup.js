@@ -5,13 +5,13 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    if(true){
+    if(false){
             //game.ascend=33
 
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[26]
+        current.menu.combatant=[1]
         current.menu.deck=[-1]
 
             //variants.mtg=true
@@ -31,6 +31,8 @@ function setup(){
         game.dev=true
         stage.scene='battle'
         current.setupBattle(types.encounter[1])
+
+        //event('Matching Game')
 
         //fight('-h Rewriter')
 

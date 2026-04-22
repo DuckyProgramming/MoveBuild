@@ -56,17 +56,31 @@
             ],
         },
     },{
-        name:'Joseph\nJ. Joker',rarity:-1,list:-8,
+        name:'Mixtape',rarity:-1,list:-8,
         levels:[
-            {effect:[25],attack:1384,cost:0,target:[0],spec:[42],limit:5,class:11},
-            {effect:[15],attack:1384,cost:0,target:[0],spec:[42],limit:5,class:11},
-            {effect:[10],attack:1384,cost:0,target:[0],spec:[42],limit:5,class:11},
+            {effect:[1],attack:1683,cost:0,target:[2,1,2],spec:[],class:11},
+            {effect:[2],attack:1683,cost:0,target:[2,1,2],spec:[],class:11},
+            {effect:[3],attack:1683,cost:0,target:[2,1,2],spec:[],class:11},
         ],mtg:{
-            rarity:-1,list:-8,color:[0],
+            rarity:-1,list:-8,color:[3],
             levels:[
-                {effect:[25],attack:1384,cost:[],target:[0],spec:[42],limit:5,class:11},
-                {effect:[15],attack:1384,cost:[],target:[0],spec:[42],limit:5,class:11},
-                {effect:[10],attack:1384,cost:[],target:[0],spec:[42],limit:5,class:11},
+                {effect:[1],attack:1683,cost:[],target:[2,1,2],spec:[],class:11},
+                {effect:[2],attack:1683,cost:[],target:[2,1,2],spec:[],class:11},
+                {effect:[3],attack:1683,cost:[],target:[2,1,2],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Muddle',rarity:-1,list:-8,
+        levels:[
+            {effect:[20,2],attack:1662,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[28,2],attack:1662,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[32,3],attack:1662,cost:0,target:[2,1,2],spec:[],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[20,2],attack:1662,cost:[],target:[2,1,2],spec:[],class:1},
+                {effect:[28,2],attack:1662,cost:[],target:[2,1,2],spec:[],class:1},
+                {effect:[32,3],attack:1662,cost:[],target:[2,1,2],spec:[],class:1},
             ],
         },
     },

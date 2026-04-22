@@ -4567,7 +4567,7 @@ function setupCombatantGraphics(type){
 				color:{
                     hair:{back:[143,106,77],front:[209,170,123],insideBack:[156,128,105],insideFront:[192,150,101],glow:[236,203,159],bow:[62,61,62]},
                     skin:{head:[252,231,227],body:[248,208,197],legs:[244,214,207],arms:[255,231,227],button:[227,176,165]},
-                    eye:{back:[211,28,29],front:[71,0,0],glow:[202,168,193]},
+                    eye:{back:[211,108,109],front:[71,0,0],glow:[202,168,193]},
 					mouth:{in:[191,125,127],out:[0,0,0]},
 					dress:{
 						main:[236,231,233],over:[220,213,212],back:[196,169,171],
@@ -7295,7 +7295,7 @@ function setupGeneralGraphics(){
 	36 Daiyousei Bow
 	37 Menessa Pin
 	*/
-	for(let a=0,la=38;a<la;a++){
+	for(let a=0,la=39;a<la;a++){
 		switch(a){
 			case 9: case 11:
 				graphics.minor.push(createGraphics(160,240))
@@ -7308,6 +7308,9 @@ function setupGeneralGraphics(){
 			break
 			case 26:
 				graphics.minor.push(createGraphics(80,80))
+			break
+			case 38:
+				graphics.minor.push(createGraphics(90,120))
 			break
 			default:
 				graphics.minor.push(createGraphics(160,160))
@@ -7592,7 +7595,28 @@ function setupGeneralGraphics(){
 	graphics.minor[37].erase()
 	graphics.minor[37].ellipse(-45,0,55,55)
 	graphics.minor[37].ellipse(45,0,55,55)
-
+	graphics.minor[38].scale(3/2)
+	for(let a=0,la=60;a<la;a++){
+		for(let b=0,lb=80;b<lb;b++){
+			let c=((a^b)%(5*7*11*13))^(((a+20)^b)%(5*7*11*13))*2
+			if(c%5==0){
+				graphics.minor[38].fill(230,211,227)
+				graphics.minor[38].rect(a+0.5,b+0.5,1,1)
+			}
+			if(c%7==0){
+				graphics.minor[38].fill(192,190,215)
+				graphics.minor[38].rect(a+0.5,b+0.5,1,1)
+			}
+			if(c%11==0){
+				graphics.minor[38].fill(133,147,205)
+				graphics.minor[38].rect(a+0.5,b+0.5,1,1)
+			}
+			if(c%13==0){
+				graphics.minor[38].fill(177,122,195)
+				graphics.minor[38].rect(a+0.5,b+0.5,1,1)
+			}
+		}
+	}
 }
 function setupBackground(type,layer){
 	switch(type){
