@@ -2786,7 +2786,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(1)
             layer.rect(0,0,4.5,6,1)
             layer.noStroke()
-            layer.fill(150,200,255)
+            layer.fill(150,200,255,fade)
             layer.ellipse(0,0,4)
             layer.quad(0.6,-0.6,-3.6,-3.6,-0.6,0.6,3.6,3.6)
         break
@@ -9804,7 +9804,7 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             regStar(layer,-8,0,5,6,6,2.5,2.5,180)
         break
         case 25:
-            layer.stroke(255)
+            layer.stroke(255,fade)
             layer.strokeWeight(4)
             layer.line(0,16,lsin(-48)*20,18-lcos(-48)*20)
             layer.line(0,16,lsin(-16)*20,18-lcos(-16)*20)
@@ -9816,13 +9816,19 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.line(lsin(48)*20+lsin(-16)*20,18-lcos(48)*20-lcos(-16)*20,lsin(-16)*20,18-lcos(-16)*20)
         break
         case 26:
-            layer.fill(255,255,228)
-            layer.ellipse(-9,0,24,24)
-            layer.ellipse(9,0,24,24)
-            layer.fill(255,219,129,fade)
-            layer.ellipse(-13.5,0,16.5,16.5)
-            layer.ellipse(13.5,0,16.5,16.5)
-            layer.fill(255,255,228)
+            layer.push()
+            layer.beginClip({invert:true})
+            layer.ellipse(-9.1,0,21.06,21.06)
+            layer.endClip()
+            layer.ellipse(-6.5,0,26,26)
+            layer.pop()
+            layer.push()
+            layer.beginClip({invert:true})
+            layer.ellipse(9.1,0,21.06,21.06)
+            layer.endClip()
+            layer.ellipse(6.5,0,26,26)
+            layer.pop()
+            layer.fill(255)
             layer.quad(-16,0,-15,-4,-14,0,-15,4)
             layer.quad(-19,0,-15,-1,-11,0,-15,1)
             layer.quad(16,0,15,-4,14,0,15,4)
@@ -11315,7 +11321,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.ellipse(-7.5,2.25,3,3)
         break
         case 186:
-            layer.fill(255)
+            layer.fill(255,fade)
             layer.beginShape()
             for(let a=0,la=24;a<la;a++){
                 layer.vertex(lsin(a*15)*(6+a%2*2),lcos(a*15)*(6+a%2*2))

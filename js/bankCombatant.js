@@ -6698,15 +6698,21 @@ combatant.prototype.display=function(){
                     this.layer.fill(this.color.skin.body[0],this.color.skin.body[1],this.color.skin.body[2],this.fade*this.fades.skin.body)
                     this.layer.ellipse(0,-65,4.5,3.25)
                     this.layer.noStroke()
-                    this.layer.fill(...this.flashColor(this.color.dress.bow),this.fade*this.fades.dress.main)
                     for(let a=0,la=3;a<la;a++){
                         this.layer.push()
                         this.layer.translate(lsin(this.anim.direction+180)*[6.4,8,12][a],-55.5+a*12+[2,3,4][a]*lcos(this.anim.direction+180))
                         this.layer.rotate(lsin(this.anim.direction+180)*[-10,-20,-20][a])
                         this.layer.scale(lcos(this.anim.direction+180)*0.5,0.5)
+                        this.layer.fill(...this.flashColor(this.color.dress.bow),this.fade*this.fades.dress.main)
                         this.layer.ellipse(0,0,1.5)
-                        this.layer.quad(0,0,-6,-3,-5,0,-6,3)
+                        this.layer.rotate(15)
                         this.layer.quad(0,0,6,-3,5,0,6,3)
+                        this.layer.rotate(150)
+                        this.layer.quad(0,0,6,-3,5,0,6,3)
+                        this.layer.fill(...this.flashColor([this.color.dress.bow[0]*1.6,this.color.dress.bow[1]*1.6,this.color.dress.bow[2]*1.6]),this.fade*this.fades.dress.main)
+                        this.layer.quad(0,0,5.4,-1.2,5,0,5.4,1.2)
+                        this.layer.rotate(-150)
+                        this.layer.quad(0,0,5.4,-1.2,5,0,5.4,1.2)
                         this.layer.pop()
                     }
                 }
@@ -6898,15 +6904,21 @@ combatant.prototype.display=function(){
                         }
                     }
                     if(lcos(this.anim.direction+180)>0){
-                        this.layer.fill(...this.flashColor(this.color.dress.bow),this.fade*this.fades.dress.main)
                         for(let a=0,la=3;a<la;a++){
                             this.layer.push()
                             this.layer.translate(lsin(this.anim.direction+180)*[6.4,8,12][a],-55.5+a*12+[2,3,4][a]*lcos(this.anim.direction+180))
                             this.layer.rotate(lsin(this.anim.direction+180)*[-10,-20,-20][a])
                             this.layer.scale(lcos(this.anim.direction+180)*0.5,0.5)
+                            this.layer.fill(...this.flashColor(this.color.dress.bow),this.fade*this.fades.dress.main)
                             this.layer.ellipse(0,0,1.5)
-                            this.layer.quad(0,0,-6,-3,-5,0,-6,3)
+                            this.layer.rotate(15)
                             this.layer.quad(0,0,6,-3,5,0,6,3)
+                            this.layer.rotate(150)
+                            this.layer.quad(0,0,6,-3,5,0,6,3)
+                            this.layer.fill(...this.flashColor([this.color.dress.bow[0]*1.6,this.color.dress.bow[1]*1.6,this.color.dress.bow[2]*1.6]),this.fade*this.fades.dress.main)
+                            this.layer.quad(0,0,5.4,-1.2,5,0,5.4,1.2)
+                            this.layer.rotate(-150)
+                            this.layer.quad(0,0,5.4,-1.2,5,0,5.4,1.2)
                             this.layer.pop()
                         }
                     }
