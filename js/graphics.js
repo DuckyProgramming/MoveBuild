@@ -4572,9 +4572,9 @@ function setupCombatantGraphics(type){
 					dress:{
 						main:[236,231,233],over:[220,213,212],back:[196,169,171],
 						sleeve:[232,217,217],sleeveOver:[222,207,209],sleeveBack:[177,139,139],
-						bow:[39,39,39],flaps:[62,63,62],pocket:[216,194,191]
+						bow:[59,59,59],flaps:[62,63,62],pocket:[216,194,191]
 					},
-					shoe:{main:[53,52,51],bow:[95,94,93]},
+					shoe:{main:[42,39,37],bow:[65,64,63]},
 				},
 			})
 

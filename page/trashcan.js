@@ -83,5 +83,75 @@
                 {effect:[32,3],attack:1662,cost:[],target:[2,1,2],spec:[],class:1},
             ],
         },
+    },{
+        name:'Frogsword',rarity:-1,list:-8,
+        levels:[
+            {effect:[3],attack:1910,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[6],attack:1910,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[8],attack:1910,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[3],attack:1910,cost:[3],target:[2,1,1],spec:[0],class:1},
+                {effect:[6],attack:1910,cost:[3],target:[2,1,1],spec:[0],class:1},
+                {effect:[8],attack:1910,cost:[3],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Dice\nRoll',rarity:-1,list:-8,
+        levels:[
+            {effect:[3],attack:897,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[4],attack:897,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[5],attack:897,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[2],attack:897,cost:[3],target:[2,1,1],spec:[0],class:1},
+                {effect:[3],attack:897,cost:[3],target:[2,1,1],spec:[0],class:1},
+                {effect:[4],attack:897,cost:[3],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Dice\nBombs',rarity:-1,list:-8,
+        levels:[
+            {effect:[2,2],attack:1007,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[2,3],attack:1007,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[2,4],attack:1007,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[2,3],attack:1007,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[2,4],attack:1007,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[2,5],attack:1007,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'The Die\nis Cast',rarity:-1,list:-8,
+        levels:[
+            {effect:[5,2],attack:1153,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[7,2],attack:1153,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[9,2],attack:1153,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[4,2],attack:1153,cost:[3],target:[2,1,1],spec:[0],class:1},
+                {effect:[6,2],attack:1153,cost:[3],target:[2,1,1],spec:[0],class:1},
+                {effect:[8,2],attack:1153,cost:[3],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'D20',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:1926,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[2],attack:1926,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[3],attack:1926,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[1],attack:1926,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[2],attack:1926,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[3],attack:1926,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
     },
 ]

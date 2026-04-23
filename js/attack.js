@@ -288,6 +288,7 @@ class attack{
             case 8440: case 8441: case 8447: case 8448: case 8449: case 8450: case 8452: case 8453: case 8456: case 8458: case 8467: case 8481: case 8482: case 8489: case 8491: case 8494: case 8495: case 8497: case 8513: case 8517:
             case 8528: case 8530: case 8536: case 8549: case 8550: case 8551: case 8554: case 8556: case 8557: case 8558: case 8563: case 8568: case 8569: case 8570: case 8575: case 8599: case 8604: case 8612: case 8614: case 8617:
             case 8618: case 8627: case 8629: case 8656: case 8657: case 8660: case 8662: case 8663: case 8664: case 8667: case 8676: case 8684: case 8685: case 8686: case 8688: case 8692: case 8693: case 8712: case 8713: case 8715:
+            case 8719:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -365,7 +366,7 @@ class attack{
             case 8230: case 8233: case 8234: case 8237: case 8238: case 8239: case 8240: case 8251: case 8253: case 8259:
             case 8285: case 8286: case 8287: case 8288: case 8334: case 8343: case 8352: case 8446: case 8499: case 8501:
             case 8518: case 8572: case 8573: case 8589: case 8668: case 8702: case 8704: case 8705: case 8706: case 8707:
-            case 8709:
+            case 8709: case 8722: case 8723:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -10797,6 +10798,12 @@ class attack{
                         this.userManager.draw(this.effect[1]*num8696)
                         this.userManager.hand.exhaust(this.effect[2]*num8696)
                     break
+                    case 8720:
+                        this.userCombatant.statusEffect('Temporary Dexterity',this.effect[1])
+                        if(this.userManager.discard.cards.length>0){
+                            this.userManager.discard.sendAbstract(this.userManager.hand.cards,1,25,0,[11])
+                        }
+                    break
 
                 }
                 //mark 2s
@@ -13106,6 +13113,12 @@ class attack{
                     case 8709:
                         if(this.userCombatant.block>0){
                             this.userCombatant.statusEffect('Strength',this.effect[1])
+                        }
+                    break
+                    case 8723:
+                        if(this.userCombatant.caffeine==this.effect[1]){
+                            this.userManager.draw(this.effect[2])
+                            this.userCombatant.caffeine=0
                         }
                     break
 
@@ -24107,6 +24120,10 @@ class attack{
                             [['Gain','Energy']],
                             [['Strength'],['Dexterity']]
                         ]]]])
+                    break
+                    case 8721:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[1,0],57,[],[]])
                     break
 
                 }

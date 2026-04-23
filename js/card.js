@@ -6632,7 +6632,7 @@ class card{
             case 5534: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nHold ${effect[1]} Basic Orb${pl(effect[1])}`; break
             case 5535: string+=`All Cards in Hand\nDuplicate Once\nWhen Played`; break
             case 5536: string+=`Add ${effect[0]} Random\nSkill${pl(effect[0])} to Hand`; break
-            case 5537: string+=`Pulled:\nAdd ${effect[0]} Dark Matter${pl(effect[0])}\nto Hand`; break
+            case 5537: string+=`Pulled:\nAdd ${effect[0]} Dark Matter${pl(effect[0])}\nto Hand\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
             case 5538: string+=`When You Play\na Blueprint,\nAdd a Copy of it to Hand\nThat Costs 0 Temporarily\nand Exhaust This Card`; break
             case 5539: string+=`When You Play\na Countdown,\nAdd a Copy of it to Hand\nThat Costs 0 Temporarily\nand Exhaust This Card`; break
             case 5540: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],1)} Block\nPer Card Played While\nThis Card is in Your Hand`; break
@@ -9795,7 +9795,11 @@ class card{
             case 8714: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nDiscover a Character Skill\nOptions Have Draw,\nEnergy, and Buffs`; break
             case 8715: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nExhausted Pristines`; break
             case 8716: string+=`Add ${effect[0]} Pristine${pl(effect[0])} to Hand\nWhen a Non-Pristine\nSkill is Played\nWith This Card\nin Your Hand`; break
-            //8717 and 8718 are taken
+            case 8719: string+=`Push 1 Tile\nPut the Top${effect[0]!=1?` ${effect[0]}`:``}\nCard${pl(effect[0])} in Discard Pile\nin Your Hand`; break
+            case 8720: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Temporary\nDexterity\nPut the Top Skill\nin Discard Pile\nin Your Hand`; break
+            case 8721: string+=`Discover a Common\nColorless Card`; break
+            case 8722: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nReturn When a\nPower is Played`; break
+            case 8723: string+=`Move ${effect[0]} Tile${pl(effect[0])}\n${effect[1]} Caffeine:\nRemove Your Caffeine\nDraw ${effect[2]} Card${pl(effect[2])}`; break
 
             //mark p
 

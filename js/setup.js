@@ -61,9 +61,9 @@ function setup(){
             /*transition.trigger=true
             transition.scene='bossstash'*/
             
-            /*player(0).size=5
-            player(0).offset.position.y+=150
-            game.infoOff=true*/
+            //player(0).size=5
+            //player(0).offset.position.y+=150
+            //game.infoOff=true
 
             /*transition.trigger=true
             transition.scene='event'

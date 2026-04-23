@@ -3856,7 +3856,7 @@ class group{
     validAbstract(index,amount,variant,args){
         return !this.cards[index].drawMark&&(
             variant<0||
-            variant==0&&this.cards[index].class==args[0]||
+            (variant==0||variant==25)&&this.cards[index].class==args[0]||
             variant==1&&this.cards[index].getCost(0)==args[0]&&!this.cards[index].specialCost||
             variant==2&&this.cards[index].attack==args[0]||
             variant==3&&this.cards[index].name==args[0]||
@@ -3927,13 +3927,14 @@ class group{
         let sendId=this.sendAmounts.length-1
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.validAbstract(a,amount,variant,args)){
-                list.push(copyCard(this.cards[a]))
+            let index=variant==25?la-1-a:a
+            if(this.validAbstract(index,amount,variant,args)){
+                list.push(copyCard(this.cards[index]))
                 list[list.length-1].size=0
                 list[list.length-1].position.x=1200
                 list[list.length-1].position.y=500
-                delete this.cards[a]
-                this.cards.splice(a,1)
+                delete this.cards[index]
+                this.cards.splice(index,1)
                 a--
                 la--
                 if(output==22){

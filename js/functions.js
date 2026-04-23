@@ -239,6 +239,16 @@ function pentagon(layer,x1,y1,x2,y2,x3,y3,x4,y4,x5,y5){
 	layer.vertex(x5,y5)
 	layer.endShape(CLOSE)
 }
+function hexagon(layer,x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6){
+	layer.beginShape()
+	layer.vertex(x1,y1)
+	layer.vertex(x2,y2)
+	layer.vertex(x3,y3)
+	layer.vertex(x4,y4)
+	layer.vertex(x5,y5)
+	layer.vertex(x6,y6)
+	layer.endShape(CLOSE)
+}
 function plus(layer,size){
 	layer.line(-size,-size*4,size,-size*4)
 	layer.line(-size,-size*4,-size,-size)

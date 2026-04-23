@@ -1447,6 +1447,8 @@ class battle{
                 if(userCombatant.getStatus('Power Strength')>0){
                     userCombatant.statusEffect('Strength',userCombatant.getStatus('Power Strength'))
                 }
+                this.cardManagers[player].discard.allEffectArgs(44,[8722])
+                this.cardManagers[player].reserve.allEffectArgs(44,[8722])
             break
             case 11:
                 if(userCombatant.getStatus('Skill Temporary Strength')>0){
