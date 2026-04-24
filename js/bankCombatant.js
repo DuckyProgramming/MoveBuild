@@ -6988,9 +6988,18 @@ combatant.prototype.display=function(){
                 }
                 if(this.trigger.display.pocket&&lcos(this.anim.direction+36)>0){
                     this.layer.noStroke()
-                    this.layer.fill(...this.flashColor(this.color.dress.pocket),this.fade*this.fades.pocket)
+                    this.layer.fill(...this.flashColor(this.color.dress.pocket[0]),this.fade*this.fades.pocket)
                     this.layer.rect(lsin(this.anim.direction+36)*6,-54,3*lcos(this.anim.direction+36),2)
-                    this.layer.rect(lsin(this.anim.direction+36)*6,-55.5,3.5*lcos(this.anim.direction+36),1)
+                    this.layer.fill(...this.flashColor(this.color.dress.pocket[1]),this.fade*this.fades.pocket)
+                    pentagon(this.layer,
+                        lsin(this.anim.direction+36)*6-1.6*lcos(this.anim.direction+36),-56,
+                        lsin(this.anim.direction+36)*6+1.6*lcos(this.anim.direction+36),-56,
+                        lsin(this.anim.direction+36)*6+1.6*lcos(this.anim.direction+36),-55,
+                        lsin(this.anim.direction+36)*6,-54.5,
+                        lsin(this.anim.direction+36)*6-1.6*lcos(this.anim.direction+36),-55,
+                    )
+                    this.layer.fill(...this.flashColor(this.color.dress.pocket[2]),this.fade*this.fades.pocket)
+                    this.layer.ellipse(lsin(this.anim.direction+36)*6,-55.25,0.5*lcos(this.anim.direction+36),0.5)
                 }
                 if(this.trigger.display.skin.head){
                     this.layer.fill(...this.flashColor(this.color.skin.head),this.fade*this.fades.skin.head)

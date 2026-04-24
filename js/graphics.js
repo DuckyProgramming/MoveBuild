@@ -4572,7 +4572,7 @@ function setupCombatantGraphics(type){
 					dress:{
 						main:[236,231,233],over:[220,213,212],back:[196,169,171],
 						sleeve:[232,217,217],sleeveOver:[222,207,209],sleeveBack:[177,139,139],
-						bow:[59,59,59],flaps:[62,63,62],pocket:[216,194,191]
+						bow:[59,59,59],flaps:[62,63,62],pocket:[[216,194,191],[193,170,168],[222,199,181]]
 					},
 					shoe:{main:[42,39,37],bow:[65,64,63]},
 				},
@@ -4583,43 +4583,80 @@ function setupCombatantGraphics(type){
 			data.parts.hair={main:[],inside:[],reverse:[],reverseInside:[]}
 
 			for(let a=0,la=20;a<la;a++){
-				let zonal=[random(-180/la,30/la),random(-90/la,90/la)]
-				zonal.push(zonal[0]+random(120,150)/la)
-				let bar=random(0.4,0.6)
+				let zonal=[
+					[random(-180/la,0/la),random(-90/la,90/la)],
+					[random(-150/la,30/la),random(-90/la,90/la)]
+				]
+				zonal[0].push(zonal[0][0]+random(150,180)/la)
+				zonal[1].push(zonal[1][0]+random(90,120)/la)
+				let bar=[random(0.25,0.375),random(0.625,0.75)]
 				let scale=4.5+(lcos(a/la*360)>0.5?(-lcos(a/la*360)+0.5)*20:lcos(a/la*240+60)*-15)
 				let init=(a+random(-0.1,0.1))/la*360
 				let width=random(180,240)+a%2*30
 				let mult=abs(scale)/10+(scale<0?0.75:0.25)
-				zonal=zonal.map(num=>num*mult)
+				zonal=zonal.map(set=>set.map(num=>num*mult))
 				if(scale>0){
-					data.parts.hair.main.push({spin:[init-width/la,init,init+zonal[0]],y:[0,0,scale*bar]})
-					data.parts.hair.main.push({spin:[init,init+width/la,init+zonal[2]],y:[0,0,scale*bar]})
-					data.parts.hair.main.push({spin:[init+zonal[0],init+zonal[2],init],y:[scale*bar,scale*bar,0]})
-					data.parts.hair.main.push({spin:[init+zonal[0],init+zonal[2],init+zonal[1]],y:[scale*bar,scale*bar,scale]})
+					data.parts.hair.main.push(
+						{spin:[init-width/la,init,init+zonal[0][0]],y:[0,0,scale*bar[0]]},
+						{spin:[init,init+width/la,init+zonal[0][2]],y:[0,0,scale*bar[0]]},
+						{spin:[init+zonal[0][0],init+zonal[0][2],init],y:[scale*bar[0],scale*bar[0],0]},
+
+						{spin:[init+zonal[0][0],init+zonal[0][0]*0.5+zonal[0][2]*0.5,init+zonal[1][0]],y:[scale*bar[0],scale*bar[0],scale*bar[1]]},
+						{spin:[init+zonal[0][0]*0.5+zonal[0][2]*0.5,init+zonal[0][2],init+zonal[1][2]],y:[scale*bar[0],scale*bar[0],scale*bar[1]]},
+						{spin:[init+zonal[1][0],init+zonal[1][2],init+zonal[0][0]*0.5+zonal[0][2]*0.5],y:[scale*bar[1],scale*bar[1],scale*bar[0]]},
+
+						{spin:[init+zonal[1][0],init+zonal[1][2],init+zonal[1][1]],y:[scale*bar[1],scale*bar[1],scale]}
+					)
 				}else{
-					data.parts.hair.reverse.push({spin:[init-width/la-max(0,-6-scale*4),init,init+zonal[0]],y:[0,0,scale*bar-0.5]})
-					data.parts.hair.reverse.push({spin:[init,init+width/la+max(0,-6-scale*4),init+zonal[2]],y:[0,0,scale*bar-0.5]})
-					data.parts.hair.reverse.push({spin:[init+zonal[0],init+zonal[2],init],y:[scale*bar-0.5,scale*bar-0.5,0]})
-					data.parts.hair.reverse.push({spin:[init+zonal[0],init+zonal[2],init+zonal[1]],y:[scale*bar-0.5,scale*bar-0.5,scale-1]})
+					data.parts.hair.reverse.push(
+						{spin:[init-width/la-max(0,-6-scale*4),init,init+zonal[0][0]],y:[0,0,(scale-1)*bar[0]]},
+						{spin:[init,init+width/la+max(0,-6-scale*4),init+zonal[0][2]],y:[0,0,(scale-1)*bar[0]]},
+						{spin:[init+zonal[0][0],init+zonal[0][2],init],y:[(scale-1)*bar[0],(scale-1)*bar[0],0]},
+
+						{spin:[init+zonal[0][0],init+zonal[0][0]*0.5+zonal[0][2]*0.5,init+zonal[1][0]],y:[(scale-1)*bar[0],(scale-1)*bar[0],(scale-1)*bar[1]]},
+						{spin:[init+zonal[0][0]*0.5+zonal[0][2]*0.5,init+zonal[0][2],init+zonal[1][2]],y:[(scale-1)*bar[0],(scale-1)*bar[0],(scale-1)*bar[1]]},
+						{spin:[init+zonal[1][0],init+zonal[1][2],init+zonal[0][0]*0.5+zonal[0][2]*0.5],y:[(scale-1)*bar[1],(scale-1)*bar[1],(scale-1)*bar[0]]},
+
+						{spin:[init+zonal[1][0],init+zonal[1][2],init+zonal[1][1]],y:[(scale-1)*bar[1],(scale-1)*bar[1],(scale-1)]}
+					)
 				}
 
-				zonal=[random(-180/la,0),random(-60/la,60/la)]
-				zonal.push(zonal[0]+random(150,180)/la)
-				scale=2.5+(lcos(a/la*360)>0.5?(-lcos(a/la*360)+0.5)*20:lcos(a/la*240+60)*-15)
+				zonal=[
+					[random(-180/la,0),random(-60/la,60/la)],
+					[random(-150/la,0),random(-60/la,60/la)]
+				]
+				zonal[0].push(zonal[0][0]+random(150,180)/la)
+				zonal[1].push(zonal[1][0]+random(120,150)/la)
+				bar=[random(0.25,0.375),random(0.625,0.75)]
+				scale=1.5+(lcos(a/la*360)>0.5?(-lcos(a/la*360)+0.5)*20:lcos(a/la*240+60)*-15)
 				init=(a+random(0.4,0.6))/la*360
 				width=random(180,240)
 				mult=abs(scale)/10+(scale<0?0.75:0.25)
-				zonal=zonal.map(num=>num*mult)
+				zonal=zonal.map(set=>set.map(num=>num*mult))
 				if(scale>0){
-					data.parts.hair.inside.push({spin:[init-width/la,init,init+zonal[0]],y:[0,0,scale*bar]})
-					data.parts.hair.inside.push({spin:[init,init+width/la,init+zonal[2]],y:[0,0,scale*bar]})
-					data.parts.hair.inside.push({spin:[init+zonal[0],init+zonal[2],init],y:[scale*bar,scale*bar,0]})
-					data.parts.hair.inside.push({spin:[init+zonal[0],init+zonal[2],init+zonal[1]],y:[scale*bar,scale*bar,scale]})
+					data.parts.hair.inside.push(
+						{spin:[init-width/la,init,init+zonal[0][0]],y:[0,0,scale*bar[0]]},
+						{spin:[init,init+width/la,init+zonal[0][2]],y:[0,0,scale*bar[0]]},
+						{spin:[init+zonal[0][0],init+zonal[0][2],init],y:[scale*bar[0],scale*bar[0],0]},
+
+						{spin:[init+zonal[0][0],init+zonal[0][0]*0.5+zonal[0][2]*0.5,init+zonal[1][0]],y:[scale*bar[0],scale*bar[0],scale*bar[1]]},
+						{spin:[init+zonal[0][0]*0.5+zonal[0][2]*0.5,init+zonal[0][2],init+zonal[1][2]],y:[scale*bar[0],scale*bar[0],scale*bar[1]]},
+						{spin:[init+zonal[1][0],init+zonal[1][2],init+zonal[0][0]*0.5+zonal[0][2]*0.5],y:[scale*bar[1],scale*bar[1],scale*bar[0]]},
+
+						{spin:[init+zonal[1][0],init+zonal[1][2],init+zonal[1][1]],y:[scale*bar[1],scale*bar[1],scale]}
+					)
 				}else{
-					data.parts.hair.reverseInside.push({spin:[init-width/la-max(0,-6-scale*4),init,init+zonal[0]],y:[0,0,scale*bar-1]})
-					data.parts.hair.reverseInside.push({spin:[init,init+width/la+max(0,-6-scale*4),init+zonal[2]],y:[0,0,scale*bar-1]})
-					data.parts.hair.reverseInside.push({spin:[init+zonal[0],init+zonal[2],init],y:[scale*bar-1,scale*bar-1,0]})
-					data.parts.hair.reverseInside.push({spin:[init+zonal[0],init+zonal[2],init+zonal[1]],y:[scale*bar-1,scale*bar-1,scale-2]})
+					data.parts.hair.reverseInside.push(
+						{spin:[init-width/la-max(0,-6-scale*4),init,init+zonal[0][0]],y:[0,0,(scale-2)*bar[0]]},
+						{spin:[init,init+width/la+max(0,-6-scale*4),init+zonal[0][2]],y:[0,0,(scale-2)*bar[0]]},
+						{spin:[init+zonal[0][0],init+zonal[0][2],init],y:[(scale-2)*bar[0],(scale-2)*bar[0],0]},
+
+						{spin:[init+zonal[0][0],init+zonal[0][0]*0.5+zonal[0][2]*0.5,init+zonal[1][0]],y:[(scale-2)*bar[0],(scale-2)*bar[0],(scale-2)*bar[1]]},
+						{spin:[init+zonal[0][0]*0.5+zonal[0][2]*0.5,init+zonal[0][2],init+zonal[1][2]],y:[(scale-2)*bar[0],(scale-2)*bar[0],(scale-2)*bar[1]]},
+						{spin:[init+zonal[1][0],init+zonal[1][2],init+zonal[0][0]*0.5+zonal[0][2]*0.5],y:[(scale-2)*bar[1],(scale-2)*bar[1],(scale-2)*bar[0]]},
+
+						{spin:[init+zonal[1][0],init+zonal[1][2],init+zonal[1][1]],y:[(scale-2)*bar[1],(scale-2)*bar[1],(scale-2)]}
+					)
 				}
 			}
 		
@@ -4655,8 +4692,8 @@ function setupCombatantGraphics(type){
 				data.sprites.hair.front[g].image(data.sprites.hair.insideFront[g],0,0,200,300)
 				data.sprites.hair.front[g].image(data.sprites.hair.preFront[g],0,0,200,300)
 				data.sprites.hair.back.push(createGraphics(200,300))
-				data.sprites.hair.back[g].image(data.sprites.hair.insideBack[g],0,0,200,300)
 				data.sprites.hair.back[g].image(data.sprites.hair.preBack[g],0,0,200,300)
+				data.sprites.hair.back[g].image(data.sprites.hair.insideBack[g],0,0,200,300)
 			}
 			for(let a=0,la=data.sprites.hair.insideFront.length;a<la;a++){
 				delete data.sprites.hair.insideFront[a]

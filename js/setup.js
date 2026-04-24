@@ -52,7 +52,7 @@ function setup(){
             //current.create()
 
             /*stage.scene='graphic'
-            graphics.test=0
+            graphics.test=-1
             graphics.staticBackground.clear()
             setupBackground(graphics.test,graphics.staticBackground)*/
 
@@ -62,7 +62,8 @@ function setup(){
             transition.scene='bossstash'*/
             
             //player(0).size=5
-            //player(0).offset.position.y+=150
+            //player(0).offset.position.y+=300
+            //player(0).goal.anim.direction+=180
             //game.infoOff=true
 
             /*transition.trigger=true
