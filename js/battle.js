@@ -2942,18 +2942,22 @@ class battle{
                 this.overlayManager.display()
             break
             case 'graphic':
-                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 if(graphics.test==-1){
-                    this.graphics.combatants[0][0][0].position.x=this.layer.width/2
-                    this.graphics.combatants[0][0][0].position.y=this.layer.height/2+200
-                    //this.graphics.combatants[0][0][0].anim.direction=30
+                    this.layer.clear()
+                    graphics.staticBackground.clear()
+                    this.graphics.combatants[0][0][0].position.x=this.layer.width
+                    this.graphics.combatants[0][0][0].position.y=this.layer.height+450
+                    //this.graphics.combatants[0][0][0].anim.direction=-90
                     if(game.timer%30==0){
                         //this.graphics.combatants[0][0][0].anim.direction+=15
                     }
                     this.graphics.combatants[0][0][0].time++
-                    this.graphics.combatants[0][0][0].size=4
+                    this.graphics.combatants[0][0][0].size=10
+                    this.graphics.combatants[0][0][0].layer=graphics.staticBackground
                     this.graphics.combatants[0][0][0].display()
+                    this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 }else{
+                    this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                     for(let a=0,la=this.players;a<la;a++){
                         this.graphics.combatants[graphics.test][0][a].time++
                         this.graphics.combatants[graphics.test][0][a].display()

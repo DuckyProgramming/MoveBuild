@@ -4571,10 +4571,11 @@ function setupCombatantGraphics(type){
 					mouth:{in:[191,125,127],out:[0,0,0]},
 					dress:{
 						main:[236,231,233],over:[220,213,212],back:[196,169,171],
-						sleeve:[232,217,217],sleeveOver:[222,207,209],sleeveBack:[177,139,139],
-						bow:[59,59,59],flaps:[62,63,62],pocket:[[216,194,191],[193,170,168],[222,199,181]]
+						sleeve:[232,217,217],sleeveOver:[222,207,209],sleeveBack:[187,149,149],
+						bow:[59,59,59],flaps:[62,63,62],pocket:[[226,204,201],[213,190,188],[237,214,196]]
 					},
-					shoe:{main:[42,39,37],bow:[65,64,63]},
+					shoe:{main:[32,29,27],under:[64,57,56],bow:[65,64,63],glow:[131,120,115]},
+					pin:[255,227,156],
 				},
 			})
 
@@ -4589,12 +4590,15 @@ function setupCombatantGraphics(type){
 				]
 				zonal[0].push(zonal[0][0]+random(150,180)/la)
 				zonal[1].push(zonal[1][0]+random(90,120)/la)
-				let bar=[random(0.25,0.375),random(0.625,0.75)]
 				let scale=4.5+(lcos(a/la*360)>0.5?(-lcos(a/la*360)+0.5)*20:lcos(a/la*240+60)*-15)
+				let bar=scale<0?[random(0.5,0.6),random(0.75,0.85)]:[random(0.25,0.375),random(0.625,0.75)]
 				let init=(a+random(-0.1,0.1))/la*360
 				let width=random(180,240)+a%2*30
-				let mult=abs(scale)/10+(scale<0?0.75:0.25)
-				zonal=zonal.map(set=>set.map(num=>num*mult))
+				let mult=[
+					min(1,abs(scale)/(scale<0?5:10)+(scale<0?0.5:0.25)),
+					min(6/5,abs(scale)/(scale<0?5:10)+(scale<0?0.5:0.25))
+				]
+				zonal=zonal.map((set,index)=>set.map(num=>num*mult[index]))
 				if(scale>0){
 					data.parts.hair.main.push(
 						{spin:[init-width/la,init,init+zonal[0][0]],y:[0,0,scale*bar[0]]},
@@ -4627,12 +4631,15 @@ function setupCombatantGraphics(type){
 				]
 				zonal[0].push(zonal[0][0]+random(150,180)/la)
 				zonal[1].push(zonal[1][0]+random(120,150)/la)
-				bar=[random(0.25,0.375),random(0.625,0.75)]
 				scale=1.5+(lcos(a/la*360)>0.5?(-lcos(a/la*360)+0.5)*20:lcos(a/la*240+60)*-15)
+				bar=scale<0?[random(0.5,0.6),random(0.75,0.85)]:[random(0.25,0.375),random(0.625,0.75)]
 				init=(a+random(0.4,0.6))/la*360
 				width=random(180,240)
-				mult=abs(scale)/10+(scale<0?0.75:0.25)
-				zonal=zonal.map(set=>set.map(num=>num*mult))
+				mult=[
+					min(1,abs(scale)/(scale<0?5:10)+(scale<0?0.5:0.25)),
+					min(6/5,abs(scale)/(scale<0?5:10)+(scale<0?0.5:0.25))
+				]
+				zonal=zonal.map((set,index)=>set.map(num=>num*mult[index]))
 				if(scale>0){
 					data.parts.hair.inside.push(
 						{spin:[init-width/la,init,init+zonal[0][0]],y:[0,0,scale*bar[0]]},
@@ -7332,8 +7339,9 @@ function setupGeneralGraphics(){
 	36 Daiyousei Bow
 	37-38 Menessa Pin
 	39 XOR
+	40-41 Menessa Filigree
 	*/
-	for(let a=0,la=40;a<la;a++){
+	for(let a=0,la=42;a<la;a++){
 		switch(a){
 			case 9: case 11:
 				graphics.minor.push(createGraphics(160,240))
@@ -7642,7 +7650,6 @@ function setupGeneralGraphics(){
 	graphics.minor[37].arc(105,40,100,100,0,180)
 	graphics.minor[37].erase()
 	graphics.minor[37].arc(115,40,81,81,0,180)
-
 	graphics.minor[38].translate(0,40)
 	graphics.minor[38].fillGradient(gradient[0])
 	graphics.minor[38].arc(55,40,100,100,0,180)
@@ -7653,9 +7660,7 @@ function setupGeneralGraphics(){
 	graphics.minor[38].arc(105,40,100,100,-180,0)
 	graphics.minor[38].erase()
 	graphics.minor[38].arc(115,40,81,81,-180,0)
-
 	graphics.minor[37].image(graphics.minor[38],0,-40)
-
 	graphics.minor[39].scale(3/2)
 	for(let a=0,la=60;a<la;a++){
 		for(let b=0,lb=80;b<lb;b++){
@@ -7678,11 +7683,35 @@ function setupGeneralGraphics(){
 			}
 		}
 	}
+
+	graphics.minor[40].translate(0,40)
+	graphics.minor[40].fillGradient(gradient[0])
+	graphics.minor[40].arc(60,40,100,100,-180,0)
+	graphics.minor[40].erase()
+	graphics.minor[40].arc(48,40,77,77,-180,0)
+	graphics.minor[40].noErase()
+	graphics.minor[40].fillGradient(gradient[1])
+	graphics.minor[40].arc(100,40,100,100,0,180)
+	graphics.minor[40].erase()
+	graphics.minor[40].arc(112,40,77,77,0,180)
+
+	graphics.minor[41].translate(0,40)
+	graphics.minor[41].fillGradient(gradient[0])
+	graphics.minor[41].arc(60,40,100,100,0,180)
+	graphics.minor[41].erase()
+	graphics.minor[41].arc(48,40,77,77,0,180)
+	graphics.minor[41].noErase()
+	graphics.minor[41].fillGradient(gradient[1])
+	graphics.minor[41].arc(100,40,100,100,-180,0)
+	graphics.minor[41].erase()
+	graphics.minor[41].arc(112,40,77,77,-180,0)
+
+	graphics.minor[40].image(graphics.minor[41],0,-40)
 }
 function setupBackground(type,layer){
 	switch(type){
 		case -1:
-			layer.background(0)
+			//layer.background(0)
 		break
 		case 0:
 			layer.noStroke()

@@ -1393,10 +1393,10 @@ combatant.prototype.setupGraphics=function(direction){
                 ]}
 
             this.dress={top:[
-                {spin:[0,90,27],height:6},
-                {spin:[-90,0,-27],height:6},
-                {spin:[90,180,153],height:6},
-                {spin:[-180,-90,-153],height:6}
+                {spin:[-6,96,27],height:5},
+                {spin:[-96,6,-27],height:5},
+                {spin:[84,186,153],height:5},
+                {spin:[-186,-84,-153],height:5}
             ]}
 
             this.spin={
@@ -5378,19 +5378,25 @@ combatant.prototype.minorDisplay=function(type,key){
         break
         case 'Menessa':
             let dir
+            let ang
             switch(type){
                 case 0:
                     dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.dress.sleeve),this.fade*this.fades.dress.sleeve)
                     this.layer.beginShape()
-                    this.layer.quad(
+                    hexagon(
+                        this.layer,
                         this.graphics.arms[key].middle.x+2*sin(dir+90),
                         this.graphics.arms[key].middle.y+2*cos(dir+90),
+                        this.graphics.arms[key].middle.x*0.9+this.graphics.arms[key].bottom.x*0.1+2*sin(dir+90),
+                        this.graphics.arms[key].middle.y*0.9+this.graphics.arms[key].bottom.y*0.1+2*cos(dir+90),
                         this.graphics.arms[key].middle.x*0.25+this.graphics.arms[key].bottom.x*0.75+6*sin(dir+90),
                         this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75+6*cos(dir+90),
                         this.graphics.arms[key].middle.x*0.25+this.graphics.arms[key].bottom.x*0.75-6*sin(dir+90),
                         this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75-6*cos(dir+90),
+                        this.graphics.arms[key].middle.x*0.9+this.graphics.arms[key].bottom.x*0.1-2*sin(dir+90),
+                        this.graphics.arms[key].middle.y*0.9+this.graphics.arms[key].bottom.y*0.1-2*cos(dir+90),
                         this.graphics.arms[key].middle.x-2*sin(dir+90),
                         this.graphics.arms[key].middle.y-2*cos(dir+90)
                     )
@@ -5408,25 +5414,40 @@ combatant.prototype.minorDisplay=function(type,key){
                     /*for(let a=0,la=6;a<la;a++){
                         this.layer.ellipse(-4.875+a*1.95,-0.8+0.1*abs(a-2.5)**2,2.25,1.5)
                     }*/
+                    ang=atan2(6,dist(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,this.graphics.arms[key].bottom.x,this.graphics.arms[key].bottom.y)*0.75)
                     for(let a=0,la=17;a<la;a++){
                         if(lcos(a/la*360+this.anim.direction)>0){
-                            this.layer.push()
+                            /*this.layer.push()
                             this.layer.translate(lsin(a/la*360+this.anim.direction)*5.9,-abs(lcos(a/la*360+this.anim.direction)))
                             this.layer.rotate(20*lsin(a/la*360+this.anim.direction))
                             this.layer.ellipse(0,0,2.4*lcos(a/la*360+this.anim.direction),1.6)
+                            this.layer.pop()*/
+                            this.layer.push()
+                            this.layer.translate(
+                                lsin((a-0.5)/la*360+this.anim.direction)*3+lsin((a+0.5)/la*360+this.anim.direction)*3,
+                                -abs(lcos((a-0.5)/la*360+this.anim.direction)+lcos((a+0.5)/la*360+this.anim.direction))*0.5
+                            )
+                            this.layer.rotate(ang*lsin((a+0.5)/la*360+this.anim.direction))
+                            this.layer.ellipse(0,0,sqrt(
+                                (6*abs(lsin((a+0.5)/la*360+this.anim.direction)-lsin((a-0.5)/la*360+this.anim.direction)))**2+
+                                (abs(abs(lcos((a+0.5)/la*360+this.anim.direction))-abs(lcos((a-0.5)/la*360+this.anim.direction))))**2
+                            ),2.4)
                             this.layer.pop()
                         }
                     }
                     this.layer.pop()
 
                     let len=dist(
-                        this.graphics.arms[key].middle.x,
-                        this.graphics.arms[key].middle.y,
+                        this.graphics.arms[key].middle.x*0.9+this.graphics.arms[key].bottom.x*0.1,
+                        this.graphics.arms[key].middle.y*0.9+this.graphics.arms[key].bottom.y*0.1,
                         this.graphics.arms[key].middle.x*0.25+this.graphics.arms[key].bottom.x*0.75,
                         this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75
                     )
                     this.layer.push()
-                    this.layer.translate(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y)
+                    this.layer.translate(
+                        this.graphics.arms[key].middle.x*0.9+this.graphics.arms[key].bottom.x*0.1,
+                        this.graphics.arms[key].middle.y*0.9+this.graphics.arms[key].bottom.y*0.1
+                    )
                     this.layer.rotate(-dir)
                     this.layer.fill(...this.flashColor(this.color.dress.sleeveOver),this.fade*this.fades.dress.main)
                     for(let a=0,la=17;a<la;a++){
@@ -5456,13 +5477,15 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.beginShape()
                     let set=[
                         [0,1],
-                        [0.48,1],
+                        [0.46,1],
+                        [0.5,0.9],
                         [0.52,2/3],
                         [0.5,1/3],
                         [0.54,0],
                         [0.5,-1/3],
                         [0.52,-2/3],
-                        [0.48,-1],
+                        [0.5,-0.9],
+                        [0.46,-1],
                         [0,-1],
                     ]
                     for(let a=0,la=set.length;a<la;a++){
@@ -5495,15 +5518,59 @@ combatant.prototype.minorDisplay=function(type,key){
                         this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75
                     )
                     this.layer.rotate(-dir)
+                    ang=atan2(6,dist(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,this.graphics.arms[key].bottom.x,this.graphics.arms[key].bottom.y)*0.75)
                     for(let a=0,la=17;a<la;a++){
                         if(lcos(a/la*360+this.anim.direction)<=0){
-                            this.layer.push()
+                            /*this.layer.push()
                             this.layer.translate(lsin(a/la*360+this.anim.direction)*5.9,-abs(lcos(a/la*360+this.anim.direction)))
                             this.layer.rotate(20*lsin(a/la*360+this.anim.direction))
                             this.layer.ellipse(0,0,2.4*lcos(a/la*360+this.anim.direction),1.6)
+                            this.layer.pop()*/
+                            this.layer.push()
+                            this.layer.translate(
+                                lsin((a-0.5)/la*360+this.anim.direction)*3+lsin((a+0.5)/la*360+this.anim.direction)*3,
+                                -abs(lcos((a-0.5)/la*360+this.anim.direction)+lcos((a+0.5)/la*360+this.anim.direction))*0.5
+                            )
+                            this.layer.rotate(ang*lsin((a+0.5)/la*360+this.anim.direction))
+                            this.layer.ellipse(0,0,sqrt(
+                                (6*abs(lsin((a+0.5)/la*360+this.anim.direction)-lsin((a-0.5)/la*360+this.anim.direction)))**2+
+                                (abs(abs(lcos((a+0.5)/la*360+this.anim.direction))-abs(lcos((a-0.5)/la*360+this.anim.direction))))**2
+                            ),2.4)
                             this.layer.pop()
                         }
                     }
+                    this.layer.pop()
+                break
+                case 2:
+                    this.layer.push()
+                    this.layer.translate(this.graphics.legs[key].bottom.x*0.96+this.graphics.legs[key].middle.x*0.04,this.graphics.legs[key].bottom.y*0.96+this.graphics.legs[key].middle.y*0.04+1)
+                    this.layer.rotate(-this.anim.direction)
+                    this.layer.translate(0,4.25)
+                    this.layer.scale(1.25)
+                    this.layer.fill(...this.flashColor([this.color.shoe.bow[0]*0.4,this.color.shoe.bow[1]*0.4,this.color.shoe.bow[2]*0.4]),this.fade*this.fades.shoe)
+                    this.layer.rotate(15)
+                    this.layer.quad(0,0,2,-1,1.6,0,2,1)
+                    this.layer.rotate(150)
+                    this.layer.quad(0,0,2,-1,1.6,0,2,1)
+                    this.layer.fill(...this.flashColor(this.color.shoe.bow),this.fade*this.fades.shoe)
+                    this.layer.rotate(-150)
+                    this.layer.quad(0,0,1.85,-0.925,1.48,0,1.85,0.925)
+                    this.layer.rotate(150)
+                    this.layer.quad(0,0,1.85,-0.925,1.48,0,1.85,0.925)
+                    this.layer.fill(...this.flashColor([this.color.shoe.bow[0]*1.4,this.color.shoe.bow[1]*1.4,this.color.shoe.bow[2]*1.4]),this.fade*this.fades.shoe)
+                    this.layer.rotate(-150)
+                    this.layer.quad(0,0,1.6,-0.8,1.28,0,1.6,0.8)
+                    this.layer.rotate(150)
+                    this.layer.quad(0,0,1.6,-0.8,1.28,0,1.6,0.8)
+                    this.layer.fill(...this.flashColor([this.color.shoe.bow[0]*0.8,this.color.shoe.bow[1]*0.8,this.color.shoe.bow[2]*0.8]),this.fade*this.fades.shoe)
+                    this.layer.rotate(-150)
+                    this.layer.quad(0,0,1.44,-0.4,1.28,0,1.44,0.4)
+                    this.layer.rotate(150)
+                    this.layer.quad(0,0,1.44,-0.4,1.28,0,1.44,0.4)
+                    this.layer.rotate(-165)
+                    this.layer.fill(...this.flashColor([this.color.shoe.bow[0]*0.6,this.color.shoe.bow[1]*0.6,this.color.shoe.bow[2]*0.6]),this.fade*this.fades.shoe)
+                    hexagon(this.layer,-0.4,-0.1,-0.3,0.1,-0.35,0.3,0.35,0.3,0.3,0.1,0.4,-0.1)
+                    this.layer.image(graphics.minor[40],-1.2,-1.2,2.4,2.4)
                     this.layer.pop()
                 break
             }
