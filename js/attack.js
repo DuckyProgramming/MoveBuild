@@ -288,7 +288,7 @@ class attack{
             case 8440: case 8441: case 8447: case 8448: case 8449: case 8450: case 8452: case 8453: case 8456: case 8458: case 8467: case 8481: case 8482: case 8489: case 8491: case 8494: case 8495: case 8497: case 8513: case 8517:
             case 8528: case 8530: case 8536: case 8549: case 8550: case 8551: case 8554: case 8556: case 8557: case 8558: case 8563: case 8568: case 8569: case 8570: case 8575: case 8599: case 8604: case 8612: case 8614: case 8617:
             case 8618: case 8627: case 8629: case 8656: case 8657: case 8660: case 8662: case 8663: case 8664: case 8667: case 8676: case 8684: case 8685: case 8686: case 8688: case 8692: case 8693: case 8712: case 8713: case 8715:
-            case 8719:
+            case 8719: case 8724:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -33830,6 +33830,12 @@ class attack{
                     break
                     case 8703:
                         this.userCombatant.statusEffect('Pristine Reduction Free Attack',this.effect[0])
+                    break
+                    case 8724:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.lastPlayed[0].class==11){
+                            this.userManager.draw(this.effect[1],5)
+                        }
                     break
 
                 }

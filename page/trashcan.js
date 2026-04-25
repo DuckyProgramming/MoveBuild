@@ -56,34 +56,6 @@
             ],
         },
     },{
-        name:'Mixtape',rarity:-1,list:-8,
-        levels:[
-            {effect:[1],attack:1683,cost:0,target:[2,1,2],spec:[],class:11},
-            {effect:[2],attack:1683,cost:0,target:[2,1,2],spec:[],class:11},
-            {effect:[3],attack:1683,cost:0,target:[2,1,2],spec:[],class:11},
-        ],mtg:{
-            rarity:-1,list:-8,color:[3],
-            levels:[
-                {effect:[1],attack:1683,cost:[],target:[2,1,2],spec:[],class:11},
-                {effect:[2],attack:1683,cost:[],target:[2,1,2],spec:[],class:11},
-                {effect:[3],attack:1683,cost:[],target:[2,1,2],spec:[],class:11},
-            ],
-        },
-    },{
-        name:'Muddle',rarity:-1,list:-8,
-        levels:[
-            {effect:[20,2],attack:1662,cost:0,target:[2,1,2],spec:[],class:1},
-            {effect:[28,2],attack:1662,cost:0,target:[2,1,2],spec:[],class:1},
-            {effect:[32,3],attack:1662,cost:0,target:[2,1,2],spec:[],class:1},
-        ],mtg:{
-            rarity:-1,list:-8,color:[3],
-            levels:[
-                {effect:[20,2],attack:1662,cost:[],target:[2,1,2],spec:[],class:1},
-                {effect:[28,2],attack:1662,cost:[],target:[2,1,2],spec:[],class:1},
-                {effect:[32,3],attack:1662,cost:[],target:[2,1,2],spec:[],class:1},
-            ],
-        },
-    },{
         name:'Frogsword',rarity:-1,list:-8,
         levels:[
             {effect:[3],attack:1910,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -151,6 +123,48 @@
                 {effect:[1],attack:1926,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[2],attack:1926,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[3],attack:1926,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Dice\nBlaster',rarity:-1,list:-8,
+        levels:[
+            {effect:[0],attack:1266,cost:0,target:[2,1,6],spec:[],class:1},
+            {effect:[1],attack:1266,cost:0,target:[2,1,6],spec:[],class:1},
+            {effect:[2],attack:1266,cost:0,target:[2,1,6],spec:[],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[0],attack:1266,cost:[],target:[2,1,6],spec:[],class:1},
+                {effect:[1],attack:1266,cost:[],target:[2,1,6],spec:[],class:1},
+                {effect:[2],attack:1266,cost:[],target:[2,1,6],spec:[],class:1},
+            ],
+        },
+    },{
+        name:'Rodela',rarity:-1,list:-8,
+        levels:[
+            {effect:[2],attack:1424,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[3],attack:1424,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[4],attack:1424,cost:0,target:[2,1,1],spec:[],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[2],attack:1424,cost:[],target:[2,1,1],spec:[],class:1},
+                {effect:[3],attack:1424,cost:[],target:[2,1,1],spec:[],class:1},
+                {effect:[4],attack:1424,cost:[],target:[2,1,1],spec:[],class:1},
+            ],
+        },
+    },{
+        name:'Landsknecht',rarity:-1,list:-8,
+        levels:[
+            {effect:[2],attack:1535,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[3],attack:1535,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[4],attack:1535,cost:0,target:[2,1,1],spec:[],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[2],attack:1535,cost:[],target:[2,1,1],spec:[],class:1},
+                {effect:[3],attack:1535,cost:[],target:[2,1,1],spec:[],class:1},
+                {effect:[4],attack:1535,cost:[],target:[2,1,1],spec:[],class:1},
             ],
         },
     },

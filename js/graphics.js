@@ -4591,7 +4591,7 @@ function setupCombatantGraphics(type){
 				zonal[0].push(zonal[0][0]+random(150,180)/la)
 				zonal[1].push(zonal[1][0]+random(90,120)/la)
 				let scale=4.5+(lcos(a/la*360)>0.5?(-lcos(a/la*360)+0.5)*20:lcos(a/la*240+60)*-15)
-				let bar=scale<0?[random(0.5,0.6),random(0.75,0.85)]:[random(0.25,0.375),random(0.625,0.75)]
+				let bar=scale<0?[random(0.5,0.6),random(0.75,0.85)]:[random(0.4,0.5),random(0.6,0.7)]
 				let init=(a+random(-0.1,0.1))/la*360
 				let width=random(180,240)+a%2*30
 				let mult=[
@@ -4626,10 +4626,10 @@ function setupCombatantGraphics(type){
 				}
 
 				zonal=[
-					[random(-180/la,0),random(-60/la,60/la)],
+					[random(-180/la,-30/la),random(-60/la,60/la)],
 					[random(-150/la,0),random(-60/la,60/la)]
 				]
-				zonal[0].push(zonal[0][0]+random(150,180)/la)
+				zonal[0].push(zonal[0][0]+random(180,210)/la)
 				zonal[1].push(zonal[1][0]+random(120,150)/la)
 				scale=1.5+(lcos(a/la*360)>0.5?(-lcos(a/la*360)+0.5)*20:lcos(a/la*240+60)*-15)
 				bar=scale<0?[random(0.5,0.6),random(0.75,0.85)]:[random(0.25,0.375),random(0.625,0.75)]

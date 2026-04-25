@@ -6612,7 +6612,7 @@ class group{
                                 this.cards[a].attack==1778||this.cards[a].attack==1893||this.cards[a].attack==2053||
                                 (
                                     this.cards[a].attack==3371||this.cards[a].attack==5887||this.cards[a].attack==5888||this.cards[a].attack==5889||this.cards[a].attack==5890||
-                                    this.cards[a].attack==6434||this.cards[a].attack==6673||this.cards[a].attack==6680||this.cards[a].attack==6852
+                                    this.cards[a].attack==6434||this.cards[a].attack==6673||this.cards[a].attack==6680||this.cards[a].attack==6852||this.cards[a].attack==8724&&this.battle.attackManager.lastPlayed[0].class==11
                                 )&&!this.cards[a].usable||
                                 this.cards[a].spec.includes(12)&&this.cards[a].attack[this.cards[a].characteristic]==1366
                             )&&!this.cards[a].exhaust

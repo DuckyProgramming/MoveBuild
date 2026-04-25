@@ -9800,6 +9800,7 @@ class card{
             case 8721: string+=`Discover a Common\nColorless Card`; break
             case 8722: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nReturn When a\nPower is Played`; break
             case 8723: string+=`Move ${effect[0]} Tile${pl(effect[0])}\n${effect[1]} Caffeine:\nRemove Your Caffeine\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+            case 8724: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nIf Last Card Played\nWas a Skill,\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 0 Temporarily\nDiscards to Draw Pile`; break
 
             //mark p
 

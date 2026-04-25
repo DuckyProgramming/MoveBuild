@@ -5085,7 +5085,7 @@ attack.prototype.update=function(){
         case 8315: case 8350: case 8354: case 8355: case 8369: case 8424: case 8425: case 8432: case 8436: case 8479:
         case 8480: case 8523: case 8555: case 8561: case 8574: case 8591: case 8592: case 8593: case 8594: case 8595:
         case 8596: case 8597: case 8598: case 8600: case 8601: case 8611: case 8618: case 8645: case 8654: case 8664:
-        case 8672: case 8674: case 8703:
+        case 8672: case 8674: case 8703: case 8724:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true

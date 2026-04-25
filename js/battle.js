@@ -2947,7 +2947,7 @@ class battle{
                     graphics.staticBackground.clear()
                     this.graphics.combatants[0][0][0].position.x=this.layer.width
                     this.graphics.combatants[0][0][0].position.y=this.layer.height+450
-                    //this.graphics.combatants[0][0][0].anim.direction=-90
+                    //this.graphics.combatants[0][0][0].anim.direction=-150
                     if(game.timer%30==0){
                         //this.graphics.combatants[0][0][0].anim.direction+=15
                     }
