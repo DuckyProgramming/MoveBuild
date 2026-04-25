@@ -336,7 +336,7 @@ enemy to play them in.`,
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
-                this.popups=[[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[]]
                 this.pages=[
 `Movebuild has ${constants.playerNumber} playable characters.`,
 `Each one has their own set of cards, colored thematically.
@@ -346,9 +346,11 @@ though some variants, cards, relics, and items will give these off-color cards.`
 as many are just there to add more content and to provide variety.`,
 `Characters also differ in maximum HP. While this does create a sort of difficulty,
 this is meant more in thematics and the characters are meant to be decently balanced.`,
-`Aside from just gimmicks, some characters are designed to encourage a specific playstyle.
-Despite this, other strategies often remain valid at lower difficulty settings
-and it's suggested to try out a variety of playstyles that may also succeed.`,
+`Aside from just their associated gimmicks, some characters are designed to
+encourage a specific playstyle and way of thinking.
+Despite this, other strategies often remain valid at lower difficulty settings.`,
+`It's suggested to try out a variety of playstyles that may also succeed.
+You'll often find synergies in places you'd never expect.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -1328,6 +1330,56 @@ it helps to raise its damage by stacking Vigor.`,
 `END OF TUTORIAL`,
                 ]
             break
+            case 33:
+                transition.scene='battle'
+                game.player=[26]
+                game.deck=[0]
+                this.battle.player=[26]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
+                this.popups=[[],[],[],[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Menessa, the Emissary, is designed around careful card order.
+Her gimmicks include: Caffeine, Pristines, and Skill Chaining.`,
+`Caffeine is a counter that rests above your health bar.
+You can gain caffeine from Coffee Cards, which give benefits.
+However, gaining caffeine is their downside.`,
+`A little bit of caffeine can't harm you, but be careful.
+If you reach 3, your caffeine tolerance, you'll overdose.
+This results losing 3 health, after which your caffeine resets.`,
+`However, that doesn't mean you shouldn't drink too much coffee.
+This is because the card Pristine exists, which removes caffeine.,
+Menessa has access to many sources of Pristines.`,
+`They retain, so hold them until your caffeine is too high.
+The key to preventing yourself from losing health is to
+keep a balance of Coffee cards and Pristines in your deck.`,
+`Other than preventing Caffeine overdose,
+Menessa has another use for Pristines.`,
+`Many of Menessa's cards are Skills, which can be used
+to combo with other cards that are conditional on if the
+last card played was a Skill.`,
+`It helps to have a lot of Skills floating around in
+your deck if you wish to trigger these cards often,
+but there's another way to do so.`,
+`Since Pristines are Skills, holding them until the
+opportune time can trigger these conditional effects dependent
+on having just played a Skill.`,
+`What's more, Coffee cards are also skills. But they
+don't retain like Pristines do, so this strategy can be
+more circumstantial to pull off successfully.`,
+`To get the most out of the Pristines you generate,
+it helps to keep track of how much Coffee you're drinking
+while staying aware of when they can feed a quick combo.`,
+`END OF TUTORIAL`,
+                ]
+            break
             default:
                 transition.trigger=true
                 transition.scene='title'
@@ -1572,11 +1624,11 @@ it helps to raise its damage by stacking Vigor.`,
             case 7:
                 switch(this.page){
                     case 1:
-                        for(let a=0,la=constants.playerNumber;a<la;a++){
-                            this.battle.cardManagers[0].hand.add(findName('Placeholder\n$colorcharacter Card',types.card),0,a+1)
+                        for(let a=0,la=constants.playerNumber+1;a<la;a++){
+                            this.battle.cardManagers[0].hand.add(findName('Placeholder\n$colorcharacter Card',types.card),0,a)
                         }
                         this.battle.cardManagers[0].allEffect(2,43)
-                        this.battle.cardManagers[0].hand.compact=0.56
+                        this.battle.cardManagers[0].hand.compact=0.5
                     break
                 }
             break
@@ -2448,6 +2500,44 @@ it helps to raise its damage by stacking Vigor.`,
                     break
                     case 10:
                         this.battle.cardManagers[0].hand.add(findName('Danger\nIncoming',types.card),0,25)
+                    break
+                }
+            break
+            case 33:
+                switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Coffee',types.card),0,26)
+                    break
+                    case 2:
+                        this.battle.cardManagers[0].hand.add(findName('Coffee',types.card),0,26)
+                        this.battle.cardManagers[0].hand.add(findName('Coffee',types.card),0,26)
+                    break
+                    case 3:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Coffee',types.card),0,26)
+                        this.battle.cardManagers[0].hand.add(findName('Pristine',types.card),0,0)
+                    break
+                    case 6:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Anticipation',types.card),0,26)
+                        this.battle.cardManagers[0].hand.add(findName('Downbeat',types.card),0,26)
+                    break
+                    case 8:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Pristine',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Downbeat',types.card),0,26)
+                    break
+                    case 9:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Coffee',types.card),0,26)
+                        this.battle.cardManagers[0].hand.add(findName('Downbeat',types.card),0,26)
+                    break
+                    case 10:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Coffee',types.card),0,26)
+                        this.battle.cardManagers[0].hand.add(findName('Downbeat',types.card),0,26)
+                        this.battle.cardManagers[0].hand.add(findName('Pristine',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Downbeat',types.card),0,26)
                     break
                 }
             break

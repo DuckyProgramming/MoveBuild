@@ -13518,7 +13518,7 @@ class card{
                     this.layer.text('This card ran into a problem and needs to restart.',10,10,this.width-10)
                     this.layer.textAlign(CENTER,CENTER)
                     this.layer.textSize(4)
-                    this.layer.text('EXITED WITH ERROR CODE 0',0,45)
+                    this.layer.text('EXITED WITH ERROR CODE 1',0,45)
                     this.layer.noFill()
                 }else if(this.attack==8718){
                     this.layer.fill(20,25,30,this.fade*this.anim.select)
@@ -14093,7 +14093,7 @@ class card{
                     this.layer.text('This card ran into a problem and needs to restart.',10,10,this.width-10)
                     this.layer.textAlign(CENTER,CENTER)
                     this.layer.textSize(4)
-                    this.layer.text('EXITED WITH ERROR CODE 0',0,45)
+                    this.layer.text('EXITED WITH ERROR CODE 1',0,45)
                     this.layer.noFill()
                 }else if(this.attack==8718){
                     this.layer.fill(255,this.fade*this.anim.select)
@@ -14878,7 +14878,7 @@ class card{
                     this.layer.fill(0,this.fade)
                 }
                 if(name.substr(0,2)!='-h'){
-                    let effectiveName=name.replace('$colorcharacter',variants.mtg?'?':types.combatant[this.color].name)
+                    let effectiveName=name.replace('$colorcharacter',variants.mtg?'?':this.color==0?'Colorless':types.combatant[this.color].name)
                     if(this.battle.modded(186)){
                         effectiveName=effectiveName.toLowerCase()
                     }

@@ -3656,8 +3656,8 @@ class battle{
                 }
             break
             case 'tutorial':
-                for(let a=0,la=33;a<la;a++){
-                    let pos=a<8?[this.layer.width/2-243.75+a%4*162.5,this.layer.height/2-160+floor(a/4)*40]:[this.layer.width/2-325+(a-8)%5*162.5,this.layer.height/2-50+floor((a-8)/5)*40]
+                for(let a=0,la=34;a<la;a++){
+                    let pos=a<8?[this.layer.width/2-243.75+a%4*162.5,this.layer.height/2-200+floor(a/4)*40]:[this.layer.width/2-325+(a-8)%5*162.5+(a==33?325:0),this.layer.height/2-90+floor((a-8)/5)*40]
                     //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-185+(a>=8?30:0)+floor(a/4)*40},width:22.5,height:22.5})){
                     if(pointInsideBox({position:inputs.rel},{position:{x:pos[0],y:pos[1]},width:135,height:22.5})){
                         this.tutorialManager.setupTutorial(a)
@@ -3969,9 +3969,17 @@ class battle{
                     }
                 }
                 if(code==UP_ARROW&&game.ascend<types.ascend.length-1){
-                    game.ascend++
+                    if(inputs.lastKey[1]==`Shift`){
+                        game.ascend=types.ascend.length-1
+                    }else{
+                        game.ascend++
+                    }
                 }else if(code==DOWN_ARROW&&game.ascend>0){
-                    game.ascend--
+                    if(inputs.lastKey[1]==`Shift`){
+                        game.ascend=0
+                    }else{
+                        game.ascend--
+                    }
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
                     if(a+1==int(key)){
@@ -4029,9 +4037,17 @@ class battle{
                     }
                 }
                 if(code==UP_ARROW&&game.ascend<types.ascend.length-1){
-                    game.ascend++
+                    if(inputs.lastKey[1]==`Shift`){
+                        game.ascend=types.ascend.length-1
+                    }else{
+                        game.ascend++
+                    }
                 }else if(code==DOWN_ARROW&&game.ascend>0){
-                    game.ascend--
+                    if(inputs.lastKey[1]==`Shift`){
+                        game.ascend=0
+                    }else{
+                        game.ascend--
+                    }
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
                     if(a+1==int(key)){
@@ -4100,9 +4116,17 @@ class battle{
                 }
             break
             case 'tutorial':
-                if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=8&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
+                /*if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=8&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
                     let index=(int(inputs.lastKey[0])+9)%10*4+int(inputs.lastKey[1])-1
                     this.tutorialManager.setupTutorial(index)
+                }*/
+                if(int(key)>0&&int(key)<=8){
+                    this.tutorialManager.setupTutorial(int(key)-1)
+                }
+                for(let a=0,la=constants.playerNumber;a<la;a++){
+                    if(key==`abcdefghijklmnopqrstuvwxyz`[a]||key==`ABCDEFGHIJKLMNOPQRSTUVWXYZ`[a]){
+                        this.tutorialManager.setupTutorial(8+a)
+                    }
                 }
                 if(code==ENTER){
                     transition.trigger=true

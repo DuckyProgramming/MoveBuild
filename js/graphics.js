@@ -5285,7 +5285,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 						{top:24,bottom:15,length:{top:16.75,bottom:16.75}}
 					]
 					p1.spin.legs=[{top:-60,bottom:-60},{top:45,bottom:75}]
-					p1.spin.arms=[{top:-36,bottom:6+a*36,lock:0},{top:90,bottom:24,lock:0}]
+					p1.spin.arms=[{top:-60,bottom:6+a*36,lock:0},{top:90,bottom:24,lock:0}]
 					p1.position.x+=40
 				break
 
@@ -7296,6 +7296,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 				case 'Menessa':
 					p1.anim.mouth.x-=0.25
 					p1.anim.mouth.y-=0.25
+					p1.position.y-=2.5
 					p1.anim.legs=[
 						{top:12,bottom:12,length:{top:16.75,bottom:16.75}},
 						{top:21,bottom:3,length:{top:16.75,bottom:16.75}}
@@ -8536,11 +8537,11 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2,layer.height*0.7+240,125,55)
 			/*layer.rect(layer.width/2,layer.height*0.7+170,125,125)
 			layer.rect(layer.width/2,layer.height*0.7+270,125,55)*/
-			for(let a=0,la=33;a<la;a++){
+			for(let a=0,la=34;a<la;a++){
 				if(a<8){
-					layer.rect(layer.width/2-487.5+a%4*325,layer.height/2-320+floor(a/4)*80,295,70)
+					layer.rect(layer.width/2-487.5+a%4*325,layer.height/2-400+floor(a/4)*80,295,70)
 				}else{
-					layer.rect(layer.width/2-650+a%5*325,layer.height/2-100+floor((a-8)/5)*80,295,70)
+					layer.rect(layer.width/2-650+(a-1)%5*325,layer.height/2-180+floor((a-8)/5)*80,295,70)
 				}
 				//layer.rect(layer.width/2-570+a%4*380,layer.height/2-370+(a>=8?60:0)+floor(a/4)*80,350,70)
 			}
@@ -8549,11 +8550,11 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2,layer.height*0.7+240,100,30)
 			/*layer.rect(layer.width/2,layer.height*0.7+170,100,100)
 			layer.rect(layer.width/2,layer.height*0.7+270,100,30)*/
-			for(let a=0,la=33;a<la;a++){
+			for(let a=0,la=34;a<la;a++){
 				if(a<8){
-					layer.rect(layer.width/2-487.5+a%4*325,layer.height/2-320+floor(a/4)*80,270,45)
+					layer.rect(layer.width/2-487.5+a%4*325,layer.height/2-400+floor(a/4)*80,270,45)
 				}else{
-					layer.rect(layer.width/2-650+a%5*325,layer.height/2-100+floor((a-8)/5)*80,270,45)
+					layer.rect(layer.width/2-650+(a-1)%5*325,layer.height/2-180+floor((a-8)/5)*80,270,45)
 				}
 				/*layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-370+(a>=8?60:0)+floor(a/4)*80,270,45)
 				layer.rect(layer.width/2-430+a%4*380,layer.height/2-370+(a>=8?60:0)+floor(a/4)*80,45,45)*/
@@ -8566,11 +8567,11 @@ function setupBackground(type,layer){
 			layer.text('BACK',layer.width/2,layer.height*0.7+240)
 			//layer.text('BACK',layer.width/2,layer.height*0.7+270)
 			let names3=['BASIC','LOCATIONS','KEYWORDS','HOTKEYS','STATUSES','ENEMIES','TACTICS','CHARACTER OVERVIEW']
-			for(let a=0,la=33;a<la;a++){
+			for(let a=0,la=34;a<la;a++){
 				if(a<8){
-					layer.text(names3[a],layer.width/2-487.5+a%4*325,layer.height/2-320+floor(a/4)*80)
+					layer.text(names3[a],layer.width/2-487.5+a%4*325,layer.height/2-400+floor(a/4)*80)
 				}else{
-					layer.text(types.combatant[a-7].name.toUpperCase(),layer.width/2-650+(a-8)%5*325,layer.height/2-100+floor((a-8)/5)*80)
+					layer.text(types.combatant[a-7].name.toUpperCase(),layer.width/2-650+(a-8)%5*325+(a==33?650:0),layer.height/2-180+floor((a-8)/5)*80)
 				}
 				//layer.text(a<8?names3[a]:types.combatant[a-7].name.toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-370+(a>=8?60:0)+floor(a/4)*80)
 			}
@@ -8583,8 +8584,8 @@ function setupBackground(type,layer){
 			layer.textSize(50)
 			for(let a=0,la=10;a<la;a++){
 				layer.fill(50-50*a/la,255-105*a/la,100-100*a/la)
-				layer.text('Mechanics',layer.width/2+a*0.5,layer.height/2-390+a*0.5)
-				layer.text('Characters',layer.width/2+a*0.5,layer.height/2-170+a*0.5)
+				layer.text('Mechanics',layer.width/2+a*0.5,layer.height/2-470+a*0.5)
+				layer.text('Characters',layer.width/2+a*0.5,layer.height/2-250+a*0.5)
 				/*layer.text('Mechanics',layer.width/2+a*0.5,layer.height/2-440+a*0.5)
 				layer.text('Characters',layer.width/2+a*0.5,layer.height/2-220+a*0.5)*/
 			}
