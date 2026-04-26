@@ -2757,9 +2757,10 @@ function generateSprite(layer,type,direction){
 			layer.noFill()
 			layer.stroke(0)
 			layer.strokeWeight(3)
-			layer.arc(0,0,37,37,-180,0)
 			layer.line(-18.5,0,-19.5,20)
 			layer.line(18.5,0,19.5,20)
+			layer.strokeWeight(10)
+			layer.arc(0,0,44,44,-180,0)
 		break
 		case 78:
 			displayTrianglesBackMerge(layer,data.parts.hair.inside,direction,0,34,0.5,0.045,data.color.hair.insideBack,data.color.hair.insideBack,1)
@@ -2767,9 +2768,10 @@ function generateSprite(layer,type,direction){
 			layer.noFill()
 			layer.stroke(0)
 			layer.strokeWeight(3)
-			layer.arc(0,0,37,37,-180,0)
 			layer.line(-18.5,0,-19.5,20)
 			layer.line(18.5,0,19.5,20)
+			layer.strokeWeight(10)
+			layer.arc(0,0,44,44,-180,0)
 		break
 		case 79:
 			layer.fill(...data.color.hair.front)
@@ -2784,9 +2786,10 @@ function generateSprite(layer,type,direction){
 			layer.noFill()
 			layer.stroke(0)
 			layer.strokeWeight(3)
-			layer.arc(0,0,37,37,-180,0)
 			layer.line(-18.5,0,-19.5,20)
 			layer.line(18.5,0,19.5,20)
+			layer.strokeWeight(10)
+			layer.arc(0,0,44,44,-180,0)
 		break
 		case 80:
 			layer.fill(...data.color.hair.back)
@@ -2800,9 +2803,10 @@ function generateSprite(layer,type,direction){
 			layer.noFill()
 			layer.stroke(0)
 			layer.strokeWeight(3)
-			layer.arc(0,0,37,37,-180,0)
 			layer.line(-18.5,0,-19.5,20)
 			layer.line(18.5,0,19.5,20)
+			layer.strokeWeight(10)
+			layer.arc(0,0,44,44,-180,0)
 		break
 		
 	}
@@ -4634,7 +4638,7 @@ function setupCombatantGraphics(type){
 				scale=1.5+(lcos(a/la*360)>0.5?(-lcos(a/la*360)+0.5)*20:lcos(a/la*240+60)*-15)
 				bar=scale<0?[random(0.5,0.6),random(0.75,0.85)]:[random(0.25,0.375),random(0.625,0.75)]
 				init=(a+random(0.4,0.6))/la*360
-				width=random(180,240)
+				width=random(180,240)+a%2*30
 				mult=[
 					min(1,abs(scale)/(scale<0?5:10)+(scale<0?0.5:0.25)),
 					min(6/5,abs(scale)/(scale<0?5:10)+(scale<0?0.5:0.25))
@@ -5286,7 +5290,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:-60},{top:45,bottom:75}]
 					p1.spin.arms=[{top:-60,bottom:6+a*36,lock:0},{top:90,bottom:24,lock:0}]
-					p1.position.x+=40
+					p1.position.x+=30
 				break
 
 			}
@@ -7634,12 +7638,12 @@ function setupGeneralGraphics(){
 	}
 	let gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80)]
 	gradient[0].colors(
-		0.00,color(255,255,228),
-		1.00,color(255,232,167)
+		0.00,color(255,251,222),
+		1.00,color(255,215,115)
 	)
 	gradient[1].colors(
-		0.00,color(255,232,167),
-		1.00,color(255,255,228)
+		0.00,color(255,215,115),
+		1.00,color(255,251,222)
 	)
 	graphics.minor[37].translate(0,40)
 	graphics.minor[37].fillGradient(gradient[0])
@@ -7685,27 +7689,67 @@ function setupGeneralGraphics(){
 		}
 	}
 
+	gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80)]
+	gradient[0].colors(
+		0.00,color(255,247,189),
+		1.00,color(255,207,87)
+	)
+	gradient[1].colors(
+		0.00,color(255,207,87),
+		1.00,color(255,247,189)
+	)
+	gradient[2].colors(
+		0.00,color(255,239,123),
+		1.00,color(235,159,0)
+	)
+	gradient[3].colors(
+		0.00,color(235,159,0),
+		1.00,color(255,239,123)
+	)
 	graphics.minor[40].translate(0,40)
+	graphics.minor[40].fillGradient(gradient[2])
+	graphics.minor[40].arc(60,40,103,103,-180,0)
+	graphics.minor[40].fillGradient(gradient[3])
+	graphics.minor[40].arc(100,40,103,103,0,180)
+
 	graphics.minor[40].fillGradient(gradient[0])
 	graphics.minor[40].arc(60,40,100,100,-180,0)
-	graphics.minor[40].erase()
+	graphics.minor[40].fillGradient(gradient[2])
 	graphics.minor[40].arc(48,40,77,77,-180,0)
+	graphics.minor[40].erase()
+	graphics.minor[40].arc(48,40,74,74,-180,0)
+	graphics.minor[40].rect(10,40,20,25)
 	graphics.minor[40].noErase()
 	graphics.minor[40].fillGradient(gradient[1])
 	graphics.minor[40].arc(100,40,100,100,0,180)
-	graphics.minor[40].erase()
+	graphics.minor[40].fillGradient(gradient[3])
 	graphics.minor[40].arc(112,40,77,77,0,180)
+	graphics.minor[40].erase()
+	graphics.minor[40].arc(112,40,74,74,0,180)
+	graphics.minor[40].rect(150,40,20,25)
 
 	graphics.minor[41].translate(0,40)
+	graphics.minor[41].fill(0)
+	graphics.minor[41].fillGradient(gradient[2])
+	graphics.minor[41].arc(60,40,103,103,0,180)
+	graphics.minor[41].fillGradient(gradient[3])
+	graphics.minor[41].arc(100,40,103,103,-180,0)
+
 	graphics.minor[41].fillGradient(gradient[0])
 	graphics.minor[41].arc(60,40,100,100,0,180)
-	graphics.minor[41].erase()
+	graphics.minor[41].fillGradient(gradient[2])
 	graphics.minor[41].arc(48,40,77,77,0,180)
+	graphics.minor[41].erase()
+	graphics.minor[41].arc(48,40,74,74,0,180)
+	graphics.minor[41].rect(10,40,20,25)
 	graphics.minor[41].noErase()
 	graphics.minor[41].fillGradient(gradient[1])
 	graphics.minor[41].arc(100,40,100,100,-180,0)
-	graphics.minor[41].erase()
+	graphics.minor[41].fillGradient(gradient[3])
 	graphics.minor[41].arc(112,40,77,77,-180,0)
+	graphics.minor[41].erase()
+	graphics.minor[41].arc(112,40,74,74,-180,0)
+	graphics.minor[41].rect(150,40,20,25)
 
 	graphics.minor[40].image(graphics.minor[41],0,-40)
 }
@@ -7866,9 +7910,11 @@ function setupBackground(type,layer){
 				e=random(0,layer.width)
 				layer.fill(255,random(200,255),255,1-0.6*a/la)
 				layer.ellipse(e,a*8,b)
-				layer.fill(random(200,255),random(200,255),255,0.2-0.12*a/la)
+				layer.fill(random(200,255),random(200,255),255,0.15-0.1*a/la)
 				layer.ellipse(e,a*8,c,d)
 				layer.ellipse(e,a*8,d,c)
+				layer.ellipse(e,a*8,c*0.5+b*0.5,d*0.5+b*0.5)
+				layer.ellipse(e,a*8,d*0.5+b*0.5,c*0.5+b*0.5)
 			}
 			layer.stroke(125,75,25)
 			layer.strokeWeight(20)
