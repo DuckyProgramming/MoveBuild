@@ -336,7 +336,7 @@ class battle{
         for(let a=0,la=options.preGen.length;a<la;a++){
             setupCombatantGraphics(options.preGen[a])
         }
-        for(let a=0,la=graphics.backgroundGen;a<la;a++){
+        for(let a=0,la=graphics.backgroundCombatantGen;a<la;a++){
             this.graphics.combatants.push([[],[]])
             for(let b=0,lb=this.players;b<lb;b++){
                 this.graphics.combatants[a][0].push(setupCombatantBackground(a,this.player,b,lb,[0],this.layer))
@@ -2765,8 +2765,9 @@ class battle{
             case 'rest':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
-                    this.graphics.combatants[3][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
-                    this.graphics.combatants[3][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                    let variant=!options.damage?0:this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0
+                    this.graphics.combatants[3][variant][a].time++
+                    this.graphics.combatants[3][variant][a].display()
                 }
 			    this.layer.image(graphics.overlays[0],0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
@@ -2833,8 +2834,9 @@ class battle{
             case 'victory':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
-                    this.graphics.combatants[2][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
-                    this.graphics.combatants[2][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                    let variant=!options.damage?0:this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0
+                    this.graphics.combatants[2][variant][a].time++
+                    this.graphics.combatants[2][variant][a].display()
                 }
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
                     this.layer.fill(this.colorDetail[a].fill)
@@ -2857,7 +2859,8 @@ class battle{
             case 'defeat':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
-                    this.graphics.combatants[1][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                    let variant=!options.damage?0:this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0
+                    this.graphics.combatants[1][variant][a].display()
                 }
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
                     this.layer.fill(this.colorDetail[a].fill)
@@ -2880,8 +2883,9 @@ class battle{
             case 'stash':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
-                    this.graphics.combatants[4][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
-                    this.graphics.combatants[4][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                    let variant=!options.damage?0:this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0
+                    this.graphics.combatants[4][variant][a].time++
+                    this.graphics.combatants[4][variant][a].display()
                 }
                 this.relicManager.display(stage.scene)
                 this.overlayManager.display()
@@ -2890,8 +2894,9 @@ class battle{
             case 'bossstash':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
-                    this.graphics.combatants[6][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
-                    this.graphics.combatants[6][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                    let variant=!options.damage?0:this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0
+                    this.graphics.combatants[6][variant][a].time++
+                    this.graphics.combatants[6][variant][a].display()
                 }
                 this.relicManager.display(stage.scene)
                 this.overlayManager.display()
@@ -2900,8 +2905,9 @@ class battle{
             case 'pack':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
-                    this.graphics.combatants[7][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
-                    this.graphics.combatants[7][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                    let variant=!options.damage?0:this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0
+                    this.graphics.combatants[7][variant][a].time++
+                    this.graphics.combatants[7][variant][a].display()
                 }
                 this.packManagers.forEach(packManager=>packManager.display())
                 this.overlayManager.display()
@@ -2909,8 +2915,9 @@ class battle{
             case 'perk':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
-                    this.graphics.combatants[0][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
-                    this.graphics.combatants[0][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                    let variant=!options.damage?0:this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0
+                    this.graphics.combatants[0][variant][a].time++
+                    this.graphics.combatants[0][variant][a].display()
                 }
                 this.perkManagers.forEach(perkManager=>perkManager.display())
                 this.overlayManager.display()
@@ -2918,8 +2925,9 @@ class battle{
             case 'event':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
-                    this.graphics.combatants[5][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
-                    this.graphics.combatants[5][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                    let variant=!options.damage?0:this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0
+                    this.graphics.combatants[5][variant][a].time++
+                    this.graphics.combatants[5][variant][a].display()
                 }
                 this.displayCurrency()
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
@@ -2942,19 +2950,19 @@ class battle{
                 this.overlayManager.display()
             break
             case 'graphic':
-                if(graphics.test==-1){
+                if(graphics.test<0){
                     this.layer.clear()
                     graphics.staticBackground.clear()
-                    this.graphics.combatants[0][0][0].position.x=this.layer.width
-                    this.graphics.combatants[0][0][0].position.y=this.layer.height+450
-                    //this.graphics.combatants[0][0][0].anim.direction=-150
+                    this.graphics.combatants[-1-graphics.test][0][0].position.x=this.layer.width
+                    this.graphics.combatants[-1-graphics.test][0][0].position.y=this.layer.height+450
+                    //this.graphics.combatants[0][0][0].anim.direction=-30
                     if(game.timer%30==0){
                         //this.graphics.combatants[0][0][0].anim.direction+=15
                     }
-                    this.graphics.combatants[0][0][0].time++
-                    this.graphics.combatants[0][0][0].size=10
-                    this.graphics.combatants[0][0][0].layer=graphics.staticBackground
-                    this.graphics.combatants[0][0][0].display()
+                    this.graphics.combatants[-1-graphics.test][0][0].time++
+                    this.graphics.combatants[-1-graphics.test][0][0].size=10
+                    this.graphics.combatants[-1-graphics.test][0][0].layer=graphics.staticBackground
+                    this.graphics.combatants[-1-graphics.test][0][0].display()
                     this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 }else{
                     this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)

@@ -6677,7 +6677,7 @@ combatant.prototype.display=function(){
                 }
                 if(this.trigger.display.dress.main){
                     this.layer.noStroke()
-                    this.layer.fill(...this.flashColor(this.color.dress.back),this.fade*this.fades.dress.main)
+                    this.layer.fill(...this.flashColor(this.color.dress.back),this.fade*this.fades.dress.main*0.8)
                     for(let a=0,la=25;a<la;a++){
                         if(lcos(a/la*360+this.anim.direction)<=0&&lcos((a+1)/la*360+this.anim.direction)<=0){
                             this.layer.push()
@@ -6770,10 +6770,12 @@ combatant.prototype.display=function(){
                                 this.layer.bezierVertex(0.25,5.5,-0.25,5.5,-0.375,5.4)
                                 this.layer.bezierVertex(-1.25,5,-2.5,1,-2.5,0.75)*/
                                 this.layer.vertex(-2.5,0.25)
-                                this.layer.bezierVertex(-2.5,2,-1.75,4.25,-1,5.5)
-                                this.layer.bezierVertex(-0.8,5.75,-0.4,6.25,0,6.25)
-                                this.layer.bezierVertex(0.4,6.25,0.8,5.75,1,5.5)
-                                this.layer.bezierVertex(1.75,4.25,2.5,2,2.5,0.25)
+                                this.layer.vertex(-2.5,0.5)
+                                this.layer.bezierVertex(-2.5,2.25,-1.75,4.5,-1,5.75)
+                                this.layer.bezierVertex(-0.8,6,-0.4,6.4,0,6.4)
+                                this.layer.bezierVertex(0.4,6.4,0.8,6,1,5.75)
+                                this.layer.bezierVertex(1.75,4.5,2.5,2.25,2.5,0.5)
+                                this.layer.vertex(2.5,0.25)
                                 this.layer.endShape()
                                 this.layer.pop()
                                 
@@ -6796,7 +6798,7 @@ combatant.prototype.display=function(){
                             }
                             if(this.trigger.display.shoe){
                                 let color=this.flashColor(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
-                                let expand=lcos(this.anim.direction)*0.625
+                                let expand=lcos(this.anim.direction)*0.5
                                 this.layer.fill(...color,this.fade*this.fades.shoe)
                                 this.layer.noStroke()
                                 this.layer.push()
@@ -6805,12 +6807,12 @@ combatant.prototype.display=function(){
                                 this.layer.arc(0,0.25,4,3.5,-180,0)
                                 this.layer.ellipse(0,0.25,4,2)
                                 this.layer.beginShape()
-                                this.layer.vertex(-2,0.75)
                                 this.layer.vertex(-2,0.25)
                                 this.layer.vertex(2,0.25)
-                                this.layer.vertex(2,0.75)
-                                this.layer.bezierVertex(2,2,1.75,4+expand,0,4+expand)
-                                this.layer.bezierVertex(-1.75,4+expand,-2,2,-2,0.75)
+                                this.layer.vertex(2,1)
+                                this.layer.bezierVertex(2,2,1.75,4.25+expand,0,4.25+expand)
+                                this.layer.bezierVertex(-1.75,4.25+expand,-2,2,-2,1)
+                                this.layer.vertex(-2,1)
                                 this.layer.endShape()
                                 this.layer.pop()
                                 if(lcos(this.anim.direction)>0){
@@ -6874,11 +6876,12 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.dress.main){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.dress.main),this.fade*this.fades.dress.main)
-                    this.layer.arc(0,-48,13,34,-180,0)
+                    this.layer.arc(0,-48,13,34.5,-180,0)
                     this.layer.ellipse(0,-48,13,1)
                     this.layer.quad(-6.5,-48,6.5,-48,13.5,-27,-13.5,-27)
                     this.layer.arc(0,-27,27,8,0,180)
                     this.layer.ellipse(0,-27,27,1)
+                    this.layer.fill(...this.flashColor(this.color.dress.main),this.fade*this.fades.dress.main*0.8)
                     for(let a=0,la=25;a<la;a++){
                         if(lcos((a+0.5)/la*360+this.anim.direction)>0){
                             this.layer.push()
@@ -6938,10 +6941,15 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.dress.main){
                     this.layer.stroke(this.flashColor(this.color.dress.main)[0],this.flashColor(this.color.dress.main)[1],this.flashColor(this.color.dress.main)[2],this.fade*this.fades.dress.main)
                     this.layer.strokeWeight(0.6*lcos(this.anim.direction))
-                    displayTrianglesFront(this.layer,this.dress.top,this.anim.direction,-63,5.2,0.4,0.6,this.flashColor(this.color.dress.flaps),this.fade*this.fades.dress.main)
-                    displayTrianglesFront(this.layer,this.dress.top,this.anim.direction,-63.6,5.2,0,0.6,this.flashColor(this.color.dress.main),this.fade*this.fades.dress.main)
+                    displayTrianglesFront(this.layer,this.dress.top,this.anim.direction,-63.25,5.2,0.4,0.6,this.flashColor(this.color.dress.flaps),this.fade*this.fades.dress.main)
+                    if(lcos(this.anim.direction)>0){
+                        displayTrianglesFront(this.layer,this.dress.open,this.anim.direction,-63.25,5.2,0.4,0.6,this.flashColor(this.color.dress.flaps),this.fade*this.fades.dress.main)
+                    }
+                    displayTrianglesFront(this.layer,this.dress.top,this.anim.direction,-63.85,5.2,0,0.6,this.flashColor(this.color.dress.main),this.fade*this.fades.dress.main)
+                    displayTrianglesFront(this.layer,this.dress.open,this.anim.direction,-63.85,5.2,0,0.6,this.flashColor(this.color.skin.body),this.fade*this.fades.dress.main)
+                    displayTrianglesFront(this.layer,this.dress.openReverse,this.anim.direction,-63.85,5.2,0,0.6,this.flashColor(this.color.skin.body),this.fade*this.fades.dress.main)
 
-                    this.layer.fill(this.color.skin.body[0],this.color.skin.body[1],this.color.skin.body[2],this.fade*this.fades.skin.body)
+                    this.layer.fill(...this.flashColor(this.color.skin.body),this.fade*this.fades.skin.body)
                     this.layer.ellipse(0,-64.75,4.5,3.25)
                 }
                 if(this.trigger.display.pocket&&lcos(this.anim.direction+36)>0){
