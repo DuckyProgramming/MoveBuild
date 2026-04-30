@@ -6778,13 +6778,20 @@ combatant.prototype.display=function(){
                                 this.layer.vertex(2.5,0.25)
                                 this.layer.endShape()
                                 this.layer.pop()
-                                
+
                                 this.layer.noFill()
-                                this.layer.stroke(...this.color.shoe.glow,this.fade*0.1*this.fades.shoe)
+                                this.layer.stroke(...this.color.shoe.glow,this.fade*0.15*this.fades.shoe)
                                 for(let a=0,la=3;a<la;a++){
                                     this.layer.strokeWeight(0.3-a*0.01)
-                                    this.layer.arc(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y+0.5,4.4+a*0.1,4.4+a*0.1,-12+a*12,48-a*12)
+                                    this.layer.arc(this.graphics.legs[h].bottom.x+4.75*lsin(this.anim.direction),this.graphics.legs[h].bottom.y+4.75*lcos(this.anim.direction)+0.375,2.4+a*0.1,2.4+a*0.1,12-this.anim.direction+a*12,78-this.anim.direction-a*12)
                                 }
+                                if(lcos(this.anim.direction)<=0){
+                                    this.minorDisplay(2,h)
+                                }
+                                /*for(let a=0,la=3;a<la;a++){
+                                    this.layer.strokeWeight(0.3-a*0.01)
+                                    this.layer.arc(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y+0.5,4.4+a*0.1,4.4+a*0.1,-12+a*12,48-a*12)
+                                }*/
                                 if(lcos(this.anim.direction)<=0){
                                     this.minorDisplay(2,h)
                                 }
@@ -6912,6 +6919,10 @@ combatant.prototype.display=function(){
                         for(let a=0,la=3;a<la;a++){
                             this.minorDisplay(3,a)
                         }
+                    }else if(lcos(this.anim.direction)>0){
+                        this.layer.fill(...this.flashColor(this.color.dress.button),this.fade*this.fades.dress.main)
+                        this.layer.ellipse(4.25*lsin(this.anim.direction),-60.5,0.6*lcos(this.anim.direction),0.6)
+                        this.layer.ellipse(4.5*lsin(this.anim.direction),-59.5,0.6*lcos(this.anim.direction),0.6)
                     }
                 }
                 for(let g=0;g<2;g++){
@@ -6955,7 +6966,7 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.pocket&&lcos(this.anim.direction+36)>0){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.dress.pocket[0]),this.fade*this.fades.pocket)
-                    hexagon(
+                    /*hexagon(
                         this.layer,
                         lsin(this.anim.direction+36)*6-1.5*lcos(this.anim.direction+36),-55,
                         lsin(this.anim.direction+36)*6-1.5*lcos(this.anim.direction+36),-53.5,
@@ -6963,7 +6974,16 @@ combatant.prototype.display=function(){
                         lsin(this.anim.direction+36)*6+1.25*lcos(this.anim.direction+36),-53,
                         lsin(this.anim.direction+36)*6+1.5*lcos(this.anim.direction+36),-53.5,
                         lsin(this.anim.direction+36)*6+1.5*lcos(this.anim.direction+36),-55
-                    )
+                    )*/
+                    this.layer.beginShape()
+                    this.layer.vertex(lsin(this.anim.direction+36)*6-1.5*lcos(this.anim.direction+36),-55)
+                    this.layer.vertex(lsin(this.anim.direction+36)*6-1.5*lcos(this.anim.direction+36),-53.5)
+                    this.layer.vertex(lsin(this.anim.direction+36)*6-1.25*lcos(this.anim.direction+36),-53)
+                    this.layer.vertex(lsin(this.anim.direction+36)*6,-52.75)
+                    this.layer.vertex(lsin(this.anim.direction+36)*6+1.25*lcos(this.anim.direction+36),-53)
+                    this.layer.vertex(lsin(this.anim.direction+36)*6+1.5*lcos(this.anim.direction+36),-53.5)
+                    this.layer.vertex(lsin(this.anim.direction+36)*6+1.5*lcos(this.anim.direction+36),-55)
+                    this.layer.endShape()
                     this.layer.fill(...this.flashColor(this.color.dress.pocket[1]),this.fade*this.fades.pocket)
                     pentagon(this.layer,
                         lsin(this.anim.direction+36)*6-1.6*lcos(this.anim.direction+36),-56,

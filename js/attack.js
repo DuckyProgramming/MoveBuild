@@ -22701,6 +22701,10 @@ class attack{
                             }
                         }
                     break
+                    case 8725:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[10,[11,16],3],57,[0],[]])
+                    break
 
                 }
                 //mark 5

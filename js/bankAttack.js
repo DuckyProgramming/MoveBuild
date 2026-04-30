@@ -1190,6 +1190,7 @@ attack.prototype.update=function(){
         case 8526: case 8527: case 8529: case 8537: case 8538: case 8540: case 8560: case 8564: case 8567: case 8571:
         case 8579: case 8582: case 8583: case 8590: case 8603: case 8605: case 8616: case 8624: case 8628: case 8639:
         case 8640: case 8641: case 8647: case 8649: case 8650: case 8658: case 8659: case 8671: case 8689: case 8708:
+        case 8725:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
