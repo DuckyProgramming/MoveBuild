@@ -1628,6 +1628,9 @@ class battle{
         if(card.name=='Tile'&&userCombatant.getStatus('Tile Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Tile Draw'))
         }
+        if(card.name=='Tile'&&userCombatant.getStatus('Tile Temporary Strength')>0){
+            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Tile Temporary Strength'))
+        }
         if(card.name=='Dark\nMatter'&&userCombatant.getStatus('Dark Matter Fuel All')>0){
             this.cardManagers[player].allEffectArgs(2,50,[userCombatant.getStatus('Dark Matter Fuel All')])
         }

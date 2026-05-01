@@ -9802,6 +9802,9 @@ class card{
             case 8723: string+=`Move ${effect[0]} Tile${pl(effect[0])}\n${effect[1]} Caffeine:\nRemove Your Caffeine\nDraw ${effect[2]} Card${pl(effect[2])}`; break
             case 8724: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nIf Last Card Played\nWas a Skill,\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 0 Temporarily\nDiscards to Draw Pile`; break
             case 8725: string+=`Discover a Shiru\nor Daiyousei Card\nIt Costs 0`; break
+            case 8726: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf You Have No Block,\nMake a Card\nCost 1 Less`; break
+            case 8727: string+=`When You Play a Tile,\nGain ${effect[0]} Temporary\nStrength`; break
+            case 8728: string+=`Deal ${this.calculateEffect(effect[0],0)} Decrementing\nDamage\n${effect[1]} Time${pl(effect[1])}\nIncreases by ${effect[2]} Time${pl(effect[2])}`; break
 
             //mark p
 
@@ -11851,6 +11854,7 @@ class card{
                 this.effect[0]+=this.effect[1]
             break
             case 866: case 908: case 1893: case 2356: case 2482: case 5428: case 5429: case 5430: case 5431: case 8056:
+            case 8728:
                 this.effect[1]+=this.effect[2]
             break
             case 937: case 7750: case 8217: case 8516:

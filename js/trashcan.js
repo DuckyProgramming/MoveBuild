@@ -167,5 +167,61 @@
                 {effect:[4],attack:1535,cost:[],target:[2,1,1],spec:[],class:1},
             ],
         },
+    },{
+        name:'Bumpblade',rarity:-1,list:-8,
+        levels:[
+            {effect:[2],attack:1324,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[4],attack:1324,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[5],attack:1324,cost:0,target:[2,1,1],spec:[],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4],
+            levels:[
+                {effect:[6],attack:1324,cost:[4],target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:1324,cost:[4],target:[2,1,1],spec:[0],class:1},
+                {effect:[13],attack:1324,cost:[4],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Nudgeblade',rarity:-1,list:-8,
+        levels:[
+            {effect:[2],attack:1537,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[4],attack:1537,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[5],attack:1537,cost:0,target:[2,1,1],spec:[],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4],
+            levels:[
+                {effect:[6],attack:1537,cost:[4],target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:1537,cost:[4],target:[2,1,1],spec:[0],class:1},
+                {effect:[13],attack:1537,cost:[4],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Bumpster\nSword',rarity:-1,list:-8,
+        levels:[
+            {effect:[2],attack:1909,cost:0,target:[2,1,1],spec:[2],class:1},
+            {effect:[4],attack:1909,cost:0,target:[2,1,1],spec:[2],class:1},
+            {effect:[5],attack:1909,cost:0,target:[2,1,1],spec:[2],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4],
+            levels:[
+                {effect:[6],attack:1909,cost:[4],target:[2,1,1],spec:[0,2],class:1},
+                {effect:[10],attack:1909,cost:[4],target:[2,1,1],spec:[0,2],class:1},
+                {effect:[13],attack:1909,cost:[4],target:[2,1,1],spec:[0,2],class:1},
+            ],
+        },
+    },{
+        name:'Powerup!',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:894,cost:1,target:[0],spec:[1],class:11},
+            {effect:[1],attack:894,cost:1,target:[0],spec:[1,2],class:11},
+            {effect:[2],attack:894,cost:1,target:[0],spec:[1,2],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[5],
+            levels:[
+                {effect:[1],attack:894,cost:[5],target:[0],spec:[1],class:11},
+                {effect:[1],attack:894,cost:[5],target:[0],spec:[1,2],class:11},
+                {effect:[2],attack:894,cost:[5],target:[0],spec:[1,2],class:11},
+            ],
+        },
     },
 ]

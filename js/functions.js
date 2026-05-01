@@ -2177,7 +2177,7 @@ Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}
 		Subcard:
 	Total:${current.cardManagers[0].listing.sub.length}/48				${current.cardManagers[0].listing.sub.length-48}
 		Disband:
-	Total:${current.cardManagers[0].listing.disband.length}/1666			${current.cardManagers[0].listing.disband.length-1666}
+	Total:${current.cardManagers[0].listing.disband.length}/1866			${current.cardManagers[0].listing.disband.length-1866}
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/${constants.playerNumber*8}			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-constants.playerNumber*8}
 			`)

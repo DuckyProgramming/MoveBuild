@@ -388,7 +388,7 @@ attack.prototype.update=function(){
         case 8462: case 8471: case 8477: case 8483: case 8496: case 8500: case 8531: case 8533: case 8543: case 8552:
         case 8602: case 8615: case 8621: case 8626: case 8627: case 8630: case 8631: case 8632: case 8633: case 8634:
         case 8635: case 8636: case 8637: case 8638: case 8648: case 8655: case 8661: case 8683: case 8687: case 8696:
-        case 8720:
+        case 8720: case 8726:
             //mark 2
             if(
                 this.timer==1&&(
@@ -1190,7 +1190,7 @@ attack.prototype.update=function(){
         case 8526: case 8527: case 8529: case 8537: case 8538: case 8540: case 8560: case 8564: case 8567: case 8571:
         case 8579: case 8582: case 8583: case 8590: case 8603: case 8605: case 8616: case 8624: case 8628: case 8639:
         case 8640: case 8641: case 8647: case 8649: case 8650: case 8658: case 8659: case 8671: case 8689: case 8708:
-        case 8725:
+        case 8725: case 8727:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -13849,6 +13849,24 @@ attack.prototype.update=function(){
                     this.battle.activate(1,this.targetCombatant.id)
                     this.remove=true
                 }
+            }
+        break
+        case 8728:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(25)
+                this.procedure[0]=0
+            }
+            if(this.timer<=10||this.timer>10+this.effect[1]*5&&this.timer<=20+this.effect[1]*5){
+                this.userCombatant.runAnimation(1/10,25)
+            }
+            if(this.timer>=15&&this.timer<=10+this.effect[1]*5){
+                this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),this.distance/30-2]))
+            }
+            if(this.timer>=5*this.targetDistance+15&&this.timer<=5*this.targetDistance+10+this.effect[1]*5&&this.timer%5==0){
+                this.targetCombatant.takeDamage(max(1,this.effect[0]-this.procedure[0]),this.user)
+                this.procedure[0]++
+            }else if(this.timer>=max(30+this.effect[1]*5,5*this.targetDistance+25+this.effect[1]*5)){
+                this.remove=true
             }
         break
 

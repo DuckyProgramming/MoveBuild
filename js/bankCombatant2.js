@@ -1449,7 +1449,7 @@ combatant.prototype.setupGraphics=function(direction){
 
             this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.animSet={loop:0,flip:0,hand:1,foot:0}
 
             this.goal={anim:{direction:this.anim.direction}}
         break
