@@ -5521,7 +5521,11 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.rotate(-this.anim.direction)
                     let expand=lcos(this.anim.direction)*0.25
                     this.layer.translate(0,5+expand)
-                    this.layer.fill(...this.flashColor([this.color.shoe.bow[0]*0.4,this.color.shoe.bow[1]*0.4,this.color.shoe.bow[2]*0.4]),this.fade*this.fades.shoe)
+                    this.layer.scale(0.25)
+
+                    this.minorDisplay(7,[sqrt(abs(lcos(this.anim.direction))),this.color.shoe.bow])
+
+                    /*this.layer.fill(...this.flashColor([this.color.shoe.bow[0]*0.4,this.color.shoe.bow[1]*0.4,this.color.shoe.bow[2]*0.4]),this.fade*this.fades.shoe)
                     this.layer.rotate(10)
                     hexagon(this.layer,
                         0,0,
@@ -5579,16 +5583,21 @@ combatant.prototype.minorDisplay=function(type,key){
                         0.35,0.25,
                         0.3,0.075,
                         0.4,-0.1
-                    )
-                    this.layer.image(graphics.minor[40],-1,-1,2,2)
+                    )*/
+                    this.layer.image(graphics.minor[40],-4,-4,8,8)
                     this.layer.pop()
                 break
                 case 3:
                     this.layer.push()
                     this.layer.translate(lsin(this.anim.direction+180)*[6.4,8,12][key],-55.5+key*12+[2,3,4][key]*lcos(this.anim.direction+180))
                     this.layer.rotate(lsin(this.anim.direction+180)*[-10,-20,-20][key])
-                    this.layer.scale(lcos(this.anim.direction+180)*0.5,0.5)
-                    this.layer.fill(...this.flashColor([this.color.dress.bow[0]*0.4,this.color.dress.bow[1]*0.4,this.color.dress.bow[2]*0.4]),this.fade*this.fades.dress.main)
+                    this.layer.scale(lcos(this.anim.direction+180)*0.375,0.375)
+
+                    this.minorDisplay(7,[sqrt(abs(lcos(this.anim.direction+180))),this.color.dress.bow])
+
+                    this.layer.pop()
+                    
+                    /*this.layer.fill(...this.flashColor([this.color.dress.bow[0]*0.4,this.color.dress.bow[1]*0.4,this.color.dress.bow[2]*0.4]),this.fade*this.fades.dress.main)
                     this.layer.rotate(10)
                     this.layer.quad(0,0,6,-3,4.8,0,6,3)
                     this.layer.rotate(160)
@@ -5619,16 +5628,18 @@ combatant.prototype.minorDisplay=function(type,key){
                         0.9,0.225,
                         1.2,-0.3
                     )
-                    this.layer.pop()
+                    this.layer.pop()*/
                 break
                 case 4:
-                    let scalar=sqrt(abs(lcos(this.anim.direction+this.spin.hair.bow[key])))
-
                     this.layer.push()
                     this.layer.translate(lsin(this.anim.direction+this.spin.hair.bow[key])*14,-88)
                     this.layer.rotate(lsin(this.anim.direction+this.spin.hair.bow[key])*-30)
 
-                    this.layer.rotate(-10*scalar)
+                    this.minorDisplay(7,[sqrt(abs(lcos(this.anim.direction+this.spin.hair.bow[key]))),this.color.hair.bow])
+
+                    this.layer.pop()
+
+                    /*this.layer.rotate(-10*scalar)
                     this.layer.scale(scalar,1)
                     this.layer.fill(...this.flashColor([this.color.hair.bow[0]*0.4,this.color.hair.bow[1]*0.4,this.color.hair.bow[2]*0.4]),this.fade)
                     this.layer.quad(0,0,8,-4,6.4,0,8,4)
@@ -5739,7 +5750,7 @@ combatant.prototype.minorDisplay=function(type,key){
                         1.2,scalar*0.3,
                         1.6,-0.7+scalar*0.3,
                     )
-                    this.layer.pop()
+                    this.layer.pop()*/
                 break
                 case 5:
                     dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
@@ -5856,6 +5867,147 @@ combatant.prototype.minorDisplay=function(type,key){
                         }
                     }
                     this.layer.pop()
+                break
+                case 7:
+                    this.layer.rotate(-10*key[0])
+                    this.layer.scale(key[0],1)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.4,key[1][1]*0.4,key[1][2]*0.4]),this.fade)
+                    hexagon(this.layer,
+                        0,0,
+                        6.4,-3.2,
+                        8,-3.6,
+                        7.2,0,
+                        8,3.6,
+                        6.4,3.2
+                    )
+                    this.layer.fill(...this.flashColor(key[1]),this.fade)
+                    hexagon(this.layer,
+                        0,0,
+                        6.4,-3.2,
+                        7.4,-3.45,
+                        6.46,0,
+                        7.4,3.45,
+                        6.4,3.2,
+                    )
+                    this.layer.fill(...this.flashColor([key[1][0]*1.4,key[1][1]*1.4,key[1][2]*1.4]),this.fade)
+                    this.layer.quad(0,0,6.4,-3.2,5.12,0,6.4,3.2)
+                    this.layer.fill(...this.flashColor([key[1][0]*1.1,key[1][1]*1.1,key[1][2]*1.1]),this.fade)
+                    this.layer.quad(0,0,5.92,-2,5.12,0,5.92,2)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
+                    this.layer.quad(0,0,5.6,-1.2,5.12,0,5.6,1.2)
+                    this.layer.scale(1/key[0],1)
+
+                    this.layer.rotate(180+20*key[0])
+                    this.layer.scale(key[0],1)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.4,key[1][1]*0.4,key[1][2]*0.4]),this.fade)
+                    hexagon(this.layer,
+                        0,0,
+                        6.4,-3.2,
+                        8,-3.6,
+                        7.2,0,
+                        8,3.6,
+                        6.4,3.2
+                    )
+                    this.layer.fill(...this.flashColor(key[1]),this.fade)
+                    hexagon(this.layer,
+                        0,0,
+                        6.4,-3.2,
+                        7.4,-3.45,
+                        6.46,0,
+                        7.4,3.45,
+                        6.4,3.2,
+                    )
+                    this.layer.fill(...this.flashColor([key[1][0]*1.4,key[1][1]*1.4,key[1][2]*1.4]),this.fade)
+                    this.layer.quad(0,0,6.4,-3.2,5.12,0,6.4,3.2)
+                    this.layer.fill(...this.flashColor([key[1][0]*1.1,key[1][1]*1.1,key[1][2]*1.1]),this.fade)
+                    this.layer.quad(0,0,5.92,-2,5.12,0,5.92,2)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
+                    this.layer.quad(0,0,5.6,-1.2,5.12,0,5.6,1.2)
+                    this.layer.scale(1/key[0],1)
+
+                    this.layer.rotate(-180-10*key[0])
+                    this.layer.scale(key[0],1)
+
+                    this.layer.fill(...this.flashColor([key[1][0]*0.4,key[1][1]*0.4,key[1][2]*0.4]),this.fade)
+                    this.layer.rotate(60)
+                    pentagon(this.layer,
+                        0,0.4,
+                        0,-0.4,
+                        7.4,-2,
+                        5.8,0,
+                        7.4,2
+                    )
+                    this.layer.rotate(60)
+                    pentagon(this.layer,
+                        0,0.4,
+                        0,-0.4,
+                        7.4,-2,
+                        5.8,0,
+                        7.4,2
+                    )
+                    this.layer.fill(...this.flashColor(key[1]),this.fade)
+                    this.layer.rotate(-60)
+                    pentagon(this.layer,
+                        0,0.2,
+                        0,-0.2,
+                        6.8,-1.85,
+                        5.32,0,
+                        6.8,1.85
+                    )
+                    this.layer.rotate(60)
+                    pentagon(this.layer,
+                        0,0.2,
+                        0,-0.2,
+                        6.8,-1.85,
+                        5.32,0,
+                        6.8,1.85
+                    )
+                    this.layer.fill(...this.flashColor([key[1][0]*1.4,key[1][1]*1.4,key[1][2]*1.4]),this.fade)
+                    this.layer.rotate(-60)
+                    pentagon(this.layer,
+                        0,0.2,
+                        0,-0.2,
+                        5.8,-1.6,
+                        4.52,0,
+                        5.8,1.6
+                    )
+                    this.layer.rotate(60)
+                    pentagon(this.layer,
+                        0,0.2,
+                        0,-0.2,
+                        5.8,-1.6,
+                        4.52,0,
+                        5.8,1.6
+                    )
+                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
+                    this.layer.rotate(-60)
+                    pentagon(this.layer,
+                        0,0.1,
+                        0,-0.1,
+                        5.16,-0.8,
+                        4.52,0,
+                        5.16,0.8
+                    )
+                    this.layer.rotate(60)
+                    pentagon(this.layer,
+                        0,0.1,
+                        0,-0.1,
+                        5.16,-0.8,
+                        4.52,0,
+                        5.16,0.8
+                    )
+
+                    this.layer.rotate(60)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.6,key[1][1]*0.6,key[1][2]*0.6]),this.fade)
+                    hexagon(
+                        this.layer,
+                        -1.6,-0.7+key[0]*0.3,
+                        -1.2,key[0]*0.3,
+                        -1.4,0.7+key[0]*0.3,
+                        1.4,0.7+key[0]*0.3,
+                        1.2,key[0]*0.3,
+                        1.6,-0.7+key[0]*0.3,
+                    )
                 break
             }
         break
