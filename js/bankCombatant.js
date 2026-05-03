@@ -8192,7 +8192,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
                 if(this.name=='Enforcer'&&this.trigger.display.glasses&&lcos(this.anim.direction)>0){
@@ -8351,7 +8351,7 @@ combatant.prototype.display=function(){
                         }
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
             break
@@ -8429,7 +8429,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
                 if(this.name=='Monkey Gangster'&&this.trigger.display.hat){
@@ -9444,7 +9444,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
             break
@@ -9541,7 +9541,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
                 if(this.name=='Fat Scrapper'&&this.trigger.display.goggles&&lcos(this.anim.direction)>0){
@@ -9996,7 +9996,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
                 if(this.name=='Purge X02'&&this.trigger.display.hat){
@@ -10042,7 +10042,7 @@ combatant.prototype.display=function(){
                     regPoly(this.layer,0,-48,8,12,12,0)
                 }
                 if(this.trigger.display.eye[0]){
-                    this.minorDisplayGeneral(0,0)
+                    this.minorDisplayGeneral(3,0)
                 }
             break
             case 'Repulsor':
@@ -10217,7 +10217,7 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
             break
@@ -10321,7 +10321,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
             break
@@ -10391,7 +10391,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
             break
@@ -10444,7 +10444,7 @@ combatant.prototype.display=function(){
                         this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,14,14)
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
             break
@@ -10759,7 +10759,7 @@ combatant.prototype.display=function(){
                         }
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
             break
@@ -10824,7 +10824,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
             break
@@ -11272,7 +11272,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
             break
@@ -11344,7 +11344,7 @@ combatant.prototype.display=function(){
                     if(this.trigger.display.eye[g]){
                         this.layer.push()
                         this.layer.translate(random(-2,2),random(-2,2))
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                         this.layer.pop()
                     }
                 }
@@ -11417,7 +11417,7 @@ combatant.prototype.display=function(){
                     if(this.trigger.display.eye[g]){
                         this.layer.push()
                         this.layer.translate(random(-1,1),random(-1,1))
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                         this.layer.pop()
                     }
                 }
@@ -11557,7 +11557,7 @@ combatant.prototype.display=function(){
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                         }
                         if(this.trigger.display.eye[g]){
-                            this.minorDisplayGeneral(0,g)
+                            this.minorDisplayGeneral(3,g)
                         }
                     }
                     this.layer.pop()
@@ -11664,7 +11664,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
                 this.layer.noStroke()
@@ -11896,7 +11896,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
                 if(this.trigger.display.hair.front){
@@ -12286,7 +12286,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
                     if(this.trigger.display.eye[g]){
-                        this.minorDisplayGeneral(0,g)
+                        this.minorDisplayGeneral(3,g)
                     }
                 }
             break
@@ -13603,7 +13603,7 @@ combatant.prototype.display=function(){
                     }
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.eye[g]){
-                            this.minorDisplayGeneral(0,g)
+                            this.minorDisplayGeneral(3,g)
                         }
                     }
                 }else if(this.name=='Unknown'||this.name=='Danger'){
@@ -13722,7 +13722,7 @@ combatant.prototype.display=function(){
                             }
                         }
                         if(this.name!='Councilman'&&this.name!='Nil'&&this.name!='Vengeful'&&this.name!='Avant Guard'&&this.name!='Dimension Wanderer'&&this.trigger.display.eye[g]){
-                            this.minorDisplayGeneral(0,g)
+                            this.minorDisplayGeneral(3,g)
                         }
                         if(this.name=='Legacy'&&g==0){
                             this.minorDisplay(1,g)
@@ -13777,10 +13777,10 @@ combatant.prototype.display=function(){
                     this.layer.noStroke()
                     this.layer.rect(lsin(this.anim.direction)*14.5,this.parts.eyeLevel,lcos(this.anim.direction)*14+6,7,2)
                     if(this.trigger.display.eye[0]){
-                        this.minorDisplayGeneral(0,0)
+                        this.minorDisplayGeneral(3,0)
                     }
                     if(this.trigger.display.eye[1]){
-                        this.minorDisplayGeneral(0,1)
+                        this.minorDisplayGeneral(3,1)
                     }
                     this.layer.fill(...this.flashColor(this.color.goggles[1]),this.fade*this.fades.goggles)
                     this.layer.stroke(190,20,20,this.fade*this.fades.goggles)

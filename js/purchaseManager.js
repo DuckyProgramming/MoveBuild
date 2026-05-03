@@ -22,7 +22,7 @@ class purchaseManager{
     generalizedListing(type){
         switch(type){
             case 0:
-                return variants.business?[[80,100],[180,225],[480,600]]:[[80,100],[120,150],[240,300]]
+                return variants.business?[[80,100],[180,225],[480,600]]:[[80,100],[120,150],[300,375]]
             case 1:
                 return variants.business?[[100,125],[240,360],[600,750]]:[[100,125],[160,240],[400,500]]
             case 2:

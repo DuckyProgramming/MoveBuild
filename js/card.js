@@ -1834,7 +1834,7 @@ class card{
             case 776: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIncreases by ${effect[1]}\nWhen Retained`; break
             case 777: string+=`Choose Any Attack to Add\nto Hand`; break
             case 778: string+=`Choose Any Attack to Add\nto Hand\nIt Costs 0`; break
-            case 779: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nShuffle a End Up\nInto Draw`; break
+            case 779: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nShuffle an End Up\nInto Draw`; break
             case 780: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have\nNo Other Attacks\nin Hand`; break
             case 781: string+=`Next Turn,\nDraw ${effect[0]} Card${pl(effect[0])}\nand Enter Wrath`; break
             case 782: string+=`Shuffle ${effect[0]} Insight${pl(effect[0])}\nInto Draw Pile\nEvery Turn`; break
@@ -9805,6 +9805,13 @@ class card{
             case 8726: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf You Have No Block,\nMake a Card\nCost 1 Less`; break
             case 8727: string+=`When You Play a Tile,\nGain ${effect[0]} Temporary\nStrength`; break
             case 8728: string+=`Deal ${this.calculateEffect(effect[0],0)} Decrementing\nDamage\n${effect[1]} Time${pl(effect[1])}\nIncreases by ${effect[2]} Time${pl(effect[2])}`; break
+
+            case 8729: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Double Block and\nDraw ${effect[1]} Skill${pl(effect[1])}\nIf You Have Played ${effect[2]}\nSkill${pl(effect[2])} This Turn${stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players&&!this.nonCalc?`\n(Currently ${this.battle.cardManagers[this.player].hand.turnPlayed[11]})`:``}`; break
+            //3412
+            case 8730: string+=`Gain ${effect[0]} Strength\nStart of Combat:\nGain ${effect[1]} Weak`; break
+            //4041
+            case 8731: string+=`Discover an Attack\nOptions Include\nPrevious Choice`; break
+            //7139
 
             //mark p
 

@@ -1540,7 +1540,12 @@ class overlay{
                 this.battle.combatantManager.combatants[this.player].infoAnim.life=0
             break
             case 8:
-                if(this.cards.length==0||args[0]!=this.cards[0].level||this.args[2]==3){
+                if(
+                    this.cards.length==0||
+                    args[0]!=this.cards[0].level||
+                    this.args[2]==3||
+                    this.args[2]==4
+                ){
                     this.cards=[]
                     this.marks=[]
                     this.taken=0
@@ -1548,7 +1553,7 @@ class overlay{
                     let tick=0
                     let total=0
                     switch(this.args[2]){
-                        case 0: case 1: case 2: case 3:
+                        case 0: case 1: case 2: case 3: case 4:
                             switch(this.args[2]){
                                 case 0:
                                     list=copyArray(this.battle.cardManagers[this.player].listing.coc[3])
@@ -1570,7 +1575,11 @@ class overlay{
                                         }
                                     }
                                 break
+                                case 4:
+                                    list=range(0,types.card.length)
+                                break
                             }
+                            let names
                             switch(this.args[2]){
                                 case 0: case 1: case 3:
                                     for(let a=0,la=args[1]==-99?types.card.length:list.length;a<la;a++){
@@ -1595,11 +1604,26 @@ class overlay{
                                     }
                                 break
                                 case 2:
-                                    let names=[]
+                                    names=[]
                                     for(let a=0,la=list.length;a<la;a++){
                                         names.push(types.card[list[a]].name)
                                     }
                                     names.sort()
+                                    for(let a=0,la=names.length;a<la;a++){
+                                        let index=0
+                                        for(let b=0,lb=list.length;b<lb;b++){
+                                            if(types.card[list[b]].name==names[a]){
+                                                index=b
+                                            }
+                                        }
+                                        let selector=list[index]
+                                        this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-350+tick%8*100,this.layer.height/2-130+floor(tick/8)%3*130,selector,args[0],this.battle.standardColorize(selector),-1))
+                                        this.cards[tick].upSize=true
+                                        tick++
+                                    }
+                                break
+                                case 4:
+                                    names=args[1]
                                     for(let a=0,la=names.length;a<la;a++){
                                         let index=0
                                         for(let b=0,lb=list.length;b<lb;b++){

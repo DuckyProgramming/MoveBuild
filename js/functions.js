@@ -2715,6 +2715,31 @@ function generalizedSearch(test,type){
 		}
 	}
 }
+function generalizedSearch2(test,type){
+	let set=[]
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+		if(cardData.desc.includes(test)){
+			set.push(cardData.name)
+		}
+	}
+	if(type==1){
+		current.overlayManager.overlays[115][0].active=true
+		current.overlayManager.overlays[115][0].activate([0])
+		for(let a=0,la=current.overlayManager.overlays[115][0].cards.length;a<la;a++){
+			let cardData=current.overlayManager.overlays[115][0].cards[a]
+			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+			if(cardData.desc.includes(test)){
+				set.push(cardData.name)
+			}
+		}
+	}
+	current.overlayManager.overlays[35][0].args[2]=4
+	current.overlayManager.overlays[35][0].activate([0,set])
+}
 function mtgPlayerColor(player){
 	/*
 	0-colorless
