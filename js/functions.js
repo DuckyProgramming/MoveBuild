@@ -594,6 +594,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[195]!=0){
 				totalStr+=user.status.main[195]
 			}
+			if(user.caffeine!=0){
+				totalStr+=user.caffeine
+			}
 			if(totalStr>0){
 				damage*=1+totalStr*0.1
 				bonus*=1+totalStr*0.1
@@ -2154,7 +2157,7 @@ Uncommon:${current.cardManagers[0].listing.card[a+1][1].length}/64				${current.
 Rare:${current.cardManagers[0].listing.card[a+1][2].length}/32					${current.cardManagers[0].listing.card[a+1][2].length-32}
 	Total:${current.cardManagers[0].listing.card[a+1][3].length}/160\n`
 	}
-	console.log(`Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
+	console.log(`Total Cards: ${types.card.filter(card=>card.list!=-10).length}/${arbitrary}		${types.card.length-arbitrary}
 Listed Cards: ${actual}/${goal}		${actual-goal}
 		Colorless:
 Common:${current.cardManagers[0].listing.card[0][0].length}/64				${current.cardManagers[0].listing.card[0][0].length-64}

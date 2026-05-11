@@ -6663,16 +6663,7 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.6){
-                        if(this.trigger.display.dress.sleeve){
-                            this.minorDisplay(1,g)
-                        }
-                        this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms)
-                        this.layer.strokeWeight(4)
-                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
-                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
-                        if(this.trigger.display.dress.sleeve){
-                            this.minorDisplay(0,g)
-                        }
+                        this.minorDisplay(8,g)
                     }
                 }
                 if(this.trigger.display.dress.main){
@@ -6716,16 +6707,7 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.6){
-                        if(this.trigger.display.dress.sleeve){
-                            this.minorDisplay(1,g)
-                        }
-                        this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms)
-                        this.layer.strokeWeight(4)
-                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
-                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
-                        if(this.trigger.display.dress.sleeve){
-                            this.minorDisplay(0,g)
-                        }
+                        this.minorDisplay(8,g)
                     }
                 }
                 for(let g=0;g<2;g++){
@@ -6733,7 +6715,7 @@ combatant.prototype.display=function(){
                         if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
                             if(this.trigger.display.shoe){
                                 let color=this.flashColor(upColor(this.color.shoe.under,lcos(this.anim.direction+this.spin.legs[h].top)*5,[1,1,1]))
-                                this.layer.fill(...color,this.fade*this.fades.shoe)
+                                /*this.layer.fill(...color,this.fade*this.fades.shoe)
                                 this.layer.noStroke()
                                 this.layer.push()
                                 this.layer.translate(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y+1)
@@ -6747,7 +6729,8 @@ combatant.prototype.display=function(){
                                 this.layer.bezierVertex(0.4,4.25,0.8,4,1,3.75)
                                 this.layer.bezierVertex(1.75,3,2.5,1.5,2.5,0.25)
                                 this.layer.endShape()
-                                this.layer.pop()
+                                this.layer.pop()*/
+
                                 //this.layer.ellipse(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y+1.5,4,3.6)
 
                                 color=this.flashColor(upColor(this.color.shoe.main,lcos(this.anim.direction+this.spin.legs[h].top)*5,[1,1,1]))
@@ -6868,16 +6851,7 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4){
-                        if(this.trigger.display.dress.sleeve){
-                            this.minorDisplay(1,g)
-                        }
-                        this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms)
-                        this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
-                        this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
-                        this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
-                        if(this.trigger.display.dress.sleeve){
-                            this.minorDisplay(0,g)
-                        }
+                        this.minorDisplay(8,g)
                     }
                 }
                 if(this.trigger.display.dress.main){
@@ -6923,30 +6897,51 @@ combatant.prototype.display=function(){
                         this.layer.fill(...this.flashColor(this.color.dress.button),this.fade*this.fades.dress.main)
                         this.layer.ellipse(4.25*lsin(this.anim.direction),-60.5,0.6*lcos(this.anim.direction),0.6)
                         this.layer.ellipse(4.5*lsin(this.anim.direction),-59.5,0.6*lcos(this.anim.direction),0.6)
+                        this.layer.fill(...this.flashColor(this.color.dress.buttonGlow),this.fade*this.fades.dress.main)
+                        this.layer.ellipse(4.25*lsin(this.anim.direction)+0.1*lcos(this.anim.direction),-60.6,0.3*lcos(this.anim.direction),0.3)
+                        this.layer.ellipse(4.5*lsin(this.anim.direction)+0.1*lcos(this.anim.direction),-59.6,0.3*lcos(this.anim.direction),0.3)
                     }
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.4){
-                        if(this.trigger.display.dress.sleeve){
-                            this.minorDisplay(1,g)
-                        }
-                        this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms)
-                        this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
-                        this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
-                        this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
-                        if(this.trigger.display.dress.sleeve){
-                            this.minorDisplay(0,g)
-                        }
-                    }else if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<=0.4){
+                        this.minorDisplay(8,g)
+                    }else if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4){
                         if(this.trigger.display.dress.sleeve){
                             this.minorDisplay(6,g)
                         }
+                        this.layer.strokeCap(SQUARE)
                         this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        this.layer.strokeCap(ROUND)
+                        this.layer.point(this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                         if(this.trigger.display.dress.sleeve){
                             this.minorDisplay(5,g)
                         }
+                        this.layer.strokeCap(SQUARE)
+                        this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms*0.25)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        this.layer.strokeCap(ROUND)
+                        /*this.layer.strokeCap(SQUARE)
+                        this.layer.stroke(...this.flashColor(this.color.dress.sleeve),this.fade*this.fades.dress.sleeve)
+                        this.layer.strokeWeight(4.2)
+                        this.layer.line(
+                            this.graphics.arms[g].top.x*0.2+this.graphics.arms[g].middle.x*0.8,
+                            this.graphics.arms[g].top.y*0.2+this.graphics.arms[g].middle.y*0.8,
+                            this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y
+                        )
+                        this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms*0.25)
+                        this.layer.strokeWeight(4)
+                        this.layer.beginShape()
+                        this.layer.vertex(
+                            this.graphics.arms[g].top.x*0.2+this.graphics.arms[g].middle.x*0.8,
+                            this.graphics.arms[g].top.y*0.2+this.graphics.arms[g].middle.y*0.8,
+                        )
+                        this.layer.vertex(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.vertex(this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        this.layer.endShape()
+                        this.layer.strokeCap(ROUND)*/
                     }
                 }
                 if(this.trigger.display.dress.main){

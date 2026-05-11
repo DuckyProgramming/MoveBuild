@@ -8289,7 +8289,7 @@ class card{
             case 7212: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nPer Worker Drawn,\nGain (E) (E)`; break
             case 7213: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nto Any Enemy`; break
             case 7214: string+=`Gain ${effect[0]} Currency\nUpgrades Repeatedly\nby ${effect[1]}`; break
-            case 7215: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhere X = Number of\nWorkers in Hand${effect[1]!=0?` +${effect[1]}`:``}`; break
+            case 7215: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nWorkers in Hand${effect[1]!=0?` +${effect[1]}`:``}`; break
             case 7216: string+=`Apply ${effect[0]} Communized\nIncreases by ${effect[1]}`; break
             case 7217: string+=`Gain ${effect[0]} Energy\nin 5 Turns\nDraw ${effect[1]} Card${pl(effect[1])}`; break
             case 7218: string+=`Gain (E) (E) (E) (E) (E)\nin 5 Turns\nDraw ${effect[0]} Card${pl(effect[0])}`; break
@@ -9812,6 +9812,13 @@ class card{
             //4041
             case 8731: string+=`Discover an Attack\nOptions Include\nPrevious Choice`; break
             //7139
+            case 8732: string+=`Gain (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Caffeine`; break
+            case 8733: string+=`Gain (N) (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Caffeine`; break
+            case 8734: string+=`Gain (N) (N) (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Caffeine`; break
+
+
+
+
 
             //mark p
 
@@ -10037,6 +10044,9 @@ class card{
         if(spec.includes(20)){
             string+='\nClaw'
         }
+        /*if(spec.includes(84)){
+            string+='\nCOFFEE'
+        }*/
         if(spec.includes(25)){
             string+='\nGun'
         }
@@ -14205,6 +14215,134 @@ class card{
                     this.layer.quad(15,-10,10,-15,-15,10,-10,15)
                     this.layer.stroke(100,90,80,this.fade)
                     this.layer.noFill()
+                }else if(this.list==-10){
+                    if(this.anim.select>0){
+                        this.layer.noStroke()
+                        this.layer.fill(100,this.fade)
+                        this.layer.rect(-this.width/4-3.75,-this.height/4-3.75,this.width/2+7.5,this.height/2+7.5,10)
+                        this.layer.rect(this.width/4+3.75,this.height/4+3.75,this.width/2+7.5,this.height/2+7.5,10)
+                        this.layer.fill(255,150,255,this.fade)
+                        this.layer.rect(-this.width/4-3.75,this.height/4+3.75,this.width/2+7.5,this.height/2+7.5,10)
+                        this.layer.rect(this.width/4+3.75,-this.height/4-3.75,this.width/2+7.5,this.height/2+7.5,10)
+                        for(let a=0,la=4;a<la;a++){
+                            let set=a%2
+                            this.layer.fill(100+(1-set)*155,100+(1-set)*50,100+(1-set)*155,this.fade)
+                            this.layer.rect(((a+1.5)/(la+2)-0.5)*this.width,-this.height/2-5,this.width/(la+2),5)
+                            this.layer.fill(100+set*155,100+set*50,100+set*155,this.fade)
+                            this.layer.rect(((a+1.5)/(la+2)-0.5)*this.width,this.height/2+5,this.width/(la+2),5)
+                        }
+                        for(let a=0,la=6;a<la;a++){
+                            let set=a%2
+                            this.layer.fill(100+(1-set)*155,100+(1-set)*50,100+(1-set)*155,this.fade)
+                            this.layer.rect(-this.width/2-5,((a+1.5)/(la+2)-0.5)*this.height,5,this.height/(la+2))
+                            this.layer.fill(100+set*155,100+set*50,100+set*155,this.fade)
+                            this.layer.rect(this.width/2+5,((a+1.5)/(la+2)-0.5)*this.height,5,this.height/(la+2))
+                        }
+                    }
+                    this.layer.fill(50,this.fade)
+                    this.layer.stroke(25,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(-this.width/4,-this.height/4,this.width/2,this.height/2,5)
+                    this.layer.rect(this.width/4,this.height/4,this.width/2,this.height/2,5)
+                    this.layer.fill(255,0,255,this.fade)
+                    this.layer.stroke(225,0,225,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(-this.width/4,this.height/4,this.width/2,this.height/2,5)
+                    this.layer.rect(this.width/4,-this.height/4,this.width/2,this.height/2,5)
+
+                    this.layer.noStroke()
+                    for(let a=0,la=6;a<la;a++){
+                        for(let b=0,lb=8;b<lb;b++){
+                            if(a!=0&&a!=la-1||b!=0&&b!=lb-1){
+                                let set=(a+b)%2
+                                this.layer.fill(50+set*205,50-set*50,50+set*205,this.fade)
+                                this.layer.rect(((a+0.5)/la-0.5)*this.width,((b+0.5)/lb-0.5)*this.height,this.width/la,this.height/lb)
+                            }
+                        }
+                    }
+                    for(let a=0,la=4;a<la;a++){
+                        let set=a%2
+                        this.layer.fill(25+(1-set)*200,25-(1-set)*50,25+(1-set)*200,this.fade)
+                        this.layer.rect(((a+1.5)/(la+2)-0.5)*this.width,-this.height/2,this.width/(la+2),5)
+                        this.layer.fill(25+set*200,25-set*50,25+set*200,this.fade)
+                        this.layer.rect(((a+1.5)/(la+2)-0.5)*this.width,this.height/2,this.width/(la+2),5)
+                    }
+                    for(let a=0,la=6;a<la;a++){
+                        let set=a%2
+                        this.layer.fill(25+(1-set)*200,25-(1-set)*50,25+(1-set)*200,this.fade)
+                        this.layer.rect(-this.width/2,((a+1.5)/(la+2)-0.5)*this.height,5,this.height/(la+2))
+                        this.layer.fill(25+set*200,25-set*50,25+set*200,this.fade)
+                        this.layer.rect(this.width/2,((a+1.5)/(la+2)-0.5)*this.height,5,this.height/(la+2))
+                    }
+
+                    this.layer.stroke(225,0,225,this.fade)
+                    this.layer.noFill()
+
+                    /*3x4:
+                    this.layer.fill(50,this.fade)
+                    this.layer.stroke(25,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,-this.height/4,this.width,this.height/2,5)
+                    this.layer.fill(255,0,255,this.fade)
+                    this.layer.stroke(225,0,225,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,this.height/4,this.width,this.height/2,5)
+
+                    this.layer.noStroke()
+                    this.layer.fill(225,0,225,this.fade)
+                    this.layer.rect(0,-this.height/8,this.width+5,this.height/4)
+                    this.layer.rect(0,-this.height*0.375-1.25,this.width/3,this.height/4+2.5)
+                    this.layer.fill(255,0,255,this.fade)
+                    this.layer.rect(0,-this.height/8,this.width-5,this.height/4)
+                    this.layer.rect(0,-this.height*0.375+1.25,this.width/3,this.height/4-2.5)
+                    this.layer.fill(25,this.fade)
+                    this.layer.rect(0,this.height/8,this.width+5,this.height/4)
+                    this.layer.rect(0,this.height*0.375+1.25,this.width/3,this.height/4+2.5)
+                    this.layer.fill(50,this.fade)
+                    this.layer.rect(0,this.height/8,this.width-5,this.height/4)
+                    this.layer.rect(0,this.height*0.375-1.25,this.width/3,this.height/4-2.5)
+
+                    this.layer.rect(0,-this.height/8,this.width/3,this.height/4)
+                    this.layer.fill(255,0,255,this.fade)
+                    this.layer.rect(0,this.height/8,this.width/3,this.height/4)
+
+                    this.layer.stroke(225,0,225,this.fade)
+                    this.layer.noFill()
+                    */
+                    
+                    /*5x5:
+                    this.layer.fill(100,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(255,100,255,this.fade*this.anim.select)
+                    this.layer.rect(0,-this.height*2/5,this.width+15,this.height/5)
+                    this.layer.rect(0,0,this.width+15,this.height/5)
+                    this.layer.rect(0,this.height*2/5,this.width+15,this.height/5)
+                    this.layer.rect(-this.width*2/5,0,this.width/5,this.height+15)
+                    this.layer.rect(0,0,this.width/5,this.height+15)
+                    this.layer.rect(this.width*2/5,0,this.width/5,this.height+15)
+                    this.layer.fill(50,this.fade)
+                    this.layer.stroke(25,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.noStroke()
+                    this.layer.fill(225,0,225,this.fade)
+                    this.layer.rect(0,-this.height/5,this.width+5,this.height/5)
+                    this.layer.rect(0,this.height/5,this.width+5,this.height/5)
+                    this.layer.rect(-this.width/5,0,this.width/5,this.height+5)
+                    this.layer.rect(this.width/5,0,this.width/5,this.height+5)
+                    this.layer.fill(255,0,255,this.fade)
+                    this.layer.rect(0,-this.height/5,this.width-5,this.height/5)
+                    this.layer.rect(0,this.height/5,this.width-5,this.height/5)
+                    this.layer.rect(-this.width/5,0,this.width/5,this.height-5)
+                    this.layer.rect(this.width/5,0,this.width/5,this.height-5)
+                    this.layer.fill(50,this.fade)
+                    this.layer.rect(-this.width/5,-this.height/5,this.width/5,this.height/5)
+                    this.layer.rect(this.width/5,-this.height/5,this.width/5,this.height/5)
+                    this.layer.rect(-this.width/5,this.height/5,this.width/5,this.height/5)
+                    this.layer.rect(this.width/5,this.height/5,this.width/5,this.height/5)
+                    this.layer.stroke(100,this.fade)
+                    this.layer.noFill()*/
                 }else if(variants.mtg&&colorDetail.length>=2){
                     if(colorDetail.length>=4){
                         this.gradient=[new p5.LinearGradient(0,this.width-10),new p5.LinearGradient(0,this.width-10),new p5.LinearGradient(0,this.width-10)]

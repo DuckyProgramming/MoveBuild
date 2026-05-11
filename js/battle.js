@@ -601,6 +601,9 @@ class battle{
         }else{
             this.startTurn()
         }
+        if(this.encounter.class==1&&this.nodeManager.harmElite>0){
+            this.nodeManager.harmElite=0
+        }
         if(this.encounter.class==2&&this.nodeManager.harmBoss>0){
             this.nodeManager.harmBoss=0
         }
@@ -2416,7 +2419,7 @@ class battle{
                 this.layer.textSize(16)
                 this.layer.text('Difficulty Options',this.layer.width/2,30)
                 this.layer.textSize(10)
-                this.layer.text('Mouseover 0-32 to Learn More',this.layer.width/2,62.5)
+                this.layer.text('Mouseover 0-33 to Learn More',this.layer.width/2,62.5)
                 for(let a=0,la=types.ascend.length;a<la;a++){
                     if(this.menu.anim.ascend[a]>0){
                         this.layer.fill(255,0,0,this.menu.anim.ascend[a])
@@ -2559,7 +2562,7 @@ class battle{
             break
             case 'custom':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
-                let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBSPECTRAL','JUNKYARD','SUBCARD','EVENT','DEVELOPER','REMOVED','BASIC','PACK','MISC']
+                let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','JUNKYARD','SUBCARD','EVENT','DEVELOPER','REMOVED','BASIC','PACK','MISC']
                 this.layer.textSize(10)
                 for(let a=0,la=40;a<la;a++){
                     this.layer.fill(240*this.menu.anim.prismrule[a])
@@ -3391,7 +3394,7 @@ class battle{
                         allPerkComplete=false
                     }
                 }
-                if(allPerkComplete){
+                if(allPerkComplete&&!this.overlayManager.anyActive){
                     transition.trigger=true
                     transition.scene='map'
                 }

@@ -18,6 +18,7 @@ class nodeManager{
 
         this.freeMove=[0,0]
         this.saveClass=-1
+        this.harmElite=0
         this.harmBoss=0
         this.endless=0
         
@@ -38,6 +39,7 @@ class nodeManager{
             total:this.total,
             freeMove:this.freeMove,
             saveClass:this.saveClass,
+            harmElite:this.harmElite,
             harmBoss:this.harmBoss,
             endles:this.endless,
         }
@@ -51,6 +53,7 @@ class nodeManager{
         this.total=composite.world
         this.freeMove=composite.freeMove
         this.saveClass=composite.saveClass
+        this.harmElite=composite.harmElite
         this.harmBoss=composite.harmBoss
         this.endless=composite.endless||0
         this.nodes=[]

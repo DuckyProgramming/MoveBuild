@@ -10,9 +10,13 @@ class perkManager{
     }
     assemble(){
         this.getPosKey()
-        this.addPerk([0,1,2,3,13][floor(random(0,5))])
-        this.addPerk([4,5,6,7,12][floor(random(0,5))])
-        this.addPerk([8,9,10,11,14][floor(random(0,5))])
+        let set=[
+            [0,1,2,16,17,18][floor(random(0,6))],
+            [4,5,6,7,12,19][floor(random(0,6))],
+            [8,9,10,11,14,20][floor(random(0,6))]
+        ]
+        //set=[18,19,20]
+        set.forEach(item=>this.addPerk(item))
         if(variants.mtg){
             let base=this.battle.energy.base[this.player]
             let active=[]
@@ -41,11 +45,13 @@ class perkManager{
             break
             case 1:
                 this.complete=true
-                this.battle.addCurrency(100,this.player)
+                this.battle.addCurrency(200,this.player)
             break
             case 2:
                 this.complete=true
-                this.battle.relicManager.addSetRelic(floor(random(0,2)),this.player)
+                //this.battle.relicManager.addSetRelic(floor(random(0,2)),this.player)
+                this.battle.overlayManager.overlays[185][this.player].active=true
+                this.battle.overlayManager.overlays[185][this.player].activate([floor(random(0,2)),floor(random(0,2)),floor(random(0,2))])
             break
             case 3:
                 this.complete=true
@@ -59,7 +65,8 @@ class perkManager{
             break
             case 5:
                 this.battle.overlayManager.overlays[3][this.player].active=true
-                this.battle.overlayManager.overlays[3][this.player].activate([0,1,0])
+                this.battle.overlayManager.overlays[3][this.player].activate([0,3,2])
+                //this.battle.overlayManager.overlays[3][this.player].activate([0,1,0])
             break
             case 6:
                 this.battle.overlayManager.overlays[6][this.player].active=true
@@ -77,7 +84,9 @@ class perkManager{
             case 9:
                 this.complete=true
                 this.battle.combatantManager.combatants[this.player].loseMaxHP(5)
-                this.battle.relicManager.addSetRelic(2,this.player)
+                //this.battle.relicManager.addSetRelic(2,this.player)
+                this.battle.overlayManager.overlays[185][this.player].active=true
+                this.battle.overlayManager.overlays[185][this.player].activate([2,2,2])
             break
             case 10:
                 this.battle.combatantManager.combatants[this.player].loseMaxHP(5)
@@ -106,6 +115,31 @@ class perkManager{
                 this.complete=true
                 this.battle.energy.base[this.player].splice(this.battle.energy.base[this.player].indexOf(mtgPlayerColor(this.battle.player[this.player])[0]),1)
                 this.battle.relicManager.addSetRelic(4,this.player)
+            break
+            case 16:
+                this.complete=true
+                for(let a=0,la=this.battle.itemManager.items[this.player].length-1;a<la;a++){
+                    this.battle.itemManager.addSetItem(floor(random(0,3)),this.player)
+                }
+            break
+            case 17:
+                this.complete=true
+                this.battle.nodeManager.harmElite=0.5
+            break
+            case 18:
+                this.complete=true
+                this.battle.overlayManager.overlays[45][this.player].active=true
+                this.battle.overlayManager.overlays[45][this.player].activate([this.battle.nodeManager.world])
+            break
+            case 19:
+                this.complete=true
+                this.battle.overlayManager.overlays[62][this.player].active=true
+                this.battle.overlayManager.overlays[62][this.player].activate()
+            break
+            case 20:
+                this.complete=true
+                this.battle.overlayManager.overlays[3][this.player].active=true
+                this.battle.overlayManager.overlays[3][this.player].activate([0,0,59,15,randin(range(1,constants.playerNumber+1).filter(num=>num!=this.battle.player[this.player]))])
             break
         }
     }

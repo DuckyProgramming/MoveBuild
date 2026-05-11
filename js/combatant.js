@@ -587,6 +587,9 @@ class combatant{
     }
     initialBuff(){
         this.turnsAlive=0
+        if(this.battle.encounter.class==1&&this.battle.nodeManager.harmElite>0){
+            this.life*=1-this.battle.nodeManager.harmElite
+        }
         if((this.spec.includes(2)||this.spec.includes(12))&&this.battle.nodeManager.harmBoss>0){
             this.life*=1-this.battle.nodeManager.harmBoss
         }
@@ -3217,6 +3220,9 @@ class combatant{
                     userCombatant.statusEffect('Vigor',damage)
                     damage=0
                     userCombatant.status.main[250]--
+                }
+                if(userCombatant.caffeine>0){
+                    totalStr+=userCombatant.caffeine
                 }
                 if(totalStr>0){
                     damage*=1+totalStr*0.1
@@ -7930,7 +7936,7 @@ class combatant{
             }
             if(this.caffeine>=3+this.status.main[findList('Caffeine Tolerance',this.status.name)]){
                 this.caffeine-=3+this.status.main[findList('Caffeine Tolerance',this.status.name)]
-                this.loseHealth(3)
+                this.loseHealth(6)
             }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)
