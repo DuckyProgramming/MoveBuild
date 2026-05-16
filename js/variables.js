@@ -7601,6 +7601,6 @@ constants={
 options={damage:false,alt:false,replay:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false,devGen:false,spin:false}
 graphics={main:0,backgroundGen:17,backgroundCombatantGen:8,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],paperball:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false,loading:``,bump:{trigger:false,anim:0}}
-inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:[],hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}
+inputs={mouse:{x:0,y:0},prev:{x:0,y:0},rel:{x:0,y:0},prevRel:{x:0,y:0},above:'!@#$%^&*()',lastKey:[],hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0
 la=0;lb=0;lc=0;ld=0;le=0;lf=0;lg=0;lh=0;li=0;lj=0;lk=0;ll=0;lm=0;ln=0;lo=0;lp=0

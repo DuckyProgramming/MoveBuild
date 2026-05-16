@@ -127,6 +127,11 @@ function displayTrianglesBack(layer,parts,direction,base,width,weight,slant,colo
 			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
 			part.spin[2]+direction
 		]
+		if(reality[0]>=360&&reality[1]>=360&&reality[2]>=360){
+			reality[0]-=360
+			reality[1]-=360
+			reality[2]-=360
+		}
 		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
 		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
 		if(c[0]<0){
@@ -222,6 +227,11 @@ function displayTrianglesFront(layer,parts,direction,base,width,weight,slant,col
 			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
 			part.spin[2]+direction
 		]
+		if(reality[0]>=360&&reality[1]>=360&&reality[2]>=360){
+			reality[0]-=360
+			reality[1]-=360
+			reality[2]-=360
+		}
 		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
 		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
 		if(c[0]>=0){
@@ -325,6 +335,11 @@ function displayTrianglesBackMerge(layer,parts,direction,base,width,weight,slant
 			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
 			part.spin[2]+direction
 		]
+		if(reality[0]>=360&&reality[1]>=360&&reality[2]>=360){
+			reality[0]-=360
+			reality[1]-=360
+			reality[2]-=360
+		}
 		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
 		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
 		if(c[0]<0){
@@ -474,6 +489,11 @@ function displayTrianglesFrontMerge(layer,parts,direction,base,width,weight,slan
 			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
 			part.spin[2]+direction
 		]
+		if(reality[0]>=360&&reality[1]>=360&&reality[2]>=360){
+			reality[0]-=360
+			reality[1]-=360
+			reality[2]-=360
+		}
 		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
 		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
 		if(c[0]>=0){
@@ -623,6 +643,11 @@ function displayTrianglesFrontMergeDown(layer,parts,direction,base,width,weight,
 			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
 			part.spin[2]+direction
 		]
+		if(reality[0]>=360&&reality[1]>=360&&reality[2]>=360){
+			reality[0]-=360
+			reality[1]-=360
+			reality[2]-=360
+		}
 		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
 		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
 		if(c[0]>=0){
@@ -745,6 +770,11 @@ function displayTrianglesBackMerge3D(layer,parts,direction,base,width,weight,sla
 			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
 			part.spin[2]+direction
 		]
+		if(reality[0]>=360&&reality[1]>=360&&reality[2]>=360){
+			reality[0]-=360
+			reality[1]-=360
+			reality[2]-=360
+		}
 		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
 		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
 		if(c[0]<0){
@@ -856,11 +886,18 @@ function displayTrianglesFrontMerge3D(layer,parts,direction,base,width,weight,sl
 			layer.fill(...mergeColor(color1,color2,g/lg))
 			layer.stroke(...mergeColor(color1,color2,g/lg))
 		}
+		/*layer.stroke(g%2*255)
+		layer.fill(g%2*255)*/
 		let reality=[
 			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
 			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
 			part.spin[2]+direction
 		]
+		if(reality[0]>=360&&reality[1]>=360&&reality[2]>=360){
+			reality[0]-=360
+			reality[1]-=360
+			reality[2]-=360
+		}
 		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
 		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
 		if(c[0]>=0){
@@ -933,6 +970,9 @@ function displayTrianglesFrontMerge3D(layer,parts,direction,base,width,weight,sl
 						-width/2-cut[1]*slant,base+cut[1],
 						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*part.y[2]*slant,
 					)
+					if(cut[0]>=50||cut[1]>=50){
+						print(part,cut,inter,reality)
+					}
 				}else{
 					let inter=[
 						reality[1]<90?
@@ -977,6 +1017,11 @@ function displayTrianglesFrontMerge3D(layer,parts,direction,base,width,weight,sl
 			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
 			part.spin[2]+direction
 		]
+		if(reality[0]>=360&&reality[1]>=360&&reality[2]>=360){
+			reality[0]-=360
+			reality[1]-=360
+			reality[2]-=360
+		}
 		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
 		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
 		if(c[0]<0){
@@ -1120,6 +1165,11 @@ function displayTrianglesFrontMerge3D(layer,parts,direction,base,width,weight,sl
 			(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
 			part.spin[2]+direction
 		]
+		if(reality[0]>=360&&reality[1]>=360&&reality[2]>=360){
+			reality[0]-=360
+			reality[1]-=360
+			reality[2]-=360
+		}
 		let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
 		let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
 		if(c[0]>=0){
@@ -2481,6 +2531,11 @@ function generateSprite(layer,type,direction){
 			layer.noErase()
 		break
 		case 69:
+			layer.fill(...data.color.hair.insideBack)
+			layer.stroke(...data.color.hair.insideBack)
+			layer.strokeWeight(1)
+			layer.arc(0,0,34,33,-180,0)
+			layer.line(-17.5,0,17.5,0)
 			displayTrianglesBackMerge(layer,data.parts.hair.main,direction,0,35,1,-0.045,data.color.hair.back,data.color.hair.back,1)
 		break
 		case 70:
@@ -2807,6 +2862,21 @@ function generateSprite(layer,type,direction){
 			layer.line(18.5,0,19.5,20)
 			layer.strokeWeight(10)
 			layer.arc(0,0,44,44,-180,0)
+		break
+		case 81:
+			controlSpin(data.parts.dress,direction,1)
+			displayTrianglesFrontMerge3D(layer,data.parts.dress.inside,direction,0,12.6,0.1,1/3,data.color.dress.main,data.color.dress.main,1,0.4)
+			layer.erase(0.5)
+			layer.rect(0,15,30,30)
+			layer.noErase()
+			displayTrianglesFrontMerge3D(layer,data.parts.dress.main,direction,0,12.6,0.2,1/3,data.color.dress.main,data.color.dress.main,1,0.4)
+		break
+		case 82:
+			displayTrianglesBackMerge3D(layer,data.parts.dress.inside,direction,0,12.6,0.1,1/3,data.color.dress.back,data.color.dress.back,1,-0.4)
+			layer.erase(0.5)
+			layer.rect(0,15,30,30)
+			layer.noErase()
+			displayTrianglesBackMerge3D(layer,data.parts.dress.main,direction,0,12.6,0.2,1/3,data.color.dress.back,data.color.dress.back,1,-0.4)
 		break
 		
 	}
@@ -3407,13 +3477,13 @@ function setupCombatantGraphics(type){
 			}
 			data.sprites.under.dress={front:[],back:[]}
 			for(let g=0;g<data.sprites.genAmount;g++){
-				data.sprites.under.dress.front.push(createGraphics(150,250))
+				data.sprites.under.dress.front.push(createGraphics(150,300))
 				setupLayer(data.sprites.under.dress.front[g])
 				data.sprites.under.dress.front[g].translate(75,0)
 				data.sprites.under.dress.front[g].scale(5)
 				generateSprite(data.sprites.under.dress.front[g],37,g*data.sprites.detail)
 				//console.log('Generated S-UDF-'+(g+1))
-				data.sprites.under.dress.back.push(createGraphics(150,250))
+				data.sprites.under.dress.back.push(createGraphics(150,300))
 				setupLayer(data.sprites.under.dress.back[g])
 				data.sprites.under.dress.back[g].translate(75,0)
 				data.sprites.under.dress.back[g].scale(5)
@@ -3423,13 +3493,13 @@ function setupCombatantGraphics(type){
 			if(options.damage){
 				data.sprites.under.dressDamage={front:[],back:[]}
 				for(let g=0;g<data.sprites.genAmount;g++){
-					data.sprites.under.dressDamage.front.push(createGraphics(150,250))
+					data.sprites.under.dressDamage.front.push(createGraphics(150,300))
 					setupLayer(data.sprites.under.dressDamage.front[g])
 					data.sprites.under.dressDamage.front[g].translate(75,0)
 					data.sprites.under.dressDamage.front[g].scale(5)
 					generateSprite(data.sprites.under.dressDamage.front[g],39,g*data.sprites.detail)
 					//console.log('Generated S-UDF-'+(g+1))
-					data.sprites.under.dressDamage.back.push(createGraphics(150,250))
+					data.sprites.under.dressDamage.back.push(createGraphics(150,300))
 					setupLayer(data.sprites.under.dressDamage.back[g])
 					data.sprites.under.dressDamage.back[g].translate(75,0)
 					data.sprites.under.dressDamage.back[g].scale(5)
@@ -3751,6 +3821,7 @@ function setupCombatantGraphics(type){
                     eye:{back:[255,148,157],front:[61,0,5],glow:[255,238,236]},
 					mouth:{in:[254,194,166],out:[0,0,0]},
                     dress:{main:[254,253,255],shawl:[239,237,238],inside:[88,91,129],highlight:[84,147,210],border:[49,100,192],tie:[89,95,97],bow:[[48,125,242],[216,242,255]],sleeve:[233,232,237]},
+					shoe:{main:[174,181,242],under:[137,138,214]},
 				},
 				spin:{tail:[-114,114]}
 			})
@@ -4579,7 +4650,7 @@ function setupCombatantGraphics(type){
 						bow:[59,59,59],flaps:[62,63,62],button:[235,216,175],buttonGlow:[243,232,216],
 						pocket:[[226,204,201],[213,190,188],[237,214,196]],
 					},
-					shoe:{main:[32,29,27],under:[64,57,56],bow:[65,64,63],glow:[131,120,115]},
+					shoe:{main:[32,29,27],over:[15,11,10],inside:[99,87,82],under:[64,57,56],bow:[65,64,63],glow:[131,120,115]},
 					pin:[255,227,156],
 				},
 			})
@@ -4671,6 +4742,21 @@ function setupCombatantGraphics(type){
 					)
 				}
 			}
+
+			data.parts.dress={inside:[],main:[]}
+
+			let flow=1
+			for(let a=0,la=360;a<la;a++){
+				let dir=[a/la*360,(a+1)/la*360,(a-0.5)/la*360,(a+0.5)/la*360,(a+1.5)/la*360]
+				data.parts.dress.inside.push(
+					{spin:[dir[2],dir[3],dir[0]],y:[0,0,20+flow*lcos(dir[0]*5)+sqrt(1-abs(5-a%10)**2*0.04)]},
+					{spin:[dir[3],dir[4],dir[1]],y:[20+flow*lcos(dir[0]*5)+sqrt(1-abs(5-a%10)**2*0.04),0,20+flow*lcos(dir[1]*5)+sqrt(1-abs(5-(a+1)%10)**2*0.04)]},
+				)
+				data.parts.dress.main.push(
+					{spin:[dir[2],dir[3],dir[0]],y:[0,0,20+flow*lcos(dir[0]*5)]},
+					{spin:[dir[3],dir[4],dir[1]],y:[20+flow*lcos(dir[0]*5),0,20+flow*lcos(dir[1]*5)]},
+				)
+			}
 		
 			data.sprites.genAmount=360/data.sprites.detail
 
@@ -4716,6 +4802,21 @@ function setupCombatantGraphics(type){
 				delete data.sprites.hair.insideBack[a]
 				a--
 				la--
+			}
+			data.sprites.dress={front:[],back:[]}
+			for(let g=0;g<data.sprites.genAmount;g++){
+				data.sprites.dress.front.push(createGraphics(150,150))
+				setupLayer(data.sprites.dress.front[g])
+				data.sprites.dress.front[g].translate(75,0)
+				data.sprites.dress.front[g].scale(5)
+				generateSprite(data.sprites.dress.front[g],81,g*data.sprites.detail)
+				//console.log('Generated S-UDF-'+(g+1))
+				data.sprites.dress.back.push(createGraphics(150,150))
+				setupLayer(data.sprites.dress.back[g])
+				data.sprites.dress.back[g].translate(75,0)
+				data.sprites.dress.back[g].scale(5)
+				generateSprite(data.sprites.dress.back[g],82,g*data.sprites.detail)
+				//console.log('Generated S-UDB-'+(g+1))
 			}
 		break
 		case 20:
@@ -5288,9 +5389,12 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.arms=[
 						{top:24,bottom:15+a*60,length:{top:16.75,bottom:16.75}},
 						{top:24,bottom:15,length:{top:16.75,bottom:16.75}}
+						/*{top:60,bottom:75,length:{top:16.75,bottom:16.75}},
+						{top:60,bottom:75,length:{top:16.75,bottom:16.75}}*/
 					]
 					p1.spin.legs=[{top:-60,bottom:-60},{top:45,bottom:75}]
 					p1.spin.arms=[{top:-60,bottom:6+a*36,lock:0},{top:90,bottom:24,lock:0}]
+					//p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
 					p1.position.x+=30
 				break
 
@@ -5985,7 +6089,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 				case 'Menessa':
 					p1.anim.mouth.y+=1.5
 					p1.parts.mouth-=0.5
-					p1.position.y+=2
+					/*p1.position.y+=2
 					p1.anim.legs=[
 						{top:12,bottom:69,length:{top:16.75,bottom:16.75}},
 						{top:27,bottom:93,length:{top:16.75,bottom:16.75}}
@@ -5995,6 +6099,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 						{top:6,bottom:33-a*3,length:{top:16.75,bottom:16.75}}
 					]
 					p1.spin.legs=[{top:-90-a*30,bottom:-90},{top:60+a*30,bottom:150}]
+					p1.spin.arms=[{top:-75-a*15,bottom:-60,lock:0},{top:90+a*15,bottom:69+a*12,lock:0}]*/
+					p1.position.y+=22
+					p1.anim.shoe[0]=2
+					p1.anim.shoe[1]=1
+					p1.anim.legs=[
+						{top:12,bottom:33,length:{top:16.75,bottom:16.75}},
+						{top:48,bottom:27,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:102,bottom:135,length:{top:16.75,bottom:16.75}},
+						{top:6,bottom:33-a*3,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-90-a*30,bottom:-90},{top:18,bottom:18}]
 					p1.spin.arms=[{top:-75-a*15,bottom:-60,lock:0},{top:90+a*15,bottom:69+a*12,lock:0}]
 				break
 			}
@@ -6654,6 +6771,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.arms=[{top:-75+a*15,bottom:-15+a*60,lock:0},{top:60+a*6,bottom:66-a*60,lock:0}]
 				break
 				case 'Menessa':
+					//p1.position.x-=30+a*20
 					p1.position.y-=0.5
 					p1.anim.legs=[
 						{top:6-a*1.5,bottom:-1-a*1.5,length:{top:16.75,bottom:16.75}},
@@ -7346,8 +7464,9 @@ function setupGeneralGraphics(){
 	37-38 Menessa Pin
 	39 XOR
 	40-41 Menessa Filigree
+	42 Menessa Filigree 2
 	*/
-	for(let a=0,la=42;a<la;a++){
+	for(let a=0,la=43;a<la;a++){
 		switch(a){
 			case 9: case 11:
 				graphics.minor.push(createGraphics(160,240))
@@ -7363,6 +7482,9 @@ function setupGeneralGraphics(){
 			break
 			case 39:
 				graphics.minor.push(createGraphics(90,120))
+			break
+			case 42:
+				graphics.minor.push(createGraphics(200,160))
 			break
 			default:
 				graphics.minor.push(createGraphics(160,160))
@@ -7637,7 +7759,7 @@ function setupGeneralGraphics(){
 		graphics.minor[36].quad(0,0,48-a/la*24,-9+a/la*9,42-a/la*12,0,48-a/la*24,9-a/la*9)
 		graphics.minor[36].rotate(60)
 	}
-	let gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80)]
+	/*let gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80)]
 	gradient[0].colors(
 		0.00,color(255,251,222),
 		1.00,color(255,215,115)
@@ -7666,7 +7788,72 @@ function setupGeneralGraphics(){
 	graphics.minor[38].arc(105,40,100,100,-180,0)
 	graphics.minor[38].erase()
 	graphics.minor[38].arc(115,40,81,81,-180,0)
+	graphics.minor[37].image(graphics.minor[38],0,-40)*/
+
+	gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80)]
+	gradient[0].colors(
+		0.00,color(255,251,222),
+		1.00,color(255,215,115)
+	)
+	gradient[1].colors(
+		0.00,color(255,215,115),
+		1.00,color(255,251,222)
+	)
+	gradient[2].colors(
+		0.00,color(253,234,172),
+		1.00,color(239,192,104)
+	)
+	gradient[3].colors(
+		0.00,color(239,192,104),
+		1.00,color(253,234,172)
+	)
+	graphics.minor[37].translate(0,40)
+	graphics.minor[37].fillGradient(gradient[2])
+	graphics.minor[37].arc(60,40,103,103,-180,0)
+	graphics.minor[37].fillGradient(gradient[3])
+	graphics.minor[37].arc(100,40,103,103,0,180)
+
+	graphics.minor[37].fillGradient(gradient[0])
+	graphics.minor[37].arc(60,40,100,100,-180,0)
+	graphics.minor[37].fillGradient(gradient[2])
+	graphics.minor[37].arc(50,40,81,81,-180,0)
+	graphics.minor[37].erase()
+	graphics.minor[37].arc(50,40,78,78,-180,0)
+	graphics.minor[37].rect(10,40,20,25)
+	graphics.minor[37].noErase()
+	graphics.minor[37].fillGradient(gradient[1])
+	graphics.minor[37].arc(100,40,100,100,0,180)
+	graphics.minor[37].fillGradient(gradient[3])
+	graphics.minor[37].arc(110,40,81,81,0,180)
+	graphics.minor[37].erase()
+	graphics.minor[37].arc(110,40,78,78,0,180)
+	graphics.minor[37].rect(150,40,20,25)
+
+	graphics.minor[38].translate(0,40)
+	graphics.minor[38].fill(0)
+	graphics.minor[38].fillGradient(gradient[2])
+	graphics.minor[38].arc(60,40,103,103,0,180)
+	graphics.minor[38].fillGradient(gradient[3])
+	graphics.minor[38].arc(100,40,103,103,-180,0)
+
+	graphics.minor[38].fillGradient(gradient[0])
+	graphics.minor[38].arc(60,40,100,100,0,180)
+	graphics.minor[38].fillGradient(gradient[2])
+	graphics.minor[38].arc(50,40,81,81,0,180)
+	graphics.minor[38].erase()
+	graphics.minor[38].arc(50,40,78,78,0,180)
+	graphics.minor[38].rect(10,40,20,25)
+	graphics.minor[38].noErase()
+	graphics.minor[38].fillGradient(gradient[1])
+	graphics.minor[38].arc(100,40,100,100,-180,0)
+	graphics.minor[38].fillGradient(gradient[3])
+	graphics.minor[38].arc(110,40,81,81,-180,0)
+	graphics.minor[38].erase()
+	graphics.minor[38].arc(110,40,78,78,-180,0)
+	graphics.minor[38].rect(150,40,20,25)
+
 	graphics.minor[37].image(graphics.minor[38],0,-40)
+
 	graphics.minor[39].scale(3/2)
 	for(let a=0,la=60;a<la;a++){
 		for(let b=0,lb=80;b<lb;b++){
@@ -7753,6 +7940,117 @@ function setupGeneralGraphics(){
 	graphics.minor[41].rect(150,40,20,25)
 
 	graphics.minor[40].image(graphics.minor[41],0,-40)
+
+	gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80)]
+	gradient[0].colors(
+		0.00,color(255,247,189),
+		1.00,color(255,207,87)
+	)
+	gradient[1].colors(
+		0.00,color(255,207,87),
+		1.00,color(255,247,189)
+	)
+	gradient[2].colors(
+		0.00,color(255,239,123),
+		1.00,color(235,159,0)
+	)
+	gradient[3].colors(
+		0.00,color(235,159,0),
+		1.00,color(255,239,123)
+	)
+	/*graphics.minor[42].translate(0,40)
+	graphics.minor[42].fillGradient(gradient[2])
+	graphics.minor[42].ellipse(40,40,103,103)
+	graphics.minor[42].fillGradient(gradient[3])
+	graphics.minor[42].ellipse(160,40,103,103)
+
+	graphics.minor[42].fillGradient(gradient[0])
+	graphics.minor[42].ellipse(50,40,100,100)
+	graphics.minor[42].fillGradient(gradient[2])
+	graphics.minor[42].ellipse(35,40,77,77)
+	graphics.minor[42].erase()
+	graphics.minor[42].ellipse(35,40,74,74)
+	graphics.minor[42].rect(0,40,20,25)
+	graphics.minor[42].noErase()
+	graphics.minor[42].fillGradient(gradient[1])
+	graphics.minor[42].ellipse(150,40,100,100)
+	graphics.minor[42].fillGradient(gradient[3])
+	graphics.minor[42].ellipse(165,40,77,77)
+	graphics.minor[42].erase()
+	graphics.minor[42].ellipse(165,40,74,74)
+	graphics.minor[42].rect(200,40,20,25)*/
+	graphics.minor[42].translate(0,40)
+	/*graphics.minor[42].background(0)
+	graphics.minor[42].fill(255)
+	graphics.minor[42].ellipse(50,40,100)
+	graphics.minor[42].ellipse(150,40,100)*/
+	graphics.minor[42].stroke(0)
+	graphics.minor[42].noFill()
+	//for(let a=0,la=24;a<la;a++){
+	for(let a=0,la=18;a<la;a++){
+		/*let swivel=min(1,abs(-1.5+3*((a+16.5)%20+0.5)/la)-0.1
+		if(swivel>0){
+			graphics.minor[42].strokeGradient(gradient[2])
+			graphics.minor[42].strokeWeight(9)
+			graphics.minor[42].arc(45+lsin((a+0.5)/la*360)*36+(swivel<0.5?((0.5-swivel)**2)*20:0),40-lcos((a+0.5)/la*360)*36,40,40,(a+0.5)/la*360-swivel*36,(a+0.5)/la*360+swivel*36)
+			graphics.minor[42].strokeGradient(gradient[0])
+			graphics.minor[42].strokeWeight(6)
+			graphics.minor[42].arc(45+lsin((a+0.5)/la*360)*36+(swivel<0.5?((0.5-swivel)**2)*20:0),40-lcos((a+0.5)/la*360)*36,40,40,(a+0.5)/la*360-swivel*36,(a+0.5)/la*360+swivel*36)
+		}
+		swivel=min(1,abs(-1.5+3*((a+6.5)%20+0.5)/la)-0.1
+		if(swivel>0){
+			graphics.minor[42].strokeGradient(gradient[3])
+			graphics.minor[42].strokeWeight(9)
+			graphics.minor[42].arc(155+lsin((a+0.5)/la*360)*36-(swivel<0.5?((0.5-swivel)**2)*20:0),40-lcos((a+0.5)/la*360)*36,40,40,(a+0.5)/la*360-swivel*36,(a+0.5)/la*360+swivel*36)
+			graphics.minor[42].strokeGradient(gradient[1])
+			graphics.minor[42].strokeWeight(6)
+			graphics.minor[42].arc(155+lsin((a+0.5)/la*360)*36-(swivel<0.5?((0.5-swivel)**2)*20:0),40-lcos((a+0.5)/la*360)*36,40,40,(a+0.5)/la*360-swivel*36,(a+0.5)/la*360+swivel*36)
+		}*/
+		let R=5
+		let z=1.25
+		let dir=(a+0.1)/la*360
+		//let width=10+z*lsin(dir)-sqrt((z*lsin(dir))**2-z**2+R**2)
+		let width=-z*lsin(dir)+sqrt((z*lsin(dir))**2-z**2+R**2)-3.9
+		let end=(33+width*4)
+		/*if(width>0){
+			dir-=30
+			graphics.minor[42].strokeGradient(gradient[2])
+			graphics.minor[42].strokeWeight(9)
+			graphics.minor[42].arc(45+lsin(dir)*36+(width<1?(1-width)**2:0),40-lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+			graphics.minor[42].strokeGradient(gradient[0])
+			graphics.minor[42].strokeWeight(6)
+			graphics.minor[42].arc(45+lsin(dir)*36+(width<1?(1-width)**2:0),40-lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+		}
+		if(width>0){
+			graphics.minor[42].strokeGradient(gradient[3])
+			graphics.minor[42].strokeWeight(9)
+			graphics.minor[42].arc(155-lsin(dir)*36-(width<1?(1-width)**2:0),40+lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+			graphics.minor[42].strokeGradient(gradient[1])
+			graphics.minor[42].strokeWeight(6)
+			graphics.minor[42].arc(155-lsin(dir)*36-(width<1?(1-width)**2:0),40+lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+		}*/
+		if(width>0){
+			dir-=30
+			graphics.minor[42].strokeGradient(gradient[2])
+			graphics.minor[42].strokeWeight(10.5)
+			//graphics.minor[42].arc(45+lsin(dir)*36+(width<1?(1-width)**2:0),40-lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+			graphics.minor[42].arc(160+lsin(dir)*end,40-lcos(dir)*end,40,40,dir-width*15,dir+width*15)
+			graphics.minor[42].strokeGradient(gradient[0])
+			graphics.minor[42].strokeWeight(7.5)
+			//graphics.minor[42].arc(45+lsin(dir)*36+(width<1?(1-width)**2:0),40-lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+			graphics.minor[42].arc(160+lsin(dir)*end,40-lcos(dir)*end,40,40,dir-width*15,dir+width*15)
+		}
+		if(width>0){
+			graphics.minor[42].strokeGradient(gradient[3])
+			graphics.minor[42].strokeWeight(10.5)
+			//graphics.minor[42].arc(155-lsin(dir)*36-(width<1?(1-width)**2:0),40+lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+			graphics.minor[42].arc(40-lsin(dir)*end,40+lcos(dir)*end,40,40,dir-width*15+180,dir+width*15+180)
+			graphics.minor[42].strokeGradient(gradient[1])
+			graphics.minor[42].strokeWeight(7.5)
+			//graphics.minor[42].arc(155-lsin(dir)*36-(width<1?(1-width)**2:0),40+lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+			graphics.minor[42].arc(40-lsin(dir)*end,40+lcos(dir)*end,40,40,dir-width*15+180,dir+width*15+180)
+		}
+	}
 }
 function setupBackground(type,layer){
 	switch(type){

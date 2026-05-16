@@ -189,6 +189,13 @@ function regPolyBroken(layer,x,y,sides,radiusX,radiusY,direction){
 	}
 	layer.endShape(CLOSE)
 }
+function regPolyNudge(layer,x,y,sides,radiusX,radiusY,direction){
+	layer.beginShape()
+	for(k=0;k<sides;k++){
+		layer.vertex(x+lsin(direction+k*360/sides)*radiusX,y+lcos(direction+k*360/sides)*radiusY-(k==0?0.5:0))
+	}
+	layer.endShape(CLOSE)
+}
 function regStar(layer,x,y,sides,radiusX,radiusY,radius2X,radius2Y,direction){
 	layer.beginShape()
 	for(k=0;k<sides*2;k++){
@@ -1943,6 +1950,10 @@ function updateMouse(layer){
 	inputs.mouse.y=mouseY
 	inputs.rel.x=(inputs.mouse.x-width/2)/stage.scale+layer.width/2
 	inputs.rel.y=(inputs.mouse.y-height/2)/stage.scale+layer.height/2
+	inputs.prev.x=pmouseX
+	inputs.prev.y=pmouseY
+	inputs.prevRel.x=(inputs.prev.x-width/2)/stage.scale+layer.width/2
+	inputs.prevRel.y=(inputs.prev.y-height/2)/stage.scale+layer.height/2
 }
 function qa(name){
 	let type=findNameApprox(name,types.card)

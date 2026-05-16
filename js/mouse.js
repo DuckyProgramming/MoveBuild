@@ -4,3 +4,9 @@ function mouseClicked(){
         current.onClick(stage.scene)
     }
 }
+function mouseDragged(){
+    updateMouse(graphics.main)
+    if(!transition.trigger){
+        current.onDrag(stage.scene)
+    }
+}

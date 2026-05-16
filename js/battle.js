@@ -3901,6 +3901,13 @@ class battle{
         }
         this.tutorialManager.onClick()
     }
+    onDrag(scene){
+        switch(scene){
+            case 'graphic':
+                this.graphics.combatants[0][0][0].anim.direction+=inputs.rel.x-inputs.prevRel.x
+            break
+        }
+    }
     onKey(scene,key,code){
         switch(scene){
             case 'title':

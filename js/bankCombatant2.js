@@ -387,7 +387,12 @@ combatant.prototype.setupGraphics=function(direction){
                 arms:[{top:24,bottom:9,length:{top:16.5,bottom:16.5}},{top:24,bottom:9,length:{top:16.5,bottom:16.5}}]}
             this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216,sword:0}
             this.color={skin:{head:[230,220,185],body:[85,75,65],legs:[80,70,60],arms:[80,70,60]},eye:{back:[80,0,0],front:[100,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},button:[70,60,50],hood:[60,50,40],hoodBack:[40,35,30],cape:[30,25,20]}
-            this.hood=[{spin:[0,180,105],height:16},{spin:[-180,0,-105],height:16}]
+            this.hood=[
+                {spin:[0,180,105],y:[0,0,16]},
+                {spin:[-180,0,-105],y:[0,0,16]},
+                {spin:[180,-105,180],y:[18,16,0]},
+                {spin:[105,180,180],y:[16,18,0]},
+            ]
             this.parts={eyeLevel:-75,mouth:-66,minor:15,
                 legs:[{top:{x:3,y:-32},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3,y:-32},middle:{x:0,y:0},bottom:{x:0,y:0}}],
                 arms:[{top:{x:3.5,y:-58},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-58},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
@@ -667,13 +672,15 @@ combatant.prototype.setupGraphics=function(direction){
 
             this.fades={eye:[1,1],mouth:1,
                 skin:{legs:1,arms:1,body:1,head:1},
-                dress:{main:1,bow:1,sleeve:1}
+                dress:{main:1,bow:1,sleeve:1},
+                shoe:1,
             }
 
             this.trigger={display:{mouth:true,
                 hair:{back:true,front:true,tail:true,glow:true,bow:true},eye:[true,true],
                 skin:{legs:true,arms:true,body:true,head:true},
                 dress:{main:true,bow:true,sleeve:true},
+                shoe:true,
             }}
 
             this.trigger.display.extra={damage:false}
@@ -1383,7 +1390,7 @@ combatant.prototype.setupGraphics=function(direction){
                 graphics.combatant.splice(graphics.combatant.length-1,1)
             }
             this.anim={direction:direction,head:direction,mouth:{x:8,y:3,open:0},
-                eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1}},
+                eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1}},shoe:[0,0],
                 legs:[
                     {top:9,bottom:0,length:{top:16.75,bottom:16.75}},
                     {top:9,bottom:0,length:{top:16.75,bottom:16.75}}
@@ -1412,7 +1419,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.color=graphics.combatant[12].color
 
             this.parts={eyeLevel:-77.25,mouth:-72.75,
-                minor:15,
+                minor:15,dress:-48,
                 legs:[
                     {top:{x:3,y:-33.5},middle:{x:0,y:0},bottom:{x:0,y:0}},
                     {top:{x:3,y:-33.5},middle:{x:0,y:0},bottom:{x:0,y:0}}
@@ -1440,7 +1447,7 @@ combatant.prototype.setupGraphics=function(direction){
                 hair:{back:true,front:true,glow:true,bow:true,pin:true},eye:[true,true],
                 skin:{legs:true,arms:true,body:true,head:true,button:true},
                 dress:{main:true,sleeve:true,bow:true},
-                shoe:true,pocket:true,
+                shoe:{main:true,bow:false,charm:true},pocket:true,
             }}
 
             this.trigger.display.extra={damage:false}
@@ -4401,7 +4408,7 @@ combatant.prototype.minorDisplay=function(type,key){
                 break
                 case 1:
                     dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
-                    this.layer.stroke(this.color.band[1][0],this.color.band[1][1],this.color.band[1][2],this.fade*this.fades.band[0])
+                    this.layer.stroke(...this.color.band[1],this.fade*this.fades.band[0])
                     this.layer.strokeWeight(0.5)
                     if(this.trigger.display.extra.damage){
                         this.layer.line(
@@ -4421,15 +4428,27 @@ combatant.prototype.minorDisplay=function(type,key){
                             this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.925*lsin(dir+90),
                             this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.925*lcos(dir+90))
                     }
-                    this.layer.stroke(this.color.band[2][0],this.color.band[2][1],this.color.band[2][2],this.fade*this.fades.band[0])
-                    this.layer.strokeWeight(0.6)
-                    for(let g=0;g<4;g++){
+                    //this.layer.stroke(this.color.band[2][0],this.color.band[2][1],this.color.band[2][2],this.fade*this.fades.band[0])
+                    //this.layer.strokeWeight(0.6)
+                    /*for(let g=0;g<4;g++){
                         if(!this.trigger.display.extra.damage||g<1||g>3){
                             this.layer.point(
                                 this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+(-1.8+g*1.2)*lsin(dir+90),
                                 this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+(-1.8+g*1.2)*lcos(dir+90))
                         }
+                    }*/
+                    this.layer.fill(...this.color.band[2],this.fade*this.fades.band[0])
+                    this.layer.noStroke()
+                    this.layer.push()
+                    this.layer.translate(this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9,this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9)
+                    this.layer.rotate(-dir)
+                    for(let a=0,la=8;a<la;a++){
+                        let dir=(a+0.5)/la*360+this.anim.direction
+                        if(lcos(dir)>0){
+                            this.layer.ellipse(-2*lsin(dir),0,0.6*lcos(dir),0.6)
+                        }
                     }
+                    this.layer.pop()
                 break
             }
         break
@@ -4527,7 +4546,39 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.pop()
                 break
                 case 1:
-                    this.layer.stroke(this.color.band[1][0],this.color.band[1][1],this.color.band[1][2],this.fade*this.fades.band[0])
+                    dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                    this.layer.stroke(...this.color.band[1],this.fade*this.fades.band[0])
+                    this.layer.strokeWeight(0.3)
+                    this.layer.push()
+                    this.layer.translate(this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9,this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9)
+                    this.layer.rotate(-dir)
+                    if(this.trigger.display.extra.damage){
+                        this.layer.line(-1.925,0,-1.1,0)
+                        this.layer.line(1.925,0,1.1,0)
+                    }else{
+                        this.layer.line(-1.925,0,1.925,0)
+                    }
+                    for(let a=0,la=3;a<la;a++){
+                        let dir=a/la*360+this.anim.direction
+                        if(lcos(dir)>0){
+                            this.layer.push()
+                            this.layer.translate(-2*lsin(dir),0)
+                            this.layer.scale(lcos(dir),1)
+                            this.layer.stroke(...this.color.band[2],this.fade*this.fades.band[0])
+                            this.layer.strokeWeight(0.55)
+                            this.layer.line(0,-0.8,0,0.8)
+                            this.layer.line(-0.4*constants.sqrt3,-0.4,0.4*constants.sqrt3,0.4)
+                            this.layer.line(-0.4*constants.sqrt3,0.4,0.4*constants.sqrt3,-0.4)
+                            this.layer.stroke(...this.color.band[3],this.fade*this.fades.band[0])
+                            this.layer.strokeWeight(0.25)
+                            this.layer.line(0,-0.8,0,0.8)
+                            this.layer.line(-0.4*constants.sqrt3,-0.4,0.4*constants.sqrt3,0.4)
+                            this.layer.line(-0.4*constants.sqrt3,0.4,0.4*constants.sqrt3,-0.4)
+                            this.layer.pop()
+                        }
+                    }
+                    this.layer.pop()
+                    /*this.layer.stroke(this.color.band[1][0],this.color.band[1][1],this.color.band[1][2],this.fade*this.fades.band[0])
                     this.layer.strokeWeight(0.3)
                     dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                     if(this.trigger.display.extra.damage){
@@ -4585,7 +4636,7 @@ combatant.prototype.minorDisplay=function(type,key){
                             this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+0.8*lcos(dir-60),
                             this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-0.8*lsin(dir-60),
                             this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-0.8*lcos(dir-60))
-                    }
+                    }*/
                 break
             }
         break
@@ -4594,15 +4645,18 @@ combatant.prototype.minorDisplay=function(type,key){
                 case 0:
                     this.layer.push()
                     this.layer.translate(this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1,this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1)
-                    this.layer.rotate(90+90*sign(lsin(this.anim.direction+this.spin.arms[key].bottom-75)))
-                    this.layer.scale(1,constrain(lsin(this.anim.direction+this.spin.arms[key].bottom-75)*2,-1,1))
+                    //this.layer.rotate(90+90*sign(lsin(this.anim.direction+this.spin.arms[key].bottom-75)))
+                    //this.layer.scale(1,constrain(lsin(this.anim.direction+this.spin.arms[key].bottom-75)*2,-1,1))
+                    this.layer.scale(constrain(lsin(this.anim.direction+this.spin.arms[key].bottom-75)*2,-1,1),1)
                     this.layer.fill(60,this.fade)
                     this.layer.noStroke()
-                    this.layer.rect(0,-14,24,16,2)
+                    //this.layer.rect(0,-14,24,16,2)
+                    this.layer.rect(0,14,24,16,2)
                     this.layer.stroke(60,this.fade)
                     this.layer.strokeWeight(2)
                     this.layer.noFill()
-                    this.layer.arc(0,-6,8,8,0,180)
+                    //this.layer.arc(0,-6,8,8,0,180)
+                    this.layer.arc(0,6,8,8,-180,0)
                     this.layer.pop()
                 break
             }
@@ -4648,7 +4702,8 @@ combatant.prototype.minorDisplay=function(type,key){
                         this.graphics.arms[key].middle.x-2.1*sin(dir+90),
                         this.graphics.arms[key].middle.y-2.1*cos(dir+90))
                     this.layer.endShape()
-                    this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4.5)
+                    //this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4.5)
+                    this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4.2)
                     dir=atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
                     this.layer.quad(
                         this.graphics.arms[key].middle.x-2.1*sin(dir+90),
@@ -4706,7 +4761,7 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.noStroke()
                     this.layer.push()
                     this.layer.translate(this.graphics.legs[key].bottom.x+2*lsin(this.anim.direction),this.graphics.legs[key].bottom.y)
-                    this.layer.scale(lcos(this.anim.direction))
+                    this.layer.scale(lcos(this.anim.direction),1)
                     this.layer.fill(this.flashColor(this.color.lowAntenna)[0],this.flashColor(this.color.lowAntenna)[1],this.flashColor(this.color.lowAntenna)[2],this.fade*this.fades.skin.legs)
                     this.layer.quad(0,0,-3*abs(lcos(this.anim.direction)),-2,-5*abs(lcos(this.anim.direction)),-5,-2*abs(lcos(this.anim.direction)),-3)
                     this.layer.quad(0,0,3*abs(lcos(this.anim.direction)),-2,5*abs(lcos(this.anim.direction)),-5,2*abs(lcos(this.anim.direction)),-3)
@@ -5453,11 +5508,12 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.translate(this.graphics.legs[key].bottom.x*0.98+this.graphics.legs[key].middle.x*0.02,this.graphics.legs[key].bottom.y*0.98+this.graphics.legs[key].middle.y*0.02+0.5)
                     this.layer.rotate(-this.anim.direction)
                     let expand=lcos(this.anim.direction)*0.25
+                    //this.layer.translate(0,5+expand)
                     this.layer.translate(0,5+expand)
                     this.layer.scale(0.25)
-
-                    this.minorDisplay(7,[sqrt(abs(lcos(this.anim.direction))),this.color.shoe.bow])
-
+                    if(this.trigger.display.shoe.bow){
+                        this.minorDisplay(7,[sqrt(abs(lcos(this.anim.direction))),this.color.shoe.bow])
+                    }
                     /*this.layer.fill(...this.flashColor([this.color.shoe.bow[0]*0.4,this.color.shoe.bow[1]*0.4,this.color.shoe.bow[2]*0.4]),this.fade*this.fades.shoe)
                     this.layer.rotate(10)
                     hexagon(this.layer,
@@ -5517,7 +5573,9 @@ combatant.prototype.minorDisplay=function(type,key){
                         0.3,0.075,
                         0.4,-0.1
                     )*/
-                    this.layer.image(graphics.minor[40],-4,-4,8,8)
+                    if(this.trigger.display.shoe.charm){
+                        this.layer.image(graphics.minor[42],-6,-4.8,12,9.6)
+                    }
                     this.layer.pop()
                 break
                 case 3:

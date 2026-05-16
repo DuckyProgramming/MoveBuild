@@ -9815,7 +9815,13 @@ class card{
             case 8732: string+=`Gain (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Caffeine`; break
             case 8733: string+=`Gain (N) (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Caffeine`; break
             case 8734: string+=`Gain (N) (N) (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Caffeine`; break
-
+            //8417
+            case 8735: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain (K) (K) (N) in 2 Turns\nGain ${effect[1]} Caffeine`; break
+            case 8736: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain (E) (K) (K) (N) in 2 Turns\nGain ${effect[1]} Caffeine`; break
+            case 8737: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain (E) (K) (K) (K) (N) Energy\nin 2 Turns\nGain ${effect[1]} Caffeine`; break
+            //8586
+            case 8738: string+=`Make ${effect[0]} Card${pl(effect[0])} Cost 1 Less\nDraw ${effect[1]} Card${pl(effect[1])}\nGain ${effect[2]} Caffeine\nFirst Time Played: (${this.debut?`Yes`:`No`})\nHeal ${this.calculateEffect(effect[3],4)} Health\nCosts 1 Less`; break
+            //8423
 
 
 

@@ -1,7 +1,5 @@
 POTENTIAL CARDSET 100 [ENDSIEG]
 
-menessa shoes - extend the shine
-
 Changes:
 
 split the mirror into 5 shards
@@ -13,14 +11,8 @@ new editions [
 rift valley - block, increases when retained, retain energy this turn, exhaust
 silver stream - 2 cost, draw 2 cards, gain 2 armor, odd energy: costs 1 less
 
-new menessa pose
+menessa:
+more contrast on bows
+dark base + thin shiny reflection
 
-
-
-New, incoming, students for Summer will register according to the following schedule on Monday, May 11:
-
-Graduate students -10:00 AM ET
-Study Abroad Transient students: 12:00 (noon) PM ET
-Undergraduate students attending FASET: 3:00 PM ET
-
-alcohol
+alcohol (4-5 hours)
