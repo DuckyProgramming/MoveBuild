@@ -194,6 +194,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[122,1])],//draw card cost down
                     [new overlay(this.layer,this.battle,0,30,[])],//matching game
                     [new overlay(this.layer,this.battle,0,31,[])],//pick relic
+                    [new overlay(this.layer,this.battle,0,3,[3])],//new card to hand, savelast
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

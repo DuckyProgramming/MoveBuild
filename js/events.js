@@ -197,7 +197,7 @@ types.loading=[
     `While some on Konai venerate her, when Kio does appear, all fear the onset of poverty she brings.`,
     `Various experimental versions of the SCT fighter have been constructed, but not with too much success.`,
     `Management listening bugs aren't impossible to find, but trying to do so can drive one insane.`,
-    `Pending transport to the Salassan Archipelago, rebel prisoners are held temporarily in Fortress Rueso.`,
+    `Pending transport to the Salassan Archipelago, rebel prisoners are held temporarily in "Fortress Rueso".`,
     `The Management Supreme Court of Justice is so important that most cases held there are show trials.`,
     `Randy's antics have taught Management engineers the dangers of overreliance on nuclear power.`,
     `For every fort and castle the royals erected on Konai, Kirt Kodrax's forces have built ten or more.`,
@@ -238,6 +238,34 @@ types.loading=[
     `Many people on Konai with minor magical affinity never pursue it if they don't have familial reasons.`,
     `Except for the shallow waters near the Erebean Peninsula, the Inland Sea's sides slope steeply.`,
     //200
+
+    `Today, Management officials own the Konaian First Univeristy, but exercise little actual oversight.`,
+    `The Management position of Supreme Admiral was created as part of the Admiral-Manager's consolidations.`,
+    `The title of Supreme General is newer and much weaker than that of Supreme Admiral of the Management.`,
+    `The royalist twin moons symbol is looked down upon in some places but still frequently displayed.`,
+    `The Management once attempted to construct a Dyson sphere. The operation failed and has never been repeated.`,
+    `The Konaian First University maintains a lenient dress code, much to the pain of its faculty.`,
+    `Of all officials to visit Konai, the most important one is an exile who nobody even knows is there.`,
+    `It is unclear who called for Grand Admiral Leibzo's removal: the Admiral-Manager or Class Admiral Grant.`,
+    `For all the mythologizing of the Sisters War, the war itself ended in little more than a bloody stalemate.`,
+    `Prior to his ascension, the Admiral-Manager consolidated military power in a triumvirate headed by himself.`,
+    //210
+
+    `Augustian Grant defected to the Management from the Human Empire in return for a high military rank.`,
+    `The Management's choice to pick fights with aliens just after the Sisters War was almost a disastrous mistake.`,
+    `While appearing politically irrelevant, Konai at least sits as the second planet of its sector.`,
+    `Kirt Kodrax led a highly mediocre military career before his current position as Governor of Konai.`,
+    `Governor Kodrax wished to promote Gordon Vorynx to Major General but was told he lacked the authority.`,
+    `The Gameshow industry on Konai is dominated by Ducks primarily because of their charisma.`,
+    `Konai's royal crown has spent the last few centuries in the Origin Museum of Human History.`,
+    `Of all former Human Empire military leaders, only the defector Grant avoided jail time for his "crimes".`,
+    `Director Ledis of Operation Godhood had the rare privilege to directly take orders from the Admiral-Manager.`,
+    `Many rebels are glad that the SCT "Nightwing" of Grand Admiral Batch's program never entered production.`,
+    //220
+
+    `The Management spacecraft designation SCT stands for "Standard Calibration Transport".`,
+    `Adrian Kane, CEO of HVM, was given his current position for his excellent personal firearms experience.`,
+    //222
 
     /*
     ``,

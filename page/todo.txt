@@ -4,15 +4,19 @@ Changes:
 
 split the mirror into 5 shards
 diamond diadem - when you play less than 3 cards in a turn, take half damage
-new editions [
-    silk card => duplicate the next card played
-]
+new editions - silk card => duplicate the next card played
 
-rift valley - block, increases when retained, retain energy this turn, exhaust
-silver stream - 2 cost, draw 2 cards, gain 2 armor, odd energy: costs 1 less
 
-menessa:
-more contrast on bows
-dark base + thin shiny reflection
 
-alcohol (4-5 hours)
+grant menessa a form of beanstalk climb
+damage for every skill drawn
+
+
+
+update icathia
+-meri 2
+-menessa
+
+the hunt for michelle's shoes
+
+alcohol / sa (4-5 hours)

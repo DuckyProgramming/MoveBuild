@@ -2168,7 +2168,7 @@ Uncommon:${current.cardManagers[0].listing.card[a+1][1].length}/64				${current.
 Rare:${current.cardManagers[0].listing.card[a+1][2].length}/32					${current.cardManagers[0].listing.card[a+1][2].length-32}
 	Total:${current.cardManagers[0].listing.card[a+1][3].length}/160\n`
 	}
-	console.log(`Total Cards: ${types.card.filter(card=>card.list!=-10).length}/${arbitrary}		${types.card.length-arbitrary}
+	console.log(`Total Cards: ${types.card.filter(card=>card.list!=-10).length}/${arbitrary}		${types.card.filter(card=>card.list!=-10).length-arbitrary}
 Listed Cards: ${actual}/${goal}		${actual-goal}
 		Colorless:
 Common:${current.cardManagers[0].listing.card[0][0].length}/64				${current.cardManagers[0].listing.card[0][0].length-64}
@@ -2194,6 +2194,8 @@ Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}
 	Total:${current.cardManagers[0].listing.disband.length}/1866			${current.cardManagers[0].listing.disband.length-1866}
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/${constants.playerNumber*8}			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-constants.playerNumber*8}
+		Error:
+	Total:${types.card.filter(card=>card.list==-10).length}/48				${types.card.filter(card=>card.list==-10).length-48}
 			`)
 }
 function outClassCosts(){

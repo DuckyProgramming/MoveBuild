@@ -5885,6 +5885,14 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.quad(0,0,5.92,-2,5.12,0,5.92,2)
                     this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
                     this.layer.quad(0,0,5.6,-1.2,5.12,0,5.6,1.2)
+                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],0.25)),this.fade)
+                    this.layer.quad(2.4,0,6.76,-1.6,6.12,0,6.76,1.6)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
+                    this.layer.quad(2.25,0,6.68,-1.4,6.12,0,6.68,1.4)
+                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],0.25)),this.fade)
+                    this.layer.quad(0,0,6.44,-0.8,6.12,0,6.44,0.8)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
+                    this.layer.quad(0.4,0,6.36,-0.6,6.12,0,6.36,0.6)
                     this.layer.scale(1/key[0],1)
 
                     this.layer.rotate(180+20*key[0])
@@ -5913,6 +5921,14 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.quad(0,0,5.92,-2,5.12,0,5.92,2)
                     this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
                     this.layer.quad(0,0,5.6,-1.2,5.12,0,5.6,1.2)
+                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],0.25)),this.fade)
+                    this.layer.quad(2.4,0,6.76,-1.6,6.12,0,6.76,1.6)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
+                    this.layer.quad(2.25,0,6.68,-1.4,6.12,0,6.68,1.4)
+                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],0.25)),this.fade)
+                    this.layer.quad(0,0,6.44,-0.8,6.12,0,6.44,0.8)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
+                    this.layer.quad(0.4,0,6.36,-0.6,6.12,0,6.36,0.6)
                     this.layer.scale(1/key[0],1)
 
                     this.layer.rotate(-180-10*key[0])
@@ -5985,6 +6001,40 @@ combatant.prototype.minorDisplay=function(type,key){
                         5.16,-0.8,
                         4.52,0,
                         5.16,0.8
+                    )
+                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],0.25)),this.fade)
+                    this.layer.rotate(-60)
+                    pentagon(this.layer,
+                        0,0.1,
+                        0,-0.1,
+                        5,-0.6,
+                        4.52,0,
+                        5,0.6
+                    )
+                    this.layer.rotate(60)
+                    pentagon(this.layer,
+                        0,0.1,
+                        0,-0.1,
+                        5,-0.6,
+                        4.52,0,
+                        5,0.6
+                    )
+                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
+                    this.layer.rotate(-60)
+                    pentagon(this.layer,
+                        0,0.1,
+                        0,-0.1,
+                        4.84,-0.4,
+                        4.52,0,
+                        4.84,0.4
+                    )
+                    this.layer.rotate(60)
+                    pentagon(this.layer,
+                        0,0.1,
+                        0,-0.1,
+                        4.84,-0.4,
+                        4.52,0,
+                        4.84,0.4
                     )
 
                     this.layer.rotate(60)

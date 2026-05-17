@@ -1550,6 +1550,9 @@ class combatantManager{
                             this.combatants[a].statusEffect(values[5],values[6])
                         }
                     break
+                    case 13:
+                        this.combatants[a].loseHealth(values[0])
+                    break
                 }
                 if(
                     output==0||

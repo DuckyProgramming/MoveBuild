@@ -29,6 +29,7 @@ class overlay{
                 this.options=variants.unary||variants.domain?1:3
                 this.additionalOptions=0
                 this.prune=false
+                this.lastTake=-1
             break
             case 5:
                 this.page=0
@@ -1545,6 +1546,14 @@ class overlay{
                 }
                 if(this.args[0]==0||this.args[0]==2){
                     this.cards.forEach(card=>card.nonCalc=true)
+                }
+                if(this.args[0]==3&&this.lastTake!=-1){
+                    let index=floor(random(0,this.cards.length))
+                    this.lastTake.deSize=false
+                    this.lastTake.upSize=true
+                    this.lastTake.position.x=this.cards[index].position.x
+                    this.lastTake.position.y=this.cards[index].position.y
+                    this.cards[index]=this.lastTake
                 }
             break
             case 7:
@@ -3271,12 +3280,12 @@ class overlay{
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
                 switch(this.args[0]){
-                    case 0: case 1: case 2: this.layer.text(this.setupArgs[2]==59?'Add Any Cards':'Add a Card',this.layer.width/2,this.layer.height/2-70-offset); break
+                    default: this.layer.text(this.setupArgs[2]==59?'Add Any Cards':'Add a Card',this.layer.width/2,this.layer.height/2-70-offset); break
                 }
                 if(!this.battle.modded(83)){
                     this.layer.textSize(20)
                     switch(this.args[0]){
-                        case 0: case 1: case 2: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+125+offset); break
+                        default: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+125+offset); break
                     }
                     let bonuses=[]
                     if(this.args[0]==0){
@@ -5479,13 +5488,14 @@ class overlay{
                                 case 0:
                                     lists=['deck']
                                 break
-                                case 1:
+                                case 1: case 3:
                                     lists=['hand']
                                 break
                                 case 2:
                                     lists=['deck','hand']
                                 break
                             }
+                            this.lastTake=this.cards[a]
                             for(let b=0,lb=lists.length;b<lb;b++){
                                 if(this.setupArgs[2]==50){
                                     for(let c=0,lc=this.setupArgs[3];c<lc;c++){
@@ -7100,13 +7110,14 @@ class overlay{
                                 case 0:
                                     lists=['deck']
                                 break
-                                case 1:
+                                case 1: case 3:
                                     lists=['hand']
                                 break
                                 case 2:
                                     lists=['deck','hand']
                                 break
                             }
+                            this.lastTake=this.cards[a]
                             for(let b=0,lb=lists.length;b<lb;b++){
                                 if(this.setupArgs[2]==50){
                                     for(let c=0,lc=this.setupArgs[3];c<lc;c++){

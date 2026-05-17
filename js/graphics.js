@@ -750,20 +750,19 @@ function displayTrianglesFrontMergeDown(layer,parts,direction,base,width,weight,
 	}
 	layer.strokeJoin(MITER)
 }
-function displayTrianglesBackMerge3D(layer,parts,direction,base,width,weight,slant,color1,color2,fade,plane){
+function displayTrianglesBackMerge3D(layer,parts,direction,base,width,weight,slant,color1,color2,fade,plane,advance){
 	layer.strokeWeight(weight)
 	layer.strokeJoin(ROUND)
-	let g=0
-	let lg=parts.length
-	for(let part of parts){
-		g++
+	let pool=[]
+	for(let a=0,la=parts.length;a<la;a++){
+		let part=parts[a]
 		if(color1==-1){
 			layer.fill(0,fade)
 			layer.stroke(0,fade)
 			layer.erase(fade,fade)
 		}else{
-			layer.fill(...mergeColor(color1,color2,g/lg))
-			layer.stroke(...mergeColor(color1,color2,g/lg))
+			layer.fill(...mergeColor(color1,color2,a/la))
+			layer.stroke(...mergeColor(color1,color2,a/la))
 		}
 		let reality=[
 			(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
@@ -780,11 +779,57 @@ function displayTrianglesBackMerge3D(layer,parts,direction,base,width,weight,sla
 		if(c[0]<0){
 			if(c[1]<0){
 				if(c[2]<0){
-					layer.triangle(
-						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*part.y[0]*slant,
-						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*part.y[1]*slant,
-						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*part.y[2]*slant,
-					)
+					if(part.set==undefined){
+						layer.triangle(
+							s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*(part.y[0]+advance)*slant,
+							s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*(part.y[1]+advance)*slant,
+							s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*(part.y[2]+advance)*slant,
+						)
+					}else{
+						pool.push(
+							[s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*(part.y[0]+advance)*slant],
+							[s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*(part.y[1]+advance)*slant],
+							[s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*(part.y[2]+advance)*slant],
+						)
+						let done=false
+						while(!done&&a<la-1){
+							a++
+							let part=parts[a]
+							let reality=[
+								(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
+								(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
+								part.spin[2]+direction
+							]
+							if(reality[0]>=360&&reality[1]>=360&&reality[2]>=360){
+								reality[0]-=360
+								reality[1]-=360
+								reality[2]-=360
+							}
+							let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
+							let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
+							if(c[0]<0&&c[1]<0&&c[2]<0){
+								switch(part.set){
+									case 0:
+										pool.push([s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*(part.y[1]+advance)*slant])
+									break
+									case 1:
+										pool.splice(0,0,[s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*(part.y[1]+advance)*slant])
+									break
+								}
+							}else{
+								a--
+								done=true
+							}
+						}
+						if(pool.length==3){
+							layer.triangle(...pool.flat())
+						}else{
+							layer.beginShape()
+							pool.forEach(set=>layer.vertex(...set))
+							layer.endShape()
+							pool=[]
+						}
+					}
 				}
 			}else{
 				if(c[2]<0){
@@ -801,10 +846,10 @@ function displayTrianglesBackMerge3D(layer,parts,direction,base,width,weight,sla
 						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
 					]
 					layer.quad(
-						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*part.y[0]*slant,
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*(part.y[0]+advance)*slant,
 						-width/2-cut[0]*slant,base+cut[0],
 						-width/2-cut[1]*slant,base+cut[1],
-						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*part.y[2]*slant,
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*(part.y[2]+advance)*slant,
 					)
 				}else{
 					let inter=[
@@ -820,7 +865,7 @@ function displayTrianglesBackMerge3D(layer,parts,direction,base,width,weight,sla
 						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
 					]
 					layer.triangle(
-						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*part.y[0]*slant,
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*(part.y[0]+advance)*slant,
 						-width/2-cut[0]*slant,base+cut[0],
 						-width/2-cut[1]*slant,base+cut[1]
 					)
@@ -842,10 +887,10 @@ function displayTrianglesBackMerge3D(layer,parts,direction,base,width,weight,sla
 						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
 					]
 					layer.quad(
-						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*part.y[1]*slant,
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*(part.y[1]+advance)*slant,
 						width/2+cut[0]*slant,base+cut[0],
 						width/2+cut[1]*slant,base+cut[1],
-						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*part.y[2]*slant,
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*(part.y[2]+advance)*slant,
 					)
 				}else{
 					let inter=[
@@ -861,7 +906,7 @@ function displayTrianglesBackMerge3D(layer,parts,direction,base,width,weight,sla
 						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
 					]
 					layer.triangle(
-						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*part.y[1]*slant,
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*(part.y[1]+advance)*slant,
 						width/2+cut[0]*slant,base+cut[0],
 						width/2+cut[1]*slant,base+cut[1]
 					)
@@ -871,20 +916,19 @@ function displayTrianglesBackMerge3D(layer,parts,direction,base,width,weight,sla
 	}
 	layer.strokeJoin(MITER)
 }
-function displayTrianglesFrontMerge3D(layer,parts,direction,base,width,weight,slant,color1,color2,fade,plane){
+function displayTrianglesFrontMerge3D(layer,parts,direction,base,width,weight,slant,color1,color2,fade,plane,advance){
 	layer.strokeWeight(weight)
 	layer.strokeJoin(ROUND)
-	let g=0
-	let lg=parts.length
-	for(let part of parts){
-		g++
+	let pool=[]
+	for(let a=0,la=parts.length;a<la;a++){
+		let part=parts[a]
 		if(color1==-1){
 			layer.fill(0,fade)
 			layer.stroke(0,fade)
 			layer.erase(fade,fade)
 		}else{
-			layer.fill(...mergeColor(color1,color2,g/lg))
-			layer.stroke(...mergeColor(color1,color2,g/lg))
+			layer.fill(...mergeColor(color1,color2,a/la))
+			layer.stroke(...mergeColor(color1,color2,a/la))
 		}
 		/*layer.stroke(g%2*255)
 		layer.fill(g%2*255)*/
@@ -903,11 +947,57 @@ function displayTrianglesFrontMerge3D(layer,parts,direction,base,width,weight,sl
 		if(c[0]>=0){
 			if(c[1]>=0){
 				if(c[2]>=0){
-					layer.triangle(
-						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*part.y[0]*slant,
-						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*part.y[1]*slant,
-						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*part.y[2]*slant,
-					)
+					if(part.set==undefined){
+						layer.triangle(
+							s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*(part.y[0]+advance)*slant,
+							s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*(part.y[1]+advance)*slant,
+							s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*(part.y[2]+advance)*slant,
+						)
+					}else{
+						pool.push(
+							[s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*(part.y[0]+advance)*slant],
+							[s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*(part.y[1]+advance)*slant],
+							[s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*(part.y[2]+advance)*slant],
+						)
+						let done=false
+						while(!done&&a<la-1){
+							a++
+							let part=parts[a]
+							let reality=[
+								(part.spin[0]<part.spin[2]-180?part.spin[0]+360:part.spin[0]>part.spin[2]+180?part.spin[0]-360:part.spin[0])+direction,
+								(part.spin[1]<part.spin[2]-180?part.spin[1]+360:part.spin[1]>part.spin[2]+180?part.spin[1]-360:part.spin[1])+direction,
+								part.spin[2]+direction
+							]
+							if(reality[0]>=360&&reality[1]>=360&&reality[2]>=360){
+								reality[0]-=360
+								reality[1]-=360
+								reality[2]-=360
+							}
+							let c=[lcos(reality[0]),lcos(reality[1]),lcos(reality[2])]
+							let s=[lsin(reality[0]),lsin(reality[1]),lsin(reality[2])]
+							if(c[0]>0&&c[1]>0&&c[2]>0){
+								switch(part.set){
+									case 0:
+										pool.push([s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*(part.y[1]+advance)*slant])
+									break
+									case 1:
+										pool.splice(0,0,[s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*(part.y[1]+advance)*slant])
+									break
+								}
+							}else{
+								a--
+								done=true
+							}
+						}
+						if(pool.length==3){
+							layer.triangle(...pool.flat())
+						}else{
+							layer.beginShape()
+							pool.forEach(set=>layer.vertex(...set))
+							layer.endShape()
+							pool=[]
+						}
+					}
 				}
 			}else{
 				if(c[2]>=0){
@@ -924,10 +1014,10 @@ function displayTrianglesFrontMerge3D(layer,parts,direction,base,width,weight,sl
 						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
 					]
 					layer.quad(
-						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*part.y[0]*slant,
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*(part.y[0]+advance)*slant,
 						width/2+cut[0]*slant,base+cut[0],
 						width/2+cut[1]*slant,base+cut[1],
-						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*part.y[2]*slant,
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*(part.y[2]+advance)*slant,
 					)
 				}else{
 					let inter=[
@@ -943,7 +1033,7 @@ function displayTrianglesFrontMerge3D(layer,parts,direction,base,width,weight,sl
 						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
 					]
 					layer.triangle(
-						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*part.y[0]*slant,
+						s[0]*(width/2+part.y[0]*slant),base+part.y[0]+c[0]*plane*(part.y[0]+advance)*slant,
 						width/2+cut[0]*slant,base+cut[0],
 						width/2+cut[1]*slant,base+cut[1]
 					)
@@ -965,10 +1055,10 @@ function displayTrianglesFrontMerge3D(layer,parts,direction,base,width,weight,sl
 						part.y[0]*(1-inter[1])+part.y[2]*inter[1]
 					]
 					layer.quad(
-						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*part.y[1]*slant,
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*(part.y[1]+advance)*slant,
 						-width/2-cut[0]*slant,base+cut[0],
 						-width/2-cut[1]*slant,base+cut[1],
-						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*part.y[2]*slant,
+						s[2]*(width/2+part.y[2]*slant),base+part.y[2]+c[2]*plane*(part.y[2]+advance)*slant,
 					)
 					if(cut[0]>=50||cut[1]>=50){
 						print(part,cut,inter,reality)
@@ -987,7 +1077,7 @@ function displayTrianglesFrontMerge3D(layer,parts,direction,base,width,weight,sl
 						part.y[1]*(1-inter[1])+part.y[2]*inter[1]
 					]
 					layer.triangle(
-						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*part.y[1]*slant,
+						s[1]*(width/2+part.y[1]*slant),base+part.y[1]+c[1]*plane*(part.y[1]+advance)*slant,
 						-width/2-cut[0]*slant,base+cut[0],
 						-width/2-cut[1]*slant,base+cut[1]
 					)
@@ -2865,18 +2955,22 @@ function generateSprite(layer,type,direction){
 		break
 		case 81:
 			controlSpin(data.parts.dress,direction,1)
-			displayTrianglesFrontMerge3D(layer,data.parts.dress.inside,direction,0,12.6,0.1,1/3,data.color.dress.main,data.color.dress.main,1,0.4)
+			displayTrianglesFrontMerge3D(layer,data.parts.dress.inside,direction,18,24.6,0.1,1/3,data.color.dress.main,data.color.dress.main,1,0.4,18)
 			layer.erase(0.5)
 			layer.rect(0,15,30,30)
 			layer.noErase()
-			displayTrianglesFrontMerge3D(layer,data.parts.dress.main,direction,0,12.6,0.2,1/3,data.color.dress.main,data.color.dress.main,1,0.4)
+			displayTrianglesFrontMerge3D(layer,data.parts.dress.main,direction,18,24.6,0.2,1/3,data.color.dress.main,data.color.dress.main,1,0.4,18)
+			layer.quad(-6.3,0,6.3,0,12.3,18,-12.3,18)
+			layer.arc(0,18,24.6,7.2,0,180)
 		break
 		case 82:
-			displayTrianglesBackMerge3D(layer,data.parts.dress.inside,direction,0,12.6,0.1,1/3,data.color.dress.back,data.color.dress.back,1,-0.4)
+			displayTrianglesBackMerge3D(layer,data.parts.dress.inside,direction,18,24.6,0.1,1/3,data.color.dress.back,data.color.dress.back,1,-0.4,18)
 			layer.erase(0.5)
 			layer.rect(0,15,30,30)
 			layer.noErase()
-			displayTrianglesBackMerge3D(layer,data.parts.dress.main,direction,0,12.6,0.2,1/3,data.color.dress.back,data.color.dress.back,1,-0.4)
+			displayTrianglesBackMerge3D(layer,data.parts.dress.main,direction,18,24.6,0.2,1/3,data.color.dress.back,data.color.dress.back,1,-0.4,18)
+			layer.quad(-6.3,0,6.3,0,12.3,18,-12.3,18)
+			layer.arc(0,18,24.6,7.2,0,180)
 		break
 		
 	}
@@ -4640,14 +4734,14 @@ function setupCombatantGraphics(type){
 				sprites:{detail:15,genAmount:0,animDirection:0},
 				parts:{},
 				color:{
-                    hair:{back:[143,106,77],front:[209,170,123],insideBack:[156,128,105],insideFront:[192,150,101],glow:[236,203,159],bow:[62,61,62]},
+                    hair:{back:[143,106,77],front:[209,170,123],insideBack:[156,128,105],insideFront:[192,150,101],glow:[236,203,159],bow:[32,31,32]},
                     skin:{head:[252,231,227],body:[248,208,197],legs:[244,214,207],arms:[255,231,227],button:[227,176,165]},
                     eye:{back:[211,108,109],front:[71,0,0],glow:[202,168,193]},
 					mouth:{in:[191,125,127],out:[0,0,0]},
 					dress:{
 						main:[236,231,233],over:[220,213,212],back:[196,169,171],
 						sleeve:[232,217,217],sleeveOver:[222,207,209],sleeveBack:[187,149,149],
-						bow:[59,59,59],flaps:[62,63,62],button:[235,216,175],buttonGlow:[243,232,216],
+						bow:[29,29,29],flaps:[62,63,62],button:[235,216,175],buttonGlow:[243,232,216],
 						pocket:[[226,204,201],[213,190,188],[237,214,196]],
 					},
 					shoe:{main:[32,29,27],over:[15,11,10],inside:[99,87,82],under:[64,57,56],bow:[65,64,63],glow:[131,120,115]},
@@ -4747,14 +4841,29 @@ function setupCombatantGraphics(type){
 
 			let flow=1
 			for(let a=0,la=360;a<la;a++){
-				let dir=[a/la*360,(a+1)/la*360,(a-0.5)/la*360,(a+0.5)/la*360,(a+1.5)/la*360]
+				let dir=[a/la*360,(a+1)/la*360,(a-0.5)/la*360,(a+0.5)/la*360]
+				let q=5
 				data.parts.dress.inside.push(
-					{spin:[dir[2],dir[3],dir[0]],y:[0,0,20+flow*lcos(dir[0]*5)+sqrt(1-abs(5-a%10)**2*0.04)]},
-					{spin:[dir[3],dir[4],dir[1]],y:[20+flow*lcos(dir[0]*5)+sqrt(1-abs(5-a%10)**2*0.04),0,20+flow*lcos(dir[1]*5)+sqrt(1-abs(5-(a+1)%10)**2*0.04)]},
+					{
+						spin:[dir[2],dir[3],dir[0]],
+						y:[0,0,2+flow*lcos(dir[0]*5)+sqrt(1-abs(q-a%(2*q))**2/q/q)],
+						set:0,
+					},{
+						spin:[dir[0],dir[1],dir[2]],
+						y:[2+flow*lcos(dir[0]*5)+sqrt(1-abs(q-a%(2*q))**2/q/q),2+flow*lcos(dir[1]*5)+sqrt(1-abs(q-(a+1)%(2*q))**2/q/q),0],
+						set:1,
+					},
 				)
 				data.parts.dress.main.push(
-					{spin:[dir[2],dir[3],dir[0]],y:[0,0,20+flow*lcos(dir[0]*5)]},
-					{spin:[dir[3],dir[4],dir[1]],y:[20+flow*lcos(dir[0]*5),0,20+flow*lcos(dir[1]*5)]},
+					{
+						spin:[dir[2],dir[3],dir[0]],
+						y:[0,0,2+flow*lcos(dir[0]*5)],
+						set:0,
+					},{
+						spin:[dir[0],dir[1],dir[2]],
+						y:[2+flow*lcos(dir[0]*5),2+flow*lcos(dir[1]*5),0],
+						set:1,
+					},
 				)
 			}
 		
@@ -4803,6 +4912,7 @@ function setupCombatantGraphics(type){
 				a--
 				la--
 			}
+			//let startTime=performance.now()
 			data.sprites.dress={front:[],back:[]}
 			for(let g=0;g<data.sprites.genAmount;g++){
 				data.sprites.dress.front.push(createGraphics(150,150))
@@ -4818,6 +4928,8 @@ function setupCombatantGraphics(type){
 				generateSprite(data.sprites.dress.back[g],82,g*data.sprites.detail)
 				//console.log('Generated S-UDB-'+(g+1))
 			}
+			/*let endTime=performance.now()
+			print(`Pane: ${endTime - startTime} milliseconds`)*/
 		break
 		case 20:
 			graphics.combatant.push({

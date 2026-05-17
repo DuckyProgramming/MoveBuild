@@ -14,7 +14,7 @@ function setup(){
         current.menu.combatant=[26]
         current.menu.deck=[-1]
 
-            //variants.mtg=true
+            variants.mtg=false
 
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){
@@ -51,10 +51,10 @@ function setup(){
             //current.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
             //current.create()
 
-            stage.scene='graphic'
+            /*stage.scene='graphic'
             graphics.test=-1
             graphics.staticBackground.clear()
-            setupBackground(graphics.test,graphics.staticBackground)
+            setupBackground(graphics.test,graphics.staticBackground)*/
 
             //quickNode(3)
             

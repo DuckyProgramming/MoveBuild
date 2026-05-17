@@ -305,7 +305,7 @@ class particle{
                 this.fade=1
                 this.scale=0
             break
-            case 133: case 194: case 217: case 218: case 219: case 232:
+            case 133: case 194: case 217: case 218: case 219: case 232: case 271: case 272:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -2401,7 +2401,7 @@ class particle{
                     this.layer.fill(255,125,175,this.fade*0.1)
                     this.layer.ellipse(0,0,24)
                 break
-                case 133: case 194: case 217: case 218: case 219: case 232:
+                case 133: case 194: case 217: case 218: case 219: case 232: case 271: case 272:
                     for(let a=0,la=this.notes.length;a<la;a++){
                         this.layer.rotate(360/la)
                         switch(this.type){
@@ -2428,6 +2428,14 @@ class particle{
                             case 232:
                                 this.layer.fill(200+this.notes[a][0]*40,this.fade*2)
                                 this.layer.stroke(200+this.notes[a][0]*40,this.fade*2)
+                            break
+                            case 271:
+                                this.layer.fill(200+this.notes[a][0]*40,80+this.notes[a][0]*80,240,this.fade*2)
+                                this.layer.stroke(200+this.notes[a][0]*40,80+this.notes[a][0]*80,240,this.fade*2)
+                            break
+                            case 272:
+                                this.layer.fill(240,160+this.notes[a][0]*80,40+this.notes[a][0]*160,this.fade*2)
+                                this.layer.stroke(240,160+this.notes[a][0]*80,40+this.notes[a][0]*160,this.fade*2)
                             break
                         }
                         this.layer.strokeWeight(0.8)
@@ -4611,7 +4619,8 @@ class particle{
                     this.remove=true
                 }
             break
-            case 88: case 133: case 136: case 194: case 217: case 218: case 219: case 232: case 244:
+            case 88: case 133: case 136: case 194: case 217: case 218: case 219: case 232: case 244: case 271:
+            case 272:
                 this.fade-=0.05
                 this.scale+=0.05
                 if(this.fade<=0){
