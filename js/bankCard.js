@@ -8977,10 +8977,11 @@ card.prototype.description=function(attack,effect,spec,target){
         case 8760: string+=`Gain (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Pressure\nto Discard Pile`; break
         case 8761: string+=`Gain (E) (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd a Pressure\nto Discard Pile`; brea
         case 8762: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPermanently\nIncreases by ${effect[1]}\nRetain Unspent ${variants.mtg?`Mana`:`Energy`}\nFor ${effect[2]} Turn${pl(effect[2])}`; break
-
         case 8763: string+=`Gain ${effect[0]} Control\nPulled:\nGain ${effect[1]} Buffer\nand Exhaust`; break
         case 8764: string+=`Gain ${effect[0]} Control\nDraw ${effect[1]} Card${pl(effect[1])}\nPulled:\nGain ${effect[2]} Buffer\nand Exhaust`; break
-        //5610-5611
+        case 8765: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto a Random Enemy\nPer Skill Drawn`; break
+        case 8766: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Dexterity\nBoth Increase by ${effect[2]}`; break
+        case 8767: string+=`Make a Random Attack\nin Hand Cost 0:\nSummon in a\nManagement Soldier`; break
 
         //mark p
 

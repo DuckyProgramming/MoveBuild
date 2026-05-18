@@ -692,16 +692,16 @@ class relicManager{
                 this.battle.purchaseManager.costChange(player,6,0.5)
             break
             case 302:
-                this.battle.purchaseManager.costChange(player,14,0.5)
-            break
-            case 303:
                 this.battle.purchaseManager.costChange(player,15,0.5)
             break
-            case 304:
+            case 303:
                 this.battle.purchaseManager.costChange(player,16,0.5)
             break
-            case 305:
+            case 304:
                 this.battle.purchaseManager.costChange(player,17,0.5)
+            break
+            case 305:
+                this.battle.purchaseManager.costChange(player,18,0.5)
             break
             case 312:
                 this.battle.cardManagers[player].randomEffect(0,2,[11])
@@ -874,10 +874,43 @@ class relicManager{
                     this.battle.loseCurrency(floor(this.battle.currency.money[player]/2),player)
                 }
             break
+            case 524:
+                this.battle.overlayManager.overlays[187][player].active=true
+                this.battle.overlayManager.overlays[187][player].activate([1])
+            break
+            case 525:
+                this.battle.overlayManager.overlays[187][player].active=true
+                this.battle.overlayManager.overlays[187][player].activate([2])
+            break
+            case 526:
+                this.battle.overlayManager.overlays[187][player].active=true
+                this.battle.overlayManager.overlays[187][player].activate([3])
+            break
+            case 527:
+                this.battle.overlayManager.overlays[187][player].active=true
+                this.battle.overlayManager.overlays[187][player].activate([4])
+            break
+            case 528:
+                this.battle.overlayManager.overlays[187][player].active=true
+                this.battle.overlayManager.overlays[187][player].activate([11])
+            break
+            case 529:
+                this.battle.purchaseManager.costChange(player,-1,0.5)
+            break
+            case 531:
+                this.battle.purchaseManager.rerollRare()
+            break
 
             //mark a
         }
-        this.reactivate(type,player)
+        switch(type){
+            case 529:
+                this.loseRelic(type,player)
+            break
+            default:
+                this.reactivate(type,player)
+            break
+        }
     }
     lose(type,player){
         switch(type){
@@ -1748,6 +1781,9 @@ class relicManager{
                     if(this.active[474][a+1]>0&&args[1]==1){
                         this.getPlayer(a).addBlock(this.active[474][a+1]*4)
                     }
+                    if(this.active[533][a+1]>0&&this.battle.itemManager.total[a]==0){
+                        this.getPlayer(a).addBlock(this.active[533][a+1]*4)
+                    }
                 }
                 if(this.active[450][a+1]>0){
                     if(args[0]>1&&this.detail[450][a]==0){
@@ -1992,6 +2028,18 @@ class relicManager{
                                 this.battle.dropDrawShuffle(args[1],findName('Stuck',types.card),0,constants.playerNumber+1)
                             }
                         }
+                        if(this.active[530][args[1]+1]>0){
+                            this.battle.overlayManager.overlays[10][args[1]].active=true
+                            this.battle.overlayManager.overlays[10][args[1]].activate([0,[1,0],57,[0],[]])
+                        }
+                        if(this.active[532][args[1]+1]>0){
+                            for(let a=0,la=this.active[532][args[1]+1];a<la;a++){
+                                let index=floor(random(0,this.battle.cardManagers[args[1]].deck.cards.length))
+                                for(let b=0,lb=3;b<lb;b++){
+                                    this.battle.cardManagers[args[1]].deck.copy(this.battle.cardManagers[args[1]].hand.cards,index,index+1,1)
+                                }
+                            }
+                        }
                         if(this.battle.modded(62)){
                             for(let a=0,la=3;a<la;a++){
                                 this.battle.cardManagers[args[1]].fatigue()
@@ -2030,12 +2078,12 @@ class relicManager{
                             this.battle.addSpecificEnergy(3*this.active[369][args[1]+1],args[1],0)
                         }
                         if(this.active[401][args[1]+1]>0){
-                            this.battle.cardManagers[args[1]+1].draw(this.active[401][args[1]+1])
+                            this.battle.cardManagers[args[1]].draw(this.active[401][args[1]+1])
                         }
                     break
                     case 3:
                         if(this.active[401][args[1]+1]>0){
-                            this.battle.cardManagers[args[1]+1].draw(this.active[401][args[1]+1])
+                            this.battle.cardManagers[args[1]].draw(this.active[401][args[1]+1])
                         }
                         if(this.active[348][args[1]+1]>0){
                             this.getPlayer(args[1]).statusEffect('Temporary Strength',3*this.active[348][args[1]+1])

@@ -4519,13 +4519,14 @@ class group{
     }
     sortClass(cardClass){
         this.lastSort=4
-        let names=[]
+        /*let names=[]
         for(let a=0,la=this.cards.length;a<la;a++){
             if(!names.includes(this.cards[a].name)&&this.cards[a].class==cardClass){
                 names.push(this.cards[a].name)
             }
         }
-        this.sorted=names.sort()
+        this.sorted=names.sort()*/
+        this.sorted=this.cards.filter(card=>card.class==cardClass)
     }
     sortBasic(trigger){
         this.lastSort=5
@@ -4987,7 +4988,7 @@ class group{
                     break
                     case 2: case 3: case 4: case 5: case 8:
                         this.sortClass(args[0]==8?11:args[0]-1)
-                        for(let a=0,la=this.sorted.length;a<la;a++){
+                        /*for(let a=0,la=this.sorted.length;a<la;a++){
                             for(let b=0,lb=this.cards.length;b<lb;b++){
                                 if(this.cards[b].name==this.sorted[a]){
                                     this.cards[b].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
@@ -5000,6 +5001,16 @@ class group{
                                     position++
                                 }
                             }
+                        }*/
+                        for(let a=0,la=this.sorted.length;a<la;a++){
+                            this.sorted[a].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
+                            this.sorted[a].fade=1
+                            this.sorted[a].relIndex=position
+                            this.sorted[a].position.x=this.layer.width/2-200+position%5*100
+                            this.sorted[a].position.y=this.layer.height/2-130+floor(position/5)%3*130
+                            this.sorted[a].anim.afford=1
+                            this.sorted[a].display(this.id==0)
+                            position++
                         }
                     break
                     case 6:
@@ -5113,6 +5124,19 @@ class group{
                                 position++
                                 this.finalPosition=position
                             }
+                        }
+                    break
+                    case 15:
+                        this.sortClass(args[2])
+                        for(let a=0,la=this.sorted.length;a<la;a++){
+                            this.sorted[a].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
+                            this.sorted[a].fade=1
+                            this.sorted[a].relIndex=position
+                            this.sorted[a].position.x=this.layer.width/2-200+position%5*100
+                            this.sorted[a].position.y=this.layer.height/2-130+floor(position/5)%3*130
+                            this.sorted[a].anim.afford=1
+                            this.sorted[a].display(this.id==0)
+                            position++
                         }
                     break
                     default:

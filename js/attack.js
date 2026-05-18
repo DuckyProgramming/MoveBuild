@@ -366,7 +366,7 @@ class attack{
             case 8230: case 8233: case 8234: case 8237: case 8238: case 8239: case 8240: case 8251: case 8253: case 8259:
             case 8285: case 8286: case 8287: case 8288: case 8334: case 8343: case 8352: case 8446: case 8499: case 8501:
             case 8518: case 8572: case 8573: case 8589: case 8668: case 8702: case 8704: case 8705: case 8706: case 8707:
-            case 8709: case 8722: case 8723: case 8746:
+            case 8709: case 8722: case 8723: case 8746: case 8767:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -17089,7 +17089,7 @@ class attack{
                         this.battle.overlayManager.overlays[10][this.player].active=true
                         this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[],[[1,11]]])
                     break
-                    case 7567:
+                    case 7567: case 8766:
                         this.userCombatant.statusEffect('Strength',this.effect[0])
                         this.userCombatant.statusEffect('Dexterity',this.effect[1])
                     break
@@ -23372,7 +23372,7 @@ class attack{
                     case 2548:
                         this.battle.itemManager.dupeRandom(this.player)
                     break
-                    case 2581: case 5610:
+                    case 2581: case 5610: case 8763:
                         this.userCombatant.statusEffect('Control',this.effect[0])
                     break
                     case 2590:
@@ -23729,7 +23729,7 @@ class attack{
                             this.userManager.randomEffect(3,56,[])
                         }
                     break
-                    case 5611:
+                    case 5611: case 8764:
                         this.userCombatant.statusEffect('Control',this.effect[0])
                         this.userManager.draw(this.effect[1])
                     break
@@ -27708,6 +27708,12 @@ class attack{
                         this.targetCombatant.statusEffect('Weak',this.effect[0])
                         this.targetCombatant.statusEffect('Frail',this.effect[1])
                         this.userManager.draw(this.effect[2]*this.selfCall(26))
+                    break
+                    case 8767:
+                        if(this.userManager.hand.numberAbstract(4,[[1]])||this.userCombatant.getStatus('Free War')>0){
+                            this.userManager.randomEffect(2,75,[1])
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Management Soldier',types.combatant),this.battle.players+1,this.direction,this.user)
+                        }
                     break
 
                 }
@@ -33977,6 +33983,20 @@ class attack{
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             for(let a=0,la=this.effect[1];a<la;a++){
                                 this.userManager.hand.add(findName('Supporter',types.card),0,0)
+                            }
+                        }
+                    break
+                    case 8765:
+                        let result8765=this.userManager.drawReturn(this.effect[0])
+                        let total8765=0
+                        for(let a=0,la=result8765.length;a<la;a++){
+                            if(result8765[a].class==11){
+                                total8765++
+                            }
+                        }
+                        if(total8765>0){
+                            for(let a=0,la=total8765;a<la;a++){
+                                this.battle.combatantManager.randomEnemyEffect(3,[this.effect[1],this.user])
                             }
                         }
                     break

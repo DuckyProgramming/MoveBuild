@@ -13,6 +13,7 @@ class purchase{
         this.usable=true
         this.deSize=false
         this.upSize=false
+        this.costFollow=true
         this.anim={usable:1,afford:0}
         let roll=0
         this.formerCost=copyArray(this.cost)
@@ -386,71 +387,75 @@ class purchase{
                     this.item.display(0)
                 break
             }
-            this.layer.scale(1/min(this.size,1))
+            if(!this.costFollow){
+                this.layer.scale(1/min(this.size,1))
+            }
         }
         this.layer.noStroke()
-        if(this.player==-1){
-            switch(this.type){
-                case 1: case 2:
-                    this.layer.textSize(16)
-                    for(let a=0,la=this.battle.players;a<la;a++){
-                        this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
-                        this.layer.text(round(this.cost[a]),20-la*20+a*40,72.5)
-                    }
-                    if(this.args[3]){
-                        this.layer.fill(255,255,50,this.anim.usable)
-                        this.layer.text('Sale',0,-72.5)
-                    }
-                    this.layer.fill(255,0,0,1-this.anim.usable)
-                    this.layer.text('Sold Out',0,72.5)
-                break
-                case 3: case 6:
-                    this.layer.textSize(16)
-                    for(let a=0,la=this.battle.players;a<la;a++){
-                        this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
-                        this.layer.text(round(this.cost[a]),20-la*20+a*40,40)
-                    }
-                    this.layer.fill(255,0,0,1-this.anim.usable)
-                    this.layer.text('Sold Out',0,40)
-                break
-                case 5:
-                    this.layer.textSize(12.8)
-                    for(let a=0,la=this.battle.players;a<la;a++){
-                        this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
-                        this.layer.text(round(this.cost[a]),20-la*20+a*40,58)
-                    }
-                    this.layer.fill(255,0,0,1-this.anim.usable)
-                    this.layer.textSize(9.6)
-                    this.layer.text('Sold Out',0,58)
-                break
-            }
-        }else{
-            switch(this.type){
-                case 1: case 2:
-                    this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
-                    this.layer.textSize(16)
-                    this.layer.text(round(this.cost[this.player]),0,72.5)
-                    if(this.args[3]){
-                        this.layer.fill(255,255,50,this.anim.usable)
-                        this.layer.text('Sale',0,-72.5)
-                    }
-                    this.layer.fill(255,0,0,1-this.anim.usable)
-                    this.layer.text('Sold Out',0,72.5)
-                break
-                case 3: case 6:
-                    this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
-                    this.layer.textSize(16)
-                    this.layer.text(round(this.cost[this.player]),0,40)
-                    this.layer.fill(255,0,0,1-this.anim.usable)
-                    this.layer.text('Sold Out',0,40)
-                break
-                case 5:
-                    this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
-                    this.layer.textSize(12.8)
-                    this.layer.text(round(this.cost[this.player]),0,58)
-                    this.layer.fill(255,0,0,1-this.anim.usable)
-                    this.layer.text('Sold Out',0,58)
-                break
+        if(!(this.size<=0&&this.costFollow)){
+            if(this.player==-1){
+                switch(this.type){
+                    case 1: case 2:
+                        this.layer.textSize(16)
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
+                            this.layer.text(round(this.cost[a]),20-la*20+a*40,72.5)
+                        }
+                        if(this.args[3]){
+                            this.layer.fill(255,255,50,this.anim.usable)
+                            this.layer.text('Sale',0,-72.5)
+                        }
+                        this.layer.fill(255,0,0,1-this.anim.usable)
+                        this.layer.text('Sold Out',0,72.5)
+                    break
+                    case 3: case 6:
+                        this.layer.textSize(16)
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
+                            this.layer.text(round(this.cost[a]),20-la*20+a*40,40)
+                        }
+                        this.layer.fill(255,0,0,1-this.anim.usable)
+                        this.layer.text('Sold Out',0,40)
+                    break
+                    case 5:
+                        this.layer.textSize(12.8)
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
+                            this.layer.text(round(this.cost[a]),20-la*20+a*40,58)
+                        }
+                        this.layer.fill(255,0,0,1-this.anim.usable)
+                        this.layer.textSize(9.6)
+                        this.layer.text('Sold Out',0,58)
+                    break
+                }
+            }else{
+                switch(this.type){
+                    case 1: case 2:
+                        this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
+                        this.layer.textSize(16)
+                        this.layer.text(round(this.cost[this.player]),0,72.5)
+                        if(this.args[3]){
+                            this.layer.fill(255,255,50,this.anim.usable)
+                            this.layer.text('Sale',0,-72.5)
+                        }
+                        this.layer.fill(255,0,0,1-this.anim.usable)
+                        this.layer.text('Sold Out',0,72.5)
+                    break
+                    case 3: case 6:
+                        this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
+                        this.layer.textSize(16)
+                        this.layer.text(round(this.cost[this.player]),0,40)
+                        this.layer.fill(255,0,0,1-this.anim.usable)
+                        this.layer.text('Sold Out',0,40)
+                    break
+                    case 5:
+                        this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
+                        this.layer.textSize(12.8)
+                        this.layer.text(round(this.cost[this.player]),0,58)
+                        this.layer.fill(255,0,0,1-this.anim.usable)
+                        this.layer.text('Sold Out',0,58)
+                    break
+                }
             }
         }
         this.layer.pop()
@@ -470,6 +475,9 @@ class purchase{
             this.size=round(this.size*5-1)/5
         }else if(!this.deSize&&(this.size<1||this.upSize&&this.size<1.5)){
             this.size=min(round(this.size*5+1)/5,1.5)
+        }
+        if(this.size>=1){
+            this.costFollow=false
         }
         this.midSize=1
         this.anim.usable=smoothAnim(this.anim.usable,this.usable,0,1,5)

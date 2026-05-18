@@ -1884,6 +1884,14 @@ class card{
                     this.battle.cardManagers[this.player].randomEffect(2,0,[])
                 }
             break
+            case 8763:
+                userCombatant.statusEffect('Buffer',this.effect[1])
+                this.exhaust=true
+            break
+            case 8764:
+                userCombatant.statusEffect('Buffer',this.effect[2])
+                this.exhaust=true
+            break
         }
     }
     callHoldOrbEffect(type){
@@ -2636,7 +2644,7 @@ class card{
             case 8728:
                 this.effect[1]+=this.effect[2]
             break
-            case 937: case 7750: case 8217: case 8516:
+            case 937: case 7750: case 8217: case 8516: case 8766:
                 this.effect[0]+=this.effect[2]
                 this.effect[1]+=this.effect[2]
             break

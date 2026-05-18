@@ -3868,6 +3868,72 @@ class relic{
                 case 'Trioerratic':
                     displaySymbol(this.layer,0,0,176,0,1.2,this.fade)
                 break
+                case 'Duplicate Attack':
+                    displaySymbol(this.layer,0,0,89,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,18,0,0.5,this.fade)
+                break
+                case 'Duplicate Defense':
+                    displaySymbol(this.layer,0,0,89,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,19,0,0.5,this.fade)
+                break
+                case 'Duplicate Movement':
+                    displaySymbol(this.layer,0,0,89,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,20,0,0.5,this.fade)
+                break
+                case 'Duplicate Power':
+                    displaySymbol(this.layer,0,0,89,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,21,0,0.5,this.fade)
+                break
+                case 'Duplicate Skill':
+                    displaySymbol(this.layer,0,0,89,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,123,0,0.5,this.fade)
+                break
+                case 'Speed Discount':
+                    displaySymbol(this.layer,-8,0,75,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,1,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',8,1)
+                break
+                case 'Discover Colorless':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,57,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case `Rare Relic Party`:
+                    displaySymbol(this.layer,0,0,1,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,0,85,0,0.64,this.fade)
+                    displaySymbol(this.layer,0,0,171,0,1.2,this.fade)
+                break
+                case `Triple Free Card`:
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,64,0,0.6,this.fade)
+                    if(variants.mtg){
+                        displayMtgManaSymbol(this.layer,-8,0,-1,0,0.45,this.fade,-1,[])
+                    }else{
+                        displaySymbol(this.layer,-8,0,9,0,0.6,this.fade)
+                    }
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('x3',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'No Item Block':
+                    displaySymbol(this.layer,-9,-2,30,0,0.54,this.fade)
+                    displaySymbol(this.layer,-9,-2,16,0,0.72,this.fade)
+                    displaySymbol(this.layer,9,-2,27,0,0.8,this.fade)
+                    displaySymbol(this.layer,1,12,4,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',9,-2)
+                break
 
                 //mark p
             }

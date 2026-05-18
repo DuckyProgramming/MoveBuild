@@ -945,7 +945,7 @@ types={
         {name:'Shattered Mirror',internal:'Duplicate Card',id:123,rarity:-1,list:0,mtg:0,world:[1,3],description:'When Taken,\nDuplicate a Card'},
         {name:'Tweezers',internal:'Block Break Vulnerable',id:124,rarity:0,list:0,mtg:0,world:[0,3],description:`When You Break an Enemy's\nBlock, Apply 2 Vulnerable`},
         {name:'Waffle',internal:'10 Max HP Full Heal',id:125,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken, Gain 10 Max\nHP and Heal All HP'},
-        {name:'Napkin Ring',internal:'Starting Colorless',id:126,rarity:3,list:0,mtg:0,world:[0,3],description:'Choose 1 Common Colorless Card\nto Add to Hand on Turn 1'},
+        {name:'Napkin Rng',internal:'Starting Colorless',id:126,rarity:-1,list:0,mtg:0,world:[0,3],description:'Choose 1 Common Colorless Card\nto Add to Hand on Turn 1'},
         {name:'Rock of Duckontonlek',internal:'Relic Pack',id:127,rarity:3,list:0,mtg:0,world:[0,3],description:'When Taken, Gain 3 Relics\nand Become Cursed - Hoarding'},
         {name:'Card Rack',internal:'Card Hold',id:128,rarity:-1,list:0,mtg:0,world:[0,3],description:'All Cards\nHave Retain'},
         {name:'Mechanical Eye',internal:'View Draw',id:129,rarity:-1,list:0,mtg:0,world:[0,3],description:'Draw Pile Cards Are\nViewed in Order'},
@@ -1036,9 +1036,9 @@ types={
         {name:'The Order',internal:'Ascending Cost Energy',id:206,rarity:-1,list:0,mtg:1,world:[0,3],description:'Gain 1 Energy When You Play\n3 Cards With Ascending Cost'},
         {name:'Dusk Sphere',internal:'Turn 4 Duplicate',id:207,rarity:-1,list:0,mtg:0,world:[0,3],description:'On Turn 4, Duplicate 3 Cards'},
         {name:'Timed Contract',internal:'Speedrunner',id:208,rarity:1,list:0,mtg:0,world:[0,2],description:'Gain 50 Currency if Combat\nEnds Before or on Turn 5'},
-        {name:'Bootstraps',internal:'Currency Strength',id:209,rarity:3,list:0,mtg:0,world:[0,3],description:'Gain 2 Strength Per\n500 Currency You Have\non Turn 1'},
+        {name:'Bootstraps',internal:'Currency Strength',id:209,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 2 Strength Per\n500 Currency You Have\non Turn 1'},
 
-        {name:'To The Moon',internal:'1000 Currency Currency Per Node',id:210,rarity:3,list:0,mtg:0,world:[1,2],description:'Gain 40 Currency Every Node\nWhen You Have 1000 Currency or More'},
+        {name:'To The Moon',internal:'1000 Currency Currency Per Node',id:210,rarity:-1,list:0,mtg:0,world:[1,2],description:'Gain 40 Currency Every Node\nWhen You Have 1000 Currency or More'},
         {name:'Brainstorm',internal:'Copy First Relic',id:211,rarity:-1,list:0,mtg:0,world:[0,3],description:'When Sold, Copy Your\nFirst Owned Relic'},
         {name:'Faceless Face',internal:'Movement Remove Currency',id:212,rarity:-1,list:0,mtg:0,world:[0,2],description:'Gain 400 Currency When\na Movement Card is Removed'},
         {name:'Shiny Button',internal:'Energy/Shinies',id:213,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nFind No Editions and\nLose Existing Editions'},
@@ -1110,7 +1110,7 @@ types={
         {name:'Prism Pack Voucher',internal:'Prism Pack Discount',id:273,rarity:3,list:0,mtg:0,world:[0,1],description:'Prism Packs in the\nShop Cost 50% Less'},
         {name:'Harvest Basket',internal:'Add Card Max HP',id:274,rarity:1,list:0,mtg:0,world:[0,2],description:'Gain 1 Max HP When You\nAdd a Card to Deck'},
         {name:'Bottled Poppy',internal:'Innate Attack',id:275,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken, Make an Attack Innate'},
-        {name:'Bottled Cyprus',internal:'Innate Defense',id:276,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken, Make a Defense Innate'},
+        {name:'Bottled Cypress',internal:'Innate Defense',id:276,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken, Make a Defense Innate'},
         {name:'Bottled Shamrock',internal:'Innate Movement',id:277,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken, Make a Movement Innate'},
         {name:'Bottled Jasmine',internal:'Innate Power',id:278,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken, Make a Power Innate'},
         {name:'Black Armor',internal:'Fatigue Block',id:279,rarity:0,list:0,mtg:0,world:[0,3],description:'Gain 3 Block When\nYou Play a Fatigue'},
@@ -1322,7 +1322,7 @@ types={
         {name:'Press F',internal:'Energy/Power Limit',id:466,rarity:4,list:0,mtg:1,world:[0,3],description:`Gain 1 Base Energy,\nWhen You Play a Power,\nDiscard a Random Card`},
         {name:'Plated Vent',internal:'Power Block',id:467,rarity:1,list:0,mtg:0,world:[0,3],description:'When You Play a Power, Add 6 Block'},
         {name:'Backslash',internal:'Any Common or Uncommon Relic',id:468,rarity:2,list:0,mtg:0,world:[0,3],description:'When Taken, Choose and Gain\nAny Common or Uncommon Relic'},
-        {name:'Straw Shield',internal:'Bonus Block',id:469,rarity:0,list:0,mtg:0,world:[0,3],description:'If You End Your Turn With Block,\nAdd 2 Block'},
+        {name:'Straw Shield',internal:'Bonus Block',id:469,rarity:-1,list:0,mtg:0,world:[0,3],description:'If You End Your Turn With Block,\nAdd 2 Block'},
 
         {name:'Nuclear Waste',internal:'3 Turn Temporary Strength',id:470,rarity:-1,list:0,mtg:0,world:[0,3],description:'Every 3 Turns,\nGain 3 Temporary Strength'},
         {name:'Green Pentachoron',internal:'No Fatigue',id:471,rarity:4,list:0,mtg:1,world:[0,3],description:'Never Get Fatigued Again'},
@@ -1383,7 +1383,18 @@ types={
         {name:'Archducal Hat',internal:'Skip Edition',id:521,rarity:2,list:0,mtg:0,world:[0,3],description:'When You Skip a Card Reward,\nThe Next Card Reward Will Have an Edition'},
         {name:'Cosmic Gown',internal:'Nonfull Health Energy',id:522,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy Each Turn\nIf You Are Below 90% Health'},
         {name:'Firing Beacon',internal:'Energy/Bombed',id:523,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nA Target Zone is Placed\non You For 10 Damage\nEvery 3 Turns'},
+        {name:'Smashed Mirror',internal:'Duplicate Attack',id:524,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken,\nDuplicate an Attack'},
+        {name:'Barricaded Mirror',internal:'Duplicate Defense',id:525,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken,\nDuplicate a Defense'},
+        {name:'Halved Mirror',internal:'Duplicate Movement',id:526,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken,\nDuplicate a Movement'},
+        {name:'Foggy Mirror',internal:'Duplicate Power',id:527,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken,\nDuplicate a Power'},
+        {name:'Tossed Mirror',internal:'Duplicate Skill',id:528,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken,\nDuplicate a Skill'},
+        {name:'Instant Voucher',internal:'Speed Discount',id:529,rarity:3,list:0,mtg:0,world:[0,1],description:'Everything Costs 50% Less\nDestroys Self on Purchase'},
         
+        {name:'Napkin Ring',internal:'Discover Colorless',id:530,rarity:3,list:0,mtg:0,world:[0,3],description:'At the Start of Combat,\nDiscover a Common Colorless Card\nIt Costs 0'},
+        {name:'Fava Bean',internal:'Rare Relic Party',id:531,rarity:3,list:0,mtg:0,world:[0,3],description:'When Taken, Restock All Shop\nRelics With Rare Relics'},
+        {name:'Jacks',internal:'Triple Free Card',id:532,rarity:3,list:0,mtg:0,world:[0,3],description:'At the Start of Combat,\nAdd 3 Copies of a Random\nCard in Deck to Hand\nThey Cost 0 Temporarily'},
+        {name:'Belt Buckle',internal:'No Item Block',id:533,rarity:0,list:0,mtg:0,world:[0,3],description:'If You Start Your Turn With No Items,\nAdd 4 Block'},
+
         //mark mtg mark r
     ],item:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:''},

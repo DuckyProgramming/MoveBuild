@@ -2,21 +2,12 @@ POTENTIAL CARDSET 100 [ENDSIEG]
 
 Changes:
 
-split the mirror into 5 shards
-diamond diadem - when you play less than 3 cards in a turn, take half damage
-new editions - silk card => duplicate the next card played
+potato chip - heal 2 health, at full: redraw your hand
 
-
-
-grant menessa a form of beanstalk climb
-damage for every skill drawn
-
-
+errorify 4 cards
 
 update icathia
--meri 2
 -menessa
 
-the hunt for michelle's shoes
-
-alcohol / sa (4-5 hours)
+final goals
+card 7052

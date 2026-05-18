@@ -1033,7 +1033,7 @@ attack.prototype.update=function(){
         case 8544: case 8545: case 8565: case 8585: case 8586: case 8587: case 8588: case 8619: case 8646: case 8651:
         case 8665: case 8670: case 8678: case 8679: case 8680: case 8681: case 8682: case 8690: case 8691: case 8695:
         case 8697: case 8698: case 8730: case 8731: case 8732: case 8733: case 8734: case 8735: case 8736: case 8737:
-        case 8740: case 8741: case 8751:
+        case 8740: case 8741: case 8751: case 8766:
             //mark 4
             if(
                 this.timer==1&&(
@@ -1354,7 +1354,7 @@ attack.prototype.update=function(){
         case 7670: case 7671: case 7779: case 7900: case 7957: case 8004: case 8015: case 8033: case 8096: case 8108:
         case 8210: case 8347: case 8423: case 8457: case 8478: case 8482: case 8495: case 8532: case 8548: case 8559:
         case 8576: case 8577: case 8578: case 8622: case 8660: case 8700: case 8710: case 8711: case 8714: case 8721:
-        case 8738: case 8742:
+        case 8738: case 8742: case 8763: case 8764:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||
@@ -2342,6 +2342,7 @@ attack.prototype.update=function(){
         case 8183: case 8184: case 8185: case 8188: case 8189: case 8204: case 8256: case 8257: case 8259: case 8293:
         case 8308: case 8309: case 8351: case 8366: case 8400: case 8438: case 8453: case 8494: case 8554: case 8556:
         case 8572: case 8573: case 8662: case 8685: case 8686: case 8692: case 8693: case 8743: case 8744: case 8745:
+        case 8767:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -5088,7 +5089,7 @@ attack.prototype.update=function(){
         case 8315: case 8350: case 8354: case 8355: case 8369: case 8424: case 8425: case 8432: case 8436: case 8479:
         case 8480: case 8523: case 8555: case 8561: case 8574: case 8591: case 8592: case 8593: case 8594: case 8595:
         case 8596: case 8597: case 8598: case 8600: case 8601: case 8611: case 8618: case 8645: case 8654: case 8664:
-        case 8672: case 8674: case 8703: case 8724: case 8750:
+        case 8672: case 8674: case 8703: case 8724: case 8750: case 8765:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
