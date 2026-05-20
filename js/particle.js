@@ -34,7 +34,7 @@ class particle{
             case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120: case 121:
             case 126: case 135: case 136: case 139: case 152: case 154: case 155: case 156: case 163: case 164:
             case 168: case 169: case 170: case 173: case 192: case 193: case 195: case 196: case 199: case 206:
-            case 225: case 244: case 252: case 268: case 269:
+            case 225: case 244: case 252: case 268: case 269: case 273:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -4439,6 +4439,55 @@ class particle{
                         }
                     }
                 break
+                case 273:
+                    this.layer.strokeCap(SQUARE)
+                    this.layer.strokeWeight(2)
+                    this.layer.noFill()
+                    this.layer.stroke(250,this.fade)
+                    this.layer.beginShape()
+                    this.layer.vertex(0,18)
+                    for(let a=0,la=20;a<la;a++){
+                        this.layer.bezierVertex(
+                            lsin((a+0.2)/la*360)*16,
+                            lcos((a+0.2)/la*360)*16,
+                            lsin((a+0.8)/la*360)*16,
+                            lcos((a+0.8)/la*360)*16,
+                            lsin((a+1)/la*360)*(14+a%2*4),
+                            lcos((a+1)/la*360)*(14+a%2*4),
+                        )
+                    }
+                    this.layer.endShape(CLOSE)
+                    this.layer.stroke(250,225,100,this.fade)
+                    this.layer.beginShape()
+                    this.layer.vertex(0,14)
+                    for(let a=0,la=20;a<la;a++){
+                        this.layer.bezierVertex(
+                            lsin((a+0.2)/la*360)*16,
+                            lcos((a+0.2)/la*360)*16,
+                            lsin((a+0.8)/la*360)*16,
+                            lcos((a+0.8)/la*360)*16,
+                            lsin((a+1)/la*360)*(18-a%2*4),
+                            lcos((a+1)/la*360)*(18-a%2*4),
+                        )
+                    }
+                    this.layer.endShape(CLOSE)
+                    this.layer.stroke(250,this.fade)
+                    for(let a=0,la=20;a<la;a++){
+                        if(a%2==1){
+                            this.layer.bezier(
+                                lsin(a/la*360)*(18-a%2*4),
+                                lcos(a/la*360)*(18-a%2*4),
+                                lsin((a+0.2)/la*360)*16,
+                                lcos((a+0.2)/la*360)*16,
+                                lsin((a+0.8)/la*360)*16,
+                                lcos((a+0.8)/la*360)*16,
+                                lsin((a+1)/la*360)*(14+a%2*4),
+                                lcos((a+1)/la*360)*(14+a%2*4),
+                            )
+                        }
+                    }
+                    this.layer.strokeCap(ROUND)
+                break
 
             }
             //mark p
@@ -4795,7 +4844,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 139:
+            case 139: case 273:
                 this.fade-=0.04
                 this.scale+=0.1-this.time*0.005
                 if(this.fade<=0){

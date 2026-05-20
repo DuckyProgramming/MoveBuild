@@ -1,13 +1,1 @@
-POTENTIAL CARDSET 100 [ENDSIEG]
-
-Changes:
-
-potato chip - heal 2 health, at full: redraw your hand
-
-errorify 4 cards
-
-update icathia
--menessa
-
-final goals
-card 7052
+POTENTIAL CARDSET 101 [ENDSIEG]

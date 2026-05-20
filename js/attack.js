@@ -22807,6 +22807,9 @@ class attack{
                             this.userManager.hand.add(findName('Dark\nMatter',types.card),0,0)
                         }
                     break
+                    case 8769:
+                        this.userManager.hand.duplicateSelectSkillFree(this.effect[0])
+                    break
 
                 }
                 //mark 5
@@ -24242,6 +24245,13 @@ class attack{
                         this.userManager.hand.allEffectArgs(34,[11])
                         this.userManager.draw(this.effect[0])
                         this.userCombatant.caffeine+=this.effect[1]
+                    break
+                    case 8768:
+                        this.userCombatant.heal(this.effect[0])
+                        if(this.userCombatant.base.life<=this.userCombatant.life){
+                            this.userManager.allEffect(2,2)
+                            this.userManager.draw(this.handSize)
+                        }
                     break
 
                 }

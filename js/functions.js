@@ -2195,7 +2195,7 @@ Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/${constants.playerNumber*8}			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-constants.playerNumber*8}
 		Error:
-	Total:${types.card.filter(card=>card.list==-10).length}/48				${types.card.filter(card=>card.list==-10).length-48}
+	Total:${types.card.filter(card=>card.list==-10).length}/52				${types.card.filter(card=>card.list==-10).length-52}
 			`)
 }
 function outClassCosts(){

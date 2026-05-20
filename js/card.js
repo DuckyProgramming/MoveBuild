@@ -6091,7 +6091,7 @@ class card{
                         case 6: case 42: this.layer.stroke(200,225,255,this.fade*anim[a]); break
                         case 7: case 34: case 37: this.layer.stroke(255,255,150,this.fade*anim[a]); break
                         case 8: this.layer.stroke(200,225,50,this.fade*anim[a]); break
-                        case 9: case 32: case 39: case 40: this.layer.stroke(255,125,0,this.fade*anim[a]); break
+                        case 9: case 32: case 39: case 40: case 53: this.layer.stroke(255,125,0,this.fade*anim[a]); break
                         case 10: this.layer.stroke(255,0,50,this.fade*anim[a]); break
                         case 11: this.layer.stroke(0,150,0,this.fade*anim[a]); break
                         case 12: this.layer.stroke(100,255,200,this.fade*anim[a]); break

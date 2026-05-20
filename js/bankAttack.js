@@ -1354,7 +1354,7 @@ attack.prototype.update=function(){
         case 7670: case 7671: case 7779: case 7900: case 7957: case 8004: case 8015: case 8033: case 8096: case 8108:
         case 8210: case 8347: case 8423: case 8457: case 8478: case 8482: case 8495: case 8532: case 8548: case 8559:
         case 8576: case 8577: case 8578: case 8622: case 8660: case 8700: case 8710: case 8711: case 8714: case 8721:
-        case 8738: case 8742: case 8763: case 8764:
+        case 8738: case 8742: case 8763: case 8764: case 8768:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||
@@ -13912,6 +13912,23 @@ attack.prototype.update=function(){
                 this.battle.drop(this.player,findName('Pressure',types.card),0,constants.playerNumber+1)
             }else if(this.timer>=20){
                 this.remove=true
+            }
+        break
+        case 8769:
+            if(variants.nobasicanim){
+                this.selfCall(4)
+                this.remove=true
+            }else{
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(5)
+                }
+                this.userCombatant.runAnimation(1/10,5)
+                if(this.timer==10){
+                    this.selfCall(4)
+                    current.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,273,[30]))
+                }else if(this.timer>=20){
+                    this.remove=true
+                }
             }
         break
 
