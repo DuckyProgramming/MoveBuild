@@ -288,7 +288,7 @@ class attack{
             case 8440: case 8441: case 8447: case 8448: case 8449: case 8450: case 8452: case 8453: case 8456: case 8458: case 8467: case 8481: case 8482: case 8489: case 8491: case 8494: case 8495: case 8497: case 8513: case 8517:
             case 8528: case 8530: case 8536: case 8549: case 8550: case 8551: case 8554: case 8556: case 8557: case 8558: case 8563: case 8568: case 8569: case 8570: case 8575: case 8599: case 8604: case 8612: case 8614: case 8617:
             case 8618: case 8627: case 8629: case 8656: case 8657: case 8660: case 8662: case 8663: case 8664: case 8667: case 8676: case 8684: case 8685: case 8686: case 8688: case 8692: case 8693: case 8712: case 8713: case 8715:
-            case 8719: case 8724: case 8728: case 8744: case 8745: case 8750: case 8754: case 8755: case 8756: case 8772: case 8773: case 8774: case 8775: case 8776: case 8777: case 8778: case 8779:
+            case 8719: case 8724: case 8728: case 8744: case 8745: case 8750: case 8754: case 8755: case 8756: case 8772: case 8773: case 8774: case 8775: case 8776: case 8777: case 8778: case 8779: case 8780: case 8782: case 8783:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -17891,6 +17891,34 @@ class attack{
                         this.battle.overlayManager.overlays[10][this.player].active=true
                         this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[0],[[3,85]]])
                     break
+                    case 8784:
+                        this.userCombatant.statusEffect('Dodge',this.effect[0])
+                        this.battle.combatantManager.areaAbstract(2,['Shock',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
+                    break
+                    case 8785:
+                        if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
+                            this.userManager.hand.upgrade(this.effect[0])
+                        }
+                        if(this.debut){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 8786:
+                        if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
+                            this.userManager.hand.upgrade(this.effect[0])
+                        }
+                        if(this.debut){
+                            this.battle.addSpecificEnergy(2,this.player,6)
+                        }
+                    break
+                    case 8787:
+                        if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
+                            this.userManager.hand.upgrade(this.effect[0])
+                        }
+                        if(this.debut){
+                            this.battle.addSpecificEnergy(3,this.player,6)
+                        }
+                    break
 
                 }
                 //mark 4
@@ -22827,6 +22855,27 @@ class attack{
                     break
                     case 8769:
                         this.userManager.hand.duplicateSelectSkillFree(this.effect[0])
+                    break
+                    case 8781:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[0],[]])
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Dazed',types.card),0,constants.playerNumber+1)
+                        }
+                    break
+                    case 8782:
+                        this.targetCombatant.statusEffect('Lock On',this.effect[0])
+                        this.userManager.draw(this.effect[1])
+                        if(this.energy>this.battle.getEnergyBase(this.player)){
+                            this.battle.addEnergy(this.effect[2],this.player)
+                        }
+                    break
+                    case 8783:
+                        this.targetCombatant.statusEffect('Lock On',this.effect[0])
+                        this.userManager.draw(this.effect[1])
+                        if(this.selfCall(25)>=2){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                        }
                     break
 
                 }
@@ -34048,6 +34097,13 @@ class attack{
                                 this.battle.combatantManager.randomEnemyEffect(3,[this.effect[1],this.user])
                             }
                         }
+                    break
+                    case 8780:
+                        if(this.targetCombatant.life!=this.targetCombatant.base.life){
+                            this.targetCombatant.statusEffect('Burn',this.effect[2])
+                        }
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Cannot Move',this.effect[1])
                     break
 
                 }

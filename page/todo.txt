@@ -1,9 +1,6 @@
-martyrs cant hit you instantly
-dead ducks can pick up resup crate
-
-change penalty scattergun
-change ice cream
-change detonator
+change penalty scattergun - more clip size instead of more damage
+change ice cream - half effect
+change (rework) detonator
 nutter - replace battery lmg - fires a shotgun blast of ballista bolts but lose 25% of your hp on use
 the updated engineer
 - 4-6 sentries
@@ -11,24 +8,19 @@ the updated engineer
 - 2 teleportrs
 - 16-24 distinct "build" weapons
 
-barbarossa - storm 333 + red beard
-vernal wind - spring wind with a tertiary effect
-sudden dream - discover a card, it costs 0, get dazed
-
 
 
 movebuild shoes
 the last shoe change
 
 update icathia
--shiru
+-sagume (for new bg)
 -menessa
 
 
 
-new korrine lore
-new menessa lore (dress code and standards)
-new dai lore (get feedback)
+get feedback on new menessa lore
+get feedback on new dai lore
 
 
 
@@ -36,14 +28,8 @@ crusader campaign mode
 
 
 
-after i reconnect:
-get sirte division logo
-get 136th division logo
-get 2nd ccnn division logo for 140th blackshirt battalion
-get 3rd armoured brigade logo (if applicable)
-get 2nd support group logo + commander
-get brandenburger logo
+POTENTIAL CARDSET 102 [ENDSIEG]
 
 
 
-POTENTIAL CARDSET 101 [ENDSIEG]
+tobruk standalone game

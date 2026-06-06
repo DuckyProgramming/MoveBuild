@@ -8994,6 +8994,14 @@ card.prototype.description=function(attack,effect,spec,target){
         case 8777: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nGain ${effect[1]!=1?`${effect[1]}`:``}X Currency\nWhere X = D6`; break
         case 8778: string+=`Deal ${this.diceEffect(1,6,2,effect[0])} Damage\nOdd Roll:\nApply ${effect[1]} Weak\nEven Roll:\nApply ${effect[2]} Vulnerable`; break
         case 8779: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCable in Hand:\nApply ${effect[1]} Vulnerable`; break
+        case 8780: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nTarget Cannot Move\nFor ${effect[1]} Turn${pl(effect[1])}\nIf Target is Not\nAt Full Health,\nApply ${effect[2]} Burn`; break
+        case 8781: string+=`Discover a Card\nIt Costs 0\nShuffle ${effect[0]} Dazed${pl(effect[0])}\nto Draw Pile`; break
+        case 8782: string+=`Apply ${effect[0]} Lock On\nDraw ${effect[1]} Card${pl(effect[1])}\nMore Energy Than Base:\nGain ${effect[2]} Energy`; break
+        case 8783: string+=`Apply ${effect[0]} Lock On\nDraw ${effect[1]} Card${pl(effect[1])}\nMore Mana Than Base:\nGain (E) (E)`; break
+        case 8784: string+=`Gain ${effect[0]} Dodge\nApply ${effect[1]} Shock\nin All Directions`; break
+        case 8785: string+=`50%: Upgrade ${effect[0]} Card${pl(effect[0])}\nFirst Time Played: (${this.debut?`Yes`:`No`})\nGain ${effect[1]} Energy`; break
+        case 8786: string+=`50%: Upgrade ${effect[0]} Card${pl(effect[0])}\nFirst Time Played: (${this.debut?`Yes`:`No`})\nGain (E) (E)`; break
+        case 8787: string+=`50%: Upgrade ${effect[0]} Card${pl(effect[0])}\nFirst Time Played: (${this.debut?`Yes`:`No`})\nGain (E) (E) (E)`; break
 
         //mark p
 
