@@ -1009,7 +1009,7 @@ class group{
     totalCost(){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].usable&&this.cards[a].getCost(0)>0){
+            if(this.cards[a].usable&&this.cards[a].getCosctt(0)>0){
                 total+=this.cards[a].getCost(0)
             }
         }
@@ -1045,7 +1045,8 @@ class group{
                 type==23&&(this.cards[a].name.includes(args[0])||this.cards[a].spec.includes(args[1]))||
                 type==24&&this.cards[a].energyAfford||
                 type==25&&(this.cards[a].name.includes(args[0])||this.cards[a].spec.includes(args[1]))||
-                type==26&&args[0].includes(this.cards[a].class)&&args[1]!=this.cards[a].id
+                type==26&&args[0].includes(this.cards[a].class)&&args[1]!=this.cards[a].id||
+                type==27&&this.cards[a].name.includes(args[0])&&this.cards[a].class==args[1]
             ){
                 total++
             }

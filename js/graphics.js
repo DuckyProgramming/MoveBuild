@@ -1398,485 +1398,847 @@ function controlSpin(set,direction,spec){
 		}
 	}
 }
-function minorGraphicDisplay(layer,type){
+/*function minorGraphicDisplay(layer,type){
 	layer.noStroke()
 	switch(type){
+	}
+}*/
+function generateGeneralSprite(layer,type){
+	let gradient
+	let temp
+	switch(type){
 		case 0:
-			layer.fill(251,172,180)
-			for(let h=0;h<6;h++){
-				layer.rotate(60)
-				layer.ellipse(0,1.4,2,3)
+			layer.translate(80,80)
+			for(let b=0,lb=16;b<lb;b++){
+				layer.fill(80+b*8,200+b*5,80+b*8)
+				layer.triangle(0,0,15+b*0.5,45-b*1.25,45-b*1.25,15+b*0.5)
+				layer.triangle(0,0,-15-b*0.5,-45+b*1.25,-45+b*1.25,-15-b*0.5)
 			}
-			layer.fill(237,109,167)
-			for(let h=0;h<3;h++){
-				layer.rotate(120)
-				layer.ellipse(0,1.4,1.6,2.6)
-			}
-			layer.fill(252,158,191)
-			for(let h=0;h<3;h++){
-				layer.rotate(120)
-				layer.ellipse(0,1,1.2,1.8)
-			}
-			layer.fill(178,20,116)
-			for(let h=0;h<3;h++){
-				layer.rotate(120)
-				layer.ellipse(0,-1.4,1.6,2.6)
-			}
-			layer.fill(213,54,146)
-			for(let h=0;h<3;h++){
-				layer.rotate(120)
-				layer.ellipse(0,-1,1.2,1.8)
-			}
-			layer.fill(251,166,172)
-			layer.ellipse(0,0,1.2,1.2)
-			layer.fill(166,48,35)
-			layer.ellipse(0,0,0.8,0.8)
 		break
 		case 1:
-			layer.fill(255,230,217)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.5,2.2,3)
+			layer.translate(80,80)
+			for(let b=0,lb=16;b<lb;b++){
+				layer.fill(80+b*8,200+b*5,80+b*8)
+				layer.triangle(0,0,15+b*0.5,45-b*1.25,45-b*1.25,15+b*0.5)
+				layer.triangle(0,0,-15-b*0.5,-45+b*1.25,-45+b*1.25,-15-b*0.5)
 			}
-			layer.fill(245,113,150)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.5,1.8,2.6)
-			}
-			layer.fill(249,144,184)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.2,1.2,2)
-			}
-			layer.fill(255,255,244)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.2,0.3,0.8)
-			}
-			layer.ellipse(0,0,0.5,0.5)
+			layer.erase()
+			layer.triangle(15,20,40,30,20,55)
+			layer.triangle(-15,-60,-40,-20,-20,-25)
 		break
 		case 2:
-			layer.fill(255,217,218)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.5,2.4,2.8)
+			layer.translate(80,80)
+			for(let b=0,lb=8;b<lb;b++){
+				layer.rotate(19+a*7-b)
+				layer.fill(100+a*25+b*20,50+b*15,150+b*5)
+				for(let c=0,lc=12;c<lc;c++){
+					layer.rotate(30)
+					layer.ellipse(0,(24-b)*(1-b/lb),15*(1-b/lb),30*(1-b/lb))
+				}
 			}
-			layer.fill(210,28,53)
-			for(let h=0;h<5;h++){
+			layer.rotate(12)
+			layer.fill(50,0,100)
+			for(let b=0,lb=5;b<lb;b++){
 				layer.rotate(72)
-				layer.ellipse(0,1.5,2.1,2.5)
+				layer.rect(0,-6,2,12)
+				layer.ellipse(0,-12,4,4)
 			}
-			layer.fill(241,80,52)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.5,1.8,2.2)
-			}
-			layer.fill(254,145,80)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.2,1.4,1.8)
-			}
-			layer.fill(255,240,211)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1,0.2,0.7)
-			}
-			layer.ellipse(0,0,0.4,0.4)
 		break
 		case 3:
-			layer.fill(255,224,215)
-			for(let h=0;h<4;h++){
-				layer.rotate(90)
-				layer.ellipse(0,1.375,2.75,2.75)
+			layer.translate(80,80)
+			for(let b=0,lb=8;b<lb;b++){
+				layer.rotate(19+a*7-b)
+				layer.fill(100+a*25+b*15,50+b*15,125+b*10)
+				for(let c=0,lc=12;c<lc;c++){
+					layer.rotate(30)
+					layer.ellipse(0,(24-b)*(1-b/lb),15*(1-b/lb),30*(1-b/lb))
+				}
 			}
-			layer.fill(23,165,189)
-			for(let h=0;h<4;h++){
-				layer.rotate(90)
-				layer.ellipse(0,1.375,2.25,2.25)
-			}
-			layer.fill(108,215,222)
-			for(let h=0;h<4;h++){
-				layer.rotate(90)
-				layer.ellipse(0,1.375,1.75,1.75)
-			}
-			layer.rotate(45)
-			layer.fill(255,224,215)
-			for(let h=0;h<4;h++){
-				layer.rotate(90)
-				layer.ellipse(0,1.375,2.75,2.75)
-			}
-			layer.fill(186,54,77)
-			for(let h=0;h<4;h++){
-				layer.rotate(90)
-				layer.ellipse(0,1.375,2.25,2.25)
-			}
-			layer.fill(255,210,207)
-			for(let h=0;h<4;h++){
-				layer.rotate(90)
-				layer.ellipse(-0.375,-1.75,0.25,0.25)
-				layer.ellipse(0.375,-1.75,0.25,0.25)
-				layer.ellipse(-0.375,-1,0.25,0.25)
-				layer.ellipse(0.375,-1,0.25,0.25)
+			layer.rotate(48)
+			layer.fill(75,0,75)
+			for(let b=0,lb=5;b<lb;b++){
+				layer.rotate(72)
+				layer.rect(0,-6,2,12)
+				layer.ellipse(0,-12,4,4)
 			}
 		break
 		case 4:
-			layer.strokeJoin(ROUND)
-			layer.stroke(231,208,210)
-			layer.strokeWeight(0.6)
-			for(let h=0;h<6;h++){
-				layer.rotate(45+(h%2)*30)
-				layer.triangle(0,0,-0.65,1.2,0.65,1.2)
-				layer.arc(0,1.5,1.5,1.5,0,360)
-			}
-			layer.noStroke()
-			for(let g=0,lg=10;g<lg;g++){
-				layer.fill(161+82*g/lg,1+123*g/lg,19+143*g/lg)
-				for(let h=0;h<6;h++){
-					layer.rotate(45+(h%2)*30)
-					layer.triangle(0,0,-0.65*(1-g/lg),1.2*(1-0.8*g/lg),0.65*(1-g/lg),1.2*(1-0.8*g/lg))
-					layer.arc(0,1.5*(1-0.8*g/lg),1.5*(1-g/lg),1.5,0,360)
-				}
-			}
-			layer.rotate(22.5)
-			layer.fill(166,58,30)
-			layer.stroke(214,185,132)
-			layer.strokeWeight(0.1)
-			for(let h=0;h<3;h++){
-				layer.rotate(120)
-				layer.bezier(0,0,-0.4,1.6,0.4,1.6,0,0)
-			}
-			layer.strokeJoin(MITER)
+			layer.fill(150,160,196)
+			layer.rect(80,80,100,20)
+			layer.ellipse(80,70,100,100)
+			layer.ellipse(80,90,100,100)
+			layer.fill(105,112,137)
+			layer.rect(80,70,100,6)
+			layer.rect(80,90,100,6)
+			layer.quad(36,47,124,47,127,53,33,53)
+			layer.quad(36,113,124,113,127,107,33,107)
+			layer.quad(54,27,106,27,114,33,46,33)
+			layer.quad(54,133,106,133,114,127,46,127)
 		break
 		case 5:
-			layer.fill(242,232,231)
-			for(let h=0;h<3;h++){
-				layer.rotate(120)
-				layer.ellipse(0,1.25,3.25,3)
-			}
-			layer.fill(189,42,26)
-			for(let h=0;h<3;h++){
-				layer.rotate(120)
-				layer.ellipse(0,1.125,2.25,2.25)
-			}
-			layer.stroke(224,142,139)
-			layer.strokeWeight(0.15)
-			for(let h=0;h<3;h++){
-				layer.rotate(120)
-				layer.ellipse(-0.45,1.4,0.5,0.5)
-				layer.ellipse(0.45,1.4,0.5,0.5)
-				layer.ellipse(0,0.65,0.5,0.5)
-			}
+			layer.fill(150,160,196)
+			layer.rect(80,80,100,20)
+			layer.ellipse(80,70,100,100)
+			layer.ellipse(80,90,100,100)
+			layer.fill(105,112,137)
+			layer.rect(80,70,100,6)
+			layer.rect(80,90,100,6)
+			layer.quad(36,47,124,47,127,53,33,53)
+			layer.quad(36,113,124,113,127,107,33,107)
+			layer.quad(54,27,106,27,114,33,46,33)
+			layer.quad(54,133,106,133,114,127,46,127)
+			layer.erase()
+			layer.triangle(90,70,65,20,115,20)
+			layer.triangle(65,100,95,140,35,140)
 		break
 		case 6:
-			layer.fill(241,212,226)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.1,2.1,2.7)
-			}
-			layer.fill(143,90,141)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.1,1.7,2.3)
-			}
-			layer.rotate(36)
-			layer.fill(229,201,211)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.05,2.4,2.7)
-			}
-			layer.fill(247,132,76)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.05,1.8,2.1)
-			}
-			layer.fill(237,163,170)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,0.5,0.5,4/3)
-			}
-			layer.fill(128,59,148)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,0.5,1/6,1)
-			}
-			layer.rotate(36)
-			layer.fill(255,197,164)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1/3,0.5,1)
-			}
-			layer.fill(210,23,61)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1/3,1/6,2/3)
-			}
+			layer.fill(150,160,196)
+			layer.rect(80,80,100,20)
+			layer.ellipse(80,70,100,100)
+			layer.ellipse(80,90,100,100)
+			layer.fill(105,112,137)
+			layer.rect(80,70,100,6)
+			layer.rect(80,90,100,6)
+			layer.quad(36,47,124,47,127,53,33,53)
+			layer.quad(36,113,124,113,127,107,33,107)
+			layer.quad(54,27,106,27,114,33,46,33)
+			layer.quad(54,133,106,133,114,127,46,127)
+			layer.erase()
+			layer.triangle(70,50,25,20,115,20)
+			layer.triangle(95,85,75,140,115,140)
 		break
 		case 7:
-			layer.fill(255,246,236)
-			for(let h=0;h<10;h++){
-				layer.rotate(27+(h%2)*18)
-				layer.arc(0,1.6,1.3,1.3,0,360)
-			}
-			layer.ellipse(0,0,3,3)
-			for(let g=0,lg=10;g<lg;g++){
-				layer.fill(162+59*abs(4-g)/5,40+117*abs(4-g)/5,61+72*abs(4-g)/5)
-				for(let h=0;h<10;h++){
-					layer.rotate(27+(h%2)*18)
-					layer.triangle(0,0,-0.5*(1-g/lg),1.5*(1-g/lg),0.5*(1-g/lg),1.5*(1-g/lg))
-					layer.arc(0,1.6*(1-g/lg),1*(1-g/lg),1*(1-g/lg),0,360)
-				}
-			}
-			layer.rotate(13.5)
-			layer.fill(254,242,237)
-			layer.ellipse(0,0,0.6,0.6)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.rect(0,-0.8,0.15,1.6)
-			}
-			layer.fill(211,95,159)
-			layer.ellipse(0,0,0.4,0.4)
+			layer.stroke(95,55,65)
+			layer.strokeWeight(20)
+			layer.line(24,46,80,150)
 		break
 		case 8:
-			layer.fill(233,197,220)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,2,0.8,2)
-			}
-			layer.fill(157,78,128)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,2,0.6,1.8)
-			}
-			layer.fill(123,64,107)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.85,0.5,1.5)
-			}
-			layer.fill(79,29,75)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.7,0.4,1.2)
-			}
-			layer.rotate(48)
-			layer.fill(249,212,237)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.2,1.2,2.4)
-			}
-			layer.fill(172,5,65)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.2,1,2.2)
-			}
-			layer.fill(193,15,82)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,0.8,0.6,1.4)
-			}
-			layer.rotate(36)
-			layer.fill(252,206,219)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.2,1.2,2.4)
-			}
-			layer.fill(222,84,132)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.2,1,2.2)
-			}
-			layer.fill(252,130,170)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,0.8,0.6,1.4)
-			}
-			layer.fill(236,137,109)
-			layer.ellipse(0,0,0.6,0.6)
-			layer.fill(253,213,132)
-			layer.ellipse(0,0,0.4,0.4)
+			layer.stroke(95,55,65)
+			layer.strokeWeight(20)
+			layer.line(136,46,80,150)
 		break
 		case 9:
-			layer.fill(253,233,237)
-			for(let h=0;h<8;h++){
-				layer.rotate(45+lcos(h*90+45)*10)
-				layer.ellipse(0,lsin(h*90)*0.4+1.6,1,2)
-				layer.rect(0,-1,0.16,2)
-			}
-			for(let g=0,lg=5;g<lg;g++){
-				layer.fill(217-38*g/lg,224-63*g/lg,137-66*g/lg)
-				for(let h=0;h<8;h++){
-					layer.rotate(45+lcos(h*90+45)*10)
-					layer.ellipse(0,lsin(h*90)*0.4+1.6-0.9*g/lg,0.8*(1-g/lg),1.8*(1-g/lg))
-					layer.rect(0,-(lsin(h*90)*0.4+1.6-0.9*g/lg)/2,0.08-0.08*g/lg,lsin(h*90)*0.4+1.6-0.9*g/lg)
-				}
-			}
-			layer.rotate(18)
-			layer.scale(0.8)
-			layer.fill(235,201,215)
-			for(let h=0;h<8;h++){
-				layer.rotate(45+lcos(h*90+45)*10)
-				layer.ellipse(0,lsin(h*90)*0.4+1.6,1,2)
-				layer.rect(0,-1,0.16,2)
-			}
-			for(let g=0,lg=5;g<lg;g++){
-				layer.fill(173-51*g/lg,113-68*g/lg,180-42*g/lg)
-				for(let h=0;h<8;h++){
-					layer.rotate(45+lcos(h*90+45)*10)
-					layer.ellipse(0,lsin(h*90)*0.4+1.6-0.9*g/lg,0.8*(1-g/lg),1.8*(1-g/lg))
-					layer.rect(0,-(lsin(h*90)*0.4+1.6-0.9*g/lg)/2,0.08-0.08*g/lg,lsin(h*90)*0.4+1.6-0.9*g/lg)
-				}
-			}
+			layer.translate(80,140)
+			flower(layer,0.4,[[136,61,92],[195,68,87],[124,41,51],[211,153,120]],[21,28,7,3],[56],1,100)
+			layer.translate(0,-30)
+			flower(layer,0.5,[[136,61,92],[195,68,87],[124,41,51],[211,153,120]],[21,28,7,3],[56],1,100)
 		break
 		case 10:
-			layer.fill(254,180,202)
-			for(let h=0;h<3;h++){
-				layer.rotate(120)
-				layer.ellipse(0,1.8,1.2,2)
-			}
-			layer.fill(169,91,129)
-			for(let h=0;h<3;h++){
-				layer.rotate(120)
-				layer.ellipse(0,1.8,1,1.8)
-			}
-			layer.fill(106,48,88)
-			for(let h=0;h<3;h++){
-				layer.rotate(120)
-				layer.ellipse(0,1.65,0.7,1.5)
-			}
-			layer.fill(69,24,68)
-			for(let h=0;h<3;h++){
-				layer.rotate(120)
-				layer.ellipse(0,1.5,0.4,1.2)
-			}
-			layer.rotate(48)
-			for(let h=0,lh=16;h<lh;h++){
-				layer.rotate(72)
-				layer.fill(248+6*h/lh,215-21*h/lh,232-19*h/lh)
-				layer.ellipse(0,-1.2+h*0.05,2.2-h*0.1,2-h*0.1)
-				layer.ellipse(0,1.2-h*0.05,2.2-h*0.1,2-h*0.1)
-				layer.fill(255-52*h/lh,170-103*h/lh,192-80*h/lh)
-				layer.ellipse(0,-1.2+h*0.05,2-h*0.1,1.8-h*0.1)
-				layer.ellipse(0,1.2-h*0.05,2-h*0.1,1.8-h*0.1)
-			}
-			layer.fill(239,177,106)
-			layer.ellipse(0,0,0.8,0.8)
-			layer.fill(250,210,145)
-			layer.ellipse(0,0,0.6,0.6)
+			layer.translate(80,80)
+			flower(layer,0.5,[[241,170,189],[250,222,226],[240,207,211],[254,228,232]],[20,40,12,4],[54],1,100)
 		break
 		case 11:
-			layer.fill(246,136,164)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.4,1.4,2.4)
-			}
-			layer.fill(188,10,69)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.4,1,2)
-			}
-			layer.rotate(36)
-			layer.fill(244,139,177)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.4,1.4,2.4)
-			}
-			layer.fill(181,3,65)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.4,1,2)
-			}
-			layer.fill(230,118,138)
-			layer.ellipse(0,0,1,1)
-			layer.fill(167,61,48)
-			layer.ellipse(0,0,0.6,0.6)
+			layer.translate(80,160)
+			crystalFlower(layer,0.3,36,[[216,112,124],[247,225,225],[220,160,180],[240,180,200]],[30,4,3],[62],1)
+			layer.translate(0,-30)
+			crystalFlower(layer,0.5,0,[[216,112,124],[247,225,225],[220,160,180],[240,180,200]],[30,4,3],[62],1)
 		break
 		case 12:
-			layer.fill(243,186,203)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.4,1,2.8)
-			}
-			layer.fill(231,97,124)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.4,0.6,2.4)
-			}
-			layer.fill(225,51,100)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1,0.4,1.6)
-			}
-			layer.rotate(36)
-			layer.fill(232,169,191)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.4,1,2.8)
-			}
-			layer.fill(232,112,133)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.4,0.6,2.4)
-			}
-			layer.fill(223,55,101)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1,0.4,1.6)
-			}
-			layer.fill(248,167,196)
-			layer.ellipse(0,0,0.8,0.8)
-			layer.fill(193,80,113)
-			layer.ellipse(0,0,0.4,0.4)
+			layer.fill(151,119,103)
+			layer.rect(80,80,100,20)
+			layer.ellipse(80,70,100,100)
+			layer.ellipse(80,90,100,100)
+			layer.fill(122,94,90)
+			layer.rect(80,70,100,6)
+			layer.rect(80,90,100,6)
+			layer.quad(36,47,124,47,127,53,33,53)
+			layer.quad(36,113,124,113,127,107,33,107)
+			layer.quad(54,27,106,27,114,33,46,33)
+			layer.quad(54,133,106,133,114,127,46,127)
 		break
 		case 13:
-			layer.fill(231,108,217)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.beginShape()
-				layer.vertex(0,-0.3)
-				layer.bezierVertex(-1,0.9,-1,1.8,0,3)
-				layer.bezierVertex(1,1.8,1,0.9,0,-0.3)
-				layer.endShape()
-			}
-			layer.fill(125,3,44)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.beginShape()
-				layer.vertex(0,0)
-				layer.bezierVertex(-0.8,1.2,-0.8,1.5,0,2.7)
-				layer.bezierVertex(0.8,1.5,0.8,1.2,0,0)
-				layer.endShape()
-			}
-			layer.fill(194,92,132)
-			layer.ellipse(0,0,1,1)
-			layer.fill(141,37,74)
-			layer.ellipse(0,0,0.6,0.6)
+			layer.fill(151,119,103)
+			layer.rect(80,80,100,20)
+			layer.ellipse(80,70,100,100)
+			layer.ellipse(80,90,100,100)
+			layer.fill(122,94,90)
+			layer.rect(80,70,100,6)
+			layer.rect(80,90,100,6)
+			layer.quad(36,47,124,47,127,53,33,53)
+			layer.quad(36,113,124,113,127,107,33,107)
+			layer.quad(54,27,106,27,114,33,46,33)
+			layer.quad(54,133,106,133,114,127,46,127)
+			layer.erase()
+			layer.triangle(90,70,65,20,115,20)
+			layer.triangle(65,100,95,140,35,140)
 		break
 		case 14:
-			layer.fill(245,171,177)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.5,1.1,2.1)
-				layer.rect(0,0.8,0.15,1.6)
+			layer.fill(151,119,103)
+			layer.rect(80,80,100,20)
+			layer.ellipse(80,70,100,100)
+			layer.ellipse(80,90,100,100)
+			layer.fill(122,94,90)
+			layer.rect(80,70,100,6)
+			layer.rect(80,90,100,6)
+			layer.quad(36,47,124,47,127,53,33,53)
+			layer.quad(36,113,124,113,127,107,33,107)
+			layer.quad(54,27,106,27,114,33,46,33)
+			layer.quad(54,133,106,133,114,127,46,127)
+			layer.erase()
+			layer.triangle(70,50,25,20,115,20)
+			layer.triangle(95,85,75,140,115,140)
+		break
+		case 15:
+			layer.stroke(201,61,96)
+			layer.strokeWeight(20)
+			layer.line(24,46,80,150)
+			layer.stroke(233,216,194)
+			layer.strokeWeight(8)
+			for(let b=0,lb=4;b<lb;b++){
+				layer.point(29+b*14,56+b*26)
 			}
-			for(let g=0,lg=5;g<lg;g++){
-				layer.fill(179-22*g/lg,125-51*g/lg,179)
-				for(let h=0;h<5;h++){
-					layer.rotate(72)
-					layer.ellipse(0,1.5-0.95*g/lg,0.8*(1-g/lg),1.8*(1-g/lg))
+		break
+		case 16:
+			layer.stroke(201,61,96)
+			layer.strokeWeight(20)
+			layer.line(136,46,80,150)
+			layer.stroke(233,216,194)
+			layer.strokeWeight(8)
+			for(let b=0,lb=4;b<lb;b++){
+				layer.point(131-b*14,56+b*26)
+			}
+		break
+		case 17:
+			layer.translate(80,80)
+			layer.scale(-0.9,0.9)
+			layer.rotate(-90)
+			layer.fill(138,141,207)
+			layer.arc(0,0,150,180,0,30)
+			layer.fill(111,114,178)
+			layer.arc(0,0,150,180,30,60)
+			layer.fill(88,82,128)
+			layer.arc(0,0,150,180,60,90)
+			layer.fill(161,168,222)
+			layer.arc(0,0,135,180,0,15)
+			layer.fill(121,124,188)
+			layer.arc(0,0,135,180,15,45)
+			layer.fill(98,92,138)
+			layer.arc(0,0,135,180,45,75)
+			layer.fill(77,65,108)
+			layer.arc(0,0,135,180,75,90)
+			layer.erase()
+			layer.arc(0,0,120,180,0,90)
+			layer.noErase()
+			layer.fill(189,187,237)
+			layer.rect(0,0,160,8,3)
+			layer.fill(149,134,184)
+			layer.rect(0,-2,160,4,3)
+		break
+		case 18:
+			layer.translate(80,80)
+			layer.fill(255,123,205)
+			layer.noStroke()
+			for(let a=0;a<5;a++){
+				layer.beginShape()
+				layer.vertex(0,0)
+				layer.bezierVertex(-18,-20,-16,-45,0,-45)
+				layer.bezierVertex(16,-45,18,-20,0,0)
+				layer.endShape()
+				layer.rotate(72)
+			}
+			layer.erase()
+			layer.ellipse(0,0,20,20)
+		break
+		case 19:
+			layer.fill(183,157,196)
+			layer.rect(80,80,100,20)
+			layer.ellipse(80,70,100,100)
+			layer.ellipse(80,90,100,100)
+			layer.fill(116,109,166)
+			layer.rect(80,70,100,6)
+			layer.rect(80,90,100,6)
+			layer.quad(36,47,124,47,127,53,33,53)
+			layer.quad(36,113,124,113,127,107,33,107)
+			layer.quad(54,27,106,27,114,33,46,33)
+			layer.quad(54,133,106,133,114,127,46,127)
+		break
+		case 20:
+			layer.fill(183,157,196)
+			layer.rect(80,80,100,20)
+			layer.ellipse(80,70,100,100)
+			layer.ellipse(80,90,100,100)
+			layer.fill(116,109,166)
+			layer.rect(80,70,100,6)
+			layer.rect(80,90,100,6)
+			layer.quad(36,47,124,47,127,53,33,53)
+			layer.quad(36,113,124,113,127,107,33,107)
+			layer.quad(54,27,106,27,114,33,46,33)
+			layer.quad(54,133,106,133,114,127,46,127)
+			layer.erase()
+			layer.triangle(90,70,65,20,115,20)
+			layer.triangle(65,100,95,140,35,140)
+		break
+		case 21:
+			layer.fill(183,157,196)
+			layer.rect(80,80,100,20)
+			layer.ellipse(80,70,100,100)
+			layer.ellipse(80,90,100,100)
+			layer.fill(116,109,166)
+			layer.rect(80,70,100,6)
+			layer.rect(80,90,100,6)
+			layer.quad(36,47,124,47,127,53,33,53)
+			layer.quad(36,113,124,113,127,107,33,107)
+			layer.quad(54,27,106,27,114,33,46,33)
+			layer.quad(54,133,106,133,114,127,46,127)
+			layer.erase()
+			layer.triangle(70,50,25,20,115,20)
+			layer.triangle(95,85,75,140,115,140)
+		break
+		case 22:
+			layer.stroke(200,233,226)
+			layer.strokeWeight(20)
+			layer.line(24,46,80,150)
+			layer.stroke(107,200,215)
+			layer.strokeWeight(8)
+			for(let b=0,lb=4;b<lb;b++){
+				layer.line(22+b*14,53.5+b*26,32+b*14,53.5+b*26)
+			}
+		break
+		case 23:
+			layer.stroke(200,233,226)
+			layer.strokeWeight(20)
+			layer.line(136,46,80,150)
+			layer.stroke(107,200,215)
+			layer.strokeWeight(8)
+			for(let b=0,lb=4;b<lb;b++){
+				layer.line(138-b*14,53.5+b*26,128-b*14,53.5+b*26)
+			}
+		break
+		case 24:
+			layer.stroke(99,58,71)
+			layer.strokeWeight(3)
+			for(let a=0;a<10;a++){
+				layer.line(300,225,60+(a+0.5)*48,75)
+			}
+			layer.fill(0)
+			layer.noStroke()
+			layer.erase()
+			layer.beginShape()
+			layer.vertex(480,125)
+			layer.bezierVertex(400,100,200,100,120,125)
+			layer.vertex(20,125)
+			layer.vertex(20,50)
+			layer.vertex(580,50)
+			layer.vertex(580,125)
+			layer.endShape()
+		break
+		case 25:
+			layer.stroke(178,86,74)
+			layer.strokeWeight(3)
+			for(let a=0;a<11;a++){
+				layer.line(200,125,20+a*36,25)
+			}
+			layer.fill(0)
+			layer.noStroke()
+			layer.erase()
+			layer.beginShape()
+			layer.vertex(380,25)
+			layer.bezierVertex(300,50,100,50,20,25)
+			layer.vertex(0,20)
+			layer.vertex(400,20)
+			layer.endShape()
+		break
+		case 26:
+			layer.fill(0,100,0)
+			layer.ellipse(40,40,54,54)
+			for(let a=0,la=60;a<la;a++){
+				b=360*a/la
+				c=sqrt(random(0,28**2))
+				layer.fill(random(0,50),100+random(0,100),random(0,50))
+				layer.ellipse(40+lsin(b)*c,40+lcos(b)*c,random(10,15))
+			}
+		break
+		case 27:
+			layer.fill(155,176,150)
+			layer.rect(80,80,100,20)
+			layer.ellipse(80,70,100,100)
+			layer.ellipse(80,90,100,100)
+			layer.fill(107,117,105)
+			layer.rect(80,70,100,6)
+			layer.rect(80,90,100,6)
+			layer.quad(36,47,124,47,127,53,33,53)
+			layer.quad(36,113,124,113,127,107,33,107)
+			layer.quad(54,27,106,27,114,33,46,33)
+			layer.quad(54,133,106,133,114,127,46,127)
+		break
+		case 28:
+			layer.fill(155,176,150)
+			layer.rect(80,80,100,20)
+			layer.ellipse(80,70,100,100)
+			layer.ellipse(80,90,100,100)
+			layer.fill(107,117,105)
+			layer.rect(80,70,100,6)
+			layer.rect(80,90,100,6)
+			layer.quad(36,47,124,47,127,53,33,53)
+			layer.quad(36,113,124,113,127,107,33,107)
+			layer.quad(54,27,106,27,114,33,46,33)
+			layer.quad(54,133,106,133,114,127,46,127)
+			layer.erase()
+			layer.triangle(90,70,65,20,115,20)
+			layer.triangle(65,100,95,140,35,140)
+		break
+		case 29:
+			layer.fill(155,176,150)
+			layer.rect(80,80,100,20)
+			layer.ellipse(80,70,100,100)
+			layer.ellipse(80,90,100,100)
+			layer.fill(107,117,105)
+			layer.rect(80,70,100,6)
+			layer.rect(80,90,100,6)
+			layer.quad(36,47,124,47,127,53,33,53)
+			layer.quad(36,113,124,113,127,107,33,107)
+			layer.quad(54,27,106,27,114,33,46,33)
+			layer.quad(54,133,106,133,114,127,46,127)
+			layer.erase()
+			layer.triangle(70,50,25,20,115,20)
+			layer.triangle(95,85,75,140,115,140)
+		break
+		case 30:
+			layer.stroke(55,65,95)
+			layer.strokeWeight(20)
+			layer.line(24,46,80,150)
+		break
+		case 31:
+			layer.stroke(55,65,95)
+			layer.strokeWeight(20)
+			layer.line(136,46,80,150)
+		break
+		case 32:
+			layer.translate(80,80)
+			layer.rotate(15)
+			for(let b=0,lb=16;b<lb;b++){
+				layer.fill(184+b*10,102+b*6,78+b*5)
+				for(let c=0,lc=4;c<lc;c++){
+					layer.rotate(90)
+					layer.triangle(-2,-2,20+b*0.5,45-b*1.25,45-b*1.25,20+b*0.5)
 				}
 			}
-			layer.rotate(30)
-			layer.fill(246,185,195)
-			for(let h=0;h<5;h++){
-				layer.rotate(72)
-				layer.ellipse(0,1.8,1.3,2.5)
-				layer.rect(0,1,0.15,2)
-			}
-			for(let g=0,lg=5;g<lg;g++){
-				layer.fill(190-76*g/lg,147-133*g/lg,183-42*g/lg)
-				for(let h=0;h<5;h++){
-					layer.rotate(72)
-					layer.ellipse(0,1.8-1.1*g/lg,1*(1-g/lg),2.2*(1-g/lg))
+		break
+		case 33:
+			layer.translate(80,80)
+			layer.rotate(15)
+			for(let b=0,lb=16;b<lb;b++){
+				layer.fill(184+b*10,102+b*6,78+b*5)
+				for(let c=0,lc=4;c<lc;c++){
+					layer.rotate(90)
+					layer.triangle(-2,-2,20+b*0.5,45-b*1.25,45-b*1.25,20+b*0.5)
 				}
+			}
+			layer.erase()
+			layer.triangle(15,20,40,30,20,55)
+			layer.triangle(-15,-60,-40,-20,-20,-25)
+		break
+		case 34:
+			layer.translate(80,80)
+			for(let b=0,lb=8;b<lb;b++){
+				layer.rotate(19+a*7-b)
+				layer.fill(225-a*25+b*10,75+a*125+b*10,75+a*125+b*10)
+				for(let c=0,lc=5;c<lc;c++){
+					layer.rotate(72)
+					layer.ellipse(0,(24-b)*(1-b/lb),24*(1-b/lb),36*(1-b/lb))
+				}
+			}
+			layer.rotate(-12)
+			layer.fill(225,200,50)
+			for(let b=0,lb=9;b<lb;b++){
+				layer.rotate(40)
+				layer.rect(0,-5,1,10)
+				layer.ellipse(0,-10,3,3)
+			}
+		break
+		case 35:
+			layer.translate(80,80)
+			for(let b=0,lb=8;b<lb;b++){
+				layer.rotate(19+a*7-b)
+				layer.fill(225-a*25+b*10,75+a*125+b*10,75+a*125+b*10)
+				for(let c=0,lc=5;c<lc;c++){
+					layer.rotate(72)
+					layer.ellipse(0,(24-b)*(1-b/lb),24*(1-b/lb),36*(1-b/lb))
+				}
+			}
+			layer.rotate(-48)
+			layer.fill(225,200,50)
+			for(let b=0,lb=9;b<lb;b++){
+				layer.rotate(40)
+				layer.rect(0,-5,1,10)
+				layer.ellipse(0,-10,3,3)
+			}
+		break
+		case 36:
+			layer.translate(80,80)
+			layer.rotate(-155)
+			for(let a=0,la=16;a<la;a++){
+				let merge=mergeColor([234,200,116],[203,130,68],abs(8-a)/8)
+				layer.fill(...merge)
+				layer.rotate(-10)
+				layer.quad(0,0,-48+a/la*24,-24+a/la*24,-39+a/la*12,0,-48+a/la*24,24-a/la*24)
+				layer.rotate(20)
+				layer.quad(0,0,48-a/la*24,-24+a/la*24,39-a/la*12,0,48-a/la*24,24-a/la*24)
+				layer.rotate(50)
+				layer.quad(0,0,-48+a/la*24,-9+a/la*9,-42+a/la*12,0,-48+a/la*24,9-a/la*9)
+				layer.rotate(-120)
+				layer.quad(0,0,48-a/la*24,-9+a/la*9,42-a/la*12,0,48-a/la*24,9-a/la*9)
+				layer.rotate(60)
+			}
+		break
+		case 37:
+			/*let gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80)]
+			gradient[0].colors(
+				0.00,color(255,251,222),
+				1.00,color(255,215,115)
+			)
+			gradient[1].colors(
+				0.00,color(255,215,115),
+				1.00,color(255,251,222)
+			)
+			layer.translate(0,40)
+			layer.fillGradient(gradient[0])
+			layer.arc(55,40,100,100,-180,0)
+			layer.erase()
+			layer.arc(45,40,81,81,-180,0)
+			layer.noErase()
+			layer.fillGradient(gradient[1])
+			layer.arc(105,40,100,100,0,180)
+			layer.erase()
+			layer.arc(115,40,81,81,0,180)
+			layer.translate(0,40)
+			layer.fillGradient(gradient[0])
+			layer.arc(55,40,100,100,0,180)
+			layer.erase()
+			layer.arc(45,40,81,81,0,180)
+			layer.noErase()
+			layer.fillGradient(gradient[1])
+			layer.arc(105,40,100,100,-180,0)
+			layer.erase()
+			layer.arc(115,40,81,81,-180,0)
+			layer.image(graphics.minor[38],0,-40)*/
+
+			gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80)]
+			gradient[0].colors(
+				0.00,color(255,251,222),
+				1.00,color(255,215,115)
+			)
+			gradient[1].colors(
+				0.00,color(255,215,115),
+				1.00,color(255,251,222)
+			)
+			gradient[2].colors(
+				0.00,color(253,234,172),
+				1.00,color(239,192,104)
+			)
+			gradient[3].colors(
+				0.00,color(239,192,104),
+				1.00,color(253,234,172)
+			)
+			layer.translate(0,40)
+			layer.fillGradient(gradient[2])
+			layer.arc(60,40,103,103,-180,0)
+			layer.fillGradient(gradient[3])
+			layer.arc(100,40,103,103,0,180)
+
+			layer.fillGradient(gradient[0])
+			layer.arc(60,40,100,100,-180,0)
+			layer.fillGradient(gradient[2])
+			layer.arc(50,40,81,81,-180,0)
+			layer.erase()
+			layer.arc(50,40,78,78,-180,0)
+			layer.rect(10,40,20,25)
+			layer.noErase()
+			layer.fillGradient(gradient[1])
+			layer.arc(100,40,100,100,0,180)
+			layer.fillGradient(gradient[3])
+			layer.arc(110,40,81,81,0,180)
+			layer.erase()
+			layer.arc(110,40,78,78,0,180)
+			layer.rect(150,40,20,25)
+
+			temp=createGraphics(160,160)
+			setupLayer(temp)
+			generateGeneralSprite(temp,38)
+			layer.image(temp,0,-40)
+		break
+		case 38:
+			gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80)]
+			gradient[0].colors(
+				0.00,color(255,251,222),
+				1.00,color(255,215,115)
+			)
+			gradient[1].colors(
+				0.00,color(255,215,115),
+				1.00,color(255,251,222)
+			)
+			gradient[2].colors(
+				0.00,color(253,234,172),
+				1.00,color(239,192,104)
+			)
+			gradient[3].colors(
+				0.00,color(239,192,104),
+				1.00,color(253,234,172)
+			)
+			layer.translate(0,40)
+			layer.fill(0)
+			layer.fillGradient(gradient[2])
+			layer.arc(60,40,103,103,0,180)
+			layer.fillGradient(gradient[3])
+			layer.arc(100,40,103,103,-180,0)
+
+			layer.fillGradient(gradient[0])
+			layer.arc(60,40,100,100,0,180)
+			layer.fillGradient(gradient[2])
+			layer.arc(50,40,81,81,0,180)
+			layer.erase()
+			layer.arc(50,40,78,78,0,180)
+			layer.rect(10,40,20,25)
+			layer.noErase()
+			layer.fillGradient(gradient[1])
+			layer.arc(100,40,100,100,-180,0)
+			layer.fillGradient(gradient[3])
+			layer.arc(110,40,81,81,-180,0)
+			layer.erase()
+			layer.arc(110,40,78,78,-180,0)
+			layer.rect(150,40,20,25)
+		break
+		case 39:
+			layer.scale(3/2)
+			for(let a=0,la=60;a<la;a++){
+				for(let b=0,lb=80;b<lb;b++){
+					let c=((a^b)%(5*7*11*13))^(((a+20)^b)%(5*7*11*13))*2
+					if(c%5==0){
+						layer.fill(230,211,227)
+						layer.rect(a+0.5,b+0.5,1,1)
+					}
+					if(c%7==0){
+						layer.fill(192,190,215)
+						layer.rect(a+0.5,b+0.5,1,1)
+					}
+					if(c%11==0){
+						layer.fill(133,147,205)
+						layer.rect(a+0.5,b+0.5,1,1)
+					}
+					if(c%13==0){
+						layer.fill(177,122,195)
+						layer.rect(a+0.5,b+0.5,1,1)
+					}
+				}
+			}
+		break
+		case 40:
+			gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80)]
+			gradient[0].colors(
+				0.00,color(255,247,189),
+				1.00,color(255,207,87)
+			)
+			gradient[1].colors(
+				0.00,color(255,207,87),
+				1.00,color(255,247,189)
+			)
+			gradient[2].colors(
+				0.00,color(255,239,123),
+				1.00,color(235,159,0)
+			)
+			gradient[3].colors(
+				0.00,color(235,159,0),
+				1.00,color(255,239,123)
+			)
+			layer.translate(0,40)
+			layer.fillGradient(gradient[2])
+			layer.arc(60,40,103,103,-180,0)
+			layer.fillGradient(gradient[3])
+			layer.arc(100,40,103,103,0,180)
+
+			layer.fillGradient(gradient[0])
+			layer.arc(60,40,100,100,-180,0)
+			layer.fillGradient(gradient[2])
+			layer.arc(48,40,77,77,-180,0)
+			layer.erase()
+			layer.arc(48,40,74,74,-180,0)
+			layer.rect(10,40,20,25)
+			layer.noErase()
+			layer.fillGradient(gradient[1])
+			layer.arc(100,40,100,100,0,180)
+			layer.fillGradient(gradient[3])
+			layer.arc(112,40,77,77,0,180)
+			layer.erase()
+			layer.arc(112,40,74,74,0,180)
+			layer.rect(150,40,20,25)
+
+			temp=createGraphics(160,160)
+			setupLayer(temp)
+			generateGeneralSprite(temp,41)
+			layer.image(temp,0,-40)
+		break
+		case 41:
+			gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80)]
+			gradient[0].colors(
+				0.00,color(255,247,189),
+				1.00,color(255,207,87)
+			)
+			gradient[1].colors(
+				0.00,color(255,207,87),
+				1.00,color(255,247,189)
+			)
+			gradient[2].colors(
+				0.00,color(255,239,123),
+				1.00,color(235,159,0)
+			)
+			gradient[3].colors(
+				0.00,color(235,159,0),
+				1.00,color(255,239,123)
+			)
+			layer.translate(0,40)
+			layer.fill(0)
+			layer.fillGradient(gradient[2])
+			layer.arc(60,40,103,103,0,180)
+			layer.fillGradient(gradient[3])
+			layer.arc(100,40,103,103,-180,0)
+
+			layer.fillGradient(gradient[0])
+			layer.arc(60,40,100,100,0,180)
+			layer.fillGradient(gradient[2])
+			layer.arc(48,40,77,77,0,180)
+			layer.erase()
+			layer.arc(48,40,74,74,0,180)
+			layer.rect(10,40,20,25)
+			layer.noErase()
+			layer.fillGradient(gradient[1])
+			layer.arc(100,40,100,100,-180,0)
+			layer.fillGradient(gradient[3])
+			layer.arc(112,40,77,77,-180,0)
+			layer.erase()
+			layer.arc(112,40,74,74,-180,0)
+			layer.rect(150,40,20,25)
+		break
+		case 42:
+			gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80)]
+			gradient[0].colors(
+				0.00,color(255,247,189),
+				1.00,color(255,207,87)
+			)
+			gradient[1].colors(
+				0.00,color(255,207,87),
+				1.00,color(255,247,189)
+			)
+			gradient[2].colors(
+				0.00,color(255,239,123),
+				1.00,color(235,159,0)
+			)
+			gradient[3].colors(
+				0.00,color(235,159,0),
+				1.00,color(255,239,123)
+			)
+			/*layer.translate(0,40)
+			layer.fillGradient(gradient[2])
+			layer.ellipse(40,40,103,103)
+			layer.fillGradient(gradient[3])
+			layer.ellipse(160,40,103,103)
+
+			layer.fillGradient(gradient[0])
+			layer.ellipse(50,40,100,100)
+			layer.fillGradient(gradient[2])
+			layer.ellipse(35,40,77,77)
+			layer.erase()
+			layer.ellipse(35,40,74,74)
+			layer.rect(0,40,20,25)
+			layer.noErase()
+			layer.fillGradient(gradient[1])
+			layer.ellipse(150,40,100,100)
+			layer.fillGradient(gradient[3])
+			layer.ellipse(165,40,77,77)
+			layer.erase()
+			layer.ellipse(165,40,74,74)
+			layer.rect(200,40,20,25)*/
+			layer.translate(0,40)
+			/*layer.background(0)
+			layer.fill(255)
+			layer.ellipse(50,40,100)
+			layer.ellipse(150,40,100)*/
+			layer.stroke(0)
+			layer.noFill()
+			//for(let a=0,la=24;a<la;a++){
+			/*for(let a=0,la=18;a<la;a++){
+				let swivel=min(1,abs(-1.5+3*((a+16.5)%20+0.5)/la)-0.1
+				if(swivel>0){
+					layer.strokeGradient(gradient[2])
+					layer.strokeWeight(9)
+					layer.arc(45+lsin((a+0.5)/la*360)*36+(swivel<0.5?((0.5-swivel)**2)*20:0),40-lcos((a+0.5)/la*360)*36,40,40,(a+0.5)/la*360-swivel*36,(a+0.5)/la*360+swivel*36)
+					layer.strokeGradient(gradient[0])
+					layer.strokeWeight(6)
+					layer.arc(45+lsin((a+0.5)/la*360)*36+(swivel<0.5?((0.5-swivel)**2)*20:0),40-lcos((a+0.5)/la*360)*36,40,40,(a+0.5)/la*360-swivel*36,(a+0.5)/la*360+swivel*36)
+				}
+				swivel=min(1,abs(-1.5+3*((a+6.5)%20+0.5)/la)-0.1
+				if(swivel>0){
+					layer.strokeGradient(gradient[3])
+					layer.strokeWeight(9)
+					layer.arc(155+lsin((a+0.5)/la*360)*36-(swivel<0.5?((0.5-swivel)**2)*20:0),40-lcos((a+0.5)/la*360)*36,40,40,(a+0.5)/la*360-swivel*36,(a+0.5)/la*360+swivel*36)
+					layer.strokeGradient(gradient[1])
+					layer.strokeWeight(6)
+					layer.arc(155+lsin((a+0.5)/la*360)*36-(swivel<0.5?((0.5-swivel)**2)*20:0),40-lcos((a+0.5)/la*360)*36,40,40,(a+0.5)/la*360-swivel*36,(a+0.5)/la*360+swivel*36)
+				}
+				let R=5
+				let z=1.25
+				let dir=(a+0.1)/la*360
+				//let width=10+z*lsin(dir)-sqrt((z*lsin(dir))**2-z**2+R**2)
+				let width=-z*lsin(dir)+sqrt((z*lsin(dir))**2-z**2+R**2)-3.9
+				let end=(33+width*4)
+				if(width>0){
+					dir-=30
+					layer.strokeGradient(gradient[2])
+					layer.strokeWeight(9)
+					layer.arc(45+lsin(dir)*36+(width<1?(1-width)**2:0),40-lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+					layer.strokeGradient(gradient[0])
+					layer.strokeWeight(6)
+					layer.arc(45+lsin(dir)*36+(width<1?(1-width)**2:0),40-lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+				}
+				if(width>0){
+					layer.strokeGradient(gradient[3])
+					layer.strokeWeight(9)
+					layer.arc(155-lsin(dir)*36-(width<1?(1-width)**2:0),40+lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+					layer.strokeGradient(gradient[1])
+					layer.strokeWeight(6)
+					layer.arc(155-lsin(dir)*36-(width<1?(1-width)**2:0),40+lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+				}
+				if(width>0){
+					dir-=30
+					layer.strokeGradient(gradient[2])
+					layer.strokeWeight(10.5)
+					//layer.arc(45+lsin(dir)*36+(width<1?(1-width)**2:0),40-lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+					layer.arc(160+lsin(dir)*end,40-lcos(dir)*end,40,40,dir-width*15,dir+width*15)
+					layer.strokeGradient(gradient[0])
+					layer.strokeWeight(7.5)
+					//layer.arc(45+lsin(dir)*36+(width<1?(1-width)**2:0),40-lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+					layer.arc(160+lsin(dir)*end,40-lcos(dir)*end,40,40,dir-width*15,dir+width*15)
+				}
+				if(width>0){
+					layer.strokeGradient(gradient[3])
+					layer.strokeWeight(10.5)
+					//layer.arc(155-lsin(dir)*36-(width<1?(1-width)**2:0),40+lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+					layer.arc(40-lsin(dir)*end,40+lcos(dir)*end,40,40,dir-width*15+180,dir+width*15+180)
+					layer.strokeGradient(gradient[1])
+					layer.strokeWeight(7.5)
+					//layer.arc(155-lsin(dir)*36-(width<1?(1-width)**2:0),40+lcos(dir)*36,40,40,dir-width*15,dir+width*15)
+					layer.arc(40-lsin(dir)*end,40+lcos(dir)*end,40,40,dir-width*15+180,dir+width*15+180)
+				}
+			}*/
+			layer.strokeJoin(ROUND)
+			for(let b=0,lb=4;b<lb;b++){
+				layer.strokeGradient(gradient[[2,0,3,1][b]])
+				layer.strokeWeight(10.5-b%2*3)
+				layer.beginShape()
+				for(let a=0,la=37;a<la;a++){
+					let R=5
+					let z=1.5
+					let dir=((a+floor(la/4)+0.2)%la+0.1)/la*360
+					let width=-z*lsin(dir)+sqrt((z*lsin(dir))**2-z**2+R**2)-3.65
+					let end=[a%2==0?33:33+width*8]
+					if(width>0){
+						if(b<2){
+							layer.vertex(160+lsin(dir)*end,40-lcos(dir)*end)
+						}else{
+							layer.vertex(40-lsin(dir)*end,40+lcos(dir)*end)
+						}
+					}
+				}
+				layer.endShape()
 			}
 		break
 	}
@@ -2978,8 +3340,24 @@ function generateSprite(layer,type,direction){
 }
 function setupCombatantGraphics(type){
 	let data
+	/*
+	0 Lira
+	1 Sakura
+	2 Certes
+	3 Setsuna
+	4 Airi
+	5 Shiru
+	6 Daiyousei
+	7 Sanae
+	8 Shinmyoumaru
+	9 Merlin
+	10 Sagume
+	11 Meri
+	12 Menessa
+	20 Ume
+	*/
 	switch(type){
-		case 0:
+		case 0:		
 			graphics.combatant.push({
 				sprites:{detail:15,genAmount:0,animDirection:0,hair:{back:[],front:[]},kimono:{main:{back:[],front:[]},outside:{back:[],front:[]},mainDamage:{back:[],front:[]},outsideDamage:{back:[],front:[]}}},
 				parts:{kimono:{main:[],outside:[],outsideTop:[],mainDamage:[],outsideDamage:[],mainAnti:[],outsideAnti:[]}},
@@ -3206,6 +3584,16 @@ function setupCombatantGraphics(type){
 					generateSprite(data.sprites.kimono.outsideDamage.back[g],9,g*data.sprites.detail)
 					//console.log('Generated L-DOB-'+(g+1))
 				}
+			}
+			data.sprites.minor=[]
+			for(let a=0,la=9;a<la;a++){
+				switch(a){
+					default:
+						data.sprites.minor.push(createGraphics(160,160))
+					break
+				}
+				setupLayer(data.sprites.minor[a])
+				generateGeneralSprite(data.sprites.minor[a],a)
 			}
 		break
 		case 1:
@@ -3508,6 +3896,25 @@ function setupCombatantGraphics(type){
 					generateSprite(data.sprites.kimono.shadowDamage[g],28,g)
 					//console.log('Generated S-DS-'+(g+1))
 				}
+			}
+			data.sprites.minor=[]
+			for(let a=0,la=12;a<la;a++){
+				switch(a){
+					case 0: case 2:
+						data.sprites.minor.push(createGraphics(160,240))
+					break
+					case 10:
+						data.sprites.minor.push(createGraphics(600,300))
+					break
+					case 11:
+						data.sprites.minor.push(createGraphics(400,200))
+					break
+					default:
+						data.sprites.minor.push(createGraphics(160,160))
+					break
+				}
+				setupLayer(data.sprites.minor[a])
+				generateGeneralSprite(data.sprites.minor[a],9+a+(a>=10?6:0))
 			}
 		break
 		case 2:
@@ -3830,6 +4237,12 @@ function setupCombatantGraphics(type){
 					//console.log('Generated L-DOB-'+(g+1))
 				}
 			}
+			data.sprites.minor=[]
+			for(let a=0,la=9;a<la;a++){
+				data.sprites.minor.push(createGraphics(160,160))
+				setupLayer(data.sprites.minor[a])
+				generateGeneralSprite(data.sprites.minor[a],a+32-(a>=4?9:0))
+			}
 		break
 		case 4:
 			graphics.combatant.push({
@@ -4097,6 +4510,9 @@ function setupCombatantGraphics(type){
 				generateSprite(data.sprites.hair.back[g],58,g*data.sprites.detail)
 				//console.log('Generated HB-'+(g+1))
 			}
+			data.sprites.minor=[createGraphics(160,160)]
+			setupLayer(data.sprites.minor[0])
+			generateGeneralSprite(data.sprites.minor[0],36)
 		break
 		case 7:
 			graphics.combatant.push({
@@ -4930,6 +5346,19 @@ function setupCombatantGraphics(type){
 			}
 			/*let endTime=performance.now()
 			print(`Pane: ${endTime - startTime} milliseconds`)*/
+			data.sprites.minor=[]
+			for(let a=0,la=2;a<la;a++){
+				switch(a){
+					case 1:
+						data.sprites.minor.push(createGraphics(200,160))
+					break
+					default:
+						data.sprites.minor.push(createGraphics(160,160))
+					break
+				}
+				setupLayer(data.sprites.minor[a])
+				generateGeneralSprite(data.sprites.minor[a],37+a*5)
+			}
 		break
 		case 20:
 			graphics.combatant.push({
@@ -5142,6 +5571,12 @@ function setupCombatantGraphics(type){
 					generateSprite(data.sprites.kimono.mainDamage.back[g],34,g*data.sprites.detail)
 					//console.log('Generated U-KMB-'+(g+1))
 				}
+			}
+			data.sprites.minor=[]
+			for(let a=0,la=5;a<la;a++){
+				data.sprites.minor.push(createGraphics(160,160))
+				setupLayer(data.sprites.minor[a])
+				generateGeneralSprite(data.sprites.minor[a],19+a)
 			}
 		break
 		
@@ -7555,6 +7990,46 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 }
 function setupGeneralGraphics(){
 	/*
+	CURRENT:
+
+	0 Plant Tile
+	1 XOR
+
+	Lira:
+	0-1 Bow
+	2-3 Flower
+	4-6 Sandal Bottom
+	7-8 Sandal Top
+
+	Sakura:
+	0-2 Flower
+	3-5 Sandal Bottom
+	6-7 Sandal Top
+	8 Scythe
+	9 Floral Print
+	10-11 Parasol
+
+	Setsuna:
+	0-1 Bow
+	2-3 Flower
+	4-6 Sandal Bottom
+	7-8 Sandal Top
+
+	Daiyousei:
+	0 Bow
+
+	Menessa:
+	0 Pin
+	1 Filigree
+
+	Ume:
+	0-2 Sandal Bottom
+	3-4 Sandal Top
+	*/
+
+	/*
+	GENERATORS:
+
 	0-1 Lira Bow
 	2-3 Lira Flower
 	4-6 Lira Sandal Bottom
@@ -7578,7 +8053,7 @@ function setupGeneralGraphics(){
 	40-41 Menessa Filigree
 	42 Menessa Filigree 2
 	*/
-	for(let a=0,la=43;a<la;a++){
+	/*for(let a=0,la=43;a<la;a++){
 		switch(a){
 			case 9: case 11:
 				graphics.minor.push(createGraphics(160,240))
@@ -7603,566 +8078,20 @@ function setupGeneralGraphics(){
 			break
 		}
 		setupLayer(graphics.minor[graphics.minor.length-1])
-	}
+	}*/
 	for(let a=0,la=2;a<la;a++){
-		graphics.minor[a].translate(80,80)
-		for(let b=0,lb=16;b<lb;b++){
-			graphics.minor[a].fill(80+b*8,200+b*5,80+b*8)
-			graphics.minor[a].triangle(0,0,15+b*0.5,45-b*1.25,45-b*1.25,15+b*0.5)
-			graphics.minor[a].triangle(0,0,-15-b*0.5,-45+b*1.25,-45+b*1.25,-15-b*0.5)
+		switch(a){
+			case 1:
+				graphics.minor.push(createGraphics(90,120))
+			break
+			default:
+				graphics.minor.push(createGraphics(160,160))
+			break
 		}
+		setupLayer(graphics.minor[graphics.minor.length-1])
 	}
-	graphics.minor[1].erase()
-	graphics.minor[1].triangle(15,20,40,30,20,55)
-	graphics.minor[1].triangle(-15,-60,-40,-20,-20,-25)
-	for(let a=0,la=2;a<la;a++){
-		graphics.minor[2+a].translate(80,80)
-		for(let b=0,lb=8;b<lb;b++){
-			graphics.minor[2+a].rotate(19+a*7-b)
-			graphics.minor[2+a].fill(100+a*25+b*(20-a*5),50+b*15,150-a*25+b*(5+a*5))
-			for(let c=0,lc=12;c<lc;c++){
-				graphics.minor[2+a].rotate(30)
-				graphics.minor[2+a].ellipse(0,(24-b)*(1-b/lb),15*(1-b/lb),30*(1-b/lb))
-			}
-		}
-		graphics.minor[2+a].rotate(12+a*36)
-		graphics.minor[2+a].fill(50+a*25,0,100-a*25)
-		for(let b=0,lb=5;b<lb;b++){
-			graphics.minor[2+a].rotate(72)
-			graphics.minor[2+a].rect(0,-6,2,12)
-			graphics.minor[2+a].ellipse(0,-12,4,4)
-		}
-	}
-	for(let a=0,la=3;a<la;a++){
-		graphics.minor[4+a].fill(150,160,196)
-		graphics.minor[4+a].rect(80,80,100,20)
-		graphics.minor[4+a].ellipse(80,70,100,100)
-		graphics.minor[4+a].ellipse(80,90,100,100)
-		graphics.minor[4+a].fill(105,112,137)
-		graphics.minor[4+a].rect(80,70,100,6)
-		graphics.minor[4+a].rect(80,90,100,6)
-		graphics.minor[4+a].quad(36,47,124,47,127,53,33,53)
-		graphics.minor[4+a].quad(36,113,124,113,127,107,33,107)
-		graphics.minor[4+a].quad(54,27,106,27,114,33,46,33)
-		graphics.minor[4+a].quad(54,133,106,133,114,127,46,127)
-	}
-	graphics.minor[5].erase()
-	graphics.minor[5].triangle(90,70,65,20,115,20)
-	graphics.minor[5].triangle(65,100,95,140,35,140)
-	graphics.minor[6].erase()
-	graphics.minor[6].triangle(70,50,25,20,115,20)
-	graphics.minor[6].triangle(95,85,75,140,115,140)
-	for(let a=0,la=2;a<la;a++){
-		graphics.minor[7+a].stroke(95,55,65)
-		graphics.minor[7+a].strokeWeight(20)
-		graphics.minor[7+a].line(80+56*(a*2-1),46,80,150)
-	}
-	graphics.minor[9].translate(80,140)
-	flower(graphics.minor[9],0.4,[[136,61,92],[195,68,87],[124,41,51],[211,153,120]],[21,28,7,3],[56],1,100)
-	graphics.minor[9].translate(0,-30)
-	flower(graphics.minor[9],0.5,[[136,61,92],[195,68,87],[124,41,51],[211,153,120]],[21,28,7,3],[56],1,100)
-	graphics.minor[10].translate(80,80)
-	flower(graphics.minor[10],0.5,[[241,170,189],[250,222,226],[240,207,211],[254,228,232]],[20,40,12,4],[54],1,100)
-	graphics.minor[11].translate(80,160)
-	crystalFlower(graphics.minor[11],0.3,36,[[216,112,124],[247,225,225],[220,160,180],[240,180,200]],[30,4,3],[62],1)
-	graphics.minor[11].translate(0,-30)
-	crystalFlower(graphics.minor[11],0.5,0,[[216,112,124],[247,225,225],[220,160,180],[240,180,200]],[30,4,3],[62],1)
-	for(let a=0,la=3;a<la;a++){
-		graphics.minor[12+a].fill(151,119,103)
-		graphics.minor[12+a].rect(80,80,100,20)
-		graphics.minor[12+a].ellipse(80,70,100,100)
-		graphics.minor[12+a].ellipse(80,90,100,100)
-		graphics.minor[12+a].fill(122,94,90)
-		graphics.minor[12+a].rect(80,70,100,6)
-		graphics.minor[12+a].rect(80,90,100,6)
-		graphics.minor[12+a].quad(36,47,124,47,127,53,33,53)
-		graphics.minor[12+a].quad(36,113,124,113,127,107,33,107)
-		graphics.minor[12+a].quad(54,27,106,27,114,33,46,33)
-		graphics.minor[12+a].quad(54,133,106,133,114,127,46,127)
-	}
-	graphics.minor[13].erase()
-	graphics.minor[13].triangle(90,70,65,20,115,20)
-	graphics.minor[13].triangle(65,100,95,140,35,140)
-	graphics.minor[14].erase()
-	graphics.minor[14].triangle(70,50,25,20,115,20)
-	graphics.minor[14].triangle(95,85,75,140,115,140)
-	for(let a=0,la=2;a<la;a++){
-		graphics.minor[15+a].stroke(201,61,96)
-		graphics.minor[15+a].strokeWeight(20)
-		graphics.minor[15+a].line(80+56*(a*2-1),46,80,150)
-		graphics.minor[15+a].stroke(233,216,194)
-		graphics.minor[15+a].strokeWeight(8)
-		for(let b=0,lb=4;b<lb;b++){
-			graphics.minor[15+a].point(80+(51-b*14)*(a*2-1),56+b*26)
-		}
-	}
-	graphics.minor[17].translate(80,80)
-	graphics.minor[17].scale(-0.9,0.9)
-	graphics.minor[17].rotate(-90)
-	graphics.minor[17].fill(138,141,207)
-	graphics.minor[17].arc(0,0,150,180,0,30)
-	graphics.minor[17].fill(111,114,178)
-	graphics.minor[17].arc(0,0,150,180,30,60)
-	graphics.minor[17].fill(88,82,128)
-	graphics.minor[17].arc(0,0,150,180,60,90)
-	graphics.minor[17].fill(161,168,222)
-	graphics.minor[17].arc(0,0,135,180,0,15)
-	graphics.minor[17].fill(121,124,188)
-	graphics.minor[17].arc(0,0,135,180,15,45)
-	graphics.minor[17].fill(98,92,138)
-	graphics.minor[17].arc(0,0,135,180,45,75)
-	graphics.minor[17].fill(77,65,108)
-	graphics.minor[17].arc(0,0,135,180,75,90)
-	graphics.minor[17].erase()
-	graphics.minor[17].arc(0,0,120,180,0,90)
-	graphics.minor[17].noErase()
-	graphics.minor[17].fill(189,187,237)
-	graphics.minor[17].rect(0,0,160,8,3)
-	graphics.minor[17].fill(149,134,184)
-	graphics.minor[17].rect(0,-2,160,4,3)
-	graphics.minor[18].translate(80,80)
-    graphics.minor[18].fill(255,123,205)
-    graphics.minor[18].noStroke()
-    for(let a=0;a<5;a++){
-        graphics.minor[18].beginShape()
-        graphics.minor[18].vertex(0,0)
-        graphics.minor[18].bezierVertex(-18,-20,-16,-45,0,-45)
-        graphics.minor[18].bezierVertex(16,-45,18,-20,0,0)
-        graphics.minor[18].endShape()
-        graphics.minor[18].rotate(72)
-    }
-    graphics.minor[18].erase()
-    graphics.minor[18].ellipse(0,0,20,20)
-	for(let a=0,la=3;a<la;a++){
-		graphics.minor[19+a].fill(183,157,196)
-		graphics.minor[19+a].rect(80,80,100,20)
-		graphics.minor[19+a].ellipse(80,70,100,100)
-		graphics.minor[19+a].ellipse(80,90,100,100)
-		graphics.minor[19+a].fill(116,109,166)
-		graphics.minor[19+a].rect(80,70,100,6)
-		graphics.minor[19+a].rect(80,90,100,6)
-		graphics.minor[19+a].quad(36,47,124,47,127,53,33,53)
-		graphics.minor[19+a].quad(36,113,124,113,127,107,33,107)
-		graphics.minor[19+a].quad(54,27,106,27,114,33,46,33)
-		graphics.minor[19+a].quad(54,133,106,133,114,127,46,127)
-	}
-	graphics.minor[20].erase()
-	graphics.minor[20].triangle(90,70,65,20,115,20)
-	graphics.minor[20].triangle(65,100,95,140,35,140)
-	graphics.minor[21].erase()
-	graphics.minor[21].triangle(70,50,25,20,115,20)
-	graphics.minor[21].triangle(95,85,75,140,115,140)
-	for(let a=0,la=2;a<la;a++){
-		graphics.minor[22+a].stroke(200,233,226)
-		graphics.minor[22+a].strokeWeight(20)
-		graphics.minor[22+a].line(80+56*(a*2-1),46,80,150)
-		graphics.minor[22+a].stroke(107,200,215)
-		graphics.minor[22+a].strokeWeight(8)
-		for(let b=0,lb=4;b<lb;b++){
-			graphics.minor[22+a].line(80+(58-b*14)*(a*2-1),53.5+b*26,80+(48-b*14)*(a*2-1),53.5+b*26)
-		}
-	}
-	graphics.minor[24].stroke(99,58,71)
-	graphics.minor[24].strokeWeight(3)
-	for(let a=0;a<10;a++){
-		graphics.minor[24].line(300,225,60+(a+0.5)*48,75)
-	}
-	graphics.minor[24].fill(0)
-	graphics.minor[24].noStroke()
-	graphics.minor[24].erase()
-	graphics.minor[24].beginShape()
-	graphics.minor[24].vertex(480,125)
-	graphics.minor[24].bezierVertex(400,100,200,100,120,125)
-	graphics.minor[24].vertex(20,125)
-	graphics.minor[24].vertex(20,50)
-	graphics.minor[24].vertex(580,50)
-	graphics.minor[24].vertex(580,125)
-	graphics.minor[24].endShape()
-	graphics.minor[25].stroke(178,86,74)
-	graphics.minor[25].strokeWeight(3)
-	for(let a=0;a<11;a++){
-		graphics.minor[25].line(200,125,20+a*36,25)
-	}
-	graphics.minor[25].fill(0)
-	graphics.minor[25].noStroke()
-	graphics.minor[25].erase()
-	graphics.minor[25].beginShape()
-	graphics.minor[25].vertex(380,25)
-	graphics.minor[25].bezierVertex(300,50,100,50,20,25)
-	graphics.minor[25].vertex(0,20)
-	graphics.minor[25].vertex(400,20)
-	graphics.minor[25].endShape()
-	graphics.minor[26].fill(0,100,0)
-	graphics.minor[26].ellipse(40,40,54,54)
-	for(let a=0,la=60;a<la;a++){
-		b=360*a/la
-		c=sqrt(random(0,28**2))
-		graphics.minor[26].fill(random(0,50),100+random(0,100),random(0,50))
-		graphics.minor[26].ellipse(40+lsin(b)*c,40+lcos(b)*c,random(10,15))
-	}
-	for(let a=0,la=3;a<la;a++){
-		graphics.minor[27+a].fill(155,176,150)
-		graphics.minor[27+a].rect(80,80,100,20)
-		graphics.minor[27+a].ellipse(80,70,100,100)
-		graphics.minor[27+a].ellipse(80,90,100,100)
-		graphics.minor[27+a].fill(107,117,105)
-		graphics.minor[27+a].rect(80,70,100,6)
-		graphics.minor[27+a].rect(80,90,100,6)
-		graphics.minor[27+a].quad(36,47,124,47,127,53,33,53)
-		graphics.minor[27+a].quad(36,113,124,113,127,107,33,107)
-		graphics.minor[27+a].quad(54,27,106,27,114,33,46,33)
-		graphics.minor[27+a].quad(54,133,106,133,114,127,46,127)
-	}
-	graphics.minor[28].erase()
-	graphics.minor[28].triangle(90,70,65,20,115,20)
-	graphics.minor[28].triangle(65,100,95,140,35,140)
-	graphics.minor[29].erase()
-	graphics.minor[29].triangle(70,50,25,20,115,20)
-	graphics.minor[29].triangle(95,85,75,140,115,140)
-	for(let a=0,la=2;a<la;a++){
-		graphics.minor[30+a].stroke(55,65,95)
-		graphics.minor[30+a].strokeWeight(20)
-		graphics.minor[30+a].line(80+56*(a*2-1),46,80,150)
-	}
-	for(let a=0,la=2;a<la;a++){
-		graphics.minor[32+a].translate(80,80)
-		graphics.minor[32+a].rotate(15)
-		for(let b=0,lb=16;b<lb;b++){
-			graphics.minor[32+a].fill(184+b*10,102+b*6,78+b*5)
-			for(let c=0,lc=4;c<lc;c++){
-				graphics.minor[32].rotate(90)
-				graphics.minor[32+a].triangle(-2,-2,20+b*0.5,45-b*1.25,45-b*1.25,20+b*0.5)
-			}
-		}
-	}
-	graphics.minor[33].erase()
-	graphics.minor[33].triangle(15,20,40,30,20,55)
-	graphics.minor[33].triangle(-15,-60,-40,-20,-20,-25)
-	for(let a=0,la=2;a<la;a++){
-		graphics.minor[34+a].translate(80,80)
-		for(let b=0,lb=8;b<lb;b++){
-			graphics.minor[34+a].rotate(19+a*7-b)
-			graphics.minor[34+a].fill(225-a*25+b*10,75+a*125+b*10,75+a*125+b*10)
-			for(let c=0,lc=5;c<lc;c++){
-				graphics.minor[34+a].rotate(72)
-				graphics.minor[34+a].ellipse(0,(24-b)*(1-b/lb),24*(1-b/lb),36*(1-b/lb))
-			}
-		}
-		graphics.minor[34+a].rotate(-12-a*36)
-		graphics.minor[34+a].fill(225,200,50)
-		for(let b=0,lb=9;b<lb;b++){
-			graphics.minor[34+a].rotate(40)
-			graphics.minor[34+a].rect(0,-5,1,10)
-			graphics.minor[34+a].ellipse(0,-10,3,3)
-		}
-	}
-	graphics.minor[36].translate(80,80)
-	graphics.minor[36].rotate(-155)
-	for(let a=0,la=16;a<la;a++){
-		let merge=mergeColor([234,200,116],[203,130,68],abs(8-a)/8)
-		graphics.minor[36].fill(...merge)
-		graphics.minor[36].rotate(-10)
-		graphics.minor[36].quad(0,0,-48+a/la*24,-24+a/la*24,-39+a/la*12,0,-48+a/la*24,24-a/la*24)
-		graphics.minor[36].rotate(20)
-		graphics.minor[36].quad(0,0,48-a/la*24,-24+a/la*24,39-a/la*12,0,48-a/la*24,24-a/la*24)
-		graphics.minor[36].rotate(50)
-		graphics.minor[36].quad(0,0,-48+a/la*24,-9+a/la*9,-42+a/la*12,0,-48+a/la*24,9-a/la*9)
-		graphics.minor[36].rotate(-120)
-		graphics.minor[36].quad(0,0,48-a/la*24,-9+a/la*9,42-a/la*12,0,48-a/la*24,9-a/la*9)
-		graphics.minor[36].rotate(60)
-	}
-	/*let gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80)]
-	gradient[0].colors(
-		0.00,color(255,251,222),
-		1.00,color(255,215,115)
-	)
-	gradient[1].colors(
-		0.00,color(255,215,115),
-		1.00,color(255,251,222)
-	)
-	graphics.minor[37].translate(0,40)
-	graphics.minor[37].fillGradient(gradient[0])
-	graphics.minor[37].arc(55,40,100,100,-180,0)
-	graphics.minor[37].erase()
-	graphics.minor[37].arc(45,40,81,81,-180,0)
-	graphics.minor[37].noErase()
-	graphics.minor[37].fillGradient(gradient[1])
-	graphics.minor[37].arc(105,40,100,100,0,180)
-	graphics.minor[37].erase()
-	graphics.minor[37].arc(115,40,81,81,0,180)
-	graphics.minor[38].translate(0,40)
-	graphics.minor[38].fillGradient(gradient[0])
-	graphics.minor[38].arc(55,40,100,100,0,180)
-	graphics.minor[38].erase()
-	graphics.minor[38].arc(45,40,81,81,0,180)
-	graphics.minor[38].noErase()
-	graphics.minor[38].fillGradient(gradient[1])
-	graphics.minor[38].arc(105,40,100,100,-180,0)
-	graphics.minor[38].erase()
-	graphics.minor[38].arc(115,40,81,81,-180,0)
-	graphics.minor[37].image(graphics.minor[38],0,-40)*/
-
-	gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80)]
-	gradient[0].colors(
-		0.00,color(255,251,222),
-		1.00,color(255,215,115)
-	)
-	gradient[1].colors(
-		0.00,color(255,215,115),
-		1.00,color(255,251,222)
-	)
-	gradient[2].colors(
-		0.00,color(253,234,172),
-		1.00,color(239,192,104)
-	)
-	gradient[3].colors(
-		0.00,color(239,192,104),
-		1.00,color(253,234,172)
-	)
-	graphics.minor[37].translate(0,40)
-	graphics.minor[37].fillGradient(gradient[2])
-	graphics.minor[37].arc(60,40,103,103,-180,0)
-	graphics.minor[37].fillGradient(gradient[3])
-	graphics.minor[37].arc(100,40,103,103,0,180)
-
-	graphics.minor[37].fillGradient(gradient[0])
-	graphics.minor[37].arc(60,40,100,100,-180,0)
-	graphics.minor[37].fillGradient(gradient[2])
-	graphics.minor[37].arc(50,40,81,81,-180,0)
-	graphics.minor[37].erase()
-	graphics.minor[37].arc(50,40,78,78,-180,0)
-	graphics.minor[37].rect(10,40,20,25)
-	graphics.minor[37].noErase()
-	graphics.minor[37].fillGradient(gradient[1])
-	graphics.minor[37].arc(100,40,100,100,0,180)
-	graphics.minor[37].fillGradient(gradient[3])
-	graphics.minor[37].arc(110,40,81,81,0,180)
-	graphics.minor[37].erase()
-	graphics.minor[37].arc(110,40,78,78,0,180)
-	graphics.minor[37].rect(150,40,20,25)
-
-	graphics.minor[38].translate(0,40)
-	graphics.minor[38].fill(0)
-	graphics.minor[38].fillGradient(gradient[2])
-	graphics.minor[38].arc(60,40,103,103,0,180)
-	graphics.minor[38].fillGradient(gradient[3])
-	graphics.minor[38].arc(100,40,103,103,-180,0)
-
-	graphics.minor[38].fillGradient(gradient[0])
-	graphics.minor[38].arc(60,40,100,100,0,180)
-	graphics.minor[38].fillGradient(gradient[2])
-	graphics.minor[38].arc(50,40,81,81,0,180)
-	graphics.minor[38].erase()
-	graphics.minor[38].arc(50,40,78,78,0,180)
-	graphics.minor[38].rect(10,40,20,25)
-	graphics.minor[38].noErase()
-	graphics.minor[38].fillGradient(gradient[1])
-	graphics.minor[38].arc(100,40,100,100,-180,0)
-	graphics.minor[38].fillGradient(gradient[3])
-	graphics.minor[38].arc(110,40,81,81,-180,0)
-	graphics.minor[38].erase()
-	graphics.minor[38].arc(110,40,78,78,-180,0)
-	graphics.minor[38].rect(150,40,20,25)
-
-	graphics.minor[37].image(graphics.minor[38],0,-40)
-
-	graphics.minor[39].scale(3/2)
-	for(let a=0,la=60;a<la;a++){
-		for(let b=0,lb=80;b<lb;b++){
-			let c=((a^b)%(5*7*11*13))^(((a+20)^b)%(5*7*11*13))*2
-			if(c%5==0){
-				graphics.minor[39].fill(230,211,227)
-				graphics.minor[39].rect(a+0.5,b+0.5,1,1)
-			}
-			if(c%7==0){
-				graphics.minor[39].fill(192,190,215)
-				graphics.minor[39].rect(a+0.5,b+0.5,1,1)
-			}
-			if(c%11==0){
-				graphics.minor[39].fill(133,147,205)
-				graphics.minor[39].rect(a+0.5,b+0.5,1,1)
-			}
-			if(c%13==0){
-				graphics.minor[39].fill(177,122,195)
-				graphics.minor[39].rect(a+0.5,b+0.5,1,1)
-			}
-		}
-	}
-
-	gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80)]
-	gradient[0].colors(
-		0.00,color(255,247,189),
-		1.00,color(255,207,87)
-	)
-	gradient[1].colors(
-		0.00,color(255,207,87),
-		1.00,color(255,247,189)
-	)
-	gradient[2].colors(
-		0.00,color(255,239,123),
-		1.00,color(235,159,0)
-	)
-	gradient[3].colors(
-		0.00,color(235,159,0),
-		1.00,color(255,239,123)
-	)
-	graphics.minor[40].translate(0,40)
-	graphics.minor[40].fillGradient(gradient[2])
-	graphics.minor[40].arc(60,40,103,103,-180,0)
-	graphics.minor[40].fillGradient(gradient[3])
-	graphics.minor[40].arc(100,40,103,103,0,180)
-
-	graphics.minor[40].fillGradient(gradient[0])
-	graphics.minor[40].arc(60,40,100,100,-180,0)
-	graphics.minor[40].fillGradient(gradient[2])
-	graphics.minor[40].arc(48,40,77,77,-180,0)
-	graphics.minor[40].erase()
-	graphics.minor[40].arc(48,40,74,74,-180,0)
-	graphics.minor[40].rect(10,40,20,25)
-	graphics.minor[40].noErase()
-	graphics.minor[40].fillGradient(gradient[1])
-	graphics.minor[40].arc(100,40,100,100,0,180)
-	graphics.minor[40].fillGradient(gradient[3])
-	graphics.minor[40].arc(112,40,77,77,0,180)
-	graphics.minor[40].erase()
-	graphics.minor[40].arc(112,40,74,74,0,180)
-	graphics.minor[40].rect(150,40,20,25)
-
-	graphics.minor[41].translate(0,40)
-	graphics.minor[41].fill(0)
-	graphics.minor[41].fillGradient(gradient[2])
-	graphics.minor[41].arc(60,40,103,103,0,180)
-	graphics.minor[41].fillGradient(gradient[3])
-	graphics.minor[41].arc(100,40,103,103,-180,0)
-
-	graphics.minor[41].fillGradient(gradient[0])
-	graphics.minor[41].arc(60,40,100,100,0,180)
-	graphics.minor[41].fillGradient(gradient[2])
-	graphics.minor[41].arc(48,40,77,77,0,180)
-	graphics.minor[41].erase()
-	graphics.minor[41].arc(48,40,74,74,0,180)
-	graphics.minor[41].rect(10,40,20,25)
-	graphics.minor[41].noErase()
-	graphics.minor[41].fillGradient(gradient[1])
-	graphics.minor[41].arc(100,40,100,100,-180,0)
-	graphics.minor[41].fillGradient(gradient[3])
-	graphics.minor[41].arc(112,40,77,77,-180,0)
-	graphics.minor[41].erase()
-	graphics.minor[41].arc(112,40,74,74,-180,0)
-	graphics.minor[41].rect(150,40,20,25)
-
-	graphics.minor[40].image(graphics.minor[41],0,-40)
-
-	gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80)]
-	gradient[0].colors(
-		0.00,color(255,247,189),
-		1.00,color(255,207,87)
-	)
-	gradient[1].colors(
-		0.00,color(255,207,87),
-		1.00,color(255,247,189)
-	)
-	gradient[2].colors(
-		0.00,color(255,239,123),
-		1.00,color(235,159,0)
-	)
-	gradient[3].colors(
-		0.00,color(235,159,0),
-		1.00,color(255,239,123)
-	)
-	/*graphics.minor[42].translate(0,40)
-	graphics.minor[42].fillGradient(gradient[2])
-	graphics.minor[42].ellipse(40,40,103,103)
-	graphics.minor[42].fillGradient(gradient[3])
-	graphics.minor[42].ellipse(160,40,103,103)
-
-	graphics.minor[42].fillGradient(gradient[0])
-	graphics.minor[42].ellipse(50,40,100,100)
-	graphics.minor[42].fillGradient(gradient[2])
-	graphics.minor[42].ellipse(35,40,77,77)
-	graphics.minor[42].erase()
-	graphics.minor[42].ellipse(35,40,74,74)
-	graphics.minor[42].rect(0,40,20,25)
-	graphics.minor[42].noErase()
-	graphics.minor[42].fillGradient(gradient[1])
-	graphics.minor[42].ellipse(150,40,100,100)
-	graphics.minor[42].fillGradient(gradient[3])
-	graphics.minor[42].ellipse(165,40,77,77)
-	graphics.minor[42].erase()
-	graphics.minor[42].ellipse(165,40,74,74)
-	graphics.minor[42].rect(200,40,20,25)*/
-	graphics.minor[42].translate(0,40)
-	/*graphics.minor[42].background(0)
-	graphics.minor[42].fill(255)
-	graphics.minor[42].ellipse(50,40,100)
-	graphics.minor[42].ellipse(150,40,100)*/
-	graphics.minor[42].stroke(0)
-	graphics.minor[42].noFill()
-	//for(let a=0,la=24;a<la;a++){
-	for(let a=0,la=18;a<la;a++){
-		/*let swivel=min(1,abs(-1.5+3*((a+16.5)%20+0.5)/la)-0.1
-		if(swivel>0){
-			graphics.minor[42].strokeGradient(gradient[2])
-			graphics.minor[42].strokeWeight(9)
-			graphics.minor[42].arc(45+lsin((a+0.5)/la*360)*36+(swivel<0.5?((0.5-swivel)**2)*20:0),40-lcos((a+0.5)/la*360)*36,40,40,(a+0.5)/la*360-swivel*36,(a+0.5)/la*360+swivel*36)
-			graphics.minor[42].strokeGradient(gradient[0])
-			graphics.minor[42].strokeWeight(6)
-			graphics.minor[42].arc(45+lsin((a+0.5)/la*360)*36+(swivel<0.5?((0.5-swivel)**2)*20:0),40-lcos((a+0.5)/la*360)*36,40,40,(a+0.5)/la*360-swivel*36,(a+0.5)/la*360+swivel*36)
-		}
-		swivel=min(1,abs(-1.5+3*((a+6.5)%20+0.5)/la)-0.1
-		if(swivel>0){
-			graphics.minor[42].strokeGradient(gradient[3])
-			graphics.minor[42].strokeWeight(9)
-			graphics.minor[42].arc(155+lsin((a+0.5)/la*360)*36-(swivel<0.5?((0.5-swivel)**2)*20:0),40-lcos((a+0.5)/la*360)*36,40,40,(a+0.5)/la*360-swivel*36,(a+0.5)/la*360+swivel*36)
-			graphics.minor[42].strokeGradient(gradient[1])
-			graphics.minor[42].strokeWeight(6)
-			graphics.minor[42].arc(155+lsin((a+0.5)/la*360)*36-(swivel<0.5?((0.5-swivel)**2)*20:0),40-lcos((a+0.5)/la*360)*36,40,40,(a+0.5)/la*360-swivel*36,(a+0.5)/la*360+swivel*36)
-		}*/
-		let R=5
-		let z=1.25
-		let dir=(a+0.1)/la*360
-		//let width=10+z*lsin(dir)-sqrt((z*lsin(dir))**2-z**2+R**2)
-		let width=-z*lsin(dir)+sqrt((z*lsin(dir))**2-z**2+R**2)-3.9
-		let end=(33+width*4)
-		/*if(width>0){
-			dir-=30
-			graphics.minor[42].strokeGradient(gradient[2])
-			graphics.minor[42].strokeWeight(9)
-			graphics.minor[42].arc(45+lsin(dir)*36+(width<1?(1-width)**2:0),40-lcos(dir)*36,40,40,dir-width*15,dir+width*15)
-			graphics.minor[42].strokeGradient(gradient[0])
-			graphics.minor[42].strokeWeight(6)
-			graphics.minor[42].arc(45+lsin(dir)*36+(width<1?(1-width)**2:0),40-lcos(dir)*36,40,40,dir-width*15,dir+width*15)
-		}
-		if(width>0){
-			graphics.minor[42].strokeGradient(gradient[3])
-			graphics.minor[42].strokeWeight(9)
-			graphics.minor[42].arc(155-lsin(dir)*36-(width<1?(1-width)**2:0),40+lcos(dir)*36,40,40,dir-width*15,dir+width*15)
-			graphics.minor[42].strokeGradient(gradient[1])
-			graphics.minor[42].strokeWeight(6)
-			graphics.minor[42].arc(155-lsin(dir)*36-(width<1?(1-width)**2:0),40+lcos(dir)*36,40,40,dir-width*15,dir+width*15)
-		}*/
-		if(width>0){
-			dir-=30
-			graphics.minor[42].strokeGradient(gradient[2])
-			graphics.minor[42].strokeWeight(10.5)
-			//graphics.minor[42].arc(45+lsin(dir)*36+(width<1?(1-width)**2:0),40-lcos(dir)*36,40,40,dir-width*15,dir+width*15)
-			graphics.minor[42].arc(160+lsin(dir)*end,40-lcos(dir)*end,40,40,dir-width*15,dir+width*15)
-			graphics.minor[42].strokeGradient(gradient[0])
-			graphics.minor[42].strokeWeight(7.5)
-			//graphics.minor[42].arc(45+lsin(dir)*36+(width<1?(1-width)**2:0),40-lcos(dir)*36,40,40,dir-width*15,dir+width*15)
-			graphics.minor[42].arc(160+lsin(dir)*end,40-lcos(dir)*end,40,40,dir-width*15,dir+width*15)
-		}
-		if(width>0){
-			graphics.minor[42].strokeGradient(gradient[3])
-			graphics.minor[42].strokeWeight(10.5)
-			//graphics.minor[42].arc(155-lsin(dir)*36-(width<1?(1-width)**2:0),40+lcos(dir)*36,40,40,dir-width*15,dir+width*15)
-			graphics.minor[42].arc(40-lsin(dir)*end,40+lcos(dir)*end,40,40,dir-width*15+180,dir+width*15+180)
-			graphics.minor[42].strokeGradient(gradient[1])
-			graphics.minor[42].strokeWeight(7.5)
-			//graphics.minor[42].arc(155-lsin(dir)*36-(width<1?(1-width)**2:0),40+lcos(dir)*36,40,40,dir-width*15,dir+width*15)
-			graphics.minor[42].arc(40-lsin(dir)*end,40+lcos(dir)*end,40,40,dir-width*15+180,dir+width*15+180)
-		}
-	}
+	generateGeneralSprite(graphics.minor[0],26)
+	generateGeneralSprite(graphics.minor[1],39)
 }
 function setupBackground(type,layer){
 	switch(type){

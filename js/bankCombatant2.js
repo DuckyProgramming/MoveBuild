@@ -4459,7 +4459,7 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.translate(this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1,this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1)
                     this.layer.rotate(90+90*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75))-this.spin.sword*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75)))
                     this.layer.scale(-1,constrain(lsin(this.anim.direction+this.spin.arms[key].bottom+75)*2,-1,1)*this.anim.sword)
-                    this.layer.image(graphics.minor[17],-27*this.fade,-15-27*this.fade,54*this.fade,54*this.fade)
+                    this.layer.image(graphics.combatant[1].sprites.minor[8],-27*this.fade,-15-27*this.fade,54*this.fade,54*this.fade)
                     this.layer.pop()
                 break
                 case 1:
@@ -4488,7 +4488,7 @@ combatant.prototype.minorDisplay=function(type,key){
                         this.layer.stroke(104,78,95,this.fade)
                         this.layer.strokeWeight(1.5)
                         this.layer.line(0,-5,0,50)
-                        this.layer.image(graphics.minor[24],-75*this.fade,50-30*this.fade,150*this.fade,60*this.fade)
+                        this.layer.image(graphics.combatant[1].sprites.minor[10],-75*this.fade,50-30*this.fade,150*this.fade,60*this.fade)
                         this.layer.fill(246,209,161,this.fade)
                         this.layer.noStroke()
                         this.layer.beginShape()
@@ -4497,7 +4497,7 @@ combatant.prototype.minorDisplay=function(type,key){
                         this.layer.vertex(45,45)
                         this.layer.bezierVertex(25,50,-25,50,-45,45)
                         this.layer.endShape()
-                        this.layer.image(graphics.minor[25],-50*this.fade,60-20*this.fade,100*this.fade,40*this.fade)
+                        this.layer.image(graphics.combatant[1].sprites.minor[11],-50*this.fade,60-20*this.fade,100*this.fade,40*this.fade)
                         this.layer.push()
                         this.layer.fill(239,230,231,this.fade)
                         this.layer.ellipse(0,65,3,3)
@@ -5574,17 +5574,17 @@ combatant.prototype.minorDisplay=function(type,key){
                         0.4,-0.1
                     )*/
                     if(this.trigger.display.shoe.charm){
-                        this.layer.image(graphics.minor[42],-6,-4.8,12,9.6)
+                        this.layer.image(graphics.combatant[12].sprites.minor[1],-6,-4.8,12,9.6)
                     }
                     this.layer.pop()
                 break
                 case 3:
                     this.layer.push()
-                    this.layer.translate(lsin(this.anim.direction+180)*[6.4,8,12][key],-55.5+key*12+[2,3,4][key]*lcos(this.anim.direction+180))
+                    this.layer.translate(lsin(this.anim.direction+180)*[5.9,8,12][key],-55.5+key*12+[2,3,4][key]*lcos(this.anim.direction+180))
                     this.layer.rotate(lsin(this.anim.direction+180)*[-10,-20,-20][key])
                     this.layer.scale(lcos(this.anim.direction+180)*0.375,0.375)
 
-                    this.minorDisplay(7,[sqrt(abs(lcos(this.anim.direction+180))),this.color.dress.bow])
+                    this.minorDisplay(7,[sqrt(abs(lcos(this.anim.direction+180))),this.color.dress.bow,1.5])
 
                     this.layer.pop()
                     
@@ -5626,7 +5626,7 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.translate(lsin(this.anim.direction+this.spin.hair.bow[key])*14,-88)
                     this.layer.rotate(lsin(this.anim.direction+this.spin.hair.bow[key])*-30)
 
-                    this.minorDisplay(7,[sqrt(abs(lcos(this.anim.direction+this.spin.hair.bow[key]))),this.color.hair.bow])
+                    this.minorDisplay(7,[sqrt(abs(lcos(this.anim.direction+this.spin.hair.bow[key]))),this.color.hair.bow,1])
 
                     this.layer.pop()
 
@@ -5885,12 +5885,14 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.quad(0,0,5.92,-2,5.12,0,5.92,2)
                     this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
                     this.layer.quad(0,0,5.6,-1.2,5.12,0,5.6,1.2)
-                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],0.25)),this.fade)
-                    this.layer.quad(2.4,0,6.76,-1.6,6.12,0,6.76,1.6)
+                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],key[2]*0.25)),this.fade)
+                    //this.layer.quad(2.4,0,6.76,-1.6,6.12,0,6.76,1.6)
+                    this.layer.quad(2.25+key[2]*0.15,0,6.68+key[2]*0.08,-1.4-key[2]*0.2,6.12,0,6.68+key[2]*0.08,1.4+key[2]*0.2)
                     this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
                     this.layer.quad(2.25,0,6.68,-1.4,6.12,0,6.68,1.4)
-                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],0.25)),this.fade)
-                    this.layer.quad(0,0,6.44,-0.8,6.12,0,6.44,0.8)
+                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],key[2]*0.25)),this.fade)
+                    //this.layer.quad(0,0,6.44,-0.8,6.12,0,6.44,0.8)
+                    this.layer.quad(0,0,6.36+key[2]*0.08,-0.6-key[2]*0.2,6.12,0,6.36+key[2]*0.08,0.6+key[2]*0.2)
                     this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
                     this.layer.quad(0.4,0,6.36,-0.6,6.12,0,6.36,0.6)
                     this.layer.scale(1/key[0],1)
@@ -5921,12 +5923,14 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.quad(0,0,5.92,-2,5.12,0,5.92,2)
                     this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
                     this.layer.quad(0,0,5.6,-1.2,5.12,0,5.6,1.2)
-                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],0.25)),this.fade)
-                    this.layer.quad(2.4,0,6.76,-1.6,6.12,0,6.76,1.6)
+                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],key[2]*0.25)),this.fade)
+                    //this.layer.quad(2.4,0,6.76,-1.6,6.12,0,6.76,1.6)
+                    this.layer.quad(2.25+key[2]*0.15,0,6.68+key[2]*0.08,-1.4-key[2]*0.2,6.12,0,6.68+key[2]*0.08,1.4+key[2]*0.2)
                     this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
                     this.layer.quad(2.25,0,6.68,-1.4,6.12,0,6.68,1.4)
-                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],0.25)),this.fade)
-                    this.layer.quad(0,0,6.44,-0.8,6.12,0,6.44,0.8)
+                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],key[2]*0.25)),this.fade)
+                    //this.layer.quad(0,0,6.44,-0.8,6.12,0,6.44,0.8)
+                    this.layer.quad(0,0,6.36+key[2]*0.08,-0.6-key[2]*0.2,6.12,0,6.36+key[2]*0.08,0.6+key[2]*0.2)
                     this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
                     this.layer.quad(0.4,0,6.36,-0.6,6.12,0,6.36,0.6)
                     this.layer.scale(1/key[0],1)
@@ -6002,22 +6006,22 @@ combatant.prototype.minorDisplay=function(type,key){
                         4.52,0,
                         5.16,0.8
                     )
-                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],0.25)),this.fade)
+                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],key[2]*0.25)),this.fade)
                     this.layer.rotate(-60)
                     pentagon(this.layer,
                         0,0.1,
                         0,-0.1,
-                        5,-0.6,
-                        4.52,0,
-                        5,0.6
+                        4.84+key[2]*0.16,-0.4-key[2]*0.2,
+                        4.84-key[2]*0.32,0,
+                        4.84+key[2]*0.16,0.4+key[2]*0.2
                     )
                     this.layer.rotate(60)
                     pentagon(this.layer,
                         0,0.1,
                         0,-0.1,
-                        5,-0.6,
-                        4.52,0,
-                        5,0.6
+                        4.84+key[2]*0.16,-0.4-key[2]*0.2,
+                        4.84-key[2]*0.32,0,
+                        4.84+key[2]*0.16,0.4+key[2]*0.2
                     )
                     this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
                     this.layer.rotate(-60)
@@ -6166,9 +6170,487 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.fill(225,this.fade)
                     this.layer.noStroke()
                     this.layer.rect(0,-12,1,24)
-                    this.layer.fill(50,255,200)
+                    this.layer.fill(50,255,200,this.fade)
                     this.layer.ellipse(0,-24,3,3)
                     this.layer.pop()
+                break
+                case 0:
+                    this.layer.fill(251,172,180,this.fade)
+                    for(let h=0;h<6;h++){
+                        this.layer.rotate(60)
+                        this.layer.ellipse(0,1.4,2,3)
+                    }
+                    this.layer.fill(237,109,167,this.fade)
+                    for(let h=0;h<3;h++){
+                        this.layer.rotate(120)
+                        this.layer.ellipse(0,1.4,1.6,2.6)
+                    }
+                    this.layer.fill(252,158,191,this.fade)
+                    for(let h=0;h<3;h++){
+                        this.layer.rotate(120)
+                        this.layer.ellipse(0,1,1.2,1.8)
+                    }
+                    this.layer.fill(178,20,116,this.fade)
+                    for(let h=0;h<3;h++){
+                        this.layer.rotate(120)
+                        this.layer.ellipse(0,-1.4,1.6,2.6)
+                    }
+                    this.layer.fill(213,54,146,this.fade)
+                    for(let h=0;h<3;h++){
+                        this.layer.rotate(120)
+                        this.layer.ellipse(0,-1,1.2,1.8)
+                    }
+                    this.layer.fill(251,166,172,this.fade)
+                    this.layer.ellipse(0,0,1.2,1.2)
+                    this.layer.fill(166,48,35,this.fade)
+                    this.layer.ellipse(0,0,0.8,0.8)
+                break
+                case 1:
+                    this.layer.fill(255,230,217,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.5,2.2,3)
+                    }
+                    this.layer.fill(245,113,150,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.5,1.8,2.6)
+                    }
+                    this.layer.fill(249,144,184,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.2,1.2,2)
+                    }
+                    this.layer.fill(255,255,244,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.2,0.3,0.8)
+                    }
+                    this.layer.ellipse(0,0,0.5,0.5)
+                break
+                case 2:
+                    this.layer.fill(255,217,218,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.5,2.4,2.8)
+                    }
+                    this.layer.fill(210,28,53,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.5,2.1,2.5)
+                    }
+                    this.layer.fill(241,80,52,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.5,1.8,2.2)
+                    }
+                    this.layer.fill(254,145,80,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.2,1.4,1.8)
+                    }
+                    this.layer.fill(255,240,211,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1,0.2,0.7)
+                    }
+                    this.layer.ellipse(0,0,0.4,0.4)
+                break
+                case 3:
+                    this.layer.fill(255,224,215,this.fade)
+                    for(let h=0;h<4;h++){
+                        this.layer.rotate(90)
+                        this.layer.ellipse(0,1.375,2.75,2.75)
+                    }
+                    this.layer.fill(23,165,189,this.fade)
+                    for(let h=0;h<4;h++){
+                        this.layer.rotate(90)
+                        this.layer.ellipse(0,1.375,2.25,2.25)
+                    }
+                    this.layer.fill(108,215,222,this.fade)
+                    for(let h=0;h<4;h++){
+                        this.layer.rotate(90)
+                        this.layer.ellipse(0,1.375,1.75,1.75)
+                    }
+                    this.layer.rotate(45)
+                    this.layer.fill(255,224,215,this.fade)
+                    for(let h=0;h<4;h++){
+                        this.layer.rotate(90)
+                        this.layer.ellipse(0,1.375,2.75,2.75)
+                    }
+                    this.layer.fill(186,54,77,this.fade)
+                    for(let h=0;h<4;h++){
+                        this.layer.rotate(90)
+                        this.layer.ellipse(0,1.375,2.25,2.25)
+                    }
+                    this.layer.fill(255,210,207,this.fade)
+                    for(let h=0;h<4;h++){
+                        this.layer.rotate(90)
+                        this.layer.ellipse(-0.375,-1.75,0.25,0.25)
+                        this.layer.ellipse(0.375,-1.75,0.25,0.25)
+                        this.layer.ellipse(-0.375,-1,0.25,0.25)
+                        this.layer.ellipse(0.375,-1,0.25,0.25)
+                    }
+                break
+                case 4:
+                    this.layer.strokeJoin(ROUND)
+                    this.layer.stroke(231,208,210,this.fade)
+                    this.layer.strokeWeight(0.6)
+                    for(let h=0;h<6;h++){
+                        this.layer.rotate(45+(h%2)*30)
+                        this.layer.triangle(0,0,-0.65,1.2,0.65,1.2)
+                        this.layer.arc(0,1.5,1.5,1.5,0,360)
+                    }
+                    this.layer.noStroke()
+                    for(let g=0,lg=10;g<lg;g++){
+                        this.layer.fill(161+82*g/lg,1+123*g/lg,19+143*g/lg,this.fade)
+                        for(let h=0;h<6;h++){
+                            this.layer.rotate(45+(h%2)*30)
+                            this.layer.triangle(0,0,-0.65*(1-g/lg),1.2*(1-0.8*g/lg),0.65*(1-g/lg),1.2*(1-0.8*g/lg))
+                            this.layer.arc(0,1.5*(1-0.8*g/lg),1.5*(1-g/lg),1.5,0,360)
+                        }
+                    }
+                    this.layer.rotate(22.5)
+                    this.layer.fill(166,58,30,this.fade)
+                    this.layer.stroke(214,185,132,this.fade)
+                    this.layer.strokeWeight(0.1)
+                    for(let h=0;h<3;h++){
+                        this.layer.rotate(120)
+                        this.layer.bezier(0,0,-0.4,1.6,0.4,1.6,0,0)
+                    }
+                    this.layer.strokeJoin(MITER)
+                break
+                case 5:
+                    this.layer.fill(242,232,231,this.fade)
+                    for(let h=0;h<3;h++){
+                        this.layer.rotate(120)
+                        this.layer.ellipse(0,1.25,3.25,3)
+                    }
+                    this.layer.fill(189,42,26,this.fade)
+                    for(let h=0;h<3;h++){
+                        this.layer.rotate(120)
+                        this.layer.ellipse(0,1.125,2.25,2.25)
+                    }
+                    this.layer.stroke(224,142,139,this.fade)
+                    this.layer.strokeWeight(0.15)
+                    for(let h=0;h<3;h++){
+                        this.layer.rotate(120)
+                        this.layer.ellipse(-0.45,1.4,0.5,0.5)
+                        this.layer.ellipse(0.45,1.4,0.5,0.5)
+                        this.layer.ellipse(0,0.65,0.5,0.5)
+                    }
+                break
+                case 6:
+                    this.layer.fill(241,212,226,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.1,2.1,2.7)
+                    }
+                    this.layer.fill(143,90,141,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.1,1.7,2.3)
+                    }
+                    this.layer.rotate(36)
+                    this.layer.fill(229,201,211,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.05,2.4,2.7)
+                    }
+                    this.layer.fill(247,132,76,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.05,1.8,2.1)
+                    }
+                    this.layer.fill(237,163,170,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,0.5,0.5,4/3)
+                    }
+                    this.layer.fill(128,59,148,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,0.5,1/6,1)
+                    }
+                    this.layer.rotate(36)
+                    this.layer.fill(255,197,164,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1/3,0.5,1)
+                    }
+                    this.layer.fill(210,23,61,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1/3,1/6,2/3)
+                    }
+                break
+                case 7:
+                    this.layer.fill(255,246,236,this.fade)
+                    for(let h=0;h<10;h++){
+                        this.layer.rotate(27+(h%2)*18)
+                        this.layer.arc(0,1.6,1.3,1.3,0,360)
+                    }
+                    this.layer.ellipse(0,0,3,3)
+                    for(let g=0,lg=10;g<lg;g++){
+                        this.layer.fill(162+59*abs(4-g)/5,40+117*abs(4-g)/5,61+72*abs(4-g)/5,this.fade)
+                        for(let h=0;h<10;h++){
+                            this.layer.rotate(27+(h%2)*18)
+                            this.layer.triangle(0,0,-0.5*(1-g/lg),1.5*(1-g/lg),0.5*(1-g/lg),1.5*(1-g/lg))
+                            this.layer.arc(0,1.6*(1-g/lg),1*(1-g/lg),1*(1-g/lg),0,360)
+                        }
+                    }
+                    this.layer.rotate(13.5)
+                    this.layer.fill(254,242,237,this.fade)
+                    this.layer.ellipse(0,0,0.6,0.6)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.rect(0,-0.8,0.15,1.6)
+                    }
+                    this.layer.fill(211,95,159,this.fade)
+                    this.layer.ellipse(0,0,0.4,0.4)
+                break
+                case 8:
+                    this.layer.fill(233,197,220,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,2,0.8,2)
+                    }
+                    this.layer.fill(157,78,128,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,2,0.6,1.8)
+                    }
+                    this.layer.fill(123,64,107,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.85,0.5,1.5)
+                    }
+                    this.layer.fill(79,29,75,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.7,0.4,1.2)
+                    }
+                    this.layer.rotate(48)
+                    this.layer.fill(249,212,237,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.2,1.2,2.4)
+                    }
+                    this.layer.fill(172,5,65,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.2,1,2.2)
+                    }
+                    this.layer.fill(193,15,82,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,0.8,0.6,1.4)
+                    }
+                    this.layer.rotate(36)
+                    this.layer.fill(252,206,219,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.2,1.2,2.4)
+                    }
+                    this.layer.fill(222,84,132,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.2,1,2.2)
+                    }
+                    this.layer.fill(252,130,170,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,0.8,0.6,1.4)
+                    }
+                    this.layer.fill(236,137,109,this.fade)
+                    this.layer.ellipse(0,0,0.6,0.6)
+                    this.layer.fill(253,213,132,this.fade)
+                    this.layer.ellipse(0,0,0.4,0.4)
+                break
+                case 9:
+                    this.layer.fill(253,233,237,this.fade)
+                    for(let h=0;h<8;h++){
+                        this.layer.rotate(45+lcos(h*90+45)*10)
+                        this.layer.ellipse(0,lsin(h*90)*0.4+1.6,1,2)
+                        this.layer.rect(0,-1,0.16,2)
+                    }
+                    for(let g=0,lg=5;g<lg;g++){
+                        this.layer.fill(217-38*g/lg,224-63*g/lg,137-66*g/lg,this.fade)
+                        for(let h=0;h<8;h++){
+                            this.layer.rotate(45+lcos(h*90+45)*10)
+                            this.layer.ellipse(0,lsin(h*90)*0.4+1.6-0.9*g/lg,0.8*(1-g/lg),1.8*(1-g/lg))
+                            this.layer.rect(0,-(lsin(h*90)*0.4+1.6-0.9*g/lg)/2,0.08-0.08*g/lg,lsin(h*90)*0.4+1.6-0.9*g/lg)
+                        }
+                    }
+                    this.layer.rotate(18)
+                    this.layer.scale(0.8)
+                    this.layer.fill(235,201,215,this.fade)
+                    for(let h=0;h<8;h++){
+                        this.layer.rotate(45+lcos(h*90+45)*10)
+                        this.layer.ellipse(0,lsin(h*90)*0.4+1.6,1,2)
+                        this.layer.rect(0,-1,0.16,2)
+                    }
+                    for(let g=0,lg=5;g<lg;g++){
+                        this.layer.fill(173-51*g/lg,113-68*g/lg,180-42*g/lg,this.fade)
+                        for(let h=0;h<8;h++){
+                            this.layer.rotate(45+lcos(h*90+45)*10)
+                            this.layer.ellipse(0,lsin(h*90)*0.4+1.6-0.9*g/lg,0.8*(1-g/lg),1.8*(1-g/lg))
+                            this.layer.rect(0,-(lsin(h*90)*0.4+1.6-0.9*g/lg)/2,0.08-0.08*g/lg,lsin(h*90)*0.4+1.6-0.9*g/lg)
+                        }
+                    }
+                break
+                case 10:
+                    this.layer.fill(254,180,202,this.fade)
+                    for(let h=0;h<3;h++){
+                        this.layer.rotate(120)
+                        this.layer.ellipse(0,1.8,1.2,2)
+                    }
+                    this.layer.fill(169,91,129,this.fade)
+                    for(let h=0;h<3;h++){
+                        this.layer.rotate(120)
+                        this.layer.ellipse(0,1.8,1,1.8)
+                    }
+                    this.layer.fill(106,48,88,this.fade)
+                    for(let h=0;h<3;h++){
+                        this.layer.rotate(120)
+                        this.layer.ellipse(0,1.65,0.7,1.5)
+                    }
+                    this.layer.fill(69,24,68,this.fade)
+                    for(let h=0;h<3;h++){
+                        this.layer.rotate(120)
+                        this.layer.ellipse(0,1.5,0.4,1.2)
+                    }
+                    this.layer.rotate(48)
+                    for(let h=0,lh=16;h<lh;h++){
+                        this.layer.rotate(72)
+                        this.layer.fill(248+6*h/lh,215-21*h/lh,232-19*h/lh,this.fade)
+                        this.layer.ellipse(0,-1.2+h*0.05,2.2-h*0.1,2-h*0.1)
+                        this.layer.ellipse(0,1.2-h*0.05,2.2-h*0.1,2-h*0.1)
+                        this.layer.fill(255-52*h/lh,170-103*h/lh,192-80*h/lh,this.fade)
+                        this.layer.ellipse(0,-1.2+h*0.05,2-h*0.1,1.8-h*0.1)
+                        this.layer.ellipse(0,1.2-h*0.05,2-h*0.1,1.8-h*0.1)
+                    }
+                    this.layer.fill(239,177,106,this.fade)
+                    this.layer.ellipse(0,0,0.8,0.8)
+                    this.layer.fill(250,210,145,this.fade)
+                    this.layer.ellipse(0,0,0.6,0.6)
+                break
+                case 11:
+                    this.layer.fill(246,136,164,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.4,1.4,2.4)
+                    }
+                    this.layer.fill(188,10,69,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.4,1,2)
+                    }
+                    this.layer.rotate(36)
+                    this.layer.fill(244,139,177,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.4,1.4,2.4)
+                    }
+                    this.layer.fill(181,3,65,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.4,1,2)
+                    }
+                    this.layer.fill(230,118,138,this.fade)
+                    this.layer.ellipse(0,0,1,1)
+                    this.layer.fill(167,61,48,this.fade)
+                    this.layer.ellipse(0,0,0.6,0.6)
+                break
+                case 12:
+                    this.layer.fill(243,186,203,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.4,1,2.8)
+                    }
+                    this.layer.fill(231,97,124,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.4,0.6,2.4)
+                    }
+                    this.layer.fill(225,51,100,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1,0.4,1.6)
+                    }
+                    this.layer.rotate(36)
+                    this.layer.fill(232,169,191,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.4,1,2.8)
+                    }
+                    this.layer.fill(232,112,133,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.4,0.6,2.4)
+                    }
+                    this.layer.fill(223,55,101,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1,0.4,1.6)
+                    }
+                    this.layer.fill(248,167,196,this.fade)
+                    this.layer.ellipse(0,0,0.8,0.8)
+                    this.layer.fill(193,80,113,this.fade)
+                    this.layer.ellipse(0,0,0.4,0.4)
+                break
+                case 13:
+                    this.layer.fill(231,108,217,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.beginShape()
+                        this.layer.vertex(0,-0.3)
+                        this.layer.bezierVertex(-1,0.9,-1,1.8,0,3)
+                        this.layer.bezierVertex(1,1.8,1,0.9,0,-0.3)
+                        this.layer.endShape()
+                    }
+                    this.layer.fill(125,3,44,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.beginShape()
+                        this.layer.vertex(0,0)
+                        this.layer.bezierVertex(-0.8,1.2,-0.8,1.5,0,2.7)
+                        this.layer.bezierVertex(0.8,1.5,0.8,1.2,0,0)
+                        this.layer.endShape()
+                    }
+                    this.layer.fill(194,92,132,this.fade)
+                    this.layer.ellipse(0,0,1,1)
+                    this.layer.fill(141,37,74,this.fade)
+                    this.layer.ellipse(0,0,0.6,0.6)
+                break
+                case 14:
+                    this.layer.fill(245,171,177,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.5,1.1,2.1)
+                        this.layer.rect(0,0.8,0.15,1.6)
+                    }
+                    for(let g=0,lg=5;g<lg;g++){
+                        this.layer.fill(179-22*g/lg,125-51*g/lg,179,this.fade)
+                        for(let h=0;h<5;h++){
+                            this.layer.rotate(72)
+                            this.layer.ellipse(0,1.5-0.95*g/lg,0.8*(1-g/lg),1.8*(1-g/lg))
+                        }
+                    }
+                    this.layer.rotate(30)
+                    this.layer.fill(246,185,195,this.fade)
+                    for(let h=0;h<5;h++){
+                        this.layer.rotate(72)
+                        this.layer.ellipse(0,1.8,1.3,2.5)
+                        this.layer.rect(0,1,0.15,2)
+                    }
+                    for(let g=0,lg=5;g<lg;g++){
+                        this.layer.fill(190-76*g/lg,147-133*g/lg,183-42*g/lg,this.fade)
+                        for(let h=0;h<5;h++){
+                            this.layer.rotate(72)
+                            this.layer.ellipse(0,1.8-1.1*g/lg,1*(1-g/lg),2.2*(1-g/lg))
+                        }
+                    }
                 break
                 default:
                     //minorGraphicDisplay(this.layer,type)

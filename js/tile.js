@@ -398,7 +398,7 @@ class tile{
                 case 3:
                     if(this.anim.part[a]>0){
                         this.layer.rotate(90+a*15)
-                        this.layer.image(graphics.minor[17],5-20*this.fade*this.anim.part[a],-25*this.fade*this.anim.part[a],40*this.fade*this.anim.part[a],50*this.fade*this.anim.part[a])
+                        this.layer.image(graphics.minor[0],5-20*this.fade*this.anim.part[a],-25*this.fade*this.anim.part[a],40*this.fade*this.anim.part[a],50*this.fade*this.anim.part[a])
                         this.layer.rotate(-90-a*15)
                     }
                 break

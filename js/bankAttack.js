@@ -189,7 +189,8 @@ attack.prototype.update=function(){
         case 8403: case 8408: case 8409: case 8410: case 8429: case 8447: case 8448: case 8449: case 8452: case 8467:
         case 8481: case 8489: case 8491: case 8497: case 8513: case 8528: case 8557: case 8558: case 8563: case 8570:
         case 8604: case 8617: case 8629: case 8656: case 8657: case 8663: case 8667: case 8676: case 8684: case 8688:
-        case 8715: case 8754: case 8755: case 8756:
+        case 8715: case 8754: case 8755: case 8756: case 8772: case 8773: case 8774: case 8775: case 8776: case 8777:
+        case 8779:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -2342,7 +2343,7 @@ attack.prototype.update=function(){
         case 8183: case 8184: case 8185: case 8188: case 8189: case 8204: case 8256: case 8257: case 8259: case 8293:
         case 8308: case 8309: case 8351: case 8366: case 8400: case 8438: case 8453: case 8494: case 8554: case 8556:
         case 8572: case 8573: case 8662: case 8685: case 8686: case 8692: case 8693: case 8743: case 8744: case 8745:
-        case 8767:
+        case 8767: case 8778:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -3158,7 +3159,7 @@ attack.prototype.update=function(){
         case 7963: case 7964: case 7965: case 7966: case 7968: case 7969: case 7984: case 8035: case 8046: case 8094:
         case 8095: case 8105: case 8113: case 8190: case 8264: case 8265: case 8282: case 8320: case 8321: case 8336:
         case 8341: case 8342: case 8356: case 8370: case 8396: case 8525: case 8546: case 8581: case 8584: case 8642:
-        case 8643: case 8644: case 8652: case 8653: case 8673: case 8694: case 8699: case 8739:
+        case 8643: case 8644: case 8652: case 8653: case 8673: case 8694: case 8699: case 8739: case 8770: case 8771:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||

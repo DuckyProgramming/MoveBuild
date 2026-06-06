@@ -332,6 +332,9 @@ class battle{
             }else{
                 graphics.combatant.push(-1)
             }
+            if(a==12){
+                break
+            }
         }
         for(let a=0,la=options.preGen.length;a<la;a++){
             setupCombatantGraphics(options.preGen[a])

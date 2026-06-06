@@ -196,7 +196,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 15: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nMove Forward 1 Tile`; break
         case 17: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMove 1 Tile Away`; break
         case 18: case 4124:
-            string+=`Dqeal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions`; break
+            string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions`; break
         case 19: case 5029:
             string+=`Swap With an\nAdjacent Target\nDeal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile`; break
         case 20: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDiscard ${effect[1]}\nRandom Card`; break
@@ -8984,6 +8984,16 @@ card.prototype.description=function(attack,effect,spec,target){
         case 8767: string+=`Make a Random Attack\nin Hand Cost 0:\nSummon in a\nManagement Soldier`; break
         case 8768: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAt Max,\nRedraw Your Hand`; break
         case 8769: string+=`Make ${effect[0]} Cop${effect[0]!=1?`ies`:`y`} of a\nSkill in Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0\nTemporarily`; break
+        case 8770: string+=`Gain ${effect[0]} Temporary\nStrength\nGain ${effect[1]} Temporary\nDexterity\nOdd Energy:\nGain ${effect[1]} Energy`; break
+        case 8771: string+=`Gain ${effect[0]} Temporary\nStrength\nGain ${effect[1]} Temporary\nDexterity\nFor Each (K) Spent:\nGain (N)`; break
+        case 8772: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nIf X is Prime,\nApply ${effect[1]} Shock`; break
+        case 8773: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nIf X is Prime,\nApply ${effect[1]} Burn`; break
+        case 8774: string+=`Deal ${this.diceEffect(1,6,2,effect[0])}+${this.calculateEffect(effect[1],0)} Damage`; break
+        case 8775: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nAdd ${this.calculateEffect(effect[1],3)} Block\nWhere X = D6`; break
+        case 8776: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nAdd ${this.calculateEffect(effect[1],3)} Block\nWhere X = D6\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+        case 8777: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nGain ${effect[1]!=1?`${effect[1]}`:``}X Currency\nWhere X = D6`; break
+        case 8778: string+=`Deal ${this.diceEffect(1,6,2,effect[0])} Damage\nOdd Roll:\nApply ${effect[1]} Weak\nEven Roll:\nApply ${effect[2]} Vulnerable`; break
+        case 8779: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCable in Hand:\nApply ${effect[1]} Vulnerable`; break
 
         //mark p
 

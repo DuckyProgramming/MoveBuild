@@ -251,7 +251,7 @@ types.loading=[
     `Prior to his ascension, the Admiral-Manager consolidated military power in a triumvirate headed by himself.`,
     //210
 
-    `Augustian Grant defected to the Management from the Human Empire in return for a high military rank.`,
+    `Vitalian Grant defected to the Management from the Human Empire in return for a high military rank.`,
     `The Management's choice to pick fights with aliens just after the Sisters War was almost a disastrous mistake.`,
     `While appearing politically irrelevant, Konai at least sits as the second planet of its sector.`,
     `Kirt Kodrax led a highly mediocre military career before his current position as Governor of Konai.`,
