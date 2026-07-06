@@ -475,7 +475,7 @@ class combatant{
 
         this.combo=0
         this.comboCap=10
-        this.armed=true
+        this.armed=this.name=='Sakura'
         this.balance=0
         this.balanceCap=10
         this.orbs=[-1,-1,-1,-1]

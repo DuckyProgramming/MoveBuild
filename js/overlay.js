@@ -3272,7 +3272,7 @@ class overlay{
                 }else{
                     this.layer.rect(this.layer.width/2,this.layer.height/2,max(175,this.options*120+40),200,10)
                 }
-                let offset=(this.options>=12?130:this.options>=8?75:0)
+                let offset=this.options>=12?130:this.options>=8?75:0
                 if(!this.battle.modded(83)){
                     this.layer.rect(this.layer.width/2,this.layer.height/2+125+offset,120,40,10)
                 }
@@ -5571,7 +5571,8 @@ class overlay{
                             }
                         }
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+125+(this.options>=8?75:0)},width:120,height:40})&&!this.battle.modded(83)){
+                    let offset=this.options>=12?130:this.options>=8?75:0
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+125+offset},width:120,height:40})&&!this.battle.modded(83)){
                         this.active=false
                         this.cards.forEach(card=>card.deSize)
                         if(this.args[0]==0){

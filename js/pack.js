@@ -12,6 +12,7 @@ class pack{
         this.size=1
         this.scale=0
         this.total=0
+        this.time=0
         this.create()
     }
     create(){
@@ -58,6 +59,14 @@ class pack{
             this.cards[a].anim.afford=1
             this.cards[a].display()
         }
+        /*let mult=1
+        for(let a=0,la=this.cards.length;a<la;a++){
+            this.cards[a].position.x=this.position.x+lsin(a/la*360+this.time*mult)*70*this.size
+            this.cards[a].position.y=this.position.y+lcos(a/la*360+this.time*mult)*20*this.size
+            this.cards[a].size=this.size*this.scale
+            this.cards[a].anim.afford=1
+        }
+        range(0,this.cards.length).sort((a,b)=>lcos(a/this.cards.length*360+this.time*mult)-lcos(b/this.cards.length*360+this.time*mult)).forEach(num=>this.cards[num].display())*/
     }
     update(){
         if(this.complete){
@@ -66,6 +75,7 @@ class pack{
         }
         this.scale=min(this.scale+0.2,1)
         this.size=smoothAnim(this.size,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<100,1,1.8,5)
+        this.time++
     }
     reject(){
         this.cards.forEach(card=>card.deSize=true)

@@ -5860,80 +5860,10 @@ combatant.prototype.minorDisplay=function(type,key){
                 break
                 case 7:
                     this.layer.rotate(-10*key[0])
-                    this.layer.scale(key[0],1)
-                    this.layer.fill(...this.flashColor([key[1][0]*0.4,key[1][1]*0.4,key[1][2]*0.4]),this.fade)
-                    hexagon(this.layer,
-                        0,0,
-                        6.4,-3.2,
-                        8,-3.6,
-                        7.2,0,
-                        8,3.6,
-                        6.4,3.2
-                    )
-                    this.layer.fill(...this.flashColor(key[1]),this.fade)
-                    hexagon(this.layer,
-                        0,0,
-                        6.4,-3.2,
-                        7.4,-3.45,
-                        6.46,0,
-                        7.4,3.45,
-                        6.4,3.2,
-                    )
-                    this.layer.fill(...this.flashColor([key[1][0]*1.4,key[1][1]*1.4,key[1][2]*1.4]),this.fade)
-                    this.layer.quad(0,0,6.4,-3.2,5.12,0,6.4,3.2)
-                    this.layer.fill(...this.flashColor([key[1][0]*1.1,key[1][1]*1.1,key[1][2]*1.1]),this.fade)
-                    this.layer.quad(0,0,5.92,-2,5.12,0,5.92,2)
-                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
-                    this.layer.quad(0,0,5.6,-1.2,5.12,0,5.6,1.2)
-                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],key[2]*0.25)),this.fade)
-                    //this.layer.quad(2.4,0,6.76,-1.6,6.12,0,6.76,1.6)
-                    this.layer.quad(2.25+key[2]*0.15,0,6.68+key[2]*0.08,-1.4-key[2]*0.2,6.12,0,6.68+key[2]*0.08,1.4+key[2]*0.2)
-                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
-                    this.layer.quad(2.25,0,6.68,-1.4,6.12,0,6.68,1.4)
-                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],key[2]*0.25)),this.fade)
-                    //this.layer.quad(0,0,6.44,-0.8,6.12,0,6.44,0.8)
-                    this.layer.quad(0,0,6.36+key[2]*0.08,-0.6-key[2]*0.2,6.12,0,6.36+key[2]*0.08,0.6+key[2]*0.2)
-                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
-                    this.layer.quad(0.4,0,6.36,-0.6,6.12,0,6.36,0.6)
-                    this.layer.scale(1/key[0],1)
+                    this.minorDisplay(10,key)
 
                     this.layer.rotate(180+20*key[0])
-                    this.layer.scale(key[0],1)
-                    this.layer.fill(...this.flashColor([key[1][0]*0.4,key[1][1]*0.4,key[1][2]*0.4]),this.fade)
-                    hexagon(this.layer,
-                        0,0,
-                        6.4,-3.2,
-                        8,-3.6,
-                        7.2,0,
-                        8,3.6,
-                        6.4,3.2
-                    )
-                    this.layer.fill(...this.flashColor(key[1]),this.fade)
-                    hexagon(this.layer,
-                        0,0,
-                        6.4,-3.2,
-                        7.4,-3.45,
-                        6.46,0,
-                        7.4,3.45,
-                        6.4,3.2,
-                    )
-                    this.layer.fill(...this.flashColor([key[1][0]*1.4,key[1][1]*1.4,key[1][2]*1.4]),this.fade)
-                    this.layer.quad(0,0,6.4,-3.2,5.12,0,6.4,3.2)
-                    this.layer.fill(...this.flashColor([key[1][0]*1.1,key[1][1]*1.1,key[1][2]*1.1]),this.fade)
-                    this.layer.quad(0,0,5.92,-2,5.12,0,5.92,2)
-                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
-                    this.layer.quad(0,0,5.6,-1.2,5.12,0,5.6,1.2)
-                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],key[2]*0.25)),this.fade)
-                    //this.layer.quad(2.4,0,6.76,-1.6,6.12,0,6.76,1.6)
-                    this.layer.quad(2.25+key[2]*0.15,0,6.68+key[2]*0.08,-1.4-key[2]*0.2,6.12,0,6.68+key[2]*0.08,1.4+key[2]*0.2)
-                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
-                    this.layer.quad(2.25,0,6.68,-1.4,6.12,0,6.68,1.4)
-                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],key[2]*0.25)),this.fade)
-                    //this.layer.quad(0,0,6.44,-0.8,6.12,0,6.44,0.8)
-                    this.layer.quad(0,0,6.36+key[2]*0.08,-0.6-key[2]*0.2,6.12,0,6.36+key[2]*0.08,0.6+key[2]*0.2)
-                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
-                    this.layer.quad(0.4,0,6.36,-0.6,6.12,0,6.36,0.6)
-                    this.layer.scale(1/key[0],1)
+                    this.minorDisplay(10,key)
 
                     this.layer.rotate(-180-10*key[0])
                     this.layer.scale(key[0],1)
@@ -6157,6 +6087,49 @@ combatant.prototype.minorDisplay=function(type,key){
                         }
                     }
                     this.layer.pop()
+                break
+                case 10:
+                    this.layer.scale(key[0],1)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.4,key[1][1]*0.4,key[1][2]*0.4]),this.fade)
+                    hexagon(this.layer,
+                        0,0,
+                        6.4,-3.2,
+                        8,-3.6,
+                        7.2,0,
+                        8,3.6,
+                        6.4,3.2
+                    )
+                    this.layer.fill(...this.flashColor(key[1]),this.fade)
+                    hexagon(this.layer,
+                        0,0,
+                        6.4,-3.2,
+                        7.4,-3.45,
+                        6.46,0,
+                        7.4,3.45,
+                        6.4,3.2,
+                    )
+                    this.layer.fill(...this.flashColor([key[1][0]*1.4,key[1][1]*1.4,key[1][2]*1.4]),this.fade)
+                    this.layer.quad(0,0,6.4,-3.2,5.12,0,6.4,3.2)
+                    this.layer.fill(...this.flashColor([key[1][0]*1.1,key[1][1]*1.1,key[1][2]*1.1]),this.fade)
+                    this.layer.quad(0,0,5.92,-2,5.12,0,5.92,2)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
+                    this.layer.quad(0,0,5.6,-1.2,5.12,0,5.6,1.2)
+                    //this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],key[2]*0.25)),this.fade)
+                    //this.layer.quad(2.4,0,6.76,-1.6,6.12,0,6.76,1.6)
+                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],key[2]*0.125)),this.fade)
+                    this.layer.quad(2.25+key[2]*0.15,0,6.68+key[2]*0.08,-1.4-key[2]*0.2,6.12,0,6.68+key[2]*0.08,1.4+key[2]*0.2)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
+                    this.layer.quad(2.25,0,6.68,-1.4,6.12,0,6.68,1.4)
+                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],key[2]*0.25)),this.fade)
+                    //this.layer.quad(0,0,6.44,-0.8,6.12,0,6.44,0.8)
+                    this.layer.quad(0,0,6.36+key[2]*0.08,-0.6-key[2]*0.2,6.12,0,6.36+key[2]*0.08,0.6+key[2]*0.2)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
+                    this.layer.quad(0.4,0,6.36,-0.6,6.12,0,6.36,0.6)
+                    this.layer.fill(...this.flashColor(mergeColor(key[1],[255,255,255],key[2]*0.125)),this.fade)
+                    this.layer.quad(0.4,0,4.87,-0.45,4.44,0,4.87,0.45)
+                    this.layer.fill(...this.flashColor([key[1][0]*0.8,key[1][1]*0.8,key[1][2]*0.8]),this.fade)
+                    this.layer.quad(0.4,0,4.51,-0.39,4.12,0,4.51,0.39)
+                    this.layer.scale(1/key[0],1)
                 break
             }
         break

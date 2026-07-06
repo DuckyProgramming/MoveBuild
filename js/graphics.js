@@ -2241,6 +2241,203 @@ function generateGeneralSprite(layer,type){
 				layer.endShape()
 			}
 		break
+		case 43:
+			gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80),new p5.LinearGradient(80)]
+            gradient[0].colors(0.00,color(255,247,189),1.00,color(255,207,87))
+            gradient[1].colors(0.00,color(255,207,87),1.00,color(255,247,189))
+            gradient[2].colors(0.00,color(255,239,123),1.00,color(235,159,0))
+            gradient[3].colors(0.00,color(235,159,0),1.00,color(255,239,123))
+            gradient[4].colors(0.00,color(255,243,156),1.00,color(245,183,0))
+            gradient[5].colors(0.00,color(245,183,0),1.00,color(255,243,156))
+
+            layer.translate(0,40)
+
+            layer.fillGradient(gradient[5])
+            layer.ellipse(50,40,90)
+            layer.fillGradient(gradient[4])
+            layer.ellipse(150,40,90)
+            layer.erase()
+            layer.ellipse(38,40,72)
+            layer.ellipse(162,40,72)
+            layer.noErase()
+
+            layer.stroke(0)
+            layer.noFill()
+            layer.strokeJoin(ROUND)
+            for(let b=0,lb=4;b<lb;b++){
+                layer.strokeGradient(gradient[[2,0,3,1][b]])
+                layer.strokeWeight(8-b%2*4)
+                layer.beginShape()
+                let points=[]
+                let flip=b<2?1:0
+                for(let a=0,la=37;a<la;a++){
+                    let R=5
+                    let z=1.5
+                    let dir=((a+floor(la/4)+0.2)%la+0.1)/la*360+5-flip*10
+                    if(dir<100){
+                        dir+=360
+                    }
+                    let width=-z*lsin(dir)+sqrt((z*lsin(dir))**2-z**2+R**2)-3.65
+                    let end=a%2==0?35:35+width*8
+                    if(width>0){
+                        points.push([dir,end])
+                    }
+                }
+                for(let a=0,la=points.length;a<la;a++){
+                    let point=points[a]
+                    if(a==0){
+                        layer.vertex(40+flip*120+(flip*2-1)*lsin(point[0])*point[1],40+lcos(point[0])*point[1])
+                    }else{
+                        let last=points[a-1]
+                        let w=[
+                            ((point[1]**4)/3+(last[1]**4)*2/3)**0.25,
+                            ((point[1]**4)*2/3+(last[1]**4)/3)**0.25,
+                        ]
+                        layer.bezierVertex(
+                            40+flip*120+(flip*2-1)*lsin(point[0]/3+last[0]*2/3)*w[0],40+lcos(point[0]/3+last[0]*2/3)*w[0],
+                            40+flip*120+(flip*2-1)*lsin(point[0]*2/3+last[0]/3)*w[1],40+lcos(point[0]*2/3+last[0]/3)*w[1],
+                            40+flip*120+(flip*2-1)*lsin(point[0])*point[1],40+lcos(point[0])*point[1],
+                        )
+                    }
+                }
+                layer.endShape()
+            }
+		break
+		case 44:
+			temp=[createGraphics(160,160),createGraphics(160,160)]
+			temp.forEach(img=>setupLayer(img))
+			generateGeneralSprite(temp[0],45)
+			generateGeneralSprite(temp[1],46)
+			layer.image(temp[0],0,0,160,80,0,0,160,80)
+			layer.image(temp[1],0,0)
+			layer.image(temp[0],0,80,160,80,0,80,160,80)
+		break
+		case 45:
+			gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80)]
+			gradient[0].colors(
+				0.00,color(255,251,222),
+				1.00,color(255,215,115)
+			)
+			gradient[1].colors(
+				0.00,color(253,234,172),
+				1.00,color(239,192,104)
+			)
+			layer.translate(0,40)
+			layer.fillGradient(gradient[1])
+			layer.ellipse(60,40,103,103)
+			layer.fillGradient(gradient[0])
+			layer.ellipse(60,40,100,100)
+			layer.fillGradient(gradient[1])
+			layer.ellipse(50,40,81,81)
+			layer.erase()
+			layer.ellipse(50,40,78,78)
+			layer.rect(10,40,20,25)
+			layer.noErase()
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeJoin(ROUND)
+			for(let b=0,lb=2;b<lb;b++){
+                layer.strokeGradient(gradient[1-b])
+                layer.strokeWeight(8-b*4)
+                layer.beginShape()
+                let points=[]
+                let flip=0
+                for(let a=0,la=49;a<la;a++){
+                    let R=5
+                    let z=1.5
+                    let dir=(a+10)/la*360+3-flip*6
+                    if(dir<100){
+                        dir+=360
+                    }
+                    let width=-z*lsin(dir)+sqrt((z*lsin(dir))**2-z**2+R**2)-3.65
+                    let end=a%2==0?41:41+width*6
+                    if(width>0){
+                        points.push([dir,end])
+                    }
+                }
+                for(let a=0,la=points.length;a<la;a++){
+                    let point=points[a]
+                    if(a==0){
+                        layer.vertex(50+flip*60+(flip*2-1)*lsin(point[0])*point[1],40+lcos(point[0])*point[1])
+                    }else{
+                        let last=points[a-1]
+                        let w=[
+                            ((point[1]**4)/3+(last[1]**4)*2/3)**0.25,
+                            ((point[1]**4)*2/3+(last[1]**4)/3)**0.25,
+                        ]
+                        layer.bezierVertex(
+                            50+flip*16+(flip*2-1)*lsin(point[0]/3+last[0]*2/3)*w[0],40+lcos(point[0]/3+last[0]*2/3)*w[0],
+                            50+flip*60+(flip*2-1)*lsin(point[0]*2/3+last[0]/3)*w[1],40+lcos(point[0]*2/3+last[0]/3)*w[1],
+                            50+flip*60+(flip*2-1)*lsin(point[0])*point[1],40+lcos(point[0])*point[1],
+                        )
+                    }
+                }
+                layer.endShape()
+            }
+		break
+		case 46:
+			gradient=[new p5.LinearGradient(80),new p5.LinearGradient(80)]
+			gradient[0].colors(
+				0.00,color(255,215,115),
+				1.00,color(255,251,222)
+			)
+			gradient[1].colors(
+				0.00,color(239,192,104),
+				1.00,color(253,234,172)
+			)
+			layer.translate(0,40)
+			layer.fillGradient(gradient[1])
+			layer.ellipse(100,40,103,103)
+			layer.fillGradient(gradient[0])
+			layer.ellipse(100,40,100,100)
+			layer.fillGradient(gradient[1])
+			layer.ellipse(110,40,81,81)
+			layer.erase()
+			layer.ellipse(110,40,78,78)
+			layer.rect(150,40,20,25)
+			layer.noErase()
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeJoin(ROUND)
+			for(let b=0,lb=2;b<lb;b++){
+                layer.strokeGradient(gradient[1-b])
+                layer.strokeWeight(8-b*4)
+                layer.beginShape()
+                let points=[]
+                let flip=1
+                for(let a=0,la=49;a<la;a++){
+                    let R=5
+                    let z=1.5
+                    let dir=(a+10)/la*360+3-flip*6
+                    if(dir<100){
+                        dir+=360
+                    }
+                    let width=-z*lsin(dir)+sqrt((z*lsin(dir))**2-z**2+R**2)-3.65
+                    let end=a%2==0?41:41+width*6
+                    if(width>0){
+                        points.push([dir,end])
+                    }
+                }
+                for(let a=0,la=points.length;a<la;a++){
+                    let point=points[a]
+                    if(a==0){
+                        layer.vertex(50+flip*60+(flip*2-1)*lsin(point[0])*point[1],40+lcos(point[0])*point[1])
+                    }else{
+                        let last=points[a-1]
+                        let w=[
+                            ((point[1]**4)/3+(last[1]**4)*2/3)**0.25,
+                            ((point[1]**4)*2/3+(last[1]**4)/3)**0.25,
+                        ]
+                        layer.bezierVertex(
+                            50+flip*60+(flip*2-1)*lsin(point[0]/3+last[0]*2/3)*w[0],40+lcos(point[0]/3+last[0]*2/3)*w[0],
+                            50+flip*60+(flip*2-1)*lsin(point[0]*2/3+last[0]/3)*w[1],40+lcos(point[0]*2/3+last[0]/3)*w[1],
+                            50+flip*60+(flip*2-1)*lsin(point[0])*point[1],40+lcos(point[0])*point[1],
+                        )
+                    }
+                }
+                layer.endShape()
+            }
+		break
 	}
 }
 function generateSprite(layer,type,direction){
@@ -5357,7 +5554,7 @@ function setupCombatantGraphics(type){
 					break
 				}
 				setupLayer(data.sprites.minor[a])
-				generateGeneralSprite(data.sprites.minor[a],37+a*5)
+				generateGeneralSprite(data.sprites.minor[a],44-a)
 			}
 		break
 		case 20:
@@ -8052,6 +8249,7 @@ function setupGeneralGraphics(){
 	39 XOR
 	40-41 Menessa Filigree
 	42 Menessa Filigree 2
+	43 Menessa Filigree 3
 	*/
 	/*for(let a=0,la=43;a<la;a++){
 		switch(a){

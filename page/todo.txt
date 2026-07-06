@@ -1,35 +1,12 @@
-change penalty scattergun - more clip size instead of more damage
-change ice cream - half effect
-change (rework) detonator
-nutter - replace battery lmg - fires a shotgun blast of ballista bolts but lose 25% of your hp on use
-the updated engineer
-- 4-6 sentries
-- 2 dispensers
-- 2 teleportrs
-- 16-24 distinct "build" weapons
-
-
-
 movebuild shoes
-the last shoe change
 
 update icathia
--sagume (for new bg)
 -menessa
-
-
-
-get feedback on new menessa lore
-get feedback on new dai lore
-
-
-
-crusader campaign mode
 
 
 
 POTENTIAL CARDSET 102 [ENDSIEG]
 
-
-
-tobruk standalone game
+caffeine rush - damage, draw a card per coffee in hand
+keychain - gain 10 block, when taken, drawlink 2 cards
+the right idea - if target intends to attack, discover a defense, otherwise discover an attack
