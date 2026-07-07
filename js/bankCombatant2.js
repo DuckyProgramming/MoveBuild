@@ -4459,7 +4459,7 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.translate(this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1,this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1)
                     this.layer.rotate(90+90*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75))-this.spin.sword*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75)))
                     this.layer.scale(-1,constrain(lsin(this.anim.direction+this.spin.arms[key].bottom+75)*2,-1,1)*this.anim.sword)
-                    this.layer.image(graphics.combatant[1].sprites.minor[8],-27*this.fade,-15-27*this.fade,54*this.fade,54*this.fade)
+                    this.layer.image(graphics.combatant[1].sprites.minor[5],-27*this.fade,-15-27*this.fade,54*this.fade,54*this.fade)
                     this.layer.pop()
                 break
                 case 1:
@@ -4488,7 +4488,7 @@ combatant.prototype.minorDisplay=function(type,key){
                         this.layer.stroke(104,78,95,this.fade)
                         this.layer.strokeWeight(1.5)
                         this.layer.line(0,-5,0,50)
-                        this.layer.image(graphics.combatant[1].sprites.minor[10],-75*this.fade,50-30*this.fade,150*this.fade,60*this.fade)
+                        this.layer.image(graphics.combatant[1].sprites.minor[7],-75*this.fade,50-30*this.fade,150*this.fade,60*this.fade)
                         this.layer.fill(246,209,161,this.fade)
                         this.layer.noStroke()
                         this.layer.beginShape()
@@ -4497,7 +4497,7 @@ combatant.prototype.minorDisplay=function(type,key){
                         this.layer.vertex(45,45)
                         this.layer.bezierVertex(25,50,-25,50,-45,45)
                         this.layer.endShape()
-                        this.layer.image(graphics.combatant[1].sprites.minor[11],-50*this.fade,60-20*this.fade,100*this.fade,40*this.fade)
+                        this.layer.image(graphics.combatant[1].sprites.minor[8],-50*this.fade,60-20*this.fade,100*this.fade,40*this.fade)
                         this.layer.push()
                         this.layer.fill(239,230,231,this.fade)
                         this.layer.ellipse(0,65,3,3)

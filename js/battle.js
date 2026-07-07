@@ -2962,17 +2962,23 @@ class battle{
                 if(graphics.test<0){
                     this.layer.clear()
                     graphics.staticBackground.clear()
-                    this.graphics.combatants[-1-graphics.test][0][0].position.x=this.layer.width
-                    this.graphics.combatants[-1-graphics.test][0][0].position.y=this.layer.height+450
-                    //this.graphics.combatants[0][0][0].anim.direction=150
-                    if(game.timer%30==0){
-                        //this.graphics.combatants[0][0][0].anim.direction+=15
+                    for(let a=0,la=this.graphics.combatants[-1-graphics.test][0].length;a<la;a++){
+                        let model=this.graphics.combatants[-1-graphics.test][0][a]
+                        model.position.x=this.layer.width+even(a,la)*graphics.staticBackground.width/la
+                        model.position.y=this.layer.height+450
+                        //this.graphics.combatants[0][0][0].anim.direction=150
+                        if(game.timer%30==0){
+                            //this.graphics.combatants[0][0][0].anim.direction+=15
+                        }
+                        model.time++
+                        model.size=10/sqrt(la)
+                        model.layer=graphics.staticBackground
+                        model.display()
                     }
-                    this.graphics.combatants[-1-graphics.test][0][0].time++
-                    this.graphics.combatants[-1-graphics.test][0][0].size=10
-                    this.graphics.combatants[-1-graphics.test][0][0].layer=graphics.staticBackground
-                    this.graphics.combatants[-1-graphics.test][0][0].display()
                     this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
+                    if(this.graphics.combatants[-1-graphics.test][0].length>=2){
+                        noLoop()
+                    }
                 }else{
                     this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                     for(let a=0,la=this.players;a<la;a++){

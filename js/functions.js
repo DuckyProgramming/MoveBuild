@@ -3225,3 +3225,15 @@ function antiOrb(orb){
 		case 17: return 11
 	}
 }
+function even(pos,total){
+    return pos-total*0.5+0.5
+}
+function evens(num){
+    let result=[]
+    let left=1
+    for(let a=0,la=num;a<la;a++){
+        result.push(left*(random(0,1)**(la-a-1)))
+        left-=last(result)
+    }
+    return result
+}

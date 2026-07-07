@@ -2338,7 +2338,7 @@ function generateGeneralSprite(layer,type){
 			layer.strokeJoin(ROUND)
 			for(let b=0,lb=2;b<lb;b++){
                 layer.strokeGradient(gradient[1-b])
-                layer.strokeWeight(8-b*4)
+                layer.strokeWeight(7-b*3.5)
                 layer.beginShape()
                 let points=[]
                 let flip=0
@@ -2351,7 +2351,7 @@ function generateGeneralSprite(layer,type){
                     }
                     let width=-z*lsin(dir)+sqrt((z*lsin(dir))**2-z**2+R**2)-3.65
                     let end=a%2==0?41:41+width*6
-                    if(width>0){
+                    if(width>0.1){
                         points.push([dir,end])
                     }
                 }
@@ -2401,7 +2401,7 @@ function generateGeneralSprite(layer,type){
 			layer.strokeJoin(ROUND)
 			for(let b=0,lb=2;b<lb;b++){
                 layer.strokeGradient(gradient[1-b])
-                layer.strokeWeight(8-b*4)
+                layer.strokeWeight(7-b*3.5)
                 layer.beginShape()
                 let points=[]
                 let flip=1
@@ -2414,7 +2414,7 @@ function generateGeneralSprite(layer,type){
                     }
                     let width=-z*lsin(dir)+sqrt((z*lsin(dir))**2-z**2+R**2)-3.65
                     let end=a%2==0?41:41+width*6
-                    if(width>0){
+                    if(width>0.1){
                         points.push([dir,end])
                     }
                 }
@@ -2437,6 +2437,83 @@ function generateGeneralSprite(layer,type){
                 }
                 layer.endShape()
             }
+		break
+		case 47:
+			layer.translate(80,80)
+			for(let b=0,lb=16;b<lb;b++){
+				layer.fill(80+b*8,200+b*5,80+b*8)
+				layer.quad(0,0,15+b*0.5,45-b*1.5,25,25,45-b*1.5,15+b*0.5)
+				layer.quad(0,0,-15-b*0.5,-45+b*1.5,-25,-25,-45+b*1.5,-15-b*0.5)
+			}
+		break
+		case 48:
+			layer.fill(150,160,196)
+			layer.rect(80,80,100,40)
+			layer.ellipse(80,60,100,100)
+			layer.ellipse(80,100,100,100)
+			layer.fill(105,112,137)
+			layer.rect(80,60,100,6)
+			layer.rect(80,80,100,6)
+			layer.rect(80,100,100,6)
+			layer.quad(54,17,106,17,114,23,46,23)
+			layer.quad(36,37,124,37,127,43,33,43)
+			layer.quad(36,123,124,123,127,117,33,117)
+			layer.quad(54,143,106,143,114,137,46,137)
+		break
+		case 49:
+			layer.stroke(95,55,65)
+			layer.strokeWeight(20)
+			layer.line(24,46,80,150)
+			layer.line(136,46,80,150)
+		break
+		case 50:
+			layer.fill(151,119,103)
+			layer.rect(80,80,100,40)
+			layer.ellipse(80,60,100,100)
+			layer.ellipse(80,100,100,100)
+			layer.fill(122,94,90)
+			layer.rect(80,60,100,6)
+			layer.rect(80,80,100,6)
+			layer.rect(80,100,100,6)
+			layer.quad(54,17,106,17,114,23,46,23)
+			layer.quad(36,37,124,37,127,43,33,43)
+			layer.quad(36,123,124,123,127,117,33,117)
+			layer.quad(54,143,106,143,114,137,46,137)
+		break
+		case 51:
+			layer.stroke(201,61,96)
+			layer.strokeWeight(20)
+			layer.line(24,46,80,150)
+			layer.line(136,46,80,150)
+			layer.stroke(233,216,194)
+			layer.strokeWeight(8)
+			for(let b=0,lb=4;b<lb;b++){
+				layer.point(29+b*14,56+b*26)
+				layer.point(131-b*14,56+b*26)
+			}
+		break
+		case 52:
+			layer.fill(155,176,150)
+			layer.rect(80,80,100,40)
+			layer.ellipse(80,60,100,100)
+			layer.ellipse(80,100,100,100)
+			layer.fill(107,117,105)
+			layer.rect(80,60,100,6)
+			layer.rect(80,80,100,6)
+			layer.rect(80,100,100,6)
+			layer.quad(54,17,106,17,114,23,46,23)
+			layer.quad(36,37,124,37,127,43,33,43)
+			layer.quad(36,123,124,123,127,117,33,117)
+			layer.quad(54,143,106,143,114,137,46,137)
+		break
+		case 53:
+			layer.stroke(55,65,95)
+			layer.strokeWeight(20)
+			layer.line(24,46,80,150)
+			layer.line(136,46,80,150)
+		break
+		default:
+			throw new Error(`Invalid Sprite`)
 		break
 	}
 }
@@ -3783,14 +3860,14 @@ function setupCombatantGraphics(type){
 				}
 			}
 			data.sprites.minor=[]
-			for(let a=0,la=9;a<la;a++){
+			for(let a=0,la=5;a<la;a++){
 				switch(a){
 					default:
 						data.sprites.minor.push(createGraphics(160,160))
 					break
 				}
 				setupLayer(data.sprites.minor[a])
-				generateGeneralSprite(data.sprites.minor[a],a)
+				generateGeneralSprite(data.sprites.minor[a],[47,2,3,48,49][a])
 			}
 		break
 		case 1:
@@ -4095,15 +4172,15 @@ function setupCombatantGraphics(type){
 				}
 			}
 			data.sprites.minor=[]
-			for(let a=0,la=12;a<la;a++){
+			for(let a=0,la=9;a<la;a++){
 				switch(a){
 					case 0: case 2:
 						data.sprites.minor.push(createGraphics(160,240))
 					break
-					case 10:
+					case 7:
 						data.sprites.minor.push(createGraphics(600,300))
 					break
-					case 11:
+					case 8:
 						data.sprites.minor.push(createGraphics(400,200))
 					break
 					default:
@@ -4111,7 +4188,7 @@ function setupCombatantGraphics(type){
 					break
 				}
 				setupLayer(data.sprites.minor[a])
-				generateGeneralSprite(data.sprites.minor[a],9+a+(a>=10?6:0))
+				generateGeneralSprite(data.sprites.minor[a],[9,10,11,50,51,17,18,24,25][a])
 			}
 		break
 		case 2:
@@ -4435,10 +4512,10 @@ function setupCombatantGraphics(type){
 				}
 			}
 			data.sprites.minor=[]
-			for(let a=0,la=9;a<la;a++){
+			for(let a=0,la=6;a<la;a++){
 				data.sprites.minor.push(createGraphics(160,160))
 				setupLayer(data.sprites.minor[a])
-				generateGeneralSprite(data.sprites.minor[a],a+32-(a>=4?9:0))
+				generateGeneralSprite(data.sprites.minor[a],[32,33,34,35,52,53][a])
 			}
 		break
 		case 4:
@@ -8193,24 +8270,24 @@ function setupGeneralGraphics(){
 	1 XOR
 
 	Lira:
-	0-1 Bow
-	2-3 Flower
-	4-6 Sandal Bottom
-	7-8 Sandal Top
+	0 Bow
+	1-2 Flower
+	3 Sandal Bottom
+	4 Sandal Top
 
 	Sakura:
 	0-2 Flower
-	3-5 Sandal Bottom
-	6-7 Sandal Top
-	8 Scythe
-	9 Floral Print
-	10-11 Parasol
+	3 Sandal Bottom
+	4 Sandal Top
+	5 Scythe
+	6 Floral Print
+	7-8 Parasol
 
 	Setsuna:
 	0-1 Bow
 	2-3 Flower
-	4-6 Sandal Bottom
-	7-8 Sandal Top
+	4 Sandal Bottom
+	5 Sandal Top
 
 	Daiyousei:
 	0 Bow
@@ -8249,7 +8326,15 @@ function setupGeneralGraphics(){
 	39 XOR
 	40-41 Menessa Filigree
 	42 Menessa Filigree 2
-	43 Menessa Filigree 3
+	43-45 Menessa Filigree 3
+	46 Menessa Pin 2
+	47 Lira Bow 2
+	48 Lira Sandal Bottom 2
+	49 Lira Sandal Top 2
+	50 Sakura Sandal Bottom 2
+	51 Sakura Sandal Top 2
+	52 Setsuna Sandal Bottom 2
+	53 Setsuna Sandal Top 2
 	*/
 	/*for(let a=0,la=43;a<la;a++){
 		switch(a){

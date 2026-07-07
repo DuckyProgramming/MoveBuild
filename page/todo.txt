@@ -1,7 +1,27 @@
 movebuild shoes
+- lira, sakura, setsuna
+
+120/80
+144/96
+attempt to build an axis/allied order of battle but without invalidating units (replacements, aa, etc)
+
+ENG 1102
+iron edges
+an evident solution
+swap the code and the title
+remove the bottom band
+space utilization
+
+author's statement
+how did we get here?
+noting my sources
+
+prep for registration
 
 update icathia
 -menessa
+
+leetcode
 
 
 
