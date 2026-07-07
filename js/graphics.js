@@ -2485,11 +2485,43 @@ function generateGeneralSprite(layer,type){
 			layer.strokeWeight(20)
 			layer.line(24,46,80,150)
 			layer.line(136,46,80,150)
-			layer.stroke(233,216,194)
-			layer.strokeWeight(8)
+			//layer.stroke(233,216,194)
+			//layer.strokeWeight(8)
+			layer.noStroke()
+			layer.fill(233,216,194)
 			for(let b=0,lb=4;b<lb;b++){
-				layer.point(29+b*14,56+b*26)
-				layer.point(131-b*14,56+b*26)
+				layer.push()
+				layer.translate(28+b*14,56+b*26)
+				layer.scale(0.1)
+				layer.rotate(b*90+13)
+				for(let c=0,lc=5;c<lc;c++){
+					layer.beginShape()
+					layer.vertex(0,0)
+					layer.bezierVertex(-21,-30,-28,-40,-7,-70)
+					layer.vertex(0,-56)
+					layer.vertex(7,-20)
+					layer.bezierVertex(28,-40,21,-30,0,0)
+					layer.endShape()
+					layer.rotate(72)
+				}
+				layer.pop()
+				layer.push()
+				layer.translate(132-b*14,56+b*26)
+				layer.scale(0.1)
+				layer.rotate(-b*90-13)
+				for(let c=0,lc=5;c<lc;c++){
+					layer.beginShape()
+					layer.vertex(0,0)
+					layer.bezierVertex(-21,-30,-28,-40,-7,-70)
+					layer.vertex(0,-56)
+					layer.vertex(7,-20)
+					layer.bezierVertex(28,-40,21,-30,0,0)
+					layer.endShape()
+					layer.rotate(72)
+				}
+				layer.pop()
+				//layer.point(29+b*14,56+b*26)
+				//layer.point(131-b*14,56+b*26)
 			}
 		break
 		case 52:
