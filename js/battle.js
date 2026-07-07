@@ -312,29 +312,31 @@ class battle{
     }
     initialGraphics(){
         this.graphics={combatants:[]}
+        let names=this.player.map(player=>types.combatant[player].name)
         for(let a=0,la=21;a<la;a++){
             if(
-                a==0&&this.player.includes(2)||
-                a==1&&this.player.includes(3)||
-                a==2&&this.player.includes(4)||
-                a==3&&this.player.includes(7)||
-                a==4&&this.player.includes(8)||
-                a==5&&this.player.includes(11)||
-                a==6&&this.player.includes(15)||
-                a==7&&this.player.includes(16)||
-                a==8&&this.player.includes(17)||
-                a==9&&this.player.includes(18)||
-                a==10&&this.player.includes(21)||
-                a==11&&this.player.includes(25)||
-                a==12&&this.player.includes(26)
+                a==0&&names.includes(`Lira`)||
+                a==1&&names.includes(`Sakura`)||
+                a==2&&names.includes(`Certes`)||
+                a==3&&names.includes(`Setsuna`)||
+                a==4&&names.includes(`Airi`)||
+                a==5&&names.includes(`Shiru`)||
+                a==6&&names.includes(`Daiyousei`)||
+                a==7&&names.includes(`Sanae`)||
+                a==8&&names.includes(`Shinmyoumaru`)||
+                a==9&&names.includes(`Merlin`)||
+                a==10&&names.includes(`Sagume`)||
+                a==11&&names.includes(`Meri`)||
+                a==12&&names.includes(`Menessa`)||
+                a==20&&names.includes(`Ume`)
             ){
                 setupCombatantGraphics(a)
             }else{
                 graphics.combatant.push(-1)
             }
-            if(a==12){
+            /*if(a==21){
                 break
-            }
+            }*/
         }
         for(let a=0,la=options.preGen.length;a<la;a++){
             setupCombatantGraphics(options.preGen[a])

@@ -16,3 +16,90 @@ POTENTIAL CARDSET 102 [ENDSIEG]
 caffeine rush - damage, draw a card per coffee in hand
 keychain - gain 10 block, when taken, drawlink 2 cards
 the right idea - if target intends to attack, discover a defense, otherwise discover an attack
+
+
+
+Deutsches Afrika Korps (16 Battalions)
+
+15th Panzer Division (12 Battalions)
+	8th Panzer Regiment (2 Battalions) (7th Company Composed of Captured Tanks)
+	15th Infantry Brigade (4 Battalions)
+		115th Motorized Infantry Regiment (2 Battalions) (2nd Company Mechanized)
+		200th Regimental Staff z.b.V. (2nd Machine Gun Battalion, 15th Motorcycle Battalion)
+	33rd Reconnaissance Battalion
+	33rd Artillery Regiment (1 Battalion, 1 Half-and-Half Battalion, 1 Heavy Battalion)
+	33rd Motorized Engineer Battalion
+	33rd Anti-Tank Battalion
+
+Divisional Command z.b.V. "Afrika" (4 Battalions)
+	3rd Battalion, 347th Infantry Regiment
+	300th "Oasis" Battalion Staff z.b.V. (6th and 12th Oasis Companies, 2nd Company, 39th Engineer Battalion, 580th Reconnaissance Company)
+	Sonderverband 288 (2 Battalions)
+
+
+
+XXII Army Corps (69 Battalions)
+
+2nd Blackshirt Battalion "Volontari della Libia"
+140th Blackshirt Battalion "Aquilia"
+3rd Armored Car Squadrons Group, "Cavalleggeri di Monferrato"
+4th Machine Gun Squadrons Group, "Genova Cavalleria" Regiment
+
+XXII Army Corps Artillery Command (10 Battalions)
+	10th Corps Artillery Regiment (2 Battalions (7,17))
+	22nd Corps Artillery Regiment (1 Battalion (1))
+	25th Corps Artillery Regiment (4 Heavy Battalions (105,130,148,150))
+	55th "Brescia" Artillery Regiment (3 Battalions (1,2,3))
+
+22nd Army Corps Frontier Guard Command (9 Battalions)
+	31st Frontier Guard Coverage Sector (5 Battalions)
+		31st/A Subsector (4 Static Machine Gun Companies)
+		31st/B Subsector (2 Static Machine Gun Companies)
+		31st Frontier Guard Artillery Regiment (3 Battalions (5,6,7) With (1,2,2) Companies)
+	Frontier Guard Anti-Tank Group (3 Battalions (1,2,3) With (1,1,1) Companies)
+	31st Libyan Coastal Infantry Battalion
+
+Army Corps Reconnaissance Regrouping (RECA) (3 Battalions)
+	Later Formed Into 136th Armored Division "Giovani Fascisti"
+	"Romolo Gessi" Motorcycle Battalion, Italian Africa Police (1 Armored Car Company, 2 Motorcycle Companies)
+	Infantry Regiment "Giovani Fascisti" (2 Motorized Militia Battalions)
+	Flying Batteries Regrouping (RBV) (2 Motorized Artillery Battalions (1,2))
+		Formed From Remnants, Frontier Guard Anti-Tank Group and 1st Battalion, 12th "Sila" Artillery Regiment
+		Later Renamed to 136th Artillery Regiment With 14th, 15th, 16th, and 17th Battalions
+		16th and 17th From Remnants of 10th Corps Artillery Regiment That Had Been Briefly Transferred to the Frontier Guard
+
+55th Infantry Division "Savona" (12 Battalions)
+	15th "Savona" Infantry Regiment (3 Battalions)
+	16th "Savona" Infantry Regiment (3 Battalions)
+	12th "Sila" Artillery Regiment (3 Battalions (1,2,3))
+	155th Machine Gun Battalion
+	55th Replacement Battalion
+	55th Mixed Engineer Battalion
+
+61st Infantry Division "Sirte" (12 Battalions)
+	69th "Ancona" Infantry Regiment (3 Battalions)
+	70th "Ancona" Infantry Regiment (3 Battalions)
+	43rd Artillery Regiment (3 Battalions (1,2,3))
+	Artillery Regrouping "Sirte" (2 Battalions)
+		Formed From Remnants of 1st and 2nd Frontier Guard Artillery Groups
+	61st Machine Gun Battalion
+	61st Replacement Battalion
+	61st Mixed Engineer Battalion
+	
+102nd Infantry Division "Trento" (17 Battalions)
+	61st "Sicilia" Infantry Regiment (2 Infantry Battalions, 1 Mixed Support Battalion)
+	62nd "Sicilia" Infantry Regiment (2 Infantry Battalions, 1 Mixed Support Battalion)
+	7th Motorized Bersaglieri Regiment (3 Battalions)
+		8th Bersaglieri Battalion Formed From Independent Bersaglieri Motorcycle Companies (22nd, 61st)
+	46th Artillery Regiment (4 Battalions (1,2,3,4))
+	551st Mixed Support Battalion (Machine Gun Company, Mortar Company, Anti-Tank Company)
+	51st Mixed Engineer Battalion
+
+4th Tank Infantry Regiment (4 Battalions)
+	1st Medium Tank Battalion
+	21st Light Tank Battalion
+		Later Formed into 21st Medium Tank Battalion
+	61st Light Tank Battalion
+	52nd Medium Tank Battalion
+
+

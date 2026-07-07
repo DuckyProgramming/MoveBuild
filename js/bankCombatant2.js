@@ -1493,11 +1493,11 @@ combatant.prototype.setupGraphics=function(direction){
                 hair:{pin:[-85,85]},
                 wrap:{bow:24,center:0},
                 sleeve:{decoration:[]},
-                sandal:[10,-10],eye:[-18,18],blush:[-17,17],button:0,sword:75,mouth:216}
+                sandal:[10,-10],eye:[-18,18],blush:[-26,26],button:0,sword:75,mouth:216}
 
             this.color=graphics.combatant[20].color
 
-            this.parts={eyeLevel:-72,mouth:-65,blush:-68.5,
+            this.parts={eyeLevel:-71,mouth:-65,blush:-68.5,
                 under:{top:-51,bottom:-31,bow:{top:[-1.8,-1.8],bottom:[-5.8,-5.8],extra:2.5}},
                 kimono:{main:-58,bow:-42},
                 wrap:{bow:-45.5},
@@ -6629,6 +6629,7 @@ combatant.prototype.minorDisplay=function(type,key){
                     //minorGraphicDisplay(this.layer,type)
                 break
             }
+        break
         case 'Goon':
             switch(type){
                 case 0:

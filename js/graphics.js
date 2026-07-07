@@ -2544,6 +2544,32 @@ function generateGeneralSprite(layer,type){
 			layer.line(24,46,80,150)
 			layer.line(136,46,80,150)
 		break
+		case 54:
+			layer.fill(183,157,196)
+			layer.rect(80,80,100,40)
+			layer.ellipse(80,60,100,100)
+			layer.ellipse(80,100,100,100)
+			layer.fill(116,109,166)
+			layer.rect(80,60,100,6)
+			layer.rect(80,80,100,6)
+			layer.rect(80,100,100,6)
+			layer.quad(54,17,106,17,114,23,46,23)
+			layer.quad(36,37,124,37,127,43,33,43)
+			layer.quad(36,123,124,123,127,117,33,117)
+			layer.quad(54,143,106,143,114,137,46,137)
+		break
+		case 55:
+			layer.stroke(200,233,226)
+			layer.strokeWeight(20)
+			layer.line(24,46,80,150)
+			layer.line(136,46,80,150)
+			layer.stroke(107,200,215)
+			layer.strokeWeight(8)
+			for(let b=0,lb=4;b<lb;b++){
+				layer.line(22+b*14,53.5+b*26,32+b*14,53.5+b*26)
+				layer.line(138-b*14,53.5+b*26,128-b*14,53.5+b*26)
+			}
+		break
 		default:
 			throw new Error(`Invalid Sprite`)
 		break
@@ -2838,6 +2864,7 @@ function generateSprite(layer,type,direction){
 			displayTrianglesFrontMerge(layer,data.parts.kimono.mainTop,direction,23,10.5,0.5,0.18,data.color.kimono.main.start,data.color.kimono.main.end,1)
 
 			layer.noStroke()
+			let comb31=new combatant(layer,graphics.proxyBattle,0,0,0,0,0,0,findName(`Ume`,types.combatant))
 			for(let g=0,lg=data.parts.kimono.decoration.large.length;g<lg;g++){
 				if(lcos(data.parts.kimono.decoration.large[g].spin+direction)>0){
 					layer.push()
@@ -2845,7 +2872,9 @@ function generateSprite(layer,type,direction){
 					layer.rotate(-12*lsin(data.parts.kimono.decoration.large[g].spin+direction))
 					layer.scale(lcos(data.parts.kimono.decoration.large[g].spin+direction),1)
 					layer.rotate(data.parts.kimono.decoration.large[g].rotate)
-					minorGraphicDisplay(layer,data.parts.kimono.decoration.large[g].type)
+					//minorGraphicDisplay(layer,data.parts.kimono.decoration.large[g].type)
+					comb31.minorDisplay(data.parts.kimono.decoration.large[g].type,[])
+
 					layer.pop()
 				}
 			}
@@ -2864,6 +2893,7 @@ function generateSprite(layer,type,direction){
 			controlSpin(data.parts.kimono.mainDamage,direction,1)
 			displayTrianglesFrontMerge(layer,data.parts.kimono.mainDamage,direction,23,10.5,0.5,0.18,data.color.kimono.main.start,data.color.kimono.main.end,1)
 			layer.noStroke()
+			let comb33=new combatant(layer,graphics.proxyBattle,0,0,0,0,0,0,findName(`Ume`,types.combatant))
 			for(let g=0,lg=data.parts.kimono.decoration.large.length;g<lg;g++){
 				if(lcos(data.parts.kimono.decoration.large[g].spin+direction)>0){
 					layer.push()
@@ -2871,7 +2901,8 @@ function generateSprite(layer,type,direction){
 					layer.rotate(-12*lsin(data.parts.kimono.decoration.large[g].spin+direction))
 					layer.scale(lcos(data.parts.kimono.decoration.large[g].spin+direction),1)
 					layer.rotate(data.parts.kimono.decoration.large[g].rotate)
-					minorGraphicDisplay(layer,data.parts.kimono.decoration.large[g].type)
+					//minorGraphicDisplay(layer,data.parts.kimono.decoration.large[g].type)
+					comb33.minorDisplay(data.parts.kimono.decoration.large[g].type,[])
 					layer.pop()
 				}
 			}
@@ -5879,10 +5910,10 @@ function setupCombatantGraphics(type){
 				}
 			}
 			data.sprites.minor=[]
-			for(let a=0,la=5;a<la;a++){
+			for(let a=0,la=2;a<la;a++){
 				data.sprites.minor.push(createGraphics(160,160))
 				setupLayer(data.sprites.minor[a])
-				generateGeneralSprite(data.sprites.minor[a],19+a)
+				generateGeneralSprite(data.sprites.minor[a],54+a)
 			}
 		break
 		
@@ -8329,8 +8360,8 @@ function setupGeneralGraphics(){
 	1 Filigree
 
 	Ume:
-	0-2 Sandal Bottom
-	3-4 Sandal Top
+	0 Sandal Bottom
+	1 Sandal Top
 	*/
 
 	/*
@@ -8367,6 +8398,8 @@ function setupGeneralGraphics(){
 	51 Sakura Sandal Top 2
 	52 Setsuna Sandal Bottom 2
 	53 Setsuna Sandal Top 2
+	54 Ume Sandal Bottom 2
+	55 Ume Sandal Top 2
 	*/
 	/*for(let a=0,la=43;a<la;a++){
 		switch(a){
