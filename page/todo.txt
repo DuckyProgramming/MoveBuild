@@ -1,5 +1,3 @@
-aerial 2 gap
-
 rebuild extra reps
 bootsify helmet
 this is personal now causes crit o cola permanently
@@ -20,8 +18,7 @@ update icathia
 
 leetcode
 
-bonkervault
-freezeshot - scorch shot but it freezes (frostthrower projectile)
+background pages
 
 
 

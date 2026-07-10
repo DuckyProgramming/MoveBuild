@@ -2253,9 +2253,9 @@ function generateGeneralSprite(layer,type){
             layer.translate(0,40)
 
             layer.fillGradient(gradient[5])
-            layer.ellipse(50,40,90)
+            layer.ellipse(52,40,94)
             layer.fillGradient(gradient[4])
-            layer.ellipse(150,40,90)
+            layer.ellipse(148,40,94)
             layer.erase()
             layer.ellipse(38,40,72)
             layer.ellipse(162,40,72)
@@ -3708,7 +3708,7 @@ function setupCombatantGraphics(type){
 						outside:{start:[110,180,120],end:[115,215,180]},outsideBack:{start:[70,120,80],end:[75,155,140]},
 						bow:[[75,150,125],[125,225,175]]
 					},
-					shoe:[[49,45,42],[248,227,110],[74,103,73],[189,150,107]],
+					shoe:{main:[[49,45,42],[27,28,27],[250,248,247]],strap:[[248,227,110],[74,103,73],[189,150,107]]},
 					band:[[100,165,100],[150,200,150],[100,225,100]],mouth:{in:[225,125,125],out:[0,0,0]},
 				}
 			})
