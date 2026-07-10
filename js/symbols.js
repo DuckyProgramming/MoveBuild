@@ -830,7 +830,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(1,-3,1,3,5,0)
         break
         case 97:
-            layer.stroke(150,0,0,fade)
+            /*layer.stroke(150,0,0,fade)
             layer.strokeWeight(0.5)
             layer.beginShape()
             for(let a=0,la=10;a<la;a++){
@@ -843,6 +843,22 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.beginShape()
             for(let a=0,la=7;a<la;a++){
                 layer.vertex(lsin(-216+180*a/(la-1))*(5-a%2*2.5),lcos(-216+180*a/(la-1))*(5-a%2*2.5))
+            }
+            layer.vertex(0,0)
+            layer.endShape(CLOSE)*/
+            layer.stroke(150,0,0,fade)
+            layer.strokeWeight(0.5)
+            layer.beginShape()
+            for(let a=0,la=13;a<la;a++){
+                layer.vertex(lsin(216*a/(la-1))*(5-a%2*2.5),lcos(216*a/(la-1))*(5-a%2*2.5))
+            }
+            layer.vertex(0,0)
+            layer.endShape(CLOSE)
+            layer.stroke(100,fade)
+            layer.strokeWeight(0.5)
+            layer.beginShape()
+            for(let a=0,la=9;a<la;a++){
+                layer.vertex(lsin(-144+144*a/(la-1))*(5-a%2*2.5),lcos(-144+144*a/(la-1))*(5-a%2*2.5))
             }
             layer.vertex(0,0)
             layer.endShape(CLOSE)
@@ -8821,6 +8837,24 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(255,50,50,fade)
             layer.triangle(2,-6,4,3,0,3)
             layer.rect(-3,0,3,3)
+        break
+        case 879:
+            layer.stroke(150,0,0,fade)
+            layer.strokeWeight(0.5)
+            layer.beginShape()
+            for(let a=0,la=13;a<la;a++){
+                layer.vertex(lsin(240*a/(la-1))*(5-a%2*2.5),lcos(240*a/(la-1))*(5-a%2*2.5))
+            }
+            layer.vertex(0,0)
+            layer.endShape(CLOSE)
+            layer.stroke(100,fade)
+            layer.strokeWeight(0.5)
+            layer.beginShape()
+            for(let a=0,la=7;a<la;a++){
+                layer.vertex(lsin(-120+120*a/(la-1))*(5-a%2*2.5),lcos(-120+120*a/(la-1))*(5-a%2*2.5))
+            }
+            layer.vertex(0,0)
+            layer.endShape(CLOSE)
         break
 
     }

@@ -210,7 +210,7 @@ class combatant{
                 'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block','Bell Weak','Bell Vulnerable',
                 'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage','Caffeine','20 Damage Weak','20 Damage Vulnerable','20 Damage Frail','Weak Boost',
                 'Vulnerable Boost','Duplicate Cycle 3 1','Duplicate Cycle 3 2','Duplicate Cycle 3 3',`Turn Transform`,'Temporary Focus','Pristine Draw','Skill Temporary Dexterity','Double Damage Cycle 3 1','Double Damage Cycle 3 2',
-                'Double Damage Cycle 3 3','Random Quickdraw Gain Per Turn','Skill to Defense Draw Skill','Coffee Draw','Skill to Attack Draw Skill','Coffee Splash','Caffeine Tolerance','Pristine Reduction Free Attack','Tile Temporary Strength',
+                'Double Damage Cycle 3 3','Random Quickdraw Gain Per Turn','Skill to Defense Draw Skill','Coffee Draw','Skill to Attack Draw Skill','Coffee Splash','Caffeine Tolerance','Pristine Reduction Free Attack','Tile Temporary Strength','Take 2/3 Damage',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -300,7 +300,7 @@ class combatant{
                 0,0,0,0,2,2,2,0,0,0,//85
                 0,0,2,2,1,0,0,0,0,0,//86
                 0,2,2,2,0,2,0,0,2,2,//87
-                2,0,0,0,0,0,0,0,0,
+                2,0,0,0,0,0,0,0,0,1,//88
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -390,7 +390,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//85
                 2,3,1,1,2,1,2,2,2,2,//86
                 2,2,2,2,2,2,2,2,0,0,//87
-                0,2,2,2,2,2,2,2,2,
+                0,2,2,2,2,2,2,2,2,0,//88
             ]}
         /*
         0-none
@@ -3105,6 +3105,10 @@ class combatant{
             }
         }
     }
+    collided(userCombatant){
+        userCombatant.combo=min(userCombatant.combo+1+userCombatant.status.main[68],userCombatant.comboCap)
+        this.takeDamage(constants.collisionDamage,-1)
+    }
     safeDamage(value){
         this.life=max(min(1,this.life),this.life-value)
     }
@@ -3528,6 +3532,9 @@ class combatant{
                 if(this.status.main[319]>0){
                     damage*=0.25
                 }
+                if(this.status.main[879]>0){
+                    damage*=2/3
+                }
                 if(this.status.main[609]>0){
                     damage=this.status.main[609]>=5?min(damage,1):damage*min(1-this.status.main[609]*0.2,1)
                 }
@@ -3758,10 +3765,10 @@ class combatant{
                 this.battle.particleManager.createNumber(0,this.position.x,this.position.y,damage)
                 if(this.battle.turn.main<this.battle.players){
                     this.battle.stats.damage[this.battle.turn.main]+=damage
-                    if(user>=0&&user<this.battle.combatantManager.combatants.length){
-                        let userCombatant=this.battle.combatantManager.combatants[user]
-                        userCombatant.combo=min(userCombatant.combo+1+userCombatant.status.main[68],userCombatant.comboCap)
-                    }
+                }
+                if(user>=0&&user<this.battle.combatantManager.combatants.length){
+                    let userCombatant=this.battle.combatantManager.combatants[user]
+                    userCombatant.combo=min(userCombatant.combo+1+userCombatant.status.main[68],userCombatant.comboCap)
                 }
                 if(this.battle.modded(9)&&this.team>0&&this.team<=this.battle.players&&damage>10){
                     this.battle.drop(this.id,findName('Concussion',types.card),0,constants.playerNumber+1)

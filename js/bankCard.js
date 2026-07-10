@@ -9002,6 +9002,14 @@ card.prototype.description=function(attack,effect,spec,target){
         case 8785: string+=`50%: Upgrade ${effect[0]} Card${pl(effect[0])}\nFirst Time Played: (${this.debut?`Yes`:`No`})\nGain ${effect[1]} Energy`; break
         case 8786: string+=`50%: Upgrade ${effect[0]} Card${pl(effect[0])}\nFirst Time Played: (${this.debut?`Yes`:`No`})\nGain (E) (E)`; break
         case 8787: string+=`50%: Upgrade ${effect[0]} Card${pl(effect[0])}\nFirst Time Played: (${this.debut?`Yes`:`No`})\nGain (E) (E) (E)`; break
+        case 8788: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nPer Coffee Card in Hand`; break
+        case 8789: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain (E)\nPer Coffee Card in Hand`; break
+        case 8790: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Added,\nDrawlink ${effect[1]} Card${pl(effect[1])}`; break
+        case 8791: string+=`Apply ${effect[0]} Poison\nFirst Time Played: (${this.debut?`Yes`:`No`})\nDeal ${this.calculateEffect(effect[1],0)} Damage\n2 Times`; break
+        case 8792: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAbove 75% Health:\nDeals Double Damage`; break
+        case 8793: string+=`Take 33% Less\nDamage For ${effect[0]} Turn${pl(effect[0])}`; break
+        case 8794: string+=`If Target Will Attack,\nDiscover a Defense\nOtherwise,\nDiscover an Attack`; break
+        case 8795: string+=`Deal ${effect[0]} Damage\nto All Enemies\non Plant Tiles`; break
 
         //mark p
 

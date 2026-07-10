@@ -289,6 +289,7 @@ class attack{
             case 8528: case 8530: case 8536: case 8549: case 8550: case 8551: case 8554: case 8556: case 8557: case 8558: case 8563: case 8568: case 8569: case 8570: case 8575: case 8599: case 8604: case 8612: case 8614: case 8617:
             case 8618: case 8627: case 8629: case 8656: case 8657: case 8660: case 8662: case 8663: case 8664: case 8667: case 8676: case 8684: case 8685: case 8686: case 8688: case 8692: case 8693: case 8712: case 8713: case 8715:
             case 8719: case 8724: case 8728: case 8744: case 8745: case 8750: case 8754: case 8755: case 8756: case 8772: case 8773: case 8774: case 8775: case 8776: case 8777: case 8778: case 8779: case 8780: case 8782: case 8783:
+            case 8788: case 8789: case 8791: case 8792: case 8794:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -2722,6 +2723,9 @@ class attack{
                     break
                     case 8774:
                         this.targetCombatant.takeDamage(this.effect[0]*this.userCombatant.diceRoll(1,6)+this.effect[1],this.user)
+                    break
+                    case 8792:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.life>=this.userCombatant.base.life*0.75?2:1),this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -7444,6 +7448,12 @@ class attack{
                         if(this.userManager.hand.numberAbstract(27,['Cable',1])>=1){
                             this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
                         }
+                    break
+                    case 8788:
+                        this.battle.addEnergy(this.effect[1]*this.userManager.hand.numberAbstract(3,[84]),this.player)
+                    break
+                    case 8789:
+                        this.battle.addSpecificEnergy(this.userManager.hand.numberAbstract(3,[84]),this.player,6)
                     break
 
                 }
@@ -17919,6 +17929,9 @@ class attack{
                             this.battle.addSpecificEnergy(3,this.player,6)
                         }
                     break
+                    case 8793:
+                        this.userCombatant.statusEffect('Take 2/3 Damage',this.effect[0])
+                    break
 
                 }
                 //mark 4
@@ -27801,6 +27814,10 @@ class attack{
                             this.targetCombatant.statusEffect('Vulnerable',this.effect[2])
                         }
                     break
+                    case 8794:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[],[[1,types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5?2:1]]])
+                    break
 
                 }
                 //mark 8
@@ -34104,6 +34121,9 @@ class attack{
                         }
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect('Cannot Move',this.effect[1])
+                    break
+                    case 8795:
+                        this.battle.tileManager.customActivate(7,[this.effect[0]])
                     break
 
                 }

@@ -51,14 +51,14 @@ function setup(){
             //current.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
             //current.create()
 
-            stage.scene='graphic'
+            /*stage.scene='graphic'
             graphics.test=-1
             graphics.staticBackground.clear()
 
             current.player=current.menu.combatant
             current.players=current.player.length
             current.initialGraphics()
-            setupBackground(graphics.test,graphics.staticBackground)
+            setupBackground(graphics.test,graphics.staticBackground)*/
 
             //quickNode(3)
             

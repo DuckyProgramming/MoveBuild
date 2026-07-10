@@ -2920,7 +2920,8 @@ class battle{
                     this.graphics.combatants[7][variant][a].time++
                     this.graphics.combatants[7][variant][a].display()
                 }
-                this.packManagers.forEach(packManager=>packManager.display())
+                this.packManagers.forEach(packManager=>packManager.display(0))
+                this.packManagers.forEach(packManager=>packManager.display(1))
                 this.overlayManager.display()
             break
             case 'perk':

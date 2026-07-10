@@ -2261,6 +2261,11 @@ class card{
             case 7544:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].loseMaxHP(this.effect[1])
             break
+            case 8790:
+                this.battle.overlayManager.overlays[131][this.player].active=true
+                this.battle.overlayManager.overlays[131][this.player].activate()
+                this.battle.overlayManager.overlays[131][this.player].args[1]=this.effect[1]
+            break
         }
     }
     callAnotherAddEffect(){

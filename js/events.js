@@ -4603,8 +4603,8 @@ You can go ahead and take what's in the vault.`,
                 desc:
 `You find a roll of unique tape on the ground.
 Maybe you could use it for something.`,
-                option:['Combine 2 Cards','Leave'],
-                optionDesc:['Choose 2 Cards, When you Draw One, Draw the Other',''],
+                option:['Combine Some Cards','Leave'],
+                optionDesc:['Drawlink 2 Cards',''],
                 link:[-1,1],
             },{
                 desc:`You don't need that stuff.`,

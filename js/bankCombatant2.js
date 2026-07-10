@@ -47,6 +47,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.anim={direction:direction,head:direction,sword:1,mouth:{x:8,y:5,open:0},
                 eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{top:{position:{x:1,y:1},size:{x:1,y:1}},bottom:{position:{x:1,y:1},size:{x:1,y:1}}},under:{bottom:1}},
                 kimono:{bow:{position:{x:1,y:1},size:{x:1,y:1}}},
+                shoe:0,
                 legs:[
                     {top:9,bottom:0,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
                     {top:9,bottom:0,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}

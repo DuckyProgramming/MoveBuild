@@ -3703,9 +3703,12 @@ function setupCombatantGraphics(type){
 					skin:{head:[255,225,200],body:[255,215,190],legs:[255,215,190],arms:[255,215,190],button:[245,180,145]},
 					eye:{back:[40,70,45],front:[10,30,15],glow:[175,255,175]},
 					under:{outside:[50,125,50],fringe:[100,200,100],tanga:[200,210,200],bow:[200,255,200],decoration:[50,175,50],under:{top:[250,195,170],button:[200,145,120],bottom:[[255,228,181],[241,178,131]]}},
-					kimono:{main:{start:[90,110,105],end:[150,170,165]},mainBack:{start:[30,60,40],end:[70,100,80]},decoration:{back:[[25,100,25],[50,125,50]],front:[[75,175,75],[100,250,100]]},
-					outside:{start:[110,180,120],end:[115,215,180]},outsideBack:{start:[70,120,80],end:[75,155,140]},
-					bow:[125,225,175]},
+					kimono:{
+						main:{start:[90,110,105],end:[150,170,165]},mainBack:{start:[30,60,40],end:[70,100,80]},decoration:{back:[[25,100,25],[50,125,50]],front:[[75,175,75],[100,250,100]]},
+						outside:{start:[110,180,120],end:[115,215,180]},outsideBack:{start:[70,120,80],end:[75,155,140]},
+						bow:[[75,150,125],[125,225,175]]
+					},
+					shoe:[[49,45,42],[248,227,110],[74,103,73],[189,150,107]],
 					band:[[100,165,100],[150,200,150],[100,225,100]],mouth:{in:[225,125,125],out:[0,0,0]},
 				}
 			})
@@ -8429,6 +8432,9 @@ function setupGeneralGraphics(){
 	}*/
 	for(let a=0,la=2;a<la;a++){
 		switch(a){
+			case 0:
+				graphics.minor.push(createGraphics(80,80))
+			break
 			case 1:
 				graphics.minor.push(createGraphics(90,120))
 			break

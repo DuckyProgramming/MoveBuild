@@ -279,27 +279,33 @@ class tile{
             switch(this.type[a]){
                 case 19:
                     if(this.combatant>=0){
+                        let occupant=this.battle.combatantManager.combatants[this.combatant]
                         switch(type){
                             case 0:
-                                this.battle.combatantManager.combatants[this.combatant].takeDamage(effect[0],effect[1])
+                                occupant.takeDamage(effect[0],effect[1])
                             break
                             case 1:
-                                this.battle.combatantManager.combatants[this.combatant].heal(effect[0])
+                                occupant.heal(effect[0])
                             break
                             case 2:
-                                this.battle.combatantManager.combatants[this.combatant].goal.anim.direction=-30+floor(random(0,6))*60
+                                occupant.goal.anim.direction=-30+floor(random(0,6))*60
                             break
                             case 3:
-                                this.battle.combatantManager.combatants[this.combatant].statusEffect('Strength',effect[0])
+                                occupant.statusEffect('Strength',effect[0])
                             break
                             case 4:
-                                this.battle.combatantManager.combatants[this.combatant].statusEffect('Dexterity',effect[0])
+                                occupant.statusEffect('Dexterity',effect[0])
                             break
                             case 5:
-                                this.battle.combatantManager.combatants[this.combatant].statusEffect('Poison',effect[0])
+                                occupant.statusEffect('Poison',effect[0])
                             break
                             case 6:
-                                this.battle.combatantManager.combatants[this.combatant].statusEffect('Regeneration',effect[0])
+                                occupant.statusEffect('Regeneration',effect[0])
+                            break
+                            case 7:
+                                if(occupant.team==0){
+                                    occupant.takeDamage(effect[0],effect[1])
+                                }
                             break
                         }
                     }
@@ -517,7 +523,7 @@ class tile{
                 break
                 case 19:
                     if(this.anim.part[a]>0){
-                        this.layer.image(graphics.minor[26],-30*this.fade*this.anim.part[a],-18*this.fade*this.anim.part[a],60*this.fade*this.anim.part[a],36*this.fade*this.anim.part[a])
+                        this.layer.image(graphics.minor[0],-30*this.fade*this.anim.part[a],-18*this.fade*this.anim.part[a],60*this.fade*this.anim.part[a],36*this.fade*this.anim.part[a])
                     }
                 break
                 case 20:

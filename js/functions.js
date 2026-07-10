@@ -3237,3 +3237,14 @@ function evens(num){
     }
     return result
 }
+/*chambers=[`B`,``,``,``,``,``]
+function russianRoulette(){
+    res=randin(chambers)
+    if(res==`B`){
+        chambers=[`B`,``,``,``,``,``]
+		return `Dead`
+    }else{
+        chambers.splice(chambers.indexOf(res),1)
+		return `Alive`
+    }
+}*/
