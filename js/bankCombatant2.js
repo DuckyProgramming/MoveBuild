@@ -47,7 +47,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.anim={direction:direction,head:direction,sword:1,mouth:{x:8,y:5,open:0},
                 eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{top:{position:{x:1,y:1},size:{x:1,y:1}},bottom:{position:{x:1,y:1},size:{x:1,y:1}}},under:{bottom:1}},
                 kimono:{bow:{position:{x:1,y:1},size:{x:1,y:1}}},
-                shoe:0,
+                shoe:1,
                 legs:[
                     {top:9,bottom:0,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
                     {top:9,bottom:0,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
@@ -4395,11 +4395,15 @@ combatant.prototype.minorDisplay=function(type,key){
                     this.layer.scale(1,constrain(lsin(this.anim.direction+this.spin.arms[key].bottom-75)*2,-1,1)*this.anim.sword)
                     this.layer.fill(235,245,255,this.fade)
                     this.layer.noStroke()
-                    this.layer.rect(0,-20,3,40)
-                    this.layer.triangle(-3/2,-40,3/2,-40,0,-55)
+                    /*this.layer.rect(0,-20,3,40)
+                    this.layer.triangle(-3/2,-40,3/2,-40,0,-55)*/
+                    this.layer.rect(0,-20,2.5,40)
+                    this.layer.triangle(-1.25,-40,1.25,-40,0,-55)
                     this.layer.fill(160,170,180,this.fade)
-                    this.layer.rect(3/4,-20,3/2,40)
-                    this.layer.triangle(3/2,-40,0,-55,0,-40)
+                    /*this.layer.rect(3/4,-20,3/2,40)
+                    this.layer.triangle(3/2,-40,0,-55,0,-40)*/
+                    this.layer.rect(0.625,-20,1.25,40)
+                    this.layer.triangle(1.25,-40,0,-55,0,-40)
                     for(let g=0;g<4;g++){
                         this.layer.stroke(125+g*10,70+g*10,80+g*10,this.fade)
                         this.layer.strokeWeight(4-g)

@@ -3706,7 +3706,8 @@ function setupCombatantGraphics(type){
 					kimono:{
 						main:{start:[90,110,105],end:[150,170,165]},mainBack:{start:[30,60,40],end:[70,100,80]},decoration:{back:[[25,100,25],[50,125,50]],front:[[75,175,75],[100,250,100]]},
 						outside:{start:[110,180,120],end:[115,215,180]},outsideBack:{start:[70,120,80],end:[75,155,140]},
-						bow:[[75,150,125],[125,225,175]]
+						bow:[[75,125,100],[125,175,125]],
+						//bow:[[75,150,125],[125,225,175]],
 					},
 					shoe:{main:[[49,45,42],[27,28,27],[250,248,247]],strap:[[248,227,110],[74,103,73],[189,150,107]]},
 					band:[[100,165,100],[150,200,150],[100,225,100]],mouth:{in:[225,125,125],out:[0,0,0]},
@@ -3926,7 +3927,7 @@ function setupCombatantGraphics(type){
 				}
 			}
 			data.sprites.minor=[]
-			for(let a=0,la=5;a<la;a++){
+			for(let a=0,la=3;a<la;a++){
 				switch(a){
 					default:
 						data.sprites.minor.push(createGraphics(160,160))
