@@ -1,17 +1,22 @@
-rebuild extra reps
-bootsify helmet
-this is personal now causes crit o cola permanently
-change tack doesn't rob you of even more combo
+grandiose fire
 
-toxin not on yourself
-split sea of trees
-block asunder
+cards like euphonia but for draw and dexterity
 
-buff all close ins
+histogram of disbanded vs undisbanded cards by series
+
+replace Compass
+replace small tobruk
+update breakout from tobruk (field regiment has 3 batteries)
+update axis capture of tobruk (287 battery came from the 124th (Northumbrian) Field Regiment)
+update brevity (442 battery wasn't there yet)
+update sommernachtstraum (field regiment has 3 batteries)
+
+remove large tobruk as separate event
+two large tobruk (144/72), directly attached
+
+lira edit
 
 
-
-144/240
 
 update icathia
 -menessa

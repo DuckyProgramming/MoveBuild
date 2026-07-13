@@ -289,7 +289,7 @@ class attack{
             case 8528: case 8530: case 8536: case 8549: case 8550: case 8551: case 8554: case 8556: case 8557: case 8558: case 8563: case 8568: case 8569: case 8570: case 8575: case 8599: case 8604: case 8612: case 8614: case 8617:
             case 8618: case 8627: case 8629: case 8656: case 8657: case 8660: case 8662: case 8663: case 8664: case 8667: case 8676: case 8684: case 8685: case 8686: case 8688: case 8692: case 8693: case 8712: case 8713: case 8715:
             case 8719: case 8724: case 8728: case 8744: case 8745: case 8750: case 8754: case 8755: case 8756: case 8772: case 8773: case 8774: case 8775: case 8776: case 8777: case 8778: case 8779: case 8780: case 8782: case 8783:
-            case 8788: case 8789: case 8791: case 8792: case 8794:
+            case 8788: case 8789: case 8791: case 8792: case 8794: case 8797: case 8798: case 8799: case 8800: case 8801: case 8802: case 8805: case 8813: case 8819: case 8820: case 8821:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -367,7 +367,7 @@ class attack{
             case 8230: case 8233: case 8234: case 8237: case 8238: case 8239: case 8240: case 8251: case 8253: case 8259:
             case 8285: case 8286: case 8287: case 8288: case 8334: case 8343: case 8352: case 8446: case 8499: case 8501:
             case 8518: case 8572: case 8573: case 8589: case 8668: case 8702: case 8704: case 8705: case 8706: case 8707:
-            case 8709: case 8722: case 8723: case 8746: case 8767:
+            case 8709: case 8722: case 8723: case 8746: case 8767: case 8807: case 8808: case 8814:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -7455,6 +7455,11 @@ class attack{
                     case 8789:
                         this.battle.addSpecificEnergy(this.userManager.hand.numberAbstract(3,[84]),this.player,6)
                     break
+                    case 8800:
+                        if(this.limit%2==1){
+                            this.userCombatant.addBlock(this.effect[1])
+                        }
+                    break
 
                 }
                 //mark 1s
@@ -10873,6 +10878,9 @@ class attack{
                             this.battle.itemManager.addRandomItem(this.player)
                         }
                     break
+                    case 8806:
+                        this.userCombatant.status.main[findList('Shock',this.userCombatant.status.name)]=0
+                    break
 
                 }
                 //mark 2s
@@ -11001,6 +11009,7 @@ class attack{
                     break
                     case 973: case 1672: case 2140: case 2141: case 2159: case 2160: case 2180: case 2436: case 2459: case 2652:
                     case 4113: case 4369: case 4370: case 4371: case 4948: case 5113: case 6730: case 6821: case 7329: case 7491:
+                    case 8807:
                         let offset=transformDirection(0,this.relativeDirection)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x+offset[0],this.targetTile.tilePosition.y+offset[1])
                         if(index>=0){
@@ -11072,6 +11081,9 @@ class attack{
                                 break
                                 case 7491:
                                     this.battle.combatantManager.combatants[index].statusEffect('No Block',this.effect[1])
+                                break
+                                case 8807:
+                                    this.battle.combatantManager.combatants[index].statusEffect('Shock',this.effect[1])
                                 break
                             }
                         }
@@ -11499,9 +11511,6 @@ class attack{
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.addRandomAbstract(2,this.level,0,4,0,[0,2],[3,1,['Cable','cable']])
                         }
-                    break
-                    case 2440:
-                        this.userCombatant.statusEffect('Shock',this.effect[1])
                     break
                     case 2456:
                         this.userCombatant.tick()
@@ -13189,6 +13198,9 @@ class attack{
                             this.userManager.draw(this.effect[2])
                             this.userCombatant.caffeine=0
                         }
+                    break
+                    case 8808:
+                        this.userCombatant.status.main[findList('Shock',this.userCombatant.status.name)]=0
                     break
 
                 }
@@ -17931,6 +17943,30 @@ class attack{
                     break
                     case 8793:
                         this.userCombatant.statusEffect('Take 2/3 Damage',this.effect[0])
+                    break
+                    case 8796:
+                        this.userCombatant.statusEffect('Collision Damage',this.effect[0])
+                    break
+                    case 8815:
+                        this.battle.addEnergy(this.effect[0],this.player)
+                        this.userCombatant.statusEffect('Conditioning',this.effect[1])
+                        this.userCombatant.loseHealth(this.effect[2])
+                    break
+                    case 8816:
+                        this.battle.addSpecificEnergy(2,this.player,4)
+                        this.userCombatant.statusEffect('Conditioning',this.effect[0])
+                        this.userCombatant.loseHealth(this.effect[1])
+                    break
+                    case 8817:
+                        this.battle.addSpecificEnergy(1,this.player,6)
+                        this.battle.addSpecificEnergy(1,this.player,4)
+                        this.userCombatant.statusEffect('Conditioning',this.effect[0])
+                        this.userCombatant.loseHealth(this.effect[1])
+                    break
+                    case 8818:
+                        this.battle.addSpecificEnergy(2,this.player,6)
+                        this.userCombatant.statusEffect('Conditioning',this.effect[0])
+                        this.userCombatant.loseHealth(this.effect[1])
                     break
 
                 }
@@ -22890,6 +22926,16 @@ class attack{
                             this.battle.addSpecificEnergy(1,this.player,6)
                         }
                     break
+                    case 8803:
+                        this.userManager.hand.randomEffect(26,[this.effect[0]])
+                    break
+                    case 8804:
+                        if(this.userManager.deck.cards.length>=this.effect[0]){
+                            this.battle.overlayManager.overlays[15][this.player].active=true
+                            this.battle.overlayManager.overlays[15][this.player].activate([])
+                            this.battle.overlayManager.overlays[15][this.player].args[1]=floor(this.userManager.deck.cards.length/this.effect[0])
+                        }
+                    break
 
                 }
                 //mark 5
@@ -24332,6 +24378,10 @@ class attack{
                             this.userManager.allEffect(2,2)
                             this.userManager.draw(this.handSize)
                         }
+                    break
+                    case 8813:
+                        this.targetCombatant.statusEffect('Double Damage Turn',999)
+                        this.targetCombatant.statusEffect('Take Double Damage Turn',999)
                     break
 
                 }
@@ -27818,6 +27868,24 @@ class attack{
                         this.battle.overlayManager.overlays[10][this.player].active=true
                         this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[],[[1,types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5?2:1]]])
                     break
+                    case 8801:
+                        if(this.energy>this.battle.getEnergyBase(this.player)){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user,2)
+                            this.userManager.draw(this.effect[2])
+                        }
+                    break
+                    case 8802:
+                        if(this.mtgEnergy.length>this.battle.getEnergyBase(this.player)){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user,2)
+                            this.userManager.draw(this.effect[2])
+                        }
+                    break
+                    case 8819:
+                        this.targetCombatant.status.main[findList('Strength',this.targetCombatant.status.name)]=0
+                        this.targetCombatant.status.main[findList('Dexterity',this.targetCombatant.status.name)]=0
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                    break
 
                 }
                 //mark 8
@@ -28186,6 +28254,20 @@ class attack{
                         this.targetCombatant.statusEffect('Freeze',this.effect[0])
                         if(this.targetCombatant.life<=this.targetCombatant.base.life*0.5){
                             this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 8798:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        if(this.limit%4==3){
+                            this.targetCombatant.statusEffect('Stun',this.effect[1])
+                            this.battle.updateTargetting()
+                        }
+                    break
+                    case 8799:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        if(this.limit%3==2){
+                            this.targetCombatant.statusEffect('Stun',this.effect[1])
+                            this.battle.updateTargetting()
                         }
                     break
 
@@ -30555,10 +30637,15 @@ class attack{
                             this.battle.addEnergy(this.effect[2],this.player)
                         }
                     break
-                    case 771:
+                    case 8771:
                         this.userCombatant.statusEffect('Temporary Strength',this.effect[0])
                         this.userCombatant.statusEffect('Temporary Dexterity',this.effect[1])
                         this.battle.addSpecificEnergy(this.selfCall(26),this.player,0)
+                    break
+                    case 8805:
+                        if(this.targetCombatant.getStatus('Shock')>0){
+                            this.targetCombatant.statusEffect('Shock',this.effect[0])
+                        }
                     break
 
                 }
@@ -34125,6 +34212,16 @@ class attack{
                     case 8795:
                         this.battle.tileManager.customActivate(7,[this.effect[0]])
                     break
+                    case 8811:
+                        this.battle.tileManager.customActivate(8,[this.effect[0]])
+                    break
+                    case 8820:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.energy+this.battle.tileManager.getAreaAll(this.userCombatant.tilePosition,0,1).filter(tile=>tile.type.includes(19)).length))
+                    break
+                    case 8821:
+                        let index8821=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.energy+this.battle.tileManager.getAreaAll(this.userCombatant.tilePosition,0,1).filter(tile=>tile.type.includes(19)).length+(index8821>=0&&this.battle.tileManager.tiles[index8821].type.includes(19)?1:0)))
+                    break
 
                 }
                 //mark 12
@@ -34980,6 +35077,9 @@ class attack{
             break
             case 21:
                 switch(this.type){
+                    case 2440:
+                        this.userCombatant.statusEffect('Shock',this.effect[1])
+                    break
                     case 3013:
                         let offset=transformDirection(0,this.relativeDirection)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x+offset[0],this.targetTile.tilePosition.y+offset[1])

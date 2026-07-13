@@ -8856,6 +8856,13 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.vertex(0,0)
             layer.endShape(CLOSE)
         break
+        case 880:
+            layer.fill(255,50,50,fade)
+            layer.rect(-4.5,0,2,1.5)
+            layer.rect(4.5,0,2,1.5)
+            layer.triangle(0,0,-3.5,-2,-3.5,2)
+            layer.triangle(0,0,3.5,-2,3.5,2)
+        break
 
     }
     //mark s

@@ -307,6 +307,11 @@ class tile{
                                     occupant.takeDamage(effect[0],effect[1])
                                 }
                             break
+                            case 8:
+                                if(occupant.team==0){
+                                    occupant.statusEffect('Poison',effect[0])
+                                }
+                            break
                         }
                     }
                 break

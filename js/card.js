@@ -1714,7 +1714,7 @@ class card{
             case 3596: case 3597: case 3598: case 3599: case 3600: case 3601: case 3602: case 3603: case 3604: case 3605:
             case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
             case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275: case 8432:
-            case 8433:
+            case 8433: case 8803:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -2026,6 +2026,9 @@ class card{
             case 8730:
                 userCombatant.statusEffect('Weak',this.effect[1])
             break
+            case 8812:
+                userCombatant.statusEffect('Armor',this.effect[1])
+            break
         }
     }
     callPostStartEffect(encounterClass){
@@ -2322,7 +2325,7 @@ class card{
     }
     callHealthLossEffect(amount){
         switch(this.attack){
-            case 8491:
+            case 8491: case 8810:
                 this.effect[0]+=this.effect[1]
             break
         }
@@ -2642,7 +2645,8 @@ class card{
             case 118: case 619: case 1479: case 1480: case 1697: case 1740: case 1746: case 1788: case 2283: case 2471:
             case 2501: case 3198: case 3647: case 3915: case 4013: case 4178: case 4457: case 4658: case 4727: case 4771:
             case 5208: case 5559: case 5560: case 5750: case 6114: case 6334: case 6657: case 6658: case 6901: case 7027:
-            case 7028: case 7216: case 7224: case 7378: case 7754: case 7755: case 7811: case 7812: case 7893:
+            case 7028: case 7216: case 7224: case 7378: case 7754: case 7755: case 7811: case 7812: case 7893: case 8801:
+            case 8802:
                 this.effect[0]+=this.effect[1]
             break
             case 866: case 908: case 1893: case 2356: case 2482: case 5428: case 5429: case 5430: case 5431: case 8056:
@@ -2751,12 +2755,12 @@ class card{
             case 4808:
                 this.effect[1]=0
             break
-            case 4997:
+            case 4997: case 8798:
                 if(this.limit%4==0){
                     this.exhaust=true
                 }
             break
-            case 4998:
+            case 4998: case 8799:
                 if(this.limit%3==0){
                     this.exhaust=true
                 }

@@ -211,6 +211,7 @@ class combatant{
                 'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage','Caffeine','20 Damage Weak','20 Damage Vulnerable','20 Damage Frail','Weak Boost',
                 'Vulnerable Boost','Duplicate Cycle 3 1','Duplicate Cycle 3 2','Duplicate Cycle 3 3',`Turn Transform`,'Temporary Focus','Pristine Draw','Skill Temporary Dexterity','Double Damage Cycle 3 1','Double Damage Cycle 3 2',
                 'Double Damage Cycle 3 3','Random Quickdraw Gain Per Turn','Skill to Defense Draw Skill','Coffee Draw','Skill to Attack Draw Skill','Coffee Splash','Caffeine Tolerance','Pristine Reduction Free Attack','Tile Temporary Strength','Take 2/3 Damage',
+                'Collision Damage',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -301,6 +302,7 @@ class combatant{
                 0,0,2,2,1,0,0,0,0,0,//86
                 0,2,2,2,0,2,0,0,2,2,//87
                 2,0,0,0,0,0,0,0,0,1,//88
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -391,6 +393,7 @@ class combatant{
                 2,3,1,1,2,1,2,2,2,2,//86
                 2,2,2,2,2,2,2,2,0,0,//87
                 0,2,2,2,2,2,2,2,2,0,//88
+                2,
             ]}
         /*
         0-none
@@ -3107,7 +3110,7 @@ class combatant{
     }
     collided(userCombatant){
         userCombatant.combo=min(userCombatant.combo+1+userCombatant.status.main[68],userCombatant.comboCap)
-        this.takeDamage(constants.collisionDamage,-1)
+        this.takeDamage(constants.collisionDamage+userCombatant.status.main[880],-1)
     }
     safeDamage(value){
         this.life=max(min(1,this.life),this.life-value)
@@ -4540,7 +4543,7 @@ class combatant{
         this.relativePosition.x+=lsin(direction)*speed
         this.relativePosition.y+=lcos(direction)*speed
     }
-    moveTilePosition(preX,preY){
+    moveTilePosition(preX,preY,comboBypass){
         let x=round(preX)
         let y=round(preY)
         if(this.id<this.battle.players){
@@ -4553,7 +4556,7 @@ class combatant{
                 this.battle.cardManagers[this.id].draw(this.battle.relicManager.active[250][this.id+1])
             }
             this.battle.cardManagers[this.id].hand.allEffectArgs(20,[this.tilePosition,{x:x,y:y},distance])
-            if(this.status.main[379]<=0){
+            if(this.status.main[379]<=0&&!comboBypass){
                 this.combo=max(this.combo-distance,0)
                 if(distance>0){
                     this.comboConsumed()

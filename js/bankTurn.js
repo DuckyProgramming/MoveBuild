@@ -325,10 +325,10 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
                         }
                         if(this.timer==15*this.targetDistance+3){
-                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                            this.targetCombatant.collided(this.userCombatant)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                             }
                         }else if(this.timer>=15*this.targetDistance+11){
                             this.remove=true
@@ -794,10 +794,10 @@ turn.prototype.update=function(){
                                 this.targetCombatant[a].moveRelativeTile(this.relativeDirection[a],-this.relativeDistance[a]/10/this.targetDistance[a])
                             }
                             if(this.timer==18){
-                                this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
+                                this.targetCombatant[a].collided(this.userCombatant)
                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x*(1+1/this.targetDistance[a])-this.userCombatant.tilePosition.x/this.targetDistance[a],this.targetCombatant[a].tilePosition.y*(1+1/this.targetDistance[a])-this.userCombatant.tilePosition.y/this.targetDistance[a])
                                 if(index>=0){
-                                    this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                    this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                                 }
                             }
                         }else if(this.procedure[a]==0){
@@ -862,10 +862,10 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
                         }
                         if(this.timer==5*this.targetDistance+23){
-                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                            this.targetCombatant.collided(this.userCombatant)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.targetCombatant.tilePosition.y+transformDirection(0,this.direction)[1])
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                             }
                         }else if(this.timer>5*this.targetDistance+31){
                             this.remove=true
@@ -982,10 +982,10 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
                         }
                         if(this.timer==38){
-                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                            this.targetCombatant.collided(this.userCombatant)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                             }
                         }else if(this.timer>=46){
                             this.remove=true
@@ -1058,10 +1058,10 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
                         }
                         if(this.timer==15*this.upTargetDistance+3){
-                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                            this.targetCombatant.collided(this.userCombatant)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*(1/(this.upTargetDistance-this.targetDistance+1)+1)-this.userCombatant.tilePosition.x/(this.upTargetDistance-this.targetDistance+1),this.targetCombatant.tilePosition.y*(1/(this.upTargetDistance-this.targetDistance+1)+1)-this.userCombatant.tilePosition.y/(this.upTargetDistance-this.targetDistance+1))
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                             }
                         }else if(this.timer>=15*this.upTargetDistance+11){
                             this.remove=true
@@ -1281,11 +1281,11 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveRelativeTile(this.relativeDirection-60,-this.relativeDistance/10/this.targetDistance)
                         }
                         if(this.timer==15*this.targetDistance+3){
-                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                            this.targetCombatant.collided(this.userCombatant)
                             let offset=transformDirection(0,this.relativeDirection+60)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                             }
                         }else if(this.timer>=15*this.targetDistance+11){
                             this.remove=true
@@ -1355,11 +1355,11 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveRelativeTile(this.relativeDirection+60,-this.relativeDistance/10/this.targetDistance)
                         }
                         if(this.timer==15*this.targetDistance+3){
-                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                            this.targetCombatant.collided(this.userCombatant)
                             let offset=transformDirection(0,this.relativeDirection+60)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                             }
                         }else if(this.timer>=15*this.targetDistance+11){
                             this.remove=true
@@ -1429,11 +1429,11 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveRelativeTile(this.relativeDirection-120,-this.relativeDistance/10/this.targetDistance)
                         }
                         if(this.timer==15*this.targetDistance+3){
-                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                            this.targetCombatant.collided(this.userCombatant)
                             let offset=transformDirection(0,this.relativeDirection-120)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                             }
                         }else if(this.timer>=15*this.targetDistance+11){
                             this.remove=true
@@ -1503,11 +1503,11 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveRelativeTile(this.relativeDirection+120,-this.relativeDistance/10/this.targetDistance)
                         }
                         if(this.timer==15*this.targetDistance+3){
-                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                            this.targetCombatant.collided(this.userCombatant)
                             let offset=transformDirection(0,this.relativeDirection+120)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                             }
                         }else if(this.timer>=15*this.targetDistance+11){
                             this.remove=true
@@ -1656,10 +1656,10 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
                         }
                         if(this.timer==5*this.targetDistance+13){
-                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                            this.targetCombatant.collided(this.userCombatant)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*(1+1/this.targetDistance)-this.userCombatant.tilePosition.x/this.targetDistance,this.targetCombatant.tilePosition.y*(1+1/this.targetDistance)-this.userCombatant.tilePosition.y/this.targetDistance)
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                             }
                         }else if(this.timer>=5*this.targetDistance+21){
                             this.remove=true
@@ -1826,10 +1826,10 @@ turn.prototype.update=function(){
                                 this.targetCombatant[a].moveRelativeTile(this.relativeDirection[a],-this.relativeDistance[a]/10)
                             }
                             if(this.timer==18){
-                                this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
+                                this.targetCombatant[a].collided(this.userCombatant)
                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant[a].tilePosition.y*2-this.userCombatant.tilePosition.y)
                                 if(index>=0){
-                                    this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                    this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                                 }
                             }
                         }else if(this.procedure[a]==0){
@@ -1893,10 +1893,10 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
                         }
                         if(this.timer==15*this.targetDistance+3){
-                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                            this.targetCombatant.collided(this.userCombatant)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                             }
                         }else if(this.timer>=15*this.targetDistance+11){
                             this.remove=true
@@ -1934,7 +1934,7 @@ turn.prototype.update=function(){
                                 this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
                             }
                             if(this.timer==15*this.targetDistance+13){
-                                this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                                this.targetCombatant.collided(this.userCombatant)
                             }else if(this.timer>=15*this.targetDistance+21){
                                 this.battle.activate(1,this.targetCombatant.id)
                                 this.remove=true
@@ -2212,10 +2212,10 @@ turn.prototype.update=function(){
                                     this.targetCombatant[a].moveRelativeTile(this.relativeDirection[a],this.relativeDistance[a]/10/this.targetDistance[a])
                                 }
                                 if(this.timer==18){
-                                    this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
+                                    this.targetCombatant[a].collided(this.userCombatant)
                                     let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x/2+this.userCombatant.tilePosition.x/2,this.targetCombatant[a].tilePosition.y/2+this.userCombatant.tilePosition.y/2)
                                     if(index>=0){
-                                        this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                        this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                                     }
                                 }
                             }else if(this.procedure[a]==0){
@@ -2498,11 +2498,11 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveRelativeTile(this.relativeDirection+this.procedure[2]*60,-this.relativeDistance/10/this.targetDistance)
                         }
                         if(this.timer==15*this.targetDistance+3){
-                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                            this.targetCombatant.collided(this.userCombatant)
                             let offset=transformDirection(0,this.relativeDirection+this.procedure[2]*60)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                             }
                         }else if(this.timer>=15*this.targetDistance+11){
                             this.remove=true
@@ -2612,10 +2612,10 @@ turn.prototype.update=function(){
                                 this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
                             }
                             if(this.timer==15*this.targetDistance+3){
-                                this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                                this.targetCombatant.collided(this.userCombatant)
                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                                 if(index>=0){
-                                    this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                    this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                                 }
                             }else if(this.timer>=15*this.targetDistance+11){
                                 this.remove=true
@@ -2716,10 +2716,10 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
                         }
                         if(this.timer==15*this.targetDistance+3){
-                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                            this.targetCombatant.collided(this.userCombatant)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                             }
                         }else if(this.timer>=15*this.targetDistance+11){
                             this.remove=true
@@ -2776,10 +2776,10 @@ turn.prototype.update=function(){
                                 this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
                             }
                             if(this.timer==15*this.targetDistance+38){
-                                this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                                this.targetCombatant.collided(this.userCombatant)
                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                                 if(index>=0){
-                                    this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                    this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                                 }
                             }else if(this.timer>=15*this.targetDistance+46){
                                 this.remove=true
@@ -2842,11 +2842,11 @@ turn.prototype.update=function(){
                                 this.targetCombatant[a].moveRelativeTile(this.relativeDirection[a]+60,-this.relativeDistance[a]/10/this.targetDistance[a])
                             }
                             if(this.timer==18){
-                                this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
+                                this.targetCombatant[a].collided(this.userCombatant)
                                 let offset=transformDirection(0,this.relativeDirection+60)
                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x+offset[0],this.targetCombatant[a].tilePosition.y+offset[1])
                                 if(index>=0){
-                                    this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                    this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                                 }
                             }
                         }else if(this.procedure[0][a]==0){
@@ -2911,11 +2911,11 @@ turn.prototype.update=function(){
                                 this.targetCombatant[a].moveRelativeTile(this.relativeDirection[a]-60,-this.relativeDistance[a]/10/this.targetDistance[a])
                             }
                             if(this.timer==18){
-                                this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
+                                this.targetCombatant[a].collided(this.userCombatant)
                                 let offset=transformDirection(0,this.relativeDirection-60)
                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x+offset[0],this.targetCombatant[a].tilePosition.y+offset[1])
                                 if(index>=0){
-                                    this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                    this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                                 }
                             }
                         }else if(this.procedure[0][a]==0){
@@ -3008,11 +3008,11 @@ turn.prototype.update=function(){
                                 this.targetCombatant[a].moveRelativeTile(this.relativeDirection[a]+120,-this.relativeDistance[a]/10/this.targetDistance[a])
                             }
                             if(this.timer==18){
-                                this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
+                                this.targetCombatant[a].collided(this.userCombatant)
                                 let offset=transformDirection(0,this.relativeDirection+120)
                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x+offset[0],this.targetCombatant[a].tilePosition.y+offset[1])
                                 if(index>=0){
-                                    this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                    this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                                 }
                             }
                         }else if(this.procedure[0][a]==0){
@@ -3070,11 +3070,11 @@ turn.prototype.update=function(){
                                 this.targetCombatant[a].moveRelativeTile(this.relativeDirection[a]-120,-this.relativeDistance[a]/10/this.targetDistance[a])
                             }
                             if(this.timer==18){
-                                this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
+                                this.targetCombatant[a].collided(this.userCombatant)
                                 let offset=transformDirection(0,this.relativeDirection-120)
                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x+offset[0],this.targetCombatant[a].tilePosition.y+offset[1])
                                 if(index>=0){
-                                    this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                    this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                                 }
                             }
                         }else if(this.procedure[0][a]==0){
@@ -3186,10 +3186,10 @@ turn.prototype.update=function(){
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
                         }
                         if(this.timer==5*this.targetDistance+23){
-                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                            this.targetCombatant.collided(this.userCombatant)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.targetCombatant.tilePosition.y+transformDirection(0,this.direction)[1])
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].collided(this.userCombatant)
                             }
                         }else if(this.timer>5*this.targetDistance+31){
                             this.remove=true
