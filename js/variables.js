@@ -122,7 +122,7 @@ types={
         {name:'Corrupt Detective',life:96,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:141,effect:[12,1]},{type:140,effect:[10,2]},{type:12,effect:[15]}],description:`Received tax benefits`},
         {name:'Elf Archer',life:55,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:148,effect:[3,5]},{type:149,effect:[3,2]},{type:4,effect:[8]}],description:`Not actually projectile spammer`},
         {name:'Riot Police',life:67,behavior:0,spec:[9],move:{type:0,speed:1},attack:[{type:150,effect:[6,4]},{type:9,effect:[16]}],description:`Responds to everything except riots`},
-        {name:'Reichswehr',life:43,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:151,effect:[6,1]},{type:12,effect:[10]},{type:152,effect:[2]}],description:`No historical context`},
+        {name:'Reichswehr',life:43,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:151,effect:[6,1]},{type:477,effect:[2]},{type:12,effect:[14]}],description:`No historical context`},
         {name:'Louse',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:153,effect:[2]},{type:79,effect:[5]},{type:6,effect:[6]},{type:1,effect:[7]}],description:`Would rather not do anything`},
         {name:'Fungling',life:15,behavior:5,spec:[11],move:{type:1,speed:1},attack:[{type:4,effect:[5]},{type:154,effect:[6,1]}],description:`Doesn't do a whole lot`},
         {name:'Hwurmp',life:25,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:157,effect:[8,1,'Dazed']}],description:`Full of hot air`},
@@ -805,6 +805,7 @@ types={
         {name:'Block / Draw Down',class:2},
         {name:'6 Tile Strike / Draw Down',class:1},
         {name:'Crescent Strike / Weak / Frail',class:1},
+        {name:'6 Tile Vulnerable',class:11},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,world:[0,3],description:''},
@@ -7120,7 +7121,7 @@ Some card spend it in their effects. Others may generate it.`
         },{name:'Burn (Card)',mtg:0,desc:
 `Status, unplayable, makes you take damage at the end of your turn.`,
         },{name:'Burn (Status Effect)',mtg:0,desc:
-`Take damage if dealing no damage on a turn.`,
+`Take bonus damage from all incoming damage 20 or greater.`,
         },{name:'Mortal',mtg:0,desc:
 `Lose health each turn.`,
         },{name:'Take Credit',mtg:0,desc:

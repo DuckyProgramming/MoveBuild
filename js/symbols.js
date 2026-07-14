@@ -9371,94 +9371,100 @@ Explosive - Energy
 Glass - Dual
 Poison - Gold
 */
+function playerSymbolColor(type){
+    switch(type){
+        case 0:
+            return [240,240,240]
+        break
+        case 1:
+            return [0,50,100]
+        break
+        case 2:
+            return [125,200,125]
+        break
+        case 3:
+            return [255,175,175]
+        break
+        case 4:
+            return [100,0,150]
+        break
+        case 5:
+            return [255,200,100]
+        break
+        case 6:
+            return [100,225,255]
+        break
+        case 7:
+            return [200,50,150]
+        break
+        case 8:
+            return [150,255,150]
+        break
+        case 9:
+            return [240,80,60]
+        break
+        case 10:
+            return [180,180,80]
+        break
+        case 11:
+            return [200,200,255]
+        break
+        case 12:
+            return [240,80,100]
+        break
+        case 13:
+            return [240,180,60]
+        break
+        case 14:
+            return [80,0,100]
+        break
+        case 15:
+            return [80,200,160]
+        break
+        case 16:
+            return [240,240,180]
+        break
+        case 17:
+            return [200,100,175]
+        break
+        case 18:
+            return [75,50,125]
+        break
+        case 19:
+            return [75,255,225]
+        break
+        case 20:
+            return [120,160,40]
+        break
+        case 21:
+            return [240,200,180]
+        break
+        case 22:
+            return [135,90,150]
+        break
+        case 23:
+            return [195,205,185]
+        break
+        case 24:
+            return [210,30,15]
+        break
+        case 25:
+            return [240,135,150]
+        break
+        case 26:
+            return [255,219,129]
+        break
+        default:
+            return [120,120,120]
+        break
+    }
+}
 function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
     layer.push()
     layer.translate(x,y)
     layer.rotate(direction)
     layer.scale(size)
-    switch(type){
-        case 1:
-            layer.fill(0,50,100,fade)
-        break
-        case 2:
-            layer.fill(125,200,125,fade)
-        break
-        case 3:
-            layer.fill(255,175,175,fade)
-        break
-        case 4:
-            layer.fill(100,0,150,fade)
-        break
-        case 5:
-            layer.fill(255,200,100,fade)
-        break
-        case 6:
-            layer.fill(100,225,255,fade)
-        break
-        case 7:
-            layer.fill(200,50,150,fade)
-        break
-        case 8:
-            layer.fill(150,255,150,fade)
-        break
-        case 9:
-            layer.fill(240,80,60,fade)
-        break
-        case 10:
-            layer.fill(180,180,80,fade)
-        break
-        case 11:
-            layer.fill(200,200,255,fade)
-        break
-        case 12:
-            layer.fill(240,80,100,fade)
-        break
-        case 13:
-            layer.fill(240,180,60,fade)
-        break
-        case 14:
-            layer.fill(80,0,100,fade)
-        break
-        case 15:
-            layer.fill(80,200,160,fade)
-        break
-        case 16:
-            layer.fill(240,240,180,fade)
-        break
-        case 17:
-            layer.fill(200,100,175,fade)
-        break
-        case 18:
-            layer.fill(75,50,125,fade)
-        break
-        case 19:
-            layer.fill(75,255,225,fade)
-        break
-        case 20:
-            layer.fill(120,160,40,fade)
-        break
-        case 21:
-            layer.fill(240,200,180,fade)
-        break
-        case 22:
-            layer.fill(135,90,150,fade)
-        break
-        case 23:
-            layer.fill(195,205,185,fade)
-        break
-        case 24:
-            layer.fill(210,30,15,fade)
-        break
-        case 25:
-            layer.fill(240,135,150,fade)
-        break
-        case 26:
-            layer.fill(255,219,129,fade)
-        break
-        default:
-            layer.fill(120,fade)
-        break
-    }
+    layer.fill(...playerSymbolColor(type),fade)
     layer.ellipse(0,0,50)
     layer.fill(255,fade)
     switch(type){
@@ -14109,6 +14115,12 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(3,-6,-4.5,-2,-4.5,2)
             layer.triangle(3,6,-4.5,-2,-4.5,2)
         break
+        case 477:
+            layer.fill(0,150,255,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+            layer.ellipse(-2.25,-6,3,3)
+            layer.ellipse(2.25,-6,3,3)
+        break
 
     }
     //mark i
@@ -14141,7 +14153,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 366: case 372: case 373: case 382: case 383: case 384: case 385: case 400: case 403: case 413:
             case 416: case 417: case 418: case 419: case 420: case 421: case 423: case 424: case 425: case 429:
             case 431: case 432: case 440: case 445: case 446: case 447: case 449: case 450: case 451: case 452:
-            case 457: case 458: case 463: case 464: case 466: case 467: case 471:
+            case 457: case 458: case 463: case 464: case 466: case 467: case 471: case 477:
                 layer.text(effect[0],0,0)
             break
             case 20: case 31: case 47: case 59: case 66: case 69: case 97: case 99: case 103: case 133:

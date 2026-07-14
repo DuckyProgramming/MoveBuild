@@ -1,20 +1,8 @@
-grandiose fire
-
 cards like euphonia but for draw and dexterity
 
-histogram of disbanded vs undisbanded cards by series
-
-replace Compass
 replace small tobruk
-update breakout from tobruk (field regiment has 3 batteries)
-update axis capture of tobruk (287 battery came from the 124th (Northumbrian) Field Regiment)
-update brevity (442 battery wasn't there yet)
-update sommernachtstraum (field regiment has 3 batteries)
-
-remove large tobruk as separate event
+shoot buffolotto
 two large tobruk (144/72), directly attached
-
-lira edit
 
 
 

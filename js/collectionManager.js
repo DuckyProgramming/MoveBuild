@@ -33,6 +33,60 @@ class collectionManager{
         this.overlayManager=new overlayManager(this.layer,this.battle,2)
         this.getData()
     }
+    overListing(cardData){
+        if(cardData.rarity>=0&&cardData.list>=0&&cardData.list<=constants.playerNumber+5){
+            return [
+                cardData.list,
+                cardData.list==0?constants.playerNumber:cardData.list<=constants.playerNumber?cardData.list-1:cardData.list
+            ]
+        }/*else if(cardData.rarity<0&&cardData.list==constants.playerNumber+5){
+            sublist=-1
+            resultlist=constants.playerNumber+6
+        }*/else if(cardData.rarity==-10){
+            return [
+                -1,
+                constants.playerNumber+6
+            ]
+        }else if(cardData.rarity==-6){
+            return [
+                -2,
+                constants.playerNumber+7
+            ]
+        }else if(cardData.rarity==-8){
+            return [
+                -3,
+                constants.playerNumber+8
+            ]
+        }/*else if(cardData.list==-9){
+            sublist=-4
+            resultlist=constants.playerNumber+9
+        }*/else if(cardData.rarity==-5&&cardData.list==-1){
+            return [
+                -4,
+                constants.playerNumber+9
+            ]
+        }else if(cardData.rarity==-1&&cardData.list==-8){
+            return [
+                -5,
+                constants.playerNumber+10
+            ]
+        }else if(cardData.rarity==-2){
+            return [
+                -6,
+                constants.playerNumber+11
+            ]
+        }else if(cardData.rarity==-3){
+            return [
+                -7,
+                constants.playerNumber+12
+            ]
+        }else{
+            return [
+                -8,
+                constants.playerNumber+13
+            ]
+        }
+    }
     executeQuery(){
         this.page=0
         this.totals={query:[0,0],list:[]}
@@ -44,42 +98,10 @@ class collectionManager{
         for(let a=0,la=types.card.length;a<la;a++){
             let cardData=types.card[a]
             if(cardData.list!=-10){
-                let sublist=0
-                let resultlist=0
-                if(cardData.rarity>=0&&cardData.list>=0&&cardData.list<=constants.playerNumber+5){
-                    sublist=cardData.list
-                    resultlist=cardData.list==0?constants.playerNumber:cardData.list<=constants.playerNumber?cardData.list-1:cardData.list
-                }/*else if(cardData.rarity<0&&cardData.list==constants.playerNumber+5){
-                    sublist=-1
-                    resultlist=constants.playerNumber+6
-                }*/else if(cardData.rarity==-10){
-                    sublist=-1
-                    resultlist=constants.playerNumber+6
-                }else if(cardData.rarity==-6){
-                    sublist=-2
-                    resultlist=constants.playerNumber+7
-                }else if(cardData.rarity==-8){
-                    sublist=-3
-                    resultlist=constants.playerNumber+8
-                }/*else if(cardData.list==-9){
-                    sublist=-4
-                    resultlist=constants.playerNumber+9
-                }*/else if(cardData.rarity==-5&&cardData.list==-1){
-                    sublist=-4
-                    resultlist=constants.playerNumber+9
-                }else if(cardData.rarity==-1&&cardData.list==-8){
-                    sublist=-5
-                    resultlist=constants.playerNumber+10
-                }else if(cardData.rarity==-2){
-                    sublist=-6
-                    resultlist=constants.playerNumber+11
-                }else if(cardData.rarity==-3){
-                    sublist=-7
-                    resultlist=constants.playerNumber+12
-                }else{
-                    sublist=-8
-                    resultlist=constants.playerNumber+13
-                }
+                let res=this.overListing(cardData)
+                let sublist=res[0]
+                let resultlist=res[1]
+                
                 this.totals.list[resultlist][0]++
                 if(this.knownKey[a]){
                     this.totals.list[resultlist][1]++

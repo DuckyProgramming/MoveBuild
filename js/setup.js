@@ -11,7 +11,7 @@ function setup(){
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[2]
+        current.menu.combatant=[9]
         current.menu.deck=[-1]
 
             variants.mtg=false
@@ -27,7 +27,7 @@ function setup(){
         transition.trigger=false
 
         //current.nodeManager.world=0
-        
+
         game.dev=true
         stage.scene='battle'
         current.setupBattle(types.encounter[1])
@@ -37,6 +37,9 @@ function setup(){
         //fight('-h Rewriter')
 
         //game.animRate=4
+
+            /*stage.scene='histogram'
+            graphics.test=2*/
 
             /*current.packManagers[0].packs[0].take()
             current.packManagers[0].packs[1].take()

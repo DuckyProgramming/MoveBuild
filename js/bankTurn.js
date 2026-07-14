@@ -12,7 +12,7 @@ turn.prototype.update=function(){
                 case 332: case 335: case 342: case 343: case 353: case 369: case 372: case 373: case 374: case 375:
                 case 378: case 385: case 386: case 389: case 390: case 397: case 398: case 402: case 412: case 419:
                 case 420: case 424: case 426: case 433: case 434: case 435: case 448: case 454: case 455: case 459:
-                case 463: case 465: case 475:
+                case 463: case 465: case 475: case 477:
                     if(this.type==205&&this.timer==1){
                         this.userCombatant.goal.anim.direction=this.relativeDirection
                     }

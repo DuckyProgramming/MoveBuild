@@ -1243,7 +1243,7 @@ class combatant{
                         this.statusEffect('Counter Once',8)
                     break
                     case 'Reichswehr':
-                        this.subAttackTypeSwitch([[2,151,151,[1,2]]])
+                        this.subAttackTypeSwitch([[2,151,151,[1,3]]])
                     break
                     case 'Louse':
                         this.spec.push(0)
@@ -1996,7 +1996,7 @@ class combatant{
             case 320: case 321: case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353:
             case 358: case 361: case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420:
             case 425: case 427: case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455:
-            case 459: case 463: case 471: case 475:
+            case 459: case 463: case 471: case 475: case 477:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -2741,6 +2741,7 @@ class combatant{
                         case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353: case 358: case 361:
                         case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420: case 425: case 427:
                         case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455: case 459: case 463:
+                        case 477:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -2964,6 +2965,7 @@ class combatant{
                     case 327: case 328: case 336: case 337: case 338: case 340: case 346: case 353: case 358: case 361:
                     case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420: case 425: case 427:
                     case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455: case 459: case 463:
+                    case 477:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -3264,6 +3266,9 @@ class combatant{
             }*/
         }
         damage=round(damage*10)/10
+        if(damage>=20&&this.status.main[49]>0){
+            damage+=this.status.main[49]
+        }
         if(damage>0&&this.life>0){
             let hit=true
             let dodged=false
@@ -5932,7 +5937,7 @@ class combatant{
                     case 37: this.miniStatus('Cannot Add Block',this.status.main[this.status.ticker[a]]); break
                     case 41: case 84: case 285:
                         if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.main+=this.status.main[this.status.ticker[a]]} break
-                    case 49: if(this.interiorStatus[1]==0){this.takeDamage(this.status.main[this.status.ticker[a]],-1)} break
+                    //case 49: if(this.interiorStatus[1]==0){this.takeDamage(this.status.main[this.status.ticker[a]],-1)} break
                     case 58: this.miniStatus('Temporary Strength',this.status.main[this.status.ticker[a]]); break
                     case 66: case 598:
                         for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break

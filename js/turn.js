@@ -186,6 +186,7 @@ class turn{
                                 case 328: case 335: case 336: case 337: case 338: case 340: case 353: case 358: case 361: case 362:
                                 case 364: case 398: case 400: case 402: case 407: case 419: case 420: case 425: case 427: case 428:
                                 case 436: case 439: case 443: case 445: case 448: case 454: case 455: case 459: case 463: case 475:
+                                case 477:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -765,7 +766,7 @@ class turn{
                                         case 320: case 321: case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353:
                                         case 358: case 361: case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420:
                                         case 425: case 427: case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455:
-                                        case 459: case 463: case 475:
+                                        case 459: case 463: case 475: case 477:
                                             if(
                                                 (a>=1&&this.targetTile[0]<0)||
                                                 (a>=2&&this.targetTile[1]<0)||
@@ -1481,7 +1482,7 @@ class turn{
                     case 61:
                         this.targetCombatant.statusEffect('Frail Next Turn',this.effect[0])
                     break
-                    case 62:
+                    case 62: case 477:
                         this.targetCombatant.statusEffect('Vulnerable Next Turn',this.effect[0])
                     break
                     case 172:

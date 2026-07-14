@@ -2994,6 +2994,145 @@ class battle{
                 this.tierManager.display()
                 this.overlayManager.display()
             break
+            case 'histogram':
+                this.layer.background(200)
+                let margin=50
+                let thick=3
+                switch(graphics.test){
+                    case 0:
+                        this.layer.noStroke()
+                        //let set=[[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
+                        let set=[[],[],[],[],[],[],[],[],[]]
+                        let total=[0,0,0,0,0,0,0,0,0]
+                        types.card.forEach(card=>{
+                            //card.levels.forEach(level=>set[card.list==-8?1:0][floor(level.attack/1000)]++)
+                            //card.mtg.levels.forEach(level=>set[card.list==-8?1:0][floor(level.attack/1000)]++)
+                            //if(card.list!=-8){
+                                let series=floor((card.levels[0].attack.length==2?max(card.levels[0].attack[0],card.levels[0].attack[1]):card.levels[0].attack)/1000)
+                                let res=this.collectionManager.overListing(card)
+                                if(series>=0){
+                                    total[series]++
+                                    if(set[series].some(chunk=>chunk.list[1]==res[1])){
+                                        set[series].filter(chunk=>chunk.list[1]==res[1])[0].num++
+                                    }else{
+                                        set[series].push({list:res,num:1})
+                                    }
+                                }
+                            //}
+                        })
+                        let barWidth=70
+                        for(let a=0,la=9;a<la;a++){
+                            let names2=['Colorless','Status','Curse','Partner','Arcana','Spectral','Junkyard','Subcard','Event','Developer','Disband','Basic','Pack','Misc']
+                            set[a].sort((a,b)=>a.list-b.list)
+                            //set[a]=set[a].filter(group=>group.list[1]!=constants.playerNumber+12)
+                            //let prop=set[0][a]/(set[0][a]+set[1][a])
+                            let pos=this.layer.height-margin
+                            this.layer.fill(100)
+                            this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la,pos-(this.layer.height-margin*2+5)*0.5,barWidth+10,this.layer.height-margin*2+5)
+                            for(let b=0,lb=set[a].length;b<lb;b++){
+                                let prop=set[a][b].num/total[a]
+                                this.layer.fill(...(
+                                    set[a][b].list[1]==constants.playerNumber+1?[125,125,125]:
+                                    set[a][b].list[1]==constants.playerNumber+2?[75,75,75]:
+                                    set[a][b].list[1]==constants.playerNumber+3?[255,150,150]:
+                                    set[a][b].list[1]==constants.playerNumber+4?[160,160,140]:
+                                    set[a][b].list[1]==constants.playerNumber+5?[125,145,180]:
+                                    set[a][b].list[1]==constants.playerNumber+6?[140,140,140]:
+                                    set[a][b].list[1]==constants.playerNumber+7?[220,220,220]:
+                                    set[a][b].list[1]==constants.playerNumber+8?[200,200,200]:
+                                    set[a][b].list[1]==constants.playerNumber+9?[20,20,20]:
+                                    set[a][b].list[1]==constants.playerNumber+10?[50,60,70]:
+                                    set[a][b].list[1]==constants.playerNumber+11?[180,180,180]:
+                                    //set[a][b].list[1]==constants.playerNumber+12?[160,160,160]:
+                                    set[a][b].list[1]==constants.playerNumber+13?[160,160,160]:
+                                    playerSymbolColor(set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1)
+                                ))
+                                this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la,pos-(this.layer.height-margin*2)*prop*0.5,barWidth,(this.layer.height-margin*2)*prop)
+                                if(set[a][b].list[1]==constants.playerNumber+9){
+                                    this.layer.fill(255,255,50)
+                                    this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la-25,pos-(this.layer.height-margin*2)*prop*0.5,2,(this.layer.height-margin*2)*prop)
+                                    this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la+25,pos-(this.layer.height-margin*2)*prop*0.5,2,(this.layer.height-margin*2)*prop)
+                                }
+                                this.layer.fill(set[a][b].list[1]==constants.playerNumber+9?240:0)
+                                this.layer.textSize(min(10,prop*500))
+                                this.layer.text(`${set[a][b].list[1]>=constants.playerNumber?names2[set[a][b].list[1]-constants.playerNumber]:types.combatant[set[a][b].list[1]+1].name}`,margin+(this.layer.width-margin*2)*(a+0.5)/la,pos-(this.layer.height-margin*2)*prop*0.5)
+                                pos-=(this.layer.height-margin*2)*prop
+                            }
+                            /*this.layer.fill(margin)
+                            this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la,this.layer.height-margin-(this.layer.height-margin*2)*prop*0.5,60,(this.layer.height-margin*2)*prop)
+                            this.layer.fill(200,margin,margin)
+                            this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la,margin+(this.layer.height-margin*2)*(1-prop)*0.5,60,(this.layer.height-margin*2)*(1-prop))*/
+                            this.layer.fill(0)
+                            this.layer.textSize(20)
+                            this.layer.text(`${a*1000}s`,margin+(this.layer.width-margin*2)*(a+0.5)/la,this.layer.height-margin+25)
+                            /*this.layer.textSize(15)
+                            this.layer.text(`${floor(set[1][a]/6)}/${floor(set[0][a]/6+set[1][a]/6)}`,margin+(this.layer.width-margin*2)*(a+0.5)/la,80)*/
+                        }
+                        this.layer.stroke(0)
+                        this.layer.strokeWeight(thick*2)
+                        this.layer.line(margin,this.layer.height-margin+thick,this.layer.width-margin,this.layer.height-margin+thick)
+                    break
+                    case 1: case 2:
+                        let part=1000
+                        let active=types.card.filter(card=>card.levels[0].class==graphics.test&&card.levels[0].cost==1&&card.levels[0].effect.length>0&&card.levels[0].effect[0]<=50)
+                        let maximum=[
+                            active.reduce((acc,card)=>max(acc,card.levels[0].attack),0),
+                            active.reduce((acc,card)=>max(acc,card.levels[0].effect[0]),0),
+                        ]
+                        let set1=range(0,ceil(maximum[0]/part)).map(a=>[0,0])
+                        active.forEach(card=>{
+                            let series=floor((card.levels[0].attack.length==2?max(card.levels[0].attack[0],card.levels[0].attack[1]):card.levels[0].attack)/part)
+                            set1[series][0]++
+                            set1[series][1]+=card.levels[0].effect[0]
+                        })
+                        active.forEach(card=>{
+                            let prop=[
+                                (card.levels[0].attack.length==2?max(card.levels[0].attack[0],card.levels[0].attack[1]):card.levels[0].attack)/maximum[0],
+                                card.levels[0].effect[0]/maximum[1],
+                            ]
+                            this.layer.stroke(100)
+                            this.layer.strokeWeight(3)
+                            this.layer.point(margin+prop[0]*(this.layer.width-margin*2),this.layer.height-margin-prop[1]*(this.layer.height-margin*2))
+                            if(prop[1]>0.5){
+                                this.layer.fill(0)
+                                this.layer.noStroke()
+                                this.layer.textSize(6)
+                                this.layer.text(card.name.replaceAll(`\n`,` `),margin+prop[0]*(this.layer.width-margin*2),this.layer.height-margin-prop[1]*(this.layer.height-margin*2)+10)
+                            }
+                        })
+                        this.layer.stroke(255,0,0)
+                        this.layer.strokeWeight(3)
+                        this.layer.noFill()
+                        this.layer.beginShape()
+                        for(let a=0,la=set1.length;a<la;a++){
+                            let prop=[
+                                part*a/maximum[0],
+                                set1[a][1]/set1[a][0]/maximum[1],
+                            ]
+                            this.layer.vertex(margin+prop[0]*(this.layer.width-margin*2),this.layer.height-margin-prop[1]*(this.layer.height-margin*2))
+                        }
+                        this.layer.endShape()
+                        this.layer.stroke(0)
+                        this.layer.strokeWeight(thick*2)
+                        this.layer.line(margin-thick,this.layer.height-margin+thick,this.layer.width-margin,this.layer.height-margin+thick)
+                        this.layer.line(margin-thick,this.layer.height-margin+thick,margin-thick,margin-thick)
+                        this.layer.fill(0)
+                        this.layer.noStroke()
+                        this.layer.textSize(20)
+                        for(let a=0,la=set1.length;a<la;a++){
+                            let prop=[
+                                part*a/maximum[0],
+                                set1[a][1]/set1[a][0]/maximum[1],
+                            ]
+                            this.layer.text(`${a*part}`,margin+prop[0]*(this.layer.width-margin*2),this.layer.height-margin+25)
+                        }
+                        for(let a=0,la=ceil(maximum[1]/10);a<la;a++){
+                            this.layer.text(`${a*10}`,margin-20,this.layer.height-margin-(this.layer.height-margin*2)*a*10/maximum[1])
+                        }
+                    break
+                }
+                noLoop()
+            break
         }
         if(this.initialized&&this.modded(150)){
             this.layer.noStroke()
