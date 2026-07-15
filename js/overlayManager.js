@@ -196,6 +196,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,31,[])],//pick relic
                     [new overlay(this.layer,this.battle,0,3,[3])],//new card to hand, savelast
                     [new overlay(this.layer,this.battle,0,2,[123,0])],//duplicate class card, no return
+                    [new overlay(this.layer,this.battle,0,2,[124,0,1])],//bring in draw card-skill, no return
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

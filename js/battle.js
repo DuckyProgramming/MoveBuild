@@ -3079,11 +3079,13 @@ class battle{
                             active.reduce((acc,card)=>max(acc,card.levels[0].attack),0),
                             active.reduce((acc,card)=>max(acc,card.levels[0].effect[0]),0),
                         ]
-                        let set1=range(0,ceil(maximum[0]/part)).map(a=>[0,0])
+                        //let set1=range(0,ceil(maximum[0]/part)).map(a=>[0,0])
+                        let set1=range(0,ceil(maximum[0]/part)).map(a=>[0,[]])
                         active.forEach(card=>{
                             let series=floor((card.levels[0].attack.length==2?max(card.levels[0].attack[0],card.levels[0].attack[1]):card.levels[0].attack)/part)
                             set1[series][0]++
-                            set1[series][1]+=card.levels[0].effect[0]
+                            //set1[series][1]+=card.levels[0].effect[0]
+                            set1[series][1].push(card.levels[0].effect[0])
                         })
                         active.forEach(card=>{
                             let prop=[
@@ -3105,9 +3107,11 @@ class battle{
                         this.layer.noFill()
                         this.layer.beginShape()
                         for(let a=0,la=set1.length;a<la;a++){
+                            set1[a][1].sort((a,b)=>a-b)
                             let prop=[
                                 part*a/maximum[0],
-                                set1[a][1]/set1[a][0]/maximum[1],
+                                set1[a][1][floor(set1[a][1].length/2)]/maximum[1]
+                                //set1[a][1]/set1[a][0]/maximum[1],
                             ]
                             this.layer.vertex(margin+prop[0]*(this.layer.width-margin*2),this.layer.height-margin-prop[1]*(this.layer.height-margin*2))
                         }

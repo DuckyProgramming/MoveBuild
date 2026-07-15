@@ -4992,8 +4992,8 @@ class group{
                             position++
                         }
                     break
-                    case 2: case 3: case 4: case 5: case 8:
-                        this.sortClass(args[0]==8?11:args[0]-1)
+                    case 2: case 3: case 4: case 5: case 8: case 16:
+                        this.sortClass(args[0]==16?12:args[0]==8?11:args[0]-1)
                         /*for(let a=0,la=this.sorted.length;a<la;a++){
                             for(let b=0,lb=this.cards.length;b<lb;b++){
                                 if(this.cards[b].name==this.sorted[a]){

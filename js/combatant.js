@@ -94,7 +94,6 @@ class combatant{
         this.ally=-1
         this.blocked=0
         this.taken=0
-        this.turnTaken=0
         this.builder=0
         
         this.compression=0
@@ -119,7 +118,6 @@ class combatant{
             ringing:[0,0,0,0,0,0],
         }
         this.dodges=[]
-        this.turnDodges=0
         this.communizers=[]
         this.status={
             main:[],name:[
@@ -211,7 +209,7 @@ class combatant{
                 'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage','Caffeine','20 Damage Weak','20 Damage Vulnerable','20 Damage Frail','Weak Boost',
                 'Vulnerable Boost','Duplicate Cycle 3 1','Duplicate Cycle 3 2','Duplicate Cycle 3 3',`Turn Transform`,'Temporary Focus','Pristine Draw','Skill Temporary Dexterity','Double Damage Cycle 3 1','Double Damage Cycle 3 2',
                 'Double Damage Cycle 3 3','Random Quickdraw Gain Per Turn','Skill to Defense Draw Skill','Coffee Draw','Skill to Attack Draw Skill','Coffee Splash','Caffeine Tolerance','Pristine Reduction Free Attack','Tile Temporary Strength','Take 2/3 Damage',
-                'Collision Damage',
+                'Collision Damage','Plant Draw','Retain Temporary Strength','Retain Temporary Dexterity',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -302,7 +300,7 @@ class combatant{
                 0,0,2,2,1,0,0,0,0,0,//86
                 0,2,2,2,0,2,0,0,2,2,//87
                 2,0,0,0,0,0,0,0,0,1,//88
-                0,
+                0,0,1,1,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -393,7 +391,7 @@ class combatant{
                 2,3,1,1,2,1,2,2,2,2,//86
                 2,2,2,2,2,2,2,2,0,0,//87
                 0,2,2,2,2,2,2,2,2,0,//88
-                2,
+                2,2,2,2,
             ]}
         /*
         0-none
@@ -405,7 +403,9 @@ class combatant{
         6-half decrement
         */
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
-        this.tempStatus=[1,0,0,0,0,0]
+        this.turnStatus=[0,0,0]
+        //dodges,taken,life lost
+        this.tempStatus=[1,0,0,0,0]
         //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed
         this.interiorStatus=[0,0]
         //repeat extra turn 1,has done damage
@@ -502,8 +502,7 @@ class combatant{
         this.ringing=0
         this.caffeine=0
 
-        this.turnDodges=0
-        this.turnTaken=0
+        this.turnStatus=[0,0,0]
     }
     resetInfo(){
         this.constants()
@@ -3321,7 +3320,7 @@ class combatant{
                         dodged=true
                         this.blocked=0
                         this.dodges.push({timer:0,direction:atan2(userCombatant.relativePosition.x-this.relativePosition.x,userCombatant.relativePosition.y-this.relativePosition.y)-90+180*floor(random(0,2))})
-                        this.turnDodges++
+                        this.turnStatus[0]++
                         if(this.status.main[458]>0){
                             this.statusEffect('Strength',this.status.main[458])
                         }
@@ -3739,7 +3738,7 @@ class combatant{
                                 this.infoAnim.upFlash[0]=true
                             }
                             this.taken=damageLeft
-                            this.turnTaken+=damageLeft
+                            this.turnStatus[1]+=damageLeft
                             this.battle.relicManager.activate(6,[this.id])
                             if(this.id<this.battle.players){
                                 this.battle.stats.taken[this.id][2]+=damageLeft
@@ -4582,6 +4581,12 @@ class combatant{
             this.relativePosition.y=tile.relativePosition.y
             if(this.spec.includes(5)){
                 tile.addType(6)
+            }
+            if(tile.type.includes(19)&&this.id<this.battle.players){
+                this.battle.cardManagers[this.id].hand.allEffectArgs(55,[`callSpecTileEffect`,[19]])
+                if(this.status.main[881]>0){
+                    this.battle.cardManagers[this.id].draw(this.status.main[881])
+                }
             }
             this.battle.combatantManager.sort()
         }
@@ -5821,6 +5826,7 @@ class combatant{
             this.status.main[21]--
             this.infoAnim.upFlash[2]=true
         }else{
+            this.turnStatus[2]+=amount
             this.life-=amount
             if(this.status.main[301]>0){
                 this.status.main[301]--
@@ -5862,8 +5868,7 @@ class combatant{
         }
     }
     endTurn(){
-        this.turnDodges=0
-        this.turnTaken=0
+        this.turnStatus=[0,0,0]
     }
     tick(sub){
         this.charge++
@@ -5918,6 +5923,14 @@ class combatant{
                 this.status.ticker.push(a)
             }
         }
+        let ret=[
+            this.getStatus('Retain History')>0,
+            this.getStatus('Retain Radiation')>0,
+            this.getStatus('Retain Dodge')>0,
+            this.getStatus('Retain Lock On')>0,
+            this.getStatus('Retain Temporary Strength')>0,
+            this.getStatus('Retain Temporary Dexterity')>0,
+        ]
         for(let a=0,la=this.status.ticker.length;a<la;a++){
             if(this.status.main[this.status.ticker[a]]!=0){
                 switch(this.status.ticker[a]){
@@ -6188,9 +6201,9 @@ class combatant{
                     case 871: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.quickdrawRandom+=this.status.main[this.status.ticker[a]]}; break
                     
                 }
-                if(this.status.behavior[this.status.ticker[a]]==6&&
-                    !(this.status.ticker[a]==306&&this.getStatus('Retain History')>0)&&
-                    !(this.status.ticker[a]==663&&this.getStatus('Retain Radiation')>0)
+                if(this.status.behavior[this.status.ticker[a]]==6
+                    &&!(this.status.ticker[a]==306&&ret[0])
+                    &&!(this.status.ticker[a]==663&&ret[1])
                 ){
                     if(this.status.main[this.status.ticker[a]]>0){
                         this.status.main[this.status.ticker[a]]=floor(this.status.main[this.status.ticker[a]]/2)
@@ -6199,15 +6212,19 @@ class combatant{
                     }
                 }else if(
                     (this.status.behavior[this.status.ticker[a]]==1||this.status.behavior[this.status.ticker[a]]==3&&this.team<=0||this.status.behavior[this.status.ticker[a]]==4&&this.team>0)
-                    &&!(this.status.ticker[a]==3&&this.getStatus('Retain Dodge')>0)
-                    &&!(this.status.ticker[a]==461&&this.getStatus('Retain Lock On')>0)
+                    &&!(this.status.ticker[a]==3&&ret[2])
+                    &&!(this.status.ticker[a]==461&&ret[3])
                 ){
                     if(this.status.main[this.status.ticker[a]]>0){
                         this.status.main[this.status.ticker[a]]--
                     }else if(this.status.main[this.status.ticker[a]]<0){
                         this.status.main[this.status.ticker[a]]++
                     }
-                }else if(this.status.behavior[this.status.ticker[a]]==2){
+                }else if(
+                    this.status.behavior[this.status.ticker[a]]==2
+                    &&!(this.status.ticker[a]==17&&ret[4])
+                    &&!(this.status.ticker[a]==18&&ret[5])
+                ){
                     this.status.main[this.status.ticker[a]]=0
                 }
                 this.statusSignUpdate(this.status.ticker[a])

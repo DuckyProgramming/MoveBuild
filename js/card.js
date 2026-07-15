@@ -23,7 +23,7 @@ class card{
                 break
                 case 'Step-R':
                     this.type=round(findName('I-Step-R',types.card))
-                breakcards
+                break
                 case 'Initiative':
                     this.type=round(findName('I-Initiative',types.card))
                 break
@@ -2298,6 +2298,17 @@ class card{
             break
         }
     }
+    callSpecTileEffect(type){
+        switch(type){
+            case 19:
+                switch(this.attack){
+                    case 8824:
+                        this.effect[0]+=this.effect[1]
+                    break
+                }
+            break
+        }
+    }
     callNodeEffect(node){
         switch(this.attack){
             case 2064:
@@ -2646,7 +2657,7 @@ class card{
             case 2501: case 3198: case 3647: case 3915: case 4013: case 4178: case 4457: case 4658: case 4727: case 4771:
             case 5208: case 5559: case 5560: case 5750: case 6114: case 6334: case 6657: case 6658: case 6901: case 7027:
             case 7028: case 7216: case 7224: case 7378: case 7754: case 7755: case 7811: case 7812: case 7893: case 8801:
-            case 8802:
+            case 8802: case 8834:
                 this.effect[0]+=this.effect[1]
             break
             case 866: case 908: case 1893: case 2356: case 2482: case 5428: case 5429: case 5430: case 5431: case 8056:
@@ -3368,6 +3379,11 @@ class card{
                 case 8758:
                     if(card.spec.includes(84)){
                         userCombatant.statusEffect('Temporary Strength',this.effect[1])
+                    }
+                break
+                case 8838: case 8854:
+                    if(card.class==12&&card.spec.includes(60)){
+                        this.setCost(2,[0])
                     }
                 break
                 
