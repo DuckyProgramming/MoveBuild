@@ -49,7 +49,7 @@ class tutorialManager{
                     [],
                 ]
                 this.pages=[
-`Welcome to MoveBuild!
+`Welcome to ${constants.gameName}!
 This is a basic rundown of gameplay.`,
 `This is you, take note of your health.
 The character next to you is an enemy.`,
@@ -267,7 +267,7 @@ and discover what it does.`,
                 this.battle.cardManagers[0].deck.cards=[]
                 this.popups=[[],[],[],[],[],[],[],[],[]]
                 this.pages=[
-`There are a variety of enemies in Movebuild. The main types of combats
+`There are a variety of enemies in ${constants.gameName}. The main types of combats
 are Enemies, Elites, and Bosses, in that order of difficulty. You usually
 have a lot of choice regarding fighting Enemies and Elites.`,
 `The first battle in each world is a set easier starting battle,
@@ -338,7 +338,7 @@ enemy to play them in.`,
                 this.battle.cardManagers[0].deck.cards=[]
                 this.popups=[[],[],[],[],[],[],[]]
                 this.pages=[
-`Movebuild has ${constants.playerNumber} playable characters.`,
+`${constants.gameName} has ${constants.playerNumber} playable characters.`,
 `Each one has their own set of cards, colored thematically.
 Typically, you cannot get cards from another character during normal runs,
 though some variants, cards, relics, and items will give these off-color cards.`,

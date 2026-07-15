@@ -206,7 +206,7 @@ class overlay{
                     case 124:
                         this.activated=0
                     break
-                    case 20: case 60: case 80: case 96: case 105: case 120: case 123:
+                    case 20: case 60: case 80: case 96: case 105: case 123:
                         this.args[1]=args[0]
                     break
                     case 21: case 22: this.block=args[0]; break
@@ -279,6 +279,10 @@ class overlay{
                     break
                     case 112:
                         this.args[1]=args[0]+this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Recover Up')
+                    break
+                    case 120:
+                        this.args[1]=args[0]
+                        this.args[2]=args[1]
                     break
                 }
             break
@@ -3164,7 +3168,7 @@ class overlay{
                     case 115: this.title='Duplicate an Uncommon Card'; break
                     case 117: this.title='Increase the Cost of a Card by 1'; break
                     case 118: this.title='Make a Card Erratic and Duplicate it 2 Times'; break
-                    case 120: this.title=`Transform a Card Into a ${this.args[1].replaceAll('\n',' ')}`; break
+                    case 120: this.title=`Transform a Card Into a ${this.args[2]==2?`Foil `:``}${this.args[1].replaceAll('\n',' ')}`; break
                     case 123: this.title=`Duplicate ${[``,`an Attack`,`a Defense`,`a Movement`,`a Power`,``,``,``,``,``,``,`a Skill`][this.args[1]]}`; break
                     case 124: this.title='Put a Wish From Draw Pile in Hand'; break
                     default: this.title=''; break
@@ -5278,6 +5282,7 @@ class overlay{
                                             game.id++
                                             let base=this.battle.cardManagers[this.player].reserve.cards[a]
                                             this.battle.cardManagers[this.player].reserve.cards[a]=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName(this.args[1],types.card),0,variants.mtg?[0]:0,game.id)
+                                            this.battle.cardManagers[this.player].reserve.cards[a].edition=this.args[2]
                                             complete=false
                                             this.activeTimer=15
                                         break
@@ -6903,6 +6908,7 @@ class overlay{
                                             game.id++
                                             let base=this.battle.cardManagers[this.player].reserve.cards[a]
                                             this.battle.cardManagers[this.player].reserve.cards[a]=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName(this.args[1],types.card),0,variants.mtg?[0]:0,game.id)
+                                            this.battle.cardManagers[this.player].reserve.cards[a].edition=this.args[2]
                                             complete=false
                                             this.activeTimer=15
                                         break

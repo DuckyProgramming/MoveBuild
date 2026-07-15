@@ -1,28 +1,3 @@
-+11 more cards
-ubercharge - become invincible if you've healed enough this combat
-inky blade - 0 cost, apply 1 weak, all shivs in hand deal 1 more damage
-reverse venomblade
-haze - poison people in all directions, lose 4 health, plant tile: draw a card
-poison cube - damage, block equal to target poison
-
-like a 26
-
-when you det, can retroactively act for 5 frames
-
-replace small tobruk
-two large tobruk (144/72), directly attached
-
-
-
-update icathia
--menessa
-
-leetcode
-
-background pages
-
-
-
-POTENTIAL CARDSET 104 [ENDSIEG]
+POTENTIAL CARDSET 105 [ENDSIEG]
 
 

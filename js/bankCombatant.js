@@ -510,7 +510,7 @@ combatant.prototype.display=function(){
                                 this.layer.translate(-this.graphics.legs[h].sandal.front.x,-this.graphics.legs[h].sandal.front.y-1.5)
                             }*/
                             if(this.anim.shoe>0){
-                                let color=this.flashColor(upColor(this.color.shoe.main[0],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                let color=this.flashColor(upColor(this.color.shoe.main[0],lcos(this.anim.direction+this.spin.legs[h].top)*5,[1,1,1]))
                                 this.layer.fill(...color,this.fade*this.fades.sandal.back[h])
                                 this.layer.noStroke()
                                 this.layer.push()
@@ -545,7 +545,7 @@ combatant.prototype.display=function(){
                                 }
                                 this.layer.endShape()
                                 //main
-                                color=this.flashColor(upColor(this.color.shoe.main[1],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                color=this.flashColor(upColor(this.color.shoe.main[1],lcos(this.anim.direction+this.spin.legs[h].top)*5,[1,1,1]))
                                 this.layer.fill(...color,this.fade*this.fades.sandal.back[h])
                                 this.layer.noStroke()
                                 pos=[

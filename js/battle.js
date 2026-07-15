@@ -1541,6 +1541,10 @@ class battle{
             this.combatantManager.areaAbstract(0,[userCombatant.getStatus('Fatigue Splash'),userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
             this.particleManager.particlesBack.push(new particle(this.layer,userCombatant.position.x,userCombatant.position.y,93,[8]))
         }
+        if(card.name=='Fatigue'&&userCombatant.getStatus('Fatigue Splash Bleed')>0){
+            this.combatantManager.areaAbstract(2,['Bleed',userCombatant.getStatus('Fatigue Splash Bleed')],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+            this.particleManager.particlesBack.push(new particle(this.layer,userCombatant.position.x,userCombatant.position.y,93,[8]))
+        }
         if(card.spec.includes(25)&&userCombatant.getStatus('Gun Temporary Strength')>0){
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Gun Temporary Strength'))
         }
@@ -2396,6 +2400,37 @@ class battle{
         switch(scene){
             case 'title':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
+                let prop=0.3
+                let scalar=40
+                let div=15
+                let swivel=600
+                this.layer.noFill()
+                this.layer.strokeJoin(ROUND)
+                this.layer.stroke(0)
+                this.layer.push()
+                this.layer.translate(this.layer.width/2-swivel,0)
+                for(let a=0,la=31;a<la;a++){
+                    let gradient=[new p5.LinearGradient(20,2400)]
+                    gradient[0].colors(...range(0,constants.playerNumber).map(num=>[(num+9+game.timer*0.05)%constants.playerNumber/constants.playerNumber,color(...playerSymbolColor(constants.playerNumber-num),a==la-1?1:(a+1)/la*0.2)]).flat())
+                    this.layer.strokeGradient(gradient[0])
+                    this.layer.strokeWeight(44-a)
+                    this.layer.beginShape()
+                    this.layer.vertex(swivel+div*constants.sqrt3,this.layer.height*prop-scalar*2-div)
+                    this.layer.vertex(swivel+div*constants.sqrt3,this.layer.height*prop+scalar*2+div)
+                    this.layer.vertex(swivel+div*constants.sqrt3+scalar*constants.sqrt3,this.layer.height*prop+scalar+div)
+                    this.layer.vertex(swivel+div*constants.sqrt3+scalar*constants.sqrt3,this.layer.height*prop-scalar-div)
+                    this.layer.vertex(swivel+div*constants.sqrt3,this.layer.height*prop)
+                    this.layer.endShape()
+                    this.layer.beginShape()
+                    this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop-scalar-div)
+                    this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop-scalar*2-div)
+                    this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop)
+                    this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop)
+                    this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop+scalar+div)
+                    this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop+scalar*2+div)
+                    this.layer.endShape()
+                }
+                this.layer.pop()
             break
             case 'menu':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
@@ -3590,7 +3625,7 @@ class battle{
     onClick(scene){
         switch(scene){
             case 'title':
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-120,y:this.layer.height*0.55},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-120,y:this.layer.height*0.65},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='menu'
                     if(this.menu.combatant.length==2){
@@ -3600,7 +3635,7 @@ class battle{
                         this.setupMtgManaChoice(0)
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.55},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.65},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='menu2'
                     if(this.menu.combatant.length==1){
@@ -3612,18 +3647,18 @@ class battle{
                         }
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+120,y:this.layer.height*0.55},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+120,y:this.layer.height*0.65},width:62.5,height:62.5})){
                     this.loadCol()
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-120,y:this.layer.height*0.75},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-120,y:this.layer.height*0.85},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='variants'
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.75},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.85},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='tutorial'
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+120,y:this.layer.height*0.75},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+120,y:this.layer.height*0.85},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='collection'
                     this.collectionManager.executeQuery()

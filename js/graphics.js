@@ -8541,6 +8541,7 @@ function setupBackground(type,layer){
             }
 		break
 		case 2:
+			layer.noStroke()
 			for(let a=0,la=30;a<=la;a++){
 				for(let b=0,lb=20;b<=lb;b++){
 					let offset=noise(a/2+b/3+150)*20+noise(b/2+a/3+200)*20
@@ -8656,6 +8657,7 @@ function setupBackground(type,layer){
             }
 		break
 		case 5:
+			layer.noStroke()
 			for(let a=0,la=layer.height/5;a<la;a++){
                 layer.fill(40+50*a/la,60+50*a/la,50+50*a/la)
                 layer.rect(layer.width/2,a+0.5+layer.height*4/5,layer.width,2)
@@ -8717,6 +8719,7 @@ function setupBackground(type,layer){
 			}*/
 		break
 		case 6:
+			layer.noStroke()
 			for(let a=0,la=layer.height;a<la;a++){
                 layer.fill(40+30*a/la,80+70*a/la,100+80*a/la)
                 layer.rect(layer.width/2,a+0.5,layer.width,2)
@@ -8785,6 +8788,7 @@ function setupBackground(type,layer){
 			}
 		break
 		case 7:
+			layer.noStroke()
 			for(let a=0,la=layer.height;a<la;a++){
                 layer.fill(250-25*a/la,220-50*a/la,240-60*a/la)
                 layer.rect(layer.width/2,a+0.5,layer.width,2)
@@ -8851,6 +8855,7 @@ function setupBackground(type,layer){
 			}
 		break
 		case 8:
+			layer.noStroke()
 			for(let a=0,la=30;a<=la;a++){
 				for(let b=0,lb=20;b<=lb;b++){
 					let offset=noise(a/2+b/3+150)*20+noise(b/2+a/3+200)*20
@@ -8870,10 +8875,10 @@ function setupBackground(type,layer){
 				for(let a=0,la=20;a<=la+1;a++){
 					let offset=noise(a*1.5+b*0.5-100)*20+noise(b*1.5+a*0.5-50)*20
 					layer.fill(60+random(0,5)+offset,70+random(0,5)+offset,80+random(0,5)+offset)
-					layer.quad(layer.width*(a+bounce)/la+15,layer.height*(0.8+b/lb*0.2),layer.width*(a+1+bounce)/la+15,layer.height*(0.8+b/lb*0.2),layer.width*(a+1+bounce)/la-15,layer.height*(0.8+(b+1)/lb*0.2),layer.width*(a+bounce)/la-15,layer.height*(0.8+(b+1)/lb*0.2))
+					layer.quad(layer.width*(a+bounce)/la+15,layer.height*(0.85+b/lb*0.15),layer.width*(a+1+bounce)/la+15,layer.height*(0.85+b/lb*0.15),layer.width*(a+1+bounce)/la-15,layer.height*(0.85+(b+1)/lb*0.15),layer.width*(a+bounce)/la-15,layer.height*(0.85+(b+1)/lb*0.15))
 				}
 			}
-			layer.fill(180)
+			/*layer.fill(180)
 			for(let a=0,la=3;a<la;a++){
 				layer.rect(layer.width/2-240+a*240,layer.height*0.55,125,125)
 				layer.rect(layer.width/2-240+a*240,layer.height*0.75,125,125)
@@ -8923,9 +8928,87 @@ function setupBackground(type,layer){
 			for(let a=0,la=10;a<la;a++){
 				layer.fill(50-50*a/la,200-100*a/la,100-100*a/la)
 				layer.text('DuckyProgramming',layer.width/2+a,layer.height*0.38+a)
+			}*/
+			layer.fill(180)
+			for(let a=0,la=3;a<la;a++){
+				layer.rect(layer.width/2-240+a*240,layer.height*0.65,125,125)
+				layer.rect(layer.width/2-240+a*240,layer.height*0.85,125,125)
+				layer.rect(layer.width/2-240+a*240,layer.height*0.65+100,200,55)
+				layer.rect(layer.width/2-240+a*240,layer.height*0.85+100,200,55)
 			}
+			regPoly(layer,layer.width/2,layer.height*0.3,6,310,320,0)
+			layer.fill(20)
+			for(let a=0,la=3;a<la;a++){
+				layer.rect(layer.width/2-240+a*240,layer.height*0.65,100,100)
+				layer.rect(layer.width/2-240+a*240,layer.height*0.85,100,100)
+				layer.rect(layer.width/2-240+a*240,layer.height*0.65+100,175,30)
+				layer.rect(layer.width/2-240+a*240,layer.height*0.85+100,175,30)
+			}
+			regPoly(layer,layer.width/2,layer.height*0.3,6,290,300,0)
+			layer.fill(180)
+			regTriangle(layer,layer.width/2-245,layer.height*0.65,30,30,-30)
+			regTriangle(layer,layer.width/2-25,layer.height*0.65,24,24,-30)
+			regTriangle(layer,layer.width/2+15,layer.height*0.65,24,24,-30)
+			regTriangle(layer,layer.width/2+260,layer.height*0.65,20,20,-30)
+			layer.rect(layer.width/2-240,layer.height*0.85,36,36)
+			regPoly(layer,layer.width/2,layer.height*0.85,4,25,25,0)
+			layer.rect(layer.width/2+228,layer.height*0.85-12,18,18)
+			layer.rect(layer.width/2+228,layer.height*0.85+12,18,18)
+			layer.rect(layer.width/2+252,layer.height*0.85-12,18,18)
+			layer.rect(layer.width/2+252,layer.height*0.85+12,18,18)
+			layer.noFill()
+			layer.stroke(180)
+			layer.strokeWeight(10)
+			layer.ellipse(layer.width/2+220,layer.height*0.65,30)
+			layer.line(layer.width/2+235,layer.height*0.65,layer.width/2+250,layer.height*0.65)
+			layer.noStroke()
+			layer.fill(240)
+			layer.textSize(20)
+			layer.text('BEGIN 1 PLAYER',layer.width/2-240,layer.height*0.65+100)
+			layer.text('BEGIN 2 PLAYER',layer.width/2,layer.height*0.65+100)
+			layer.text('LOAD SAVE',layer.width/2+240,layer.height*0.65+100)
+			layer.text('VARIANTS',layer.width/2-240,layer.height*0.85+100)
+			layer.text('TUTORIALS',layer.width/2,layer.height*0.85+100)
+			layer.text('COLLECTION',layer.width/2+240,layer.height*0.85+100)
+			/*let prop=0.3
+			let scalar=100
+			let div=20
+			let swivel=180
+			let gradient=[new p5.LinearGradient(10,480)]
+			gradient[0].colors(...range(0,constants.playerNumber).map(num=>[num/(constants.playerNumber-1),color(...playerSymbolColor(num+1),0.05)]).flat())
+			layer.noFill()
+			layer.strokeJoin(ROUND)
+			layer.stroke(0)
+			layer.push()
+			layer.translate(layer.width/2-swivel,0)
+			for(let a=0,la=60;a<la;a++){
+				layer.strokeGradient(gradient[0])
+				layer.strokeWeight(60-a)
+				layer.beginShape()
+				//layer.vertex(layer.width/2-scalar*constants.sqrt3,layer.height*prop+scalar*3)
+				//layer.vertex(layer.width/2,layer.height*prop+scalar*2)
+				//layer.vertex(layer.width/2,layer.height*prop)
+				//layer.vertex(layer.width/2-scalar*constants.sqrt3,layer.height*prop+scalar)
+				//layer.vertex(layer.width/2-scalar*constants.sqrt3,layer.height*prop-scalar)
+				layer.vertex(swivel+div*constants.sqrt3,layer.height*prop-scalar*2-div)
+				layer.vertex(swivel+div*constants.sqrt3,layer.height*prop+scalar*2+div)
+				layer.vertex(swivel+div*constants.sqrt3+scalar*constants.sqrt3,layer.height*prop+scalar+div)
+				layer.vertex(swivel+div*constants.sqrt3+scalar*constants.sqrt3,layer.height*prop-scalar-div)
+				layer.vertex(swivel+div*constants.sqrt3,layer.height*prop)
+				layer.endShape()
+				layer.beginShape()
+				layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,layer.height*prop-scalar-div)
+				layer.vertex(swivel-div*constants.sqrt3,layer.height*prop-scalar*2-div)
+				layer.vertex(swivel-div*constants.sqrt3,layer.height*prop)
+				layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,layer.height*prop)
+				layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,layer.height*prop+scalar+div)
+				layer.vertex(swivel-div*constants.sqrt3,layer.height*prop+scalar*2+div)
+				layer.endShape()
+			}
+			layer.pop()*/
 		break
 		case 9:
+			layer.noStroke()
 			menuBackground(layer)
 			layer.fill(120)
 			layer.rect(layer.width/2,92.5,layer.width-40,145)
@@ -9018,6 +9101,7 @@ function setupBackground(type,layer){
 			layer.text('RANDOM CHARACTER',layer.width/2,layer.height*0.65-480)
 		break
 		case 10:
+			layer.noStroke()
 			menuBackground(layer)
 			layer.fill(120)
 			layer.rect(layer.width/2,92.5,layer.width-40,145)
@@ -9112,6 +9196,7 @@ function setupBackground(type,layer){
 			}
 		break
 		case 11:
+			layer.noStroke()
 			menuBackground(layer)
 			layer.fill(120)
 			layer.rect(layer.width/2-105,layer.height*0.7-60,125,125)
@@ -9171,6 +9256,7 @@ function setupBackground(type,layer){
 			//layer.text('CUSTOM ULTRAPRISM',layer.width/2+105,layer.height*0.7+90)
 		break
 		case 12:
+			layer.noStroke()
 			menuBackground(layer)
 			layer.fill(120)
 			layer.rect(layer.width/2-210,layer.height*0.7+90,125,125)
@@ -9272,6 +9358,7 @@ function setupBackground(type,layer){
 			}*/
 		break
 		case 13:
+			layer.noStroke()
 			menuBackground(layer)
 			layer.fill(120)
 			layer.rect(layer.width/2,layer.height*0.7+140,125,125)
@@ -9332,6 +9419,7 @@ function setupBackground(type,layer){
 			}
 		break
 		case 14:
+			layer.noStroke()
 			menuBackground(layer)
 			layer.fill(120)
 			layer.rect(layer.width/2,layer.height*0.7+115,125,125)
@@ -9391,6 +9479,7 @@ function setupBackground(type,layer){
 			layer.text('MOVEBUILDLE',layer.width/2+750,layer.height*0.7+290)
 		break
 		case 15:
+			layer.noStroke()
 			menuBackground(layer)
 			layer.fill(120)
 			layer.rect(layer.width/2-210,layer.height*0.7+50,125,125)
@@ -9453,6 +9542,7 @@ function setupBackground(type,layer){
 			}
 		break
 		case 16:
+			layer.noStroke()
 			menuBackground(layer)
 			layer.fill(120)
 			layer.rect(layer.width/2-210,layer.height*0.7+90,125,125)

@@ -290,7 +290,7 @@ class attack{
             case 8618: case 8627: case 8629: case 8656: case 8657: case 8660: case 8662: case 8663: case 8664: case 8667: case 8676: case 8684: case 8685: case 8686: case 8688: case 8692: case 8693: case 8712: case 8713: case 8715:
             case 8719: case 8724: case 8728: case 8744: case 8745: case 8750: case 8754: case 8755: case 8756: case 8772: case 8773: case 8774: case 8775: case 8776: case 8777: case 8778: case 8779: case 8780: case 8782: case 8783:
             case 8788: case 8789: case 8791: case 8792: case 8794: case 8797: case 8798: case 8799: case 8800: case 8801: case 8802: case 8805: case 8813: case 8819: case 8820: case 8821: case 8823: case 8837: case 8839: case 8840:
-            case 8841: case 8842: case 8847: case 8849: case 8850:
+            case 8841: case 8842: case 8847: case 8849: case 8850: case 8855: case 8856: case 8857: case 8865: case 8866:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -7499,6 +7499,11 @@ class attack{
                             this.userCombatant.statusEffect('(E) in 2 Turns',2)
                         }
                     break
+                    case 8855:
+                        if(this.targetCombatant.getStatus('Poison')>0){
+                            this.targetCombatant.statusEffect('Poison',this.effect[1])
+                        }
+                    break
 
                 }
                 //mark 1s
@@ -10922,6 +10927,12 @@ class attack{
                     break
                     case 8835:
                         this.userManager.draw(this.effect[0])
+                    break
+                    case 8863:
+                        this.battle.addEnergy(this.battle.combatantManager.numberAbstract(6,['Bruise'])*this.effect[1],this.player)
+                    break
+                    case 8864:
+                        this.battle.addEnergy(this.battle.combatantManager.numberAbstract(6,['Bruise']),this.player,6)
                     break
 
                 }
@@ -18068,6 +18079,9 @@ class attack{
                             this.battle.tileManager.tiles[index8832].addType(19)
                         }
                     break
+                    case 8860:
+                        this.userCombatant.statusEffect('Fatigue Splash Bleed',this.effect[0])
+                    break
 
                 }
                 //mark 4
@@ -22849,11 +22863,11 @@ class attack{
                     break
                     case 8526:
                         this.battle.overlayManager.overlays[181][this.player].active=true
-                        this.battle.overlayManager.overlays[181][this.player].activate(['Shiv'])
+                        this.battle.overlayManager.overlays[181][this.player].activate(['Shiv',0])
                     break
                     case 8527:
                         this.battle.overlayManager.overlays[181][this.player].active=true
-                        this.battle.overlayManager.overlays[181][this.player].activate(['Pristine'])
+                        this.battle.overlayManager.overlays[181][this.player].activate(['Pristine',0])
                     break
                     case 8529:
                         this.userCombatant.statusEffect('Control',this.effect[0])
@@ -22883,7 +22897,7 @@ class attack{
                     break
                     case 8564:
                         this.battle.overlayManager.overlays[181][this.player].active=true
-                        this.battle.overlayManager.overlays[181][this.player].activate(['Scrap\nMetal'])
+                        this.battle.overlayManager.overlays[181][this.player].activate(['Scrap\nMetal',0])
                     break
                     case 8567:
                         this.userManager.hand.exhaust(this.effect[0])
@@ -23042,11 +23056,20 @@ class attack{
                     break
                     case 8848:
                         this.battle.overlayManager.overlays[181][this.player].active=true
-                        this.battle.overlayManager.overlays[181][this.player].activate(['Tile'])
+                        this.battle.overlayManager.overlays[181][this.player].activate(['Tile',0])
                     break
                     case 8853:
                         this.battle.overlayManager.overlays[188][this.player].active=true
                         this.battle.overlayManager.overlays[188][this.player].activate()
+                    break
+                    case 8859:
+                        if(this.userCombatant.turnStatus[3]>0){
+                            this.userCombatant.statusEffect('Invulnerable',this.effect[0])
+                        }
+                    break
+                    case 8861:
+                        this.battle.overlayManager.overlays[181][this.player].active=true
+                        this.battle.overlayManager.overlays[181][this.player].activate(['Tile',2])
                     break
 
                 }
@@ -24922,6 +24945,10 @@ class attack{
                         }else{
                             this.targetCombatant.takeDamage(this.effect[1],this.user)
                         }
+                    break
+                    case 8856:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        this.userManager.hand.allEffectArgs(13,[this.effect[1]])
                     break
                 }
                 //mark 13
@@ -28044,6 +28071,21 @@ class attack{
                                 this.targetCombatant.takeDamage(result8847[a].effect[0],this.user)
                             }
                         }
+                    break
+                    case 8857:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Poison',this.effect[1])
+                        this.userCombatant.addBlock(this.targetCombatant.getStatus('Poison'))
+                    break
+                    case 8865:
+                        this.targetCombatant.statusEffect('Burn',this.effect[0])
+                        this.userManager.drawAbstract(this.effect[1],6,0,[])
+                    break
+                    case 8866:
+                        this.targetCombatant.statusEffect('Stun',this.effect[1])
+                        this.targetCombatant.statusEffect('Weak',this.effect[2])
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[3])
+                        this.targetCombatant.statusEffect('Frail',this.effect[4])
                     break
 
                 }
@@ -34510,6 +34552,19 @@ class attack{
                     break
                     case 8625:
                         this.battle.combatantManager.areaAbstract(12,[this.effect[0],this.user,0,'Weak',this.effect[1],'Vulnerable',this.effect[2]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                    break
+                    case 8858:
+                        this.battle.combatantManager.areaAbstract(2,['Poison',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                        let index8858=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)
+                        if(index8858>=0&&!this.battle.tileManager.tiles[index8858].type.includes(19)){
+                            this.userCombatant.loseHealth(this.effect[1])
+                        }
+                    break
+                    case 8862:
+                        let res8862=this.battle.combatantManager.areaAbstract(14,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,2)
+                        if(res8862>0){
+                            this.userCombatant.addBlock(res8862)
+                        }
                     break
                     default:
                         this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)

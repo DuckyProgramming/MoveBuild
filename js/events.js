@@ -99,7 +99,7 @@ types.loading=[
     `The Management places much importance on combat training, even for support staff like janitors.`,
     `Despite its reputation, the Management in reality functions more like a dictatorship than a corporation.`,
     `Management officers often get honorary titles like "Assistant Patrol Officer" that have no actual authority.`,
-    `Movebuild is a dramatization of the Konai rebellion. Take everything with a pinch of salt!`,
+    `${constants.gameName} is a dramatization of the Konai rebellion. Take everything with a pinch of salt!`,
     `After Edgar's deposition, Adrian Kane served briefly as HVM's CEO, delivering Management orders.`,
     `Arguably, for regular people, the so-called "neutral" communes of Konai are some of the most dangerous.`,
     `Hinokizuka Peak of the Charchallan Range is Konai's tallest mountain, though it's small for the galaxy.`,

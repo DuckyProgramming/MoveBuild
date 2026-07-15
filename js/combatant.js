@@ -209,7 +209,7 @@ class combatant{
                 'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage','Caffeine','20 Damage Weak','20 Damage Vulnerable','20 Damage Frail','Weak Boost',
                 'Vulnerable Boost','Duplicate Cycle 3 1','Duplicate Cycle 3 2','Duplicate Cycle 3 3',`Turn Transform`,'Temporary Focus','Pristine Draw','Skill Temporary Dexterity','Double Damage Cycle 3 1','Double Damage Cycle 3 2',
                 'Double Damage Cycle 3 3','Random Quickdraw Gain Per Turn','Skill to Defense Draw Skill','Coffee Draw','Skill to Attack Draw Skill','Coffee Splash','Caffeine Tolerance','Pristine Reduction Free Attack','Tile Temporary Strength','Take 2/3 Damage',
-                'Collision Damage','Plant Draw','Retain Temporary Strength','Retain Temporary Dexterity',
+                'Collision Damage','Plant Draw','Retain Temporary Strength','Retain Temporary Dexterity','Fatigue Splash Bleed',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -300,7 +300,7 @@ class combatant{
                 0,0,2,2,1,0,0,0,0,0,//86
                 0,2,2,2,0,2,0,0,2,2,//87
                 2,0,0,0,0,0,0,0,0,1,//88
-                0,0,1,1,
+                0,0,1,1,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -391,7 +391,7 @@ class combatant{
                 2,3,1,1,2,1,2,2,2,2,//86
                 2,2,2,2,2,2,2,2,0,0,//87
                 0,2,2,2,2,2,2,2,2,0,//88
-                2,2,2,2,
+                2,2,2,2,2,
             ]}
         /*
         0-none
@@ -403,7 +403,7 @@ class combatant{
         6-half decrement
         */
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
-        this.turnStatus=[0,0,0]
+        this.turnStatus=[0,0,0,0]
         //dodges,taken,life lost
         this.tempStatus=[1,0,0,0,0]
         //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed
@@ -502,7 +502,7 @@ class combatant{
         this.ringing=0
         this.caffeine=0
 
-        this.turnStatus=[0,0,0]
+        this.turnStatus=[0,0,0,0]
     }
     resetInfo(){
         this.constants()
@@ -5754,6 +5754,7 @@ class combatant{
         }
     }
     heal(amount){
+        this.turnStatus[3]+=amount
         this.midHeal=true
         if(!this.battle.relicManager.hasRelic(163,this.id)&&amount>0&&this.life>0&&this.status.main[735]<=0){
             let gain=amount
@@ -5868,7 +5869,7 @@ class combatant{
         }
     }
     endTurn(){
-        this.turnStatus=[0,0,0]
+        this.turnStatus=[0,0,0,0]
     }
     tick(sub){
         this.charge++

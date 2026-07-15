@@ -1003,7 +1003,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 807: string+=`Calm:\nGain ${effect[0]} Energy`; break
         case 808: string+=`Haste:\nMove ${effect[0]} Tile${pl(effect[0])}`; break
         case 809: string+=`Sturdy: Add ${this.calculateEffect(effect[0],1)} Block`; break
-        case 810: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext ${effect[1]!=1?`${effect[1]} `:``}Time${pl(effect[1])} You\nGain Block ${effect[1]!=1?`are`:`is`} Tripled`; break
+        case 810: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext ${effect[1]!=1?`${effect[1]} `:``}Time${pl(effect[1])} You\nAdd Block ${effect[1]!=1?`are`:`is`} Tripled`; break
         case 811: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext ${effect[1]!=1?`${effect[1]} `:``}Damage${pl(effect[1])} Deal\nAdd${effect[1]==1?`s`:``} Equivalent Block`; break
         case 812: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nExit Stance`; break
         case 813: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nin Triangles Vertically`; break
@@ -3725,7 +3725,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 3493: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Currency\nAfter Each Combat`; break
         case 3494: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext ${effect[1]!=1?`${effect[1]} `:``}Attack${pl(effect[1])}\nAdd${effect[1]==1?`s`:``} Equal Block`; break
         case 3495: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext ${effect[1]!=1?`${effect[1]} `:``}Attack${pl(effect[1])}\nAdd${effect[1]==1?`s`:``} Block Equal to\nHalf of Damage Dealt`; break
-        case 3496: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nAdd${effect[0]==1?`s`:``} Equal Block\nNext ${effect[1]!=1?`${effect[1]} `:``}Time${pl(effect[1])} You\nGain Block Deal${effect[1]==1?`s`:``}\nEqual Damage to\na Random Enemy`; break
+        case 3496: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nAdd${effect[0]==1?`s`:``} Equal Block\nNext ${effect[1]!=1?`${effect[1]} `:``}Time${pl(effect[1])} You\nAdd Block Deal${effect[1]==1?`s`:``}\nEqual Damage to\na Random Enemy`; break
         case 3497: string+=`Gain ${effect[0]} Energy\nPer Miracle in Hand`; break
         case 3498: string+=`Exhaust ${effect[0]} Card${pl(effect[0])}\nFrom Draw Every Turn`; break
         case 3499: string+=`Gain ${effect[0]} Strength\nShuffle a Refracted\nSunlight into Draw Pile`; break
@@ -9069,6 +9069,18 @@ card.prototype.description=function(attack,effect,spec,target){
         case 8852: string+=`Retain Your Temporary\nDexterity For ${effect[0]} Turn${pl(effect[0])}`; break
         case 8853: string+='Put a Wish\nFrom Your Draw\nPile Into Your Hand'; break
         case 8854: string+=`Gain (R) at the\nStart of Your Turn\nCosts 0 Temporarily\nWhen You Disable a Wish`; break
+        case 8855: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has Poison,\nApply ${effect[1]} Poison`; break
+        case 8856: string+=`Apply ${effect[0]} Weak\nAll Shivs in Hand\nDeal ${effect[1]} More Damage`; break
+        case 8857: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Poison\nAdd Block Equal\nto Target's Poison`; break
+        case 8858: string+=`Apply ${effect[0]} Poison\nin All Directions\nLose ${effect[1]} Health\nIf You Are Not\non a Plant Tile`; break
+        case 8859: string+=`If You Healed\nThis Turn,\nGain ${effect[0]} Invulnerable`; break
+        case 8860: string+=`Apply ${effect[0]} Bleed\nto All Directions\nWhen a Fatigue is Played`; break
+        case 8861: string+=`Transform a Card\nin Draw Pile\ninto a Foil Tile`; break
+        case 8862: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nAdd Block Equal to\nTargets' Health Lost`; break
+        case 8863: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Energy\nPer Enemy With Bruise`; break
+        case 8864: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain (E) Per\nEnemy With Bruise`; break
+        case 8865: string+=`Apply ${effect[0]} Burn\nDraw ${effect[1]} Card${pl(effect[1])}\nDraws More Expensive\nCards First`; break
+        case 8866: string+=`${effect[0]} or More Currency:\nApply ${effect[1]} Stun\nApply ${effect[2]} Weak\nApply ${effect[3]} Vulnerable\nApply ${effect[4]} Frail`; break
 
         //mark p
 

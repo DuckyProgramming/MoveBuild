@@ -7597,6 +7597,7 @@ variants={
     ],
 }
 constants={
+    gameName:`26`,
     autoExec:-1,
     playerNumber:26,orbNumber:18,
     targetRadius:30,startEnergy:3,collisionDamage:4,

@@ -1553,6 +1553,20 @@ class combatantManager{
                     case 13:
                         this.combatants[a].loseHealth(values[0])
                     break
+                    case 14:
+                        let prelife=this.combatants[a].life
+                        if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Boost')>0){
+                            this.combatants[a].takeDamage(values[0]+this.combatants[values[1]].getStatus('Splash Boost'),values[1],values[2])
+                        }else{
+                            this.combatants[a].takeDamage(...values)
+                        }
+                        if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Attach Poison')>0){
+                            this.combatants[a].statusEffect('Poison',this.combatants[values[1]].getStatus('Splash Attach Poison'))
+                        }
+                        if(this.combatants[a].life<prelife){
+                            total+=prelife-this.combatants[a].life
+                        }
+                    break
                 }
                 if(
                     output==0||
@@ -1563,7 +1577,7 @@ class combatantManager{
             }
         }
         switch(output){
-            case 0: case 1:
+            case 0: case 1: case 2:
                 return total
         }
     }
