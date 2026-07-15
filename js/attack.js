@@ -6478,7 +6478,7 @@ class attack{
                         }
                     break
                     case 6860:
-                        this.userCombatant.combo+=this.effect[1]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[1],this.userCombatant.comboCap)
                     break
                     case 6863:
                         this.userManager.draw(this.effect[1])
@@ -6805,7 +6805,7 @@ class attack{
                     break
                     case 7578:
                         this.userCombatant.addBlock(this.effect[1])
-                        this.userCombatant.combo+=this.effect[2]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[2],this.userCombatant.comboCap)
                     break
                     case 7603:
                         this.battle.overlayManager.overlays[10][this.player].active=true
@@ -16331,7 +16331,7 @@ class attack{
                         this.userManager.drawAbstract(this.effect[0],-1,5,[])
                     break
                     case 6179:
-                        this.userCombatant.combo+=this.effect[0]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[0],this.userCombatant.comboCap)
                         this.userManager.hand.upgrade(this.effect[1])
                     break
                     case 6211:
@@ -17210,7 +17210,7 @@ class attack{
                     break
                     case 7575:
                         this.userCombatant.statusEffect('Strength',this.effect[0])
-                        this.userCombatant.combo+=this.effect[1]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[1],this.userCombatant.comboCap)
                     break
                     case 7596:
                         this.userCombatant.statusEffect('Dexterity',this.effect[0])
@@ -20953,7 +20953,7 @@ class attack{
                     break
                     case 5962:
                         this.userManager.draw(this.effect[0])
-                        this.userCombatant.combo+=this.effect[1]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[1],this.userCombatant.comboCap)
                     break
                     case 5964:
                         this.userManager.drawAbstract(this.effect[0],0,0,[11])
@@ -24306,7 +24306,7 @@ class attack{
                     break
                     case 7587:
                         this.userCombatant.heal(this.effect[0])
-                        this.userCombatant.combo+=this.effect[1]
+                        this.userCombatant.combo=min(this.userCombatant.combo+this.effect[1],this.userCombatant.comboCap)
                     break
                     case 7590:
                         this.userCombatant.heal(this.effect[0])

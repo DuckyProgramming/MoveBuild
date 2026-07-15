@@ -405,8 +405,8 @@ class combatant{
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
         this.turnStatus=[0,0,0,0]
         //dodges,taken,life lost
-        this.tempStatus=[1,0,0,0,0]
-        //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed
+        this.tempStatus=[1,0,0,0,0,0]
+        //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed,single attack regeneration
         this.interiorStatus=[0,0]
         //repeat extra turn 1,has done damage
         for(let a=0;a<this.status.name.length;a++){
