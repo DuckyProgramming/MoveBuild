@@ -870,7 +870,7 @@ types={
         {name:'Psuedograph',internal:'No Card Draw',id:54,rarity:2,list:0,mtg:0,world:[0,3],description:'If You Have No Cards in\nYour Hand, Draw 1 Card'},
         {name:'Origami Paper',internal:'Damage Decrease',id:55,rarity:2,list:0,mtg:0,world:[0,3],description:'Reduce All Damage\nTaken Above 1 By 1'},
         {name:'Picture Frame',internal:'Damage Threshold',id:56,rarity:2,list:0,mtg:0,world:[0,3],description:'If You Take 5 or Less\nDamage, Reduce it to 1'},
-        {name:'Leaf Ball',internal:'Starting Armor',id:57,rarity:2,list:0,mtg:0,world:[0,3],description:'Gain 4 Armor at the\nStart of Combat'},
+        {name:'Leaf Ball',internal:'Starting Armor',id:57,rarity:2,list:0,mtg:0,world:[0,3],description:'Gain 6 Armor at the\nStart of Combat'},
         {name:'Metal Detector',internal:'Relic Rest',id:58,rarity:1,list:0,mtg:0,world:[0,2],description:'Can Gain a Relic\nWhen Resting'},
         {name:'Mortar and Pestle',internal:'Remove Rest',id:59,rarity:2,list:0,mtg:0,world:[0,2],description:'Can Remove Cards\nWhen Resting'},
 
@@ -1476,7 +1476,7 @@ types={
         {name:'Grimoire Page',internal:'Any Uncommon Card',id:69,rarity:2,list:0,menu:true,temp:false,mtg:1,description:'Choose an Uncommon Card From Any\nCharacter to Add to Deck'},
 
         {name:'Pocket Oracle',internal:'Oracle',id:70,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Choose ANY Character or Colorless\nCard to Add to Hand'},
-        {name:'Blinkseal',internal:'24 Damage/Limited Extra Turn',id:71,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 24 Damage, Take Another Turn\nAll Cards Cost 1 More on That Turn\nRange 1-6'},
+        {name:'Blinker Light',internal:'24 Damage/Limited Extra Turn',id:71,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 24 Damage, Take Another Turn\nAll Cards Cost 1 More on That Turn\nRange 1-6'},
         {name:'Vacuum Collapse',internal:'35 Damage/2 Prismatic Bombs',id:72,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Deal 35 Damage, Add 2\nPrismatic Bombs to Draw Pile\nRange 1-6'},
         {name:'Binary Die',internal:'Double or Nothing',id:73,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Randomly Duplicate a Card\nor Destroy it Permanently'},
         {name:'Replacement Papers',internal:'Edition',id:74,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Edition a Card'},
@@ -1493,7 +1493,7 @@ types={
         {name:'Confetti',internal:'1 Damage All',id:84,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Deal 1 Damage to All Enemies'},
         {name:'Shiny Coin',internal:'50 Sell',id:85,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Sells For 50 Currency at the Shop\n(No Effect Otherwise)'},
         {name:'Helium Canister',internal:'All Cannot Add Block',id:86,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'All Enemies Cannot Add\nBlock For 2 Turns'},
-        {name:'Spare Spacebar',internal:'3 Pristines',id:87,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Add 3 Pristines to Hand'},
+        {name:'Spare Spacebar',internal:'3 Pristines',id:87,rarity:-1,list:0,menu:false,temp:false,mtg:0,description:'Add 3 Pristines to Hand'},
         {name:'Corn Cob',internal:'Expensive Free',id:88,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'The Most Expensive Card\nin Hand Costs 0 Temporarily\n(Picks Randomly if Tied)'},
         {name:'Divination Pearl',internal:'Free Draw Pull',id:89,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Put a Card in Draw\nPile in Your Hand\nIt Costs 0 Temporarily'},
 
@@ -1527,6 +1527,7 @@ types={
         {name:'Ceroline',internal:'Free Card',id:115,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Next Card Played is Free'},
         {name:'Vortex Collapse',internal:'35 Damage/2 Riptides',id:116,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 35 Damage, Add 2\nRiptides to Hand\nRange 1-6'},
         {name:'Round Camera',internal:'Copy Card',id:117,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Make 3 Copies of\na Card in Hand'},
+        {name:'Party Bottle',internal:'2 Strength/2 Dexterity',id:118,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Gain 2 Strength and 2 Dexterity'},
 
         {name:'Starflame Prototype',internal:'5 Strength/Burn',id:1001,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Gain 5 Strength,\nShuffle 5 Burns into Draw'},
         {name:'Cola',internal:'15 Heal/No Block',id:1002,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 15 HP\nCan No Longer Gain Block'},

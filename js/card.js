@@ -1326,6 +1326,9 @@ class card{
                 userCombatant.statusEffect('Temporary Strength',this.effect[0])
                 this.exhaust=true
             break
+            case 8868:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[1],0,0,[1])
+            break
         }
     }
     callAnotherDrawEffect(number){
@@ -6255,7 +6258,7 @@ class card{
                         }
                     }
                 }
-            }else{
+            }else if(effectiveCost>=0){
                 effectiveCost=max(min(0,effectiveCost),effectiveCost+costChange)
             }
         }

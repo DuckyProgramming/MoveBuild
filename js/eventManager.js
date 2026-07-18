@@ -238,7 +238,10 @@ class eventManager{
             case 30:
                 if(this.battle.relicManager.hasRelic(259,this.player)){
                     for(let a=0,la=this.pages[0].optionDesc.length;a<la;a++){
-                        this.pages[0].optionDesc[a]+=' (Non-Bypassable)'
+                        if(this.pages[0].optionDesc[a].length>0){
+                            //this.pages[0].optionDesc[a]+=' (Non-Bypassable)'
+                            this.pages[0].optionDesc[a]+=' (Halved by 10 Foot Pole)'
+                        }
                     }
                 }
             break
@@ -687,16 +690,16 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                     break
                     case 30:
                         if(this.page==0&&a<2){
-                            if(userCombatant.life<=8){
+                            if(userCombatant.life<=(this.battle.relicManager.hasRelic(259,this.player)?4:8)){
                                 tempPage=-this.pages[this.page].link[a]
                             }else{
-                                userCombatant.loseHealth(8)
+                                userCombatant.loseHealth(this.battle.relicManager.hasRelic(259,this.player)?4:8)
                             }
                         }else if(this.page==0&&a==2){
-                            if(userCombatant.life<=24){
+                            if(userCombatant.life<=(this.battle.relicManager.hasRelic(259,this.player)?12:24)){
                                 tempPage=-this.pages[this.page].link[a]
                             }else{
-                                userCombatant.loseHealth(24)
+                                userCombatant.loseHealth(this.battle.relicManager.hasRelic(259,this.player)?12:24)
                             }
                         }else if(this.page==1&&a==0){
                             this.battle.addCurrency(45,this.player)

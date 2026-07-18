@@ -1803,6 +1803,28 @@ function legalTargetCombatant(type,lengthStart,lengthEnd,combatant1,combatant2,t
 				return true
 			}
 		break
+		case 4:
+			if(legalTarget(0,lengthStart,lengthEnd,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)){
+				let length=distTarget(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)-1
+				let valid=[]
+				for(let a=0,la=length;a<la;a++){
+					valid.push(false)
+				}
+				for(let a=0,la=tiles.length;a<la;a++){
+					for(let b=0,lb=valid.length;b<lb;b++){
+						if(tiles[a].occupied==0&&tiles[a].tilePosition.x==map((b+1)/(length+1),0,1,combatant1.tilePosition.x,combatant2.tilePosition.x)&&tiles[a].tilePosition.y==map((b+1)/(length+1),0,1,combatant1.tilePosition.y,combatant2.tilePosition.y)){
+							valid[b]=true
+						}
+					}
+				}
+				for(let a=0,la=valid.length;a<la;a++){
+					if(valid[a]){
+						return false
+					}
+				}
+				return true
+			}
+		break
 	}
 	return false
 }

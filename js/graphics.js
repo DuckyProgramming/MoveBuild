@@ -1430,7 +1430,7 @@ function generateGeneralSprite(layer,type){
 			layer.translate(80,80)
 			for(let b=0,lb=8;b<lb;b++){
 				layer.rotate(19+a*7-b)
-				layer.fill(100+a*25+b*20,50+b*15,150+b*5)
+				layer.fill(100/*+a*25*/+b*20,50+b*15,150+b*5)
 				for(let c=0,lc=12;c<lc;c++){
 					layer.rotate(30)
 					layer.ellipse(0,(24-b)*(1-b/lb),15*(1-b/lb),30*(1-b/lb))
@@ -1448,7 +1448,7 @@ function generateGeneralSprite(layer,type){
 			layer.translate(80,80)
 			for(let b=0,lb=8;b<lb;b++){
 				layer.rotate(19+a*7-b)
-				layer.fill(100+a*25+b*15,50+b*15,125+b*10)
+				layer.fill(100/*+a*25*/+b*15,50+b*15,125+b*10)
 				for(let c=0,lc=12;c<lc;c++){
 					layer.rotate(30)
 					layer.ellipse(0,(24-b)*(1-b/lb),15*(1-b/lb),30*(1-b/lb))

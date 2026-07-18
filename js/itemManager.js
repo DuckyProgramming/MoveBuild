@@ -640,6 +640,10 @@ class itemManager{
             case 117:
                 this.battle.cardManagers[player].hand.duplicateSelect(3*effectiveness)
             break
+            case 118:
+                userCombatant.statusEffect('Strength',2*effectiveness)
+                userCombatant.statusEffect('Dexterity',2*effectiveness)
+            break
 
             //mark p
 

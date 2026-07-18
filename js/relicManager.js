@@ -1423,7 +1423,7 @@ class relicManager{
                                 this.getPlayer(a).heal(this.getPlayer(a).base.life)
                             }
                             if(this.active[57][a+1]>0){
-                                this.getPlayer(a).statusEffect('Armor',4*this.active[57][a+1])
+                                this.getPlayer(a).statusEffect('Armor',6*this.active[57][a+1])
                             }
                             if(this.active[60][a+1]>0){
                                 this.getPlayer(a).statusEffect('Strength',this.detail[60][a])

@@ -2424,8 +2424,10 @@ class battle{
                     this.layer.beginShape()
                     this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop-scalar-div)
                     this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop-scalar*2-div)
-                    this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop)
-                    this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop)
+                    //this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop)
+                    //this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop)
+                    this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop+scalar*0.1)
+                    this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop+scalar*0.1)
                     this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop+scalar+div)
                     this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop+scalar*2+div)
                     this.layer.endShape()
@@ -4141,6 +4143,9 @@ class battle{
                 }
             break
             case 'menu':
+                if(code==ENTER||key=='1'&&game.animRate==1){
+                    this.startGame()
+                }
                 if(code==LEFT_ARROW){
                     this.menu.combatant[0]=(this.menu.combatant[0]+constants.playerNumber-2)%constants.playerNumber+1
                     if(variants.mtg){
@@ -4201,9 +4206,6 @@ class battle{
                     if(a+5==int(key)){
                         game.turnTime=[0,900,1800,3600][a]
                     }
-                }
-                if(code==ENTER||key=='1'&&game.animRate==1){
-                    this.startGame()
                 }
             break
             case 'menu2':
@@ -4275,8 +4277,8 @@ class battle{
                 }
             break
             case 'variants':
-                if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=5&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
-                    let index=(int(inputs.lastKey[0])+9)%10*4+int(inputs.lastKey[1])-1
+                if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=4&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=5){
+                    let index=(int(inputs.lastKey[0])+9)%10*5+int(inputs.lastKey[1])-1
                     variants[variants.map[index]]=toggle(variants[variants.map[index]])
                 }
                 if(code==ENTER){
@@ -4309,7 +4311,7 @@ class battle{
             break
             case 'custom':
                 let prismrules=[0,constants.playerNumber+1,constants.playerNumber+2,constants.playerNumber+3,constants.playerNumber+4,constants.playerNumber+5,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
-                if(key==' '&&int(inputs.lastKey[0])>=0&&int(inputs.lastKey[0])<=9&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
+                if(key==' '&&int(inputs.lastKey[0])>=0&&int(inputs.lastKey[0])<=9&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=5){
                     let index=(int(inputs.lastKey[0])+9)%10*4+int(inputs.lastKey[1])-1
                     let value=index>=constants.playerNumber?prismrules[index-constants.playerNumber]:index+1
                     if(variants.prismrule.includes(value)){

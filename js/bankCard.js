@@ -552,8 +552,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 361: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Health`; break
         case 362: string+=`Remove All Fatigues\nLose ${effect[0]} Health Each`; break
         case 363: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
-        case 364: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nLose ${effect[1]}X Health`; break
-        case 365: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nLose ${effect[1]}X Health`; break
+        case 364: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nLose ${effect[1]!=1?effect[1]:``}X Health`; break
+        case 365: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nLose ${effect[1]!=1?effect[1]:``}X Health`; break
         case 366: string+=`All Existing Fatigues\nare Ethereal`; break
         case 367: string+=`Move All Fatigues\nto Hand`; break
         case 368: string+=`Advance to Range 2`; break
@@ -5267,7 +5267,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 5021: string+=`Choose a Junkyard\nCard to Add to Hand\nIt Costs 0\nDraw ${effect[0]} Card${pl(effect[0])}`; break
         case 5022: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCosts 0 Temporarily\nWhen You Play\na Power`; break
         case 5023: string+=`Choose a X${effect[0]>0?`+${effect[0]}`:``} ${variants.mtg?`Total\nCost Card of\n`:`Cost Card\nof `}Equivalent Level to\nAdd to Hand\nIt Costs 0`; break
-        case 5024: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Triple Damage\nIf There is an\nEmpty Tile Spot\nAdjacent to Target`; break
+        case 5024: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Triple Damage\nIf There is an\nEmpty Tile Location\nAdjacent to Target`; break
         case 5025: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Energy\nin 2 Turns\nand in 3 Turns`; break
         case 5026: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain (W) (K)\nin 2 Turns\nand in 3 Turns`; break
         case 5027: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain (E) (K) (K)\nin 2 Turns\nand in 3 Turns`; break
@@ -9081,6 +9081,10 @@ card.prototype.description=function(attack,effect,spec,target){
         case 8864: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain (E) Per\nEnemy With Bruise`; break
         case 8865: string+=`Apply ${effect[0]} Burn\nDraw ${effect[1]} Card${pl(effect[1])}\nDraws More Expensive\nCards First`; break
         case 8866: string+=`${effect[0]} or More Currency:\nApply ${effect[1]} Stun\nApply ${effect[2]} Weak\nApply ${effect[3]} Vulnerable\nApply ${effect[4]} Frail`; break
+        case 8867: string+=`Move Over an Adjacent\nEmpty Tile Location\nor\nPass Through an\nAdjacent Target`; break
+        case 8868: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nWhen Discarded From\nYour Hand,\nDraw ${effect[1]} Attack${pl(effect[1])}`; break
+        case 8869: string+=`Gain ${effect[0]} Vigor\nGain ${effect[1]} Vigor Next Turn\nGain ${effect[2]} Weak`; break
+        case 8870: string+=`Deal Damage Equal\nto Hand Size\nHeal Health Equal\nto Hand Size`; break
 
         //mark p
 

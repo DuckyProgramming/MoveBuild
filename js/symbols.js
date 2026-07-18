@@ -8895,6 +8895,23 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(75,fade)
             regStar(layer,0,0,6,2,2,6,6,0)
         break
+        case 885:
+            layer.fill(255,50,50,fade)
+            layer.beginShape()
+            layer.vertex(-4,3)
+            layer.vertex(-7,0.75)
+            layer.vertex(-3.5,1)
+            layer.vertex(-2.75,-3.5)
+            layer.vertex(-1.25,-0.5)
+            layer.vertex(0,-5)
+            layer.vertex(1.25,-0.5)
+            layer.vertex(2.75,-3.5)
+            layer.vertex(3.5,1)
+            layer.vertex(7,0.75)
+            layer.vertex(4,3)
+            layer.endShape()
+            layer.triangle(0,3.5,-1,6,1,6)
+        break
 
     }
     //mark s

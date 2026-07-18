@@ -310,7 +310,7 @@ class tileManager{
                 !(this.battle.attackManager.targetInfo[0]==65&&this.battle.combatantManager.getArea(this.battle.combatantManager.combatants[this.battle.attackManager.user].team,this.tiles[a].tilePosition,1).length==0)
             ){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
-            }else if((this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==20)&&this.tiles[a].occupied==0&&legalTargetCombatant(1,1,2,this.tiles[a],this.battle.attackManager,this.tiles)){
+            }else if((this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==20||this.battle.attackManager.targetInfo[0]==68)&&this.tiles[a].occupied==0&&legalTargetCombatant(1,1,2,this.tiles[a],this.battle.attackManager,this.tiles)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if((this.battle.attackManager.targetInfo[0]==7)&&this.tiles[a].occupied==0&&
             (legalTargetCombatant(0,1,this.battle.getActiveEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+this.battle.getXBoost(this.battle.attackManager.player),this.tiles[a],this.battle.attackManager,this.tiles))){
@@ -395,6 +395,8 @@ class tileManager{
             )){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if((this.battle.attackManager.targetInfo[0]==60)&&this.tiles[a].occupied==0&&legalTargetCombatant(3,1,2,this.tiles[a],this.battle.attackManager,this.tiles)){
+                this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
+            }else if((this.battle.attackManager.targetInfo[0]==68)&&this.tiles[a].occupied==0&&legalTargetCombatant(3,2,2,this.tiles[a],this.battle.attackManager,this.tiles)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }
         }

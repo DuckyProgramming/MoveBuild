@@ -1003,6 +1003,14 @@ class item{
                     this.layer.text('5',-8,0)
                     this.layer.text('1',8,0)
                 break
+                case '2 Strength/2 Dexterity':
+                    displaySymbol(this.layer,-8,0,11,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,12,0,1,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('2',-8,0)
+                    this.layer.text('2',8,0)
+                break
 
                 //mark p
             }
