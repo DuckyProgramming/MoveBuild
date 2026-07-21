@@ -168,6 +168,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case -139: string+=`When an Enemy Dies,\nLose ${effect[0]} Health`; break
         case -140: string+=`When You Do Not\nHeal at a Rest Site,\nLose ${effect[0]} Health`; break
         case -141: string+=`When Drawn,\nAdd a Spiked to Hand`; break
+        case -142: string+=`If Unplayed,\nAdd a Ignominy to\nDiscard Pile`; break
 
         //mark n
 
@@ -9085,6 +9086,11 @@ card.prototype.description=function(attack,effect,spec,target){
         case 8868: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nWhen Discarded From\nYour Hand,\nDraw ${effect[1]} Attack${pl(effect[1])}`; break
         case 8869: string+=`Gain ${effect[0]} Vigor\nGain ${effect[1]} Vigor Next Turn\nGain ${effect[2]} Weak`; break
         case 8870: string+=`Deal Damage Equal\nto Hand Size\nHeal Health Equal\nto Hand Size`; break
+        case 8871: string+=`If You Healed\nThis Turn,\nGain ${effect[0]} Intangible`; break
+        case 8872: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nLose ${effect[1]} Block`; break
+        case 8873: string+=`90%: Move ${effect[0]} Tile${pl(effect[0])}\nLose ${effect[1]} Block`; break
+        case 8874: string+=`If Target Will Attack,\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
+        case 8875: string+=`Gain ${effect[0]} Strength\nShuffle ${effect[1]} Dazed${pl(effect[1])}\ninto Draw Pile`; break
 
         //mark p
 

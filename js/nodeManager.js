@@ -71,7 +71,7 @@ class nodeManager{
                 this.listing.name[types.encounter[a].world][types.encounter[a].class].push(types.encounter[a].name)
             }
         }
-        if(game.ascend>=33){
+        if(game.ascend>=33||game.diff>=26){
             this.listing.encounter[3][2]=[findName('-h Rewriter',types.encounter)]
             this.listing.static[3][2]=[findName('-h Rewriter',types.encounter)]
         }
@@ -130,7 +130,7 @@ class nodeManager{
                 }
             }
         }else if(variants.singlemap){
-            let possibilities=game.ascend>=1?[0,0,0,0,0,1,1,1,3,3,3,4,4,5,5,5,5]:[0,0,0,0,0,0,1,1,3,3,3,4,4,5,5,5,5]
+            let possibilities=game.ascend>=1||game.diff>=1?[0,0,0,0,0,1,1,1,3,3,3,4,4,5,5,5,5]:[0,0,0,0,0,0,1,1,3,3,3,4,4,5,5,5,5]
             let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
             for(let a=0,la=length;a<la;a++){
                 this.nodes.push(new node(this.layer,this.battle,this.layer.width/2,this.layer.height/2+a*100-150-min(3,a)*10,0,a,
@@ -147,10 +147,10 @@ class nodeManager{
             let possibilities=[]
             switch(this.world){
                 case 0:
-                    for(let a=0,la=game.ascend>=1?28:31;a<la;a++){
+                    for(let a=0,la=game.ascend>=1?27:game.diff>=1?28:30;a<la;a++){
                         possibilities.push(0)
                     }
-                    for(let a=0,la=game.ascend>=1?9:6;a<la;a++){
+                    for(let a=0,la=game.ascend>=1?9:game.diff>=1?8:6;a<la;a++){
                         possibilities.push(1)
                     }
                     for(let a=0,la=9;a<la;a++){
@@ -159,16 +159,16 @@ class nodeManager{
                     for(let a=0,la=5;a<la;a++){
                         possibilities.push(4)
                     }
-                    for(let a=0,la=15;a<la;a++){
+                    for(let a=0,la=16;a<la;a++){
                         possibilities.push(5)
                     }
-                    this.unknownPossibilities=game.ascend>=15?[0,0,1,1,3,4,5,5,5,5,5,5,5,5,5]:[0,0,0,1,3,4,5,5,5,5,5,5,5,5,5]
+                    this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,0,1,1,3,4,5,5,5,5,5,5,5,5,5,5]:[0,0,0,1,3,4,5,5,5,5,5,5,5,5,5,5]
                 break
                 case 1: case 2:
-                    for(let a=0,la=game.ascend>=1?24:27;a<la;a++){
+                    for(let a=0,la=game.ascend>=1?23:game.diff>=1?24:26;a<la;a++){
                         possibilities.push(0)
                     }
-                    for(let a=0,la=game.ascend>=1?9:6;a<la;a++){
+                    for(let a=0,la=game.ascend>=1?9:game.diff>=1?8:6;a<la;a++){
                         possibilities.push(1)
                     }
                     for(let a=0,la=9;a<la;a++){
@@ -177,10 +177,10 @@ class nodeManager{
                     for(let a=0,la=5;a<la;a++){
                         possibilities.push(4)
                     }
-                    for(let a=0,la=15;a<la;a++){
+                    for(let a=0,la=16;a<la;a++){
                         possibilities.push(5)
                     }
-                    this.unknownPossibilities=game.ascend>=15?[0,1,1,3,4,5,5,5,5,5,5,5,5,5,5]:[0,0,1,3,4,5,5,5,5,5,5,5,5,5,5]
+                    this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,1,1,3,4,5,5,5,5,5,5,5,5,5,5,5]:[0,0,1,3,4,5,5,5,5,5,5,5,5,5,5,5]
                 break
             }
             let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
@@ -375,7 +375,7 @@ class nodeManager{
             break
             case 6:
                 this.stashWorld=min(this.stashWorld,this.world)+1
-                if(this.world==1&&game.ascend>=23){
+                if(this.world==1&&(game.ascend>=23||game.diff>=18)){
                     this.enterNode(args[1],y,true,args)
                 }else{
                     transition.scene='stash'

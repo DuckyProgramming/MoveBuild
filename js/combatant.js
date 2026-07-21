@@ -931,14 +931,14 @@ class combatant{
             if(this.type<=constants.playerNumber){
                 this.subHealthBuff(2)
             }
-            if(game.ascend>=2&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2){
+            if(game.ascend>=2&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2||game.diff>=2){
                 this.subAttackBuff([1,5],1.2)
             }
-            if(game.ascend>=7&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=8&&this.battle.encounter.class==1||game.ascend>=9&&this.battle.encounter.class==2){
+            if(game.ascend>=7&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=8&&this.battle.encounter.class==1||game.ascend>=9&&this.battle.encounter.class==2||game.diff>=5){
                 this.subHealthBuff(1.2)
                 this.subAttackBuff([2],1.2)
             }
-            if(game.ascend>=17&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=18&&this.battle.encounter.class==1||game.ascend>=19&&this.battle.encounter.class==2){
+            if(game.ascend>=17&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=18&&this.battle.encounter.class==1||game.ascend>=19&&this.battle.encounter.class==2||game.diff>=15){
                 this.subAttackBuff([4,11],1.5)
             }
             /*if(game.ascend>=27&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=28&&this.battle.encounter.class==1){
@@ -959,11 +959,11 @@ class combatant{
                     randombuffs.splice(index,1)
                 }
             }*/
-            if(game.ascend>=30&&this.battle.encounter.class==2&&this.battle.nodeManager.world==3&&this.spec.includes(2)){
+            if((game.ascend>=30||game.diff>=23)&&this.battle.encounter.class==2&&this.battle.nodeManager.world==3&&this.spec.includes(2)){
                 this.subHealthBuff(1.5)
                 this.subAttackBuff([1,2,5],1.2)
             }
-            if(game.ascend>=31){
+            if(game.ascend>=31||game.diff>=24){
                 if(this.type<=constants.playerNumber){
                     this.subHealthBuff(1.2)
                 }
@@ -1520,11 +1520,11 @@ class combatant{
                     //mark 31
                 }
             }
-            if(game.ascend>=32){
+            if(game.ascend>=32||game.diff>=25){
                 this.subHealthBuff(1.2)
                 this.subAttackBuff([1,2,5],1.2)
             }
-            if(game.ascend>=33){
+            if(game.ascend>=33||game.diff>=26){
                 switch(this.name){
                     case 'Rewriter':
                         this.behavior=20
@@ -1538,11 +1538,11 @@ class combatant{
             }
             this.normalizeAttack()
         }else if(this.type<=constants.playerNumber){
-            if(game.ascend>=6){
+            if(game.ascend>=6||game.diff>=4){
                 this.life*=0.75
                 this.collect.life*=0.75
             }
-            if(game.ascend>=14){
+            if(game.ascend>=14||game.diff>=11){
                 this.base.life*=0.9
             }
         }
@@ -2343,7 +2343,7 @@ class combatant{
         switch(type){
             case 0:
                 if(this.team==0&&this.turnsAlive>0&&
-                    (game.ascend>=27&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=28&&this.battle.encounter.class==1||game.ascend>=29&&this.battle.encounter.class==2)&&
+                    (game.ascend>=27&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=28&&this.battle.encounter.class==1||game.ascend>=29&&this.battle.encounter.class==2||game.diff>=21)&&
                     (this.turnsAlive%2==0&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||this.turnsAlive%3==0&&this.battle.encounter.class==1||this.turnsAlive%4==0&&this.battle.encounter.class==2)
                 ){
                     this.subAttackBaseBuff([1,2,5],0.1)

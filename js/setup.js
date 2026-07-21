@@ -6,6 +6,7 @@ function setup(){
     current=new battle(graphics.main,game.player)
 
     if(false){
+            game.diff=26
             //game.ascend=33
 
             /*stage.scene='tier'

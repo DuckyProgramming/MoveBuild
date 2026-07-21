@@ -1785,18 +1785,24 @@ types={
     },deck:{
         start:[
             [['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['Strike-',0,-1],['Strike-',0,-1],['Strike-',0,-1],['Strike-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Step-L',0,-1],['Step-L',0,-1],['Step-R',0,-1],['Step-R',0,-1]],
+            //[['Strike-',0,-1],['Strike-',0,-1],['Strike-',0,-1],['Strike-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Step-L',0,-1],['Step-L',0,-1],['Step-R',0,-1],['Step-R',0,-1]],
+            [['Strike-',0,-1],['Strike-',0,-1],['Strike-',0,-1],['Strike-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Step-',0,-1],['Step-',0,-1],['Step-',0,-1],['Step-',0,-1]],
             [['Strike',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['Strike-',0,-1],['Defend-',0,-1],['Step-L',0,-1],['Step-R',0,-1]],
+            //[['Strike-',0,-1],['Defend-',0,-1],['Step-L',0,-1],['Step-R',0,-1]],
+            [['Strike-',0,-1],['Defend-',0,-1],['Step-',0,-1],['Step-',0,-1]],
             [['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['Step-L',0,-1],['Step-R',0,-1],['Step-L',0,-1],['Step-R',0,-1]],
+            //[['Step-L',0,-1],['Step-R',0,-1],['Step-L',0,-1],['Step-R',0,-1]],
+            [['Step-',0,-1],['Step-',0,-1],['Step-',0,-1],['Step-',0,-1]],
         ],mtg:[
             [['Strike',0,0],['Strike',0,0],['Bash',0,-1],['Bash',0,-1],['Defend',0,0],['Defend',0,0],['Shield',0,-1],['Shield',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['Strike-',0,0],['Strike-',0,0],['Bash-',0,-1],['Bash-',0,-1],['Defend-',0,0],['Defend-',0,0],['Shield-',0,-1],['Shield-',0,-1],['Step-L',0,-1],['Step-L',0,-1],['Step-R',0,-1],['Step-R',0,-1]],
+            //[['Strike-',0,0],['Strike-',0,0],['Bash-',0,-1],['Bash-',0,-1],['Defend-',0,0],['Defend-',0,0],['Shield-',0,-1],['Shield-',0,-1],['Step-L',0,-1],['Step-L',0,-1],['Step-R',0,-1],['Step-R',0,-1]],
+            [['Strike-',0,0],['Strike-',0,0],['Bash-',0,-1],['Bash-',0,-1],['Defend-',0,0],['Defend-',0,0],['Shield-',0,-1],['Shield-',0,-1],['Step-',0,-1],['Step-',0,-1],['Step-',0,-1],['Step-',0,-1]],
             [['Bash',0,-1],['Shield',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['Bash-',0,-1],['Shield-',0,-1],['Step-L',0,-1],['Step-R',0,-1]],
+            //[['Bash-',0,-1],['Shield-',0,-1],['Step-L',0,-1],['Step-R',0,-1]],
+            [['Bash-',0,-1],['Shield-',0,-1],['Step-',0,-1],['Step-',0,-1]],
             [['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['Step-L',0,-1],['Step-L',0,-1],['Step-R',0,-1],['Step-R',0,-1]],
+            //[['Step-L',0,-1],['Step-L',0,-1],['Step-R',0,-1],['Step-R',0,-1]],
+            [['Step-',0,-1],['Step-',0,-1],['Step-',0,-1],['Step-',0,-1]],
         ]
     },level:[
         {
@@ -7262,13 +7268,41 @@ Does not decrement.`,
 `When you gain 6 Ringing, lose it and gain 1 Bell.
 Does not decrement.`,
         },{name:'Bell',mtg:0,desc:
-`When you gain Bell, deal 7 damage to each enemy once per Bell you have.
+`When you gain Bell, deal 9 damage to each enemy once per Bell you have.
 This attack is not affected by most statuses but is affected by Vigor.
 Does not decrement.`,
         },{name:'Caffeine',mtg:0,desc:
 `When you gain 3 Caffeine, lose 3 Caffeine and lose 3 health.`,
         },
         //mark dict
+    ],diff:[
+        {name:'Base',desc:'No Changes'},//0
+        {name:'More Elites',desc:'Elites are More Likely to Spawn'},//1
+        {name:'Enemy Power',desc:'Enemies Deal More Damage'},//2-4
+        {name:'Boss Heal',desc:'Heal Less After Boss Battles'},//5
+        {name:'Start Injured',desc:'Lose 25% of Health at Start'},//6
+        {name:'Enemy HP',desc:'Enemies Have More Health and Gain More Block'},//7-9
+        {name:'Start Cursed',desc:`Start With Pride`},//new
+        {name:'Shortage',desc:'The Shop Offers Less Options'},//new
+        {name:'Less Items',desc:'Lose 1 Item Slot'},//11
+        {name:'Less Upgrades',desc:'Upgraded Cards are Less Common'},//12
+        {name:'Poor Bosses',desc:'Bosses Do Not Drop Currency'},//13
+        {name:'Less Max Health',desc:'Lose 10% Max Health'},//14
+        {name:'Badlands',desc:'Battles Start With Randomly Positioned Anti-Player Spikes'},//26
+        {name:'Elite Unknowns',desc:'Unknowns are More Likely to be Elites'},//15
+        {name:'Expensive Shops',desc:'Shop Items Cost 10% More'},//16
+        {name:'Enemy Tactics',desc:'Enemies Are More Dangerous'},//17-19
+        {name:'Bad Cards',desc:'Basic Cards are Worse'},//20
+        {name:'Broke',desc:'Start With No Currency'},//22
+        {name:'Mimic',desc:'The Second Stash is an Elite'},//23
+        {name:'Start More Cursed',desc:'Start With Ignominy'},//25
+        {name:'Banlands',desc:'Anti-Player Spikes Apply Vulnerable'},//26
+        {name:'Enemy Scaling',desc:'Enemies Scale Their Damage'},//27-29
+        {name:'Price Gouging',desc:'Rarer and Unique Items in the Shop Cost Randomly More'},//new
+        {name:'Ultimate',desc:'The Final Boss is Far Worse'},//30
+        {name:'Unfair',desc:'All Enemies Have Their Unique Strengths Enhanced'},//31
+        {name:'Brutal',desc:'Every Enemy is Buffed Heavily'},//32
+        {name:'Ruination',desc:'???'},//33
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0
         {name:'More Elites',desc:'Elites are More Likely to Spawn'},
@@ -7539,7 +7573,7 @@ Does not decrement.`,
         {name:'Big Rainbow Slime',desc:'Shuffle 1 Colorblind into Draw Pile at the Start of Combat'},
         {name:'Shotgun Management Robot',desc:'All Cards Are Slightly Less Tall'},
         {name:'MMIS Agent',desc:'On Turn 4, Enemies Heal For the First Hit They Take'},
-        {name:'HVM Contractor',desc:'Sale Items in the Shop Cost More Instead'},
+        {name:'HVM Contractor',desc:'Sales in the Shop are Less Effective'},
         {name:'Rammer Robot',desc:'Replace Text With Comic Sans'},
         {name:'Management Experimental Robot',desc:'Append Qualitative Terms to Card Names'},
         {name:'Warning Man',desc:'Get Bombed on Turn 5'},
@@ -7559,7 +7593,7 @@ Does not decrement.`,
     ],
 }
 stage={scale:0,scene:'title',internal:{version:1.9}}
-game={player:[],deck:[],ascend:0,id:0,timer:0,animRate:1,turnTime:0,
+game={player:[],deck:[],ascend:0,diff:0,id:0,timer:0,animRate:1,turnTime:0,
     collisionDamage:4,dev:false,allMap:-1,theme:0,infoOff:false}
 variants={
     mtg:false,mod:false,randomCombat:false,initiative:false,

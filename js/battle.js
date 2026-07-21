@@ -89,7 +89,16 @@ class battle{
     createBasic(){
         this.initialized=false
         this.initializedConstants=false
-        this.menu={combatant:[1],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[],turnTime:[],variants:[],prismrule:[],mtg:[]},mtg:{manaChoice:[],manaBase:[],manaOld:[],manaNew:[]}}
+        this.menu={
+            combatant:[1],deck:[0,0],
+            anim:{
+                combatant:[[],[]],deck:[[],[]],
+                //ascend:[],ascendDesc:[],ascendSingle:0,
+                diff:[],diffDesc:[],diffSingle:0,
+                animRate:[],turnTime:[],variants:[],prismrule:[],mtg:[]
+            },
+            mtg:{manaChoice:[],manaBase:[],manaOld:[],manaNew:[]}
+        }
         for(let a=0,la=constants.playerNumber;a<=la;a++){
             for(let b=0,lb=2;b<lb;b++){
                 this.menu.anim.combatant[b].push(-1)
@@ -100,9 +109,13 @@ class battle{
                 this.menu.anim.deck[b].push(-1)
             }
         }
-        for(let a=0,la=types.ascend.length;a<la;a++){
+        /*for(let a=0,la=types.ascend.length;a<la;a++){
             this.menu.anim.ascend.push(-1)
             this.menu.anim.ascendDesc.push(-1)
+        }*/
+        for(let a=0,la=types.diff.length;a<la;a++){
+            this.menu.anim.diff.push(-1)
+            this.menu.anim.diffDesc.push(-1)
         }
         for(let a=0,la=4;a<la;a++){
             this.menu.anim.animRate.push(-1)
@@ -193,7 +206,7 @@ class battle{
         for(let a=0,la=this.players;a<la;a++){
             this.colorDetail.push(types.color.card[this.player[a]])
 
-            this.currency.money.push(game.ascend>=22?0:100)
+            this.currency.money.push(game.ascend>=22||game.diff>=17?0:100)
             this.currency.ss.push(0)
 
             this.energy.main.push(variants.mtg?[]:0)
@@ -2457,12 +2470,14 @@ class battle{
                         this.layer.text(types.deckmode[a].name.toUpperCase(),this.layer.width/2,this.layer.height*0.65+80)
                     }
                 }
-                this.layer.fill(240,this.menu.anim.ascendSingle)
+                //this.layer.fill(240,this.menu.anim.ascendSingle)
+                this.layer.fill(240,this.menu.anim.diffSingle)
                 this.layer.textSize(16)
                 this.layer.text('Difficulty Options',this.layer.width/2,30)
                 this.layer.textSize(10)
-                this.layer.text('Mouseover 0-33 to Learn More',this.layer.width/2,62.5)
-                for(let a=0,la=types.ascend.length;a<la;a++){
+                //this.layer.text('Mouseover 0-33 to Learn More',this.layer.width/2,62.5)
+                this.layer.text(`Mouseover 0-${types.diff.length-1} to Learn More`,this.layer.width/2,62.5)
+                /*for(let a=0,la=types.ascend.length;a<la;a++){
                     if(this.menu.anim.ascend[a]>0){
                         this.layer.fill(255,0,0,this.menu.anim.ascend[a])
                         this.layer.ellipse(12.5+(this.layer.width-25)*(0.5+a)/la,102.5,10)
@@ -2473,6 +2488,19 @@ class battle{
                         this.layer.text(types.ascend[a].name,this.layer.width/2,30)
                         this.layer.textSize(10)
                         this.layer.text(types.ascend[a].desc,this.layer.width/2,62.5)
+                    }
+                }*/
+                for(let a=0,la=types.diff.length;a<la;a++){
+                    if(this.menu.anim.diff[a]>0){
+                        this.layer.fill(255,0,0,this.menu.anim.diff[a])
+                        this.layer.ellipse(12.5+(this.layer.width-25)*(0.5+a)/la,102.5,10)
+                    }
+                    if(this.menu.anim.diffDesc[a]>0){
+                        this.layer.fill(240,this.menu.anim.diffDesc[a])
+                        this.layer.textSize(16)
+                        this.layer.text(types.diff[a].name,this.layer.width/2,30)
+                        this.layer.textSize(10)
+                        this.layer.text(types.diff[a].desc,this.layer.width/2,62.5)
                     }
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
@@ -2536,12 +2564,14 @@ class battle{
                         }
                     }
                 }
-                this.layer.fill(240,this.menu.anim.ascendSingle)
+                //this.layer.fill(240,this.menu.anim.ascendSingle)
+                this.layer.fill(240,this.menu.anim.diffSingle)
                 this.layer.textSize(16)
-                this.layer.text('Difficult Options',this.layer.width/2,30)
+                this.layer.text('Difficulty Options',this.layer.width/2,30)
                 this.layer.textSize(10)
-                this.layer.text('Mouseover 0-32 to Learn More',this.layer.width/2,62.5)
-                for(let a=0,la=types.ascend.length;a<la;a++){
+                //this.layer.text('Mouseover 0-33 to Learn More',this.layer.width/2,62.5)
+                this.layer.text(`Mouseover 0-${types.diff.length} to Learn More`,this.layer.width/2,62.5)
+                /*for(let a=0,la=types.ascend.length;a<la;a++){
                     if(this.menu.anim.ascend[a]>0){
                         this.layer.fill(255,0,0,this.menu.anim.ascend[a])
                         this.layer.ellipse(12.5+(this.layer.width-25)*(0.5+a)/la,102.5,10)
@@ -2552,6 +2582,19 @@ class battle{
                         this.layer.text(types.ascend[a].name,this.layer.width/2,30)
                         this.layer.textSize(10)
                         this.layer.text(types.ascend[a].desc,this.layer.width/2,62.5)
+                    }
+                }*/
+                for(let a=0,la=types.diff.length;a<la;a++){
+                    if(this.menu.anim.diff[a]>0){
+                        this.layer.fill(255,0,0,this.menu.anim.diff[a])
+                        this.layer.ellipse(12.5+(this.layer.width-25)*(0.5+a)/la,102.5,10)
+                    }
+                    if(this.menu.anim.diffDesc[a]>0){
+                        this.layer.fill(240,this.menu.anim.diffDesc[a])
+                        this.layer.textSize(16)
+                        this.layer.text(types.diff[a].name,this.layer.width/2,30)
+                        this.layer.textSize(10)
+                        this.layer.text(types.diff[a].desc,this.layer.width/2,62.5)
                     }
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
@@ -3195,9 +3238,13 @@ class battle{
                 for(let a=0,la=types.deckmode.length;a<=la;a++){
                     this.menu.anim.deck[0][a]=smoothAnim(this.menu.anim.deck[0][a],this.menu.deck[0]==a,-1,1,5)
                 }
-                for(let a=0,la=types.ascend.length;a<=la;a++){
+                /*for(let a=0,la=types.ascend.length;a<=la;a++){
                     this.menu.anim.ascend[a]=smoothAnim(this.menu.anim.ascend[a],game.ascend==a,0,1,5)
                     this.menu.anim.ascendDesc[a]=smoothAnim(this.menu.anim.ascendDesc[a],pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5}),-1,1,5)
+                }*/
+                for(let a=0,la=types.diff.length;a<=la;a++){
+                    this.menu.anim.diff[a]=smoothAnim(this.menu.anim.diff[a],game.diff==a,0,1,5)
+                    this.menu.anim.diffDesc[a]=smoothAnim(this.menu.anim.diffDesc[a],pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5}),-1,1,5)
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
                     this.menu.anim.animRate[a]=smoothAnim(this.menu.anim.animRate[a],game.animRate==a+1,0,1,5)
@@ -3205,7 +3252,8 @@ class battle{
                 for(let a=0,la=this.menu.anim.turnTime.length;a<la;a++){
                     this.menu.anim.turnTime[a]=smoothAnim(this.menu.anim.turnTime[a],game.turnTime==[0,900,1800,3600][a],0,1,5)
                 }
-                this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
+                //this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
+                this.menu.anim.diffSingle=smoothAnim(this.menu.anim.diffSingle,inputs.rel.y>=120,0,1,5)
                 if(variants.mtg&&this.menu.anim.mtg[0]<1){
                     this.menu.anim.mtg[0]=min(1,this.menu.anim.mtg[0]+0.2)
                 }
@@ -3221,9 +3269,13 @@ class battle{
                         this.menu.anim.deck[b][a]=smoothAnim(this.menu.anim.deck[b][a],this.menu.deck[b]==a,-1,1,5)
                     }
                 }
-                for(let a=0,la=types.ascend.length;a<=la;a++){
+                /*for(let a=0,la=types.ascend.length;a<=la;a++){
                     this.menu.anim.ascend[a]=smoothAnim(this.menu.anim.ascend[a],game.ascend==a,0,1,5)
                     this.menu.anim.ascendDesc[a]=smoothAnim(this.menu.anim.ascendDesc[a],pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5}),-1,1,5)
+                }*/
+                for(let a=0,la=types.diff.length;a<=la;a++){
+                    this.menu.anim.diff[a]=smoothAnim(this.menu.anim.diff[a],game.diff==a,0,1,5)
+                    this.menu.anim.diffDesc[a]=smoothAnim(this.menu.anim.diffDesc[a],pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5}),-1,1,5)
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
                     this.menu.anim.animRate[a]=smoothAnim(this.menu.anim.animRate[a],game.animRate==a+1,0,1,5)
@@ -3231,7 +3283,8 @@ class battle{
                 for(let a=0,la=this.menu.anim.turnTime.length;a<la;a++){
                     this.menu.anim.turnTime[a]=smoothAnim(this.menu.anim.turnTime[a],game.turnTime==[0,900,1800,3600][a],0,1,5)
                 }
-                this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
+                //this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
+                this.menu.anim.diffSingle=smoothAnim(this.menu.anim.diffSingle,inputs.rel.y>=120,0,1,5)
                 if(variants.mtg){
                     for(let a=0,la=2;a<la;a++){
                         if(this.menu.anim.mtg[a]<1){
@@ -3360,13 +3413,13 @@ class battle{
                             if(floor(random(0,2))==0||!this.modded(50)){
                                 switch(this.encounter.class){
                                     case 0: case 3: case 4:
-                                        reward.push({type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]})
+                                        reward.push({type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12&&game.diff>=9?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]})
                                         for(let b=0,lb=this.relicManager.active[260][a+1];b<lb;b++){
-                                            reward.push({type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]})
+                                            reward.push({type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12&&game.diff>=9?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]})
                                         }
                                     break
                                     case 1:
-                                        reward.push({type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]})
+                                        reward.push({type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12&&game.diff>=9?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]})
                                     break
                                     case 2:
                                         if(this.nodeManager.world!=3){
@@ -3426,7 +3479,7 @@ class battle{
                             break
                             case 2:
                                 if(this.nodeManager.world!=3){
-                                    if(game.ascend<13&&(!this.modded(177)||this.turn.total<=5)&&mult>0){
+                                    if(game.ascend<13&&game.diff<=10&&(!this.modded(177)||this.turn.total<=5)&&mult>0){
                                         reward.push({type:0,value:[round(floor(random(240,401)*mult*(1+this.relicManager.active[232][a+1]*0.5)))]})
                                     }
                                     if(!variants.business){
@@ -3697,9 +3750,14 @@ class battle{
                         this.setupMtgManaChoice(0)
                     }
                 }
-                for(let a=0,la=types.ascend.length;a<la;a++){
+                /*for(let a=0,la=types.ascend.length;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5})){
                         game.ascend=a
+                    }
+                }*/
+                for(let a=0,la=types.diff.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5})){
+                        game.diff=a
                     }
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
@@ -3775,9 +3833,14 @@ class battle{
                         }
                     }
                 }
-                for(let a=0,la=types.ascend.length;a<la;a++){
+                /*for(let a=0,la=types.ascend.length;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5})){
                         game.ascend=a
+                    }
+                }*/
+                for(let a=0,la=types.diff.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5})){
+                        game.diff=a
                     }
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
@@ -4184,7 +4247,7 @@ class battle{
                         this.setupMtgManaChoice(0)
                     }
                 }
-                if(code==UP_ARROW&&game.ascend<types.ascend.length-1){
+                /*if(code==UP_ARROW&&game.ascend<types.ascend.length-1){
                     if(inputs.lastKey[1]==`Shift`){
                         game.ascend=types.ascend.length-1
                     }else{
@@ -4195,6 +4258,19 @@ class battle{
                         game.ascend=0
                     }else{
                         game.ascend--
+                    }
+                }*/
+                if(code==UP_ARROW&&game.diff<types.diff.length-1){
+                    if(inputs.lastKey[1]==`Shift`){
+                        game.diff=types.diff.length-1
+                    }else{
+                        game.diff++
+                    }
+                }else if(code==DOWN_ARROW&&game.diff>0){
+                    if(inputs.lastKey[1]==`Shift`){
+                        game.diff=0
+                    }else{
+                        game.diff--
                     }
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
@@ -4249,7 +4325,7 @@ class battle{
                         }
                     }
                 }
-                if(code==UP_ARROW&&game.ascend<types.ascend.length-1){
+                /*if(code==UP_ARROW&&game.ascend<types.ascend.length-1){
                     if(inputs.lastKey[1]==`Shift`){
                         game.ascend=types.ascend.length-1
                     }else{
@@ -4260,6 +4336,19 @@ class battle{
                         game.ascend=0
                     }else{
                         game.ascend--
+                    }
+                }*/
+                if(code==UP_ARROW&&game.diff<types.diff.length-1){
+                    if(inputs.lastKey[1]==`Shift`){
+                        game.diff=types.diff.length-1
+                    }else{
+                        game.diff++
+                    }
+                }else if(code==DOWN_ARROW&&game.diff>0){
+                    if(inputs.lastKey[1]==`Shift`){
+                        game.diff=0
+                    }else{
+                        game.diff--
                     }
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){

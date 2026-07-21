@@ -36,6 +36,9 @@ class tile{
         if(this.type.length==0&&game.ascend>=26&&floor(random(0,12))==0){
             this.addType(20)
         }
+        if(this.type.length==0&&game.diff>=12&&floor(random(0,15))==0){
+            this.addType(game.diff>=20?28:20)
+        }
         if(this.type.length==0&&this.battle.modded(81)&&floor(random(0,12))==0){
             this.addType(22)
         }
@@ -248,6 +251,14 @@ class tile{
                             this.battle.combatantManager.areaAbstract(0,[10,-1,0],this.tilePosition,[2,0],[0,1],false,0)
                             this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[20]))
                             this.anim.upPart[a]=false
+                        }
+                    }
+                break
+                case 28:
+                    if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].takeDamage(5,-1,0)
+                            this.battle.combatantManager.combatants[this.combatant].statusEffect(`Vulnerable`,1)
                         }
                     }
                 break
@@ -627,6 +638,20 @@ class tile{
                     this.layer.ellipse(0,0,24,8)
                     this.layer.fill(150,50,50,this.fade*this.anim.part[a])
                     regPoly(this.layer,0,-4,6,6,2,0)
+                break
+                case 28:
+                    this.layer.fill(160,165,170,this.fade*this.anim.part[a])
+                    for(let b=0,lb=9;b<lb;b++){
+                        for(let c=0,lc=9-b%2-max(3,abs(b-4))*2;c<lc;c++){
+                            this.layer.triangle(-2+10-lc*10+c*20,2+3/2-lb*3/2+b*3,2+10-lc*10+c*20,2+3/2-lb*3/2+b*3,10-lc*10+c*20,-3+3/2-lb*3/2+b*3)
+                        }
+                    }
+                    this.layer.fill(150,100,175,this.fade*this.anim.part[a])
+                    for(let b=0,lb=9;b<lb;b++){
+                        for(let c=0,lc=9-b%2-max(3,abs(b-4))*2;c<lc;c++){
+                            this.layer.triangle(-1.5+10-lc*10+c*20,3/2-lb*3/2+b*3,1.5+10-lc*10+c*20,3/2-lb*3/2+b*3,10-lc*10+c*20,-3+3/2-lb*3/2+b*3)
+                        }
+                    }
                 break
             }
         }

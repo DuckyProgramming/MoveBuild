@@ -59,7 +59,7 @@ class purchase{
                 this.anim.afford.push(0)
             }
         }
-        if(game.ascend>=16){
+        if(game.ascend>=16||game.diff>=14){
             for(let a=0,la=this.cost.length;a<la;a++){
                 this.cost[a]=this.cost[a]*1.1
             }
@@ -404,6 +404,9 @@ class purchase{
                         if(this.args[3]){
                             this.layer.fill(255,255,50,this.anim.usable)
                             this.layer.text('Sale',0,-72.5)
+                        }else if(this.args[4]){
+                            this.layer.fill(255,50,50,this.anim.usable)
+                            this.layer.text('Markup',0,-72.5)
                         }
                         this.layer.fill(255,0,0,1-this.anim.usable)
                         this.layer.text('Sold Out',0,72.5)
@@ -437,6 +440,9 @@ class purchase{
                         if(this.args[3]){
                             this.layer.fill(255,255,50,this.anim.usable)
                             this.layer.text('Sale',0,-72.5)
+                        }else if(this.args[4]){
+                            this.layer.fill(255,50,50,this.anim.usable)
+                            this.layer.text('Markup',0,-72.5)
                         }
                         this.layer.fill(255,0,0,1-this.anim.usable)
                         this.layer.text('Sold Out',0,72.5)

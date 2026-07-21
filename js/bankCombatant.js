@@ -2051,7 +2051,7 @@ combatant.prototype.display=function(){
                             this.layer.push()
                             this.layer.translate(5*lsin(this.spin.under.under.top[g]+this.anim.direction),-51)
                             this.layer.rotate(-15*lsin(this.spin.under.under.top[g]+this.anim.direction))
-                            this.layer.image(graphics.combatant[1].sprites.minor[9],-1.5*lcos(this.spin.under.under.top[g]+this.anim.direction)*this.fade*this.fades.under.bottom,-1.5*this.fade*this.fades.under.bottom,3*lcos(this.spin.under.under.top[g]+this.anim.direction)*this.fade*this.fades.under.bottom,3*this.fade*this.fades.under.bottom)
+                            this.layer.image(graphics.combatant[1].sprites.minor[6],-1.5*lcos(this.spin.under.under.top[g]+this.anim.direction)*this.fade*this.fades.under.bottom,-1.5*this.fade*this.fades.under.bottom,3*lcos(this.spin.under.under.top[g]+this.anim.direction)*this.fade*this.fades.under.bottom,3*this.fade*this.fades.under.bottom)
                             this.layer.pop()
                         }
                         for(let h=0;h<2;h++){
@@ -2059,7 +2059,7 @@ combatant.prototype.display=function(){
                                 this.layer.push()
                                 this.layer.translate(5*lsin(this.spin.under.under.top[g]-12+h*24+this.anim.direction),-49)
                                 this.layer.rotate(-15*lsin(this.spin.under.under.top[g]-12+h*24+this.anim.direction))
-                                this.layer.image(graphics.combatant[1].sprites.minor[9],-1.5*lcos(this.spin.under.under.top[g]-12+h*24+this.anim.direction)*this.fade*this.fades.under.bottom,
+                                this.layer.image(graphics.combatant[1].sprites.minor[6],-1.5*lcos(this.spin.under.under.top[g]-12+h*24+this.anim.direction)*this.fade*this.fades.under.bottom,
                                 -1.5*this.fade*this.fades.under.bottom,3*lcos(this.spin.under.under.top[g]-12+h*24+this.anim.direction)*this.fade*this.fades.under.bottom,3*this.fade*this.fades.under.bottom)
                                 this.layer.pop()
                             }

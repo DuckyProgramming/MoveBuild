@@ -38,21 +38,23 @@ class purchaseManager{
         let group
         let cost
         let list
+        let bar
         switch(type){
             case 0:
                 this.purchases=[]
                 if(this.battle.tutorialManager.active){
-                    let sale=floor(random(0,8))
+                    let sale=floor(random(0,game.diff>=7?9:10))
+                    let antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
                     group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,0,1,1,2]:[0,0,0,0,0,0,1,1,1,1,2,2]
                     cost=this.generalizedListing(0)
                     for(let a=0,la=group.length;a<la;a++){
                         this.purchases.push(new purchase(this.layer,this.battle,0,95+a%6*130,130+floor(a/6)*170,1,
-                            [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?(this.battle.modded(234)?2:0.5):1))],
-                            [findName(['Placeholder\nCommon','Placeholder\nUncommon','Placeholder\nRare'][group[a]],types.card),0,0,sale==a],
+                            [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?(this.battle.modded(234)?0.8:0.5):1)*(antisale==a?2:1))],
+                            [findName(['Placeholder\nCommon','Placeholder\nUncommon','Placeholder\nRare'][group[a]],types.card),0,0,sale==a,antisale==a],
                             group[a]+1
                         ))
                     }
-                    let bar=floor(random(0,2))
+                    bar=floor(random(0,2))
                     group=this.battle.modded(153)?[0,0,0,0,0]:variants.commoners?[0,0,0,0,bar+1]:[0,0,bar,1,2]
                     cost=this.generalizedListing(1)
                     for(let a=0,la=group.length;a<la;a++){
@@ -88,9 +90,12 @@ class purchaseManager{
                     }
                 }else if(this.battle.players==1){
                     if(this.battle.currency.money[0]>=100){
-                        let sale=floor(random(0,8))
+                        let sale=floor(random(0,game.diff>=7?9:10))
+                        let antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
                         list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[0]])
-                        group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,0,1,1,2]:[0,0,0,0,0,0,1,1,1,1,2,2]
+                        group=game.diff>=7?
+                            (this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,1,2]:[0,0,0,0,0,1,1,1,1,2]):
+                            (this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,0,1,1,2]:[0,0,0,0,0,0,1,1,1,1,2,2])
                         cost=this.generalizedListing(0)
                         if(variants.mtg){
                             for(let a=0,la=list.length;a<la;a++){
@@ -103,12 +108,13 @@ class purchaseManager{
                                 }
                             }
                         }
+                        let column=game.diff>=7?5:6
                         for(let a=0,la=group.length;a<la;a++){
                             if(list[group[a]].length>0){
                                 let index=floor(random(0,list[group[a]].length))
-                                this.purchases.push(new purchase(this.layer,this.battle,0,95+a%6*130,130+floor(a/6)*170,1,
-                                    [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?(this.battle.modded(234)?2:0.5):1))],
-                                    [list[group[a]][index],0,this.battle.standardColorize(list[group[a]][index]),sale==a],
+                                this.purchases.push(new purchase(this.layer,this.battle,0,95+a%column*130,130+floor(a/column)*170,1,
+                                    [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?(this.battle.modded(234)?0.8:0.5):1)*(antisale==a?2:1))],
+                                    [list[group[a]][index],0,this.battle.standardColorize(list[group[a]][index]),sale==a,antisale==a],
                                     group[a]+1
                                 ))
                                 list[group[a]].splice(index,1)
@@ -132,8 +138,10 @@ class purchaseManager{
                             }
                         }
                         list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1][0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[0])
-                        let bar=floor(random(0,2))
-                        group=this.battle.modded(153)?[0,0,0,0,0]:variants.commoners?[0,0,0,0,bar+1]:[0,0,bar,1,2]
+                        bar=game.diff>=7?floor(random(0,3)):floor(random(0,2))
+                        group=game.diff>=7?
+                            (this.battle.modded(153)?[0,0,0,0]:variants.commoners?[0,0,0,bar]:[0,0,1,2]):
+                            (this.battle.modded(153)?[0,0,0,0,0]:variants.commoners?[0,0,0,0,bar+1]:[0,0,bar,1,2])
                         cost=this.generalizedListing(1)
                         for(let a=0,la=group.length;a<la;a++){
                             if(list[group[a]].length>0){
@@ -146,26 +154,28 @@ class purchaseManager{
                                 list[group[a]].splice(index,1)
                             }
                         }
-                        this.purchases.push(new purchase(this.layer,this.battle,0,745,470,2,
+                        this.purchases.push(new purchase(this.layer,this.battle,0,game.diff>=7?615:745,470,2,
                             [this.battle.relicManager.hasRelic(97,0)?125:250],
                             [],
                             0
                         ))
-                        for(let a=0,la=3;a<la;a++){
+                        for(let a=0,la=game.diff>=7?2:3;a<la;a++){
                             let type=[0,0,1,2,3][floor(random(0,5))]
-                            this.purchases.push(new purchase(this.layer,this.battle,0,1040,160+a*140,5,
+                            this.purchases.push(new purchase(this.layer,this.battle,0,game.diff>=7?725+a*90:1040,game.diff>=7?450+a*20:160+a*140,5,
                                 [(this.battle.relicManager.hasRelic([270,271,272,273][type],0)?0.5:1)*[100,160,200,80][type]],
                                 [type],
                                 type+9
                             ))
                         }
-                        group=this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,2,2,3,3]
+                        group=game.diff>=7?
+                            (this.battle.modded(152)?[0,0,0,0,0,0,0,0]:[0,0,1,1,2,3]):
+                            (this.battle.modded(152)?[0,0,0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,2,2,3,3])
                         cost=this.generalizedListing(2)
                         list=this.battle.relicManager.makeRelicSelection(group)
                         let index=floor(random(0,group.length))
                         for(let a=0,la=group.length;a<la;a++){
                             let price=list[a]==516?0:round(random(cost[group[a]][0],cost[group[a]][1]))
-                            this.purchases.push(new purchase(this.layer,this.battle,0,855+(a%2)*90,100+floor(a/2)*100,3,
+                            this.purchases.push(new purchase(this.layer,this.battle,0,855+(a%2)*90-(game.diff>=7?130:0),100+floor(a/2)*100+(game.diff>=7?30:0),3,
                                 [this.battle.relicManager.hasRelic(85,-1)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],0)?0.5:1)*(this.battle.relicManager.hasRelic(345,0)?2:1)],
                                 [list[a]],
                                 group[a]+15
@@ -197,8 +207,11 @@ class purchaseManager{
                     if(this.battle.currency.money[0]>=100&&this.battle.currency.money[1]>=100){
                         for(let a=0,la=this.battle.players;a<la;a++){
                             let sale=floor(random(0,8))
+                            let antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
                             list=variants.mtg?copyArrayStack(this.battle.cardManagers[a].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[a].listing.junk[constants.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[a].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[a].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
-                            group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,0,1,1,2]:[0,0,0,0,0,0,1,1,1,1,2,2]
+                            group=game.diff>=7?
+                                (this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,1,2]:[0,0,0,0,0,1,1,1,1,2]):
+                                (this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,0,1,1,2]:[0,0,0,0,0,0,1,1,1,1,2,2])
                             cost=this.generalizedListing(0)
                             if(variants.mtg){
                                 for(let b=0,lb=list.length;b<lb;b++){
@@ -214,10 +227,12 @@ class purchaseManager{
                             for(let b=0,lb=group.length;b<lb;b++){
                                 if(list[group[b]].length>0){
                                     let index=floor(random(0,list[group[b]].length))
-                                    let price=round(random(cost[group[b]][0],cost[group[b]][1])*(sale==b?(this.battle.modded(234)?2:0.5):1))
-                                    this.purchases.push(new purchase(this.layer,this.battle,a,450+(905-b%4*130)*(a*2-1),130+floor(b/4)*170,1,
+                                    let price=round(random(cost[group[b]][0],cost[group[b]][1])*(sale==b?(this.battle.modded(234)?0.8:0.5):1)*(antisale==b?2:1))
+                                    this.purchases.push(new purchase(this.layer,this.battle,a,
+                                        game.diff>=7?450+(725-floor(b/3)*130)*(a*2-1):450+(905-b%4*130)*(a*2-1),
+                                        game.diff>=7?130+b%3*170:130+floor(b/4)*170,1,
                                         [this.battle.relicManager.hasRelic([216,267,268][group[b]],0)?0:price,group[b]==0&&this.battle.relicManager.hasRelic(216,1)?0:price],
-                                        [list[group[b]][index],0,this.battle.standardColorize(list[group[b]][index]),sale==b],
+                                        [list[group[b]][index],0,this.battle.standardColorize(list[group[b]][index]),sale==b,antisale==b],
                                         group[b]+1
                                     ))
                                     list[group[b]].splice(index,1)
@@ -242,13 +257,16 @@ class purchaseManager{
                             }
                         }
                         list=variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1][0]):variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[0])
-                        group=this.battle.modded(153)?[0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,1+bar,2-bar,0]:[0,0,0,0,1,2,2,1]
+                        bar=floor(random(0,2))
+                        group=game.diff>=7?
+                            (this.battle.modded(153)?[0,0,0,0,0,0]:variants.commoners?[0,0,0,0,1+bar,2-bar]:[0,0,bar,1-bar,1+bar,2-bar]):
+                            (this.battle.modded(153)?[0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,bar,1-bar,1+bar,2-bar,0]:[0,0,0,0,1,2,2,1])
                         cost=this.generalizedListing(1)
                         for(let a=0,la=group.length;a<la;a++){
                             if(list[group[a]].length>0){
                                 let index=floor(random(0,list[group[a]].length))
                                 let price=random(cost[group[a]][0],cost[group[a]][1])
-                                this.purchases.push(new purchase(this.layer,this.battle,-1,[65,195,705,835][a%4],130+floor(a/4)*170,1,
+                                this.purchases.push(new purchase(this.layer,this.battle,-1,game.diff>=7?245+a%2*410:[65,195,705,835][a%4],130+floor(a/(game.diff>=7?2:4))*170,1,
                                     [round((this.battle.relicManager.hasRelic([269,300,301][group[a]],0)?0.5:1)*price),round((this.battle.relicManager.hasRelic([269,300,301][group[a]],1)?0.5:1)*price)],
                                     [list[group[a]][index],0,this.battle.standardColorize(list[group[a]][index])],
                                     group[a]+4
@@ -262,7 +280,7 @@ class purchaseManager{
                         let index=floor(random(0,group.length))
                         for(let a=0,la=group.length;a<la;a++){
                             let price=list[a]==516?0:round(random(cost[group[a]][0],cost[group[a]][1]))
-                            this.purchases.push(new purchase(this.layer,this.battle,-1,305+a%2*290,100+floor(a/2)*100,3,
+                            this.purchases.push(new purchase(this.layer,this.battle,-1,game.diff>=7?355+a%2*190:305+a%2*290,100+floor(a/2)*100,3,
                                 [
                                     this.battle.relicManager.hasRelic(85,0)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],0)?0.5:1)*(this.battle.relicManager.hasRelic(345,0)?2:1),
                                     this.battle.relicManager.hasRelic(85,1)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],1)?0.5:1)*(this.battle.relicManager.hasRelic(345,1)?2:1)
@@ -272,22 +290,22 @@ class purchaseManager{
                             ))
                         }
                         for(let a=0,la=this.battle.players;a<la;a++){
-                            this.purchases.push(new purchase(this.layer,this.battle,-1,65+a*770,470,2,
+                            this.purchases.push(new purchase(this.layer,this.battle,-1,game.diff>=7?115+a*670:65+a*770,470,2,
                                 [this.battle.relicManager.hasRelic(97,0)?125:250,this.battle.relicManager.hasRelic(97,1)?125:250],
                                 [],
                                 0
                             ))
                         }
-                        for(let a=0,la=6;a<la;a++){
+                        for(let a=0,la=game.diff>=7?3:6;a<la;a++){
                             let type=[0,0,1,2,3][floor(random(0,5))]
-                            this.purchases.push(new purchase(this.layer,this.battle,-1,400+a%2*100,160+floor(a/2)*140,5,
+                            this.purchases.push(new purchase(this.layer,this.battle,-1,game.diff>=7?450:400+a%2*100,game.diff>=7?160+a*140:160+floor(a/2)*140,5,
                                 [(this.battle.relicManager.hasRelic([270,271,272,273][type],0)?0.5:1)*[100,160,200,80][type],(this.battle.relicManager.hasRelic([270,271,272,273][type],1)?0.5:1)*[100,160,200,80][type]],
                                 [type],
                                 type+9
                             ))
                         }
                         list=variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1][constants.playerNumber+3]):copyArrayStack(this.battle.cardManagers[0].listing.card[constants.playerNumber+3])
-                        let bar=floor(random(0,2))
+                        bar=floor(random(0,2))
                         group=this.battle.modded(153)?[0,0]:variants.commoners?[[0,bar],[bar,0]][floor(random(0,2))]:[bar,1-bar]
                         if(!this.battle.modded(153)&&floor(random(0,4))==0&&!(variants.commoners&&floor(random(0,2))==0)){
                             group[floor(random(0,group.length))]=2
@@ -297,7 +315,7 @@ class purchaseManager{
                             if(list[group[a]].length>0){
                                 let index=floor(random(0,list[group[a]].length))
                                 let price=round(random(cost[group[a]][0],cost[group[a]][1]))
-                                this.purchases.push(new purchase(this.layer,this.battle,-1,195+a*510,470,1,
+                                this.purchases.push(new purchase(this.layer,this.battle,-1,game.diff>=7?115+a*670:195+a*510,game.diff>=7?300:470,1,
                                     [price,price],
                                     [list[group[a]][index],0,constants.playerNumber+3],
                                     group[a]+7
@@ -546,7 +564,7 @@ class purchaseManager{
                         floor(random(16,20)),
                         floor(random(48,60)),
                         floor(random(80,100)),
-                    ][this.purchases[a].tag]*(game.ascend>=16?1.1:1)*(this.battle.modded(130)>=16?2:1)
+                    ][this.purchases[a].tag]*(game.ascend>=16||game.diff>=14?1.1:1)*(this.battle.modded(130)?2:1)
                 }
                 this.purchases[a].costChange(player,value)
             }
@@ -584,10 +602,12 @@ class purchaseManager{
         this.layer.noStroke()
         this.layer.fill(200,this.fade)
         this.layer.ellipse(this.layer.width/2,575,40)
-        this.layer.fill(80+120*this.anim.scroll[0],this.fade)
-        this.layer.ellipse(this.layer.width/2-50,575,40)
-        this.layer.fill(80+120*this.anim.scroll[1],this.fade)
-        this.layer.ellipse(this.layer.width/2+50,575,40)
+        if(game.diff<7||game.players==2){
+            this.layer.fill(80+120*this.anim.scroll[0],this.fade)
+            this.layer.ellipse(this.layer.width/2-50,575,40)
+            this.layer.fill(80+120*this.anim.scroll[1],this.fade)
+            this.layer.ellipse(this.layer.width/2+50,575,40)
+        }
         this.layer.stroke(100,this.fade)
         this.layer.strokeWeight(2)
         this.layer.noFill()
@@ -598,8 +618,10 @@ class purchaseManager{
         this.layer.line(this.layer.width/2+1,580,this.layer.width/2+1,577)
         this.layer.line(this.layer.width/2+1,570,this.layer.width/2-6,575)
         this.layer.line(this.layer.width/2+1,580,this.layer.width/2-6,575)
-        regTriangle(this.layer,this.layer.width/2-50,575,10,10,30)
-        regTriangle(this.layer,this.layer.width/2+50,575,10,10,90)
+        if(game.diff<7||game.players==2){
+            regTriangle(this.layer,this.layer.width/2-50,575,10,10,30)
+            regTriangle(this.layer,this.layer.width/2+50,575,10,10,90)
+        }
         for(let a=0,la=this.purchases.length;a<la;a++){
             if(this.purchases[a].size<=1){
                 this.purchases[a].display()
@@ -630,7 +652,7 @@ class purchaseManager{
         switch(this.battle.players){
             case 1:
                 this.anim.scroll[0]=smoothAnim(this.anim.scroll[0],this.goalScroll>210,0,1,5)
-                this.anim.scroll[1]=smoothAnim(this.anim.scroll[1],this.goalScroll<10,0,1,5)
+                this.anim.scroll[1]=smoothAnim(this.anim.scroll[1],this.goalScroll<(game.diff>=7?-10:10),0,1,5)
             break
             case 2:
                 this.anim.scroll[0]=smoothAnim(this.anim.scroll[0],this.goalScroll>-10,0,1,5)
@@ -642,17 +664,19 @@ class purchaseManager{
         this.purchases.forEach(purchase=>purchase.onClick())
         switch(this.battle.players){
             case 1:
-                if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2-50,575)<20){
-                    this.goalScroll=0
-                }else if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2+50,575)<20){
-                    this.goalScroll=225
+                if(game.diff<7){
+                    if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2-50,575)<20){
+                        this.goalScroll=0
+                    }else if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2+50,575)<20){
+                        this.goalScroll=225
+                    }
                 }
             break
             case 2:
                 if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2-50,575)<20&&this.goalScroll>-10){
-                    this.goalScroll-=550
+                    this.goalScroll-=game.diff>=7?370:550
                 }else if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2+50,575)<20&&this.goalScroll<10){
-                    this.goalScroll+=550
+                    this.goalScroll+=game.diff>=7?370:550
                 }
             break
         }
@@ -665,17 +689,19 @@ class purchaseManager{
         this.purchases.forEach(purchase=>purchase.onKey(key,code))
         switch(this.battle.players){
             case 1:
-                if(key=='ArrowLeft'){
-                    this.goalScroll=0
-                }else if(key=='ArrowRight'){
-                    this.goalScroll=225
+                if(game.diff<7){
+                    if(key=='ArrowLeft'){
+                        this.goalScroll=0
+                    }else if(key=='ArrowRight'){
+                        this.goalScroll=225
+                    }
                 }
             break
             case 2:
                 if(key=='ArrowLeft'&this.goalScroll>-10){
-                    this.goalScroll-=550
+                    this.goalScroll-=game.diff>=7?370:550
                 }else if(key=='ArrowRight'&&this.goalScroll<10){
-                    this.goalScroll+=550
+                    this.goalScroll+=game.diff>=7?370:550
                 }
             break
         }

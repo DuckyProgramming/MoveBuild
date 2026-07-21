@@ -60,7 +60,7 @@ class itemManager{
             }
         }
         for(let a=0,la=this.battle.players;a<la;a++){
-            this.items.push(game.ascend>=11?[
+            this.items.push(game.ascend>=11||game.diff>=8?[
                 new item(this.layer,this.battle,a,25+(this.layer.width-50)*a,50,100+(this.layer.width-200)*a,25,0,1),
                 new item(this.layer,this.battle,a,75+(this.layer.width-150)*a,50,150+(this.layer.width-300)*a,25,1,1),
                 new item(this.layer,this.battle,a,125+(this.layer.width-250)*a,50,200+(this.layer.width-400)*a,25,1,1)]:[
@@ -68,7 +68,7 @@ class itemManager{
                 new item(this.layer,this.battle,a,75+(this.layer.width-150)*a,50,150+(this.layer.width-300)*a,25,1,1),
                 new item(this.layer,this.battle,a,125+(this.layer.width-250)*a,50,200+(this.layer.width-400)*a,25,1,1),
                 new item(this.layer,this.battle,a,175+(this.layer.width-350)*a,50,250+(this.layer.width-500)*a,25,1,1)])
-            this.position.push(game.ascend>=11?-1:0)
+            this.position.push(game.ascend>=11||game.diff>=8?-1:0)
             this.up.push(true)
             this.total.push(0)
             this.effectiveness.push(1)

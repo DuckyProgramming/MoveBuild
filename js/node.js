@@ -42,7 +42,7 @@ class node{
                 }
             break
             case 6:
-                if(this.battle.nodeManager.world==1&&game.ascend>=23){
+                if(this.battle.nodeManager.world==1&&(game.ascend>=23||game.diff>=18)){
                     this.reality=1
                     index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].length))
                     this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality][index]
