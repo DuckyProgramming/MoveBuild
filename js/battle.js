@@ -4229,13 +4229,13 @@ class battle{
                         }
                     }
                 }
-                if(key=='['){
+                if(key=='['||key=='{'){
                     this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length-1)%types.deckmode.length
                 }
-                if(key==']'){
+                if(key==']'||key=='}'){
                     this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length+1)%types.deckmode.length
                 }
-                if(key=='\\'){
+                if(key=='\\'||key=='|'){
                     let remaining=[]
                     for(let a=0,la=constants.playerNumber;a<la;a++){
                         if(this.menu.combatant[0]!=a+1){

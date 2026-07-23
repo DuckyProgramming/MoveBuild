@@ -195,6 +195,9 @@ class relicManager{
         }
     }
     addRelic(type,player){
+        if(this.active[538][player+1]){
+            this.getPlayer(a).heal(5*this.active[538][player+1])
+        }
         for(let a=0,la=this.listing.relic.length;a<la;a++){
             for(let b=0,lb=this.listing.relic[a].length;b<lb;b++){
                 if(type==this.listing.relic[a][b]){
@@ -1547,6 +1550,15 @@ class relicManager{
                             if(this.active[520][a+1]>0){
                                 this.getPlayer(a).statusEffect('Vigor',ceil((this.getPlayer(a).base.life-this.getPlayer(a).life)*0.5*this.active[520][a+1]))
                             }
+                            if(this.active[535][a+1]>0){
+                                this.getPlayer(a).statusEffect('Strength',3*this.active[535][a+1])
+                            }
+                            if(this.active[536][a+1]>0){
+                                this.getPlayer(a).statusEffect('Dexterity',3*this.active[536][a+1])
+                            }
+                            if(this.active[537][a+1]>0){
+                                this.getPlayer(a).statusEffect('Single Attack No Block',this.active[537][a+1])
+                            }
                             if(this.active[122][a+1]>0){
                                 this.getPlayer(a).statusEffect('Control',this.active[122][a+1])
                             }
@@ -2669,11 +2681,48 @@ class relicManager{
             break
             case 7://entering node [node]
                 for(let a=0,la=this.relics.length;a<la;a++){
-                    if(this.relics[a].type==321){
-                        if(this.detail[321][this.relics[a].player]==0){
-                            this.relics[a].value+=20
-                        }else{
-                            this.relics[a].value=floor(this.relics[a].value*0.9)
+                    if(this.relics[a].active){
+                        switch(this.relics[a].type){
+                            case 321:
+                                if(this.detail[321][this.relics[a].player]==0){
+                                    this.relics[a].value+=20
+                                }else{
+                                    this.relics[a].value=floor(this.relics[a].value*0.9)
+                                }
+                            break
+                            case 534:
+                                if(floor(random(0,5))==0){
+                                    let type=535+floor(random(0,2))
+                                    this.active[534][0]--
+                                    this.active[534][this.relics[a].player+1]--
+                                    this.active[type][0]++
+                                    this.active[type][this.relics[a].player+1]++
+                                    this.relics[a].type=type
+                                    this.relics[a].base()
+                                }
+                            break
+                            case 535:
+                                if(floor(random(0,5))==0){
+                                    let type=534+floor(random(0,2))*2
+                                    this.active[535][0]--
+                                    this.active[535][this.relics[a].player+1]--
+                                    this.active[type][0]++
+                                    this.active[type][this.relics[a].player+1]++
+                                    this.relics[a].type=type
+                                    this.relics[a].base()
+                                }
+                            break
+                            case 536:
+                                if(floor(random(0,5))==0){
+                                    let type=534+floor(random(0,2))
+                                    this.active[536][0]--
+                                    this.active[536][this.relics[a].player+1]--
+                                    this.active[type][0]++
+                                    this.active[type][this.relics[a].player+1]++
+                                    this.relics[a].type=type
+                                    this.relics[a].base()
+                                }
+                            break
                         }
                     }
                 }

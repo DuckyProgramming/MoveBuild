@@ -908,7 +908,7 @@ types={
         {name:'Hummingbird Wing',internal:'2 Turn Half Damage',id:89,rarity:2,list:0,mtg:0,world:[0,3],description:'Take Half Damage in\nthe First 2 Turns'},
 
         {name:'Cracked Urn',internal:'8 Turn Intangible',id:90,rarity:2,list:0,mtg:0,world:[0,3],description:'Every 8 Turns,\nGain 1 Intangible'},
-        {name:'Swear Jar',internal:'No Shop Currency',id:91,rarity:0,list:0,mtg:0,world:[0,2],description:'Gain 20 Currency Every Node\nUntil Your Enter a Shop'},
+        {name:'Swear Jar',internal:'No Shop Currency',id:91,rarity:-1,list:0,mtg:0,world:[0,2],description:'Gain 20 Currency Every Node\nUntil Your Enter a Shop'},
         {name:'Meatball Ticket',internal:'Shop Heal',id:92,rarity:0,list:0,mtg:0,world:[0,2],description:'Heal 10 HP When\nYou Enter a Shop'},
         {name:'Top Hat',internal:'Shop Energy',id:93,rarity:0,list:0,mtg:1,world:[0,2],description:'Gain 3 Energy After\nEntering a Shop'},
         {name:'Coal Ball',internal:'Death Strength',id:94,rarity:0,list:0,mtg:0,world:[0,3],description:'When an Enemy Dies,\nGain 1 Strength'},
@@ -1014,7 +1014,7 @@ types={
         {name:'Negative Pack',internal:'1 Random Negative',id:185,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken, Make 1\nRandom Card Negative'},
         {name:'Erratic Pack',internal:'1 Random Erratic',id:186,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken, Make 1\nRandom Card Erratic'},
         {name:'Credit Card',internal:'Go Into Debt',id:187,rarity:0,list:0,mtg:0,world:[0,2],description:'Go Into Up to 200\nCurrency of Debt'},
-        {name:'Tauball',internal:'Fragile Strength',id:188,rarity:0,list:0,mtg:0,world:[0,3],description:'Gain 3 Strength on Turn 1\n10% Chance to Break Each Battle'},
+        {name:'Tauball',internal:'Fragile Strength',id:188,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 3 Strength on Turn 1\n10% Chance to Break Each Battle'},
         {name:'Hallucinogen Pills',internal:'Purchase Item',id:189,rarity:1,list:0,mtg:0,world:[0,2],description:'After Purchasing From the Shop,\nGain an Item'},
         
         {name:'Half-Full Glass',internal:'Unplayed Card Damage',id:190,rarity:0,list:0,mtg:0,world:[0,3],description:'At the End of Your Turn,\nGain 1 Vigor\nPer Unplayed Card'},
@@ -1188,7 +1188,7 @@ types={
         {name:'Ladle',internal:'8 Skill Draw',id:343,rarity:1,list:0,mtg:0,world:[0,3],description:'Every 8 Skills Played,\nDraw 2 Cards'},
         {name:'Rainbow Lotus',internal:'1 Cost Down Per Turn/Energy Gain Block',id:344,rarity:-1,list:0,mtg:1,world:[0,3],description:'Each Turn, a Random Card Costs 1 Less\nAdd 6 Block When You Gain Energy'},
         {name:'Corrugated Fiberboard',internal:'Energy/Shop Relics',id:345,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nAll Relics in the Shop Cost 2x More'},
-        {name:'Item Canister',internal:'No Shop Items',id:346,rarity:0,list:0,mtg:0,world:[0,2],description:'Gain an Item Every Node\nUntil You Enter a Shop'},
+        {name:'Item Canister',internal:'No Shop Items',id:346,rarity:-1,list:0,mtg:0,world:[0,2],description:'Gain an Item Every Node\nUntil You Enter a Shop'},
         {name:'Sugar Cube',internal:'Energy/Leftover Energy',id:347,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nLose 4 Health at End of Turn\nFor Each Extra Energy'},
         {name:'Medicine Cabinet',internal:'Turn 1 Energy/Turn 2 Heal/Turn 3 Temporary Strength',id:348,rarity:2,list:0,mtg:1,world:[0,3],description:'Gain 1 Energy on Turn 1\nHeal 2 Health on Turn 2\nGain 3 Temporary Strength on Turn 3'},
         {name:'Chondrule',internal:'Double Foil',id:349,rarity:-1,list:0,mtg:0,world:[0,3],description:'Foil Editions Add Double Block'},
@@ -1377,7 +1377,7 @@ types={
         {name:'Taraxis',internal:'Extra Mana Temporary Dexterity',id:515,rarity:2,list:0,mtg:2,world:[0,3],description:'Extra Mana is Converted\nto Temporary Dexterity'},
         {name:'Dry Tomato',internal:'Double or Half',id:516,rarity:5,list:0,mtg:0,world:[0,3],description:'When Taken, Randomly Double\nor Halve Your Currency'},
         {name:'Half Cent',internal:'Odd Turn Vigor',id:517,rarity:1,list:0,mtg:0,world:[0,3],description:'Gain 4 Vigor\non Odd Turns'},
-        {name:'Tri-Bagel',internal:'Enemy Block Life Loss',id:518,rarity:0,list:0,mtg:0,world:[0,3],description:'When an Enemy Gains Block,\nIt Loses 1 Health'},
+        {name:'Tri-Bagel',internal:'Enemy Block Life Loss',id:518,rarity:0,list:0,mtg:0,world:[0,3],description:'When an Enemy Gains Block,\nIt Loses 3 Health'},
         {name:'Glueball',internal:'Turn 3 Block Retain',id:519,rarity:0,list:0,mtg:0,world:[0,3],description:'On Turn 3,\nRetain Block For 1 Turn'},
 
         {name:'Accusatory Arrow',internal:'Missing Health Vigor',id:520,rarity:1,list:0,mtg:0,world:[0,3],description:'At the Start of Combat,\nGain Vigor Equal to Half\nof Your Missing Health'},
@@ -1395,6 +1395,11 @@ types={
         {name:'Fava Bean',internal:'Rare Relic Party',id:531,rarity:3,list:0,mtg:0,world:[0,3],description:'When Taken, Restock All Shop\nRelics With Rare Relics'},
         {name:'Jacks',internal:'Triple Free Card',id:532,rarity:3,list:0,mtg:0,world:[0,3],description:'At the Start of Combat,\nAdd 3 Copies of a Random\nCard in Deck to Hand\nThey Cost 0 Temporarily'},
         {name:'Belt Buckle',internal:'No Item Block',id:533,rarity:0,list:0,mtg:0,world:[0,3],description:'If You Start Your Turn With No Items,\nAdd 4 Block'},
+        {name:'Neutrinoball',internal:'Switching Buff',id:534,rarity:0,list:0,mtg:0,world:[0,3],description:'20% Chance to Oscillate Each Room'},
+        {name:'Tauball',internal:'Switching Strength',id:535,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 3 Strength on Turn 1\n20% Chance to Oscillate Each Room'},
+        {name:'Muonball',internal:'Switching Dexterity',id:536,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 3 Dexterity on Turn 1\n20% Chance to Oscillate Each Room'},
+        {name:'Crowbar',internal:'First Enemy No Block',id:537,rarity:0,list:0,mtg:0,world:[0,3],description:'The First Enemy You Attack Each Combat\nFails the First Time They Add Block'},
+        {name:'Snack Sack',internal:'Relic Heal',id:538,rarity:0,list:0,mtg:0,world:[0,3],description:'Heal 5 Health When You Gain a Relic'},
 
         //mark mtg mark r
     ],item:[

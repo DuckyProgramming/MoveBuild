@@ -3827,7 +3827,7 @@ class relic{
                     displaySymbol(this.layer,10,0,2,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('-1',10,0)
+                    this.layer.text('-3',10,0)
                 break
                 case 'Turn 3 Block Retain':
                     displaySymbol(this.layer,-8,0,74,0,0.8,this.fade)
@@ -3933,6 +3933,51 @@ class relic{
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('2',9,-2)
+                break
+                case 'Switching Buff':
+                    displaySymbol(this.layer,0,0,84,0,2,this.fade)
+                    displaySymbol(this.layer,-10,0,11,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,12,0,1,this.fade)
+                    displaySymbol(this.layer,-10,0,5,0,0.6,this.fade)
+                    displaySymbol(this.layer,10,0,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('?',0,0)
+                break
+                case 'Switching Strength':
+                    displaySymbol(this.layer,0,0,84,0,2,this.fade)
+                    displaySymbol(this.layer,-8,0,11,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Switching Dexterity':
+                    displaySymbol(this.layer,0,0,84,0,2,this.fade)
+                    displaySymbol(this.layer,-8,0,12,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'First Enemy No Block':
+                    displaySymbol(this.layer,-8,-4,3,0,0.5,this.fade)
+                    displaySymbol(this.layer,-8,10,120,0,1,this.fade)
+                    displaySymbol(this.layer,9,2,178,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',9,2)
+                break
+                case 'Relic Heal':
+                    displaySymbol(this.layer,0,0,1,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',0,0)
                 break
 
                 //mark p

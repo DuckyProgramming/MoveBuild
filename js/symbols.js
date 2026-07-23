@@ -8912,6 +8912,15 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.endShape()
             layer.triangle(0,3.5,-1,6,1,6)
         break
+        case 886:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
+            layer.fill(150,175,200,fade)
+            layer.triangle(-3,0,-5,3,-1,3)
+            layer.triangle(3,0,5,3,1,3)
+            layer.triangle(-3,0,-5,-3,-1,-3)
+            layer.triangle(3,0,5,-3,1,-3)
+        break
 
     }
     //mark s
@@ -15741,6 +15750,13 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(-1.5,-0.5,1.5)
             layer.ellipse(1.5,-0.5,1.5)
         break
+        case 178:
+            layer.fill(150,175,200,fade)
+            layer.triangle(-6,0,-10,6,-2,6)
+            layer.triangle(6,0,10,6,2,6)
+            layer.triangle(-6,0,-10,-6,-2,-6)
+            layer.triangle(6,0,10,-6,2,-6)
+        break
 
     }
     layer.pop()
@@ -15920,4 +15936,5 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 175-Bombed
 176-Trioerratic
 177-Mortal
+178-No Block
 */

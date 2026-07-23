@@ -6,7 +6,7 @@ function setup(){
     current=new battle(graphics.main,game.player)
 
     if(false){
-            game.diff=26
+            //game.diff=26
             //game.ascend=33
 
             /*stage.scene='tier'
@@ -87,9 +87,9 @@ function setup(){
                 current.modManager.addMod(67+a)
             }*/
 
-            /*for(let a=0,la=1;a<la;a++){
+            /*for(let a=0,la=5;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(533+a,0)
+                quickRelic(534+a,0)
             }*/
             //current.overlayManager.closeAll()
 

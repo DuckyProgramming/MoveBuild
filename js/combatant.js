@@ -209,7 +209,7 @@ class combatant{
                 'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage','Caffeine','20 Damage Weak','20 Damage Vulnerable','20 Damage Frail','Weak Boost',
                 'Vulnerable Boost','Duplicate Cycle 3 1','Duplicate Cycle 3 2','Duplicate Cycle 3 3',`Turn Transform`,'Temporary Focus','Pristine Draw','Skill Temporary Dexterity','Double Damage Cycle 3 1','Double Damage Cycle 3 2',
                 'Double Damage Cycle 3 3','Random Quickdraw Gain Per Turn','Skill to Defense Draw Skill','Coffee Draw','Skill to Attack Draw Skill','Coffee Splash','Caffeine Tolerance','Pristine Reduction Free Attack','Tile Temporary Strength','Take 2/3 Damage',
-                'Collision Damage','Plant Draw','Retain Temporary Strength','Retain Temporary Dexterity','Fatigue Splash Bleed','Vigor Next Turn',
+                'Collision Damage','Plant Draw','Retain Temporary Strength','Retain Temporary Dexterity','Fatigue Splash Bleed','Vigor Next Turn','Single Attack No Block',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -300,7 +300,7 @@ class combatant{
                 0,0,2,2,1,0,0,0,0,0,//86
                 0,2,2,2,0,2,0,0,2,2,//87
                 2,0,0,0,0,0,0,0,0,1,//88
-                0,0,1,1,0,2,
+                0,0,1,1,0,2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -391,7 +391,7 @@ class combatant{
                 2,3,1,1,2,1,2,2,2,2,//86
                 2,2,2,2,2,2,2,2,0,0,//87
                 0,2,2,2,2,2,2,2,2,0,//88
-                2,2,2,2,2,0,
+                2,2,2,2,2,0,0,
             ]}
         /*
         0-none
@@ -3389,6 +3389,10 @@ class combatant{
                     this.statusEffect('Weak',userCombatant.status.main[521])
                     userCombatant.status.main[521]=0
                 }
+                if(userCombatant.status.main[886]>0){
+                    this.statusEffect('No Block',userCombatant.status.main[886])
+                    userCombatant.status.main[886]=0
+                }
                 if(this.team==0&&userCombatant.team==0){
                     if(this.battle.modded(12)){
                         hit=false
@@ -4444,7 +4448,7 @@ class combatant{
                     this.battle.stats.block[this.id]+=block
                     this.battle.relicManager.activate(18,[block,this.id])
                 }else if(this.battle.relicManager.hasRelic(518,-1)){
-                    this.loseHealth(this.battle.relicManager.active[518][0])
+                    this.loseHealth(this.battle.relicManager.active[518][0]*3)
                 }
             }
         }
@@ -6283,7 +6287,8 @@ class combatant{
             }
             if(this.sins.includes(2)){
                 for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
-                    this.battle.cardManagers[a].addRandomAbstract(1,0,0,1,0,[],[constants.playerNumber+1,3])
+                    this.battle.cardManagers[a].reserve.add(findName('Stuffed',types.card),0,constants.playerNumber+1)
+                    //this.battle.cardManagers[a].addRandomAbstract(1,0,0,1,0,[],[constants.playerNumber+1,3])
                 }
             }
             if(this.sins.includes(3)){
@@ -7806,7 +7811,8 @@ class combatant{
                                 case 13: this.layer.text('On Survival, Heal 10 HP',40,305+a*10); break
                                 case 14: this.layer.text('On Survival, Deluxe Upgrade a Card',40,305+a*10); break
                                 case 15: this.layer.text('On Survival, Move Freely',40,305+a*10); break
-                                case 16: this.layer.text('On Survival, Gain 25 Currency\nIf Killed by Player, Gain 5 Currency',40,305+a*10); break
+                                case 16: this.layer.text('On Survival, Gain 25 Currency',40,305+a*10); break
+                                //case 16: this.layer.text('On Survival, Gain 25 Currency\nIf Killed by Player, Gain 5 Currency',40,305+a*10); break
                                 case 17: this.layer.text('Auto-Aims',40,305+a*10); break
                                 case 18: this.layer.text('On Defeat, Gain a Relic',40,305+a*10); break
                                 case 19: this.layer.text('Robot',40,305+a*10); break
@@ -7823,7 +7829,8 @@ class combatant{
                             switch(this.sins[a]){
                                 case 0: this.layer.text('Pride - Add a Pride to Hand Every 2 Turns',210,225+a*15); break
                                 case 1: this.layer.text('Wrath - All Attacks Are Doubled',210,225+a*15); break
-                                case 2: this.layer.text('Gluttony - Adds a Random Status\nCard to Draw Each Turn',210,225+a*15); break
+                                case 2: this.layer.text('Gluttony - Adds a Stuffed to Draw Each Turn',210,225+a*15); break
+                                //case 2: this.layer.text('Gluttony - Adds a Random Status\nCard to Draw Each Turn',210,225+a*15); break
                                 case 3: this.layer.text('Greed - Remove All Non-Boss Relics',210,225+a*15); break
                                 case 4: this.layer.text('Envy - Take 1 Damage Per Card Played',210,225+a*15); break
                                 case 5: this.layer.text('Sloth - Each Turn, Applies 3 Weak, Vulnerable, or Frail',210,225+a*15); break
