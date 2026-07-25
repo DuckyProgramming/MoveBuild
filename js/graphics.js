@@ -9122,7 +9122,10 @@ function setupBackground(type,layer){
 			layer.fill(0)
 			layer.rect(layer.width/2,60,layer.width-65,55)
 			layer.rect(layer.width/2,125,layer.width-65,55)
-			for(let a=0,la=types.ascend.length;a<la;a++){
+			/*for(let a=0,la=types.ascend.length;a<la;a++){
+				layer.rect(25+(layer.width-50)*(0.5+a)/la,205,(layer.width-50)/la-12.5,35)
+			}*/
+			for(let a=0,la=types.diff.length;a<la;a++){
 				layer.rect(25+(layer.width-50)*(0.5+a)/la,205,(layer.width-50)/la-12.5,35)
 			}
 			layer.rect(layer.width/2,layer.height*0.6,100,100)
@@ -9154,11 +9157,15 @@ function setupBackground(type,layer){
 			layer.text('15s',layer.width/2+275,layer.height-57.5)
 			layer.text('30s',layer.width/2+425,layer.height-57.5)
 			layer.text('60s',layer.width/2+575,layer.height-57.5)
-			layer.fill(240)
 			layer.textSize(20)
-			for(let a=0,la=types.ascend.length;a<la;a++){
+			/*for(let a=0,la=types.ascend.length;a<la;a++){
+				layer.text(a,25+(layer.width-50)*(0.5+a)/la,240)
+			}*/
+			for(let a=0,la=types.diff.length;a<la;a++){
+				layer.fill(min(240,480-a/la*300),240-a/la*300,240-a/la*300)
 				layer.text(a,25+(layer.width-50)*(0.5+a)/la,240)
 			}
+			layer.fill(240)
 			layer.text('ANIMATION SPEED',layer.width/2-350,layer.height-137.5)
 			layer.text('TURN TIMER',layer.width/2+350,layer.height-137.5)
 			layer.text('BEGIN',layer.width/2,layer.height*0.6+100)

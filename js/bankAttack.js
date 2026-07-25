@@ -191,7 +191,7 @@ attack.prototype.update=function(){
         case 8604: case 8617: case 8629: case 8656: case 8657: case 8663: case 8667: case 8676: case 8684: case 8688:
         case 8715: case 8754: case 8755: case 8756: case 8772: case 8773: case 8774: case 8775: case 8776: case 8777:
         case 8779: case 8788: case 8789: case 8792: case 8800: case 8837: case 8839: case 8840: case 8841: case 8842:
-        case 8855: case 8870: case 8874:
+        case 8855: case 8870: case 8874: case 8883:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -1205,7 +1205,7 @@ attack.prototype.update=function(){
         case 8579: case 8582: case 8583: case 8590: case 8603: case 8605: case 8616: case 8624: case 8628: case 8639:
         case 8640: case 8641: case 8647: case 8649: case 8650: case 8658: case 8659: case 8671: case 8689: case 8708:
         case 8725: case 8727: case 8752: case 8753: case 8781: case 8782: case 8783: case 8803: case 8804: case 8833:
-        case 8844: case 8848: case 8853: case 8859: case 8861: case 8871:
+        case 8844: case 8848: case 8853: case 8859: case 8861: case 8871: case 8876: case 8881:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -2233,7 +2233,7 @@ attack.prototype.update=function(){
         case 6023: case 6024: case 6025: case 6102: case 6197: case 6199: case 6219: case 6234: case 6317: case 6418:
         case 6503: case 6652: case 6712: case 6713: case 6718: case 6719: case 6727: case 6728: case 6729: case 6735:
         case 6739: case 6741: case 6830: case 6895: case 7593: case 8319: case 8364: case 8381: case 8458: case 8517:
-        case 8849: case 8850: case 8856:
+        case 8849: case 8850: case 8856: case 8882:
             //mark 13
             if(
                 (this.type==1649||this.type==1740)&&this.userCombatant.energyParity(this.energy)!=this.limit%2||
@@ -2365,6 +2365,7 @@ attack.prototype.update=function(){
         case 8308: case 8309: case 8351: case 8366: case 8400: case 8438: case 8453: case 8494: case 8554: case 8556:
         case 8572: case 8573: case 8662: case 8685: case 8686: case 8692: case 8693: case 8743: case 8744: case 8745:
         case 8767: case 8778: case 8794: case 8801: case 8802: case 8819: case 8847: case 8857: case 8865: case 8866:
+        case 8877: case 8878:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -3180,7 +3181,7 @@ attack.prototype.update=function(){
         case 8095: case 8105: case 8113: case 8190: case 8264: case 8265: case 8282: case 8320: case 8321: case 8336:
         case 8341: case 8342: case 8356: case 8370: case 8396: case 8525: case 8546: case 8581: case 8584: case 8642:
         case 8643: case 8644: case 8652: case 8653: case 8673: case 8694: case 8699: case 8739: case 8770: case 8771:
-        case 8805: case 8834: case 8851: case 8852:
+        case 8805: case 8834: case 8851: case 8852: case 8880:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -7428,7 +7429,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 2070: case 2071: case 2072: case 2073: case 2074: case 2109: case 2348: case 6006: case 6007:
+        case 2070: case 2071: case 2072: case 2073: case 2074: case 2109: case 2348: case 6006: case 6007: case 8879:
             if(variants.nobasicanim){
                 this.selfCall(14)
                 this.remove=true
@@ -11078,7 +11079,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 4117: case 4676:
+        case 4117: case 4676: case 8884:
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
             }
@@ -11102,6 +11103,11 @@ attack.prototype.update=function(){
                         break
                         case 4676:
                             if(this.lastPlayed[0].color.includes(5)){
+                                this.userCombatant.charge+=this.effect[1]
+                            }
+                        break
+                        case 8884:
+                            if(this.lastPlayed[0].getCost(0)==0){
                                 this.userCombatant.charge+=this.effect[1]
                             }
                         break

@@ -3259,6 +3259,21 @@ function evens(num){
     }
     return result
 }
+function factor(num){
+    let current=num
+    let div=2
+    let set=[]
+    while(current>div){
+        if(current%div==0){
+            current/=div
+            set.push(div)
+        }else{
+            div++
+        }
+    }
+    set.push(current)
+    return set.join(`, `)
+}
 /*chambers=[`B`,``,``,``,``,``]
 function russianRoulette(){
     res=randin(chambers)

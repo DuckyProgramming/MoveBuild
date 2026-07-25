@@ -4623,12 +4623,12 @@ class combatant{
         }
         let count=elementArray(0,constants.orbNumber)
         this.orbs.forEach(orb=>count[orb]++)
-        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8620,count[0]])
-        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8606,count[4]])
-        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8607,count[6]])
-        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8608,count[5]])
-        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8609,count[16]])
-        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[8610,count.filter(value=>value>0).length])
+        this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[8620,count[0]])
+        this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[8606,count[4]])
+        this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[8607,count[6]])
+        this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[8608,count[5]])
+        this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[8609,count[16]])
+        this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[8610,count.filter(value=>value>0).length])
     }
     clearOrbs(){
         for(let a=0,la=this.orbs.length;a<la;a++){

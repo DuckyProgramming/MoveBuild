@@ -8774,15 +8774,15 @@ types.card=[
     },{
         name:'Scrap\nGlance',rarity:1,list:3,
         levels:[
-            {effect:[],attack:6103,cost:0,target:[2,1,6],spec:[1,15],limit:5,class:11},
-            {effect:[],attack:6103,cost:0,target:[2,1,6],spec:[1,15],limit:3,class:11},
-            {effect:[],attack:6103,cost:0,target:[2,1,6],spec:[1,15],limit:1,class:11},
+            {effect:[],attack:6103,cost:1,target:[2,1,6],spec:[1,15],limit:5,class:11},
+            {effect:[],attack:6103,cost:1,target:[2,1,6],spec:[1,15],limit:3,class:11},
+            {effect:[],attack:6103,cost:1,target:[2,1,6],spec:[1,15],limit:1,class:11},
         ],mtg:{
             rarity:1,list:3,color:[5],
             levels:[
-                {effect:[],attack:6103,cost:[],target:[2,1,6],spec:[1,15],limit:5,class:11},
-                {effect:[],attack:6103,cost:[],target:[2,1,6],spec:[1,15],limit:3,class:11},
-                {effect:[],attack:6103,cost:[],target:[2,1,6],spec:[1,15],limit:1,class:11},
+                {effect:[],attack:6103,cost:[5],target:[2,1,6],spec:[1,15],limit:5,class:11},
+                {effect:[],attack:6103,cost:[5],target:[2,1,6],spec:[1,15],limit:3,class:11},
+                {effect:[],attack:6103,cost:[5],target:[2,1,6],spec:[1,15],limit:1,class:11},
             ],
         },
     },{
@@ -13920,9 +13920,9 @@ types.card=[
     },{
         name:'Scrap\nOrb',rarity:1,list:5,
         levels:[
-            {effect:[1],attack:3608,cost:0,target:[0],spec:[1,15],limit:5,class:11},
-            {effect:[1],attack:3608,cost:0,target:[0],spec:[1,15],limit:3,class:11},
-            {effect:[1],attack:3608,cost:0,target:[0],spec:[1,15],limit:1,class:11},
+            {effect:[1],attack:3608,cost:1,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[1],attack:3608,cost:1,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[1],attack:3608,cost:1,target:[0],spec:[1,15],limit:1,class:11},
         ],mtg:{
             rarity:1,list:5,color:[2,3],
             levels:[
@@ -17720,20 +17720,6 @@ types.card=[
             ],
         },
     },{
-        name:'Scrap\nThought',rarity:1,list:7,
-        levels:[
-            {effect:[],attack:3609,cost:0,target:[0],spec:[1,15],limit:5,class:11},
-            {effect:[],attack:3609,cost:0,target:[0],spec:[1,15],limit:3,class:11},
-            {effect:[],attack:3609,cost:0,target:[0],spec:[1,15],limit:1,class:11},
-        ],mtg:{
-            rarity:1,list:7,color:[3],
-            levels:[
-                {effect:[],attack:3609,cost:[],target:[0],spec:[1,15],limit:5,class:11},
-                {effect:[],attack:3609,cost:[],target:[0],spec:[1,15],limit:3,class:11},
-                {effect:[],attack:3609,cost:[],target:[0],spec:[1,15],limit:1,class:11},
-            ],
-        },
-    },{
         name:'Extreme\nWrath',rarity:2,list:7,
         levels:[
             {effect:[],attack:3712,cost:3,target:[0],spec:[],class:4},
@@ -18753,6 +18739,20 @@ types.card=[
                 {effect:[3,1],attack:8678,cost:[1,2],target:[0],spec:[1],class:11},
                 {effect:[4,1],attack:8678,cost:[1,2],target:[0],spec:[1],class:11},
                 {effect:[5,1],attack:8678,cost:[1,2],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Scrap\nThought',rarity:1,list:7,
+        levels:[
+            {effect:[],attack:8876,cost:1,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[],attack:8876,cost:1,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[],attack:8876,cost:1,target:[0],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:1,list:7,color:[3],
+            levels:[
+                {effect:[],attack:8876,cost:[3],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[],attack:8876,cost:[3],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[],attack:8876,cost:[3],target:[0],spec:[1,15],limit:1,class:11},
             ],
         },
     },
@@ -19821,34 +19821,6 @@ types.card=[
                 {effect:[13],attack:4672,cost:[7,-1],target:[2,1,1],spec:[0,1,2,27],class:1},
                 {effect:[18],attack:4672,cost:[7,-1],target:[2,1,1],spec:[0,1,2,27],class:1},
                 {effect:[22],attack:4672,cost:[7,-1],target:[2,1,1],spec:[0,1,2,27],class:1},
-            ],
-        },
-    },{
-        name:'Cosmic\nSeam',rarity:1,list:8,
-        levels:[
-            {effect:[9,2],attack:3670,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[14,2],attack:3670,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[18,2],attack:3670,cost:1,target:[2,1,1],spec:[0],class:1},
-        ],mtg:{
-            rarity:1,list:8,color:[2],
-            levels:[
-                {effect:[6,1],attack:4675,cost:[2],target:[2,1,1],spec:[0],class:1},
-                {effect:[10,1],attack:4675,cost:[2],target:[2,1,1],spec:[0],class:1},
-                {effect:[13,1],attack:4675,cost:[2],target:[2,1,1],spec:[0],class:1},
-            ],
-        },
-    },{
-        name:'Asteroid\nBelt',rarity:1,list:8,
-        levels:[
-            {effect:[8,4],attack:4117,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[12,5],attack:4117,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[15,6],attack:4117,cost:2,target:[2,1,2],spec:[0],class:1},
-        ],mtg:{
-            rarity:1,list:8,color:[5],
-            levels:[
-                {effect:[8,4],attack:4676,cost:[5,5,-1],target:[2,1,2],spec:[0],class:1},
-                {effect:[12,5],attack:4676,cost:[5,5,-1],target:[2,1,2],spec:[0],class:1},
-                {effect:[15,6],attack:4676,cost:[5,5,-1],target:[2,1,2],spec:[0],class:1},
             ],
         },
     },{
@@ -20999,6 +20971,34 @@ types.card=[
                 {effect:[1],attack:8847,cost:[9],target:[2,1,3],spec:[22],class:1},
             ],
         },
+    },{
+        name:'Cosmic\nSeam',rarity:1,list:8,
+        levels:[
+            {effect:[9,2],attack:8883,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14,2],attack:8883,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[18,2],attack:8883,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:1,list:8,color:[2],
+            levels:[
+                {effect:[6,1],attack:4675,cost:[2],target:[2,1,1],spec:[0],class:1},
+                {effect:[10,1],attack:4675,cost:[2],target:[2,1,1],spec:[0],class:1},
+                {effect:[13,1],attack:4675,cost:[2],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Asteroid\nBelt',rarity:1,list:8,
+        levels:[
+            {effect:[8,4],attack:8884,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[12,5],attack:8884,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[15,6],attack:8884,cost:2,target:[2,1,2],spec:[0],class:1},
+        ],mtg:{
+            rarity:1,list:8,color:[5],
+            levels:[
+                {effect:[8,4],attack:4676,cost:[5,5,-1],target:[2,1,2],spec:[0],class:1},
+                {effect:[12,5],attack:4676,cost:[5,5,-1],target:[2,1,2],spec:[0],class:1},
+                {effect:[15,6],attack:4676,cost:[5,5,-1],target:[2,1,2],spec:[0],class:1},
+            ],
+        },
     },
 
     //mark 8
@@ -21939,20 +21939,6 @@ types.card=[
                 {effect:[2],attack:4435,cost:[1,5],target:[0],spec:[1],class:11},
                 {effect:[2],attack:4436,cost:[1,5],target:[0],spec:[1],class:11},
                 {effect:[2],attack:4437,cost:[1,5],target:[0],spec:[1],class:11},
-            ],
-        },
-    },{
-        name:'Scrap\nKettle',rarity:1,list:9,
-        levels:[
-            {effect:[1],attack:3601,cost:0,target:[0],spec:[1,15],limit:5,class:11},
-            {effect:[1],attack:3601,cost:0,target:[0],spec:[1,15],limit:3,class:11},
-            {effect:[1],attack:3601,cost:0,target:[0],spec:[1,15],limit:1,class:11},
-        ],mtg:{
-            rarity:1,list:9,color:[1],
-            levels:[
-                {effect:[1],attack:3601,cost:[],target:[0],spec:[1,15],limit:5,class:11},
-                {effect:[1],attack:3601,cost:[],target:[0],spec:[1,15],limit:3,class:11},
-                {effect:[1],attack:3601,cost:[],target:[0],spec:[1,15],limit:1,class:11},
             ],
         },
     },{
@@ -23241,6 +23227,20 @@ types.card=[
                 {effect:[2,1],attack:8865,cost:[1,2],target:[2,1,3],spec:[],class:11},
                 {effect:[4,1],attack:8865,cost:[1,2],target:[2,1,3],spec:[],class:11},
                 {effect:[6,1],attack:8865,cost:[1,2],target:[2,1,3],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Scrap\nKettle',rarity:1,list:9,
+        levels:[
+            {effect:[1],attack:8877,cost:1,target:[2,1,1],spec:[1,15],limit:5,class:11},
+            {effect:[2],attack:8877,cost:1,target:[2,1,1],spec:[1,15],limit:3,class:11},
+            {effect:[3],attack:8877,cost:1,target:[2,1,1],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:1,list:9,color:[1],
+            levels:[
+                {effect:[1],attack:8877,cost:[1],target:[2,1,1],spec:[1,15],limit:5,class:11},
+                {effect:[2],attack:8877,cost:[1],target:[2,1,1],spec:[1,15],limit:3,class:11},
+                {effect:[3],attack:8877,cost:[1],target:[2,1,1],spec:[1,15],limit:1,class:11},
             ],
         },
     },
@@ -26782,9 +26782,9 @@ types.card=[
     },{
         name:'Scrap\nDrop',rarity:1,list:11,
         levels:[
-            {effect:[1],attack:6306,cost:0,target:[0],spec:[1,15],limit:5,class:11},
-            {effect:[2],attack:6306,cost:0,target:[0],spec:[1,15],limit:3,class:11},
-            {effect:[3],attack:6306,cost:0,target:[0],spec:[1,15],limit:1,class:11},
+            {effect:[1],attack:6306,cost:1,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[2],attack:6306,cost:1,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[3],attack:6306,cost:1,target:[0],spec:[1,15],limit:1,class:11},
         ],mtg:{
             rarity:1,list:11,color:[3],
             levels:[
@@ -28954,20 +28954,6 @@ types.card=[
             ],
         },
     },{
-        name:'Scrap\nApp',rarity:1,list:12,
-        levels:[
-            {effect:[1],attack:3604,cost:0,target:[0],spec:[1,15],limit:5,class:11},
-            {effect:[1],attack:3604,cost:0,target:[0],spec:[1,15],limit:3,class:11},
-            {effect:[1],attack:3604,cost:0,target:[0],spec:[1,15],limit:1,class:11},
-        ],mtg:{
-            rarity:1,list:12,color:[3],
-            levels:[
-                {effect:[1],attack:3604,cost:[],target:[0],spec:[1,15],limit:5,class:11},
-                {effect:[1],attack:3604,cost:[],target:[0],spec:[1,15],limit:3,class:11},
-                {effect:[1],attack:3604,cost:[],target:[0],spec:[1,15],limit:1,class:11},
-            ],
-        },
-    },{
         name:'Clear\nDrive',rarity:1,list:12,
         levels:[
             {effect:[],attack:3660,cost:0,target:[0],spec:[],class:11},
@@ -29973,6 +29959,20 @@ types.card=[
                 {effect:[1,1],attack:8819,cost:[3,3],target:[2,1,3],spec:[2],class:11},
                 {effect:[2,1],attack:8819,cost:[3,3],target:[2,1,3],spec:[2],class:11},
                 {effect:[2,2],attack:8819,cost:[3,3],target:[2,1,3],spec:[2],class:11},
+            ],
+        },
+    },{
+        name:'Scrap\nApp',rarity:1,list:12,
+        levels:[
+            {effect:[1],attack:8878,cost:1,target:[2,1,1],spec:[1,15],limit:5,class:11},
+            {effect:[2],attack:8878,cost:1,target:[2,1,1],spec:[1,15],limit:3,class:11},
+            {effect:[3],attack:8878,cost:1,target:[2,1,1],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:1,list:12,color:[3],
+            levels:[
+                {effect:[1],attack:8878,cost:[3],target:[2,1,1],spec:[1,15],limit:5,class:11},
+                {effect:[2],attack:8878,cost:[3],target:[2,1,1],spec:[1,15],limit:3,class:11},
+                {effect:[3],attack:8878,cost:[3],target:[2,1,1],spec:[1,15],limit:1,class:11},
             ],
         },
     },
@@ -31240,20 +31240,6 @@ types.card=[
             ],
         },
     },{
-        name:'Scrap\nClock',rarity:1,list:13,
-        levels:[
-            {effect:[],attack:5146,cost:0,target:[0],spec:[1,15],limit:5,class:11},
-            {effect:[],attack:5146,cost:0,target:[0],spec:[1,15],limit:3,class:11},
-            {effect:[],attack:5146,cost:0,target:[0],spec:[1,15],limit:1,class:11},
-        ],mtg:{
-            rarity:1,list:13,color:[1],
-            levels:[
-                {effect:[],attack:5146,cost:[],target:[0],spec:[1,15],limit:5,class:11},
-                {effect:[],attack:5146,cost:[],target:[0],spec:[1,15],limit:3,class:11},
-                {effect:[],attack:5146,cost:[],target:[0],spec:[1,15],limit:1,class:11},
-            ],
-        },
-    },{
         name:'Archway',rarity:2,list:13,
         levels:[
             {effect:[2],attack:5162,cost:3,target:[1,1,2],spec:[0,1,64],class:3},
@@ -32217,6 +32203,20 @@ types.card=[
                 {effect:[],attack:2296,cost:[],target:[52,2,6],spec:[2],class:3},
                 {effect:[1],attack:2297,cost:[],target:[53,2,6,1,1],spec:[2],class:3},
                 {effect:[2],attack:2297,cost:[],target:[53,2,6,1,2],spec:[2],class:3},
+            ],
+        },
+    },{
+        name:'Scrap\nClock',rarity:1,list:13,
+        levels:[
+            {effect:[1],attack:8879,cost:1,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[2],attack:8879,cost:1,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[3],attack:8879,cost:1,target:[0],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:1,list:13,color:[1],
+            levels:[
+                {effect:[1],attack:8879,cost:[1],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[2],attack:8879,cost:[1],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[3],attack:8879,cost:[1],target:[0],spec:[1,15],limit:1,class:11},
             ],
         },
     },
@@ -33257,20 +33257,6 @@ types.card=[
                 {effect:[16,25],attack:1167,cost:[2,4],target:[2,1,1],spec:[0],class:1},
                 {effect:[24,35],attack:1167,cost:[2,4],target:[2,1,1],spec:[0],class:1},
                 {effect:[32,40],attack:1167,cost:[2,4],target:[2,1,1],spec:[0],class:1},
-            ],
-        },
-    },{
-        name:'Scrap\nChemicals',rarity:1,list:14,
-        levels:[
-            {effect:[1],attack:3606,cost:0,target:[0],spec:[1,15],limit:5,class:11},
-            {effect:[1],attack:3606,cost:0,target:[0],spec:[1,15],limit:3,class:11},
-            {effect:[1],attack:3606,cost:0,target:[0],spec:[1,15],limit:1,class:11},
-        ],mtg:{
-            rarity:1,list:14,color:[2],
-            levels:[
-                {effect:[1],attack:3606,cost:[],target:[0],spec:[1,15],limit:5,class:11},
-                {effect:[1],attack:3606,cost:[],target:[0],spec:[1,15],limit:3,class:11},
-                {effect:[1],attack:3606,cost:[],target:[0],spec:[1,15],limit:1,class:11},
             ],
         },
     },{
@@ -34461,6 +34447,20 @@ types.card=[
                 {effect:[],attack:8794,cost:[],target:[2,1,3],spec:[],class:11},
                 {effect:[],attack:8794,cost:[],target:[2,1,3],spec:[],class:11},
                 {effect:[],attack:8794,cost:[],target:[2,1,3],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Scrap\nJunk',rarity:1,list:14,
+        levels:[
+            {effect:[1],attack:8880,cost:1,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[2],attack:8880,cost:1,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[3],attack:8880,cost:1,target:[0],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:1,list:14,color:[2],
+            levels:[
+                {effect:[1],attack:8880,cost:[2],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[2],attack:8880,cost:[2],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[3],attack:8880,cost:[2],target:[0],spec:[1,15],limit:1,class:11},
             ],
         },
     },
@@ -48436,20 +48436,6 @@ types.card=[
             ],
         },
     },{
-        name:'Scrap\nAir',rarity:1,list:21,
-        levels:[
-            {effect:[1],attack:6403,cost:0,target:[0],spec:[1,15],limit:5,class:11},
-            {effect:[1],attack:6403,cost:0,target:[0],spec:[1,15],limit:3,class:11},
-            {effect:[1],attack:6403,cost:0,target:[0],spec:[1,15],limit:1,class:11},
-        ],mtg:{
-            rarity:1,list:21,color:[3],
-            levels:[
-                {effect:[1],attack:6403,cost:[],target:[0],spec:[1,15],limit:5,class:11},
-                {effect:[1],attack:6403,cost:[],target:[0],spec:[1,15],limit:3,class:11},
-                {effect:[1],attack:6403,cost:[],target:[0],spec:[1,15],limit:1,class:11},
-            ],
-        },
-    },{
         name:'Bereavement',rarity:0,list:21,
         levels:[
             {effect:[9,1],attack:6404,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -48982,7 +48968,7 @@ types.card=[
             ],
         },
     },{
-        name:'Weighted\nWings',rarity:1,list:21,
+        name:'Weighted\nWing',rarity:1,list:21,
         levels:[
             {effect:[4,1],attack:6504,cost:0,target:[0],spec:[],class:11},
             {effect:[6,1],attack:6504,cost:0,target:[0],spec:[],class:11},
@@ -50171,6 +50157,20 @@ types.card=[
                 {effect:[4,1],attack:8875,cost:[3,-1],target:[0],spec:[],class:11},
             ],
         },
+    },{
+        name:'Scrap\nAir',rarity:1,list:21,
+        levels:[
+            {effect:[1],attack:8881,cost:1,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[2],attack:8881,cost:1,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[3],attack:8881,cost:1,target:[0],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:1,list:21,color:[3],
+            levels:[
+                {effect:[1],attack:8881,cost:[3],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[2],attack:8881,cost:[3],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[3],attack:8881,cost:[3],target:[0],spec:[1,15],limit:1,class:11},
+            ],
+        },
     },
 
     //mark 21
@@ -50719,20 +50719,6 @@ types.card=[
                 {effect:[12,1],attack:7276,cost:[3],target:[2,1,1],spec:[0,3],class:1},
                 {effect:[18,1],attack:7276,cost:[3],target:[2,1,1],spec:[0,3],class:1},
                 {effect:[22,1],attack:7276,cost:[3],target:[2,1,1],spec:[0,3],class:1},
-            ],
-        },
-    },{
-        name:'Scrap\nAbettal',rarity:1,list:22,
-        levels:[
-            {effect:[1],attack:7275,cost:0,target:[0],spec:[1,15],limit:5,class:11},
-            {effect:[1],attack:7275,cost:0,target:[0],spec:[1,15],limit:3,class:11},
-            {effect:[1],attack:7275,cost:0,target:[0],spec:[1,15],limit:1,class:11},
-        ],mtg:{
-            rarity:1,list:22,color:[3],
-            levels:[
-                {effect:[1],attack:7275,cost:[],target:[0],spec:[1,15],limit:5,class:11},
-                {effect:[1],attack:7275,cost:[],target:[0],spec:[1,15],limit:3,class:11},
-                {effect:[1],attack:7275,cost:[],target:[0],spec:[1,15],limit:1,class:11},
             ],
         },
     },{
@@ -52413,6 +52399,20 @@ types.card=[
                 {effect:[1,1],attack:7107,cost:[3,-1],target:[1,1,1],spec:[0],class:3},
                 {effect:[1,1],attack:7107,cost:[-1,-1],target:[1,1,1],spec:[0],class:3},
                 {effect:[1,1],attack:7107,cost:[-1],target:[1,1,1],spec:[0],class:3},
+            ],
+        },
+    },{
+        name:'Scrap\nAbettal',rarity:1,list:22,
+        levels:[
+            {effect:[1],attack:8882,cost:1,target:[2,1,1],spec:[1,15],limit:5,class:11},
+            {effect:[2],attack:8882,cost:1,target:[2,1,1],spec:[1,15],limit:3,class:11},
+            {effect:[3],attack:8882,cost:1,target:[2,1,1],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:1,list:22,color:[3],
+            levels:[
+                {effect:[1],attack:8882,cost:[3],target:[2,1,1],spec:[1,15],limit:5,class:11},
+                {effect:[2],attack:8882,cost:[3],target:[2,1,1],spec:[1,15],limit:3,class:11},
+                {effect:[3],attack:8882,cost:[3],target:[2,1,1],spec:[1,15],limit:1,class:11},
             ],
         },
     },
@@ -57988,15 +57988,15 @@ types.card=[
     },{
         name:'Faithful\nGuide',rarity:0,list:25,
         levels:[
-            {effect:[2],attack:2565,cost:1,target:[0],spec:[],class:11},
-            {effect:[3],attack:2565,cost:1,target:[0],spec:[],class:11},
-            {effect:[4],attack:2565,cost:1,target:[0],spec:[],class:11},
+            {effect:[2],attack:2565,cost:1,target:[0],spec:[2],class:11},
+            {effect:[3],attack:2565,cost:1,target:[0],spec:[2],class:11},
+            {effect:[4],attack:2565,cost:1,target:[0],spec:[2],class:11},
         ],mtg:{
             rarity:0,list:-1,color:[1,2],
             levels:[
-                {effect:[3],attack:2565,cost:[1,2],target:[0],spec:[],class:11},
-                {effect:[4],attack:2565,cost:[1,2],target:[0],spec:[],class:11},
-                {effect:[5],attack:2565,cost:[1,2],target:[0],spec:[],class:11},
+                {effect:[3],attack:2565,cost:[1,2],target:[0],spec:[2],class:11},
+                {effect:[4],attack:2565,cost:[1,2],target:[0],spec:[2],class:11},
+                {effect:[5],attack:2565,cost:[1,2],target:[0],spec:[2],class:11},
             ],
         },
     },{
@@ -99353,6 +99353,132 @@ types.card=[
                 {effect:[],attack:0,cost:[],target:[0],spec:[5,33],class:5},
                 {effect:[],attack:0,cost:[],target:[0],spec:[4,5,33],class:5},
                 {effect:[],attack:0,cost:[-1],target:[0],spec:[1,4,33],class:5},
+            ],
+        },
+    },{
+        name:'Scrap\nDot',rarity:-1,list:-8,
+        levels:[
+            {effect:[],attack:3609,cost:0,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[],attack:3609,cost:0,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[],attack:3609,cost:0,target:[0],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[],attack:3609,cost:[],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[],attack:3609,cost:[],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[],attack:3609,cost:[],target:[0],spec:[1,15],limit:1,class:11},
+            ],
+        },
+    },{
+        name:'Scrap\nFlame',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:3601,cost:0,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[1],attack:3601,cost:0,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[1],attack:3601,cost:0,target:[0],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1],
+            levels:[
+                {effect:[1],attack:3601,cost:[],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[1],attack:3601,cost:[],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[1],attack:3601,cost:[],target:[0],spec:[1,15],limit:1,class:11},
+            ],
+        },
+    },{
+        name:'Scrap\nZap',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:3604,cost:0,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[1],attack:3604,cost:0,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[1],attack:3604,cost:0,target:[0],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[1],attack:3604,cost:[],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[1],attack:3604,cost:[],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[1],attack:3604,cost:[],target:[0],spec:[1,15],limit:1,class:11},
+            ],
+        },
+    },{
+        name:'Scrap\nRock',rarity:-1,list:-8,
+        levels:[
+            {effect:[],attack:5146,cost:0,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[],attack:5146,cost:0,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[],attack:5146,cost:0,target:[0],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1],
+            levels:[
+                {effect:[],attack:5146,cost:[],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[],attack:5146,cost:[],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[],attack:5146,cost:[],target:[0],spec:[1,15],limit:1,class:11},
+            ],
+        },
+    },{
+        name:'Scrap\nChemicals',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:3606,cost:0,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[1],attack:3606,cost:0,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[1],attack:3606,cost:0,target:[0],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[1],attack:3606,cost:[],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[1],attack:3606,cost:[],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[1],attack:3606,cost:[],target:[0],spec:[1,15],limit:1,class:11},
+            ],
+        },
+    },{
+        name:'Scrap\nLair',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:6403,cost:0,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[1],attack:6403,cost:0,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[1],attack:6403,cost:0,target:[0],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[1],attack:6403,cost:[],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[1],attack:6403,cost:[],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[1],attack:6403,cost:[],target:[0],spec:[1,15],limit:1,class:11},
+            ],
+        },
+    },{
+        name:'Scrap\nNerf',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:7275,cost:0,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[1],attack:7275,cost:0,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[1],attack:7275,cost:0,target:[0],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[1],attack:7275,cost:[],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[1],attack:7275,cost:[],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[1],attack:7275,cost:[],target:[0],spec:[1,15],limit:1,class:11},
+            ],
+        },
+    },{
+        name:'Cosmic\nBean',rarity:-1,list:-8,
+        levels:[
+            {effect:[9,2],attack:3670,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14,2],attack:3670,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[18,2],attack:3670,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[6,1],attack:4675,cost:[2],target:[2,1,1],spec:[0],class:1},
+                {effect:[10,1],attack:4675,cost:[2],target:[2,1,1],spec:[0],class:1},
+                {effect:[13,1],attack:4675,cost:[2],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Aspid\nBelt',rarity:-1,list:-8,
+        levels:[
+            {effect:[8,4],attack:4117,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[12,5],attack:4117,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[15,6],attack:4117,cost:2,target:[2,1,2],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[5],
+            levels:[
+                {effect:[8,4],attack:4676,cost:[5,5,-1],target:[2,1,2],spec:[0],class:1},
+                {effect:[12,5],attack:4676,cost:[5,5,-1],target:[2,1,2],spec:[0],class:1},
+                {effect:[15,6],attack:4676,cost:[5,5,-1],target:[2,1,2],spec:[0],class:1},
             ],
         },
     },

@@ -9091,6 +9091,18 @@ card.prototype.description=function(attack,effect,spec,target){
         case 8873: string+=`90%: Move ${effect[0]} Tile${pl(effect[0])}\nLose ${effect[1]} Block`; break
         case 8874: string+=`If Target Will Attack,\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
         case 8875: string+=`Gain ${effect[0]} Strength\nShuffle ${effect[1]} Dazed${pl(effect[1])}\ninto Draw Pile`; break
+        case 8876: string+=`Enter Calm\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+        case 8877: string+=`Apply ${effect[0]} Burn\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+        case 8878: string+=`Apply ${effect[0]} Shock\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+        case 8879: string+=`Increase Turn\nNumber by ${effect[0]}\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+        case 8880: string+=`Gain ${effect[0]} Granola\nBar Item${pl(effect[0])}\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+        case 8881: string+=`Add ${effect[0]} Dazed${pl(effect[0])}\nto Hand\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+        case 8882: string+=`Apply ${effect[0]} Weak\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+
+        case 8883: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card\nPlayed Cost 0,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        //3670
+        case 8884: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nIf Last Card\nPlayed Cost 0,\nGain ${effect[1]} Charge`; break
+        //4117
 
         //mark p
 

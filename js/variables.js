@@ -7490,6 +7490,7 @@ Does not decrement.`,
         {name:'Jester',desc:'Every Turn, Randomly Get Burned, Frozen, or Shocked'},
         {name:'Managerial',desc:'Immediately Fight 12 Management Robots'},
         {name:'Luck',desc:'Gain 777 Currency'},
+        {name:'The Looker',desc:'Relic Images Look Wrong'},
         //{name:'Developer',desc:'Add 1-5 of Nothings to Deck'},
         {name:'Pareidolia',desc:'Copy Every Non-Boss Enemy, Copies Get 1 HP'},
         {name:'Marx',desc:'All Cards Become Classless'},
@@ -7585,7 +7586,6 @@ Does not decrement.`,
         {name:'Nerfmaster',desc:'When You Get Nerfed, Gain 1 Weak'},
         {name:'Big Bounce',desc:'Enemies Have a 10% Chance to be Tripled but Pushed Back 1 Turn'},
         {name:'Pinstripe',desc:'When an Enemy Dies, Take 2 Damage'},//240
-        {name:'The Looker',desc:'Relic Images Look Wrong'},
 
         //mark mod
     ],deckmode:[

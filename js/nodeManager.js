@@ -335,7 +335,7 @@ class nodeManager{
             case 3:
                 if(this.battle.modded(161)&&floor(random(0,4))==0){
                     transition.scene='battle'
-                    let list=this.listing.encounter[this.world][0]
+                    let list=this.listing.encounter[min(2,this.world)][0]
                     let index=floor(random(0,list.length))
                     this.battle.setupBattle(types.encounter[list[index]])
                     list.splice(index,1)
@@ -350,7 +350,7 @@ class nodeManager{
             case 4:
                 if(this.battle.modded(161)&&floor(random(0,4))==0){
                     transition.scene='battle'
-                    let list=this.listing.encounter[this.world][0]
+                    let list=this.listing.encounter[min(2,this.world)][0]
                     let index=floor(random(0,list.length))
                     this.battle.setupBattle(types.encounter[list[index]])
                     list.splice(index,1)
