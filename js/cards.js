@@ -5729,20 +5729,6 @@ types.card=[
             ],
         },
     },{
-        name:'Slimfliction',rarity:0,list:2,
-        levels:[
-            {effect:[3,1],attack:1629,cost:0,target:[2,1,3],spec:[],class:1},
-            {effect:[6,1],attack:1629,cost:0,target:[2,1,3],spec:[],class:1},
-            {effect:[6,2],attack:1629,cost:0,target:[2,1,3],spec:[],class:1},
-        ],mtg:{
-            rarity:0,list:2,color:[3],
-            levels:[
-                {effect:[6,1],attack:1629,cost:[3],target:[2,1,3],spec:[0],class:1},
-                {effect:[6,1],attack:1629,cost:[],target:[2,1,3],spec:[],class:1},
-                {effect:[6,2],attack:1629,cost:[],target:[2,1,3],spec:[],class:1},
-            ],
-        },
-    },{
         name:'Sprout',rarity:0,list:2,
         levels:[
             {effect:[],attack:1669,cost:1,target:[9],spec:[],class:11},
@@ -7532,6 +7518,20 @@ types.card=[
                 {effect:[1],attack:8871,cost:[-1,-1,-1],target:[0],spec:[1],class:11},
                 {effect:[1],attack:8871,cost:[-1,-1],target:[0],spec:[1],class:11},
                 {effect:[1],attack:8871,cost:[-1],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Keep\nDistance',rarity:0,list:2,
+        levels:[
+            {effect:[],attack:8885,cost:0,target:[2,1,6],spec:[],class:3},
+            {effect:[],attack:8885,cost:0,target:[2,1,6],spec:[2],class:3},
+            {effect:[1],attack:8886,cost:0,target:[30,1,6,1,1],spec:[0],class:3},
+        ],mtg:{
+            rarity:0,list:2,color:[5],
+            levels:[
+                {effect:[],attack:8885,cost:[],target:[2,1,6],spec:[],class:3},
+                {effect:[],attack:8885,cost:[],target:[2,1,6],spec:[2],class:3},
+                {effect:[1],attack:8886,cost:[],target:[30,1,6,1,1],spec:[0],class:3},
             ],
         },
     },
@@ -65604,17 +65604,17 @@ types.card=[
     //mark j-1
 
     {
-        name:'Keep\nDistance',rarity:-10,list:2,
+        name:'Leap\nDistance',rarity:-10,list:2,
         levels:[
-            {effect:[2],attack:368,cost:0,target:[2,3,4],spec:[],class:3},
-            {effect:[4],attack:368,cost:0,target:[2,3,6],spec:[2],class:3},
-            {effect:[4,1],attack:657,cost:0,target:[30,3,6,1,1],spec:[0],class:3},
+            {effect:[],attack:368,cost:0,target:[2,3,4],spec:[],class:3},
+            {effect:[],attack:368,cost:0,target:[2,3,6],spec:[],class:3},
+            {effect:[],attack:368,cost:0,target:[2,3,6],spec:[2],class:3},
         ],mtg:{
             rarity:-10,list:2,color:[5],
             levels:[
-                {effect:[2],attack:368,cost:[],target:[2,3,4],spec:[],class:3},
-                {effect:[4],attack:368,cost:[],target:[2,3,6],spec:[2],class:3},
-                {effect:[4,1],attack:657,cost:[],target:[30,3,6,1,1],spec:[0],class:3},
+                {effect:[],attack:368,cost:[],target:[2,3,4],spec:[],class:3},
+                {effect:[],attack:368,cost:[],target:[2,3,6],spec:[],class:3},
+                {effect:[],attack:368,cost:[],target:[2,3,6],spec:[2],class:3},
             ],
         },
     },{
@@ -99479,6 +99479,20 @@ types.card=[
                 {effect:[8,4],attack:4676,cost:[5,5,-1],target:[2,1,2],spec:[0],class:1},
                 {effect:[12,5],attack:4676,cost:[5,5,-1],target:[2,1,2],spec:[0],class:1},
                 {effect:[15,6],attack:4676,cost:[5,5,-1],target:[2,1,2],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Slimfliction',rarity:-1,list:-8,
+        levels:[
+            {effect:[3,1],attack:1629,cost:0,target:[2,1,3],spec:[],class:1},
+            {effect:[6,1],attack:1629,cost:0,target:[2,1,3],spec:[],class:1},
+            {effect:[6,2],attack:1629,cost:0,target:[2,1,3],spec:[],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[6,1],attack:1629,cost:[3],target:[2,1,3],spec:[0],class:1},
+                {effect:[6,1],attack:1629,cost:[],target:[2,1,3],spec:[],class:1},
+                {effect:[6,2],attack:1629,cost:[],target:[2,1,3],spec:[],class:1},
             ],
         },
     },

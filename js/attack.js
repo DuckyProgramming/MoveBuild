@@ -290,7 +290,7 @@ class attack{
             case 8618: case 8627: case 8629: case 8656: case 8657: case 8660: case 8662: case 8663: case 8664: case 8667: case 8676: case 8684: case 8685: case 8686: case 8688: case 8692: case 8693: case 8712: case 8713: case 8715:
             case 8719: case 8724: case 8728: case 8744: case 8745: case 8750: case 8754: case 8755: case 8756: case 8772: case 8773: case 8774: case 8775: case 8776: case 8777: case 8778: case 8779: case 8780: case 8782: case 8783:
             case 8788: case 8789: case 8791: case 8792: case 8794: case 8797: case 8798: case 8799: case 8800: case 8801: case 8802: case 8805: case 8813: case 8819: case 8820: case 8821: case 8823: case 8837: case 8839: case 8840:
-            case 8841: case 8842: case 8847: case 8849: case 8850: case 8855: case 8856: case 8857: case 8865: case 8866: case 8868: case 8870: case 8874: case 8877: case 8878: case 8882: case 8883: case 8884:
+            case 8841: case 8842: case 8847: case 8849: case 8850: case 8855: case 8856: case 8857: case 8865: case 8866: case 8868: case 8870: case 8874: case 8877: case 8878: case 8882: case 8883: case 8884: case 8885:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -381,7 +381,7 @@ class attack{
             break
             case 9: case 650: case 651: case 727: case 1591: case 1592: case 1593: case 1594: case 1645: case 1646:
             case 2095: case 2164: case 2165: case 2380: case 2626: case 3432: case 4071: case 5905: case 6408: case 6726:
-            case 7656: case 8455:
+            case 7656: case 8455: case 8886:
                 if(this.targetClass==1){
                     this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 

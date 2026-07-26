@@ -9098,11 +9098,10 @@ card.prototype.description=function(attack,effect,spec,target){
         case 8880: string+=`Gain ${effect[0]} Granola\nBar Item${pl(effect[0])}\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
         case 8881: string+=`Add ${effect[0]} Dazed${pl(effect[0])}\nto Hand\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
         case 8882: string+=`Apply ${effect[0]} Weak\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
-
         case 8883: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card\nPlayed Cost 0,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-        //3670
         case 8884: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nIf Last Card\nPlayed Cost 0,\nGain ${effect[1]} Charge`; break
-        //4117
+        case 8885: string+=`Advance or Retreat\nto Range 2`; break
+        case 8886: string+=`Advance or Retreat\nto Range 2\nRange ${target[1]}-${target[2]}\nor\nMove ${effect[0]} Tile${pl(effect[0])}`; break
 
         //mark p
 
