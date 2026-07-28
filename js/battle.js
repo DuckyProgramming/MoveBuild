@@ -97,7 +97,8 @@ class battle{
                 diff:[],diffDesc:[],diffSingle:0,
                 animRate:[],turnTime:[],variants:[],prismrule:[],mtg:[]
             },
-            mtg:{manaChoice:[],manaBase:[],manaOld:[],manaNew:[]}
+            mtg:{manaChoice:[],manaBase:[],manaOld:[],manaNew:[]},
+            date:new Date().getDate(),
         }
         for(let a=0,la=constants.playerNumber;a<=la;a++){
             for(let b=0,lb=2;b<lb;b++){
@@ -163,7 +164,7 @@ class battle{
         this.players=this.player.length
         this.initialGraphics()
 
-        this.encounter={class:0,world:0,name:'',custom:[0,0]}
+        this.encounter={class:0,world:0,name:'',custom:[0,0],badApple:0}
         this.currency={money:[],ss:[]}
         this.energy={main:[],gen:[],base:[],originalBase:[],temp:[],lastSpend:[],crystal:[],crystalTotal:[]}
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],barrier:[],bounce:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
@@ -1699,6 +1700,22 @@ class battle{
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])
+        switch(this.encounter.badApple){
+            case 0:
+                if(card.name.replaceAll(`\n`,` `).split(` `).includes(`Bad`)){
+                    this.encounter.badApple=1
+                }
+            break
+            case 1:
+                let splitted=card.name.replaceAll(`\n`,` `).split(` `)
+                if(splitted.includes(`Apple`)){
+                    this.encounter.badApple=2
+                    window.open('https://www.youtube.com/watch?v=FtutLA63Cp8')
+                }else if(!splitted.includes(`Bad`)){
+                    this.encounter.badApple=0
+                }
+            break
+        }
     }
     displayCurrency(){
         this.layer.stroke(0)
@@ -2439,6 +2456,27 @@ class battle{
                     this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop-scalar*2-div)
                     //this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop)
                     //this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop)
+                    this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop+scalar*0.1)
+                    this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop+scalar*0.1)
+                    this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop+scalar+div)
+                    this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop+scalar*2+div)
+                    this.layer.endShape()
+                }
+                if(this.menu.date==26){
+                    let gradient=[new p5.LinearGradient(-40,600)]
+                    gradient[0].colors(range(0,64).map(num=>[(num+game.timer*0.5)%64/64,color(255,255,255,num%8==3?0.25:num%8==2||num%8==4?0.1:0)]).flat())
+                    this.layer.strokeGradient(gradient[0])
+                    this.layer.strokeWeight(40)
+                    this.layer.beginShape()
+                    this.layer.vertex(swivel+div*constants.sqrt3,this.layer.height*prop-scalar*2-div)
+                    this.layer.vertex(swivel+div*constants.sqrt3,this.layer.height*prop+scalar*2+div)
+                    this.layer.vertex(swivel+div*constants.sqrt3+scalar*constants.sqrt3,this.layer.height*prop+scalar+div)
+                    this.layer.vertex(swivel+div*constants.sqrt3+scalar*constants.sqrt3,this.layer.height*prop-scalar-div)
+                    this.layer.vertex(swivel+div*constants.sqrt3,this.layer.height*prop)
+                    this.layer.endShape()
+                    this.layer.beginShape()
+                    this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop-scalar-div)
+                    this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop-scalar*2-div)
                     this.layer.vertex(swivel-div*constants.sqrt3,this.layer.height*prop+scalar*0.1)
                     this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop+scalar*0.1)
                     this.layer.vertex(swivel-div*constants.sqrt3-scalar*constants.sqrt3,this.layer.height*prop+scalar+div)
