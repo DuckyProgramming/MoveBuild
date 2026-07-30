@@ -4381,6 +4381,13 @@ combatant.prototype.setupGraphics=function(direction){
             }
         break
     }
+    if(this.battle.menu!=undefined&&this.battle.menu.date==26){
+        //mark 26
+        if(this.spin.mouth==216&&this.anim.mouth.x==8&&this.anim.mouth.y==5){
+            this.spin.mouth-=180
+            this.parts.mouth-=4
+        }
+    }
 }
 combatant.prototype.minorDisplay=function(type,key){
     let dir

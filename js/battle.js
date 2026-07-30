@@ -2463,6 +2463,7 @@ class battle{
                     this.layer.endShape()
                 }
                 if(this.menu.date==26){
+                    //mark 26
                     let gradient=[new p5.LinearGradient(-40,600)]
                     gradient[0].colors(range(0,64).map(num=>[(num+game.timer*0.5)%64/64,color(255,255,255,num%8==3?0.25:num%8==2||num%8==4?0.1:0)]).flat())
                     this.layer.strokeGradient(gradient[0])
