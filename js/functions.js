@@ -2179,46 +2179,83 @@ Total:${current.nodeManager.listing.static[3][1].length+current.nodeManager.list
 	`)
 }
 function outListing(){
-	let box=``
-	let goal=160+160*constants.playerNumber+64+64+40+32+24
-	let actual=current.cardManagers[0].listing.allListableCard[3].length
-	let arbitrary=7000//6666
+	let manager=current.cardManagers==undefined||current.cardManagers.length<=0?new cardManager(current.layer,current,0):current.cardManagers[0]
+	let actual=manager.listing.allListableCard[3].length
+	//let arbitrary=7000//6666
+	/*let box=`		Colorless:
+Common:${manager.listing.card[0][0].length}/64				${manager.listing.card[0][0].length-64}
+Uncommon:${manager.listing.card[0][1].length}/64				${manager.listing.card[0][1].length-64}
+Rare:${manager.listing.card[0][2].length}/32					${manager.listing.card[0][2].length-32}
+	Total:${manager.listing.card[0][3].length}/160\n`*/
+	let box=`(${manager.listing.card[0][3].length-160}) Colorless: ${manager.listing.card[0][0].length}, ${manager.listing.card[0][1].length}, ${manager.listing.card[0][2].length}\n`
 	for(let a=0,la=constants.playerNumber;a<la;a++){
-		box+=`		${types.combatant[a+1].name}:
-Common:${current.cardManagers[0].listing.card[a+1][0].length}/64				${current.cardManagers[0].listing.card[a+1][0].length-64}
-Uncommon:${current.cardManagers[0].listing.card[a+1][1].length}/64				${current.cardManagers[0].listing.card[a+1][1].length-64}
-Rare:${current.cardManagers[0].listing.card[a+1][2].length}/32					${current.cardManagers[0].listing.card[a+1][2].length-32}
-	Total:${current.cardManagers[0].listing.card[a+1][3].length}/160\n`
+		/*box+=`		${types.combatant[a+1].name}:
+Common:${manager.listing.card[a+1][0].length}/64				${manager.listing.card[a+1][0].length-64}
+Uncommon:${manager.listing.card[a+1][1].length}/64				${manager.listing.card[a+1][1].length-64}
+Rare:${manager.listing.card[a+1][2].length}/32					${manager.listing.card[a+1][2].length-32}
+	Total:${manager.listing.card[a+1][3].length}/160\n`*/
+		box+=`(${manager.listing.card[a+1][3].length-160}) ${types.combatant[a+1].name}: ${manager.listing.card[a+1][0].length}, ${manager.listing.card[a+1][1].length}, ${manager.listing.card[a+1][2].length}\n`
 	}
-	console.log(`Total Cards: ${types.card/*.filter(card=>card.list!=-10)*/.length}/${arbitrary}		${types.card/*.filter(card=>card.list!=-10)*/.length-arbitrary}
+	//console.log(`Total Cards: ${types.card.filter(card=>card.list!=-10).length}/${arbitrary}		${types.card.filter(card=>card.list!=-10).length-arbitrary}
+	/*console.log(`
+Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
 Listed Cards: ${actual}/${goal}		${actual-goal}
-		Colorless:
-Common:${current.cardManagers[0].listing.card[0][0].length}/64				${current.cardManagers[0].listing.card[0][0].length-64}
-Uncommon:${current.cardManagers[0].listing.card[0][1].length}/64				${current.cardManagers[0].listing.card[0][1].length-64}
-Rare:${current.cardManagers[0].listing.card[0][2].length}/32					${current.cardManagers[0].listing.card[0][2].length-32}
-	Total:${current.cardManagers[0].listing.card[0][3].length}/160
 ${box}		Status:
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length}/64				${current.cardManagers[0].listing.card[constants.playerNumber+1][3].length-64}
+	Total:${manager.listing.card[constants.playerNumber+1][3].length}/64				${manager.listing.card[constants.playerNumber+1][3].length-64}
 		Curse:
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+2][3].length}/64				${current.cardManagers[0].listing.card[constants.playerNumber+2][3].length-64}
+	Total:${manager.listing.card[constants.playerNumber+2][3].length}/64				${manager.listing.card[constants.playerNumber+2][3].length-64}
 		Partnership:
-Common:${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length}/16				${current.cardManagers[0].listing.card[constants.playerNumber+3][0].length-16}
-Uncommon:${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length}/16				${current.cardManagers[0].listing.card[constants.playerNumber+3][1].length-16}
-Rare:${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length}/8					${current.cardManagers[0].listing.card[constants.playerNumber+3][2].length-8}
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+3][3].length}/40
+Common:${manager.listing.card[constants.playerNumber+3][0].length}/16				${manager.listing.card[constants.playerNumber+3][0].length-16}
+Uncommon:${manager.listing.card[constants.playerNumber+3][1].length}/16				${manager.listing.card[constants.playerNumber+3][1].length-16}
+Rare:${manager.listing.card[constants.playerNumber+3][2].length}/8					${manager.listing.card[constants.playerNumber+3][2].length-8}
+	Total:${manager.listing.card[constants.playerNumber+3][3].length}/40
 		Tarot:
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length}/32				${current.cardManagers[0].listing.card[constants.playerNumber+4][3].length-32}
+	Total:${manager.listing.card[constants.playerNumber+4][3].length}/32				${manager.listing.card[constants.playerNumber+4][3].length-32}
 		Spectral:
-	Total:${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length}/24				${current.cardManagers[0].listing.card[constants.playerNumber+5][3].length-24}
+	Total:${manager.listing.card[constants.playerNumber+5][3].length}/24				${manager.listing.card[constants.playerNumber+5][3].length-24}
 		Subcard:
-	Total:${current.cardManagers[0].listing.sub.length}/48				${current.cardManagers[0].listing.sub.length-48}
+	Total:${manager.listing.sub.length}/48				${manager.listing.sub.length-48}
 		Disband:
-	Total:${current.cardManagers[0].listing.disband.length}/1866			${current.cardManagers[0].listing.disband.length-1866}
+	Total:${manager.listing.disband.length}/1866			${manager.listing.disband.length-1866}
 		Junkyard:
-	Total:${current.cardManagers[0].listing.junk[constants.playerNumber+1].length}/${constants.playerNumber*8}			${current.cardManagers[0].listing.junk[constants.playerNumber+1].length-constants.playerNumber*8}
+	Total:${manager.listing.junk[constants.playerNumber+1].length}/${constants.playerNumber*8}			${manager.listing.junk[constants.playerNumber+1].length-constants.playerNumber*8}
 		Error:
 	Total:${types.card.filter(card=>card.list==-10).length}/52				${types.card.filter(card=>card.list==-10).length-52}
-			`)
+			`)*/
+	let listed=[64,64,40,32,24]
+	let unlisted=[
+		48,//subcard
+		2000,//disband
+		constants.playerNumber*8,//junkyard
+		32,//event
+		160,//developer
+		24,//basic
+		32,//pack
+		100,//misc
+		52,//error
+	]
+	let arbitrary=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)+unlisted.reduce((acc,num)=>acc+num,0)
+	let goal=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)
+	current.collectionManager.executeQuery()
+	console.log(`
+(${types.card.length-arbitrary}) Total Cards: ${types.card.length}/${arbitrary}
+(${actual-goal}) Listed Cards: ${actual}/${goal}
+
+${box}
+(${manager.listing.card[constants.playerNumber+1][3].length-listed[0]}) Status: ${manager.listing.card[constants.playerNumber+1][3].length}
+(${manager.listing.card[constants.playerNumber+2][3].length-listed[1]}) Curse: ${manager.listing.card[constants.playerNumber+2][3].length}
+(${manager.listing.card[constants.playerNumber+3][3].length-listed[2]}) Partnership: ${manager.listing.card[constants.playerNumber+3][0].length}, ${manager.listing.card[constants.playerNumber+3][1].length}, ${manager.listing.card[constants.playerNumber+3][2].length}
+(${manager.listing.card[constants.playerNumber+4][3].length-listed[3]}) Tarot: ${manager.listing.card[constants.playerNumber+4][3].length}
+(${manager.listing.card[constants.playerNumber+5][3].length-listed[4]}) Spectral: ${manager.listing.card[constants.playerNumber+5][3].length}
+(${manager.listing.sub.length-unlisted[0]}) Subcard: ${manager.listing.sub.length}
+(${manager.listing.disband.length-unlisted[1]}) Disband: ${manager.listing.disband.length}
+(${manager.listing.junk[constants.playerNumber+1].length-unlisted[2]}) Junkyard: ${manager.listing.junk[constants.playerNumber+1].length}
+(${current.collectionManager.totals.list[constants.playerNumber+8][0]-unlisted[3]}) Event: ${current.collectionManager.totals.list[constants.playerNumber+8][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+9][0]-unlisted[4]}) Developer: ${current.collectionManager.totals.list[constants.playerNumber+9][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+11][0]-unlisted[5]}) Basic: ${current.collectionManager.totals.list[constants.playerNumber+11][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+12][0]-unlisted[6]}) Pack: ${current.collectionManager.totals.list[constants.playerNumber+12][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+13][0]-unlisted[7]}) Misc: ${current.collectionManager.totals.list[constants.playerNumber+13][0]}
+(${types.card.filter(card=>card.list==-10).length-unlisted[8]}) Error: ${types.card.filter(card=>card.list==-10).length}`)
 }
 function outClassCosts(){
 	let box=``

@@ -2609,7 +2609,7 @@ class battle{
                 this.layer.text('Difficulty Options',this.layer.width/2,30)
                 this.layer.textSize(10)
                 //this.layer.text('Mouseover 0-33 to Learn More',this.layer.width/2,62.5)
-                this.layer.text(`Mouseover 0-${types.diff.length} to Learn More`,this.layer.width/2,62.5)
+                this.layer.text(`Mouseover 0-${types.diff.length-1} to Learn More`,this.layer.width/2,62.5)
                 /*for(let a=0,la=types.ascend.length;a<la;a++){
                     if(this.menu.anim.ascend[a]>0){
                         this.layer.fill(255,0,0,this.menu.anim.ascend[a])

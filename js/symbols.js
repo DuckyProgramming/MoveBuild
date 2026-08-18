@@ -9869,8 +9869,10 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(240,200,180,fade)
             layer.strokeWeight(3)
             layer.noFill()
-            layer.arc(0,-9.5,19,19,90,270)
-            layer.arc(0,9.5,19,19,-90,90)
+            /*layer.arc(0,-9.5,19,19,90,270)
+            layer.arc(0,9.5,19,19,-90,90)*/
+            layer.arc(0,-9.75,19.5,19.5,90,270)
+            layer.arc(0,9.75,19.5,19.5,-90,90)
             layer.noStroke()
             layer.fill(240,200,180,fade)
             layer.rect(0,-9.2,6,6)

@@ -7896,7 +7896,8 @@ combatant.prototype.display=function(){
                     this.layer.push()
                     this.layer.translate(lsin(this.anim.direction+this.spin.hair.pin)*17,-81)
                     this.layer.rotate(lsin(this.anim.direction+this.spin.hair.pin)*-5)
-                    this.layer.scale(lcos(this.anim.direction+this.spin.hair.pin),1)
+                    //this.layer.scale(lcos(this.anim.direction+this.spin.hair.pin),1)
+                    this.layer.scale(lcos(this.anim.direction+this.spin.hair.pin)**0.8,1)
                     this.layer.rotate(24)
                     this.layer.fill(...this.color.pin,this.fade.main)
                     this.layer.noStroke()
@@ -8374,11 +8375,22 @@ combatant.prototype.display=function(){
                                     this.layer.translate(0,-3.5)
                                 }
                                 let pos=[
-                                    [-2.5,0.25],
+                                    /*[-2.5,0.25],
                                     [-2.5,0.75],
                                     [-2.4,1.5],
                                     [-2.35,2.25],
                                     [-2.3,4],
+                                    [-1.6,5.5],
+                                    [-1.1,6.25],
+                                    [-0.8,6.75],
+                                    [-0.4,7],
+                                    [0,7],*/
+
+                                    [-2.4,0.25],
+                                    [-2.4,0.75],
+                                    [-2.35,1.5],
+                                    [-2.3,2.25],
+                                    [-2.25,4],
                                     [-1.6,5.5],
                                     [-1.1,6.25],
                                     [-0.8,6.75],
@@ -8388,7 +8400,7 @@ combatant.prototype.display=function(){
                                 for(let a=0,la=pos.length-1;a<la;a++){
                                     pos.splice(la+1,0,[-pos[a][0],pos[a][1]])
                                 }
-                                this.layer.arc(0,0.25,pos[0][0]*2,5.6,-180,0)
+                                this.layer.arc(0,0.25,pos[0][0]*2,5.4,-180,0)
                                 this.layer.ellipse(0,0.25,pos[0][0]*2,2)
                                 this.layer.beginShape()
                                 this.layer.vertex(pos[0][0],pos[0][1])
@@ -8417,7 +8429,7 @@ combatant.prototype.display=function(){
                                 for(let a=0,la=pos.length-1;a<la;a++){
                                     pos.splice(la+1,0,[-pos[a][0],pos[a][1]])
                                 }
-                                this.layer.arc(0,0.25,pos[0][0]*2,5.4,-180,0)
+                                this.layer.arc(0,0.25,pos[0][0]*2,5.2,-180,0)
                                 this.layer.ellipse(0,0.25,pos[0][0]*2,2)
                                 this.layer.beginShape()
                                 this.layer.vertex(pos[0][0],pos[0][1])
@@ -8473,11 +8485,34 @@ combatant.prototype.display=function(){
                                     [-0.8,4.9+expand],
                                     [-0.3,4.95+expand],
                                     [0,4.95+expand],*/
-                                    [-2.1,0],
+                                    
+                                    /*[-2.1,0],
                                     [-2.15,0.75],
                                     [-2.15,1.5],
                                     [-2.15,2.25],
                                     [-2.15,3],
+                                    [-1.75,3.55+expand],
+                                    [-1.25,4.15+expand],
+                                    [-0.8,4.6+expand],
+                                    [-0.3,4.65+expand],
+                                    [0,4.65+expand],*/
+
+                                    /*[-2.1,0],
+                                    [-2.15,0.75],
+                                    [-2.15,1.5],
+                                    [-2.15,2.25],
+                                    [-2.15,3],
+                                    [-1.75,3.55+expand],
+                                    [-1.25,4.15+expand],
+                                    [-0.8,4.6+expand],
+                                    [-0.3,4.65+expand],
+                                    [0,4.65+expand],*/
+
+                                    [-2.1,0],
+                                    [-2.125,0.75],
+                                    [-2.125,1.375],
+                                    [-2.125,2],
+                                    [-2.125,2.75],
                                     [-1.75,3.55+expand],
                                     [-1.25,4.15+expand],
                                     [-0.8,4.6+expand],
@@ -8513,11 +8548,23 @@ combatant.prototype.display=function(){
                                         [-0.7,4.6+expand],
                                         [-0.25,4.6+expand],
                                         [0,4.6+expand],*/
-                                        [-1.8,0],
+                                        
+                                        /*[-1.8,0],
                                         [-1.85,0.75],
                                         [-1.85,1.5],
                                         [-1.85,2.25],
                                         [-1.85,3],
+                                        [-1.45,3.45+expand],
+                                        [-1.05,3.9+expand],
+                                        [-0.7,4.3+expand],
+                                        [-0.25,4.35+expand],
+                                        [0,4.35+expand],*/
+                                        
+                                        [-1.8,0],
+                                        [-1.825,0.75],
+                                        [-1.825,1.375],
+                                        [-1.825,2],
+                                        [-1.825,2.75],
                                         [-1.45,3.45+expand],
                                         [-1.05,3.9+expand],
                                         [-0.7,4.3+expand],
@@ -8571,11 +8618,23 @@ combatant.prototype.display=function(){
                                     [-0.8,4.75+expand],
                                     [-0.3,4.8+expand],
                                     [0,4.8+expand],*/
-                                    [-2,0],
+                                    
+                                    /*[-2,0],
                                     [-2.05,0.75],
                                     [-2.05,1.5],
                                     [-2.05,2.25],
                                     [-2.05,3],
+                                    [-1.65,3.5+expand],
+                                    [-1.2,4+expand],
+                                    [-0.8,4.45+expand],
+                                    [-0.3,4.5+expand],
+                                    [0,4.5+expand],*/
+
+                                    [-2,0],
+                                    [-2.025,0.75],
+                                    [-2.025,1.375],
+                                    [-2.025,2],
+                                    [-2,2.75],
                                     [-1.65,3.5+expand],
                                     [-1.2,4+expand],
                                     [-0.8,4.45+expand],
@@ -8813,7 +8872,8 @@ combatant.prototype.display=function(){
                     this.layer.push()
                     this.layer.translate(lsin(this.anim.direction+this.spin.hair.pin)*17,-81)
                     this.layer.rotate(lsin(this.anim.direction+this.spin.hair.pin)*-5)
-                    this.layer.scale(lcos(this.anim.direction+this.spin.hair.pin),1)
+                    //this.layer.scale(lcos(this.anim.direction+this.spin.hair.pin),1)
+                    this.layer.scale(lcos(this.anim.direction+this.spin.hair.pin)**0.8,1)
                     this.layer.rotate(24)
                     this.layer.fill(...this.color.pin,this.fade.main)
                     this.layer.noStroke()
