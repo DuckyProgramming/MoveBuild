@@ -23162,15 +23162,15 @@ types.card=[
     },{
         name:'Cannon\nBall',rarity:1,list:9,
         levels:[
-            {effect:[9,1,1],attack:1943,cost:2,target:[2,1,3],spec:[0,1,2,35],class:1},
-            {effect:[14,1,1],attack:1943,cost:2,target:[2,1,3],spec:[0,1,2,35],class:1},
-            {effect:[14,2,1],attack:1943,cost:2,target:[2,1,3],spec:[0,1,2,35],class:1},
+            {effect:[9,1,1],attack:1943,cost:2,target:[2,1,3],spec:[0,1,2],class:1},
+            {effect:[14,1,1],attack:1943,cost:2,target:[2,1,3],spec:[0,1,2],class:1},
+            {effect:[14,2,1],attack:1943,cost:2,target:[2,1,3],spec:[0,1,2],class:1},
         ],mtg:{
             rarity:1,list:9,color:[1],
             levels:[
-                {effect:[12,1,1],attack:1943,cost:[1,1,1],target:[2,1,3],spec:[0,1,2,35],class:1},
-                {effect:[18,1,1],attack:1943,cost:[1,1,1],target:[2,1,3],spec:[0,1,2,35],class:1},
-                {effect:[18,2,1],attack:1943,cost:[1,1,1],target:[2,1,3],spec:[0,1,2,35],class:1},
+                {effect:[12,1,1],attack:1943,cost:[1,1,1],target:[2,1,3],spec:[0,1,2],class:1},
+                {effect:[18,1,1],attack:1943,cost:[1,1,1],target:[2,1,3],spec:[0,1,2],class:1},
+                {effect:[18,2,1],attack:1943,cost:[1,1,1],target:[2,1,3],spec:[0,1,2],class:1},
             ],
         },
     },{

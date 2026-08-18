@@ -2,9 +2,6 @@ OPERATION 7200
 
 POTENTIAL CARDSET 106 [ENDSIEG]
 
-fix run and gun
-why is cannon ball a card [replace?]
-
 scalping - 0 cost, gain 3 energy, can't gain block for 2 turns
 melting point - trigger burn on all players each turn
 darkroom - draw 2 cards, draw 2 cards next turn, add a void to discard

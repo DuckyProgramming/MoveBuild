@@ -672,7 +672,7 @@ class attack{
                 this.targetDistance=[]
 
                 for(let a=0,la=this.targetCombatant.length-1;a<la;a++){
-                    this.targetCombatant.splice(floor(random(0,this.targetCombatant.length)))
+                    this.targetCombatant.splice(floor(random(0,this.targetCombatant.length)),1)
                 }
                 for(let a=0,la=this.targetCombatant.length;a<la;a++){
                     this.direction.push(atan2(this.targetCombatant[a].position.x-this.position.x,this.targetCombatant[a].position.y-this.position.y))
