@@ -959,6 +959,21 @@ class card{
             case -133:
                 userCombatant.statusEffectNext(['Weak','Vulnerable','Frail'][floor(random(0,3))],this.effect[0])
             break
+            case -150:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    this.battle.drop(this.player,findName('Refracted\nSunlight',types.card),0,constants.playerNumber+1)
+                }
+            break
+            case -151:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    this.battle.drop(this.player,findName('Quiet\nMoonlight',types.card),0,constants.playerNumber+1)
+                }
+            break
+            case -152:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,constants.playerNumber+1)
+                }
+            break
             case 187:
                 userCombatant.takeDamage(this.effect[1],-1)
             break
@@ -2737,7 +2752,7 @@ class card{
             case 3586: case 3689: case 3724: case 3725: case 3726: case 3727: case 3908: case 3909: case 4626: case 4627:
             case 4628: case 4629: case 4630: case 4631: case 4632: case 5164: case 5543: case 5544: case 6243: case 6262:
             case 6263: case 6264: case 7189: case 7190: case 7345: case 7740: case 8313: case 8314: case 8315: case 8354:
-            case 8355:
+            case 8355: case 8987:
                 if(!this.spec.includes(55)){
                     this.discardEffect.push(13)
                 }
@@ -3753,7 +3768,7 @@ class card{
                         this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
                     }
                 break
-                case 8313:
+                case 8313: case 8987:
                     this.battle.cardManagers[this.player].hand.exhaust(this.effect[0])
                 break
                 case 8314:

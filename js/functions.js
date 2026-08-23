@@ -2028,7 +2028,7 @@ function quickAddEdition(name,edition){
 		return 'Invalid'
 	}
 }
-function quickAddFull(name,group,level,color){
+function quickAddFull(name,group,level=0,color=0){
 	let type=findNameApprox(name,types.card)
 	if(type>=0){
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).add(type,level,color)

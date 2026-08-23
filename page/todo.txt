@@ -1,37 +1,15 @@
-CARDSET 107 [TERMINATION I]
+STOPGAP UPDATE
 
-rebuild:
-tired
-napalm
-necrotic
-curse of the heron
-rosevine
-pride
-ignominy
-direct sunlight, moon stillness, starry glare
-multitudes
-the fool
-unfair rewards
-shade
-runaway seasons
-harder, faster, better, stronger
-[split floret fractal]
-no soup for you
-undefined
-md, mediocre contributor
+history now targets the highest health enemy
+delete the explosive orb
+split spin to win
+quests, wishes?, etc should stack efficiently in your hand to save space
+new relic - folding chair - you may get an event at rest sites
 
-remove encumber and replace it with a movement
-reform regolith to do 0 damage
+CARDSET 108 [TERMINATION II]
 
-destroy refreshed/disappointed
-undisband reflected sunlight or smth idk
-
-mirror of skill - duplpicate the next skill played
-pocket pen - deal 4 damage, add 4 block, if you have coffee: draw a card
-stilted - apply 1 weak in all directions, add 5 block each
-unlimited power - dev card infinite power
-stilted - exhaust a card, if it is a [], draw 3 cards
 rising wave - 2 cost, next turn gain 1 energy 1 strength 1 dexterity draw 1 card
+rewire - exhaust a card, if it is a [], draw 3 cards
 brambles - 2 cost, gain 3 regen, your attacks apply poison equal to your regen
 stop laughing - push target, draw a card, remove a random debuff from self
 life hourglass - 3 cost rare, heal 4 health, gain 1 intangible, retain
@@ -75,7 +53,6 @@ snaky hands - dazzling speed but it gives vigor as well
 frail fail - apply 2 frail, unupgrade a card (junkyard)
 tournament wheel - 1 cost, unexhaust a random card, every 3 times, you get to pick
 exhume doom - deal 10 damage in all directions, exhume
-cane swing - fancy cane but it pushes
 daring - gain 1 strength per adjacent enemy
 meek - gain 1 dexterity per adjacent enemy
 gifted halo - draw a card, remove a random debuff from self, gain 1 frail
@@ -84,8 +61,9 @@ ditzy (junkyard) - add 15 block, 10% lose an item
 error handling - damage, if target intends to not attack OR defend, apply 1 stun, exhaust
 invert polarity - swap your strength and dexterity, retain
 gambler's presence - 1 cost, apply 1 weak and 1 vulnerable, when added, gain 500 currency
+pocket pen - deal 4 damage, add 4 block, if you have coffee: draw a card
 
-CARDSET 108 [TERMINATION II]
+CARDSET 109 [TERMINATION III]
 
 haunts - 1 cost, redraw your hand, draw 1 card and gain 1 energy next turn
 mipa - 0 cost, add 3 block, apply 1 weak to the highest health enemy
@@ -147,9 +125,7 @@ wing flail - remove all block from target, 2 damage 3 times, retain
 crossing boundaries - recall for 1 cost BUT set caffeine to your limit
 rebalancer - unupgrade a random upgraded card, upgrade a card permanently
 
-[quests, wishes?, etc should stack efficiently in your hand to save space]
-
-CARDSET 109 [TERMINATION III]
+CARDSET 110 [TERMINATION IV]
 
 condemnation - deal damage, then trigger [choreograph] for 1 card
 foreshadow - end your turn, make 1 copy of a card next turn [use next build fix status]
@@ -160,9 +136,6 @@ tiny blade - 0 cost 1 damage and 1 lock on in all directions
 creative writing - when you are debuffed, draw a card
 metal detector - 11 block, when taken get a free move
 keynesian - gain 100 currency, gain no rewards at the end of this combat
-[replace poor move]
-
-[create moriya discus versions of all discus cards]
 
 aleph - lose your first relic, gain a relic, vanishing 1
 C - draw and upgrade some cards, then slightly compact your hand (based on assembly)
@@ -186,11 +159,7 @@ weed cutter - 2 cost, 9 damage, draw 1 card, [irrelevance] for 1 turn
 flatten film - 9 damage to a random enemy, gain 2 regen if you have a foil card in hand, exhaust
 a decade here - take another turn, all enemies gain 10 block
 
-[delete the explosive orb]
-
-new relic - folding chair - you may get an event at rest sites
-
-CARDSET 109 [ENDSIEG]
+CARDSET 111 [TERMINATION V]
 
 GIMMICK BANK
 

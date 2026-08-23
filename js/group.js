@@ -33,7 +33,7 @@ class group{
         this.costDownListing=[]
         this.finalPosition=0
         this.sendAmounts=[]
-        this.listKey=54
+        this.listKey=56
         this.listInput=[
             [0,4],
             [1,8],
@@ -1274,6 +1274,9 @@ class group{
                             break
                             case -142:
                                 this.battle.cardManagers[this.player].discard.add(findName('Ignominy',types.card),0,constants.playerNumber+2)
+                            break
+                            case -148:
+                                this.battle.cardManagers[this.player].discard.add(findName(this.cards[a].name,types.card),0,constants.playerNumber+2)
                             break
                         }
                     }
@@ -3445,6 +3448,36 @@ class group{
             case -141:
                 this.battle.cardManagers[this.player].hand.add(findName('Spiked',types.card),0,constants.playerNumber+1)
             break
+            case -143:
+                for(let a=0,la=card.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Fatigue',types.card),0,constants.playerNumber+1)
+                }
+            break
+            case -144:
+                for(let a=0,la=card.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Burn',types.card),0,constants.playerNumber+1)
+                }
+            break
+            case -145:
+                for(let a=0,la=card.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Hurt',types.card),0,constants.playerNumber+1)
+                }
+            break
+            case -146:
+                for(let a=0,la=card.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].addRandomAbstract(2,0,0,1,0,[],[constants.playerNumber+1,3])
+                }
+            break
+            case -147:
+                for(let a=0,la=card.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Spiked',types.card),0,constants.playerNumber+1)
+                }
+            break
+            case -149:
+                for(let a=0,la=card.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].addRandomAbstract(2,0,0,1,0,[],[constants.playerNumber+2,3])
+                }
+            break
 
             //mark n
             
@@ -4968,7 +5001,7 @@ class group{
                     this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],
                     this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),
                     this.anim[37],this.anim[38],this.anim[39],max(this.anim[40],this.anim[53]),this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48],
-                    this.anim[50],this.anim[51],this.anim[52],this.anim[53],this.anim[54],
+                    this.anim[50],this.anim[51],this.anim[52],this.anim[54],this.anim[55],
                 ]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
