@@ -3515,6 +3515,11 @@ class card{
             case 7080:
                 userCombatant.statusEffect('Armor',this.effect[2])
             break
+            case 8946:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Dual\nDiscus',types.card),this.level,0)
+                }
+            break
         }
     }
     anotherEtherealed(id){
@@ -6117,7 +6122,7 @@ class card{
                         case 1: case 24: case 28: case 29: case 31: this.layer.stroke(100,255,255,this.fade*anim[a]); break
                         case 2: this.layer.stroke(255,225,0,this.fade*anim[a]); break
                         case 3: this.layer.stroke(255,100,255,this.fade*anim[a]); break
-                        case 4: case 21: case 26: case 27: case 33: case 36: this.layer.stroke(255,200,200,this.fade*anim[a]); break
+                        case 4: case 21: case 26: case 27: case 33: case 36: case 43: case 44: this.layer.stroke(255,200,200,this.fade*anim[a]); break
                         case 5: this.layer.stroke(0,150,255,this.fade*anim[a]); break
                         case 6: case 42: this.layer.stroke(200,225,255,this.fade*anim[a]); break
                         case 7: case 34: case 37: this.layer.stroke(255,255,150,this.fade*anim[a]); break
@@ -6141,7 +6146,7 @@ class card{
                     this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
                     switch(a){
                         case 21: case 23: case 24: case 25: case 26: case 27: case 28: case 29: case 30: case 31:
-                        case 32: case 33: case 34: case 35: case 37: case 39: case 40: case 42:
+                        case 32: case 33: case 34: case 35: case 37: case 39: case 40: case 42: case 43: case 44:
                             switch(a){
                                 case 21: case 23: case 24:
                                     this.layer.stroke(220,this.fade*anim[a])
@@ -6190,6 +6195,12 @@ class card{
                                 break
                                 case 42:
                                     this.layer.stroke(200,225,50,this.fade*anim[a])
+                                break
+                                case 43:
+                                    this.layer.stroke(0,150,255,this.fade*anim[a])
+                                break
+                                case 44:
+                                    this.layer.stroke(150,0,200,this.fade*anim[a])
                                 break
                             }
                             this.layer.strokeWeight(1)
@@ -6300,10 +6311,14 @@ class card{
             this.attack!=4224&&this.attack!=5992&&this.attack!=8717&&this.attack!=8718&&this.list!=-8
     }
     getBasic(cardClass){
-        return this.basic&&(this.class==cardClass||cardClass==-1)||this.attack==5045&&(cardClass==1||cardClass==2||cardClass==-1)||(this.attack==6928||this.attack==7128||this.attack==7129)&&(cardClass==1||cardClass==-1)
+        return this.basic&&(this.class==cardClass||cardClass==-1)||
+            this.attack==5045&&(cardClass==1||cardClass==2||cardClass==-1)||
+            (this.attack==6928||this.attack==7128||this.attack==7129)&&(cardClass==1||cardClass==-1)
     }
     getBasicMultiple(cardClasses){
-        return this.basic&&cardClasses.includes(this.class)||this.attack==5045&&(cardClasses.includes(1)||cardClasses.includes(2))||(this.attack==6928||this.attack==7128||this.attack==7129)&&cardClasses.includes(1)
+        return this.basic&&cardClasses.includes(this.class)||
+            this.attack==5045&&(cardClasses.includes(1)||cardClasses.includes(2))||
+            (this.attack==6928||this.attack==7128||this.attack==7129)&&cardClasses.includes(1)
     }
     free(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]

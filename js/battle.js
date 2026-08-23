@@ -3084,22 +3084,34 @@ class battle{
                 if(graphics.test<0){
                     this.layer.clear()
                     graphics.staticBackground.clear()
-                    for(let a=0,la=this.graphics.combatants[-1-graphics.test][0].length;a<la;a++){
-                        let model=this.graphics.combatants[-1-graphics.test][0][a]
-                        model.position.x=this.layer.width+even(a,la)*graphics.staticBackground.width/la
+                    if(-1-graphics.test>=this.graphics.combatants.length){
+                        let model=setupCombatantBackground(-1-graphics.test,this.player,0,1,[0],graphics.staticBackground)
+                        model.position.x=this.layer.width
                         model.position.y=this.layer.height+450
-                        //this.graphics.combatants[0][0][0].anim.direction=150
-                        if(game.timer%30==0){
-                            //this.graphics.combatants[0][0][0].anim.direction+=15
-                        }
                         model.time++
-                        model.size=10/sqrt(la)
-                        model.layer=graphics.staticBackground
+                        model.size=10
                         model.display()
-                    }
-                    this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
-                    if(this.graphics.combatants[-1-graphics.test][0].length>=2){
+                        this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                         noLoop()
+                    }else{
+                        let id=-1-graphics.test
+                        for(let a=0,la=this.graphics.combatants[id][0].length;a<la;a++){
+                            let model=this.graphics.combatants[id][0][a]
+                            model.position.x=this.layer.width+even(a,la)*graphics.staticBackground.width/la
+                            model.position.y=this.layer.height+450
+                            //this.graphics.combatants[0][0][0].anim.direction=150
+                            if(game.timer%30==0){
+                                //this.graphics.combatants[0][0][0].anim.direction+=15
+                            }
+                            model.time++
+                            model.size=10/sqrt(la)
+                            model.layer=graphics.staticBackground
+                            model.display()
+                        }
+                        this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
+                        if(this.graphics.combatants[id][0].length>=2){
+                            noLoop()
+                        }
                     }
                 }else{
                     this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
@@ -3367,7 +3379,10 @@ class battle{
                 for(let a=0,la=this.anim.turn.length;a<la;a++){
                     this.anim.turn[a]=smoothAnim(this.anim.turn[a],this.turn.main==a,0,1,5)
                     this.anim.extra[a]=smoothAnim(this.anim.extra[a],this.turn.main==a&&
-                        (this.cardManagers[a].hand.status[0]<0||this.cardManagers[a].hand.status[1]<0||this.cardManagers[a].hand.status[8]<0||this.cardManagers[a].hand.status[10]>0||this.cardManagers[a].hand.status[27]>0||this.cardManagers[a].hand.status[28]<0||this.cardManagers[a].hand.status[31]>0||this.cardManagers[a].hand.status[34]>0||this.cardManagers[a].hand.status[38]>0||this.cardManagers[a].hand.status[43]>0),0,1,5)
+                        (
+                            this.cardManagers[a].hand.status[0]<0||this.cardManagers[a].hand.status[1]<0||this.cardManagers[a].hand.status[8]<0||this.cardManagers[a].hand.status[10]>0||this.cardManagers[a].hand.status[27]>0||
+                            this.cardManagers[a].hand.status[28]<0||this.cardManagers[a].hand.status[31]>0||this.cardManagers[a].hand.status[34]>0||this.cardManagers[a].hand.status[38][0]>0||this.cardManagers[a].hand.status[43]>0
+                        ),0,1,5)
                     this.anim.drop[a]=smoothAnim(this.anim.drop[a],pointInsideBox({position:inputs.rel},{position:{x:106,y:680-this.anim.turn[a]*100},width:32,height:20})&&!this.overlayManager.anyActive&&(variants.cyclicDraw||variants.blackjack),1,1.5,5)
                 }
                 this.anim.reserve=smoothAnim(this.anim.reserve,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:496},width:32,height:20})&&!this.overlayManager.anyActive,1,1.25,10)

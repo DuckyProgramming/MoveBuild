@@ -6205,6 +6205,7 @@ class combatant{
                     case 870: this.miniStatus('Double Damage Cycle 3 2',this.status.main[this.status.ticker[a]]); break
                     case 871: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.quickdrawRandom+=this.status.main[this.status.ticker[a]]}; break
                     case 885: this.miniStatus('Vigor',this.status.main[this.status.ticker[a]]); break
+                    case 886: this.battle.combatantManager.allEffect(66,['Burn',this.status.main[this.status.ticker[a]]]); break
                     
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6

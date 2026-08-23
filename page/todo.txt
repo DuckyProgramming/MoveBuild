@@ -1,12 +1,32 @@
-OPERATION 7200
+CARDSET 107 [TERMINATION I]
 
-POTENTIAL CARDSET 106 [ENDSIEG]
+rebuild:
+tired
+napalm
+necrotic
+curse of the heron
+rosevine
+pride
+ignominy
+direct sunlight, moon stillness, starry glare
+multitudes
+the fool
+unfair rewards
+shade
+runaway seasons
+harder, faster, better, stronger
+[split floret fractal]
+no soup for you
+undefined
+md, mediocre contributor
 
-scalping - 0 cost, gain 3 energy, can't gain block for 2 turns
-melting point - trigger burn on all players each turn
-darkroom - draw 2 cards, draw 2 cards next turn, add a void to discard
-temple token - discard your hand, draw that many rare cards
-mirror of skill - duplicate the next skill played
+remove encumber and replace it with a movement
+reform regolith to do 0 damage
+
+destroy refreshed/disappointed
+undisband reflected sunlight or smth idk
+
+mirror of skill - duplpicate the next skill played
 pocket pen - deal 4 damage, add 4 block, if you have coffee: draw a card
 stilted - apply 1 weak in all directions, add 5 block each
 unlimited power - dev card infinite power
@@ -25,7 +45,7 @@ multithread - if you have played 1 skill this turn, gain 1 energy, both increase
 locomotion - 2 cost, move 2 tiles, add 2 block, draw 2 cards
 split tactical retreat - it now forces you to move back like dine&dash but gives you more block
 split dumpster dive - it now unexhausts 2 random cards but they cost 1 more
-cookie clicker but it uses dexterity and CALCULATES DAMAGE using dexterity
+[cookie clicker but it uses dexterity and CALCULATES DAMAGE using dexterity]
 flashbang - grenade but it applies frail
 vibration wave - streamline but it ignores block
 pump action - 1 cost, draw 1 card, all guns in hand cost 1 less temporarily
@@ -41,7 +61,143 @@ withdrawal symptoms - gain 2 strength, if you have no coffee, you cannot gain bl
 juicer - gain 1 strength when you coffee overdose
 power pointer - whenever target intends to attack, gain 1 energy
 hook and drag - deal 10 damage, target loses 2 hp when you draw a card this turn
+split highlander into highland sword and shield
+highland spirit - if your deck is highlander get adrenaline
+split pauli exclusion - no longer deletes the second copy
+would you rather - gain 1 currency and 1 block, or gain 2 currency
+pregame - opportunist, but its free and you lose 2 health
+crisp lightning - 1 cost, deal 5 damage to anybody, draw a card, costs 1 less when a card is exhausted
+skyward - gain 1 intangible, gain 1 mortar
+crimson eye - gain 1 strength, below 50% health: 1 dexterity
+lapis eye - gain 1 dexterity, below 50% health: 1 strength
+unsuitable - gain 1 strength, gain 1 dexterity, lose 1 energy next turn
+snaky hands - dazzling speed but it gives vigor as well
+frail fail - apply 2 frail, unupgrade a card (junkyard)
+tournament wheel - 1 cost, unexhaust a random card, every 3 times, you get to pick
+exhume doom - deal 10 damage in all directions, exhume
+cane swing - fancy cane but it pushes
+daring - gain 1 strength per adjacent enemy
+meek - gain 1 dexterity per adjacent enemy
+gifted halo - draw a card, remove a random debuff from self, gain 1 frail
+donate down - pick an attack, it counts as a strike (replace basic blessing)
+ditzy (junkyard) - add 15 block, 10% lose an item
+error handling - damage, if target intends to not attack OR defend, apply 1 stun, exhaust
+invert polarity - swap your strength and dexterity, retain
+gambler's presence - 1 cost, apply 1 weak and 1 vulnerable, when added, gain 500 currency
 
-POTENTIAL CARDSET 107 [ENDSIEG]
+CARDSET 108 [TERMINATION II]
+
+haunts - 1 cost, redraw your hand, draw 1 card and gain 1 energy next turn
+mipa - 0 cost, add 3 block, apply 1 weak to the highest health enemy
+residual image - gain 4 temp strength and 4 temp dex next turn (give and get)
+absolute field - add 13 block, if target intends to attack retain block this turn
+reading comprehension - discover a card, it costs 0, 2 cost, costs 1 less when a defense is played
+maid in heaven - gain 1 energy for each unique class of card in hand
+disarmament talks - you lose 1 strength, everybody else loses 2, exhaust
+best foot forward - innate, 0 cost, scry 6 draw 1, gain 1 energy
+commencement - exhaust a card, if it's a curse or status put a card from discard into your hand
+wire key - every 3 turns, gain 1 conditioning
+
+port priority - deal 8 damage, deal 4 damage to the first enemy in acting order
+scapegoat - gain 1 intangible, gain vigor equal to damage taken this turn
+mechanical rot - when target gains block, they lose 8 health
+extremist - deal 8 damage, gain 2 strength if you have the most or least health of anybody
+handyduck - upgrade 2 cards OR exhaust 2 cards, retain
+bash and cash - gain 10 currency, ALL ENEMIES OTHER THAN TARGET give 10 currency if killed this turn
+reductive - if target has more health than you, apply vulnerable equal to how many times greater their health is than yours
+benben, biwa tsukumogami:
+    +1 - draw a movement
+    -3 - gain 3 strength if you are above 50% health, otherwise gain 3 dexterity
+    -5 - apotheosis
+power of the spirits - 4 cost exhaust, gain 1 control, gain 25 currency, and 1 max health [upgrading reduces cost by 1 each time]
+cycle of rebirth - exhaust a random card in hand, then exhume
+
+[purge non-gimmick cards from chip]
+[that, or just cut him in half lol]
+debt default - lose 20 currency, after a boss combat, duplicates (cancer)
+corrupt cash - judgement but if it works gain money
+burn documents - remove all block from target, if target has burn draw 2 cards
+prescription - gain 2 max hp, lose 25 currency
+venture capital - apply 1 buffer to target, gain currency (based off quick deal)
+macro control - add block, 1000 currency: gain armor, 2000 currency: gain 1 intangible, exhaust
+real gains - damage, spend 50 currency: permanently increases
+public spotlight - blackmail but vulnerable
+infrastructure investment - a random card costs 1 less, draw 1 card, gain 1 currency
+quality finds - discover a common card it costs 0, 1000 currency: uncommon
+
+accident insurance - reflect next hit taken, lose money
+antitrust laws (dev) - remove all buffs of target, gain 10 currency for each one
+inflationary gap - your currency is treated as 50% more this combat
+special order - draw 2 cards, gain 1 energy per status card drawn
+crime of the century - if played during an elite combat, gain a relic and leave combat
+industrial dumping - all cards cost 1 less, gain currency
+hedge fund - when you gain currency this combat, gain equal block, innate
+time and money - gain both effects and time is money, but it's really expensive
+googolplex - when you play a power, discover a power
+classic gamble - double or nothing any amount of money, chances cannot be edited (still counts as highroll or lowroll)
+
+remold - double upgrade a card permanently, remove a card permanently, lose 20 max hp
+seventh wonder - gain 999 wisdom
+take inventory - draw 2 cards, retain your hand this turn
+split ddos - new ddos applies shock in all directions
+pulchritude - health 1 health, every 3rd time played: deal 7 damage to a random enemy, add 7 block
+brass tacks - target takes 4 damage per turn, redraw your hand
+key ring - add 5 block 2 times, every 3 times played gain 2 energy
+wing flail - remove all block from target, 2 damage 3 times, retain
+crossing boundaries - recall for 1 cost BUT set caffeine to your limit
+rebalancer - unupgrade a random upgraded card, upgrade a card permanently
+
+[quests, wishes?, etc should stack efficiently in your hand to save space]
+
+CARDSET 109 [TERMINATION III]
+
+condemnation - deal damage, then trigger [choreograph] for 1 card
+foreshadow - end your turn, make 1 copy of a card next turn [use next build fix status]
+predict - guess the type of the top card in deck, if correct draw it and it costs 0
+evoking hazard - evoke first orb OR evoke first 2 orbs, 1 cost retain
+debug - add 9 block, exhaust a random curse in your draw pile
+tiny blade - 0 cost 1 damage and 1 lock on in all directions
+creative writing - when you are debuffed, draw a card
+metal detector - 11 block, when taken get a free move
+keynesian - gain 100 currency, gain no rewards at the end of this combat
+[replace poor move]
+
+[create moriya discus versions of all discus cards]
+
+aleph - lose your first relic, gain a relic, vanishing 1
+C - draw and upgrade some cards, then slightly compact your hand (based on assembly)
+cantilever - add 8x block, gain 2x energy next turn
+law of large numbers - when you highroll, guarantee a lowroll next, when you lowroll, guarantee a highroll next
+metallic fortress - gain armor per dark matter, pulled: draw a card, has mass
+breakdown - if target has block, apply 1 vulnerable, deal 9 damage twice
+split dazzling dash, new dazzling dash - draw 3 cards, 7 or more cards in hand: gain 1 strength instead
+split touch of garlic - old version becomes touch grass, new version lets you pick between gaining a bit of vigor or vigil
+maiden's regret - when drawn, gain 2 strength, 2 dexterity, and draw 2 cards, but discard your hand
+classic mixup - 6 damage, draw 3 cards, discard them if they don't cost 1
+
+the road taken - the next quest played returns to your hand
+hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy
+industrial buildup - assign 2: gain 1 base energy this combat
+adaptive slap - if target has strength, gain 1 strength, then deal 4 damage 2 times
+rollin' - gain 12 vigil, gain 1 energy next turn
+[disband meri duplicate cards that are unnecessary]
+dive down - target takes 12 damage and gains 2 weak in 2 turns
+weed cutter - 2 cost, 9 damage, draw 1 card, [irrelevance] for 1 turn
+flatten film - 9 damage to a random enemy, gain 2 regen if you have a foil card in hand, exhaust
+a decade here - take another turn, all enemies gain 10 block
+
+[delete the explosive orb]
+
+new relic - folding chair - you may get an event at rest sites
+
+CARDSET 109 [ENDSIEG]
+
+GIMMICK BANK
+
+trace - like orbs, but you can't evoke them
+instead, after you get 3 an effect is triggered
+better effects if 2 or 3 are the same one
+also an effect for 3 unique ones
+[apparently this is the ufos from touhou ufo, not sure if this is coincidence]
 
 

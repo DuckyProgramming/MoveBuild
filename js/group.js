@@ -748,6 +748,10 @@ class group{
         this.status[53]+=amount
         this.generalSelfStatus()
     }
+    generalStatus(status,amount){
+        this.status[status]+=amount
+        this.generalSelfStatus()
+    }
     generalSelfStatus(){
         if(variants.mtg){
             this.battle.mtgUnmark(this.player)
@@ -3809,7 +3813,7 @@ class group{
             case 8402:
                 this.battle.cardManagers[this.player].hand.duplicate(card.effect[0])
             break
-            case 8523:
+            case 8523: case 8961:
                 for(let a=0,la=min(100,card.effect[0]);a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(findName('Pristine',types.card),0,0)
                 }
@@ -4962,9 +4966,9 @@ class group{
                 let anim=[
                     max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],
                     this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],
-                    this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),this.anim[37],
-                    this.anim[38],this.anim[39],max(this.anim[40],this.anim[53]),this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48],this.anim[50],
-                    this.anim[51],this.anim[52],
+                    this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),
+                    this.anim[37],this.anim[38],this.anim[39],max(this.anim[40],this.anim[53]),this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48],
+                    this.anim[50],this.anim[51],this.anim[52],this.anim[53],this.anim[54],
                 ]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
@@ -5194,8 +5198,18 @@ class group{
                 }else if(this.cards[a].spec.includes(57)&&this.cards[a].attack!=1491&&options.oldDuplicate){
                     this.cards[a].spec.splice(this.cards[a].spec.indexOf(57))
                     this.copySelfInput(a)
-                }else if((this.status[3]>0||this.status[25]>0&&this.cards[a].colorless()&&this.cards[a].rarity!=2||this.status[32]>0&&this.cards[a].class==1)&&this.cards[a].attack!=1491&&options.oldDuplicate){
-                    if(this.status[32]>0&&this.cards[a].class==1){
+                }else if((
+                    this.status[3]>0||
+                    this.status[25]>0&&this.cards[a].colorless()&&this.cards[a].rarity!=2||
+                    this.status[32]>0&&this.cards[a].class==1||
+                    this.status[54]>0&&this.cards[a].class==2||
+                    this.status[55]>0&&this.cards[a].class==11
+                )&&this.cards[a].attack!=1491&&options.oldDuplicate){
+                    if(this.status[55]>0&&this.cards[a].class==11){
+                        this.status[55]--
+                    }else if(this.status[54]>0&&this.cards[a].class==2){
+                        this.status[54]--
+                    }else if(this.status[32]>0&&this.cards[a].class==1){
                         this.status[32]--
                     }else if(this.status[25]>0&&this.cards[a].colorless()&&this.cards[a].rarity!=2){
                         this.status[25]--
@@ -5243,8 +5257,18 @@ class group{
                             ){
                                 this.cards[a].purge=true
                             }
-                        }else if((this.status[3]>0||this.status[25]>0&&this.cards[a].colorless()&&this.cards[a].rarity!=2||this.status[32]>0&&this.cards[a].class==1)&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
-                            if(this.status[32]>0&&this.cards[a].class==1){
+                        }else if((
+                            this.status[3]>0||
+                            this.status[25]>0&&this.cards[a].colorless()&&this.cards[a].rarity!=2||
+                            this.status[32]>0&&this.cards[a].class==1||
+                            this.status[54]>0&&this.cards[a].class==2||
+                            this.status[55]>0&&this.cards[a].class==11
+                        )&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
+                            if(this.status[55]>0&&this.cards[a].class==11){
+                                this.status[55]--
+                            }else if(this.status[54]>0&&this.cards[a].class==2){
+                                this.status[54]--
+                            }else if(this.status[32]>0&&this.cards[a].class==1){
                                 this.status[32]--
                             }else if(this.status[25]>0&&this.cards[a].colorless()&&this.cards[a].rarity!=2){
                                 this.status[25]--
@@ -5400,8 +5424,18 @@ class group{
                                 ){
                                     this.cards[b].purge=true
                                 }
-                            }else if((this.status[3]>0||this.status[25]>0&&this.cards[b].colorless()&&this.cards[b].rarity!=2||this.status[32]>0&&this.cards[b].class==1)&&this.cards[b].attack!=1491&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
-                                if(this.status[32]>0&&this.cards[b].class==1){
+                            }else if((
+                                this.status[3]>0||
+                                this.status[25]>0&&this.cards[b].colorless()&&this.cards[b].rarity!=2||
+                                this.status[32]>0&&this.cards[b].class==1||
+                                this.status[54]>0&&this.cards[b].class==2||
+                                this.status[55]>0&&this.cards[b].class==11
+                            )&&this.cards[b].attack!=1491&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
+                                if(this.status[55]>0&&this.cards[b].class==11){
+                                    this.status[55]--
+                                }else if(this.status[54]>0&&this.cards[b].class==2){
+                                    this.status[54]--
+                                }else if(this.status[32]>0&&this.cards[b].class==1){
                                     this.status[32]--
                                 }else if(this.status[25]>0&&this.cards[b].colorless()&&this.cards[b].rarity!=2){
                                     this.status[25]--
@@ -5579,8 +5613,18 @@ class group{
                                     ){
                                         this.cards[b].purge=true
                                     }
-                                }else if((this.status[3]>0||this.status[25]>0&&this.cards[b].colorless()&&this.cards[b].rarity!=2||this.status[32]>0&&this.cards[b].class==1)&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
-                                    if(this.status[32]>0&&this.cards[b].class==1){
+                                }else if((
+                                    this.status[3]>0||
+                                    this.status[25]>0&&this.cards[b].colorless()&&this.cards[b].rarity!=2||
+                                    this.status[32]>0&&this.cards[b].class==1||
+                                    this.status[54]>0&&this.cards[b].class==2||
+                                    this.status[55]>0&&this.cards[b].class==11
+                                )&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
+                                    if(this.status[55]>0&&this.cards[b].class==11){
+                                        this.status[55]--
+                                    }else if(this.status[54]>0&&this.cards[b].class==2){
+                                        this.status[54]--
+                                    }else if(this.status[32]>0&&this.cards[b].class==1){
                                         this.status[32]--
                                     }else if(this.status[25]>0&&this.cards[b].colorless()&&this.cards[b].rarity!=2){
                                         this.status[25]--
@@ -6105,7 +6149,9 @@ class group{
             break
             case 44:
                 if(this.cards[a].attack!=-3){
-                    this.add(this.status[38],0,this.battle.standardColorize(this.status[38]))
+                    for(let a=0,la=this.status[38][1];a<la;a++){
+                        this.add(this.status[38][0],0,this.battle.standardColorize(this.status[38][0]))
+                    }
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
                 }

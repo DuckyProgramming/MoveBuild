@@ -191,7 +191,7 @@ attack.prototype.update=function(){
         case 8604: case 8617: case 8629: case 8656: case 8657: case 8663: case 8667: case 8676: case 8684: case 8688:
         case 8715: case 8754: case 8755: case 8756: case 8772: case 8773: case 8774: case 8775: case 8776: case 8777:
         case 8779: case 8788: case 8789: case 8792: case 8800: case 8837: case 8839: case 8840: case 8841: case 8842:
-        case 8855: case 8870: case 8874: case 8883:
+        case 8855: case 8870: case 8874: case 8883: case 8905: case 8913: case 8919: case 8922: case 8975: case 8977:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -391,7 +391,8 @@ attack.prototype.update=function(){
         case 8602: case 8615: case 8621: case 8626: case 8627: case 8630: case 8631: case 8632: case 8633: case 8634:
         case 8635: case 8636: case 8637: case 8638: case 8648: case 8655: case 8661: case 8683: case 8687: case 8696:
         case 8720: case 8726: case 8729: case 8743: case 8757: case 8758: case 8762: case 8790: case 8806: case 8810:
-        case 8812: case 8835: case 8863: case 8864:
+        case 8812: case 8835: case 8863: case 8864: case 8900: case 8909: case 8910: case 8911: case 8914: case 8915:
+        case 8917: case 8929: case 8934: case 8941: case 8943: case 8974:
             //mark 2
             if(
                 this.timer==1&&(
@@ -491,7 +492,8 @@ attack.prototype.update=function(){
         case 8230: case 8233: case 8237: case 8238: case 8239: case 8240: case 8251: case 8253: case 8285: case 8286:
         case 8287: case 8288: case 8334: case 8343: case 8352: case 8446: case 8499: case 8501: case 8518: case 8589:
         case 8668: case 8669: case 8702: case 8705: case 8706: case 8707: case 8709: case 8722: case 8723: case 8746:
-        case 8807: case 8808: case 8814: case 8825: case 8826: case 8827: case 8828: case 8872: case 8873:
+        case 8807: case 8808: case 8814: case 8825: case 8826: case 8827: case 8828: case 8872: case 8873: case 8916:
+        case 8937: case 8959:
             //mark 3
             if(
                 this.timer==1&&(
@@ -576,7 +578,8 @@ attack.prototype.update=function(){
         case 2163: case 2611: case 2664: case 2776: case 3036: case 4066: case 4067: case 4550: case 4554: case 5014:
         case 5152: case 5161: case 5179: case 5326: case 5337: case 5338: case 5351: case 5353: case 5356: case 5359:
         case 5360: case 5361: case 5367: case 5368: case 5369: case 5370: case 5372: case 5959: case 5975: case 6858:
-        case 6859: case 7510: case 7532: case 8377: case 8389: case 8536: case 8575: case 8599: case 8823:
+        case 6859: case 7510: case 7532: case 8377: case 8389: case 8536: case 8575: case 8599: case 8823: case 8944:
+        case 8960:
             if(this.type==121&&this.userCombatant.armed){
                 this.remove=true
             }else if(this.targetDistance==1){
@@ -664,6 +667,11 @@ attack.prototype.update=function(){
                         case 8575:
                             this.targetCombatant.block=0
                         break
+                        case 8944:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userManager.hand.add(findName('Dual\nDiscus',types.card),this.level,0)
+                            }
+                        break
                         default:
                             if(this.type==7510){
                                 if(this.userCombatant.assign(this.effect[0])){
@@ -672,75 +680,7 @@ attack.prototype.update=function(){
                             }else if(this.type!=5337&&this.type!=5360){
                                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                             }
-                            switch(this.type){
-                                case 764:
-                                    this.userCombatant.enterStance(3)
-                                break
-                                case 987:
-                                    this.userCombatant.statusEffect('Strength',this.effect[1])
-                                break
-                                case 1257:
-                                    if((types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5)){
-                                        this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[1])
-                                    }
-                                break
-                                case 1445:
-                                    this.targetCombatant.statusEffect('Freeze',this.effect[1])
-                                break
-                                case 1446:
-                                    this.targetCombatant.statusEffect('Burn',this.effect[1])
-                                break
-                                case 1796:
-                                    this.targetCombatant.statusEffect('Weak',this.effect[1])
-                                break
-                                case 1805:
-                                    this.targetCombatant.statusEffect('Shock',this.effect[1])
-                                break
-                                case 2163:
-                                    this.userCombatant.statusEffect('Cannot Be Pushed',1)
-                                break
-                                case 2611:
-                                    this.targetCombatant.statusEffect('Cannot Move',1)
-                                break
-                                case 2664:
-                                    if(!this.userCombatant.armed){
-                                        let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
-                                        if(index>=0&&this.battle.tileManager.tiles[index].type.includes(3)){
-                                            this.battle.tileManager.tiles[index].anim.upPart[this.battle.tileManager.tiles[index].type.indexOf(3)]=false
-                                            this.userCombatant.rearm()
-                                            la=0
-                                        }
-                                    }
-                                break
-                                case 4066:
-                                    this.userCombatant.statusEffect('Dexterity',this.effect[1])
-                                break
-                                case 4067:
-                                    this.targetCombatant.goal.anim.direction=this.relativeDirection
-                                break
-                                case 4550: case 5369:
-                                    this.userManager.hand.add(findName('Pristine',types.card),0,0)
-                                break
-                                case 4554:
-                                    this.battle.overlayManager.overlays[10][this.player].active=true
-                                    this.battle.overlayManager.overlays[10][this.player].activate([0,0,40,2])
-                                break
-                                case 5161:
-                                    this.userCombatant.addBlock(this.effect[1])
-                                break
-                                case 8599:
-                                    let index8599=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
-                                    if(index8599>=0){
-                                        this.battle.tileManager.tiles[index8599].clearTypes()
-                                    }
-                                break
-                                case 8823:
-                                    let index8823=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
-                                    if(index8823>=0){
-                                        this.battle.tileManager.tiles[index8823].addType(19)
-                                    }
-                                break
-                            }
+                            this.selfCall(31)
                         break
                     }
                 }
@@ -794,81 +734,7 @@ attack.prototype.update=function(){
                 }else if(this.timer==11){
                     this.userCombatant.startAnimation(3)
                 }else if(this.timer==20){
-                    switch(this.type){
-                        case 2136:
-                            this.targetCombatant.statusEffect('Jinx',this.effect[0])
-                        break
-                        case 3036:
-                            let result3036=this.userManager.drawReturn(this.effect[0])
-                            if(result3036.length>0&&result3036[0].class==3){
-                                this.targetCombatant.statusEffect('Weak',this.effect[1])
-                            }
-                        break
-                        case 5152:
-                            this.userCombatant.evoke(0,this.targetCombatant.id,[this.effect[0]])
-                        break
-                        case 5179:
-                            this.userCombatant.addBlock(min(this.targetCombatant.block,this.effect[0]))
-                            this.targetCombatant.block=max(0,this.targetCombatant.block-this.effect[0])
-                        break
-                        default:
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
-                            switch(this.type){
-                                case 764:
-                                    this.userCombatant.enterStance(3)
-                                break
-                                case 987:
-                                    this.userCombatant.statusEffect('Strength',this.effect[1])
-                                break
-                                case 1257:
-                                    if((types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5)){
-                                        this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[1])
-                                    }
-                                break
-                                case 1445:
-                                    this.targetCombatant.statusEffect('Freeze',this.effect[1])
-                                break
-                                case 1446:
-                                    this.targetCombatant.statusEffect('Burn',this.effect[1])
-                                break
-                                case 1796:
-                                    this.targetCombatant.statusEffect('Weak',this.effect[1])
-                                break
-                                case 1805:
-                                    this.targetCombatant.statusEffect('Shock',this.effect[1])
-                                break
-                                case 2163:
-                                    this.userCombatant.statusEffect('Cannot Be Pushed',1)
-                                break
-                                case 2611:
-                                    this.targetCombatant.statusEffect('Cannot Move',1)
-                                break
-                                case 2664:
-                                    if(!this.userCombatant.armed){
-                                        let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
-                                        if(index>=0&&this.battle.tileManager.tiles[index].type.includes(3)){
-                                            this.battle.tileManager.tiles[index].anim.upPart[this.battle.tileManager.tiles[index].type.indexOf(3)]=false
-                                            this.userCombatant.rearm()
-                                            la=0
-                                        }
-                                    }
-                                break
-                                case 4066:
-                                    this.userCombatant.statusEffect('Dexterity',this.effect[1])
-                                break
-                                case 4067:
-                                    this.targetCombatant.goal.anim.direction=this.relativeDirection
-                                break
-                                case 4550:
-                                    this.userManager.hand.add(findName('Pristine',types.card),0,0)
-                                break
-                                case 4554:
-                                    this.battle.overlayManager.overlays[10][this.player].active=true
-                                    this.battle.overlayManager.overlays[10][this.player].activate([0,0,40,2])
-                                break
-                            }
-                        break
-                    }
+                    this.selfCall(31)
                 }else if(this.timer==31){
                     this.userCombatant.startAnimation(0)
                 }
@@ -1046,7 +912,9 @@ attack.prototype.update=function(){
         case 8697: case 8698: case 8730: case 8731: case 8732: case 8733: case 8734: case 8735: case 8736: case 8737:
         case 8740: case 8741: case 8751: case 8766: case 8784: case 8785: case 8786: case 8787: case 8793: case 8796:
         case 8815: case 8816: case 8817: case 8818: case 8829: case 8830: case 8831: case 8832: case 8860: case 8869:
-        case 8875:
+        case 8875: case 8887: case 8888: case 8889: case 8890: case 8897: case 8901: case 8902: case 8903: case 8904:
+        case 8908: case 8912: case 8921: case 8923: case 8924: case 8925: case 8926: case 8927: case 8967: case 8968:
+        case 8969: case 8970: case 8972:
             //mark 4
             if(
                 this.timer==1&&(
@@ -1205,7 +1073,8 @@ attack.prototype.update=function(){
         case 8579: case 8582: case 8583: case 8590: case 8603: case 8605: case 8616: case 8624: case 8628: case 8639:
         case 8640: case 8641: case 8647: case 8649: case 8650: case 8658: case 8659: case 8671: case 8689: case 8708:
         case 8725: case 8727: case 8752: case 8753: case 8781: case 8782: case 8783: case 8803: case 8804: case 8833:
-        case 8844: case 8848: case 8853: case 8859: case 8861: case 8871: case 8876: case 8881:
+        case 8844: case 8848: case 8853: case 8859: case 8861: case 8871: case 8876: case 8881: case 8892: case 8893:
+        case 8894: case 8895: case 8907: case 8930: case 8953: case 8954: case 8955:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -1369,8 +1238,8 @@ attack.prototype.update=function(){
         case 7670: case 7671: case 7779: case 7900: case 7957: case 8004: case 8015: case 8033: case 8096: case 8108:
         case 8210: case 8347: case 8423: case 8457: case 8478: case 8482: case 8495: case 8532: case 8548: case 8559:
         case 8576: case 8577: case 8578: case 8622: case 8660: case 8700: case 8710: case 8711: case 8714: case 8721:
-        case 8738: case 8742: case 8763: case 8764: case 8768: case 8813: case 8822: case 8836:
-        case 8845: case 8846:
+        case 8738: case 8742: case 8763: case 8764: case 8768: case 8813: case 8822: case 8836: case 8845: case 8846:
+        case 8928:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||
@@ -1907,7 +1776,7 @@ attack.prototype.update=function(){
         case 25: case 1246: case 1274: case 1367: case 1524: case 1610: case 2048: case 2142: case 2143: case 2496:
         case 2505: case 2943: case 3270: case 3605: case 3701: case 3844: case 3944: case 4426: case 5057: case 5637:
         case 7890: case 7891: case 7921: case 8276: case 8277: case 8278: case 8279: case 8280: case 8281: case 8290:
-        case 8430: case 8431:
+        case 8430: case 8431: case 8973:
             if(this.type==1524&&this.userCombatant.life<this.userCombatant.base.life/2){
                 this.remove=true
             }else{
@@ -2068,6 +1937,12 @@ attack.prototype.update=function(){
                         break
                         case 8431:
                             this.targetCombatant.statusEffect('Communized',this.effect[1])
+                            this.userManager.draw(this.effect[2])
+                        break
+                        case 8973:
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                            }
                             this.userManager.draw(this.effect[2])
                         break
                     }
@@ -2365,7 +2240,7 @@ attack.prototype.update=function(){
         case 8308: case 8309: case 8351: case 8366: case 8400: case 8438: case 8453: case 8494: case 8554: case 8556:
         case 8572: case 8573: case 8662: case 8685: case 8686: case 8692: case 8693: case 8743: case 8744: case 8745:
         case 8767: case 8778: case 8794: case 8801: case 8802: case 8819: case 8847: case 8857: case 8865: case 8866:
-        case 8877: case 8878:
+        case 8877: case 8878: case 8898: case 8933: case 8952: case 8971:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -3181,7 +3056,7 @@ attack.prototype.update=function(){
         case 8095: case 8105: case 8113: case 8190: case 8264: case 8265: case 8282: case 8320: case 8321: case 8336:
         case 8341: case 8342: case 8356: case 8370: case 8396: case 8525: case 8546: case 8581: case 8584: case 8642:
         case 8643: case 8644: case 8652: case 8653: case 8673: case 8694: case 8699: case 8739: case 8770: case 8771:
-        case 8805: case 8834: case 8851: case 8852: case 8880:
+        case 8805: case 8834: case 8851: case 8852: case 8880: case 8899: case 8920: case 8935: case 8936:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -3655,7 +3530,7 @@ attack.prototype.update=function(){
             }
         break
         case 176: case 1720: case 2146: case 2229: case 3143: case 3506: case 4516: case 5562: case 6432: case 6975:
-        case 8226:
+        case 8226: case 8906: case 8976:
             if(this.timer==1){
                 this.userCombatant.startAnimation(15)
             }
@@ -3722,6 +3597,14 @@ attack.prototype.update=function(){
                     break
                     case 8226:
                         this.userCombatant.ringing+=this.effect[1]
+                    break
+                    case 8906:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Shrapnel',types.card),0,constants.playerNumber+1)
+                        }
+                    break
+                    case 8976:
+                        this.battle.combatantManager.areaAbstract(2,[`Bruise`,this.effect[1]],this.targetCombatant.tilePosition,[0],[0,1],false,0)
                     break
                 }
             }else if(this.timer>=10*this.targetDistance+25){
@@ -5121,7 +5004,7 @@ attack.prototype.update=function(){
         case 8480: case 8523: case 8555: case 8561: case 8574: case 8591: case 8592: case 8593: case 8594: case 8595:
         case 8596: case 8597: case 8598: case 8600: case 8601: case 8611: case 8618: case 8645: case 8654: case 8664:
         case 8672: case 8674: case 8703: case 8724: case 8750: case 8765: case 8780: case 8795: case 8811: case 8820:
-        case 8821: case 8838: case 8843: case 8854:
+        case 8821: case 8838: case 8843: case 8854: case 8891: case 8931: case 8932: case 8939: case 8940: case 8945:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
@@ -8321,7 +8204,7 @@ attack.prototype.update=function(){
         break
         case 2891: case 2893: case 2896: case 2906: case 2910: case 2960: case 2963: case 2964: case 2970: case 3017:
         case 3022: case 3049: case 3341: case 3347: case 3500: case 3534: case 4046: case 4315: case 4513: case 5915:
-        case 6270: case 6514: case 6970: case 8383: case 8384:
+        case 6270: case 6514: case 6970: case 8383: case 8384: case 8896:
             if(variants.nobasicanim){
                 this.selfCall(1)
                 this.remove=true
@@ -8826,7 +8709,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 3165: case 3448: case 4587: case 4588: case 4589:
+        case 3165: case 3448: case 4587: case 4588: case 4589: case 8962: case 8963: case 8964: case 8965:
             if(this.timer==1){
                 this.userCombatant.startAnimation(6)
             }
@@ -8862,6 +8745,38 @@ attack.prototype.update=function(){
                         this.userManager.draw(this.effect[0])
                         this.userManager.hand.add(findName('Pristine',types.card),0,0)
                         this.userCombatant.loseHealth(this.effect[1])
+                    break
+                    case 8962:
+                        this.battle.addEnergy(this.effect[0],this.player)
+                        this.userManager.draw(this.effect[1])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        }
+                        this.userCombatant.loseHealth(this.effect[3])
+                    break
+                    case 8963:
+                        this.battle.addSpecificEnergy(2,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        }
+                        this.userCombatant.loseHealth(this.effect[2])
+                    break
+                    case 8964:
+                        this.battle.addSpecificEnergy(3,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        }
+                        this.userCombatant.loseHealth(this.effect[2])
+                    break
+                    case 8965:
+                        this.battle.addSpecificEnergy(4,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        }
+                        this.userCombatant.loseHealth(this.effect[2])
                     break
                 }
             }else if(this.timer>=20){
@@ -8978,6 +8893,7 @@ attack.prototype.update=function(){
             }
         break
         case 3243: case 5599: case 5667: case 5771: case 5772: case 5773: case 5774: case 7577: case 7816: case 8519:
+        case 8918:
             if(this.timer==1){
                 this.userCombatant.startAnimation(10)
             }
@@ -9017,6 +8933,11 @@ attack.prototype.update=function(){
                         case 5774:
                             if(this.lastPlayed[0].class==1){
                                 this.battle.addSpecificEnergy(2,this.player,6)
+                            }
+                        break
+                        case 8918:
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userManager.hand.add(findName('Safety',types.card),0,0)
                             }
                         break
                     }
@@ -11963,7 +11884,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 5433:
+        case 5433: case 8938:
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
             }
@@ -11976,7 +11897,14 @@ attack.prototype.update=function(){
             if(this.timer==30||this.timer==60){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 if(this.timer==60){
-                    this.userManager.hand.exhaustAdd(findName('Miracle',types.card))
+                    switch(this.type){
+                        case 5433:
+                            this.userManager.hand.exhaustAdd([findName('Miracle',types.card),1])
+                        break
+                        case 8938:
+                            this.userManager.hand.exhaustAdd([findName('Miracle',types.card),this.effect[1]])
+                        break
+                    }
                 }
             }else if(this.timer>=75){
                 this.remove=true
@@ -12212,7 +12140,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 5647:
+        case 5647: case 8966:
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
             }
@@ -12231,6 +12159,12 @@ attack.prototype.update=function(){
                         case 5647:
                             this.userCombatant.statusEffect('Armor',this.effect[1])
                             this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        break
+                        case 8966:
+                            this.userCombatant.statusEffect('Armor',this.effect[1])
+                            for(let a=0,la=this.effect[2];a<la;a++){
+                                this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                            }
                         break
                     }
                 }
@@ -12727,7 +12661,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 6360:
+        case 6360: case 8947:
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
             }
@@ -12745,12 +12679,21 @@ attack.prototype.update=function(){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 this.targetCombatant.statusEffect('Weak',this.effect[1])
                 this.targetCombatant.statusEffect('Vulnerable',this.effect[2])
-                this.userManager.addRandomAbstract(3,0,0,1,0,[],[constants.playerNumber+2,3])
+                switch(this.type){
+                    case 6360:
+                        this.userManager.addRandomAbstract(3,0,0,1,0,[],[constants.playerNumber+2,3])
+                    break
+                    case 8947:
+                        for(let a=0,la=this.effect[3];a<la;a++){
+                            this.userManager.addRandomAbstract(3,0,0,1,0,[],[constants.playerNumber+2,3])
+                        }
+                    break
+                }                        
             }else if(this.timer>=max(30,5*this.targetDistance+25)){
                 this.remove=true
             }
         break
-        case 6387: case 6388: case 6389: case 6478: case 7122: case 7175:
+        case 6387: case 6388: case 6389: case 6478: case 7122: case 7175: case 8942:
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
             }
@@ -12786,6 +12729,11 @@ attack.prototype.update=function(){
                         case 7175:
                             this.battle.overlayManager.overlays[10][this.player].active=true
                             this.battle.overlayManager.overlays[10][this.player].activate([this.level,[8],57,[],[]])
+                        break
+                        case 8942:
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userManager.hand.add(findName('Dual\nDiscus',types.card),this.level,0)
+                            }
                         break
                     }
                 }
@@ -13190,7 +13138,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 6618:
+        case 6618: case 8948:
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
             }
@@ -13208,6 +13156,11 @@ attack.prototype.update=function(){
                     switch(this.type){
                         case 6618:
                             this.userManager.hand.addAbstract(findName('Dual\nDiscus',types.card),this.level,0,0,[4],[[57]])
+                        break
+                        case 8948:
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userManager.hand.addAbstract(findName('Dual\nDiscus',types.card),this.level,0,0,[4],[[57]])
+                            }
                         break
                     }
                 }
@@ -13909,7 +13862,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 8747: case 8748: case 8749:
+        case 8747: case 8748: case 8749: case 8949: case 8950: case 8951:
             if(this.timer==1){
                 this.userCombatant.startAnimation(5)
             }
@@ -13919,18 +13872,46 @@ attack.prototype.update=function(){
                 switch(this.type){
                     case 8747:
                         this.battle.addEnergy(this.effect[0],this.player)
+                        this.userManager.draw(this.effect[1])
+                        this.battle.drop(this.player,findName('Shining\nMoon',types.card),0,constants.playerNumber+1)
                     break
-                    case 8748: case 8749:
-                        this.battle.addSpecificEnergy(this.type-8746,this.player,6)
+                    case 8748:
+                        this.battle.addSpecificEnergy(2,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        this.battle.drop(this.player,findName('Shining\nMoon',types.card),0,constants.playerNumber+1)
+                    break
+                    case 8749:
+                        this.battle.addSpecificEnergy(3,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        this.battle.drop(this.player,findName('Shining\nMoon',types.card),0,constants.playerNumber+1)
+                    break
+                    case 8949:
+                        this.battle.addEnergy(this.effect[0],this.player)
+                        this.userManager.draw(this.effect[1])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.battle.drop(this.player,findName('Shining\nMoon',types.card),0,constants.playerNumber+1)
+                        }
+                    break
+                    case 8950:
+                        this.battle.addSpecificEnergy(2,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.drop(this.player,findName('Shining\nMoon',types.card),0,constants.playerNumber+1)
+                        }
+                    break
+                    case 8951:
+                        this.battle.addSpecificEnergy(3,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.drop(this.player,findName('Shining\nMoon',types.card),0,constants.playerNumber+1)
+                        }
                     break
                 }
-                this.userManager.draw(this.effect[1])
-                this.battle.drop(this.player,findName('Shining\nMoon',types.card),0,constants.playerNumber+1)
             }else if(this.timer>=20){
                 this.remove=true
             }
         break
-        case 8759: case 8760: case 8761:
+        case 8759: case 8760: case 8761: case 8956: case 8957: case 8958:
             if(this.timer==1){
                 this.userCombatant.startAnimation(5)
             }
@@ -13940,13 +13921,41 @@ attack.prototype.update=function(){
                 switch(this.type){
                     case 8759:
                         this.battle.addEnergy(this.effect[0],this.player)
+                        this.userManager.draw(this.effect[1])
+                        this.battle.drop(this.player,findName('Pressure',types.card),0,constants.playerNumber+1)
                     break
-                    case 8760: case 8761:
-                        this.battle.addSpecificEnergy(this.type-87,this.player,6)
+                    case 8760:
+                        this.battle.addSpecificEnergy(2,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        this.battle.drop(this.player,findName('Pressure',types.card),0,constants.playerNumber+1)
+                    break
+                    case 8761:
+                        this.battle.addSpecificEnergy(3,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        this.battle.drop(this.player,findName('Pressure',types.card),0,constants.playerNumber+1)
+                    break
+                    case 8956:
+                        this.battle.addEnergy(this.effect[0],this.player)
+                        this.userManager.draw(this.effect[1])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.battle.drop(this.player,findName('Pressure',types.card),0,constants.playerNumber+1)
+                        }
+                    break
+                    case 8957:
+                        this.battle.addSpecificEnergy(2,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.drop(this.player,findName('Pressure',types.card),0,constants.playerNumber+1)
+                        }
+                    break
+                    case 8958:
+                        this.battle.addSpecificEnergy(3,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.drop(this.player,findName('Pressure',types.card),0,constants.playerNumber+1)
+                        }
                     break
                 }
-                this.userManager.draw(this.effect[1])
-                this.battle.drop(this.player,findName('Pressure',types.card),0,constants.playerNumber+1)
             }else if(this.timer>=20){
                 this.remove=true
             }

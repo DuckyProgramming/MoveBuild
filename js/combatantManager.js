@@ -1156,6 +1156,9 @@ class combatantManager{
                     case 65:
                         this.combatants[a].loseHealth(this.combatants[a].totalStatus(1))
                     break
+                    case 66:
+                        this.combatants[a].takeDamage(this.combatants[a].getStatus(args[0])*args[1])
+                    break
                 }
             }
         }

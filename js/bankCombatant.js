@@ -8369,7 +8369,7 @@ combatant.prototype.display=function(){
                                 this.layer.push()
                                 this.layer.translate(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y+0.375)
                                 this.layer.rotate(-this.anim.direction)
-                                if(this.anim.shoe[h]>0){
+                                if(this.anim.shoe[h]!=0){
                                     this.layer.translate(0,3.5)
                                     this.layer.rotate(-this.anim.shoe[h]*36)
                                     this.layer.translate(0,-3.5)
@@ -8469,7 +8469,7 @@ combatant.prototype.display=function(){
                                 this.layer.push()
                                 this.layer.translate(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
                                 this.layer.rotate(-this.anim.direction)
-                                if(this.anim.shoe[h]>0){
+                                if(this.anim.shoe[h]!=0){
                                     this.layer.translate(0,3.5)
                                     this.layer.rotate(-this.anim.shoe[h]*36)
                                     this.layer.translate(0,-3.5)
@@ -8535,7 +8535,7 @@ combatant.prototype.display=function(){
                                 }
                                 this.layer.endShape()
                                 //rim
-                                if(this.anim.shoe[h]>0){
+                                if(this.anim.shoe[h]!=0){
                                     this.layer.fill(...this.flashColor(upColor(this.color.shoe.inside,lcos(this.anim.direction+this.spin.legs[h].top)*10-25,[1,1,1])),this.fade)
                                     pos=[
                                         /*[-1.8,0],
@@ -8664,7 +8664,7 @@ combatant.prototype.display=function(){
                                     this.layer.push()
                                     this.layer.translate(this.graphics.legs[h].bottom.x*0.98+this.graphics.legs[h].middle.x*0.02,this.graphics.legs[h].bottom.y*0.98+this.graphics.legs[h].middle.y*0.02+0.5)
                                     this.layer.rotate(-this.anim.direction)
-                                    if(this.anim.shoe[h]>0){
+                                    if(this.anim.shoe[h]!=0){
                                         this.layer.translate(0,3.5)
                                         this.layer.rotate(-this.anim.shoe[h]*36)
                                         this.layer.translate(0,-3.5)

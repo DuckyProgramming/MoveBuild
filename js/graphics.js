@@ -8327,6 +8327,33 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 				p1.trigger.display.extra.damage=true
 			}
 			return p1
+		case 8:
+			p1=new combatant(layer,graphics.proxyBattle,350-a*100,520,0,0,0,0,player[a],0,0,-30-a*3)
+			switch(p1.name){
+				case 'Menessa':
+					p1.anim.mouth.y+=1
+					p1.parts.mouth-=0.5
+					p1.anim.shoe[0]=-2
+					p1.anim.shoe[1]=-1
+					p1.anim.legs=[
+						{top:48,bottom:27,length:{top:16.75,bottom:16.75}},
+						{top:12,bottom:33,length:{top:16.75,bottom:16.75}}
+					]
+					p1.anim.arms=[
+						{top:24,bottom:15+a*60,length:{top:16.75,bottom:16.75}},
+						{top:24,bottom:15,length:{top:16.75,bottom:16.75}}
+					]
+					p1.spin.legs=[{top:-18,bottom:-18},{top:90-a*30,bottom:90}]
+					p1.spin.arms=[{top:-60,bottom:6+a*36,lock:0},{top:90,bottom:24,lock:0}]
+				break
+			}
+			p1.fade=1
+			p1.graphic=true
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
+			return p1
+		break
 	}
 }
 function setupGeneralGraphics(){
